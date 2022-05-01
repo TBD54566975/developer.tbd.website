@@ -1,47 +1,20 @@
 ---
+title: Introduction
 sidebar_position: 1
 ---
 
-# Tutorial Intro
+# Learn (H1)
 
-Let's discover **Docusaurus in less than 5 minutes**.
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam finibus massa nec mauris fermentum rutrum. Aenean ac tincidunt massa. Aliquam sagittis enim eget risus tempus facilisis. Quisque sem odio, vulputate eu pretium eu, posuere et purus. Aenean ac blandit nunc, vitae faucibus tortor. Cras semper fringilla orci nec imperdiet. Ut id odio eget massa auctor dictum eget a velit. Sed lectus lacus, volutpat quis sem at, efficitur volutpat tellus. In hac habitasse platea dictumst. Aenean eleifend ex sit amet odio placerat, at iaculis mi viverra.
 
-## Getting Started
+## H2: Introduction
 
-Get started by **creating a new site**.
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam finibus massa nec mauris fermentum rutrum. Aenean ac tincidunt massa. Aliquam sagittis enim eget risus tempus facilisis. Quisque sem odio, vulputate eu pretium eu, posuere et purus. Aenean ac blandit nunc, vitae faucibus tortor. Cras semper fringilla orci nec imperdiet. Ut id odio eget massa auctor dictum eget a velit. Sed lectus lacus, volutpat quis sem at, efficitur volutpat tellus. In hac habitasse platea dictumst. Aenean eleifend ex sit amet odio placerat, at iaculis mi viverra.
 
-Or **try Docusaurus immediately** with **[docusaurus.new](https://docusaurus.new)**.
+## H2: Getting Started
 
-### What you'll need
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam finibus massa nec mauris fermentum rutrum. Aenean ac tincidunt massa. Aliquam sagittis enim eget risus tempus facilisis. Quisque sem odio, vulputate eu pretium eu, posuere et purus. Aenean ac blandit nunc, vitae faucibus tortor. Cras semper fringilla orci nec imperdiet. Ut id odio eget massa auctor dictum eget a velit. Sed lectus lacus, volutpat quis sem at, efficitur volutpat tellus. In hac habitasse platea dictumst. Aenean eleifend ex sit amet odio placerat, at iaculis mi viverra.
 
-- [Node.js](https://nodejs.org/en/download/) version 14 or above:
-  - When installing Node.js, you are recommended to check all checkboxes related to dependencies.
+### Heading 3
 
-## Generate a new site
-
-Generate a new Docusaurus site using the **classic template**.
-
-The classic template will automatically be added to your project after you run the command:
-
-```bash
-npm init docusaurus@latest my-website classic
-```
-
-You can type this command into Command Prompt, Powershell, Terminal, or any other integrated terminal of your code editor.
-
-The command also installs all necessary dependencies you need to run Docusaurus.
-
-## Start your site
-
-Run the development server:
-
-```bash
-cd my-website
-npm run start
-```
-
-The `cd` command changes the directory you're working with. In order to work with your newly created Docusaurus site, you'll need to navigate the terminal there.
-
-The `npm run start` command builds your website locally and serves it through a development server, ready for you to view at http://localhost:3000/.
-
-Open `docs/intro.md` (this page) and edit some lines: the site **reloads automatically** and displays your changes.
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam finibus massa nec mauris fermentum rutrum. Aenean ac tincidunt massa. Aliquam sagittis enim eget risus tempus facilisis. Quisque sem odio, vulputate eu pretium eu, posuere et purus. Aenean ac blandit nunc, vitae faucibus tortor. Cras semper fringilla orci nec imperdiet. Ut id odio eget massa auctor dictum eget a velit. Sed lectus lacus, volutpat quis sem at, efficitur volutpat tellus. In hac habitasse platea dictumst. Aenean eleifend ex sit amet odio placerat, at iaculis mi viverra.
