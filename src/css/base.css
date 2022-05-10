@@ -1,0 +1,32 @@
+/**
+ * https://tailwindcss.com/docs/adding-base-styles/
+ */
+
+@tailwind base;
+@layer base {
+  :root {
+    --base: 16px;
+    --baseUnitless: 16;
+    --color-primary-yellow-filter: invert(98%) sepia(34%) saturate(4729%)
+      hue-rotate(335deg) brightness(102%) contrast(107%);
+    --color-primary-cyan-filter: invert(98%) sepia(87%) saturate(4083%)
+      hue-rotate(127deg) brightness(100%) contrast(101%);
+    --color-primary-purple-filter: invert(23%) sepia(98%) saturate(6670%)
+      hue-rotate(273deg) brightness(102%) contrast(103%);
+  }
+
+  html {
+    max-width: 100vw;
+    overflow-x: hidden;
+  }
+
+  body {
+    background-color: var(--color-yellow);
+    max-width: 100vw;
+    overflow-x: hidden;
+  }
+
+  .dark body {
+    background-color: var(--color-black);
+  }
+}
