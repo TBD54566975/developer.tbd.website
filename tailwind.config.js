@@ -196,8 +196,8 @@ module.exports = {
         'accent-purple': 'var(--color-purple)',
       },
       fontFamily: {
-        sans: [tokens.FontBody1D.fontFamily, 'sans-serif'],
-        heading: [tokens.FontBody1D.fontFamily, 'sans-serif'],
+        sans: [tokens.FontBody1D.fontFamily],
+        heading: [tokens.FontBody1D.fontFamily],
       },
       typography: ({ theme }) => ({
         pink: {
