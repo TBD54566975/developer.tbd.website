@@ -1,15 +1,29 @@
-/**
- * Any CSS included here will be global. The classic template
- * bundles Infima by default. Infima is a CSS framework designed to
- * work well for content-centric websites.
- */
+@charset 'UTF-8';
+
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,100;0,300;0,400;0,500;0,600;0,700;1,100&display=swap');
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
 @import '_variables.css';
+
+/**
+ * Base
+ *
+ * https://tailwindcss.com/docs/adding-base-styles/
+ */
+@import 'base';
+
+/**
+  * Components
+  *
+  * https://tailwindcss.com/docs/extracting-components/#extracting-css-components-with-apply
+  */
+@tailwind components;
+
+/**
+  * Utilities
+  *
+  * https://tailwindcss.com/docs/adding-new-utilities
+  */
+@import 'utilities/_utilities';
 
 /* You can override the default Infima variables here. */
 :root {
@@ -21,6 +35,7 @@
   --ifm-color-primary-lighter: #359962;
   --ifm-color-primary-lightest: #3cad6e;
   --ifm-code-font-size: 95%;
+  --ifm-font-family-base: 'IBM Plex Mono';
 }
 
 /* For readability concerns, you should choose a lighter palette in dark mode. */
@@ -32,6 +47,8 @@
   --ifm-color-primary-light: #29d5b0;
   --ifm-color-primary-lighter: #32d8b4;
   --ifm-color-primary-lightest: #4fddbf;
+  --ifm-navbar-background-color: var(--color-black);
+  --ifm-font-family-base: 'IBM Plex Mono';
 }
 
 .docusaurus-highlight-code-line {
@@ -44,3 +61,5 @@
 [data-theme='dark'] .docusaurus-highlight-code-line {
   background-color: rgba(0, 0, 0, 0.3);
 }
+
+@import '_theme_overrides.css';

@@ -1,0 +1,42 @@
+<svg width="160" height="70" viewBox="0 0 160 70" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect x="10" y="10" width="10" height="10" fill="#FFEC19"/>
+<rect x="50" y="10" width="10" height="10" fill="#FFEC19"/>
+<rect width="10" height="10" transform="matrix(-1 0 0 1 160 10)" fill="#FFEC19"/>
+<rect x="50" width="10" height="10" fill="#FFEC19"/>
+<rect width="10" height="10" transform="matrix(-1 0 0 1 160 0)" fill="#FFEC19"/>
+<rect x="10" y="20" width="10" height="10" fill="#FFEC19"/>
+<rect x="50" y="20" width="10" height="10" fill="#FFEC19"/>
+<rect width="10" height="10" transform="matrix(-1 0 0 1 160 20)" fill="#FFEC19"/>
+<rect x="10" y="30" width="10" height="10" fill="#FFEC19"/>
+<rect x="50" y="30" width="10" height="10" fill="#FFEC19"/>
+<rect width="10" height="10" transform="matrix(-1 0 0 1 160 30)" fill="#FFEC19"/>
+<rect x="90" y="30" width="10" height="10" fill="#FFEC19"/>
+<rect width="10" height="10" transform="matrix(-1 0 0 1 120 30)" fill="#FFEC19"/>
+<rect x="10" y="40" width="10" height="10" fill="#FFEC19"/>
+<rect x="50" y="40" width="10" height="10" fill="#FFEC19"/>
+<rect width="10" height="10" transform="matrix(-1 0 0 1 160 40)" fill="#FFEC19"/>
+<rect x="90" y="40" width="10" height="10" fill="#FFEC19"/>
+<rect width="10" height="10" transform="matrix(-1 0 0 1 120 40)" fill="#FFEC19"/>
+<rect x="10" y="50" width="10" height="10" fill="#FFEC19"/>
+<rect x="50" y="50" width="10" height="10" fill="#FFEC19"/>
+<rect width="10" height="10" transform="matrix(-1 0 0 1 160 50)" fill="#FFEC19"/>
+<rect x="90" y="50" width="10" height="10" fill="#FFEC19"/>
+<rect width="10" height="10" transform="matrix(-1 0 0 1 120 50)" fill="#FFEC19"/>
+<rect x="20" y="60" width="10" height="10" fill="#FFEC19"/>
+<rect x="60" y="60" width="10" height="10" fill="#FFEC19"/>
+<rect width="10" height="10" transform="matrix(-1 0 0 1 150 60)" fill="#FFEC19"/>
+<rect x="60" y="20" width="10" height="10" fill="#FFEC19"/>
+<rect width="10" height="10" transform="matrix(-1 0 0 1 150 20)" fill="#FFEC19"/>
+<rect x="30" y="60" width="10" height="10" fill="#FFEC19"/>
+<rect x="70" y="60" width="10" height="10" fill="#FFEC19"/>
+<rect width="10" height="10" transform="matrix(-1 0 0 1 140 60)" fill="#FFEC19"/>
+<rect x="70" y="20" width="10" height="10" fill="#FFEC19"/>
+<rect width="10" height="10" transform="matrix(-1 0 0 1 140 20)" fill="#FFEC19"/>
+<rect x="80" y="60" width="10" height="10" fill="#FFEC19"/>
+<rect width="10" height="10" transform="matrix(-1 0 0 1 130 60)" fill="#FFEC19"/>
+<rect x="80" y="20" width="10" height="10" fill="#FFEC19"/>
+<rect width="10" height="10" transform="matrix(-1 0 0 1 130 20)" fill="#FFEC19"/>
+<rect x="20" y="20" width="10" height="10" fill="#FFEC19"/>
+<rect x="30" y="20" width="10" height="10" fill="#FFEC19"/>
+<rect y="20" width="10" height="10" fill="#FFEC19"/>
+</svg>
