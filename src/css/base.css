@@ -26,7 +26,7 @@
     overflow-x: hidden;
   }
 
-  .dark body {
+  html[data-theme='dark'] body {
     background-color: var(--color-black);
   }
 }

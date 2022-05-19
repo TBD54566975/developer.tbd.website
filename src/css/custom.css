@@ -35,6 +35,7 @@
   --ifm-color-primary-lighter: #359962;
   --ifm-color-primary-lightest: #3cad6e;
   --ifm-code-font-size: 95%;
+  --ifm-font-family-base: 'IBM Plex Mono';
 }
 
 /* For readability concerns, you should choose a lighter palette in dark mode. */
@@ -46,6 +47,8 @@
   --ifm-color-primary-light: #29d5b0;
   --ifm-color-primary-lighter: #32d8b4;
   --ifm-color-primary-lightest: #4fddbf;
+  --ifm-navbar-background-color: var(--color-black);
+  --ifm-font-family-base: 'IBM Plex Mono';
 }
 
 .docusaurus-highlight-code-line {
@@ -58,3 +61,5 @@
 [data-theme='dark'] .docusaurus-highlight-code-line {
   background-color: rgba(0, 0, 0, 0.3);
 }
+
+@import '_theme_overrides.css';
