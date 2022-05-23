@@ -1,13 +1,27 @@
 .navbar {
   border-bottom: 2px solid var(--color-yellow);
   height: fit-content;
-  margin-left: 10rem;
-  margin-right: 10rem;
+  margin-left: 1.5rem;
+  margin-right: 1.5rem;
   padding-top: 3rem;
   padding-bottom: 0px;
   padding-left: 0px;
   padding-right: 0px;
 }
+@media (min-width: 1024px) {
+  .navbar {
+    margin-left: 5rem;
+    margin-right: 5rem;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .navbar {
+    margin-left: calc(((34 / 16) * 1rem));
+    margin-right: calc(((34 / 16) * 1rem));
+  }
+}
+
 .navbar__link {
   color: var(--color-yellow);
   font-size: 18px;
