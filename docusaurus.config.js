@@ -93,11 +93,15 @@ const config = {
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
+      colorMode: {
+        defaultMode: 'dark',
+        disableSwitch: true,
+        respectPrefersColorScheme: false,
+      },
       navbar: {
-        title: 'TBD',
         logo: {
           alt: 'My Site Logo',
-          src: 'img/logo.svg',
+          src: 'img/tbd-logo.svg',
         },
         items: [
           {
@@ -105,30 +109,16 @@ const config = {
             label: 'Open Source',
             position: 'left',
           },
-          {
-            to: '/tbdex',
-            label: 'tbDEX',
-            position: 'left',
-          },
+
           {
             to: '/projects',
             label: 'Projects',
             position: 'left',
           },
+
           {
-            type: 'doc',
-            docId: 'intro',
-            position: 'left',
-            label: 'Learn',
-          },
-          {
-            to: '/blog',
-            label: 'Blog',
-            position: 'left',
-          },
-          {
-            href: 'https://github.com/facebook/docusaurus',
-            label: 'GitHub',
+            to: 'https://tbd.website',
+            label: 'TBD Home',
             position: 'right',
           },
         ],
