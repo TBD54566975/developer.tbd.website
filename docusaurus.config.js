@@ -42,6 +42,7 @@ const config = {
         },
       };
     },
+    /*
     [
       'docusaurus-plugin-remote-content',
       {
@@ -49,7 +50,7 @@ const config = {
         name: 'some-content1', // used by CLI, must be path safe
         sourceBaseUrl:
           'https://raw.githubusercontent.com/TBD54566975/tbdex-protocol/main/', // the base url for the markdown (gets prepended to all of the documents when fetching)
-        outDir: 'src/pages/projects', // the base directory to output to.
+        outDir: 'src/pages/projects/tbdex-protocol', // the base directory to output to.
         documents: ['README.md'], // the file names to download
         modifyContent(filename, content) {
           return {
@@ -62,6 +63,7 @@ ${content}
         },
       },
     ],
+    */
     [
       'docusaurus-plugin-remote-content',
       {
@@ -69,7 +71,7 @@ ${content}
         name: 'some-content2', // used by CLI, must be path safe
         sourceBaseUrl:
           'https://raw.githubusercontent.com/TBD54566975/tbdex-protocol/main/', // the base url for the markdown (gets prepended to all of the documents when fetching)
-        outDir: 'src/pages/components/tbdex-protocol', // the base directory to output to.
+        outDir: 'src/pages/projects/tbdex-protocol', // the base directory to output to.
         documents: components['tbdex-protocol'].map((data) => {
           return data.file;
         }), // the file names to download
@@ -100,7 +102,7 @@ ${content}
               content: `<div  class="prose prose-pink">
               ${links}
 
-${content}
+${content.replaceAll('.md)', ')')}
 
 </div>`, // <-- this last part adds in the rest of the content, which would otherwise be discarded
             };
@@ -110,6 +112,7 @@ ${content}
         },
       },
     ],
+
     [
       'docusaurus-plugin-remote-content',
       {
@@ -117,7 +120,7 @@ ${content}
         name: 'some-content3', // used by CLI, must be path safe
         sourceBaseUrl:
           'https://raw.githubusercontent.com/TBD54566975/dwn-sdk-js/main/', // the base url for the markdown (gets prepended to all of the documents when fetching)
-        outDir: 'src/pages/components/dwn-sdk-js', // the base directory to output to.
+        outDir: 'src/pages/projects/dwn-sdk-js', // the base directory to output to.
         documents: components['dwn-sdk-js'].map((data) => {
           return data.file;
         }), // the file names to download
@@ -130,7 +133,7 @@ ${content}
             return {
               content: `<div  class="prose prose-pink">
 
-${content}
+${content.replaceAll('.md)', ')')}
 
 </div>`, // <-- this last part adds in the rest of the content, which would otherwise be discarded
             };
@@ -146,7 +149,7 @@ ${content}
         name: 'some-content4', // used by CLI, must be path safe
         sourceBaseUrl:
           'https://raw.githubusercontent.com/TBD54566975/ssi-service/main/', // the base url for the markdown (gets prepended to all of the documents when fetching)
-        outDir: 'src/pages/components/ssi-service', // the base directory to output to.
+        outDir: 'src/pages/projects/ssi-service', // the base directory to output to.
         documents: components['ssi-service'].map((data) => {
           return data.file;
         }), // the file names to download
@@ -159,7 +162,7 @@ ${content}
             return {
               content: `<div  class="prose prose-pink">
 
-${content}
+${content.replaceAll('.md)', ')')}
 
 </div>`, // <-- this last part adds in the rest of the content, which would otherwise be discarded
             };
@@ -175,7 +178,7 @@ ${content}
         name: 'some-content5', // used by CLI, must be path safe
         sourceBaseUrl:
           'https://raw.githubusercontent.com/TBD54566975/ssi-sdk/main/', // the base url for the markdown (gets prepended to all of the documents when fetching)
-        outDir: 'src/pages/components/ssi-sdk', // the base directory to output to.
+        outDir: 'src/pages/projects/ssi-sdk', // the base directory to output to.
         documents: components['ssi-sdk'].map((data) => {
           return data.file;
         }), // the file names to download
@@ -188,7 +191,7 @@ ${content}
             return {
               content: `<div  class="prose prose-pink">
 
-${content}
+${content.replaceAll('.md)', ')')}
 
 </div>`, // <-- this last part adds in the rest of the content, which would otherwise be discarded
             };
