@@ -3,6 +3,20 @@
 
 const lightCodeTheme = require('prism-react-renderer/themes/github');
 const darkCodeTheme = require('prism-react-renderer/themes/dracula');
+const { components } = require('./data/remote-md.json');
+const linkTypes = {
+  discussions: {
+    text: 'View Discussions',
+  },
+  issues: {
+    text: 'View Issues',
+  },
+  github: {
+    text: 'View on Github',
+  },
+};
+
+const linkcode = '<a href="#url#">#text#</a>';
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
@@ -28,7 +42,163 @@ const config = {
         },
       };
     },
+    [
+      'docusaurus-plugin-remote-content',
+      {
+        // options here
+        name: 'some-content1', // used by CLI, must be path safe
+        sourceBaseUrl:
+          'https://raw.githubusercontent.com/TBD54566975/tbdex-protocol/main/', // the base url for the markdown (gets prepended to all of the documents when fetching)
+        outDir: 'src/pages/projects', // the base directory to output to.
+        documents: ['README.md'], // the file names to download
+        modifyContent(filename, content) {
+          return {
+            content: `<div  class="prose prose-pink">
+
+${content}
+
+</div>`,
+          };
+        },
+      },
+    ],
+    [
+      'docusaurus-plugin-remote-content',
+      {
+        // options here
+        name: 'some-content2', // used by CLI, must be path safe
+        sourceBaseUrl:
+          'https://raw.githubusercontent.com/TBD54566975/tbdex-protocol/main/', // the base url for the markdown (gets prepended to all of the documents when fetching)
+        outDir: 'src/pages/components/tbdex-protocol', // the base directory to output to.
+        documents: components['tbdex-protocol'].map((data) => {
+          return data.file;
+        }), // the file names to download
+        modifyContent(filename, content) {
+          let fileData = components['tbdex-protocol'].find((file) => {
+            return file.file === filename;
+          });
+
+          let links = '';
+          if (fileData.links) {
+            fileData.links.forEach((ele, idx) => {
+              if (idx === 0) {
+                links += '<div class="flex w-full justify-between mb-20">';
+              }
+
+              links += `${linkcode
+                .replace('#url#', ele.url)
+                .replace('#text#', linkTypes[ele.type].text)}`;
+
+              if (idx === fileData.links.length - 1) {
+                links += '</div>';
+              }
+            });
+          }
+
+          if (fileData) {
+            return {
+              content: `<div  class="prose prose-pink">
+              ${links}
+
+${content}
+
+</div>`, // <-- this last part adds in the rest of the content, which would otherwise be discarded
+            };
+          }
+
+          return undefined;
+        },
+      },
+    ],
+    [
+      'docusaurus-plugin-remote-content',
+      {
+        // options here
+        name: 'some-content3', // used by CLI, must be path safe
+        sourceBaseUrl:
+          'https://raw.githubusercontent.com/TBD54566975/dwn-sdk-js/main/', // the base url for the markdown (gets prepended to all of the documents when fetching)
+        outDir: 'src/pages/components/dwn-sdk-js', // the base directory to output to.
+        documents: components['dwn-sdk-js'].map((data) => {
+          return data.file;
+        }), // the file names to download
+        modifyContent(filename, content) {
+          let fileData = components['dwn-sdk-js'].find((file) => {
+            return file.file === filename;
+          });
+
+          if (fileData) {
+            return {
+              content: `<div  class="prose prose-pink">
+
+${content}
+
+</div>`, // <-- this last part adds in the rest of the content, which would otherwise be discarded
+            };
+          }
+          return undefined;
+        },
+      },
+    ],
+    [
+      'docusaurus-plugin-remote-content',
+      {
+        // options here
+        name: 'some-content4', // used by CLI, must be path safe
+        sourceBaseUrl:
+          'https://raw.githubusercontent.com/TBD54566975/ssi-service/main/', // the base url for the markdown (gets prepended to all of the documents when fetching)
+        outDir: 'src/pages/components/ssi-service', // the base directory to output to.
+        documents: components['ssi-service'].map((data) => {
+          return data.file;
+        }), // the file names to download
+        modifyContent(filename, content) {
+          let fileData = components['ssi-service'].find((file) => {
+            return file.file === filename;
+          });
+
+          if (fileData) {
+            return {
+              content: `<div  class="prose prose-pink">
+
+${content}
+
+</div>`, // <-- this last part adds in the rest of the content, which would otherwise be discarded
+            };
+          }
+          return undefined;
+        },
+      },
+    ],
+    [
+      'docusaurus-plugin-remote-content',
+      {
+        // options here
+        name: 'some-content5', // used by CLI, must be path safe
+        sourceBaseUrl:
+          'https://raw.githubusercontent.com/TBD54566975/ssi-sdk/main/', // the base url for the markdown (gets prepended to all of the documents when fetching)
+        outDir: 'src/pages/components/ssi-sdk', // the base directory to output to.
+        documents: components['ssi-sdk'].map((data) => {
+          return data.file;
+        }), // the file names to download
+        modifyContent(filename, content) {
+          let fileData = components['ssi-sdk'].find((file) => {
+            return file.file === filename;
+          });
+
+          if (fileData) {
+            return {
+              content: `<div  class="prose prose-pink">
+
+${content}
+
+</div>`, // <-- this last part adds in the rest of the content, which would otherwise be discarded
+            };
+          }
+          return undefined;
+        },
+      },
+    ],
   ],
+
   /*
     [
       'docusaurus-plugin-remote-content',
