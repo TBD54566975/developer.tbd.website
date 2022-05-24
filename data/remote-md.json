@@ -2,6 +2,9 @@
   "components": {
     "tbdex-protocol": [
       {
+        "file": "README.md"
+      },
+      {
         "file": "lib/README.md",
         "links": [
           {
@@ -19,6 +22,27 @@
         ]
       },
       {
+        "file": "did/README.md"
+      },
+      {
+        "file": "CODEOWNERS"
+      },
+      {
+        "file": "CODE_OF_CONDUCT.md"
+      },
+      {
+        "file": "lib/CONTRIBUTING.md"
+      },
+      {
+        "file": "CONTRIBUTING.md"
+      },
+      {
+        "file": "GOVERNANCE.md"
+      },
+      {
+        "file": "LICENSE"
+      },
+      {
         "file": "pfi-mock-impl/README.md",
         "links": [
           {
@@ -34,9 +58,21 @@
             "url": "https://github.com/TBD54566975/tbdex-protocol/discussions"
           }
         ]
+      },
+      {
+        "file": "pfi-mock-impl/CONTRIBUTING.md"
       }
     ],
     "dwn-sdk-js": [
+      {
+        "file": "CODE_OF_CONDUCT.md"
+      },
+      {
+        "file": "CONTRIBUTING.md"
+      },
+      {
+        "file": "GOVERNANCE.md"
+      },
       {
         "file": "README.md",
         "links": [
@@ -72,6 +108,24 @@
             "url": "https://github.com/TBD54566975/ssi-service/discussions"
           }
         ]
+      },
+      {
+        "file": "CODEOWNERS"
+      },
+      {
+        "file": "CODE_OF_CONDUCT.md"
+      },
+      {
+        "file": "CONTRIBUTING.md"
+      },
+      {
+        "file": "GOVERNANCE.md"
+      },
+      {
+        "file": "SECURITY.md"
+      },
+      {
+        "file": "LICENSE"
       }
     ],
     "ssi-sdk": [
@@ -91,6 +145,21 @@
             "url": "https://github.com/TBD54566975/ssi-sdk/discussions"
           }
         ]
+      },
+      {
+        "file": "CONTRIBUTING.md"
+      },
+      {
+        "file": "CODEOWNERS"
+      },
+      {
+        "file": "CODE_OF_CONDUCT.md"
+      },
+      {
+        "file": "GOVERNANCE.md"
+      },
+      {
+        "file": "LICENSE"
       }
     ]
   }
