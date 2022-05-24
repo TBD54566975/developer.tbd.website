@@ -57,12 +57,12 @@ function DocPageContent({
               className={clsx(
                 ThemeClassNames.docs.docSidebarContainer,
                 styles.docSidebarContainer,
-                hiddenSidebarContainer && styles.docSidebarContainerHidden
+                hiddenSidebarContainer && styles.docSidebarContainerHidden,
               )}
               onTransitionEnd={(e) => {
                 if (
                   !e.currentTarget.classList.contains(
-                    styles.docSidebarContainer
+                    styles.docSidebarContainer,
                   )
                 ) {
                   return;
@@ -112,17 +112,17 @@ function DocPageContent({
           )}
           <main
             className={clsx(
-              'prose prose-pink dark:prose-invert bg-primary-yellow dark:bg-primary-black',
+              'prose prose-pink dark:prose-invert bg-primary-black',
               styles.docMainContainer,
               (hiddenSidebarContainer || !sidebar) &&
-                styles.docMainContainerEnhanced
+                styles.docMainContainerEnhanced,
             )}
           >
             <div
               className={clsx(
                 'container padding-top--md padding-bottom--lg',
                 styles.docItemWrapper,
-                hiddenSidebarContainer && styles.docItemWrapperEnhanced
+                hiddenSidebarContainer && styles.docItemWrapperEnhanced,
               )}
             >
               {children}
@@ -141,7 +141,7 @@ export default function DocPage(props) {
     location,
   } = props;
   const currentDocRoute = docRoutes.find((docRoute) =>
-    matchPath(location.pathname, docRoute)
+    matchPath(location.pathname, docRoute),
   );
 
   if (!currentDocRoute) {
@@ -157,7 +157,7 @@ export default function DocPage(props) {
       className={clsx(
         ThemeClassNames.wrapper.docsPages,
         ThemeClassNames.page.docsDocPage,
-        versionMetadata.className
+        versionMetadata.className,
       )}
     >
       <DocsVersionProvider version={versionMetadata}>
