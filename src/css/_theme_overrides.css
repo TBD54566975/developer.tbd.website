@@ -1,3 +1,6 @@
+a:hover {
+  text-decoration: none;
+}
 /**VARIABLES**/
 :root {
   --ifm-menu-color-background-active: var(--color-black);
