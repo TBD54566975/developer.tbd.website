@@ -25,6 +25,15 @@
     margin-left: calc(((34 / 16) * 1rem));
     margin-right: calc(((34 / 16) * 1rem));
   }
+  .navbar-sidebar__brand {
+    margin-left: calc(((34 / 16) * 1rem)) !important;
+    margin-right: calc(((34 / 16) * 1rem)) !important;
+  }
+
+  .navbar-sidebar__item {
+    padding-right: calc(((34 / 16) * 1rem)) !important;
+    padding-left: calc(((34 / 16) * 1rem)) !important;
+  }
 }
 
 .navbar__link {
