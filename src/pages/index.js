@@ -1,9 +1,9 @@
 import React from 'react';
-import clsx from 'clsx';
 import Layout from '@theme/Layout';
 import Link from '@docusaurus/Link';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import { content } from '@site/src/content/home.js';
+import Button from '../components/Button/Button';
 
 function HomepageHeader() {
   const { siteConfig } = useDocusaurusContext();
@@ -20,6 +20,12 @@ function HomepageHeader() {
           >
             Docusaurus Tutorial - 5min ⏱️
           </Link>
+          <Button
+            label="View on Github"
+            url="/projects"
+            imageURL="/img/github-button-icon.svg"
+            colorDarkMode="cyan"
+          />
         </div>
       </div>
     </header>

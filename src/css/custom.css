@@ -9,7 +9,7 @@
  *
  * https://tailwindcss.com/docs/adding-base-styles/
  */
-@import 'base';
+@import 'base.css';
 
 /**
   * Components
@@ -23,6 +23,6 @@
   *
   * https://tailwindcss.com/docs/adding-new-utilities
   */
-@import 'utilities/_utilities';
+@import 'utilities/_utilities.css';
 
 @import '_theme_overrides.css';
