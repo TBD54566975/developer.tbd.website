@@ -21,7 +21,7 @@
   }
 
   body {
-    background-color: var(--color-yellow);
+    background-color: var(--color-black);
     max-width: 100vw;
     overflow-x: hidden;
   }
