@@ -99,6 +99,7 @@ const config = {
         respectPrefersColorScheme: false,
       },
       navbar: {
+        style: 'dark',
         logo: {
           alt: 'My Site Logo',
           src: 'img/tbd-logo.svg',
