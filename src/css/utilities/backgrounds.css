@@ -1,0 +1,22 @@
+@import 'tailwindcss/utilities';
+@layer utilities {
+  .bg-slash-light {
+    background-image: url('/images/divider-slash-light.svg');
+  }
+
+  .bg-slash-dark {
+    background-image: url('/images/divider-slash-dark.svg');
+  }
+
+  .bg-dotted-legal {
+    background-image: url('/images/divider-dotted-white.svg');
+  }
+
+  .bg-dotted-light {
+    background-image: url('/images/divider-dotted-light.svg');
+  }
+
+  .bg-dotted-dark {
+    background-image: url('/images/divider-dotted-dark.svg');
+  }
+}

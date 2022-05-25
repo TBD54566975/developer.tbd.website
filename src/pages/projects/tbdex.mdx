@@ -1,0 +1,66 @@
+---
+title: tbDEX
+slug: projects/tbdex
+hide_table_of_contents: true
+---
+
+<div class="prose prose-pink">
+
+# TBDEX: A LIQUIDITY PROTOCOL
+
+## Connecting the world of legacy money to the world of digital money
+
+The web connected us all. But money and payments have not kept pace. The legacy payments system is held together with proverbial duct tape that masks fundamental problems:; final settlement of payments is slow, expensive, and never quite final.
+
+Risks get priced in as expensive account fees – or exclusion from the system itself. This hits the most economically disadvantaged the hardest.
+
+A decentralized and trustless system like Bitcoin shifts the paradigm to financial access. There are no credit checks or monthly account fees. Open, decentralized, and permissionless networks let you send money anywhere in the world, near instantly.
+
+So now we have both legacy payment systems and new payment systems. But how do we get from the old to the new? tbDEX bridges the worlds of legacy money and digital money.
+
+tbDEX is a decentralized, permissionless protocol. It opens the door to self-sovereign identity and access to the financial system for all. And because it abstracts away the complexity of decentralization, developers can focus on building great things.
+
+---
+
+### Components
+
+- [tbDEX Spec](/projects/tbdex-protocol/lib/README)
+
+- [PFI Example Implementation](/projects/tbdex-protocol/pfi-mock-impl/README)
+
+- [Decentralized Web Nodes](/projects/dwn-sdk-js/README)
+
+- [Decentralized Identifiers](https://identity.foundation/ion/)
+
+- [Self-Sovereign Identity Service](/projects/ssi-service/README)
+
+- [Self-Sovereign Identity SDK](/projects/ssi-sdk/README)
+
+---
+
+### Actors
+
+- Wallets: wallets act as agents for individuals or institutions by facilitating exchanges with PFIs
+
+- Participating Financial Institutions (PFIs): entities that offer liquidity services on the tbDEX network
+
+- Credential Issuer: organizations or individuals (by means of their wallet) who serve as a source of verifiable credentials
+
+---
+
+### Use Cases
+
+#### Proving Your Identity
+
+Alice holds a digital wallet that securely manages all aspects of her identity, including her identifiers, credentials, and authorizations for external apps and entities. Alice uses her wallet to request USD in exchange for 100 units of cryptocurrency. Because Alice is off-ramping from cryptocurrency to fiat, most Participating Financial Institutions (PFIs) are required to verify Alice’s identity in order to fulfill their regulatory and compliance obligations. PFIs that are interested in fulfilling Alice’s request reply with a bid as well as their identity verification requirements for fulfillment. Alice chooses a bid which will need Know Your Customer (KYC) information (such as name, address, date of birth). Alice has already provided all of the necessary information to another PFI in the past. So Alice allows her wallet to provide a verifiable credential issued from the past PFI to the bidding PFI, along with the cryptocurrency to exchange. The PFI verifies the credential and continues with fulfillment.
+
+#### On-and-Off Ramps Between Fiat and Crypto
+
+Alice holds a digital wallet. Through the wallet's user interface, Alice requests cryptocurrency in exchange for $100 USD. The wallet broadcasts Alice's request to Participating Financial Institutions (PFIs) who may possibly fulfill it. Interested PFIs respond to the wallet with bids for Alice's request. Each bid is accompanied with credential requirements. Alice (or the wallet) chooses a bid and allows the wallet to provide Alice’s credentials requested by the PFI. Once a bid is accepted and credentials verified, Alice's wallet makes a payment, and the PFI executes a smart contract to release the crypto to Alice’s wallet address.
+
+<!--stackedit_data:
+eyJoaXN0b3J5IjpbLTIzNzIyNjk0NSw3MTI0MzI1NzEsLTcwND
+E3MTMzMiwxMTIwNTg1ODM2LDM3OTQ3NzU4NF19
+-->
+
+</div>
