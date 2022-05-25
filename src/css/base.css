@@ -16,11 +16,6 @@
     --max-page-width: 1440px;
   }
 
-  html {
-    max-width: 100vw;
-    overflow-x: hidden;
-  }
-
   html,
   body {
     background-color: var(--color-black);
