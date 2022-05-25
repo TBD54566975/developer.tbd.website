@@ -1,7 +1,14 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { useEffect, useState } from 'react';
-const Button = ({ label, url, className, isExternalLink, colorDarkMode }) => {
+const Button = ({
+  label,
+  url,
+  className,
+  isExternalLink,
+  colorDarkMode,
+  imageURL,
+}) => {
   const [classesDarkMode, setClassesDarkMode] = useState('');
   useEffect(() => {
     if (colorDarkMode === 'cyan') {
@@ -21,7 +28,9 @@ const Button = ({ label, url, className, isExternalLink, colorDarkMode }) => {
     }
   }, [colorDarkMode]);
 
-  let cssClasses = `w-fit px-[1.375rem] py-[0.75rem] mb-2 mr-2 nav-links border-solid border-2 hover:translate-x-[4px] hover:translate-y-[4px] ${
+  let cssClasses = `w-fit px-[1.375rem] ${
+    imageURL ? 'py-[0.625rem]' : 'py-[0.75rem]'
+  } mb-2 mr-2 nav-links border-solid border-2 hover:translate-x-[4px] hover:translate-y-[4px] ${
     className ? className : ''
   }`;
 
@@ -35,8 +44,19 @@ const Button = ({ label, url, className, isExternalLink, colorDarkMode }) => {
       href={url}
       target={isExternalLink ? '_blank' : ''}
       rel={isExternalLink ? 'noopener noreferrer' : ''}
+      className="dark"
     >
-      <div className={cssClasses}>{label}</div>
+      {imageURL ? (
+        <div className={cssClasses}>
+          <div className="flex gap-3">
+            <img src={imageURL} alt="" />
+
+            <span>{label}</span>
+          </div>
+        </div>
+      ) : (
+        <div className={cssClasses}>{label}</div>
+      )}
     </a>
   );
 };
@@ -55,6 +75,10 @@ Button.propTypes = {
    * Button className
    */
   className: PropTypes.string,
+  /**
+   * Button image
+   */
+  imageURL: PropTypes.string,
   isExternalLink: PropTypes.bool,
   colorDarkMode: PropTypes.string,
 };

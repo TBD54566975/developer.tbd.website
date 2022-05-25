@@ -1,3 +1,6 @@
+a:hover {
+  text-decoration: none;
+}
 .navbar {
   border-bottom: 2px solid var(--color-yellow);
   height: fit-content;
