@@ -244,7 +244,7 @@ ${content.replaceAll('.md)', ')')}
       /** @type {import('@docusaurus/preset-classic').Options} */
       ({
         docs: {
-          docLayoutComponent: '../src/stories/DocPage',
+          docLayoutComponent: '../src/layout/DocPage',
           sidebarPath: require.resolve('./sidebars.js'),
           // Please change this to your repo.
           editUrl:
@@ -272,6 +272,7 @@ ${content.replaceAll('.md)', ')')}
         respectPrefersColorScheme: false,
       },
       navbar: {
+        style: 'dark',
         logo: {
           alt: 'My Site Logo',
           src: 'img/tbd-logo.svg',
