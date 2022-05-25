@@ -24,6 +24,10 @@
   padding-right: 0px;
 }
 
+.navbar.navbar--dark {
+  --ifm-navbar-background-color: var(--color-black);
+}
+
 .navbar,
 .main-wrapper {
   margin-left: 1.5rem;
