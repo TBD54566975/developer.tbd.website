@@ -280,7 +280,7 @@ aside .menu__list .menu__list .menu__link--active::before {
 }
 
 @media (min-width: 997px) {
-  .docSidebarContainer_src-stories-DocPage-styles-module {
+  aside.docSidebarContainer_src-layout-DocPage-styles-module {
     border-right: none !important;
   }
 }
