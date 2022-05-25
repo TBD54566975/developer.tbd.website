@@ -71,7 +71,7 @@ const config = {
       /** @type {import('@docusaurus/preset-classic').Options} */
       ({
         docs: {
-          docLayoutComponent: '../src/stories/DocPage',
+          docLayoutComponent: '../src/layout/DocPage',
           sidebarPath: require.resolve('./sidebars.js'),
           // Please change this to your repo.
           editUrl:
