@@ -8,6 +8,11 @@
   padding-left: 0px;
   padding-right: 0px;
 }
+
+.navbar.navbar--dark {
+  --ifm-navbar-background-color: var(--color-black);
+}
+
 @media (min-width: 1024px) {
   .navbar {
     margin-left: 5rem;
