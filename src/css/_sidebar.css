@@ -80,7 +80,8 @@ aside .menu__list .menu__list .menu__link--active::before {
 }
 
 @media (min-width: 997px) {
-  aside.docSidebarContainer_src-layout-DocPage-styles-module {
+  aside.docSidebarContainer_src-layout-DocPage-styles-module,
+  aside.theme-doc-sidebar-container {
     border-right: none !important;
   }
 }
