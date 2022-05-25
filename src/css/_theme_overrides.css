@@ -8,6 +8,12 @@
   margin-top: 4.5rem;
 }
 
+/**CONTAINER**/
+.container {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
 @media (max-width: 996px) {
   .main-wrapper {
     margin-top: 3rem;
