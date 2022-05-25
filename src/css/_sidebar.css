@@ -1,0 +1,93 @@
+/**SIDEBAR **/
+
+aside .menu__link {
+  color: var(--color-blue);
+  padding-left: 1.875rem;
+  padding-top: 0rem;
+  padding-bottom: 0rem;
+  height: 18px;
+}
+
+aside .menu__link--sublist-caret:after {
+  content: url('/img/arrow-blue.svg');
+  background: none;
+  width: 1.25rem;
+  height: 1.25rem;
+  transform: rotateZ(90deg);
+  transform-origin: 50% 50%;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  filter: none;
+}
+
+aside .menu__list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  transition: all 221ms ease-in-out 0s !important;
+}
+
+aside .menu__list .menu__list {
+  display: flex !important;
+  margin-top: 1.5rem;
+  gap: 2rem;
+}
+
+aside .menu__list-item:not(:first-child) {
+  margin-top: 0rem;
+}
+aside .menu__list-item--collapsed .menu__list {
+  margin-top: 0rem;
+}
+aside .menu__list-item--collapsed .menu__link--sublist:after {
+  transform: rotateZ(0deg);
+}
+aside .menu__list-item-collapsible {
+  background-color: var(--color-black) !important;
+}
+
+aside .menu__link--active:hover {
+  color: var(--color-blue);
+}
+aside .menu__list .menu__list-item .menu__link--active::before {
+  content: url('/img/selected-arrow-blue.svg');
+  top: -4px;
+  position: relative;
+  margin-right: -24px;
+  left: -30px;
+}
+aside
+  .menu__list
+  .menu__list-item
+  .menu__list-item-collapsible
+  .menu__link--active::before {
+  content: none;
+}
+aside .menu__list .menu__list .menu__link {
+  padding-left: 50px;
+}
+aside .menu__list .menu__list .menu__link--active {
+  padding-left: 50px;
+}
+
+aside .menu__list .menu__list .menu__link--active::before {
+  content: url('/img/selected-arrow-blue.svg');
+  top: -4px;
+  position: relative;
+  margin-right: -24px;
+  left: -2.1rem;
+}
+
+@media (min-width: 997px) {
+  aside.docSidebarContainer_src-layout-DocPage-styles-module {
+    border-right: none !important;
+  }
+}
+
+@media (min-width: 997px) {
+  .menu_node_modules-\@docusaurus-theme-classic-lib-next-theme-DocSidebar-Desktop-Content-styles-module {
+    flex-grow: 1;
+    padding-left: 0rem !important;
+  }
+}
