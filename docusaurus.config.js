@@ -260,6 +260,10 @@ ${content}
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
         },
+        gtag: {
+          trackingID: 'GTM-5X8H2X3',
+          anonymizeIP: true,
+        },
       }),
     ],
   ],
