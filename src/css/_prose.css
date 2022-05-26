@@ -1,0 +1,5 @@
+.prose,
+.prose.prose-pink {
+  width: 100%;
+  max-width: none !important;
+}
