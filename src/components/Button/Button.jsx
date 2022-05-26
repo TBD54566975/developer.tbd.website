@@ -82,6 +82,6 @@ Button.propTypes = {
 };
 Button.defaultProps = {
   isExternalLink: false,
-  colorDarkMode: 'yellow',
+  colorDarkMode: 'cyan',
 };
 export default Button;
