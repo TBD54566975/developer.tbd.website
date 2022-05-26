@@ -1,5 +1,5 @@
 <div  class="prose prose-pink">
-              <div class="flex w-full justify-between mb-20"><a href="https://github.com/TBD54566975/tbdex-protocol">View on Github</a><a href="https://github.com/TBD54566975/tbdex-protocol/issues">View Issues</a><a href="https://github.com/TBD54566975/tbdex-protocol/discussions">View Discussions</a></div>
+              <div class="flex gap-12 mb-20"><a href="https://github.com/TBD54566975/tbdex-protocol">View on Github</a><a href="https://github.com/TBD54566975/tbdex-protocol/issues">View Issues</a><a href="https://github.com/TBD54566975/tbdex-protocol/discussions">View Discussions</a></div>
 
 # tbDEX Protocol
 

@@ -41,7 +41,7 @@ html {
   padding-right: 0 !important;
 }
 
-@media (max-width: 996px) {
+@media (max-width: 1024px) {
   .main-wrapper {
     margin-top: 3rem;
   }
