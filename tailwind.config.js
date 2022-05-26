@@ -1,7 +1,7 @@
 const tokens = require('./src/css/jsvariables');
 
 module.exports = {
-  content: ['./src/**/*.{js,jsx,ts,tsx}'],
+  content: ['./src/**/*.{js,jsx,ts,tsx,md,mdx}'],
   darkMode: 'class',
   theme: {
     extend: {
@@ -234,8 +234,9 @@ module.exports = {
             '--tw-prose-invert-pre-bg': 'rgb(0 0 0 / 50%)',
             '--tw-prose-invert-th-borders': theme('colors.primary-black'),
             '--tw-prose-invert-td-borders': theme('colors.primary-black'),
-            '--ifm-code-background': theme('colors.accent-purple'),
+            '--ifm-code-background': theme('colors.accent-cyan'),
             '--ifm-heading-font-family': theme('fontFamily.sans'),
+            '--ifm-link-hover-color': theme('colors.accent-cyan'),
           },
         },
       }),
