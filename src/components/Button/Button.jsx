@@ -28,7 +28,9 @@ const Button = ({
     }
   }, [colorDarkMode]);
 
-  let cssClasses = `w-fit px-[1.375rem] mb-2 mr-2 button-text border-solid py-[0.75rem] border-2 hover:translate-x-[4px] hover:translate-y-[4px] ${
+  let cssClasses = `w-fit px-[1.375rem] mb-2 mr-2 button-text border-solid ${
+    imageURL ? 'pt-[9px] pb-[11px]' : 'pt-[12px] pb-[14px]'
+  } border-2 hover:translate-x-[4px] hover:translate-y-[4px] ${
     className ? className : ''
   }`;
 
@@ -49,7 +51,7 @@ const Button = ({
           <div className="flex gap-3">
             <img src={imageURL} alt="" />
 
-            <span>{label}</span>
+            <span className="relative top-[3px]">{label}</span>
           </div>
         </div>
       ) : (
