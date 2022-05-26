@@ -3,3 +3,57 @@
   width: 100%;
   max-width: none !important;
 }
+
+.prose.prose-pink em {
+  font-weight: 900;
+}
+
+.prose.prose-pink code {
+  color: var(--color-black) !important;
+}
+
+.prose.prose-pink code a {
+  color: var(--color-black) !important;
+  text-decoration: underline;
+}
+
+.prose.prose-pink code a:hover {
+  color: var(--color-black) !important;
+  text-decoration: none;
+}
+
+.prose.prose-pink a code {
+  color: var(--color-black) !important;
+  text-decoration: underline;
+}
+
+.prose.prose-pink a:hover code {
+  color: var(--color-black) !important;
+  text-decoration: none;
+}
+
+.prose.prose-pink
+  :where(tbody td:first-child):not(:where([class~='not-prose'] *)) {
+  padding-left: 0.5714286em;
+}
+
+.prose.prose-pink
+  :where(tbody td:last-child):not(:where([class~='not-prose'] *)) {
+  padding-right: 0.5714286em;
+}
+
+.prose.prose-pink
+  :where(thead th:first-child):not(:where([class~='not-prose'] *)) {
+  padding-left: 0.5714286em;
+}
+
+.prose.prose-pink
+  :where(thead th:last-child):not(:where([class~='not-prose'] *)) {
+  padding-right: 0.5714286em;
+}
+
+.prose.prose-pink hr {
+  height: 2px;
+  border-width: 0;
+  background-image: url('/img/divider-dotted-dark.svg');
+}
