@@ -66,10 +66,13 @@ module.exports = {
         'copy-footer-mobile': `${tokens.FontLinksM.fontWeight}`,
         'nav-links': `${tokens.FontLinksD.fontWeight}`,
         'nav-links-mobile': `${tokens.FontLinksM.fontWeight}`,
+        'button-text': `${tokens.FontLinksD.fontWeight}`,
+        'button-text-mobile': `${tokens.FontLinksM.fontWeight}`,
         'h1': `${tokens.FontH1D.fontWeight}`,
         'h2': `${tokens.FontH2D.fontWeight}`,
         'h3': `${tokens.FontH3D.fontWeight}`,
         'h4': `${tokens.FontH4D.fontWeight}`,
+        'h1-tablet': `${tokens.FontH1T.fontWeight}`,
         'h1-mobile': `${tokens.FontH1M.fontWeight}`,
         'h2-mobile': `${tokens.FontH2M.fontWeight}`,
         'h3-mobile': `${tokens.FontH3M.fontWeight}`,
@@ -124,6 +127,12 @@ module.exports = {
             lineHeight: `calc((${tokens.FontLinksM.lineHeight} / ${tokens.TypographyBaseFontSize} * 1rem))`,
           },
         ],
+        'button-text': [
+          `calc(((${tokens.FontLinksD.fontSize} / ${tokens.TypographyBaseFontSize}) * 1rem))`,
+          {
+            lineHeight: `calc((${tokens.FontLinksD.lineHeight} / ${tokens.TypographyBaseFontSize} * 1rem))`,
+          },
+        ],
         'h1': [
           `calc(((${tokens.FontH1D.fontSize} / ${tokens.TypographyBaseFontSize}) * 1rem))`,
           {
@@ -146,6 +155,12 @@ module.exports = {
           `calc(((${tokens.FontH4D.fontSize} / ${tokens.TypographyBaseFontSize}) * 1rem))`,
           {
             lineHeight: `calc((${tokens.FontH4D.lineHeight} / ${tokens.TypographyBaseFontSize} * 1rem))`,
+          },
+        ],
+        'h1-tablet': [
+          `calc(((${tokens.FontH1T.fontSize} / ${tokens.TypographyBaseFontSize}) * 1rem))`,
+          {
+            lineHeight: `calc((${tokens.FontH1T.lineHeight} / ${tokens.TypographyBaseFontSize} * 1rem))`,
           },
         ],
         'h1-mobile': [
@@ -236,8 +251,9 @@ module.exports = {
             '--tw-prose-invert-pre-bg': 'rgb(0 0 0 / 50%)',
             '--tw-prose-invert-th-borders': theme('colors.primary-black'),
             '--tw-prose-invert-td-borders': theme('colors.primary-black'),
-            '--ifm-code-background': theme('colors.accent-purple'),
+            '--ifm-code-background': theme('colors.accent-cyan'),
             '--ifm-heading-font-family': theme('fontFamily.sans'),
+            '--ifm-link-hover-color': theme('colors.accent-cyan'),
           },
         },
       }),
@@ -249,7 +265,7 @@ module.exports = {
   ],
   components: {
     'h1': {
-      _: 'text-h1-mobile tablet:text-h1 font-h1-mobile tablet:font-h1',
+      _: 'text-h1-mobile desktop:text-h1 font-h1-mobile desktop:font-h1 tablet:text-h1-tablet',
       caps: 'uppercase',
     },
     'h2': {
@@ -272,5 +288,6 @@ module.exports = {
       'text-copy-footer-mobile tablet:text-copy-footer font-copy-footer-mobile tablet:font-copy-footer',
     'nav-links':
       'text-nav-links-mobile tablet:text-nav-links font-nav-links-mobile tablet:font-nav-links',
+    'button-text': 'text-button-text font-button-text',
   },
 };

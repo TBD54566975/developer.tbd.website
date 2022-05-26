@@ -3,7 +3,7 @@
 :root {
   --ifm-menu-color-background-active: var(--color-black);
   --ifm-menu-color: var(--color-blue);
-  --ifm-color-primary: #2e8555;
+  --ifm-color-primary: var(--color-blue);
   --ifm-color-primary-dark: #29784c;
   --ifm-color-primary-darker: #277148;
   --ifm-color-primary-darkest: #205d3b;
@@ -14,6 +14,7 @@
   --ifm-font-family-base: 'IBM Plex Mono';
   --ifm-font-color-base: var(--color-yellow);
   --doc-sidebar-width: 298px !important;
+  --ifm-code-background: var(--color-blue);
 }
 
 /* For readability concerns, you should choose a lighter palette in dark mode. */
