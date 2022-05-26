@@ -16,6 +16,7 @@ export const Dark = Template.bind({});
 Dark.args = {
   label: 'Read More',
   url: 'https://www.google.com',
+  // eslint-disable-next-line quotes
   text: "We're building open protocols, standards, and development communities. Our projects are open source because we want everyone in the economy to benefit: individuals, businesses, institutions, and government.",
   title: 'OUR PHILOSOPHY',
 };
