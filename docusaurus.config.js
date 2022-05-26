@@ -26,7 +26,7 @@ const config = {
   projectName: 'developer.tbd.website',
   baseUrl: '/',
   url: 'https://developer.tbd.website',
-  onBrokenLinks: 'throw',
+  onBrokenLinks: 'warn',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
 
