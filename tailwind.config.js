@@ -6,13 +6,10 @@ module.exports = {
   theme: {
     extend: {
       screens: {
-        mobile: '520px',
-        // => @media (min-width: 520px) { ... }
+        tablet: '768px',
+        // => @media (min-width: 768px) { ... }
 
-        tablet: '1024px',
-        // => @media (min-width: 1024px) { ... }
-
-        desktop: '1120px',
+        desktop: '1024px',
         // => @media (min-width: 1024px) { ... }
       },
       backgroundImage: {
@@ -41,6 +38,11 @@ module.exports = {
           'url(/images/home-glitch-top-desktop-dark.svg)',
         'home-bottom-glitch-desktop-dark':
           'url(/images/home-glitch-bottom-desktop-dark.svg)',
+        'slash-light': 'url(/img/divider-slash-light.svg)',
+        'slash-dark': 'url(/img/divider-slash-dark.svg)',
+        'dotted-legal': 'url(/img/divider-dotted-white.svg)',
+        'dotted-light': 'url(/img/divider-dotted-light.svg)',
+        'dotted-dark': 'url(/img/divider-dotted-dark.svg)',
       },
       spacing: {
         8.5: `calc(((34 / ${tokens.TypographyBaseFontSize}) * 1rem))`,
