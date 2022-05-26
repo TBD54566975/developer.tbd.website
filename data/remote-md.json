@@ -25,21 +25,6 @@
         "file": "did/README.md"
       },
       {
-        "file": "CODEOWNERS"
-      },
-      {
-        "file": "CODE_OF_CONDUCT.md"
-      },
-      {
-        "file": "lib/CONTRIBUTING.md"
-      },
-      {
-        "file": "GOVERNANCE.md"
-      },
-      {
-        "file": "LICENSE"
-      },
-      {
         "file": "pfi-mock-impl/README.md",
         "links": [
           {

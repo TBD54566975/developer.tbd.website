@@ -26,7 +26,7 @@ const config = {
   projectName: 'developer.tbd.website',
   baseUrl: '/',
   url: 'https://developer.tbd.website',
-  onBrokenLinks: 'throw',
+  onBrokenLinks: 'warn',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
 
@@ -102,7 +102,7 @@ ${content}
               content: `<div  class="prose prose-pink">
               ${links}
 
-${content.replaceAll('.md)', ')')}
+${content}
 
 </div>`, // <-- this last part adds in the rest of the content, which would otherwise be discarded
             };
@@ -133,7 +133,7 @@ ${content.replaceAll('.md)', ')')}
             return {
               content: `<div  class="prose prose-pink">
 
-${content.replaceAll('.md)', ')')}
+${content}
 
 </div>`, // <-- this last part adds in the rest of the content, which would otherwise be discarded
             };
@@ -162,7 +162,7 @@ ${content.replaceAll('.md)', ')')}
             return {
               content: `<div  class="prose prose-pink">
 
-${content.replaceAll('.md)', ')')}
+${content}
 
 </div>`, // <-- this last part adds in the rest of the content, which would otherwise be discarded
             };
@@ -191,7 +191,7 @@ ${content.replaceAll('.md)', ')')}
             return {
               content: `<div  class="prose prose-pink">
 
-${content.replaceAll('.md)', ')')}
+${content}
 
 </div>`, // <-- this last part adds in the rest of the content, which would otherwise be discarded
             };
