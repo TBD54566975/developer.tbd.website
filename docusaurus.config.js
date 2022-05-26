@@ -261,7 +261,7 @@ ${content}
           customCss: require.resolve('./src/css/custom.css'),
         },
         gtag: {
-          trackingID: 'GTM-5X8H2X3',
+          trackingID: 'G-TT2WD0ZCQ8',
           anonymizeIP: true,
         },
       }),
