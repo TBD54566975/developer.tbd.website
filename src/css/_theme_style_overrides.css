@@ -11,5 +11,5 @@
 
 ul.table-of-contents li a code,
 ul.table-of-contents li code {
-  background-color: none;
+  background-color: transparent;
 }
