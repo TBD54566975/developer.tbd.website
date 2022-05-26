@@ -1,5 +1,1 @@
 @tailwind utilities;
-
-@layer utilities {
-  @import './backgrounds';
-}

@@ -84,7 +84,7 @@ ${content}
           if (fileData.links) {
             fileData.links.forEach((ele, idx) => {
               if (idx === 0) {
-                links += '<div class="flex w-full justify-between mb-20">';
+                links += '<div class="flex gap-12 mb-20">';
               }
 
               links += `${linkcode
@@ -259,6 +259,10 @@ ${content}
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
+        },
+        gtag: {
+          trackingID: 'G-TT2WD0ZCQ8',
+          anonymizeIP: true,
         },
       }),
     ],

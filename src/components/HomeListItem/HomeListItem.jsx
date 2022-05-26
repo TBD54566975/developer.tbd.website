@@ -1,11 +1,13 @@
 import React from 'react';
 import { Button } from '../Button';
 import PropTypes from 'prop-types';
-const HomeListItem = ({ title, text, label, url }) => {
+const HomeListItem = ({ title, text, label, url, className }) => {
   return (
-    <div>
-      <h2 className="text-primary-yellow h2 mb-4">{title}</h2>
-      <p className="text-primary-yellow copy mb-9">{text}</p>
+    <div className={'flex flex-col justify-between  ' + className}>
+      <div>
+        <h2 className="text-primary-yellow h2 mb-4">{title}</h2>
+        <p className="text-primary-yellow copy mb-9">{text}</p>
+      </div>
       <Button label={label} url={url} />
     </div>
   );
@@ -27,5 +29,10 @@ HomeListItem.propTypes = {
    * Text of the component
    */
   text: PropTypes.string.isRequired,
+
+  /**
+   * aditional Classes
+   */
+  className: PropTypes.string,
 };
 export default HomeListItem;
