@@ -19,7 +19,7 @@ export function Footer() {
     links: [
       {
         text: 'Legal',
-        href: 'https://oi.com.br',
+        href: 'https://www.tbd.website/legal',
       },
     ],
     socialText: 'Connect with us',
@@ -78,7 +78,7 @@ export function Footer() {
 
   useEffect(() => {
     setFooterBottomDark("dark:bg-[url('/img/footer-bottom-dark.svg')]");
-    setBgColorDark('dark:bg-primary-yellow');
+    setBgColorDark('bg-primary-yellow');
     setTextColorDark('dark:text-primary-yellow');
 
     if (footer.isLegal) {
@@ -93,7 +93,7 @@ export function Footer() {
       <Container className="pt-12 tablet:pt-14 desktop:pt-18 pb-14 desktop:pb-24">
         <div
           className={
-            'relative h-[18px] invertDarkMode bg-black overflow-hidden ' +
+            'relative h-[18px] invertDarkMode overflow-hidden ' +
             bgColorDark
           }
         >
@@ -101,15 +101,15 @@ export function Footer() {
             className="relative h-[18px] w-full"
             img="/img/footer-top-marquee.svg"
             objectFit="cover"
-            accentClass="tbd-yellow-illustration"
+            accentClass="tbd-white-illustration"
             alt=""
           />
         </div>
 
         <div
           className={
-            'flex h-[116px] tablet:h-[132px] desktop:h-[236px] items-center invertDarkMode bg-black ' +
-            'text-primary-yellow dark:text-primary-black px-4 tablet:px-6 desktop:px-12 ' +
+            'flex h-[116px] tablet:h-[132px] desktop:h-[236px] items-center invertDarkMode' +
+            'text-primary-yellow text-primary-black px-4 tablet:px-6 desktop:px-12 ' +
             bgColorDark
           }
         >
@@ -137,16 +137,10 @@ export function Footer() {
               footer.links.map((link, index) => (
                 <li
                   key={index}
-                  className={`ml-12 flex items-center py-0.5 ${
-                    footer.isLegal ? 'border-b-2 border-b-primary-black' : ''
-                  }`}
+                  className={`ml-12 flex items-center py-0.5 border-b-2 border-b-primary-black`}
                 >
                   <TextLink
-                    className={`${
-                      footer.isLegal
-                        ? 'py-3 border-b-2 border-b-primary-black text-primary-black'
-                        : ''
-                    }`}
+                    className={'py-3 border-b-2 border-b-primary-black text-primary-black'}
                     isInverse={true}
                     href={link.href}
                     text={link.text}
@@ -155,9 +149,9 @@ export function Footer() {
               ))}
           </ul>
         </div>
-        <div className="mt-9 flex flex-col tablet:h-18 desktop:h-30 tablet:px-6 desktop:px-12 tablet:mt-0 tablet:flex-row tablet:items-center desktop:flex-row">
+        <div className="mt-9 flex flex-col bg-primary-yellow tablet:h-18 desktop:h-30 tablet:px-6 desktop:px-12 tablet:mt-0 tablet:flex-row tablet:items-center desktop:flex-row">
           <div className="flex-1">
-            <p className={'copy ' + textColorDark}>{footer.socialText}</p>
+            <p className={'copy text-primary-black'}>{footer.socialText}</p>
           </div>
           <div className="flex-1 h-full block tablet:flex tablet:justify-end">
             <div className="my-10 grid grid-cols-4 place-items-center gap-9 tablet:gap-3 desktop:gap-6 tablet:my-0 tablet:flex tablet:justify-end">
@@ -168,7 +162,7 @@ export function Footer() {
                   url={socialButton.url}
                   altText={socialButton.altText}
                   title={socialButton.title}
-                  isBlackWhite={footer.isLegal}
+                  isBlackWhite={false}
                 />
               ))}
             </div>
@@ -183,6 +177,10 @@ export function Footer() {
       </Container>
     </footer>
   );
+}
+
+Footer.defaultProps = {
+    isLegal: false
 }
 
 export default Footer
