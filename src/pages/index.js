@@ -19,16 +19,16 @@ export default function Home() {
           </h1>
           <HomeList
             features={content.features}
-            className="desktop:mb-[6rem] tablet:mb-[152px] mb-[56px]"
+            className="desktop:mb-[6rem] tablet:mb-[9.5rem] mb-[3.5rem]"
           />
           <img
             src="/img/static-vertical-cyan.svg"
-            className="absolute right-[-24px] tablet:right-[-35px] desktop:right-[-150px] hd:right-[-176px] bottom-[13vh] tablet:bottom-[-9.5rem] desktop:bottom-[2.5rem] "
+            className="absolute right-[-1.5rem] tablet:right-[-2.1875rem] desktop:right-[-9.375rem] hd:right-[-11rem] bottom-[13vh] tablet:bottom-[-9.5rem] desktop:bottom-[2.5rem] "
             alt=""
           />
           <img
             src="/img/heart.svg"
-            className="absolute right-[-32px] tablet:right-[-46px] desktop:right-[-214px] bottom-[27vh] tablet:bottom-[-6.5rem] desktop:bottom-[10.5rem] w-[90px] h-[78px]  tablet:w-[180px] tablet:h-[156px] desktop:w-[270px] desktop:h-[230px] hdplus:w-[300px] hdplus:h-[260px]"
+            className="absolute right-[-2rem] tablet:right-[-2.875rem] desktop:right-[-13.375rem] bottom-[27vh] tablet:bottom-[-6.5rem] desktop:bottom-[10.5rem] w-[5.625rem] h-[4.875rem]  tablet:w-[11.25rem] tablet:h-[9.75rem] desktop:w-[16.875rem] desktop:h-[14.375rem] hdplus:w-[18.75rem] hdplus:h-[16.25rem]"
             alt=""
           />
         </div>
