@@ -43,6 +43,7 @@ module.exports = {
         'dotted-legal': 'url(/img/divider-dotted-white.svg)',
         'dotted-light': 'url(/img/divider-dotted-light.svg)',
         'dotted-dark': 'url(/img/divider-dotted-dark.svg)',
+        'vertical-divider': 'url(/img/vertical-divider.svg)',
       },
       spacing: {
         8.5: `calc(((34 / ${tokens.TypographyBaseFontSize}) * 1rem))`,
