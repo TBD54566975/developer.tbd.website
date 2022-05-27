@@ -11,11 +11,6 @@ module.exports = {
 
         desktop: '1024px',
         // => @media (min-width: 1024px) { ... }
-        hd: '1280px',
-        hdplus: '1440px',
-        fullhd: '1920px',
-        quadhd: '2560px',
-        fourk: '3840px',
       },
       backgroundImage: {
         'home-top-glitch-mobile': 'url(/images/home-glitch-top-mobile.svg)',
