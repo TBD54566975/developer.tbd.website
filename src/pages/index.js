@@ -23,12 +23,12 @@ export default function Home() {
           />
           <img
             src="/img/static-vertical-cyan.svg"
-            className="absolute right-[-1.5rem] tablet:right-[-2.1875rem] desktop:right-[-9.375rem] hd:right-[-11rem] bottom-[13vh] tablet:bottom-[-9.5rem] desktop:bottom-[2.5rem] "
+            className="absolute right-[-1.5rem] tablet:right-[-2.1875rem] desktop:right-[-9rem] bottom-[13vh] tablet:bottom-[-9.5rem] desktop:bottom-[2.5rem] "
             alt=""
           />
           <img
             src="/img/heart.svg"
-            className="absolute right-[-2rem] tablet:right-[-2.875rem] desktop:right-[-13.375rem] bottom-[27vh] tablet:bottom-[-6.5rem] desktop:bottom-[10.5rem] w-[5.625rem] h-[4.875rem]  tablet:w-[11.25rem] tablet:h-[9.75rem] desktop:w-[16.875rem] desktop:h-[14.375rem] hdplus:w-[18.75rem] hdplus:h-[16.25rem]"
+            className="absolute right-[-2rem] tablet:right-[-2.875rem] desktop:right-[-13.375rem] bottom-[27vh] tablet:bottom-[-6.5rem] desktop:bottom-[10.5rem] w-[5.625rem] h-[4.875rem]  tablet:w-[11.25rem] tablet:h-[9.75rem] desktop:w-[16.875rem] desktop:h-[14.375rem]"
             alt=""
           />
         </div>
