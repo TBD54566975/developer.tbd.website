@@ -1,36 +1,8 @@
 import React from 'react';
 import Layout from '@theme/Layout';
-import Link from '@docusaurus/Link';
+import HomeList from '../components/HomeList/HomeList';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import { content } from '@site/src/content/home.js';
-import Button from '../components/Button/Button';
-
-function HomepageHeader() {
-  const { siteConfig } = useDocusaurusContext();
-  return (
-    <header className="bg-blue-500">
-      <div className="container mx-auto text-center py-24">
-        <h1 className="h1 text-primary-yellow">{siteConfig.title}</h1>
-        <p className="text-xl py-6 text-white">{siteConfig.tagline}</p>
-
-        <div className="py-10">
-          <Link
-            className="bg-white rounded-md text-gray-500 px-4 py-2"
-            to="/docs/intro"
-          >
-            Docusaurus Tutorial - 5min ⏱️
-          </Link>
-          <Button
-            label="View on Github"
-            url="/projects"
-            imageURL="/img/github-button-icon.svg"
-            colorDarkMode="cyan"
-          />
-        </div>
-      </div>
-    </header>
-  );
-}
 
 export default function Home() {
   const { siteConfig } = useDocusaurusContext();
@@ -39,16 +11,26 @@ export default function Home() {
       title={`Hello from ${siteConfig.title}`}
       description="Description will go into a meta tag in <head />"
     >
-      <HomepageHeader />
       <main>
-        <div className="grid grid-cols-3">
-          {content.features.map((item, idx) => (
-            <div key={idx}>
-              <h3>{item.title}</h3>
-              <p>{item.description}</p>
-              <a href={item.cta.url}>{item.cta.label}</a>
-            </div>
-          ))}
+        <div className="tablet:max-w-[100%] desktop:max-w-[92%] relative">
+          <h1 className="h1 mb-18">
+            We’re building the next generation of the decentralized web,
+            returning data back to users. You’re welcome to join.
+          </h1>
+          <HomeList
+            features={content.features}
+            className="desktop:mb-[6rem] tablet:mb-[9.5rem] mb-[3.5rem]"
+          />
+          <img
+            src="/img/static-vertical-cyan.svg"
+            className="absolute right-[-1.5rem] tablet:right-[-2.1875rem] desktop:right-[-9rem] bottom-[13vh] tablet:bottom-[-9.5rem] desktop:bottom-[2.5rem] "
+            alt=""
+          />
+          <img
+            src="/img/heart.svg"
+            className="absolute right-[-2rem] tablet:right-[-2.875rem] desktop:right-[-13.375rem] bottom-[27vh] tablet:bottom-[-6.5rem] desktop:bottom-[10.5rem] w-[5.625rem] h-[4.875rem]  tablet:w-[11.25rem] tablet:h-[9.75rem] desktop:w-[16.875rem] desktop:h-[14.375rem]"
+            alt=""
+          />
         </div>
       </main>
     </Layout>

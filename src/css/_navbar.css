@@ -131,7 +131,7 @@
   font-weight: 500;
   padding: 0rem;
 }
-@media (max-width: 996px) {
+@media (max-width: 1024px) {
   .navbar {
     padding-top: 1.5rem;
   }
@@ -153,12 +153,17 @@
     align-self: center;
     margin-right: 0rem;
   }
+  .navbar__toggle {
+    display: inherit;
+  }
   .navbar__toggle.clean-btn::before {
     width: 1.125rem;
     height: 1.875rem;
     content: url('/img/menu-mobile.svg');
   }
-
+  .navbar__item {
+    display: none;
+  }
   .navbar__toggle.clean-btn svg {
     display: none;
   }
