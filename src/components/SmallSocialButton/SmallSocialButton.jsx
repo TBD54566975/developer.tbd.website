@@ -22,7 +22,8 @@ const SmallSocialButton = ({ src, url, altText, title, isBlackWhite }) => {
         img={src}
         alt={altText}
         title={title}
-        className={'w-6 p-3 aspect-square relative text-primary-black'}
+        className={'w-6 p-3 aspect-square relative text-primary-black tbd-social-icon'}
+        imgStyle={'tbd-social-icon'}
         accentClass={darkIconColor}
       />
     </a>

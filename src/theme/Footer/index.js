@@ -3,13 +3,11 @@
 import React, { useEffect, useState } from 'react';
 import { Illustration } from '../../components/Illustration';
 import { SmallSocialButton } from '../../components/SmallSocialButton';
-import {useThemeConfig} from '@docusaurus/theme-common';
 import { Container } from '../../components/Container';
 import { TextLink } from '../../components/TextLink/TextLink';
 
 export function Footer() {
   const [bgColorDark, setBgColorDark] = useState('');
-  const [textColorDark, setTextColorDark] = useState('');
   const [footerBottomDark, setFooterBottomDark] = useState('');
 
   const footer = {
@@ -79,12 +77,10 @@ export function Footer() {
   useEffect(() => {
     setFooterBottomDark("dark:bg-[url('/img/footer-bottom-dark.svg')]");
     setBgColorDark('bg-primary-yellow');
-    setTextColorDark('dark:text-primary-yellow');
 
     if (footer.isLegal) {
       setBgColorDark('dark:bg-primary-white');
       setFooterBottomDark("dark:bg-[url('/img/footer-bottom-dark-bw.svg')]");
-      setTextColorDark('dark:text-primary-white');
     }
   }, [footer.isLegal]);
 
@@ -177,10 +173,6 @@ export function Footer() {
       </Container>
     </footer>
   );
-}
-
-Footer.defaultProps = {
-    isLegal: false
 }
 
 export default Footer
