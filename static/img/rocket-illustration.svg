@@ -1,0 +1,18 @@
+<svg width="280" height="380" viewBox="0 0 280 380" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect x="160" y="360" width="20" height="20" fill="black"/>
+<rect x="100" y="360" width="20" height="20" fill="black"/>
+<rect x="20" y="360" width="20" height="20" fill="black"/>
+<rect x="240" y="360" width="20" height="20" fill="black"/>
+<rect x="20" y="300" width="20" height="40" fill="black"/>
+<rect x="240" y="300" width="20" height="40" fill="black"/>
+<path d="M160 0V20H120V0H160Z" fill="black"/>
+<path d="M100 40V20H120V40H100Z" fill="black"/>
+<path d="M80 60V40H100V60H80Z" fill="black"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M200 60V220H80V60H60V160H40V180H20V200H0V260H20V280H40V260H60V240H80V280H100V300H120V320H160V300H180V280H200V240H220V260H240V280H260V260H280V200H260V180H240V160H220V60H200ZM240 180V200H260V260H240V240H220V180H240ZM180 280H160V300H120V280H100V240H180V280ZM60 240H40V260H20V200H40V180H60V240Z" fill="black"/>
+<path d="M180 40H200V60H180V40Z" fill="black"/>
+<path d="M180 40V20H160V40H180Z" fill="black"/>
+<path d="M120 80V120H100V80H120Z" fill="black"/>
+<path d="M160 80H120V60H160V80Z" fill="black"/>
+<path d="M160 120V80H180V120H160Z" fill="black"/>
+<path d="M160 120H120V140H160V120Z" fill="black"/>
+</svg>

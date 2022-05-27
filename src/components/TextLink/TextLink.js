@@ -1,6 +1,6 @@
 import React from 'react';
 
-const TextLink = ({
+export const TextLink = ({
   clickHandler,
   href,
   text,

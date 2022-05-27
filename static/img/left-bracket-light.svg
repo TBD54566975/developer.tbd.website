@@ -1,0 +1,7 @@
+<svg width="80" height="200" viewBox="0 0 80 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M40 0H80V20H40V0Z" fill="black"/>
+<path d="M20 80V20H40V80H20Z" fill="black"/>
+<path d="M20 120H0V80H20V120Z" fill="black"/>
+<path d="M40 180H20V120H40V180Z" fill="black"/>
+<path d="M40 180V200H80V180H40Z" fill="black"/>
+</svg>
