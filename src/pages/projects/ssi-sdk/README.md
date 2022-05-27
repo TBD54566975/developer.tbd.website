@@ -1,4 +1,5 @@
 <div  class="prose prose-pink">
+              <div class="flex gap-12 mb-20"><a href="https://github.com/TBD54566975/ssi-sdk">View on Github</a><a href="https://github.com/TBD54566975/ssi-sdk/issues">View Issues</a><a href="https://github.com/TBD54566975/ssi-sdk/discussions">View Discussions</a></div>
 
 [![godoc](https://img.shields.io/badge/godoc-ssi--sdk-blue)](https://pkg.go.dev/github.com/TBD54566975/ssi-sdk)
 [![goversion](https://img.shields.io/badge/go_version-1.17.6-brightgreen)](https://golang.org/)
