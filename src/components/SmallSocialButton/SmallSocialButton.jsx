@@ -4,12 +4,12 @@ import { Illustration } from '../Illustration';
 
 const SmallSocialButton = ({ src, url, altText, title, isBlackWhite }) => {
   const darkIconColor = isBlackWhite
-    ? 'tbd-white-illustration'
+    ? 'tbd-yellow-illustration'
     : 'tbd-yellow-illustration';
 
   const borderColor = isBlackWhite
     ? { light: '', dark: 'border-b-primary-white' }
-    : { light: 'border-b-primary-black', dark: 'border-b-primary-yellow' };
+    : { light: 'border-b-primary-yellow', dark: 'border-b-primary-yellow' };
 
   return (
     <a

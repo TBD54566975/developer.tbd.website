@@ -145,9 +145,9 @@ export function Footer() {
               ))}
           </ul>
         </div>
-        <div className="mt-9 flex flex-col bg-primary-yellow tablet:h-18 desktop:h-30 tablet:px-6 desktop:px-12 tablet:mt-0 tablet:flex-row tablet:items-center desktop:flex-row">
+        <div className="mt-9 flex flex-col bg-black tablet:h-18 desktop:h-30 tablet:px-6 desktop:px-12 tablet:mt-0 tablet:flex-row tablet:items-center desktop:flex-row">
           <div className="flex-1">
-            <p className={'copy text-primary-black'}>{footer.socialText}</p>
+            <p className={'copy text-primary-yellow'}>{footer.socialText}</p>
           </div>
           <div className="flex-1 h-full block tablet:flex tablet:justify-end">
             <div className="my-10 grid grid-cols-4 place-items-center gap-9 tablet:gap-3 desktop:gap-6 tablet:my-0 tablet:flex tablet:justify-end">
@@ -166,7 +166,7 @@ export function Footer() {
         </div>
         <div
           className={
-            "bg-repeat-x bg-[url('/img/footer-bottom-light.svg')] h-[10px] " +
+            "bg-repeat-x bg-[url('/img/footer-bottom-dark.svg')] h-[10px] " + 
             footerBottomDark
           }
         ></div>
