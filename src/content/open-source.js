@@ -1,58 +1,25 @@
 import React from 'react';
 
 export const content = {
-  title:
-    'Traditional financial systems leave people behind. At TBD, we build infrastructure for a new digital economy – one that’s accessible to anyone with a mobile phone and an internet connection. And we’re creating it like the web itself: as a public good.',
-  subtitle:
-    'All TBD projects are open source and, where appropriate, built on open standards. Our work is licensed under the Apache License 2.0, and we welcome you to join us in building the future of finance and decentralized technology.',
+  title: 'Our Pillars',
   pillars: [
     {
       img: '/img/inclusivity-icon.svg',
       title: 'Inclusivity',
-      description: (
-        <>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
-          finibus massa nec mauris fermentum rutrum. Aenean ac tincidunt massa.
-        </>
-      ),
-      ctas: [],
+      description:
+        'Anyone with the capacity to contribute: can. We are proactive in welcoming a diverse contributor base for our code, documentation, developer relations, education, and communication efforts. Bad actors will be met with a published governance model and enforced code of conduct. Our users deserve representation in our development communities, and we promote varied perspectives and respectful debate.',
     },
     {
       img: '/img/transparency-icon.svg',
       title: 'Transparency',
-      description: (
-        <>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
-          finibus massa nec mauris fermentum rutrum. Aenean ac tincidunt massa.
-        </>
-      ),
-      ctas: [],
+      description:
+        'Decision-making is open by default, with rare exceptions made for security, compliance, personnel, or other sensitive issues. Projects under TBD’s stewardship will conduct design, roadmap, issues, bugs, and code reviews in public. This is critical for accountability and to promote the inclusive environment necessary for project success.',
     },
     {
       img: '/img/clarity-icon.svg',
       title: 'Clarity',
-      description: (
-        <>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
-          finibus massa nec mauris fermentum rutrum. Aenean ac tincidunt massa.
-        </>
-      ),
-      ctas: [],
-    },
-    {
-      title: 'Governance',
-      description: (
-        <>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
-          finibus massa nec mauris fermentum rutrum. Aenean ac tincidunt massa.
-        </>
-      ),
-      ctas: [
-        {
-          label: 'Learn More',
-          url: '/protocol',
-        },
-      ],
+      description:
+        'Projects need well-defined scope to succeed. They also need accessible, comprehensive documentation, a stellar Getting Started experience, and well-defined expectations. TBD fosters an environment built for contribution without personal intervention. Newcomers should be able to follow the project status on their own without additional explanation.',
     },
   ],
 };

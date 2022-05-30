@@ -1,6 +1,5 @@
 import React from 'react';
 import PillarList from './PillarList';
-
 export default {
   title: 'PillarList',
   component: PillarList,
@@ -14,59 +13,25 @@ const Template = (args) => (
 export const Dark = Template.bind({});
 // More on args: https://storybook.js.org/docs/react/writing-stories/args
 Dark.args = {
-  features: [
+  title: 'Our Pillars',
+  pillars: [
     {
-      title: 'Our Philosophy',
-      description: (
-        <>
-          Our projects are open source because when we need to go far, we go
-          together.
-        </>
-      ),
-      cta: {
-        label: 'Read Our Open Source Philosophy',
-        url: '/philosophy',
-      },
+      img: '/img/inclusivity-icon.svg',
+      title: 'Inclusivity',
+      description:
+        'Anyone with the capacity to contribute: can. We are proactive in welcoming a diverse contributor base for our code, documentation, developer relations, education, and communication efforts. Bad actors will be met with a published governance model and enforced code of conduct. Our users deserve representation in our development communities, and we promote varied perspectives and respectful debate.',
     },
     {
-      title: 'Our Protocol',
-      description: (
-        <>
-          The tbDEX protocol is our first system. It's how users around the
-          world share information and transact without anyone getting in the
-          middle to see your data or extract fees.
-        </>
-      ),
-      cta: {
-        label: 'Learn More',
-        url: '/protocol',
-      },
+      img: '/img/transparency-icon.svg',
+      title: 'Transparency',
+      description:
+        'Decision-making is open by default, with rare exceptions made for security, compliance, personnel, or other sensitive issues. Projects under TBD’s stewardship will conduct design, roadmap, issues, bugs, and code reviews in public. This is critical for accountability and to promote the inclusive environment necessary for project success.',
     },
     {
-      title: 'Our Projects',
-      description: (
-        <>
-          Our projects are the building blocks for tbDEX, self-sovereign
-          identity, decentralized communication, and more.
-        </>
-      ),
-      cta: {
-        label: 'Get Involved',
-        url: '/projects',
-      },
-    },
-    {
-      title: 'Our Approach',
-      description: (
-        <>
-          Decentralized. Permissionless. Trustless. This is the paradigm shift
-          evolving the web forward.
-        </>
-      ),
-      cta: {
-        label: 'Discover Our Approach',
-        url: '/approach',
-      },
+      img: '/img/clarity-icon.svg',
+      title: 'Clarity',
+      description:
+        'Projects need well-defined scope to succeed. They also need accessible, comprehensive documentation, a stellar Getting Started experience, and well-defined expectations. TBD fosters an environment built for contribution without personal intervention. Newcomers should be able to follow the project status on their own without additional explanation.',
     },
   ],
 };
