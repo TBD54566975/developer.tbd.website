@@ -2,6 +2,7 @@ const tokens = require('./src/css/jsvariables');
 
 module.exports = {
   content: ['./src/**/*.{js,jsx,ts,tsx,md,mdx}'],
+  important: true,
   darkMode: 'class',
   theme: {
     extend: {
