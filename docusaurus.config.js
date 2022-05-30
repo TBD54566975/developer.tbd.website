@@ -135,9 +135,27 @@ ${content}
             return file.file === filename;
           });
 
+          let links = '';
+          if (fileData.links) {
+            fileData.links.forEach((ele, idx) => {
+              if (idx === 0) {
+                links += '<div class="flex gap-12 mb-20">';
+              }
+
+              links += `${linkcode
+                .replace('#url#', ele.url)
+                .replace('#text#', linkTypes[ele.type].text)}`;
+
+              if (idx === fileData.links.length - 1) {
+                links += '</div>';
+              }
+            });
+          }
+
           if (fileData) {
             return {
               content: `<div  class="prose prose-pink">
+              ${links}
 
 ${content}
 
@@ -164,9 +182,27 @@ ${content}
             return file.file === filename;
           });
 
+          let links = '';
+          if (fileData.links) {
+            fileData.links.forEach((ele, idx) => {
+              if (idx === 0) {
+                links += '<div class="flex gap-12 mb-20">';
+              }
+
+              links += `${linkcode
+                .replace('#url#', ele.url)
+                .replace('#text#', linkTypes[ele.type].text)}`;
+
+              if (idx === fileData.links.length - 1) {
+                links += '</div>';
+              }
+            });
+          }
+
           if (fileData) {
             return {
               content: `<div  class="prose prose-pink">
+              ${links}
 
 ${content}
 
@@ -193,9 +229,27 @@ ${content}
             return file.file === filename;
           });
 
+          let links = '';
+          if (fileData.links) {
+            fileData.links.forEach((ele, idx) => {
+              if (idx === 0) {
+                links += '<div class="flex gap-12 mb-20">';
+              }
+
+              links += `${linkcode
+                .replace('#url#', ele.url)
+                .replace('#text#', linkTypes[ele.type].text)}`;
+
+              if (idx === fileData.links.length - 1) {
+                links += '</div>';
+              }
+            });
+          }
+
           if (fileData) {
             return {
               content: `<div  class="prose prose-pink">
+              ${links}
 
 ${content}
 
@@ -286,13 +340,13 @@ ${content}
         },
         items: [
           {
-            to: '/open-source',
+            to: '/opensource',
             label: 'Open Source',
             position: 'left',
           },
 
           {
-            to: '/projects',
+            to: '/projects-index',
             label: 'Projects',
             position: 'left',
           },

@@ -44,7 +44,7 @@ const Button = ({
       href={url}
       target={isExternalLink ? '_blank' : ''}
       rel={isExternalLink ? 'noopener noreferrer' : ''}
-      className="dark"
+      className="dark w-fit"
     >
       {imageURL ? (
         <div className={cssClasses}>
