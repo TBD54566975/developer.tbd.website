@@ -38,7 +38,7 @@
 
 .navbar--fixed-top {
   position: inherit;
-  z-index: 0;
+  z-index: 200;
 }
 
 .navbar__items {
@@ -69,6 +69,7 @@
   min-height: 26rem;
   transition-duration: 0ms;
   transition-property: none;
+  z-index: 200;
 }
 
 .navbar-sidebar__brand {

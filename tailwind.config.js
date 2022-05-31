@@ -1,7 +1,9 @@
 const tokens = require('./src/css/jsvariables');
 
 module.exports = {
+  important: true, //Added this so that the tailwind classes override the existing css definitions.
   content: ['./src/**/*.{js,jsx,ts,tsx,md,mdx}'],
+  important: true,
   darkMode: 'class',
   theme: {
     extend: {
@@ -43,6 +45,7 @@ module.exports = {
         'dotted-legal': 'url(/img/divider-dotted-white.svg)',
         'dotted-light': 'url(/img/divider-dotted-light.svg)',
         'dotted-dark': 'url(/img/divider-dotted-dark.svg)',
+        'vertical-divider': 'url(/img/vertical-divider.svg)',
       },
       spacing: {
         8.5: `calc(((34 / ${tokens.TypographyBaseFontSize}) * 1rem))`,
