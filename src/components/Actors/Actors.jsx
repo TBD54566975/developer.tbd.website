@@ -50,7 +50,8 @@ const Actors = () => {
             </p>
           </div>
         </div>
-        <img src="/img/maze.svg" />
+
+        <img src="/img/maze.svg" alt="" className="w-full desktop:w-[48vw]" />
       </div>
     </div>
   );
