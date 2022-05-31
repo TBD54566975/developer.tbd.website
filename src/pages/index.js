@@ -23,7 +23,7 @@ export default function Home() {
           />
           <img
             src="/img/static-vertical-cyan.svg"
-            className="absolute right-[-1.5rem] tablet:right-[-2.1875rem] desktop:right-[-9rem] bottom-[13vh] tablet:bottom-[-9.5rem] desktop:bottom-[2.5rem] "
+            className="absolute right-[-1.5rem] tablet:right-[-2.1875rem] desktop:right-[-12rem] bottom-[13vh] tablet:bottom-[-9.5rem] desktop:bottom-[1.5rem] "
             alt=""
           />
           <img
