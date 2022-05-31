@@ -21,7 +21,7 @@ export default function Divider({ type }) {
 }
 Divider.propTypes = {
   /**
-   * list content
+   * divider type: dotted, slash, legal
    */
-  type: PropTypes.string.required,
+  type: PropTypes.string.isRequired,
 };

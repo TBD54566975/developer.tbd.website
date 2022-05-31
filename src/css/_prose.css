@@ -57,3 +57,15 @@
   border-width: 0;
   background-image: url('/img/divider-dotted-dark.svg');
 }
+
+.prose.prose-pink hr.bg-dotted-dark {
+  height: 2px;
+  border-width: 0;
+  background-image: url('/img/divider-dotted-dark.svg');
+}
+
+.prose.prose-pink hr.bg-slash-dark {
+  height: 8px;
+  border-width: 0;
+  background-image: url('/img/divider-slash-dark.svg');
+}

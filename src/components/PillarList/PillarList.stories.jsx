@@ -1,6 +1,18 @@
 import React from 'react';
+import PillarList from './PillarList';
+export default {
+  title: 'PillarList',
+  component: PillarList,
+};
 
-export const content = {
+const Template = (args) => (
+  <div className="">
+    <PillarList {...args} />
+  </div>
+);
+export const Dark = Template.bind({});
+// More on args: https://storybook.js.org/docs/react/writing-stories/args
+Dark.args = {
   title: 'Our Pillars',
   pillars: [
     {
