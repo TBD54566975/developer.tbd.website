@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 export default function Divider({ type }) {
   let classes;
-  console.log('type:', type);
+
   if (type === 'slash') {
     classes = 'bg-slash-dark border-none h-2';
   } else if (type === 'legal') {
@@ -10,7 +10,6 @@ export default function Divider({ type }) {
   } else {
     classes = 'bg-dotted-dark border-none h-[2px]';
   }
-  console.log('classes ', classes);
 
   return (
     <div className="flex justify-center">
