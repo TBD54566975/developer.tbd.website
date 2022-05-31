@@ -1,7 +1,8 @@
 import React from 'react';
 
 export const content = {
-  title: 'Join the conversation in Discussions and Issues.',
+  title: 'The future is TBD.',
+  subtitle: 'Join us in shaping it.',
   projects: [
     {
       name: 'DWN-SDK-JS',
@@ -41,7 +42,7 @@ export const content = {
     },
   ],
   prototyping: {
-    title: 'All projects in the TBD family are in early prototyping. New contributors should expect a pace of development consistent with nascent technology:',
-    subtitle: 'larger commits, frequent refactoring, changing APIs, and incomplete featuresets. We believe open source is not a publishing medium. These projects are open from the start to welcome your interest, invite discussion, identify early issues, and advise on design. An early adopter mindset will work well until these projects mature further.',
+    title: 'All projects in the TBD family are in early prototyping.',
+    subtitle: 'New contributors should expect a pace of development consistent with nascent technology: larger commits, frequent refactoring, changing APIs, and incomplete featuresets. We believe open source is not a publishing medium. These projects are open from the start to welcome your interest, invite discussion, identify early issues, and advise on design. An early adopter mindset will work well until these projects mature further.',
   },
 };

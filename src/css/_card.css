@@ -1,0 +1,17 @@
+.border-yellow {
+    border: 1px solid var(--color-yellow)
+}
+
+.project-divider {
+    display: none;
+}
+
+
+@media (min-width: 350px) and (max-width: 768px) {
+    .border-yellow {
+      border: unset;
+    }
+    .project-divider {
+        display: flex
+    }
+}
