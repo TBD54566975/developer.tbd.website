@@ -4,6 +4,11 @@ hide_table_of_contents: true
 ---
 
 import { Actors } from '@site/src/components/Actors';
+import { ProjectList } from '@site/src/components/ProjectList';
+import { content } from '@site/src/content/components-tbdex.js';
+import { content as useCases } from '@site/src/content/use-cases.js';
+import { Divider } from '@site/src/components/Divider';
+import PillarList from '@site/src/components/PillarList/PillarList';
 
 <div class="prose prose-pink">
 
@@ -21,39 +26,24 @@ So now we have both legacy payment systems and new payment systems. But how do w
 
 tbDEX is a decentralized, permissionless protocol. It opens the door to self-sovereign identity and access to the financial system for all. And because it abstracts away the complexity of decentralization, developers can focus on building great things.
 
----
+<Divider type="slash" />
 
-### Components
+<div className="project-container">
+  <ProjectList {...content} />
+</div>
 
-- [tbDEX Spec](/projects/tbdex-protocol/lib/README)
-
-- [PFI Example Implementation](/projects/tbdex-protocol/pfi-mock-impl/README)
-
-- [Decentralized Web Nodes](/projects/dwn-sdk-js/README)
-
-- [Decentralized Identifiers](https://identity.foundation/ion/)
-
-- [Self-Sovereign Identity Service](/projects/ssi-service/README)
-
-- [Self-Sovereign Identity SDK](/projects/ssi-sdk/README)
-
----
+<Divider type="slash" />
 
 <div className="actors-container">
   <Actors />
 </div>
 
----
+<Divider type="slash" />
 
-### Use Cases
+<div className="pillars-container">
 
-#### Proving Your Identity
-
-Alice holds a digital wallet that securely manages all aspects of her identity, including her identifiers, credentials, and authorizations for external apps and entities. Alice uses her wallet to request USD in exchange for 100 units of cryptocurrency. Because Alice is off-ramping from cryptocurrency to fiat, most Participating Financial Institutions (PFIs) are required to verify Alice’s identity in order to fulfill their regulatory and compliance obligations. PFIs that are interested in fulfilling Alice’s request reply with a bid as well as their identity verification requirements for fulfillment. Alice chooses a bid which will need Know Your Customer (KYC) information (such as name, address, date of birth). Alice has already provided all of the necessary information to another PFI in the past. So Alice allows her wallet to provide a verifiable credential issued from the past PFI to the bidding PFI, along with the cryptocurrency to exchange. The PFI verifies the credential and continues with fulfillment.
-
-#### On-and-Off Ramps Between Fiat and Crypto
-
-Alice holds a digital wallet. Through the wallet's user interface, Alice requests cryptocurrency in exchange for $100 USD. The wallet broadcasts Alice's request to Participating Financial Institutions (PFIs) who may possibly fulfill it. Interested PFIs respond to the wallet with bids for Alice's request. Each bid is accompanied with credential requirements. Alice (or the wallet) chooses a bid and allows the wallet to provide Alice’s credentials requested by the PFI. Once a bid is accepted and credentials verified, Alice's wallet makes a payment, and the PFI executes a smart contract to release the crypto to Alice’s wallet address.
+  <PillarList title={useCases.title} pillars={useCases.pillars} />
+</div>
 
 <!--stackedit_data:
 eyJoaXN0b3J5IjpbLTIzNzIyNjk0NSw3MTI0MzI1NzEsLTcwND

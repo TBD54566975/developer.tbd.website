@@ -4,19 +4,19 @@ export const content = {
   projects: [
     {
       icon: '/img/article-icon.svg',
-      title: 'tbdex Spec',
+      title: 'tbdex ',
       description:
-        'A playground as we iterate our way to a robust protocol. Mostly composed of tbDEX message schemas/formats and a mock PFI implementation.',
-      textButton: 'View Component',
-      url: '#',
+        'Connects the world of legacy money to the world of digital money',
+      textButton: 'View Project',
+      url: '/projects/tbdex',
     },
     {
       icon: '/img/article-icon.svg',
-      title: 'PFI Example Implementation',
+      title: 'WEB5',
       description:
-        "A mock implementation of a PFI (Participating Financial Institution) that leverages Circle's APIs in order to facilitate the on and off ramps.",
-      textButton: 'View Component',
-      url: '#',
+        'Builds an extra decentralized web that returns control over your data and identity',
+      textButton: 'View Project',
+      url: '/projects/web5',
     },
   ],
 };
