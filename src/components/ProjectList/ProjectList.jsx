@@ -6,7 +6,7 @@ const ProjectList = ({ title, projects }) => {
   return (
     <div>
       <h1 className="h1 ml-0 text-primary-yellow mb-12">{title}</h1>
-      <div className="grid grid-cols-1 tablet:grid-cols-[repeat(auto-fit,minmax(348px,1fr))] gap-x-8 gap-y-12 tablet:gap-y-[1.375rem] ">
+      <div className="grid grid-cols-1 tablet:grid-cols-[repeat(auto-fit,minmax(21.75rem,1fr))] tablet:gap-x-[1.25rem] desktop:gap-x-8 gap-y-12 tablet:gap-y-[1.375rem] ">
         {projects.map((project, index) => (
           <div key={index}>
             <Project {...project} />
