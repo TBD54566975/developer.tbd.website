@@ -1,47 +1,22 @@
-import React from 'react';
+/* eslint-disable quotes */
 
 export const content = {
-  title: 'Join the conversation in Discussions and Issues.',
   projects: [
     {
-      name: 'DWN-SDK-JS',
-      description: (
-        <>
-          Implementation of a Decentralized Web Node that supports decentralized app/protocol messaging, storage, and coordination features.
-        </>
-      ),
+      icon: '/img/article-icon.svg',
+      title: 'tbdex Spec',
+      description:
+        'A playground as we iterate our way to a robust protocol. Mostly composed of tbDEX message schemas/formats and a mock PFI implementation.',
+      textButton: 'View Component',
       url: '#',
     },
     {
-      name: 'SSI-SERVICE',
-      description: (
-        <>
-          Standards-based primitives for using Decentralized Identifiers and Verifiable Credentials.
-        </>
-      ),
-      url: '#',
-    },
-    {
-      name: 'SSI-SDK',
-      description: (
-        <>
-          An in-a-box service that handles the full Verifiable Credentials lifecycle, including issuance, verification, revocation, and more.
-        </>
-      ),
-      url: '#',
-    },
-    {
-      name: 'TBDEX-PROTOCOL',
-      description: (
-        <>
-          An implementation of DIF's emerging decentralized personal datastore standard.
-        </>
-      ),
+      icon: '/img/article-icon.svg',
+      title: 'PFI Example Implementation',
+      description:
+        "A mock implementation of a PFI (Participating Financial Institution) that leverages Circle's APIs in order to facilitate the on and off ramps.",
+      textButton: 'View Component',
       url: '#',
     },
   ],
-  prototyping: {
-    title: 'All projects in the TBD family are in early prototyping. New contributors should expect a pace of development consistent with nascent technology:',
-    subtitle: 'larger commits, frequent refactoring, changing APIs, and incomplete featuresets. We believe open source is not a publishing medium. These projects are open from the start to welcome your interest, invite discussion, identify early issues, and advise on design. An early adopter mindset will work well until these projects mature further.',
-  },
 };

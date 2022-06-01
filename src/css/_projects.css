@@ -1,7 +1,8 @@
 .actors-container hr,
 .actors-container img,
 .actors-container h2,
-.actors-container p {
+.actors-container p,
+.project-container hr {
   margin-top: 0rem !important;
   margin-bottom: 0rem !important;
 }

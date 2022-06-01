@@ -28,6 +28,7 @@ The structure of all tbDEX messages is modeled after [JSON Web Message (JWM)](ht
 
 
 Every message contains the following fields:
+
 | Field         | Data Type     | Required (y/n) | Description                                                                                                                           |
 | ------------- | ------------- | -------------- | ------------------------------------------------------------------------------------------------------------------------------------- |
 | `id`          | ?             | Y              | The message ID                                                                                                                        |
@@ -46,7 +47,7 @@ Every message contains the following fields:
 The `body` of each message can be any of the following message types
 
 ### `Ask`
-**Description**:
+
 | field            | data type | required | description                                                                                          |
 | ---------------- | --------- | -------- | ---------------------------------------------------------------------------------------------------- |
 | `sourceCurrency` | string    | Y        | The currency that you currently hold                                                                 |
@@ -54,7 +55,7 @@ The `body` of each message can be any of the following message types
 | `targetCurrency` | int       | Y        | the currency that you want                                                                           |
 
 ### `ConditionalOffer`
-**Description**:
+
 | field | data type | required | description |
 | ---------------- | --------- | -------- | ------------------------------------- |
 | `sourceCurrency` | string    | Y        | The currency that the customer held   |
@@ -62,44 +63,45 @@ The `body` of each message can be any of the following message types
 | `targetAmount`   | int       | Y        | The amount you're willing to offer    |
 
 ### `OfferAccept`
-**Description**:
+
 | field | data type | required | description |
 | ----- | --------- | -------- | ----------- |
 
 ### `IDVRequest`
-**Description**:
+
 | field | data type | required | description |
 | ----- | --------- | -------- | ----------- |
 
 ### `IDVSubmission`
-**Description**:
+
 | field | data type | required | description |
 | ----- | --------- | -------- | ----------- |
 
 ### `SettlementRequest`
-**Description**:
+
 | field | data type | required | description |
 | -------- | --------- | -------- | ------------------------------------------------------------------- |
 | `schema` | string    | Y        | The json schema that defines what fields are required for payment   |
 
 ### `SettlementDetails`
-**Description**:
+
 | field | data type | required | description |
 | ------ | --------- | -------- | ------------------------------------------------ |
 | `body` | string    | Y        | The json schema from SettlementRequest filled in |
 
 ### `SettlementReceipt`
-**Description**:
+
 | field | data type | required | description |
 | ----- | --------- | -------- | ----------- |
 
 ### `Close`
-**Description**:
+
 | field    | data type | required | description        |
 | -------- | --------- | -------- | ------------------ |
 | `reason` | string    | ?        | Reason for closing |
 
 ## State Machine Diagram
+
 A sequence of associated messages is defined as a message thread. This diagram illustrates all possible state sequences for a message thread.
 Each vertex represents a message type. Each edge represents who can transition the state of a message thread to the next vertex.
 
@@ -173,11 +175,11 @@ public class Main {
 
 | Resource                                   | Description                                                                   |
 | ------------------------------------------ | ----------------------------------------------------------------------------- |
-| [CODEOWNERS](../CODEOWNERS)                 | Outlines the project lead(s)                                                  |
-| [CODE_OF_CONDUCT.md](../CODE_OF_CONDUCT.md) | Expected behavior for project contributors, promoting a welcoming environment |
-| [CONTRIBUTING.md](./CONTRIBUTING.md)       | Developer guide to build, test, run, access CI, chat, discuss, file issues    |
-| [GOVERNANCE.md](../GOVERNANCE.md)           | Project governance                                                            |
-| [LICENSE](../LICENSE)                       | Apache License, Version 2.0                                                   |
+| [CODEOWNERS](https://github.com/TBD54566975/tbdex-protocol/blob/main/CODEOWNERS)                 | Outlines the project lead(s)                                                  |
+| [CODE_OF_CONDUCT.md](https://github.com/TBD54566975/tbdex-protocol/blob/main/CODE_OF_CONDUCT.md) | Expected behavior for project contributors, promoting a welcoming environment |
+| [CONTRIBUTING.md](https://github.com/TBD54566975/tbdex-protocol/blob/main/CONTRIBUTING.md)       | Developer guide to build, test, run, access CI, chat, discuss, file issues    |
+| [GOVERNANCE.md](https://github.com/TBD54566975/tbdex-protocol/blob/main/GOVERNANCE.md)           | Project governance                                                            |
+| [LICENSE](https://github.com/TBD54566975/tbdex-protocol/blob/main/LICENSE)                       | Apache License, Version 2.0                                                   |
 
 
 </div>
