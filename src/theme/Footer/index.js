@@ -1,5 +1,3 @@
-
-   
 import React, { useEffect, useState } from 'react';
 import { Illustration } from '../../components/Illustration';
 import { SmallSocialButton } from '../../components/SmallSocialButton';
@@ -71,8 +69,8 @@ export function Footer() {
         title: 'Go to TikTok',
       },
     ],
-    isLegal: false
-  }
+    isLegal: false,
+  };
 
   useEffect(() => {
     setFooterBottomDark("dark:bg-[url('/img/footer-bottom-dark.svg')]");
@@ -89,14 +87,13 @@ export function Footer() {
       <Container className="pt-12 tablet:pt-14 desktop:pt-18 pb-14 desktop:pb-24">
         <div
           className={
-            'relative h-[18px] invertDarkMode overflow-hidden ' +
-            bgColorDark
+            'relative h-[18px] invertDarkMode overflow-hidden ' + bgColorDark
           }
         >
           <Illustration
             className="relative h-[18px] w-full"
             img="/img/footer-top-marquee.svg"
-            objectFit="cover"
+            objectfit="cover"
             accentClass="tbd-white-illustration"
             alt=""
           />
@@ -136,7 +133,9 @@ export function Footer() {
                   className={`ml-12 flex items-center py-0.5 border-b-2 border-b-primary-black`}
                 >
                   <TextLink
-                    className={'py-3 border-b-2 border-b-primary-black text-primary-black'}
+                    className={
+                      'py-3 border-b-2 border-b-primary-black text-primary-black'
+                    }
                     isInverse={true}
                     href={link.href}
                     text={link.text}
@@ -175,4 +174,4 @@ export function Footer() {
   );
 }
 
-export default Footer
+export default Footer;
