@@ -1,20 +1,20 @@
-<div  class="prose prose-pink">
-              <div class="flex gap-12 mb-20"><a href="https://github.com/TBD54566975/dwn-sdk-js">View on Github</a><a href="https://github.com/TBD54566975/dwn-sdk-js/issues">View Issues</a><a href="https://github.com/TBD54566975/dwn-sdk-js/discussions">View Discussions</a></div>
+<div  className="prose prose-pink">
+              <div className="flex gap-12 mb-20"><a href="https://github.com/TBD54566975/dwn-sdk-js">View on Github</a><a href="https://github.com/TBD54566975/dwn-sdk-js/issues">View Issues</a><a href="https://github.com/TBD54566975/dwn-sdk-js/discussions">View Discussions</a></div>
 
 # Decentralized Web Node (DWN) SDK
 
 ## Introduction
 
-This repository contains a reference implementation of Decentralized Web Node (DWN) as per the [specification](https://identity.foundation/decentralized-web-node/spec/). This specification is in a draft state and very much so a WIP. For the foreseeable future, a lot of the work on DWN will be split across this repo and the repo that houses the specification, which you can find [here](https://github.com/decentralized-identity/decentralized-web-node). The overall goal is to produce a v1.0 specification along with a reference implementation by 07/01/2022. 
+This repository contains a reference implementation of Decentralized Web Node (DWN) as per the [specification](https://identity.foundation/decentralized-web-node/spec/). This specification is in a draft state and very much so a WIP. For the foreseeable future, a lot of the work on DWN will be split across this repo and the repo that houses the specification, which you can find [here](https://github.com/decentralized-identity/decentralized-web-node). The overall goal is to produce a v1.0 specification along with a reference implementation by 07/01/2022.
 
-
-Proposals for the specification itself should be submitted as pull requests to the [spec repo](https://github.com/decentralized-identity/decentralized-web-node). Similarly, issues pertaining to the specification itself should be submitted as github issues to the [spec repo](https://github.com/decentralized-identity/decentralized-web-node). 
-
+Proposals for the specification itself should be submitted as pull requests to the [spec repo](https://github.com/decentralized-identity/decentralized-web-node). Similarly, issues pertaining to the specification itself should be submitted as github issues to the [spec repo](https://github.com/decentralized-identity/decentralized-web-node).
 
 ## [V1.0 Milestone](https://github.com/TBD54566975/dwn-sdk-js/milestone/1)
 
 ## Installation
+
 Since this SDK is still in early stages, we haven't yet to published to npm. Until then, we suggest using [`npm link`](https://docs.npmjs.com/cli/v8/commands/npm-link) to use this SDK in your own project. Steps:
+
 ```bash
 # clone this repo somewhere
 git clone https://github.com/TBD54566975/dwn-sdk-js.git
@@ -36,6 +36,7 @@ npm link ../path/to/where/you/cloned/dwn-sdk-js
 ### nodeJS
 
 - **ESM**
+
   ```javascript
   import { DWN } from 'dwn-sdk';
 
@@ -43,27 +44,36 @@ npm link ../path/to/where/you/cloned/dwn-sdk-js
   ```
 
 - **CJS**
+
   ```javascript
   const { DWN } = require('dwn-sdk');
 
   // cool things
   ```
+
 ### Browser:
 
 - **UMD Bundle**
+
   ```html
-  <script type="text/javascript" src="node_modules/dwn-sdk/dist/bundles/bundle.umd.js"></script>
+  <script
+    type="text/javascript"
+    src="node_modules/dwn-sdk/dist/bundles/bundle.umd.js"
+  ></script>
   ```
 
 - **ESM Bundle**
   ```html
-  <script type="text/javascript" src="node_modules/dwn-sdk/dist/bundles/bundle.esm.js"></script>
+  <script
+    type="text/javascript"
+    src="node_modules/dwn-sdk/dist/bundles/bundle.esm.js"
+  ></script>
   ```
 
 ## Project Resources
 
-| Resource                                   | Description                                                                   |
-| ------------------------------------------ | ----------------------------------------------------------------------------- |
+| Resource                                                                                     | Description                                                                   |
+| -------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
 | [CODEOWNERS](https://github.com/TBD54566975/dwn-sdk-js/blob/main/CODEOWNERS)                 | Outlines the project lead(s)                                                  |
 | [CODE_OF_CONDUCT.md](https://github.com/TBD54566975/dwn-sdk-js/blob/main/CODE_OF_CONDUCT.md) | Expected behavior for project contributors, promoting a welcoming environment |
 | [CONTRIBUTING.md](https://github.com/TBD54566975/dwn-sdk-js/blob/main/CONTRIBUTING.md)       | Developer guide to build, test, run, access CI, chat, discuss, file issues    |

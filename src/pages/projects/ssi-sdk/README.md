@@ -1,5 +1,5 @@
-<div  class="prose prose-pink">
-              <div class="flex gap-12 mb-20"><a href="https://github.com/TBD54566975/ssi-sdk">View on Github</a><a href="https://github.com/TBD54566975/ssi-sdk/issues">View Issues</a><a href="https://github.com/TBD54566975/ssi-sdk/discussions">View Discussions</a></div>
+<div  className="prose prose-pink">
+              <div className="flex gap-12 mb-20"><a href="https://github.com/TBD54566975/ssi-sdk">View on Github</a><a href="https://github.com/TBD54566975/ssi-sdk/issues">View Issues</a><a href="https://github.com/TBD54566975/ssi-sdk/discussions">View Discussions</a></div>
 
 [![godoc](https://img.shields.io/badge/godoc-ssi--sdk-blue)](https://pkg.go.dev/github.com/TBD54566975/ssi-sdk)
 [![goversion](https://img.shields.io/badge/go_version-1.17.6-brightgreen)](https://golang.org/)
@@ -12,7 +12,7 @@
 
 # Introduction
 
-Named `ssi-sdk`, this SDK encapsulates a set of standards related to [Self Sovereign Identity](http://www.lifewithalacrity.com/2016/04/the-path-to-self-soverereign-identity.html). 
+Named `ssi-sdk`, this SDK encapsulates a set of standards related to [Self Sovereign Identity](http://www.lifewithalacrity.com/2016/04/the-path-to-self-soverereign-identity.html).
 The `ssi-sdk` intends to provide flexible functionality based on a set of standards-based primitives for building
 decentralized identity applications in a modular manner: with limited dependencies between components.
 
@@ -39,8 +39,8 @@ change as the library evolves.
   03 August 2021_
 - [Verifiable Credentials Data Model v1.1](https://www.w3.org/TR/2021/REC-vc-data-model-20211109/) _W3C Recommendation
   09 November 2021_
-    - Supports [Linked Data Proof](https://www.w3.org/TR/vc-data-model/#data-integrity-proofs) formats.
-    - Supports [VC-JWT and VP-JWT](https://www.w3.org/TR/vc-data-model/#json-web-token) formats.
+  - Supports [Linked Data Proof](https://www.w3.org/TR/vc-data-model/#data-integrity-proofs) formats.
+  - Supports [VC-JWT and VP-JWT](https://www.w3.org/TR/vc-data-model/#json-web-token) formats.
 - [Verifiable Credentials JSON Schema Specification](https://w3c-ccg.github.io/vc-json-schemas/v2/index.html) _Draft
   Community Group Report, 21 September 2021_
 - [Presentation Exchange 2.0.0](https://identity.foundation/presentation-exchange/) _Working Group Draft, March 2022_
@@ -53,11 +53,11 @@ change as the library evolves.
 - [Linked Data Cryptographic Suite Registry](https://w3c-ccg.github.io/ld-cryptosuite-registry/) _Draft Community Group
   Report 29 December 2020_
 - [JSON Web Signature 2020](https://w3c-ccg.github.io/lds-jws2020) _Draft Community Group Report 09 February 2022_
-    - [VC Proof Formats Test Suite, VC Data Model with JSON Web Signatures](https://identity.foundation/JWS-Test-Suite/)
-      _Unofficial Draft 09 March 2022_
-      This implementation's compliance with the JWS Test
-      Suite [can be found here](https://identity.foundation/JWS-Test-Suite/#tbd).
-    - Supports both JWT and Linked Data proof formats with [JOSE compliance](https://jose.readthedocs.io/en/latest/).
+  - [VC Proof Formats Test Suite, VC Data Model with JSON Web Signatures](https://identity.foundation/JWS-Test-Suite/)
+    _Unofficial Draft 09 March 2022_
+    This implementation's compliance with the JWS Test
+    Suite [can be found here](https://identity.foundation/JWS-Test-Suite/#tbd).
+  - Supports both JWT and Linked Data proof formats with [JOSE compliance](https://jose.readthedocs.io/en/latest/).
 
 ## did methods
 
@@ -68,6 +68,7 @@ change as the library evolves.
 This project uses [mage](https://magefile.org/), please view [CONTRIBUTING](https://github.com/TBD54566975/ssi-sdk/blob/main/CONTRIBUTING.md) for more information.
 
 After installing mage, you can build and test the SDK with the following commands:
+
 ```
 mage build
 mage test
@@ -81,13 +82,12 @@ mage cbt
 
 # Project Resources
 
-| Resource                              | Description                                                                   |
-|---------------------------------------|-------------------------------------------------------------------------------|
+| Resource                                                                               | Description                                                                   |
+| -------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
 | [CODEOWNERS](https://github.com/TBD54566975/ssi-sdk/blob/main/CODEOWNERS)              | Outlines the project lead(s)                                                  |
 | [CODE_OF_CONDUCT](https://github.com/TBD54566975/ssi-sdk/blob/main/CODE_OF_CONDUCT.md) | Expected behavior for project contributors, promoting a welcoming environment |
 | [CONTRIBUTING](https://github.com/TBD54566975/ssi-sdk/blob/main/CONTRIBUTING.md)       | Developer guide to build, test, run, access CI, chat, discuss, file issues    |
 | [GOVERNANCE](https://github.com/TBD54566975/ssi-sdk/blob/main/GOVERNANCE.md)           | Project governance                                                            |
 | [LICENSE](https://github.com/TBD54566975/ssi-sdk/blob/main/LICENSE)                    | Apache License, Version 2.0                                                   |
-
 
 </div>
