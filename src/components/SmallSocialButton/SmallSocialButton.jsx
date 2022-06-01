@@ -3,16 +3,12 @@ import PropTypes from 'prop-types';
 import { Illustration } from '../Illustration';
 
 const SmallSocialButton = ({ src, url, altText, title, isBlackWhite }) => {
-  const borderColor = isBlackWhite
-    ? { light: '', dark: 'border-b-primary-white' }
-    : { light: 'border-b-primary-yellow', dark: 'border-b-primary-yellow' };
-
   return (
     <a
       href={url}
       rel="noopener noreferrer"
       target="_blank"
-      className={`w-12 h-full flex justify-center items-center ${borderColor.light} dark:${borderColor.dark} border-t-transparent hover:border-y-4`}
+      className={`w-12 h-full flex justify-center items-center border-b-primary-black hover:border-b-primary-yellow border-t-transparent border-y-4`}
     >
       <Illustration
         img={src}
