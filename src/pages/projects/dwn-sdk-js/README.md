@@ -1,5 +1,7 @@
+
+
 <div  class="prose prose-pink">
-              <div class="flex gap-12 mb-20"><a href="https://github.com/TBD54566975/dwn-sdk-js">View on Github</a><a href="https://github.com/TBD54566975/dwn-sdk-js/issues">View Issues</a><a href="https://github.com/TBD54566975/dwn-sdk-js/discussions">View Discussions</a></div>
+      <div class="flex gap-12 mb-20"><a href="https://github.com/TBD54566975/dwn-sdk-js">View on Github</a><a href="https://github.com/TBD54566975/dwn-sdk-js/issues">View Issues</a><a href="https://github.com/TBD54566975/dwn-sdk-js/discussions">View Discussions</a></div>
 
 # Decentralized Web Node (DWN) SDK
 

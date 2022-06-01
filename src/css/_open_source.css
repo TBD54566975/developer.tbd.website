@@ -1,9 +1,0 @@
-.pillars-container :where(img):not(:where([class~='not-prose'] *)) {
-  margin-top: 0rem !important;
-  margin-bottom: 0rem !important;
-}
-
-.pillars-container :where(h2 + *):not(:where([class~='not-prose'] *)) {
-  margin-top: 0rem !important;
-  margin-bottom: 0rem !important;
-}

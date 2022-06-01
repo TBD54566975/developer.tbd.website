@@ -1,7 +1,14 @@
 import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
 import RandomAccentColor from '../../util/random-accent-color';
-const Illustration = ({ img, className, alt, accentClass, imgStyle, ...imageProps }) => {
+const Illustration = ({
+  img,
+  className,
+  alt,
+  accentClass,
+  imgStyle,
+  ...imageProps
+}) => {
   const [darkModeColor, setDarkModeColor] = useState(null);
   useEffect(() => {
     if (accentClass == null || accentClass == undefined || accentClass == '') {
@@ -13,7 +20,7 @@ const Illustration = ({ img, className, alt, accentClass, imgStyle, ...imageProp
 
   return (
     <div className={`tbd-illustration ${className ?? ''} ${darkModeColor}`}>
-      <img {...imageProps} src={img} className={imgStyle ?? null} alt={alt} layout="fill" />
+      <img {...imageProps} src={img} className={imgStyle ?? null} alt={alt} />
     </div>
   );
 };
@@ -29,7 +36,7 @@ Illustration.propTypes = {
 Illustration.defaultProps = {
   img: '/img/dinosaur-illustration.svg',
   alt: '',
-  imgStyle: null
+  imgStyle: null,
 };
 
 export default Illustration;

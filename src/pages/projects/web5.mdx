@@ -4,8 +4,13 @@ hide_table_of_contents: true
 ---
 
 import { Actors } from '@site/src/components/Actors';
+import { ProjectList } from '@site/src/components/ProjectList';
+import { content } from '@site/src/content/components-web5.js';
+import { content as useCases } from '@site/src/content/use-cases.js';
+import { Divider } from '@site/src/components/Divider';
+import PillarList from '@site/src/components/PillarList/PillarList';
 
-<div class="prose prose-pink">
+<div className="prose prose-pink">
 
 # WEB5: AN EXTRA DECENTRALIZED WEB PLATFORM
 
@@ -19,35 +24,24 @@ Web2, Web3 → Web5. It's the best of where we've been and what we've learned.
 
 [View Project](/projects/web5)
 
----
+<Divider type="slash" />
 
-### Components
+<div className="custom-container">
+  <ProjectList {...content} />
+</div>
 
-- [Decentralized Identifiers (Link to DIF/ION)](https://identity.foundation/ion/)
+<Divider type="slash" />
 
-- [Decentralized Web Nodes](./dwn-sdk-js/README)
-
-- [Self-Sovereign Identity Service](./ssi-service/README)
-
-- [Self-Sovereign Identity SDK](./ssi-sdk/README)
-
----
-
-<div className="actors-container">
+<div className="custom-container">
   <Actors />
 </div>
 
----
+<Divider type="slash" />
 
-### Use Cases
+<div className="custom-container">
 
-Control Your Identity
-
-Alice holds a digital wallet that securely manages her identity, data, and authorizations for external apps and connections. Alice uses her wallet to sign in to a new decentralized social media app. Because Alice has connected to the app with her decentralized identity, she does not need to create a profile, and all the connections, relationships, and posts she creates through the app are stored with her, in her Decentralized Web Nodes. Now Alice can switch apps whenever she wants, taking her social persona with her.
-
-Own Your Data
-
-Bob is a music lover and hates having his personal data locked to a single vendor. It forces him to regurgitate his playlists and songs over and over again across different music apps. Thankfully there's a way out of this maze of vendor-locked silos: Bob can keep this data in his Decentralized Web Nodes. This way Bob is able to grant any music app access to his settings and preferences, enabling him to take his personalized music experience wherever he chooses.
+  <PillarList title={useCases.title} pillars={useCases.pillars} />
+</div>
 
 <!--stackedit_data:
 eyJoaXN0b3J5IjpbMTg2ODAwMTEwOCwxODc4NTE5MTUyLDczMD

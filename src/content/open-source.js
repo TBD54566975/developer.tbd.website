@@ -1,5 +1,3 @@
-import React from 'react';
-
 export const content = {
   title: 'Our Pillars',
   pillars: [

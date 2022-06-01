@@ -1,5 +1,7 @@
+import { Mermaid } from "@theme/Mermaid";
+
 <div  class="prose prose-pink">
-              <div class="flex gap-12 mb-20"><a href="https://github.com/TBD54566975/tbdex-protocol">View on Github</a><a href="https://github.com/TBD54566975/tbdex-protocol/issues">View Issues</a><a href="https://github.com/TBD54566975/tbdex-protocol/discussions">View Discussions</a></div>
+      <div class="flex gap-12 mb-20"><a href="https://github.com/TBD54566975/tbdex-protocol">View on Github</a><a href="https://github.com/TBD54566975/tbdex-protocol/issues">View Issues</a><a href="https://github.com/TBD54566975/tbdex-protocol/discussions">View Discussions</a></div>
 
 # tbDEX Protocol
 
@@ -28,6 +30,7 @@ The structure of all tbDEX messages is modeled after [JSON Web Message (JWM)](ht
 
 
 Every message contains the following fields:
+
 | Field         | Data Type     | Required (y/n) | Description                                                                                                                           |
 | ------------- | ------------- | -------------- | ------------------------------------------------------------------------------------------------------------------------------------- |
 | `id`          | ?             | Y              | The message ID                                                                                                                        |
@@ -46,7 +49,7 @@ Every message contains the following fields:
 The `body` of each message can be any of the following message types
 
 ### `Ask`
-**Description**:
+
 | field            | data type | required | description                                                                                          |
 | ---------------- | --------- | -------- | ---------------------------------------------------------------------------------------------------- |
 | `sourceCurrency` | string    | Y        | The currency that you currently hold                                                                 |
@@ -54,7 +57,7 @@ The `body` of each message can be any of the following message types
 | `targetCurrency` | int       | Y        | the currency that you want                                                                           |
 
 ### `ConditionalOffer`
-**Description**:
+
 | field | data type | required | description |
 | ---------------- | --------- | -------- | ------------------------------------- |
 | `sourceCurrency` | string    | Y        | The currency that the customer held   |
@@ -62,44 +65,45 @@ The `body` of each message can be any of the following message types
 | `targetAmount`   | int       | Y        | The amount you're willing to offer    |
 
 ### `OfferAccept`
-**Description**:
+
 | field | data type | required | description |
 | ----- | --------- | -------- | ----------- |
 
 ### `IDVRequest`
-**Description**:
+
 | field | data type | required | description |
 | ----- | --------- | -------- | ----------- |
 
 ### `IDVSubmission`
-**Description**:
+
 | field | data type | required | description |
 | ----- | --------- | -------- | ----------- |
 
 ### `SettlementRequest`
-**Description**:
+
 | field | data type | required | description |
 | -------- | --------- | -------- | ------------------------------------------------------------------- |
 | `schema` | string    | Y        | The json schema that defines what fields are required for payment   |
 
 ### `SettlementDetails`
-**Description**:
+
 | field | data type | required | description |
 | ------ | --------- | -------- | ------------------------------------------------ |
 | `body` | string    | Y        | The json schema from SettlementRequest filled in |
 
 ### `SettlementReceipt`
-**Description**:
+
 | field | data type | required | description |
 | ----- | --------- | -------- | ----------- |
 
 ### `Close`
-**Description**:
+
 | field    | data type | required | description        |
 | -------- | --------- | -------- | ------------------ |
 | `reason` | string    | ?        | Reason for closing |
 
 ## State Machine Diagram
+
 A sequence of associated messages is defined as a message thread. This diagram illustrates all possible state sequences for a message thread.
 Each vertex represents a message type. Each edge represents who can transition the state of a message thread to the next vertex.
 
@@ -107,7 +111,7 @@ For example, starting from the top: "A PFI can reply to an `Ask` with a `Conditi
 
 _Note: Assume that any vertex can transition to a `Close` by either participant_
 
-```mermaid
+<Mermaid chart={`
 flowchart TD
     Ask --> |PFI| COND_OFFER[Conditional Offer]
     COND_OFFER --> |Alice| OFFER_ACCEPT[Offer Accept]
@@ -119,7 +123,7 @@ flowchart TD
     SETTL_DETAIL --> |PFI| IDV_REQ
     SETTL_DETAIL ---> |PFI| SETTL_REQ
     SETTL_DETAIL --> |PFI| SETTL_RECEIPT[Settlement Receipt]
-```
+`}/>
 
 ## Getting Started
 This library contains a number of classes and interfaces that you can use to simulate an end-to-end interaction between Alice and a PFI. Here's a rundown of the classes you can use
@@ -173,11 +177,11 @@ public class Main {
 
 | Resource                                   | Description                                                                   |
 | ------------------------------------------ | ----------------------------------------------------------------------------- |
-| [CODEOWNERS](../CODEOWNERS)                 | Outlines the project lead(s)                                                  |
-| [CODE_OF_CONDUCT.md](../CODE_OF_CONDUCT.md) | Expected behavior for project contributors, promoting a welcoming environment |
-| [CONTRIBUTING.md](./CONTRIBUTING.md)       | Developer guide to build, test, run, access CI, chat, discuss, file issues    |
-| [GOVERNANCE.md](../GOVERNANCE.md)           | Project governance                                                            |
-| [LICENSE](../LICENSE)                       | Apache License, Version 2.0                                                   |
+| [CODEOWNERS](https://github.com/TBD54566975/tbdex-protocol/blob/main/CODEOWNERS)                 | Outlines the project lead(s)                                                  |
+| [CODE_OF_CONDUCT.md](https://github.com/TBD54566975/tbdex-protocol/blob/main/CODE_OF_CONDUCT.md) | Expected behavior for project contributors, promoting a welcoming environment |
+| [CONTRIBUTING.md](https://github.com/TBD54566975/tbdex-protocol/blob/main/CONTRIBUTING.md)       | Developer guide to build, test, run, access CI, chat, discuss, file issues    |
+| [GOVERNANCE.md](https://github.com/TBD54566975/tbdex-protocol/blob/main/GOVERNANCE.md)           | Project governance                                                            |
+| [LICENSE](https://github.com/TBD54566975/tbdex-protocol/blob/main/LICENSE)                       | Apache License, Version 2.0                                                   |
 
 
 </div>
