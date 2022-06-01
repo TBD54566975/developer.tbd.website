@@ -1,5 +1,7 @@
+import { Mermaid } from "@theme/Mermaid";
+
 <div  class="prose prose-pink">
-              <div class="flex gap-12 mb-20"><a href="https://github.com/TBD54566975/tbdex-protocol">View on Github</a><a href="https://github.com/TBD54566975/tbdex-protocol/issues">View Issues</a><a href="https://github.com/TBD54566975/tbdex-protocol/discussions">View Discussions</a></div>
+      <div class="flex gap-12 mb-20"><a href="https://github.com/TBD54566975/tbdex-protocol">View on Github</a><a href="https://github.com/TBD54566975/tbdex-protocol/issues">View Issues</a><a href="https://github.com/TBD54566975/tbdex-protocol/discussions">View Discussions</a></div>
 
 # PFI Mock Implementation
 
@@ -7,7 +9,7 @@
 This is a mock implementation of a PFI (Participating Financial Institution) for the tbDex protocol. It is leveraging Circle's APIs in order to facilitate the on and off ramps.
 
 The state machine from the perspective of the PFI:
-```mermaid
+<Mermaid chart={`
 graph TD
     A[Receive Ask] --> B{Conditional Offer}
     B -->|Denied| C[Close Offer]
@@ -22,7 +24,7 @@ graph TD
     H --> |Passed| I{Capture Funds}
     I --> |Failed| G
     I --> |Passed| J[Release Funds]
-```
+`}/>
 - Supports USD -> USDC on-ramp
 - Supports USDC -> USD off-ramp
 - Stores messages in MySQL

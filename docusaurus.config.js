@@ -16,7 +16,53 @@ const linkTypes = {
   },
 };
 
-const linkcode = '<a href="#url#">#text#</a>';
+const modContent = function (filename, content, contentKey) {
+  const linkcode = '<a href="#url#">#text#</a>';
+  let fileData = components[contentKey].find((file) => {
+    return file.file === filename;
+  });
+
+  let links = '';
+  if (fileData.links) {
+    fileData.links.forEach((ele, idx) => {
+      if (idx === 0) {
+        links += '<div class="flex gap-12 mb-20">';
+      }
+
+      links += `${linkcode
+        .replace('#url#', ele.url)
+        .replace('#text#', linkTypes[ele.type].text)}`;
+
+      if (idx === fileData.links.length - 1) {
+        links += '</div>';
+      }
+    });
+  }
+
+  let re1 = /```mermaid/g;
+  var hasMermaid = false;
+  while (re1.exec(content) != null) {
+    hasMermaid = true;
+    break;
+  }
+
+  let re = /```mermaid([\s\S]*?)```/gm;
+
+  if (fileData) {
+    return {
+      content: `${hasMermaid ? 'import { Mermaid } from "@theme/Mermaid";' : ''}
+
+<div  class="prose prose-pink">
+      ${links}
+
+${content.replaceAll(re, '\r<Mermaid chart={`\r$1`}/>\r\r')}
+
+</div>`,
+    };
+  }
+
+  return undefined;
+};
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
@@ -82,39 +128,7 @@ ${content}
           return data.file;
         }), // the file names to download
         modifyContent(filename, content) {
-          let fileData = components['tbdex-protocol'].find((file) => {
-            return file.file === filename;
-          });
-
-          let links = '';
-          if (fileData.links) {
-            fileData.links.forEach((ele, idx) => {
-              if (idx === 0) {
-                links += '<div class="flex gap-12 mb-20">';
-              }
-
-              links += `${linkcode
-                .replace('#url#', ele.url)
-                .replace('#text#', linkTypes[ele.type].text)}`;
-
-              if (idx === fileData.links.length - 1) {
-                links += '</div>';
-              }
-            });
-          }
-
-          if (fileData) {
-            return {
-              content: `<div  class="prose prose-pink">
-              ${links}
-
-${content}
-
-</div>`, // <-- this last part adds in the rest of the content, which would otherwise be discarded
-            };
-          }
-
-          return undefined;
+          return modContent(filename, content, 'tbdex-protocol');
         },
       },
     ],
@@ -131,20 +145,7 @@ ${content}
           return data.file;
         }), // the file names to download
         modifyContent(filename, content) {
-          let fileData = components['dwn-sdk-js'].find((file) => {
-            return file.file === filename;
-          });
-
-          if (fileData) {
-            return {
-              content: `<div  class="prose prose-pink">
-
-${content}
-
-</div>`, // <-- this last part adds in the rest of the content, which would otherwise be discarded
-            };
-          }
-          return undefined;
+          return modContent(filename, content, 'dwn-sdk-js');
         },
       },
     ],
@@ -160,20 +161,7 @@ ${content}
           return data.file;
         }), // the file names to download
         modifyContent(filename, content) {
-          let fileData = components['ssi-service'].find((file) => {
-            return file.file === filename;
-          });
-
-          if (fileData) {
-            return {
-              content: `<div  class="prose prose-pink">
-
-${content}
-
-</div>`, // <-- this last part adds in the rest of the content, which would otherwise be discarded
-            };
-          }
-          return undefined;
+          return modContent(filename, content, 'ssi-service');
         },
       },
     ],
@@ -189,20 +177,7 @@ ${content}
           return data.file;
         }), // the file names to download
         modifyContent(filename, content) {
-          let fileData = components['ssi-sdk'].find((file) => {
-            return file.file === filename;
-          });
-
-          if (fileData) {
-            return {
-              content: `<div  class="prose prose-pink">
-
-${content}
-
-</div>`, // <-- this last part adds in the rest of the content, which would otherwise be discarded
-            };
-          }
-          return undefined;
+          return modContent(filename, content, 'ssi-sdk');
         },
       },
     ],
@@ -286,13 +261,13 @@ ${content}
         },
         items: [
           {
-            to: '/open-source',
+            to: '/opensource',
             label: 'Open Source',
             position: 'left',
           },
 
           {
-            to: '/projects',
+            to: '/projects-index',
             label: 'Projects',
             position: 'left',
           },

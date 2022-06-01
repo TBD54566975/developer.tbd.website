@@ -1,5 +1,7 @@
+import { Mermaid } from "@theme/Mermaid";
+
 <div  class="prose prose-pink">
-              <div class="flex gap-12 mb-20"><a href="https://github.com/TBD54566975/tbdex-protocol">View on Github</a><a href="https://github.com/TBD54566975/tbdex-protocol/issues">View Issues</a><a href="https://github.com/TBD54566975/tbdex-protocol/discussions">View Discussions</a></div>
+      <div class="flex gap-12 mb-20"><a href="https://github.com/TBD54566975/tbdex-protocol">View on Github</a><a href="https://github.com/TBD54566975/tbdex-protocol/issues">View Issues</a><a href="https://github.com/TBD54566975/tbdex-protocol/discussions">View Discussions</a></div>
 
 # tbDEX Protocol
 
@@ -109,7 +111,7 @@ For example, starting from the top: "A PFI can reply to an `Ask` with a `Conditi
 
 _Note: Assume that any vertex can transition to a `Close` by either participant_
 
-```mermaid
+<Mermaid chart={`
 flowchart TD
     Ask --> |PFI| COND_OFFER[Conditional Offer]
     COND_OFFER --> |Alice| OFFER_ACCEPT[Offer Accept]
@@ -121,7 +123,7 @@ flowchart TD
     SETTL_DETAIL --> |PFI| IDV_REQ
     SETTL_DETAIL ---> |PFI| SETTL_REQ
     SETTL_DETAIL --> |PFI| SETTL_RECEIPT[Settlement Receipt]
-```
+`}/>
 
 ## Getting Started
 This library contains a number of classes and interfaces that you can use to simulate an end-to-end interaction between Alice and a PFI. Here's a rundown of the classes you can use

@@ -5,7 +5,7 @@ const HomeListItem = ({ title, text, label, url, className }) => {
   return (
     <div className={'flex flex-col justify-between  ' + className}>
       <div>
-        <h2 className="text-primary-yellow h2 mb-4">{title}</h2>
+        <h2 className="text-primary-yellow h2-caps mb-4">{title}</h2>
         <p className="text-primary-yellow copy mb-9">{text}</p>
       </div>
       <Button label={label} url={url} />
