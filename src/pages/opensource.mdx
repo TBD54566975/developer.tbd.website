@@ -6,7 +6,7 @@ import PillarList from '@site/src/components/PillarList/PillarList';
 import { content } from '@site/src/content/open-source';
 import { Divider } from '@site/src/components/Divider';
 
-<div className="prose prose-pink custom-container">
+<div className="prose prose-pink ">
 
 # Today’s financial systems leave people behind. We build systems for anyone with internet access. And we’re creating it like the web itself: as a public good.
 
@@ -14,11 +14,11 @@ Our projects are open source and, where appropriate, built on open standards.
 
 Our work is licensed under the Apache License 2.0, and we welcome you to join us in building the future of finance and decentralized technology.
 
-<div className="pillars-container">
-  <Divider type="slash" />
+<Divider type="slash" />
+<div className="custom-container">
   <PillarList title={content.title} pillars={content.pillars} />
-  <Divider type="slash" />
 </div>
+<Divider type="slash" />
 
 # Governance
 
