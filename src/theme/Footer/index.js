@@ -1,5 +1,3 @@
-
-   
 import React, { useEffect, useState } from 'react';
 import { Illustration } from '../../components/Illustration';
 import { SmallSocialButton } from '../../components/SmallSocialButton';
@@ -71,8 +69,8 @@ export function Footer() {
         title: 'Go to TikTok',
       },
     ],
-    isLegal: false
-  }
+    isLegal: false,
+  };
 
   useEffect(() => {
     setFooterBottomDark("dark:bg-[url('/img/footer-bottom-dark.svg')]");
@@ -89,8 +87,7 @@ export function Footer() {
       <Container className="pt-12 tablet:pt-14 desktop:pt-18 pb-14 desktop:pb-24">
         <div
           className={
-            'relative h-[18px] invertDarkMode overflow-hidden ' +
-            bgColorDark
+            'relative h-[18px] invertDarkMode overflow-hidden ' + bgColorDark
           }
         >
           <Illustration
@@ -128,15 +125,19 @@ export function Footer() {
             </span>
             <span className="copy">{footer.year}</span>
           </div>
-          <ul className="nav-links flex flex-auto justify-end">
+          <ul className="flex justify-end flex-auto nav-links">
             {footer.links &&
               footer.links.map((link, index) => (
                 <li
                   key={index}
-                  className={`ml-12 flex items-center py-0.5 border-b-2 border-b-primary-black`}
+                  className={
+                    'ml-12 flex items-center py-0.5 border-b-2 border-b-primary-black'
+                  }
                 >
                   <TextLink
-                    className={'py-3 border-b-2 border-b-primary-black text-primary-black'}
+                    className={
+                      'py-3 border-b-2 border-b-primary-black text-primary-black'
+                    }
                     isInverse={true}
                     href={link.href}
                     text={link.text}
@@ -145,12 +146,12 @@ export function Footer() {
               ))}
           </ul>
         </div>
-        <div className="mt-9 flex flex-col bg-black tablet:h-18 desktop:h-30 tablet:px-6 desktop:px-12 tablet:mt-0 tablet:flex-row tablet:items-center desktop:flex-row">
+        <div className="flex flex-col bg-black mt-9 tablet:h-18 desktop:h-30 tablet:px-6 desktop:px-12 tablet:mt-0 tablet:flex-row tablet:items-center desktop:flex-row">
           <div className="flex-1">
             <p className={'copy text-primary-yellow'}>{footer.socialText}</p>
           </div>
-          <div className="flex-1 h-full block tablet:flex tablet:justify-end">
-            <div className="my-10 grid grid-cols-4 place-items-center gap-9 tablet:gap-3 desktop:gap-6 tablet:my-0 tablet:flex tablet:justify-end">
+          <div className="flex-1 block h-full tablet:flex tablet:justify-end">
+            <div className="grid grid-cols-4 my-10 place-items-center gap-9 tablet:gap-3 desktop:gap-6 tablet:my-0 tablet:flex tablet:justify-end">
               {footer.socialButtons.map((socialButton, idx) => (
                 <SmallSocialButton
                   key={`sb-${idx}`}
@@ -166,7 +167,7 @@ export function Footer() {
         </div>
         <div
           className={
-            "bg-repeat-x bg-[url('/img/footer-bottom-dark.svg')] h-[10px] " + 
+            "bg-repeat-x bg-[url('/img/footer-bottom-dark.svg')] h-[10px] " +
             footerBottomDark
           }
         ></div>
@@ -175,4 +176,4 @@ export function Footer() {
   );
 }
 
-export default Footer
+export default Footer;
