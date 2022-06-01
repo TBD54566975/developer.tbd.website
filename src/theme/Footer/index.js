@@ -70,7 +70,7 @@ export function Footer() {
 
   return (
     <footer>
-      <div className="pt-12 tablet:pt-14 desktop:pt-18 pb-14 desktop:pb-24">
+      <div className="pt-12 tablet:pt-14 desktop:pt-18 pb-14 desktop:pb-24 max-w-container desktop:mx-auto">
         <div className="relative h-auto overflow-hidden invertDarkMode bg-primary-yellow p-0.5">
           <Illustration
             className="relative h-[14px] w-full"
