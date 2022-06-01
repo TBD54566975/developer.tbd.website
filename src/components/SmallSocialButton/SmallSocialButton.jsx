@@ -3,10 +3,6 @@ import PropTypes from 'prop-types';
 import { Illustration } from '../Illustration';
 
 const SmallSocialButton = ({ src, url, altText, title, isBlackWhite }) => {
-  const darkIconColor = isBlackWhite
-    ? 'tbd-yellow-illustration'
-    : 'tbd-yellow-illustration';
-
   const borderColor = isBlackWhite
     ? { light: '', dark: 'border-b-primary-white' }
     : { light: 'border-b-primary-yellow', dark: 'border-b-primary-yellow' };
@@ -22,9 +18,13 @@ const SmallSocialButton = ({ src, url, altText, title, isBlackWhite }) => {
         img={src}
         alt={altText}
         title={title}
-        className={'w-6 p-3 aspect-square relative text-primary-black tbd-social-icon'}
-        imgStyle={'tbd-social-icon'}
-        accentClass={darkIconColor}
+        className={
+          'w-6 p-3 aspect-square relative text-primary-black tbd-social-icon'
+        }
+        imgStyle={
+          'tbd-social-icon absolute top-0 left-0 bottom-0 right-0 m-0 object-cover max-h-full max-w-full min-h-full min-w-full'
+        }
+        accentClass={'tbd-yellow-illustration'}
       />
     </a>
   );
