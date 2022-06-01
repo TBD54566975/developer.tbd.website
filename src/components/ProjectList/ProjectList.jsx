@@ -20,14 +20,14 @@ const ProjectList = ({ title, projects, growToFit }) => {
         }
       >
         {projects.map((project, index) => (
-          <>
+          <React.Fragment key={index}>
             <Project {...project} />
             {index == projects.length - 1 ? null : (
               <div className="block tablet:hidden tablet:mt-[3.5rem]">
                 <Divider type="dotted-small" />
               </div>
             )}
-          </>
+          </React.Fragment>
         ))}
       </div>
     </div>
