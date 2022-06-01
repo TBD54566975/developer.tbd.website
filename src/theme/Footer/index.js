@@ -1,13 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Illustration } from '../../components/Illustration';
 import { SmallSocialButton } from '../../components/SmallSocialButton';
-import { Container } from '../../components/Container';
 import { TextLink } from '../../components/TextLink/TextLink';
 
 export function Footer() {
-  const [bgColorDark, setBgColorDark] = useState('');
-  const [footerBottomDark, setFooterBottomDark] = useState('');
-
   const footer = {
     logoSrc: '/img/tbd-logo-square.svg',
     copyrightSignSrc: '/img/copyright-image.svg',
@@ -72,40 +68,20 @@ export function Footer() {
     isLegal: false,
   };
 
-  useEffect(() => {
-    setFooterBottomDark("dark:bg-[url('/img/footer-bottom-dark.svg')]");
-    setBgColorDark('bg-primary-yellow');
-
-    if (footer.isLegal) {
-      setBgColorDark('dark:bg-primary-white');
-      setFooterBottomDark("dark:bg-[url('/img/footer-bottom-dark-bw.svg')]");
-    }
-  }, [footer.isLegal]);
-
   return (
     <footer>
-      <Container className="pt-12 tablet:pt-14 desktop:pt-18 pb-14 desktop:pb-24">
-        <div
-          className={
-            'relative h-[18px] invertDarkMode overflow-hidden ' + bgColorDark
-          }
-        >
+      <div className="pt-12 tablet:pt-14 desktop:pt-18 pb-14 desktop:pb-24 max-w-container desktop:mx-auto">
+        <div className="relative h-auto overflow-hidden invertDarkMode bg-primary-yellow p-0.5">
           <Illustration
-            className="relative h-[18px] w-full"
-            img="/img/footer-top-marquee.svg"
-            objectfit="cover"
+            className="relative h-[14px] w-full"
+            imgStyle="absolute top-0 left-0 bottom-0 m-auto object-cover max-h-full max-w-full min-h-full min-w-full"
+            img="/img/marquee-d-1440.svg"
             accentClass="tbd-white-illustration"
             alt=""
           />
         </div>
 
-        <div
-          className={
-            'flex h-[116px] tablet:h-[132px] desktop:h-[236px] items-center invertDarkMode' +
-            'text-primary-yellow text-primary-black px-4 tablet:px-6 desktop:px-12 ' +
-            bgColorDark
-          }
-        >
+        <div className="flex h-[116px] tablet:h-[132px] desktop:h-[236px] items-center text-primary-black px-4 tablet:px-6 desktop:px-12 bg-primary-yellow">
           <div className="flex items-center align-middle">
             <span className="mr-1 tablet:mr-3">
               <Illustration
@@ -125,17 +101,12 @@ export function Footer() {
             </span>
             <span className="copy">{footer.year}</span>
           </div>
-          <ul className="nav-links flex flex-auto justify-end">
+          <ul className="flex justify-end flex-auto nav-links">
             {footer.links &&
               footer.links.map((link, index) => (
-                <li
-                  key={index}
-                  className={`ml-12 flex items-center py-0.5 border-b-2 border-b-primary-black`}
-                >
+                <li key={index} className="ml-12 flex items-center py-0.5">
                   <TextLink
-                    className={
-                      'py-3 border-b-2 border-b-primary-black text-primary-black'
-                    }
+                    className="py-3 text-primary-black hover:text-primary-black"
                     isInverse={true}
                     href={link.href}
                     text={link.text}
@@ -144,12 +115,12 @@ export function Footer() {
               ))}
           </ul>
         </div>
-        <div className="mt-9 flex flex-col bg-primary-yellow tablet:h-18 desktop:h-30 tablet:px-6 desktop:px-12 tablet:mt-0 tablet:flex-row tablet:items-center desktop:flex-row">
+        <div className="flex flex-col bg-black mt-9 tablet:h-18 desktop:h-30 tablet:px-6 desktop:px-12 tablet:mt-0 tablet:flex-row tablet:items-center desktop:flex-row">
           <div className="flex-1">
-            <p className={'copy text-primary-black'}>{footer.socialText}</p>
+            <p className={'copy text-primary-yellow'}>{footer.socialText}</p>
           </div>
-          <div className="flex-1 h-full block tablet:flex tablet:justify-end">
-            <div className="my-10 grid grid-cols-4 place-items-center gap-9 tablet:gap-3 desktop:gap-6 tablet:my-0 tablet:flex tablet:justify-end">
+          <div className="flex-1 block h-full tablet:flex tablet:justify-end">
+            <div className="grid grid-cols-4 my-10 place-items-center gap-9 tablet:gap-3 desktop:gap-6 tablet:my-0 tablet:flex tablet:justify-end">
               {footer.socialButtons.map((socialButton, idx) => (
                 <SmallSocialButton
                   key={`sb-${idx}`}
@@ -163,13 +134,8 @@ export function Footer() {
             </div>
           </div>
         </div>
-        <div
-          className={
-            "bg-repeat-x bg-[url('/img/footer-bottom-light.svg')] h-[10px] " +
-            footerBottomDark
-          }
-        ></div>
-      </Container>
+        <div className="bg-repeat-x h-[10px] bg-[url('/img/footer-bottom-dark.svg')]"></div>
+      </div>
     </footer>
   );
 }
