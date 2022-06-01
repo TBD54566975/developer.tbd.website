@@ -1,1 +1,1 @@
-export { default as PillarList } from './PillarList';
+export { default as ProjectList } from './Projectist';

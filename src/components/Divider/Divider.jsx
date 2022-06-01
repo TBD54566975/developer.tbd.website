@@ -7,6 +7,8 @@ export default function Divider({ type }) {
     classes = 'bg-slash-dark border-none h-2';
   } else if (type === 'legal') {
     classes = 'bg-dotted-legal border-none h-[2px]';
+  } else if (type === 'dotted-small') {
+    classes = 'bg-dotted-small-dark border-none h-[2px]';
   } else {
     classes = 'bg-dotted-dark border-none h-[2px]';
   }
