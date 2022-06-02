@@ -34,6 +34,7 @@ export const content = {
         'An implementation of DIF’s emerging decentralized identifiers standard.',
       textButton: 'View Component',
       url: 'https://identity.foundation/ion/',
+      isExternalLink: true,
     },
     {
       icon: '/img/component-icon.svg',
