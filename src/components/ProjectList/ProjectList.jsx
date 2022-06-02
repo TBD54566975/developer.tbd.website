@@ -4,9 +4,9 @@ import PropTypes from 'prop-types';
 import { Divider } from '../Divider';
 const ProjectList = ({ title, projects, growToFit }) => {
   let classGrow =
-    'grid grid-cols-1 tablet:grid-cols-[repeat(auto-fit,minmax(21.75rem,1fr))]';
+    'grid grid-cols-1 tablet:grid-cols-[repeat(auto-fit,minmax(20.75rem,1fr))]';
   if (!growToFit) {
-    classGrow = 'grid grid-cols-1 tablet:grid-cols-[repeat(auto-fit,21.75rem)]';
+    classGrow = 'grid grid-cols-1 tablet:grid-cols-[repeat(auto-fit,20.75rem)]';
   }
   return (
     <div>

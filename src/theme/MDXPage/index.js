@@ -31,7 +31,7 @@ export default function MDXPage(props) {
     >
       <PageMetadata title={title} description={description} />
       <Layout>
-        <main className="container container--fluid margin-vert--lg">
+        <main className="container--fluid margin-vert--lg">
           <div className={clsx('row', styles.mdxPageWrapper)}>
             <div className={clsx('col', !hideTableOfContents && 'col--10')}>
               <MDXContent>

@@ -79,9 +79,17 @@ Button.propTypes = {
    * Button image
    */
   imageURL: PropTypes.string,
+
+  /**
+   * Opens the link in a new tab
+   */
   isExternalLink: PropTypes.bool,
+  /**
+   * Color of the button in dark mode: cyan, yellow or purple
+   */
   colorDarkMode: PropTypes.string,
 };
+
 Button.defaultProps = {
   isExternalLink: false,
   colorDarkMode: 'cyan',
