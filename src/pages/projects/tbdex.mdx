@@ -5,8 +5,7 @@ hide_table_of_contents: true
 
 import { Actors } from '@site/src/components/Actors';
 import { ProjectList } from '@site/src/components/ProjectList';
-import { content } from '@site/src/content/components-tbdex.js';
-import { content as useCases } from '@site/src/content/use-cases.js';
+import { content } from '@site/src/content/project-content-tbdex.js';
 import { Divider } from '@site/src/components/Divider';
 import PillarList from '@site/src/components/PillarList/PillarList';
 
@@ -16,38 +15,37 @@ import PillarList from '@site/src/components/PillarList/PillarList';
 
 ## Connecting the world of legacy money to the world of digital money
 
-The web connected us all. But money and payments have not kept pace. The legacy payments system is held together with proverbial duct tape that masks fundamental problems:; final settlement of payments is slow, expensive, and never quite final.
+The web connected us all. But money and payments have not kept pace.
 
-Risks get priced in as expensive account fees – or exclusion from the system itself. This hits the most economically disadvantaged the hardest.
+The legacy payments system is held together with proverbial duct tape that masks fundamental problems: final settlement of payments is slow, expensive, and never quite final. Risks get priced in as expensive account fees – or exclusion from the system itself. This hits the most economically disadvantaged the hardest.
 
 A decentralized and trustless system like Bitcoin shifts the paradigm to financial access. There are no credit checks or monthly account fees. Open, decentralized, and permissionless networks let you send money anywhere in the world, near instantly.
 
 So now we have both legacy payment systems and new payment systems. But how do we get from the old to the new? tbDEX bridges the worlds of legacy money and digital money.
 
-tbDEX is a decentralized, permissionless protocol. It opens the door to self-sovereign identity and access to the financial system for all. And because it abstracts away the complexity of decentralization, developers can focus on building great things.
+tbDEX is a decentralized, permissionless protocol. It opens the door to Self Sovereign Identity and access to the financial system for all. And because it abstracts away the complexity of decentralization, developers can focus on building great things.
+
+[¡CTA Button!](tbd.website)
 
 <Divider type="slash" />
 
 <div className="custom-container">
-  <ProjectList {...content} />
+  <ProjectList {...content.components} />
 </div>
 
 <Divider type="slash" />
 
 <div className="custom-container">
-  <Actors />
+  <Actors content={content.actors} />
 </div>
 
 <Divider type="slash" />
 
 <div className="custom-container">
-
-  <PillarList title={useCases.title} pillars={useCases.pillars} />
+  <PillarList
+    title={content.useCases.title}
+    pillars={content.useCases.pillars}
+  />
 </div>
-
-<!--stackedit_data:
-eyJoaXN0b3J5IjpbLTIzNzIyNjk0NSw3MTI0MzI1NzEsLTcwND
-E3MTMzMiwxMTIwNTg1ODM2LDM3OTQ3NzU4NF19
--->
 
 </div>
