@@ -5,7 +5,7 @@ export const content = {
       img: '/img/inclusivity-icon.svg',
       title: 'Inclusivity',
       description:
-        'Anyone with the capacity to contribute: can. We are proactive in welcoming a diverse contributor base for our code, documentation, developer relations, education, and communication efforts. Bad actors will be met with a published governance model and enforced code of conduct. Our users deserve representation in our development communities, and we promote varied perspectives and respectful debate.',
+        'Anyone with the capacity to contribute: can. We are proactive in welcoming a diverse contributor base for our code, documentation, developer relations, education, and communication efforts. Bad actors will be met with a published governance model and enforced code of conduct. You deserve representation in our development communities, and we promote varied perspectives and respectful debate.',
     },
     {
       img: '/img/transparency-icon.svg',
