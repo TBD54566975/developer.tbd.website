@@ -2,7 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Button } from '../Button';
 
-const Project = ({ icon, title, description, textButton, url }) => {
+const Project = ({
+  icon,
+  title,
+  description,
+  textButton,
+  url,
+  isExternalLink,
+}) => {
   return (
     <div className="flex flex-col tablet:h-full tablet:pt-6 tablet:pl-[1.25rem] tablet:pr-6 last:pb-0 tablet:pb-12 tablet:last:pb-12 tablet:border-primary-yellow tablet:border-2 tablet:rounded">
       <div className="pb-4 tablet:pb-6">
@@ -15,7 +22,16 @@ const Project = ({ icon, title, description, textButton, url }) => {
         <p className="copy text-primary-yellow my-0">{description}</p>
       </div>
       <div>
-        <Button label={textButton} url={url} />
+        {isExternalLink ? (
+          <Button
+            label={textButton}
+            url={url}
+            isExternalLink={true}
+            imageURL="/img/external-link-blue-icon.svg"
+          />
+        ) : (
+          <Button label={textButton} url={url} />
+        )}
       </div>
     </div>
   );
@@ -42,5 +58,14 @@ Project.propTypes = {
    * Url for the button to go to
    */
   url: PropTypes.string.isRequired,
+
+  /**
+   * Url for the button to go to
+   */
+  isExternalLink: PropTypes.bool,
 };
+Project.defaultProps = {
+  isExternalLink: false,
+};
+
 export default Project;
