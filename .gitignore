@@ -19,3 +19,11 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 /storybook-static
+/src/pages/projects/tbdex-protocol/README.md
+/src/pages/projects/tbdex-protocol/pfi-mock-impl/README.md
+/src/pages/projects/tbdex-protocol/pfi-mock-impl/CONTRIBUTING.md
+/src/pages/projects/tbdex-protocol/lib/README.md
+/src/pages/projects/tbdex-protocol/did/README.md
+/src/pages/projects/ssi-service/README.md
+/src/pages/projects/ssi-sdk/README.md
+/src/pages/projects/dwn-sdk-js/README.md
