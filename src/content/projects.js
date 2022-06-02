@@ -14,7 +14,7 @@ export const content = {
       icon: '/img/article-icon.svg',
       title: 'WEB5',
       description:
-        'Builds an extra decentralized web that returns control over your data and identity',
+        'Builds an extra decentralized web that returns control over you data and identity',
       textButton: 'View Project',
       url: '/projects/web5',
     },

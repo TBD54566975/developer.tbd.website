@@ -14,8 +14,7 @@ export default function Home() {
       <main>
         <div className="tablet:max-w-[100%] desktop:max-w-[92%] relative">
           <h1 className="h1 mb-18">
-            We’re building the next generation of the decentralized web,
-            returning data back to users. You’re welcome to join.
+            {content.heading}
           </h1>
           <HomeList
             features={content.features}

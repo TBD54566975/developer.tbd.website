@@ -5,8 +5,7 @@ hide_table_of_contents: true
 
 import { Actors } from '@site/src/components/Actors';
 import { ProjectList } from '@site/src/components/ProjectList';
-import { content } from '@site/src/content/components-web5.js';
-import { content as useCases } from '@site/src/content/use-cases.js';
+import { content } from '@site/src/content/project-content-web5.js';
 import { Divider } from '@site/src/components/Divider';
 import PillarList from '@site/src/components/PillarList/PillarList';
 
@@ -16,36 +15,29 @@ import PillarList from '@site/src/components/PillarList/PillarList';
 
 ## Building an extra decentralized web that puts you in control of your data and identity
 
-The web democratized the exchange of information, but it's missing a key layer: identity. On the web of today, identity and personal data have become the property of third parties, leaving us without agency in the digital world.
+The web democratized the exchange of information, but it's missing a key layer: identity. We struggle to secure personal data with hundreds of accounts and passwords we can’t remember. On the web today, identity and personal data have become the property of third parties.
 
-Web5 brings decentralized identity and data storage to the web we all care so much about. It lets devs focus on creating delightful user experiences, while seamlessly returning ownership of identity and data to individuals.
+Web5 brings decentralized identity and data storage to your applications. It lets devs focus on creating delightful user experiences, while returning ownership of data and identity to individuals.
 
-Web2, Web3 → Web5. It's the best of where we've been and what we've learned.
-
-[View Project](/projects/web5)
+Web2, Web3 ➞ Web5.
 
 <Divider type="slash" />
 
 <div className="custom-container">
-  <ProjectList {...content} />
+  <ProjectList {...content.components} />
 </div>
 
 <Divider type="slash" />
 
 <div className="custom-container">
-  <Actors />
+  <Actors content={content.actors} />
 </div>
 
 <Divider type="slash" />
 
 <div className="custom-container">
 
-  <PillarList title={useCases.title} pillars={useCases.pillars} />
+  <PillarList title={content.useCases.title} pillars={content.useCases.pillars} />
 </div>
-
-<!--stackedit_data:
-eyJoaXN0b3J5IjpbMTg2ODAwMTEwOCwxODc4NTE5MTUyLDczMD
-k5ODExNl19
--->
 
 </div>
