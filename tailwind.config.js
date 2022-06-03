@@ -9,7 +9,8 @@ module.exports = {
       screens: {
         'tablet': '768px',
         // => @media (min-width: 768px) { ... }
-        'docusaurus-desktop': '996px',
+        'docusaurus-desktop': '995px',
+        // => @media (min-width: 995px) { ... }
         'desktop': '1024px',
         // => @media (min-width: 1024px) { ... }
       },
