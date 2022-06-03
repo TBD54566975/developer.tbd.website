@@ -10,9 +10,9 @@ const ProjectList = ({ title, projects, growToFit }) => {
   }
   return (
     <div>
-      <h1 className="h1 ml-0 text-primary-yellow mb-12 empty:hidden">
-        {title}
-      </h1>
+      {title ? (
+        <h1 className="h1 ml-0 text-primary-yellow mb-12">{title}</h1>
+      ) : null}
       <div
         className={
           'tablet:gap-x-[1.25rem] desktop:gap-x-8 gap-y-12 tablet:gap-y-[1.375rem] ' +
