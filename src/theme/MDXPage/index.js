@@ -9,6 +9,8 @@ import clsx from 'clsx';
 import Layout from '@theme/Layout';
 import MDXContent from '@theme/MDXContent';
 import TOC from '@theme/TOC';
+import TOCCollapsible from '@theme/TOCCollapsible';
+
 import {
   PageMetadata,
   HtmlClassNameProvider,
@@ -32,6 +34,15 @@ export default function MDXPage(props) {
       <PageMetadata title={title} description={description} />
       <Layout>
         <main className="container--fluid margin-vert--lg">
+          {!hideTableOfContents && MDXPageContent.toc && (
+            <div className="docusaurus-desktop:hidden">
+              <TOCCollapsible
+                toc={MDXPageContent.toc}
+                minHeadingLevel={frontMatter.toc_min_heading_level}
+                maxHeadingLevel={frontMatter.toc_max_heading_level}
+              />
+            </div>
+          )}
           <div className={clsx('row', styles.mdxPageWrapper)}>
             <div
               className={clsx(
