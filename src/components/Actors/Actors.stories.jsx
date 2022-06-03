@@ -1,6 +1,6 @@
 import { Actors } from '.';
 import React from 'react';
-import { content } from '@site/src/content/project-content-tbdex.js';
+import { content } from '../../content/project-content-tbdex.js';
 export default {
   title: 'Actors',
   component: Actors,
