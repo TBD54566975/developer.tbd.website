@@ -4,39 +4,17 @@
 const lightCodeTheme = require('prism-react-renderer/themes/github');
 const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 const { components } = require('./data/remote-md.json');
-const linkTypes = {
-  discussions: {
-    text: 'View Discussions',
-  },
-  issues: {
-    text: 'View Issues',
-  },
-  github: {
-    text: 'View on Github',
-  },
-};
 
 const modContent = function (filename, content, contentKey) {
-  const linkcode = '<a href="#url#">#text#</a>';
   let fileData = components[contentKey].find((file) => {
     return file.file === filename;
   });
 
-  let links = '';
-  if (fileData.links) {
-    fileData.links.forEach((ele, idx) => {
-      if (idx === 0) {
-        links += '<div class="flex gap-12 mb-20">';
-      }
-
-      links += `${linkcode
-        .replace('#url#', ele.url)
-        .replace('#text#', linkTypes[ele.type].text)}`;
-
-      if (idx === fileData.links.length - 1) {
-        links += '</div>';
-      }
-    });
+  let buttons = '';
+  if (fileData.buttons) {
+    buttons = `<div className="mb-18"><ButtonGroup buttons={${JSON.stringify(
+      fileData.buttons,
+    )}} /></div>`;
   }
 
   let re1 = /```mermaid/g;
@@ -51,9 +29,14 @@ const modContent = function (filename, content, contentKey) {
   if (fileData) {
     return {
       content: `${hasMermaid ? 'import { Mermaid } from "@theme/Mermaid";' : ''}
+${
+  fileData.buttons
+    ? 'import { ButtonGroup } from "@site/src/components/ButtonGroup";'
+    : ''
+}
 
 <div  class="prose prose-pink">
-      ${links}
+      ${buttons}
 
 ${content.replaceAll(re, '\r<Mermaid chart={`\r$1`}/>\r\r')}
 
