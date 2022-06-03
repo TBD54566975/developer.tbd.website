@@ -6,18 +6,30 @@
       },
       {
         "file": "lib/README.md",
-        "links": [
+        "buttons": [
           {
-            "type": "github",
-            "url": "https://github.com/TBD54566975/tbdex-protocol"
+            "type": "button",
+            "data": {
+              "label": "View on Github",
+              "url": "https://github.com/TBD54566975/tbdex-protocol",
+              "isExternalLink": true
+            }
           },
           {
-            "type": "issues",
-            "url": "https://github.com/TBD54566975/tbdex-protocol/issues"
+            "type": "button",
+            "data": {
+              "label": "View Issues",
+              "url": "https://github.com/TBD54566975/tbdex-protocol/issues",
+              "isExternalLink": true
+            }
           },
           {
-            "type": "discussions",
-            "url": "https://github.com/TBD54566975/tbdex-protocol/discussions"
+            "type": "button",
+            "data": {
+              "label": "View Discussions",
+              "url": "https://github.com/TBD54566975/tbdex-protocol/discussions",
+              "isExternalLink": true
+            }
           }
         ]
       },
@@ -26,18 +38,30 @@
       },
       {
         "file": "pfi-mock-impl/README.md",
-        "links": [
+        "buttons": [
           {
-            "type": "github",
-            "url": "https://github.com/TBD54566975/tbdex-protocol"
+            "type": "button",
+            "data": {
+              "label": "View on Github",
+              "url": "https://github.com/TBD54566975/tbdex-protocol",
+              "isExternalLink": true
+            }
           },
           {
-            "type": "issues",
-            "url": "https://github.com/TBD54566975/tbdex-protocol/issues"
+            "type": "button",
+            "data": {
+              "label": "View Issues",
+              "url": "https://github.com/TBD54566975/tbdex-protocol/issues",
+              "isExternalLink": true
+            }
           },
           {
-            "type": "discussions",
-            "url": "https://github.com/TBD54566975/tbdex-protocol/discussions"
+            "type": "button",
+            "data": {
+              "label": "View Discussions",
+              "url": "https://github.com/TBD54566975/tbdex-protocol/discussions",
+              "isExternalLink": true
+            }
           }
         ]
       },
@@ -48,18 +72,30 @@
     "dwn-sdk-js": [
       {
         "file": "README.md",
-        "links": [
+        "buttons": [
           {
-            "type": "github",
-            "url": "https://github.com/TBD54566975/dwn-sdk-js"
+            "type": "button",
+            "data": {
+              "label": "View on Github",
+              "url": "https://github.com/TBD54566975/dwn-sdk-js",
+              "isExternalLink": true
+            }
           },
           {
-            "type": "issues",
-            "url": "https://github.com/TBD54566975/dwn-sdk-js/issues"
+            "type": "button",
+            "data": {
+              "label": "View Issues",
+              "url": "https://github.com/TBD54566975/dwn-sdk-js/issues",
+              "isExternalLink": true
+            }
           },
           {
-            "type": "discussions",
-            "url": "https://github.com/TBD54566975/dwn-sdk-js/discussions"
+            "type": "button",
+            "data": {
+              "label": "View Discussions",
+              "url": "https://github.com/TBD54566975/dwn-sdk-js/discussions",
+              "isExternalLink": true
+            }
           }
         ]
       }
@@ -67,18 +103,30 @@
     "ssi-service": [
       {
         "file": "README.md",
-        "links": [
+        "buttons": [
           {
-            "type": "github",
-            "url": "https://github.com/TBD54566975/ssi-service"
+            "type": "button",
+            "data": {
+              "label": "View on Github",
+              "url": "https://github.com/TBD54566975/ssi-service",
+              "isExternalLink": true
+            }
           },
           {
-            "type": "issues",
-            "url": "https://github.com/TBD54566975/ssi-service/issues"
+            "type": "button",
+            "data": {
+              "label": "View Issues",
+              "url": "https://github.com/TBD54566975/ssi-service/issues",
+              "isExternalLink": true
+            }
           },
           {
-            "type": "discussions",
-            "url": "https://github.com/TBD54566975/ssi-service/discussions"
+            "type": "button",
+            "data": {
+              "label": "View Discussions",
+              "url": "https://github.com/TBD54566975/ssi-service/discussions",
+              "isExternalLink": true
+            }
           }
         ]
       }
@@ -86,18 +134,30 @@
     "ssi-sdk": [
       {
         "file": "README.md",
-        "links": [
+        "buttons": [
           {
-            "type": "github",
-            "url": "https://github.com/TBD54566975/ssi-sdk"
+            "type": "button",
+            "data": {
+              "label": "View on Github",
+              "url": "https://github.com/TBD54566975/ssi-sdk",
+              "isExternalLink": true
+            }
           },
           {
-            "type": "issues",
-            "url": "https://github.com/TBD54566975/ssi-sdk/issues"
+            "type": "button",
+            "data": {
+              "label": "View Issues",
+              "url": "https://github.com/TBD54566975/ssi-sdk/issues",
+              "isExternalLink": true
+            }
           },
           {
-            "type": "discussions",
-            "url": "https://github.com/TBD54566975/ssi-sdk/discussions"
+            "type": "button",
+            "data": {
+              "label": "View Discussions",
+              "url": "https://github.com/TBD54566975/ssi-sdk/discussions",
+              "isExternalLink": true
+            }
           }
         ]
       }
