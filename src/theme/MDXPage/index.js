@@ -33,13 +33,19 @@ export default function MDXPage(props) {
       <Layout>
         <main className="container--fluid margin-vert--lg">
           <div className={clsx('row', styles.mdxPageWrapper)}>
-            <div className={clsx('col', !hideTableOfContents && 'col--10')}>
+            <div
+              className={clsx(
+                'col',
+                !hideTableOfContents &&
+                  'docusaurus-desktop:max-w-[75%] docusaurus-desktop:flex-[0_0_75%] desktop:max-w-[80%] desktop:flex-[0_0_80%]',
+              )}
+            >
               <MDXContent>
                 <MDXPageContent />
               </MDXContent>
             </div>
             {!hideTableOfContents && MDXPageContent.toc && (
-              <div className="col col--2">
+              <div className="col docusaurus-desktop:max-w-[25%] docusaurus-desktop:flex-[0_0_25%] desktop:max-w-[20%] desktop:flex-[0_0_20%] pr-0">
                 <TOC
                   toc={MDXPageContent.toc}
                   minHeadingLevel={frontMatter.toc_min_heading_level}
