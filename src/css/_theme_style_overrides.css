@@ -21,3 +21,10 @@ ul.table-of-contents li code {
   color: var(--color-blue);
   text-decoration: none;
 }
+
+.pagination-nav__sublabel {
+  display:none;
+}
+.pagination-nav__link {
+  border: none;
+}
