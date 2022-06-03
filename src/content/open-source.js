@@ -23,8 +23,18 @@ export const content = {
 
   buttons: [
     {
-      textButton: 'View Project',
-      url: '/projects/web5',
+      type: 'button',
+      data: {
+        label: 'Read More About Governance',
+        url: 'https://github.com/TBD54566975/tbd-project-template/blob/main/GOVERNANCE.md',
+      },
+    },
+    {
+      type: 'button',
+      data: {
+        label: 'View Our Code of Conduct',
+        url: 'https://github.com/TBD54566975/tbd-project-template/blob/main/CODE_OF_CONDUCT.md',
+      },
     },
   ],
 };

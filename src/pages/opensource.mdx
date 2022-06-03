@@ -4,6 +4,7 @@ hide_table_of_contents: true
 
 import PillarList from '@site/src/components/PillarList/PillarList';
 import Button from '@site/src/components/Button/Button';
+import ButtonGroup from '@site/src/components/ButtonGroup/ButtonGroup';
 import { content } from '@site/src/content/open-source';
 import { Divider } from '@site/src/components/Divider';
 
@@ -24,8 +25,5 @@ Our work is licensed under the Apache License 2.0, and we welcome you to join us
 # Governance
 
 Great work is built by great people with great relationships. Our governance model protects the community from behavior that doesn’t reflect our values.
-<div className="flex gap-4 flex-wrap flex-col desktop:flex-row">
-<div className="w-fit"><Button label="Read More About Governance" url="https://github.com/TBD54566975/tbd-project-template/blob/main/GOVERNANCE.md" /></div>
-<div className="w-fit"><Button label="View Our Code of Conduct" url="https://github.com/TBD54566975/tbd-project-template/blob/main/CODE_OF_CONDUCT.md" /></div>
-</div>
+<ButtonGroup buttons={content.buttons} />
 </div>
