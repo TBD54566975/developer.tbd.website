@@ -28,3 +28,12 @@ ul.table-of-contents li code {
 .pagination-nav__link {
   border: none;
 }
+
+.pagination-nav__item:first-child .pagination-nav__label::before {
+    content: url('/img/blue-arrow-left.svg');
+    padding-right: 1em;
+}
+.pagination-nav__item--next .pagination-nav__label::after {
+  content: url('/img/blue-arrow-right.svg');
+  padding-left: 1em;
+}
