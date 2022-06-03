@@ -239,7 +239,7 @@ ${content}
       navbar: {
         style: 'dark',
         logo: {
-          alt: 'My Site Logo',
+          alt: 'TBD-Logo',
           src: 'img/tbd-logo.svg',
         },
         items: [
