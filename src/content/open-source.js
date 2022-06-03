@@ -20,4 +20,11 @@ export const content = {
         'Projects need well-defined scope to succeed. They also need accessible, comprehensive documentation, a stellar Getting Started experience, and well-defined expectations. TBD fosters an environment built for contribution without personal intervention. Newcomers should be able to follow the project status on their own without additional explanation.',
     },
   ],
+
+  buttons: [
+    {
+      textButton: 'View Project',
+      url: '/projects/web5',
+    },
+  ],
 };
