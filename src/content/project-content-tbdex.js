@@ -78,6 +78,8 @@ export const content = {
           'organizations or individuals (by means of their wallet) who serve as a source of verifiable credentials',
       },
     ],
+    imgDesktop: '/img/maze.svg',
+    isWeb5: false,
   },
   useCases: {
     title: 'Use Cases',
