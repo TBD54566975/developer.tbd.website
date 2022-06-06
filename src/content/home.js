@@ -1,6 +1,11 @@
 /* eslint-disable quotes */
 export const content = {
   heading: 'We’re building the next generation of the decentralized web, returning data back to users. You’re welcome to join.',
+  meta: {
+    title: 'Developers | TBD',
+  },
+  heading:
+    'We’re building the next generation of the decentralized web, returning data back to users. You’re welcome to join.',
   features: [
     {
       title: 'Our Philosophy',

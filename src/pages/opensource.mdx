@@ -8,6 +8,19 @@ import ButtonGroup from '@site/src/components/ButtonGroup/ButtonGroup';
 import { content } from '@site/src/content/open-source';
 import { Divider } from '@site/src/components/Divider';
 
+<head>
+  <title>{content.meta.title}</title>
+  <meta property="og:title" content={content.meta.title} />
+  <meta
+    property="og:url"
+    content={'https://developer.tbd.website/' + content.meta.path}
+  />
+  <link
+    rel="apple-touch-icon"
+    href="https://developer.tbd.website/img/tbd-fav-icon-main.png"
+  />
+</head>
+
 <div className="prose prose-pink">
 
 # Today’s financial systems leave people behind. We build systems for anyone with internet access. And we’re creating it like the web itself: as a public good.
@@ -25,5 +38,6 @@ Our work is licensed under the Apache License 2.0, and we welcome you to join us
 # Governance
 
 Great work is built by great people with great relationships. Our governance model protects the community from behavior that doesn’t reflect our values.
+
 <ButtonGroup buttons={content.buttons} />
 </div>

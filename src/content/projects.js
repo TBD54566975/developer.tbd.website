@@ -1,6 +1,10 @@
 /* eslint-disable quotes */
 
 export const content = {
+  meta: {
+    title: 'Projects | TBD',
+    path: 'projects-index',
+  },
   projects: [
     {
       icon: '/img/article-icon.svg',
