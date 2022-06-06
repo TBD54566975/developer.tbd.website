@@ -8,7 +8,7 @@ export const content = {
   projects: [
     {
       icon: '/img/article-icon.svg',
-      title: 'tbdex ',
+      title: 'TBDEX View Project',
       description:
         'Connects the world of legacy money to the world of digital money',
       textButton: 'View Project',
@@ -16,7 +16,7 @@ export const content = {
     },
     {
       icon: '/img/article-icon.svg',
-      title: 'WEB5',
+      title: 'Web5 View Project',
       description:
         'Builds an extra decentralized web that returns control over you data and identity',
       textButton: 'View Project',

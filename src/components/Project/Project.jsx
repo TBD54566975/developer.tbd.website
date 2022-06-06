@@ -26,11 +26,12 @@ const Project = ({
           <Button
             label={textButton}
             url={url}
+            title={title}
             isExternalLink={true}
             imageURL="/img/external-link-blue-icon.svg"
           />
         ) : (
-          <Button label={textButton} url={url} />
+          <Button label={textButton} url={url} title={title} />
         )}
       </div>
     </div>
