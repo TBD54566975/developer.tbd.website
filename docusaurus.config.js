@@ -37,28 +37,6 @@ const config = {
         id: 'GTM-5X8H2X3', // GTM Container ID
       },
     ],
-    /*
-    [
-      'docusaurus-plugin-remote-content',
-      {
-        // options here
-        name: 'some-content1', // used by CLI, must be path safe
-        sourceBaseUrl:
-          'https://raw.githubusercontent.com/TBD54566975/tbdex-protocol/main/', // the base url for the markdown (gets prepended to all of the documents when fetching)
-        outDir: 'src/pages/projects/tbdex-protocol', // the base directory to output to.
-        documents: ['README.md'], // the file names to download
-        modifyContent(filename, content) {
-          return {
-            content: `<div  class="prose prose-pink">
-
-${content}
-
-</div>`,
-          };
-        },
-      },
-    ],
-    */
     [
       'docusaurus-plugin-remote-content',
       {
@@ -125,43 +103,6 @@ ${content}
       },
     ],
   ],
-
-  /*
-    [
-      'docusaurus-plugin-remote-content',
-      {
-        // options here
-        name: 'some-content1', // used by CLI, must be path safe
-        sourceBaseUrl:
-          'https://raw.githubusercontent.com/TBD54566975/tbd-project-template/main/', // the base url for the markdown (gets prepended to all of the documents when fetching)
-        outDir: 'docs', // the base directory to output to.
-        documents: ['GOVERNANCE.md', 'MAINTAINERS.md', 'CONTRIBUTING.md'], // the file names to download
-      },
-    ],
-    */
-  /*
-    [
-      "docusaurus-plugin-remote-content",
-      {
-          // options here
-          name: "some-content1", // used by CLI, must be path safe
-          sourceBaseUrl: "http://localhost:8081/", // the base url for the markdown (gets prepended to all of the documents when fetching)
-          outDir: "docs", // the base directory to output to.
-          documents: ["markd1.md"], // the file names to download
-      },
-    ],
-    [
-      "docusaurus-plugin-remote-content",
-      {
-          // options here
-          name: "some-content2", // used by CLI, must be path safe
-          sourceBaseUrl: "http://localhost:8082/", // the base url for the markdown (gets prepended to all of the documents when fetching)
-          outDir: "docs", // the base directory to output to.
-          documents: ["markd2.md"], // the file names to download
-      },
-    ],
-    */
-
   presets: [
     [
       'classic',
