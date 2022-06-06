@@ -16,4 +16,5 @@ Dark.args = {
   imgMobile: '/img/web5-mobile.svg',
   imgTablet: '/img/web5-tablet.svg',
   imgDesktop: '/img/web5-desktop.svg',
+  altText: 'Web2 and Web3 to Web5',
 };

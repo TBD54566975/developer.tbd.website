@@ -1,28 +1,16 @@
 import React from 'react';
 
-const SwitchIllustration = ({ imgMobile, imgTablet, imgDesktop }) => {
+const SwitchIllustration = ({ imgMobile, imgTablet, imgDesktop, altText }) => {
   return (
     <div>
       <div className="tablet:hidden block">
-        <img
-          src={imgMobile}
-          alt="Web2 and Web3 to Web5"
-          className="min-w-full"
-        />
+        <img src={imgMobile} alt={altText} className="min-w-full" />
       </div>
       <div className="hidden tablet:block desktop:hidden">
-        <img
-          src={imgTablet}
-          alt="Web2 and Web3 to Web5"
-          className="min-w-full"
-        />
+        <img src={imgTablet} alt={altText} className="min-w-full" />
       </div>
       <div className="hidden desktop:block">
-        <img
-          src={imgDesktop}
-          alt="Web2 and Web3 to Web5"
-          className="min-w-full"
-        />
+        <img src={imgDesktop} alt={altText} className="min-w-full" />
       </div>
     </div>
   );
