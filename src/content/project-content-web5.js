@@ -64,9 +64,9 @@ export const content = {
     ],
   },
   web5Illustrations: {
-    imgMobile: '/img/new-web5-mobile.svg',
-    imgTablet: '/img/new-web5-tablet.svg',
-    imgDesktop: '/img/new-web5-desktop.svg',
+    imgMobile: '/img/web5-mobile.svg',
+    imgTablet: '/img/web5-tablet.svg',
+    imgDesktop: '/img/web5-desktop.svg',
     altText: 'Web2 and Web3 to Web5',
   },
   useCases: {
