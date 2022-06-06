@@ -60,10 +60,10 @@ const Actors = ({ content }) => {
             <img
               src={content.imgDesktop}
               alt=""
-              className="w-full desktop:w-[48vw] desktop:block hidden relative left-[8rem]"
+              className="w-full h-fit desktop:w-[48vw] desktop:block hidden relative left-[8rem] mt-[3.875rem] top-16"
             />
-            <div className=" -ml-5 -mr-5 h-[63vw]">
-              <div className="desktop:hidden block w-[55vw] h-full relative left-[-5vw]">
+            <div className="desktop:hidden block -ml-5 -mr-5 h-[63vw]">
+              <div className=" w-[55vw] h-full relative left-[-5vw]">
                 <img
                   src="/img/actors-web5-mobile-1.svg"
                   alt=""
