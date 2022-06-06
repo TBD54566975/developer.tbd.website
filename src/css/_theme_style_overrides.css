@@ -22,6 +22,28 @@ ul.table-of-contents li code {
   text-decoration: none;
 }
 
+
+.pagination-nav__sublabel {
+  display:none;
+}
+.pagination-nav__link {
+  border: none;
+
+}
+.pagination-nav__label {
+  font-weight: 500;
+  font-size: 1em;
+}
+
+.pagination-nav__item:first-child .pagination-nav__label::before {
+    content: url('/img/blue-arrow-left.svg');
+    padding-right: 1em;
+}
+.pagination-nav__item--next .pagination-nav__label::after {
+  content: url('/img/blue-arrow-right.svg');
+  padding-left: 1em;
+}
 .tocCollapsibleButton_node_modules-\@docusaurus-theme-classic-lib-next-theme-TOCCollapsible-styles-module {
   padding-left: 0 !important;
 }
+
