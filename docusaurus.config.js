@@ -35,7 +35,7 @@ ${
     : ''
 }
 
-<div  class="prose prose-pink">
+<div className="prose prose-pink">
       ${buttons}
 
 ${content.replaceAll(re, '\r<Mermaid chart={`\r$1`}/>\r\r')}
