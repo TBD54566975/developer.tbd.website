@@ -1,5 +1,9 @@
 /* eslint-disable quotes */
 export const content = {
+  meta: {
+    title: 'tbDEX | TBD',
+    path: 'projects/tbdex',
+  },
   components: {
     growToFit: true,
     title: 'Components',

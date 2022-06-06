@@ -21,3 +21,7 @@ ul.table-of-contents li code {
   color: var(--color-blue);
   text-decoration: none;
 }
+
+.tocCollapsibleButton_node_modules-\@docusaurus-theme-classic-lib-next-theme-TOCCollapsible-styles-module {
+  padding-left: 0 !important;
+}
