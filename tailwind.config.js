@@ -226,6 +226,59 @@ module.exports = {
       typography: ({ theme }) => ({
         pink: {
           css: {
+            'font-size': `calc(((${tokens.FontBody1M.fontSize} / ${tokens.TypographyBaseFontSize}) * 1rem))`,
+            'lineHeight': `calc((${tokens.FontBody1M.lineHeight} / ${tokens.TypographyBaseFontSize} * 1rem))`,
+            'font-weight': theme('fontWeight.copy-mobile'),
+            '@media (min-width: 768px)': {
+              'line-height': `calc((${tokens.FontBody1D.lineHeight} / ${tokens.TypographyBaseFontSize} * 1rem))`,
+              'font-size': `calc(((${tokens.FontBody1D.fontSize} / ${tokens.TypographyBaseFontSize}) * 1rem))`,
+              'font-weight': theme('fontWeight.copy'),
+            },
+            'h1': {
+              'line-height': `calc((${tokens.FontH1M.lineHeight} / ${tokens.TypographyBaseFontSize} * 1rem))`,
+              'font-size': `calc(((${tokens.FontH1M.fontSize} / ${tokens.TypographyBaseFontSize}) * 1rem))`,
+              'font-weight': theme('fontWeight.h1-mobile'),
+              '@media (min-width: 768px)': {
+                'line-height': `calc((${tokens.FontH1T.lineHeight} / ${tokens.TypographyBaseFontSize} * 1rem))`,
+                'font-size': `calc(((${tokens.FontH1T.fontSize} / ${tokens.TypographyBaseFontSize}) * 1rem))`,
+                'font-weight': theme('fontWeight.h1-tablet'),
+              },
+              '@media (min-width: 1024px)': {
+                'line-height': `calc((${tokens.FontH1D.lineHeight} / ${tokens.TypographyBaseFontSize} * 1rem))`,
+                'font-size': `calc(((${tokens.FontH1D.fontSize} / ${tokens.TypographyBaseFontSize}) * 1rem))`,
+                'font-weight': theme('fontWeight.h1'),
+              },
+            },
+            'h2': {
+              'line-height': `calc((${tokens.FontH2M.lineHeight} / ${tokens.TypographyBaseFontSize} * 1rem))`,
+              'font-size': `calc(((${tokens.FontH2M.fontSize} / ${tokens.TypographyBaseFontSize}) * 1rem))`,
+              'font-weight': theme('fontWeight.h2-mobile'),
+              '@media (min-width: 768px)': {
+                'line-height': `calc((${tokens.FontH2D.lineHeight} / ${tokens.TypographyBaseFontSize} * 1rem))`,
+                'font-size': `calc(((${tokens.FontH2D.fontSize} / ${tokens.TypographyBaseFontSize}) * 1rem))`,
+                'font-weight': theme('fontWeight.h2'),
+              },
+            },
+            'h3': {
+              'line-height': `calc((${tokens.FontH3M.lineHeight} / ${tokens.TypographyBaseFontSize} * 1rem))`,
+              'font-size': `calc(((${tokens.FontH3M.fontSize} / ${tokens.TypographyBaseFontSize}) * 1rem))`,
+              'font-weight': theme('fontWeight.h3-mobile'),
+              '@media (min-width: 768px)': {
+                'line-height': `calc((${tokens.FontH3D.lineHeight} / ${tokens.TypographyBaseFontSize} * 1rem))`,
+                'font-size': `calc(((${tokens.FontH3D.fontSize} / ${tokens.TypographyBaseFontSize}) * 1rem))`,
+                'font-weight': theme('fontWeight.h3'),
+              },
+            },
+            'h4': {
+              'line-height': `calc((${tokens.FontH4M.lineHeight} / ${tokens.TypographyBaseFontSize} * 1rem))`,
+              'font-size': `calc(((${tokens.FontH4M.fontSize} / ${tokens.TypographyBaseFontSize}) * 1rem))`,
+              'font-weight': theme('fontWeight.h4-mobile'),
+              '@media (min-width: 768px)': {
+                'line-height': `calc((${tokens.FontH4D.lineHeight} / ${tokens.TypographyBaseFontSize} * 1rem))`,
+                'font-size': `calc(((${tokens.FontH4D.fontSize} / ${tokens.TypographyBaseFontSize}) * 1rem))`,
+                'font-weight': theme('fontWeight.h4'),
+              },
+            },
             '--tw-prose-body': theme('colors.primary-yellow'),
             '--tw-prose-headings': theme('colors.primary-yellow'),
             '--tw-prose-lead': theme('colors.primary-yellow'),
