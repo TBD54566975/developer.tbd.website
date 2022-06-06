@@ -1,12 +1,19 @@
 import React from 'react';
 import ReactPlayer from 'react-player';
+import PropTypes from 'prop-types';
 
-function Video() {
+const Video = ({ url }) => {
   return (
     <div>
-      <ReactPlayer url={"https://vimeo.com/3155182"} />
+      <ReactPlayer url={url} />
     </div>
   );
-}
+};
 
+Video.propTypes = {
+  /**
+   * video source
+   */
+  url: PropTypes.string.isRequired,
+};
 export default Video;

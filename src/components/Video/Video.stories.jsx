@@ -10,4 +10,6 @@ const Template = (args) => <Video {...args} />;
 
 export const Default = Template.bind({});
 
-Default.args = {};
+Default.args = {
+  url: '#',
+};
