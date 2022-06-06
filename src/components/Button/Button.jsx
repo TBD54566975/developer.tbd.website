@@ -8,6 +8,7 @@ const Button = ({
   isExternalLink,
   colorDarkMode,
   imageURL,
+  title,
 }) => {
   const [classesDarkMode, setClassesDarkMode] = useState('');
   useEffect(() => {
@@ -45,11 +46,12 @@ const Button = ({
       target={isExternalLink ? '_blank' : ''}
       rel={isExternalLink ? 'noopener noreferrer' : ''}
       className="dark w-fit no-underline"
+      title={title}
     >
       {imageURL ? (
         <div className={cssClasses}>
           <div className="flex gap-3">
-            <img src={imageURL} alt="" />
+            <img src={imageURL} alt={title} />
 
             <span className="relative top-[3px]">{label}</span>
           </div>
@@ -70,7 +72,10 @@ Button.propTypes = {
    * Button URL
    */
   url: PropTypes.string.isRequired,
-
+  /**
+   * Button Title
+   */
+  title: PropTypes.string.isRequired,
   /**
    * Button className
    */
