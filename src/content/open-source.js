@@ -1,4 +1,8 @@
 export const content = {
+  meta: {
+    title: 'Open Source | TBD',
+    path: 'opensource',
+  },
   title: 'Our Pillars',
   pillars: [
     {

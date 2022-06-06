@@ -2,10 +2,11 @@
   "components": {
     "tbdex-protocol": [
       {
-        "file": "README.md"
-      },
-      {
         "file": "lib/README.md",
+        "meta": {
+          "title": "tbDEX Spec | TBD",
+          "path": "projects/tbdex-protocol/lib/README"
+        },
         "buttons": [
           {
             "type": "button",
@@ -32,12 +33,13 @@
             }
           }
         ]
-      },
-      {
-        "file": "did/README.md"
       },
       {
         "file": "pfi-mock-impl/README.md",
+        "meta": {
+          "title": "PFI Example Implementation | TBD",
+          "path": "projects/tbdex-protocol/pfi-mock-impl/README"
+        },
         "buttons": [
           {
             "type": "button",
@@ -64,14 +66,15 @@
             }
           }
         ]
-      },
-      {
-        "file": "pfi-mock-impl/CONTRIBUTING.md"
       }
     ],
     "dwn-sdk-js": [
       {
         "file": "README.md",
+        "meta": {
+          "title": "Decentralized Web Node | TBD",
+          "path": "projects/dwn-sdk-js/README"
+        },
         "buttons": [
           {
             "type": "button",
@@ -103,6 +106,10 @@
     "ssi-service": [
       {
         "file": "README.md",
+        "meta": {
+          "title": "Self-sovereign Identity Service | TBD",
+          "path": "projects/ssi-service/README"
+        },
         "buttons": [
           {
             "type": "button",
@@ -134,6 +141,10 @@
     "ssi-sdk": [
       {
         "file": "README.md",
+        "meta": {
+          "title": "Self-sovereign Identity SDK | TBD",
+          "path": "projects/ssi-sdk/README"
+        },
         "buttons": [
           {
             "type": "button",

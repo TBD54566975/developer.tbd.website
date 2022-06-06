@@ -4,52 +4,12 @@
 const lightCodeTheme = require('prism-react-renderer/themes/github');
 const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 const { components } = require('./data/remote-md.json');
-
-const modContent = function (filename, content, contentKey) {
-  let fileData = components[contentKey].find((file) => {
-    return file.file === filename;
-  });
-
-  let buttons = '';
-  if (fileData.buttons) {
-    buttons = `<div className="mb-18"><ButtonGroup buttons={${JSON.stringify(
-      fileData.buttons,
-    )}} /></div>`;
-  }
-
-  let re1 = /```mermaid/g;
-  var hasMermaid = false;
-  while (re1.exec(content) != null) {
-    hasMermaid = true;
-    break;
-  }
-
-  let re = /```mermaid([\s\S]*?)```/gm;
-
-  if (fileData) {
-    return {
-      content: `${hasMermaid ? 'import { Mermaid } from "@theme/Mermaid";' : ''}
-${
-  fileData.buttons
-    ? 'import { ButtonGroup } from "@site/src/components/ButtonGroup";'
-    : ''
-}
-
-<div className="prose prose-pink">
-      ${buttons}
-
-${content.replaceAll(re, '\r<Mermaid chart={`\r$1`}/>\r\r')}
-
-</div>`,
-    };
-  }
-
-  return undefined;
-};
+const modContent = require('./src/util/remote-content-modification.js');
+const metacontent = require('./src/content/global-meta');
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: 'TBD',
+  title: `${metacontent.site_name}`,
   tagline: '',
   organizationName: 'TBD54566975',
   projectName: 'developer.tbd.website',
@@ -57,7 +17,7 @@ const config = {
   url: 'https://developer.tbd.website',
   onBrokenLinks: 'warn',
   onBrokenMarkdownLinks: 'warn',
-  favicon: 'img/favicon.ico',
+  favicon: '/img/favicon.ico',
 
   plugins: [
     async function myPlugin(context, options) {
@@ -311,6 +271,24 @@ ${content}
         theme: lightCodeTheme,
         darkTheme: darkCodeTheme,
       },
+      metadata: [
+        {
+          property: 'og:image',
+          content: `${metacontent.ogimage}`,
+        },
+        {
+          name: 'description',
+          content: `${metacontent.description}`,
+        },
+        {
+          property: 'og:description',
+          content: `${metacontent.description}`,
+        },
+        {
+          property: 'og:site_name',
+          content: `${metacontent.site_name}`,
+        },
+      ],
     }),
 };
 
