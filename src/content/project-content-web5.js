@@ -58,6 +58,9 @@ export const content = {
           'web apps enhanced with decentralized identity and data storage capabilities.',
       },
     ],
+    imgDesktop: '/img/actors-web5-desktop.svg',
+    imgMobile: '/img/actors-web5-mobile.svg',
+    isWeb5: true,
   },
   useCases: {
     title: 'Use Cases',

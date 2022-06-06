@@ -47,6 +47,9 @@ module.exports = {
         'dotted-dark': 'url(/img/divider-dotted-dark.svg)',
         'dotted-small-dark': 'url(/img/divider-dotted-small-dark.svg)',
         'vertical-divider': 'url(/img/vertical-divider.svg)',
+        'actors-web5-mobile': 'url(/img/actors-web5-mobile.svg)',
+        'actors-web5-mobile-1': 'url(/img/actors-web5-mobile-1.svg)',
+        'actors-web5-mobile-2': 'url(/img/actors-web5-mobile-2.svg)',
       },
       spacing: {
         8.5: `calc(((34 / ${tokens.TypographyBaseFontSize}) * 1rem))`,
