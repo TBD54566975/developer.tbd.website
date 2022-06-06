@@ -23,12 +23,12 @@ ul.table-of-contents li code {
   font-weight: 700;
 }
 
-.table-of-contents__left-border {
-  border-left: 2px solid var(--ifm-toc-border-color) !important;
+.table-of-contents li {
+  margin: var(--ifm-toc-padding-vertical) 1.5rem;
 }
 
-.table-of-contents li{
-  margin
+.table-of-contents__left-border {
+  border-left: 2px solid var(--ifm-toc-border-color) !important;
 }
 
 .tocCollapsibleButton_node_modules-\@docusaurus-theme-classic-lib-next-theme-TOCCollapsible-styles-module {
