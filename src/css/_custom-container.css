@@ -10,6 +10,6 @@
 
 @media (min-width: 1820px) {
   .custom-container .actors-container {
-    min-height: auto !important;
+    min-height: 990px !important;
   }
 }
