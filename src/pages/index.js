@@ -1,5 +1,6 @@
 import React from 'react';
 import Layout from '@theme/Layout';
+import Head from '@docusaurus/Head';
 import HomeList from '../components/HomeList/HomeList';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import { content } from '@site/src/content/home.js';
@@ -7,15 +8,18 @@ import { content } from '@site/src/content/home.js';
 export default function Home() {
   const { siteConfig } = useDocusaurusContext();
   return (
-    <Layout
-      title={`Hello from ${siteConfig.title}`}
-      description="Description will go into a meta tag in <head />"
-    >
+    <Layout>
+      <Head>
+        <meta property="og:title" content={content.meta.title} />
+        <meta property="og:url" content="https://developer.tbd.website" />
+        <link
+          rel="apple-touch-icon"
+          href="https://developer.tbd.website/img/tbd-fav-icon-main.png"
+        />
+      </Head>
       <main>
         <div className="tablet:max-w-[100%] desktop:max-w-[92%] relative">
-          <h1 className="h1 mb-18">
-            {content.heading}
-          </h1>
+          <h1 className="h1 mb-18">{content.heading}</h1>
           <HomeList
             features={content.features}
             className="desktop:mb-[6rem] tablet:mb-[9.5rem] mb-[3.5rem]"

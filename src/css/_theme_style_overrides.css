@@ -22,6 +22,7 @@ ul.table-of-contents li code {
   text-decoration: none;
 }
 
+
 .pagination-nav__sublabel {
   display:none;
 }
@@ -42,3 +43,7 @@ ul.table-of-contents li code {
   content: url('/img/blue-arrow-right.svg');
   padding-left: 1em;
 }
+.tocCollapsibleButton_node_modules-\@docusaurus-theme-classic-lib-next-theme-TOCCollapsible-styles-module {
+  padding-left: 0 !important;
+}
+

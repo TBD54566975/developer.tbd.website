@@ -10,6 +10,19 @@ import { content } from '@site/src/content/project-content-web5.js';
 import { Divider } from '@site/src/components/Divider';
 import PillarList from '@site/src/components/PillarList/PillarList';
 
+<head>
+  <title>{content.meta.title}</title>
+  <meta property="og:title" content={content.meta.title} />
+  <meta
+    property="og:url"
+    content={'https://developer.tbd.website/' + content.meta.path}
+  />
+  <link
+    rel="apple-touch-icon"
+    href="https://developer.tbd.website/img/tbd-fav-icon-main.png"
+  />
+</head>
+
 <div className="prose prose-pink">
 
 # WEB5: AN EXTRA DECENTRALIZED WEB PLATFORM
