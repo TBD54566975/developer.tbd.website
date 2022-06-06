@@ -33,6 +33,8 @@ export const content = {
       data: {
         label: 'Read More About Governance',
         url: 'https://github.com/TBD54566975/tbd-project-template/blob/main/GOVERNANCE.md',
+        isExternalLink: true,
+        imageURL: '/img/external-link-blue-icon.svg',
       },
     },
     {
@@ -40,6 +42,8 @@ export const content = {
       data: {
         label: 'View Our Code of Conduct',
         url: 'https://github.com/TBD54566975/tbd-project-template/blob/main/CODE_OF_CONDUCT.md',
+        isExternalLink: true,
+        imageURL: '/img/external-link-blue-icon.svg',
       },
     },
   ],
