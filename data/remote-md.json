@@ -45,7 +45,7 @@
             "type": "button",
             "data": {
               "label": "View on Github",
-              "url": "https://github.com/TBD54566975/tbdex-protocol",
+              "url": "https://github.com/TBD54566975/tbdex-protocol/tree/main/pfi-mock-impl",
               "isExternalLink": true
             }
           },
@@ -124,14 +124,6 @@
             "data": {
               "label": "View Issues",
               "url": "https://github.com/TBD54566975/ssi-service/issues",
-              "isExternalLink": true
-            }
-          },
-          {
-            "type": "button",
-            "data": {
-              "label": "View Discussions",
-              "url": "https://github.com/TBD54566975/ssi-service/discussions",
               "isExternalLink": true
             }
           }

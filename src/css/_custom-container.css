@@ -7,3 +7,9 @@
   margin-top: 0rem !important;
   margin-bottom: 0rem !important;
 }
+
+@media (min-width: 1820px) {
+  .custom-container .actors-container {
+    min-height: 990px !important;
+  }
+}

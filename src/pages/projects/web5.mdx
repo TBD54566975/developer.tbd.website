@@ -8,6 +8,7 @@ import { Button } from '@site/src/components/Button';
 import { ProjectList } from '@site/src/components/ProjectList';
 import { content } from '@site/src/content/project-content-web5.js';
 import { Divider } from '@site/src/components/Divider';
+import { SwitchIllustration } from '@site/src/components/SwitchIllustration';
 import PillarList from '@site/src/components/PillarList/PillarList';
 
 <head>
@@ -33,7 +34,9 @@ The web democratized the exchange of information, but it's missing a key layer: 
 
 Web5 brings decentralized identity and data storage to your applications. It lets devs focus on creating delightful user experiences, while returning ownership of data and identity to individuals.
 
-Web2, Web3 ➞ Web5.
+<div className="custom-container mx-[2.875rem] tablet:mx-[4.5rem] desktop:mx-[6.625rem] mt-[1.75rem] desktop:mt-[3.25rem]">
+  <SwitchIllustration {...content.web5Illustrations} />
+</div>
 
 <Divider type="slash" />
 
@@ -47,8 +50,9 @@ Web2, Web3 ➞ Web5.
   <Actors content={content.actors} />
 </div>
 
-<Button label="¡CTA Button!" url="https://tbd.website" />
-
+<div className="py-8">
+  <Button label="¡CTA Button!" url="https://tbd.website" />
+</div>
 <Divider type="slash" />
 
 <div className="custom-container">
