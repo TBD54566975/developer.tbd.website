@@ -18,8 +18,17 @@ ul.table-of-contents li code {
 .table-of-contents__link:hover code,
 .table-of-contents__link--active,
 .table-of-contents__link--active code {
-  color: var(--color-blue);
+  color: var(--color-yellow);
   text-decoration: none;
+  font-weight: 700;
+}
+
+.table-of-contents__left-border {
+  border-left: 2px solid var(--ifm-toc-border-color) !important;
+}
+
+.table-of-contents li{
+  margin
 }
 
 .tocCollapsibleButton_node_modules-\@docusaurus-theme-classic-lib-next-theme-TOCCollapsible-styles-module {
