@@ -11,7 +11,7 @@
           {
             "type": "button",
             "data": {
-              "label": "Read the Whitepaper",
+              "label": "View Whitepaper",
               "url": "https://tbdex.io/whitepaper.pdf",
               "isExternalLink": true,
               "imageURL": "/img/external-link-blue-icon.svg"
