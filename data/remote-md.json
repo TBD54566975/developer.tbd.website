@@ -45,7 +45,7 @@
             "type": "button",
             "data": {
               "label": "View on Github",
-              "url": "https://github.com/TBD54566975/tbdex-protocol",
+              "url": "https://github.com/TBD54566975/tbdex-protocol/tree/main/pfi-mock-impl",
               "isExternalLink": true
             }
           },
