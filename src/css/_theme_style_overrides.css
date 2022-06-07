@@ -52,6 +52,7 @@ article.margin-bottom--xl {
   margin-bottom: 4.5rem !important;
   padding-bottom: 5rem;
 }
+
 article p img {
   border: 2px solid var(--color-blue);
 }
@@ -168,4 +169,48 @@ article footer .col ul li::after {
 }
 article footer .col ul {
   margin-left: 0 !important;
+}
+
+/** Blog Detail**/
+article {
+  background-image: url('/img/divider-dotted-dark.svg');
+  background-repeat: repeat-x;
+  background-position: bottom;
+  margin-bottom: 3rem !important;
+  padding-bottom: 6.5rem;
+}
+
+article h1 {
+  font-weight: 700;
+  font-size: 3.5rem;
+  line-height: 3.625rem;
+}
+
+article header h1 + .margin-vert--md {
+  margin-top: 1.5rem !important;
+}
+
+article footer .theme-edit-this-page {
+  margin-bottom: 1.5rem;
+}
+
+nav .pagination-nav__link .pagination-nav__label {
+  color: var(--color-blue);
+  text-decoration-line: underline;
+  text-underline-offset: 3px;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 1.625rem;
+}
+
+nav .pagination-nav__link {
+  padding: 0rem;
+}
+
+.pagination-nav__item:first-child .pagination-nav__label::before {
+  padding-right: 0.5rem !important;
+}
+
+.pagination-nav__item--next .pagination-nav__label::after {
+  padding-left: 0.5rem !important;
 }
