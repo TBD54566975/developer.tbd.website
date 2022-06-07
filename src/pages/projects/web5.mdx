@@ -37,29 +37,32 @@ Web5 brings decentralized identity and data storage to your applications. It let
 <div className="custom-container mx-[2.875rem] tablet:mx-[4.5rem] desktop:mx-[6.625rem] mt-[1.75rem] desktop:mt-[3.25rem]">
   <SwitchIllustration {...content.web5Illustrations} />
 </div>
-<ButtonGroup
-  className="pt-24"
-  buttons={[
-    {
-      type: 'button',
-      data: {
-        label: 'Getting Started',
-        url: 'https://github.com/TBD54566975/collaboration/blob/main/projects/GETTING_STARTED_DWP.md',
+
+<div className="custom-container">
+  <ButtonGroup
+    className="pt-24"
+    buttons={[
+      {
+        type: 'button',
+        data: {
+          label: 'Getting Started',
+          url: 'https://github.com/TBD54566975/collaboration/blob/main/projects/GETTING_STARTED_DWP.md',
+          isExternalLink: true,
+          imageURL: '/img/external-link-blue-icon.svg',
+        },
       },
-      isExternalLink: true,
-      imageURL: '/img/external-link-blue-icon.svg',
-    },
-    {
-      type: 'button',
-      data: {
-        label: 'User Chat',
-        url: 'https://discord.com/channels/937858703112155166/969272658501976117',
+      {
+        type: 'button',
+        data: {
+          label: 'User Chat',
+          url: 'https://discord.com/channels/937858703112155166/969272658501976117',
+          isExternalLink: true,
+          imageURL: '/img/external-link-blue-icon.svg',
+        },
       },
-      isExternalLink: true,
-      imageURL: '/img/external-link-blue-icon.svg',
-    },
-  ]}
-/>
+    ]}
+  />
+</div>
 
 <Divider type="slash" />
 
