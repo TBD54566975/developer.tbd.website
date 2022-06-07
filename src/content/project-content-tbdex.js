@@ -13,8 +13,9 @@ export const content = {
         title: 'tbDEX Whitepaper',
         description:
           'Whitepaper defining a decentralized liquidity protocol for exchanging assets.',
-        textButton: 'View Component',
-        url: '/projects/tbdex-protocol/lib/README',
+        textButton: 'View Whitepaper',
+        url: 'https://tbdex.io/whitepaper.pdf',
+        isExternalLink: true,
       },
       {
         icon: '/img/component-icon.svg',
