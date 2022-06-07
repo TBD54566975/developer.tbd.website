@@ -17,7 +17,9 @@ const Actors = ({ content }) => {
         <div className="mt-[2.125rem] tablet:mt-[3.4375rem]">
           <div className="mb-[2.25rem] desktop:mb-0">
             <div className="flex gap-6 mb-1">
-              <img src="/img/actors-index-1.svg" alt="1" />
+              {!content.isWeb5 ? (
+                <img src="/img/actors-index-1.svg" alt="1" />
+              ) : null}
               <h2 className="h2-caps text-primary-yellow flex items-center">
                 {content.actors[0].title}
               </h2>
@@ -31,7 +33,9 @@ const Actors = ({ content }) => {
           </div>
           <div className="mb-[2.25rem] desktop:mb-0">
             <div className="flex gap-6 mb-1">
-              <img src="/img/actors-index-2.svg" alt="2" />
+              {!content.isWeb5 ? (
+                <img src="/img/actors-index-2.svg" alt="2" />
+              ) : null}
               <h2 className="h2-caps text-primary-yellow flex items-center">
                 {content.actors[1].title}
               </h2>
@@ -45,7 +49,9 @@ const Actors = ({ content }) => {
           </div>
           <div>
             <div className="flex gap-6 mb-1">
-              <img src="/img/actors-index-3.svg" alt="3" />
+              {!content.isWeb5 ? (
+                <img src="/img/actors-index-3.svg" alt="3" />
+              ) : null}
               <h2 className="h2-caps text-primary-yellow flex items-center">
                 {content.actors[2].title}
               </h2>
