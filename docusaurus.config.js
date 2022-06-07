@@ -41,23 +41,6 @@ const config = {
       'docusaurus-plugin-remote-content',
       {
         // options here
-        name: 'some-content2', // used by CLI, must be path safe
-        sourceBaseUrl:
-          'https://raw.githubusercontent.com/TBD54566975/tbdex-protocol/main/', // the base url for the markdown (gets prepended to all of the documents when fetching)
-        outDir: 'src/pages/projects/tbdex-protocol', // the base directory to output to.
-        documents: components['tbdex-protocol'].map((data) => {
-          return data.file;
-        }), // the file names to download
-        modifyContent(filename, content) {
-          return modContent(filename, content, 'tbdex-protocol');
-        },
-      },
-    ],
-
-    [
-      'docusaurus-plugin-remote-content',
-      {
-        // options here
         name: 'some-content3', // used by CLI, must be path safe
         sourceBaseUrl:
           'https://raw.githubusercontent.com/TBD54566975/dwn-sdk-js/main/', // the base url for the markdown (gets prepended to all of the documents when fetching)
