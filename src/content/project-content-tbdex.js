@@ -10,19 +10,11 @@ export const content = {
     projects: [
       {
         icon: '/img/component-icon.svg',
-        title: 'tbdex Spec',
+        title: 'tbDEX Whitepaper',
         description:
-          'A playground as we iterate our way to a robust protocol. Mostly composed of tbDEX message schemas/formats and a mock PFI implementation.',
+          'Whitepaper defining a decentralized liquidity protocol for exchanging assets.',
         textButton: 'View Component',
         url: '/projects/tbdex-protocol/lib/README',
-      },
-      {
-        icon: '/img/component-icon.svg',
-        title: 'PFI Example Implementation',
-        description:
-          "A mock implementation of a PFI (Participating Financial Institution) that leverages Circle's APIs in order to facilitate the on and off ramps.",
-        textButton: 'View Component',
-        url: '/projects/tbdex-protocol/pfi-mock-impl/README',
       },
       {
         icon: '/img/component-icon.svg',
