@@ -24,7 +24,11 @@ const Actors = ({ content }) => {
                 {content.actors[0].title}
               </h2>
             </div>
-            <p className="copy text-primary-yellow flex ml-[4.375rem] desktop:ml-0">
+            <p
+              className={`copy text-primary-yellow flex ${
+                !content.isWeb5 ? 'ml-[4.375rem]' : ''
+              } desktop:ml-0`}
+            >
               {content.actors[0].description}
             </p>
           </div>
@@ -40,7 +44,11 @@ const Actors = ({ content }) => {
                 {content.actors[1].title}
               </h2>
             </div>
-            <p className="copy text-primary-yellow flex ml-[4.375rem] desktop:ml-0">
+            <p
+              className={`copy text-primary-yellow flex ${
+                !content.isWeb5 ? 'ml-[4.375rem]' : ''
+              } desktop:ml-0`}
+            >
               {content.actors[1].description}
             </p>
           </div>
@@ -56,7 +64,11 @@ const Actors = ({ content }) => {
                 {content.actors[2].title}
               </h2>
             </div>
-            <p className="copy text-primary-yellow flex ml-[4.375rem] desktop:ml-0">
+            <p
+              className={`copy text-primary-yellow flex ${
+                !content.isWeb5 ? 'ml-[4.375rem]' : ''
+              } desktop:ml-0`}
+            >
               {content.actors[2].description}
             </p>
           </div>
