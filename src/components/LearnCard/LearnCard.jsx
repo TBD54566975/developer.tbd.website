@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable react/jsx-no-target-blank */
 import React from 'react';
-
+import { Divider } from '../Divider';
 export default function LearnCard({
   title,
   datePosted,
@@ -69,10 +69,11 @@ export default function LearnCard({
       <div className="mb-6 tablet:mb-9">
         <p className="copy text-primary-yellow">{description}</p>
       </div>
-      <div className="copy-sm text-primary-yellow">
+      <div className="copy-sm text-primary-yellow mb-9 tablet:mb-12 desktop:mb-18">
         <p>{datePosted}</p>
         <p className="hidden tablet:block">Posted by {author}</p>
       </div>
+      <Divider type="dotted" />
     </div>
   );
 }
