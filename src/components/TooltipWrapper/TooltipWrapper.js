@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Tooltip } from '../Tooltip';
 import { useTooltipTrigger } from '@react-aria/tooltip';
 import { useTooltipTriggerState } from '@react-stately/tooltip';
@@ -27,4 +28,18 @@ export default function TooltipWrapper(props) {
   );
 }
 
-//<TooltipWrapper trigger="extra">This is the tool tip content</TooltipWrapper>
+TooltipWrapper.propTypes = {
+  /**
+   * trigger: Test that onhover reveals the tooltip
+   */
+  trigger: PropTypes.string.isRequired,
+
+  /**
+   * children: Children populate the tooltip and are revealed onhover
+   */
+  children: PropTypes.any.isRequired,
+};
+
+/*
+<TooltipWrapper trigger="extra">This is the tool tip content</TooltipWrapper>
+*/
