@@ -1,47 +1,26 @@
-import React from 'react';
+/* eslint-disable quotes */
 
 export const content = {
-  title: 'Join the conversation in Discussions and Issues.',
+  meta: {
+    title: 'Projects | TBD',
+    path: 'projects-index',
+  },
   projects: [
     {
-      name: 'DWN-SDK-JS',
-      description: (
-        <>
-          Implementation of a Decentralized Web Node that supports decentralized app/protocol messaging, storage, and coordination features.
-        </>
-      ),
-      url: '#',
+      icon: '/img/article-icon.svg',
+      title: 'TBDEX',
+      description:
+        'Connects the world of legacy money to the world of digital money',
+      textButton: 'View Project',
+      url: '/projects/tbdex',
     },
     {
-      name: 'SSI-SERVICE',
-      description: (
-        <>
-          Standards-based primitives for using Decentralized Identifiers and Verifiable Credentials.
-        </>
-      ),
-      url: '#',
-    },
-    {
-      name: 'SSI-SDK',
-      description: (
-        <>
-          An in-a-box service that handles the full Verifiable Credentials lifecycle, including issuance, verification, revocation, and more.
-        </>
-      ),
-      url: '#',
-    },
-    {
-      name: 'TBDEX-PROTOCOL',
-      description: (
-        <>
-          An implementation of DIF's emerging decentralized personal datastore standard.
-        </>
-      ),
-      url: '#',
+      icon: '/img/article-icon.svg',
+      title: 'Web5',
+      description:
+        'Builds an extra decentralized web that returns control over you data and identity',
+      textButton: 'View Project',
+      url: '/projects/web5',
     },
   ],
-  prototyping: {
-    title: 'All projects in the TBD family are in early prototyping. New contributors should expect a pace of development consistent with nascent technology:',
-    subtitle: 'larger commits, frequent refactoring, changing APIs, and incomplete featuresets. We believe open source is not a publishing medium. These projects are open from the start to welcome your interest, invite discussion, identify early issues, and advise on design. An early adopter mindset will work well until these projects mature further.',
-  },
 };

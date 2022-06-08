@@ -1,4 +1,24 @@
-<div class="prose prose-pink">
+---
+hide_table_of_contents: true
+---
+
+import { ProjectList } from '@site/src/components/ProjectList';
+import { content } from '@site/src/content/projects';
+
+<head>
+  <title>{content.meta.title}</title>
+  <meta property="og:title" content={content.meta.title} />
+  <meta
+    property="og:url"
+    content={'https://developer.tbd.website/' + content.meta.path}
+  />
+  <link
+    rel="apple-touch-icon"
+    href="https://developer.tbd.website/img/tbd-fav-icon-main.png"
+  />
+</head>
+
+<div className="prose prose-pink">
 
 # The future is TBD.
 
@@ -6,13 +26,9 @@
 
 ## List of Projects
 
-### Web5
-
-Builds an extra decentralized web that returns control over your data and identity
-
-### tbDEX
-
-Connects the world of legacy money to the world of digital money
+<div className="custom-container">
+  <ProjectList projects={content.projects} growToFit={false} title="" />
+</div>
 
 ---
 
@@ -35,9 +51,5 @@ In particular, we want to ensure the New Contributor Experience is as smooth as 
 - Clone and build the project
 - Run the tests
 - Join the conversation in Discussions and Issues
-<!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE2NjA3ODA4ODksLTE3NDQ2MTU1MjBdfQ
-==
--->
 
 </div>

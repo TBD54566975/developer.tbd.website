@@ -4,31 +4,20 @@
 const lightCodeTheme = require('prism-react-renderer/themes/github');
 const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 const { components } = require('./data/remote-md.json');
-const linkTypes = {
-  discussions: {
-    text: 'View Discussions',
-  },
-  issues: {
-    text: 'View Issues',
-  },
-  github: {
-    text: 'View on Github',
-  },
-};
-
-const linkcode = '<a href="#url#">#text#</a>';
+const modContent = require('./src/util/remote-content-modification.js');
+const metacontent = require('./src/content/global-meta');
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: 'TBD',
+  title: `${metacontent.site_name}`,
   tagline: '',
   organizationName: 'TBD54566975',
   projectName: 'developer.tbd.website',
   baseUrl: '/',
   url: 'https://developer.tbd.website',
-  onBrokenLinks: 'throw',
+  onBrokenLinks: 'warn',
   onBrokenMarkdownLinks: 'warn',
-  favicon: 'img/favicon.ico',
+  favicon: '/img/favicon.ico',
 
   plugins: [
     async function myPlugin(context, options) {
@@ -42,77 +31,12 @@ const config = {
         },
       };
     },
-    /*
     [
-      'docusaurus-plugin-remote-content',
+      require.resolve('docusaurus-gtm-plugin'),
       {
-        // options here
-        name: 'some-content1', // used by CLI, must be path safe
-        sourceBaseUrl:
-          'https://raw.githubusercontent.com/TBD54566975/tbdex-protocol/main/', // the base url for the markdown (gets prepended to all of the documents when fetching)
-        outDir: 'src/pages/projects/tbdex-protocol', // the base directory to output to.
-        documents: ['README.md'], // the file names to download
-        modifyContent(filename, content) {
-          return {
-            content: `<div  class="prose prose-pink">
-
-${content}
-
-</div>`,
-          };
-        },
+        id: 'GTM-5X8H2X3', // GTM Container ID
       },
     ],
-    */
-    [
-      'docusaurus-plugin-remote-content',
-      {
-        // options here
-        name: 'some-content2', // used by CLI, must be path safe
-        sourceBaseUrl:
-          'https://raw.githubusercontent.com/TBD54566975/tbdex-protocol/main/', // the base url for the markdown (gets prepended to all of the documents when fetching)
-        outDir: 'src/pages/projects/tbdex-protocol', // the base directory to output to.
-        documents: components['tbdex-protocol'].map((data) => {
-          return data.file;
-        }), // the file names to download
-        modifyContent(filename, content) {
-          let fileData = components['tbdex-protocol'].find((file) => {
-            return file.file === filename;
-          });
-
-          let links = '';
-          if (fileData.links) {
-            fileData.links.forEach((ele, idx) => {
-              if (idx === 0) {
-                links += '<div class="flex w-full justify-between mb-20">';
-              }
-
-              links += `${linkcode
-                .replace('#url#', ele.url)
-                .replace('#text#', linkTypes[ele.type].text)}`;
-
-              if (idx === fileData.links.length - 1) {
-                links += '</div>';
-              }
-            });
-          }
-
-          if (fileData) {
-            return {
-              content: `<div  class="prose prose-pink">
-              ${links}
-
-${content.replaceAll('.md)', ')')}
-
-</div>`, // <-- this last part adds in the rest of the content, which would otherwise be discarded
-            };
-          }
-
-          return undefined;
-        },
-      },
-    ],
-
     [
       'docusaurus-plugin-remote-content',
       {
@@ -125,20 +49,7 @@ ${content.replaceAll('.md)', ')')}
           return data.file;
         }), // the file names to download
         modifyContent(filename, content) {
-          let fileData = components['dwn-sdk-js'].find((file) => {
-            return file.file === filename;
-          });
-
-          if (fileData) {
-            return {
-              content: `<div  class="prose prose-pink">
-
-${content.replaceAll('.md)', ')')}
-
-</div>`, // <-- this last part adds in the rest of the content, which would otherwise be discarded
-            };
-          }
-          return undefined;
+          return modContent(filename, content, 'dwn-sdk-js');
         },
       },
     ],
@@ -154,20 +65,7 @@ ${content.replaceAll('.md)', ')')}
           return data.file;
         }), // the file names to download
         modifyContent(filename, content) {
-          let fileData = components['ssi-service'].find((file) => {
-            return file.file === filename;
-          });
-
-          if (fileData) {
-            return {
-              content: `<div  class="prose prose-pink">
-
-${content.replaceAll('.md)', ')')}
-
-</div>`, // <-- this last part adds in the rest of the content, which would otherwise be discarded
-            };
-          }
-          return undefined;
+          return modContent(filename, content, 'ssi-service');
         },
       },
     ],
@@ -183,61 +81,11 @@ ${content.replaceAll('.md)', ')')}
           return data.file;
         }), // the file names to download
         modifyContent(filename, content) {
-          let fileData = components['ssi-sdk'].find((file) => {
-            return file.file === filename;
-          });
-
-          if (fileData) {
-            return {
-              content: `<div  class="prose prose-pink">
-
-${content.replaceAll('.md)', ')')}
-
-</div>`, // <-- this last part adds in the rest of the content, which would otherwise be discarded
-            };
-          }
-          return undefined;
+          return modContent(filename, content, 'ssi-sdk');
         },
       },
     ],
   ],
-
-  /*
-    [
-      'docusaurus-plugin-remote-content',
-      {
-        // options here
-        name: 'some-content1', // used by CLI, must be path safe
-        sourceBaseUrl:
-          'https://raw.githubusercontent.com/TBD54566975/tbd-project-template/main/', // the base url for the markdown (gets prepended to all of the documents when fetching)
-        outDir: 'docs', // the base directory to output to.
-        documents: ['GOVERNANCE.md', 'MAINTAINERS.md', 'CONTRIBUTING.md'], // the file names to download
-      },
-    ],
-    */
-  /*
-    [
-      "docusaurus-plugin-remote-content",
-      {
-          // options here
-          name: "some-content1", // used by CLI, must be path safe
-          sourceBaseUrl: "http://localhost:8081/", // the base url for the markdown (gets prepended to all of the documents when fetching)
-          outDir: "docs", // the base directory to output to.
-          documents: ["markd1.md"], // the file names to download
-      },
-    ],
-    [
-      "docusaurus-plugin-remote-content",
-      {
-          // options here
-          name: "some-content2", // used by CLI, must be path safe
-          sourceBaseUrl: "http://localhost:8082/", // the base url for the markdown (gets prepended to all of the documents when fetching)
-          outDir: "docs", // the base directory to output to.
-          documents: ["markd2.md"], // the file names to download
-      },
-    ],
-    */
-
   presets: [
     [
       'classic',
@@ -246,6 +94,7 @@ ${content.replaceAll('.md)', ')')}
         docs: {
           docLayoutComponent: '../src/layout/DocPage',
           sidebarPath: require.resolve('./sidebars.js'),
+          breadcrumbs: false,
           // Please change this to your repo.
           editUrl:
             'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
@@ -274,18 +123,18 @@ ${content.replaceAll('.md)', ')')}
       navbar: {
         style: 'dark',
         logo: {
-          alt: 'My Site Logo',
+          alt: 'TBD-Logo',
           src: 'img/tbd-logo.svg',
         },
         items: [
           {
-            to: '/open-source',
+            to: '/opensource',
             label: 'Open Source',
             position: 'left',
           },
 
           {
-            to: '/projects',
+            to: '/projects-index',
             label: 'Projects',
             position: 'left',
           },
@@ -346,6 +195,24 @@ ${content.replaceAll('.md)', ')')}
         theme: lightCodeTheme,
         darkTheme: darkCodeTheme,
       },
+      metadata: [
+        {
+          property: 'og:image',
+          content: `${metacontent.ogimage}`,
+        },
+        {
+          name: 'description',
+          content: `${metacontent.description}`,
+        },
+        {
+          property: 'og:description',
+          content: `${metacontent.description}`,
+        },
+        {
+          property: 'og:site_name',
+          content: `${metacontent.site_name}`,
+        },
+      ],
     }),
 };
 

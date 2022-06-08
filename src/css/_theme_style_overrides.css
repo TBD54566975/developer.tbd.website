@@ -1,0 +1,64 @@
+.docusaurus-highlight-code-line {
+  background-color: rgba(0, 0, 0, 0.1);
+  display: block;
+  margin: 0 calc(-1 * var(--ifm-pre-padding));
+  padding: 0 var(--ifm-pre-padding);
+}
+
+[data-theme='dark'] .docusaurus-highlight-code-line {
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+ul.table-of-contents li a code,
+ul.table-of-contents li code {
+  background-color: transparent;
+}
+
+.table-of-contents__link:hover,
+.table-of-contents__link:hover code,
+.table-of-contents__link--active,
+.table-of-contents__link--active code {
+  color: var(--color-yellow);
+  text-decoration: none;
+  font-weight: 700 !important;
+}
+
+.table-of-contents li {
+  margin: 0.75rem 1.5rem;
+}
+
+.table-of-contents__link {
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.375rem;
+}
+
+.table-of-contents__left-border {
+  border-left: 2px solid var(--ifm-toc-border-color) !important;
+}
+
+
+.pagination-nav__sublabel {
+  display:none;
+}
+.pagination-nav__link {
+  border: none;
+
+}
+.pagination-nav__label {
+  font-weight: 500;
+  font-size: 1em;
+}
+
+.pagination-nav__item:first-child .pagination-nav__label::before {
+    content: url('/img/blue-arrow-left.svg');
+    padding-right: 1em;
+}
+.pagination-nav__item--next .pagination-nav__label::after {
+  content: url('/img/blue-arrow-right.svg');
+  padding-left: 1em;
+}
+.tocCollapsibleButton_node_modules-\@docusaurus-theme-classic-lib-next-theme-TOCCollapsible-styles-module {
+  padding-left: 0 !important;
+}
+

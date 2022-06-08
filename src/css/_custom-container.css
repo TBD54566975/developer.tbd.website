@@ -1,0 +1,15 @@
+.custom-container :where(img):not(:where([class~='not-prose'] *)),
+.custom-container :where(h2 + *):not(:where([class~='not-prose'] *)),
+.custom-container hr,
+.custom-container img,
+.custom-container h2,
+.custom-container p {
+  margin-top: 0rem !important;
+  margin-bottom: 0rem !important;
+}
+
+@media (min-width: 1820px) {
+  .custom-container .actors-container {
+    min-height: 990px !important;
+  }
+}

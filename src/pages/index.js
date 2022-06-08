@@ -1,48 +1,39 @@
 import React from 'react';
-import clsx from 'clsx';
 import Layout from '@theme/Layout';
-import Link from '@docusaurus/Link';
+import Head from '@docusaurus/Head';
+import HomeList from '../components/HomeList/HomeList';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import { content } from '@site/src/content/home.js';
-
-function HomepageHeader() {
-  const { siteConfig } = useDocusaurusContext();
-  return (
-    <header className="bg-blue-500">
-      <div className="container mx-auto text-center py-24">
-        <h1 className="h1 text-primary-yellow">{siteConfig.title}</h1>
-        <p className="text-xl py-6 text-white">{siteConfig.tagline}</p>
-
-        <div className="py-10">
-          <Link
-            className="bg-white rounded-md text-gray-500 px-4 py-2"
-            to="/docs/intro"
-          >
-            Docusaurus Tutorial - 5min ⏱️
-          </Link>
-        </div>
-      </div>
-    </header>
-  );
-}
 
 export default function Home() {
   const { siteConfig } = useDocusaurusContext();
   return (
-    <Layout
-      title={`Hello from ${siteConfig.title}`}
-      description="Description will go into a meta tag in <head />"
-    >
-      <HomepageHeader />
+    <Layout>
+      <Head>
+        <meta property="og:title" content={content.meta.title} />
+        <meta property="og:url" content="https://developer.tbd.website" />
+        <link
+          rel="apple-touch-icon"
+          href="https://developer.tbd.website/img/tbd-fav-icon-main.png"
+        />
+      </Head>
       <main>
-        <div className="grid grid-cols-3">
-          {content.features.map((item, idx) => (
-            <div key={idx}>
-              <h3>{item.title}</h3>
-              <p>{item.description}</p>
-              <a href={item.cta.url}>{item.cta.label}</a>
-            </div>
-          ))}
+        <div className="tablet:max-w-[100%] desktop:max-w-[92%] relative">
+          <h1 className="h1 mb-18">{content.heading}</h1>
+          <HomeList
+            features={content.features}
+            className="desktop:mb-[6rem] tablet:mb-[9.5rem] mb-[3.5rem]"
+          />
+          <img
+            src="/img/static-vertical-cyan.svg"
+            className="absolute right-[-1.5rem] tablet:right-[-2.1875rem] desktop:right-[-12rem] bottom-[13vh] tablet:bottom-[-9.5rem] desktop:bottom-[-0.5rem] "
+            alt=""
+          />
+          <img
+            src="/img/heart.svg"
+            className="absolute right-[-2rem] tablet:right-[-2.875rem] desktop:right-[-13.375rem] bottom-[20rem] tablet:bottom-[-6.5rem] desktop:bottom-[10.5rem] w-[5.625rem] h-[4.875rem]  tablet:w-[11.25rem] tablet:h-[9.75rem] desktop:w-[16.875rem] desktop:h-[14.375rem]"
+            alt=""
+          />
         </div>
       </main>
     </Layout>
