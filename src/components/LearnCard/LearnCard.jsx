@@ -37,7 +37,7 @@ export default function LearnCard({
 
   return (
     <div>
-      <div className="border-2 border-solid border-accent-cyan w-fit shadow-button-sh-cyan mb-8">
+      <div className="border-2 border-solid border-accent-cyan w-fit shadow-button-sh-cyan hover:shadow-button-sh-hv-cyan hover:translate-x-[4px] hover:translate-y-[4px] mb-8">
         <a
           href={url}
           aria-label={linkLabel}
