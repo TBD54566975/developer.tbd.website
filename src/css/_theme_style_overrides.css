@@ -18,8 +18,23 @@ ul.table-of-contents li code {
 .table-of-contents__link:hover code,
 .table-of-contents__link--active,
 .table-of-contents__link--active code {
-  color: var(--color-blue);
+  color: var(--color-yellow);
   text-decoration: none;
+  font-weight: 700 !important;
+}
+
+.table-of-contents li {
+  margin: 0.75rem 1.5rem;
+}
+
+.table-of-contents__link {
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.375rem;
+}
+
+.table-of-contents__left-border {
+  border-left: 2px solid var(--ifm-toc-border-color) !important;
 }
 
 .pagination-nav__sublabel {

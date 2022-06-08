@@ -74,3 +74,7 @@
 .prose :where(code):not(:where([class~='not-prose'] *)):after {
   content: '' !important;
 }
+
+.prose :where(thead th):not(:where([class~='not-prose'] *)) {
+  text-transform: uppercase;
+}

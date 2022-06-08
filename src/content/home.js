@@ -41,16 +41,5 @@ export const content = {
         url: '/projects-index',
       },
     },
-    {
-      title: 'Our Approach',
-      Svg: require('@site/static/img/undraw_docusaurus_react.svg').default,
-      description:
-        'Decentralized. Permissionless. Trustless. This is the paradigm shift ' +
-        'evolving the web forward. Discover the concepts behind our approach.',
-      cta: {
-        label: 'Double-Click',
-        url: '/opensource',
-      },
-    },
   ],
 };

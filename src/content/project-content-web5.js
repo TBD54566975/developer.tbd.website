@@ -66,18 +66,24 @@ export const content = {
     imgMobile: '/img/actors-web5-mobile.svg',
     isWeb5: true,
   },
+  web5Illustrations: {
+    imgMobile: '/img/web5-mobile.svg',
+    imgTablet: '/img/web5-tablet.svg',
+    imgDesktop: '/img/web5-desktop.svg',
+    altText: 'Web2 and Web3 to Web5',
+  },
   useCases: {
     title: 'Use Cases',
     pillars: [
       {
-        img: '/img/devices-icon.svg',
+        img: '/img/data-icon.svg',
         title: 'Control Your Identity',
         alt: '',
         description:
           'Alice holds a digital wallet that securely manages her identity, data, and authorizations for external apps and connections. Alice uses her wallet to sign in to a new decentralized social media app. Because Alice has connected to the app with her decentralized identity, she does not need to create a profile, and all the connections, relationships, and posts she creates through the app are stored with her, in her decentralized web node. Now Alice can switch apps whenever she wants, taking her social persona with her.',
       },
       {
-        img: '/img/data-icon.svg',
+        img: '/img/devices-icon.svg',
         title: 'Own Your Data',
         alt: '',
         description:
