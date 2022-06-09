@@ -71,7 +71,7 @@ export default function LearnCard({
       </div>
       <div className="copy-sm text-primary-yellow mb-9 tablet:mb-12 desktop:mb-18">
         <p>{datePosted}</p>
-        <p className="hidden tablet:block">Posted by {author}</p>
+        <p>Posted by {author}</p>
       </div>
       <Divider type="dotted" />
     </div>
