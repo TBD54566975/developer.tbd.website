@@ -125,9 +125,9 @@ article footer .col b {
     line-height: var(--typography-h4-m-line-height);
   }
   article .markdown p {
-    font-weight: var(--typography-h3-m-font-weight);
-    font-size: var(--typography-h3-m-font-size);
-    line-height: var(--typography-h3-m-line-height);
+    font-weight: var(--typography-body-1-m-font-weight);
+    font-size: var(--typography-body-1-m-font-size);
+    line-height: var(--typography-body-1-m-line-height);
   }
   article header h2 {
     font-size: var(--typography-h2-m-medium-font-size) !important;
