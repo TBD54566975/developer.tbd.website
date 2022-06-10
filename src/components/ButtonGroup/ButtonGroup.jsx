@@ -4,11 +4,7 @@ import { Button } from '../Button';
 
 const ButtonGroup = ({ buttons, className, invertDarkMode }) => {
   return (
-    <div
-      className={`flex gap-4 flex-wrap flex-col desktop:flex-row ${
-        className ?? ''
-      }`}
-    >
+    <div className={`flex gap-4 flex-wrap ${className ?? ''}`}>
       {buttons.map((button) => (
         <div key={button.data.label} className="w-fit">
           <Button

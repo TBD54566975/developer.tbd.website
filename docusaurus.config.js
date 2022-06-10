@@ -4,69 +4,12 @@
 const lightCodeTheme = require('prism-react-renderer/themes/github');
 const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 const { components } = require('./data/remote-md.json');
-const linkTypes = {
-  discussions: {
-    text: 'View Discussions',
-  },
-  issues: {
-    text: 'View Issues',
-  },
-  github: {
-    text: 'View on Github',
-  },
-};
-
-const modContent = function (filename, content, contentKey) {
-  const linkcode = '<a href="#url#">#text#</a>';
-  let fileData = components[contentKey].find((file) => {
-    return file.file === filename;
-  });
-
-  let links = '';
-  if (fileData.links) {
-    fileData.links.forEach((ele, idx) => {
-      if (idx === 0) {
-        links += '<div class="flex gap-12 mb-20">';
-      }
-
-      links += `${linkcode
-        .replace('#url#', ele.url)
-        .replace('#text#', linkTypes[ele.type].text)}`;
-
-      if (idx === fileData.links.length - 1) {
-        links += '</div>';
-      }
-    });
-  }
-
-  let re1 = /```mermaid/g;
-  var hasMermaid = false;
-  while (re1.exec(content) != null) {
-    hasMermaid = true;
-    break;
-  }
-
-  let re = /```mermaid([\s\S]*?)```/gm;
-
-  if (fileData) {
-    return {
-      content: `${hasMermaid ? 'import { Mermaid } from "@theme/Mermaid";' : ''}
-
-<div  class="prose prose-pink">
-      ${links}
-
-${content.replaceAll(re, '\r<Mermaid chart={`\r$1`}/>\r\r')}
-
-</div>`,
-    };
-  }
-
-  return undefined;
-};
+const modContent = require('./src/util/remote-content-modification.js');
+const metacontent = require('./src/content/global-meta');
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: 'TBD',
+  title: `${metacontent.site_name}`,
   tagline: '',
   organizationName: 'TBD54566975',
   projectName: 'developer.tbd.website',
@@ -74,7 +17,7 @@ const config = {
   url: 'https://developer.tbd.website',
   onBrokenLinks: 'warn',
   onBrokenMarkdownLinks: 'warn',
-  favicon: 'img/favicon.ico',
+  favicon: '/img/favicon.ico',
 
   plugins: [
     async function myPlugin(context, options) {
@@ -94,45 +37,6 @@ const config = {
         id: 'GTM-5X8H2X3', // GTM Container ID
       },
     ],
-    /*
-    [
-      'docusaurus-plugin-remote-content',
-      {
-        // options here
-        name: 'some-content1', // used by CLI, must be path safe
-        sourceBaseUrl:
-          'https://raw.githubusercontent.com/TBD54566975/tbdex-protocol/main/', // the base url for the markdown (gets prepended to all of the documents when fetching)
-        outDir: 'src/pages/projects/tbdex-protocol', // the base directory to output to.
-        documents: ['README.md'], // the file names to download
-        modifyContent(filename, content) {
-          return {
-            content: `<div  class="prose prose-pink">
-
-${content}
-
-</div>`,
-          };
-        },
-      },
-    ],
-    */
-    [
-      'docusaurus-plugin-remote-content',
-      {
-        // options here
-        name: 'some-content2', // used by CLI, must be path safe
-        sourceBaseUrl:
-          'https://raw.githubusercontent.com/TBD54566975/tbdex-protocol/main/', // the base url for the markdown (gets prepended to all of the documents when fetching)
-        outDir: 'src/pages/projects/tbdex-protocol', // the base directory to output to.
-        documents: components['tbdex-protocol'].map((data) => {
-          return data.file;
-        }), // the file names to download
-        modifyContent(filename, content) {
-          return modContent(filename, content, 'tbdex-protocol');
-        },
-      },
-    ],
-
     [
       'docusaurus-plugin-remote-content',
       {
@@ -182,43 +86,6 @@ ${content}
       },
     ],
   ],
-
-  /*
-    [
-      'docusaurus-plugin-remote-content',
-      {
-        // options here
-        name: 'some-content1', // used by CLI, must be path safe
-        sourceBaseUrl:
-          'https://raw.githubusercontent.com/TBD54566975/tbd-project-template/main/', // the base url for the markdown (gets prepended to all of the documents when fetching)
-        outDir: 'docs', // the base directory to output to.
-        documents: ['GOVERNANCE.md', 'MAINTAINERS.md', 'CONTRIBUTING.md'], // the file names to download
-      },
-    ],
-    */
-  /*
-    [
-      "docusaurus-plugin-remote-content",
-      {
-          // options here
-          name: "some-content1", // used by CLI, must be path safe
-          sourceBaseUrl: "http://localhost:8081/", // the base url for the markdown (gets prepended to all of the documents when fetching)
-          outDir: "docs", // the base directory to output to.
-          documents: ["markd1.md"], // the file names to download
-      },
-    ],
-    [
-      "docusaurus-plugin-remote-content",
-      {
-          // options here
-          name: "some-content2", // used by CLI, must be path safe
-          sourceBaseUrl: "http://localhost:8082/", // the base url for the markdown (gets prepended to all of the documents when fetching)
-          outDir: "docs", // the base directory to output to.
-          documents: ["markd2.md"], // the file names to download
-      },
-    ],
-    */
-
   presets: [
     [
       'classic',
@@ -256,7 +123,7 @@ ${content}
       navbar: {
         style: 'dark',
         logo: {
-          alt: 'My Site Logo',
+          alt: 'TBD-Logo',
           src: 'img/tbd-logo.svg',
         },
         items: [
@@ -328,6 +195,24 @@ ${content}
         theme: lightCodeTheme,
         darkTheme: darkCodeTheme,
       },
+      metadata: [
+        {
+          property: 'og:image',
+          content: `${metacontent.ogimage}`,
+        },
+        {
+          name: 'description',
+          content: `${metacontent.description}`,
+        },
+        {
+          property: 'og:description',
+          content: `${metacontent.description}`,
+        },
+        {
+          property: 'og:site_name',
+          content: `${metacontent.site_name}`,
+        },
+      ],
     }),
 };
 

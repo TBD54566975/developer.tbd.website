@@ -1,6 +1,10 @@
 /* eslint-disable quotes */
 export const content = {
-  heading: 'We’re building the next generation of the decentralized web, returning data back to users. You’re welcome to join.',
+  meta: {
+    title: 'Developers | TBD',
+  },
+  heading:
+    'We’re building the next generation of the decentralized web, returning data back to users. You’re welcome to join.',
   features: [
     {
       title: 'Our Philosophy',
@@ -11,7 +15,7 @@ export const content = {
         'to benefit: individuals, businesses, institutions, and government.',
       cta: {
         label: 'Read More',
-        url: '/philosophy',
+        url: '/opensource',
       },
     },
     {
@@ -23,7 +27,7 @@ export const content = {
         'middle to see your data or extract fees.',
       cta: {
         label: 'Learn More',
-        url: '/protocol',
+        url: '/projects/tbdex',
       },
     },
     {
@@ -34,18 +38,7 @@ export const content = {
         'identity, decentralized communication, and more.',
       cta: {
         label: 'Get Involved',
-        url: '/projects',
-      },
-    },
-    {
-      title: 'Our Approach',
-      Svg: require('@site/static/img/undraw_docusaurus_react.svg').default,
-      description:
-        'Decentralized. Permissionless. Trustless. This is the paradigm shift ' +
-        'evolving the web forward. Discover the concepts behind our approach.',
-      cta: {
-        label: 'Double-Click',
-        url: '/approach',
+        url: '/projects-index',
       },
     },
   ],

@@ -1,65 +1,30 @@
 {
   "components": {
-    "tbdex-protocol": [
-      {
-        "file": "README.md"
-      },
-      {
-        "file": "lib/README.md",
-        "links": [
-          {
-            "type": "github",
-            "url": "https://github.com/TBD54566975/tbdex-protocol"
-          },
-          {
-            "type": "issues",
-            "url": "https://github.com/TBD54566975/tbdex-protocol/issues"
-          },
-          {
-            "type": "discussions",
-            "url": "https://github.com/TBD54566975/tbdex-protocol/discussions"
-          }
-        ]
-      },
-      {
-        "file": "did/README.md"
-      },
-      {
-        "file": "pfi-mock-impl/README.md",
-        "links": [
-          {
-            "type": "github",
-            "url": "https://github.com/TBD54566975/tbdex-protocol"
-          },
-          {
-            "type": "issues",
-            "url": "https://github.com/TBD54566975/tbdex-protocol/issues"
-          },
-          {
-            "type": "discussions",
-            "url": "https://github.com/TBD54566975/tbdex-protocol/discussions"
-          }
-        ]
-      },
-      {
-        "file": "pfi-mock-impl/CONTRIBUTING.md"
-      }
-    ],
     "dwn-sdk-js": [
       {
         "file": "README.md",
-        "links": [
+        "meta": {
+          "title": "Decentralized Web Node | TBD",
+          "path": "projects/dwn-sdk-js/README"
+        },
+        "buttons": [
           {
-            "type": "github",
-            "url": "https://github.com/TBD54566975/dwn-sdk-js"
+            "type": "button",
+            "data": {
+              "label": "Source on GitHub",
+              "url": "https://github.com/TBD54566975/dwn-sdk-js",
+              "isExternalLink": true,
+              "imageURL": "/img/external-link-blue-icon.svg"
+            }
           },
           {
-            "type": "issues",
-            "url": "https://github.com/TBD54566975/dwn-sdk-js/issues"
-          },
-          {
-            "type": "discussions",
-            "url": "https://github.com/TBD54566975/dwn-sdk-js/discussions"
+            "type": "button",
+            "data": {
+              "label": "Issues",
+              "url": "https://github.com/TBD54566975/dwn-sdk-js/issues",
+              "isExternalLink": true,
+              "imageURL": "/img/external-link-blue-icon.svg"
+            }
           }
         ]
       }
@@ -67,18 +32,28 @@
     "ssi-service": [
       {
         "file": "README.md",
-        "links": [
+        "meta": {
+          "title": "Self-sovereign Identity Service | TBD",
+          "path": "projects/ssi-service/README"
+        },
+        "buttons": [
           {
-            "type": "github",
-            "url": "https://github.com/TBD54566975/ssi-service"
+            "type": "button",
+            "data": {
+              "label": "Source on GitHub",
+              "url": "https://github.com/TBD54566975/ssi-service",
+              "isExternalLink": true,
+              "imageURL": "/img/external-link-blue-icon.svg"
+            }
           },
           {
-            "type": "issues",
-            "url": "https://github.com/TBD54566975/ssi-service/issues"
-          },
-          {
-            "type": "discussions",
-            "url": "https://github.com/TBD54566975/ssi-service/discussions"
+            "type": "button",
+            "data": {
+              "label": "Issues",
+              "url": "https://github.com/TBD54566975/ssi-service/issues",
+              "isExternalLink": true,
+              "imageURL": "/img/external-link-blue-icon.svg"
+            }
           }
         ]
       }
@@ -86,18 +61,28 @@
     "ssi-sdk": [
       {
         "file": "README.md",
-        "links": [
+        "meta": {
+          "title": "Self-sovereign Identity SDK | TBD",
+          "path": "projects/ssi-sdk/README"
+        },
+        "buttons": [
           {
-            "type": "github",
-            "url": "https://github.com/TBD54566975/ssi-sdk"
+            "type": "button",
+            "data": {
+              "label": "Source on GitHub",
+              "url": "https://github.com/TBD54566975/ssi-sdk",
+              "isExternalLink": true,
+              "imageURL": "/img/external-link-blue-icon.svg"
+            }
           },
           {
-            "type": "issues",
-            "url": "https://github.com/TBD54566975/ssi-sdk/issues"
-          },
-          {
-            "type": "discussions",
-            "url": "https://github.com/TBD54566975/ssi-sdk/discussions"
+            "type": "button",
+            "data": {
+              "label": "Issues",
+              "url": "https://github.com/TBD54566975/ssi-sdk/issues",
+              "isExternalLink": true,
+              "imageURL": "/img/external-link-blue-icon.svg"
+            }
           }
         ]
       }

@@ -3,12 +3,28 @@ title: tbDEX
 hide_table_of_contents: true
 ---
 
+import metacontent from '@site/src/content/global-meta';
 import { Actors } from '@site/src/components/Actors';
-import { Button } from '@site/src/components/Button';
+import { ButtonGroup } from '@site/src/components/ButtonGroup';
 import { ProjectList } from '@site/src/components/ProjectList';
 import { content } from '@site/src/content/project-content-tbdex.js';
 import { Divider } from '@site/src/components/Divider';
 import PillarList from '@site/src/components/PillarList/PillarList';
+
+<head>
+  <title>{content.meta.title}</title>
+  <meta property="og:description" content={metacontent.description} />
+  <meta name="description" content={metacontent.description} />
+  <meta property="og:title" content={content.meta.title} />
+  <meta
+    property="og:url"
+    content={'https://developer.tbd.website/' + content.meta.path}
+  />
+  <link
+    rel="apple-touch-icon"
+    href="https://developer.tbd.website/img/tbd-fav-icon-main.png"
+  />
+</head>
 
 <div className="prose prose-pink">
 
@@ -26,7 +42,31 @@ So now we have both legacy payment systems and new payment systems. But how do w
 
 tbDEX is a decentralized, permissionless protocol. It opens the door to Self Sovereign Identity and access to the financial system for all. And because it abstracts away the complexity of decentralization, developers can focus on building great things.
 
-<Button label="¡CTA Button!" url="https://tbd.website" />
+<div className="not-prose">
+  <ButtonGroup
+    className="pt-16"
+    buttons={[
+      {
+        type: 'button',
+        data: {
+          label: 'Getting Started',
+          url: 'https://github.com/TBD54566975/collaboration/blob/main/projects/GETTING_STARTED_TBDEX.md',
+          isExternalLink: true,
+          imageURL: '/img/external-link-blue-icon.svg',
+        },
+      },
+      {
+        type: 'button',
+        data: {
+          label: 'Chat',
+          url: 'https://discord.com/channels/937858703112155166/949067728709369856',
+          isExternalLink: true,
+          imageURL: '/img/external-link-blue-icon.svg',
+        },
+      },
+    ]}
+  />
+</div>
 
 <Divider type="slash" />
 

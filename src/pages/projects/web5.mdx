@@ -3,12 +3,29 @@ title: Web5
 hide_table_of_contents: true
 ---
 
+import metacontent from '@site/src/content/global-meta';
 import { Actors } from '@site/src/components/Actors';
-import { Button } from '@site/src/components/Button';
+import { ButtonGroup } from '@site/src/components/ButtonGroup';
 import { ProjectList } from '@site/src/components/ProjectList';
 import { content } from '@site/src/content/project-content-web5.js';
 import { Divider } from '@site/src/components/Divider';
+import { SwitchIllustration } from '@site/src/components/SwitchIllustration';
 import PillarList from '@site/src/components/PillarList/PillarList';
+
+<head>
+  <title>{content.meta.title}</title>
+  <meta property="og:description" content={metacontent.description} />
+  <meta name="description" content={metacontent.description} />
+  <meta property="og:title" content={content.meta.title} />
+  <meta
+    property="og:url"
+    content={'https://developer.tbd.website/' + content.meta.path}
+  />
+  <link
+    rel="apple-touch-icon"
+    href="https://developer.tbd.website/img/tbd-fav-icon-main.png"
+  />
+</head>
 
 <div className="prose prose-pink">
 
@@ -20,7 +37,35 @@ The web democratized the exchange of information, but it's missing a key layer: 
 
 Web5 brings decentralized identity and data storage to your applications. It lets devs focus on creating delightful user experiences, while returning ownership of data and identity to individuals.
 
-Web2, Web3 ➞ Web5.
+<div className="custom-container mx-[2.875rem] tablet:mx-[4.5rem] desktop:mx-[6.625rem] mt-[1.75rem] desktop:mt-[3.25rem]">
+  <SwitchIllustration {...content.web5Illustrations} />
+</div>
+
+<div className="custom-container">
+  <ButtonGroup
+    className="pt-24"
+    buttons={[
+      {
+        type: 'button',
+        data: {
+          label: 'Getting Started',
+          url: 'https://github.com/TBD54566975/collaboration/blob/main/projects/GETTING_STARTED_DWP.md',
+          isExternalLink: true,
+          imageURL: '/img/external-link-blue-icon.svg',
+        },
+      },
+      {
+        type: 'button',
+        data: {
+          label: 'Chat',
+          url: 'https://discord.com/channels/937858703112155166/969272658501976117',
+          isExternalLink: true,
+          imageURL: '/img/external-link-blue-icon.svg',
+        },
+      },
+    ]}
+  />
+</div>
 
 <Divider type="slash" />
 
@@ -33,8 +78,6 @@ Web2, Web3 ➞ Web5.
 <div className="custom-container">
   <Actors content={content.actors} />
 </div>
-
-<Button label="¡CTA Button!" url="https://tbd.website" />
 
 <Divider type="slash" />
 
