@@ -135,6 +135,20 @@ article footer .col b {
     line-height: var(--typography-h2-m-medium-line-height) !important;
     font-weight: var(--typography-h2-m-medium-font-weight) !important;
   }
+  article footer .col.text--right.col--3 b {
+    font-weight: var(--typography-links-m-underline-font-weight);
+    font-size: var(--typography-links-m-underline-font-size);
+    line-height: var(--typography-links-m-underline-line-height);
+    color: var(--color-blue);
+    text-decoration-line: var(--typography-links-m-underline-text-decoration);
+    text-underline-offset: 3px;
+  }
+  article header .avatar__intro:only-child .avatar__name span,
+  article header div time {
+    font-weight: var(--typography-body-2-m-font-weight);
+    font-size: var(--typography-body-2-m-font-size);
+    line-height: var(--typography-body-2-m-line-height);
+  }
 }
 article footer {
   flex-direction: column-reverse !important;
@@ -152,6 +166,7 @@ article footer .col.text--right.col--3 b {
   text-decoration-line: var(--typography-links-d-underline-text-decoration);
   text-underline-offset: 3px;
 }
+
 article footer .col.text--right.col--3 b::after {
   content: url('/img/arrow-blue.svg');
   padding-left: 0.4375rem;
