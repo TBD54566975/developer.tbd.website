@@ -134,6 +134,13 @@ article footer .col b {
     line-height: var(--typography-h2-m-medium-line-height) !important;
     font-weight: var(--typography-h2-m-medium-font-weight) !important;
   }
+
+  article header .avatar__intro:only-child .avatar__name span,
+  article header div time {
+    font-weight: var(--typography-body-2-m-font-weight);
+    font-size: var(--typography-body-2-m-font-size);
+    line-height: var(--typography-body-2-m-line-height);
+  }
 }
 article footer {
   flex-direction: column-reverse !important;
