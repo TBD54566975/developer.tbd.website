@@ -126,9 +126,9 @@ article footer .col b {
     line-height: var(--typography-h4-m-line-height);
   }
   article .markdown p {
-    font-weight: var(--typography-h3-m-font-weight);
-    font-size: var(--typography-h3-m-font-size);
-    line-height: var(--typography-h3-m-line-height);
+    font-weight: var(--typography-body-1-m-font-weight);
+    font-size: var(--typography-body-1-m-font-size);
+    line-height: var(--typography-body-1-m-line-height);
   }
   article header h2 {
     font-size: var(--typography-h2-m-medium-font-size) !important;
@@ -202,9 +202,32 @@ article {
 }
 
 article h1 {
-  font-weight: 700;
-  font-size: 3.5rem;
-  line-height: 3.625rem;
+  font-weight: var(--typography-h1-d-font-weight);
+  font-size: var(--typography-h1-d-font-size);
+  line-height: var(--typography-h1-d-line-height);
+}
+
+@media (min-width: 768px and max-width:1024px) {
+  article h1 {
+    font-weight: var(--typography-h1-t-font-weight);
+    font-size: var(--typography-h1-t-font-size);
+    line-height: var(--typography-h1-t-line-height);
+  }
+}
+
+@media (max-width: 767px) {
+  article h1 {
+    font-weight: var(--typography-h1-m-font-weight);
+    font-size: var(--typography-h1-m-font-size);
+    line-height: var(--typography-h1-m-line-height);
+  }
+
+  nav .pagination-nav__link .pagination-nav__label {
+    text-decoration-line: var(--typography-links-m-underline-text-decoration);
+    font-weight: var(--typography-links-m-underline-font-weight);
+    font-size: var(--typography-links-m-underline-font-size);
+    line-height: var(--typography-links-m-underline-line-height);
+  }
 }
 
 article header h1 + .margin-vert--md {
@@ -217,11 +240,11 @@ article footer .theme-edit-this-page {
 
 nav .pagination-nav__link .pagination-nav__label {
   color: var(--color-blue);
-  text-decoration-line: underline;
+  text-decoration-line: var(--typography-links-d-underline-text-decoration);
   text-underline-offset: 3px;
-  font-weight: 500;
-  font-size: 18px;
-  line-height: 1.625rem;
+  font-weight: var(--typography-links-d-underline-font-weight);
+  font-size: var(--typography-links-d-underline-font-size);
+  line-height: var(--typography-links-d-underline-line-height);
 }
 
 nav .pagination-nav__link {
