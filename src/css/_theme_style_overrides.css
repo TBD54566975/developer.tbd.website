@@ -21,3 +21,6 @@ ul.table-of-contents li code {
   color: var(--color-blue);
   text-decoration: none;
 }
+details[open] > summary > button {
+  transform: rotate(180deg);
+}
