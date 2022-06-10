@@ -280,3 +280,7 @@ nav .pagination-nav__link {
 .pagination-nav__item--next .pagination-nav__label::after {
   padding-left: 0.5rem !important;
 }
+
+details[open] > summary > button {
+  transform: rotate(180deg);
+}
