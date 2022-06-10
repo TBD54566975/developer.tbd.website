@@ -143,6 +143,7 @@ article footer .col b {
     text-decoration-line: var(--typography-links-m-underline-text-decoration);
     text-underline-offset: 3px;
   }
+
   article header .avatar__intro:only-child .avatar__name span,
   article header div time {
     font-weight: var(--typography-body-2-m-font-weight);
