@@ -23,6 +23,10 @@ ul.table-of-contents li code {
   font-weight: 700 !important;
 }
 
+details[open] > summary > button {
+  transform: rotate(180deg);
+}
+
 .table-of-contents li {
   margin: 0.75rem 1.5rem;
 }
@@ -61,4 +65,3 @@ ul.table-of-contents li code {
 .tocCollapsibleButton_node_modules-\@docusaurus-theme-classic-lib-next-theme-TOCCollapsible-styles-module {
   padding-left: 0 !important;
 }
-
