@@ -2,7 +2,7 @@
 export const content = {
   meta: {
     title: 'Web5 | TBD',
-    path: 'projects/tbdex',
+    path: 'projects/web5',
   },
   components: {
     growToFit: true,
