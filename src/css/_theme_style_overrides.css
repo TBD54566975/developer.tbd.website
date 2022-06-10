@@ -243,6 +243,12 @@ article h1 {
     font-size: var(--typography-links-m-underline-font-size);
     line-height: var(--typography-links-m-underline-line-height);
   }
+
+  article footer .col ul li a {
+    font-weight: var(--typography-tags-m-font-weight);
+    font-size: var(--typography-tags-m-font-size);
+    line-height: var(--typography-tags-m-line-height);
+  }
 }
 
 article header h1 + .margin-vert--md {
