@@ -2,11 +2,14 @@
 hide_table_of_contents: true
 ---
 
+import metacontent from '@site/src/content/global-meta';
 import { ProjectList } from '@site/src/components/ProjectList';
 import { content } from '@site/src/content/projects';
 
 <head>
   <title>{content.meta.title}</title>
+  <meta property="og:description" content={metacontent.description} />
+  <meta name="description" content={metacontent.description} />
   <meta property="og:title" content={content.meta.title} />
   <meta
     property="og:url"
