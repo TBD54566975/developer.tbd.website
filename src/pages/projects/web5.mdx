@@ -10,6 +10,7 @@ import { ProjectList } from '@site/src/components/ProjectList';
 import { content } from '@site/src/content/project-content-web5.js';
 import { Divider } from '@site/src/components/Divider';
 import { SwitchIllustration } from '@site/src/components/SwitchIllustration';
+import { IconTextButton } from '@site/src/components/IconTextButton';
 import PillarList from '@site/src/components/PillarList/PillarList';
 
 <head>
@@ -65,6 +66,10 @@ Web5 brings decentralized identity and data storage to your applications. It let
       },
     ]}
   />
+</div>
+
+<div className="custom-container mt-12">
+  <IconTextButton {...content.downloadPDF} />
 </div>
 
 <Divider type="slash" />
