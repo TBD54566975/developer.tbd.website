@@ -39,7 +39,7 @@ GrowToFit.args = {
       icon: '/img/component-icon.svg',
       title: 'Decentralized Identifiers',
       description:
-        'An implementation of DIF’s emerging decentralized identifiers standard.',
+        'Decentralized Identifiers are a W3C international standard for identifiers created, owned, and controlled by individuals, without reliance on centralized entities',
       textButton: 'View Component',
       url: '#',
     },
@@ -95,7 +95,7 @@ FixedSize.args = {
       icon: '/img/component-icon.svg',
       title: 'Decentralized Identifiers',
       description:
-        'An implementation of DIF’s emerging decentralized identifiers standard.',
+        'Decentralized Identifiers are a W3C international standard for identifiers created, owned, and controlled by individuals, without reliance on centralized entities',
       textButton: 'View Component',
       url: '#',
     },
