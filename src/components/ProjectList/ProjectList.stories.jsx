@@ -39,7 +39,7 @@ GrowToFit.args = {
       icon: '/img/component-icon.svg',
       title: 'Decentralized Identifiers',
       description:
-        'An implementation of DIF’s emerging decentralized identifiers standard.',
+        'An implementation of the decentralized identifiers standard.',
       textButton: 'View Component',
       url: '#',
     },
@@ -95,7 +95,7 @@ FixedSize.args = {
       icon: '/img/component-icon.svg',
       title: 'Decentralized Identifiers',
       description:
-        'An implementation of DIF’s emerging decentralized identifiers standard.',
+        'An implementation of the decentralized identifiers standard.',
       textButton: 'View Component',
       url: '#',
     },
