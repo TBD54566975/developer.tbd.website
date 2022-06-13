@@ -38,6 +38,24 @@ const config = {
       },
     ],
     [
+      '@docusaurus/plugin-content-docs',
+      {
+        id: 'learn',
+        path: 'learn',
+        routeBasePath: 'learn',
+        sidebarPath: require.resolve('./sidebars.js'),
+      },
+    ],
+    [
+      '@docusaurus/plugin-content-docs',
+      {
+        id: 'events',
+        path: 'events',
+        routeBasePath: 'events',
+        sidebarPath: require.resolve('./sidebars.js'),
+      },
+    ],
+    [
       'docusaurus-plugin-remote-content',
       {
         // options here
@@ -100,7 +118,7 @@ const config = {
             'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
         },
         blog: {
-          showReadingTime: true,
+          showReadingTime: false,
           // Please change this to your repo.
           editUrl:
             'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
@@ -136,6 +154,24 @@ const config = {
           {
             to: '/projects-index',
             label: 'Projects',
+            position: 'left',
+          },
+
+          {
+            to: '/learn',
+            label: 'Learn',
+            position: 'left',
+          },
+
+          {
+            to: '/blog',
+            label: 'Blog',
+            position: 'left',
+          },
+
+          {
+            to: '/events',
+            label: 'Events',
             position: 'left',
           },
 

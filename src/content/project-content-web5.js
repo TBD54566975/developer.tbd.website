@@ -2,7 +2,7 @@
 export const content = {
   meta: {
     title: 'Web5 | TBD',
-    path: 'projects/tbdex',
+    path: 'projects/web5',
   },
   components: {
     growToFit: true,
@@ -12,9 +12,9 @@ export const content = {
         icon: '/img/component-icon.svg',
         title: 'Decentralized Identifiers',
         description:
-          'An implementation of DIF’s emerging decentralized identifiers standard.',
+          'Decentralized Identifiers are a W3C international standard for identifiers created, owned, and controlled by individuals, without reliance on centralized entities',
         textButton: 'View Component',
-        url: 'https://identity.foundation/ion/',
+        url: 'https://w3c.github.io/did-core/',
         isExternalLink: true,
       },
       {
@@ -71,6 +71,25 @@ export const content = {
     imgTablet: '/img/web5-tablet.svg',
     imgDesktop: '/img/web5-desktop.svg',
     altText: 'Web2 and Web3 to Web5',
+  },
+  downloadPDF: {
+    data: {
+      type: 'iconTextButton',
+      data: {
+        src: '/img/download-icon.svg',
+        text: 'WEB5 PDF',
+        buttons: [
+          {
+            type: 'button',
+            data: {
+              label: 'Download',
+              isExternalLink: true,
+              url: '/docs/Decentralized Web Platform - Public.pdf',
+            },
+          },
+        ],
+      },
+    },
   },
   useCases: {
     title: 'Use Cases',

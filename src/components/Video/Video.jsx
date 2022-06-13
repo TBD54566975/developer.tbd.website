@@ -6,6 +6,7 @@ import { DetailsSummary } from '../DetailsSummary';
 
 const Video = ({ url, description, details, summary }) => {
   return (
+
     <div className="custom-container prose prose-pink flex flex-col gap-12 tablet:gap-4 w-fit ">
       <div className="border-2 border-accent-cyan w-fit inline-block">
         <ReactPlayer url={url} />

@@ -9,7 +9,7 @@ export default function Home() {
   const { siteConfig } = useDocusaurusContext();
   return (
     <Layout>
-      <Head>
+      <Head title={content.meta.title}>
         <meta property="og:title" content={content.meta.title} />
         <meta property="og:url" content="https://developer.tbd.website" />
         <link
