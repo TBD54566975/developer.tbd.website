@@ -48,7 +48,7 @@ export function Footer() {
       },
       {
         src: '/img/discord-icon.svg',
-        url: 'https://discord.gg/MASAPKPYJM',
+        url: 'https://discord.gg/tbd',
         altText: 'Discord button',
         title: 'Go to Discord',
       },
