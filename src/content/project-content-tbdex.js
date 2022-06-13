@@ -29,9 +29,9 @@ export const content = {
         icon: '/img/component-icon.svg',
         title: 'Decentralized Identifiers',
         description:
-          'An implementation of the decentralized identifiers standard.',
+          'Decentralized Identifiers are a W3C international standard for identifiers created, owned, and controlled by individuals, without reliance on centralized entities',
         textButton: 'View Component',
-        url: 'https://identity.foundation/ion/',
+        url: 'https://w3c.github.io/did-core/',
         isExternalLink: true,
       },
       {
