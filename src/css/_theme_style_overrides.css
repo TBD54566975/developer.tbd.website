@@ -60,16 +60,6 @@ ul.table-of-contents li code {
   padding-left: 0 !important;
 }
 
-.tooltipBorder{
-  border-image-slice: 0 30 30 0 !important;
-  border-image-width: 12px 12px 12px 12px !important;
-  border-image-outset: 0px 16px 16px 0px !important;
-  border-image-repeat: repeat repeat !important;
-  border-image-source: url('/img/tooltip-border.png') !important;
-  border-style: solid !important;
-  border: 6px;
-}
-
 article.margin-bottom--xl {
   background-image: url('/img/divider-dotted-dark.svg');
   background-repeat: repeat-x;
