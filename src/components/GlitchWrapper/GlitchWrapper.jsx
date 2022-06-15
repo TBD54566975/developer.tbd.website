@@ -17,9 +17,7 @@ const GlitchWrapper = ({ children }) => {
     zones.push(allZones[indexZone]);
     allZones = allZones.filter((zone) => zone !== allZones[indexZone]);
   }
-  console.log('zones', zones);
   const glitchMap = getGlitchMap(zones);
-  console.log('glitchMap:', glitchMap);
   return (
     <div className="relative">
       {glitchMap.a ? (

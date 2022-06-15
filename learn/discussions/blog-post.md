@@ -4,7 +4,7 @@ title: blog post
 sidebar_custom_props:
   icon: /img/icon.svg
   duration: '40:50'
-  geuestslist: [Sergio, Douglas]
+  guestslist: [Sergio, Douglas]
   description: Hello World Hello World
   thumbnail: /img/thumbnail-2.png
 ---
