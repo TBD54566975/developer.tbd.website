@@ -5,10 +5,10 @@ export default function LearnCard({
   title,
   guests,
   description,
-  image,
+  thumbnail,
   url,
   type,
-  time,
+  duration,
   isExternalLink,
 }) {
   let icon = null;
@@ -19,7 +19,7 @@ export default function LearnCard({
   } else if (type === 'article') {
     icon = '/img/article-media-icon.svg';
   }
-  const [seconds, minutes, hours] = `${time}`
+  const [seconds, minutes, hours] = `${duration}`
     .split(':')
     .reverse()
     .map((el) => parseInt(el));
@@ -43,7 +43,7 @@ export default function LearnCard({
           target={isExternalLink ? '_blank' : ''}
           rel={isExternalLink ? 'noopener noreferrer' : ''}
         >
-          <img src={image} alt="" />
+          <img src={thumbnail} alt="" />
         </a>
         <div className="flex h-0 justify-between">
           <div className="relative -top-9 left-3 h-6 w-6 bg-primary-black">
@@ -56,7 +56,7 @@ export default function LearnCard({
           </div>
           {type !== 'article' ? (
             <div className="relative -top-9 -left-3 h-7 w-fit bg-primary-black text-accent-cyan px-[6px] py-[4px]">
-              <p className="copy-sm">{time}</p>
+              <p className="copy-sm">{duration}</p>
             </div>
           ) : null}
         </div>
@@ -71,7 +71,7 @@ export default function LearnCard({
         </div>
       ) : null}
       {description ? (
-        <div className="mb-6 tablet:mb-9">
+        <div>
           <p className="copy text-primary-yellow">{description}</p>
         </div>
       ) : null}
