@@ -10,7 +10,7 @@ const Illustration = ({
   ...imageProps
 }) => {
   return (
-    <div className={`tbd-illustration ${className ?? ''} ${accentClass}`}>
+    <div className={`tbd-illustration ${className ?? ''} ${accentClass ?? ''}`}>
       <img {...imageProps} src={img} className={imgStyle ?? null} alt={alt} />
     </div>
   );

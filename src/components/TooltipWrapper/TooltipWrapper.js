@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Tooltip } from '../Tooltip';
 import { useTooltipTrigger } from '@react-aria/tooltip';
 import { useTooltipTriggerState } from '@react-stately/tooltip';
+import { Illustration } from '../Illustration';
 
 export default function TooltipWrapper(props) {
   let state = useTooltipTriggerState(props);
@@ -11,7 +12,7 @@ export default function TooltipWrapper(props) {
   let { triggerProps, tooltipProps } = useTooltipTrigger(props, state, ref);
 
   return (
-    <span style={{ position: 'relative' }}>
+    <span className="relative">
       <span
         className="bg-accent-cyan text-primary-black"
         ref={ref}
@@ -21,7 +22,30 @@ export default function TooltipWrapper(props) {
       </span>
       {state.isOpen && (
         <Tooltip state={state} {...tooltipProps}>
-          {props.children}
+          <div className="pr-5 pl-5 pb-5  tooltipBorder w-96">
+            <div className="flex justify-items-center p-2">
+              <div className="-ml-3 pr-4 p-0">
+                <Illustration
+                  img="/img/tooltip-info-icon.svg"
+                  alt=""
+                  imgStyle="mt-0 mb-0"
+                />
+              </div>
+              <div className="font-bold text-lg flex-auto">{props.trigger}</div>
+              <div className="-mr-3">
+                <button ref={ref} {...triggerProps}>
+                  <Illustration
+                    img="/img/tooltip-x-icon.svg"
+                    alt=""
+                    imgStyle="mt-0 mb-0"
+                  />
+                </button>
+              </div>
+            </div>
+
+            <div className="flex-grow border-t-2 border-black p-2"></div>
+            {props.children}
+          </div>
         </Tooltip>
       )}
     </span>
