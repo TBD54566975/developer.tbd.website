@@ -1,4 +1,5 @@
 import React from 'react';
+import { useEffect, useState } from 'react';
 import { Illustration } from '../Illustration';
 import { getGlitchMap } from '../../util/glitches';
 
@@ -8,18 +9,26 @@ const randomIntNumber = (min, max) => {
 
 // eslint-disable-next-line react/prop-types
 const GlitchWrapper = ({ children }) => {
-  const numberGlitches = randomIntNumber(1, 6);
-  let allZones = ['a', 'b', 'c', 'd', 'e', 'f'];
+  const [glitchMap, setGlitchMap] = useState([]);
 
-  let zones = [];
-  for (let i = 0; i < numberGlitches; i++) {
-    const indexZone = randomIntNumber(0, allZones.length);
-    zones.push(allZones[indexZone]);
-    allZones = allZones.filter((zone) => zone !== allZones[indexZone]);
-  }
-  console.log('zones', zones);
-  const glitchMap = getGlitchMap(zones);
-  console.log('glitchMap:', glitchMap);
+  const assignGlitches = () => {
+    const numberGlitches = randomIntNumber(1, 6);
+    let allZones = ['a', 'b', 'c', 'd', 'e', 'f'];
+
+    let zones = [];
+    for (let i = 0; i < numberGlitches; i++) {
+      const indexZone = randomIntNumber(0, allZones.length);
+      zones.push(allZones[indexZone]);
+      allZones = allZones.filter((zone) => zone !== allZones[indexZone]);
+    }
+    const glitchMapTemp = getGlitchMap(zones);
+    setGlitchMap(glitchMapTemp);
+  };
+
+  useEffect(() => {
+    assignGlitches();
+  }, []);
+
   return (
     <div className="relative">
       {glitchMap.a ? (
