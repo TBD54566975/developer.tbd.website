@@ -41,6 +41,7 @@ aside .menu__list .menu__list {
 }
 .menu__list-item--collapsed .menu__caret:before {
   top: -4px;
+  left: 4px;
   position: relative;
 }
 .menu__caret {
