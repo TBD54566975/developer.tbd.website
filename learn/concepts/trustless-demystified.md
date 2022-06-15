@@ -1,11 +1,10 @@
 ---
-title: second blog post
+title: Trustless Demystified
+
 sidebar_custom_props:
-  icon: /img/icon.svg
-  duration: '23:50'
-  geuestslist: [Antonio, Luis]
-  description: Hello World Hello World
-  thumbnail: /img/thumbnail.png
+  type: video
+  duration: '9:22'
+  thumbnail: /img/placeholder-media-image.png
 ---
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque elementum dignissim ultricies. Fusce rhoncus ipsum tempor eros aliquam consequat. Lorem ipsum dolor sit amet
