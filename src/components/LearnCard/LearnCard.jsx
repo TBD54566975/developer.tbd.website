@@ -1,12 +1,10 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable react/jsx-no-target-blank */
 import React from 'react';
-import { Divider } from '../Divider';
 export default function LearnCard({
   title,
-  datePosted,
+  guests,
   description,
-  author,
   image,
   url,
   type,
@@ -66,14 +64,17 @@ export default function LearnCard({
       <div className="mb-4">
         <h2 className="h2 font-medium text-primary-yellow">{title}</h2>
       </div>
-      <div className="mb-6 tablet:mb-9">
-        <p className="copy text-primary-yellow">{description}</p>
-      </div>
-      <div className="copy-sm text-primary-yellow mb-9 tablet:mb-12 desktop:mb-18">
-        <p>{datePosted}</p>
-        <p>Posted by {author}</p>
-      </div>
-      <Divider type="dotted" />
+      {guests ? (
+        <div className="copy-sm text-primary-yellow mb-3 tablet:mb-4 desktop:mb-6">
+          {guests.length == 1 ? <p>Guest</p> : <p>Guests</p>}
+          <p>{guests.join(', ')}</p>
+        </div>
+      ) : null}
+      {description ? (
+        <div className="mb-6 tablet:mb-9">
+          <p className="copy text-primary-yellow">{description}</p>
+        </div>
+      ) : null}
     </div>
   );
 }
