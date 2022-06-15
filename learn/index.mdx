@@ -1,5 +1,10 @@
-import ReadFrontMatter from './index.jsx';
+---
+title: 'Twitter Spaces: A Blockchain Discussion'
+---
 
-# Learn FPO
+import DocCardList from '@theme/DocCardList';
+import { useCurrentSidebarCategory } from '@docusaurus/theme-common';
 
-<ReadFrontMatter />
+A series hosted by Angie Jones, where the community has open discussions about blockchain technologies and the apps built on top of them.
+
+<DocCardList items={useCurrentSidebarCategory().items} />

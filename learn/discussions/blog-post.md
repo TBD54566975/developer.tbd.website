@@ -1,12 +1,12 @@
 ---
-title: First Blog Post
-duration: 23:50
-guestslist: [test, test2]
-description: asdfas asDF ASDF ASDF
+title: blog post
+
 sidebar_custom_props:
-  method: set
-  params: boolean:string
-  summary: xyz
+  icon: /img/icon.svg
+  duration: '40:50'
+  geuestslist: [Sergio, Douglas]
+  description: Hello World Hello World
+  thumbnail: /img/thumbnail-2.png
 ---
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque elementum dignissim ultricies. Fusce rhoncus ipsum tempor eros aliquam consequat. Lorem ipsum dolor sit amet
