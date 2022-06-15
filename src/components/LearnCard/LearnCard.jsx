@@ -1,7 +1,6 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable react/jsx-no-target-blank */
 import React from 'react';
-import { Divider } from '../Divider';
 export default function LearnCard({
   title,
   guests,
@@ -71,9 +70,11 @@ export default function LearnCard({
           <p>{guests.join(', ')}</p>
         </div>
       ) : null}
-      <div className="mb-6 tablet:mb-9">
-        <p className="copy text-primary-yellow">{description}</p>
-      </div>
+      {description ? (
+        <div className="mb-6 tablet:mb-9">
+          <p className="copy text-primary-yellow">{description}</p>
+        </div>
+      ) : null}
     </div>
   );
 }
