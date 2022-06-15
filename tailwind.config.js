@@ -2,7 +2,12 @@ const tokens = require('./src/css/jsvariables');
 
 module.exports = {
   important: true, //Added this so that the tailwind classes override the existing css definitions.
-  content: ['./src/**/*.{js,jsx,ts,tsx,md,mdx}'],
+  content: [
+    './src/**/*.{js,jsx,ts,tsx,md,mdx}',
+    './blog/**/*.{js,jsx,ts,tsx,md,mdx}',
+    './events/**/*.{js,jsx,ts,tsx,md,mdx}',
+    './learn/**/*.{js,jsx,ts,tsx,md,mdx}',
+  ],
   darkMode: 'class',
   theme: {
     extend: {
