@@ -7,6 +7,7 @@
           "title": "Decentralized Web Node | TBD",
           "path": "projects/dwn-sdk-js/README"
         },
+        "breadcrumbs": true,
         "buttons": [
           {
             "type": "button",
@@ -36,6 +37,7 @@
           "title": "Self-sovereign Identity Service | TBD",
           "path": "projects/ssi-service/README"
         },
+        "breadcrumbs": true,
         "buttons": [
           {
             "type": "button",
@@ -65,6 +67,7 @@
           "title": "Self-sovereign Identity SDK | TBD",
           "path": "projects/ssi-sdk/README"
         },
+        "breadcrumbs": true,
         "buttons": [
           {
             "type": "button",

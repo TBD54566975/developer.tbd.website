@@ -6,6 +6,8 @@ const modContent = function (filename, content, contentKey) {
     return file.file === filename;
   });
 
+  let showBreadCrumbs = fileData.breadcrumbs && fileData.breadcrumbs === true;
+
   let buttons = '';
   if (fileData.buttons) {
     buttons = `<div className="mb-18 not-prose"><ButtonGroup buttons={${JSON.stringify(
@@ -30,6 +32,11 @@ ${
     ? 'import { ButtonGroup } from "@site/src/components/ButtonGroup";'
     : ''
 }
+${
+  showBreadCrumbs
+    ? 'import TBDBreadcrumbs from "@site/src/components/TBDBreadcrumbs";'
+    : ''
+}
 
 <head>
   <title>${fileData.meta.title}</title>
@@ -47,7 +54,10 @@ ${
 </head>
 
 <div className="prose prose-pink">
-      ${buttons}
+
+${showBreadCrumbs ? '<TBDBreadcrumbs></TBDBreadcrumbs>' : ''}
+
+${buttons}
 
 ${content.replaceAll(re, '\r<Mermaid chart={`\r$1`}/>\r\r')}
 
