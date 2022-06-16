@@ -1,10 +1,8 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable react/jsx-no-target-blank */
 import React from 'react';
-export default function LearnCard({
+export default function HighlightsCard({
   title,
-  guests,
-  description,
   thumbnail,
   url,
   type,
@@ -62,19 +60,8 @@ export default function LearnCard({
         </div>
       </div>
       <div className="mb-4">
-        <h2 className="h2 font-medium text-primary-yellow">{title}</h2>
+        <h3 className="h3 font-medium text-primary-yellow">{title}</h3>
       </div>
-      {guests ? (
-        <div className="copy-sm text-primary-yellow mb-3 tablet:mb-4 desktop:mb-6">
-          {guests.length == 1 ? <p>Guest</p> : <p>Guests</p>}
-          <p>{guests.join(', ')}</p>
-        </div>
-      ) : null}
-      {description ? (
-        <div>
-          <p className="copy text-primary-yellow">{description}</p>
-        </div>
-      ) : null}
     </div>
   );
 }

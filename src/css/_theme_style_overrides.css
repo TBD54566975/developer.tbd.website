@@ -60,7 +60,7 @@ ul.table-of-contents li code {
   padding-left: 0 !important;
 }
 
-article.margin-bottom--xl {
+main.col.col--7 article.margin-bottom--xl {
   background-image: url('/img/divider-dotted-dark.svg');
   background-repeat: repeat-x;
   background-position: bottom;
@@ -209,7 +209,7 @@ article footer .col ul {
 }
 
 /** Blog Detail**/
-article {
+main.col.col--7 article {
   background-image: url('/img/divider-dotted-dark.svg');
   background-repeat: repeat-x;
   background-position: bottom;
@@ -283,4 +283,10 @@ nav .pagination-nav__link {
 
 details[open] > summary > button {
   transform: rotate(180deg);
+}
+
+/* Docs */
+
+.padding-top--md.padding-bottom--lg .row .col div {
+  max-width: 46rem;
 }
