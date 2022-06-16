@@ -9,17 +9,8 @@ const Illustration = ({
   imgStyle,
   ...imageProps
 }) => {
-  const [darkModeColor, setDarkModeColor] = useState(null);
-  useEffect(() => {
-    if (accentClass == null || accentClass == undefined || accentClass == '') {
-      setDarkModeColor(RandomAccentColor());
-    } else {
-      setDarkModeColor(accentClass);
-    }
-  }, [accentClass]);
-
   return (
-    <div className={`tbd-illustration ${className ?? ''} ${darkModeColor}`}>
+    <div className={`tbd-illustration ${className ?? ''} ${accentClass ?? ''}`}>
       <img {...imageProps} src={img} className={imgStyle ?? null} alt={alt} />
     </div>
   );

@@ -1,19 +1,27 @@
 const glitchImages = [
   {
-    src: '/images/rectangle.svg',
+    src: '/img/rectangle.svg',
     alt: 'A pixelated upright rectangle',
   },
   {
-    src: '/images/small-glitch-cluster.svg',
+    src: '/img/small-glitch-cluster.svg',
     alt: 'a glitch cluster',
   },
   {
-    src: '/images/zcluster.svg',
+    src: '/img/zcluster.svg',
     alt: 'a glitch cluster in a z shape',
   },
   {
-    src: '/images/small-glitch-cluster-vert.svg',
+    src: '/img/small-glitch-cluster-vert.svg',
     alt: 'a glitch cluster',
+  },
+  {
+    src: '/img/checkered-glitch.svg',
+    alt: 'checkered glitch cluster',
+  },
+  {
+    src: '/img/bar-code.svg',
+    alt: 'barcode glitch',
   },
 ];
 

@@ -3,16 +3,20 @@ title: Web5
 hide_table_of_contents: true
 ---
 
+import metacontent from '@site/src/content/global-meta';
 import { Actors } from '@site/src/components/Actors';
 import { ButtonGroup } from '@site/src/components/ButtonGroup';
 import { ProjectList } from '@site/src/components/ProjectList';
 import { content } from '@site/src/content/project-content-web5.js';
 import { Divider } from '@site/src/components/Divider';
 import { SwitchIllustration } from '@site/src/components/SwitchIllustration';
+import { IconTextButton } from '@site/src/components/IconTextButton';
 import PillarList from '@site/src/components/PillarList/PillarList';
 
 <head>
   <title>{content.meta.title}</title>
+  <meta property="og:description" content={metacontent.description} />
+  <meta name="description" content={metacontent.description} />
   <meta property="og:title" content={content.meta.title} />
   <meta
     property="og:url"
@@ -54,14 +58,18 @@ Web5 brings decentralized identity and data storage to your applications. It let
       {
         type: 'button',
         data: {
-          label: 'User Chat',
-          url: 'https://discord.com/channels/937858703112155166/969272658501976117',
+          label: 'Chat',
+          url: 'https://discord.gg/tbd',
           isExternalLink: true,
           imageURL: '/img/external-link-blue-icon.svg',
         },
       },
     ]}
   />
+</div>
+
+<div className="custom-container mt-12">
+  <IconTextButton {...content.downloadPDF} />
 </div>
 
 <Divider type="slash" />

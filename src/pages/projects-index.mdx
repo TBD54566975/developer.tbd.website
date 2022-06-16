@@ -2,11 +2,15 @@
 hide_table_of_contents: true
 ---
 
+import metacontent from '@site/src/content/global-meta';
 import { ProjectList } from '@site/src/components/ProjectList';
+import { TwoColumnContainer } from '@site/src/components/TwoColumnContainer';
 import { content } from '@site/src/content/projects';
 
 <head>
   <title>{content.meta.title}</title>
+  <meta property="og:description" content={metacontent.description} />
+  <meta name="description" content={metacontent.description} />
   <meta property="og:title" content={content.meta.title} />
   <meta
     property="og:url"
@@ -18,7 +22,7 @@ import { content } from '@site/src/content/projects';
   />
 </head>
 
-<div className="prose prose-pink">
+<div className="prose prose-pink mb-13.5">
 
 # The future is TBD.
 
@@ -32,9 +36,19 @@ import { content } from '@site/src/content/projects';
 
 ---
 
+</div>
+
+<TwoColumnContainer>
+
+<div className="prose prose-pink">
+
 # All projects in the TBD family are in early prototyping.
 
 ## New contributors should expect a pace of development consistent with nascent technology: larger commits, frequent refactoring, changing APIs, and incomplete feature sets.
+
+</div>
+
+<div className="prose prose-pink">
 
 **We believe open source is not a publishing medium.**
 
@@ -53,3 +67,5 @@ In particular, we want to ensure the New Contributor Experience is as smooth as 
 - Join the conversation in Discussions and Issues
 
 </div>
+
+</TwoColumnContainer>

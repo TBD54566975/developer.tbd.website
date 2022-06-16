@@ -48,7 +48,7 @@ export function Footer() {
       },
       {
         src: '/img/discord-icon.svg',
-        url: 'https://discord.gg/MASAPKPYJM',
+        url: 'https://discord.gg/tbd',
         altText: 'Discord button',
         title: 'Go to Discord',
       },
@@ -87,7 +87,6 @@ export function Footer() {
               <Illustration
                 className="relative w-[50px] h-[50px]"
                 img={footer.logoSrc}
-                accentClass="tbd-yellow-illustration"
                 alt="TBD"
               />
             </span>
@@ -95,7 +94,6 @@ export function Footer() {
               <Illustration
                 className="relative h-[84px] w-[84px] desktop:w-[140px] desktop:h-[140px] "
                 img={footer.copyrightSignSrc}
-                accentClass="tbd-yellow-illustration"
                 alt="copyright"
               />
             </span>

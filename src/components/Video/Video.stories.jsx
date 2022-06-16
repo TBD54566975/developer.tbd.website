@@ -11,7 +11,7 @@ const Template = (args) => <Video {...args} />;
 export const Default = Template.bind({});
 
 Default.args = {
-  url: '#',
+  url: 'https://vimeo.com/702200087',
   description:
     'A panel discussion on Decentralized Identity (DID) where we talk use cases, benefits, DIDs vs NFTs, and what should and shouldnt go on a blockchain.',
   details:

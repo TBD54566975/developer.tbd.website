@@ -2,20 +2,17 @@ import React from 'react';
 import ReactPlayer from 'react-player';
 import PropTypes from 'prop-types';
 import { Divider } from '../Divider';
-import { DetailsSummary } from '../DetailsSummary';
 
-const Video = ({ url, description, details, summary }) => {
+const Video = ({ url, description }) => {
   return (
-    <div className="custom-container prose prose-pink flex flex-col gap-12 tablet:gap-4 max-w-min ">
+    <div className="not-prose flex flex-col gap-12 tablet:gap-4">
       <div className="border-2 border-accent-cyan w-fit inline-block">
         <ReactPlayer url={url} />
       </div>
-      <div className="text-primary-yellow font-normal font-lg flex">
+      <div className="mt-18 text-primary-yellow font-normal font-lg w-auto inline-block">
         {description}
       </div>
-      <Divider type="dotted" />
-      <DetailsSummary details={details} summary={summary} />
-      <Divider type="dotted" />
+      <Divider type="dotted" className="pb-6" />
     </div>
   );
 };
@@ -26,7 +23,7 @@ Video.propTypes = {
    */
   url: PropTypes.string.isRequired,
   description: PropTypes.string.isReqiured,
-  details: PropTypes.string.isReqiured,
-  summary: PropTypes.string.isReqiured,
+  details: PropTypes.string,
+  summary: PropTypes.string,
 };
 export default Video;
