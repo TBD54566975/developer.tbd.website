@@ -5,6 +5,7 @@ hide_table_of_contents: true
 
 import { content } from '@site/src/content/learn-detail';
 import { Video } from '@site/src/components/Video';
+import { DetailsSummary } from '@site/src/components/DetailsSummary';
 
 <head>
   <title>{content.meta.title}</title>
@@ -23,5 +24,6 @@ import { Video } from '@site/src/components/Video';
 <div className="text-sm font-light">Guests: {content.guests}</div>
 <div className="text-sm font-light pb-4">Posted: {content.posted}</div>
 <Video url={content.url} details={content.details} summary={content.summary} description={content.description}/>
+<DetailsSummary details={content.details} summary={content.summary}/>
 
 </div>
