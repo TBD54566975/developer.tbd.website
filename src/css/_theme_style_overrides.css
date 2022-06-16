@@ -108,6 +108,12 @@ article .markdown p {
   line-height: var(--typography-body-1-d-line-height);
 }
 
+article .markdown h5 {
+  font-weight: var(--typography-body-2-d-font-weight);
+  font-size: var(--typography-body-2-d-font-size);
+  line-height: var(--typography-body-2-d-line-height);
+}
+
 article footer .col {
   display: flex;
   flex-direction: column;
