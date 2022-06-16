@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 
 const DetailsSummary = ({ details, summary }) => {
   return (
-    <details className="text-primary-yellow text-sm font-light question py-4 border-b-2 border-primary-yellow">
-      <summary className="flex items-center cursor-pointer text-primary-yellow font-medium text-lg ">
+    <details className="text-primary-yellow text-lg font-light question py-4 border-b-2 border-primary-yellow">
+      <summary className="flex items-center cursor-pointer text-primary-yellow font-normal text-lg ">
         {summary}
         <button className="ml-auto float-right">
           <svg
