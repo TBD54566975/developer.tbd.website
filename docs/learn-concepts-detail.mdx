@@ -1,0 +1,33 @@
+---
+title: Blockchain, Crypto and TBD oh my!
+hide_table_of_contents: true
+---
+
+import { content } from '@site/src/content/learn-concepts-detail';
+import { Video } from '@site/src/components/Video';
+import { BiographyList } from '@site/src/components/BiographyList';
+import { HighlightsCardList } from '@site/src/components/HighlightsCardList';
+import { Divider } from '@site/src/components/Divider';
+<head>
+  <title>{content.meta.title}</title>
+  <meta property="og:title" content={content.meta.title} />
+  <meta
+    property="og:url"
+    content={'https://developer.tbd.website/' + content.meta.path}
+  />
+  <link
+    rel="apple-touch-icon"
+    href="https://developer.tbd.website/img/tbd-fav-icon-main.png"
+  />
+</head>
+
+<div className="prose prose-pink">
+<Video url={content.url} description={content.description} className="pb-8"/>
+
+Guests
+
+<BiographyList biographies={content.biographies} className="pt-8"/>
+<Divider type="dotted" className="pb-6" />
+<HighlightsCardList highlights={content.highlights}/>
+
+</div>
