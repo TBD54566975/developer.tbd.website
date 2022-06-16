@@ -1,6 +1,10 @@
 ---
 title: Blockchain, Crypto and TBD oh my!
 hide_table_of_contents: true
+sidebar_custom_props:
+  type: video
+  duration: '9:22'
+  thumbnail: /img/placeholder-media-image.png
 ---
 
 import { content } from '@site/src/content/learn-concepts-detail';
@@ -19,15 +23,12 @@ import { Divider } from '@site/src/components/Divider';
     rel="apple-touch-icon"
     href="https://developer.tbd.website/img/tbd-fav-icon-main.png"
   />
-</head>
+</head>;
 
-<div className="prose prose-pink">
-<Video url={content.url} description={content.description} className="pb-8"/>
+<Video url={content.url} description={content.description} className="pb-8" />
 
 Guests
 
-<BiographyList biographies={content.biographies} className="pt-8"/>
+<BiographyList biographies={content.biographies} className="pt-8" />
 <Divider type="dotted" className="pb-6" />
-<HighlightsCardList highlights={content.highlights}/>
-
-</div>
+<HighlightsCardList highlights={content.highlights} />
