@@ -89,6 +89,7 @@ module.exports = {
         'h2-mobile': `${tokens.FontH2M.fontWeight}`,
         'h3-mobile': `${tokens.FontH3M.fontWeight}`,
         'h4-mobile': `${tokens.FontH4M.fontWeight}`,
+        'breadcrumbs': `${tokens.FontBreadcrumbsD.fontWeight}`,
       },
       fontSize: {
         'copy': [
@@ -197,6 +198,12 @@ module.exports = {
           `calc(((${tokens.FontH4M.fontSize} / ${tokens.TypographyBaseFontSize}) * 1rem))`,
           {
             lineHeight: `calc((${tokens.FontH4M.lineHeight} / ${tokens.TypographyBaseFontSize} * 1rem))`,
+          },
+        ],
+        'breadcrumbs': [
+          `calc(((${tokens.FontBreadcrumbsD.fontSize} / ${tokens.TypographyBaseFontSize}) * 1rem))`,
+          {
+            lineHeight: `calc((${tokens.FontBreadcrumbsD.lineHeight} / ${tokens.TypographyBaseFontSize} * 1rem))`,
           },
         ],
       },
@@ -354,5 +361,6 @@ module.exports = {
     'nav-links':
       'text-nav-links-mobile tablet:text-nav-links font-nav-links-mobile tablet:font-nav-links',
     'button-text': 'text-button-text font-button-text',
+    'breadcrumbs-text': 'text-breadcrumbs font-breadcrumbs',
   },
 };

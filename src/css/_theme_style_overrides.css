@@ -308,11 +308,8 @@ ul.breadcrumbs {
   padding-left: 0;
 }
 
-.breadcrumbs__item .breadcrumbs__link,
-.breadcrumbs__item .breadcrumbs__link div {
-  font-size: 1rem;
-  line-height: 1.25rem;
-  font-weight: 500;
+.breadcrumbs__item--active .breadcrumbs__link {
+  background: none;
 }
 
 .breadcrumbs__item:last-child .breadcrumbs__link {

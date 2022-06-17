@@ -17,10 +17,12 @@ import { Illustration } from '@site/src/components/Illustration';
 
 // TODO move to design system folder
 function BreadcrumbsItemLink({ children, href }) {
-  const className = 'breadcrumbs__link';
+  const className = 'breadcrumbs__link breadcrumbs-text';
   return href ? (
     <Link className={className} href={href} itemProp="item">
-      <span itemProp="name">{children}</span>
+      <span itemProp="name" className="breadcrumbs-text">
+        {children}
+      </span>
     </Link>
   ) : (
     <span className={className} itemProp="item name">
@@ -60,7 +62,7 @@ function HomeBreadcrumbItem() {
               img="/img/Home-breadcrumbs-icon.svg"
               className="not-prose max-h-[17px] min-h-[17px]"
             ></Illustration>
-            <div>Home</div>
+            <div className="breadcrumbs-text">Home</div>
           </div>
         </div>
       </Link>
