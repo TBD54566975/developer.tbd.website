@@ -301,9 +301,6 @@ ul.breadcrumbs {
 }
 
 .breadcrumbs__item:first-child .breadcrumbs__link {
-}
-
-.breadcrumbs__item:first-child .breadcrumbs__link {
   margin-left: 0;
   padding-left: 0;
 }
