@@ -8,7 +8,7 @@ const BiographyList = ({ title, biographies, growToFit }) => {
     classGrow = 'grid grid-cols-1 tablet:grid-cols-[repeat(auto-fit,22rem)]';
   }
   return (
-    <div>
+    <div className="not-prose">
       <h2 className="h2-caps ml-0 text-primary-yellow mb-6 tablet:mb-9  empty:hidden">
         {title}
       </h2>

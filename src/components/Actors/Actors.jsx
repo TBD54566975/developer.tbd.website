@@ -3,7 +3,7 @@ import { Divider } from '../Divider';
 
 const Actors = ({ content }) => {
   return (
-    <div>
+    <div className="not-prose">
       <h1 className="h1 text-primary-yellow mb-0 desktop:mb-[0.625rem] ml-0">
         {content.title}
       </h1>

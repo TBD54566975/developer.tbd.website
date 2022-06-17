@@ -102,7 +102,7 @@ const config = {
       /** @type {import('@docusaurus/preset-classic').Options} */
       ({
         docs: {
-          docLayoutComponent: '../src/layout/DocPage',
+          docLayoutComponent: '../src/theme/DocPage',
           id: 'learn',
           path: 'learn',
           routeBasePath: 'learn',

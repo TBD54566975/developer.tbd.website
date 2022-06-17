@@ -8,7 +8,7 @@ const EventCardList = ({ items }) => {
   });
 
   return (
-    <div>
+    <div className="not-prose">
       <div className="flex flex-col gap-12 mt-12 tablet:mt-[4.5rem] desktop:gap-[4.5rem]">
         {learnList.map((learn, index) => (
           <div key={index}>

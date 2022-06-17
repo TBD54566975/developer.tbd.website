@@ -9,7 +9,7 @@ const ProjectList = ({ title, projects, growToFit }) => {
     classGrow = 'grid grid-cols-1 tablet:grid-cols-[repeat(auto-fit,20.75rem)]';
   }
   return (
-    <div>
+    <div className="not-prose">
       {title ? (
         <h1 className="h1 ml-0 text-primary-yellow mb-12">{title}</h1>
       ) : null}

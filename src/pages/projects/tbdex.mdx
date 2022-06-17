@@ -44,51 +44,40 @@ So now we have both legacy payment systems and new payment systems. But how do w
 
 tbDEX is a decentralized, permissionless protocol. It opens the door to Self Sovereign Identity and access to the financial system for all. And because it abstracts away the complexity of decentralization, developers can focus on building great things.
 
-<div className="not-prose">
-  <ButtonGroup
-    className="pt-16"
-    buttons={[
-      {
-        type: 'button',
-        data: {
-          label: 'Getting Started',
-          url: 'https://github.com/TBD54566975/collaboration/blob/main/projects/GETTING_STARTED_TBDEX.md',
-          isExternalLink: true,
-          imageURL: '/img/external-link-blue-icon.svg',
-        },
+<ButtonGroup
+  className="pt-16"
+  buttons={[
+    {
+      type: 'button',
+      data: {
+        label: 'Getting Started',
+        url: 'https://github.com/TBD54566975/collaboration/blob/main/projects/GETTING_STARTED_TBDEX.md',
+        isExternalLink: true,
+        imageURL: '/img/external-link-blue-icon.svg',
       },
-      {
-        type: 'button',
-        data: {
-          label: 'Chat',
-          url: 'https://discord.gg/tbd',
-          isExternalLink: true,
-          imageURL: '/img/external-link-blue-icon.svg',
-        },
+    },
+    {
+      type: 'button',
+      data: {
+        label: 'Chat',
+        url: 'https://discord.gg/tbd',
+        isExternalLink: true,
+        imageURL: '/img/external-link-blue-icon.svg',
       },
-    ]}
-  />
-</div>
+    },
+  ]}
+/>
 
 <Divider type="slash" />
 
-<div className="not-prose">
-  <ProjectList {...content.components} />
-</div>
+<ProjectList {...content.components} />
 
 <Divider type="slash" />
 
-<div className="not-prose">
-  <Actors content={content.actors} />
-</div>
+<Actors content={content.actors} />
 
 <Divider type="slash" />
 
-<div className="not-prose">
-  <PillarList
-    title={content.useCases.title}
-    pillars={content.useCases.pillars}
-  />
-</div>
+<PillarList title={content.useCases.title} pillars={content.useCases.pillars} />
 
 </div>
