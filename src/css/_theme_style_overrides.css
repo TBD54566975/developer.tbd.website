@@ -293,6 +293,22 @@ details[open] > summary > button {
 
 /* Docs */
 
+aside.col.col--3 nav{
+  color: cyan;
+}
+
+aside.col.col--3 nav ul li a{
+  color: cyan !important;
+  padding-left: 22px;
+}
+
+aside.col.col--3 nav ul li a:hover{
+  color: cyan !important;
+  background: url(/img/arrow-blue-navbar.svg) no-repeat center center;
+  background-attachment: unset;
+  background-position-x: 0em;
+}
+
 .padding-top--md.padding-bottom--lg .row .col div {
   max-width: 46rem;
 }
