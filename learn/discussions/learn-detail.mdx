@@ -1,0 +1,35 @@
+---
+title: Trust Demystified
+hide_table_of_contents: true
+sidebar_custom_props:
+  type: video
+  duration: '9:22'
+  thumbnail: /img/placeholder-media-image.png
+---
+
+import { content } from '@site/src/content/learn-detail';
+import { Video } from '@site/src/components/Video';
+import { DetailsSummary } from '@site/src/components/DetailsSummary';
+
+<head>
+  <title>{content.meta.title}</title>
+  <meta property="og:title" content={content.meta.title} />
+  <meta
+    property="og:url"
+    content={'https://developer.tbd.website/' + content.meta.path}
+  />
+  <link
+    rel="apple-touch-icon"
+    href="https://developer.tbd.website/img/tbd-fav-icon-main.png"
+  />
+</head>
+
+<div className="text-sm font-light">Guests: {content.guests}</div>
+<div className="text-sm font-light pb-4">Posted: {content.posted}</div>
+<Video
+  url={content.url}
+  details={content.details}
+  summary={content.summary}
+  description={content.description}
+/>
+<DetailsSummary details={content.details} summary={content.summary} />

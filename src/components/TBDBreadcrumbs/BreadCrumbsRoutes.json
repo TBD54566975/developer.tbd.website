@@ -1,0 +1,24 @@
+{
+  "projectroutes": [
+    {
+      "href": "/projects/tbdex",
+      "label": "TBDEX"
+    },
+    {
+      "href": "/projects/web5",
+      "label": "Web5"
+    },
+    {
+      "href": "/projects/dwn-sdk-js/README",
+      "label": "(DWN) SDK"
+    },
+    {
+      "href": "/projects/ssi-service/README",
+      "label": "SSI Service"
+    },
+    {
+      "href": "/projects/ssi-sdk/README",
+      "label": "SSI SDK"
+    }
+  ]
+}
