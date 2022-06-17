@@ -2,11 +2,9 @@ import React from 'react';
 import Layout from '@theme/Layout';
 import Head from '@docusaurus/Head';
 import HomeList from '../components/HomeList/HomeList';
-import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import { content } from '@site/src/content/home.js';
 
 export default function Home() {
-  const { siteConfig } = useDocusaurusContext();
   return (
     <Layout>
       <Head title={content.meta.title}>
