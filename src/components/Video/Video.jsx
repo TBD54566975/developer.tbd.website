@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactPlayer from 'react-player';
 import PropTypes from 'prop-types';
-import { Divider } from '../Divider';
 
 const Video = ({ url, description }) => {
   return (
@@ -9,10 +8,9 @@ const Video = ({ url, description }) => {
       <div className="border-2 border-accent-cyan w-fit inline-block">
         <ReactPlayer url={url} />
       </div>
-      <div className="mt-18 text-primary-yellow font-normal font-lg w-auto inline-block">
+      <div className="mt-6 text-primary-yellow font-normal font-lg w-auto inline-block">
         {description}
       </div>
-      <Divider type="dotted" className="pb-6" />
     </div>
   );
 };

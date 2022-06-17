@@ -9,9 +9,8 @@ sidebar_custom_props:
 
 import { content } from '@site/src/content/learn-concepts-detail';
 import { Video } from '@site/src/components/Video';
-import { BiographyList } from '@site/src/components/BiographyList';
-import { HighlightsCardList } from '@site/src/components/HighlightsCardList';
-import { Divider } from '@site/src/components/Divider';
+import { DetailsSummary } from '@site/src/components/DetailsSummary';
+import { Divider } from '@site/src/components/Divider'
 <head>
   <title>{content.meta.title}</title>
   <meta property="og:title" content={content.meta.title} />
@@ -25,10 +24,9 @@ import { Divider } from '@site/src/components/Divider';
   />
 </head>;
 
-<Video url={content.url} description={content.description} className="pb-8" />
+<Video url={content.url} />
+<h2 className="font-bold text-xl mt-0">TRANSCRIPTION</h2>
+<DetailsSummary details="consectetur adipiscing elit vesti bulum at facilisis quam, et congue tellus or sit amet, consectetur adipiscing elit vesti bulum at facilisis quam, et congue tellus ipsum dolor sit amet, consectetur adipiscing elit" summary="Lorem ipsum dolor sit amet, consectetur adipiscing elit vesti bulum at facilisis quam, et congue tellus..."/>
+<div className="h-16"></div>
 
-Guests
-
-<BiographyList biographies={content.biographies} className="pt-8" />
-<Divider type="dotted" className="pb-6" />
-<HighlightsCardList highlights={content.highlights} />
+<Divider type="dotted" className="" />

@@ -7,7 +7,7 @@ export const content = {
 
   url: 'https://vimeo.com/702200087',
   description:
-    'A panel discussion on Decentralized Identity (DID) where we talk use cases, benefits, DIDs vs NFTs, and what should and shouldnt go on a blockchain.',
+    'Lorem ipsum dolor sit amet, consectetur adipiscing elit vesti bulum at facilisis quam, et congue tellus...',
   growToFit: true,
   biographies: [
     {
