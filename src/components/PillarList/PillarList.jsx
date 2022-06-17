@@ -4,8 +4,8 @@ import PropTypes from 'prop-types';
 import { Divider } from '../Divider';
 const PillarList = ({ title, pillars }) => {
   return (
-    <div>
-      <h1 className=" h1 text-primary-yellow mb-12">{title}</h1>
+    <div className="not-prose">
+      <h1 className="h1 text-primary-yellow mb-12">{title}</h1>
       <div className="flex flex-col gap-12 tablet:gap-4">
         {pillars.map((pillar, index) => (
           <div key={index}>

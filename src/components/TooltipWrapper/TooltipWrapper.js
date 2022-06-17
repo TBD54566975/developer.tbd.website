@@ -12,7 +12,7 @@ export default function TooltipWrapper(props) {
   let { triggerProps, tooltipProps } = useTooltipTrigger(props, state, ref);
 
   return (
-    <span className="relative">
+    <span className="relative not-prose">
       <span
         className="bg-accent-cyan text-primary-black"
         ref={ref}

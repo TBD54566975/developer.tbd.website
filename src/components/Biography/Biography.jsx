@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 const Biography = ({ imageUrl, headline, description }) => {
   return (
-    <div className="">
+    <div className="not-prose">
       <div className="border-accent-cyan border-2 border-solid mb-6 w-fit min-w-full">
         <img
           src={imageUrl}

@@ -10,7 +10,7 @@ const modContent = function (filename, content, contentKey) {
 
   let buttons = '';
   if (fileData.buttons) {
-    buttons = `<div className="mb-18 not-prose"><ButtonGroup buttons={${JSON.stringify(
+    buttons = `<div className="mb-18"><ButtonGroup buttons={${JSON.stringify(
       fileData.buttons,
     )}} /></div>`;
   }
