@@ -290,3 +290,36 @@ details[open] > summary > button {
 .padding-top--md.padding-bottom--lg .row .col div {
   max-width: 46rem;
 }
+
+ul.breadcrumbs {
+  padding-left: 0;
+}
+
+.breadcrumbs__item:first-child {
+  margin-left: 0;
+  padding-left: 0;
+}
+
+.breadcrumbs__item:first-child .breadcrumbs__link {
+  margin-left: 0;
+  padding-left: 0;
+}
+
+.breadcrumbs__item--active .breadcrumbs__link {
+  background: none;
+}
+
+.breadcrumbs__item:last-child .breadcrumbs__link {
+  color: var(--color-yellow);
+}
+
+.breadcrumbs__item:not(:last-child):after {
+  color: var(--color-blue);
+  content: '/';
+  font-size: 1rem;
+  line-height: 1.25rem;
+  background-image: none;
+  opacity: 1;
+  height: auto;
+  width: auto;
+}
