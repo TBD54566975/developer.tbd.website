@@ -6,10 +6,7 @@ authors:
 tags: [A Tag, B Tag]
 ---
 
-import { Video } from '../src/components/Video';
-import { TooltipWrapper } from '../src/components/TooltipWrapper';
-import { Divider } from '@site/src/components/Divider'
-
+import { Video, TooltipWrapper, Divider } from '@site/src/components';
 
 <div className="prose prose-pink">
 

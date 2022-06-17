@@ -1,6 +1,5 @@
 import React from 'react';
-
-export const TextLink = ({
+const TextLink = ({
   clickHandler,
   href,
   text,
@@ -15,21 +14,17 @@ export const TextLink = ({
     colors = 'text-primary-yellow dark:text-primary-black';
   }
   return (
-      <a
-        target={isExternalLink ? '_blank' : ''}
-        href={href}
-        rel={isExternalLink ? 'noopener noreferrer' : ''}
-        onClick={clickHandler}
-        id={isFirstItem ? 'first-link' : ''}
-        className={`${className ?? ''} nav-links ${colors}`}
-      >
-        {text}
-      </a>
+    <a
+      target={isExternalLink ? '_blank' : ''}
+      href={href}
+      rel={isExternalLink ? 'noopener noreferrer' : ''}
+      onClick={clickHandler}
+      id={isFirstItem ? 'first-link' : ''}
+      className={`${className ?? ''} nav-links ${colors}`}
+    >
+      {text}
+    </a>
   );
-};
-TextLink.defaultProps = {
-  isFirstItem: false,
-  isInverse: false,
 };
 
 export default TextLink;

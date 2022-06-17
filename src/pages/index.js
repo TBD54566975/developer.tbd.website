@@ -1,7 +1,7 @@
 import React from 'react';
 import Layout from '@theme/Layout';
 import Head from '@docusaurus/Head';
-import HomeList from '../components/HomeList/HomeList';
+import { HomeList } from '@site/src/components';
 import { content } from '@site/src/content/home.js';
 
 export default function Home() {
