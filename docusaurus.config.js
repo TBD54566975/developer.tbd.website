@@ -54,7 +54,7 @@ const config = {
         path: 'events',
         breadcrumbs: false,
         routeBasePath: 'events',
-        sidebarPath: require.resolve('./sidebars.js'),
+        sidebarPath: require.resolve('./event-sidebars.js'),
       },
     ],
     [
@@ -140,6 +140,7 @@ const config = {
         disableSwitch: true,
         respectPrefersColorScheme: false,
       },
+
       navbar: {
         style: 'dark',
         logo: {

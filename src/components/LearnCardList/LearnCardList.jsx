@@ -6,7 +6,6 @@ const LearnCardList = ({ items }) => {
   const learnList = items.map((item) => {
     return { ...item.customProps, url: item.href, title: item.label };
   });
-  console.log('learnList', learnList);
   return (
     <div>
       <div className="flex flex-col gap-12 mt-12 mb-12 tablet:mb-[4.5rem] tablet:mt-[4.5rem] tablet:gap-[4.5rem]">

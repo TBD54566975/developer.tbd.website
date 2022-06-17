@@ -1,18 +1,16 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable react/jsx-no-target-blank */
 import React from 'react';
-import { Divider } from '../Divider';
 export default function EventCard({
   title,
   dateEvent,
   timeEvent,
-  location,
+  locationEvent,
   description,
-  author,
-  image,
+  thumbnail,
   url,
   type,
-  time,
+  duration,
   isExternalLink,
 }) {
   let icon = null;
@@ -23,7 +21,7 @@ export default function EventCard({
   } else if (type === 'article') {
     icon = '/img/article-media-icon.svg';
   }
-  const [seconds, minutes, hours] = `${time}`
+  const [seconds, minutes, hours] = `${duration}`
     .split(':')
     .reverse()
     .map((el) => parseInt(el));
@@ -46,7 +44,7 @@ export default function EventCard({
           target={isExternalLink ? '_blank' : ''}
           rel={isExternalLink ? 'noopener noreferrer' : ''}
         >
-          <img src={image} alt="" className="max-w-[27.25rem] w-full" />
+          <img src={thumbnail} alt="" className="max-w-[27.25rem] w-full" />
         </a>
         <div className="flex h-0 justify-between">
           <div className="relative -top-9 left-3 h-6 w-6 bg-primary-black">
@@ -59,7 +57,7 @@ export default function EventCard({
           </div>
           {type !== 'article' ? (
             <div className="relative -top-9 -left-3 h-7 w-fit bg-primary-black text-accent-cyan px-[6px] py-[4px]">
-              <p className="copy-sm">{time}</p>
+              <p className="copy-sm">{duration}</p>
             </div>
           ) : null}
         </div>
@@ -68,17 +66,17 @@ export default function EventCard({
         <h2 className="h2 font-medium text-primary-yellow">{title}</h2>
       </div>
 
-      <div className="copy-sm text-primary-yellow mb-6">
-        <p>
+      <div className="text-primary-yellow mb-6">
+        <span className="copy-sm block">
           {dateEvent} | {timeEvent}
-        </p>
-        <p>{location}</p>
-        <p>Posted by {author}</p>
+        </span>
+
+        <span className="copy-sm block">{locationEvent}</span>
       </div>
       <div className="mb-6">
         <p className="copy text-primary-yellow">{description}</p>
       </div>
-      <div className=" mb-12 desktop:mb-18">
+      <div>
         <a
           href={url}
           target={isExternalLink ? '_blank' : ''}
@@ -89,13 +87,12 @@ export default function EventCard({
             Learn More
           </p>
           <img
-            src="/img/arrow-blue.svg"
+            src="/img/arrow-blue-right.svg"
             alt=""
             className="relative top-[2px]"
           />
         </a>
       </div>
-      <Divider type="dotted" />
     </div>
   );
 }
