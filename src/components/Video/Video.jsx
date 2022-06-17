@@ -8,9 +8,12 @@ const Video = ({ url, description }) => {
       <div className="border-2 border-accent-cyan w-fit inline-block">
         <ReactPlayer url={url} />
       </div>
-      <div className="mt-6 text-primary-yellow font-normal font-lg w-auto inline-block">
-        {description}
-      </div>
+
+      {description && (
+        <div className="mt-6 text-primary-yellow font-normal font-lg w-auto inline-block">
+          {description}
+        </div>
+      )}
     </div>
   );
 };
@@ -20,7 +23,7 @@ Video.propTypes = {
    * video source
    */
   url: PropTypes.string.isRequired,
-  description: PropTypes.string.isReqiured,
+  description: PropTypes.string,
   details: PropTypes.string,
   summary: PropTypes.string,
 };
