@@ -43,6 +43,7 @@ const config = {
         id: 'learn',
         path: 'learn',
         routeBasePath: 'learn',
+        breadcrumbs: false,
         sidebarPath: require.resolve('./learn-sidebars.js'),
       },
     ],
@@ -51,6 +52,7 @@ const config = {
       {
         id: 'events',
         path: 'events',
+        breadcrumbs: false,
         routeBasePath: 'events',
         sidebarPath: require.resolve('./sidebars.js'),
       },
