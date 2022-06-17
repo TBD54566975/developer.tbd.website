@@ -6,7 +6,23 @@ const Video = ({ url }) => {
   return (
     <div className="not-prose flex flex-col gap-12 tablet:gap-4">
       <div className="border-2 border-accent-cyan w-fit inline-block">
-        <ReactPlayer url={url} />
+        <ReactPlayer
+          url={url}
+          config={{
+            soundcloud: {
+              options: {
+                auto_play: false,
+                buying: false,
+                sharing: false,
+                download: false,
+                show_artwork: false,
+                show_playcount: false,
+                show_user: false,
+                single_active: true,
+              },
+            },
+          }}
+        />
       </div>
     </div>
   );
