@@ -18,6 +18,8 @@ module.exports = {
         // => @media (min-width: 995px) { ... }
         'desktop': '1024px',
         // => @media (min-width: 1024px) { ... }
+        'hd': '1820px',
+        // => @media (min-width: 1820px) { ... }
       },
       backgroundImage: {
         'home-top-glitch-mobile': 'url(/images/home-glitch-top-mobile.svg)',
