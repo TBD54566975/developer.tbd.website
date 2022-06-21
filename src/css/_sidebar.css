@@ -73,13 +73,7 @@ aside .menu__list-item-collapsible {
 aside .menu__link--active:hover {
   color: var(--color-blue);
 }
-aside .menu__list .menu__list-item .menu__link--active::before {
-  content: url('/img/selected-arrow-blue.svg');
-  top: -4px;
-  position: relative;
-  margin-right: -24px;
-  left: -30px;
-}
+
 aside
   .menu__list
   .menu__list-item
@@ -96,7 +90,7 @@ aside .menu__list .menu__list .menu__link--active {
   padding-left: 25px;
 }
 
-aside .menu__list .menu__list .menu__link--active::before {
+aside .menu__list .menu__list .menu__link:hover::before {
   content: url('/img/selected-arrow-blue.svg');
   top: -1px;
   position: relative;
