@@ -37,31 +37,18 @@ export default function EventCard({
 
   return (
     <div className="not-prose">
-      <div className="border-2 border-solid border-accent-cyan w-fit shadow-button-sh-cyan hover:shadow-button-sh-hv-cyan hover:translate-x-[4px] hover:translate-y-[4px] mb-8">
-        <a
-          href={url}
-          aria-label={linkLabel}
-          target={isExternalLink ? '_blank' : ''}
-          rel={isExternalLink ? 'noopener noreferrer' : ''}
-        >
-          <img src={thumbnail} alt="" className="max-w-[27.25rem] w-full" />
-        </a>
-        <div className="flex h-0 justify-between">
-          <div className="relative -top-9 left-3 h-6 w-6 bg-primary-black">
-            <img
-              src={icon}
-              alt=""
-              aria-hidden="true"
-              className="media-icon h-6 w-6 fill-primary-black dark:fill-primary-yellow "
-            />
-          </div>
-          {type !== 'article' ? (
-            <div className="relative -top-9 -left-3 h-7 w-fit bg-primary-black text-accent-cyan px-[6px] py-[4px]">
-              <p className="copy-sm">{duration}</p>
-            </div>
-          ) : null}
+      {thumbnail ? (
+        <div className="border-2 border-solid border-accent-cyan w-fit shadow-button-sh-cyan hover:shadow-button-sh-hv-cyan hover:translate-x-[4px] hover:translate-y-[4px] mb-8">
+          <a
+            href={url}
+            aria-label={linkLabel}
+            target={isExternalLink ? '_blank' : ''}
+            rel={isExternalLink ? 'noopener noreferrer' : ''}
+          >
+            <img src={thumbnail} alt="" className="max-w-full w-full" />
+          </a>
         </div>
-      </div>
+      ) : null}
       <div className="mb-4 tablet:mb-6">
         <h2 className="h2 font-medium text-primary-yellow">{title}</h2>
       </div>
