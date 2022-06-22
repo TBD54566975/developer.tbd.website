@@ -61,9 +61,9 @@ const Button = ({
       {imageURL ? (
         <div className={cssClasses}>
           <div className="flex gap-3">
-            <img src={imageURL} alt={title} />
+            <img src={imageURL} alt={title} className="w-6 h-6" />
 
-            <span className="relative top-[3px]">{label}</span>
+            <span className="relative top-[1px]">{label}</span>
           </div>
         </div>
       ) : (

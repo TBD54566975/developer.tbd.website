@@ -8,13 +8,13 @@ const BiographyList = ({ title, biographies, growToFit }) => {
     classGrow = 'grid grid-cols-1 tablet:grid-cols-[repeat(auto-fit,22rem)]';
   }
   return (
-    <div className="not-prose">
+    <div className="not-prose gap-y-48">
       <h2 className="h2-caps ml-0 text-primary-yellow mb-6 tablet:mb-9  empty:hidden">
         {title}
       </h2>
       <div
         className={
-          'tablet:gap-x-[1.25rem] desktop:gap-x-8 desktop:gap-y-[4.5rem] gap-y-[3rem] ' +
+          'grid grid-cols-1 desktop:grid-cols-2 gap-x-48 gap-y-32' +
           classGrow
         }
       >
