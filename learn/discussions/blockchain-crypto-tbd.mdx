@@ -9,7 +9,12 @@ sidebar_custom_props:
   thumbnail: /img/learn/blockchain_crypto_tbd.png
 ---
 
-import { HighlightsEmbedGrid, Divider, Audio } from '@site/src/components';
+import {
+  HighlightsEmbedGrid,
+  Divider,
+  Audio,
+  BiographyList,
+} from '@site/src/components';
 import { content } from '@site/src/content/open-source';
 
 <div className="mb-8">
@@ -18,6 +23,18 @@ import { content } from '@site/src/content/open-source';
 
 An open discussion about blockchain, bitcoin, web3, and decentralization with TBD's General Manager.
 
+<Divider type="dotted" className="" />
+<BiographyList
+  growToFit={true}
+  title="guests"
+  biographies={[
+    {
+      imageUrl: '/img/learn/headshots/mike_brock.jpeg',
+      headline: 'Mike Brock',
+      description: 'TBD of TBD',
+    },
+  ]}
+/>
 <Divider type="dotted" className="" />
 <HighlightsEmbedGrid
   title="HIGHLIGHTS"

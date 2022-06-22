@@ -9,7 +9,7 @@ sidebar_custom_props:
   thumbnail: /img/learn/nader_dabit_banner.png
 ---
 
-import { Divider, Audio } from '@site/src/components';
+import { Divider, Audio, BiographyList } from '@site/src/components';
 import { content } from '@site/src/content/open-source';
 
 <div className="mb-8">
@@ -18,4 +18,16 @@ import { content } from '@site/src/content/open-source';
 
 After a year of leaving AWS to work on blockchain technologies, Nader Dabit, shares what it's really like working in the space.
 
+<Divider type="dotted" className="" />
+<BiographyList
+  growToFit={true}
+  title="guests"
+  biographies={[
+    {
+      imageUrl: '/img/learn/headshots/nader_dabit.jpg',
+      headline: 'Nader Dabit',
+      description: 'Founder, Developer DAO',
+    },
+  ]}
+/>
 <Divider type="dotted" className="" />

@@ -14,8 +14,7 @@ const BiographyList = ({ title, biographies, growToFit }) => {
       </h2>
       <div
         className={
-          'grid grid-cols-1 desktop:grid-cols-2 gap-x-48 gap-y-32' +
-          classGrow
+          'grid grid-cols-1 desktop:grid-cols-2 gap-x-48 gap-y-32' + classGrow
         }
       >
         {biographies.map((biography, index) => (
