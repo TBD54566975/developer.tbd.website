@@ -55,7 +55,7 @@ export default function LearnCard({
             />
           </div>
           {type !== 'article' ? (
-            <div className="relative -top-9 -left-3 h-7 w-fit bg-primary-black text-accent-cyan px-[6px] py-[4px]">
+            <div className="relative -top-9 -left-3 h-7 w-fit bg-primary-black text-accent-cyan px-[6px]">
               <p className="copy-sm">{duration}</p>
             </div>
           ) : null}
@@ -65,9 +65,13 @@ export default function LearnCard({
         <h2 className="h2 font-medium text-primary-yellow">{title}</h2>
       </div>
       {guests ? (
-        <div className="copy-sm text-primary-yellow mb-3 tablet:mb-4 desktop:mb-6">
-          {guests.length == 1 ? <p>Guest</p> : <p>Guests</p>}
-          <p>{guests.join(', ')}</p>
+        <div className=" text-primary-yellow mb-3 tablet:mb-4 desktop:mb-6">
+          {guests.length == 1 ? (
+            <span className="block copy-sm">Guest</span>
+          ) : (
+            <span className="block copy-sm">Guests</span>
+          )}
+          <span className=" block copy-sm">{guests.join(', ')}</span>
         </div>
       ) : null}
       {description ? (

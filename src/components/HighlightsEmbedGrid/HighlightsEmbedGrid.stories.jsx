@@ -1,14 +1,14 @@
 /* eslint-disable quotes */
 import React from 'react';
-import HighlightsEmbedList from './HighlightsEmbedList';
+import HighlightsEmbedGrid from './HighlightsEmbedGrid';
 export default {
-  title: 'HighlightsEmbedList',
-  component: HighlightsEmbedList,
+  title: 'HighlightsEmbedGrid',
+  component: HighlightsEmbedGrid,
 };
 
 const Template = (args) => (
   <div className="">
-    <HighlightsEmbedList {...args} />
+    <HighlightsEmbedGrid {...args} />
   </div>
 );
 export const GrowToFit = Template.bind({});
