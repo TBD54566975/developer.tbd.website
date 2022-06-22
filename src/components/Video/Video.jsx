@@ -8,6 +8,7 @@ const Video = ({ url, description }) => {
       <div className=" relative aspect-video player-wrapper ">
         <ReactPlayer
           url={url}
+          controls={true}
           className="border-2 border-accent-cyan w-full h-full absolute t-0 l-0"
         />
       </div>
