@@ -13,19 +13,19 @@ GrowToFit.args = {
   title: 'guests',
   biographies: [
     {
-      imageUrl: '/img/person-example.png',
+      imageUrl: '/img/daniel_buchner.jpg',
       headline: 'Daniel Buchner',
       description:
         'Daniel is a lorem ipsum dolor sit ameta consec tetur adipis cing elit.',
     },
     {
-      imageUrl: '/img/person-example.png',
+      imageUrl: '/img/daniel_buchner.jpg',
       headline: 'Kim Hamilton Duffy',
       description:
         'Kim is a lorem ipsum dolor sit ameta consec tetur adipis cing elit.',
     },
     {
-      imageUrl: '/img/person-example.png',
+      imageUrl: '/img/daniel_buchner.jpg',
       headline: 'Brooklyn Zelenka',
       description:
         'Brooklyn is a lorem ipsum dolor sit ameta consec tetur adipis cing elit.',
@@ -39,19 +39,19 @@ FixedSize.args = {
   title: 'guests',
   biographies: [
     {
-      imageUrl: '/img/person-example.png',
+      imageUrl: '/img/daniel_buchner.jpg',
       headline: 'Daniel Buchner',
       description:
         'Daniel is a lorem ipsum dolor sit ameta consec tetur adipis cing elit.',
     },
     {
-      imageUrl: '/img/person-example.png',
+      imageUrl: '/img/daniel_buchner.jpg',
       headline: 'Kim Hamilton Duffy',
       description:
         'Kim is a lorem ipsum dolor sit ameta consec tetur adipis cing elit.',
     },
     {
-      imageUrl: '/img/person-example.png',
+      imageUrl: '/img/daniel_buchner.jpg',
       headline: 'Brooklyn Zelenka',
       description:
         'Brooklyn is a lorem ipsum dolor sit ameta consec tetur adipis cing elit.',
