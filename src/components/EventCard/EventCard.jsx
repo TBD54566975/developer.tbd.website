@@ -37,16 +37,18 @@ export default function EventCard({
 
   return (
     <div className="not-prose">
-      <div className="border-2 border-solid border-accent-cyan w-fit shadow-button-sh-cyan hover:shadow-button-sh-hv-cyan hover:translate-x-[4px] hover:translate-y-[4px] mb-8">
-        <a
-          href={url}
-          aria-label={linkLabel}
-          target={isExternalLink ? '_blank' : ''}
-          rel={isExternalLink ? 'noopener noreferrer' : ''}
-        >
-          <img src={thumbnail} alt="" className="max-w-full w-full" />
-        </a>
-      </div>
+      {thumbnail ? (
+        <div className="border-2 border-solid border-accent-cyan w-fit shadow-button-sh-cyan hover:shadow-button-sh-hv-cyan hover:translate-x-[4px] hover:translate-y-[4px] mb-8">
+          <a
+            href={url}
+            aria-label={linkLabel}
+            target={isExternalLink ? '_blank' : ''}
+            rel={isExternalLink ? 'noopener noreferrer' : ''}
+          >
+            <img src={thumbnail} alt="" className="max-w-full w-full" />
+          </a>
+        </div>
+      ) : null}
       <div className="mb-4 tablet:mb-6">
         <h2 className="h2 font-medium text-primary-yellow">{title}</h2>
       </div>
