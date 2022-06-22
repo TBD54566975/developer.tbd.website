@@ -15,8 +15,5 @@ const TemplateDark = (args) => (
 export const Dark = TemplateDark.bind({});
 Dark.args = {
   title: 'What is TBD',
-  thumbnail: '/img/placeholder-media-image.png',
-  url: 'https://www.youtube.com/watch?v=NpuPm1FsUQk',
-  type: 'video',
-  duration: '9:22',
+  url: 'https://vimeo.com/711912137',
 };
