@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 const DetailsSummary = ({ details, summary }) => {
   return (
-    <details className="copy">
+    <details className="not-prose copy">
       <summary className="flex cursor-pointer copy">
         {summary}
         <button className="ml-auto float-right">

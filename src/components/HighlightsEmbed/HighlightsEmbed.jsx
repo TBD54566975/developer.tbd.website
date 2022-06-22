@@ -6,7 +6,7 @@ const HighlightsEmbed = ({ title, url }) => {
     <div>
       test
       <Video url={url} />
-      <div className="mb-4">
+      <div className="mt-8 mb-4">
         <h3 className="h3 font-medium text-primary-yellow">{title}</h3>
       </div>
     </div>

@@ -6,7 +6,7 @@ const HomeList = ({ features, className }) => {
   return (
     <div
       className={
-        'grid grid-cols-1 desktop:grid-cols-2 gap-x-[8rem] gap-y-12 tablet:gap-y-14 desktop:gap-y-24 ' +
+        'not-prose grid grid-cols-1 desktop:grid-cols-2 gap-x-[8rem] gap-y-12 tablet:gap-y-14 desktop:gap-y-24 ' +
         className
       }
     >

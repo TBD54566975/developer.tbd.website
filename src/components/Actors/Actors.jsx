@@ -3,12 +3,12 @@ import { Divider } from '../Divider';
 
 const Actors = ({ content }) => {
   return (
-    <div>
+    <div className="not-prose">
       <h1 className="h1 text-primary-yellow mb-0 desktop:mb-[0.625rem] ml-0">
         {content.title}
       </h1>
       <div
-        className={`flex  flex-col desktop:flex-row actors-container desktop:min-h-[54vw] ${
+        className={`hd:min-h-[990px] flex flex-col desktop:flex-row desktop:min-h-[54vw] ${
           content.isWeb5
             ? 'gap-0 tablet:gap-y-12 gap-y-9'
             : 'desktop:gap-16 tablet:gap-[3rem] gap-[2.25rem]'

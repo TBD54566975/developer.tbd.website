@@ -3,11 +3,8 @@ hide_table_of_contents: true
 ---
 
 import metacontent from '@site/src/content/global-meta';
-import PillarList from '@site/src/components/PillarList/PillarList';
-import Button from '@site/src/components/Button/Button';
-import ButtonGroup from '@site/src/components/ButtonGroup/ButtonGroup';
 import { content } from '@site/src/content/open-source';
-import { Divider } from '@site/src/components/Divider';
+import { Divider, ButtonGroup, Button, PillarList } from '@site/src/components';
 
 <head>
   <title>{content.meta.title}</title>
@@ -33,16 +30,15 @@ Our projects are open source and, where appropriate, built on open standards.
 Our work is licensed under the Apache License 2.0, and we welcome you to join us in building the future of finance and decentralized technology.
 
 <Divider type="slash" />
-<div className="custom-container">
-  <PillarList title={content.title} pillars={content.pillars} />
-</div>
+
+<PillarList title={content.title} pillars={content.pillars} />
+
 <Divider type="slash" />
 
 # Governance
 
 Great work is built by great people with great relationships. Our governance model protects the community from behavior that doesn’t reflect our values.
 
-<div className="not-prose">
 <ButtonGroup buttons={content.buttons} />
-</div>
+
 </div>

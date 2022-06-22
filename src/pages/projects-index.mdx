@@ -3,8 +3,7 @@ hide_table_of_contents: true
 ---
 
 import metacontent from '@site/src/content/global-meta';
-import { ProjectList } from '@site/src/components/ProjectList';
-import { TwoColumnContainer } from '@site/src/components/TwoColumnContainer';
+import { TwoColumnContainer, ProjectList } from '@site/src/components';
 import { content } from '@site/src/content/projects';
 
 <head>
@@ -30,9 +29,7 @@ import { content } from '@site/src/content/projects';
 
 ## List of Projects
 
-<div className="custom-container">
-  <ProjectList projects={content.projects} growToFit={false} title="" />
-</div>
+<ProjectList projects={content.projects} growToFit={false} title="" />
 
 ---
 

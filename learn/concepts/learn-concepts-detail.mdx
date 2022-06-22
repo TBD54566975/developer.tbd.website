@@ -8,9 +8,8 @@ sidebar_custom_props:
 ---
 
 import { content } from '@site/src/content/learn-concepts-detail';
-import { Video } from '@site/src/components/Video';
-import { DetailsSummary } from '@site/src/components/DetailsSummary';
-import { Divider } from '@site/src/components/Divider'
+import { Video, DetailsSummary, Divider } from '@site/src/components';
+
 <head>
   <title>{content.meta.title}</title>
   <meta property="og:title" content={content.meta.title} />
@@ -22,11 +21,15 @@ import { Divider } from '@site/src/components/Divider'
     rel="apple-touch-icon"
     href="https://developer.tbd.website/img/tbd-fav-icon-main.png"
   />
-</head>;
+</head>
+;
 
 <Video url={content.url} />
 <h2 className="font-bold text-xl mt-0">TRANSCRIPTION</h2>
-<DetailsSummary details="consectetur adipiscing elit vesti bulum at facilisis quam, et congue tellus or sit amet, consectetur adipiscing elit vesti bulum at facilisis quam, et congue tellus ipsum dolor sit amet, consectetur adipiscing elit" summary="Lorem ipsum dolor sit amet, consectetur adipiscing elit vesti bulum at facilisis quam, et congue tellus..."/>
+<DetailsSummary
+  details="consectetur adipiscing elit vesti bulum at facilisis quam, et congue tellus or sit amet, consectetur adipiscing elit vesti bulum at facilisis quam, et congue tellus ipsum dolor sit amet, consectetur adipiscing elit"
+  summary="Lorem ipsum dolor sit amet, consectetur adipiscing elit vesti bulum at facilisis quam, et congue tellus..."
+/>
 <div className="h-16"></div>
 
 <Divider type="dotted" className="" />

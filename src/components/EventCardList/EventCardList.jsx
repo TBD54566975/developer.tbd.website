@@ -6,13 +6,9 @@ const EventCardList = ({ items }) => {
   const learnList = items.map((item) => {
     return { ...item.customProps, url: item.href, title: item.label };
   });
-  // var elements = document.getElementsByClassName('theme-doc-sidebar-container');
-  // for (var i = 0, len = elements.length; i < len; i++) {
-  //   console.log('elements', elements);
-  //   elements[i].className = 'hidden';
-  // }
+
   return (
-    <div>
+    <div className="not-prose">
       <div className="flex flex-col gap-12 mt-12 tablet:mt-[4.5rem] desktop:gap-[4.5rem]">
         {learnList.map((learn, index) => (
           <div key={index}>

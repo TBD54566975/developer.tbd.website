@@ -9,7 +9,7 @@ const HighlightsCardList = ({ title, highlights, growToFit }) => {
     classGrow = 'grid grid-cols-1 tablet:grid-cols-[repeat(auto-fit,22rem)]';
   }
   return (
-    <div>
+    <div className="not-prose">
       {title ? (
         <h2 className="h2 ml-0 text-primary-yellow mb-12">{title}</h2>
       ) : null}

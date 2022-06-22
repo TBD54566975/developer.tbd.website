@@ -1,7 +1,9 @@
 import React from 'react';
-import { Illustration } from '../../components/Illustration';
-import { SmallSocialButton } from '../../components/SmallSocialButton';
-import { TextLink } from '../../components/TextLink/TextLink';
+import {
+  Illustration,
+  SmallSocialButton,
+  TextLink,
+} from '@site/src/components';
 
 export function Footer() {
   const footer = {

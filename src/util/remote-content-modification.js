@@ -10,7 +10,7 @@ const modContent = function (filename, content, contentKey) {
 
   let buttons = '';
   if (fileData.buttons) {
-    buttons = `<div className="mb-18 not-prose"><ButtonGroup buttons={${JSON.stringify(
+    buttons = `<div className="mb-18"><ButtonGroup buttons={${JSON.stringify(
       fileData.buttons,
     )}} /></div>`;
   }
@@ -27,14 +27,10 @@ const modContent = function (filename, content, contentKey) {
   if (fileData) {
     return {
       content: `${hasMermaid ? 'import { Mermaid } from "@theme/Mermaid";' : ''}
-${
-  fileData.buttons
-    ? 'import { ButtonGroup } from "@site/src/components/ButtonGroup";'
-    : ''
-}
+${fileData.buttons ? 'import { ButtonGroup } from "@site/src/components";' : ''}
 ${
   showBreadCrumbs
-    ? 'import TBDBreadcrumbs from "@site/src/components/TBDBreadcrumbs";'
+    ? 'import { TBDBreadcrumbs } from "@site/src/components";'
     : ''
 }
 

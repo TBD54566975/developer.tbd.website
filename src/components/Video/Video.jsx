@@ -5,12 +5,19 @@ import PropTypes from 'prop-types';
 const Video = ({ url, description }) => {
   return (
     <div className="not-prose flex flex-col gap-12 tablet:gap-4">
-      <div className="border-2 border-accent-cyan w-fit inline-block">
-        <ReactPlayer url={url} controls={true} />
+      <div className=" relative aspect-video player-wrapper ">
+        <ReactPlayer
+          url={url}
+          controls={true}
+          className="border-2 border-accent-cyan w-full h-full absolute t-0 l-0"
+        />
       </div>
-      <div className="mt-6 text-primary-yellow font-normal font-lg w-auto inline-block">
-        {description}
-      </div>
+
+      {description && (
+        <div className="mt-6 text-primary-yellow font-normal font-lg w-auto inline-block">
+          {description}
+        </div>
+      )}
     </div>
   );
 };
