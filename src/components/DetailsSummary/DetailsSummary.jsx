@@ -6,7 +6,7 @@ const DetailsSummary = ({ details, summary }) => {
     <details className="copy">
       <summary className="flex cursor-pointer copy">
         {summary}
-        <button className="ml-auto float-right">
+       <div className="ml-auto float-right">
           <svg
             width="24"
             height="24"
@@ -19,7 +19,7 @@ const DetailsSummary = ({ details, summary }) => {
               fill="#FFEC19"
             />
           </svg>
-        </button>
+        </div>
       </summary>
       {details}
     </details>
