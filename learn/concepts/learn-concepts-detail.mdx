@@ -24,12 +24,14 @@ import { Divider } from '@site/src/components/Divider';
   />
 </head>;
 
-<Video url={content.url} />
-<h2 className="font-bold text-xl mt-0">TRANSCRIPTION</h2>
-<DetailsSummary
-  details="Lorem ipsum dolor sit amet, consectetur adipiscing elit vesti bulum at facilisis quam, et congue tellus consectetur adipiscing elit vesti bulum at facilisis quam, et congue tellus or sit amet, consectetur adipiscing elit vesti bulum at facilisis quam, et congue tellus ipsum dolor sit amet, consectetur adipiscing elit"
-  summary="Lorem ipsum dolor sit amet, consectetur adipiscing elit vesti bulum at facilisis quam, et congue tellus..."
+<Video
+  url={content.url}
+  transcription={{
+    details:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit vesti bulum at facilisis quam, et congue tellus consectetur adipiscing elit vesti bulum at facilisis quam, et congue tellus or sit amet, consectetur adipiscing elit vesti bulum at facilisis quam, et congue tellus ipsum dolor sit amet, consectetur adipiscing elit',
+    summary:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit vesti bulum at facilisis quam, et congue tellus...',
+  }}
 />
-<div className="h-16"></div>
 
 <Divider type="dotted" className="" />
