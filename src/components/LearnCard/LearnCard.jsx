@@ -75,10 +75,27 @@ export default function LearnCard({
         </div>
       ) : null}
       {description ? (
-        <div>
+        <div className="mb-6">
           <p className="copy text-primary-yellow">{description}</p>
         </div>
       ) : null}
+      <div className="">
+        <a
+          href={url}
+          target={isExternalLink ? '_blank' : ''}
+          rel={isExternalLink ? 'noopener noreferrer' : ''}
+          className="flex gap-x-2"
+        >
+          <p className=" text-accent-cyan nav-links underline underline-offset-2">
+            Learn More
+          </p>
+          <img
+            src="/img/blue-arrow-right.svg"
+            alt=""
+            className="relative top-[2px]"
+          />
+        </a>
+      </div>
     </div>
   );
 }

@@ -74,7 +74,7 @@ export default function EventCard({
             Learn More
           </p>
           <img
-            src="/img/arrow-blue-right.svg"
+            src="/img/blue-arrow-right.svg"
             alt=""
             className="relative top-[2px]"
           />
