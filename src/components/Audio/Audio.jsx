@@ -5,10 +5,11 @@ import PropTypes from 'prop-types';
 const Audio = ({ url }) => {
   return (
     <div className="not-prose flex flex-col gap-12 tablet:gap-4">
-      <div className="border-2 border-accent-cyan rounded-md w-fit inline-block">
+      <div>
         <ReactPlayer
           url={url}
           height="166px"
+          className="border-2 border-accent-cyan rounded-md w-full t-0 l-0"
           config={{
             soundcloud: {
               options: {

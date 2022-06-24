@@ -16,7 +16,13 @@ const DetailsSummary = ({ details, summary }) => {
           }}
         >
           <div className="flex justify-between mt-[2.8125rem]">
-            <div>{isOpen ? <p>View Less</p> : <p>View More</p>}</div>
+            <div>
+              {isOpen ? (
+                <p className="my-0">View Less</p>
+              ) : (
+                <p className="my-0">View More</p>
+              )}
+            </div>
             <button>
               <div className="ml-auto float-right">
                 <svg
