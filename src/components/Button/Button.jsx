@@ -1,6 +1,9 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
+
 const Button = ({
   label,
   url,
@@ -39,10 +42,17 @@ const Button = ({
     'bg-primary-yellow dark:bg-primary-black text-primary-black shadow-button-sh border-primary-black hover:shadow-button-sh-hv  ' +
     classesDarkMode;
 
+  const { pathname } = useLocation();
+
   return (
     // eslint-disable-next-line react/jsx-no-target-blank
-    <a
-      href={url}
+    <Link
+      to={{
+        pathname: url,
+        state: {
+          from: pathname,
+        },
+      }}
       target={isExternalLink ? '_blank' : ''}
       rel={isExternalLink ? 'noopener noreferrer' : ''}
       className="dark w-fit no-underline"
@@ -51,15 +61,15 @@ const Button = ({
       {imageURL ? (
         <div className={cssClasses}>
           <div className="flex gap-3">
-            <img src={imageURL} alt={title} />
+            <img src={imageURL} alt={title} className="w-6 h-6" />
 
-            <span className="relative top-[3px]">{label}</span>
+            <span className="relative top-[1px]">{label}</span>
           </div>
         </div>
       ) : (
         <div className={cssClasses}>{label}</div>
       )}
-    </a>
+    </Link>
   );
 };
 
@@ -75,7 +85,7 @@ Button.propTypes = {
   /**
    * Button Title
    */
-  title: PropTypes.string.isRequired,
+  title: PropTypes.string,
   /**
    * Button className
    */

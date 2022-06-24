@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Pillar = ({ img, title, description, alt, }) => {
+const Pillar = ({ img, title, description, alt }) => {
   return (
-    <div className="tablet:pl-[2.8125rem] tablet:pr-[2.25rem] tablet:py-[2.25rem] tablet:border-primary-yellow tablet:border-2 tablet:rounded-lg flex gap-[2.25rem] flex-col tablet:flex-row tablet:gap-0  ">
+    <div className="not-prose tablet:pl-[2.8125rem] tablet:pr-[2.25rem] tablet:py-[2.25rem] tablet:border-primary-yellow tablet:border-2 tablet:rounded-lg flex gap-[2.25rem] flex-col tablet:flex-row tablet:gap-0  ">
       <div className="flex flex-col tablet:flex-row">
         <div className="mr-[2.8125rem] min-w-[7.875rem] desktop:min-w-[13.125rem] mb-9 tablet:mb-0">
           <img
@@ -40,9 +40,9 @@ Pillar.propTypes = {
    * Text of the component
    */
   description: PropTypes.string.isRequired,
-    /**
+  /**
    * Alt text for image
    */
-     alt: PropTypes.string,
+  alt: PropTypes.string,
 };
 export default Pillar;

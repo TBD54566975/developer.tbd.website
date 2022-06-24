@@ -18,6 +18,8 @@ module.exports = {
         // => @media (min-width: 995px) { ... }
         'desktop': '1024px',
         // => @media (min-width: 1024px) { ... }
+        'hd': '1820px',
+        // => @media (min-width: 1820px) { ... }
       },
       backgroundImage: {
         'home-top-glitch-mobile': 'url(/images/home-glitch-top-mobile.svg)',
@@ -89,6 +91,7 @@ module.exports = {
         'h2-mobile': `${tokens.FontH2M.fontWeight}`,
         'h3-mobile': `${tokens.FontH3M.fontWeight}`,
         'h4-mobile': `${tokens.FontH4M.fontWeight}`,
+        'breadcrumbs': `${tokens.FontBreadcrumbsD.fontWeight}`,
       },
       fontSize: {
         'copy': [
@@ -197,6 +200,12 @@ module.exports = {
           `calc(((${tokens.FontH4M.fontSize} / ${tokens.TypographyBaseFontSize}) * 1rem))`,
           {
             lineHeight: `calc((${tokens.FontH4M.lineHeight} / ${tokens.TypographyBaseFontSize} * 1rem))`,
+          },
+        ],
+        'breadcrumbs': [
+          `calc(((${tokens.FontBreadcrumbsD.fontSize} / ${tokens.TypographyBaseFontSize}) * 1rem))`,
+          {
+            lineHeight: `calc((${tokens.FontBreadcrumbsD.lineHeight} / ${tokens.TypographyBaseFontSize} * 1rem))`,
           },
         ],
       },
@@ -354,5 +363,6 @@ module.exports = {
     'nav-links':
       'text-nav-links-mobile tablet:text-nav-links font-nav-links-mobile tablet:font-nav-links',
     'button-text': 'text-button-text font-button-text',
+    'breadcrumbs-text': 'text-breadcrumbs font-breadcrumbs',
   },
 };

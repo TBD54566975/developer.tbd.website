@@ -2,7 +2,7 @@ import React from 'react';
 
 const SwitchIllustration = ({ imgMobile, imgTablet, imgDesktop, altText }) => {
   return (
-    <div>
+    <div className="not-prose">
       <div className="tablet:hidden block">
         <img src={imgMobile} alt={altText} className="min-w-full" />
       </div>

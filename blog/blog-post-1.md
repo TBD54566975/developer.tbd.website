@@ -4,17 +4,11 @@ hide_table_of_contents: true
 authors:
   name: Angie Jones
 tags: [A Tag, B Tag]
-stuff: stuff
 ---
 
-import { Video } from '../src/components/Video';
-import { TooltipWrapper } from '../src/components/TooltipWrapper';
-import { Divider } from '@site/src/components/Divider'
-
+import { Video, TooltipWrapper, Divider } from '@site/src/components';
 
 <div className="prose prose-pink">
-
-# {stuff}
 
 <Video url = 'https://vimeo.com/702200087'
 description = 'A panel discussion on Decentralized Identity (DID) where we talk use cases, benefits, DIDs vs NFTs, and what should and shouldnt go on a blockchain.'

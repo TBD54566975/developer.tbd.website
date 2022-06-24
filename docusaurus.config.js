@@ -40,19 +40,11 @@ const config = {
     [
       '@docusaurus/plugin-content-docs',
       {
-        id: 'learn',
-        path: 'learn',
-        routeBasePath: 'learn',
-        sidebarPath: require.resolve('./learn-sidebars.js'),
-      },
-    ],
-    [
-      '@docusaurus/plugin-content-docs',
-      {
         id: 'events',
         path: 'events',
+        breadcrumbs: false,
         routeBasePath: 'events',
-        sidebarPath: require.resolve('./sidebars.js'),
+        sidebarPath: require.resolve('./event-sidebars.js'),
       },
     ],
     [
@@ -110,18 +102,15 @@ const config = {
       /** @type {import('@docusaurus/preset-classic').Options} */
       ({
         docs: {
-          docLayoutComponent: '../src/layout/DocPage',
-          sidebarPath: require.resolve('./sidebars.js'),
+          docLayoutComponent: '../src/theme/DocPage',
+          id: 'learn',
+          path: 'learn',
+          routeBasePath: 'learn',
           breadcrumbs: false,
-          // Please change this to your repo.
-          editUrl:
-            'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
+          sidebarPath: require.resolve('./learn-sidebars.js'),
         },
         blog: {
           showReadingTime: false,
-          // Please change this to your repo.
-          editUrl:
-            'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
@@ -138,6 +127,7 @@ const config = {
         disableSwitch: true,
         respectPrefersColorScheme: false,
       },
+
       navbar: {
         style: 'dark',
         logo: {
