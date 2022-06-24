@@ -4,9 +4,9 @@ import PropTypes from 'prop-types';
 
 const HighlightsCardList = ({ title, highlights, growToFit }) => {
   let classGrow =
-    'grid grid-cols-1 tablet:grid-cols-[repeat(auto-fit,minmax(22rem,1fr))]';
+    'grid grid-cols-1 tablet:grid-cols-[repeat(auto-fit,minmax(10rem,1fr))]';
   if (!growToFit) {
-    classGrow = 'grid grid-cols-1 tablet:grid-cols-[repeat(auto-fit,22rem)]';
+    classGrow = 'grid grid-cols-1 tablet:grid-cols-[repeat(auto-fit,10rem)]';
   }
   return (
     <div className="not-prose">

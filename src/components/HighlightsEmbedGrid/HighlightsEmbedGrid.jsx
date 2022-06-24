@@ -4,7 +4,7 @@ import { HighlightsEmbed } from '../HighlightsEmbed';
 
 const HighlightsEmbedGrid = ({ title, highlights, growToFit }) => {
   let classGrow =
-    'grid grid-cols-1 tablet:grid-cols-[repeat(auto-fit,minmax(21rem,1fr))]';
+    'grid grid-cols-1 tablet:grid-cols-[repeat(auto-fit,minmax(10rem,1fr))]';
   if (!growToFit) {
     classGrow = 'grid grid-cols-1 tablet:grid-cols-[repeat(auto-fit,21rem)]';
   }

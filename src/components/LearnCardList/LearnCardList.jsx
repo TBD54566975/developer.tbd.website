@@ -3,7 +3,6 @@ import { LearnCard } from '../LearnCard';
 import PropTypes from 'prop-types';
 import { Divider } from '../Divider';
 const LearnCardList = ({ items }) => {
-  console.log('items:', items);
   const learnList = items.map((item) => {
     return {
       ...item.customProps,

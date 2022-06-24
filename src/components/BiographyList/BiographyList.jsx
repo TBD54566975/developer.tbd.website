@@ -1,24 +1,28 @@
 import React from 'react';
 import { Biography } from '../Biography';
 import PropTypes from 'prop-types';
+import { useEffect, useState } from 'react';
 const BiographyList = ({ title, biographies, growToFit }) => {
-  let classGrow =
-    'grid grid-cols-1 tablet:grid-cols-[repeat(auto-fit,minmax(22rem,1fr))]';
-  if (!growToFit) {
-    classGrow = 'grid grid-cols-1 tablet:grid-cols-[repeat(auto-fit,22rem)]';
-  }
+  const [classGrowToFit, setClassGrowToFit] = useState('');
+
+  useEffect(() => {
+    if (growToFit) {
+      setClassGrowToFit(
+        'grid grid-cols-2 tablet:grid-cols-[repeat(auto-fit,minmax(22rem,1fr))]',
+      );
+    } else {
+      setClassGrowToFit('grid grid-cols-1 tablet:grid-cols-2');
+    }
+  }, [growToFit]);
+
   return (
     <div className="not-prose gap-y-48">
       <h2 className="h2-caps ml-0 text-primary-yellow mb-6 tablet:mb-9  empty:hidden">
         {title}
       </h2>
-      <div
-        className={
-          'grid grid-cols-1 desktop:grid-cols-2 gap-x-48 gap-y-16  pt-4' + classGrow
-        }
-      >
+      <div className={' gap-x-[8rem] gap-y-16  pt-4 ' + classGrowToFit}>
         {biographies.map((biography, index) => (
-          <Biography {...biography} key={index} />
+          <Biography {...biography} key={index} growToFit={growToFit} />
         ))}
       </div>
     </div>
