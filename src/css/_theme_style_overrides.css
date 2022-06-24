@@ -277,6 +277,7 @@ nav .pagination-nav__link .pagination-nav__label {
 
 nav .pagination-nav__link {
   padding: 0rem;
+  text-decoration: none !important;
 }
 
 .pagination-nav__item:first-child .pagination-nav__label::before {
@@ -293,16 +294,16 @@ details[open] > summary > div > button {
 
 /* Docs */
 
-aside.col.col--3 nav{
+aside.col.col--3 nav {
   color: cyan;
 }
 
-aside.col.col--3 nav ul li a{
+aside.col.col--3 nav ul li a {
   color: cyan !important;
   padding-left: 22px;
 }
 
-aside.col.col--3 nav ul li a:hover{
+aside.col.col--3 nav ul li a:hover {
   color: cyan !important;
   background: url(/img/arrow-blue-navbar.svg) no-repeat center center;
   background-attachment: unset;
