@@ -11,7 +11,6 @@ const DetailsSummary = ({ details, summary }) => {
         <summary
           className="block cursor-pointer copy border-b-primary-yellow border-b-2 pb-[0.6875rem]"
           onClick={() => {
-            console.log('entered here:', isOpen);
             setIsOpen((prevValue) => !prevValue);
           }}
         >
