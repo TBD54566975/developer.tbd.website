@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { useState } from 'react';
 const DetailsSummary = ({ details, summary }) => {
-  console.log('details?', details);
+  const arrayDetails = details.toString().split(/\r?\n/);
   const [isOpen, setIsOpen] = useState(false);
   return (
     <React.Fragment>
@@ -35,11 +35,13 @@ const DetailsSummary = ({ details, summary }) => {
             </button>
           </div>
         </summary>
-        <>
-          {details.map((paragraph, index) => (
-            <p key={index}>{paragraph}</p>
+        <div>
+          {arrayDetails.map((paragraph, index) => (
+            <p key={index} className="first:mt-[2.875rem] mb-[2rem]">
+              {paragraph}
+            </p>
           ))}
-        </>
+        </div>
       </details>
     </React.Fragment>
   );
