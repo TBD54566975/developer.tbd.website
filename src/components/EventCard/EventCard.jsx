@@ -6,6 +6,7 @@ export default function EventCard({
   dateEvent,
   timeEvent,
   locationEvent,
+  locationLink,
   description,
   thumbnail,
   url,
@@ -57,8 +58,21 @@ export default function EventCard({
         <span className="copy-sm block">
           {dateEvent} | {timeEvent}
         </span>
-
-        <span className="copy-sm block">{locationEvent}</span>
+        <div className="flex">
+          <span className="copy-sm block mr-2">Location:</span>
+          {!locationLink ? (
+            <span className="copy-sm block">{locationEvent}</span>
+          ) : (
+            <a
+              href={locationLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-medium text-accent-cyan underline hover:no-underline"
+            >
+              <span className="copy-sm block">{locationEvent}</span>
+            </a>
+          )}
+        </div>
       </div>
       <div className="mb-6">
         <p className="copy text-primary-yellow">{description}</p>
