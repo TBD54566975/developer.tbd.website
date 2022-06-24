@@ -13,11 +13,10 @@ const EventCardList = ({ items }) => {
         {learnList.map((learn, index) => (
           <div key={index}>
             <EventCard {...learn} />
-            {index == learnList.length - 1 ? null : (
-              <div className="mt-12 desktop:mt-[4.5rem]">
-                <Divider type="dotted" />
-              </div>
-            )}
+
+            <div className="mt-12 desktop:mt-[4.5rem]">
+              <Divider type="dotted" />
+            </div>
           </div>
         ))}
       </div>
