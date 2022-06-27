@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { TextWithTooltip } from '../TextWithTooltip';
 
 const Pillar = ({ img, title, description, alt }) => {
   return (
@@ -20,7 +21,9 @@ const Pillar = ({ img, title, description, alt }) => {
           <div className="mb-4">
             <h2 className="h2 text-primary-yellow">{title}</h2>
           </div>
-          <p className="copy text-primary-yellow">{description}</p>
+          <p className="copy text-primary-yellow">
+            <TextWithTooltip content={description} />
+          </p>
         </div>
       </div>
     </div>
@@ -39,7 +42,7 @@ Pillar.propTypes = {
   /**
    * Text of the component
    */
-  description: PropTypes.string.isRequired,
+  description: PropTypes.array.isRequired,
   /**
    * Alt text for image
    */

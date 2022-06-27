@@ -32,3 +32,4 @@ export { Tooltip } from './Tooltip';
 export { TwoColumnContainer } from './TwoColumnContainer';
 export { Video } from './Video';
 export { HighlightsEmbedGrid } from './HighlightsEmbedGrid';
+export { TextWithTooltip } from './TextWithTooltip';
