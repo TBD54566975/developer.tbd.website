@@ -1,4 +1,3 @@
-/* eslint-disable quotes */
 const metacontent = {
   description:
     'We build decentralized platforms, protocols, and tools that empower every individual to own their data and participate in the global economy.',
