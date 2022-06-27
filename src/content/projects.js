@@ -1,7 +1,7 @@
 export const content = {
   meta: {
     title: 'Projects | TBD',
-    path: 'projects-index',
+    path: 'projects',
   },
   projects: [
     {

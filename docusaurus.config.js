@@ -142,7 +142,7 @@ const config = {
           },
 
           {
-            to: '/projects-index',
+            to: '/projects',
             label: 'Projects',
             position: 'left',
           },

@@ -34,7 +34,7 @@ export const content = {
         'identity, decentralized communication, and more.',
       cta: {
         label: 'Get Involved',
-        url: '/projects-index',
+        url: '/projects',
       },
     },
     {
