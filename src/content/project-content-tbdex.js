@@ -1,4 +1,3 @@
-/* eslint-disable quotes */
 export const content = {
   meta: {
     title: 'tbDEX | TBD',
@@ -21,7 +20,7 @@ export const content = {
         icon: '/img/component-icon.svg',
         title: 'Decentralized Web Node',
         description:
-          "An implementation of DIF's emerging decentralized personal datastore standard.",
+          'An implementation of DIF’s emerging decentralized personal datastore standard.',
         textButton: 'View Component',
         url: '/projects/dwn-sdk-js/README',
       },
@@ -89,7 +88,7 @@ export const content = {
         title: 'On-and-Off Ramps Between Fiat and Crypto',
         alt: '',
         description:
-          "Alice holds a digital wallet. Through the wallet's user interface, Alice requests cryptocurrency in exchange for $100 USD. The wallet broadcasts Alice's request to Participating Financial Institutions (PFIs) who may possibly fulfill it. Interested PFIs respond to the wallet with bids for Alice's request. Each bid is accompanied with credential requirements. Alice (or the wallet) chooses a bid and allows the wallet to provide Alice’s credentials requested by the PFI. Once a bid is accepted and credentials verified, Alice's wallet makes a payment, and the PFI executes a smart contract to release the crypto to Alice’s wallet address.",
+          'Alice holds a digital wallet. Through the wallet’s user interface, Alice requests cryptocurrency in exchange for $100 USD. The wallet broadcasts Alice’s request to Participating Financial Institutions (PFIs) who may possibly fulfill it. Interested PFIs respond to the wallet with bids for Alice’s request. Each bid is accompanied with credential requirements. Alice (or the wallet) chooses a bid and allows the wallet to provide Alice’s credentials requested by the PFI. Once a bid is accepted and credentials verified, Alice’s wallet makes a payment, and the PFI executes a smart contract to release the crypto to Alice’s wallet address.',
       },
     ],
   },

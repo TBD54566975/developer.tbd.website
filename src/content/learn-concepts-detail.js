@@ -4,7 +4,6 @@ export const content = {
     path: 'learn-dc',
   },
   title: 'Trust Demystified',
-
   url: 'https://vimeo.com/702200087',
   description:
     'Lorem ipsum dolor sit amet, consectetur adipiscing elit vesti bulum at facilisis quam, et congue tellus...',
@@ -28,7 +27,6 @@ export const content = {
       description: 'Brooklyn is a lorem i',
     },
   ],
-
   highlights: [
     {
       title: 'What is TBD',
