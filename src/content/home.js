@@ -13,7 +13,7 @@ export const content = {
         'to benefit: individuals, businesses, institutions, and government.',
       cta: {
         label: 'Read More',
-        url: '/opensource',
+        url: '/open-source',
       },
     },
     {
