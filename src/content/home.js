@@ -1,4 +1,3 @@
-/* eslint-disable quotes */
 export const content = {
   meta: {
     title: 'Developers | TBD',
@@ -20,7 +19,7 @@ export const content = {
     {
       title: 'Our Protocol',
       description:
-        "The tbDEX protocol is our first system. It's how users around the " +
+        'The tbDEX protocol is our first system. It’s how users around the ' +
         'world share information and transact without anyone getting in the ' +
         'middle to see your data or extract fees.',
       cta: {
