@@ -1,5 +1,3 @@
-/* eslint-disable quotes */
-
 export const content = {
   meta: {
     title: 'Projects | TBD',
