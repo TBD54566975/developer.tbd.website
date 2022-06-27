@@ -4,7 +4,6 @@ export const content = {
     path: 'learn-dc',
   },
   title: 'Trust Demystified',
-
   url: 'https://vimeo.com/702200087',
   guests: 'Daniel Buchner, Kim Hamilton Duffy, Brooklyn Zelenka',
   posted: 'Apr 2022',
