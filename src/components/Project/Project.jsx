@@ -5,7 +5,7 @@ import { Button } from '../Button';
 const Project = ({
   icon,
   title,
-  description,
+  Description,
   textButton,
   url,
   isExternalLink,
@@ -19,7 +19,13 @@ const Project = ({
         <h2 className="h2-caps my-0 text-primary-yellow">{title}</h2>
       </div>
       <div className="pb-9 tablet:pb-[4.1875rem] tablet:grow">
-        <p className="copy text-primary-yellow my-0">{description}</p>
+        {typeof Description === 'function' ? (
+          <div className="copy text-primary-yellow">
+            <Description />
+          </div>
+        ) : (
+          <p className="copy text-primary-yellow">{Description}</p>
+        )}
       </div>
       <div>
         {isExternalLink ? (
@@ -54,7 +60,8 @@ Project.propTypes = {
   /**
    * Text of the component
    */
-  description: PropTypes.string.isRequired,
+  Description: PropTypes.oneOfType([PropTypes.string, PropTypes.func])
+    .isRequired,
   /**
    * Url for the button to go to
    */

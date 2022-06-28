@@ -1,4 +1,6 @@
 /* eslint-disable quotes */
+import SSIService from '../ssi-service.mdx';
+import TBDEXProtocol from '../tbdex-protocol.mdx';
 export const content = {
   meta: {
     title: 'Web5 | TBD',
@@ -11,7 +13,7 @@ export const content = {
       {
         icon: '/img/component-icon.svg',
         title: 'Decentralized Identifiers',
-        description:
+        Description:
           'Decentralized Identifiers are a W3C international standard for identifiers created, owned, and controlled by individuals, without reliance on centralized entities',
         textButton: 'View Component',
         url: 'https://w3c.github.io/did-core/',
@@ -20,8 +22,7 @@ export const content = {
       {
         icon: '/img/component-icon.svg',
         title: 'Decentralized Web Node',
-        description:
-          "An implementation of DIF's emerging decentralized personal datastore standard.",
+        Description: TBDEXProtocol,
         textButton: 'View Component',
         url: '/projects/dwn-sdk-js/README',
       },
@@ -29,7 +30,7 @@ export const content = {
       {
         icon: '/img/component-icon.svg',
         title: 'Self-Sovereign Identity Service',
-        description:
+        Description:
           'An in-a-box service that handles the full Verifiable Credentials lifecycle, including issuance, verification, revocation, and more.',
         textButton: 'View Component',
         url: '/projects/ssi-service/README',
@@ -37,8 +38,7 @@ export const content = {
       {
         icon: '/img/component-icon.svg',
         title: 'Self-Sovereign Identity SDK',
-        description:
-          'Standards-based primitives for using Decentralized Identifiers and Verifiable Credentials.',
+        Description: SSIService,
         textButton: 'View Component',
         url: '/projects/ssi-sdk/README',
       },
