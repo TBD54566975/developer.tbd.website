@@ -16,7 +16,7 @@ const HomeList = ({ features, className }) => {
             label={feature.cta.label}
             url={feature.cta.url}
             title={feature.title}
-            text={feature.description}
+            Description={feature.Description}
             className="desktop:h-full mt-12 tablet:mt-[3.5rem] first:mt-0"
           />
           {index == features.length - 1 ? null : (

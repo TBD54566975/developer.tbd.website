@@ -1,9 +1,6 @@
-<<<<<<< HEAD:src/content/projects/web5/web5.js
 /* eslint-disable quotes */
 import SSIService from '../ssi-service.mdx';
 import TBDEXProtocol from '../tbdex-protocol.mdx';
-=======
->>>>>>> develop:src/content/project-content-web5.js
 export const content = {
   meta: {
     title: 'Web5 | TBD',
