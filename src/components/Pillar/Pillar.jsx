@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 
 // eslint-disable-next-line react/prop-types
 const Pillar = ({ img, title, Description, alt }) => {
-  console.log('Description:', typeof Description);
   return (
     <div className="not-prose tablet:pl-[2.8125rem] tablet:pr-[2.25rem] tablet:py-[2.25rem] tablet:border-primary-yellow tablet:border-2 tablet:rounded-lg flex gap-[2.25rem] flex-col tablet:flex-row tablet:gap-0  ">
       <div className="flex flex-col tablet:flex-row">
