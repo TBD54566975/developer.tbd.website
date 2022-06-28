@@ -1,4 +1,3 @@
-/* eslint-disable quotes */
 export const content = {
   meta: {
     title: 'Developers | TBD',
@@ -14,13 +13,13 @@ export const content = {
         'to benefit: individuals, businesses, institutions, and government.',
       cta: {
         label: 'Read More',
-        url: '/opensource',
+        url: '/open-source',
       },
     },
     {
       title: 'Our Protocol',
       description:
-        "The tbDEX protocol is our first system. It's how users around the " +
+        'The tbDEX protocol is our first system. It’s how users around the ' +
         'world share information and transact without anyone getting in the ' +
         'middle to see your data or extract fees.',
       cta: {
@@ -35,7 +34,7 @@ export const content = {
         'identity, decentralized communication, and more.',
       cta: {
         label: 'Get Involved',
-        url: '/projects-index',
+        url: '/projects',
       },
     },
     {

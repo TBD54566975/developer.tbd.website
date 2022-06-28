@@ -99,7 +99,7 @@ export default function TBDBreadcrumbs() {
     if (lastRoute.length > 0) {
       let tempbreadcrumbs = [
         {
-          href: '/projects-index',
+          href: '/projects',
           label: 'Projects',
         },
         {

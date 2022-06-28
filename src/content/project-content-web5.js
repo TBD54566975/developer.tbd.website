@@ -1,4 +1,3 @@
-/* eslint-disable quotes */
 export const content = {
   meta: {
     title: 'Web5 | TBD',
@@ -21,7 +20,7 @@ export const content = {
         icon: '/img/component-icon.svg',
         title: 'Decentralized Web Node',
         description:
-          "An implementation of DIF's emerging decentralized personal datastore standard.",
+          'An implementation of DIF’s emerging decentralized personal datastore standard.',
         textButton: 'View Component',
         url: '/projects/dwn-sdk-js/README',
       },
@@ -106,7 +105,7 @@ export const content = {
         title: 'Own Your Data',
         alt: '',
         description:
-          "Bob is a music lover and hates having his personal data locked to a single vendor. It forces him to regurgitate his playlists and songs over and over again across different music apps. Thankfully there's a way out of this maze of vendor-locked silos: Bob can keep this data in his decentralized web node. This way Bob is able to grant any music app access to his settings and preferences, enabling him to take his personalized music experience wherever he chooses.",
+          'Bob is a music lover and hates having his personal data locked to a single vendor. It forces him to regurgitate his playlists and songs over and over again across different music apps. Thankfully there’s a way out of this maze of vendor-locked silos: Bob can keep this data in his decentralized web node. This way Bob is able to grant any music app access to his settings and preferences, enabling him to take his personalized music experience wherever he chooses.',
       },
     ],
   },
