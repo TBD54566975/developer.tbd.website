@@ -288,7 +288,7 @@ nav .pagination-nav__link {
   padding-left: 0.5rem !important;
 }
 
-details[open] > summary > div > button {
+details[open] > summary > div > .arrow-container {
   transform: rotate(180deg);
 }
 
