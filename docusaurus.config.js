@@ -136,13 +136,13 @@ const config = {
         },
         items: [
           {
-            to: '/opensource',
+            to: '/open-source',
             label: 'Open Source',
             position: 'left',
           },
 
           {
-            to: '/projects-index',
+            to: '/projects',
             label: 'Projects',
             position: 'left',
           },

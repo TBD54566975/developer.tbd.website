@@ -1,4 +1,3 @@
-/* eslint-disable quotes */
 export const content = {
   meta: {
     title: 'Developers | TBD',
@@ -53,7 +52,7 @@ export const content = {
       ],
       cta: {
         label: 'Read More',
-        url: '/opensource',
+        url: '/open-source',
       },
     },
     {
@@ -112,7 +111,7 @@ export const content = {
       ],
       cta: {
         label: 'Get Involved',
-        url: '/projects-index',
+        url: '/projects',
       },
     },
     {
