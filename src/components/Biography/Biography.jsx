@@ -1,7 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Biography = ({ imageUrl, headline, description, growToFit, twitterLink }) => {
+const Biography = ({
+  imageUrl,
+  headline,
+  description,
+  growToFit,
+  twitterLink,
+}) => {
   return (
     <div className={'not-prose ' + growToFit ? 'max-w-[16rem]' : null}>
       <div className="border-accent-cyan border-2 border-solid mb-6 w-fit min-w-full">
@@ -12,7 +18,13 @@ const Biography = ({ imageUrl, headline, description, growToFit, twitterLink }) 
         />
       </div>
       <div className="mb-4">
-        <a href={twitterLink}><h2 className="h2-caps text-primary-yellow">{headline}</h2></a>
+        {twitterLink ? (
+          <a href={twitterLink}>
+            <h2 className="h2-caps text-primary-yellow">{headline}</h2>
+          </a>
+        ) : (
+          <h2 className="h2-caps text-primary-yellow">{headline}</h2>
+        )}
       </div>
       <div>
         <h3 className="h3 text-primary-yellow">{description}</h3>
