@@ -45,7 +45,6 @@ const Button = ({
   const { pathname } = useLocation();
 
   return (
-    // eslint-disable-next-line react/jsx-no-target-blank
     <Link
       to={{
         pathname: url,
@@ -74,34 +73,12 @@ const Button = ({
 };
 
 Button.propTypes = {
-  /**
-   * Button contents
-   */
   label: PropTypes.string.isRequired,
-  /**
-   * Button URL
-   */
   url: PropTypes.string.isRequired,
-  /**
-   * Button Title
-   */
   title: PropTypes.string,
-  /**
-   * Button className
-   */
   className: PropTypes.string,
-  /**
-   * Button image
-   */
   imageURL: PropTypes.string,
-
-  /**
-   * Opens the link in a new tab
-   */
   isExternalLink: PropTypes.bool,
-  /**
-   * Color of the button in dark mode: cyan, yellow or purple
-   */
   colorDarkMode: PropTypes.string,
 };
 
@@ -109,4 +86,5 @@ Button.defaultProps = {
   isExternalLink: false,
   colorDarkMode: 'cyan',
 };
+
 export default Button;
