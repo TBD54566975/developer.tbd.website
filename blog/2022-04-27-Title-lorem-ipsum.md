@@ -9,7 +9,7 @@ tags: [Lorem ipsum, Lorem ipsum, Lorem ipsum]
 
 <div className="prose prose-pink">
 
-![Test Image](./test-image.png)
+![Test Image](./img/test-image.png)
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit vesti bulum at facilisis quam, et congue tellus. Aliquam in arcu id tortor malesuada viverra quis in urna nulla tincidunt aliquam nulla nec vehicula lorem ipsum dolor sit amet, consectetur adipis cing elit.
 
