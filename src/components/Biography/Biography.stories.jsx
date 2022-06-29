@@ -15,6 +15,7 @@ export const Dark = Template.bind({});
 Dark.args = {
   imageUrl: '/img/person-example.png',
   headline: 'Daniel Buchner',
+  twitterLink: '#',
   description:
     'Daniel is a lorem ipsum dolor sit ameta consec tetur adipis cing elit.',
 };
