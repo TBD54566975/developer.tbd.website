@@ -8,7 +8,7 @@ tags: [A Tag, B Tag]
 
 import { Video, TooltipWrapper, Divider } from '@site/src/components';
 
-<div className="prose prose-pink">
+<div>
 
 <Video url = 'https://vimeo.com/702200087'
 description = 'A panel discussion on Decentralized Identity (DID) where we talk use cases, benefits, DIDs vs NFTs, and what should and shouldnt go on a blockchain.'
@@ -20,7 +20,7 @@ summary= 'Transcripted Summary'></Video>
 
 <!--truncate-->
 
-<div className="prose prose-pink mt-18">
+<div className="mt-18">
 
 ## Title Lorem Ipsum
 
