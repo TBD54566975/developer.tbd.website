@@ -15,7 +15,7 @@ export const content = {
       {
         icon: '/img/component-icon.svg',
         title: 'tbDEX Whitepaper',
-        Description:
+        description:
           'Whitepaper defining a decentralized liquidity protocol for exchanging assets.',
         textButton: 'View Whitepaper',
         url: 'https://tbdex.io/whitepaper.pdf',
@@ -24,14 +24,14 @@ export const content = {
       {
         icon: '/img/component-icon.svg',
         title: 'Decentralized Web Node',
-        Description: TBDEXProtocol,
+        description: TBDEXProtocol,
         textButton: 'View Component',
         url: '/projects/dwn-sdk-js/README',
       },
       {
         icon: '/img/component-icon.svg',
         title: 'Decentralized Identifiers',
-        Description:
+        description:
           'Decentralized Identifiers are a W3C international standard for identifiers created, owned, and controlled by individuals, without reliance on centralized entities',
         textButton: 'View Component',
         url: 'https://w3c.github.io/did-core/',
@@ -40,7 +40,7 @@ export const content = {
       {
         icon: '/img/component-icon.svg',
         title: 'Self-Sovereign Identity Service',
-        Description:
+        description:
           'An in-a-box service that handles the full Verifiable Credentials lifecycle, including issuance, verification, revocation, and more.',
         textButton: 'View Component',
         url: '/projects/ssi-service/README',
@@ -48,7 +48,7 @@ export const content = {
       {
         icon: '/img/component-icon.svg',
         title: 'Self-Sovereign Identity SDK',
-        Description: SSIService,
+        description: SSIService,
         textButton: 'View Component',
         url: '/projects/ssi-sdk/README',
       },
@@ -83,13 +83,13 @@ export const content = {
         img: '/img/identity-icon.svg',
         title: 'Proving your identity',
         alt: '',
-        Description: ProvingIdentity,
+        description: ProvingIdentity,
       },
       {
         img: '/img/wallet-icon.svg',
         title: 'Data self-ownership',
         alt: '',
-        Description: DataOwnership,
+        description: DataOwnership,
       },
     ],
   },

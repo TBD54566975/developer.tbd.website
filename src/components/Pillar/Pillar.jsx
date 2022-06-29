@@ -2,7 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 // eslint-disable-next-line react/prop-types
-const Pillar = ({ img, title, Description, alt }) => {
+const Pillar = ({ img, title, description, alt }) => {
+  const Description = description;
   return (
     <div className="not-prose tablet:pl-[2.8125rem] tablet:pr-[2.25rem] tablet:py-[2.25rem] tablet:border-primary-yellow tablet:border-2 tablet:rounded-lg flex gap-[2.25rem] flex-col tablet:flex-row tablet:gap-0  ">
       <div className="flex flex-col tablet:flex-row">
@@ -21,12 +22,12 @@ const Pillar = ({ img, title, Description, alt }) => {
           <div className="mb-4">
             <h2 className="h2 text-primary-yellow">{title}</h2>
           </div>
-          {typeof Description === 'function' ? (
+          {typeof description === 'function' ? (
             <div className="copy text-primary-yellow">
               <Description />
             </div>
           ) : (
-            <p className="copy text-primary-yellow">{Description}</p>
+            <p className="copy text-primary-yellow">{description}</p>
           )}
         </div>
       </div>
@@ -43,6 +44,11 @@ Pillar.propTypes = {
    * Title of the component
    */
   title: PropTypes.string.isRequired,
+  /**
+   * Text of the component
+   */
+  description: PropTypes.oneOfType([PropTypes.string, PropTypes.func])
+    .isRequired,
 
   /**
    * Alt text for image

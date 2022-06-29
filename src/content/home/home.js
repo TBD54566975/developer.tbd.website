@@ -11,7 +11,7 @@ export const content = {
   features: [
     {
       title: 'Our Philosophy',
-      Description: OurPhilosophy,
+      description: OurPhilosophy,
       cta: {
         label: 'Read More',
         url: '/open-source',
@@ -19,7 +19,7 @@ export const content = {
     },
     {
       title: 'Our Protocol',
-      Description: OurProtocol,
+      description: OurProtocol,
       cta: {
         label: 'Learn More',
         url: '/projects/tbdex',
@@ -27,7 +27,7 @@ export const content = {
     },
     {
       title: 'Our Projects',
-      Description: OurProjects,
+      description: OurProjects,
       cta: {
         label: 'Get Involved',
         url: '/projects',
@@ -35,7 +35,7 @@ export const content = {
     },
     {
       title: 'Our Approach',
-      Description: OurApproach,
+      description: OurApproach,
       cta: {
         label: 'Double-click',
         url: '/learn',

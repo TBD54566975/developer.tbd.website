@@ -5,11 +5,12 @@ import { Button } from '../Button';
 const Project = ({
   icon,
   title,
-  Description,
+  description,
   textButton,
   url,
   isExternalLink,
 }) => {
+  const Description = description;
   return (
     <div className="not-prose flex flex-col tablet:h-full tablet:pt-6 tablet:pl-[1.25rem] tablet:pr-6 last:pb-0 tablet:pb-12 tablet:last:pb-12 tablet:border-primary-yellow tablet:border-2 tablet:rounded">
       <div className="pb-4 tablet:pb-6">
@@ -19,12 +20,12 @@ const Project = ({
         <h2 className="h2-caps my-0 text-primary-yellow">{title}</h2>
       </div>
       <div className="pb-9 tablet:pb-[67px] tablet:grow">
-        {typeof Description === 'function' ? (
+        {typeof description === 'function' ? (
           <div className="copy text-primary-yellow my-0">
             <Description />
           </div>
         ) : (
-          <p className="copy text-primary-yellow my-0">{Description}</p>
+          <p className="copy text-primary-yellow my-0">{description}</p>
         )}
       </div>
       <div>
@@ -60,7 +61,7 @@ Project.propTypes = {
   /**
    * Text of the component
    */
-  Description: PropTypes.oneOfType([PropTypes.string, PropTypes.func])
+  description: PropTypes.oneOfType([PropTypes.string, PropTypes.func])
     .isRequired,
   /**
    * Url for the button to go to

@@ -3,7 +3,6 @@ import Layout from '@theme/Layout';
 import Head from '@docusaurus/Head';
 import { HomeList } from '@site/src/components';
 import { content } from '@site/src/content/home/home.js';
-import { TextWithTooltip } from '@site/src/components';
 
 export default function Home() {
   const Heading = content.heading;
