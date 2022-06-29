@@ -32,3 +32,4 @@ export { TooltipWrapper } from './TooltipWrapper';
 export { Tooltip } from './Tooltip';
 export { TwoColumnContainer } from './TwoColumnContainer';
 export { Video } from './Video';
+export { TextWithTooltip } from './TextWithTooltip';

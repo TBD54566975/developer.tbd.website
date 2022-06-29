@@ -78,7 +78,7 @@ const Actors = ({ content }) => {
             <img
               src={content.imgDesktop}
               alt=""
-              className="w-full h-fit desktop:w-[48vw] desktop:block hidden relative left-[8rem] mt-[3.875rem] top-16"
+              className="w-full h-fit desktop:w-[48vw] desktop:block hidden relative left-[8rem] mt-[-1rem] top-16"
             />
             <div className="desktop:hidden block -ml-5 -mr-5 h-[63vw]">
               <div className=" w-[55vw] h-full relative left-[-5vw]">
