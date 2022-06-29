@@ -22,7 +22,7 @@ const DetailsSummary = ({ details, summary }) => {
                 <p className="my-0">View More</p>
               )}
             </div>
-            <button>
+            <div className="arrow-container">
               <div className="ml-auto float-right">
                 <svg
                   width="24"
@@ -37,7 +37,7 @@ const DetailsSummary = ({ details, summary }) => {
                   />
                 </svg>
               </div>
-            </button>
+            </div>
           </div>
         </summary>
         <div>
