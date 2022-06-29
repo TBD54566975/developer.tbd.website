@@ -12,7 +12,7 @@ sidebar_custom_props:
 
 ##### July 5, 2022 | 9am PT <br/> Location: [Discord #credentials-wg voice channel](https://discord.gg/K6bbgKvt?event=988935793961754710)
 
-![credentials](./credential_working_group_banner.png)
+![credentials](/img/credential_working_group_banner.png)
 
 Our goal is to bring all interested parties together to document use cases and requirements, create diagrams, propose and influence standards in existing standards organizations, and work towards building real-world, standards-based, interoperable software.
 
