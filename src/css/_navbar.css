@@ -261,16 +261,15 @@
   line-height: var(--typography-links-m-line-height) !important;
   font-weight: var(--typography-links-m-font-weight) !important;
   position: relative;
-  left: -0.875rem;
 }
 
 .navbar-sidebar
   .navbar-sidebar__item:last-child
   .clean-btn.navbar-sidebar__back::before {
   display: inline-block;
-  content: url('/img/selected-arrow-yellow.svg');
-  transform: rotate(180deg);
+  content: url('/img/arrow-yellow.svg');
+  transform: rotate(270deg);
   position: relative;
-  left: -1.0625rem;
-  top: -3px;
+  left: -13px;
+  top: -6px;
 }
