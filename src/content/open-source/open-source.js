@@ -1,3 +1,4 @@
+import PillarsInclusivity from './pillars-inclusivity.mdx';
 export const content = {
   meta: {
     title: 'Open Source | TBD',
@@ -9,8 +10,7 @@ export const content = {
       img: '/img/inclusivity-icon.svg',
       title: 'Inclusivity',
       alt: '',
-      description:
-        'Anyone with the capacity to contribute: can. We are proactive in welcoming a diverse contributor base for our code, documentation, developer relations, education, and communication efforts. Bad actors will be met with a published governance model and enforced code of conduct. You deserve representation in our development communities, and we promote varied perspectives and respectful debate.',
+      description: PillarsInclusivity,
     },
     {
       img: '/img/transparency-icon.svg',
