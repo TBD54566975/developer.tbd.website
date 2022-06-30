@@ -111,6 +111,7 @@ const config = {
         },
         blog: {
           showReadingTime: false,
+          blogListComponent: '../src/theme/BlogListPage',
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
