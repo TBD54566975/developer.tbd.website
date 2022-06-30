@@ -19,6 +19,8 @@
   --ifm-toc-link-color: var(--color-blue);
   --ifm-menu-link-sublist-icon: url('/img/arrow-blue.svg');
   --ifm-link-color: var(--color-blue);
+  --ifm-navbar-sidebar-width: 100vw;
+  --ifm-navbar-height: 12.75rem;
 }
 
 /* For readability concerns, you should choose a lighter palette in dark mode. */
