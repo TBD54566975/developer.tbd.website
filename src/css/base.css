@@ -22,6 +22,15 @@
     background-color: var(--color-black);
     max-width: 100vw;
     overflow-x: hidden;
+    height: auto !important;
+  }
+
+  /** hides an arrow that appears on safari for summaries **/
+  details > summary {
+    list-style: none;
+  }
+  details > summary::-webkit-details-marker {
+    display: none;
   }
 
   html[data-theme='dark'],

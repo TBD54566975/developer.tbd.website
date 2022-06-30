@@ -41,6 +41,6 @@ Video.propTypes = {
    */
   url: PropTypes.string.isRequired,
   description: PropTypes.string,
-  transcription: PropTypes.array,
+  transcription: PropTypes.object,
 };
 export default Video;
