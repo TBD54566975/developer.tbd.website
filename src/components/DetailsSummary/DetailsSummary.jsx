@@ -1,18 +1,39 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useCallback } from 'react';
 const DetailsSummary = ({ details, summary }) => {
   const arrayDetails = details.toString().split(/\r?\n/);
   const [isOpen, setIsOpen] = useState(false);
+
+  const [scrollPosition, setScrollPosition] = useState(0);
+  const handleScroll = useCallback(() => {
+    const position = window.scrollY;
+    setScrollPosition(position);
+  }, []);
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+  useEffect(() => {
+    if (isOpen) {
+      window.scroll(0, scrollPosition);
+    }
+  }, [isOpen]);
+
+  const clickHandler = () => {
+    setIsOpen((prevValue) => !prevValue);
+  };
   return (
     <React.Fragment>
       <p className="copy">{summary}</p>
       <details className="copy">
         <summary
           className="block cursor-pointer copy border-b-primary-yellow border-b-2 pb-[0.6875rem]"
-          onClick={() => {
-            setIsOpen((prevValue) => !prevValue);
-          }}
+          onClick={clickHandler}
         >
           <div className="flex justify-between mt-[2.8125rem]">
             <div>
