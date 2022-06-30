@@ -4,7 +4,7 @@ title: Credentials Working Group Meeting
 sidebar_custom_props:
   type: video
   timeEvent: '9am PT'
-  thumbnail: '/img/placeholder_banner.png'
+  thumbnail: '/img/credential_working_group_banner.png'
   locationEvent: 'Discord #credentials-wg voice channel'
   locationLink: 'https://discord.gg/K6bbgKvt?event=988935793961754710'
   dateEvent: July 5, 2022
