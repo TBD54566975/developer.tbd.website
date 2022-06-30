@@ -3,6 +3,7 @@ import OurApproach from './our-approach.mdx';
 import OurPhilosophy from './our-philosophy.mdx';
 import OurProjects from './our-projects.mdx';
 import OurProtocol from './our-protocol.mdx';
+
 export const content = {
   meta: {
     title: 'Developers | TBD',
