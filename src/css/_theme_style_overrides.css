@@ -176,7 +176,12 @@ article footer .col.text--right.col--3 b {
 
 article footer .col.text--right.col--3 b::after {
   content: url('/img/arrow-blue.svg');
-  padding-left: 0.4375rem;
+  transform: rotateZ(90deg);
+  transform-origin: 50% 50%;
+  display: inline-block;
+  position: relative;
+  top: 2px;
+  left: 7px;
 }
 
 .docusaurus-mt-lg {
