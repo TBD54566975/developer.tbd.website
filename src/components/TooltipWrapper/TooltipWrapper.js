@@ -31,9 +31,7 @@ export default function TooltipWrapper(props) {
                   imgStyle="mt-0 mb-0"
                 />
               </div>
-              <div className="font-bold text-lg flex-auto h-fit">
-                {props.trigger}
-              </div>
+              <div className="h4 flex-auto h-fit">{props.trigger}</div>
               <div className="-mr-3 flex items-start">
                 <button ref={ref} {...triggerProps}>
                   <Illustration
