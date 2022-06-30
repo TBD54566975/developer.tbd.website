@@ -23,16 +23,18 @@ export default function TooltipWrapper(props) {
       {state.isOpen && (
         <Tooltip state={state} {...tooltipProps}>
           <div className="pr-5 pl-5 pb-5  tooltipBorder w-96">
-            <div className="flex justify-items-center p-2">
-              <div className="-ml-3 pr-4 p-0">
+            <div className="flex  p-2">
+              <div className="-ml-3 pr-4 p-0 h-fit">
                 <Illustration
                   img="/img/tooltip-info-icon.svg"
                   alt=""
                   imgStyle="mt-0 mb-0"
                 />
               </div>
-              <div className="font-bold text-lg flex-auto">{props.trigger}</div>
-              <div className="-mr-3">
+              <div className="font-bold text-lg flex-auto h-fit">
+                {props.trigger}
+              </div>
+              <div className="-mr-3 flex items-start">
                 <button ref={ref} {...triggerProps}>
                   <Illustration
                     img="/img/tooltip-x-icon.svg"
@@ -44,7 +46,7 @@ export default function TooltipWrapper(props) {
             </div>
 
             <div className="flex-grow border-t-2 border-black p-2"></div>
-            {props.children}
+            <p className="copy">{props.children}</p>
           </div>
         </Tooltip>
       )}
