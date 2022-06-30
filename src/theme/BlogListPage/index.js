@@ -17,7 +17,7 @@ import {
 } from '@docusaurus/theme-common';
 import SearchMetadata from '@theme/SearchMetadata';
 import clsx from 'clsx';
-import { Divider } from '@site/src/components/Divider';
+import { Divider, TextLink } from '@site/src/components';
 
 function BlogListPageMetadata(props) {
   const { metadata } = props;
@@ -40,17 +40,18 @@ function BlogListPageContent(props) {
   return (
     <BlogLayout sidebar={sidebar}>
       <div className="space-y-8">
-        <div className="font-bold text-6xl">
-          H1: Lorem ipsum dolor site amet consec tetur adipise cing elits ud.
-        </div>
-        <div>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit vesti bulum at
-          facilisis quam, et congue tellus. Aliquam in arcu id tortor malesuada
-          viverra quis in urna nulla tincidunt aliquam nulla nec vehicula lorem
-          ipsum dolor sit amet, consectetur adipis cing elit vesti bulum at faci
-          lisis quam, et congue tellus. Aliquam in arcu id tortor malesuada
-          viverra quisine.
-        </div>
+        <h1 className="h1">Follow the Latest</h1>
+        <p className="copy">
+          {
+            'Find the latest news and insights from the TBD community, and visit us on '
+          }
+          <TextLink
+            href="https://github.com/TBD54566975"
+            text="github"
+            isExternalLink={true}
+          />
+          {' to become a contributor.'}
+        </p>
         <div className="py-8">
           <Divider />
         </div>
