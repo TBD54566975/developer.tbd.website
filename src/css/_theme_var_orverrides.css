@@ -18,6 +18,7 @@
   --ifm-toc-border-color: var(--color-yellow);
   --ifm-toc-link-color: var(--color-blue);
   --ifm-menu-link-sublist-icon: url('/img/arrow-blue.svg');
+  --ifm-link-color: var(--color-blue);
   --ifm-navbar-sidebar-width: 100vw;
   --ifm-navbar-height: 12.75rem;
 }
@@ -34,4 +35,5 @@
   --ifm-navbar-background-color: var(--color-black);
   --ifm-font-family-base: 'IBM Plex Mono';
   --ifm-font-color-base: var(--color-yellow);
+  --ifm-link-color: var(--color-blue);
 }
