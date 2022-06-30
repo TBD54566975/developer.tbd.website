@@ -19,7 +19,7 @@ const Biography = ({
       </div>
       <div className="mb-4">
         {twitterLink ? (
-          <a href={twitterLink}>
+          <a href={twitterLink} className="pointer" target="_blank">
             <h2 className="h2-caps underline text-accent-cyan hover:no-underline">
               {headline}
             </h2>
