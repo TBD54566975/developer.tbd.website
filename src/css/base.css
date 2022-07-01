@@ -24,7 +24,10 @@
     overflow-x: hidden;
     height: auto !important;
   }
-
+  button {
+    font-size: inherit;
+    font-weight: inherit;
+  }
   /** hides an arrow that appears on safari for summaries **/
   details > summary {
     list-style: none;

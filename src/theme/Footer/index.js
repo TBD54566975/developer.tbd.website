@@ -107,7 +107,6 @@ export function Footer() {
                 <li key={index} className="ml-12 flex items-center py-0.5">
                   <TextLink
                     className="py-3 text-primary-black hover:text-primary-black"
-                    isInverse={true}
                     href={link.href}
                     text={link.text}
                   />

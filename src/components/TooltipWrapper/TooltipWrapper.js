@@ -10,16 +10,18 @@ export default function TooltipWrapper(props) {
   let ref = React.useRef();
 
   let { triggerProps, tooltipProps } = useTooltipTrigger(props, state, ref);
-
   return (
     <span className="relative not-prose">
-      <span
+      <button
         className="bg-accent-cyan text-primary-black"
         ref={ref}
         {...triggerProps}
+        onClick={() => {
+          state.open(true);
+        }}
       >
         {props.trigger}
-      </span>
+      </button>
       {state.isOpen && (
         <Tooltip state={state} {...tooltipProps}>
           <div className="pr-5 pl-5 pb-5  tooltipBorder w-96">
