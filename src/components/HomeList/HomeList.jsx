@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import HomeListItem from '../HomeListItem/HomeListItem';
-import { Divider } from '../Divider';
+import { Divider, HomeListItem } from '../';
+
 const HomeList = ({ features, className }) => {
   return (
     <div
       className={
-        'grid grid-cols-1 desktop:grid-cols-2 gap-x-[8rem] gap-y-12 tablet:gap-y-14 desktop:gap-y-24 ' +
+        'not-prose grid grid-cols-1 desktop:grid-cols-2 gap-x-[8rem] gap-y-12 tablet:gap-y-14 desktop:gap-y-24 ' +
         className
       }
     >
@@ -16,7 +16,7 @@ const HomeList = ({ features, className }) => {
             label={feature.cta.label}
             url={feature.cta.url}
             title={feature.title}
-            text={feature.description}
+            description={feature.description}
             className="desktop:h-full mt-12 tablet:mt-[3.5rem] first:mt-0"
           />
           {index == features.length - 1 ? null : (

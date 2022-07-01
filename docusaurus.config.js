@@ -38,6 +38,16 @@ const config = {
       },
     ],
     [
+      '@docusaurus/plugin-content-docs',
+      {
+        id: 'events',
+        path: 'events',
+        breadcrumbs: false,
+        routeBasePath: 'events',
+        sidebarPath: require.resolve('./event-sidebars.js'),
+      },
+    ],
+    [
       'docusaurus-plugin-remote-content',
       {
         // options here
@@ -92,18 +102,16 @@ const config = {
       /** @type {import('@docusaurus/preset-classic').Options} */
       ({
         docs: {
-          docLayoutComponent: '../src/layout/DocPage',
-          sidebarPath: require.resolve('./sidebars.js'),
+          docLayoutComponent: '../src/theme/DocPage',
+          id: 'learn',
+          path: 'learn',
+          routeBasePath: 'learn',
           breadcrumbs: false,
-          // Please change this to your repo.
-          editUrl:
-            'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
+          sidebarPath: require.resolve('./learn-sidebars.js'),
         },
         blog: {
-          showReadingTime: true,
-          // Please change this to your repo.
-          editUrl:
-            'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
+          showReadingTime: false,
+          blogListComponent: '../src/theme/BlogListPage',
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
@@ -120,6 +128,7 @@ const config = {
         disableSwitch: true,
         respectPrefersColorScheme: false,
       },
+
       navbar: {
         style: 'dark',
         logo: {
@@ -128,14 +137,32 @@ const config = {
         },
         items: [
           {
-            to: '/opensource',
+            to: '/open-source',
             label: 'Open Source',
             position: 'left',
           },
 
           {
-            to: '/projects-index',
+            to: '/projects',
             label: 'Projects',
+            position: 'left',
+          },
+
+          {
+            to: '/learn',
+            label: 'Learn',
+            position: 'left',
+          },
+
+          {
+            to: '/blog',
+            label: 'Blog',
+            position: 'left',
+          },
+
+          {
+            to: '/events',
+            label: 'Events',
             position: 'left',
           },
 
@@ -202,15 +229,23 @@ const config = {
         },
         {
           name: 'description',
-          content: `${metacontent.description}`,
+          content:
+            'We build decentralized platforms, protocols, and tools that empower every individual to own their data and participate in the global economy.',
         },
         {
           property: 'og:description',
-          content: `${metacontent.description}`,
+          content:
+            'We build decentralized platforms, protocols, and tools that empower every individual to own their data and participate in the global economy.',
         },
         {
           property: 'og:site_name',
           content: `${metacontent.site_name}`,
+        },
+        {
+          property: 'keywords',
+          // eslint-disable-next-line prettier/prettier
+          content:
+            'tbd, tbdex, decentralized identifiers, decentralized ids, verifiable credentials, dwp, decentralized web platform, decentralized web nodes, web5, web3, open source, decentralized bitcoin, decentralized crypto, decentralized exchange, decentralized exchanges, decentralized, defi, decentralized finance',
         },
       ],
     }),

@@ -1,0 +1,50 @@
+---
+hide_table_of_contents: true
+---
+
+import metacontent from '@site/src/content/global-meta';
+import { content } from '@site/src/content/open-source/open-source';
+import {
+  Divider,
+  ButtonGroup,
+  Button,
+  PillarList,
+  HighlightsEmbedGrid,
+  TooltipWrapper,
+} from '@site/src/components';
+
+<head>
+  <title>{content.meta.title}</title>
+  <meta property="og:description" content={metacontent.description} />
+  <meta name="description" content={metacontent.description} />
+  <meta property="og:title" content={content.meta.title} />
+  <meta
+    property="og:url"
+    content={'https://developer.tbd.website/' + content.meta.path}
+  />
+  <link
+    rel="apple-touch-icon"
+    href="https://developer.tbd.website/img/tbd-fav-icon-main.png"
+  />
+</head>
+
+<div className="prose prose-pink">
+
+# Today’s financial systems leave people behind. We build systems for anyone with internet access. And we’re creating it like the web itself: as a public good.
+
+Our projects are open source and, where appropriate, built on open standards.
+
+Our work is licensed under the Apache License 2.0, and we welcome you to join us in building the future of finance and <TooltipWrapper trigger="decentralized">a network that is not controlled by a central entity</TooltipWrapper> technology.
+
+<Divider type="slash" />
+
+<PillarList title={content.title} pillars={content.pillars} />
+
+<Divider type="slash" />
+
+# Governance
+
+Great work is built by great people with great relationships. Our governance model protects the community from behavior that doesn’t reflect our values.
+
+<ButtonGroup buttons={content.buttons} />
+</div>

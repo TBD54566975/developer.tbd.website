@@ -1,22 +1,13 @@
-.dark .tbd-illustration,
-.invertDarkMode .tbd-illustration,
-.dark .tbd-illustration,
-.invertDarkMode .tbd-illustration.tbd-yellow-illustration {
+.tbd-yellow-illustration {
   filter: var(--color-primary-yellow-filter);
 }
 
-.dark .tbd-illustration.tbd-cyan-illustration,
-.invertDarkMode .tbd-illustration.tbd-cyan-illustration {
+.tbd-cyan-illustration {
   filter: var(--color-primary-cyan-filter);
 }
 
-.dark .tbd-illustration.tbd-purple-illustration,
-.invertDarkMode .tbd-illustration.tbd-purple-illustration {
+.tbd-purple-illustration {
   filter: var(--color-primary-purple-filter);
-}
-.dark .tbd-illustration.tbd-white-illustration,
-.invertDarkMode .tbd-illustration.tbd-white-illustration {
-  filter: var(--color-primary-white-filter);
 }
 
 .dark .invertDarkMode .tbd-illustration {

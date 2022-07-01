@@ -57,7 +57,7 @@
   --typography-links-d-font-style: normal;
   --typography-links-d-font-stretch: normal;
   --typography-links-d-letter-spacing: 0;
-  --typography-links-d-line-height: 18px;
+  --typography-links-d-line-height: 24px;
   --typography-links-d-paragraph-indent: 0;
   --typography-links-d-paragraph-spacing: 0;
   --typography-links-d-text-case: none;
@@ -211,7 +211,7 @@
   --typography-body-1-d-bold-font-style: normal;
   --typography-body-1-d-bold-font-stretch: normal;
   --typography-body-1-d-bold-letter-spacing: 0;
-  --typography-body-1-d-bold-line-height: 24px;
+  --typography-body-1-d-bold-line-height: 26px;
   --typography-body-1-d-bold-paragraph-indent: 0;
   --typography-body-1-d-bold-paragraph-spacing: 16px;
   --typography-body-1-d-bold-text-case: none;
@@ -222,7 +222,7 @@
   --typography-body-1-m-bold-font-style: normal;
   --typography-body-1-m-bold-font-stretch: normal;
   --typography-body-1-m-bold-letter-spacing: 0;
-  --typography-body-1-m-bold-line-height: 24px;
+  --typography-body-1-m-bold-line-height: 26px;
   --typography-body-1-m-bold-paragraph-indent: 0;
   --typography-body-1-m-bold-paragraph-spacing: 16px;
   --typography-body-1-m-bold-text-case: none;
@@ -402,4 +402,26 @@
   --typography-h1-t-paragraph-indent: 0;
   --typography-h1-t-paragraph-spacing: 0;
   --typography-h1-t-text-case: none;
+  --typography-breadcrumbs-d-underline-font-size: 16px;
+  --typography-breadcrumbs-d-underline-text-decoration: underline;
+  --typography-breadcrumbs-d-underline-font-family: IBM Plex Mono;
+  --typography-breadcrumbs-d-underline-font-weight: 400;
+  --typography-breadcrumbs-d-underline-font-style: normal;
+  --typography-breadcrumbs-d-underline-font-stretch: normal;
+  --typography-breadcrumbs-d-underline-letter-spacing: 0;
+  --typography-breadcrumbs-d-underline-line-height: 20px;
+  --typography-breadcrumbs-d-underline-paragraph-indent: 0;
+  --typography-breadcrumbs-d-underline-paragraph-spacing: 0;
+  --typography-breadcrumbs-d-underline-text-case: none;
+  --typography-breadcrumbs-d-font-size: 16px;
+  --typography-breadcrumbs-d-text-decoration: none;
+  --typography-breadcrumbs-d-font-family: IBM Plex Mono;
+  --typography-breadcrumbs-d-font-weight: 400;
+  --typography-breadcrumbs-d-font-style: normal;
+  --typography-breadcrumbs-d-font-stretch: normal;
+  --typography-breadcrumbs-d-letter-spacing: 0;
+  --typography-breadcrumbs-d-line-height: 20px;
+  --typography-breadcrumbs-d-paragraph-indent: 0;
+  --typography-breadcrumbs-d-paragraph-spacing: 0;
+  --typography-breadcrumbs-d-text-case: none;
 }

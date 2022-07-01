@@ -1,12 +1,23 @@
 import React from 'react';
 import { Button } from '../Button';
 import PropTypes from 'prop-types';
-const HomeListItem = ({ title, text, label, url, className }) => {
+
+const HomeListItem = ({ title, description, label, url, className }) => {
+  const Description = description;
+
   return (
-    <div className={'flex flex-col justify-between  ' + className}>
+    <div className={'not-prose flex flex-col justify-between  ' + className}>
       <div>
         <h2 className="text-primary-yellow h2-caps mb-4">{title}</h2>
-        <p className="text-primary-yellow copy mb-9">{text}</p>
+        <div className="mb-9">
+          {typeof description === 'function' ? (
+            <div className="copy text-primary-yellow">
+              <Description />
+            </div>
+          ) : (
+            <p className="copy text-primary-yellow">{description}</p>
+          )}
+        </div>
       </div>
       <Button label={label} url={url} />
     </div>
@@ -28,7 +39,8 @@ HomeListItem.propTypes = {
   /**
    * Text of the component
    */
-  text: PropTypes.string.isRequired,
+  description: PropTypes.oneOfType([PropTypes.string, PropTypes.func])
+    .isRequired,
 
   /**
    * aditional Classes

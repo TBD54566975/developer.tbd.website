@@ -15,6 +15,7 @@ export default function Tooltip({ state, ...props }) {
         backgroundColor: 'var(--color-blue)',
         color: 'black',
         padding: '5px',
+        zIndex: '100',
       }}
       {...mergeProps(props, tooltipProps)}
     >

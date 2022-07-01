@@ -1,7 +1,9 @@
 import React from 'react';
-import { Illustration } from '../../components/Illustration';
-import { SmallSocialButton } from '../../components/SmallSocialButton';
-import { TextLink } from '../../components/TextLink/TextLink';
+import {
+  Illustration,
+  SmallSocialButton,
+  TextLink,
+} from '@site/src/components';
 
 export function Footer() {
   const footer = {
@@ -87,7 +89,6 @@ export function Footer() {
               <Illustration
                 className="relative w-[50px] h-[50px]"
                 img={footer.logoSrc}
-                accentClass="tbd-yellow-illustration"
                 alt="TBD"
               />
             </span>
@@ -95,7 +96,6 @@ export function Footer() {
               <Illustration
                 className="relative h-[84px] w-[84px] desktop:w-[140px] desktop:h-[140px] "
                 img={footer.copyrightSignSrc}
-                accentClass="tbd-yellow-illustration"
                 alt="copyright"
               />
             </span>
@@ -107,7 +107,6 @@ export function Footer() {
                 <li key={index} className="ml-12 flex items-center py-0.5">
                   <TextLink
                     className="py-3 text-primary-black hover:text-primary-black"
-                    isInverse={true}
                     href={link.href}
                     text={link.text}
                   />
