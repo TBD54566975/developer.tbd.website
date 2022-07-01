@@ -165,6 +165,7 @@ article footer {
 article footer .col.text--right.col--3 {
   text-align: left !important;
   margin-bottom: 2.25rem;
+  max-width: 100%;
 }
 article footer .col.text--right.col--3 b {
   font-weight: var(--typography-links-d-underline-font-weight);
@@ -241,6 +242,16 @@ article h1 {
   font-weight: var(--typography-h1-d-font-weight);
   font-size: var(--typography-h1-d-font-size) !important;
   line-height: var(--typography-h1-d-line-height);
+}
+
+@media (max-width: 997px) {
+  .row aside.col.col--3 {
+    display: none;
+  }
+  .row main.col.col--7 {
+    flex: none !important;
+    max-width: 100% !important;
+  }
 }
 
 @media (min-width: 768px and max-width:1024px) {
