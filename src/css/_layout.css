@@ -61,6 +61,11 @@ html {
 
   .main-wrapper
     .docItemCol_node_modules-\@docusaurus-theme-classic-lib-next-theme-DocItem-styles-module {
-    max-width: 100% !important;
+    max-width: 75% !important;
+  }
+  .docSidebarContainer_CEHd,
+  .docSidebarContainer_src-theme-DocPage-styles-module {
+    min-width: 16.625rem !important;
+    max-width: 16.625rem !important;
   }
 }
