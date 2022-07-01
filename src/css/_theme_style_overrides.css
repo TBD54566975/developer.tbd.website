@@ -228,6 +228,14 @@ main.col.col--7 article {
   padding-bottom: 6.5rem;
 }
 
+.col.col--3,
+.col.col--2 {
+  --ifm-col-width: 20% !important;
+}
+main.col.col--7 {
+  --ifm-col-width: 60% !important;
+}
+
 article h1 {
   font-weight: var(--typography-h1-d-font-weight);
   font-size: var(--typography-h1-d-font-size) !important;
