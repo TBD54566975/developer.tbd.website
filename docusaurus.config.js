@@ -229,15 +229,23 @@ const config = {
         },
         {
           name: 'description',
-          content: `${metacontent.description}`,
+          content:
+            'We build decentralized platforms, protocols, and tools that empower every individual to own their data and participate in the global economy.',
         },
         {
           property: 'og:description',
-          content: `${metacontent.description}`,
+          content:
+            'We build decentralized platforms, protocols, and tools that empower every individual to own their data and participate in the global economy.',
         },
         {
           property: 'og:site_name',
           content: `${metacontent.site_name}`,
+        },
+        {
+          property: 'keywords',
+          // eslint-disable-next-line prettier/prettier
+          content:
+            'tbd, tbdex, decentralized identifiers, decentralized ids, verifiable credentials, dwp, decentralized web platform, decentralized web nodes, web5, web3, open source, decentralized bitcoin, decentralized crypto, decentralized exchange, decentralized exchanges, decentralized, defi, decentralized finance',
         },
       ],
     }),
