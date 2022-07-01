@@ -39,24 +39,6 @@ function BlogListPageContent(props) {
   const { metadata, items, sidebar } = props;
   return (
     <BlogLayout sidebar={sidebar}>
-      <div className="space-y-8">
-        <h1 className="h1">Follow the Latest</h1>
-        <p className="copy">
-          {
-            'Find the latest news and insights from the TBD community, and visit us on '
-          }
-          <TextLink
-            href="https://github.com/TBD54566975"
-            text="github"
-            isExternalLink={true}
-          />
-          {' to become a contributor.'}
-        </p>
-        <div className="py-8">
-          <Divider />
-        </div>
-      </div>
-
       {items.map(({ content: BlogPostContent }) => (
         <BlogPostItem
           key={BlogPostContent.metadata.permalink}
