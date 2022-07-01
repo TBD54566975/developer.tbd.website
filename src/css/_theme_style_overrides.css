@@ -54,7 +54,8 @@ ul.table-of-contents li code {
 }
 .pagination-nav__item--next .pagination-nav__label::after {
   content: url('/img/blue-arrow-right.svg');
-  padding-left: 1em;
+  padding-left: 0.5rem !important;
+  position: absolute;
 }
 .tocCollapsibleButton_node_modules-\@docusaurus-theme-classic-lib-next-theme-TOCCollapsible-styles-module {
   padding-left: 0 !important;
@@ -287,10 +288,6 @@ nav .pagination-nav__link {
 
 .pagination-nav__item:first-child .pagination-nav__label::before {
   padding-right: 0.5rem !important;
-}
-
-.pagination-nav__item--next .pagination-nav__label::after {
-  padding-left: 0.5rem !important;
 }
 
 details[open] > summary > div > .arrow-container {
