@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React, { useRef, useEffect, useState } from 'react';
 import { useTooltip } from '@react-aria/tooltip';
 import { mergeProps } from '@react-aria/utils';
@@ -8,16 +9,10 @@ export default function Tooltip({ state, parentRef, ...props }) {
   const [leftShift, setLeftShift] = useState(0);
   useEffect(() => {
     if (state.isOpen) {
-      console.log('window.innerWidth ', window.innerWidth);
-      console.log('parentRef', parentRef.current.offsetLeft);
       const offsetParent = parentRef.current.offsetLeft;
       const windowWidth = window.innerWidth;
-      console.log('ref', ref.current.offsetLeft);
-      let leftShift = 0;
-      console.log('offsetParent+ 383', offsetParent + 383);
       if (windowWidth < offsetParent + 400) {
         setLeftShift(windowWidth - (offsetParent + 400));
-        console.log('leftShift', offsetParent + 400 - windowWidth);
       }
     }
   }, [state, parentRef, leftShift]);
