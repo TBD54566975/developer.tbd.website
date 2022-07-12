@@ -4,16 +4,6 @@ hide_table_of_contents: true
 ---
 
 import metacontent from '@site/src/content/global-meta';
-import {
-  Actors,
-  ButtonGroup,
-  ProjectList,
-  Divider,
-  SwitchIllustration,
-  IconTextButton,
-  PillarList,
-  TooltipWrapper,
-} from '@site/src/components';
 import { content } from '@site/src/content/projects/web5/web5.js';
 
 <head>
@@ -33,50 +23,7 @@ import { content } from '@site/src/content/projects/web5/web5.js';
 
 <div className="prose prose-pink">
 
-# WEB5: AN EXTRA DECENTRALIZED WEB PLATFORM
-
-## Building an extra decentralized web that puts you in control of your data and identity
-
-The web democratized the exchange of information, but it's missing a key layer: identity. We struggle to secure personal data with hundreds of accounts and passwords we can’t remember. On the web today, identity and personal data have become the property of third parties.
-
-Web5 brings <TooltipWrapper trigger="decentralized identity">identity created, owned, and controlled by individuals, without reliance on centralized entities</TooltipWrapper> and data storage to your applications. It lets devs focus on creating delightful user experiences, while returning ownership of data and identity to individuals.
-
-<div className="mx-[2.875rem] tablet:mx-[4.5rem] desktop:mx-[6.625rem] mt-[1.75rem] desktop:mt-[3.25rem]">
-  <SwitchIllustration {...content.web5Illustrations} />
-</div>
-
-<ButtonGroup
-  className="pt-24"
-  buttons={[
-    {
-      type: 'button',
-      data: {
-        label: 'Getting Started',
-        url: 'https://github.com/TBD54566975/collaboration/blob/main/projects/GETTING_STARTED_DWP.md',
-        isExternalLink: true,
-        imageURL: '/img/external-link-blue-icon.svg',
-      },
-    },
-    {
-      type: 'button',
-      data: {
-        label: 'Chat',
-        url: 'https://discord.gg/tbd',
-        isExternalLink: true,
-        imageURL: '/img/external-link-blue-icon.svg',
-      },
-    },
-    {
-      type: 'button',
-      data: {
-        label: 'PDF',
-        url: '/docs/Decentralized Web Platform - Public.pdf',
-        isExternalLink: true,
-        imageURL: '/img/download-icon.svg',
-      },
-    },
-  ]}
-/>
+<content.Heading />
 
 <Divider type="slash" />
 

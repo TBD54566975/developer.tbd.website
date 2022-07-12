@@ -1,4 +1,5 @@
 /* eslint-disable quotes */
+import Heading from './heading.mdx';
 import DataOwnership from './data-self-ownership.mdx';
 import ProvingIdentity from './proving-your-identity.mdx';
 import SSIService from '../ssi-service.mdx';
@@ -8,6 +9,7 @@ export const content = {
     title: 'tbDEX | TBD',
     path: 'projects/tbdex',
   },
+  Heading: Heading,
   components: {
     growToFit: true,
     title: 'Components',

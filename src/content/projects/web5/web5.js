@@ -1,11 +1,13 @@
 /* eslint-disable quotes */
 import SSIService from '../ssi-service.mdx';
 import TBDEXProtocol from '../tbdex-protocol.mdx';
+import Heading from './heading.mdx';
 export const content = {
   meta: {
     title: 'Web5 | TBD',
     path: 'projects/web5',
   },
+  Heading: Heading,
   components: {
     growToFit: true,
     title: 'Components',

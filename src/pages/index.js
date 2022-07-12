@@ -3,6 +3,7 @@ import Layout from '@theme/Layout';
 import Head from '@docusaurus/Head';
 import { HomeList } from '@site/src/components';
 import { content } from '@site/src/content/home/home.js';
+//import MDXContent from '@theme/MDXContent';
 
 export default function Home() {
   const Heading = content.heading;
@@ -16,6 +17,7 @@ export default function Home() {
           href="https://developer.tbd.website/img/tbd-fav-icon-main.png"
         />
       </Head>
+
       <main>
         <div className="tablet:max-w-[100%] desktop:max-w-[92%] relative">
           <div className="h1 mb-18 leading-[4.375rem]">
