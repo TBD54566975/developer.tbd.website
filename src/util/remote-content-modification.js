@@ -1,8 +1,8 @@
-const { components } = require('../../data/remote-md.json');
+const { components } = require('../content/remote-md.json');
 const metacontent = require('../content/global-meta');
 
 const modContent = function (filename, content, contentKey) {
-  let fileData = components[contentKey].find((file) => {
+  let fileData = components[contentKey]['files'].find((file) => {
     return file.file === filename;
   });
 
