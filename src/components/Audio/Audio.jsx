@@ -22,6 +22,7 @@ const Audio = ({ url }) => {
                 show_user: false,
                 single_active: true,
                 visual: false,
+                color: "#ffec19"
               },
             },
           }}

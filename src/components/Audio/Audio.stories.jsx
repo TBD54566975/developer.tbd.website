@@ -21,6 +21,7 @@ const Template = (args) => (
           show_playcount: false,
           show_user: false,
           single_active: true,
+          color: "#ffec19"
         },
       },
     }}

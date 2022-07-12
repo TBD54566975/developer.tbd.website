@@ -44,7 +44,29 @@ const Button = ({
 
   const { pathname } = useLocation();
 
-  return (
+  const linkContent = imageURL ? (
+    <div className={cssClasses}>
+      <div className="flex gap-3">
+        <img src={imageURL} alt={title} className="w-6 h-6" />
+
+        <span className="relative top-[1px]">{label}</span>
+      </div>
+    </div>
+  ) : (
+    <div className={cssClasses}>{label}</div>
+  );
+
+  const link = isExternalLink ? (
+    <a
+      className="dark w-fit no-underline"
+      rel="noopener noreferrer"
+      target="_blank"
+      href={url}
+      title={title}
+    >
+      {linkContent}
+    </a>
+  ) : (
     <Link
       to={{
         pathname: url,
@@ -52,24 +74,14 @@ const Button = ({
           from: pathname,
         },
       }}
-      target={isExternalLink ? '_blank' : ''}
-      rel={isExternalLink ? 'noopener noreferrer' : ''}
       className="dark w-fit no-underline"
       title={title}
     >
-      {imageURL ? (
-        <div className={cssClasses}>
-          <div className="flex gap-3">
-            <img src={imageURL} alt={title} className="w-6 h-6" />
-
-            <span className="relative top-[1px]">{label}</span>
-          </div>
-        </div>
-      ) : (
-        <div className={cssClasses}>{label}</div>
-      )}
+      {linkContent}
     </Link>
   );
+
+  return link;
 };
 
 Button.propTypes = {
