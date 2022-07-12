@@ -17,7 +17,6 @@ import {
 } from '@docusaurus/theme-common';
 import SearchMetadata from '@theme/SearchMetadata';
 import clsx from 'clsx';
-import { Divider, TextLink } from '@site/src/components';
 
 function BlogListPageMetadata(props) {
   const { metadata } = props;

@@ -1,0 +1,118 @@
+{
+  "components": {
+    "dwn-sdk-js": {
+      "name": "dwn-sdk-js",
+      "plugin": {
+        "name": "some-content3",
+        "sourceBaseUrl": "https://raw.githubusercontent.com/TBD54566975/dwn-sdk-js/main/",
+        "outDir": "src/pages/projects/dwn-sdk-js"
+      },
+      "files": [
+        {
+          "file": "README.md",
+          "meta": {
+            "title": "Decentralized Web Node | TBD",
+            "path": "projects/dwn-sdk-js/README"
+          },
+          "breadcrumbs": true,
+          "buttons": [
+            {
+              "type": "button",
+              "data": {
+                "label": "Source on GitHub",
+                "url": "https://github.com/TBD54566975/dwn-sdk-js",
+                "isExternalLink": true,
+                "imageURL": "/img/external-link-blue-icon.svg"
+              }
+            },
+            {
+              "type": "button",
+              "data": {
+                "label": "Issues",
+                "url": "https://github.com/TBD54566975/dwn-sdk-js/issues",
+                "isExternalLink": true,
+                "imageURL": "/img/external-link-blue-icon.svg"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "ssi-service": {
+      "name": "ssi-service",
+      "plugin": {
+        "name": "some-content4",
+        "sourceBaseUrl": "https://raw.githubusercontent.com/TBD54566975/ssi-service/main/",
+        "outDir": "src/pages/projects/ssi-service"
+      },
+      "files": [
+        {
+          "file": "README.md",
+          "meta": {
+            "title": "Self-sovereign Identity Service | TBD",
+            "path": "projects/ssi-service/README"
+          },
+          "breadcrumbs": true,
+          "buttons": [
+            {
+              "type": "button",
+              "data": {
+                "label": "Source on GitHub",
+                "url": "https://github.com/TBD54566975/ssi-service",
+                "isExternalLink": true,
+                "imageURL": "/img/external-link-blue-icon.svg"
+              }
+            },
+            {
+              "type": "button",
+              "data": {
+                "label": "Issues",
+                "url": "https://github.com/TBD54566975/ssi-service/issues",
+                "isExternalLink": true,
+                "imageURL": "/img/external-link-blue-icon.svg"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "ssi-sdk": {
+      "name": "ssi-sdk",
+      "plugin": {
+        "name": "some-content5",
+        "sourceBaseUrl": "https://raw.githubusercontent.com/TBD54566975/ssi-sdk/main/",
+        "outDir": "src/pages/projects/ssi-sdk"
+      },
+      "files": [
+        {
+          "file": "README.md",
+          "meta": {
+            "title": "Self-sovereign Identity SDK | TBD",
+            "path": "projects/ssi-sdk/README"
+          },
+          "breadcrumbs": true,
+          "buttons": [
+            {
+              "type": "button",
+              "data": {
+                "label": "Source on GitHub",
+                "url": "https://github.com/TBD54566975/ssi-sdk",
+                "isExternalLink": true,
+                "imageURL": "/img/external-link-blue-icon.svg"
+              }
+            },
+            {
+              "type": "button",
+              "data": {
+                "label": "Issues",
+                "url": "https://github.com/TBD54566975/ssi-sdk/issues",
+                "isExternalLink": true,
+                "imageURL": "/img/external-link-blue-icon.svg"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  }
+}
