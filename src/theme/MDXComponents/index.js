@@ -9,7 +9,6 @@ import {
   Divider,
   PillarList,
   SwitchIllustration,
-  IconTextButton,
   TwoColumnContainer,
 } from '@site/src/components';
 
@@ -22,6 +21,5 @@ export default {
   Divider: Divider,
   PillarList: PillarList,
   SwitchIllustration: SwitchIllustration,
-  IconTextButton: IconTextButton,
   TwoColumnContainer: TwoColumnContainer,
 };
