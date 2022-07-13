@@ -11,8 +11,12 @@ export default function Tooltip({ state, parentRef, ...props }) {
     if (state.isOpen) {
       const offsetParent = parentRef.current.offsetLeft;
       const windowWidth = window.innerWidth;
-      if (windowWidth < offsetParent + 400) {
-        setLeftShift(windowWidth - (offsetParent + 400));
+      let sizeTooltip = 430;
+      if (windowWidth < 768) {
+        sizeTooltip = 405;
+      }
+      if (windowWidth < offsetParent + sizeTooltip) {
+        setLeftShift(windowWidth - (offsetParent + sizeTooltip));
       }
     }
   }, [state, parentRef, leftShift]);
@@ -26,7 +30,6 @@ export default function Tooltip({ state, parentRef, ...props }) {
         marginTop: '10px',
         backgroundColor: 'var(--color-blue)',
         color: 'black',
-        padding: '5px',
         zIndex: '100',
       }}
       {...mergeProps(props, tooltipProps)}
