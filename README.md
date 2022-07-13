@@ -1,36 +1,47 @@
-# $PROJECT_NAME README
+# TBD Developer Site
 
-Congrats, project leads! You got a new project to grow!
+We build decentralized platforms, protocols, and tools that empower every individual to own their data and participate in the global economy.
 
-This stub is meant to help you form a strong community around your work. It's yours to adapt, and may 
-diverge from this initial structure. Just keep the files seeded in this repo, and the rest is yours to evolve! 
+## Getting started
 
-## Introduction
+This project was boostrapped with [Docusaurus](https://docusaurus.io/).
 
-Orient users to the project here. This is a good place to start with an assumption
-that the user knows very little - so start with the Big Picture and show how this
-project fits into it. It may be good to reference/link the broader architecture in the
-`collaboration` repo or the developer site here.
+### Development Dependencies
 
-Then maybe a dive into what this project does.
+- [Node.js](https://nodejs.org/en/) — v16.14.2, latest LTS at project kickoff
 
-Diagrams and other visuals are helpful here. Perhaps code snippets showing usage.
+### Development Setup
 
-Project leads should complete, alongside this `README`:
-* [CODEOWNERS](./CODEOWNERS) - set project lead(s)
-* [CONTRIBUTING.md](./CONTRIBUTING.md) - Fill out how to: install prereqs, build, test, run, access CI, chat, discuss, file issues
+Install application dependencies by executing the following within the root of the repository:
 
-The other files in this template repo may be used as-is:
-* [CODE_OF_CONDUCT.md](./CODE_OF_CONDUCT.md)
-* [GOVERNANCE.md](./GOVERNANCE.md)
-* [LICENSE](./LICENSE)
+```shell
+npm install --legacy-peer-deps
+```
 
-## Project Resources
+### Development Mode
 
-| Resource                                   | Description                                                                    |
-| ------------------------------------------ | ------------------------------------------------------------------------------ |
-| [CODEOWNERS](./CODEOWNERS)                 | Outlines the project lead(s)                                                   |
-| [CODE_OF_CONDUCT.md](./CODE_OF_CONDUCT.md) | Expected behavior for project contributors, promoting a welcoming environment |
-| [CONTRIBUTING.md](./CONTRIBUTING.md)       | Developer guide to build, test, run, access CI, chat, discuss, file issues     |
-| [GOVERNANCE.md](./GOVERNANCE.md)           | Project governance                                                             |
-| [LICENSE](./LICENSE)                       | Apache License, Version 2.0                                                    |
+The following command will run the application in development mode and open [http://localhost:3000/](http://localhost:3000/) to view it in your browser.
+
+```shell
+npm run start
+```
+
+The page will reload when you make changes. You may also see lint errors in the console. The Docusaurus Remote Content plugin has a tendency to end up in a continuous loop of retrieving files. When this occurs, restart the development server.
+
+### Production Build
+
+The following command will build the application for production. Contents will be generated within the `/build` directory.
+
+```shell
+npm run build
+```
+
+## Learn More
+
+- [Docusaurus](https://docusaurus.io/docs) — v2
+- [Docusaurus Remote Content Plugin](https://github.com/rdilweb/docusaurus-plugin-remote-content)
+- [React](https://reactjs.org/docs/getting-started.html)
+- [Tailwind CSS](https://tailwindcss.com/) — v3
+- [EditorConfig](https://editorconfig.org/) — Configuration file format for defining coding styles in shared projects
+
+* [Prettier](https://prettier.io/docs/en/editors.html) — An opinionated code formatter
