@@ -74,25 +74,6 @@ export const content = {
     imgDesktop: '/img/web5-desktop.svg',
     altText: 'Web2 and Web3 to Web5',
   },
-  downloadPDF: {
-    data: {
-      type: 'iconTextButton',
-      data: {
-        src: '/img/download-icon.svg',
-        text: 'WEB5 PDF',
-        buttons: [
-          {
-            type: 'button',
-            data: {
-              label: 'Download',
-              isExternalLink: true,
-              url: '/docs/Decentralized Web Platform - Public.pdf',
-            },
-          },
-        ],
-      },
-    },
-  },
   useCases: {
     title: 'Use Cases',
     pillars: [
