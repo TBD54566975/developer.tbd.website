@@ -21,6 +21,5 @@ export default {
   Divider: Divider,
   PillarList: PillarList,
   SwitchIllustration: SwitchIllustration,
-  IconTextButton: IconTextButton,
   TwoColumnContainer: TwoColumnContainer,
 };
