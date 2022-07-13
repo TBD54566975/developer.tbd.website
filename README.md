@@ -43,5 +43,4 @@ npm run build
 - [React](https://reactjs.org/docs/getting-started.html)
 - [Tailwind CSS](https://tailwindcss.com/) — v3
 - [EditorConfig](https://editorconfig.org/) — Configuration file format for defining coding styles in shared projects
-
-* [Prettier](https://prettier.io/docs/en/editors.html) — An opinionated code formatter
+- [Prettier](https://prettier.io/docs/en/editors.html) — An opinionated code formatter
