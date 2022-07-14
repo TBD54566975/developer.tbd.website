@@ -1,4 +1,7 @@
 import PillarsInclusivity from './pillars-inclusivity.mdx';
+import PillarsTransparency from './pillars-transparency.mdx';
+import PillarsClarity from './pillars-clarity.mdx';
+
 export const content = {
   meta: {
     title: 'Open Source | TBD',
@@ -16,15 +19,13 @@ export const content = {
       img: '/img/transparency-icon.svg',
       title: 'Transparency',
       alt: '',
-      description:
-        'Decision-making is open by default, with rare exceptions made for security, compliance, personnel, or other sensitive issues. Projects under TBD’s stewardship will conduct design, roadmap, issues, bugs, and code reviews in public. This is critical for accountability and to promote the inclusive environment necessary for project success.',
+      description: PillarsTransparency,
     },
     {
       img: '/img/clarity-icon.svg',
       title: 'Clarity',
       alt: '',
-      description:
-        'Projects need well-defined scope to succeed. They also need accessible, comprehensive documentation, a stellar Getting Started experience, and well-defined expectations. TBD fosters an environment built for contribution without personal intervention. Newcomers should be able to follow the project status on their own without additional explanation.',
+      description: PillarsClarity,
     },
   ],
   buttons: [

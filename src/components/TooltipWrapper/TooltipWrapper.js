@@ -8,10 +8,10 @@ import { Illustration } from '../Illustration';
 export default function TooltipWrapper(props) {
   let state = useTooltipTriggerState(props);
   let ref = React.useRef();
-
+  let parentRef = React.useRef();
   let { triggerProps, tooltipProps } = useTooltipTrigger(props, state, ref);
   return (
-    <span className="relative not-prose">
+    <span className="relative not-prose" ref={parentRef}>
       <button
         className="bg-accent-cyan text-primary-black"
         ref={ref}
@@ -23,9 +23,9 @@ export default function TooltipWrapper(props) {
         {props.trigger}
       </button>
       {state.isOpen && (
-        <Tooltip state={state} {...tooltipProps}>
-          <div className="pr-5 pl-5 pb-5  tooltipBorder w-96">
-            <div className="flex  p-2">
+        <Tooltip state={state} parentRef={parentRef} {...tooltipProps}>
+          <div className="tooltipBorder w-96 pr-5 pt-[1.375rem] pl-5 pb-9 tablet:pb-5">
+            <div className="flex px-2 pb-4">
               <div className="-ml-3 pr-4 p-0 h-fit">
                 <Illustration
                   img="/img/tooltip-info-icon.svg"

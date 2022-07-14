@@ -1,8 +1,15 @@
+import Heading from './heading.mdx';
+import ListOfProjects from './project-list.mdx';
+import Column1 from './column-1.mdx';
+import Column2 from './column-2.mdx';
+
 export const content = {
   meta: {
     title: 'Projects | TBD',
     path: 'projects',
   },
+  Heading: Heading,
+  ListOfProjects: ListOfProjects,
   projects: [
     {
       icon: '/img/article-icon.svg',
@@ -21,4 +28,6 @@ export const content = {
       url: '/projects/web5',
     },
   ],
+  Column1: Column1,
+  Column2: Column2,
 };

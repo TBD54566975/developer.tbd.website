@@ -3,9 +3,60 @@
 
 const lightCodeTheme = require('prism-react-renderer/themes/github');
 const darkCodeTheme = require('prism-react-renderer/themes/dracula');
-const { components } = require('./data/remote-md.json');
+const { components } = require('./src/content/remote-md.json');
 const modContent = require('./src/util/remote-content-modification.js');
 const metacontent = require('./src/content/global-meta');
+
+let plugins = [
+  async function myPlugin(context, options) {
+    return {
+      name: 'docusaurus-tailwindcss',
+      configurePostCss(postcssOptions) {
+        // Appends TailwindCSS and AutoPrefixer.
+        postcssOptions.plugins.push(require('tailwindcss'));
+        postcssOptions.plugins.push(require('autoprefixer'));
+        return postcssOptions;
+      },
+    };
+  },
+  [
+    require.resolve('docusaurus-gtm-plugin'),
+    {
+      id: 'GTM-5X8H2X3', // GTM Container ID
+    },
+  ],
+  [
+    '@docusaurus/plugin-content-docs',
+    {
+      id: 'events',
+      path: 'events',
+      breadcrumbs: false,
+      routeBasePath: 'events',
+      sidebarPath: require.resolve('./event-sidebars.js'),
+    },
+  ],
+];
+
+for (const property in components) {
+  //console.log(`${property}: ${components[property]}`);
+  let plugin = [
+    'docusaurus-plugin-remote-content',
+    {
+      // options here
+      name: components[property]['plugin']['name'], // used by CLI, must be path safe
+      sourceBaseUrl: components[property]['plugin']['sourceBaseUrl'], // the base url for the markdown (gets prepended to all of the documents when fetching)
+      outDir: components[property]['plugin']['outDir'], // the base directory to output to.
+      documents: components[property]['files'].map((data) => {
+        return data.file;
+      }), // the file names to download
+      modifyContent(filename, content) {
+        return modContent(filename, content, components[property]['name']);
+      },
+    },
+  ];
+
+  plugins.push(plugin);
+}
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
@@ -18,84 +69,7 @@ const config = {
   onBrokenLinks: 'warn',
   onBrokenMarkdownLinks: 'warn',
   favicon: '/img/favicon.ico',
-
-  plugins: [
-    async function myPlugin(context, options) {
-      return {
-        name: 'docusaurus-tailwindcss',
-        configurePostCss(postcssOptions) {
-          // Appends TailwindCSS and AutoPrefixer.
-          postcssOptions.plugins.push(require('tailwindcss'));
-          postcssOptions.plugins.push(require('autoprefixer'));
-          return postcssOptions;
-        },
-      };
-    },
-    [
-      require.resolve('docusaurus-gtm-plugin'),
-      {
-        id: 'GTM-5X8H2X3', // GTM Container ID
-      },
-    ],
-    [
-      '@docusaurus/plugin-content-docs',
-      {
-        id: 'events',
-        path: 'events',
-        breadcrumbs: false,
-        routeBasePath: 'events',
-        sidebarPath: require.resolve('./event-sidebars.js'),
-      },
-    ],
-    [
-      'docusaurus-plugin-remote-content',
-      {
-        // options here
-        name: 'some-content3', // used by CLI, must be path safe
-        sourceBaseUrl:
-          'https://raw.githubusercontent.com/TBD54566975/dwn-sdk-js/main/', // the base url for the markdown (gets prepended to all of the documents when fetching)
-        outDir: 'src/pages/projects/dwn-sdk-js', // the base directory to output to.
-        documents: components['dwn-sdk-js'].map((data) => {
-          return data.file;
-        }), // the file names to download
-        modifyContent(filename, content) {
-          return modContent(filename, content, 'dwn-sdk-js');
-        },
-      },
-    ],
-    [
-      'docusaurus-plugin-remote-content',
-      {
-        // options here
-        name: 'some-content4', // used by CLI, must be path safe
-        sourceBaseUrl:
-          'https://raw.githubusercontent.com/TBD54566975/ssi-service/main/', // the base url for the markdown (gets prepended to all of the documents when fetching)
-        outDir: 'src/pages/projects/ssi-service', // the base directory to output to.
-        documents: components['ssi-service'].map((data) => {
-          return data.file;
-        }), // the file names to download
-        modifyContent(filename, content) {
-          return modContent(filename, content, 'ssi-service');
-        },
-      },
-    ],
-    [
-      'docusaurus-plugin-remote-content',
-      {
-        // options here
-        name: 'some-content5', // used by CLI, must be path safe
-        sourceBaseUrl:
-          'https://raw.githubusercontent.com/TBD54566975/ssi-sdk/main/', // the base url for the markdown (gets prepended to all of the documents when fetching)
-        outDir: 'src/pages/projects/ssi-sdk', // the base directory to output to.
-        documents: components['ssi-sdk'].map((data) => {
-          return data.file;
-        }), // the file names to download
-        modifyContent(filename, content) {
-          return modContent(filename, content, 'ssi-sdk');
-        },
-      },
-    ],
-  ],
+  plugins: plugins,
   presets: [
     [
       'classic',
