@@ -6,12 +6,12 @@ sidebar_custom_props:
   timeEvent: '9am PT'
   thumbnail: '/img/credential_working_group_banner.png'
   locationEvent: 'Discord #credentials-wg voice channel'
-  locationLink: 'https://discord.gg/xdwbby4PRY?event=988935793961754710'
-  dateEvent: July 5, 2022
+  locationLink: 'https://discord.com/events/937858703112155166/993919827058110515'
+  dateEvent: August 2, 2022
   description: 'Our goal is to bring all interested parties together to document use cases and requirements, create diagrams, propose and influence standards in existing standards organizations, and work towards building real-world, standards-based, interoperable software.'
 ---
 
-##### July 5, 2022 | 9am PT <br/> Location: [Discord #credentials-wg voice channel](https://discord.gg/xdwbby4PRY?event=988935793961754710)
+##### August 2, 2022 | 9am PT <br/> Location: [Discord #credentials-wg voice channel](https://discord.com/events/937858703112155166/993919827058110515)
 
 ![credentials](/img/credential_working_group_banner.png)
 
