@@ -198,14 +198,6 @@ const config = {
       },
       metadata: [
         {
-          name: 'twitter:image',
-          content: `${metacontent.ogimage}`,
-        },
-        {
-          propery: 'twitter:image',
-          content: `${metacontent.ogimage}`,
-        },
-        {
           property: 'og:image',
           content: `${metacontent.ogimage}`,
         },
