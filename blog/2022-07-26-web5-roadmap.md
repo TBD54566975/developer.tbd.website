@@ -10,10 +10,15 @@ tags: [Web5]
   <meta property="og:title" content="Web5 Roadmap | TBD" />
   <meta property="og:url" content='https://developer.tbd.website/blog/2022-07-26-web5-roadmap' />
   <meta property="og:image" content='https://developer.tbd.website/assets/images/web5-roadmap.jpeg' />
+  <meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="@tbddev" />
+<meta name="twitter:title" content="Web5 Roadmap" />
+<meta name="twitter:description" content="We’re committed to an open software delivery model and therefore want to share our Web5 roadmap." />
+<meta name="twitter:image" content="https://developer.tbd.website/assets/images/web5-roadmap.jpeg" />
   <link rel="apple-touch-icon" href="https://developer.tbd.website/img/tbd-fav-icon-main.png" />
 </head>
 
-![What is Web5?](/img/web5-roadmap.jpeg)
+![Web5 Roadmap](/img/web5-roadmap.jpeg)
 
 We’re committed to an open software delivery model and therefore want to share our roadmap to [Web 5](https://developer.tbd.website/blog/what-is-web5).
 
