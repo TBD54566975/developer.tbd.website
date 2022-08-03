@@ -1,9 +1,11 @@
 ---
 slug: web5-roadmap
 title: Web5 Roadmap
+description: We’re committed to an open software delivery model and therefore want to share our Web5 roadmap.
+image: https://developer.tbd.website/assets/images/web5-roadmap.jpeg
 authors:
   name: Angie Jones
-tags: [Web5]
+tags: [web5]
 ---
 
 <head>
@@ -48,7 +50,7 @@ In Q3, we’ll deliver initial implementations of the [SSI SDK](https://develope
 
 ## Milestone 3
 
-In Q1 of 2023, the [SSI SDK](https://developer.tbd.website/projects/ssi-service/readme/), [SSI Service](https://developer.tbd.website/projects/ssi-service/README), and [Decentralized Web Nodes](https://developer.tbd.website/projects/dwn-sdk-js/README) will be feature complete
+In Q1 of 2023, the [SSI SDK](https://developer.tbd.website/projects/ssi-service/readme/), [SSI Service](https://developer.tbd.website/projects/ssi-service/README), and [Decentralized Web Nodes](https://developer.tbd.website/projects/dwn-sdk-js/README) will be feature complete.
 
 The [DID](https://w3c.github.io/did-core/) network node will be deployed.
 
