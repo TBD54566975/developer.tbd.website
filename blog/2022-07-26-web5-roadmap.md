@@ -12,7 +12,7 @@ tags: [web5]
   <meta property="og:title" content="Web5 Roadmap" />
   <meta property="og:url" content='https://developer.tbd.website/blog/2022-07-26-web5-roadmap' />
   <meta property="og:image" content='https://developer.tbd.website/assets/images/web5-roadmap.jpeg' />
-  <meta name="twitter:card" content="summary_large_image" />
+   <meta name="twitter:card" content="summary" />
   <meta name="twitter:site" content="@tbddev" />
   <meta name="twitter:title" content="Web5 Roadmap" />
   <meta name="twitter:description" content="We’re committed to an open software delivery model and therefore want to share our Web5 roadmap." />
