@@ -10,7 +10,7 @@ tags: [DIF,W3C,Community,Decentralized Identity]
 <head>
   <meta property="og:title" content="Our Interoperability Work in the Decentralized Identity Foundation" />
   <meta property="og:url" content='https://developer.tbd.website/blog/2022-08-15-our-interop-work-in-dif' />
-  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:card" content="summary" />
   <meta name="twitter:site" content="@tbddev" />
   <meta name="twitter:title" content="Our Interoperability Work in the Decentralized Identity Foundation" />
   <meta name="twitter:description" content="How TBD Contributes with the community to interoperability testing in the Decentralized Identity Foundation" />
@@ -19,11 +19,16 @@ tags: [DIF,W3C,Community,Decentralized Identity]
 
 ## 
 
+![Our Interoperability Work in the Decentralized Identity Foundation](/img/tbd_spruce_did_interoperability.png)
+
 At TBD, we believe in a decentralized future that returns ownership and control 
 over your finances, data, and identity. Decentralized Identity is critical to 
 our mission. It’s what puts people in control of their own data. It is the most 
 private, secure, and user-centric way to facilitate information exchange and 
 verification online.
+
+<!--truncate-->
+
 
 The [Decentralized Identity Foundation](http://identity.foundation/) 
 (DIF) is a cooperative community that 
