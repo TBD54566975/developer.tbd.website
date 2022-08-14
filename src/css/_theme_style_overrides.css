@@ -318,10 +318,12 @@ details[open] > summary > div > .arrow-container {
 aside.col.col--3 nav {
   color: cyan;
 }
+aside.col.col--3 nav ul li {
+  padding-left: 22px;
+}
 
 aside.col.col--3 nav ul li a {
   color: cyan !important;
-  padding-left: 22px;
 }
 
 aside.col.col--3 nav ul li a:hover {
@@ -329,6 +331,7 @@ aside.col.col--3 nav ul li a:hover {
   background: url(/img/arrow-blue-navbar.svg) no-repeat center center;
   background-attachment: unset;
   background-position-x: 0em;
+  padding-left: 20px;
 }
 
 .padding-top--md.padding-bottom--lg .row .col div {
