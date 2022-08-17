@@ -10,6 +10,7 @@ tags: [Verifiable Credentials,Decentralized Identity]
 <head>
   <meta property="og:title" content="What are Verifiable Credentials?" />
   <meta property="og:url" content='https://developer.tbd.website/blog/what-are-verifiable-credentials' />
+  <meta property="og:image" content='https://developer.tbd.website/assets/images/what_are_vcs_banner-1ec4bea6c245b62b76685a338d5f8d63.png'/>
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:site" content="@tbddev" />
   <meta name="twitter:title" content="What are Verifiable Credentials?" />
