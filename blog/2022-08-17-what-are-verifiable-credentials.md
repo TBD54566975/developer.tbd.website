@@ -8,18 +8,17 @@ tags: [Verifiable Credentials,Decentralized Identity]
 ---
 
 <head>
-   <!-- HTML Meta Tags -->
   <title>What are Verifiable Credentials?</title>
   <meta name="description" content="What are verifiable credentials, who issues them, and how do they get verified">
 
-  <!-- Facebook Meta Tags -->
+  
   <meta property="og:url" content="https://developer.tbd.website/blog/what-are-verifiable-credentials">
   <meta property="og:type" content="website">
   <meta property="og:title" content="What are Verifiable Credentials?">
   <meta property="og:description" content="What are verifiable credentials, who issues them, and how do they get verified">
   <meta property="og:image" content="https://developer.tbd.website/assets/images/what_are_vcs_banner-1ec4bea6c245b62b76685a338d5f8d63.png">
 
-  <!-- Twitter Meta Tags -->
+
   <meta name="twitter:card" content="summary_large_image">
   <meta property="twitter:domain" content="developer.tbd.website">
   <meta property="twitter:url" content="https://developer.tbd.website/blog/what-are-verifiable-credentials">
