@@ -43,13 +43,13 @@ So how do credentials translate into the digital world where within a few clicks
 
 Over the course of your digital history, you've likely signed up for hundreds of apps and services with elements of your personal data fragmented, such as your name, email address, or more sensitive information like your date of birth and government ID number. These services then share your data with other third parties that you may not even be aware of - with or without your consent. It's difficult to go back and deactivate your profiles, delete your accounts, or reclaim additional data these services have collected on you. Worse is if there is a data breach in one of these services and now your data is out in the public.
 
-Verified Credentials aim to solve these problems by putting the power to manage your data back into your hands. Imagine being able to own and control your personal data by only allowing access to services that require it and having the power to disable services that no longer need it. You can even manage your data on your own self hosted decentralized web node via an identity hub without relying on any centralized third party. 
+Verifiable Credentials aim to solve these problems by putting the power to manage your data back into your hands. Imagine being able to own and control your personal data by only allowing access to services that require it and having the authority to disable services that no longer need it. You can even manage your data on your own self-hosted decentralized web node via an identity hub without relying on any centralized third party. 
 
-Additionally, you can own multiple verified credentials for various use cases such as a student ID, a driver’s license, a passport, or a certificate you earned. You can also have one specific verified credential with multiple [presentation layers](https://www.w3.org/TR/vc-data-model/#presentations) such as a passport where certain metadata is presented when used in a given context.
+Additionally, you can own multiple verifiable credentials for various use cases such as a student ID, a driver’s license, a passport, or a certificate you earned. You can also have one specific verifiable credential with multiple [presentation layers](https://www.w3.org/TR/vc-data-model/#presentations) such as a passport where certain metadata is presented when used in a given context.
 
 ## How Do Verifiable Credentials Work?
 
-You may be wondering who actually issues a verified credential, how does it get verified and who verifies the verifier? 
+You may be wondering who actually issues a verifable credential, how does it get verified and who verifies the verifier? 
 
 Let's look at the following example of the manual way credentials are issued. You've been accepted to your top university of choice and now need a student ID to access both the campus and online resources. Specifically, you want to apply for a campus parking permit as well. 
 
@@ -78,9 +78,9 @@ Decentralized identifiers (DIDs) work alongside Verifiable Credentials. DIDs are
 
 DIDs can then be used to create a verified credential by electronically signing it and assigning it to a holder, similarly to how blocks are cryptographically linked in a blockchain. The holder (also known as a DID subject) can then choose how much of that credential they want to present to an entity requesting the credential. 
 
-An example is an employer, CompanyX, who looks up the DID of your college diploma from UniversityY. 
+An example is an employer, Company X, who looks up the DID of your college diploma from University Y. 
 
-CompanyX queries the issuer of your diploma verifiable credential, in this case UniversityY, and also looks up the DID of that university in a verifiable data registry (VDR). Think of VDR's as just lists that can be managed and maintained by various parties such as wallets, financial institutions, DAOs, non-profits, etc. If your credentials are verified but somehow UniversityY is on a list of non-accredited institutions in the USA but accredited institutions in Europe, it would be up to the CompanyX to decide if they want to accept it.
+Company X queries the issuer of your diploma verifiable credential, in this case University Y, and also looks up the DID of that university in a verifiable data registry (VDR). Think of VDR's as just lists that can be managed and maintained by various parties such as wallets, financial institutions, DAOs, non-profits, etc. If your credentials are verified but somehow University Y is on a list of non-accredited institutions in the USA but accredited institutions in Europe, it would be up to the Company X to decide if they want to accept it.
 
 The diagram below outlines the flow of this process.
 
