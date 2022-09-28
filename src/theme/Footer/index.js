@@ -75,8 +75,8 @@ export function Footer() {
       {
         src: '/img/github-icon.svg',
         url: 'https://github.com/TBD54566975/',
-        altText: 'Github button',
-        title: 'Go to Github',
+        altText: 'GitHub button',
+        title: 'Go to GitHub',
       }
     ],
     isLegal: false,
