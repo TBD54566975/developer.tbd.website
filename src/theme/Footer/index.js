@@ -19,18 +19,6 @@ export function Footer() {
     socialText: 'Connect with us',
     socialButtons: [
       {
-        src: '/img/github-icon.svg',
-        url: 'https://github.com/TBD54566975/',
-        altText: 'Github button',
-        title: 'Go to Github',
-      },
-      {
-        src: '/img/discourse-icon.svg',
-        url: 'https://forums.tbd.website/',
-        altText: 'TBD Forum button',
-        title: 'Go to TBD Forum',
-      },
-      {
         src: '/img/twitter-icon.svg',
         url: 'https://twitter.com/tbd54566975?lang=en',
         altText: 'Twitter button',
@@ -78,6 +66,18 @@ export function Footer() {
         altText: 'TikTok button',
         title: 'Go to TikTok',
       },
+      {
+        src: '/img/discourse-icon.svg',
+        url: 'https://forums.tbd.website/',
+        altText: 'TBD Forum button',
+        title: 'Go to TBD Forum',
+      },
+      {
+        src: '/img/github-icon.svg',
+        url: 'https://github.com/TBD54566975/',
+        altText: 'Github button',
+        title: 'Go to Github',
+      }
     ],
     isLegal: false,
   };
