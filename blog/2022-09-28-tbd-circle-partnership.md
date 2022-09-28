@@ -2,8 +2,8 @@
 slug: tbd-circle-partnership
 title: TBD Partners with Circle!
 description: TBD and Circle are collaborating on a set of open standards and open source technologies aimed at enabling global-scale, mainstream adoption of digital currency in payments and financial applications.
-# authors:
-#   name: 
+authors:
+  name: Mia King
 tags: [Stablecoins, USDC, Circle, Partnerships]
 ---
 
