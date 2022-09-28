@@ -19,6 +19,12 @@ export function Footer() {
     socialText: 'Connect with us',
     socialButtons: [
       {
+        src: '/img/github-icon.svg',
+        url: 'https://github.com/TBD54566975/',
+        altText: 'Github button',
+        title: 'Go to Github',
+      },
+      {
         src: '/img/twitter-icon.svg',
         url: 'https://twitter.com/tbd54566975?lang=en',
         altText: 'Twitter button',
