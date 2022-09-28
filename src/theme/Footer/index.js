@@ -25,6 +25,12 @@ export function Footer() {
         title: 'Go to Github',
       },
       {
+        src: '/img/discourse-icon.svg',
+        url: 'https://forums.tbd.website/',
+        altText: 'TBD Forum button',
+        title: 'Go to TBD Forum',
+      },
+      {
         src: '/img/twitter-icon.svg',
         url: 'https://twitter.com/tbd54566975?lang=en',
         altText: 'Twitter button',
