@@ -86,6 +86,7 @@ const config = {
         blog: {
           showReadingTime: false,
           blogListComponent: '../src/theme/BlogListPage',
+          blogSidebarCount: 'ALL',
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
