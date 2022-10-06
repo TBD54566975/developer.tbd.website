@@ -86,6 +86,7 @@ const config = {
         blog: {
           showReadingTime: false,
           blogListComponent: '../src/theme/BlogListPage',
+          blogSidebarTitle: 'All posts',
           blogSidebarCount: 'ALL',
         },
         theme: {
