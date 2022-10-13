@@ -15,6 +15,10 @@ export function Footer() {
         text: 'Legal',
         href: 'https://www.tbd.website/legal',
       },
+      {
+        text: 'Code of Conduct',
+        href: '/code-of-conduct',
+      },
     ],
     socialText: 'Connect with us',
     socialButtons: [
