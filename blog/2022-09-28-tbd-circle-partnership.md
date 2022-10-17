@@ -30,7 +30,7 @@ tags: [Stablecoins, USDC, Circle, Partnerships]
 
 ## 
 
-![What Are Verifiable Credentials](/img/tbd_circle_partnership.png)
+![TBD Partners with Circle!](/img/tbd_circle_partnership.png)
 
 TBD and [Circle](https://www.circle.com/en/?_gl=1*14yjcwp*_up*MQ..&gclid=CjwKCAjwm8WZBhBUEiwA178UnPZbgZJJxhwK7ivE5Yx9FGW8PQ31-hc1O-njcLOmzcN2nzLz110FihoCgV4QAvD_BwE) are collaborating on a set of open standards and open source technologies aimed at enabling global-scale, mainstream adoption of digital currency in payments and financial applications. The first step of which will support cross-border remittances and self-custody wallets that can hold stablecoins.
 
