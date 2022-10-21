@@ -1,5 +1,5 @@
 ---
-slug: announcing-verifiable-credential-selector
+slug: announcing-web5-verifiable-credential-selector
 title: Announcing the Verifiable Credential Selector
 description: The Verifiable Credential Selector is an open source widget that makes it easy for you to gain possession of your data from FinTech apps.
 authors:
@@ -12,7 +12,7 @@ tags: [Verifiable Credentials, Incubation]
   <meta name="description" content="The Verifiable Credential Selector is an open source widget that makes it easy for you to gain possession of your data from FinTech apps." />
 
   
-  <meta property="og:url" content="https://developer.tbd.website/blog/announcing-verifiable-credential-selector" />
+  <meta property="og:url" content="https://developer.tbd.website/blog/announcing-web5-verifiable-credential-selector" />
   <meta property="og:type" content="website" />
   <meta property="og:title" content="Announcing the Verifiable Credential Selector" />
   <meta property="og:description" content="The Verifiable Credential Selector is an open source widget that makes it easy for you to gain possession of your data from FinTech apps." />
@@ -21,7 +21,7 @@ tags: [Verifiable Credentials, Incubation]
 
   <meta name="twitter:card" content="summary_large_image" />
   <meta property="twitter:domain" content="developer.tbd.website" />
-  <meta property="twitter:url" content="https://developer.tbd.website/blog/announcing-verifiable-credential-selector" />
+  <meta property="twitter:url" content="https://developer.tbd.website/blog/announcing-web5-verifiable-credential-selector" />
   <meta name="twitter:title" content="Announcing the Verifiable Credential Selector" />
   <meta name="twitter:description" content="The Verifiable Credential Selector is an open source widget that makes it easy for you to gain possession of your data from FinTech apps." />
   <meta name="twitter:image" content="/img/incubator-vcs.png" />
