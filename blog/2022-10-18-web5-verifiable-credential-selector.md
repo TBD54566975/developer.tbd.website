@@ -1,6 +1,6 @@
 ---
-slug: web5-verifiable-credential-selector
-title: Retrieve Verifiable Credentials from more than 40,000 Companies with VCS
+slug: announcing-verifiable-credential-selector
+title: Announcing the Verifiable Credential Selector
 description: The Verifiable Credential Selector is an open source widget that makes it easy for you to gain possession of your data from FinTech apps.
 authors:
   name: Jack Couch, Sophtron
@@ -8,21 +8,21 @@ tags: [Verifiable Credentials, Incubation]
 ---
 
 <head>
-  <title>Retrieve Verifiable Credentials from more than 40,000 Companies with VCS</title>
+  <title>Announcing the Verifiable Credential Selector</title>
   <meta name="description" content="The Verifiable Credential Selector is an open source widget that makes it easy for you to gain possession of your data from FinTech apps." />
 
   
-  <meta property="og:url" content="https://developer.tbd.website/blog/web5-verifiable-credential-selector" />
+  <meta property="og:url" content="https://developer.tbd.website/blog/announcing-verifiable-credential-selector" />
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="Retrieve Verifiable Credentials from more than 40,000 Companies with VCS" />
+  <meta property="og:title" content="Announcing the Verifiable Credential Selector" />
   <meta property="og:description" content="The Verifiable Credential Selector is an open source widget that makes it easy for you to gain possession of your data from FinTech apps." />
   <meta property="og:image" content="/img/incubator-vcs.png" />
 
 
   <meta name="twitter:card" content="summary_large_image" />
   <meta property="twitter:domain" content="developer.tbd.website" />
-  <meta property="twitter:url" content="https://developer.tbd.website/blog/web5-verifiable-credential-selector" />
-  <meta name="twitter:title" content="Retrieve Verifiable Credentials from more than 40,000 Companies with VCS" />
+  <meta property="twitter:url" content="https://developer.tbd.website/blog/announcing-verifiable-credential-selector" />
+  <meta name="twitter:title" content="Announcing the Verifiable Credential Selector" />
   <meta name="twitter:description" content="The Verifiable Credential Selector is an open source widget that makes it easy for you to gain possession of your data from FinTech apps." />
   <meta name="twitter:image" content="/img/incubator-vcs.png" />
   <link rel="apple-touch-icon" href="https://developer.tbd.website/img/tbd-fav-icon-main.png" />
@@ -30,7 +30,7 @@ tags: [Verifiable Credentials, Incubation]
 
 ## 
 
-![Retrieve Verifiable Credentials from more than 40,000 Companies with VCS](/img/incubator-vcs.png)
+![Announcing the Verifiable Credential Selector](/img/incubator-vcs.png)
 
 [Web 5](https://developer.tbd.website/blog/what-is-web5/) puts users in control of their own data. Right now your bank balance, credit card transaction history and the identity information on your utility bills are in dozens of databases owned by dozens of companies with dozens of terms of service you probably haven’t read. 
 
