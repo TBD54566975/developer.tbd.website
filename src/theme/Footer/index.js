@@ -34,6 +34,11 @@ export function Footer() {
         altText: 'LinkedIn button',
         title: 'Go to LinkedIn',
       },
+      /*
+
+      Removed these social links until we'd like to be responsive to these mediums:
+      https://github.com/TBD54566975/developer.tbd.website/issues/293
+
       {
         src: '/img/youtube-icon.svg',
         url: 'https://www.youtube.com/channel/UCRAYhEkp3fEuYQAzteNqHsA/featured',
@@ -52,12 +57,18 @@ export function Footer() {
         altText: 'Instagram button',
         title: 'Go to Instagram',
       },
+      */
       {
         src: '/img/discord-icon.svg',
         url: 'https://discord.gg/tbd',
         altText: 'Discord button',
         title: 'Go to Discord',
       },
+      /*
+
+      Removed these social links until we'd like to be responsive to these mediums:
+      https://github.com/TBD54566975/developer.tbd.website/issues/293
+
       {
         src: '/img/twitch-icon.svg',
         url: 'https://www.twitch.tv/tbd54566975',
@@ -70,6 +81,7 @@ export function Footer() {
         altText: 'TikTok button',
         title: 'Go to TikTok',
       },
+      */
       {
         src: '/img/discourse-icon.svg',
         url: 'https://forums.tbd.website/',
