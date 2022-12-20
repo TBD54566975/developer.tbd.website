@@ -49,5 +49,4 @@ Angie Jones, TBD's Head of Developer Relations, spoke with human rights activist
 
 Unfortunately, powerful stories such as these are not widely shared. TBD is committed to making the decentralized financial world accessible to everyone!
 
-Listen to [more stories from human rights activists](https://currency-of-freedom.xyz/Currency-of-Freedom/en) across the globe!
-
+Listen to [more stories from human rights activists](https://currency-of-freedom.xyz/Currency-of-Freedom/en) across the globe.
