@@ -1,0 +1,47 @@
+---
+hide_table_of_contents: true
+---
+
+import metacontent from '@site/src/content/global-meta';
+import { content } from '@site/src/content/projects/project-index/projects';
+
+<head>
+  <title>{content.meta.title}</title>
+  <meta property="og:description" content={metacontent.description} />
+  <meta name="description" content={metacontent.description} />
+  <meta property="og:title" content={content.meta.title} />
+  <meta
+    property="og:url"
+    content={'https://developer.tbd.website/' + content.meta.path}
+  />
+  <link
+    rel="apple-touch-icon"
+    href="https://developer.tbd.website/img/tbd-fav-icon-main.png"
+  />
+</head>
+
+<div className="prose prose-pink mb-13.5">
+
+<content.Heading />
+
+<content.ListOfProjects />
+
+---
+
+</div>
+
+<TwoColumnContainer>
+
+<div className="prose prose-pink">
+
+<content.Column1 />
+
+</div>
+
+<div className="prose prose-pink">
+
+<content.Column2 />
+
+</div>
+
+</TwoColumnContainer>

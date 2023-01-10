@@ -1,0 +1,17 @@
+.tooltipBorder {
+  border-image-slice: 0 30 30 0 !important;
+  border-image-width: 12px 11px 11px 12px !important;
+  border-image-outset: 0px 12px 12px 0px !important;
+  border-image-repeat: repeat repeat !important;
+  border-image-source: url('/img/tooltip-border.png') !important;
+  border-style: solid !important;
+  border: 1px;
+  width: 384px;
+}
+
+@media (max-width: 768px) {
+  .tooltipBorder {
+    width: 375px;
+    border: none !important;
+  }
+}
