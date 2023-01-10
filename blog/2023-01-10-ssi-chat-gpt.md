@@ -1,13 +1,24 @@
 ---
 slug: chatgpt-writingcode
-title: Extending ssi-sdk with ChatGPT into the web world
+title: Web Assembly with ChatGPT
 description: Using ChatGPT to help add WASM support to the self-soverign identity SDK
 authors:
   name: Mic Neale
 tags: [Self Sovereign Identity, AI, GPT-3]
 ---
 
-## WASM
+<head>
+  <meta property="og:title" content="Web Assembly with ChatGPT" />
+  <meta property="og:url" content='https://developer.tbd.website/blog/chatgpt-writingcode' />
+   <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@tbddev" />
+  <meta name="twitter:title" content="Web Assembly with ChatGPT" />
+  <meta name="twitter:description" content="Using ChatGPT to help add WASM support to the self-soverign identity SDK" />
+  <link rel="apple-touch-icon" href="https://developer.tbd.website/img/tbd-fav-icon-main.png" />
+</head>
+
+
+## Web Assembly
 
 [Web Assembly](https://webassembly.org/) is a popular format for running binary applications in web browsers (with wide support).
 
@@ -32,6 +43,9 @@ console.log(resolveDid("did:peer:0z6MkpTHR8VNsBxYAAWHut2Geadd9jSwuBV8xRoAnwWsdvk
 
 and it would Just Work thanks to WASM! 
 Well, thanks to WASM and a lot of boring glue. 
+
+
+## ChatGPT
 
 But the boring glue is what I am hear to talk about it, as it turns out ChatGPT can be quite helpful for the boring (but important) glue. 
 
