@@ -67,11 +67,8 @@ Moreover, as I am an ordinary golang developer I was able to ask it to put in a 
 ![chatgpt generated error handler](/img/chatgpt_error.png)
 
 
+## Parting thoughts
+
+WASM seems surpremely useful, and ChatGPT, while terrifying on one level, looks like it can really take away some of the grind work from developers, allowing us to move much faster into more platforms. And no, this post was NOT written by ChatGPT, but by a human.
 
 
-
-
-
-## Parting Thoughts
-
-You should now have a pretty good sense of how we conceive of SSI software on Web5, and how its journey will unfold. Most importantly the mission is not TBD’s alone, it is that of the community. We build real software for real people and favor pragmatism above all else. What I’ve written here is *current thinking* and is always subject to evolution—with your help. I’m looking forward to you joining us in pushing SSI and Web5 forward, gaining new perspectives, solving new use-cases, and building some cool shit.
