@@ -22,11 +22,11 @@ tags: [Self Sovereign Identity, AI, GPT-3]
 
 [Web Assembly](https://webassembly.org/) is a popular format for running binary applications in web browsers (with wide support).
 
-This can have a few advantages but the interesting thing for us is that this can allow sharing of implementations of functionality: eg credential issuance, DID resolving, cryptographic funcitons etc which you may not want to necessarily re-implement in javascript or typescript.
+This can have a few advantages but the interesting thing for us is that this can allow sharing of implementations of functionality: eg credential issuance, DID resolving, cryptographic functions etc which you may not want to necessarily re-implement in javascript or typescript.
 
 The [SSI-SDK](https://github.com/TBD54566975/ssi-sdk) is an implementation of a lot of standards for self soverign identity, so it is a great candidate to expose via WASM to web apps. 
 
-Now there is a whole lot of (lets face it: tedioius) machinery to get wasm to be compiled from go (ok if you are really curious you can [read the code](https://github.com/TBD54566975/ssi-sdk/pull/265/)), but the upshot of it is that there is a .wasm file produced which when consumed in just the right way in a web page, allows you to call functions from javascript, that look and feel like javascript, but are actually running in the web-assembly machiner (and compiled down from golang).
+Now there is a whole lot of (lets face it: tedious) machinery to get wasm to be compiled from go (ok if you are really curious you can [read the code](https://github.com/TBD54566975/ssi-sdk/pull/265/)), but the upshot of it is that there is a .wasm file produced which when consumed in just the right way in a web page, allows you to call functions from javascript, that look and feel like javascript, but are actually running in the web-assembly machiner (and compiled down from golang).
 
 Say you had a function in golang land which looked like this: 
 
