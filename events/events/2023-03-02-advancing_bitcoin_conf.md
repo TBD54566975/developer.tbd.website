@@ -11,7 +11,7 @@ sidebar_custom_props:
   description: 'Angie Jones will provide an overview of Web5 and how it can be used to build decentralized apps and protocols.'
 ---
 
-##### January 13, 2023 <br/> Location: Twitter
+##### March 2 - 3, 2023 <br/> Location: Twitter
 
 ![Twitter Space: Are We Web5 Yet?](/img/abc_conf_angie.png)
 
