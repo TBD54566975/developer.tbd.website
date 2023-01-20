@@ -273,3 +273,23 @@
   left: -13px;
   top: -6px;
 }
+
+
+aside .menu__link {
+  color: gray !important;
+  padding-top: 0rem;
+  padding-bottom: 0rem;
+  height: 18px;
+  background-color: transparent !important;
+}
+
+aside .menu__link--active {
+  color: white !important;
+  padding-top: 0rem;
+  padding-bottom: 0rem;
+  height: 18px;
+}
+
+aside .menu__list-item-collapsible {
+    background-color: transparent !important;
+}

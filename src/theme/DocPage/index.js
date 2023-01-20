@@ -112,7 +112,7 @@ function DocPageContent({
           )}
           <main
             className={clsx(
-              'prose prose-pink dark:prose-invert bg-primary-black',
+              'prose prose-pink dark:prose-invert',
               styles.docMainContainer,
               (hiddenSidebarContainer || !sidebar) &&
                 styles.docMainContainerEnhanced,

@@ -66,9 +66,6 @@ aside .menu__list-item--collapsed .menu__list {
 aside .menu__list-item--collapsed .menu__link--sublist:after {
   transform: rotateZ(0deg);
 }
-aside .menu__list-item-collapsible {
-  background-color: var(--color-black) !important;
-}
 
 aside .menu__link--active:hover {
   color: var(--color-blue);
