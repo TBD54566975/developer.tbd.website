@@ -178,7 +178,6 @@ article footer .col.text--right.col--3 b {
 
 article footer .col.text--right.col--3 b::after {
   content: url('/img/arrow-blue.svg');
-  transform: rotateZ(90deg);
   transform-origin: 50% 50%;
   display: inline-block;
   position: relative;
@@ -309,9 +308,7 @@ nav .pagination-nav__link {
   padding-right: 0.5rem !important;
 }
 
-details[open] > summary > div > .arrow-container {
-  transform: rotate(180deg);
-}
+
 
 /* Docs */
 

@@ -35,6 +35,26 @@ let plugins = [
       sidebarPath: require.resolve('./event-sidebars.js'),
     },
   ],
+  [
+    '@docusaurus/plugin-content-docs',
+    {
+      id: 'learn',
+      path: 'learn',
+      breadcrumbs: false,
+      routeBasePath: 'learn',
+      sidebarPath: require.resolve('./learn-sidebars.js'),
+    },
+  ],
+  // [
+  //   '@docusaurus/plugin-content-docs',
+  //   {
+  //     id: 'apis',
+  //     path: 'apis',
+  //     breadcrumbs: false,
+  //     routeBasePath: 'apis',
+  //     sidebarPath: require.resolve('./apiSidebar.js'),
+  //   },
+  // ],
 ];
 
 for (const property in components) {
@@ -76,12 +96,10 @@ const config = {
       /** @type {import('@docusaurus/preset-classic').Options} */
       ({
         docs: {
-          docLayoutComponent: '../src/theme/DocPage',
-          id: 'learn',
-          path: 'learn',
-          routeBasePath: 'learn',
           breadcrumbs: false,
-          sidebarPath: require.resolve('./learn-sidebars.js'),
+          sidebarPath: require.resolve('./sidebars.js'),
+          path: 'docs',
+          routeBasePath: 'docs',
         },
         blog: {
           showReadingTime: false,
@@ -93,6 +111,24 @@ const config = {
           customCss: require.resolve('./src/css/custom.css'),
         },
       }),
+    ],
+    [
+      'redocusaurus',
+      {
+        // Plugin Options for loading OpenAPI files
+        specs: [
+          {
+            id: 'ssi-sdk',
+            spec: 'https://raw.githubusercontent.com/TBD54566975/ssi-service/main_swagger/doc/swagger.yaml',
+            route: '/docs/apis/ssi-sdk',
+          },
+        ],
+        // Theme Options for modifying how redoc renders them
+        theme: {
+          // Change with your site colors
+          primaryColor: '#1890ff',
+        },
+      },
     ],
   ],
 
@@ -135,17 +171,22 @@ const config = {
             label: 'Blog',
             position: 'left',
           },
-
           {
             to: '/events',
             label: 'Events',
             position: 'left',
           },
-
+          {
+            type: 'doc',
+            docId: 'intro',
+            to: '/docs',
+            label: 'Docs',
+            position: 'left',
+          },
           {
             to: 'https://tbd.website',
-            label: 'TBD Home',
             position: 'right',
+            label: 'TBD Home',
           },
         ],
       },

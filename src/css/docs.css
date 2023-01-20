@@ -48,7 +48,7 @@ html.plugin-docs .navbar-sidebar
   .clean-btn.navbar-sidebar__back::before {
   display: inline-block;
   content: url('/img/arrow-yellow.svg');
-  transform: rotate(270deg);
+
   position: relative;
 }
 
