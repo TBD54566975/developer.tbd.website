@@ -26,6 +26,8 @@ This can have a few advantages but the interesting thing for us is that this can
 
 The [SSI-SDK](https://github.com/TBD54566975/ssi-sdk) is an implementation of a lot of standards for self soverign identity, so it is a great candidate to expose via WASM to web apps. 
 
+<!--truncate-->
+
 Now there is a whole lot of (lets face it: tedious) machinery to get wasm to be compiled from go (ok if you are really curious you can [read the code](https://github.com/TBD54566975/ssi-sdk/pull/265/)), but the upshot of it is that there is a .wasm file produced which when consumed in just the right way in a web page, allows you to call functions from javascript, that look and feel like javascript, but are actually running in the web-assembly machiner (and compiled down from golang).
 
 Say you had a function in golang land which looked like this: 
