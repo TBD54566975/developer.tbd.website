@@ -1,8 +1,8 @@
-html.plugin-docs body {
+html.docs-doc-id-intro body {
   background-color: #1C1C1C;
 }
 
-html.plugin-docs .navbar {
+html.docs-doc-id-intro .navbar {
   border-bottom: 2px solid var(--color-yellow);
   height: fit-content;
   padding-bottom: 0px;
@@ -12,8 +12,7 @@ html.plugin-docs .navbar {
   background-color: #1C1C1C;
 }
 
-html.plugin-docs .navbar__item {
-    color: var(--color-yellow);
+html.docs-doc-id-intro .navbar__item {
     font-size: 1.5rem;
     font-weight: 700;
     padding-bottom: 0px;
@@ -22,28 +21,28 @@ html.plugin-docs .navbar__item {
     padding-top: 0px;
 }
 
-html.plugin-docs .navbar__items {
+html.docs-doc-id-intro .navbar__items {
     align-items: center;
 }
 
-html.plugin-docs .navbar__logo {
+html.docs-doc-id-intro .navbar__logo {
     margin-bottom: 1.5rem;
     margin-left: 1.5rem;
     height: 1.5rem;
 }
 
-html.plugin-docs .navbar,
+html.docs-doc-id-intro .navbar,
 .main-wrapper {
   margin: 0 auto;
   width: 100%;
 }
 
-html.plugin-docs #__docusaurus {
+html.docs-doc-id-intro #__docusaurus {
   padding-left: 1.5rem;
   padding-right: 1.5rem;
 }
 
-html.plugin-docs .navbar-sidebar
+html.docs-doc-id-intro .navbar-sidebar
   .navbar-sidebar__item:last-child
   .clean-btn.navbar-sidebar__back::before {
   display: inline-block;
@@ -52,32 +51,32 @@ html.plugin-docs .navbar-sidebar
   position: relative;
 }
 
-html.plugin-docs aside .menu__link {
+html.docs-doc-id-intro aside .menu__link {
   color: var(--ifm-menu-color);
   padding-top: 0rem;
   padding-bottom: 0rem;
   height: 18px;
 }
 
-html.plugin-docs aside aside .menu__link {
+html.docs-doc-id-intro aside aside .menu__link {
   padding-left: 0;
 }
 
-html.plugin-docs aside aside .menu__link li a {
+html.docs-doc-id-intro aside aside .menu__link li a {
   padding-left: 0;
 }
 
-html.plugin-docs aside aside .menu__link--active {
+html.docs-doc-id-intro aside aside .menu__link--active {
   padding-left: 0;
 }
 
-html.plugin-docs .thin-scrollbar {
+html.docs-doc-id-intro .thin-scrollbar {
   color: white;
   letter-spacing: 1px;
   margin-top: 24px;
 }
 
-html.plugin-docs aside .sidebar_node_modules-\@docusaurus-theme-classic-lib-next-theme-DocSidebar-Desktop-styles-module {
+html.docs-doc-id-intro aside .sidebar_node_modules-\@docusaurus-theme-classic-lib-next-theme-DocSidebar-Desktop-styles-module {
     top: auto;
 }
 
@@ -259,4 +258,88 @@ ul.table-of-contents li code {
   margin: 0;
   padding: 0;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* API docs */
+
+html.docs-doc-id\/index body {
+  background-color: #1C1C1C;
+}
+
+html.docs-doc-id\/index .navbar {
+  border-bottom: 2px solid var(--color-yellow);
+  height: fit-content;
+  padding-bottom: 0px;
+  padding-left: 0px;
+  padding-right: 0px;
+  padding-top: 0px;
+  background-color: #1C1C1C;
+}
+
+html.docs-doc-id\/index .navbar__item {
+    font-size: 1.5rem;
+    font-weight: 700;
+    padding-bottom: 0px;
+    padding-left: 0px;
+    padding-right: 0px;
+    padding-top: 0px;
+}
+
+html.docs-doc-id\/index .navbar__items {
+    align-items: center;
+}
+
+html.docs-doc-id\/index .navbar__logo {
+    margin-bottom: 1.5rem;
+    margin-left: 1.5rem;
+    height: 1.5rem;
+}
+
+html.docs-doc-id\/index .navbar,
+.main-wrapper {
+  margin: 0 auto;
+  width: 100%;
+}
+
+html.docs-doc-id\/index #__docusaurus {
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+html.docs-doc-id\/index .navbar-sidebar
+  .navbar-sidebar__item:last-child
+  .clean-btn.navbar-sidebar__back::before {
+  display: inline-block;
+  content: url('/img/arrow-yellow.svg');
+
+  position: relative;
+}
+
+html.docs-doc-id\/index aside .menu__link {
+  color: var(--ifm-menu-color);
+  padding-top: 0rem;
+  padding-bottom: 0rem;
+  height: 18px;
+}
+
+html.docs-doc-id\/index aside aside .menu__link {
+  padding-left: 0;
+}
+
+html.docs-doc-id\/index aside aside .menu__link li a {
+  padding-left: 0;
+}
+
+html.docs-doc-id\/index aside aside .menu__link--active {
+  padding-left: 0;
+}
+
+html.docs-doc-id\/index .thin-scrollbar {
+  color: white;
+  letter-spacing: 1px;
+  margin-top: 24px;
+}
+
+html.docs-doc-id\/index aside .sidebar_node_modules-\@docusaurus-theme-classic-lib-next-theme-DocSidebar-Desktop-styles-module {
+    top: auto;
 }
