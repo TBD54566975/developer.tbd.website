@@ -33,9 +33,6 @@ ul.table-of-contents li code {
   line-height: 1.375rem;
 }
 
-.table-of-contents__left-border {
-  border-left: 2px solid var(--ifm-toc-border-color) !important;
-}
 
 .pagination-nav__sublabel {
   display: none;

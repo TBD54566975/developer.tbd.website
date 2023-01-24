@@ -1,8 +1,10 @@
-html.docs-doc-id-intro body {
+html.plugin-docs body {
   background-color: #1C1C1C;
 }
 
-html.docs-doc-id-intro .navbar {
+
+
+html.plugin-docs .navbar {
   border-bottom: 2px solid var(--color-yellow);
   height: fit-content;
   padding-bottom: 0px;
@@ -12,7 +14,7 @@ html.docs-doc-id-intro .navbar {
   background-color: #1C1C1C;
 }
 
-html.docs-doc-id-intro .navbar__item {
+html.plugin-docs .navbar__item {
     font-size: 1.5rem;
     font-weight: 700;
     padding-bottom: 0px;
@@ -21,28 +23,27 @@ html.docs-doc-id-intro .navbar__item {
     padding-top: 0px;
 }
 
-html.docs-doc-id-intro .navbar__items {
-    align-items: center;
+html.plugin-docs .navbar__items {
+align-items: center;
 }
 
-html.docs-doc-id-intro .navbar__logo {
+html.plugin-docs .navbar__logo {
     margin-bottom: 1.5rem;
     margin-left: 1.5rem;
     height: 1.5rem;
 }
 
-html.docs-doc-id-intro .navbar,
+html.plugin-docs .navbar,
 .main-wrapper {
-  margin: 0 auto;
   width: 100%;
 }
 
-html.docs-doc-id-intro #__docusaurus {
+html.plugin-docs #__docusaurus {
   padding-left: 1.5rem;
   padding-right: 1.5rem;
 }
 
-html.docs-doc-id-intro .navbar-sidebar
+html.plugin-docs .navbar-sidebar
   .navbar-sidebar__item:last-child
   .clean-btn.navbar-sidebar__back::before {
   display: inline-block;
@@ -51,32 +52,32 @@ html.docs-doc-id-intro .navbar-sidebar
   position: relative;
 }
 
-html.docs-doc-id-intro aside .menu__link {
+html.plugin-docs aside .menu__link {
   color: var(--ifm-menu-color);
   padding-top: 0rem;
   padding-bottom: 0rem;
   height: 18px;
 }
 
-html.docs-doc-id-intro aside aside .menu__link {
+html.plugin-docs aside aside .menu__link {
   padding-left: 0;
 }
 
-html.docs-doc-id-intro aside aside .menu__link li a {
+html.plugin-docs aside aside .menu__link li a {
   padding-left: 0;
 }
 
-html.docs-doc-id-intro aside aside .menu__link--active {
+html.plugin-docs aside aside .menu__link--active {
   padding-left: 0;
 }
 
-html.docs-doc-id-intro .thin-scrollbar {
+html.plugin-docs .thin-scrollbar {
   color: white;
   letter-spacing: 1px;
   margin-top: 24px;
 }
 
-html.docs-doc-id-intro aside .sidebar_node_modules-\@docusaurus-theme-classic-lib-next-theme-DocSidebar-Desktop-styles-module {
+html.plugin-docs aside .sidebar_node_modules-\@docusaurus-theme-classic-lib-next-theme-DocSidebar-Desktop-styles-module {
     top: auto;
 }
 
@@ -169,46 +170,41 @@ article .markdown p code {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.thin-scrollbar ul li a {
+html.plugin-docs .thin-scrollbar ul li a {
   color: white;
 }
 
-article header h1 {
+/* html.plugin-docs article header h1 {
   font-weight: var(--typography-h1-d-font-weight);
   font-size: var(--typography-h1-d-font-size);
   line-height: var(--typography-h1-d-line-height);
   letter-spacing: 1px;
   color: var(--color-yellow)
-}
+} */
 
-article time {
+html.plugin-docs article time {
   color: white;
 }
 
-.avatar {
+html.plugin-docs .avatar {
   color: white;
 }
 
-.navbar__link {
+html.plugin-docs .navbar__link {
   color: white;
   font-size: 1.2rem !important;
 }
 
-.navbar__link:hover {
+html.plugin-docs .navbar__link:hover {
   color: var(--color-yellow);
 }
 
-.navbar__link--active {
+html.plugin-docs .navbar__link--active {
   color: var(--color-yellow);
 }
 
 .thin-scrollbar ul li a:hover {
   color: var(--color-yellow);
-}
-
-.thin-scrollbar {
-  border-right: 1px solid var(--color-white);
-
 }
 
 .sidebarItemLinkActive_node_modules-\@docusaurus-theme-classic-lib-next-theme-BlogSidebar-styles-module {
@@ -218,10 +214,10 @@ article time {
 article h2 {
   color: var(--color-yellow);
 }
-
+/* 
 .markdown h1:first-child {
   font-size: 1.8rem;
-}
+} */
 
 
 ul.table-of-contents li a code,
@@ -236,6 +232,10 @@ ul.table-of-contents li code {
   color: var(--color-yellow);
   text-decoration: none;
   font-weight: 700 !important;
+}
+
+.table-of-contents__link {
+  text-decoration: none !important;
 }
 
 .table-of-contents a strong {
@@ -253,7 +253,7 @@ ul.table-of-contents li code {
 }
 
 .table-of-contents__left-border {
-  border-left: 2px solid white !important;
+  border-left: 1px solid var(--color-white);
 }
 
 .table-of-contents__left-border li {
@@ -299,7 +299,6 @@ html.docs-doc-id\/index .navbar__logo {
 
 html.docs-doc-id\/index .navbar,
 .main-wrapper {
-  margin: 0 auto;
   width: 100%;
 }
 
@@ -343,4 +342,8 @@ html.docs-doc-id\/index .thin-scrollbar {
 
 html.docs-doc-id\/index aside .sidebar_node_modules-\@docusaurus-theme-classic-lib-next-theme-DocSidebar-Desktop-styles-module {
     top: auto;
+}
+
+.theme-doc-sidebar-container {
+  border-right: 1px solid gray !important;
 }
