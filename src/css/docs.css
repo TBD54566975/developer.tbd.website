@@ -81,6 +81,10 @@ html.plugin-docs aside .sidebar_node_modules-\@docusaurus-theme-classic-lib-next
     top: auto;
 }
 
+.sidebar_RiAD {
+  top: 0 !important;
+}
+
 @media (min-width: 997px) {
   aside.docSidebarContainer_src-layout-DocPage-styles-module,
   aside.theme-doc-sidebar-container {
@@ -191,8 +195,7 @@ html.plugin-docs .avatar {
 }
 
 html.plugin-docs .navbar__link {
-  color: white;
-  font-size: 1.2rem !important;
+  font-size: 18px;
 }
 
 html.plugin-docs .navbar__link:hover {

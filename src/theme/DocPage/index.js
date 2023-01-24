@@ -4,7 +4,7 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import renderRoutes from '@docusaurus/renderRoutes';
 import Layout from '@theme/Layout';
 import DocSidebar from '@theme/DocSidebar';
@@ -42,13 +42,18 @@ function DocPageContent({
 
     setHiddenSidebarContainer((value) => !value);
   }, [hiddenSidebar]);
+
+  useEffect(() => {
+    const currentUrl = new URL(window.location.href);
+    console.log(currentUrl);
+  }, []);
   return (
     <>
       <SearchMetadata
         version={version}
         tag={docVersionSearchTag(pluginId, version)}
       />
-      <Layout>
+      <Layout wrapperClassName="test">
         <div className={styles.docPage}>
           <BackToTopButton />
 
