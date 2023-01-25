@@ -20,12 +20,13 @@ html.plugin-docs.plugin-id-default .navbar {
   background-color: black;
 }
 
+html.plugin-docs.plugin-id-default .navbar__items,
 html.plugin-docs.plugin-id-default .navbar__items--right {
   align-items: baseline;
 }
 
 html.plugin-docs.plugin-id-default .navbar__item {
-  padding-top: 20px
+  padding-top: 24px
 }
 
 html.plugin-docs.plugin-id-default .navbar__logo {
@@ -52,7 +53,6 @@ html.plugin-docs.plugin-id-default .navbar-sidebar
   .clean-btn.navbar-sidebar__back::before {
   display: inline-block;
   content: url('/img/arrow-yellow.svg');
-
   position: relative;
 }
 
