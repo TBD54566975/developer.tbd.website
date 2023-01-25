@@ -8,6 +8,7 @@ html.plugin-docs.plugin-id-default #__docusaurus {
 
 html.plugin-docs.plugin-id-default .main-wrapper, html.plugin-docs.plugin-id-default .navbar {
   max-width: initial !important;
+  margin-top: 2rem;
 }
 
 html.plugin-docs.plugin-id-default .navbar {
