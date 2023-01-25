@@ -85,7 +85,7 @@ html.plugin-docs.plugin-id-default aside .sidebar_node_modules-\@docusaurus-them
     top: auto;
 }
 
-.sidebar_RiAD {
+html.plugin-docs.plugin-id-default .sidebar_RiAD {
   top: 0 !important;
 }
 
