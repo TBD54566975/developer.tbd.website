@@ -27,4 +27,6 @@
 
 @import '_theme_overrides.css';
 
-@import 'docs.css'
+@import 'docs.css';
+
+@import 'swagger-docs.css'

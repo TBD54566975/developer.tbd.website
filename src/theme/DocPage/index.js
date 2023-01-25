@@ -43,9 +43,14 @@ function DocPageContent({
     setHiddenSidebarContainer((value) => !value);
   }, [hiddenSidebar]);
 
+  const [pageUrl, setPageUrl] = useState('');
+
   useEffect(() => {
     const currentUrl = new URL(window.location.href);
-    console.log(currentUrl);
+    if (currentUrl.pathname.includes('docs')) {
+      // setPageUrl('docs-only');
+      document.documentElement.classList.add('docs-only');
+    }
   }, []);
   return (
     <>
@@ -53,7 +58,7 @@ function DocPageContent({
         version={version}
         tag={docVersionSearchTag(pluginId, version)}
       />
-      <Layout wrapperClassName="test">
+      <Layout>
         <div className={styles.docPage}>
           <BackToTopButton />
 

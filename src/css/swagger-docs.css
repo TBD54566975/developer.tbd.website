@@ -1,10 +1,10 @@
-html.docs-only body {
+html.plugin-redoc body {
   background-color: #1C1C1C;
 }
 
 
 
-html.docs-only .navbar {
+html.plugin-redoc .navbar {
   border-bottom: 2px solid var(--color-yellow);
   height: fit-content;
   padding-bottom: 0px;
@@ -14,7 +14,7 @@ html.docs-only .navbar {
   background-color: #1C1C1C;
 }
 
-html.docs-only .navbar__item {
+html.plugin-redoc .navbar__item {
     font-size: 1.5rem;
     padding-bottom: 0px;
     padding-left: 0px;
@@ -22,27 +22,35 @@ html.docs-only .navbar__item {
     padding-top: 0px;
 }
 
-html.docs-only .navbar__items {
+html.plugin-redoc .navbar__items {
 align-items: center;
 }
 
-html.docs-only .navbar__logo {
+html.plugin-redoc .navbar__logo {
     margin-bottom: 1.5rem;
     margin-left: 1.5rem;
     height: 1.5rem;
 }
 
-html.docs-only .navbar,
+html.plugin-redoc .navbar,
 .main-wrapper {
   width: 100%;
 }
 
-html.docs-only #__docusaurus {
+html.plugin-redoc body p {
+    color: white;
+}
+
+html.plugin-redoc body span {
+    color: var(--ifm-menu-color);
+}
+
+html.plugin-redoc #__docusaurus {
   padding-left: 1.5rem;
   padding-right: 1.5rem;
 }
 
-html.docs-only .navbar-sidebar
+html.plugin-redoc .navbar-sidebar
   .navbar-sidebar__item:last-child
   .clean-btn.navbar-sidebar__back::before {
   display: inline-block;
@@ -51,32 +59,32 @@ html.docs-only .navbar-sidebar
   position: relative;
 }
 
-html.docs-only aside .menu__link {
+html.plugin-redoc aside .menu__link {
   color: var(--ifm-menu-color);
   padding-top: 0rem;
   padding-bottom: 0rem;
   height: 18px;
 }
 
-html.docs-only aside aside .menu__link {
+html.plugin-redoc aside aside .menu__link {
   padding-left: 0;
 }
 
-html.docs-only aside aside .menu__link li a {
+html.plugin-redoc aside aside .menu__link li a {
   padding-left: 0;
 }
 
-html.docs-only aside aside .menu__link--active {
+html.plugin-redoc aside aside .menu__link--active {
   padding-left: 0;
 }
 
-html.docs-only .thin-scrollbar {
+html.plugin-redoc .thin-scrollbar {
   color: white;
   letter-spacing: 1px;
   margin-top: 24px;
 }
 
-html.docs-only aside .sidebar_node_modules-\@docusaurus-theme-classic-lib-next-theme-DocSidebar-Desktop-styles-module {
+html.plugin-redoc aside .sidebar_node_modules-\@docusaurus-theme-classic-lib-next-theme-DocSidebar-Desktop-styles-module {
     top: auto;
 }
 
@@ -173,35 +181,43 @@ article .markdown p code {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-html.docs-only .thin-scrollbar ul li a {
+html.plugin-redoc .thin-scrollbar ul li a {
   color: white;
 }
 
-/* html.docs-only article header h1 {
+html.plugin-redoc h1 {
   font-weight: var(--typography-h1-d-font-weight);
   font-size: var(--typography-h1-d-font-size);
   line-height: var(--typography-h1-d-line-height);
   letter-spacing: 1px;
   color: var(--color-yellow)
-} */
+}
 
-html.docs-only article time {
+html.plugin-redoc h5 {
+  font-weight: var(--typography-h5-d-font-weight);
+  font-size: var(--typography-h5-d-font-size);
+  line-height: var(--typography-h5-d-line-height);
+  letter-spacing: 1px;
+  color: var(--color-yellow) !important;
+}
+
+html.plugin-redoc article time {
   color: white;
 }
 
-html.docs-only .avatar {
+html.plugin-redoc .avatar {
   color: white;
 }
 
-html.docs-only .navbar__link {
+html.plugin-redoc .navbar__link {
   font-size: 18px;
 }
 
-html.docs-only .navbar__link:hover {
+html.plugin-redoc .navbar__link:hover {
   color: var(--color-yellow);
 }
 
-html.docs-only .navbar__link--active {
+html.plugin-redoc .navbar__link--active {
   color: var(--color-yellow);
 }
 
