@@ -2,7 +2,13 @@ html.plugin-docs.plugin-id-default body {
   background-color: #1C1C1C;
 }
 
+html.plugin-docs.plugin-id-default #__docusaurus {
+  padding: 0 !important;
+}
 
+html.plugin-docs.plugin-id-default .main-wrapper, html.plugin-docs.plugin-id-default .navbar {
+  max-width: initial !important;
+}
 
 html.plugin-docs.plugin-id-default .navbar {
   border-bottom: 2px solid var(--color-yellow);
@@ -11,7 +17,15 @@ html.plugin-docs.plugin-id-default .navbar {
   padding-left: 0px;
   padding-right: 0px;
   padding-top: 0px;
-  background-color: black
+  background-color: black;
+}
+
+html.plugin-docs.plugin-id-default .navbar__items--right {
+  align-items: baseline;
+}
+
+html.plugin-docs.plugin-id-default .navbar__item {
+  padding-top: 20px
 }
 
 html.plugin-docs.plugin-id-default .navbar__logo {
@@ -23,6 +37,10 @@ html.plugin-docs.plugin-id-default .navbar__logo {
 
 html.plugin-docs.plugin-id-default .navbar__link {
   padding-bottom: 2rem;
+}
+
+html.plugin-docs.plugin-id-default .navbar__link:last-child {
+  padding-right: .5rem
 }
 
 html.plugin-docs.plugin-id-default .navbar__link:active {
@@ -72,15 +90,15 @@ html.plugin-docs.plugin-id-default aside .sidebar_node_modules-\@docusaurus-them
 }
 
 @media (min-width: 997px) {
-  aside.docSidebarContainer_src-layout-DocPage-styles-module,
-  aside.theme-doc-sidebar-container {
+html.plugin-docs.plugin-id-default aside.docSidebarContainer_src-layout-DocPage-styles-module,
+ html.plugin-docs.plugin-id-default aside.theme-doc-sidebar-container {
     border-right: 1px solid var(--color-white);
     margin-right: 1.5rem !important;
   }
 }
 
 @media (min-width: 997px) {
-  .menu_node_modules-\@docusaurus-theme-classic-lib-next-theme-DocSidebar-Desktop-Content-styles-module {
+ html.plugin-docs.plugin-id-default .menu_node_modules-\@docusaurus-theme-classic-lib-next-theme-DocSidebar-Desktop-Content-styles-module {
     flex-grow: 1;
     padding-left: 0rem !important;
     font-size: large;
@@ -152,7 +170,7 @@ article .markdown p code {
   text-decoration: none;
 }
 
-.thin-scrollbar {
+html.plugin-docs.plugin-id-default .thin-scrollbar {
   color: white;
   letter-spacing: 1px;
   margin-top: 24px;
@@ -213,40 +231,40 @@ html.plugin-docs.plugin-id-default ul.table-of-contents li code {
   background-color: transparent;
 }
 
-.table-of-contents__link:hover,
-.table-of-contents__link:hover code,
-.table-of-contents__link--active,
-.table-of-contents__link--active code {
+html.plugin-docs.plugin-id-default .table-of-contents__link:hover,
+html.plugin-docs.plugin-id-default .table-of-contents__link:hover code,
+html.plugin-docs.plugin-id-default .table-of-contents__link--active,
+html.plugin-docs.plugin-id-default .table-of-contents__link--active code {
   color: var(--color-yellow);
   text-decoration: none;
   text-decoration: underline !important;
 }
 
-.table-of-contents__link {
+html.plugin-docs.plugin-id-default .table-of-contents__link {
   text-decoration: none !important;
 }
 
-.table-of-contents a strong {
+html.plugin-docs.plugin-id-default .table-of-contents a strong {
   color: white !important;
 }
 
-.table-of-contents li {
+html.plugin-docs.plugin-id-default .table-of-contents li {
   margin: 0.75rem 1.5rem;
   list-style: none !important;
 }
 
-.table-of-contents__link {
+html.plugin-docs.plugin-id-default .table-of-contents__link {
   font-size: 0.875rem;
   font-weight: 500;
   line-height: 1.375rem;
   text-decoration: none !important;
 }
 
-.table-of-contents__left-border {
+html.plugin-docs.plugin-id-default .table-of-contents__left-border {
   border-left: 1px solid gray !important;
 }
 
-.table-of-contents__left-border li {
+html.plugin-docs.plugin-id-default .table-of-contents__left-border li {
   margin: 0;
   padding: 0;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
