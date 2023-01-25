@@ -4,7 +4,7 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import React, { useState, useCallback, useEffect } from 'react';
+import React, { useState, useCallback, useEffect, useMemo } from 'react';
 import renderRoutes from '@docusaurus/renderRoutes';
 import Layout from '@theme/Layout';
 import DocSidebar from '@theme/DocSidebar';
@@ -42,16 +42,6 @@ function DocPageContent({
 
     setHiddenSidebarContainer((value) => !value);
   }, [hiddenSidebar]);
-
-  const [pageUrl, setPageUrl] = useState('');
-
-  useEffect(() => {
-    const currentUrl = new URL(window.location.href);
-    if (currentUrl.pathname.includes('docs')) {
-      // setPageUrl('docs-only');
-      document.documentElement.classList.add('docs-only');
-    }
-  }, []);
   return (
     <>
       <SearchMetadata

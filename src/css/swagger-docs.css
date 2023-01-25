@@ -249,7 +249,6 @@ ul.table-of-contents li code {
 .table-of-contents__link--active code {
   color: var(--color-yellow);
   text-decoration: none;
-  font-weight: 700 !important;
 }
 
 .table-of-contents__link {
