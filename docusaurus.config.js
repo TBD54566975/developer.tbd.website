@@ -120,7 +120,7 @@ const config = {
           {
             id: 'ssi-sdk',
             spec: 'https://raw.githubusercontent.com/TBD54566975/ssi-service/main_swagger/doc/swagger.yaml',
-            route: '/docs/apis/ssi-sdk',
+            route: '/docs/apis/ssi-service',
           },
         ],
         // Theme Options for modifying how redoc renders them
