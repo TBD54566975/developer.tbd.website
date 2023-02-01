@@ -2,46 +2,85 @@
 sidebar_position: 1
 ---
 
-# Welcome To Web5
+import { ApiCard } from '@site/src/components/ApiCard';
+import { Card } from '@site/src/components/Card';
+import Link from '@docusaurus/Link';
 
-Let's discover **Docusaurus in less than 5 minutes**.
+# Getting Started
 
-## Getting Started
+## Introduction
 
-Get started by **creating a new site**.
+Building an extra decentralized web that puts you in control of your data and identity.
 
-Or **try Docusaurus immediately** with **[docusaurus.new](https://docusaurus.new)**.
+The web democratized the exchange of information, but it's missing a key layer: identity. We struggle to secure personal data with hundreds of accounts and passwords we can’t remember. On the web today, identity and personal data have become the property of third parties.
 
-### What you'll need
+Web5 brings decentralized identity and data storage to your applications. It lets devs focus on creating delightful user experiences, while returning ownership of data and identity to individuals.
 
-- [Node.js](https://nodejs.org/en/download/) version 16.14 or above:
-  - When installing Node.js, you are recommended to check all checkboxes related to dependencies.
+SOURCE CODE: https://github.com/TBD54566975
 
-## Generate a new site
+### Platform Components
 
-Generate a new Docusaurus site using the **classic template**.
+<div className="grid grid-cols-2 gap-4">
 
-The classic template will automatically be added to your project after you run the command:
+  <ApiCard
+    url="/docs/apis/ssi-service"
+    name="SSI Service API"
+  />
+<ApiCard
+  url="https://pkg.go.dev/github.com/TBD54566975/ssi-sdk
+"
+  name="SSI SDK - Go Docs"
+/>
+  <ApiCard
+    url="https://tbd54566975.github.io/dwn-sdk-js/
+"
+    name="DWN JavaScript SDK"
+  />
+</div>
 
-```bash
-npm init docusaurus@latest my-website classic
-```
+### Use Cases
 
-You can type this command into Command Prompt, Powershell, Terminal, or any other integrated terminal of your code editor.
+<div className="grid grid-cols-2 gap-4">
+<Card>
+  <p>Applying for an apartment in web5 manner</p>
 
-The command also installs all necessary dependencies you need to run Docusaurus.
+  <Link href="https://github.com/TBD54566975/ssi-sdk/tree/main/example/usecase/apartment_application">
+  Tutorial >
+  </Link>
+</Card>
 
-## Start your site
+<Card>
+  <p>Issuing employment status credential</p>
 
-Run the development server:
+  <Link  href="https://developer.tbd.website/learn/tutorials/issue-verifiable-credential-manually">
+  Tutorial >
+  </Link>
+</Card>
+</div>
 
-```bash
-cd my-website
-npm run start
-```
+### Quickstart Examples
 
-The `cd` command changes the directory you're working with. In order to work with your newly created Docusaurus site, you'll need to navigate the terminal there.
+<div className="grid grid-cols-2 gap-4">
+<Card>
+  <p>To-Do App</p>
 
-The `npm run start` command builds your website locally and serves it through a development server, ready for you to view at http://localhost:3000/.
+  <Link href="https://github.com/TBD54566975/incubating-web5-labs/tree/main/todo-app">
+  Tutorial >
+  </Link>
+</Card>
 
-Open `docs/intro.md` (this page) and edit some lines: the site **reloads automatically** and displays your changes.
+<Card>
+  <p>Chat App (coming soon)</p>
+</Card>
+</div>
+
+Glossary
+
+- SSI: Self Sovereign Identity
+- DID: Decentralized Identifier
+- VC: Verifiable Credential
+- DWN: Decentralized Web Node
+
+Community
+
+- https://frankhinek.com/getting-started-with-tbds-ssi-service/
