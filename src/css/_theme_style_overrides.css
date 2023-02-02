@@ -20,7 +20,6 @@ ul.table-of-contents li code {
 .table-of-contents__link--active code {
   color: var(--color-yellow);
   text-decoration: none;
-  font-weight: 700 !important;
 }
 
 .table-of-contents li {
@@ -33,9 +32,6 @@ ul.table-of-contents li code {
   line-height: 1.375rem;
 }
 
-.table-of-contents__left-border {
-  border-left: 2px solid var(--ifm-toc-border-color) !important;
-}
 
 .pagination-nav__sublabel {
   display: none;
@@ -178,7 +174,6 @@ article footer .col.text--right.col--3 b {
 
 article footer .col.text--right.col--3 b::after {
   content: url('/img/arrow-blue.svg');
-  transform: rotateZ(90deg);
   transform-origin: 50% 50%;
   display: inline-block;
   position: relative;
@@ -309,9 +304,7 @@ nav .pagination-nav__link {
   padding-right: 0.5rem !important;
 }
 
-details[open] > summary > div > .arrow-container {
-  transform: rotate(180deg);
-}
+
 
 /* Docs */
 
