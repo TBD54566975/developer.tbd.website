@@ -19,6 +19,7 @@ aside .menu__link--sublist-caret:after {
   align-items: center;
   display: flex;
   filter: none;
+  rotate: 90deg;
 }
 
 aside .menu__list {
@@ -66,9 +67,7 @@ aside .menu__list-item--collapsed .menu__list {
 aside .menu__list-item--collapsed .menu__link--sublist:after {
   transform: rotateZ(0deg);
 }
-aside .menu__list-item-collapsible {
-  background-color: var(--color-black) !important;
-}
+
 
 aside .menu__link--active:hover {
   color: var(--color-blue);
@@ -101,7 +100,6 @@ aside .menu__list .menu__list .menu__link:hover::before {
 @media (min-width: 997px) {
   aside.docSidebarContainer_src-layout-DocPage-styles-module,
   aside.theme-doc-sidebar-container {
-    border-right: none !important;
     margin-right: 1.5rem !important;
   }
 }

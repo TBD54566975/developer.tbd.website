@@ -4,7 +4,7 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect, useMemo } from 'react';
 import renderRoutes from '@docusaurus/renderRoutes';
 import Layout from '@theme/Layout';
 import DocSidebar from '@theme/DocSidebar';
@@ -112,7 +112,7 @@ function DocPageContent({
           )}
           <main
             className={clsx(
-              'prose prose-pink dark:prose-invert bg-primary-black',
+              'prose prose-pink dark:prose-invert',
               styles.docMainContainer,
               (hiddenSidebarContainer || !sidebar) &&
                 styles.docMainContainerEnhanced,
