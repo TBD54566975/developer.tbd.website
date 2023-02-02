@@ -1,0 +1,4 @@
+[[redirects]]
+  from = "/learn/tutorials/issue-verifiable-credential-manually/"
+  to = "/docs/tutorials/issue-verifiable-credential-manually/"
+  status = 200
