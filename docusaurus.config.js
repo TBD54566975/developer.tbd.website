@@ -45,16 +45,6 @@ let plugins = [
       sidebarPath: require.resolve('./learn-sidebars.js'),
     },
   ],
-  // [
-  //   '@docusaurus/plugin-content-docs',
-  //   {
-  //     id: 'apis',
-  //     path: 'apis',
-  //     breadcrumbs: false,
-  //     routeBasePath: 'apis',
-  //     sidebarPath: require.resolve('./apiSidebar.js'),
-  //   },
-  // ],
 ];
 
 for (const property in components) {
