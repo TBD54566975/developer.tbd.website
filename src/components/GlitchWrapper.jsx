@@ -1,7 +1,7 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
-import { Illustration } from '../Illustration';
-import { getGlitchMap } from '../../util/glitches';
+import Illustration from './Illustration';
+import { getGlitchMap } from '../util/glitches';
 
 const randomIntNumber = (min, max) => {
   return Math.floor(Math.random() * (max - min) + min);

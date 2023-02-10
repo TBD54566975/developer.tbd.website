@@ -1,7 +1,7 @@
 import React from 'react';
 import { EventCard } from '../EventCard';
 import PropTypes from 'prop-types';
-import { Divider } from '../Divider';
+import Divider from './Divider';
 const EventCardList = ({ items }) => {
   const learnList = items.map((item) => {
     return { ...item.customProps, url: item.href, title: item.label };

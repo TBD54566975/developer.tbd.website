@@ -1,7 +1,7 @@
 import React from 'react';
-import { Project } from '../Project';
+import Project from './Project';
 import PropTypes from 'prop-types';
-import { Divider } from '../Divider';
+import Divider from './Divider';
 const ProjectList = ({ title, projects, growToFit }) => {
   let classGrow =
     'grid grid-cols-1 tablet:grid-cols-[repeat(auto-fit,minmax(20.75rem,1fr))]';

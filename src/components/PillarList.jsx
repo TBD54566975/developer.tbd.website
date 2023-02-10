@@ -1,7 +1,7 @@
 import React from 'react';
-import Pillar from '../Pillar/Pillar';
+import Pillar from './Pillar';
 import PropTypes from 'prop-types';
-import { Divider } from '../Divider';
+import Divider from './Divider';
 const PillarList = ({ title, pillars }) => {
   return (
     <div className="not-prose">

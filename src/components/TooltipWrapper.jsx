@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Tooltip } from '../Tooltip';
+import Tooltip from './Tooltip';
 import { useTooltipTrigger } from '@react-aria/tooltip';
 import { useTooltipTriggerState } from '@react-stately/tooltip';
-import { Illustration } from '../Illustration';
+import Illustration from './Illustration';
 
 export default function TooltipWrapper(props) {
   let state = useTooltipTriggerState(props);
