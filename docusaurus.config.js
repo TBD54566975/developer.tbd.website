@@ -32,17 +32,27 @@ const config = {
     locales: ['en'],
   },
   plugins: [
-    async function myPlugin() {
-      return {
-        name: 'docusaurus-tailwindcss',
-        configurePostCss(postcssOptions) {
-          // Appends TailwindCSS and AutoPrefixer.
-          postcssOptions.plugins.push(require('tailwindcss'));
-          postcssOptions.plugins.push(require('autoprefixer'));
-          return postcssOptions;
-        },
-      };
-    },
+    'docusaurus-tailwindcss',
+    [
+      '@docusaurus/plugin-content-docs',
+      {
+        id: 'events',
+        path: 'events',
+        breadcrumbs: false,
+        routeBasePath: 'events',
+        sidebarPath: require.resolve('./event-sidebars.js'),
+      },
+    ],
+    [
+      '@docusaurus/plugin-content-docs',
+      {
+        id: 'learn',
+        path: 'learn',
+        breadcrumbs: false,
+        routeBasePath: 'learn',
+        sidebarPath: require.resolve('./learn-sidebars.js'),
+      },
+    ],
   ],
   presets: [
     [
@@ -68,6 +78,24 @@ const config = {
         },
       }),
     ],
+    [
+      'redocusaurus',
+      {
+        // Plugin Options for loading OpenAPI files
+        specs: [
+          {
+            id: 'ssi-sdk',
+            spec: 'https://raw.githubusercontent.com/TBD54566975/ssi-service/main_swagger/doc/swagger.yaml',
+            route: '/docs/apis/ssi-service',
+          },
+        ],
+        // Theme Options for modifying how redoc renders them
+        theme: {
+          // Change with your site colors
+          primaryColor: '#1890ff',
+        },
+      },
+    ],
   ],
 
   themeConfig:
@@ -83,16 +111,44 @@ const config = {
         },
         items: [
           {
+            to: '/open-source',
+            label: 'Open Source',
+            position: 'left',
+          },
+
+          {
+            to: '/projects',
+            label: 'Projects',
+            position: 'left',
+          },
+
+          {
+            to: '/learn',
+            label: 'Learn',
+            position: 'left',
+          },
+
+          {
+            to: '/blog',
+            label: 'Blog',
+            position: 'left',
+          },
+          {
+            to: '/events',
+            label: 'Events',
+            position: 'left',
+          },
+          {
             type: 'doc',
             docId: 'intro',
+            to: '/docs',
+            label: 'Docs',
             position: 'left',
-            label: 'Tutorial',
           },
-          { to: '/blog', label: 'Blog', position: 'left' },
           {
-            href: 'https://github.com/facebook/docusaurus',
-            label: 'GitHub',
+            to: 'https://tbd.website',
             position: 'right',
+            label: 'TBD Home',
           },
         ],
       },

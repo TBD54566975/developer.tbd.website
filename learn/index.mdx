@@ -1,0 +1,10 @@
+---
+title: 'Learn Portal'
+---
+
+import { useCurrentSidebarCategory } from '@docusaurus/theme-common';
+import LearnCardList from '@site/src/components/LearnCardList';
+
+Whether you're looking to learn more about TBD projects and components, hear discussions from industry leaders about decentralized technologies, or get your hands dirty with step-by-step tutorials, we have you covered.
+
+<LearnCardList items={useCurrentSidebarCategory().items} />

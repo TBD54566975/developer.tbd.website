@@ -1,0 +1,50 @@
+---
+title: 'Web5: Ask Me Anything'
+sidebar_position: 4
+sidebar_custom_props:
+  type: audio
+  duration: '1:20:09'
+  guestslist: [Daniel Buchner, Moe Jangda, Henry Tsia]
+  description: 'Members of the TBD Team answer questions about Web5.
+'
+  thumbnail: /img/learn/web5_ama_banner.png
+---
+
+import Audio from '@site/src/components/Audio';
+import BiographyList from '@site/src/components/BiographyList';
+
+<div className="mb-8">
+  <Audio
+    url="https://soundcloud.com/user-625850228/061722-web5-ama
+"
+  />
+</div>
+
+Members of the TBD Team answer questions about Web5.
+
+<Divider type="dotted" />
+<BiographyList
+  growToFit={false}
+  title="guests"
+  biographies={[
+    {
+      imageUrl: '/img/learn/headshots/daniel_buchner.jpg',
+      headline: 'Daniel Buchner',
+      twitterLink: 'https://twitter.com/csuwildcat',
+      description: 'Head of Decentralized Identity, TBD',
+    },
+    {
+      imageUrl: '/img/learn/headshots/moe_jangda.jpg',
+      headline: 'Moe Jangda',
+      twitterLink: 'https://twitter.com/moe_jangda',
+      description: 'Lead Engineer, Decentralized Web Nodes, TBD',
+    },
+    {
+      imageUrl: '/img/learn/headshots/henry_tsai.jpg',
+      headline: 'Henry Tsai',
+      twitterLink: 'https://twitter.com/TheHenryTsai',
+      description: 'Lead Engineer, Decentralized Identity Protocols, TBD',
+    },
+  ]}
+/>
+<Divider type="dotted" />
