@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
-import { TooltipWrapper } from '../TooltipWrapper';
+import TooltipWrapper from './TooltipWrapper';
 
 const TextWithTooltip = ({ content }) => {
   return (

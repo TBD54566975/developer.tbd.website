@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Divider, HomeListItem } from '../';
+import Divider from './Divider';
+import HomeListItem from './HomeListItem';
 
 const HomeList = ({ features, className }) => {
   return (
