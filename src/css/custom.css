@@ -2,27 +2,37 @@
 @tailwind components;
 @tailwind utilities;
 
+
+@import 'text.css';
+@import 'prose.css';
+@import 'variables.css';
 @import 'layout.css';
 @import 'docs.css';
 @import 'navbar.css';
 @import 'sidebar.css';
-@import 'text.css';
-@import 'prose.css';
+
 
 /* You can override the default Infima variables here. */
 :root {
   --color-black: #000000;
   --color-yellow: #ffec19;
   --color-blue: #24f2ff;
-  --ifm-color-primary: #2e8555;
-  --ifm-color-primary-dark: #29784c;
-  --ifm-color-primary-darker: #277148;
-  --ifm-color-primary-darkest: #205d3b;
-  --ifm-color-primary-light: #33925d;
-  --ifm-color-primary-lighter: #359962;
-  --ifm-color-primary-lightest: #3cad6e;
-  --ifm-code-font-size: 95%;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+}
+
+@layer base {
+  :root {
+    --base: 16px;
+    --baseUnitless: 16;
+    --color-primary-yellow-filter: invert(98%) sepia(34%) saturate(4729%)
+      hue-rotate(335deg) brightness(102%) contrast(107%);
+    --color-primary-cyan-filter: invert(98%) sepia(87%) saturate(4083%)
+      hue-rotate(127deg) brightness(100%) contrast(101%);
+    --color-primary-purple-filter: invert(23%) sepia(98%) saturate(6670%)
+      hue-rotate(273deg) brightness(102%) contrast(103%);
+
+    --max-page-width: 1440px;
+  }
 }
 
 /* For readability concerns, you should choose a lighter palette in dark mode. */
@@ -36,5 +46,6 @@
   --ifm-color-primary-lightest: #fff36d;
   --ifm-background-color: #000000;
   --ifm-navbar-background-color: #000000;
+  --ifm-link-color: var(--color-blue);
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
 }

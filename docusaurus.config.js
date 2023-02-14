@@ -109,10 +109,10 @@ const config = {
         respectPrefersColorScheme: false,
       },
       navbar: {
-        title: 'My Site',
+        style: 'dark',
         logo: {
-          alt: 'My Site Logo',
-          src: 'img/logo.svg',
+          alt: 'TBD-Logo',
+          src: 'img/tbd-logo.svg',
         },
 
         items: [

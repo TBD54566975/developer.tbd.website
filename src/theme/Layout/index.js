@@ -1,6 +1,6 @@
 import React from 'react';
 import Layout from '@theme-original/Layout';
-import GlitchWrapper from '@site/src/components';
+import GlitchWrapper from '@site/src/components/GlitchWrapper';
 import MDXContent from '@theme/MDXContent';
 
 export default function LayoutWrapper(props) {

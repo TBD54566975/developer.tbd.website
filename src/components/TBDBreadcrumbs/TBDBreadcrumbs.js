@@ -6,7 +6,7 @@
  */
 
 import React, { useEffect, useState } from 'react';
-import { ThemeClassNames, useHomePageRoute } from '@docusaurus/theme-common';
+import { ThemeClassNames } from '@docusaurus/theme-common';
 import styles from './styles.module.css';
 import clsx from 'clsx';
 import Link from '@docusaurus/Link';
@@ -71,7 +71,6 @@ function HomeBreadcrumbItem() {
 }
 
 export default function TBDBreadcrumbs() {
-  const homePageRoute = useHomePageRoute();
   let location = useLocation();
   const [breadcrumbs, setBreadcrumbs] = useState([]);
 
@@ -157,7 +156,7 @@ export default function TBDBreadcrumbs() {
         itemScope
         itemType="https://schema.org/BreadcrumbList"
       >
-        {homePageRoute && <HomeBreadcrumbItem />}
+        {/* { <HomeBreadcrumbItem />} */}
         {breadcrumbs.map((item, idx) => (
           <BreadcrumbsItem
             key={idx}

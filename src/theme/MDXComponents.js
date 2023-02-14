@@ -12,8 +12,8 @@ import TwoColumnContainer from '@site/src/components/TwoColumnContainer';
 
 export default {
   ...MDXComponents,
-  TooltipWrapper: TooltipWrapper,
-  ButtonGroup: ButtonGroup,
+  TooltipWrapper,
+  ButtonGroup,
   Actors: Actors,
   ProjectList: ProjectList,
   Divider: Divider,
