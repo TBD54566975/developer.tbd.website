@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Illustration } from '../Illustration';
+import Illustration from './Illustration';
 
 const SmallSocialButton = ({ src, url, altText, title, isBlackWhite }) => {
   return (

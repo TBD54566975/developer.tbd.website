@@ -1,9 +1,7 @@
 import React from 'react';
-import {
-  Illustration,
-  SmallSocialButton,
-  TextLink,
-} from '@site/src/components';
+import Illustration from '../components/Illustration';
+import SmallSocialButton from '../components/SmallSocialButton';
+import TextLink from '../components/TextLink';
 
 export function Footer() {
   const footer = {
@@ -93,7 +91,7 @@ export function Footer() {
         url: 'https://github.com/TBD54566975/',
         altText: 'GitHub button',
         title: 'Go to GitHub',
-      }
+      },
     ],
     isLegal: false,
   };
@@ -105,7 +103,7 @@ export function Footer() {
           <Illustration
             className="relative h-[14px] w-full"
             imgStyle="absolute top-0 left-0 bottom-0 m-auto object-cover max-h-full max-w-full min-h-full min-w-full"
-            img="/static/img/marquee-d-1440.svg"
+            img="static/img/marquee-d-1440.svg"
             accentClass="tbd-white-illustration"
             alt=""
           />
@@ -161,7 +159,7 @@ export function Footer() {
             </div>
           </div>
         </div>
-        <div className="bg-repeat-x h-[10px] bg-[url('/img/footer-bottom-dark.svg')]"></div>
+        <div className="bg-repeat-x h-[10px] bg-[url('/static/img/footer-bottom-dark.svg')]"></div>
       </div>
     </footer>
   );

@@ -1,8 +1,9 @@
 const tokens = require('./src/css/styles');
 
 module.exports = {
+  important: true,
   corePlugins: {
-    preflight: false, // disable Tailwind's reset
+    preflight: true, // disable Tailwind's reset
   },
   content: [
     './src/**/*.{js,jsx,ts,tsx,md,mdx}',

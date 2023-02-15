@@ -6,6 +6,12 @@
   padding-bottom: 0px;
   padding-left: 0px;
   padding-right: 0px;
+  font-family: 'IBM Plex Mono', monospace;
+  line-height: 24px;
+}
+
+.navbar a {
+  text-decoration: none;
 }
 
 .navbar.navbar--dark {
@@ -62,7 +68,7 @@
   padding-top: 1.5rem;
   width: 100%;
   overflow: hidden;
-  background-image: url('/img/mobile-menu-glitch-bottom-dark.svg');
+  background-image: url('/static/img/mobile-menu-glitch-bottom-dark.svg');
   background-repeat: repeat-x;
   background-position: bottom;
   min-height: 26rem;
@@ -107,7 +113,7 @@
   flex-direction: column;
 }
 .navbar-sidebar .navbar-sidebar__item:first-child .menu__list-item:last-child {
-  background-image: url('/img/divider-mobile-menu-dark.svg');
+  background-image: url('/static/img/divider-mobile-menu-dark.svg');
   width: 100%;
   background-repeat: repeat-x;
   padding-top: 1.8rem;
@@ -121,7 +127,7 @@
 }
 
 .navbar-sidebar .navbar-sidebar__item:first-child .menu__link--active::before {
-  content: url('/img/selected-arrow.svg');
+  content: url('/static/img/selected-arrow.svg');
   top: -4px;
   position: relative;
   margin-right: 0.375rem;
@@ -161,7 +167,7 @@
   .navbar__toggle.clean-btn::before {
     width: 1.125rem;
     height: 1.875rem;
-    content: url('/img/menu-mobile.svg');
+    content: url('/static/img/menu-mobile.svg');
   }
   .navbar__item {
     display: none;
@@ -173,7 +179,7 @@
   .clean-btn.navbar-sidebar__close::before {
     width: 1.125rem;
     height: 1.875rem;
-    content: url('/img/close-menu-mobile.svg');
+    content: url('/static/img/close-menu-mobile.svg');
   }
 
   .clean-btn.navbar-sidebar__close svg {
@@ -205,7 +211,7 @@
 }
 
 .navbar-sidebar .navbar-sidebar__item:last-child .menu__caret:before {
-  content: url('/img/arrow-yellow.svg') !important;
+  content: url('/static/img/arrow-yellow.svg') !important;
   top: 3px !important;
   position: relative;
 }
@@ -213,7 +219,7 @@
   .navbar-sidebar__item:last-child
   .menu__list-item--collapsed
   .menu__caret:before {
-  content: url('/img/arrow-yellow.svg') !important;
+  content: url('/static/img/arrow-yellow.svg') !important;
   top: -1px !important;
   position: relative;
 }
@@ -227,7 +233,7 @@
   .menu__list
   .menu__list
   .menu__link.menu__link--active::before {
-  content: url('/img/selected-arrow-yellow.svg');
+  content: url('/static/img/selected-arrow-yellow.svg');
   top: -3px;
   position: relative;
   margin-right: -1.5rem;
@@ -266,7 +272,7 @@
   .navbar-sidebar__item:last-child
   .clean-btn.navbar-sidebar__back::before {
   display: inline-block;
-  content: url('/img/arrow-yellow.svg');
+  content: url('/static/img/arrow-yellow.svg');
 
   position: relative;
   left: -13px;

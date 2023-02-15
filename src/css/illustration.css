@@ -1,0 +1,20 @@
+.tbd-yellow-illustration {
+  filter: var(--color-primary-yellow-filter);
+}
+
+.tbd-cyan-illustration {
+  filter: var(--color-primary-cyan-filter);
+}
+
+.tbd-purple-illustration {
+  filter: var(--color-primary-purple-filter);
+}
+
+.dark .invertDarkMode .tbd-illustration {
+  filter: none;
+}
+
+.tbd-social-icon {
+  min-width: 1.5rem;
+  min-height: 1.5rem;
+}
