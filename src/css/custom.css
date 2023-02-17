@@ -2,6 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,100;0,300;0,400;0,500;0,600;0,700;1,100&display=swap');
+
 
 @import 'text.css';
 @import 'prose.css';
@@ -21,33 +23,17 @@
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
 }
 
-@layer base {
-  :root {
-    --base: 16px;
-    --baseUnitless: 16;
-    --color-primary-yellow-filter: invert(98%) sepia(34%) saturate(4729%)
-      hue-rotate(335deg) brightness(102%) contrast(107%);
-    --color-primary-cyan-filter: invert(98%) sepia(87%) saturate(4083%)
-      hue-rotate(127deg) brightness(100%) contrast(101%);
-    --color-primary-purple-filter: invert(23%) sepia(98%) saturate(6670%)
-      hue-rotate(273deg) brightness(102%) contrast(103%);
-
-    --max-page-width: 1440px;
-  }
-
-  h1, h2, h3, h4, h5, h6 {
-    line-height: 3.5rem;
+h1, h2, h3, h4, h5, h6 {
     font-weight: 700;
-    letter-spacing: -0.02em;
     margin-bottom: 1.5rem;
     color: var(--color-yellow);
     font-family: 'IBM Plex Mono', monospace;
   }
 
-  h1 {
-    font-size: 2.5rem;
-  }
-
+h1 {
+  font-size: 56px;
+  line-height: 70px;
+}
   h2 {
     font-size: 2rem;
   }
@@ -63,6 +49,28 @@
 
   a:hover {
     text-decoration: none;
+  }
+
+@layer base {
+  :root {
+    --base: 16px;
+    --baseUnitless: 16;
+    --color-primary-yellow-filter: invert(98%) sepia(34%) saturate(4729%)
+      hue-rotate(335deg) brightness(102%) contrast(107%);
+    --color-primary-cyan-filter: invert(98%) sepia(87%) saturate(4083%)
+      hue-rotate(127deg) brightness(100%) contrast(101%);
+    --color-primary-purple-filter: invert(23%) sepia(98%) saturate(6670%)
+      hue-rotate(273deg) brightness(102%) contrast(103%);
+
+    --max-page-width: 1440px;
+  }
+  
+  .copy {
+    @apply text-lg;
+  }
+
+  .h2-caps {
+    @apply uppercase font-heading
   }
 
 }

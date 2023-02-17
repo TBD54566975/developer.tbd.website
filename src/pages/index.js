@@ -19,7 +19,10 @@ export default function Home() {
       </Head>
 
       <main>
-        <div className="tablet:max-w-[100%] desktop:max-w-[92%] relative">
+        <div
+          style={{ maxWidth: '92%' }}
+          className="tablet:max-w-[100%] relative"
+        >
           <div className="h1 mb-18 leading-[4.375rem]">
             <Heading />
           </div>
