@@ -32,9 +32,9 @@ const Button = ({
     }
   }, [colorDarkMode]);
 
-  let cssClasses = `w-fit px-4 mb-2 mr-2 button-text border-solid ${
-    imageURL ? 'pt-8 pb-5' : 'pt-6 pb-8'
-  } border-2 hover:translate-x-2 hover:translate-y-2 ${
+  let cssClasses = `w-fit px-[1.375rem] mb-2 mr-2 button-text border-solid ${
+    imageURL ? 'pt-[9px] pb-[11px]' : 'pt-[12px] pb-[14px]'
+  } border-2 hover:translate-x-[4px] hover:translate-y-[4px] ${
     className ? className : ''
   }`;
 
@@ -49,7 +49,7 @@ const Button = ({
       <div className="flex gap-3">
         <img src={imageURL} alt={title} className="w-6 h-6" />
 
-        <span className="relative top-2">{label}</span>
+        <span className="relative top-[1px]">{label}</span>
       </div>
     </div>
   ) : (
@@ -58,7 +58,6 @@ const Button = ({
 
   const link = isExternalLink ? (
     <a
-      style={{ width: 'fit-content' }}
       className="dark w-fit no-underline"
       rel="noopener noreferrer"
       target="_blank"
@@ -75,8 +74,7 @@ const Button = ({
           from: pathname,
         },
       }}
-      style={{ width: 'fit-content' }}
-      className="dark no-underline"
+      className="dark w-[fit-content] no-underline text-[18px] font-medium"
       title={title}
     >
       {linkContent}

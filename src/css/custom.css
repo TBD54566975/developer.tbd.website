@@ -51,6 +51,10 @@ h1 {
     text-decoration: none;
   }
 
+  button {
+    font-weight: 700;
+  }
+
 @layer base {
   :root {
     --base: 16px;
@@ -70,7 +74,7 @@ h1 {
   }
 
   .h2-caps {
-    @apply uppercase font-heading
+    @apply uppercase font-heading text-2xl
   }
 
 }

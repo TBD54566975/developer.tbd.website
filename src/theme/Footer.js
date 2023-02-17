@@ -98,18 +98,18 @@ export function Footer() {
 
   return (
     <footer>
-      <div className="pt-12 tablet:pt-14 desktop:pt-18 pb-24 desktop:pb-24 max-w-container desktop:mx-auto">
+      <div className="pt-12 tablet:pt-14 desktop:pt-18 pb-14 desktop:pb-24 max-w-container desktop:mx-auto">
         <div className="relative h-auto overflow-hidden invertDarkMode bg-primary-yellow p-0.5">
           <Illustration
-            className="relative h-8 w-full"
-            imgStyle="absolute top-0 left-0 bottom-0 m-auto max-h-full max-w-full min-h-full min-w-full"
+            className="relative h-[14px] w-full"
+            imgStyle="absolute top-0 left-0 bottom-0 m-auto object-cover max-h-full max-w-full min-h-full min-w-full"
             img="/img/marquee-d-1440.svg"
             accentClass="tbd-white-illustration"
             alt=""
           />
         </div>
 
-        <div className="flex h-[116px] tablet:h-[132px] desktop:h-52 items-center text-primary-black px-4 tablet:px-6 desktop:px-12 bg-primary-yellow">
+        <div className="flex h-[116px] tablet:h-[132px] desktop:h-[236px] items-center text-primary-black px-4 tablet:px-6 desktop:px-12 bg-primary-yellow">
           <div className="flex items-center align-middle">
             <span className="mr-1 tablet:mr-3">
               <Illustration
@@ -120,7 +120,7 @@ export function Footer() {
             </span>
             <span className="mx-3">
               <Illustration
-                className="relative h-[84px] w-[84px] desktop:w-[140px]"
+                className="relative h-[84px] w-[84px] desktop:w-[140px] desktop:h-[140px] "
                 img={footer.copyrightSignSrc}
                 alt="copyright"
               />
