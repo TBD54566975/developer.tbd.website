@@ -1,6 +1,8 @@
 const tokens = require('./src/css/styles');
 
 module.exports = {
+  mode: 'jit',
+  purge: ['./public/**/*.html', './src/**/*.{js,jsx,ts,tsx}'],
   important: true,
   content: [
     './src/**/*.{js,jsx,ts,tsx,md,mdx}',
