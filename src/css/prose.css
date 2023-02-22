@@ -2,6 +2,7 @@
 .prose.prose-pink {
   width: 100%;
   max-width: none !important;
+  color: var(--color-yellow);
 }
 
 .prose.prose-pink em {
@@ -80,4 +81,11 @@
 
 .prose :where(thead th):not(:where([class~='not-prose'] *)) {
   text-transform: uppercase;
+}
+
+.prose :where(hr):not(:where([class~=not-prose] *)) {
+    border-color: var(--tw-prose-hr);
+    border-top-width: 1px;
+    margin-bottom: 3em;
+    margin-top: 3em;
 }
