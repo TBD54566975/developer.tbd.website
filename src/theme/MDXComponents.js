@@ -20,4 +20,6 @@ export default {
   PillarList: PillarList,
   SwitchIllustration: SwitchIllustration,
   TwoColumnContainer: TwoColumnContainer,
+  p: (props) => <p {...props} className="my-6 copy" />,
+  ul: (props) => <ul {...props} className="list-disc pl-6 copy" />,
 };

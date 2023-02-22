@@ -54,7 +54,7 @@ h1 {
   button {
     font-weight: 700;
   }
-
+  
 @layer base {
   :root {
     --base: 16px;
