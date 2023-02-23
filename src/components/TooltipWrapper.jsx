@@ -24,7 +24,7 @@ export default function TooltipWrapper(props) {
       </button>
       {state.isOpen && (
         <Tooltip state={state} parentRef={parentRef} {...tooltipProps}>
-          <div className="tooltipBorder w-96 pr-5 pt-[1.375rem] pl-5 pb-9 tablet:pb-5">
+          <div className="tooltipBorder w-96 pr-5 pt-[1.375rem] pl-5 pb-9 tablet:pb-5 text-lg">
             <div className="flex px-2 pb-4">
               <div className="-ml-3 pr-4 p-0 h-fit">
                 <Illustration
