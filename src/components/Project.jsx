@@ -12,7 +12,7 @@ const Project = ({
 }) => {
   const Description = description;
   return (
-    <div className="not-prose flex flex-col tablet:h-full tablet:pt-6 tablet:pl-[1.25rem] tablet:pr-6 last:pb-0 tablet:pb-12 tablet:last:pb-12 tablet:border-primary-yellow tablet:border-2 tablet:rounded">
+    <div className="not-prose flex flex-col tablet:h-full tablet:pt-6 tablet:pl-[1.25rem] tablet:pr-6 last:pb-0 tablet:pb-12 tablet:last:pb-12 tablet:border-primary-yellow tablet:border-2 tablet:rounded justify-between">
       <div className="pb-4 tablet:pb-6">
         <img src={icon} alt="" className="my-0" />
       </div>
