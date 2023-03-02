@@ -33,7 +33,7 @@ and Governance model,
 fostering an inclusive community. Incubation projects 
 benefit from TBD’s open source programs including 
 [GitHub](https://github.com/TBD54566975), 
-[TBD Forums](forums.tbd.website), 
+[TBD Forums](https://forums.tbd.website), 
 and our [Discord](https://discord.gg/tbd) server.
 
 When projects reach maturity, they may apply to be 
