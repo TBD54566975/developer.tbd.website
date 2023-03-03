@@ -187,9 +187,9 @@ article header h2 a {
   text-decoration: none;
 }
 
-article header .avatar__intro:only-child span::before {
+/* article header .avatar__intro:only-child span::before {
   content: 'Posted by ';
-}
+} */
 article header .margin-top--md.margin-bottom--sm.row {
   margin-bottom: 16px !important;
 }
@@ -423,7 +423,7 @@ aside.col.col--3 nav ul li {
 
 aside.col.col--3 nav ul li a {
   color: cyan !important;
-  text-decoration: none;;
+  text-decoration: none;
 }
 
 aside.col.col--3 nav ul li a:hover {
@@ -469,4 +469,10 @@ ul.breadcrumbs {
   opacity: 1;
   height: auto;
   width: auto;
+}
+
+
+footer a {
+text-decoration: none;
+font-weight: 500;
 }
