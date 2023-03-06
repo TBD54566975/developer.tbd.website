@@ -475,7 +475,7 @@ footer a {
 }
 
 footer a {
-  padding-bottom: 2rem;
+  border-bottom: 4px solid transparent;
 }
 
 footer a:hover {
