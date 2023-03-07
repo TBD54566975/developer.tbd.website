@@ -11,7 +11,7 @@ export function Footer() {
     links: [
       {
         text: 'Legal',
-        href: 'https://www.tbd.website/legal',
+        href: 'https://www.tbd.website/legal/terms',
       },
       {
         text: 'Code of Conduct',
