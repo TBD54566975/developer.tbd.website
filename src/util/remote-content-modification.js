@@ -27,10 +27,10 @@ const modContent = function (filename, content, contentKey) {
   if (fileData) {
     return {
       content: `${hasMermaid ? 'import { Mermaid } from "@theme/Mermaid";' : ''}
-${fileData.buttons ? 'import { ButtonGroup } from "@site/src/components";' : ''}
+${fileData.buttons ? 'import ButtonGroup from "@site/src/ButtonGroup";' : ''}
 ${
   showBreadCrumbs
-    ? 'import { TBDBreadcrumbs } from "@site/src/components";'
+    ? 'import TBDBreadcrumbs from "@site/src/TBDBreadcrumbs";'
     : ''
 }
 

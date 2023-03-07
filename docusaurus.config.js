@@ -3,97 +3,68 @@
 
 const lightCodeTheme = require('prism-react-renderer/themes/github');
 const darkCodeTheme = require('prism-react-renderer/themes/dracula');
-const { components } = require('./src/content/remote-md.json');
-const modContent = require('./src/util/remote-content-modification.js');
-const metacontent = require('./src/content/global-meta');
-
-let plugins = [
-  async function myPlugin(context, options) {
-    return {
-      name: 'docusaurus-tailwindcss',
-      configurePostCss(postcssOptions) {
-        // Appends TailwindCSS and AutoPrefixer.
-        postcssOptions.plugins.push(require('tailwindcss'));
-        postcssOptions.plugins.push(require('autoprefixer'));
-        return postcssOptions;
-      },
-    };
-  },
-  [
-    require.resolve('docusaurus-gtm-plugin'),
-    {
-      id: 'GTM-5X8H2X3', // GTM Container ID
-    },
-  ],
-  [
-    '@docusaurus/plugin-content-docs',
-    {
-      id: 'events',
-      path: 'events',
-      breadcrumbs: false,
-      routeBasePath: 'events',
-      sidebarPath: require.resolve('./event-sidebars.js'),
-    },
-  ],
-  [
-    '@docusaurus/plugin-content-docs',
-    {
-      id: 'learn',
-      path: 'learn',
-      breadcrumbs: false,
-      routeBasePath: 'learn',
-      sidebarPath: require.resolve('./learn-sidebars.js'),
-    },
-  ],
-];
-
-for (const property in components) {
-  //console.log(`${property}: ${components[property]}`);
-  let plugin = [
-    'docusaurus-plugin-remote-content',
-    {
-      // options here
-      name: components[property]['plugin']['name'], // used by CLI, must be path safe
-      sourceBaseUrl: components[property]['plugin']['sourceBaseUrl'], // the base url for the markdown (gets prepended to all of the documents when fetching)
-      outDir: components[property]['plugin']['outDir'], // the base directory to output to.
-      documents: components[property]['files'].map((data) => {
-        return data.file;
-      }), // the file names to download
-      modifyContent(filename, content) {
-        return modContent(filename, content, components[property]['name']);
-      },
-    },
-  ];
-
-  plugins.push(plugin);
-}
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: `${metacontent.site_name}`,
+  title: `TBD Developer Docs`,
   tagline: '',
   organizationName: 'TBD54566975',
   projectName: 'developer.tbd.website',
   baseUrl: '/',
   url: 'https://developer.tbd.website',
-  onBrokenLinks: 'warn',
+
+  onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
-  favicon: '/img/favicon.ico',
-  plugins: plugins,
+
+  // Even if you don't use internalization, you can use this field to set useful
+  // metadata like html lang. For example, if your site is Chinese, you may want
+  // to replace "en" with "zh-Hans".
+  i18n: {
+    defaultLocale: 'en',
+    locales: ['en'],
+  },
+  plugins: [
+    'docusaurus-tailwindcss',
+    [
+      '@docusaurus/plugin-content-docs',
+      {
+        id: 'events',
+        path: 'events',
+        breadcrumbs: false,
+        routeBasePath: 'events',
+        sidebarPath: require.resolve('./event-sidebars.js'),
+      },
+    ],
+    [
+      '@docusaurus/plugin-content-docs',
+      {
+        id: 'learn',
+        path: 'learn',
+        breadcrumbs: false,
+        routeBasePath: 'learn',
+        sidebarPath: require.resolve('./learn-sidebars.js'),
+      },
+    ],
+  ],
   presets: [
     [
       'classic',
       /** @type {import('@docusaurus/preset-classic').Options} */
       ({
         docs: {
-          breadcrumbs: false,
           sidebarPath: require.resolve('./sidebars.js'),
-          path: 'docs',
-          routeBasePath: 'docs',
+          // Please change this to your repo.
+          // Remove this to remove the "edit this page" links.
+          editUrl:
+            'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
+          breadcrumbs: false,
         },
         blog: {
-          showReadingTime: false,
-          blogListComponent: '../src/theme/BlogListPage',
+          showReadingTime: true,
+          // Please change this to your repo.
+          // Remove this to remove the "edit this page" links.
+          editUrl:
+            'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
           blogSidebarTitle: 'All posts',
           blogSidebarCount: 'ALL',
         },
@@ -125,18 +96,19 @@ const config = {
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
+      // Replace with your project's social card
       colorMode: {
         defaultMode: 'dark',
         disableSwitch: true,
         respectPrefersColorScheme: false,
       },
-
       navbar: {
         style: 'dark',
         logo: {
           alt: 'TBD-Logo',
           src: 'img/tbd-logo.svg',
         },
+
         items: [
           {
             to: '/open-source',
@@ -229,32 +201,6 @@ const config = {
         theme: lightCodeTheme,
         darkTheme: darkCodeTheme,
       },
-      metadata: [
-        {
-          property: 'og:image',
-          content: `${metacontent.ogimage}`,
-        },
-        {
-          name: 'description',
-          content:
-            'We build decentralized platforms, protocols, and tools that empower every individual to own their data and participate in the global economy.',
-        },
-        {
-          property: 'og:description',
-          content:
-            'We build decentralized platforms, protocols, and tools that empower every individual to own their data and participate in the global economy.',
-        },
-        {
-          property: 'og:site_name',
-          content: `${metacontent.site_name}`,
-        },
-        {
-          property: 'keywords',
-          // eslint-disable-next-line prettier/prettier
-          content:
-            'tbd, tbdex, decentralized identifiers, decentralized ids, verifiable credentials, dwp, decentralized web platform, decentralized web nodes, web5, web3, open source, decentralized bitcoin, decentralized crypto, decentralized exchange, decentralized exchanges, decentralized, defi, decentralized finance',
-        },
-      ],
     }),
 };
 

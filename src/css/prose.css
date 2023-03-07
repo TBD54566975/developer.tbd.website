@@ -1,0 +1,91 @@
+.prose,
+.prose.prose-pink {
+  width: 100%;
+  max-width: none !important;
+  color: var(--color-yellow);
+}
+
+.prose.prose-pink em {
+  font-weight: 900;
+}
+
+.prose.prose-pink code {
+  color: var(--color-black) !important;
+}
+
+.prose.prose-pink code a {
+  color: var(--color-black) !important;
+  text-decoration: underline;
+}
+
+.prose.prose-pink code a:hover {
+  color: var(--color-black) !important;
+  text-decoration: none;
+}
+
+.prose.prose-pink a code {
+  color: var(--color-black) !important;
+  text-decoration: underline;
+}
+
+.prose.prose-pink a:hover code {
+  color: var(--color-black) !important;
+  text-decoration: none;
+}
+
+.prose.prose-pink
+  :where(tbody td:first-child):not(:where([class~='not-prose'] *)) {
+  padding-left: 0.5714286em;
+}
+
+.prose.prose-pink
+  :where(tbody td:last-child):not(:where([class~='not-prose'] *)) {
+  padding-right: 0.5714286em;
+}
+
+.prose.prose-pink
+  :where(thead th:first-child):not(:where([class~='not-prose'] *)) {
+  padding-left: 0.5714286em;
+}
+
+.prose.prose-pink
+  :where(thead th:last-child):not(:where([class~='not-prose'] *)) {
+  padding-right: 0.5714286em;
+}
+
+.prose.prose-pink hr {
+  height: 2px;
+  border-width: 0;
+  background-image: url('/static/img/divider-dotted-dark.svg');
+}
+
+.prose.prose-pink hr.bg-dotted-dark {
+  height: 2px;
+  border-width: 0;
+  background-image: url('/static/img/divider-dotted-dark.svg');
+}
+
+.prose.prose-pink hr.bg-slash-dark {
+  height: 8px;
+  border-width: 0;
+  background-image: url('/static/img/divider-slash-dark.svg');
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+  background-color: transparent;
+}
+
+.prose :where(code):not(:where([class~='not-prose'] *)):before,
+.prose :where(code):not(:where([class~='not-prose'] *)):after {
+  content: '' !important;
+}
+
+.prose :where(thead th):not(:where([class~='not-prose'] *)) {
+  text-transform: uppercase;
+}
+
+.prose :where(hr):not(:where([class~=not-prose] *)) {
+    border-color: var(--tw-prose-hr);
+    border-top-width: 1px;
+    margin-bottom: 3em;
+    margin-top: 3em;
+}

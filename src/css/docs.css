@@ -60,7 +60,7 @@ html.plugin-docs.plugin-id-default .navbar-sidebar
   .navbar-sidebar__item:last-child
   .clean-btn.navbar-sidebar__back::before {
   display: inline-block;
-  content: url('/img/arrow-yellow.svg');
+  content: url('/static/img/arrow-yellow.svg');
   position: relative;
 }
 

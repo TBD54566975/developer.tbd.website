@@ -1,0 +1,301 @@
+/** HEADER **/
+.navbar {
+  border-bottom: 2px solid var(--color-yellow);
+  height: fit-content;
+  padding-top: 3rem;
+  padding-bottom: 0px;
+  padding-left: 0px;
+  padding-right: 0px;
+  font-family: 'IBM Plex Mono', monospace;
+  line-height: 24px;
+}
+
+.navbar a {
+  text-decoration: none;
+}
+
+.navbar.navbar--dark {
+  --ifm-navbar-background-color: var(--color-black);
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .navbar-sidebar__brand {
+    margin-left: calc(((34 / 16) * 1rem)) !important;
+    margin-right: calc(((34 / 16) * 1rem)) !important;
+  }
+
+  .navbar-sidebar__item {
+    padding-right: calc(((34 / 16) * 1rem)) !important;
+    padding-left: calc(((34 / 16) * 1rem)) !important;
+  }
+}
+
+.navbar__link {
+  color: var(--color-yellow);
+  font-size: 18px;
+}
+
+.navbar__logo {
+  width: 10rem;
+  height: 4.375rem;
+  margin-bottom: 3.4375rem;
+}
+
+.navbar--fixed-top {
+  position: inherit;
+  z-index: 200;
+}
+
+.navbar__items {
+  align-items: flex-end;
+}
+
+.navbar__item {
+  padding: 0px;
+  margin-right: 3rem;
+  padding-bottom: 3rem;
+}
+
+.navbar__items.navbar__items--right .navbar__item {
+  margin-right: 0rem;
+}
+
+.navbar__brand {
+  margin-right: 8rem;
+}
+
+.navbar-sidebar {
+  padding-top: 1.5rem;
+  width: 100%;
+  overflow: hidden;
+  background-image: url('/static/img/mobile-menu-glitch-bottom-dark.svg');
+  background-repeat: repeat-x;
+  background-position: bottom;
+  min-height: 26rem;
+  transition-duration: 0ms;
+  transition-property: none;
+  z-index: 200;
+}
+
+.navbar-sidebar__brand {
+  border-bottom: 2px solid var(--color-yellow);
+  margin-left: 1.5rem;
+  margin-right: 1.5rem;
+  padding: 0rem;
+
+  height: fit-content;
+}
+
+.navbar-sidebar__item {
+  padding-top: 0rem;
+  padding-right: 1.5rem;
+  padding-left: 1.5rem;
+}
+
+.navbar-sidebar__item.menu {
+  width: 100%;
+}
+
+.navbar-sidebar__items {
+  padding-top: 2.875rem;
+}
+
+.navbar__link:hover,
+.navbar__link--active {
+  border-bottom: 4px solid var(--color-yellow);
+  color: var(--color-yellow);
+  padding-bottom: 2.75rem;
+}
+
+.navbar-sidebar .navbar-sidebar__item:first-child .menu__list {
+  gap: 1.75rem;
+  display: flex;
+  flex-direction: column;
+}
+.navbar-sidebar .navbar-sidebar__item:first-child .menu__list-item:last-child {
+  background-image: url('/static/img/divider-mobile-menu-dark.svg');
+  width: 100%;
+  background-repeat: repeat-x;
+  padding-top: 1.8rem;
+}
+
+.navbar-sidebar
+  .navbar-sidebar__item:first-child
+  .menu__link--active:not(.menu__link--sublist) {
+  background-color: var(--color-black);
+  height: 18px;
+}
+
+.navbar-sidebar .navbar-sidebar__item:first-child .menu__link--active::before {
+  content: url('/static/img/selected-arrow.svg');
+  top: -4px;
+  position: relative;
+  margin-right: 0.375rem;
+}
+.navbar-sidebar .navbar-sidebar__item:first-child .menu__link {
+  color: var(--color-yellow);
+  font-size: var(--typography-links-m-font-size) !important;
+  line-height: var(--typography-links-m-line-height) !important;
+  font-weight: var(--typography-links-m-font-weight) !important;
+  padding: 0rem;
+}
+@media (max-width: 996px) {
+  .navbar {
+    padding-top: 1.5rem;
+  }
+  .navbar__brand {
+    margin-right: 0rem;
+  }
+  .navbar__logo {
+    width: 6rem;
+    height: 2.625rem;
+    margin-bottom: 1.5rem;
+  }
+  .navbar__items {
+    justify-content: space-between;
+    display: flex;
+    flex-direction: row-reverse;
+  }
+
+  .navbar__toggle.clean-btn {
+    align-self: center;
+    margin-right: 0rem;
+  }
+  .navbar__toggle {
+    display: inherit;
+  }
+  .navbar__toggle.clean-btn::before {
+    width: 1.125rem;
+    height: 1.875rem;
+    content: url('/static/img/menu-mobile.svg');
+  }
+  .navbar__item {
+    display: none;
+  }
+  .navbar__toggle.clean-btn svg {
+    display: none;
+  }
+
+  .clean-btn.navbar-sidebar__close::before {
+    width: 1.125rem;
+    height: 1.875rem;
+    content: url('/static/img/close-menu-mobile.svg');
+  }
+
+  .clean-btn.navbar-sidebar__close svg {
+    display: none;
+  }
+}
+
+/** sidebar in mobile menu **/
+
+.navbar-sidebar .navbar-sidebar__item:last-child .menu__link,
+.navbar-sidebar .navbar-sidebar__item:last-child .clean-btn {
+  color: var(--color-yellow);
+  font-size: var(--typography-links-m-font-size) !important;
+  line-height: var(--typography-links-m-line-height) !important;
+  font-weight: var(--typography-links-m-font-weight) !important;
+}
+.navbar-sidebar
+  .navbar-sidebar__item:last-child
+  .menu__list-item:not(:first-child) {
+  margin-top: 1.5rem;
+}
+
+.navbar-sidebar .navbar-sidebar__item:last-child .menu__caret {
+  padding-right: 0px !important;
+}
+
+.navbar-sidebar .navbar-sidebar__item:last-child .menu__link {
+  padding-left: 0px !important;
+}
+
+.navbar-sidebar .navbar-sidebar__item:last-child .menu__caret:before {
+  content: url('/static/img/arrow-yellow.svg') !important;
+  top: 3px !important;
+  position: relative;
+}
+.navbar-sidebar
+  .navbar-sidebar__item:last-child
+  .menu__list-item--collapsed
+  .menu__caret:before {
+  content: url('/static/img/arrow-yellow.svg') !important;
+  top: -1px !important;
+  position: relative;
+}
+
+.navbar-sidebar .navbar-sidebar__item:last-child .menu__list-item-collapsible {
+  justify-content: space-between;
+}
+
+.navbar-sidebar
+  .navbar-sidebar__item:last-child
+  .menu__list
+  .menu__list
+  .menu__link.menu__link--active::before {
+  content: url('/static/img/selected-arrow-yellow.svg');
+  top: -3px;
+  position: relative;
+  margin-right: -1.5rem;
+  left: -1.75rem;
+}
+
+.navbar-sidebar .navbar-sidebar__item:last-child .menu__list .menu__list {
+  padding-left: 1.6875rem;
+  margin-top: 1.125rem !important;
+}
+
+.navbar-sidebar
+  .navbar-sidebar__item:last-child
+  .menu__list
+  .menu__list
+  .menu__link.menu__link--active {
+  background-color: var(--color-black);
+}
+
+.navbar-sidebar .navbar-sidebar__item:last-child > .clean-btn {
+  font-size: 0px !important;
+}
+
+.navbar-sidebar
+  .navbar-sidebar__item:last-child
+  .clean-btn.navbar-sidebar__back::after {
+  content: 'Back to main menu';
+  color: var(--color-yellow);
+  font-size: var(--typography-links-m-font-size) !important;
+  line-height: var(--typography-links-m-line-height) !important;
+  font-weight: var(--typography-links-m-font-weight) !important;
+  position: relative;
+}
+
+.navbar-sidebar
+  .navbar-sidebar__item:last-child
+  .clean-btn.navbar-sidebar__back::before {
+  display: inline-block;
+  content: url('/static/img/arrow-yellow.svg');
+
+  position: relative;
+  left: -13px;
+  top: -6px;
+}
+
+
+aside .menu__link {
+  color: gray !important;
+  padding-top: 0rem;
+  padding-bottom: 0rem;
+  height: 18px;
+  background-color: transparent !important;
+  text-decoration: none;
+}
+
+aside .menu__link--active {
+  color: white !important;
+  padding-top: 0rem;
+  padding-bottom: 0rem;
+  height: 18px;
+}
+
+aside .menu__list-item-collapsible {
+    background-color: transparent !important;
+}
