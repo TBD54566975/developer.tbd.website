@@ -1,0 +1,70 @@
+body,
+html {
+  max-width: 100vw;
+  overflow-x: hidden !important;
+  background-color: black;
+}
+
+.navbar,
+.main-wrapper {
+  max-width: 1440px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+#__docusaurus {
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+@media (min-width: 1024px) {
+  #__docusaurus {
+    padding-left: 5rem;
+    padding-right: 5rem;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  #__docusaurus {
+    padding-left: calc(((34 / 16) * 1rem));
+    padding-right: calc(((34 / 16) * 1rem));
+  }
+}
+
+.main-wrapper {
+  margin-top: 4.5rem;
+}
+
+.container {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+.max-w-container {
+  max-width: var(--max-page-width);
+}
+
+@media (max-width: 1024px) {
+  .main-wrapper {
+    margin-top: 3rem;
+  }
+}
+
+@media (min-width: 997px) {
+  .docMainContainer_src-layout-DocPage-styles-module {
+    max-width: calc(
+      var(--max-page-width) - var(--doc-sidebar-width)
+    ) !important;
+    width: calc(var(--max-page-width) - var(--doc-sidebar-width)) !important;
+  }
+
+  .main-wrapper
+    .docItemCol_node_modules-\@docusaurus-theme-classic-lib-next-theme-DocItem-styles-module {
+    max-width: 75% !important;
+  }
+  .docSidebarContainer_CEHd,
+  .docSidebarContainer_src-theme-DocPage-styles-module {
+    min-width: 16.625rem !important;
+    max-width: 16.625rem !important;
+  }
+}

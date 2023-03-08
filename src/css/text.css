@@ -1,0 +1,8 @@
+header {
+    color: var(--color-yellow);
+}
+
+.avatar__name::before {
+    content: "Posted by ";
+    color: var(--color-yellow);
+}
