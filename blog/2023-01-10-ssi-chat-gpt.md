@@ -28,7 +28,7 @@ The [SSI-SDK](https://github.com/TBD54566975/ssi-sdk) is an implementation of a 
 
 <!--truncate-->
 
-Now there is a whole lot of (lets face it: tedious) machinery to get WASM to be compiled from go (ok if you are really curious you can [read the code](https://github.com/TBD54566975/ssi-sdk/pull/265/), but the upshot of it is that there is a .wasm file produced which when consumed in just the right way in a web page, allows you to call functions from JavaScript, that look and feel like JavaScript, but are actually running in the web-assembly machiner (and compiled down from Golang).
+Now there is a whole lot of (lets face it: tedious) machinery to get WASM to be compiled from Go (ok if you are really curious you can [read the code](https://github.com/TBD54566975/ssi-sdk/pull/265/)), but the upshot of it is that there is a .wasm file produced which when consumed in just the right way in a web page, allows you to call functions from JavaScript, that look and feel like JavaScript, but are actually running in the web-assembly machiner (and compiled down from Golang).
 
 Say you had a function in Golang land which looked like this: 
 
