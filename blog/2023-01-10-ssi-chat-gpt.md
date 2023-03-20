@@ -49,7 +49,7 @@ Well, thanks to WASM and a lot of boring glue.
 
 ## ChatGPT
 
-But the boring glue is what I am hear to talk about it, as it turns out ChatGPT can be quite helpful for the boring (but important) glue. 
+But the boring glue is what I am here to talk about it, as it turns out ChatGPT can be quite helpful for the boring (but important) glue. 
 
 So firstly, there is some work to be done to build a shim between the JavaScript type world and the Golang type world: 
 
