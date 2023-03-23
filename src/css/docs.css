@@ -3,14 +3,15 @@
 }
 
 html.plugin-docs.plugin-id-default body {
-  background-color: #1C1C1C;
+  background-color: #1c1c1c;
 }
 
 html.plugin-docs.plugin-id-default #__docusaurus {
   padding: 0 !important;
 }
 
-html.plugin-docs.plugin-id-default .main-wrapper, html.plugin-docs.plugin-id-default .navbar {
+html.plugin-docs.plugin-id-default .main-wrapper,
+html.plugin-docs.plugin-id-default .navbar {
   max-width: initial !important;
 }
 
@@ -34,14 +35,14 @@ html.plugin-docs.plugin-id-default .navbar__items--right {
 }
 
 html.plugin-docs.plugin-id-default .navbar__item {
-  padding-top: 24px
+  padding-top: 24px;
 }
 
 html.plugin-docs.plugin-id-default .navbar__logo {
-    margin-bottom: 1.5rem;
-    margin-left: 1.5rem;
-    margin-top: 1.5rem; 
-    height: 1.5rem;
+  margin-bottom: 1.5rem;
+  margin-left: 1.5rem;
+  margin-top: 1.5rem;
+  height: 1.5rem;
 }
 
 html.plugin-docs.plugin-id-default .navbar__link {
@@ -49,14 +50,15 @@ html.plugin-docs.plugin-id-default .navbar__link {
 }
 
 html.plugin-docs.plugin-id-default .navbar__link:last-child {
-  padding-right: .5rem
+  padding-right: 0.5rem;
 }
 
 html.plugin-docs.plugin-id-default .navbar__link:active {
   padding-bottom: 2rem;
 }
 
-html.plugin-docs.plugin-id-default .navbar-sidebar
+html.plugin-docs.plugin-id-default
+  .navbar-sidebar
   .navbar-sidebar__item:last-child
   .clean-btn.navbar-sidebar__back::before {
   display: inline-block;
@@ -68,7 +70,6 @@ html.plugin-docs.plugin-id-default aside .menu__link {
   color: var(--ifm-menu-color);
   padding-top: 0rem;
   padding-bottom: 0rem;
-  height: 18px;
 }
 
 html.plugin-docs.plugin-id-default aside aside .menu__link {
@@ -89,8 +90,10 @@ html.plugin-docs.plugin-id-default .thin-scrollbar {
   margin-top: 24px;
 }
 
-html.plugin-docs.plugin-id-default aside .sidebar_node_modules-\@docusaurus-theme-classic-lib-next-theme-DocSidebar-Desktop-styles-module {
-    top: auto;
+html.plugin-docs.plugin-id-default
+  aside
+  .sidebar_node_modules-\@docusaurus-theme-classic-lib-next-theme-DocSidebar-Desktop-styles-module {
+  top: auto;
 }
 
 html.plugin-docs.plugin-id-default .sidebar_RiAD {
@@ -98,21 +101,22 @@ html.plugin-docs.plugin-id-default .sidebar_RiAD {
 }
 
 @media (min-width: 997px) {
-html.plugin-docs.plugin-id-default aside.docSidebarContainer_src-layout-DocPage-styles-module,
- html.plugin-docs.plugin-id-default aside.theme-doc-sidebar-container {
+  html.plugin-docs.plugin-id-default
+    aside.docSidebarContainer_src-layout-DocPage-styles-module,
+  html.plugin-docs.plugin-id-default aside.theme-doc-sidebar-container {
     border-right: 1px solid var(--color-white);
     margin-right: 1.5rem !important;
   }
 }
 
 @media (min-width: 997px) {
- html.plugin-docs.plugin-id-default .menu_node_modules-\@docusaurus-theme-classic-lib-next-theme-DocSidebar-Desktop-Content-styles-module {
+  html.plugin-docs.plugin-id-default
+    .menu_node_modules-\@docusaurus-theme-classic-lib-next-theme-DocSidebar-Desktop-Content-styles-module {
     flex-grow: 1;
     padding-left: 0rem !important;
     font-size: large;
   }
 }
-
 
 /* Article styling */
 
@@ -151,7 +155,7 @@ article .theme-code-block pre {
 }
 
 article .theme-code-block pre code .token-line span {
-  color: white;;
+  color: white;
 }
 
 article .markdown p {
@@ -190,7 +194,6 @@ html.plugin-docs.plugin-id-default .thin-scrollbar ul li a {
   color: white;
 }
 
-
 html.plugin-docs.plugin-id-default article time {
   color: white;
 }
@@ -203,7 +206,6 @@ html.plugin-docs.plugin-id-default .navbar__link {
   font-size: 18px;
   padding-bottom: 2rem;
 }
-
 
 html.plugin-docs.plugin-id-default .navbar__link:hover {
   border-bottom: 4px solid var(--color-yellow);
@@ -221,7 +223,8 @@ html.plugin-docs.plugin-id-default .thin-scrollbar ul li a:hover {
   color: var(--color-yellow);
 }
 
-html.plugin-docs.plugin-id-default .sidebarItemLinkActive_node_modules-\@docusaurus-theme-classic-lib-next-theme-BlogSidebar-styles-module {
+html.plugin-docs.plugin-id-default
+  .sidebarItemLinkActive_node_modules-\@docusaurus-theme-classic-lib-next-theme-BlogSidebar-styles-module {
   color: var(--color-yellow);
 }
 
@@ -232,7 +235,6 @@ html.plugin-docs.plugin-id-default article h2 {
 .markdown h1:first-child {
   font-size: 1.8rem;
 } */
-
 
 html.plugin-docs.plugin-id-default ul.table-of-contents li a code,
 html.plugin-docs.plugin-id-default ul.table-of-contents li code {
