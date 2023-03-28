@@ -30,7 +30,6 @@ aside .menu__list {
 
 aside .menu__list .menu__list {
   display: flex !important;
-  margin-top: 1.25rem;
   gap: 1.25rem;
 }
 
