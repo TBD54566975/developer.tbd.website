@@ -39,7 +39,7 @@ const Button = ({
   }`;
 
   cssClasses +=
-    'bg-primary-yellow dark:bg-primary-black text-primary-black shadow-button-sh border-primary-black hover:shadow-button-sh-hv  ' +
+    'bg-primary-yellow dark:bg-transparent text-primary-black shadow-button-sh border-primary-black hover:shadow-button-sh-hv  ' +
     classesDarkMode;
 
   const { pathname } = useLocation();
