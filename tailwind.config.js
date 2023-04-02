@@ -1,7 +1,6 @@
 module.exports = {
   mode: 'jit',
   purge: ['./public/**/*.html', './src/**/*.{js,jsx,ts,tsx}'],
-  important: true,
   content: [
     './src/**/*.{js,jsx,ts,tsx,md,mdx}',
     './blog/**/*.{js,jsx,ts,tsx,md,mdx}',
@@ -16,13 +15,11 @@ module.exports = {
   theme: {
     extend: {
       screens: {
-        'tablet': '768px',
+        tablet: '768px',
         // => @media (min-width: 768px) { ... }
-        'docusaurus-desktop': '995px',
-        // => @media (min-width: 995px) { ... }
-        'desktop': '1024px',
+        desktop: '1024px',
         // => @media (min-width: 1024px) { ... }
-        'hd': '1820px',
+        hd: '1820px',
         // => @media (min-width: 1820px) { ... }
       },
       colors: {

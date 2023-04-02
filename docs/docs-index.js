@@ -40,12 +40,13 @@ function DocsIndex() {
 
       <h2>Learn More</h2>
 
-      <div className="flex flex-wrap">
+      <div className="grid grid-cols-1 desktop:grid-cols-2 gap-4">
         <HeroCard
           heroText="This is hero text"
           buttonUrl="/"
           buttonText="Start Tutorial"
           backgroundColor="blue"
+          imgSrc="/img/actors-web5-desktop.svg"
         />
         <HeroCard
           heroText="This is hero text"
@@ -53,6 +54,43 @@ function DocsIndex() {
           buttonText="Start Tutorial"
           backgroundColor="rebeccapurple"
         />
+      </div>
+
+      <h2>Technical Reference</h2>
+      <div className="grid grid-cols-1 tablet::grid-cols-2 desktop:grid-cols-2 gap-4">
+        <Card>
+          <h3>SSI Service API</h3>
+          <p style={{ color: 'rgb(180 180 180)' }} className="mb-4">
+            Description about SSI Service goes here. This will give users a bit
+            of insight on SSI Service.
+          </p>
+
+          <Link href="/docs/apis/ssi-service">
+            View Documentation <span>&rarr;</span>
+          </Link>
+        </Card>
+        <Card>
+          <h3>SSI SDK</h3>
+          <p style={{ color: 'rgb(180 180 180)' }} className="mb-4">
+            Description about SSI SDK goes here. This will give users a bit of
+            insight on SSI SDK.
+          </p>
+
+          <Link href="https://pkg.go.dev/github.com/TBD54566975/ssi-sdk">
+            View Documentation <span>&rarr;</span>
+          </Link>
+        </Card>
+        <Card>
+          <h3>DWN SDK</h3>
+          <p style={{ color: 'rgb(180 180 180)' }} className="mb-4">
+            Description about DWN SDK goes here. This will give users a bit of
+            insight on DWN SDK.
+          </p>
+
+          <Link href="https://tbd54566975.github.io/dwn-sdk-js/">
+            View Documentation <span>&rarr;</span>
+          </Link>
+        </Card>
       </div>
 
       {/* <Card>
