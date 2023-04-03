@@ -2,6 +2,7 @@ import React from 'react';
 import Link from '@docusaurus/Link';
 import HeroCard from '@site/src/components/HeroCard';
 import Card from '@site/src/components/Card';
+import ExploreCard from '../src/components/ExploreCard';
 
 function DocsIndex() {
   return (
@@ -57,7 +58,7 @@ function DocsIndex() {
       </div>
 
       <h2>Technical Reference</h2>
-      <div className="grid grid-cols-1 tablet::grid-cols-2 desktop:grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 tablet:grid-cols-2 desktop:grid-cols-2 gap-4">
         <Card>
           <h3>SSI Service API</h3>
           <p style={{ color: 'rgb(180 180 180)' }} className="mb-4">
@@ -91,6 +92,36 @@ function DocsIndex() {
             View Documentation <span>&rarr;</span>
           </Link>
         </Card>
+      </div>
+
+      <h2>Explore</h2>
+      <div className="grid grid-cols-1 tablet:grid-cols-2 desktop:grid-cols-4 gap-4">
+        <ExploreCard
+          text="Use Cases"
+          icon="/img/actors-web5-desktop.svg"
+          iconAltText="Use Cases Image"
+          url="/docs/intro"
+        />
+        <ExploreCard
+          text="Quick Start Examples"
+          icon="/img/actors-web5-desktop.svg"
+          iconAltText="Quick Start Image"
+          url="/docs/intro"
+        />
+
+        <ExploreCard
+          text="Community Tutorials"
+          icon="/img/actors-web5-desktop.svg"
+          iconAltText="Use Cases Image"
+          url="/docs/intro"
+        />
+
+        <ExploreCard
+          text="Other Stuff"
+          icon="/img/actors-web5-desktop.svg"
+          iconAltText="Use Cases Image"
+          url="/docs/intro"
+        />
       </div>
 
       {/* <Card>

@@ -1,11 +1,13 @@
 module.exports = {
   mode: 'jit',
   purge: ['./public/**/*.html', './src/**/*.{js,jsx,ts,tsx}'],
+  important: true,
   content: [
     './src/**/*.{js,jsx,ts,tsx,md,mdx}',
     './blog/**/*.{js,jsx,ts,tsx,md,mdx}',
     './events/**/*.{js,jsx,ts,tsx,md,mdx}',
     './learn/**/*.{js,jsx,ts,tsx,md,mdx}',
+    './docs/**/*.{js,jsx,ts,tsx,md,mdx}',
   ],
   darkMode: 'class', // hooks into docusaurus' dark mode settigns
   // plugins: [
