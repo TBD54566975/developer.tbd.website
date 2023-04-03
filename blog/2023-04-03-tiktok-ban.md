@@ -10,13 +10,12 @@ tags: [web5, TikTok]
 <head>
   <title>What Happens To My Content If TikTok Gets Banned?</title>
   <meta property="og:description" content="Discussing how web5 could prevent the negative consequences of a TikTok ban on creators." />
-  
   <meta property="og:title" content="What Happens To My Content If TikTok Gets Banned?" />
   <meta property="og:url" content='https://developer.tbd.website/blog/tiktok-ban-impact-on-creators' />
-  <meta property="og:image" content="/img/tiktok_blog_banner.png" />
+  <meta property="og:image" content="https://developer.tbd.website/assets/images/tiktok_blog_banner-6372141676e77be2583ff170193c6de4.png" />
   
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:image" content="/img/tiktok_blog_banner.png" />
+  <meta name="twitter:image" content="https://developer.tbd.website/assets/images/tiktok_blog_banner-6372141676e77be2583ff170193c6de4.png" />
   <meta name="twitter:site" content="@tbddev" />
   <meta name="twitter:title" content="What Happens To My Content If TikTok Gets Banned?" />
   <meta name="twitter:description" content="Discussing how web5 could prevent the negative consequences of a TikTok ban on creators." />
