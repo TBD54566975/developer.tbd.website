@@ -1,5 +1,10 @@
 /**SIDEBAR **/
 
+.menu.thin-scrollbar {
+  padding: 0;
+  scrollbar-gutter: initial;
+}
+
 aside .menu__link {
   color: var(--color-blue);
   padding-left: 1.875rem;
@@ -24,7 +29,7 @@ aside .menu__link--sublist-caret:after {
 aside .menu__list {
   display: flex;
   flex-direction: column;
-  gap: 1.25rem;
+  gap: 0.5rem;
   transition: all 221ms ease-in-out 0s !important;
 }
 
@@ -90,6 +95,16 @@ aside .menu__list .menu__list .menu__link:hover::before {
   position: relative;
   margin-right: -24px;
   left: -2.8125rem;
+}
+
+aside .menu__list .menu__list-item:nth-child(2)::after {
+  content: '';
+  width: 100%;
+  border-bottom: 1px solid gray;
+  display: block;
+  margin: auto;
+  margin-top: 24px;
+  margin-bottom: 24px;
 }
 
 @media (min-width: 997px) {
