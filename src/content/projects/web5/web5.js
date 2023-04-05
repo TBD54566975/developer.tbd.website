@@ -47,6 +47,14 @@ export const content = {
         url: 'https://github.com/TBD54566975/ssi-sdk/blob/main/README.md',
         isExternalLink: true,
       },
+      {
+        icon: '/img/component-icon.svg',
+        title: 'Self-Sovereign Identity Console',
+        description: 'A user-friendly GUI Console for managing Verifiable Credentials lifecycle, from issuance to revocation.',
+        textButton: 'View Component',
+        url: 'https://github.com/TBD54566975/ssi-admin-ui/blob/main/README.md',
+        isExternalLink: true,
+      },
     ],
   },
   actors: {
