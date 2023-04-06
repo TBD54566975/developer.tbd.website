@@ -3,6 +3,7 @@ import Link from '@docusaurus/Link';
 import HeroCard from '@site/src/components/HeroCard';
 import Card from '@site/src/components/Card';
 import ExploreCard from '../src/components/ExploreCard';
+import Community from '../src/components/Community';
 
 function DocsIndex() {
   return (
@@ -16,20 +17,6 @@ function DocsIndex() {
         on creating delightful user experiences, while returning ownership of
         data and identity to individuals.
       </p>
-      {/* <Card>
-        <h2>Getting Started</h2>
-        <p style={{ color: 'rgb(180 180 180)' }} className="mb-4">
-          Discover how to set up Web5 Apps in a few minutes.
-        </p>
-
-        <p style={{ color: 'rgb(180 180 180)' }} className="mb-4">
-          WHAT YOU'LL LEARN
-        </p>
-        <ul className="list-disc">
-          <li>Issuing Verifiable Credentials</li>
-          <li>Storing data in DWNs</li>
-        </ul>
-      </Card> */}
       <div>
         <HeroCard
           heroText="This is hero text"
@@ -123,6 +110,8 @@ function DocsIndex() {
           url="/docs/intro"
         />
       </div>
+
+      <Community />
 
       {/* <Card>
         <Link href="https://github.com/TBD54566975">
