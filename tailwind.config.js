@@ -1,6 +1,10 @@
 module.exports = {
   mode: 'jit',
-  purge: ['./public/**/*.html', './src/**/*.{js,jsx,ts,tsx}'],
+  purge: [
+    './public/**/*.html',
+    './src/**/*.{js,jsx,ts,tsx}',
+    './docs/**/*.{js,jsx,ts,tsx,md,mdx}',
+  ],
   important: true,
   content: [
     './src/**/*.{js,jsx,ts,tsx,md,mdx}',
@@ -17,11 +21,13 @@ module.exports = {
   theme: {
     extend: {
       screens: {
-        tablet: '768px',
+        'tablet': '768px',
         // => @media (min-width: 768px) { ... }
-        desktop: '1024px',
+        'desktop': '1024px',
         // => @media (min-width: 1024px) { ... }
-        hd: '1820px',
+        'desktop-lg': '1200px',
+        // => @media (min-width: 1200) { ... }
+        'hd': '1820px',
         // => @media (min-width: 1820px) { ... }
       },
       colors: {

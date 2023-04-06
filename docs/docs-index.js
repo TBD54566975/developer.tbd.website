@@ -82,7 +82,7 @@ function DocsIndex() {
       </div>
 
       <h2>Explore</h2>
-      <div className="grid grid-cols-1 tablet:grid-cols-2 desktop:grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 tablet:grid-cols-2 desktop-lg:grid-cols-4 gap-4">
         <ExploreCard
           text="Use Cases"
           icon="/img/actors-web5-desktop.svg"
@@ -90,14 +90,14 @@ function DocsIndex() {
           url="/docs/intro"
         />
         <ExploreCard
-          text="Quick Start Examples"
+          text="Quick Start"
           icon="/img/actors-web5-desktop.svg"
           iconAltText="Quick Start Image"
           url="/docs/intro"
         />
 
         <ExploreCard
-          text="Community Tutorials"
+          text="Tutorials"
           icon="/img/actors-web5-desktop.svg"
           iconAltText="Use Cases Image"
           url="/docs/intro"
