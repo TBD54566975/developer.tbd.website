@@ -32,9 +32,7 @@ const Button = ({
     }
   }, [colorDarkMode]);
 
-  let cssClasses = `w-[fit-content] px-[1.375rem] mb-2 mr-2 button-text border-solid ${
-    imageURL ? 'pt-[9px] pb-[11px]' : 'pt-[12px] pb-[14px]'
-  } border-2 hover:translate-x-[4px] hover:translate-y-[4px] ${
+  let cssClasses = `w-[fit-content] px-[1.375rem] mb-2 mr-2 button-text border-solid pt-[12px] pb-[14px] border-2 hover:translate-x-[4px] hover:translate-y-[4px] ${
     className ? className : ''
   }`;
 
