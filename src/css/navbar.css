@@ -123,7 +123,6 @@
   .navbar-sidebar__item:first-child
   .menu__link--active:not(.menu__link--sublist) {
   background-color: var(--color-black);
-  height: 18px;
 }
 
 .navbar-sidebar .navbar-sidebar__item:first-child .menu__link--active::before {
@@ -279,12 +278,10 @@
   top: -6px;
 }
 
-
 aside .menu__link {
   color: gray !important;
   padding-top: 0rem;
   padding-bottom: 0rem;
-  height: 18px;
   background-color: transparent !important;
   text-decoration: none;
 }
@@ -293,9 +290,8 @@ aside .menu__link--active {
   color: white !important;
   padding-top: 0rem;
   padding-bottom: 0rem;
-  height: 18px;
 }
 
 aside .menu__list-item-collapsible {
-    background-color: transparent !important;
+  background-color: transparent !important;
 }
