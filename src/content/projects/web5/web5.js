@@ -8,69 +8,6 @@ export const content = {
     path: 'projects/web5',
   },
   Heading: Heading,
-  components: {
-    growToFit: true,
-    title: 'Components',
-    projects: [
-      {
-        icon: '/img/component-icon.svg',
-        title: 'Decentralized Identifiers',
-        description:
-          'Decentralized Identifiers are a W3C international standard for identifiers created, owned, and controlled by individuals, without reliance on centralized entities',
-        textButton: 'View Component',
-        url: 'https://w3c.github.io/did-core/',
-        isExternalLink: true,
-      },
-      {
-        icon: '/img/component-icon.svg',
-        title: 'Decentralized Web Node',
-        description: TBDEXProtocol,
-        textButton: 'View Component',
-        url: 'https://github.com/TBD54566975/dwn-sdk-js#readme',
-        isExternalLink: true,
-      },
-
-      {
-        icon: '/img/component-icon.svg',
-        title: 'Self-Sovereign Identity Service',
-        description:
-          'An in-a-box service that handles the full Verifiable Credentials lifecycle, including issuance, verification, revocation, and more.',
-        textButton: 'View Component',
-        url: 'https://github.com/TBD54566975/ssi-service#readme',
-        isExternalLink: true,
-      },
-      {
-        icon: '/img/component-icon.svg',
-        title: 'Self-Sovereign Identity SDK',
-        description: SSIService,
-        textButton: 'View Component',
-        url: 'https://github.com/TBD54566975/ssi-sdk/blob/main/README.md',
-        isExternalLink: true,
-      },
-    ],
-  },
-  actors: {
-    title: 'Actors',
-    actors: [
-      {
-        title: 'Wallets',
-        description:
-          'wallets act as agents for individuals or institutions by facilitating identity and data interactions.',
-      },
-      {
-        title: 'Decentralized Web Nodes (DWNs)',
-        description: 'personal datastores that hold public and encrypted data.',
-      },
-      {
-        title: 'Decentralized Web Apps (DWAs)',
-        description:
-          'web apps enhanced with decentralized identity and data storage capabilities.',
-      },
-    ],
-    imgDesktop: '/img/actors-web5-desktop.svg',
-    imgMobile: '/img/actors-web5-mobile.svg',
-    isWeb5: true,
-  },
   web5Illustrations: {
     imgMobile: '/img/web5-mobile.svg',
     imgTablet: '/img/web5-tablet.svg',
