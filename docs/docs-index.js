@@ -87,27 +87,27 @@ function DocsIndex() {
           text="Use Cases"
           icon="/img/actors-web5-desktop.svg"
           iconAltText="Use Cases Image"
-          url="/docs/intro"
+          url="/docs/"
         />
         <ExploreCard
           text="Quick Start"
           icon="/img/actors-web5-desktop.svg"
           iconAltText="Quick Start Image"
-          url="/docs/intro"
+          url="/docs/"
         />
 
         <ExploreCard
           text="Tutorials"
           icon="/img/actors-web5-desktop.svg"
           iconAltText="Use Cases Image"
-          url="/docs/intro"
+          url="/docs/"
         />
 
         <ExploreCard
           text="Other Stuff"
           icon="/img/actors-web5-desktop.svg"
           iconAltText="Use Cases Image"
-          url="/docs/intro"
+          url="/docs/"
         />
       </div>
 
