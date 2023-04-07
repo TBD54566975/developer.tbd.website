@@ -22,7 +22,9 @@ function DocsIndex() {
           heroText="This is hero text"
           buttonUrl="/"
           buttonText="Start Tutorial"
-          backgroundColor="#9A1AFF"
+          backgroundColor="cyan"
+          bodyText="This card is something dope"
+          primary={true}
         />
       </div>
 
@@ -35,12 +37,16 @@ function DocsIndex() {
           buttonText="Start Tutorial"
           backgroundColor="blue"
           imgSrc="/img/actors-web5-desktop.svg"
+          bodyText="This is also something dope"
+          themeColor="yellow"
         />
         <HeroCard
           heroText="This is hero text"
           buttonUrl="/"
           buttonText="Start Tutorial"
           backgroundColor="rebeccapurple"
+          bodyText="This too is something dope"
+          themeColor="purple"
         />
       </div>
 

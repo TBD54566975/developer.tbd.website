@@ -316,3 +316,45 @@ html.plugin-docs.plugin-id-default .table-of-contents__left-border li:is(:first-
 .hero-button a {
   text-decoration: none;
 }
+
+.theme-card {
+  --color-card: 36, 242, 255;
+  background: rgba(var(--color-dark));
+  border: 1px solid rgba(var(--color-card), 0.35);
+}
+
+.theme-card .hero-button a > div {
+  background: rgba(var(--color-dark));
+}
+
+article .markdown .theme-card > p {
+  line-height: 1.5;
+  font-size: 100%;
+  margin-bottom: 2rem;
+}
+
+html.plugin-docs.plugin-id-default article .theme-card.primary-theme-card h2,
+html.plugin-docs.plugin-id-default article .theme-card.primary-theme-card p,
+html.plugin-docs.plugin-id-default article .theme-card.primary-theme-card .hero-button a > div{
+  color: #fff;
+}
+
+html.plugin-docs.plugin-id-default article .theme-card h2,
+html.plugin-docs.plugin-id-default article .theme-card p {
+  color: rgba(var(--color-card));
+}
+
+.theme-card-cyan {
+  --color-card: 36, 242, 255;
+  --color-dark: 31, 39, 40;
+}
+
+.theme-card-yellow {
+  --color-card: 255, 236, 25;
+  --color-dark: 40, 39, 30;
+}
+
+.theme-card-purple {
+  --color-card: 154, 26, 255;
+  --color-dark: 35, 29, 41;
+}
