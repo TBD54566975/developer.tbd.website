@@ -12,7 +12,6 @@ const config = {
   projectName: 'developer.tbd.website',
   baseUrl: '/',
   url: 'https://developer.tbd.website',
-
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
 
