@@ -97,7 +97,7 @@ aside .menu__list .menu__list .menu__link:hover::before {
   left: -2.8125rem;
 }
 
-aside .menu__list .menu__list-item:nth-child(2)::after {
+/* aside .menu__list .menu__list-item:nth-child(2)::after {
   content: '';
   width: 100%;
   border-bottom: 1px solid gray;
@@ -105,7 +105,7 @@ aside .menu__list .menu__list-item:nth-child(2)::after {
   margin: auto;
   margin-top: 24px;
   margin-bottom: 24px;
-}
+} */
 
 @media (min-width: 997px) {
   aside.docSidebarContainer_src-layout-DocPage-styles-module,

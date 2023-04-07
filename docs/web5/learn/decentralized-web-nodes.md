@@ -1,6 +1,5 @@
----
-title: Decentralized Web Nodes
----
+## Decentralized Web Nodes 
+*3 minute read*
 
 A Decentralized Web Node is a data storage and message relay mechanism that entities can use to locate public or private permissioned data related to a given DID.
 
@@ -24,21 +23,24 @@ The easiest way to understand this distinction is to think of permissions as act
 Data types are bound to known schemas, letting applications agree on data models. This opens the door to applications working together in ways that's been much more difficult in traditional development platform.
 
 ### Messaging
-All communication is done through simple messages. Web5 makes this easy, erasing the messy mechanics of decentralized messaging. DWN Messages follow a general structure, for example a DWN requesting containing multiple messages will have a the following shape. See the [DWN spec](https://identity.foundation/decentralized-web-node/spec/#messages) for a detailed explanation of each field.
+All communication is done through simple JSON objects called messages. Web5 constructs messages and helps you send them to their destination by resolving a recipient's DID and getting the address of their Decentralized Web Node. A message can install protocols, grant permissions, and read, write, query, or delete a record. For example, a message writing a record to a DWN may look like the example below.
 
 ```json 
-{  // Request Object
-  "messages": [  // Message Objects
-    {
-      "recordId": GENERATED_CID_STRING,
-      "descriptor": {
-        "interface": INTERFACE_STRING,
-        "method": METHOD_STRING,
-        "dataCid": DATA_CID_STRING,
-        "dataFormat": DATA_FORMAT_STRING,
-      }
-    },
-    {...}
-  ]
+{ // Message
+  "recordId": "b65b7r8n7bewv5w6eb7r8n7t78yj7hbevsv567n8r77bv65b7e6vwvd67b6",
+  "descriptor": {
+    "parentId": CID(PREVIOUS_DESCRIPTOR),
+    "dataCid": CID(data),
+    "dateCreated": 123456789,
+    "published": true,
+    "encryption": "jwe",
+    "interface": "Records",
+    "method": "Write",
+    "schema": "https://schema.org/SocialMediaPosting",
+    "commitStrategy": "json-merge",
+    "dataFormat": DATA_FORMAT
+  }
 }
 ```
+
+See the [DWN spec](https://identity.foundation/decentralized-web-node/spec/#messages) for a detailed explanation of each field.
