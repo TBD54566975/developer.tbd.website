@@ -29,13 +29,14 @@ aside .menu__link--sublist-caret:after {
 aside .menu__list {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 1rem;
   transition: all 221ms ease-in-out 0s !important;
 }
 
 aside .menu__list .menu__list {
   display: flex !important;
   gap: 1.25rem;
+  margin-top: 1rem;
 }
 
 .menu__caret:before {

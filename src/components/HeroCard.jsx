@@ -22,8 +22,8 @@ function HeroCard({
       )}
 
       <h2 className="text-2xl font-bold mb-4">{heroText}</h2>
-      <div className="max-w-[240px]">
-        <Link style={{ backgroundColor }} href={buttonUrl}>
+      <div className="max-w-[240px] hero-button" style={{ backgroundColor }}>
+        <Link href={buttonUrl}>
           <Button label={buttonText} url={buttonUrl} />
         </Link>
       </div>

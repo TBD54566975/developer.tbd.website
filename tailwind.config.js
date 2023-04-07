@@ -5,7 +5,7 @@ module.exports = {
     './src/**/*.{js,jsx,ts,tsx,mdx}',
     './docs/**/*.{js,jsx,ts,tsx,md,mdx}',
   ],
-  important: true,
+  important: false,
   content: [
     './src/**/*.{js,jsx,ts,tsx,md,mdx}',
     './blog/**/*.{js,jsx,ts,tsx,md,mdx}',
