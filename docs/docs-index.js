@@ -22,7 +22,7 @@ function DocsIndex() {
           heroText="This is hero text"
           buttonUrl="/"
           buttonText="Start Tutorial"
-          backgroundColor="green"
+          backgroundColor="#9A1AFF"
         />
       </div>
 
@@ -104,10 +104,10 @@ function DocsIndex() {
         />
 
         <ExploreCard
-          text="Other Stuff"
+          text="Sample Apps"
           icon="/img/actors-web5-desktop.svg"
           iconAltText="Use Cases Image"
-          url="/docs/"
+          url="https://github.com/TBD54566975/incubating-web5-labs"
         />
       </div>
 
