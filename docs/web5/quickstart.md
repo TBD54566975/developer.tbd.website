@@ -1,3 +1,7 @@
+---
+sidebar_position: 2
+---
+
 # Quickstart
 
 - Terse explanation of this paradigm - moving to your identity on the internet (DIDs) and how you now own your data (personal data store).
