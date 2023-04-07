@@ -22,12 +22,12 @@ const Button = ({
     }
     if (colorDarkMode === 'yellow') {
       setClassesDarkMode(
-        'dark:shadow-button-sh-yellow dark:border-primary-yellow dark:hover:text-accent-cyan dark:hover:border-accent-cyan dark:hover:shadow-button-sh-hv-cyan dark:text-primary-yellow',
+        'dark:shadow-button-sh-yellow dark:border-primary-yellow dark:hover:shadow-button-sh-hv-yellow dark:text-primary-yellow',
       );
     }
     if (colorDarkMode === 'purple') {
       setClassesDarkMode(
-        'dark:shadow-button-sh-purple dark:border-accent-purple dark:hover:shadow-button-sh-hv-purple dark:text-accent-cyan',
+        'dark:shadow-button-sh-purple dark:border-accent-purple dark:hover:shadow-button-sh-hv-purple dark:text-accent-purple',
       );
     }
   }, [colorDarkMode]);
