@@ -61,7 +61,7 @@ Now that Alice and Bob have gone through one of the methods and they have their 
 
 A DID Document is a small `json` object that has a field for your DID, called `id`.
 
-```
+```javascript
 {
   "@context": [
     "https://www.w3.org/ns/did/v1"
@@ -85,7 +85,7 @@ _Example of a Controller Subject relationship diagram, from [W3C DID Core Spec](
 
 One of the fields you might find in a DID Document is the `verificationMethod`, which is an array of objects each representing a controlling entity of the DID. The `controller` field contains controlling entity's DID.
 
-```
+```javascript
 {
   "@context": [
     "https://www.w3.org/ns/did/v1"
