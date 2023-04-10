@@ -54,7 +54,7 @@ export const content = {
         title: 'Self-Sovereign Identity SDK',
         description: SSIService,
         textButton: 'View Component',
-        url: 'https://github.com/TBD54566975/ssi-sdk/blob/main/README.md',
+        url: 'https://github.com/TBD54566975/ssi-sdk#readme',
         isExternalLink: true,
       },
     ],
