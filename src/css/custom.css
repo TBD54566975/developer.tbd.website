@@ -355,7 +355,7 @@ article h1 {
   }
 }
 
-@media (min-width: 768px) and (max-width:1024px) {
+@media (min-width: 768px) and (max-width: 1024px) {
   article h1 {
     font-weight: var(--typography-h1-t-font-weight);
     font-size: var(--typography-h1-t-font-size) !important;
