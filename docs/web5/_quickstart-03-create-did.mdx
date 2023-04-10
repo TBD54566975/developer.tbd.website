@@ -1,0 +1,65 @@
+## Quickstart
+
+1. Import the Web5 API into your application:
+
+```
+import { Web5 } from '@tbd54566975/web5'
+```
+
+<details><summary>Without NPM</summary>
+<p>
+
+#### Using CDN directly
+
+If not using NPM, you may import the `Web5` class from the library directly on the CDN.
+
+```JavaScript
+import { Web5 } from 'https://cdn.jsdelivr.net/npm/@tbd54566975/web5@0.3.1/dist/browser.min.js'
+```
+
+</p>
+</details>
+
+2. Create Web5 instance:
+
+There’s only one class for all Web5 operations
+
+```
+const web5 = new Web5
+```
+
+3. Create a Decentralized Identifier (DID):
+
+In the world of Web5, your unique identifier, like an email address, is called a DID.
+
+<details><summary>About DIDs.</summary>
+<p>
+
+:::caution
+
+ADD LINK to DID page here
+
+:::
+
+</p>
+</details>
+
+```
+let did = await web5.did.create('ion');
+```
+
+
+:::caution
+
+*ALR Note 7 April 2023*: Follow to see if this is still going to be required; we may be moving 
+into a [no-arg constructor default](https://github.com/TBD54566975/web5-js/issues/31)
+
+:::
+
+Play with creating DIDs here:
+
+:::caution
+
+[ADD DEVIN’S WIDGET]
+
+:::
