@@ -1,6 +1,6 @@
 # Build a ToDo App
 
-In this tutorial, you will learn how to build a basic single-party decentralized ToDo app written using `web5.js`. It’s composed of a `Vue.js` app powered by `[web5.js](https://www.npmjs.com/package/@tbd54566975/web5)` which adds data storage underpinned by a Decentralized Web Node (DWN). 
+In this tutorial, you will learn how to build a basic single-party decentralized ToDo app written using `web5.js`. It’s composed of a `Vue.js` app powered by [web5.js](https://www.npmjs.com/package/@tbd54566975/web5) which adds data storage underpinned by a Decentralized Web Node (DWN). 
 
 The ToDo app is a simple single-user, local application that only leverages `web5.js` for storage purposes, but serves as an important precursor to building larger decentralized apps. 
 
@@ -12,7 +12,9 @@ By the end of this tutorial, you’ll have a solid understanding of the basics o
 
 Download a copy of the skeleton ToDo app by running:
 
-`git clone [https://github.com/TBD54566975/web5-tutorials.git](https://github.com/TBD54566975/web5-tutorials.git)`
+```bash
+git clone https://github.com/TBD54566975/web5-tutorials.git
+```
 
 In this tutorial, you’ll work through completing the `/todo-app/src/App.vue` file to use `web5.js`. 
 
@@ -21,7 +23,9 @@ In this tutorial, you’ll work through completing the `/todo-app/src/App.vue` f
 
 If you’d like to skip ahead and see the finished version of this tutorial, you can download that repository by running:
 
-`git clone [https://github.com/TBD54566975/incubating-web5-labs.git](https://github.com/TBD54566975/incubating-web5-labs.git)`
+```bash
+git clone https://github.com/TBD54566975/incubating-web5-labs.github
+```
 
 </p>
 </details>
@@ -134,7 +138,7 @@ const textDecoder = new TextDecoder();
 });
 ```
 
-Now that your todos are stored in your app, you can display them by using your `todos` object. In this example, you can do it by adding the following HTML code to the Vue app below the JS, just as you would in any non-`web5` app:
+Now that your todos are stored in your app, you can display them by using your `todos` object. In this example, you can do it by adding the following HTML code to the Vue app below the JS, just as you would in any non-web5 app:
 
 ```jsx
 <div v-if="(todos.length > 0)" class="border-gray-200 border-t border-x mt-16 rounded-lg shadow-md sm:max-w-xl sm:mx-auto sm:w-full">
@@ -272,7 +276,7 @@ We’ll connect that to our UI with the following code:
 
 ## Toggling Todo Status
 
-To toggle a todo’s status, you’ll need to change its status both in your local `todos` object and in your `web5`-managed DWN. You can do so by modifying the `todos` object and then using a `write` call to update the todo in your data store:
+To toggle a todo’s status, you’ll need to change its status both in your local `todos` object and in your web5-managed DWN. You can do so by modifying the `todos` object and then using a `write` call to update the todo in your data store:
 
 ```jsx
 async function toggleTodoComplete(todoRecordId) {
@@ -322,4 +326,4 @@ The overall UI code for your todo, which includes the affordance to display, del
     </div>
 ```
 
-Congratulations, you've just built a decentralized web app! Feel free to check out the [finished version of the project here](https://github.com/TBD54566975/incubating-web5-labs).
+Congratulations, you've just built a decentralized web app! Feel free to check out the [finished version of the project here](https://github.com/TBD54566975/incubating-web5-labs/tree/main/todo-app).
