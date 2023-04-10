@@ -1,12 +1,17 @@
 module.exports = {
   mode: 'jit',
-  purge: ['./public/**/*.html', './src/**/*.{js,jsx,ts,tsx}'],
-  important: true,
+  purge: [
+    './public/**/*.html',
+    './src/**/*.{js,jsx,ts,tsx,mdx}',
+    './docs/**/*.{js,jsx,ts,tsx,md,mdx}',
+  ],
+  important: false,
   content: [
     './src/**/*.{js,jsx,ts,tsx,md,mdx}',
     './blog/**/*.{js,jsx,ts,tsx,md,mdx}',
     './events/**/*.{js,jsx,ts,tsx,md,mdx}',
     './learn/**/*.{js,jsx,ts,tsx,md,mdx}',
+    './docs/**/*.{js,jsx,ts,tsx,md,mdx}',
   ],
   darkMode: 'class', // hooks into docusaurus' dark mode settigns
   // plugins: [
@@ -18,10 +23,10 @@ module.exports = {
       screens: {
         'tablet': '768px',
         // => @media (min-width: 768px) { ... }
-        'docusaurus-desktop': '995px',
-        // => @media (min-width: 995px) { ... }
         'desktop': '1024px',
         // => @media (min-width: 1024px) { ... }
+        'desktop-lg': '1200px',
+        // => @media (min-width: 1200) { ... }
         'hd': '1820px',
         // => @media (min-width: 1820px) { ... }
       },

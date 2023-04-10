@@ -12,7 +12,6 @@ const config = {
   projectName: 'developer.tbd.website',
   baseUrl: '/',
   url: 'https://developer.tbd.website',
-
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
 
@@ -133,7 +132,7 @@ const config = {
           },
           {
             type: 'doc',
-            docId: 'intro',
+            docId: 'index',
             to: '/docs',
             label: 'Docs',
             position: 'left',
@@ -153,7 +152,7 @@ const config = {
             items: [
               {
                 label: 'Tutorial',
-                to: '/docs/intro',
+                to: '/docs/',
               },
             ],
           },

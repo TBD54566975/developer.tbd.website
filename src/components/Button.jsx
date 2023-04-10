@@ -22,24 +22,22 @@ const Button = ({
     }
     if (colorDarkMode === 'yellow') {
       setClassesDarkMode(
-        'dark:shadow-button-sh-yellow dark:border-primary-yellow dark:hover:text-accent-cyan dark:hover:border-accent-cyan dark:hover:shadow-button-sh-hv-cyan dark:text-primary-yellow',
+        'dark:shadow-button-sh-yellow dark:border-primary-yellow dark:hover:shadow-button-sh-hv-yellow dark:text-primary-yellow',
       );
     }
     if (colorDarkMode === 'purple') {
       setClassesDarkMode(
-        'dark:shadow-button-sh-purple dark:border-accent-purple dark:hover:shadow-button-sh-hv-purple dark:text-accent-cyan',
+        'dark:shadow-button-sh-purple dark:border-accent-purple dark:hover:shadow-button-sh-hv-purple dark:text-accent-purple',
       );
     }
   }, [colorDarkMode]);
 
-  let cssClasses = `w-[fit-content] px-[1.375rem] mb-2 mr-2 button-text border-solid ${
-    imageURL ? 'pt-[9px] pb-[11px]' : 'pt-[12px] pb-[14px]'
-  } border-2 hover:translate-x-[4px] hover:translate-y-[4px] ${
+  let cssClasses = `w-[fit-content] px-[1.375rem] mb-2 mr-2 button-text border-solid pt-[12px] pb-[14px] border-2 hover:translate-x-[4px] hover:translate-y-[4px] ${
     className ? className : ''
   }`;
 
   cssClasses +=
-    'bg-primary-yellow dark:bg-primary-black text-primary-black shadow-button-sh border-primary-black hover:shadow-button-sh-hv  ' +
+    'bg-primary-yellow dark:bg-transparent text-primary-black shadow-button-sh border-primary-black hover:shadow-button-sh-hv  ' +
     classesDarkMode;
 
   const { pathname } = useLocation();

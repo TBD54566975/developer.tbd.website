@@ -1,0 +1,25 @@
+# Write to Decentralized Web Nodes
+
+Before writing to your Decentralized Web Node (DWN), be sure to check out our [Quickstart guide](../../quickstart) to ensure you’ve properly imported the Web5 SDK. Additionally, make sure you’ve set up a DID before attempting to write to a DWN.
+
+## Write to a DWN
+
+The following snippet allows you to write to your `Web5` instance’s DWN using a DID object called `myDid`:
+
+```jsx
+// Write a plain text record to the in-memory DWN.
+    const response = await web5.dwn.records.write(myDid.id, {
+      author: myDid.id,
+      data: 'Hello, world!',
+      message: {
+        schema: 'schema.org/foo/bar',
+        dataFormat: 'text/plain'
+      }
+    });
+```
+
+The write `request` must contain the following:
+
+- **`author`** - *`string`*: The decentralized identifier of the DID signing the query. This may be the same as the `target` parameter if the target and the signer of the query are the same entity, which is common for an app querying the DWeb Node of its own user.
+- **`message`** - *`object`*: The properties of the DWeb Node Message Descriptor that will be used to construct a valid DWeb Node message. `schema`, is an optional parameter, and if used it does not need to be a resolvable url. `dataFormat` should conform to one of the [IANA media types](https://www.iana.org/assignments/media-types/media-types.xhtml).
+- **`data`** - *`blob | stream | file`*: The data object of the bytes to be sent.

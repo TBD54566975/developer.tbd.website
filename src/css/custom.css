@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,100;0,300;0,400;0,500;0,600;0,700;1,100&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;700;800&family=IBM+Plex+Sans:wght@300;400;500;700;800&display=swap');
 
 @import 'text.css';
 @import 'prose.css';
@@ -341,7 +341,7 @@ main.col.col--7 {
 
 article h1 {
   font-weight: var(--typography-h1-d-font-weight);
-  font-size: var(--typography-h1-d-font-size) !important;
+  font-size: var(--typography-h1-d-font-size);
   line-height: var(--typography-h1-d-line-height);
 }
 
@@ -355,7 +355,7 @@ article h1 {
   }
 }
 
-@media (min-width: 768px and max-width:1024px) {
+@media (min-width: 768px) and (max-width:1024px) {
   article h1 {
     font-weight: var(--typography-h1-t-font-weight);
     font-size: var(--typography-h1-t-font-size) !important;
@@ -433,7 +433,6 @@ aside.col.col--3 nav ul li a:hover {
 }
 
 .padding-top--md.padding-bottom--lg .row .col div {
-  max-width: 46rem;
 }
 
 ul.breadcrumbs {

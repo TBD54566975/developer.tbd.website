@@ -1,11 +1,15 @@
 /**SIDEBAR **/
 
+.menu.thin-scrollbar {
+  padding: 0;
+  scrollbar-gutter: initial;
+}
+
 aside .menu__link {
   color: var(--color-blue);
   padding-left: 1.875rem;
   padding-top: 0rem;
   padding-bottom: 0rem;
-  height: 18px;
 }
 
 aside .menu__link--sublist-caret:after {
@@ -25,14 +29,14 @@ aside .menu__link--sublist-caret:after {
 aside .menu__list {
   display: flex;
   flex-direction: column;
-  gap: 1.25rem;
+  gap: 1rem;
   transition: all 221ms ease-in-out 0s !important;
 }
 
 aside .menu__list .menu__list {
   display: flex !important;
-  margin-top: 1.25rem;
   gap: 1.25rem;
+  margin-top: 1rem;
 }
 
 .menu__caret:before {
@@ -55,9 +59,7 @@ aside .menu__list .menu__list {
   height: 10px;
   background: none !important;
 }
-.menu__link.menu__link--sublist {
-  max-width: 10.8125rem;
-}
+
 aside .menu__list-item:not(:first-child) {
   margin-top: 0rem;
 }
@@ -67,7 +69,6 @@ aside .menu__list-item--collapsed .menu__list {
 aside .menu__list-item--collapsed .menu__link--sublist:after {
   transform: rotateZ(0deg);
 }
-
 
 aside .menu__link--active:hover {
   color: var(--color-blue);
@@ -97,6 +98,16 @@ aside .menu__list .menu__list .menu__link:hover::before {
   left: -2.8125rem;
 }
 
+/* aside .menu__list .menu__list-item:nth-child(2)::after {
+  content: '';
+  width: 100%;
+  border-bottom: 1px solid gray;
+  display: block;
+  margin: auto;
+  margin-top: 24px;
+  margin-bottom: 24px;
+} */
+
 @media (min-width: 997px) {
   aside.docSidebarContainer_src-layout-DocPage-styles-module,
   aside.theme-doc-sidebar-container {
@@ -109,4 +120,13 @@ aside .menu__list .menu__list .menu__link:hover::before {
     flex-grow: 1;
     padding-left: 0rem !important;
   }
+}
+
+.menu__list-item-collapsible a {
+  font-weight: 800;
+}
+
+.theme-doc-sidebar-item-link-level-1 a {
+  font-weight: 800;
+  font-size: 18px;
 }
