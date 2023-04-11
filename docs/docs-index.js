@@ -47,7 +47,7 @@ function DocsIndex() {
           buttonText="LEARN"
           //imgSrc="/img/docs-computer-user.svg"
           imgSrc="/img/docs-id-icon.svg"
-          imgClass="w-1/3 tbd-cyan-illustration"
+          imgClass="tbd-cyan-illustration"
           bodyText="Take a journey with Alice and Bob to learn all about DIDs"
           themeColor="purple"
         />
@@ -89,7 +89,7 @@ function DocsIndex() {
         <ExploreCard
           text="Blog Posts"
           icon="/img/docs-blog-icon.svg"
-          imgClass="w-1/2"
+          imgClass="w-24"
           url="/blog"
         />
 
