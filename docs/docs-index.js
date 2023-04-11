@@ -45,9 +45,8 @@ function DocsIndex() {
           heroText="Decentralized Identifiers"
           buttonUrl="/docs/web5/learn/decentralized-identifiers"
           buttonText="LEARN"
-          //imgSrc="/img/docs-computer-user.svg"
           imgSrc="/img/docs-id-icon.svg"
-          imgClass="tbd-cyan-illustration"
+          imgClass="w-32 tbd-cyan-illustration"
           bodyText="Take a journey with Alice and Bob to learn all about DIDs"
           themeColor="purple"
         />
