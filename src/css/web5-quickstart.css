@@ -15,27 +15,26 @@ body > progress ~ * {
   display: none;
 }
 
-main {
-  max-width: 500px;
+.markdown {
   margin: 0 auto;
   padding: 1em 2em 5em;
 }
 
-main h1 {
+.markdown h1 {
   text-align: center;
 }
 
-main progress {
+.markdown progress {
   vertical-align: middle;
   visibility: hidden;
 }
 
-main input[type='file'] {
+.markdown input[type='file'] {
   display: block;
   margin-bottom: 0.5em;
 }
 
-main textarea {
+.markdown textarea {
   display: block;
   width: 100%;
   min-height: 8em;
@@ -43,11 +42,11 @@ main textarea {
   resize: vertical;
 }
 
-main code {
+.markdown code {
   font-size: 90%;
 }
 
-main .output {
+.markdown .output {
   width: 100%;
   margin-top: 2em;
   margin-bottom: 2em;
