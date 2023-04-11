@@ -1,0 +1,16 @@
+## 8. Deleting messages in your DWN
+
+```js
+let deleteResult = await web5.dwn.records.delete(did.id, {
+author: did.id,
+message: {
+recordId: queryResult.entries[0].recordId,
+},
+});
+console.log('delete result', deleteResult);
+```
+Next Steps:
+
+1. Learn more about DIDs (link to DID page)
+2. Build your first ToDo app (link coming soon)
+3. Learn what to do with a DID externally(linked in build>DID>how-to-use-externa..)

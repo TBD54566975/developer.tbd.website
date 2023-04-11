@@ -12,6 +12,7 @@
 @import 'navbar.css';
 @import 'sidebar.css';
 @import 'illustration.css';
+@import 'web5-quickstart.css';
 
 /* You can override the default Infima variables here. */
 :root {

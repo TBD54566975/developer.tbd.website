@@ -1,0 +1,15 @@
+## 7. Reading your messages in DWN
+
+```js
+let readResult = await web5.dwn.records.read(did.id, {
+    author: did.id,
+    message: {
+        recordId: queryResult.entries[0].recordId,
+    },
+});
+console.log('read result', readResult);
+console.log('read data',
+web5.dwn.SDK.Encoder.bytesToString(await web5.dwn.SDK.DataStream.toBytes(readResult.data)));
+```
+
+Now let's get the actual data for the information we just got (edit this sentence):

@@ -1,0 +1,22 @@
+### 5. Write to Decentralized Web Node
+
+Now you’re able to write / store your data in a Decentralized Web Node (DWN):
+
+The DWN is your personal data store - a home for messages, pictures, videos, and more. It’s how you retain ownership over your information. Later on you’ll have the opportunity to replicate it for redundancy. It can be hosted by others, but because the private information in your DWN is encrypted with your key - you’re in charge, and all your information is secure.
+
+```js
+const data = 'Hello Web5';
+console.log('write data', data);
+
+let writeResult = await web5.dwn.records.write(did.id, {
+    author: did.id,
+    data,
+    message: {
+        schema: 'test',
+        dataFormat: 'text/plain',
+    },
+});
+console.log('write result', writeResult);
+```
+
+Practice writing something:
