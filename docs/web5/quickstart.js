@@ -238,108 +238,108 @@ function Web5Quickstart() {
       update();
     });
 
-    // dwnWriteInputFile.addEventListener('input', () => {
-    //   dwnWriteInputButton.disabled = false;
-    //   dwnWriteOutputSummary.innerHTML = '...';
-    //   dwnWriteOutputDetailsTextarea.value = '';
-    //   update();
-    // });
+    dwnWriteInputFile.addEventListener('input', () => {
+      dwnWriteInputButton.disabled = false;
+      dwnWriteOutputSummary.innerHTML = '...';
+      dwnWriteOutputDetailsTextarea.value = '';
+      update();
+    });
 
-    // dwnWriteInputButton.addEventListener('click', async () => {
-    //   dwnWriteInputButton.disabled = true;
-    //   dwnWriteInputProgress.style.visibility = 'visible';
+    dwnWriteInputButton.addEventListener('click', async () => {
+      dwnWriteInputButton.disabled = true;
+      dwnWriteInputProgress.style.visibility = 'visible';
 
-    //   dwnWriteOutputSummary.innerHTML = '...';
+      dwnWriteOutputSummary.innerHTML = '...';
 
-    //   let did = parseDid();
-    //   for (let file of dwnWriteInputFile.files) {
-    //     let buffer = await file.arrayBuffer();
-    //     let data = new Uint8Array(buffer);
-    //     let result = await dwnWritePNGRecord(did, data);
+      let did = parseDid();
+      for (let file of dwnWriteInputFile.files) {
+        let buffer = await file.arrayBuffer();
+        let data = new Uint8Array(buffer);
+        let result = await dwnWritePNGRecord(did, data);
 
-    //     dwnWriteOutputDetailsTextarea.value +=
-    //       JSON.stringify(result, null, 2) + '\n';
-    //   }
-    //   dwnWriteOutputDetailsTextarea.scrollTop =
-    //     dwnWriteOutputDetailsTextarea.scrollHeight;
+        dwnWriteOutputDetailsTextarea.value +=
+          JSON.stringify(result, null, 2) + '\n';
+      }
+      dwnWriteOutputDetailsTextarea.scrollTop =
+        dwnWriteOutputDetailsTextarea.scrollHeight;
 
-    //   dwnWriteOutputSummary.innerHTML = '&#x2714; Written!';
+      dwnWriteOutputSummary.innerHTML = '&#x2714; Written!';
 
-    //   dwnWriteInputButton.disabled = false;
-    //   dwnWriteInputProgress.style.visibility = 'hidden';
-    //   dwnQueryInputButton.disabled = false;
-    //   update();
-    // });
+      dwnWriteInputButton.disabled = false;
+      dwnWriteInputProgress.style.visibility = 'hidden';
+      dwnQueryInputButton.disabled = false;
+      update();
+    });
 
-    // dwnQueryInputButton.addEventListener('click', async () => {
-    //   dwnQueryInputButton.disabled = true;
-    //   dwnQueryInputProgress.style.visibility = 'visible';
+    dwnQueryInputButton.addEventListener('click', async () => {
+      dwnQueryInputButton.disabled = true;
+      dwnQueryInputProgress.style.visibility = 'visible';
 
-    //   dwnQueryOutputSummary.innerHTML = '...';
-    //   dwnQueryOutputDetailsTextarea.value = '';
+      dwnQueryOutputSummary.innerHTML = '...';
+      dwnQueryOutputDetailsTextarea.value = '';
 
-    //   let did = parseDid();
-    //   let result = await dwnQueryPNGRecords(did);
+      let did = parseDid();
+      let result = await dwnQueryPNGRecords(did);
 
-    //   dwnQueryOutputSummary.innerHTML = `&#x2714; Found ${
-    //     result.entries?.length ?? 0
-    //   } entries!`;
-    //   dwnQueryOutputDetailsTextarea.value = JSON.stringify(
-    //     result,
-    //     (key, value) => (key !== 'encodedData' ? value : undefined),
-    //     2,
-    //   );
+      dwnQueryOutputSummary.innerHTML = `&#x2714; Found ${
+        result.entries?.length ?? 0
+      } entries!`;
+      dwnQueryOutputDetailsTextarea.value = JSON.stringify(
+        result,
+        (key, value) => (key !== 'encodedData' ? value : undefined),
+        2,
+      );
 
-    //   dwnQueryInputButton.disabled = false;
-    //   dwnQueryInputProgress.style.visibility = 'hidden';
-    //   dwnReadInputButton.disabled = false;
-    //   dwnDeleteInputButton.disabled = false;
-    //   update();
-    // });
+      dwnQueryInputButton.disabled = false;
+      dwnQueryInputProgress.style.visibility = 'hidden';
+      dwnReadInputButton.disabled = false;
+      dwnDeleteInputButton.disabled = false;
+      update();
+    });
 
-    // dwnReadInputButton.addEventListener('click', async () => {
-    //   dwnReadInputButton.disabled = true;
-    //   dwnReadInputProgress.style.visibility = 'visible';
+    dwnReadInputButton.addEventListener('click', async () => {
+      dwnReadInputButton.disabled = true;
+      dwnReadInputProgress.style.visibility = 'visible';
 
-    //   dwnReadOutput.innerHTML = '';
+      dwnReadOutput.innerHTML = '';
 
-    //   let did = parseDid();
-    //   let query = parseQuery();
-    //   for (let { recordId } of query.entries) {
-    //     let result = await dwnReadDataFromRecordWithId(did, recordId);
-    //     let data = await web5.dwn.SDK.DataStream.toBytes(result.data);
+      let did = parseDid();
+      let query = parseQuery();
+      for (let { recordId } of query.entries) {
+        let result = await dwnReadDataFromRecordWithId(did, recordId);
+        let data = await web5.dwn.SDK.DataStream.toBytes(result.data);
 
-    //     let img = dwnReadOutput.appendChild(document.createElement('img'));
-    //     img.src = URL.createObjectURL(new Blob([data]));
-    //   }
+        let img = dwnReadOutput.appendChild(document.createElement('img'));
+        img.src = URL.createObjectURL(new Blob([data]));
+      }
 
-    //   dwnReadInputButton.disabled = false;
-    //   dwnReadInputProgress.style.visibility = 'hidden';
-    //   update();
-    // });
+      dwnReadInputButton.disabled = false;
+      dwnReadInputProgress.style.visibility = 'hidden';
+      update();
+    });
 
-    // dwnDeleteInputButton.addEventListener('click', async () => {
-    //   dwnDeleteInputButton.disabled = true;
-    //   dwnDeleteInputProgress.style.visibility = 'visible';
+    dwnDeleteInputButton.addEventListener('click', async () => {
+      dwnDeleteInputButton.disabled = true;
+      dwnDeleteInputProgress.style.visibility = 'visible';
 
-    //   dwnDeleteOutputSummary.innerHTML = '...';
+      dwnDeleteOutputSummary.innerHTML = '...';
 
-    //   let did = parseDid();
-    //   let query = parseQuery();
-    //   for (let { recordId } of query.entries) {
-    //     let result = await dwnDeleteRecordWithId(did, recordId);
-    //     dwnDeleteOutputDetailsTextarea.value +=
-    //       JSON.stringify(result, null, 2) + '\n';
-    //   }
-    //   dwnDeleteOutputDetailsTextarea.scrollTop =
-    //     dwnDeleteOutputDetailsTextarea.scrollHeight;
+      let did = parseDid();
+      let query = parseQuery();
+      for (let { recordId } of query.entries) {
+        let result = await dwnDeleteRecordWithId(did, recordId);
+        dwnDeleteOutputDetailsTextarea.value +=
+          JSON.stringify(result, null, 2) + '\n';
+      }
+      dwnDeleteOutputDetailsTextarea.scrollTop =
+        dwnDeleteOutputDetailsTextarea.scrollHeight;
 
-    //   dwnDeleteOutputSummary.innerHTML = `&#x2714; Deleted ${query.entries.length} entries!`;
+      dwnDeleteOutputSummary.innerHTML = `&#x2714; Deleted ${query.entries.length} entries!`;
 
-    //   dwnReadInputButton.disabled = true;
-    //   dwnDeleteInputProgress.style.visibility = 'hidden';
-    //   update();
-    // });
+      dwnReadInputButton.disabled = true;
+      dwnDeleteInputProgress.style.visibility = 'hidden';
+      update();
+    });
   }, []);
   return (
     <div>
@@ -348,6 +348,7 @@ function Web5Quickstart() {
       <Web5QuickstartPrereqsAndInstallation />
 
       <Web5QuickstartCreateDid />
+
       <section id="did-create">
         <div className="input">
           <button>Run!</button>
@@ -362,8 +363,6 @@ function Web5Quickstart() {
         </div>
       </section>
 
-      {/* Below is a WIP */}
-
       <Web5QuickstartRegisterDid />
       <section id="did-register">
         <div className="input">
@@ -375,7 +374,6 @@ function Web5Quickstart() {
       <Web5QuickstartWriteDwn />
 
       <section id="dwn-write">
-        <h1>Write some data</h1>
         <div className="input">
           <input type="file" accept="image/png" disabled />
           <button disabled>Run!</button>
@@ -391,7 +389,6 @@ function Web5Quickstart() {
 
       <Web5QuickstartQueryDwn />
       <section id="dwn-query">
-        <h1>Query for messages</h1>
         <div className="input">
           <button disabled>Run!</button>
           <progress></progress>
@@ -406,7 +403,6 @@ function Web5Quickstart() {
 
       <Web5QuickstartReadDwn />
       <section id="dwn-read">
-        <h1>Read the data</h1>
         <div className="input">
           <button disabled>Run!</button>
           <progress></progress>
@@ -417,7 +413,6 @@ function Web5Quickstart() {
       <Web5QuickstartDeleteDwn />
 
       <section id="dwn-delete">
-        <h1>Delete the messages</h1>
         <div className="input">
           <button disabled>Run!</button>
           <progress></progress>
