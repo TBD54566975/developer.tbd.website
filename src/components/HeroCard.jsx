@@ -4,27 +4,30 @@ import Button from './Button';
 
 function HeroCard({
   heroText,
+  bodyText,
   buttonUrl,
   buttonText,
-  backgroundColor = 'transparent',
+  primary = false,
+  themeColor = 'cyan',
   imgSrc,
+  imgClass = 'tbd-blue-illustration',
 }) {
   return (
     <div
-      style={{ backgroundColor }}
-      className={`relative p-8 rounded-xl shadow-lg tablet:w-full desktop:w-full only:w-full border-[#282828] border-2 my-8 min-h-[240px] flex flex-col justify-between`}
+      className={`${primary ? `primary-theme-card`: ``} theme-card theme-card-${themeColor} relative p-8 rounded-xl shadow-lg tablet:w-full desktop:w-full only:w-full my-8 min-h-[240px] flex flex-col justify-between`}
     >
       {imgSrc && (
         <img
-          className="w-40 px-2 absolute bottom-0 right-0 hidden md:block"
+          className={`w-40 px-2 absolute bottom-0 right-0 hidden md:block padding-bottom--lg ${imgClass}`}
           src={imgSrc}
-        />
+          />
       )}
 
       <h2 className="text-2xl font-bold mb-4">{heroText}</h2>
-      <div className="max-w-[240px] hero-button" style={{ backgroundColor }}>
+      <p className="w-2/3">{bodyText}</p>
+      <div className="max-w-[240px] hero-button">
         <Link href={buttonUrl}>
-          <Button label={buttonText} url={buttonUrl} />
+          <Button label={buttonText} url={buttonUrl} colorDarkMode={themeColor}/>
         </Link>
       </div>
     </div>

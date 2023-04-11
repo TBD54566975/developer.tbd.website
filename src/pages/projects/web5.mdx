@@ -27,6 +27,14 @@ import { content } from '@site/src/content/projects/web5/web5.js';
 
 <Divider type="slash" />
 
+<ProjectList {...content.components} />
+
+<Divider type="slash" />
+
+<Actors content={content.actors} />
+
+<Divider type="slash" />
+
 <PillarList title={content.useCases.title} pillars={content.useCases.pillars} />
 
 </div>
