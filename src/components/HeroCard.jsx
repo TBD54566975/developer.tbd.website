@@ -10,6 +10,7 @@ function HeroCard({
   primary = false,
   themeColor = 'cyan',
   imgSrc,
+  imgClass = 'tbd-blue-illustration',
 }) {
   return (
     <div
@@ -17,13 +18,13 @@ function HeroCard({
     >
       {imgSrc && (
         <img
-          className="w-40 px-2 absolute bottom-0 right-0 hidden md:block"
+          className={`w-40 px-2 absolute bottom-0 right-0 hidden md:block padding-bottom--lg ${imgClass}`}
           src={imgSrc}
-        />
+          />
       )}
 
       <h2 className="text-2xl font-bold mb-4">{heroText}</h2>
-      <p className="w-1/2">{bodyText}</p>
+      <p className="w-2/3">{bodyText}</p>
       <div className="max-w-[240px] hero-button">
         <Link href={buttonUrl}>
           <Button label={buttonText} url={buttonUrl} colorDarkMode={themeColor}/>
