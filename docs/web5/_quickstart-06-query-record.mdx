@@ -1,0 +1,26 @@
+6. Query
+
+Here’s how you’re able to query anything you've saved in your DWN.
+
+:note: The dataFormat value isn’t limited to image/png; it can be any MIME type.
+
+```js
+let queryResult = await
+    web5.dwn.records.query(did.id, {
+        author: did.id,
+        message: {
+            filter: {
+            schema: 'test',
+        },
+    },
+});
+console.log('query result', queryResult);
+```
+
+Now let's find some information about the data you just wrote:
+
+:::caution
+
+[ADD DEVIN’S WIDGET]
+
+:::

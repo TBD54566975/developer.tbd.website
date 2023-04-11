@@ -1,0 +1,14 @@
+4. Register your DID:
+
+Registering your DID gives others a way to find you, message you, and send you data (provided they have permissions).
+
+```js
+await web5.did.register({
+    connected: true,
+    did: did.id,
+    endpoint: 'app://dwn',
+    keys: did.keys[0].keypair,
+});
+```
+
+Register your DID from step one here:
