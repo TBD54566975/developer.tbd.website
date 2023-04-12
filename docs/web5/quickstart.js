@@ -9,7 +9,7 @@ import Web5QuickstartQueryDwn from './_quickstart-06-query-record.mdx';
 import Web5QuickstartReadDwn from './_quickstart-07-read-record.mdx';
 import Web5QuickstartDeleteDwn from './_quickstart-08-delete-record.mdx';
 
-import { Web5 } from 'https://cdn.jsdelivr.net/npm/@tbd54566975/web5@0.4.0-unstable.e6470ce-2023.4.01-19-39-11/dist/browser.mjs';
+import { Web5 } from '@tbd54566975/web5';
 
 let web5 = new Web5();
 
