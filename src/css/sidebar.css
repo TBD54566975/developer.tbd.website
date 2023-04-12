@@ -81,10 +81,10 @@ aside
   .menu__link--active::before {
   content: none;
 }
+
 aside .menu__list .menu__list .menu__link {
   padding-left: 25px;
   height: fit-content;
-  max-width: 173px;
 }
 aside .menu__list .menu__list .menu__link--active {
   padding-left: 25px;
@@ -97,16 +97,6 @@ aside .menu__list .menu__list .menu__link:hover::before {
   margin-right: -24px;
   left: -2.8125rem;
 }
-
-/* aside .menu__list .menu__list-item:nth-child(2)::after {
-  content: '';
-  width: 100%;
-  border-bottom: 1px solid gray;
-  display: block;
-  margin: auto;
-  margin-top: 24px;
-  margin-bottom: 24px;
-} */
 
 @media (min-width: 997px) {
   aside.docSidebarContainer_src-layout-DocPage-styles-module,
