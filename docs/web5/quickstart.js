@@ -382,7 +382,7 @@ function Web5Quickstart() {
         <div className="output">
           <details>
             <summary>...</summary>
-            <textarea readonly></textarea>
+            <textarea readOnly></textarea>
           </details>
         </div>
       </section>
@@ -396,7 +396,7 @@ function Web5Quickstart() {
         <div className="output">
           <details>
             <summary>...</summary>
-            <textarea readonly></textarea>
+            <textarea readOnly></textarea>
           </details>
         </div>
       </section>
@@ -420,7 +420,7 @@ function Web5Quickstart() {
         <div className="output">
           <details>
             <summary>...</summary>
-            <textarea readonly></textarea>
+            <textarea readOnly></textarea>
           </details>
         </div>
       </section>
