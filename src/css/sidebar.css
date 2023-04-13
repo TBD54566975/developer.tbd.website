@@ -35,8 +35,19 @@ aside .menu__list {
 
 aside .menu__list .menu__list {
   display: flex !important;
-  gap: 1.25rem;
-  margin-top: 1rem;
+  margin-top: 0.5rem;
+}
+
+aside .menu__link--sublist.menu__link--active {
+  color: white !important;
+  padding-top: 0rem;
+  padding-bottom: 0rem;
+}
+
+aside .theme-doc-sidebar-item-link > .menu__link.menu__link--active {
+  color: var(--color-blue) !important;
+  padding-top: 0rem;
+  padding-bottom: 0rem;
 }
 
 .menu__caret:before {
@@ -70,10 +81,6 @@ aside .menu__list-item--collapsed .menu__link--sublist:after {
   transform: rotateZ(0deg);
 }
 
-aside .menu__link--active:hover {
-  color: var(--color-blue);
-}
-
 aside
   .menu__list
   .menu__list-item
@@ -86,16 +93,9 @@ aside .menu__list .menu__list .menu__link {
   padding-left: 25px;
   height: fit-content;
 }
-aside .menu__list .menu__list .menu__link--active {
-  padding-left: 25px;
-}
 
-aside .menu__list .menu__list .menu__link:hover::before {
-  content: url('/img/selected-arrow-blue.svg');
-  top: -1px;
-  position: relative;
-  margin-right: -24px;
-  left: -2.8125rem;
+aside .menu__link:hover {
+  color: var(--color-blue) !important;
 }
 
 @media (min-width: 997px) {
