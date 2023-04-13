@@ -12,9 +12,9 @@ tags: [Partnerships]
   <meta property="og:description" content="TBD’s pilot with Yellow Card establishes proof-of-concept to facilitate cross-border payments and fiat off-ramps to benefit the financial lives of people in the Global South" />
   <meta property="og:title" content="Block’s TBD Announces Partnership to Facilitate Global Payments in Africa via Bitcoin & Stablecoin Rails" />
   <meta property="og:url" content='https://developer.tbd.website/blog/tbd-yellowcard-partnership' />
-  <meta property="og:image" content="https://developer.tbd.website/assets/images/tbd-yellowcard-asset-full.png" />
+  <meta property="og:image" content="https://developer.tbd.website/assets/images/tbd-yellowcard-asset-full-6b7d1dd4fe667c7eea477cc8c66aa182.png" />
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:image" content="https://developer.tbd.website/assets/images/tbd-yellowcard-asset-full.png" />
+  <meta name="twitter:image" content="https://developer.tbd.website/assets/images/tbd-yellowcard-asset-full-6b7d1dd4fe667c7eea477cc8c66aa182.png" />
   <meta name="twitter:site" content="@tbddev" />
   <meta name="twitter:title" content="Block’s TBD Announces Partnership to Facilitate Global Payments in Africa via Bitcoin & Stablecoin Rails" />
   <meta name="twitter:description" content="TBD’s pilot with Yellow Card establishes proof-of-concept to facilitate cross-border payments and fiat off-ramps to benefit the financial lives of people in the Global South" />
@@ -25,6 +25,8 @@ tags: [Partnerships]
 
 * TBD’s pilot with Yellow Card establishes proof-of-concept to facilitate cross-border payments and fiat off-ramps to benefit the financial lives of people in the Global South
 * Yellow Card signs on as a launch partner for Web5 and the tbDEX liquidity network
+
+<!--truncate-->
 
 Block’s TBD, a developer platform focused on making the decentralized financial world accessible for everyone, today announced a partnership with Yellow Card to unlock a network of global fiat on- and off-ramps that bridge traditional payments rails to stablecoins and bitcoin. This partnership builds towards TBD’s vision of developing global on- and off-ramps — alongside open standards and open source technologies — with the goal of enabling the mainstream adoption of bitcoin and stablecoins in commercial and financial applications at scale. Yellow Card, which offers payments via stablecoins and bitcoin to banks and mobile money operators in 16 countries across Africa, will be one of TBD’s first partners to enable global payments and fiat off-ramps for end consumers to send U.S. dollars (USD), stablecoin, or bitcoin and receive payments in local fiat currencies.
 
