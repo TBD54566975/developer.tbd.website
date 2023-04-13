@@ -3,7 +3,6 @@
 }
 
 html.plugin-docs.plugin-id-default body {
-
   background-color: #1c1c1c;
 }
 
@@ -22,7 +21,7 @@ html.plugin-docs.plugin-id-default .navbar {
   padding-left: 0px;
   padding-right: 0px;
   padding-top: 0px;
-  background-color: #1c1c1c;
+  background-color: black;
 }
 
 html.plugin-docs.plugin-id-default .navbar__items,
@@ -66,6 +65,7 @@ html.plugin-docs.plugin-id-default aside .menu__link {
   color: var(--ifm-menu-color);
   padding-top: 0rem;
   padding-bottom: 0rem;
+  height: 20px;
 }
 
 html.plugin-docs.plugin-id-default aside aside .menu__link {
@@ -96,25 +96,6 @@ html.plugin-docs.plugin-id-default .sidebar_RiAD {
   top: 0 !important;
 }
 
-.docPage_node_modules-\@docusaurus-theme-classic-lib-theme-DocPage-Layout-styles-module,
-html.plugin-docs.plugin-id-default .navbar {
-  margin-left: auto;
-  margin-right: auto;
-  padding-top: 3rem;
-  max-width: var(--max-page-width);
-}
-
-.docItemContainer_node_modules-\@docusaurus-theme-classic-lib-theme-DocItem-Layout-styles-module {
-  max-width: 892px;
-  margin-left: 4rem;
-}
-
-@media (min-width: 768px) {
-  .docPage_node_modules-\@docusaurus-theme-classic-lib-theme-DocPage-Layout-styles-module {
-    padding-top: 3.5rem;
-  }
-}
-
 @media (min-width: 997px) {
   html.plugin-docs.plugin-id-default
     .menu_node_modules-\@docusaurus-theme-classic-lib-next-theme-DocSidebar-Desktop-Content-styles-module {
@@ -122,19 +103,12 @@ html.plugin-docs.plugin-id-default .navbar {
     padding-left: 0rem !important;
     font-size: large;
   }
-    html.plugin-docs.plugin-id-default
+  html.plugin-docs.plugin-id-default
     aside.docSidebarContainer_src-layout-DocPage-styles-module,
   html.plugin-docs.plugin-id-default aside.theme-doc-sidebar-container {
     margin-right: 1.5rem;
   }
 }
-
-@media (min-width: 1024px) {
-  .docPage_node_modules-\@docusaurus-theme-classic-lib-theme-DocPage-Layout-styles-module {
-    padding-top: 3.5rem;
-  }
-}
-
 /* Article styling */
 
 article .markdown p {
@@ -294,18 +268,11 @@ html.plugin-docs.plugin-id-default .table-of-contents__left-border li {
   font-family: var(--tbd-font-sans);
 }
 
-html.plugin-docs.plugin-id-default .table-of-contents__left-border li:is(:first-of-type, :last-of-type) {
-  margin-top: 0;
-  margin-bottom: 0;
-}
-
 /* Redocusaurus */
 .redocusaurus {
   overflow: auto;
   height: 95vh;
 }
-
-
 
 /* Changes */
 .hero-button {
@@ -335,7 +302,12 @@ article .markdown .theme-card > p {
 
 html.plugin-docs.plugin-id-default article .theme-card.primary-theme-card h2,
 html.plugin-docs.plugin-id-default article .theme-card.primary-theme-card p,
-html.plugin-docs.plugin-id-default article .theme-card.primary-theme-card .hero-button a > div{
+html.plugin-docs.plugin-id-default
+  article
+  .theme-card.primary-theme-card
+  .hero-button
+  a
+  > div {
   color: #fff;
 }
 

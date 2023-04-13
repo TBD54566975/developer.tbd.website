@@ -15,15 +15,6 @@ body > progress ~ * {
   display: none;
 }
 
-.markdown {
-  margin: 0 auto;
-  padding: 1em 2em 5em;
-}
-
-.markdown h1 {
-  text-align: center;
-}
-
 .markdown progress {
   vertical-align: middle;
   visibility: hidden;

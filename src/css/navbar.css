@@ -224,7 +224,7 @@
 }
 
 .navbar-sidebar .navbar-sidebar__item:last-child .menu__list-item-collapsible {
-  justify-content: space-between;
+  justify-content: space-evenly;
 }
 
 .navbar-sidebar
@@ -294,4 +294,9 @@ aside .menu__link--active {
 
 aside .menu__list-item-collapsible {
   background-color: transparent !important;
+}
+
+aside .menu__link--sublist-caret:after {
+  top: 3px;
+  position: relative;
 }
