@@ -22,7 +22,6 @@ function Community() {
   return (
     <div class="py-12">
       <h2 class="mb-2">JOIN THE COMMUNITY</h2>
-      <p class="pb-4">Connect with us</p>
       <div className="grid grid-cols-1 tablet:grid-cols-3 desktop:grid-cols-3 gap-4">
     
         <CommunityCard
