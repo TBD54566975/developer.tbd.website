@@ -17,13 +17,13 @@ function DocsIndex() {
       </p>
       <div>
         <HeroCard
-          heroText="Web 5 in 5️⃣ minutes"
+          heroText="Web5 in 5️⃣ Minutes"
           buttonUrl="/docs/web5/quickstart"
-          buttonText="QUICKSTART 🚀"
-          imgSrc="/img/checkered-glitch.svg"
-          imgClass="tbd-yellow-illustration"
+          buttonText="Quickstart 🚀"
+          imgSrc="/img/docs-web5-code.png"
+          imgClass="w-96"
           bodyText="An interactive guide to get started with Web5"
-          primary={true}
+          themeColor="yellow"
         />
       </div>
 
@@ -31,40 +31,38 @@ function DocsIndex() {
 
       <h2>LEARN MORE</h2>
 
-      <div className="grid grid-cols-1 desktop:grid-cols-2 gap-4">
+      <div className="grid grid-cols-2 desktop:grid-cols-2 gap-4">
         <HeroCard
-          heroText="What is Web 5"
+          heroText="What is Web5"
           buttonUrl="/blog/what-is-web5" 
-          buttonText="READ"
-          imgSrc="/img/docs-puzzle.svg"
-          imgClass="tbd-purple-illustration"
+          buttonText="Read"
+          imgSrc="/img/search-icon.png"
           bodyText="Learn how Web5 enables decentralized apps"
           themeColor="cyan"
         />
         <HeroCard
           heroText="Decentralized Identifiers"
           buttonUrl="/docs/web5/learn/decentralized-identifiers"
-          buttonText="LEARN"
-          imgSrc="/img/docs-id-icon.svg"
-          imgClass="w-32 tbd-cyan-illustration"
+          buttonText="Learn"
+          imgSrc="/img/data-icon.svg"
           bodyText="Take a journey with Alice and Bob to learn all about DIDs"
           themeColor="purple"
         />
           <HeroCard
           heroText="Decentralized Web Nodes"
           buttonUrl="/docs/web5/learn/decentralized-web-nodes"
-          buttonText="LEARN"
-          imgSrc="/img/docs-cloud-server.svg"
-          imgClass="tbd-cyan-illustration"
+          buttonText="Learn"
+          imgSrc="/img/message-icon.png"
+          imgClass="w-40"
           bodyText="Learn how DWNs act as personal data stores"
           themeColor="purple"
         />
         <HeroCard
           heroText="Build a ToDo App"
           buttonUrl="/docs/web5/build/apps/todo-app-tutorial"
-          buttonText="START TUTORIAL"
-          imgSrc="/img/docs-task-list.svg"
-          imgClass="tbd-purple-illustration"
+          buttonText="Build"
+          imgSrc="/img/docs-todo-icon.png"
+          imgClass="w-24"
           bodyText="Learn how to build a simple, single-user decentralized app"
           themeColor="cyan"
         />
@@ -73,7 +71,7 @@ function DocsIndex() {
       <div className='padding-top--xl'/>
 
       <h2>EXPLORE</h2>
-      <div className="grid grid-cols-1 tablet:grid-cols-2 desktop-lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-2 tablet:grid-cols-2 desktop-lg:grid-cols-4 gap-4">
 
       <ExploreCard
           text="Sample Apps"
