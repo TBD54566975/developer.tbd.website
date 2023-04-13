@@ -287,6 +287,5 @@ aside .menu__link {
 }
 
 aside .menu__link--sublist-caret:after {
-  top: 3px;
   position: relative;
 }
