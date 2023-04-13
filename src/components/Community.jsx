@@ -28,7 +28,7 @@ function Community() {
         <CommunityCard
           title="GitHub"
           icon="/img/github-icon.svg"
-          CTA="Check out our projects, submit a PR, or open an issue"
+          CTA="Submit a PR or open an issue"
           buttonUrl="https://github.com/TBD54566975"
           buttonText="View"
         />

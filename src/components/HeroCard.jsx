@@ -10,7 +10,7 @@ function HeroCard({
   primary = false,
   themeColor = 'cyan',
   imgSrc,
-  imgClass = 'tbd-blue-illustration',
+  imgClass = 'tbd-blue-illustration w-32',
 }) {
   return (
     <div
@@ -23,7 +23,7 @@ function HeroCard({
           />
       )}
 
-      <h2 className="text-2xl font-bold mb-4">{heroText}</h2>
+      <h2 className="text-2xl font-bold mb-4 text-yellow-300">{heroText}</h2>
       <p className="w-2/3">{bodyText}</p>
       <div className="max-w-[240px] hero-button">
         <Link href={buttonUrl}>
