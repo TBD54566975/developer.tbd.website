@@ -29,9 +29,9 @@ function DocsIndex() {
 
       <div className='padding-top--xl'/>
 
-      <h2>LEARN MORE</h2>
+      <h2 className='-mb-2'>LEARN MORE</h2>
 
-      <div className="grid grid-cols-2 desktop:grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 desktop:grid-cols-2 gap-4">
         <HeroCard
           heroText="What is Web5"
           buttonUrl="/blog/what-is-web5" 

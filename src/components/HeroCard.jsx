@@ -18,7 +18,7 @@ function HeroCard({
     >
       {imgSrc && (
         <img
-          className={`w-40 px-2 absolute bottom-0 right-0 hidden md:block padding-bottom--lg ${imgClass}`}
+          className={`px-2 absolute bottom-0 right-0 hidden md:block padding-bottom--lg ${imgClass}`}
           src={imgSrc}
           />
       )}

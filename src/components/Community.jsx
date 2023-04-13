@@ -8,10 +8,10 @@ function CommunityCard({ icon, title, CTA, buttonUrl, buttonText }) {
       <div className="flex flex-row justify-around">
         <img className="w-9 h-9 mr-6" src={icon} />
         <div>
-          <h4>{title}</h4>
+          <h4 className="text-[#22f1ff]">{title}</h4>
           <p>{CTA}</p>
-          <div className='padding-top--xl'/>
-          <Button label={buttonText} url={buttonUrl} colorDarkMode="cyan" isExternalLink="true"/>
+          <div className='padding-top--lg' />
+          <Button label={buttonText} url={buttonUrl} colorDarkMode="cyan" isExternalLink="true" className="community-button "/>
         </div>
       </div>
     </div>
