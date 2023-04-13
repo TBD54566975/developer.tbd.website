@@ -330,3 +330,11 @@ html.plugin-docs.plugin-id-default article .theme-card p {
 .theme-card-purple {
   --color-card: 213, 162, 235;
 }
+
+.community-button {
+  text-decoration: none;
+  text-transform: uppercase;
+  font-weight: bold;
+  background-color: #fff !important;
+  color: #000 !important;
+}
