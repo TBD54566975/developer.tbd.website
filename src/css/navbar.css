@@ -286,17 +286,6 @@ aside .menu__link {
   text-decoration: none;
 }
 
-aside .menu__link--active {
-  color: white !important;
-  padding-top: 0rem;
-  padding-bottom: 0rem;
-}
-
-aside .menu__list-item-collapsible {
-  background-color: transparent !important;
-}
-
 aside .menu__link--sublist-caret:after {
-  top: 3px;
   position: relative;
 }

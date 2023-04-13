@@ -65,7 +65,6 @@ html.plugin-docs.plugin-id-default aside .menu__link {
   color: var(--ifm-menu-color);
   padding-top: 0rem;
   padding-bottom: 0rem;
-  height: 20px;
 }
 
 html.plugin-docs.plugin-id-default aside aside .menu__link {
