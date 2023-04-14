@@ -28,7 +28,8 @@ export const content = {
         title: 'Decentralized Web Node',
         description: TBDEXProtocol,
         textButton: 'View Component',
-        url: '/projects/dwn-sdk-js/README',
+        url: 'https://github.com/TBD54566975/dwn-sdk-js#readme',
+        isExternalLink: true,
       },
       {
         icon: '/img/component-icon.svg',
@@ -45,14 +46,16 @@ export const content = {
         description:
           'An in-a-box service that handles the full Verifiable Credentials lifecycle, including issuance, verification, revocation, and more.',
         textButton: 'View Component',
-        url: '/projects/ssi-service/README',
+        url: 'https://github.com/TBD54566975/ssi-service#readme',
+        isExternalLink: true,
       },
       {
         icon: '/img/component-icon.svg',
         title: 'Self-Sovereign Identity SDK',
         description: SSIService,
         textButton: 'View Component',
-        url: '/projects/ssi-sdk/README',
+        url: 'https://github.com/TBD54566975/ssi-sdk#readme',
+        isExternalLink: true,
       },
     ],
   },

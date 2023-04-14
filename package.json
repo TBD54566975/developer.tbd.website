@@ -35,7 +35,7 @@
     "tailwindcss": "^3.2.7"
   },
   "devDependencies": {
-    "@docusaurus/module-type-aliases": "2.3.1"
+    "@docusaurus/module-type-aliases": "^2.4.0"
   },
   "browserslist": {
     "production": [
@@ -50,6 +50,6 @@
     ]
   },
   "engines": {
-    "node": ">=16.14"
+    "node": ">=18.15"
   }
 }
