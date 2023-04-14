@@ -2,7 +2,7 @@
 
 In this tutorial, you will learn how to build a basic single-party decentralized ToDo app written using `web5.js`. It’s composed of a `Vue.js` app powered by [web5.js](https://www.npmjs.com/package/@tbd54566975/web5) which adds data storage underpinned by a Decentralized Web Node (DWN). 
 
-The ToDo app is a simple single-user, local application that only leverages `web5.js` for storage purposes, but serves as an important precursor to building larger decentralized apps. 
+The ToDo app is a basic single-user, local application that only leverages `web5.js` for storage purposes, but serves as an important precursor to building larger decentralized apps. 
 
 By the end of this tutorial, you’ll have a solid understanding of the basics of creating, reading, and writing to a DWN and will be on your way to creating serverless, decentralized applications.
 
@@ -47,7 +47,7 @@ You should now have the app running on [`https://localhost:5173`](https://localh
 
 ## App Architecture
 
-There are 3 main components to your ToDo app: HTML, CSS, and Javascript. The way that `web5.js` changes the layout of your ToDo app compared to the way a traditional web app would be laid out is by replacing the RESTful calls you’d normally make with calls to your DWN. 
+There are 3 main components to your ToDo app: HTML, CSS, and Javascript. The way that `web5.js` changes the layout of your ToDo app compared to the way a traditional web app would be laid out is by replacing the RESTful calls you’d normally make with calls to the DWN. 
 
 :::note
 Think of `web5.js` as your storage, RESTful API service, and the backing data store.
@@ -99,7 +99,7 @@ If the data is available we can use that to access their DWN via `Web5.js`, othe
 
 ## Displaying Todos
 
-Once you’ve called `register()` , you can now make calls to your DWN to fetch, write, and delete data. To load your user’s existing todos, simply call:
+Once you’ve called `register()` , you can now make calls to the DWN to fetch, write, and delete data. To load your user’s existing todos, call:
 
 ```jsx
 onMounted(async () => {
@@ -159,7 +159,7 @@ Now that your todos are stored in your app, you can display them by using your `
 ```
 
 :::info
-Note that this UI code fulfills more than just loading the todos - it also provides the ability to toggle completion status and delete todos, which we’ll get into later.
+Note that this UI code fulfills more than just loading the todos - it also provides the ability to toggle completion status and delete todos, which we’ll get to in a bit.
 :::
 
 ## Adding Todos
@@ -184,7 +184,7 @@ To allow for add functionality, begin by creating the UI needed to add todos:
     </div>
 ```
 
-Then, writing a todo into storage is as simple as binding a `addTodo()` method to the UI and leveraging the `newTodoDescription` model referenced in the `textarea` to call the `web5` method `write`:
+Then, writing a todo into storage is done by binding a `addTodo()` method to the UI and leveraging the `newTodoDescription` model referenced in the `textarea` to call the `web5` method `write`:
 
 ```jsx
 const newTodoDescription = ref('');
@@ -326,4 +326,4 @@ The overall UI code for your todo, which includes the affordance to display, del
     </div>
 ```
 
-Congratulations, you've just built a decentralized web app! Feel free to check out the [finished version of the project here](https://github.com/TBD54566975/incubating-web5-labs/tree/main/todo-app).
+Congratulations, you've just built a decentralized web app! Feel free to check out the [finished version of the ToDo app here](https://github.com/TBD54566975/incubating-web5-labs/tree/main/todo-app).
