@@ -4,9 +4,9 @@ What we can store, we can remove.
 
 ```js
 let deleteResult = await web5.dwn.records.delete(did.id, {
-author: did.id,
-message: {
-recordId: queryResult.entries[0].recordId,
-},
-});
+    author: did.id,
+    message: {
+        recordId: queryResult.entries[0].recordId,
+        },
+    });
 ```
