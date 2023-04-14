@@ -1,26 +1,70 @@
-## Prerequisites
+import Link from '@docusaurus/Link';
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
-[Node Package Manager - NPM](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)
-Used to obtain the Web5 SDK, a JavaScript library
+## 1. Installation
 
-## Installation
-This will install the Web5 module into your project using NPM. From the shell:
-```
-$> npm install @tbd54566975/web5
-```
+:::info Web5 Installation
 
-<details><summary>Without NPM</summary>
-<p>
+<Tabs>
+  <TabItem value="NPM" label="via NPM">
+  
+    <h4>Prerequisites</h4>
+    <p><a href="https://docs.npmjs.com/downloading-and-installing-node-js-and-npm" 
+      target="_blank">Node Package Manager - NPM</a></p>
+    <p>Ensure you have the Node Package Manager, <code>npm</code>, installed and on your system's <code>$PATH</code>.</p>
+    <h4>Installation</h4>
+    <p>The following command will install the Web5 module into your project using NPM. From the shell:</p>
+    <pre>$> npm install @tbd54566975/web5</pre>
 
-#### Using CDN directly
+  </TabItem>
+  <TabItem value="CDN" label="from CDN">
+  
+    <div>
+      <p>You may also reference the Web5 JS SDK library directly 
+      from the CDN. This may be preferable for projects not using a package 
+      management system like NPM.</p>
+      <p>In this case, no prior installation on your system or in your project is 
+      necessary, and we'll simply import the Web5
+      class in the next step.</p>
+    </div>
+  </TabItem>
+</Tabs>
 
-You may also reference the Web5 JS SDK library directly from the CDN. This may be preferable for projects not using a package management system or build.
+:::
 
-```html
-<script src="
-https://cdn.jsdelivr.net/npm/@tbd54566975/web5@0.3.1/dist/browser.min.js
-"></script>
-```
+## 2. Import `Web5`
 
-</p>
-</details>
+You'll need to import the `Web5` class for your JavaScript application to reference it. 
+
+:::info Import the Web5 Class
+
+<Tabs>
+  <TabItem value="NPM" label="via NPM">
+    
+    <div>
+      <p>If you've installed <code>Web5</code> from NPM above, import the class in JavaScript:</p>
+    </div>
+
+    import { Web5 } from '@tbd54566975/web5'
+
+  </TabItem>
+  <TabItem value="CDN" label="from CDN">
+   
+    <div>
+      <p>If you're not using a package manager like NPM, import the class in JavaScript from the CDN:</p>
+    </div>
+
+    import { Web5 } from 'https://cdn.jsdelivr.net/npm/@tbd54566975/web5@0.3.1/dist/browser.min.js'
+
+  </TabItem>
+</Tabs>
+
+:::
+
+import { Web5 } from '@tbd54566975/web5'
+<div>
+    <h4>Import</h4>
+    <p>Then, in JavaScript:</p>
+    import { Web5 } from 'https://cdn.jsdelivr.net/npm/@tbd54566975/web5@0.3.1/dist/browser.min.js'
+</div>

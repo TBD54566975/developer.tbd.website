@@ -8,6 +8,7 @@ import Web5QuickstartWriteDwn from './_quickstart-05-write-record.mdx';
 import Web5QuickstartQueryDwn from './_quickstart-06-query-record.mdx';
 import Web5QuickstartReadDwn from './_quickstart-07-read-record.mdx';
 import Web5QuickstartDeleteDwn from './_quickstart-08-delete-record.mdx';
+import Web5QuickstartNextSteps from './_quickstart-09-next-steps.mdx';
 
 import { Web5 } from '@tbd54566975/web5';
 
@@ -281,9 +282,9 @@ function Web5Quickstart() {
       let did = parseDid();
       let result = await dwnQueryPNGRecords(did);
 
-      dwnQueryOutputSummary.innerHTML = `&#x2714; Found ${
+      dwnQueryOutputSummary.innerHTML = `&#x2714; Found number of entries: ${
         result.entries?.length ?? 0
-      } entries!`;
+      }`;
       dwnQueryOutputDetailsTextarea.value = JSON.stringify(
         result,
         (key, value) => (key !== 'encodedData' ? value : undefined),
@@ -334,7 +335,7 @@ function Web5Quickstart() {
       dwnDeleteOutputDetailsTextarea.scrollTop =
         dwnDeleteOutputDetailsTextarea.scrollHeight;
 
-      dwnDeleteOutputSummary.innerHTML = `&#x2714; Deleted ${query.entries.length} entries!`;
+      dwnDeleteOutputSummary.innerHTML = `&#x2714; Number of deleted entries: ${query.entries.length}`;
 
       dwnReadInputButton.disabled = true;
       dwnDeleteInputProgress.style.visibility = 'hidden';
@@ -356,7 +357,7 @@ function Web5Quickstart() {
         <div className="output">
           <details>
             <summary>
-              <code>...</code>
+              <code>Hit "Run" above to create DID</code>
             </summary>
             <textarea></textarea>
           </details>
@@ -424,7 +425,11 @@ function Web5Quickstart() {
           </details>
         </div>
       </section>
+
+      <Web5QuickstartNextSteps />
+      
     </div>
+
   );
 }
 

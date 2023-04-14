@@ -6,17 +6,21 @@ The DWN is your personal data store - a home for messages, pictures, videos, and
 
 ```js
 const data = 'Hello Web5';
-console.log('write data', data);
 
 let writeResult = await web5.dwn.records.write(did.id, {
     author: did.id,
     data,
     message: {
         schema: 'test',
-        dataFormat: 'text/plain',
+        dataFormat: 'image/png',
     },
 });
-console.log('write result', writeResult);
 ```
+
+:::note
+
+The `dataFormat` value isn’t limited to `image/png`; it can be any `MIME` type.
+
+:::
 
 Practice writing something:
