@@ -81,12 +81,6 @@ export function Footer() {
       },
       */
       {
-        src: '/img/discourse-icon.svg',
-        url: 'https://forums.tbd.website/',
-        altText: 'TBD Forum button',
-        title: 'Go to TBD Forum',
-      },
-      {
         src: '/img/github-icon.svg',
         url: 'https://github.com/TBD54566975/',
         altText: 'GitHub button',
