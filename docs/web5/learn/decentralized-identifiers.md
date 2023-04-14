@@ -22,7 +22,7 @@ A DID is a "type of identifier that enables verifiable, decentralized digital id
 
 DIDs are typically represented as a unique resource identifier (URI) and are designed to be used for identity verification, authentication, and authorization.
 
-![](https://developer.tbd.website/assets/images/did-example-80081a6570618c58432aa2a29b22a86c.png)
+![](/img/did-example.png)
 _Example of a Decentralized Identifier_
 
 The key difference between a traditional centralized identifier, such as a username or email address, and a decentralized identifier is that the latter is not tied to a specific service provider or organization. An example of a centralized identifier you might have would be your Twitter handle or Google email address, where Twitter or Google are the centralized authority.
@@ -80,7 +80,7 @@ The only required field is the `id` field. This value is your DID. You might fin
 
 #### Controller - Subject relationship
 
-![](https://i.imgur.com/OdWtmlt.png)
+![](/img/did-controller-trust.png)
 _Example of a Controller Subject relationship diagram, from [W3C DID Core Spec](https://www.w3.org/TR/did-core/)_
 
 One of the fields you might find in a DID Document is the `verificationMethod`, which is an array of objects each representing a controlling entity of the DID. The `controller` field contains controlling entity's DID.
