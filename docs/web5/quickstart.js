@@ -426,10 +426,19 @@ function Web5Quickstart() {
         </div>
       </section>
 
-      <Web5QuickstartNextSteps />
-      
-    </div>
+      <h2>Summary</h2>
+      <p>
+        Congrats! You've just created a local DWN to serve as your user's
+        personal data store. Given a user's DID and appropriate permissions,
+        your app can read, write, or delete data from the user's DWN, while
+        leaving them full control of their content. Other apps can query local
+        storage to determine if the user already has a DWN on their device, and
+        can also read and write from this same data store - essentially, making
+        the user's data portable across multiple applications.
+      </p>
 
+      <Web5QuickstartNextSteps />
+    </div>
   );
 }
 

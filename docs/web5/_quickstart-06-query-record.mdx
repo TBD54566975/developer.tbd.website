@@ -1,6 +1,8 @@
 ## 6. Query
 
-Here’s how you’re able to query anything that was saved in your DWN.
+Here’s how you’re able to query data in a DWN.
+
+Querying a DWN allows you to search records depending on the filter params you pass to it. In the code snippet below, we're querying a DWN for messages that match the schema "test". Note that you don't have to query based on schema, there are many different attributes you can use to query, such as `dataFormat`, `protocol`, `contextId` 
 
 ```js
 let queryResult = await
