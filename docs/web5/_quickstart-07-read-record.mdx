@@ -1,4 +1,7 @@
-## 7. Reading your messages in DWN
+## 7. Reading messages in your DWN
+
+We put the data in; let's get it out. All of this is from your 
+personal datastore, your DWN, running embedded in your application.
 
 ```js
 let readResult = await web5.dwn.records.read(did.id, {
@@ -7,9 +10,6 @@ let readResult = await web5.dwn.records.read(did.id, {
         recordId: queryResult.entries[0].recordId,
     },
 });
-console.log('read result', readResult);
-console.log('read data',
-web5.dwn.SDK.Encoder.bytesToString(await web5.dwn.SDK.DataStream.toBytes(readResult.data)));
 ```
 
-Now let's get the actual data for the information we just got (edit this sentence):
+Let's have a look at the data the stored earlier:
