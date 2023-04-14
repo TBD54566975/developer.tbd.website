@@ -312,7 +312,7 @@ html.plugin-docs.plugin-id-default
   color: #fff;
 }
 
-html.plugin-docs.plugin-id-default article .theme-card h2{
+html.plugin-docs.plugin-id-default article .theme-card h2 {
   color: rgba(var(--color-card));
 }
 html.plugin-docs.plugin-id-default article .theme-card p {

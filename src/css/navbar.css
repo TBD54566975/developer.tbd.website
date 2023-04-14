@@ -205,6 +205,10 @@
   padding-right: 0px !important;
 }
 
+.navbar__items--right > :last-child {
+  padding-right: 16px;
+}
+
 .navbar-sidebar .navbar-sidebar__item:last-child .menu__link {
   padding-left: 0px !important;
 }
