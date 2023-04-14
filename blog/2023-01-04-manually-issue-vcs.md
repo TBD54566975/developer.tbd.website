@@ -1,45 +1,43 @@
 ---
+slug: issue-verifiable-credential-manually
 title: Manually Issue a Verifiable Credential
-sidebar_position: 1
-sidebar_custom_props:
-  description: 'Learn how to issue a verifiable credential'
-  thumbnail: /img/tutorial_issue_vc.png
+description: Learn how to issue a verifiable credential
+authors:
+  name: Bobbilee Hartman
+tags: [verifiable credentials]
 ---
 
 <head>
   <title>Manually Issue a Verifiable Credential</title>
-  <meta name="description" content="Learn how to issue a verifiable credential" />
-<meta
-  property="og:url"
-  content="https://developer.tbd.website/docs/tutorials/issue-verifiable-credential-manually"
-/>
-<meta property="og:type" content="website" />
-<meta property="og:title" content="Manually Issue a Verifiable Credential" />
-<meta
-  property="og:description"
-  content="Learn how to issue a verifiable credential"
-/>
-<meta property="og:image" content="/img/tutorial_issue_vc.png" />
-
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta property="twitter:domain" content="developer.tbd.website" />
-  <meta property="twitter:url" content="https://developer.tbd.website/docs/tutorials/issue-verifiable-credential-manually" />
+  <meta property="og:description" content="Learn how to issue a verifiable credential" />
+  <meta property="og:title" content="Manually Issue a Verifiable Credential" />
+  <meta property="og:url" content='https://developer.tbd.website/blog/issue-verifiable-credential-manually' />
+  <meta property="og:image" content="https://developer.tbd.website/img/tutorial_issue_vc.png" />
+  
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:image" content="https://developer.tbd.website/img/tutorial_issue_vc.png" />
+  <meta name="twitter:site" content="@tbddev" />
   <meta name="twitter:title" content="Manually Issue a Verifiable Credential" />
   <meta name="twitter:description" content="Learn how to issue a verifiable credential" />
-  <meta name="twitter:image" content="/img/tutorial_issue_vc.png" />
   <link rel="apple-touch-icon" href="https://developer.tbd.website/img/tbd-fav-icon-main.png" />
 </head>
 
+## 
+
+![Manually Issue a Verifiable Credential](/img/tutorial_issue_vc.png)
+
 <blockquote>
-  This tutorial is a walk through of the VC issuance process from the
+  This is a walk through of the VC issuance process from the
   perspective of the issuer. It is using a manual approach to issue verifiable
   credentials and is <b>not intended to be used in production applications</b>.
-  We are providing this tutorial for educational purposes only.
+  We are providing this for educational purposes only.
 </blockquote>
 
 ## **Narrative**
 
 Alice starts a new job at Acme and she'd like a Verifiable Credential (VC) proving her current employment status.
+
+<!--truncate-->
 
 To request a VC, Alice logs into Acme's internal employee portal and clicks Employment Verification. Clicking the button will invoke the VC issuance process via the [SSI Service](https://github.com/TBD54566975/ssi-service) Acme is hosting.
 

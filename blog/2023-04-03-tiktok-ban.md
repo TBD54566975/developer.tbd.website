@@ -1,7 +1,7 @@
 ---
 slug: tiktok-ban-impact-on-creators
 title: What Happens To My Content If TikTok Gets Banned?
-description: Discussing
+description: Discussing how web5 could prevent the negative consequences of a TikTok ban on creators.
 authors:
   name: Chris Giglio
 tags: [web5, TikTok]
