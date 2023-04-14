@@ -14,8 +14,8 @@ A DWN is a personal data store. This means you can:
 - **Back up your data:** Host multiple nodes in different places, keep them all synced. If one goes down, you have your back up. When it comes back up, the sync is effortless.
 - **Send and receive data:** Alice controls her DWN using her DID. Bob controls his DWN with his DID. Alice can send data to Bob just by resolving his DID.
 
-![](https://i.imgur.com/YeOneps.png)
-_Topology of an exchange between Decentralized Web Nodes, from [DIF Decentralized Web Node Spec](https://identity.foundation/decentralized-web-node/spec/#topology)_
+![](/img/did-resolve.png)
+_Topology of an exchange between Decentralized Web Nodes, duplicated from the [DIF Decentralized Web Node Spec](https://identity.foundation/decentralized-web-node/spec/#topology)_
 
 ### Authorization
 
