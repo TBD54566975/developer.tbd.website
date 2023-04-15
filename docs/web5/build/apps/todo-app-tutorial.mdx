@@ -74,7 +74,10 @@ onMounted(async () => {
   let registerInfo;
 
   // Load DWN DID from local storage or create a new one
-  if(!localStorage.getItem('dwn-info')){
+  if(localStorage.getItem('dwn-info')){
+    // User has an "account," so load their data
+    registerInfo = JSON.parse(localStorage.getItem('dwn-info'));
+  } else {
 		// User does not have an "account," so create one for them
     const myDid = await web5.did.create('ion');
     registerInfo = {
@@ -82,13 +85,8 @@ onMounted(async () => {
       did       : myDid.id,
       endpoint  : 'app://dwn', 
       keys      : myDid.keys[0].keypair
-    };
-    localStorage.setItem('dwn-info', JSON.stringify(registerInfo));
-  } else {
-		// User has an "account," so load their data
-    registerInfo = JSON.parse(localStorage.getItem('dwn-info'));
-  }
-  web5.did.register(registerInfo);
+  };
+  web5.did.manager.set(registerInfo);
   dwnDID.value = registerInfo.did;
 }
 ```
@@ -99,7 +97,7 @@ If the data is available we can use that to access their DWN via `Web5.js`, othe
 
 ## Displaying Todos
 
-Once you’ve called `register()` , you can now make calls to the DWN to fetch, write, and delete data. To load your user’s existing todos, call:
+Once you’ve called `set()` , you can now make calls to the DWN to fetch, write, and delete data. To load your user’s existing todos, call:
 
 ```jsx
 onMounted(async () => {
