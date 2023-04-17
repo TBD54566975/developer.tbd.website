@@ -12,7 +12,6 @@ const config = {
   projectName: 'developer.tbd.website',
   baseUrl: '/',
   url: 'https://developer.tbd.website',
-
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
 
@@ -20,10 +19,10 @@ const config = {
   // Even if you don't use internalization, you can use this field to set useful
   // metadata like html lang. For example, if your site is Chinese, you may want
   // to replace "en" with "zh-Hans".
-  i18n: {
-    defaultLocale: 'en',
-    locales: ['en'],
-  },
+  // i18n: {
+  //   defaultLocale: 'en',
+  //   locales: ['en'],
+  // },
   plugins: [
     'docusaurus-tailwindcss',
     [
@@ -133,7 +132,7 @@ const config = {
           },
           {
             type: 'doc',
-            docId: 'intro',
+            docId: 'index',
             to: '/docs',
             label: 'Docs',
             position: 'left',
@@ -153,7 +152,7 @@ const config = {
             items: [
               {
                 label: 'Tutorial',
-                to: '/docs/intro',
+                to: '/docs/',
               },
             ],
           },

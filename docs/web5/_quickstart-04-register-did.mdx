@@ -1,0 +1,13 @@
+## 4. Register your DID
+
+Registering a user's DID gives other apps (or users) a way to find them, message them, and send them data provided they have permissions.
+```js
+await web5.did.register({
+    connected: true,
+    did: did.id,
+    endpoint: 'app://dwn',
+    keys: did.keys[0].keypair,
+});
+```
+
+Register the DID:

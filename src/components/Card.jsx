@@ -3,7 +3,7 @@ import React from 'react';
 
 function Card({ children }) {
   return (
-    <div className="flex flex-col bg-transparent border-gray-400 border-2 shadow overflow-hidden sm:rounded-lg px-4 py-5 sm:px-6">
+    <div className="flex flex-col bg-transparent border-[#282828] border-2 shadow overflow-hidden sm:rounded-lg lg:p-10 sm:p-5 lg:mb-6">
       {children}
     </div>
   );

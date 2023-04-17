@@ -123,7 +123,6 @@
   .navbar-sidebar__item:first-child
   .menu__link--active:not(.menu__link--sublist) {
   background-color: var(--color-black);
-  height: 18px;
 }
 
 .navbar-sidebar .navbar-sidebar__item:first-child .menu__link--active::before {
@@ -206,6 +205,10 @@
   padding-right: 0px !important;
 }
 
+.navbar__items--right > :last-child {
+  padding-right: 16px;
+}
+
 .navbar-sidebar .navbar-sidebar__item:last-child .menu__link {
   padding-left: 0px !important;
 }
@@ -225,7 +228,7 @@
 }
 
 .navbar-sidebar .navbar-sidebar__item:last-child .menu__list-item-collapsible {
-  justify-content: space-between;
+  justify-content: space-evenly;
 }
 
 .navbar-sidebar
@@ -279,23 +282,14 @@
   top: -6px;
 }
 
-
 aside .menu__link {
   color: gray !important;
   padding-top: 0rem;
   padding-bottom: 0rem;
-  height: 18px;
   background-color: transparent !important;
   text-decoration: none;
 }
 
-aside .menu__link--active {
-  color: white !important;
-  padding-top: 0rem;
-  padding-bottom: 0rem;
-  height: 18px;
-}
-
-aside .menu__list-item-collapsible {
-    background-color: transparent !important;
+aside .menu__link--sublist-caret:after {
+  position: relative;
 }

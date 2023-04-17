@@ -1,0 +1,33 @@
+## 2. Create Web5 instance:
+
+There’s only one class for all Web5 operations
+
+```js
+const web5 = new Web5
+```
+
+## 3. Create a Decentralized Identifier (DID):
+
+:::info
+A [Decentralized Identifier (DID)](https://www.w3.org/TR/did-core/),
+is an W3C specification for an address representing who you are on the decentralized web. You 
+can [learn more about them here](/docs/web5/learn/decentralized-identifiers) as 
+a core concept behind Web5.
+:::
+
+In the world of Web5, a user's unique identifier, like an email address, is called a DID.
+
+Why do we need a DID?
+
+Since we're now building decentralized apps we need an identifier that isn't tied to a centralized authority.
+It can be used to identify and associate a user's data across any platform.
+
+We can create a DID using the Web5 API:
+
+```js
+let did = await web5.did.create('ion');
+```
+
+This creates a new DID using the `ion` [method name](/docs/glossary#did-method---ion).
+
+Play with creating DIDs here:
