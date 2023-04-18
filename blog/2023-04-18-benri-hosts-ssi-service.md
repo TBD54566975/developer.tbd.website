@@ -40,7 +40,8 @@ decentralized system. Create and manage Verifiable Credentials (VCs), which
 allow users to share their identity information and credentials with others in a
 secure and privacy-preserving way. Facilitate credential suspension, credential
 revocations, applying for credentials, exchanging credentials, and data schemas
-for credentials and other verifiable data.
+for credentials and other verifiable data. It is not meant for production use,
+but is a learning tool to learn more about SSI technology.
 
 To make it easy for users to access the SSI-Service, Benri is providing 3 main
 endpoints: https://ssi.benri.io, which hosts the main application,
