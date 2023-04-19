@@ -49,18 +49,20 @@ To make it easy for users to access the
 main endpoints:
 
 - [ssi.benri](https://ssi.benri.io): which hosts a streamlit application.
-- [docs](https://ssi.benri.io/docs): which hosts the swagger docs, and
+- [docs](https://ssi.benri.io/docs): which hosts the swagger docs
 - [https://ssi.benri.io/api](https://ssi.benri.io/api): which hosts the API
   endpoints corresponding to the docs. It hosts the RESTful API's which can be
   used to manage your services.
 
-You can try to resolve a did using the APIs:
+As an example of using the SSI service over HTTP, you can try to resolve a did using the APIs:
 
 ```sh
 # resolve a did
 curl -X GET  https://ssi.benri.io/api/v1/dids/resolver/did:key:z6MkvsfnnzUXY57RoocLzaaQ3VYDAD7pdB4kc5jErcNBG1w2
 {"didResolutionMetadata":{"ContentType":"","Error":null},"didDocument":{"@context":"https://www.w3.org/ns/did/v1","id":"did:key:z6MkvsfnnzUXY57RoocLzaaQ3VYDAD7pdB4kc5jErcNBG1w2","verificationMethod":[{"id":"#z6MkvsfnnzUXY57RoocLzaaQ3VYDAD7pdB4kc5jErcNBG1w2","type":"Ed25519VerificationKey2018","controller":"did:key:z6MkvsfnnzUXY57RoocLzaaQ3VYDAD7pdB4kc5jErcNBG1w2","publicKeyBase58":"HRQkCkE6CXcxhJmeK1cZCPzDLdqyDHpPv4pK2LQALo9e"}],"authentication":[["#z6MkvsfnnzUXY57RoocLzaaQ3VYDAD7pdB4kc5jErcNBG1w2"]],"assertionMethod":[["#z6MkvsfnnzUXY57RoocLzaaQ3VYDAD7pdB4kc5jErcNBG1w2"]],"keyAgreement":[["#z6MkvsfnnzUXY57RoocLzaaQ3VYDAD7pdB4kc5jErcNBG1w2"]],"capabilityDelegation":[["#z6MkvsfnnzUXY57RoocLzaaQ3VYDAD7pdB4kc5jErcNBG1w2"]]},"didDocumentMetadata":{}}%
 ```
+
+see the [docs](https://ssi.benri.io/docs) for more APIs.
 
 The SSI service is a bridge to learning more about the decentralized web and
 basic components in the Web5 Ecosystem. Users can store their credentials on
