@@ -8,7 +8,6 @@ tags: [web5, decentralized identity]
 ---
 
 <head>
-  <title>The Practicality of Decentralized Identifiers</title>
   <meta property="og:description" content="What are the practical applications of DIDs?" />
   <meta property="og:title" content="The Practicality of Decentralized Identifiers" />
   <meta property="og:url" content='https://developer.tbd.website/blog/practicality-of-decentralized-identifiers' />
