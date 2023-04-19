@@ -54,7 +54,7 @@ main endpoints:
   endpoints corresponding to the docs. It hosts the RESTful API's which can be
   used to manage your services.
 
-As an example of using the SSI service over HTTP, you can try to resolve a did using the APIs:
+See below for an example of a DID resolution using the SSI Service API's:
 
 ```sh
 # resolve a did
@@ -62,7 +62,7 @@ curl -X GET  https://ssi.benri.io/api/v1/dids/resolver/did:key:z6MkvsfnnzUXY57Ro
 {"didResolutionMetadata":{"ContentType":"","Error":null},"didDocument":{"@context":"https://www.w3.org/ns/did/v1","id":"did:key:z6MkvsfnnzUXY57RoocLzaaQ3VYDAD7pdB4kc5jErcNBG1w2","verificationMethod":[{"id":"#z6MkvsfnnzUXY57RoocLzaaQ3VYDAD7pdB4kc5jErcNBG1w2","type":"Ed25519VerificationKey2018","controller":"did:key:z6MkvsfnnzUXY57RoocLzaaQ3VYDAD7pdB4kc5jErcNBG1w2","publicKeyBase58":"HRQkCkE6CXcxhJmeK1cZCPzDLdqyDHpPv4pK2LQALo9e"}],"authentication":[["#z6MkvsfnnzUXY57RoocLzaaQ3VYDAD7pdB4kc5jErcNBG1w2"]],"assertionMethod":[["#z6MkvsfnnzUXY57RoocLzaaQ3VYDAD7pdB4kc5jErcNBG1w2"]],"keyAgreement":[["#z6MkvsfnnzUXY57RoocLzaaQ3VYDAD7pdB4kc5jErcNBG1w2"]],"capabilityDelegation":[["#z6MkvsfnnzUXY57RoocLzaaQ3VYDAD7pdB4kc5jErcNBG1w2"]]},"didDocumentMetadata":{}}%
 ```
 
-see the [docs](https://ssi.benri.io/docs) for more APIs.
+[the docs have additional API's listed](https://ssi.benri.io/docs)
 
 The SSI service is a bridge to learning more about the decentralized web and
 basic components in the Web5 Ecosystem. Users can store their credentials on
