@@ -75,4 +75,4 @@ Access the easy-to-use playground for [TBD's
 SSI-Service](https://github.com/TBD54566975/ssi-service) at
 [Benri](https://ssi.benri.io), and explore the power of self-sovereign identity.
 If you're interested in learning more about SSI, visit
-[Benri](https://ssi.benri.io) today!
+the [SSI-Service](https://ssi.benri.io) and start playing around with the tools!
