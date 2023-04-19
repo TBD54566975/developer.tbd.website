@@ -27,7 +27,7 @@ Self-sovereign identity (SSI) is a decentralized approach to identity management
 that gives individuals control over their personal data. With SSI, people can
 manage their personal information, credentials, and other digital assets,
 without relying on centralized authorities. At benri, we are proud to provide a
-playground for TBD's SSI-Service at our subdomain [ssi.benri.io](https://ssi.benri.io), where users
+playground for TBD's SSI-Service at our subdomain [ssi.benri](https://ssi.benri.io), where users
 can explore the power of SSI in a secure and easy-to-use environment. This is
 not meant to be used for production, but can be a hands-on learning experience
 for those interested in building decentralized apps and learning more about SSI.
@@ -46,7 +46,7 @@ To make it easy for users to access the
 [SSI-Service](https://github.com/TBD54566975/ssi-service), benri is providing 3
 main endpoints:
 
-- [benri](https://ssi.benri.io): which hosts a streamlit application.
+- [ssi.benri](https://ssi.benri.io): which hosts a streamlit application.
 - [docs](https://ssi.benri.io/docs): which hosts the swagger docs, and
 - [https://ssi.benri.io/api](https://ssi.benri.io/api): which hosts the API
   endpoints corresponding to the docs. It hosts the RESTful API's which can be
