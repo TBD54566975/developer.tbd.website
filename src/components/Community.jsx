@@ -41,7 +41,7 @@ function Community() {
         <CommunityCard
           title="Twitter"
           icon="/img/twitter-icon.svg"
-          CTA="Follow us on Twitter for news and updates"
+          CTA="Follow us for news and updates"
           buttonUrl="https://twitter.com/TBDDev"
           buttonText="Follow"
         />
