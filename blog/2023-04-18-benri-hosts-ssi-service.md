@@ -8,20 +8,21 @@ tags: [Self Sovereign Identity, Web5]
 ---
 
 <head> 
-  <meta property="og:url" content="https://developer.tbd.website/blog/benri-hosts-ssi-service/">
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="SSI-Service hosted by benri">
-  <meta property="og:description" content="SSI-Service hosted by benri">
-  <meta property="og:image" content="https://developer.tbd.website/assets/images/blog-benri-ssi-host3-22507e91e39ff2133a86d16d3e9bdd26.png">
+  <meta property="og:url" content="https://developer.tbd.website/blog/benri-hosts-ssi-service/"/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:title" content="SSI-Service hosted by benri"/>
+  <meta property="og:description" content="SSI-Service hosted by benri"/>
+  <meta property="og:image" content="https://developer.tbd.website/assets/images/blog-benri-ssi-host3-22507e91e39ff2133a86d16d3e9bdd26.png"/>
   <meta name="twitter:card" content="summary" /> 
   <meta name="twitter:site" content="@tbddev" />
-  <meta property="twitter:domain" content="developer.tbd.website">
-  <meta property="twitter:url" content="https://developer.tbd.website/blog/benri-hosts-ssi-service/">
-  <meta name="twitter:title" content="SSI-Service hosted by benri">
-  <meta name="twitter:description" content="SSI-Service hosted by benri">
-  <meta name="twitter:image" content="https://developer.tbd.website/assets/images/blog-benri-ssi-host3-22507e91e39ff2133a86d16d3e9bdd26.png">
+  <meta property="twitter:domain" content="developer.tbd.website"/>
+  <meta property="twitter:url" content="https://developer.tbd.website/blog/benri-hosts-ssi-service/"/>
+  <meta name="twitter:title" content="SSI-Service hosted by benri"/>
+  <meta name="twitter:description" content="SSI-Service hosted by benri"/>
+  <meta name="twitter:image" content="https://developer.tbd.website/assets/images/blog-benri-ssi-host3-22507e91e39ff2133a86d16d3e9bdd26.png"/>
         
   <link rel="apple-touch-icon" href="https://developer.tbd.website/img/tbd-fav-icon-main.png" /> 
+
 </head>
 
 ![benri Host](/img/blog-benri-ssi-host3.png)
