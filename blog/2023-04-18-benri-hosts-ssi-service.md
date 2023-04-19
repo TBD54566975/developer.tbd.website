@@ -1,7 +1,7 @@
 ---
 slug: benri-hosts-ssi-service
 title: TBD's SSI Service hosted by benri.io
-description: benri host's ssi-service at [Benri](https://ssi.benri.io)
+description: benri hosts TBD's SSI-Service to enable users to learn more about SSI technology
 authors:
   name: Andor Kesselman (benri)
 tags: [Self Sovereign Identity, Web5]
@@ -9,7 +9,7 @@ tags: [Self Sovereign Identity, Web5]
 
 <head> 
   <title>SSI-Service Playground Hosted By benri.io</title> 
-  <meta name="description" content="SSI-Service hosted by benri">
+  <meta name="description" content="benri hosts TBD's SSI-Service to enable users to learn more about SSI technology">
   <meta property="og:url" content="https://developer.tbd.website/blog/benri-hosts-ssi-service/">
   <meta property="og:type" content="website">
   <meta property="og:title" content="SSI-Service hosted by benri">
@@ -28,7 +28,7 @@ tags: [Self Sovereign Identity, Web5]
 
 ![benri Host](/img/blog-benri-ssi-host3.png)
 
-[Benri](https://benri.io) is hosting [TBD's SSI Service](https://ssi.benri.io).
+[Benri](https://benri.io) is hosting [TBD's SSI Service](https://ssi.benri.io) to enable users to learn more about SSI technology.
 
 <!--truncate-->
 
@@ -42,21 +42,17 @@ power of SSI in a secure and easy-to-use environment. This is not meant to be
 used for production, but can be a hands-on learning experience for those
 interested in building decentralized apps and learning more about SSI.
 
-At [Benri](https://ssi.benri.io), users can access [TBD's
-SSI-Service](https://github.com/TBD54566975/ssi-service), which supports a wide
-range of SSI functionality. Users can: Create and manage Decentralized
-Identifiers (DIDs), which provide a unique identifier for each user in a
-decentralized system. Create and manage Verifiable Credentials (VCs), which
-allow users to share their identity information and credentials with others in a
-secure and privacy-preserving way. Facilitate credential suspension, credential
-revocations, applying for credentials, exchanging credentials, and data schemas
-for credentials and other verifiable data. It is not meant for production use,
-but is a learning tool to learn more about SSI technology.
+At Benri, users can access TBD's SSI-Service, which supports a wide range of SSI functionality. 
 
-To make it easy for users to access the
-[SSI-Service](https://github.com/TBD54566975/ssi-service), benri is providing 3
-main endpoints:
+Users can
+- create and manage Decentralized Identifiers (DIDs), which provide a unique identifier for each user in a
+decentralized system. 
+- create and manage Verifiable Credentials (VCs), which allow users to share their identity information and credentials with others in a secure and privacy-preserving way. 
+- facilitate credential suspension, credential revocations, applying for credentials, exchanging credentials, and data schemas for credentials and other verifiable data. 
 
+It is not meant for production use, but is a learning tool to learn more about SSI technology.
+
+To make it easy for users to access the SSI-Service, benri is providing 3 main endpoints:
 - [ssi.benri](https://ssi.benri.io): which hosts a streamlit application.
 - [docs](https://ssi.benri.io/docs): which hosts the swagger docs
 - ssi.benri.io/api: which hosts the API
@@ -80,8 +76,6 @@ their data. Additionally, the platform uses cutting-edge encryption and
 authentication technologies to protect user data and prevent unauthorized
 access.
 
-Access the easy-to-use playground for [TBD's
-SSI-Service](https://github.com/TBD54566975/ssi-service) at
-[Benri](https://ssi.benri.io), and explore the power of self-sovereign identity.
-If you're interested in learning more about SSI, visit
-the [SSI-Service](https://ssi.benri.io) and start playing around with the tools!
+Access the easy-to-use playground for TBD's SSI-Service at [Benri](https://ssi.benri.io), and explore the power of self-sovereign identity.
+
+If you're interested in learning more about SSI, visit the [SSI-Service](https://ssi.benri.io) and start playing around with the tools!
