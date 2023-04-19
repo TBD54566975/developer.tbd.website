@@ -17,9 +17,9 @@ tags: [Self Sovereign Identity, Web5]
   hosted by benri" /> <link rel="apple-touch-icon"
   href="https://developer.tbd.website/img/tbd-fav-icon-main.png" /> </head>
 
-[Benri](https://benri.io) is hosting [TBD's SSI Service](https://ssi.benri.io).
-
 ![benri Host](/img/blog-benri-ssi-host3.png)
+
+[Benri](https://benri.io) is hosting [TBD's SSI Service](https://ssi.benri.io).
 
 <!--truncate-->
 
@@ -50,7 +50,7 @@ main endpoints:
 
 - [ssi.benri](https://ssi.benri.io): which hosts a streamlit application.
 - [docs](https://ssi.benri.io/docs): which hosts the swagger docs
-- [https://ssi.benri.io/api](https://ssi.benri.io/api): which hosts the API
+- ssi.benri.io/api: which hosts the API
   endpoints corresponding to the docs. It hosts the RESTful API's which can be
   used to manage your services.
 
@@ -62,7 +62,7 @@ curl -X GET  https://ssi.benri.io/api/v1/dids/resolver/did:key:z6MkvsfnnzUXY57Ro
 {"didResolutionMetadata":{"ContentType":"","Error":null},"didDocument":{"@context":"https://www.w3.org/ns/did/v1","id":"did:key:z6MkvsfnnzUXY57RoocLzaaQ3VYDAD7pdB4kc5jErcNBG1w2","verificationMethod":[{"id":"#z6MkvsfnnzUXY57RoocLzaaQ3VYDAD7pdB4kc5jErcNBG1w2","type":"Ed25519VerificationKey2018","controller":"did:key:z6MkvsfnnzUXY57RoocLzaaQ3VYDAD7pdB4kc5jErcNBG1w2","publicKeyBase58":"HRQkCkE6CXcxhJmeK1cZCPzDLdqyDHpPv4pK2LQALo9e"}],"authentication":[["#z6MkvsfnnzUXY57RoocLzaaQ3VYDAD7pdB4kc5jErcNBG1w2"]],"assertionMethod":[["#z6MkvsfnnzUXY57RoocLzaaQ3VYDAD7pdB4kc5jErcNBG1w2"]],"keyAgreement":[["#z6MkvsfnnzUXY57RoocLzaaQ3VYDAD7pdB4kc5jErcNBG1w2"]],"capabilityDelegation":[["#z6MkvsfnnzUXY57RoocLzaaQ3VYDAD7pdB4kc5jErcNBG1w2"]]},"didDocumentMetadata":{}}%
 ```
 
-[the docs have additional API's listed](https://ssi.benri.io/docs)
+The docs have [additional API's listed](https://ssi.benri.io/docs).
 
 The SSI service is a bridge to learning more about the decentralized web and
 basic components in the Web5 Ecosystem. Users can store their credentials on
