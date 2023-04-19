@@ -8,8 +8,6 @@ tags: [Self Sovereign Identity, Web5]
 ---
 
 <head> 
-  <title>SSI-Service Playground Hosted By benri.io</title> 
-  <meta name="description" content="benri hosts TBD's SSI-Service to enable users to learn more about SSI technology">
   <meta property="og:url" content="https://developer.tbd.website/blog/benri-hosts-ssi-service/">
   <meta property="og:type" content="website">
   <meta property="og:title" content="SSI-Service hosted by benri">
