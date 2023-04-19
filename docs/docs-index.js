@@ -71,7 +71,7 @@ function DocsIndex() {
       <div className='padding-top--xl'/>
 
       <h2 className='mb-2'>EXPLORE</h2>
-      <div className="grid grid-cols-2 tablet:grid-cols-2 desktop-lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 tablet:grid-cols-2 desktop-lg:grid-cols-4 gap-4">
 
       <ExploreCard
           text="Sample Apps"
