@@ -41,42 +41,36 @@ This should look like:
   }
 }
 ```
-<h1>NOT STARTED EDITING BELOW THIS LINE</h1>
 
-<h4>3. Import Dependencies into app</h4>
-    <pre>mkdir src</pre>
+<h4>3. Import Dependencies:</h4>
 
-    <pre>cd src</pre>
+Copy to come about why we need to import dependencies and why we're creating a filename called index.js.
 
-    `touch index.js`
+<pre>mkdir src</pre>
 
-    Open `web5-app/index.js` in your editor
+<pre>cd src</pre>
 
-    Paste at the top of index.js:
-     `import { Web5 } from '@tbd54566975/web5'`
+<pre>touch index.js</pre>
 
+Open `web5-app/index.js` in your editor and paste at the top:
+```js
+import { Web5 } from '@tbd54566975/web5'
+```
 
-## 2. Import `Web5`
+## WE MAY REMOVE THIS...
 
-You'll need to import the `Web5` class for your JavaScript application to reference it. 
+:::info
+Now you'll need to add `module` as a type in your `package.json` like so:
 
-<Tabs>
-  <TabItem value="NPM" label="via NPM">
-    
-    <div>
-      <p>If you've installed <code>Web5</code> from NPM above, import the class in JavaScript:</p>
-    </div>
+```js
+{
+  "dependencies": {
+    "@tbd54566975/web5": "^0.4.0"
+  },
+  "type": "module"
+}
+```
+:::
+Alrighty, congrats! You've completed your installation and are ready to start building and working with the main functionality of the app!
 
-    import { Web5 } from '@tbd54566975/web5'
-
-  </TabItem>
-  <TabItem value="CDN" label="from CDN">
-   
-    <div>
-      <p>If you're not using a package manager like NPM, import the class in JavaScript from the CDN:</p>
-    </div>
-
-    import { Web5 } from 'https://cdn.jsdelivr.net/npm/@tbd54566975/web5@0.4.0/dist/browser.mjs';
-
-  </TabItem>
-</Tabs>
+## HAVE NOT EDITED BELOW THIS LINE
