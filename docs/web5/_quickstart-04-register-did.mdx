@@ -1,8 +1,8 @@
-## HAVE NOT EDITED BELOW THIS LINE
+## Step Two, Register DID, `web5.did.register`:
 
-## 4. Register your DID
+You need to register your DID in order for a user to give other apps (or users) a way to find them, message them, and send them data provided they have permission.
 
-Registering a user's DID gives other apps (or users) a way to find them, message them, and send them data provided they have permissions.
+Paste in all snippets into `index.js`:
 ```js
 await web5.did.register({
     connected: true,
@@ -12,4 +12,13 @@ await web5.did.register({
 });
 ```
 
-Register the DID:
+<pre>const data = 'Hello Web5';</pre>
+<pre>console.log('write data', data);</pre>
+
+Now let's run `index.js` and see what it would return:
+<pre>node src/index.js</pre>
+
+Output should look like this:
+### GTTING A MODULE ERROR so I'm BLOCKED HERE WILL COME BACK TO THIS
+
+### Play around without opening terminal, click `Run!` to register your DID from the sandbox above, `web5.did.register`:
