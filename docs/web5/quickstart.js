@@ -67,7 +67,7 @@ async function didCreate() {
 }
 
 async function didRegister(did) {
-  await web5.did.register({
+  await web5.did.manager({
     connected: true,
     did: did.id,
     endpoint: 'app://dwn',

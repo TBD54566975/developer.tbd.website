@@ -1,10 +1,12 @@
-## 2. Register DID, `web5.did.register`:
+## 2. Store DID Keys, `web5.did.manager`:
 
-You need to register your DID in order for a user to give other apps (or users) a way to find them, message them, and send them data provided they have permission.
+When you instantiate Web5, the SDK internally creates a Decentralized Web Node (explained in next step) to act as a personal data store to store your DID keys.
+
+In order to store your DID, save and encrypt your keys with the Web5 SDK with `web5.did.manager`.
 
 Paste in `index.js`:
 ```js
-await web5.did.register({
+await web5.did.manager.set({
     connected: true,
     did: did.id,
     endpoint: 'app://dwn',
@@ -22,4 +24,4 @@ Run `index.js` in terminal:
 Output should look like this:
 <pre>write data Hello Web5</pre>
 
-### Play around without opening terminal, click `Run!` to register your DID from the sandbox above, `web5.did.register`:
+### Play around without opening terminal, click `Run!` to  your DID from the sandbox above, `web5.did.manager`:
