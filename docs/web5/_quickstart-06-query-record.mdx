@@ -1,9 +1,11 @@
-## 6. Query
+## 4. Querying and Reading: 
 
-Here’s how you’re able to query data in a DWN.
+### `web5.dwn.records.query`:
+Querying a DWN allows you to search records depending on the filter params you pass to it.
 
-Querying a DWN allows you to search records depending on the filter params you pass to it. In the code snippet below, we're querying a DWN for messages that match the schema "test". Note that you don't have to query based on schema, there are many different attributes you can use to query, such as `dataFormat`, `protocol`, `contextId` 
+In the code snippet below, we’re querying a DWN for messages that match the schema “test”. Note that you don’t have to query based on schema, there are many different attributes you can use to query, such as dataFormat, protocol, contextId.
 
+Add this to `index.js`:
 ```js
 let queryResult = await
     web5.dwn.records.query(did.id, {
@@ -14,6 +16,13 @@ let queryResult = await
         },
     },
 });
+
+console.log('query result', queryResult);
 ```
 
-Through querying we can find some information about the data you just wrote:
+Run `index.js` in terminal:
+<pre>node src/index.js</pre>
+
+Output should look like this (blocked, module error):
+
+### Play around without opening terminal, click `Run!` to query for some information about the data you just wrote, `web5.dwn.records.query`:

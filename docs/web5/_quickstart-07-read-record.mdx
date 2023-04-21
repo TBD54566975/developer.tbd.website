@@ -1,7 +1,8 @@
-## 7. Reading messages in your DWN
+### `web5.dwn.records.read`:
 
-If the user has given your app read permissions to their DWN, you can read specific records using a `recordId`. In the code snippet below, we are using the `queryResult` from Step 6 to obtain the `recordId`. 
+If the user has given your app `read` permissions to their DWN, you can read specific records using a `recordId`. In the code snippet below, we are using the `queryResult` from above to obtain the `recordId`:
 
+Add this to `index.js`:
 ```js
 let readResult = await web5.dwn.records.read(did.id, {
     author: did.id,
@@ -9,6 +10,16 @@ let readResult = await web5.dwn.records.read(did.id, {
         recordId: queryResult.entries[0].recordId,
     },
 });
+
+console.log('read result', readResult);
+console.log('read data', web5.dwn.SDK.Encoder.bytesToString(await web5.dwn.SDK.DataStream.toBytes(readResult.data)));
 ```
 
-Let's have a look at the data the stored earlier:
+*Explain coming soon: console.log('read data', web5.dwn.SDK.Encoder.bytesToString(await web5.dwn.SDK.DataStream.toBytes(readResult.data)));*
+
+Run `index.js` in terminal:
+<pre>node src/index.js</pre>
+
+Output should look like this (blocked, module error):
+
+### Play around without opening terminal, click `Run!` to look at the data stored earlier, `web5.dwn.records.read`:

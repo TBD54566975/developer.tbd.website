@@ -1,7 +1,8 @@
-## 8. Deleting messages from your DWN
+## 5. Delete, `web5.dwn.records.delete`:
 
-Data can be deleted from DWNs if you have permission to do so. Similar to reading, we're using the `recordId` to remove the record.
+And lastly, here is how you can delete from DWNs if you have permission to do so. Similar to reading, we’re using the `recordId` to remove the record.
 
+Add this to `index.js`:
 ```js
 let deleteResult = await web5.dwn.records.delete(did.id, {
     author: did.id,
@@ -9,4 +10,12 @@ let deleteResult = await web5.dwn.records.delete(did.id, {
         recordId: queryResult.entries[0].recordId,
         },
     });
+console.log('delete result', deleteResult);
 ```
+
+Run `index.js` in terminal:
+<pre>node src/index.js</pre>
+
+Output should look like this (blocked, module error):
+
+### Play around without opening terminal, click `Run!` on last time to delete the data stored, `web5.dwn.records.delete`:
