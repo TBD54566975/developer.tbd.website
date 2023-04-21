@@ -1,13 +1,12 @@
-## 5. Write to Decentralized Web Node
+## 3. Storage, `web5.dwn`:
 
-Now you’re able to write / store your app's data in the user's Decentralized Web Node (DWN).
+Now you’re able to write / store your app's data in what we call a Decentralized Web Node (DWN). A DWN is a personal data store - a platform for messages, pictures, videos, medical records, and just about any content a user may want to store.
 
-The user's DWN is their personal data store - a platform for messages, pictures, videos, medical records, and just about any content. Your app does not need to store the user's data - it should be stored in their DWN. This is how the user retains ownership over their content. 
+Your app will no longer store user's data in a centralized database like you're used to building in an app - it will be stored in their DWN. This is how the user retains ownership over their content. Through permissions, users can decide which apps can read, write, and delete content from their DWN. In the near future, users will have the opportunity to replicate their DWN across their devices.
 
-Through permissions, users can decide which apps can read, write, and delete content from their DWN. In the near future, users will have the opportunity to replicate their DWN across their devices.
+*A user can host their DWN in mulitple locations. The Web5 JS library is both browser and Node.js compliant, meaning you can use the same APIs on both client side and serverside.*
 
-A user can host their DWN in mulitple locations. The Web5 JS library is both browser and Node.js compliant, meaning you can use the same APIs on both client side and serverside. 
-
+Paste in `index.js`:
 ```js
 const data = 'Hello Web5';
 
@@ -16,10 +15,17 @@ let writeResult = await web5.dwn.records.write(did.id, {
     data,
     message: {
         schema: 'test',
-        dataFormat: 'image/png',
+        dataFormat: 'text/plain',
     },
 });
+
+console.log('write result', writeResult);
 ```
+Run `index.js` in terminal:
+<pre>node src/index.js</pre>
+
+Output should look like this:
+### GETTING A MODULE ERROR SO I'm BLOCKED HERE WILL COME BACK TO THIS
 
 :::note
 
