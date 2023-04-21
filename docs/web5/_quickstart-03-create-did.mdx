@@ -1,12 +1,22 @@
-## 2. Create Web5 instance:
+# Start Building
 
-There’s only one class for all Web5 operations
+## How to create and include Web5 App instance in your app:
 
-```js
-const web5 = new Web5
-```
+There’s only one class needed for all operations, it creates an isolated API object for doing all Web5 things.
 
-## 3. Create a Decentralized Identifier (DID):
+Open your <code>index.js</code> file and add this right below your Web5 import:
+
+<pre>const web5 = new Web5()</pre>
+
+## Objects within Web5:
+Web5 is split into three main top-level objects:
+- web5.dwn
+- web5.did
+- web5.vc
+
+Let’s first focus on the `web5.did` namespace to continue building our app
+
+## Step One, Create DID, `web5.did`:
 
 :::info
 A [Decentralized Identifier (DID)](https://www.w3.org/TR/did-core/),
@@ -15,19 +25,26 @@ can [learn more about them here](/docs/web5/learn/decentralized-identifiers) as
 a core concept behind Web5.
 :::
 
-In the world of Web5, a user's unique identifier, like an email address, is called a DID.
+For some context, in the world of Web5, a user’s unique identifier, like an email address, is called a DID. This is a decentralized app so we need an identifier that isn’t tied to a centralized authority. It can be used to identify and associate a user’s data across any platform.
 
-Why do we need a DID?
+Let’s create a DID using the Web5 API with the <code>ion</code> method name:
 
-Since we're now building decentralized apps we need an identifier that isn't tied to a centralized authority.
-It can be used to identify and associate a user's data across any platform.
+Right below your new Web5 instance paste:
+<pre>let did = await web5.did.create('ion');</pre>
 
-We can create a DID using the Web5 API:
+*We’re using ION here as the method name, learn more about other method names [here](https://www.w3.org/TR/did-core/#methods).*
 
+Now let's run `index.js` and see what it would return:
+
+In index.js paste:
+<pre>console.log(did.id)</pre>
+
+In terminal and run:
+<pre>node src/index.js</pre>
+
+Output should look something like:
 ```js
-let did = await web5.did.create('ion');
+did:ion:EiBSuKWKAC0zpoM3KlhoyZxCHaMN5TBbcr-C18VRNZGYUQ:eyJkZWx0YSI6eyJwYXRjaGVzIjpbeyJhY3Rpb24iOiJyZXBsYWNlIiwiZG9jdW1lbnQiOnsicHVibGljS2V5cyI6W3siaWQiOiJrZXktMSIsInB1YmxpY0tleUp3ayI6eyJjcnYiOiJzZWNwMjU2azEiLCJrdHkiOiJFQyIsIngiOiI0dWgwMi16ajJ1Qm5VeWdyOU1DRjU1dm5NR1U2eFdZWFJfMzVTbloxU2dzIiwieSI6Ikw0OC1BVGdSdEE5Y3hMN3kxS2wxRnRXTENJR1gySWVhOEJnR3hyVDJ2d2sifSwicHVycG9zZXMiOlsiYXV0aGVudGljYXRpb24iXSwidHlwZSI6Ikpzb25XZWJLZXkyMDIwIn1dfX1dLCJ1cGRhdGVDb21taXRtZW50IjoiRWlEM2NoRnE4c2hYQWFmdnk1WGZWWWRrR0o1MS13NkJOajZCREVlM0pYTmZNQSJ9LCJzdWZmaXhEYXRhIjp7ImRlbHRhSGFzaCI6IkVpRGItUmpfdFcyb2s4M3FtYWFMU0dBcF9pRTA5NThqekpxbmN6SFpLclcwWkEiLCJyZWNvdmVyeUNvbW1pdG1lbnQiOiJFaUJab0M2alNUWnBBS2JOX21oYVJER0xVSFlORnZoQS1uSGNUc2trc2pEQ2JRIn19
 ```
 
-This creates a new DID using the `ion` [method name](/docs/glossary#did-method---ion).
-
-Play with creating DIDs here:
+### Play around without opening terminal, click `Run!` to create a DID in the browser, `web5.did.create`:
