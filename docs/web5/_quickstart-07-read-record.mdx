@@ -20,6 +20,14 @@ console.log('read data', web5.dwn.SDK.Encoder.bytesToString(await web5.dwn.SDK.D
 Run `index.js` in terminal:
 <pre>node src/index.js</pre>
 
-Output should look like this (blocked, module error):
+Output should look like this:
+```js
+read result MessageReply {
+  status: { code: 200, detail: 'OK' },
+  entries: undefined,
+  data: Readable
+}
+read data Hello Web5
+```
 
 ### Play around without opening terminal, click `Run!` to look at the data stored earlier, `web5.dwn.records.read`:

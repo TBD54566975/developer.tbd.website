@@ -12,10 +12,12 @@ let queryResult = await
         author: did.id,
         message: {
             filter: {
-            schema: 'test',
+            dataFormat: 'text/plain',
         },
     },
 });
+
+console.log(queryResult);
 
 console.log('query result', queryResult);
 ```
@@ -23,6 +25,19 @@ console.log('query result', queryResult);
 Run `index.js` in terminal:
 <pre>node src/index.js</pre>
 
-Output should look like this (blocked, module error):
+Output should look like this:
+```js
+query result MessageReply {
+  status: { code: 200, detail: 'OK' },
+  entries: [
+    {
+      recordId: 'bafyreihboydeogzumlfgndtttv6skx6nbipuitoxqi4akw6jqksmb5re24',
+      descriptor: [Object],
+      encodedData: 'SGVsbG8gV2ViNQ'
+    }
+  ],
+  data: undefined
+}
+```
 
 ### Play around without opening terminal, click `Run!` to query for information about the data you just wrote, `web5.dwn.records.query`:

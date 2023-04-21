@@ -8,13 +8,10 @@ Your app will no longer store user's data in a centralized database like you're 
 
 Paste in `index.js`:
 ```js
-const data = 'Hello Web5';
-
 let writeResult = await web5.dwn.records.write(did.id, {
     author: did.id,
     data,
     message: {
-        schema: 'test',
         dataFormat: 'text/plain',
     },
 });
@@ -24,12 +21,19 @@ console.log('write result', writeResult);
 Run `index.js` in terminal:
 <pre>node src/index.js</pre>
 
-Output should look like this (blocked, module error):
+Output should look like this:
+```code
+write result MessageReply {
+  status: { code: 202, detail: 'Accepted' },
+  entries: undefined,
+  data: undefined
+}
+```
+
+### Play around without opening terminal, upload an image and click `Run!` to store it with `web5.dwn.records.write`:
 
 :::note
 The `dataFormat` value isn’t limited to `image/png`; it can be any `MIME` type.
 :::
-
-### Play around without opening terminal, upload an image and click `Run!` to store it with `web5.dwn.records.write`:
 
 *I think we should be adding in info about where this DWN storage is? And if it persists and how can I see the 'table'?*
