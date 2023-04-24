@@ -159,11 +159,6 @@ article .markdown p code {
   background-color: gray;
 }
 
-.token.plain {
-  font-family: monospace;
-  font-size: 18px;
-}
-
 .pagination-nav__sublabel {
   display: none;
 }
