@@ -1,7 +1,7 @@
 ---
 slug: ssi-service-playground
-title:TBD SSI-Service Upgraded to Provide a More Interactive Playground for Identity Management hosted @ ssi.benri.io 
-description: SSI Service has now a playground hosted @ [Benri](https://ssi.benri.io)
+title: SSI-Service Upgraded With Better Playground UI
+description: SSI Service has been upgraded with a better UI
 authors:
   name: Andor Kesselman (benri)
 tags: [Self Sovereign Identity, Web5]
@@ -16,8 +16,8 @@ tags: [Self Sovereign Identity, Web5]
   upgraded" /> <link rel="apple-touch-icon"
   href="https://developer.tbd.website/img/tbd-fav-icon-main.png" /> </head>
 
-We are excited to announce the latest upgrade of TBD's SSI-Service, which is now
-available at ssi.benri.io. This upgrade introduces a new playground feature that
+We are excited to announce the latest upgrade of the SSI-Service, which is now
+available [here](https://ssi.benri.io). This upgrade introduces a new playground feature that
 allows users to interact more dynamically with their credentials, keys, and
 Decentralized Identifiers (DIDs).
 
@@ -25,7 +25,7 @@ Decentralized Identifiers (DIDs).
 
 <!--truncate-->
 
-The upgraded SSI-Service at ssi.benri.io now provides a more interactive
+The upgraded [SSI-Service](ssi.benri.io) by TBD hosted @ Benri now provides a more interactive
 playground feature that allows users to explore the capabilities of SSI more
 effectively. This playground feature is accessible here and provides users with
 a more dynamic and engaging console for managing their identity information.
@@ -44,14 +44,16 @@ understand how to interact with the platform.
 
 Overall, the new playground feature makes it easier and more engaging for users
 to explore the power of SSI and take control of their digital identities. The
-upgraded SSI-Service at ssi.benri.io provides a secure and decentralized
-platform for identity management, and the new playground feature makes it even
-more accessible and user-friendly.
+upgraded SSI-Service provides a secure and decentralized platform for identity
+management, and the new playground feature makes it even more accessible and
+user-friendly.
 
-In conclusion, the upgraded SSI-Service at ssi.benri.io now provides a more
-interactive playground feature that allows users to explore the capabilities of
-SSI more effectively. With improved DID management, more interactive console for
-managing credentials, keys, and DIDs, and a more user-friendly API interaction,
-the upgraded SSI-Service offers a more engaging and dynamic experience for
-users. If you're interested in exploring the power of self-sovereign identity,
-visit https://ssi.benri.io today!
+In conclusion, the upgraded SSI-Service now provides a more interactive
+playground feature that allows users to explore the capabilities of SSI more
+effectively. With improved DID management, more interactive console for managing
+credentials, keys, and DIDs, and a more user-friendly API interaction, the
+upgraded SSI-Service offers a more engaging and dynamic experience for users. If
+you're interested in exploring the power of self-sovereign identity, visit
+[the playground](https://ssi.benri.io) today!
+
+Stay tuned for more updates as they get rolled along.
