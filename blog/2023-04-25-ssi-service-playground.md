@@ -21,6 +21,8 @@ available at ssi.benri.io. This upgrade introduces a new playground feature that
 allows users to interact more dynamically with their credentials, keys, and
 Decentralized Identifiers (DIDs).
 
+![Service Playground](/img/ssi-service-playground.png)
+
 <!--truncate-->
 
 The upgraded SSI-Service at ssi.benri.io now provides a more interactive
