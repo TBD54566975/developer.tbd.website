@@ -25,7 +25,7 @@ Decentralized Identifiers (DIDs).
 
 <!--truncate-->
 
-The upgraded [SSI-Service](ssi.benri.io) by TBD hosted @ Benri now provides a more interactive
+The upgraded [SSI-Service](https://ssi.benri.io) by TBD hosted @ Benri now provides a more interactive
 playground feature that allows users to explore the capabilities of SSI more
 effectively. This playground feature is accessible here and provides users with
 a more dynamic and engaging console for managing their identity information.
