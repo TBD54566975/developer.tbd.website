@@ -2,7 +2,7 @@ import Link from '@docusaurus/Link';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-:::note
+:::info
 <h3>Prerequisites</h3>
 <p><a href="https://docs.npmjs.com/downloading-and-installing-node-js-and-npm" 
   target="_blank">Node Package Manager - NPM</a></p>
@@ -10,59 +10,25 @@ import TabItem from '@theme/TabItem';
 :::
 
 # Installation
-<h4>1. Create Directory:</h4>
+### 1. Create Directory:
 <p>This will be the home of your new Web5 app.</p>
 
 In terminal:
-```code
-mkdir web5-app
-cd web5-app
-```
+<pre>mkdir web5-app</pre>
 
-<h4>2. Install Web5:</h4>
+<pre>cd web5-app</pre>
+
+### 2. Install Web5:
 
 <p>We'll be using the NPM package manager. Run <code>npm</code> to install Web5:</p>
 
 <pre>npm install @tbd54566975/web5@0.4.0</pre>
 
-:::info
-After npm resolves the dependency you may see a few warnings which you can ignore for now. 
-:::
+*After npm resolves the dependency you may see a few warnings which you can ignore for now.*
 
-This will add Web5 as a dependency of the project, which you should now see in <code>package.json</code>. It will also resovle its transitive dependencies in a file called <code>package-lock.json</code> and place those dependencies in a folder called <code>node_modules</code>.
+This will add Web5 as a dependency of the project, which you will see in <code>package.json</code>. It will also resolve its transitive dependencies in a file called <code>package-lock.json</code> and place those dependencies in a folder called <code>node_modules</code>.
 
-To verify everything is working, open <code>package.json</code> or run in Mac/Linux systems:
-<pre>cat package.json</pre>
-
-This should look like:
-```json
-{
-  "dependencies": {
-    "@tbd54566975/web5": "^0.4.0"
-  }
-}
-```
-
-<h4>3. Import Dependencies:</h4>
-
-TBD: Copy to come on why we need to import dependencies and why we're creating a filename called index.js.
-
-<pre>mkdir src</pre>
-
-<pre>cd src</pre>
-
-<pre>touch index.js</pre>
-
-Open `web5-app/index.js` in your editor and paste this at the top:
-```js
-import { Web5 } from '@tbd54566975/web5'
-```
-
-## WE MAY REMOVE THIS...
-
-:::info
-Now you'll need to add `module` as a type in your `package.json` like so:
-
+Open `package.json` and add `module` as a type:
 ```js
 {
   "dependencies": {
@@ -71,5 +37,17 @@ Now you'll need to add `module` as a type in your `package.json` like so:
   "type": "module"
 }
 ```
-:::
-Alrighty, congrats! You've completed your installation and are ready to start building and working with the main functionality of the app!
+
+### 3. Import Dependencies:
+<pre>mkdir src</pre>
+
+<pre>cd src</pre>
+
+<pre>touch index.js</pre>
+
+Open `web5-app/index.js` in your editor and paste this at the top:
+```js
+import { Web5 } from '@tbd54566975/web5';
+```
+
+Congrats! You've completed your installation and are ready to start building and working with the main functionality of the SDK.

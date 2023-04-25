@@ -4,23 +4,24 @@ If the user has given your app `read` permissions to their DWN, you can read spe
 
 Add this to `index.js`:
 ```js
-let readResult = await web5.dwn.records.read(did.id, {
+const readResult = await web5.dwn.records.read(did.id, {
     author: did.id,
     message: {
         recordId: queryResult.entries[0].recordId,
     },
 });
+```
 
+:::note
+To see what this query will return add to `index.js`:
+```code
 console.log('read result', readResult);
 console.log('read data', web5.dwn.SDK.Encoder.bytesToString(await web5.dwn.SDK.DataStream.toBytes(readResult.data)));
 ```
 
-*Explain coming soon: console.log('read data', web5.dwn.SDK.Encoder.bytesToString(await web5.dwn.SDK.DataStream.toBytes(readResult.data)));*
+In terminal run: `node src/index.js`
 
-Run `index.js` in terminal:
-<pre>node src/index.js</pre>
-
-Output should look like this:
+Output should look like:
 ```code
 read result MessageReply {
   status: { code: 200, detail: 'OK' },
@@ -29,5 +30,6 @@ read result MessageReply {
 }
 read data Hello Web5
 ```
+:::
 
-### Play around without opening terminal, click `Run!` to look at the data stored earlier, `web5.dwn.records.read`:
+### Click `Run!` to look at the data stored in your DWN from last step:

@@ -1,10 +1,9 @@
 ## 2. Store DID Keys, `web5.did.manager`:
 
-When you instantiate Web5, the SDK internally creates a Decentralized Web Node (explained in next step) to act as a personal data store to store your DID keys.
+When you instantiate Web5, the SDK internally creates a Decentralized Web Node (explained in next step) to act as a personal data store to hold your DID keys.
 
-In order to store your DID, save and encrypt your keys with the Web5 SDK with `web5.did.manager`.
+Store your DID as well as save and encrypt your keys with `web5.did.manager`. Paste in `index.js`:
 
-Paste in `index.js`:
 ```js
 await web5.did.manager.set({
     connected: true,
@@ -14,14 +13,12 @@ await web5.did.manager.set({
 });
 
 const data = 'Hello Web5';
-
-console.log('write data', data);
 ```
 
-Run `index.js` in terminal:
-<pre>node src/index.js</pre>
+:::note
+To confirm your keys were set add `console.log('write data', data);` to `index.js` and in terminal run `node src/index.js`.
 
-Output should look like this:
-<pre>write data Hello Web5</pre>
+Output should say: `write data Hello Web5`.
+:::
 
-### Play around without opening terminal, click `Run!` to  your DID from the sandbox above, `web5.did.manager`:
+### Click `Run!` to set your keys from the sandbox above:

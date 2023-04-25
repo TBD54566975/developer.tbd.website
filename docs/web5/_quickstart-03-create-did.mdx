@@ -2,13 +2,13 @@
 
 ## Create Web5 App instance:
 
-There’s only one class needed for all operations, it creates an isolated API object for doing all Web5 things.
+There’s only one class needed for all operations, it creates an isolated API object for doing all things Web5.
 
-Open your <code>index.js</code> file and add this right below your Web5 import:
+Open your <code>index.js</code> file and add this below your Web5 import:
 
 <pre>const web5 = new Web5()</pre>
 
-## Objects within Web5:
+## *Objects within Web5:*
 Web5 is split into three main top-level objects:
 - web5.dwn
 - web5.did
@@ -27,24 +27,15 @@ a core concept behind Web5.
 
 In the world of Web5 a user’s unique identifier, like an email address, is called a DID. This is a decentralized app so we need an identifier that isn’t tied to a centralized authority. It can be used to identify and associate a user’s data across any platform.
 
-Let’s create a DID using the Web5 API with the <code>ion</code> method name:
-
-Right below your new Web5 instance paste:
+Let’s create a DID using the Web5 API with the <code>ion</code> method name. Right below your new Web5 instance add:
 <pre>let did = await web5.did.create('ion');</pre>
 
 *We’re using ION here as the method name, learn more about other method names [here](https://www.w3.org/TR/did-core/#methods).*
 
-Now let's run `index.js` and see what it would return:
+:::note
+To see the DID you just created add `console.log(did.id)` to `index.js` and in terminal run `node src/index.js`.
 
-In index.js paste:
-<pre>console.log(did.id)</pre>
+Output should look like: `did:ion:EiBSuKWKAC0zpoM3KlhoyZxCHaMN5TBbcr...`
+:::
 
-In terminal and run:
-<pre>node src/index.js</pre>
-
-Output should look something like:
-```js
-did:ion:EiBSuKWKAC0zpoM3KlhoyZxCHaMN5TBbcr-C18VRNZGYUQ:eyJkZWx0YSI6eyJwYXRjaGVzIjpbeyJhY3Rpb24iOiJyZXBsYWNlIiwiZG9jdW1lbnQiOnsicHVibGljS2V5cyI6W3siaWQiOiJrZXktMSIsInB1YmxpY0tleUp3ayI6eyJjcnYiOiJzZWNwMjU2azEiLCJrdHkiOiJFQyIsIngiOiI0dWgwMi16ajJ1Qm5VeWdyOU1DRjU1dm5NR1U2eFdZWFJfMzVTbloxU2dzIiwieSI6Ikw0OC1BVGdSdEE5Y3hMN3kxS2wxRnRXTENJR1gySWVhOEJnR3hyVDJ2d2sifSwicHVycG9zZXMiOlsiYXV0aGVudGljYXRpb24iXSwidHlwZSI6Ikpzb25XZWJLZXkyMDIwIn1dfX1dLCJ1cGRhdGVDb21taXRtZW50IjoiRWlEM2NoRnE4c2hYQWFmdnk1WGZWWWRrR0o1MS13NkJOajZCREVlM0pYTmZNQSJ9LCJzdWZmaXhEYXRhIjp7ImRlbHRhSGFzaCI6IkVpRGItUmpfdFcyb2s4M3FtYWFMU0dBcF9pRTA5NThqekpxbmN6SFpLclcwWkEiLCJyZWNvdmVyeUNvbW1pdG1lbnQiOiJFaUJab0M2alNUWnBBS2JOX21oYVJER0xVSFlORnZoQS1uSGNUc2trc2pEQ2JRIn19
-```
-
-### Play around without opening terminal, click `Run!` to create a DID in the browser, `web5.did.create`:
+### Click `Run!` to create a DID in the browser:

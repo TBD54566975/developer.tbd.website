@@ -357,7 +357,7 @@ function Web5Quickstart() {
         <div className="output">
           <details>
             <summary>
-              <code>Hit "Run" above to create DID</code>
+              <code>...</code>
             </summary>
             <textarea></textarea>
           </details>

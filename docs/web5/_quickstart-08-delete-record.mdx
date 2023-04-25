@@ -4,19 +4,17 @@ And lastly, here is how you can delete data from a DWN if you have permission to
 
 Add this to `index.js`:
 ```js
-let deleteResult = await web5.dwn.records.delete(did.id, {
-    author: did.id,
-    message: {
-        recordId: queryResult.entries[0].recordId,
-        },
-    });
-console.log('delete result', deleteResult);
+const deleteResult = await web5.dwn.records.delete(did.id, {
+  author: did.id,
+  message: {
+    recordId: queryResult.entries[0].recordId,
+  },
+});
 ```
+:::note
+To see the data deleted add `console.log('delete result', deleteResult);` to `index.js` and in terminal run `node src/index.js`.
 
-Run `index.js` in terminal:
-<pre>node src/index.js</pre>
-
-Output should look like this:
+Output should look like:
 ```code
 delete result MessageReply {
   status: { code: 202, detail: 'Accepted' },
@@ -24,5 +22,6 @@ delete result MessageReply {
   data: undefined
 }
 ```
+:::
 
-### Play around without opening terminal, click `Run!` one last time to delete the data stored, `web5.dwn.records.delete`:
+### Click `Run!` one last time to delete the data stored in your DWN:

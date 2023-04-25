@@ -2,26 +2,25 @@
 
 Now you’re able to write / store your app's data in what we call a Decentralized Web Node (DWN). A DWN is a personal data store - a platform for messages, pictures, videos, medical records, and just about any content a user may want to store.
 
-Your app will no longer store user's data in a centralized database like you're used to building in an app - it will be stored in their DWN. This is how the user retains ownership over their content. Through permissions, users can decide which apps can read, write, and delete content from their DWN. In the near future, users will have the opportunity to replicate their DWN across their devices.
+Your app will no longer store users data in a centralized database like you're used to - it will be stored in their DWN. This is how the user retains ownership over their content. Through permissions, users can decide which apps can read, write, and delete content from their DWN.
 
-*A user can host their DWN in mulitple locations. The Web5 JS library is both browser and Node.js compliant, meaning you can use the same APIs on both client side and serverside.*
+*A user can host their DWN in mulitple locations. The Web5 JS library is both browser and Node.js compliant, meaning you can use the same APIs on both client side and serverside. The `dataFormat` value isn’t limited to `image/png`; it can be any `MIME` type.*
 
 Paste in `index.js`:
 ```js
-let writeResult = await web5.dwn.records.write(did.id, {
+const writeResult = await web5.dwn.records.write(did.id, {
     author: did.id,
     data,
     message: {
         dataFormat: 'text/plain',
     },
 });
-
-console.log('write result', writeResult);
 ```
-Run `index.js` in terminal:
-<pre>node src/index.js</pre>
 
-Output should look like this:
+:::note
+To confirm your data was stored `console.log('write result', writeResult);` to `index.js` and in terminal run `node src/index.js`.
+
+Output should say:
 ```code
 write result MessageReply {
   status: { code: 202, detail: 'Accepted' },
@@ -29,11 +28,8 @@ write result MessageReply {
   data: undefined
 }
 ```
-
-### Play around without opening terminal, upload an image and click `Run!` to store it with `web5.dwn.records.write`:
-
-:::note
-The `dataFormat` value isn’t limited to `image/png`; it can be any `MIME` type.
 :::
 
-*I think we should be adding in info about where this DWN storage is? And if it persists and how can I see the 'table'?*
+### Upload an image and click `Run!` to store it with `web5.dwn.records.write`:
+
+*TO COME: I think we should be adding in info about where this DWN storage is...Does it persist? How can I see it?*

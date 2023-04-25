@@ -1,31 +1,23 @@
 ## 4. Querying and Reading: 
 
 ### `web5.dwn.records.query`:
-Querying a DWN allows you to search records depending on the filter params you pass to it.
-
-In the code snippet below, we’re querying a DWN for messages that match the schema “test”. Note that you don’t have to query based on schema, there are many different attributes you can use to query, such as dataFormat, protocol, contextId.
+Querying a DWN allows you to search records depending on the filter params you pass to it. In the code snippet below, we're querying a DWN for messages that have a MIME type of text/plain. Note that you don't have to query based on MIME type, there are many different attributes you can use to query, such as protocol, schema, contextId, etc.
 
 Add this to `index.js`:
 ```js
-let queryResult = await
-    web5.dwn.records.query(did.id, {
+const queryResult = await web5.dwn.records.query(did.id, {
         author: did.id,
         message: {
             filter: {
-            dataFormat: 'text/plain',
+              dataFormat: 'text/plain',
         },
     },
 });
-
-console.log(queryResult);
-
-console.log('query result', queryResult);
 ```
+:::note
+To see what this query will return add `console.log('query result', queryResult);` to `index.js` and in terminal run `node src/index.js`.
 
-Run `index.js` in terminal:
-<pre>node src/index.js</pre>
-
-Output should look like this:
+Output should look like:
 ```code
 query result MessageReply {
   status: { code: 200, detail: 'OK' },
@@ -39,5 +31,6 @@ query result MessageReply {
   data: undefined
 }
 ```
+:::
 
-### Play around without opening terminal, click `Run!` to query for information about the data you just wrote, `web5.dwn.records.query`:
+### Click `Run!` to query for information about the data you just wrote:
