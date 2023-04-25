@@ -6,31 +6,33 @@ Querying a DWN allows you to search records depending on the filter params you p
 Add this to `index.js`:
 ```js
 const queryResult = await web5.dwn.records.query(did.id, {
-        author: did.id,
-        message: {
-            filter: {
-              dataFormat: 'text/plain',
+    author: did.id,
+    message: {
+        filter: {
+          dataFormat: 'text/plain',
         },
     },
 });
 ```
-:::note
-To see what this query will return add `console.log('query result', queryResult);` to `index.js` and in terminal run `node src/index.js`.
+## Test this out:
+### Option 1. In `index.js`:
+Add `console.log('query result', queryResult);`
 
 Output should look like:
 ```code
-query result MessageReply {
+query result {
   status: { code: 200, detail: 'OK' },
-  entries: [
-    {
-      recordId: 'bafyreihboydeogzumlfgndtttv6skx6nbipuitoxqi4akw6jqksmb5re24',
-      descriptor: [Object],
-      encodedData: 'SGVsbG8gV2ViNQ'
+  entries: [ _Record {} ],
+  data: undefined,
+  message: {
+    recordId: null,
+    descriptor: {
+      interface: 'Records',
+      method: 'Query',
+      dateCreated: '2023-04-25T18:52:46.648765Z',
+      filter: [Object]
     }
-  ],
-  data: undefined
+  }
 }
 ```
-:::
-
-### Click `Run!` to query for information about the data you just wrote:
+### Option 2. Click `Run!` to query for information about the data you just wrote:

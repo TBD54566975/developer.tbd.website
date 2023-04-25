@@ -1,15 +1,16 @@
 import { Web5 } from '@tbd54566975/web5';
-
 const web5 = new Web5;
 
 const did = await web5.did.create('ion');
 
-// manager.set not working right now, fix tomorrow
-await web5.did.register({
+await web5.did.manager.set(did.id, {
     connected: true,
-    did: did.id,
     endpoint: 'app://dwn',
-    keys: did.keys[0].keypair,
+    keys: {
+        ['#dwn']: {
+          keyPair: did.keys.find(key => key.id === 'dwn').keyPair,
+        },
+    },
 });
 
 const data = 'Hello Web5';
@@ -34,13 +35,13 @@ const queryResult = await web5.dwn.records.query(did.id, {
 const readResult = await web5.dwn.records.read(did.id, {
     author: did.id,
     message: {
-        recordId: queryResult.entries[0].recordId,
+        recordId: queryResult.entries[0].id,
     },
 });
 
 const deleteResult = await web5.dwn.records.delete(did.id, {
     author: did.id,
     message: {
-        recordId: queryResult.entries[0].recordId,
+        recordId: queryResult.entries[0].id,
     },
 });

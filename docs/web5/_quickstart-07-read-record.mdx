@@ -7,29 +7,33 @@ Add this to `index.js`:
 const readResult = await web5.dwn.records.read(did.id, {
     author: did.id,
     message: {
-        recordId: queryResult.entries[0].recordId,
+        recordId: queryResult.entries[0].id,
     },
 });
 ```
 
-:::note
-To see what this query will return add to `index.js`:
+## Test this out:
+### Option 1. In `index.js`:
 ```code
 console.log('read result', readResult);
 console.log('read data', web5.dwn.SDK.Encoder.bytesToString(await web5.dwn.SDK.DataStream.toBytes(readResult.data)));
 ```
 
-In terminal run: `node src/index.js`
-
 Output should look like:
 ```code
-read result MessageReply {
+read result {
   status: { code: 200, detail: 'OK' },
-  entries: undefined,
-  data: Readable
+  record: _Record {},
+  message: {
+    recordId: null,
+    descriptor: {
+      interface: 'Records',
+      method: 'Read',
+      recordId: 'bafyreicc65viceyqtl7sjdxbbxpuvs2nlagerzcblje2lvfhzqbmg4pqhm',
+      date: '2023-04-25T18:52:46.659766Z'
+    }
+  }
 }
 read data Hello Web5
 ```
-:::
-
-### Click `Run!` to look at the data stored in your DWN from last step:
+### Option 2. Click `Run!` to look at the data stored in your DWN from last step:

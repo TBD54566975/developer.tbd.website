@@ -6,7 +6,7 @@ Your app will no longer store users data in a centralized database like you're u
 
 *A user can host their DWN in mulitple locations. The Web5 JS library is both browser and Node.js compliant, meaning you can use the same APIs on both client side and serverside. The `dataFormat` value isn’t limited to `image/png`; it can be any `MIME` type.*
 
-Paste in `index.js`:
+Add this to `index.js`:
 ```js
 const writeResult = await web5.dwn.records.write(did.id, {
     author: did.id,
@@ -17,19 +17,31 @@ const writeResult = await web5.dwn.records.write(did.id, {
 });
 ```
 
-:::note
-To confirm your data was stored `console.log('write result', writeResult);` to `index.js` and in terminal run `node src/index.js`.
+## Test this out:
+### Option 1. In `index.js`:
+Add `console.log('write result', writeResult);`
 
-Output should say:
+Output should look like:
 ```code
-write result MessageReply {
+write result {
   status: { code: 202, detail: 'Accepted' },
   entries: undefined,
-  data: undefined
+  data: undefined,
+  message: {
+    recordId: 'bafyreicc65viceyqtl7sjdxbbxpuvs2nlagerzcblje2lvfhzqbmg4pqhm',
+    descriptor: {
+      interface: 'Records',
+      method: 'Write',
+      dataCid: 'bafkreibr4hojx6b7ukyqkmlw3em4f3ssnlcgwe33wt4uijofkswxpqysje',
+      dataSize: 10,
+      dateCreated: '2023-04-25T18:52:45.550765Z',
+      dateModified: '2023-04-25T18:52:45.550765Z',
+      dataFormat: 'text/plain'
+    }
+  },
+  record: _Record {}
 }
 ```
-:::
-
-### Upload an image and click `Run!` to store it with `web5.dwn.records.write`:
+### Option 2. Upload image and click `Run!`:
 
 *TO COME: I think we should be adding in info about where this DWN storage is...Does it persist? How can I see it?*
