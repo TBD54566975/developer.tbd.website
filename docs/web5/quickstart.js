@@ -79,7 +79,7 @@ async function didRegister(did) {
 }
 
 async function dwnWritePNGRecord(did, data) {
-  let result = await web5.dwn.records.write(did.id, {
+  let result = await web5.dwn.records.create(did.id, {
     author: did.id,
     data,
     message: {
