@@ -67,11 +67,14 @@ async function didCreate() {
 }
 
 async function didRegister(did) {
-  await web5.did.manager({
+  await web5.did.manager.set(did.id, {
     connected: true,
-    did: did.id,
     endpoint: 'app://dwn',
-    keys: did.keys[0].keypair,
+    keys: {
+      ['#dwn']: {
+        keyPair: did.keys.find((key) => key.id === 'dwn').keyPair,
+      },
+    },
   });
 }
 
@@ -308,10 +311,11 @@ function Web5Quickstart() {
       let query = parseQuery();
       for (let { recordId } of query.entries) {
         let result = await dwnReadDataFromRecordWithId(did, recordId);
-        let data = await web5.dwn.SDK.DataStream.toBytes(result.data);
+        let dataStream = await result.record.data.stream();
+        let dataBytes = await web5.dwn.sdk.DataStream.toBytes(dataStream);
 
         let img = dwnReadOutput.appendChild(document.createElement('img'));
-        img.src = URL.createObjectURL(new Blob([data]));
+        img.src = URL.createObjectURL(new Blob([dataBytes]));
       }
 
       dwnReadInputButton.disabled = false;
