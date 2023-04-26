@@ -235,7 +235,7 @@ function Web5Quickstart() {
       let did = parseDid();
       await didRegister(did);
 
-      didRegisterOutput.innerHTML = '&#x2714; Registered!';
+      didRegisterOutput.innerHTML = '&#x2714; DID stored!';
 
       dwnWriteInputFile.disabled = false;
       dwnQueryInputButton.disabled = false;

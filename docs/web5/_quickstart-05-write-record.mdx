@@ -1,12 +1,23 @@
-## 3. Storage, `web5.dwn.records`:
+## 4. Write DWN Records
 
-Now you’re able to write / store your app's data in what we call a Decentralized Web Node (DWN). A DWN is a personal data store - a platform for messages, pictures, videos, medical records, and just about any content a user may want to store.
+Now you’re able to write records in the user's [Decentralized Web Node(DWN)](/docs/web5/learn/decentralized-web-nodes). 
 
-Your app will no longer store users data in a centralized database like you're used to - it will be stored in their DWN. This is how the user retains ownership over their content. Through permissions, users can decide which apps can read, write, and delete content from their DWN.
+:::info
+A DWN is a personal data store - a platform for messages, pictures, videos, medical records, and just about any content a user may want to store.
 
-*A user can host their DWN in mulitple locations. The Web5 JS library is both browser and Node.js compliant, meaning you can use the same APIs on both client side and serverside. The `dataFormat` value isn’t limited to `image/png`; it can be any `MIME` type.*
+<details>
+  <summary>Read more</summary>
+  <p>
+Your app should not store users' data in your centralized database. Instead, their data should be stored in their DWN. This is how the user retains ownership over their content. Through permissions, users can decide which apps can read, write, and delete content from their DWN.
 
-Add this to `index.js`:
+The DWN exists in local storage under the name `dwn-info`. The DWN persists across browser sessions and can be synched across a user's devices. 
+
+A user can host their DWN in mulitple locations. The Web5 SDK is both browser and Node.js compliant, meaning you can use the same APIs on both client side and serverside. 
+</p>
+</details>
+:::
+
+Add the following to `index.js`:
 ```js
 const writeResult = await web5.dwn.records.write(did.id, {
     author: did.id,
@@ -17,13 +28,25 @@ const writeResult = await web5.dwn.records.write(did.id, {
 });
 ```
 
-## Test this out:
-### Option 1. In `index.js`:
-Add `console.log('write result', writeResult);`
 
-Output should look like:
-```code
-write result {
+<details>
+  <summary>Test your code</summary>
+  <p>
+  Let's see what was just written to the DWN.
+
+  In <code>index.js</code>, add the following line and save your file:
+  ```js
+  console.log('write result', writeResult);
+  ```
+
+  Then from the terminal, run:
+  ```bash
+  node src/index.js
+  ```
+
+  You'll see the record that was written to the user's DWN. It will resemble:
+  ```js
+  write result {
   status: { code: 202, detail: 'Accepted' },
   entries: undefined,
   data: undefined,
@@ -42,6 +65,11 @@ write result {
   record: _Record {}
 }
 ```
-### Option 2. Upload image and click `Run!`:
+  </p>
+</details>
 
-*TO COME: I think we should be adding in info about where this DWN storage is...Does it persist? How can I see it?*
+:::note
+The `dataFormat` value isn’t limited to `text/plain`; it can be any MIME type.
+:::
+
+Select a local png image and click "Run" to write an image record to the sandbox DWN:
