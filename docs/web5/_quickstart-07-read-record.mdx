@@ -1,8 +1,8 @@
-### `web5.dwn.records.read`:
+## 6. Read DWN Records
 
-If the user has given your app `read` permissions to their DWN, you can read specific records using a `recordId`. In the code snippet below, we are using the `queryResult` from above to obtain the `recordId`:
+If the user has given your app read permissions to their DWN, you can read specific records using a `recordId`. In the code snippet below, we are using the `queryResult` from above to obtain the `recordId`:
 
-Add this to `index.js`:
+Add the following to `index.js`:
 ```js
 const readResult = await web5.dwn.records.read(did.id, {
     author: did.id,
@@ -12,15 +12,19 @@ const readResult = await web5.dwn.records.read(did.id, {
 });
 ```
 
-## Test this out:
-### Option 1. In `index.js`:
-```code
+<details>
+<summary>Test your code</summary>
+<p>
+To see the record that was read from the DWN, add the following to <code>index.js</code>:
+
+```js
 console.log('read result', readResult);
 console.log('read data', web5.dwn.SDK.Encoder.bytesToString(await web5.dwn.SDK.DataStream.toBytes(readResult.data)));
 ```
 
-Output should look like:
-```code
+The output will resemble:
+
+```js
 read result {
   status: { code: 200, detail: 'OK' },
   record: _Record {},
@@ -36,4 +40,8 @@ read result {
 }
 read data Hello Web5
 ```
-### Option 2. Click `Run!` to look at the data stored in your DWN from last step:
+
+</p>
+</details>
+
+Click "Run!" to look at the image stored in the sandbox DWN:

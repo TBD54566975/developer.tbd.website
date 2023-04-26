@@ -10,25 +10,35 @@ import TabItem from '@theme/TabItem';
 :::
 
 # Installation
-### 1. Create Directory:
+### 1. Create Directory
 <p>This will be the home of your new Web5 app.</p>
 
 In terminal:
-<pre>mkdir web5-app</pre>
 
-<pre>cd web5-app</pre>
+```bash
+mkdir web5-app
+```
 
-### 2. Install Web5:
+```bash
+cd web5-app
+```
 
-<p>We'll be using the NPM package manager. Run <code>npm</code> to install Web5:</p>
+### 2. Install Web5
 
-<pre>npm install @tbd54566975/web5@0.6.0</pre>
+<p>We'll be using the NPM package manager to install Web5:</p>
 
-*After npm resolves the dependency you may see a few warnings which you can ignore for now.*
+```bash
+npm install @tbd54566975/web5@0.6.0
+```
 
-This will add Web5 as a dependency of the project, which you will see in <code>package.json</code>. It will also resolve its transitive dependencies in a file called <code>package-lock.json</code> and place those dependencies in a folder called <code>node_modules</code>.
+:::note
+After npm resolves the dependency you may see a few warnings which you can ignore for now.
+:::
+
+This adds Web5 as a dependency of the project, which you will see in `package.json`. It also resolves its transitive dependencies in the `package-lock.json` file and places those dependencies in the `node_modules` directory.
 
 Open `package.json` and add `module` as a type:
+
 ```js
 {
   "dependencies": {
@@ -38,16 +48,25 @@ Open `package.json` and add `module` as a type:
 }
 ```
 
-### 3. Import Dependencies:
-<pre>mkdir src</pre>
+### 3. Import Web5
 
-<pre>cd src</pre>
+Let's create a `src` directory and `index.js` file to write our application:
 
-<pre>touch index.js</pre>
+```bash
+mkdir src
+```
 
-Open `web5-app/index.js` in your editor and paste this at the top:
+```bash
+cd src
+```
+
+```bash
+touch index.js
+```
+
+Open `index.js` in your editor and add this line at the top of the file to import Web5:
 ```js
 import { Web5 } from '@tbd54566975/web5';
 ```
 
-Congrats! You've completed your installation and are ready to start building and working with the main functionality of the SDK.
+Now, we have the Web5 SDK installed and are ready to start building!
