@@ -377,7 +377,7 @@ function Web5Quickstart() {
       //   img.src = URL.createObjectURL(new Blob([dataBytes]));
       // }
 
-      dwnReadOutput.innerHTML = result;
+      dwnReadOutput.innerHTML = `Your read result: ${result}`;
 
       dwnUpdateInputFile.disabled = false;
       dwnUpdateInputButton.disabled = false;
@@ -398,7 +398,9 @@ function Web5Quickstart() {
 
       let result = await dwnUpdateTextRecord(data);
 
-      dwnUpdateOutput.innerHTML = await createRecordResult.record.data.text();
+      const textResult = await createRecordResult.record.data.text();
+
+      dwnUpdateOutput.innerHTML = `Your update result: ${textResult} to ${result}`;
 
       dwnDeleteInputButton.disabled = false;
       dwnUpdateInputProgress.style.visibility = 'hidden';
@@ -427,7 +429,7 @@ function Web5Quickstart() {
       dwnDeleteOutputDetailsTextarea.scrollTop =
         dwnDeleteOutputDetailsTextarea.scrollHeight;
 
-      dwnDeleteOutputSummary.innerHTML = `&#x2714; Placeholder`;
+      dwnDeleteOutputSummary.innerHTML = `&#x2714; Record deleted!`;
 
       dwnReadInputButton.disabled = true;
       dwnDeleteInputProgress.style.visibility = 'hidden';
