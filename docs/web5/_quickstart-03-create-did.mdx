@@ -21,19 +21,15 @@ We're going to focus on `web5.did` and `web5.dwn` in this Quickstart.
 
 ## 2. Create DID
 
-:::info
 In Web5 apps, a user’s unique identifier - like an email address - is called a [Decentralized Identifier (DID)](/docs/web5/learn/decentralized-identifiers). 
-We are building a decentralized app, so your users are using identifiers that aren't tied to a centralized authority. Their DIDs are used to identify and associate the user’s data across any decentralized platform.
-:::
+We are building a decentralized app, so your users are using identifiers that aren't tied to a centralized authority.
 
 Assuming a brand new user who does not yet have a DID, let’s create their DID using the Web5 API. Below the Web5 instantiation, add:
 ```js
-let did = await web5.did.create('ion');
+const did = await web5.did.create('ion');
 ```
 
-:::info
-We’re using `ion` as the DID method. Learn more about ION and other [DID methods](http://localhost:3000/docs/web5/learn/decentralized-identifiers#methods).
-:::
+We’re using `ion` as the DID method. Learn more about ION and other [DID methods](/docs/web5/learn/decentralized-identifiers#methods).
 
 <details>
   <summary>Test your code</summary>
