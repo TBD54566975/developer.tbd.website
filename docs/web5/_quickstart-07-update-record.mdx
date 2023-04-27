@@ -4,7 +4,7 @@ To update the record, call `update` on the `record` object itself.
 
 Add the following to `index.js`:
 ```js
-const updateResult = await myRecord.record.update({data: "Hello, I'm updated!"});
+const updateResult = await record.update({data: "Hello, I'm updated!"});
 ```
 
 <details>
@@ -13,7 +13,7 @@ const updateResult = await myRecord.record.update({data: "Hello, I'm updated!"})
 To see the record that was updated in the DWN, add the following to <code>index.js</code>:
 
 ```js
-console.log('Update result: ', await myRecord.record.data.text());
+console.log('Update result: ', await record.data.text());
 ```
 
 The output will resemble:
