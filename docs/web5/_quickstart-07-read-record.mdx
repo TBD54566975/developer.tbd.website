@@ -1,0 +1,14 @@
+## 7. Reading messages in your DWN
+
+If the user has given your app read permissions to their DWN, you can read specific records using a `recordId`. In the code snippet below, we are using the `queryResult` from Step 6 to obtain the `recordId`. 
+
+```js
+let readResult = await web5.dwn.records.read(did.id, {
+    author: did.id,
+    message: {
+        recordId: queryResult.entries[0].recordId,
+    },
+});
+```
+
+Let's have a look at the data stored earlier:
