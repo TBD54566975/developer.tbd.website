@@ -12,7 +12,9 @@ import Web5QuickstartNextSteps from './_quickstart-09-next-steps.mdx';
 
 import { Web5 } from '@tbd54566975/web5';
 
-let web5 = new Web5();
+const web5 = new Web5();
+
+let createRecordResult;
 
 function parseDid() {
   try {
@@ -22,13 +24,13 @@ function parseDid() {
   }
 }
 
-function parseQuery() {
-  try {
-    return JSON.parse(dwnQueryOutputDetailsTextarea.value);
-  } catch {
-    return undefined;
-  }
-}
+// function parseQuery() {
+//   try {
+//     return JSON.parse(dwnQueryOutputDetailsTextarea.value);
+//   } catch {
+//     return undefined;
+//   }
+// }
 
 function update() {
   if (!parseDid()) {
@@ -43,22 +45,26 @@ function update() {
     dwnWriteOutputSummary.innerHTML = '...';
     dwnWriteOutputDetailsTextarea.value = '';
 
-    dwnQueryInputButton.disabled = true;
-    dwnQueryInputProgress.style.visibility = 'hidden';
-    dwnQueryOutputSummary.innerHTML = '...';
-    dwnQueryOutputDetailsTextarea.value = '';
+    // dwnQueryInputButton.disabled = true;
+    // dwnQueryInputProgress.style.visibility = 'hidden';
+    // dwnQueryOutputSummary.innerHTML = '...';
+    // dwnQueryOutputDetailsTextarea.value = '';
   }
 
-  if (!parseQuery()?.entries?.length) {
-    dwnReadInputButton.disabled = true;
-    dwnReadInputProgress.style.visibility = 'hidden';
-    dwnReadOutput.innerHTML = '';
-
-    dwnDeleteInputButton.disabled = true;
-    dwnDeleteInputProgress.style.visibility = 'hidden';
-    dwnDeleteOutputSummary.innerHTML = '...';
-    dwnDeleteOutputDetailsTextarea.value = '';
+  if (dwnWriteOutputDetailsTextarea.value !== '') {
+    dwnReadInputButton.disabled = false;
   }
+
+  // if (!parseQuery()?.entries?.length) {
+  //   dwnReadInputButton.disabled = true;
+  //   dwnReadInputProgress.style.visibility = 'hidden';
+  //   dwnReadOutput.innerHTML = '';
+
+  //   dwnDeleteInputButton.disabled = true;
+  //   dwnDeleteInputProgress.style.visibility = 'hidden';
+  //   dwnDeleteOutputSummary.innerHTML = '...';
+  //   dwnDeleteOutputDetailsTextarea.value = '';
+  // }
 }
 
 async function didCreate() {
@@ -78,46 +84,71 @@ async function didRegister(did) {
   });
 }
 
-async function dwnWritePNGRecord(did, data) {
-  let result = await web5.dwn.records.create(did.id, {
+// async function dwnWritePNGRecord(did, data) {
+//   let result = await web5.dwn.records.create(did.id, {
+//     author: did.id,
+//     data,
+//     message: {
+//       dataFormat: 'image/png',
+//     },
+//   });
+//   createRecord = result;
+//   return result;
+// }
+
+async function dwnWriteTextRecord(did, data) {
+  createRecordResult = await web5.dwn.records.create(did.id, {
     author: did.id,
     data,
     message: {
-      dataFormat: 'image/png',
+      dataFormat: 'text/plain',
     },
   });
-  return result;
+  return createRecordResult;
 }
 
-async function dwnQueryPNGRecords(did) {
-  let result = await web5.dwn.records.query(did.id, {
-    author: did.id,
-    message: {
-      filter: {
-        dataFormat: 'image/png',
-      },
-    },
-  });
-  return result;
+// async function dwnQueryPNGRecords(did) {
+//   let result = await web5.dwn.records.query(did.id, {
+//     author: did.id,
+//     message: {
+//       filter: {
+//         dataFormat: 'image/png',
+//       },
+//     },
+//   });
+//   return result;
+// }
+
+async function dwnReadDataFromRecordWithId() {
+  // let result = await web5.dwn.records.read(did.id, {
+  //   author: did.id,
+  //   message: {
+  //     recordId,
+  //   },
+  // });
+  // return result;
+
+  const { record } = createRecordResult;
+  // const data = await record.read();
+  console.log('record', record);
+  return record.data.text;
 }
 
-async function dwnReadDataFromRecordWithId(did, recordId) {
-  let result = await web5.dwn.records.read(did.id, {
-    author: did.id,
-    message: {
-      recordId,
-    },
-  });
-  return result;
+async function dwnUpdateText() {
+  // createRecord
+  const { record } = createRecordResult;
+  record.update({ data: 'This is an updated record' });
 }
 
-async function dwnDeleteRecordWithId(did, recordId) {
-  let result = await web5.dwn.records.delete(did.id, {
-    author: did.id,
-    message: {
-      recordId,
-    },
-  });
+async function dwnDeleteRecordWithId() {
+  // let result = await web5.dwn.records.delete(did.id, {
+  //   author: did.id,
+  //   message: {
+  //     recordId,
+  //   },
+  // });
+
+  const result = await createRecordResult.record.delete();
   return result;
 }
 
@@ -167,7 +198,7 @@ function Web5Quickstart() {
     didRegisterOutput = document.querySelector('#did-register .output');
 
     dwnWriteInputFile = document.querySelector(
-      '#dwn-write .input input[type="file"]',
+      '#dwn-write .input input[type="text"]',
     );
     dwnWriteInputButton = document.querySelector('#dwn-write .input button');
     dwnWriteInputProgress = document.querySelector(
@@ -180,16 +211,16 @@ function Web5Quickstart() {
       '#dwn-write .output details textarea',
     );
 
-    dwnQueryInputButton = document.querySelector('#dwn-query .input button');
-    dwnQueryInputProgress = document.querySelector(
-      '#dwn-query .input progress',
-    );
-    dwnQueryOutputSummary = document.querySelector(
-      '#dwn-query .output details summary',
-    );
-    dwnQueryOutputDetailsTextarea = document.querySelector(
-      '#dwn-query .output details textarea',
-    );
+    // dwnQueryInputButton = document.querySelector('#dwn-query .input button');
+    // dwnQueryInputProgress = document.querySelector(
+    //   '#dwn-query .input progress',
+    // );
+    // dwnQueryOutputSummary = document.querySelector(
+    //   '#dwn-query .output details summary',
+    // );
+    // dwnQueryOutputDetailsTextarea = document.querySelector(
+    //   '#dwn-query .output details textarea',
+    // );
 
     dwnReadInputButton = document.querySelector('#dwn-read .input button');
     dwnReadInputProgress = document.querySelector('#dwn-read .input progress');
@@ -238,7 +269,7 @@ function Web5Quickstart() {
       didRegisterOutput.innerHTML = '&#x2714; DID stored!';
 
       dwnWriteInputFile.disabled = false;
-      dwnQueryInputButton.disabled = false;
+      // dwnQueryInputButton.disabled = false;
       update();
     });
 
@@ -256,14 +287,22 @@ function Web5Quickstart() {
       dwnWriteOutputSummary.innerHTML = '...';
 
       let did = parseDid();
-      for (let file of dwnWriteInputFile.files) {
-        let buffer = await file.arrayBuffer();
-        let data = new Uint8Array(buffer);
-        let result = await dwnWritePNGRecord(did, data);
+      // for (let file of dwnWriteInputFile.files) {
+      //   let buffer = await file.arrayBuffer();
+      //   let data = new Uint8Array(buffer);
+      //   // let result = await dwnWritePNGRecord(did, data);
 
-        dwnWriteOutputDetailsTextarea.value +=
-          JSON.stringify(result, null, 2) + '\n';
-      }
+      //   dwnWriteOutputDetailsTextarea.value +=
+      //     JSON.stringify(result, null, 2) + '\n';
+      // }
+
+      let data = dwnWriteInputFile.value;
+
+      let result = await dwnWriteTextRecord(did, data);
+
+      dwnWriteOutputDetailsTextarea.value +=
+        JSON.stringify(result, null, 2) + '\n';
+
       dwnWriteOutputDetailsTextarea.scrollTop =
         dwnWriteOutputDetailsTextarea.scrollHeight;
 
@@ -271,35 +310,34 @@ function Web5Quickstart() {
 
       dwnWriteInputButton.disabled = false;
       dwnWriteInputProgress.style.visibility = 'hidden';
-      dwnQueryInputButton.disabled = false;
+      // dwnQueryInputButton.disabled = false;
       update();
     });
 
-    dwnQueryInputButton.addEventListener('click', async () => {
-      dwnQueryInputButton.disabled = true;
-      dwnQueryInputProgress.style.visibility = 'visible';
+    // dwnQueryInputButton.addEventListener('click', async () => {
+    //   dwnQueryInputButton.disabled = true;
+    //   dwnQueryInputProgress.style.visibility = 'visible';
 
-      dwnQueryOutputSummary.innerHTML = '...';
-      dwnQueryOutputDetailsTextarea.value = '';
+    //   dwnQueryOutputSummary.innerHTML = '...';
+    //   dwnQueryOutputDetailsTextarea.value = '';
 
-      let did = parseDid();
-      let result = await dwnQueryPNGRecords(did);
+    //   let did = parseDid();
+    //   // let result = await dwnQueryPNGRecords(did);
+    //   let result = await dwnUpdateText();
 
-      dwnQueryOutputSummary.innerHTML = `&#x2714; Found number of entries: ${
-        result.entries?.length ?? 0
-      }`;
-      dwnQueryOutputDetailsTextarea.value = JSON.stringify(
-        result,
-        (key, value) => (key !== 'encodedData' ? value : undefined),
-        2,
-      );
+    //   dwnQueryOutputSummary.innerHTML = `&#x2714; Placeholder`;
+    //   dwnQueryOutputDetailsTextarea.value = JSON.stringify(
+    //     result,
+    //     (key, value) => (key !== 'encodedData' ? value : undefined),
+    //     2,
+    //   );
 
-      dwnQueryInputButton.disabled = false;
-      dwnQueryInputProgress.style.visibility = 'hidden';
-      dwnReadInputButton.disabled = false;
-      dwnDeleteInputButton.disabled = false;
-      update();
-    });
+    //   dwnQueryInputButton.disabled = false;
+    //   dwnQueryInputProgress.style.visibility = 'hidden';
+    //   dwnReadInputButton.disabled = false;
+    //   dwnDeleteInputButton.disabled = false;
+    //   update();
+    // });
 
     dwnReadInputButton.addEventListener('click', async () => {
       dwnReadInputButton.disabled = true;
@@ -308,17 +346,22 @@ function Web5Quickstart() {
       dwnReadOutput.innerHTML = '';
 
       let did = parseDid();
-      let query = parseQuery();
-      for (let { recordId } of query.entries) {
-        let result = await dwnReadDataFromRecordWithId(did, recordId);
-        let dataStream = await result.record.data.stream();
-        let dataBytes = await web5.dwn.sdk.DataStream.toBytes(dataStream);
+      // let query = parseQuery();
+      // const { record } = createRecordResult;
 
-        let img = dwnReadOutput.appendChild(document.createElement('img'));
-        img.src = URL.createObjectURL(new Blob([dataBytes]));
-      }
+      // for (let { recordId } of query.entries) {
+      let result = await createRecordResult.record.data.text();
+      //   let dataStream = await result.record.data.stream();
+      //   let dataBytes = await web5.dwn.sdk.DataStream.toBytes(dataStream);
+
+      //   let img = dwnReadOutput.appendChild(document.createElement('img'));
+      //   img.src = URL.createObjectURL(new Blob([dataBytes]));
+      // }
+
+      dwnReadOutput.innerHTML = result;
 
       dwnReadInputButton.disabled = false;
+      dwnDeleteInputButton.disabled = false;
       dwnReadInputProgress.style.visibility = 'hidden';
       update();
     });
@@ -330,16 +373,22 @@ function Web5Quickstart() {
       dwnDeleteOutputSummary.innerHTML = '...';
 
       let did = parseDid();
-      let query = parseQuery();
-      for (let { recordId } of query.entries) {
-        let result = await dwnDeleteRecordWithId(did, recordId);
-        dwnDeleteOutputDetailsTextarea.value +=
-          JSON.stringify(result, null, 2) + '\n';
-      }
+      // let query = parseQuery();
+      // for (let { recordId } of query.entries) {
+      //   let result = await dwnDeleteRecordWithId(did, recordId);
+      // dwnDeleteOutputDetailsTextarea.value +=
+      //   JSON.stringify(result, null, 2) + '\n';
+      // }
+
+      let result = await dwnDeleteRecordWithId();
+
+      dwnDeleteOutputDetailsTextarea.value +=
+        JSON.stringify(result, null, 2) + '\n';
+
       dwnDeleteOutputDetailsTextarea.scrollTop =
         dwnDeleteOutputDetailsTextarea.scrollHeight;
 
-      dwnDeleteOutputSummary.innerHTML = `&#x2714; Number of deleted entries: ${query.entries.length}`;
+      dwnDeleteOutputSummary.innerHTML = `&#x2714; Placeholder`;
 
       dwnReadInputButton.disabled = true;
       dwnDeleteInputProgress.style.visibility = 'hidden';
@@ -380,7 +429,7 @@ function Web5Quickstart() {
 
       <section id="dwn-write">
         <div className="input">
-          <input type="file" accept="image/png" disabled />
+          <input defaultValue="Hello, Web5" type="text" disabled />
           <button disabled>Run!</button>
           <progress></progress>
         </div>
@@ -392,7 +441,7 @@ function Web5Quickstart() {
         </div>
       </section>
 
-      <Web5QuickstartQueryDwn />
+      {/* <Web5QuickstartQueryDwn />
       <section id="dwn-query">
         <div className="input">
           <button disabled>Run!</button>
@@ -404,7 +453,7 @@ function Web5Quickstart() {
             <textarea readOnly></textarea>
           </details>
         </div>
-      </section>
+      </section> */}
 
       <Web5QuickstartReadDwn />
       <section id="dwn-read">
