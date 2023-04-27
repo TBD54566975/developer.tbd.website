@@ -1,12 +1,28 @@
-## 8. Deleting messages from your DWN
+## 7. Delete DWN Records
 
-Data can be deleted from DWNs if you have permission to do so. Similar to reading, we're using the `recordId` to remove the record.
+Given permission from the user, your app can delete records from their DWN. Similar to reading, we’ll use the `record` object to remove the record.
+
+Add the following to `index.js`:
+```js
+const deleteResult = await myRecord.record.delete();
+```
+
+<details>
+<summary>Test your code</summary>
+<p>
+To see the status of the delete transaction, add the following to <code>index.js</code>:
 
 ```js
-let deleteResult = await web5.dwn.records.delete(did.id, {
-    author: did.id,
-    message: {
-        recordId: queryResult.entries[0].recordId,
-        },
-    });
+console.log('Delete result: ', deleteResult.status);
 ```
+
+The output will resemble:
+
+```js
+Delete result: { code: 202, detail: 'Accepted' },
+```
+
+</p>
+</details>
+
+Click "Run!" to delete the record that was stored in the sandbox DWN:
