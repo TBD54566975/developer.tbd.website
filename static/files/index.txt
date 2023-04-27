@@ -4,44 +4,25 @@ const web5 = new Web5();
 const did = await web5.did.create('ion');
 
 await web5.did.manager.set(did.id, {
-  connected: true,
-  endpoint: 'app://dwn',
-  keys: {
-    ['#dwn']: {
-      keyPair: did.keys.find((key) => key.id === 'dwn').keyPair,
+    connected: true,
+    endpoint: 'app://dwn', //this points to the user's local DWN
+    keys: {
+        ['#dwn']: {
+          keyPair: did.keys.find(key => key.id === 'dwn').keyPair,
+        },
     },
-  },
 });
 
-const data = 'Hello Web5';
-
-const writeResult = await web5.dwn.records.write(did.id, {
-  author: did.id,
-  data,
-  message: {
-    dataFormat: 'text/plain',
-  },
-});
-
-const queryResult = await web5.dwn.records.query(did.id, {
-  author: did.id,
-  message: {
-    filter: {
-      dataFormat: 'text/plain',
+const {record} = await web5.dwn.records.create(did.id, {
+    author: did.id,
+    data: "Hello Web5",
+    message: {
+        dataFormat: 'text/plain',
     },
-  },
 });
 
-const readResult = await web5.dwn.records.read(did.id, {
-  author: did.id,
-  message: {
-    recordId: queryResult.entries[0].id,
-  },
-});
+const readResult = await record.data.text();
 
-const deleteResult = await web5.dwn.records.delete(did.id, {
-  author: did.id,
-  message: {
-    recordId: queryResult.entries[0].id,
-  },
-});
+const updateResult = await record.update({data: "Hello, I'm updated!"});
+
+const deleteResult = await record.delete();
