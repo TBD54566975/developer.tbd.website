@@ -1,30 +1,70 @@
-## 5. Write to Decentralized Web Node
+## 4. Write DWN Records
 
-Now you’re able to write / store your app's data in the user's Decentralized Web Node (DWN).
+Now you’re able to write records in the user's [Decentralized Web Node(DWN)](/docs/web5/learn/decentralized-web-nodes). 
 
-The user's DWN is their personal data store - a platform for messages, pictures, videos, medical records, and just about any content. Your app does not need to store the user's data - it should be stored in their DWN. This is how the user retains ownership over their content. 
+A DWN is a personal data store - a platform for messages, pictures, videos, medical records, and just about any content a user may want to store.
 
-Through permissions, users can decide which apps can read, write, and delete content from their DWN. In the near future, users will have the opportunity to replicate their DWN across their devices.
+<details>
+  <summary>Read more about DWN</summary>
+  <p>
+Your app should not store users' data in your centralized database. Instead, their data should be stored in their DWN. This is how the user retains ownership over their content. Through permissions, users can decide which apps can read, write, and delete content from their DWN.
 
-A user can host their DWN in mulitple locations. The Web5 JS library is both browser and Node.js compliant, meaning you can use the same APIs on both client side and serverside. 
+The DWN exists in local storage under the name `dwn-info`. The DWN persists across browser sessions and can be synched across a user's devices. 
 
+A user can host their DWN in mulitple locations. The Web5 SDK is both browser and Node.js compliant, meaning you can use the same APIs on both client side and serverside. 
+</p>
+</details>
+
+
+Add the following to `index.js`:
 ```js
-const data = 'Hello Web5';
-
-let writeResult = await web5.dwn.records.write(did.id, {
+const myRecord = await web5.dwn.records.create(did.id, {
     author: did.id,
-    data,
+    data: "Hello Web5",
     message: {
-        schema: 'test',
-        dataFormat: 'image/png',
+        dataFormat: 'text/plain',
     },
 });
 ```
 
-:::note
 
-The `dataFormat` value isn’t limited to `image/png`; it can be any `MIME` type.
+<details>
+  <summary>Test your code</summary>
+  <p>
+  Let's see what was just written to the DWN.
 
-:::
+  In <code>index.js</code>, add the following line and save your file:
+  ```js
+  console.log('write result', myRecord);
+  ```
 
-Practice writing something:
+  Then from the terminal, run:
+  ```bash
+  node src/index.js
+  ```
+
+  You'll see the record that was written to the user's DWN. It will resemble:
+  ```js
+  write result {
+  status: { code: 202, detail: 'Accepted' },
+  entries: undefined,
+  data: undefined,
+  message: {
+    recordId: 'bafyreicc65viceyqtl7sjdxbbxpuvs2nlagerzcblje2lvfhzqbmg4pqhm',
+    descriptor: {
+      interface: 'Records',
+      method: 'Write',
+      dataCid: 'bafkreibr4hojx6b7ukyqkmlw3em4f3ssnlcgwe33wt4uijofkswxpqysje',
+      dataSize: 10,
+      dateCreated: '2023-04-25T18:52:45.550765Z',
+      dateModified: '2023-04-25T18:52:45.550765Z',
+      dataFormat: 'text/plain'
+    }
+  },
+  record: _Record {}
+}
+```
+  </p>
+</details>
+
+Enter "Hello Web5" in the input field and click "Run" to write a record to the sandbox DWN.
