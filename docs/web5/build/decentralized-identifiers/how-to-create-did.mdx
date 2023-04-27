@@ -56,9 +56,9 @@ When calling `create`, be sure to pass in a Web5-supported DID method(). `create
 When you instantiate `Web5`, the SDK internally creates a Decentralized Web Node (DWN) to act as a personal data store to store your DID keys. In order to store your DID, save and encrypt your keys with the Web5 SDK.
 
 ```jsx
-    web5.did.manager.set(myDid.id, {
-      connected: true,
-      endpoint: 'app://dwn', 
-      keys: ["#dwn"]: { keyPair: myDid.keys[0].keypair }
-    });
+web5.did.manager.set(myDid.id, {
+   connected: true,
+   endpoint: 'app://dwn', 
+   keys: ["#dwn"]: { keyPair: myDid.keys[0].keypair }
+});
 ```

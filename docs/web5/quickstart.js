@@ -52,10 +52,6 @@ function update() {
     // dwnQueryOutputDetailsTextarea.value = '';
   }
 
-  if (dwnWriteOutputDetailsTextarea.value !== '') {
-    dwnReadInputButton.disabled = false;
-  }
-
   // if (!parseQuery()?.entries?.length) {
   //   dwnReadInputButton.disabled = true;
   //   dwnReadInputProgress.style.visibility = 'hidden';
@@ -300,7 +296,6 @@ function Web5Quickstart() {
     dwnWriteInputButton.addEventListener('click', async () => {
       dwnWriteInputButton.disabled = true;
       dwnWriteInputProgress.style.visibility = 'visible';
-
       dwnWriteOutputSummary.innerHTML = '...';
 
       let did = parseDid();
@@ -328,6 +323,9 @@ function Web5Quickstart() {
       dwnWriteInputButton.disabled = false;
       dwnWriteInputProgress.style.visibility = 'hidden';
       // dwnQueryInputButton.disabled = false;
+      if (dwnWriteOutputDetailsTextarea.value !== '') {
+        dwnReadInputButton.disabled = false;
+      }
       update();
     });
 
@@ -393,7 +391,7 @@ function Web5Quickstart() {
       dwnUpdateInputProgress.style.visibility = 'visible';
 
       let data = dwnUpdateInputFile.value;
-
+      await createRecordResult.record.update({data});
       const textResult = await createRecordResult.record.data.text();
 
       dwnUpdateOutput.innerHTML = `Your update result: ${textResult}`;
@@ -429,6 +427,7 @@ function Web5Quickstart() {
 
       dwnReadInputButton.disabled = true;
       dwnDeleteInputProgress.style.visibility = 'hidden';
+      dwnUpdateInputButton.disabled = true;
       update();
     });
   }, []);

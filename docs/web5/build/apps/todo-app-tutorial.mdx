@@ -82,11 +82,10 @@ onMounted(async () => {
     const myDid = await web5.did.create('ion');
     registerInfo = {
       connected : true,
-      did       : myDid.id,
       endpoint  : 'app://dwn', 
       keys      : myDid.keys[0].keypair
   };
-  web5.did.manager.set(registerInfo);
+  web5.did.manager.set(myDid.id, registerInfo);
   dwnDID.value = registerInfo.did;
 }
 ```

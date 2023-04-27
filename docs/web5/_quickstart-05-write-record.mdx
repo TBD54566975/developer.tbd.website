@@ -18,7 +18,7 @@ A user can host their DWN in mulitple locations. The Web5 SDK is both browser an
 
 Add the following to `index.js`:
 ```js
-const myRecord = await web5.dwn.records.create(did.id, {
+const {record} = await web5.dwn.records.create(did.id, {
     author: did.id,
     data: "Hello Web5",
     message: {
@@ -35,7 +35,7 @@ const myRecord = await web5.dwn.records.create(did.id, {
 
   In <code>index.js</code>, add the following line and save your file:
   ```js
-  console.log('write result', myRecord);
+  console.log('write result', record);
   ```
 
   Then from the terminal, run:
@@ -45,25 +45,8 @@ const myRecord = await web5.dwn.records.create(did.id, {
 
   You'll see the record that was written to the user's DWN. It will resemble:
   ```js
-  write result {
-  status: { code: 202, detail: 'Accepted' },
-  entries: undefined,
-  data: undefined,
-  message: {
-    recordId: 'bafyreicc65viceyqtl7sjdxbbxpuvs2nlagerzcblje2lvfhzqbmg4pqhm',
-    descriptor: {
-      interface: 'Records',
-      method: 'Write',
-      dataCid: 'bafkreibr4hojx6b7ukyqkmlw3em4f3ssnlcgwe33wt4uijofkswxpqysje',
-      dataSize: 10,
-      dateCreated: '2023-04-25T18:52:45.550765Z',
-      dateModified: '2023-04-25T18:52:45.550765Z',
-      dataFormat: 'text/plain'
-    }
-  },
-  record: _Record {}
-}
-```
+    write result _Record {}
+  ```
   </p>
 </details>
 
