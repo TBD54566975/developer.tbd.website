@@ -1,8 +1,9 @@
-## 6. Read DWN Records
+## 5. Read DWN Records
 
-If the user has given your app read permissions to their DWN, you can read specific records using a `recordId`. In the code snippet below, we are using the `queryResult` from above to obtain the `recordId`:
+If the user has given your app read permissions to their DWN, you can read their data by accessing it through the record property.
 
-Add the following to `index.js`:
+
+To return the text data stored in the `record` add the following to `index.js`:
 ```js
 const readResult = await myRecord.record.data.text();
 ```

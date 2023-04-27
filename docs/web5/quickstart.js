@@ -109,7 +109,7 @@ async function dwnWriteTextRecord(did, data) {
 }
 
 async function dwnUpdateTextRecord(data) {
-    return await createRecordResult.record.update({data})
+  return await createRecordResult.record.update({ data });
 }
 
 // async function dwnQueryPNGRecords(did) {
@@ -237,15 +237,13 @@ function Web5Quickstart() {
     dwnReadOutput = document.querySelector('#dwn-read .output');
 
     dwnUpdateInputFile = document.querySelector(
-    '#dwn-update .input input[type="text"]',
+      '#dwn-update .input input[type="text"]',
     );
     dwnUpdateInputButton = document.querySelector('#dwn-update .input button');
     dwnUpdateInputProgress = document.querySelector(
-    '#dwn-update .input progress',
+      '#dwn-update .input progress',
     );
-    dwnUpdateOutput = document.querySelector(
-    '#dwn-update .output',
-    );
+    dwnUpdateOutput = document.querySelector('#dwn-update .output');
 
     dwnDeleteInputButton = document.querySelector('#dwn-delete .input button');
     dwnDeleteInputProgress = document.querySelector(
@@ -327,7 +325,7 @@ function Web5Quickstart() {
       dwnWriteOutputDetailsTextarea.scrollTop =
         dwnWriteOutputDetailsTextarea.scrollHeight;
 
-      dwnWriteOutputSummary.innerHTML = '&#x2714; Written!';
+      dwnWriteOutputSummary.innerHTML = '&#x2714; Written to DWN!';
 
       dwnWriteInputButton.disabled = false;
       dwnWriteInputProgress.style.visibility = 'hidden';
@@ -360,8 +358,6 @@ function Web5Quickstart() {
     //   update();
     // });
 
-    
-
     dwnReadInputButton.addEventListener('click', async () => {
       dwnReadInputButton.disabled = true;
       dwnReadInputProgress.style.visibility = 'visible';
@@ -390,23 +386,23 @@ function Web5Quickstart() {
     });
 
     dwnUpdateInputFile.addEventListener('input', () => {
-        dwnUpdateInputButton.disabled = false;
-        update();
+      dwnUpdateInputButton.disabled = false;
+      update();
     });
-  
+
     dwnUpdateInputButton.addEventListener('click', async () => {
-        dwnUpdateInputButton.disabled = true;
-        dwnUpdateInputProgress.style.visibility = 'visible';
+      dwnUpdateInputButton.disabled = true;
+      dwnUpdateInputProgress.style.visibility = 'visible';
 
-        let data = dwnUpdateInputFile.value;
+      let data = dwnUpdateInputFile.value;
 
-        let result = await dwnUpdateTextRecord(data);
+      let result = await dwnUpdateTextRecord(data);
 
-        dwnUpdateOutput.innerHTML = await createRecordResult.record.data.text();
+      dwnUpdateOutput.innerHTML = await createRecordResult.record.data.text();
 
-        dwnDeleteInputButton.disabled = false;
-        dwnUpdateInputProgress.style.visibility = 'hidden';
-        update();
+      dwnDeleteInputButton.disabled = false;
+      dwnUpdateInputProgress.style.visibility = 'hidden';
+      update();
     });
 
     dwnDeleteInputButton.addEventListener('click', async () => {
@@ -505,7 +501,7 @@ function Web5Quickstart() {
 
       <Web5QuickstartDeleteDwn />
 
-        {/* <Web5QuickstartQueryDwn />
+      {/* <Web5QuickstartQueryDwn />
       <section id="dwn-query">
         <div className="input">
           <button disabled>Run!</button>
