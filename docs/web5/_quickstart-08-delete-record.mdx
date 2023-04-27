@@ -1,46 +1,28 @@
 ## 7. Delete DWN Records
 
-Given permission from the user, your app can delete records from their DWN. Similar to reading, we’ll use the `recordId` to remove a record.
+Given permission from the user, your app can delete records from their DWN. Similar to reading, we’ll use the `record` object to remove the record.
 
 Add the following to `index.js`:
 ```js
-const deleteResult = await web5.dwn.records.delete(did.id, {
-    author: did.id,
-    message: {
-        recordId: queryResult.entries[0].id,
-    },
-});
+const deleteResult = await myRecord.record.delete();
 ```
 
 <details>
 <summary>Test your code</summary>
 <p>
-To see the record that was deleted from the DWN, add the following to <code>index.js</code>:
+To see the status of the delete transaction, add the following to <code>index.js</code>:
 
 ```js
-console.log('delete result', deleteResult);
+console.log('Delete result: ', deleteResult.status);
 ```
 
 The output will resemble:
 
 ```js
-delete result MessageReply {
-  status: { code: 202, detail: 'Accepted' },
-  entries: undefined,
-  data: undefined,
-  message: {
-    recordId: null,
-    descriptor: {
-      interface: 'Records',
-      method: 'Delete',
-      recordId: 'bafyreicc65viceyqtl7sjdxbbxpuvs2nlagerzcblje2lvfhzqbmg4pqhm',
-      dateModified: '2023-04-25T18:52:46.666766Z'
-    }
-  }
-}
+Delete result: { code: 202, detail: 'Accepted' },
 ```
 
 </p>
 </details>
 
-Click "Run!" to delete the image record that was stored in the sandbox DWN:
+Click "Run!" to delete the record that was stored in the sandbox DWN:

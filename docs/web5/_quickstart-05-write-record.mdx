@@ -2,11 +2,10 @@
 
 Now you’re able to write records in the user's [Decentralized Web Node(DWN)](/docs/web5/learn/decentralized-web-nodes). 
 
-:::info
 A DWN is a personal data store - a platform for messages, pictures, videos, medical records, and just about any content a user may want to store.
 
 <details>
-  <summary>Read more</summary>
+  <summary>Read more about DWN</summary>
   <p>
 Your app should not store users' data in your centralized database. Instead, their data should be stored in their DWN. This is how the user retains ownership over their content. Through permissions, users can decide which apps can read, write, and delete content from their DWN.
 
@@ -15,13 +14,13 @@ The DWN exists in local storage under the name `dwn-info`. The DWN persists acro
 A user can host their DWN in mulitple locations. The Web5 SDK is both browser and Node.js compliant, meaning you can use the same APIs on both client side and serverside. 
 </p>
 </details>
-:::
+
 
 Add the following to `index.js`:
 ```js
-const writeResult = await web5.dwn.records.write(did.id, {
+const myRecord = await web5.dwn.records.create(did.id, {
     author: did.id,
-    data,
+    data: "Hello Web5",
     message: {
         dataFormat: 'text/plain',
     },
@@ -36,7 +35,7 @@ const writeResult = await web5.dwn.records.write(did.id, {
 
   In <code>index.js</code>, add the following line and save your file:
   ```js
-  console.log('write result', writeResult);
+  console.log('write result', myRecord);
   ```
 
   Then from the terminal, run:
@@ -68,8 +67,4 @@ const writeResult = await web5.dwn.records.write(did.id, {
   </p>
 </details>
 
-:::note
-The `dataFormat` value isn’t limited to `text/plain`; it can be any MIME type.
-:::
-
-Select a local png image and click "Run" to write an image record to the sandbox DWN:
+Enter "Hello Web5" in the input field and click "Run" to write a record to the sandbox DWN.
