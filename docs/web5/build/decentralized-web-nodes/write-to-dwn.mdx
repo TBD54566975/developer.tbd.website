@@ -11,15 +11,15 @@ Before writing to your Decentralized Web Node (DWN), be sure to check out our [Q
 The following snippet allows you to write to your `Web5` instance’s DWN using a DID object called `myDid`:
 
 ```jsx
-// Write a plain text record to the in-memory DWN.
-    const response = await web5.dwn.records.write(myDid.id, {
-      author: myDid.id,
-      data: 'Hello, world!',
-      message: {
-        schema: 'schema.org/foo/bar',
-        dataFormat: 'text/plain'
-      }
-    });
+// Write a plain text record to the in-memory DWN
+
+const myRecord = await web5.dwn.records.create(myDid.id, {
+  author: myDid.id,
+  data: "Hello Web5",
+  message: {
+      dataFormat: 'text/plain',
+  },
+});
 ```
 
 The write `request` must contain the following:
