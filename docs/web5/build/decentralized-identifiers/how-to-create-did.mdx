@@ -4,6 +4,10 @@ title: Create a Decentralized Identifier
 
 Before creating your DID, be sure to check out the [Quickstart guide](../../quickstart) to ensure you’ve properly imported the Web5 SDK. We also have guides to [learn more about DIDs](../../Learn/decentralized-identifiers#DID-Method).
 
+:::note
+Make sure you are on @tbd54566975/web5@0.6.0
+:::
+
 ## Create a DID
 
 ```jsx
@@ -52,10 +56,9 @@ When calling `create`, be sure to pass in a Web5-supported DID method(). `create
 When you instantiate `Web5`, the SDK internally creates a Decentralized Web Node (DWN) to act as a personal data store to store your DID keys. In order to store your DID, save and encrypt your keys with the Web5 SDK.
 
 ```jsx
-    web5.did.manager.set({
+    web5.did.manager.set(myDid.id, {
       connected: true,
-      did: myDid.id,
       endpoint: 'app://dwn', 
-      keys: myDid.keys[0].keypair
+      keys: ["#dwn"]: { keyPair: myDid.keys[0].keypair }
     });
 ```

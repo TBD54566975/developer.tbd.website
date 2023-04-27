@@ -2,53 +2,71 @@ import Link from '@docusaurus/Link';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-## 1. Installation
-<Tabs>
-  <TabItem value="NPM" label="via NPM">
-    <h3>Web5 Installation</h3>
-    <h4>Prerequisites</h4>
-    <p><a href="https://docs.npmjs.com/downloading-and-installing-node-js-and-npm" 
-      target="_blank">Node Package Manager - NPM</a></p>
-    <p>Ensure you have the Node Package Manager, <code>npm</code>, installed and on your system's <code>$PATH</code>.</p>
-    <h4>Installation</h4>
-    <p>The following command will install the Web5 module into your project using NPM. From the shell:</p>
-    <pre>$> npm install @tbd54566975/web5@0.4.0</pre>
+:::info
+<h3>Prerequisites</h3>
+<p><a href="https://docs.npmjs.com/downloading-and-installing-node-js-and-npm" 
+  target="_blank">Node Package Manager - NPM</a></p>
+<p>Ensure you have the Node Package Manager, <code>npm</code>, installed and on your system's <code>$PATH</code>.</p>
+:::
 
-  </TabItem>
-  <TabItem value="CDN" label="from CDN">
-    <h3>Web5 Installation</h3>
-    <div>
-      <p>You may also reference the Web5 JS SDK library directly 
-      from the CDN. This may be preferable for projects not using a package 
-      management system like NPM.</p>
-      <p>In this case, no prior installation on your system or in your project is 
-      necessary, and we'll simply import the Web5
-      class in the next step.</p>
-    </div>
-  </TabItem>
-</Tabs>
+# Installation
+### 1. Create Directory
+<p>This will be the home of your new Web5 app.</p>
 
-## 2. Import `Web5`
+In terminal:
 
-You'll need to import the `Web5` class for your JavaScript application to reference it. 
+```bash
+mkdir web5-app
+```
 
-<Tabs>
-  <TabItem value="NPM" label="via NPM">
-    
-    <div>
-      <p>If you've installed <code>Web5</code> from NPM above, import the class in JavaScript:</p>
-    </div>
+```bash
+cd web5-app
+```
 
-    import { Web5 } from '@tbd54566975/web5'
+### 2. Install Web5
 
-  </TabItem>
-  <TabItem value="CDN" label="from CDN">
-   
-    <div>
-      <p>If you're not using a package manager like NPM, import the class in JavaScript from the CDN:</p>
-    </div>
+<p>We'll be using the NPM package manager to install Web5:</p>
 
-    import { Web5 } from 'https://cdn.jsdelivr.net/npm/@tbd54566975/web5@0.4.0/dist/browser.mjs';
+```bash
+npm install @tbd54566975/web5@0.6.0
+```
 
-  </TabItem>
-</Tabs>
+:::note
+After npm resolves the dependency you may see a few warnings which you can ignore for now.
+:::
+
+This adds Web5 as a dependency of the project, which you will see in `package.json`. It also resolves its transitive dependencies in the `package-lock.json` file and places those dependencies in the `node_modules` directory.
+
+Open `package.json` and add `module` as a type:
+
+```js
+{
+  "dependencies": {
+    "@tbd54566975/web5": "^0.6.0"
+  },
+  "type": "module"
+}
+```
+
+### 3. Import Web5
+
+Let's create a `src` directory and `index.js` file to write our application:
+
+```bash
+mkdir src
+```
+
+```bash
+cd src
+```
+
+```bash
+touch index.js
+```
+
+Open `index.js` in your editor and add this line at the top of the file to import Web5:
+```js
+import { Web5 } from '@tbd54566975/web5';
+```
+
+Now, we have the Web5 SDK installed and are ready to start building!
