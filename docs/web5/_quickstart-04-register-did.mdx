@@ -1,13 +1,28 @@
-## 4. Register your DID
+## 3. Associate DID with Storage
 
-Registering a user's DID gives other apps (or users) a way to find them, message them, and send them data provided they have permissions.
+When you instantiate Web5, the SDK internally creates a [Decentralized Web Node(DWN)](/docs/web5/learn/decentralized-web-nodes) to act as a personal data store to hold your user's content.
+
+CRUD operations will return results in the form of a `record`, which is a JSON object. `record` objects provide a suite of
+helper methods to make it easy to work with DWN.
+
+For example: `result.record.delete()` will delete the record from the DWN.
+
+To store the user's DID as well as save and encrypt their keys, add the following to `index.js`:
+
 ```js
-await web5.did.register({
+await web5.did.manager.set(did.id, {
     connected: true,
-    did: did.id,
-    endpoint: 'app://dwn',
-    keys: did.keys[0].keypair,
+    endpoint: 'app://dwn', //this points to the user's local DWN
+    keys: {
+        ['#dwn']: {
+          keyPair: did.keys.find(key => key.id === 'dwn').keyPair,
+        },
+    },
 });
 ```
 
-Register the DID:
+:::note
+In production apps, before doing this step, you'd check to make sure the user doesn't already have an existing DWN. 
+:::
+
+Click "Run!" to store the user's DID (created in the previous step) in the sandbox DWN:
