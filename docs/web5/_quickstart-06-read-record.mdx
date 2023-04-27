@@ -1,0 +1,28 @@
+## 6. Read DWN Records
+
+If the user has given your app read permissions to their DWN, you can read specific records using a `recordId`. In the code snippet below, we are using the `queryResult` from above to obtain the `recordId`:
+
+Add the following to `index.js`:
+```js
+const readResult = await myRecord.record.data.text();
+```
+
+<details>
+<summary>Test your code</summary>
+<p>
+To see the record that was read from the DWN, add the following to <code>index.js</code>:
+
+```js
+console.log('Read result: ', readResult);
+```
+
+The output will resemble:
+
+```js
+Read result: Hello Web5
+```
+
+</p>
+</details>
+
+Click "Run!" to view the record stored in the sandbox DWN:

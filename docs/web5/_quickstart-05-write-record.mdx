@@ -19,9 +19,9 @@ A user can host their DWN in mulitple locations. The Web5 SDK is both browser an
 
 Add the following to `index.js`:
 ```js
-const writeResult = await web5.dwn.records.write(did.id, {
+const myRecord = await web5.dwn.records.create(did.id, {
     author: did.id,
-    data,
+    data: "Hello Web5",
     message: {
         dataFormat: 'text/plain',
     },
@@ -36,7 +36,7 @@ const writeResult = await web5.dwn.records.write(did.id, {
 
   In <code>index.js</code>, add the following line and save your file:
   ```js
-  console.log('write result', writeResult);
+  console.log('write result', myRecord);
   ```
 
   Then from the terminal, run:
@@ -72,4 +72,4 @@ const writeResult = await web5.dwn.records.write(did.id, {
 The `dataFormat` value isn’t limited to `text/plain`; it can be any MIME type.
 :::
 
-Select a local png image and click "Run" to write an image record to the sandbox DWN:
+Enter "Hello Web5" in the input field and click "Run" to write a record to the sandbox DWN:

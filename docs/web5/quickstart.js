@@ -5,10 +5,11 @@ import Web5QuickstartPrereqsAndInstallation from './_quickstart-02-prereqs-and-i
 import Web5QuickstartCreateDid from './_quickstart-03-create-did.mdx';
 import Web5QuickstartRegisterDid from './_quickstart-04-register-did.mdx';
 import Web5QuickstartWriteDwn from './_quickstart-05-write-record.mdx';
-import Web5QuickstartQueryDwn from './_quickstart-06-query-record.mdx';
-import Web5QuickstartReadDwn from './_quickstart-07-read-record.mdx';
+import Web5QuickstartReadDwn from './_quickstart-06-read-record.mdx';
+import Web5QuickstartUpdateDwn from './_quickstart-07-update-record.mdx';
 import Web5QuickstartDeleteDwn from './_quickstart-08-delete-record.mdx';
-import Web5QuickstartNextSteps from './_quickstart-09-next-steps.mdx';
+import Web5QuickstartQueryDwn from './_quickstart-09-query-record.mdx';
+import Web5QuickstartNextSteps from './_quickstart-10-next-steps.mdx';
 
 import { Web5 } from '@tbd54566975/web5';
 
@@ -107,6 +108,10 @@ async function dwnWriteTextRecord(did, data) {
   return createRecordResult;
 }
 
+async function dwnUpdateTextRecord(data) {
+    return await createRecordResult.record.update({data})
+}
+
 // async function dwnQueryPNGRecords(did) {
 //   let result = await web5.dwn.records.query(did.id, {
 //     author: did.id,
@@ -179,6 +184,11 @@ let dwnDeleteInputProgress;
 let dwnDeleteOutputSummary;
 let dwnDeleteOutputDetailsTextarea;
 
+let dwnUpdateInputFile;
+let dwnUpdateInputButton;
+let dwnUpdateInputProgress;
+let dwnUpdateOutput;
+
 function Web5Quickstart() {
   useEffect(() => {
     // query selectors
@@ -225,6 +235,17 @@ function Web5Quickstart() {
     dwnReadInputButton = document.querySelector('#dwn-read .input button');
     dwnReadInputProgress = document.querySelector('#dwn-read .input progress');
     dwnReadOutput = document.querySelector('#dwn-read .output');
+
+    dwnUpdateInputFile = document.querySelector(
+    '#dwn-update .input input[type="text"]',
+    );
+    dwnUpdateInputButton = document.querySelector('#dwn-update .input button');
+    dwnUpdateInputProgress = document.querySelector(
+    '#dwn-update .input progress',
+    );
+    dwnUpdateOutput = document.querySelector(
+    '#dwn-update .output',
+    );
 
     dwnDeleteInputButton = document.querySelector('#dwn-delete .input button');
     dwnDeleteInputProgress = document.querySelector(
@@ -339,6 +360,8 @@ function Web5Quickstart() {
     //   update();
     // });
 
+    
+
     dwnReadInputButton.addEventListener('click', async () => {
       dwnReadInputButton.disabled = true;
       dwnReadInputProgress.style.visibility = 'visible';
@@ -360,10 +383,30 @@ function Web5Quickstart() {
 
       dwnReadOutput.innerHTML = result;
 
-      dwnReadInputButton.disabled = false;
-      dwnDeleteInputButton.disabled = false;
+      dwnUpdateInputFile.disabled = false;
+      dwnUpdateInputButton.disabled = false;
       dwnReadInputProgress.style.visibility = 'hidden';
       update();
+    });
+
+    dwnUpdateInputFile.addEventListener('input', () => {
+        dwnUpdateInputButton.disabled = false;
+        update();
+    });
+  
+    dwnUpdateInputButton.addEventListener('click', async () => {
+        dwnUpdateInputButton.disabled = true;
+        dwnUpdateInputProgress.style.visibility = 'visible';
+
+        let data = dwnUpdateInputFile.value;
+
+        let result = await dwnUpdateTextRecord(data);
+
+        dwnUpdateOutput.innerHTML = await createRecordResult.record.data.text();
+
+        dwnDeleteInputButton.disabled = false;
+        dwnUpdateInputProgress.style.visibility = 'hidden';
+        update();
     });
 
     dwnDeleteInputButton.addEventListener('click', async () => {
@@ -429,7 +472,7 @@ function Web5Quickstart() {
 
       <section id="dwn-write">
         <div className="input">
-          <input defaultValue="Hello, Web5" type="text" disabled />
+          <input placeholder="Write text in me!" type="text" disabled />
           <button disabled>Run!</button>
           <progress></progress>
         </div>
@@ -441,7 +484,28 @@ function Web5Quickstart() {
         </div>
       </section>
 
-      {/* <Web5QuickstartQueryDwn />
+      <Web5QuickstartReadDwn />
+      <section id="dwn-read">
+        <div className="input">
+          <button disabled>Run!</button>
+          <progress></progress>
+        </div>
+        <div className="output"></div>
+      </section>
+
+      <Web5QuickstartUpdateDwn />
+      <section id="dwn-update">
+        <div className="input">
+          <input placeholder="Update me!" type="text" disabled />
+          <button disabled>Run!</button>
+          <progress></progress>
+        </div>
+        <div className="output"></div>
+      </section>
+
+      <Web5QuickstartDeleteDwn />
+
+        {/* <Web5QuickstartQueryDwn />
       <section id="dwn-query">
         <div className="input">
           <button disabled>Run!</button>
@@ -454,17 +518,6 @@ function Web5Quickstart() {
           </details>
         </div>
       </section> */}
-
-      <Web5QuickstartReadDwn />
-      <section id="dwn-read">
-        <div className="input">
-          <button disabled>Run!</button>
-          <progress></progress>
-        </div>
-        <div className="output"></div>
-      </section>
-
-      <Web5QuickstartDeleteDwn />
 
       <section id="dwn-delete">
         <div className="input">
