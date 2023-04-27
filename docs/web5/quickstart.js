@@ -396,11 +396,9 @@ function Web5Quickstart() {
 
       let data = dwnUpdateInputFile.value;
 
-      let result = await dwnUpdateTextRecord(data);
-
       const textResult = await createRecordResult.record.data.text();
 
-      dwnUpdateOutput.innerHTML = `Your update result: ${textResult} to ${result}`;
+      dwnUpdateOutput.innerHTML = `Your update result: ${textResult}`;
 
       dwnDeleteInputButton.disabled = false;
       dwnUpdateInputProgress.style.visibility = 'hidden';
