@@ -207,9 +207,7 @@ function Web5Quickstart() {
     );
     didRegisterOutput = document.querySelector('#did-register .output');
 
-    dwnWriteInputFile = document.querySelector(
-      '#dwn-write .input input[type="text"]',
-    );
+    dwnWriteInputFile = document.querySelector('#dwn-write .input input');
     dwnWriteInputButton = document.querySelector('#dwn-write .input button');
     dwnWriteInputProgress = document.querySelector(
       '#dwn-write .input progress',
@@ -236,9 +234,7 @@ function Web5Quickstart() {
     dwnReadInputProgress = document.querySelector('#dwn-read .input progress');
     dwnReadOutput = document.querySelector('#dwn-read .output');
 
-    dwnUpdateInputFile = document.querySelector(
-      '#dwn-update .input input[type="text"]',
-    );
+    dwnUpdateInputFile = document.querySelector('#dwn-update .input input');
     dwnUpdateInputButton = document.querySelector('#dwn-update .input button');
     dwnUpdateInputProgress = document.querySelector(
       '#dwn-update .input progress',
@@ -291,6 +287,8 @@ function Web5Quickstart() {
       // dwnQueryInputButton.disabled = false;
       update();
     });
+
+    console.log('testing', dwnWriteInputFile);
 
     dwnWriteInputFile.addEventListener('input', () => {
       dwnWriteInputButton.disabled = false;
