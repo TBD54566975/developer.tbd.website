@@ -373,7 +373,7 @@ function Web5Quickstart() {
       //   img.src = URL.createObjectURL(new Blob([dataBytes]));
       // }
 
-      dwnReadOutput.innerHTML = `Your read result: ${result}`;
+      dwnReadOutput.innerHTML = `Read result: ${result}`;
 
       dwnUpdateInputFile.disabled = false;
       dwnUpdateInputButton.disabled = false;
@@ -394,7 +394,7 @@ function Web5Quickstart() {
       await createRecordResult.record.update({data});
       const textResult = await createRecordResult.record.data.text();
 
-      dwnUpdateOutput.innerHTML = `Your update result: ${textResult}`;
+      dwnUpdateOutput.innerHTML = `Update result: ${textResult}`;
 
       dwnDeleteInputButton.disabled = false;
       dwnUpdateInputProgress.style.visibility = 'hidden';
