@@ -2,10 +2,8 @@
 
 When you instantiate Web5, the SDK internally creates a [Decentralized Web Node(DWN)](/docs/web5/learn/decentralized-web-nodes) to act as a personal data store to hold your user's content.
 
-CRUD operations will return results in the form of a `record`, which is a JSON object. `record` objects provide a suite of
+Operations will return results in the form of a `record`, which is a JSON object. `record` objects provide a suite of
 helper methods to make it easy to work with DWN.
-
-For example: `result.record.delete()` will delete the record from the DWN.
 
 To store the user's DID as well as save and encrypt their keys, add the following to `index.js`:
 
