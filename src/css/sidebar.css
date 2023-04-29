@@ -116,7 +116,8 @@ aside .menu__link:hover {
   font-weight: 800;
 }
 
-.theme-doc-sidebar-item-link-level-1 a {
+.theme-doc-sidebar-item-link-level-1 a,
+.theme-doc-sidebar-item-category-level-1 a {
   font-weight: 800;
   font-size: 18px;
 }
