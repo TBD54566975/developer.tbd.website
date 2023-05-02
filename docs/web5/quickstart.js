@@ -52,10 +52,6 @@ function update() {
     // dwnQueryOutputDetailsTextarea.value = '';
   }
 
-  if (dwnWriteOutputDetailsTextarea.value !== '') {
-    dwnReadInputButton.disabled = false;
-  }
-
   // if (!parseQuery()?.entries?.length) {
   //   dwnReadInputButton.disabled = true;
   //   dwnReadInputProgress.style.visibility = 'hidden';
@@ -207,9 +203,7 @@ function Web5Quickstart() {
     );
     didRegisterOutput = document.querySelector('#did-register .output');
 
-    dwnWriteInputFile = document.querySelector(
-      '#dwn-write .input input[type="text"]',
-    );
+    dwnWriteInputFile = document.querySelector('#dwn-write .input input');
     dwnWriteInputButton = document.querySelector('#dwn-write .input button');
     dwnWriteInputProgress = document.querySelector(
       '#dwn-write .input progress',
@@ -236,9 +230,7 @@ function Web5Quickstart() {
     dwnReadInputProgress = document.querySelector('#dwn-read .input progress');
     dwnReadOutput = document.querySelector('#dwn-read .output');
 
-    dwnUpdateInputFile = document.querySelector(
-      '#dwn-update .input input[type="text"]',
-    );
+    dwnUpdateInputFile = document.querySelector('#dwn-update .input input');
     dwnUpdateInputButton = document.querySelector('#dwn-update .input button');
     dwnUpdateInputProgress = document.querySelector(
       '#dwn-update .input progress',
@@ -292,6 +284,8 @@ function Web5Quickstart() {
       update();
     });
 
+    console.log('testing', dwnWriteInputFile);
+
     dwnWriteInputFile.addEventListener('input', () => {
       dwnWriteInputButton.disabled = false;
       dwnWriteOutputSummary.innerHTML = '...';
@@ -302,7 +296,6 @@ function Web5Quickstart() {
     dwnWriteInputButton.addEventListener('click', async () => {
       dwnWriteInputButton.disabled = true;
       dwnWriteInputProgress.style.visibility = 'visible';
-
       dwnWriteOutputSummary.innerHTML = '...';
 
       let did = parseDid();
@@ -330,6 +323,9 @@ function Web5Quickstart() {
       dwnWriteInputButton.disabled = false;
       dwnWriteInputProgress.style.visibility = 'hidden';
       // dwnQueryInputButton.disabled = false;
+      if (dwnWriteOutputDetailsTextarea.value !== '') {
+        dwnReadInputButton.disabled = false;
+      }
       update();
     });
 
@@ -377,7 +373,7 @@ function Web5Quickstart() {
       //   img.src = URL.createObjectURL(new Blob([dataBytes]));
       // }
 
-      dwnReadOutput.innerHTML = `Your read result: ${result}`;
+      dwnReadOutput.innerHTML = `Read result: ${result}`;
 
       dwnUpdateInputFile.disabled = false;
       dwnUpdateInputButton.disabled = false;
@@ -395,10 +391,10 @@ function Web5Quickstart() {
       dwnUpdateInputProgress.style.visibility = 'visible';
 
       let data = dwnUpdateInputFile.value;
-
+      await createRecordResult.record.update({data});
       const textResult = await createRecordResult.record.data.text();
 
-      dwnUpdateOutput.innerHTML = `Your update result: ${textResult}`;
+      dwnUpdateOutput.innerHTML = `Update result: ${textResult}`;
 
       dwnDeleteInputButton.disabled = false;
       dwnUpdateInputProgress.style.visibility = 'hidden';
@@ -431,6 +427,7 @@ function Web5Quickstart() {
 
       dwnReadInputButton.disabled = true;
       dwnDeleteInputProgress.style.visibility = 'hidden';
+      dwnUpdateInputButton.disabled = true;
       update();
     });
   }, []);
