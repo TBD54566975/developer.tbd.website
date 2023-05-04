@@ -101,8 +101,8 @@ Once you’ve called `set()` , you can now make calls to the DWN to fetch, write
 onMounted(async () => {
 ...
 // Populate todos from DWN
-  const queryResponse = await web5.dwn.records.query(myDID.id, {
-    author  : myDID.id,
+  const queryResponse = await web5.dwn.records.query(myDid.id, {
+    author  : myDid.id,
     message : {
       filter: {
         schema: 'http://some-schema-registry.org/todo'
@@ -192,8 +192,8 @@ async function addTodo() {
   };
   
   newTodoDescription.value = '';
-  const result  = await web5.dwn.records.write(myDID.id, {
-    author  : myDID.id,
+  const result  = await web5.dwn.records.write(myDid.id, {
+    author  : myDid.id,
     data    : todoData,
     message : {
       schema     : 'http://some-schema-registry.org/todo',
@@ -210,8 +210,8 @@ Once we’ve written the data to storage, we’ll need to immediately query our 
 ```jsx
 async function addTodo() {
 ...
-const queryResponse = await web5.dwn.records.query(myDID.id, {
-    author  : myDID.id,
+const queryResponse = await web5.dwn.records.query(myDid.id, {
+    author  : myDid.id,
     message : {
       filter: {
         schema: 'http://some-schema-registry.org/todo'
@@ -251,8 +251,8 @@ async function deleteTodo(todoRecordId) {
     index ++;
   }
   todos.value.splice(index, 1);
-  const deleteResponse = await web5.dwn.records.delete(myDID.id, {
-    author  : myDID.id,
+  const deleteResponse = await web5.dwn.records.delete(myDid.id, {
+    author  : myDid.id,
     message : {
       recordId: deletedTodo.dWebMessage.recordId
     }
@@ -290,8 +290,8 @@ async function toggleTodoComplete(todoRecordId) {
 
   const { descriptor } = toggledTodo.dWebMessage;
 
-  const result  = await web5.dwn.records.write(myDID.id, {
-    author  : myDID.id,
+  const result  = await web5.dwn.records.update(myDid.id, {
+    author  : myDid.id,
     data    : updatedTodoData,
     message : {
       recordId    : toggledTodo.dWebMessage.recordId,
