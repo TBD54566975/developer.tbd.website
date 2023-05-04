@@ -24,7 +24,7 @@ In this tutorial, you’ll work through completing the `/todo-app/src/App.vue` f
 If you’d like to skip ahead and see the finished version of this tutorial, you can download that repository by running:
 
 ```bash
-git clone https://github.com/TBD54566975/incubating-web5-labs.github
+git clone https://github.com/TBD54566975/incubating-web5-labs.git
 ```
 
 </p>
@@ -85,8 +85,7 @@ onMounted(async () => {
       endpoint  : 'app://dwn', 
       keys      : myDid.keys[0].keypair
   };
-  web5.did.manager.set(myDid.id, registerInfo);
-  dwnDID.value = registerInfo.did;
+  await web5.did.manager.set(myDid.id, registerInfo);
 }
 ```
 
@@ -102,8 +101,8 @@ Once you’ve called `set()` , you can now make calls to the DWN to fetch, write
 onMounted(async () => {
 ...
 // Populate todos from DWN
-  const queryResponse = await web5.dwn.records.query(dwnDID.value, {
-    author  : dwnDID.value,
+  const queryResponse = await web5.dwn.records.query(myDID.id, {
+    author  : myDID.id,
     message : {
       filter: {
         schema: 'http://some-schema-registry.org/todo'
@@ -193,8 +192,8 @@ async function addTodo() {
   };
   
   newTodoDescription.value = '';
-  const result  = await web5.dwn.records.write(dwnDID.value, {
-    author  : dwnDID.value,
+  const result  = await web5.dwn.records.write(myDID.id, {
+    author  : myDID.id,
     data    : todoData,
     message : {
       schema     : 'http://some-schema-registry.org/todo',
@@ -211,8 +210,8 @@ Once we’ve written the data to storage, we’ll need to immediately query our 
 ```jsx
 async function addTodo() {
 ...
-const queryResponse = await web5.dwn.records.query(dwnDID.value, {
-    author  : dwnDID.value,
+const queryResponse = await web5.dwn.records.query(myDID.id, {
+    author  : myDID.id,
     message : {
       filter: {
         schema: 'http://some-schema-registry.org/todo'
@@ -252,8 +251,8 @@ async function deleteTodo(todoRecordId) {
     index ++;
   }
   todos.value.splice(index, 1);
-  const deleteResponse = await web5.dwn.records.delete(dwnDID.value, {
-    author  : dwnDID.value,
+  const deleteResponse = await web5.dwn.records.delete(myDID.id, {
+    author  : myDID.id,
     message : {
       recordId: deletedTodo.dWebMessage.recordId
     }
@@ -291,8 +290,8 @@ async function toggleTodoComplete(todoRecordId) {
 
   const { descriptor } = toggledTodo.dWebMessage;
 
-  const result  = await web5.dwn.records.write(dwnDID.value, {
-    author  : dwnDID.value,
+  const result  = await web5.dwn.records.write(myDID.id, {
+    author  : myDID.id,
     data    : updatedTodoData,
     message : {
       recordId    : toggledTodo.dWebMessage.recordId,
