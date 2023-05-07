@@ -67,12 +67,6 @@ The first time a user accesses your ToDo app, you’ll need to handle creating a
 Add to `App.vue`:
 
 ```jsx
-const web5 = new Web5();
-const dwnDID = ref('');
-const todos = ref([]); // to come in the next step
-
-let myDid;
-
 // Loading or Creating User Data
 onBeforeMount(async () => {
   let registerInfo;
