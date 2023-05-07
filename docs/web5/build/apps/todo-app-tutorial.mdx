@@ -66,7 +66,7 @@ The first time a user accesses your ToDo app, you’ll need to handle creating a
 
 Add to `App.vue`:
 
-```jsx
+```js
 // Loading or Creating User Data
 onBeforeMount(async () => {
   let registerInfo;
@@ -91,7 +91,9 @@ onBeforeMount(async () => {
     localStorage.setItem('myDid', JSON.stringify(myDid));
     localStorage.setItem('registerInfo', JSON.stringify(registerInfo));
   }
-}
+
+  // We'll put more code from later sections here
+});
 ```
 
 In the snippet above, we’re using the `Vue.js` -provided `localStorage` to attempt to fetch the user’s `dwn-info` from local storage. 
@@ -102,42 +104,40 @@ If the data is available we can use that to access their DWN via `Web5.js`, othe
 
 Once you’ve called `set()` , you can now make calls to the DWN to fetch, write, and delete data. To load your user’s existing todos, call:
 
-```jsx
-onBeforeMount(async () => {
-...
-// Populate Todos from DWN
-const queryResponse = await web5.dwn.records.query(myDid.id, {
+```js
+  // ... Below code from "onBeforeMount" from above
+
+  // Populate Todos from DWN
+  const queryResponse = await web5.dwn.records.query(myDid.id, {
   author  : myDid.id,
   message : {
     filter: {
       schema: 'http://some-schema-registry.org/todo'
     },
     dateSort: 'createdAscending'
-  }
-});
+  }});
 ```
 
 Once you’ve loaded the query data, you can serialize it into an object for your app to use:
 
-```jsx
-onBeforeMount(async () => {
-...
-// Serialize Todo
-const textDecoder = new TextDecoder();
-const storedTodos = [];
+```js
+  // ... Below code from "onBeforeMount" from above
 
-for (let entry of queryResponse.entries) {
-  let todo = { dWebMessage: entry };
+  // Serialize Todo
+  const textDecoder = new TextDecoder();
+  const storedTodos = [];
+  for (let entry of queryResponse.entries) {
+    let todo = { dWebMessage: entry };
   
-  const todoBytes = base64url.baseDecode(entry.encodedData);
-  const todoStringified = textDecoder.decode(todoBytes);
-  todo.data = JSON.parse(todoStringified);
-  storedTodos.push(todo);
-}
-todos.value = storedTodos;
+    const todoBytes = base64url.baseDecode(entry.encodedData);
+    const todoStringified = textDecoder.decode(todoBytes);
+    todo.data = JSON.parse(todoStringified);
+    storedTodos.push(todo);
+  }
+  todos.value = storedTodos;
 ```
 
-Now that your todos are stored in your app, you can display them by using your `todos` object. In this example, you can do it by adding the following HTML code to the Vue app below the JS, just as you would in any non-web5 app:
+Now that your todos are stored in your app, you can display them by using your `todos` object. In this example, you can do it by adding the following HTML code to the Vue app below the JS, just as you would in any non-web5 app. In our template there is a comment marked `<!-- Todos -->` where this code block fits nicely:
 
 ```jsx
 <div v-if="(todos.length > 0)" class="border-gray-200 border-t border-x mt-16 rounded-lg shadow-md sm:max-w-xl sm:mx-auto sm:w-full">
@@ -148,6 +148,7 @@ Now that your todos are stored in your app, you can display them by using your `
     <div class="font-light ml-3 text-gray-500 text-xl">
       {{ todo.data.description }}
     </div>
+    <!-- Delete Todo goes here later -->
   </div>
 </div>
 ```
@@ -158,7 +159,7 @@ Note that this UI code fulfills more than just loading the todos - it also provi
 
 ## Adding Todos
 
-To allow for add functionality, begin by creating the UI needed to add todos:
+To allow for add functionality, begin by creating the UI needed to add todos. In our template there is a section marked `<!-- Add Todo Form -->` where this block may go:
 
 ```jsx
 <div class="mt-16">
@@ -180,7 +181,7 @@ To allow for add functionality, begin by creating the UI needed to add todos:
 
 Then, writing a todo into storage is done by binding a `addTodo()` method to the UI and leveraging the `newTodoDescription` model referenced in the `textarea` to call the `web5` method `write`:
 
-```jsx
+```js
 // Adding Todos
 const newTodoDescription = ref('');
 
@@ -198,6 +199,8 @@ async function addTodo() {
         dataFormat : 'application/json'
     }
   });
+
+  // More code from later sections will go here
 }
 ```
 
@@ -205,27 +208,25 @@ This code uses the `dwnDID` object we loaded or created in the `onBeforeMount` f
 
 Once we’ve written the data to storage, we’ll need to immediately query our DWN for the record in order to grab its `recordId` :
 
-```jsx
-async function addTodo() {
-...
-const queryResponse = await web5.dwn.records.query(myDid.id, {
-  author  : myDid.id,
-  message : {
-    filter: {
-      schema: 'http://some-schema-registry.org/todo'
-    },
-    dateSort: 'createdAscending'
-  }
-});
-const record = queryResponse.entries[queryResponse.entries.length - 1];
-// add DWeb message recordId as a way to reference the message for further operations
-// e.g. updating it or overwriting it
-const todo = {
-  dWebMessage : record,
-  data        : todoData
-};
-todos.value.push(todo);
-});
+```js
+  // Add this below the code from "addTodo" above
+  const queryResponse = await web5.dwn.records.query(myDid.id, {
+    author  : myDid.id,
+    message : {
+      filter: {
+        schema: 'http://some-schema-registry.org/todo'
+      },
+      dateSort: 'createdAscending'
+    }
+  });
+  const record = queryResponse.entries[queryResponse.entries.length - 1];
+  // add DWeb message recordId as a way to reference the message for further operations
+  // e.g. updating it or overwriting it
+  const todo = {
+    dWebMessage : record,
+    data        : todoData
+  };
+  todos.value.push(todo);
 ```
 
 :::caution
@@ -236,7 +237,7 @@ Currently, it is a limitation of the `write` method that it does not return the 
 
 Deleting todos can be done by using the `delete` method and `recordId`:
 
-```jsx
+```js
 async function deleteTodo(todoRecordId) {
   let deletedTodo;
   let index = 0;
@@ -257,11 +258,11 @@ async function deleteTodo(todoRecordId) {
 }
 ```
 
-We’ll connect that to our UI with the following code:
+We’ll connect that to our UI with the following code. This replaces the `<!-- Delete Todo goes here later -->` comment we placed from above:
 
 ```jsx
 <div class="ml-auto">
-  <div @click="deleteTodo(todo.dWebMessage.recordId)" class="cursor-pointer">
+  <div @click="deleteTodo(todo.dWebMessage.recordId-1)" class="cursor-pointer">
     <TrashIcon class="h-8 text-gray-200 w-8" :class="'text-red-500'" />
   </div>
 </div>
@@ -271,7 +272,7 @@ We’ll connect that to our UI with the following code:
 
 To toggle a todo’s status, you’ll need to change its status both in your local `todos` object and in your web5-managed DWN. You can do so by modifying the `todos` object and then using a `write` call to update the todo in your data store:
 
-```jsx
+```js
 async function toggleTodoComplete(todoRecordId) {
   let toggledTodo;
   let updatedTodoData;
@@ -298,26 +299,6 @@ async function toggleTodoComplete(todoRecordId) {
     }
   });
 }
-```
-
-The overall UI code for your todo, which includes the affordance to display, delete, and toggle status, will looks like this:
-
-```jsx
-<div v-if="(todos.length > 0)" class="border-gray-200 border-t border-x mt-16 rounded-lg shadow-md sm:max-w-xl sm:mx-auto sm:w-full">
-  <div v-for="todo in todos" :key="todo.dWebMessage.recordId" class="border-b border-gray-200 flex items-center p-4">
-    <div @click="toggleTodoComplete(todo.dWebMessage.recordId)" class="cursor-pointer">
-      <CheckCircleIcon class="h-8 text-gray-200 w-8" :class="{ 'text-green-500': todo.data.completed }" />
-    </div>
-    <div class="font-light ml-3 text-gray-500 text-xl">
-      {{ todo.data.description }}
-    </div>
-    <div class="ml-auto">
-      <div @click="deleteTodo(todo.dWebMessage.recordId)" class="cursor-pointer">
-        <TrashIcon class="h-8 text-gray-200 w-8" :class="'text-red-500'" />
-      </div>
-    </div>
-  </div>
-</div>
 ```
 
 Congratulations, you've just built a decentralized web app! Feel free to check out the [finished version of the ToDo app here](https://github.com/TBD54566975/incubating-web5-labs/tree/main/todo-app).
