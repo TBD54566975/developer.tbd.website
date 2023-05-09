@@ -497,3 +497,25 @@ footer a:hover {
     border: none !important;
   }
 }
+
+.expandable-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-in-out;
+}
+
+.expand-btn {
+  transform: scaleY(-1);
+  padding: 0;
+  transition: 0.3s ease-in-out;
+  margin: auto;
+  padding: 1rem;
+}
+
+.expand-btn.expandable-content-expanded {
+  transform: scaleY(1);
+}
+
+.expandable-content-expanded {
+  max-height: 300px; /* Adjust this value based on the actual content height */
+}
