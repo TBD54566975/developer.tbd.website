@@ -57,7 +57,7 @@ There are 3 main components to your ToDo app: HTML, CSS, and Javascript. The way
 Think of `web5.js` as your storage, RESTful API service, and the backing data store.
 :::
 
-Because we’ve built this sample using `Vue.js`, you’ll find both the HTML structure of the app and the JS logic within the `App.vue` file. Our ToDo app will have a few main responsibilities to implement:
+Because we’ve built this sample using `Vue.js`, you’ll find both the HTML structure of the app and the JS logic within the `App.vue` file. Your ToDo app will have a few main responsibilities to implement:
 
 - Create a new DWN for the user or load their saved DWN for storage
 - Display ToDos
@@ -75,7 +75,7 @@ const todos = ref([]);
 let myDid;
 ```
 
-The `web5` instance is our single entry point for all Web5 operations. You've also set up a `todos` array to hold our ToDos, and a variable to remember our decentralized identifier (DID) as `did`, which you'll create or load in a moment.
+The `web5` instance is the single entry point for all Web5 operations. You've also set up a `todos` array to hold your ToDos, and a variable to remember the app user's decentralized identifier (DID) as `did`, which you'll create or load in a moment.
 
 ## Loading or Creating User Data
 
@@ -151,7 +151,7 @@ Once you’ve loaded the query data, you can map this data from the DWN into an 
   }
 ```
 
-Now that your ToDos are stored in your app, you can display them by using your `todos` object. In this example, you can do it by adding the following HTML code to the Vue app below the JS, just as you would in any non-web5 app. In our template there is a comment marked `<!-- ToDos -->` where this code block fits nicely:
+Now that your ToDos are stored in your app, you can display them by using your `todos` object. In this example, you can do it by adding the following HTML code to the Vue app below the JS, just as you would in any non-web5 app. In the template there is a comment marked `<!-- ToDos -->` where this code block fits nicely:
 
 ```jsx
 <div v-if="(todos.length > 0)" class="border-gray-200 border-t border-x mt-16 rounded-lg shadow-md sm:max-w-xl sm:mx-auto sm:w-full">
@@ -173,7 +173,7 @@ Note that this UI code fulfills more than just loading the ToDos - it also provi
 
 ## Adding Todos
 
-To allow for add functionality, begin by creating the UI needed to add ToDos. In our template there is a section marked `<!-- Add ToDo Form -->` where this block may go:
+To allow for add functionality, begin by creating the UI needed to add ToDos. In the template there is a section marked `<!-- Add ToDo Form -->` where this block may go:
 
 ```jsx
 <div class="mt-16">
@@ -220,9 +220,9 @@ async function addTodo() {
 }
 ```
 
-This code uses the `myDid` object we loaded or created in the `onBeforeMount` function and uses it to write into the DWN that `web5` is using to store our data.
+This code uses the `myDid` object we loaded or created in the `onBeforeMount` function and uses it to write into the DWN that `web5` is using to store your app user's data.
 
-Once we’ve written the data to storage, we’ll use the returned `record` to create our app's `todo` object, passing along the `recordId` :
+Once we’ve written the data to storage, we’ll use the returned `record` to create your app's `todo` object, passing along the `recordId` :
 
 ```js
   // ToDo object creation code
@@ -258,7 +258,7 @@ async function deleteTodo(todoItem) {
 }
 ```
 
-We’ll connect that to our UI with the following code. This replaces the `<!-- Delete ToDo goes here later -->` comment we placed from above:
+We’ll connect that to the UI with the following code. This replaces the `<!-- Delete ToDo goes here later -->` comment we placed from above:
 
 ```jsx
 <div class="ml-auto">
