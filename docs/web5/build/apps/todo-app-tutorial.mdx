@@ -13,7 +13,7 @@ Download a copy of the skeleton ToDo app by running:
 ```bash
 git clone https://github.com/TBD54566975/web5-tutorials.git
 cd web5-tutorials
-git checkout tags/0.1.0 -b todo-app-tutorial
+git checkout tags/0.1.1 -b todo-app-tutorial
 ```
 
 In this tutorial, you’ll work through completing the `/todo-app/src/App.vue` file to use `web5.js`.
@@ -67,7 +67,7 @@ Because we’ve built this sample using `Vue.js`, you’ll find both the HTML st
 
 ## Initialize Constants and Variables
 
-First we'll set up some instances to hold data you'll use throughout your application. Copy the following block into the template, under the `import` statements, in the section marked `Initialize variables here`.
+First we'll set up some instances to hold data you'll use throughout your application. Copy the following block into the template, under the `import` statements, in the section marked `// Initialize variables here`.
 
 ```js
 const web5 = new Web5();
@@ -75,7 +75,7 @@ const todos = ref([]);
 let myDid;
 ```
 
-The `web5` instance is the single entry point for all Web5 operations. You've also set up a `todos` array to hold your ToDos, and a variable to remember the app user's decentralized identifier (DID) as `did`, which you'll create or load in a moment.
+The `web5` instance is the single entry point for all Web5 operations. You've also set up a `todos` array to hold your ToDos, and a variable to remember the app user's decentralized identifier (DID) as `myDid`, which you'll create or load in a moment.
 
 ## Loading or Creating User Data
 
@@ -121,7 +121,7 @@ If the data is available we can use that to access their DWN via `Web5.js`, othe
 
 ## Displaying Todos
 
-Once you’ve called `set()`, you can now make calls to the DWN to fetch, write, and delete data. To load your user’s existing ToDos, call:
+Once you’ve called `web5.did.manager.set()`, you can now make calls to the DWN to fetch, write, and delete data. To load your user’s existing ToDos, call:
 
 ```js
   // DWN query code
@@ -151,7 +151,7 @@ Once you’ve loaded the query data, you can map this data from the DWN into an 
   }
 ```
 
-Now that your ToDos are stored in your app, you can display them by using your `todos` object. In this example, you can do it by adding the following HTML code to the Vue app below the JS, just as you would in any non-web5 app. In the template there is a comment marked `<!-- ToDos -->` where this code block fits nicely:
+Now that your app user's ToDos are stored in their DWN, you can display them by using the `todos` object. In this example, you can do it by adding the following HTML code to the Vue app below the JS, just as you would in any non-Web5 app. In the template there is a comment marked `<!-- ToDos -->` where this code block fits nicely:
 
 ```jsx
 <div v-if="(todos.length > 0)" class="border-gray-200 border-t border-x mt-16 rounded-lg shadow-md sm:max-w-xl sm:mx-auto sm:w-full">
@@ -193,12 +193,10 @@ To allow for add functionality, begin by creating the UI needed to add ToDos. In
 </div>
 ```
 
-Then, writing a ToDo into storage is done by binding a `addTodo()` method to the UI and leveraging the `newTodoDescription` model referenced in the `textarea` to call the `web5` method `write`:
+Then, writing a ToDo into storage is done by binding a `addTodo()` method to the UI and leveraging the `newTodoDescription` model referenced in the `textarea` to call the `web5` method `dwn.records.write`:
 
 ```js
 // Adding Todos
-const newTodoDescription = ref('');
-
 async function addTodo() {
   const todoData = {
     completed   : false,
@@ -222,7 +220,7 @@ async function addTodo() {
 
 This code uses the `myDid` object we loaded or created in the `onBeforeMount` function and uses it to write into the DWN that `web5` is using to store your app user's data.
 
-Once we’ve written the data to storage, we’ll use the returned `record` to create your app's `todo` object, passing along the `recordId` :
+Once we’ve written the data to storage, we’ll use the returned `record` to create your app's `todo` object, passing along the `record.id` :
 
 ```js
   // ToDo object creation code
@@ -270,7 +268,7 @@ We’ll connect that to the UI with the following code. This replaces the `<!-- 
 
 ## Toggling ToDo Status
 
-To toggle a ToDo’s status, you’ll need to change its status both in your local `todos` object and in your web5-managed DWN. You can do so by modifying the `todos` object and then using a `write` call to update the ToDo in your data store:
+To toggle a ToDo’s status, you’ll need to change its status both in your local `todos` object and in your web5-managed DWN. You can do so by modifying the `todos` object and then using a `record.update` call to update the ToDo in your data store:
 
 ```js
 async function toggleTodoComplete(todoItem) {
