@@ -22,32 +22,25 @@ function FeedbackWidget() {
   console.log('isExanded', isExpanded);
 
   return (
-    <div className="flex-col justify-start">
-      <Card className={'w-1/3 border-accent-purple lg:p-4'}>
-        <h3 className="m-0">Was this page helpful?</h3>
-        <button
-          className={`expand-btn pt-4 animate-pulse p-4 ${
-            isExpanded ? 'expandable-content-expanded' : ''
-          }`}
-          onClick={handleExpandToggle}
-          type="button"
-        >
-          <img src="/img/arrow-blue.svg" />
-        </button>
-        <div className={`expandable-content`} ref={expandableContentRef}>
-          <div className="mb-4">
-            <p>Connect with us:</p>
-            <a href="https://discord.com/invite/tbd">Discord</a>
-          </div>
-          <p>
-            <div>
-              <p>Submit feedback:</p>
-              <a href="https://github.com/TBD54566975/developer.tbd.website/issues/new/choose">
-                Open a GitHub issue
-              </a>
-            </div>
-          </p>
-        </div>
+    <div className="flex justify-end lg:mb-0">
+      <Card className={'w-full'}>
+        <h3>Was this page helpful?</h3>
+        <p>
+          Connect with us on{' '}
+          <a href="https://discord.com/invite/tbd">Discord</a>
+        </p>
+        <p>
+          Submit feedback:{' '}
+          <a href="https://github.com/TBD54566975/developer.tbd.website/issues/new/choose">
+            Open a GitHub issue
+          </a>
+        </p>
+        <p>
+          Edit this page:{' '}
+          <a href="https://github.com/TBD54566975/developer.tbd.website/tree/main/docs">
+            GitHub Repo
+          </a>
+        </p>
       </Card>
     </div>
   );
