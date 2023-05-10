@@ -60,10 +60,10 @@ Think of `web5.js` as your storage, RESTful API service, and the backing data st
 Because we’ve built this sample using `Vue.js`, you’ll find both the HTML structure of the app and the JS logic within the `App.vue` file. Our ToDo app will have a few main responsibilities to implement:
 
 - Create a new DWN for the user or load their saved DWN for storage
-- Display todos
-- Create todos
-- Delete todos
-- Toggle todos status
+- Display ToDos
+- Create ToDos
+- Delete ToDos
+- Toggle ToDo status
 
 ## Initialize Constants and Variables
 
@@ -121,7 +121,7 @@ If the data is available we can use that to access their DWN via `Web5.js`, othe
 
 ## Displaying Todos
 
-Once you’ve called `set()`, you can now make calls to the DWN to fetch, write, and delete data. To load your user’s existing todos, call:
+Once you’ve called `set()`, you can now make calls to the DWN to fetch, write, and delete data. To load your user’s existing ToDos, call:
 
 ```js
   // DWN query code
@@ -151,7 +151,7 @@ Once you’ve loaded the query data, you can map this data from the DWN into an 
   }
 ```
 
-Now that your todos are stored in your app, you can display them by using your `todos` object. In this example, you can do it by adding the following HTML code to the Vue app below the JS, just as you would in any non-web5 app. In our template there is a comment marked `<!-- Todos -->` where this code block fits nicely:
+Now that your ToDos are stored in your app, you can display them by using your `todos` object. In this example, you can do it by adding the following HTML code to the Vue app below the JS, just as you would in any non-web5 app. In our template there is a comment marked `<!-- ToDos -->` where this code block fits nicely:
 
 ```jsx
 <div v-if="(todos.length > 0)" class="border-gray-200 border-t border-x mt-16 rounded-lg shadow-md sm:max-w-xl sm:mx-auto sm:w-full">
@@ -162,18 +162,18 @@ Now that your todos are stored in your app, you can display them by using your `
     <div class="font-light ml-3 text-gray-500 text-xl">
       {{ todo.data.description }}
     </div>
-    <!-- Delete Todo goes here later -->
+    <!-- Delete ToDo goes here later -->
   </div>
 </div>
 ```
 
 :::info
-Note that this UI code fulfills more than just loading the todos - it also provides the ability to toggle completion status and delete todos, which we’ll get to in a bit.
+Note that this UI code fulfills more than just loading the ToDos - it also provides the ability to toggle completion status and delete ToDos, which we’ll get to in a bit.
 :::
 
 ## Adding Todos
 
-To allow for add functionality, begin by creating the UI needed to add todos. In our template there is a section marked `<!-- Add Todo Form -->` where this block may go:
+To allow for add functionality, begin by creating the UI needed to add ToDos. In our template there is a section marked `<!-- Add ToDo Form -->` where this block may go:
 
 ```jsx
 <div class="mt-16">
@@ -193,7 +193,7 @@ To allow for add functionality, begin by creating the UI needed to add todos. In
 </div>
 ```
 
-Then, writing a todo into storage is done by binding a `addTodo()` method to the UI and leveraging the `newTodoDescription` model referenced in the `textarea` to call the `web5` method `write`:
+Then, writing a ToDo into storage is done by binding a `addTodo()` method to the UI and leveraging the `newTodoDescription` model referenced in the `textarea` to call the `web5` method `write`:
 
 ```js
 // Adding Todos
@@ -230,9 +230,9 @@ Once we’ve written the data to storage, we’ll use the returned `record` to c
   todos.value.push(todo);
 ```
 
-## Deleting Todos
+## Deleting ToDos
 
-Deleting todos can be done by using the `delete` method, passing the `recordId`:
+Deleting ToDos can be done by using the `deleteTodo` method, passing the `todoItem`:
 
 ```js
 async function deleteTodo(todoItem) {
@@ -258,7 +258,7 @@ async function deleteTodo(todoItem) {
 }
 ```
 
-We’ll connect that to our UI with the following code. This replaces the `<!-- Delete Todo goes here later -->` comment we placed from above:
+We’ll connect that to our UI with the following code. This replaces the `<!-- Delete ToDo goes here later -->` comment we placed from above:
 
 ```jsx
 <div class="ml-auto">
@@ -268,9 +268,9 @@ We’ll connect that to our UI with the following code. This replaces the `<!-- 
 </div>
 ```
 
-## Toggling Todo Status
+## Toggling ToDo Status
 
-To toggle a todo’s status, you’ll need to change its status both in your local `todos` object and in your web5-managed DWN. You can do so by modifying the `todos` object and then using a `write` call to update the todo in your data store:
+To toggle a ToDo’s status, you’ll need to change its status both in your local `todos` object and in your web5-managed DWN. You can do so by modifying the `todos` object and then using a `write` call to update the ToDo in your data store:
 
 ```js
 async function toggleTodoComplete(todoItem) {
