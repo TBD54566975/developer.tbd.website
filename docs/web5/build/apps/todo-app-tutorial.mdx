@@ -111,7 +111,7 @@ onBeforeMount(async () => {
   // Associate DID with DWN
   await web5.did.manager.set(myDid.id, registerInfo);
 
-  // We'll put more code in later sections here
+  // Put DWN query code here; this is covered in the next section
 });
 ```
 
@@ -124,7 +124,7 @@ If the data is available we can use that to access their DWN via `Web5.js`, othe
 Once you’ve called `set()`, you can now make calls to the DWN to fetch, write, and delete data. To load your user’s existing todos, call:
 
 ```js
-  // ... Below code from "onBeforeMount" from above
+  // DWN query code
 
   // Populate Todos from DWN
   const queryResponse = await web5.dwn.records.query(myDid.id, {
@@ -136,13 +136,13 @@ Once you’ve called `set()`, you can now make calls to the DWN to fetch, write,
     dateSort: 'createdAscending'
   }});
 
-  // We'll put more code in later sections here
+  // Put ToDo object code here; this is covered in the next section
 ```
 
 Once you’ve loaded the query data, you can map this data from the DWN into an object for your app to use:
 
 ```js
-  // ... Below code from "onBeforeMount" from above
+  // ToDo object code
 
   // Add entry to Todo array
   for (let record of queryResponse.entries) {
@@ -216,7 +216,7 @@ async function addTodo() {
     }
   });
 
-  // More code from later sections will go here
+  // Put ToDo object creation code here; this is covered in the next section
 }
 ```
 
@@ -225,8 +225,7 @@ This code uses the `myDid` object we loaded or created in the `onBeforeMount` fu
 Once we’ve written the data to storage, we’ll use the returned `record` to create our app's `todo` object, passing along the `recordId` :
 
 ```js
-  // Add this below the code from "addTodo" above
-
+  // ToDo object creation code
   const todo = { record, data: await record.data.json(), id: record.id };
   todos.value.push(todo);
 ```
