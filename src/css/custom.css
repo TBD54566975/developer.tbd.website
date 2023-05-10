@@ -13,9 +13,9 @@
 @import 'sidebar.css';
 @import 'illustration.css';
 @import 'web5-quickstart.css';
+@import 'api.css';
 
-/* You can override the default Infima variables here. */
-:root {
+root {
   --color-black: #000000;
   --color-yellow: #ffec19;
   --color-blue: #24f2ff;
