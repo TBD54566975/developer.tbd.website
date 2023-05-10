@@ -1,8 +1,8 @@
 # Build a ToDo App
 
-In this tutorial, you will learn how to build a basic single-party decentralized ToDo app written using `web5.js`. It’s composed of a `Vue.js` app powered by [web5.js](https://www.npmjs.com/package/@tbd54566975/web5) which adds data storage underpinned by a [Decentralized Web Node](/docs/web5/learn/decentralized-web-nodes) (DWN). 
+In this tutorial, you will learn how to build a basic single-party decentralized ToDo app written using `web5.js`. It’s composed of a `Vue.js` app powered by [web5.js](https://www.npmjs.com/package/@tbd54566975/web5) which adds data storage underpinned by a [Decentralized Web Node](/docs/web5/learn/decentralized-web-nodes) (DWN).
 
-The ToDo app is a basic single-user, local application that only leverages `web5.js` for storage purposes, but serves as an important precursor to building larger decentralized apps. 
+The ToDo app is a basic single-user, local application that only leverages `web5.js` for storage purposes, but serves as an important precursor to building larger decentralized apps.
 
 By the end of this tutorial, you’ll have a solid understanding of the basics of creating, reading, and writing to a DWN and will be on your way to creating serverless, decentralized applications.
 
@@ -16,7 +16,7 @@ cd web5-tutorials
 git checkout tags/0.1.0 -b todo-app-tutorial
 ```
 
-In this tutorial, you’ll work through completing the `/todo-app/src/App.vue` file to use `web5.js`. 
+In this tutorial, you’ll work through completing the `/todo-app/src/App.vue` file to use `web5.js`.
 
 <details><summary>Finished ToDo App</summary>
 <p>
@@ -47,11 +47,11 @@ npm install
 npm run dev
 ```
 
-You should now have the app running on [`https://localhost:5173`](https://localhost:5173/); this will be a starter application with a mostly blank page. In this tutorial, we'll build the rest. 
+You should now have the app running on [`https://localhost:5173`](https://localhost:5173/); this will be a starter application with a mostly blank page. In this tutorial, we'll build the rest.
 
 ## App Architecture
 
-There are 3 main components to your ToDo app: HTML, CSS, and Javascript. The way that `web5.js` changes the layout of your ToDo app compared to the way a traditional web app would be laid out is by replacing the RESTful calls you’d normally make with calls to the DWN. 
+There are 3 main components to your ToDo app: HTML, CSS, and Javascript. The way that `web5.js` changes the layout of your ToDo app compared to the way a traditional web app would be laid out is by replacing the RESTful calls you’d normally make with calls to the DWN.
 
 :::note
 Think of `web5.js` as your storage, RESTful API service, and the backing data store.
@@ -64,6 +64,18 @@ Because we’ve built this sample using `Vue.js`, you’ll find both the HTML st
 - Create todos
 - Delete todos
 - Toggle todos status
+
+## Initialize Constants and Variables
+
+First we'll set up some instances to hold data you'll use throughout your application. Copy the following block into the template, under the `import` statements, in the section marked `Initialize variables here`.
+
+```js
+const web5 = new Web5();
+const todos = ref([]);
+let myDid;
+```
+
+The `web5` instance is our single entry point for all Web5 operations. You've also set up a `todos` array to hold our ToDos, and a variable to remember our decentralized identifier (DID) as `did`, which you'll create or load in a moment.
 
 ## Loading or Creating User Data
 
@@ -84,7 +96,7 @@ onBeforeMount(async () => {
     myDid = await web5.did.create('ion');
     registerInfo = {
       connected : true,
-      endpoint  : 'app://dwn', 
+      endpoint  : 'app://dwn',
       keys: {
         ['#dwn']: {
           keyPair: myDid.keys[0].keyPair,
@@ -103,7 +115,7 @@ onBeforeMount(async () => {
 });
 ```
 
-In the snippet above, we’re using the `Vue.js` -provided `localStorage` to attempt to fetch the user’s `registerInfo` from local storage. 
+In the snippet above, we’re using the `Vue.js` -provided `localStorage` to attempt to fetch the user’s `registerInfo` from local storage.
 
 If the data is available we can use that to access their DWN via `Web5.js`, otherwise we create a new decentralized identifier (DID) for them and a DWN to store their data.
 
@@ -131,7 +143,7 @@ Once you’ve loaded the query data, you can map this data from the DWN into an 
 
 ```js
   // ... Below code from "onBeforeMount" from above
-  
+
   // Add entry to Todo array
   for (let record of queryResponse.entries) {
     const todo = { record, data: await record.data.json(), id: record.id };
@@ -208,7 +220,7 @@ async function addTodo() {
 }
 ```
 
-This code uses the `myDid` object we loaded or created in the `onBeforeMount` function and uses it to write into the DWN that `web5` is using to store our data. 
+This code uses the `myDid` object we loaded or created in the `onBeforeMount` function and uses it to write into the DWN that `web5` is using to store our data.
 
 Once we’ve written the data to storage, we’ll use the returned `record` to create our app's `todo` object, passing along the `recordId` :
 
