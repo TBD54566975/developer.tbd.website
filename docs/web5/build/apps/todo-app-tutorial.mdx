@@ -1,12 +1,10 @@
 # Build a ToDo App
 
-In this tutorial, you will learn how to build a basic single-party decentralized ToDo app written using `web5.js`. It’s composed of a `Vue.js` app powered by [web5.js](https://www.npmjs.com/package/@tbd54566975/web5) which adds data storage underpinned by a [Decentralized Web Node](/docs/web5/learn/decentralized-web-nodes) (DWN). 
+In this tutorial, you will learn how to build a basic single-party decentralized ToDo app written using `web5.js`. It’s composed of a `Vue.js` app powered by [web5.js](https://www.npmjs.com/package/@tbd54566975/web5) which adds data storage underpinned by a [Decentralized Web Node](/docs/web5/learn/decentralized-web-nodes) (DWN).
 
-The ToDo app is a basic single-user, local application that only leverages `web5.js` for storage purposes, but serves as an important precursor to building larger decentralized apps. 
+The ToDo app is a basic single-user, local application that only leverages `web5.js` for storage purposes, but serves as an important precursor to building larger decentralized apps.
 
 By the end of this tutorial, you’ll have a solid understanding of the basics of creating, reading, and writing to a DWN and will be on your way to creating serverless, decentralized applications.
-
-
 
 ## Getting the Skeleton App
 
@@ -14,23 +12,30 @@ Download a copy of the skeleton ToDo app by running:
 
 ```bash
 git clone https://github.com/TBD54566975/web5-tutorials.git
+cd web5-tutorials
+git checkout tags/0.1.1 -b todo-app-tutorial
 ```
 
-In this tutorial, you’ll work through completing the `/todo-app/src/App.vue` file to use `web5.js`. 
+In this tutorial, you’ll work through completing the `/todo-app/src/App.vue` file to use `web5.js`.
 
 <details><summary>Finished ToDo App</summary>
 <p>
 
-If you’d like to skip ahead and see the finished version of this tutorial, you can download that repository by running:
+If you’d like to skip ahead and see the finished version of this tutorial, you can download and run that example by executing:
 
 ```bash
-git clone https://github.com/TBD54566975/incubating-web5-labs.github
+git clone https://github.com/TBD54566975/incubating-web5-labs.git
+cd incubating-web5-labs
+git checkout tags/0.1.0 -b todo-app-finished
+cd todo-app
+npm install
+npm run dev
 ```
+
+There is also a hosted example deployed at [https://unrivaled-crumble-56ce70.netlify.app/](https://unrivaled-crumble-56ce70.netlify.app/).
 
 </p>
 </details>
-
-
 
 ## Setup
 
@@ -42,246 +47,236 @@ npm install
 npm run dev
 ```
 
-You should now have the app running on [`https://localhost:5173`](https://localhost:5173/) , but should see errors since your `App.vue` is not yet completely implemented.
-
+You should now have the app running on [`https://localhost:5173`](https://localhost:5173/); this will be a starter application with a mostly blank page. In this tutorial, we'll build the rest.
 
 ## App Architecture
 
-There are 3 main components to your ToDo app: HTML, CSS, and Javascript. The way that `web5.js` changes the layout of your ToDo app compared to the way a traditional web app would be laid out is by replacing the RESTful calls you’d normally make with calls to the DWN. 
+There are 3 main components to your ToDo app: HTML, CSS, and Javascript. The way that `web5.js` changes the layout of your ToDo app compared to the way a traditional web app would be laid out is by replacing the RESTful calls you’d normally make with calls to the DWN.
 
 :::note
 Think of `web5.js` as your storage, RESTful API service, and the backing data store.
 :::
 
-Because we’ve built this sample using `Vue.js`, you’ll find both the HTML structure of the app and the JS logic within the `App.vue` file. Our ToDo app will have a few main responsibilities to implement:
+Because we’ve built this sample using `Vue.js`, you’ll find both the HTML structure of the app and the JS logic within the `App.vue` file. Your ToDo app will have a few main responsibilities to implement:
 
 - Create a new DWN for the user or load their saved DWN for storage
-- Display todos
-- Create todos
-- Delete todos
-- Toggle todos status
+- Display ToDos
+- Create ToDos
+- Delete ToDos
+- Toggle ToDo status
 
+## Initialize Constants and Variables
+
+First we'll set up some instances to hold data you'll use throughout your application. Copy the following block into the template, under the `import` statements, in the section marked `// Initialize variables here`.
+
+```js
+const web5 = new Web5();
+const todos = ref([]);
+let myDid;
+```
+
+The `web5` instance is the single entry point for all Web5 operations. You've also set up a `todos` array to hold your ToDos, and a variable to remember the app user's decentralized identifier (DID) as `myDid`, which you'll create or load in a moment.
 
 ## Loading or Creating User Data
 
-The first time a user accesses your ToDo app, you’ll need to handle creating an “account” for them - this means ensuring they have a DID and DWN available to access their app data. Once they come back for subsequent sessions, you’ll want to fetch and load that data for them:
+The first time a user accesses your ToDo app, you’ll need to handle creating an “account” for them - this means ensuring they have a DID and DWN available to access their app data. Once they come back for subsequent sessions, you’ll want to fetch and load that data for them.
 
-```jsx
-const dwnDID = ref('');
-const web5 = new Web5();
+Add to `src/App.vue`:
 
-onMounted(async () => {
+```js
+onBeforeMount(async () => {
   let registerInfo;
-
   // Load DWN DID from local storage or create a new one
-  if(localStorage.getItem('dwn-info')){
+  if(localStorage.getItem('registerInfo') && localStorage.getItem('myDid')){
     // User has an "account," so load their data
-    registerInfo = JSON.parse(localStorage.getItem('dwn-info'));
+    registerInfo = JSON.parse(localStorage.getItem('registerInfo'));
+    myDid = JSON.parse(localStorage.getItem('myDid'));
   } else {
-		// User does not have an "account," so create one for them
-    const myDid = await web5.did.create('ion');
+    // User does not have an "account," so create one for them
+    myDid = await web5.did.create('ion');
     registerInfo = {
       connected : true,
-      endpoint  : 'app://dwn', 
-      keys      : myDid.keys[0].keypair
-  };
-  web5.did.manager.set(myDid.id, registerInfo);
-  dwnDID.value = registerInfo.did;
-}
-```
+      endpoint  : 'app://dwn',
+      keys: {
+        ['#dwn']: {
+          keyPair: myDid.keys[0].keyPair,
+        },
+      }
+    };
 
-In the snippet above, we’re using the `Vue.js` -provided `localStorage` to attempt to fetch the user’s `dwn-info` from local storage. 
-
-If the data is available we can use that to access their DWN via `Web5.js`, otherwise we create a new `did` for them and a DWN to store their data.
-
-## Displaying Todos
-
-Once you’ve called `set()` , you can now make calls to the DWN to fetch, write, and delete data. To load your user’s existing todos, call:
-
-```jsx
-onMounted(async () => {
-...
-// Populate todos from DWN
-  const queryResponse = await web5.dwn.records.query(dwnDID.value, {
-    author  : dwnDID.value,
-    message : {
-      filter: {
-        schema: 'http://some-schema-registry.org/todo'
-      },
-      dateSort: 'createdAscending'
-    }
-  });
-}
-```
-
-Once you’ve loaded the query data, you can serialize it into an object for your app to use:
-
-```jsx
-const todos = ref([]);
-
-onMounted(async () => {
-...
-const textDecoder = new TextDecoder();
-  const storedTodos = [];
-  for (let entry of queryResponse.entries) {
-    let todo = { dWebMessage: entry };
-    
-    const todoBytes = base64url.baseDecode(entry.encodedData);
-    const todoStringified = textDecoder.decode(todoBytes);
-    todo.data = JSON.parse(todoStringified);
-    storedTodos.push(todo);
+    localStorage.setItem('myDid', JSON.stringify(myDid));
+    localStorage.setItem('registerInfo', JSON.stringify(registerInfo));
   }
-  todos.value = storedTodos;
+
+  // Associate DID with DWN
+  await web5.did.manager.set(myDid.id, registerInfo);
+
+  // Put DWN query code here; this is covered in the next section
 });
 ```
 
-Now that your todos are stored in your app, you can display them by using your `todos` object. In this example, you can do it by adding the following HTML code to the Vue app below the JS, just as you would in any non-web5 app:
+In the snippet above, we’re using the `Vue.js` -provided `localStorage` to attempt to fetch the user’s `registerInfo` from local storage.
+
+If the data is available we can use that to access their DWN via `Web5.js`, otherwise we create a new decentralized identifier (DID) for them and a DWN to store their data.
+
+## Displaying Todos
+
+Once you’ve called `web5.did.manager.set()`, you can now make calls to the DWN to fetch, write, and delete data. To load your user’s existing ToDos, call:
+
+```js
+  // DWN query code
+
+  // Populate Todos from DWN
+  const queryResponse = await web5.dwn.records.query(myDid.id, {
+  author  : myDid.id,
+  message : {
+    filter: {
+      schema: 'http://some-schema-registry.org/todo'
+    },
+    dateSort: 'createdAscending'
+  }});
+
+  // Put ToDo object code here; this is covered in the next section
+```
+
+Once you’ve loaded the query data, you can map this data from the DWN into an object for your app to use:
+
+```js
+  // ToDo object code
+
+  // Add entry to Todo array
+  for (let record of queryResponse.entries) {
+    const todo = { record, data: await record.data.json(), id: record.id };
+    todos.value.push(todo);
+  }
+```
+
+Now that your app user's ToDos are stored in their DWN, you can display them by using the `todos` object. In this example, you can do it by adding the following HTML code to the Vue app below the JS, just as you would in any non-Web5 app. In the template there is a comment marked `<!-- ToDos -->` where this code block fits nicely:
 
 ```jsx
 <div v-if="(todos.length > 0)" class="border-gray-200 border-t border-x mt-16 rounded-lg shadow-md sm:max-w-xl sm:mx-auto sm:w-full">
-      <div v-for="todo in todos" :key="todo.dWebMessage.recordId" class="border-b border-gray-200 flex items-center p-4">
-        <div @click="toggleTodoComplete(todo.dWebMessage.recordId)" class="cursor-pointer">
-          <CheckCircleIcon class="h-8 text-gray-200 w-8" :class="{ 'text-green-500': todo.data.completed }" />
-        </div>
-        <div class="font-light ml-3 text-gray-500 text-xl">
-          {{ todo.data.description }}
-        </div>
-        <div class="ml-auto">
-          <div @click="deleteTodo(todo.dWebMessage.recordId)" class="cursor-pointer">
-            <TrashIcon class="h-8 text-gray-200 w-8" :class="'text-red-500'" />
-          </div>
-        </div>
-      </div>
+  <div v-for="todo in todos" :key="todo" class="border-b border-gray-200 flex items-center p-4">
+    <div @click="toggleTodoComplete(todo)" class="cursor-pointer">
+      <CheckCircleIcon class="h-8 text-gray-200 w-8" :class="{ 'text-green-500': todo.data.completed }" />
     </div>
+    <div class="font-light ml-3 text-gray-500 text-xl">
+      {{ todo.data.description }}
+    </div>
+    <!-- Delete ToDo goes here later -->
+  </div>
+</div>
 ```
 
 :::info
-Note that this UI code fulfills more than just loading the todos - it also provides the ability to toggle completion status and delete todos, which we’ll get to in a bit.
+Note that this UI code fulfills more than just loading the ToDos - it also provides the ability to toggle completion status and delete ToDos, which we’ll get to in a bit.
 :::
 
 ## Adding Todos
 
-To allow for add functionality, begin by creating the UI needed to add todos:
+To allow for add functionality, begin by creating the UI needed to add ToDos. In the template there is a section marked `<!-- Add ToDo Form -->` where this block may go:
 
 ```jsx
 <div class="mt-16">
-      <form class="flex space-x-4" @submit.prevent="addTodo">
-        <div class="border-b border-gray-200 sm:w-full">
-          <label for="add-todo" class="sr-only">Add a todo</label>
-          <textarea
-            rows="1" name="add-todo" id="add-todo" v-model="newTodoDescription"
-            @keydown.enter.exact.prevent="addTodo"
-            class="block border-0 border-transparent focus:ring-0 p-0 pb-2 resize-none sm:text-sm w-96"
-            placeholder="Add a Todo" />
-        </div>
-        <button type="submit" class="bg-indigo-600 border border-transparent focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 hover:bg-indigo-700 inline-flex items-center p-1 rounded-full shadow-sm text-white">
-          <PlusIconMini class="h-5 w-5" aria-hidden="true" />
-        </button>
-      </form>
+  <form class="flex space-x-4" @submit.prevent="addTodo">
+    <div class="border-b border-gray-200 sm:w-full">
+      <label for="add-todo" class="sr-only">Add a todo</label>
+      <textarea
+        rows="1" name="add-todo" id="add-todo" v-model="newTodoDescription"
+        @keydown.enter.exact.prevent="addTodo"
+        class="block border-0 border-transparent focus:ring-0 p-0 pb-2 resize-none sm:text-sm w-96"
+        placeholder="Add a Todo" />
     </div>
+    <button type="submit" class="bg-indigo-600 border border-transparent focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 hover:bg-indigo-700 inline-flex items-center p-1 rounded-full shadow-sm text-white">
+      <PlusIconMini class="h-5 w-5" aria-hidden="true" />
+    </button>
+  </form>
+</div>
 ```
 
-Then, writing a todo into storage is done by binding a `addTodo()` method to the UI and leveraging the `newTodoDescription` model referenced in the `textarea` to call the `web5` method `write`:
+Then, writing a ToDo into storage is done by binding a `addTodo()` method to the UI and leveraging the `newTodoDescription` model referenced in the `textarea` to call the `web5` method `dwn.records.write`:
 
-```jsx
-const newTodoDescription = ref('');
-
+```js
+// Adding Todos
 async function addTodo() {
   const todoData = {
     completed   : false,
     description : newTodoDescription.value
   };
-  
+
   newTodoDescription.value = '';
-  const result  = await web5.dwn.records.write(dwnDID.value, {
-    author  : dwnDID.value,
+
+  const { record } = await web5.dwn.records.write(myDid.id, {
+    author  : myDid.id,
     data    : todoData,
     message : {
       schema     : 'http://some-schema-registry.org/todo',
       dataFormat : 'application/json'
     }
   });
+
+  // Put ToDo object creation code here; this is covered in the next section
 }
 ```
 
-This code uses the `dwnDID` object we loaded or created in the `onMounted` function and uses it to write into the DWN that `web5` is using to store our data. 
+This code uses the `myDid` object we loaded or created in the `onBeforeMount` function and uses it to write into the DWN that `web5` is using to store your app user's data.
 
-Once we’ve written the data to storage, we’ll need to immediately query our DWN for the record in order to grab its `recordId` :
+Once we’ve written the data to storage, we’ll use the returned `record` to create your app's `todo` object, passing along the `record.id` :
 
-```jsx
-async function addTodo() {
-...
-const queryResponse = await web5.dwn.records.query(dwnDID.value, {
-    author  : dwnDID.value,
-    message : {
-      filter: {
-        schema: 'http://some-schema-registry.org/todo'
-      },
-      dateSort: 'createdAscending'
-    }
-  });
-  const record = queryResponse.entries[queryResponse.entries.length - 1];
-  // add DWeb message recordId as a way to reference the message for further operations
-  // e.g. updating it or overwriting it
-  const todo = {
-    dWebMessage : record,
-    data        : todoData
-  };
-
-todos.value.push(todo);
-}
+```js
+  // ToDo object creation code
+  const todo = { record, data: await record.data.json(), id: record.id };
+  todos.value.push(todo);
 ```
 
-:::caution
-Currently, it is a limitation of the `write` method that it does not return the `recordId` , which we’ll need to store in our `todos` object for deleting data. As a result, we’ll call `query` as shown above.
-:::
+## Deleting ToDos
 
-## Deleting Todos
+Deleting ToDos can be done by using the `deleteTodo` method, passing the `todoItem`:
 
-Deleting todos can be done by using the `delete` method and `recordId`:
-
-```jsx
-async function deleteTodo(todoRecordId) {
+```js
+async function deleteTodo(todoItem) {
   let deletedTodo;
   let index = 0;
+
   for (let todo of todos.value) {
-    if (todo.dWebMessage.recordId === todoRecordId) {
+    if (todoItem.id === todo.id) {
       deletedTodo = todo;
       break;
     }
     index ++;
   }
+
   todos.value.splice(index, 1);
-  const deleteResponse = await web5.dwn.records.delete(dwnDID.value, {
-    author  : dwnDID.value,
+
+  await web5.dwn.records.delete(myDid.id, {
+    author  : myDid.id,
     message : {
-      recordId: deletedTodo.dWebMessage.recordId
+      recordId: deletedTodo.id
     }
   });
 }
 ```
 
-We’ll connect that to our UI with the following code:
+We’ll connect that to the UI with the following code. This replaces the `<!-- Delete ToDo goes here later -->` comment we placed from above:
 
 ```jsx
 <div class="ml-auto">
-          <div @click="deleteTodo(todo.dWebMessage.recordId)" class="cursor-pointer">
-            <TrashIcon class="h-8 text-gray-200 w-8" :class="'text-red-500'" />
-          </div>
-        </div>
+  <div @click="deleteTodo(todo)" class="cursor-pointer">
+    <TrashIcon class="h-8 text-gray-200 w-8" :class="'text-red-500'" />
+  </div>
+</div>
 ```
 
-## Toggling Todo Status
+## Toggling ToDo Status
 
-To toggle a todo’s status, you’ll need to change its status both in your local `todos` object and in your web5-managed DWN. You can do so by modifying the `todos` object and then using a `write` call to update the todo in your data store:
+To toggle a ToDo’s status, you’ll need to change its status both in your local `todos` object and in your web5-managed DWN. You can do so by modifying the `todos` object and then using a `record.update` call to update the ToDo in your data store:
 
-```jsx
-async function toggleTodoComplete(todoRecordId) {
+```js
+async function toggleTodoComplete(todoItem) {
   let toggledTodo;
   let updatedTodoData;
 
   for (let todo of todos.value) {
-    if (todo.dWebMessage.recordId === todoRecordId) {
+    if (todoItem.id === todo.id) {
       toggledTodo = todo;
       todo.data.completed = !todo.data.completed;
       updatedTodoData = { ...toRaw(todo.data) };
@@ -289,38 +284,16 @@ async function toggleTodoComplete(todoRecordId) {
     }
   }
 
-  const { descriptor } = toggledTodo.dWebMessage;
-
-  const result  = await web5.dwn.records.write(dwnDID.value, {
-    author  : dwnDID.value,
-    data    : updatedTodoData,
+  // Update the record in the DWN, first get the record
+  const { record } = await web5.dwn.records.read(myDid.id, {
+    author  : myDid.id,
     message : {
-      recordId    : toggledTodo.dWebMessage.recordId,
-      dateCreated : descriptor.dateCreated,
-      schema      : descriptor.schema,
-      dataFormat  : descriptor.dataFormat,
+      recordId: toggledTodo.id,
     }
   });
+  // Now update it
+  record.update({ data: updatedTodoData });
+}
 ```
 
-The overall UI code for your todo, which includes the affordance to display, delete, and toggle status, will looks like this:
-
-```jsx
-<div v-if="(todos.length > 0)" class="border-gray-200 border-t border-x mt-16 rounded-lg shadow-md sm:max-w-xl sm:mx-auto sm:w-full">
-      <div v-for="todo in todos" :key="todo.dWebMessage.recordId" class="border-b border-gray-200 flex items-center p-4">
-        <div @click="toggleTodoComplete(todo.dWebMessage.recordId)" class="cursor-pointer">
-          <CheckCircleIcon class="h-8 text-gray-200 w-8" :class="{ 'text-green-500': todo.data.completed }" />
-        </div>
-        <div class="font-light ml-3 text-gray-500 text-xl">
-          {{ todo.data.description }}
-        </div>
-        <div class="ml-auto">
-          <div @click="deleteTodo(todo.dWebMessage.recordId)" class="cursor-pointer">
-            <TrashIcon class="h-8 text-gray-200 w-8" :class="'text-red-500'" />
-          </div>
-        </div>
-      </div>
-    </div>
-```
-
-Congratulations, you've just built a decentralized web app! Feel free to check out the [finished version of the ToDo app here](https://github.com/TBD54566975/incubating-web5-labs/tree/main/todo-app).
+Congratulations, you've just built a decentralized web app! Feel free to check out the [finished version of the ToDo app here](https://github.com/TBD54566975/incubating-web5-labs/blob/0.1.0/todo-app/src/App.vue) or see it deployed [here](https://unrivaled-crumble-56ce70.netlify.app/).

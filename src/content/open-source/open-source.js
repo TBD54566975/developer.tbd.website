@@ -33,18 +33,16 @@ export const content = {
       type: 'button',
       data: {
         label: 'Read More About Governance',
-        url: 'https://github.com/TBD54566975/tbd-project-template/blob/main/GOVERNANCE.md',
-        isExternalLink: true,
-        imageURL: '/img/external-link-blue-icon.svg',
+        url: '/open-source/governance',
+        isExternalLink: false
       },
     },
     {
       type: 'button',
       data: {
         label: 'View Our Code of Conduct',
-        url: 'https://github.com/TBD54566975/tbd-project-template/blob/main/CODE_OF_CONDUCT.md',
-        isExternalLink: true,
-        imageURL: '/img/external-link-blue-icon.svg',
+        url: '/code-of-conduct',
+        isExternalLink: false
       },
     },
   ],
