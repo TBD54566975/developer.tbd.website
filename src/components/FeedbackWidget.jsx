@@ -1,11 +1,12 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React from 'react';
 import Card from './Card';
+import Link from '@docusaurus/Link';
 
 function FeedbackWidget() {
   return (
     <div className="flex justify-end lg:mb-0">
       <Card className={'w-full'}>
-        <h3>Was this page helpful?</h3>
+        <h3 className="text-4xl">Was this page helpful?</h3>
         <p>
           Connect with us on{' '}
           <a href="https://discord.com/invite/tbd">Discord</a>
@@ -21,6 +22,10 @@ function FeedbackWidget() {
           <a href="https://github.com/TBD54566975/developer.tbd.website/tree/main/docs">
             GitHub Repo
           </a>
+        </p>
+        <p>
+          Contribute:{' '}
+          <Link to="/contributing#contributing">Contributing Guide</Link>
         </p>
       </Card>
     </div>

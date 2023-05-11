@@ -9,6 +9,7 @@ import Divider from '@site/src/components/Divider';
 import PillarList from '@site/src/components/PillarList';
 import SwitchIllustration from '@site/src/components/SwitchIllustration';
 import TwoColumnContainer from '@site/src/components/TwoColumnContainer';
+import Community from '@site/src/components/Community';
 
 export default {
   ...MDXComponents,
@@ -20,6 +21,7 @@ export default {
   PillarList: PillarList,
   SwitchIllustration: SwitchIllustration,
   TwoColumnContainer: TwoColumnContainer,
+  Community: Community,
   p: (props) => <p {...props} className="my-6 copy" />,
   ul: (props) => <ul {...props} className="list-disc pl-6 copy" />,
 };
