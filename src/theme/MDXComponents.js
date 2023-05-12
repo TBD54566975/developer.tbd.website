@@ -23,5 +23,9 @@ export default {
   TwoColumnContainer: TwoColumnContainer,
   Community: Community,
   p: (props) => <p {...props} className="my-6 copy" />,
-  ul: (props) => <ul {...props} className="list-disc pl-6 copy" />,
+  ul: (props) => <ul {...props} className="list-disc pl-6 copy my-8" />,
+  li: (props) => <li {...props} className="my-4" />,
+  strong: (props) => (
+    <strong {...props} className="font-bold text-primary-yellow" />
+  ),
 };
