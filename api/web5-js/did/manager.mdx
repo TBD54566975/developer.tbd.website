@@ -1,1 +1,92 @@
 # manager
+
+## Overview
+The `manager` class is responsible for providing convenience methods for managing your own `did`
+
+## Methods
+
+### clear()
+
+Clears `web5`'s internal store of all `did` data.
+
+#### Returns
+
+None
+
+#### Code Example
+```
+await web5.did.manager.clear();
+```
+
+### exists()
+
+Checks if the `did` store exists or contains any data
+
+#### Returns
+
+None
+
+#### Code Example
+```
+const exists = await web5.did.manager.exists();
+if (exists) {
+    // do something
+}
+```
+
+### get(id)
+
+Gets the `did` assigned to a given `recordId`.
+
+#### Parameters
+
+`id` - The `recordId` of the document to fetch.
+
+#### Returns
+
+The `did` stored with the input `recordId`
+
+#### Code Example
+```
+const id = "someRecord";
+let data = web5.did.manager.get(id);
+```
+
+### delete(id)
+
+Deletes the `did` assigned to a given `recordId`.
+
+#### Parameters
+
+`id` - The `recordId` of the document to delete.
+
+#### Returns
+
+#### Code Example
+```
+const id = "someRecord";
+web5.did.manager.delete(id);
+```
+
+### set(id, value)
+
+Sets the value into the data store with a given `id`
+
+#### Parameters
+
+`id` - The `recordId` of the document to set.
+`value` - The value of the data to store.
+
+#### Returns
+
+#### Code Example
+
+```
+const id = "someRecord";
+const data = {
+    key: "value"
+}
+web5.did.manager.set(id, data);
+```
+
+
