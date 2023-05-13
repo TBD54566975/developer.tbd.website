@@ -3,7 +3,6 @@ import Layout from '@theme/Layout';
 import Head from '@docusaurus/Head';
 import HomeList from '../components/HomeList';
 import { content } from '@site/src/content/home/home.js';
-//import MDXContent from '@theme/MDXContent';
 
 export default function Home() {
   const Heading = content.heading;
@@ -20,7 +19,7 @@ export default function Home() {
 
       <main>
         <div className="tablet:max-w-[100%] desktop:max-w-[92%] relative">
-          <div className="h1 mb-16 leading-[4.375rem]">
+          <div className="h1 mb-16">
             <Heading />
           </div>
           <HomeList
