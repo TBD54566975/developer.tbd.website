@@ -1,4 +1,4 @@
-//import Heading from './heading.mdx';
+import Heading from './heading.mdx';
 import OurApproach from './our-approach.mdx';
 import OurPhilosophy from './our-philosophy.mdx';
 import OurProjects from './our-projects.mdx';
@@ -10,8 +10,8 @@ export const content = {
   meta: {
     title: 'Developers | TBD',
   },
-  heading: Web5CTA,
-  //heading: Heading,
+  web5cta: Web5CTA,
+  heading: Heading,
   features: [
     {
       title: 'Our Philosophy',
