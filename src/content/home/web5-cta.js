@@ -6,7 +6,7 @@ import Divider from '../../components/Divider';
 function Web5CTA() {
     return(
             <div>
-                <h1>Web5 is ready for builders.</h1>
+                <h1>Web5 is open to build.</h1>
                 <p className="mb-8 copy text-primary-yellow">
                     The Web5 tech preview is now ready for developers to start building decentralized applications that return ownership and control over identity and data to individuals.
                 </p>
