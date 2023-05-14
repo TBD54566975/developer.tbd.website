@@ -7,9 +7,9 @@ function Web5CTA() {
     return(
             <div>
                 <h1>Web5 is ready for builders.</h1>
-                <h3 className="mb-8">
+                <p className="mb-8 copy text-primary-yellow">
                     The Web5 tech preview is now ready for developers to start building decentralized applications that return ownership and control over identity and data to individuals.
-                </h3>
+                </p>
 
                 <div class="theme-card theme-card-cyan relative p-8 rounded-xl shadow-lg tablet:w-full desktop:w-full only:w-full my-8 min-h-[240px] flex flex-col justify-between">
                     <a href="/docs">
