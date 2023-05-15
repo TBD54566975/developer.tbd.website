@@ -33,10 +33,6 @@ Adoption has grown quite a bit in the last few years. Here are a few ways they a
 
 <!--truncate-->
 
-The concept of [Decentralized Identifiers](https://developer.tbd.website/docs/web5/learn/decentralized-identifiers) (DIDs) was first proposed in 2015 by Drummond Reed and then became an official W3C standard in July of 2022.
-
-Adoption has grown quite a bit in the last few years. Here are a few ways they are being used today.
-
 ## Employment Verification 
 
 LinkedIn recently announced a new free [verified badge feature](https://www.theverge.com/2023/4/12/23679998/linkedin-verification-badge-system-clear-microsoft-entra) that will be used to prove the validity of your employment, education, and other achievements. “The system is backed by **decentralized identity and a trust model that involves an issuer, a holder, and a verifier**. Organizations can issue cryptographically signed digital IDs, which employees can then use to prove they work at a company…” 
