@@ -12,15 +12,15 @@ tags: [Decentralized Identity]
   <meta property="og:type" content="website" />
   <meta property="og:url" content='https://developer.tbd.website/blog/2023-05-15-dids-in-the-real-world' />
   <meta name="og:description" content="An overview of how Decentralized Identity is being used today." />
-  <meta property="og:image" content="https://developer.tbd.website/assets/images/dids-in-the-real-world.png" /> 
+  <meta property="og:image" content="https://developer.tbd.website/assets/images/dids-in-the-real-world-173665dc272872c5c1dea01ad06dc6df.png" /> 
 
   <meta name="twitter:card" content="summary_large_image" />
   <meta property="twitter:domain" content="developer.tbd.website" />
   <meta name="twitter:site" content="@tbddev" />
-  <meta name="twitter:title" content="What is Web5" />
-  <meta property="twitter:url" content='https://developer.tbd.website/blog/2022-05-15-dids-in-the-real-world' /> 
+  <meta name="twitter:title" content="Decentralized Identity in the Real World" />
+  <meta property="twitter:url" content='https://developer.tbd.website/blog/2023-05-15-dids-in-the-real-world' /> 
   <meta name="twitter:description" content="An overview of how Decentralized Identity is being used today." />
-  <meta name="twitter:image" content="https://developer.tbd.website/assets/images/dids-in-the-real-world.png" />
+  <meta name="twitter:image" content="https://developer.tbd.website/assets/images/dids-in-the-real-world-173665dc272872c5c1dea01ad06dc6df.png" />
 
   <link rel="apple-touch-icon" href="https://developer.tbd.website/img/tbd-fav-icon-main.png" />
 </head>
