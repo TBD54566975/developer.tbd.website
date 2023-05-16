@@ -23,7 +23,7 @@ Returns a `did` document.
 
 #### Code Example
 
-```
+```js
 const myDid = await web5.did.create('ion');
 ```
 
@@ -36,13 +36,13 @@ Encrypts provided data according to specification
 - `did` - `did` of the recepient, whose private key is used to decrypt the data.
 - `payload` - Encryption algorithm output, including the ciphertext, to be decrypted.
 - `keyId` - Key identifier to use form the recepient's `did` document
-- 'algorithm` - An object specifying the algorithm to be used and any extra parameters if required.
+- `algorithm` - An object specifying the algorithm to be used and any extra parameters if required.
 
 #### Return Value
 `Promise<Web5EncryptionResult>` A `Promise`that fulfills with the output of the encryption algorithm.
 
 #### Code Example
-```
+```js
 const options = {
     "did" : "firstDid",
     "payload" : "decodePayload"
@@ -62,7 +62,7 @@ const encryptedText = await web5.did.encrypt(options)
 `Promise<UInt8Array>` A `Promise`that fulfills with a `UInt8Array` containing the plaintext.
 
 #### Code Example
-```
+```js
 const options = {
     "payload" : "someDID"
 }
@@ -80,7 +80,7 @@ const decryptedDID = await web5.did.decrypt(options)
 `Promise<UInt8Array>` A `Promise`that fulfills with a `UInt8Array` containing the signed `did`.
 
 #### Code Example
-```
+```js
 const options = {
     "payload" : "somePayload"
 }
@@ -98,7 +98,7 @@ const signedData = await web5.did.sign("ion", options)
 `Promise<UInt8Array>` A `Promise`that fulfills with a `UInt8Array` containing the signed `did`.
 
 #### Code Example
-```
+```js
 const options = {
     "payload" : "somePayload"
 }
@@ -116,7 +116,7 @@ const verifiedData = await web5.did.verify("ion", options)
 `Promise<UInt8Array>` A `Promise`that fulfills with a `UInt8Array` containing the signed `did`.
 
 #### Code Example
-```
+```js
 const options = {
     "payload" : "somePayload"
 }
@@ -134,7 +134,7 @@ const signedData = await web5.did.sign("ion", options)
 `Promise<UInt8Array>` A `Promise`that fulfills with a `UInt8Array` containing the signed `did`.
 
 #### Code Example
-```
+```js
 const options = {
     "payload" : "somePayload"
 }
@@ -152,7 +152,7 @@ const signedData = await web5.did.sign("ion", options)
 `Promise<UInt8Array>` A `Promise`that fulfills with a `UInt8Array` containing the signed `did`.
 
 #### Code Example
-```
+```js
 const options = {
     "payload" : "somePayload"
 }
@@ -170,7 +170,7 @@ const signedData = await web5.did.sign("ion", options)
 `Promise<UInt8Array>` A `Promise`that fulfills with a `UInt8Array` containing the signed `did`.
 
 #### Code Example
-```
+```js
 const options = {
     "payload" : "somePayload"
 }
@@ -188,7 +188,7 @@ const signedData = await web5.did.sign("ion", options)
 `Promise<UInt8Array>` A `Promise`that fulfills with a `UInt8Array` containing the signed `did`.
 
 #### Code Example
-```
+```js
 const options = {
     "payload" : "somePayload"
 }
