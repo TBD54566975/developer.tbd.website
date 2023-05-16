@@ -1,0 +1,135 @@
+# records
+
+## Overview
+The `records` class is responsible for providing convenience methods for CRUD operations interfacing with `dwn`s.
+
+## Data Types
+
+### Record
+
+Every modifying method of the `records` class returns and instance of a `Record` object, which is a representation fo the record(s) involved in the operation. 
+
+#### Properties
+
+`recordId` - The unique identifier based on the record entry's composition. Note: all entries across all records are deterministically unique.
+
+`descriptor` - the descriptor object for the constructed `dwn` message.
+
+`data` - An object with the following methods available on it:
+- `text()` - produces a textual representation of the data.
+- `json()` - if the value is JSON data, this method will return a parsed JSON object.
+- `stream()` - returns the raw stream of bytes for the data.
+
+## Methods
+
+### query(target, request)
+
+Method for querying the `dwn` of a provided `target`.
+
+#### Parameters
+
+`target` - The `did` to query.
+
+`request` - An object containing the following:
+- `author` - The `did` of the author signing the query. This may be the same as the `target` parameter if the `target` and the signer of the query are the same entity, which is common for an app querying the `dwn` of its own user.
+- `message` - An object describing the properties of the `dwn` descriptor used to construct a valid `dwn` message.
+
+#### Returns
+
+The response object of the query.
+
+#### Code Example
+```js
+const response = await web5.dwn.records.query('did:example:bob', {
+  author: 'did:example:alice',
+  message: {
+    filter: {
+      schema: 'https://schema.org/Playlist',
+      dataFormat: 'application/json'
+    }
+  }
+});
+```
+
+### create(target, request)
+
+Method for writing a record to the `dwn` of a provided `target`.
+
+#### Parameters
+
+`target` - The `did` to query.
+
+`request` - An object containing the following:
+- `author` - The `did` of the author signing the query. This may be the same as the `target` parameter if the `target` and the signer of the query are the same entity, which is common for an app querying the `dwn` of its own user.
+- `message` - An object describing the properties of the `dwn` descriptor used to construct a valid `dwn` message.
+- `data` - the data object of the bytes, stream, blob, or file to be sent.
+
+#### Returns
+
+The response object of the query.
+
+#### Code Example
+```js
+const { record } = await web5.dwn.records.create('did:example:alice', {
+  author: 'did:example:alice',
+  data: 'Hello World!',
+  message: {
+    dataFormat: 'text/plain'
+  }
+});
+```
+
+### write(target, request)
+
+Method for writing a record to the `dwn` of a provided `target`.
+
+#### Parameters
+
+`target` - The `did` to query.
+
+`request` - An object containing the following:
+- `author` - The `did` of the author signing the query. This may be the same as the `target` parameter if the `target` and the signer of the query are the same entity, which is common for an app querying the `dwn` of its own user.
+- `message` - An object describing the properties of the `dwn` descriptor used to construct a valid `dwn` message.
+- `data` - the data object of the bytes, stream, blob, or file to be sent.
+
+#### Returns
+
+The response object of the query.
+
+#### Code Example
+```js
+const { record } = await web5.dwn.records.write('did:example:alice', {
+  author: 'did:example:alice',
+  data: 'Hello again!',
+  message: {
+    recordId: record.recordId,
+    dataFormat: 'text/plain'
+  }
+});
+```
+
+### delete(target, request)
+
+Method for reading a record to the `dwn` of a provided `target`.
+
+#### Parameters
+
+`target` - The `did` to query.
+`request` - An object containing the following:
+- `author` - The `did` of the author signing the query. This may be the same as the `target` parameter if the `target` and the signer of the query are the same entity, which is common for an app querying the `dwn` of its own user.
+- `message` - An object describing the properties of the `dwn` descriptor used to construct a valid `dwn` message.
+    - `recordId` - The `recordId` you are fetching.
+
+#### Returns
+
+The response object of the query.
+
+#### Code Example
+```js
+const response = await web5.dwn.records.delete('did:example:alice', {
+  author: 'did:example:alice',
+  message: {
+    recordId: 'bfw35evr6e54c4cqa4c589h4cq3v7w4nc534c9w7h5'
+  }
+});
+```
