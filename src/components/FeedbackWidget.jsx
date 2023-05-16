@@ -25,7 +25,7 @@ function FeedbackWidget() {
         </p>
         <p>
           Contribute:{' '}
-          <Link to="/contributing#contributing">Contributing Guide</Link>
+          <Link to="/open-source/contributing">Contributing Guide</Link>
         </p>
       </Card>
     </div>
