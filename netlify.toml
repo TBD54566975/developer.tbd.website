@@ -1,3 +1,7 @@
 [[redirects]]
   from = "/docs/tutorials/issue-verifiable-credential-manually"
   to = "/blog/issue-verifiable-credential-manually"
+
+[[redirects]]
+from = "/code-of-conduct"
+to = "/open-source/code-of-conduct"

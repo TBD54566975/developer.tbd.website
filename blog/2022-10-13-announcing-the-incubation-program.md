@@ -28,7 +28,7 @@ TBD Incubation projects are managed by community
 contributors. They advance the decentralized web and 
 accelerate development and adoption of the Web5 
 platform. Like all projects in the TBD ecosystem, 
-they follow our [Code of Conduct](/code-of-conduct) 
+they follow our [Code of Conduct](/open-source/code-of-conduct) 
 and Governance model, 
 fostering an inclusive community. Incubation projects 
 benefit from TBD’s open source programs including 
