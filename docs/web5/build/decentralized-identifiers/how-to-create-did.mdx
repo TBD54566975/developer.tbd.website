@@ -7,54 +7,39 @@ Before creating your DID, be sure to check out the [Quickstart guide](../../quic
 ## Create a DID
 
 ```jsx
-import {Web5} from '@tbd54566975/web5'
-const web5 = new Web5();
-const myDid = await web5.did.create('ion');
+const myDid = await Web5.did.create('ion');
 ```
 
-When calling `create`, be sure to pass in a Web5-supported DID method(). `create` returns a JSON representing your newly created DID, which we’ve stored in `myDid`. Here’s an example of what the `myDid` object will look like:
+When calling create, be sure to pass in a Web5-supported DID method(). create returns a JSON representing your newly created DID, which we’ve stored in myDid.
+
+Here’s an example of what the myDid object will look like:
 
 ```json
 {
-   "id":"did:ion:EiD5iTx5H9P_LKxfKkAx4...",
-   "internalId":"did:ion:EiD5iTx5H9P_LKxfKkAx4J5oRIAsko9RSsbOoL2sURMsSg",
-   ...
-   "keys":[
-      {
-         "id":"key-1",
-         "type":"JsonWebKey2020",
-         "keypair":{
-            "publicJwk":{
-               "kty":"EC",
-               "crv":"secp256k1",
-               "x":"_fhttpkgTd-icwBqoHoWrzIsULDLoM02Mv2ewFEl9_k",
-               "y":"wFNaCJ27Yu7Yh4yCgYxWHI2tcWsSZ7ugnc0UYeKn2uM"
-            },
-            "privateJwk":{
-               "kty":"EC",
-               "crv":"secp256k1",
-               "x":"_fhttpkgTd-icwBqoHoWrzIsULDLoM02Mv2ewFEl9_k",
-               "y":"wFNaCJ27Yu7Yh4yCgYxWHI2tcWsSZ7ugnc0UYeKn2uM",
-               "d":"dhQUKGtPgiVs0WOgY0frP8_5WR-tTgNbB1UI93h2iTw"
-            }
-         },
-         "purposes":[
-            "authentication"
-         ]
-      }
-   ],
-   ...
+  id: 'did:ion:EiA2ZoP6qQm6rmuibI2LCysFfFpG9_j1fI7GxWmI_vLbFA:eyJkZWx0YSI6eyJwYXRjaGVzIjpbeyJhY3Rpb24iOiJyZXBsYWNlIiwiZG9jdW1lbnQiOnsicHVibGljS2V5cyI6W3siaWQiOiJkd24iLCJwdWJsaWNLZXlKd2siOnsiY3J2Ijoic2VjcDI1NmsxIiwia3R5IjoiRUMiLCJ4IjoiWXFlX1JrWW1rd2lsZFJvelF4Yk05bGc1cVpnc2VpdjFBUzdacXl6QUJQayIsInkiOiJsYVlGTDBlbWVfTWU0c3JfYVNETU9QMWdCTnQ1aXRVUkhlMTd0MmpiYm1zIn0sInB1cnBvc2VzIjpbImF1dGhlbnRpY2F0aW9uIl0sInR5cGUiOiJKc29uV2ViS2V5MjAyMCJ9XX19XSwidXBkYXRlQ29tbWl0bWVudCI6IkVpQ3YwVWFsTkRpTEtyWVFvRloxczV3N2xuLTFlT2dIZ2dYSm1ySk9KanBJM3cifSwic3VmZml4RGF0YSI6eyJkZWx0YUhhc2giOiJFaUNLMzhqQmJlU3YxbmkzVnFCSW5QcV8xYmRCNW90QVU3XzlkMkRuS3ByN2hBIiwicmVjb3ZlcnlDb21taXRtZW50IjoiRWlDbVdVRGxKVEkyckp1cGJ6d250TkJuSjJ2Zk4xOWRDTXc1UURxUXJ5azZVdyJ9fQ',
+  internalId: 'did:ion:EiA2ZoP6qQm6rmuibI2LCysFfFpG9_j1fI7GxWmI_vLbFA',
+  didDocument: {
+    '@context': 'https://www.w3.org/ns/did/v1',
+    id: 'did:ion:EiA2ZoP6qQm6rmuibI2LCysFfFpG9_j1fI7GxWmI_vLbFA:eyJkZWx0YSI6eyJwYXRjaGVzIjpbeyJhY3Rpb24iOiJyZXBsYWNlIiwiZG9jdW1lbnQiOnsicHVibGljS2V5cyI6W3siaWQiOiJkd24iLCJwdWJsaWNLZXlKd2siOnsiY3J2Ijoic2VjcDI1NmsxIiwia3R5IjoiRUMiLCJ4IjoiWXFlX1JrWW1rd2lsZFJvelF4Yk05bGc1cVpnc2VpdjFBUzdacXl6QUJQayIsInkiOiJsYVlGTDBlbWVfTWU0c3JfYVNETU9QMWdCTnQ1aXRVUkhlMTd0MmpiYm1zIn0sInB1cnBvc2VzIjpbImF1dGhlbnRpY2F0aW9uIl0sInR5cGUiOiJKc29uV2ViS2V5MjAyMCJ9XX19XSwidXBkYXRlQ29tbWl0bWVudCI6IkVpQ3YwVWFsTkRpTEtyWVFvRloxczV3N2xuLTFlT2dIZ2dYSm1ySk9KanBJM3cifSwic3VmZml4RGF0YSI6eyJkZWx0YUhhc2giOiJFaUNLMzhqQmJlU3YxbmkzVnFCSW5QcV8xYmRCNW90QVU3XzlkMkRuS3ByN2hBIiwicmVjb3ZlcnlDb21taXRtZW50IjoiRWlDbVdVRGxKVEkyckp1cGJ6d250TkJuSjJ2Zk4xOWRDTXc1UURxUXJ5azZVdyJ9fQ',
+    verificationMethod: [ [Object] ],
+    authentication: [ '#dwn' ]
+  },
+  methodData: [
+    {
+      operation: 'create',
+      content: [Object],
+      recovery: [Object],
+      update: [Object]
+    }
+  ],
+  keys: [
+    {
+      id: 'did:ion:EiA2ZoP6qQm6rmuibI2LCysFfFpG9_j1fI7GxWmI_vLbFA:eyJkZWx0YSI6eyJwYXRjaGVzIjpbeyJhY3Rpb24iOiJyZXBsYWNlIiwiZG9jdW1lbnQiOnsicHVibGljS2V5cyI6W3siaWQiOiJkd24iLCJwdWJsaWNLZXlKd2siOnsiY3J2Ijoic2VjcDI1NmsxIiwia3R5IjoiRUMiLCJ4IjoiWXFlX1JrWW1rd2lsZFJvelF4Yk05bGc1cVpnc2VpdjFBUzdacXl6QUJQayIsInkiOiJsYVlGTDBlbWVfTWU0c3JfYVNETU9QMWdCTnQ1aXRVUkhlMTd0MmpiYm1zIn0sInB1cnBvc2VzIjpbImF1dGhlbnRpY2F0aW9uIl0sInR5cGUiOiJKc29uV2ViS2V5MjAyMCJ9XX19XSwidXBkYXRlQ29tbWl0bWVudCI6IkVpQ3YwVWFsTkRpTEtyWVFvRloxczV3N2xuLTFlT2dIZ2dYSm1ySk9KanBJM3cifSwic3VmZml4RGF0YSI6eyJkZWx0YUhhc2giOiJFaUNLMzhqQmJlU3YxbmkzVnFCSW5QcV8xYmRCNW90QVU3XzlkMkRuS3ByN2hBIiwicmVjb3ZlcnlDb21taXRtZW50IjoiRWlDbVdVRGxKVEkyckp1cGJ6d250TkJuSjJ2Zk4xOWRDTXc1UURxUXJ5azZVdyJ9fQ#dwn',
+      type: 'JsonWebKey2020',
+      controller: 'did:ion:EiA2ZoP6qQm6rmuibI2LCysFfFpG9_j1fI7GxWmI_vLbFA:eyJkZWx0YSI6eyJwYXRjaGVzIjpbeyJhY3Rpb24iOiJyZXBsYWNlIiwiZG9jdW1lbnQiOnsicHVibGljS2V5cyI6W3siaWQiOiJkd24iLCJwdWJsaWNLZXlKd2siOnsiY3J2Ijoic2VjcDI1NmsxIiwia3R5IjoiRUMiLCJ4IjoiWXFlX1JrWW1rd2lsZFJvelF4Yk05bGc1cVpnc2VpdjFBUzdacXl6QUJQayIsInkiOiJsYVlGTDBlbWVfTWU0c3JfYVNETU9QMWdCTnQ1aXRVUkhlMTd0MmpiYm1zIn0sInB1cnBvc2VzIjpbImF1dGhlbnRpY2F0aW9uIl0sInR5cGUiOiJKc29uV2ViS2V5MjAyMCJ9XX19XSwidXBkYXRlQ29tbWl0bWVudCI6IkVpQ3YwVWFsTkRpTEtyWVFvRloxczV3N2xuLTFlT2dIZ2dYSm1ySk9KanBJM3cifSwic3VmZml4RGF0YSI6eyJkZWx0YUhhc2giOiJFaUNLMzhqQmJlU3YxbmkzVnFCSW5QcV8xYmRCNW90QVU3XzlkMkRuS3ByN2hBIiwicmVjb3ZlcnlDb21taXRtZW50IjoiRWlDbVdVRGxKVEkyckp1cGJ6d250TkJuSjJ2Zk4xOWRDTXc1UURxUXJ5azZVdyJ9fQ',
+      publicKeyJwk: [Object],
+      privateKeyJwk: [Object]
+    }
+  ]
 }
-```
-
-## Store DID Keys in Decentralized Web Node
-
-When you instantiate `Web5`, the SDK internally creates a Decentralized Web Node (DWN) to act as a personal data store to store your DID keys. In order to store your DID, save and encrypt your keys with the Web5 SDK.
-
-```jsx
-web5.did.manager.set(myDid.id, {
-   connected: true,
-   endpoint: 'app://dwn', 
-   keys: ["#dwn"]: { keyPair: myDid.keys[0].keypair }
-});
 ```
