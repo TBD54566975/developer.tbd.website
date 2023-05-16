@@ -3,8 +3,9 @@ hide_table_of_contents: true
 ---
 
 import metacontent from '@site/src/content/global-meta';
-import { content } from '@site/src/content/open-source/open-source';
-import Heading from '@site/src/content/open-source/heading.mdx';
+import { content } from '@site/src/content/open-source/governance/governance.js';
+import Heading from '@site/src/content/open-source/governance/heading.mdx';
+import Content from '@site/src/content/open-source/governance/content.mdx';
 
 <head>
   <title>{content.meta.title}</title>
@@ -25,12 +26,8 @@ import Heading from '@site/src/content/open-source/heading.mdx';
 
 <Heading />
 
-<Divider type="slash" />
-
-<PillarList title={content.title} pillars={content.pillars} />
+<Content />
 
 <Divider type="slash" />
-
-<ButtonGroup buttons={content.buttons} />
 
 </div>
