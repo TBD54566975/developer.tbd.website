@@ -23,11 +23,9 @@ function Web5CTA() {
         <h2 class="text-2xl font-bold mb-4">Get Started with Web5.js</h2>
         <p>Interactive guides, tutorials, and API docs</p>
         <br />
-        <div className="flex flex-col h-[150px] md:h-[auto] md:flex-row md:w-1/3 lg:w-1/3 justify-around">
-          <Button label="Web5 JS SDK" url="/docs" />
-          <Button label="API Docs" url="/docs/api/web5-api" />
-        </div>
+        <Button label="Web5 JS SDK" url="/docs" />
       </div>
+
       <Divider type="slash" />
     </div>
   );
