@@ -53,19 +53,19 @@
   padding-right: 0.5714286em;
 }
 
-.prose.prose-pink hr {
+hr {
   height: 2px;
   border-width: 0;
   background-image: url('/static/img/divider-dotted-dark.svg');
 }
 
-.prose.prose-pink hr.bg-dotted-dark {
+hr.bg-dotted-dark {
   height: 2px;
   border-width: 0;
   background-image: url('/static/img/divider-dotted-dark.svg');
 }
 
-.prose.prose-pink hr.bg-slash-dark {
+hr.bg-slash-dark {
   height: 8px;
   border-width: 0;
   background-image: url('/static/img/divider-slash-dark.svg');
