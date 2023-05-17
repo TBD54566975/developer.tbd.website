@@ -1,27 +1,161 @@
-.pagination-nav {
-  display: none;
+/* Navbar and main */
+.docs-wrapper #__docusaurus .navbar,
+.docs-wrapper #__docusaurus .main-wrapper {
+    max-width: unset;
 }
 
-html.plugin-docs.plugin-id-default body {
+.docs-wrapper #__docusaurus .main-wrapper {
+    margin-top: 0;
+}
+
+/* Sidebar */
+.docs-wrapper #__docusaurus aside .menu__list {
+    gap: 0;
+}
+
+.docs-wrapper #__docusaurus aside .menu__list .menu__list-item .menu__link  {
+    font-weight: 500;
+    padding-block: 0.75rem;
+    color: #969696;
+    text-decoration: none;
+}
+
+.docs-wrapper #__docusaurus aside .menu__list .menu__caret:before {
+    content: url('/img/arrow-blue.svg');
+    background: none;
+}
+
+.docs-wrapper #__docusaurus aside .menu__list .menu__caret:before,
+.docs-wrapper #__docusaurus aside .menu__list .menu__link--sublist-caret:after {
+    filter: invert(100%) sepia(100%) saturate(0%) brightness(300%);
+}
+
+.docs-wrapper #__docusaurus aside .menu__list .menu__list-item-collapsible:hover .menu__caret:before,
+.docs-wrapper #__docusaurus aside .menu__list .menu__list-item-collapsible--active .menu__caret:before,
+.docs-wrapper #__docusaurus aside .menu__list .menu__link--sublist-caret:hover:after {
+    filter: none;
+}
+
+.docs-wrapper #__docusaurus aside .menu__list .menu__list-item-collapsible:hover .menu__link.menu__link--sublist {
+    color: var(--color-blue);
+}
+
+.docs-wrapper #__docusaurus aside .menu__list .menu__caret:hover {
+    height: auto;
+}
+
+/* Submenu */
+
+.docs-wrapper #__docusaurus aside .menu__list .menu__list-item-collapsible--active .menu__link--sublist.menu__link--active {
+    color: var(--color-blue);
+}
+
+.docs-wrapper #__docusaurus aside .menu__list .menu__list-item-collapsible--active ~ .menu__list {
+    margin: 0;
+}
+
+.docs-wrapper #__docusaurus aside .menu__list-item-collapsible ~ .menu__list {
+    padding-left: 0;
+    margin: 0;
+}
+
+.docs-wrapper #__docusaurus aside .theme-doc-sidebar-item-category-level-1 .menu__list-item-collapsible ~ .menu__list .menu__link {
+    padding-left: 2.5rem;
+}
+
+.docs-wrapper #__docusaurus aside .theme-doc-sidebar-item-category-level-2 .menu__list-item-collapsible ~ .menu__list .menu__link  {
+    padding-left: 3rem;
+}
+
+.docs-wrapper #__docusaurus aside .theme-doc-sidebar-item-category-level-3 .menu__list-item-collapsible ~ .menu__list .menu__link  {
+    padding-left: 3.5rem;
+}
+
+/* TODO: Add menu headings to illustrate hierarchy, then add back in to highlight a given menu item */
+/* .docs-wrapper #__docusaurus aside .menu__list .menu__list-item.theme-doc-sidebar-item-link-level-1 .menu__link,
+.docs-wrapper #__docusaurus aside .menu__list .menu__list-item .menu__list-item-collapsible:not(:is(.menu__list-item-collapsible--active, :hover)) > .menu__link {
+    color: #dedede;
+} */
+
+.docs-wrapper #__docusaurus footer {
+    border-top: 1px solid var(--ifm-toc-border-color);
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+}
+
+.docs-wrapper #__docusaurus footer > div {
+    overflow-x: hidden;
+}
+
+.docs-wrapper #__docusaurus h1 ~ p {
+    color: var(--color-yellow);
+    font-family: var(--tbd-font-mono);
+    letter-spacing: 0;
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+}
+
+@media screen and (max-width: 996px) {
+    .docs-wrapper #__docusaurus {
+        padding-inline: 0;
+    }
+
+    .docs-wrapper #__docusaurus .navbar {
+        padding-top: 1.5rem;
+        padding-inline: 1rem;
+    }
+
+    .docs-wrapper #__docusaurus article {
+        padding: 2rem;
+    }
+
+    .docs-wrapper #__docusaurus footer {
+        background: var(--color-black);
+    }
+}
+
+@media screen and (min-width: 997px) {
+    .docs-wrapper #__docusaurus {
+        padding: 0;
+    }
+
+    .docs-wrapper #__docusaurus article {
+        padding: 4rem 6rem;
+    }
+
+    .docs-wrapper #__docusaurus .navbar {
+        padding-left: 1.875rem;
+        position: sticky;
+        z-index: 999999;
+    }
+
+    .docs-wrapper #__docusaurus .docSidebarContainer_node_modules-\@docusaurus-theme-classic-lib-theme-DocPage-Layout-Sidebar-styles-module {
+        margin-top: 0;
+    }
+
+    .docs-wrapper #__docusaurus .sidebarViewport_node_modules-\@docusaurus-theme-classic-lib-theme-DocPage-Layout-Sidebar-styles-module {
+        position: sticky;
+        top: 77px;
+    }
+
+    .docs-wrapper #__docusaurus .sidebar_node_modules-\@docusaurus-theme-classic-lib-theme-DocSidebar-Desktop-styles-module {
+        padding-top: 0;
+    }
+}
+
+.pagination-nav {
+    display: none;
+}
+
+
+html.plugin-docs.plugin-id-default body,
+html.plugin-docs.plugin-id-default .navbar {
   background-color: #1c1c1c;
 }
 
-html.plugin-docs.plugin-id-default #__docusaurus {
-  padding: 0 !important;
-}
-
-html.plugin-docs.plugin-id-default .main-wrapper {
-  margin-top: 2rem;
-}
-
 html.plugin-docs.plugin-id-default .navbar {
-  border-bottom: 2px solid var(--color-yellow);
-  height: fit-content;
-  padding-bottom: 0px;
-  padding-left: 0px;
-  padding-right: 0px;
-  padding-top: 0px;
-  background-color: black;
+  border-bottom: 1px solid var(--ifm-toc-border-color);
+  padding: 0;
 }
 
 html.plugin-docs.plugin-id-default .navbar__items,
@@ -29,27 +163,9 @@ html.plugin-docs.plugin-id-default .navbar__items--right {
   align-items: baseline;
 }
 
-html.plugin-docs.plugin-id-default .navbar__item {
-  padding-top: 24px;
-}
-
 html.plugin-docs.plugin-id-default .navbar__logo {
   margin-bottom: 1.5rem;
-  margin-left: 1.5rem;
-  margin-top: 1.5rem;
   height: 1.5rem;
-}
-
-html.plugin-docs.plugin-id-default .navbar__link {
-  padding-bottom: 2rem;
-}
-
-html.plugin-docs.plugin-id-default .navbar__link:last-child {
-  padding-right: 0.5rem;
-}
-
-html.plugin-docs.plugin-id-default .navbar__link:active {
-  padding-bottom: 2rem;
 }
 
 html.plugin-docs.plugin-id-default
@@ -192,19 +308,18 @@ html.plugin-docs.plugin-id-default .avatar {
 
 html.plugin-docs.plugin-id-default .navbar__link {
   font-size: 18px;
-  padding-bottom: 2rem;
+  padding-block: 1.5rem;
+  border-bottom: 4px solid transparent;
 }
 
 html.plugin-docs.plugin-id-default .navbar__link:hover {
   border-bottom: 4px solid var(--color-yellow);
   color: var(--color-yellow);
-  padding-bottom: 2rem;
 }
 
 html.plugin-docs.plugin-id-default .navbar__link--active {
   border-bottom: 4px solid var(--color-yellow);
   color: var(--color-yellow);
-  padding-bottom: 2rem;
 }
 
 html.plugin-docs.plugin-id-default .thin-scrollbar ul li a:hover {

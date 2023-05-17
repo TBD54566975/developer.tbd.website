@@ -5,7 +5,7 @@ import Community from '../src/components/Community';
 
 function DocsIndex() {
   return (
-    <div className="p-8">
+    <div>
       <h1>
         Build Web5 apps that put you in control of your data and identity.
       </h1>
