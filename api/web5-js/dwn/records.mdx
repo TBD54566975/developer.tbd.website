@@ -1,7 +1,7 @@
 # records
 
 ## Overview
-The `records` class is responsible for providing convenience methods for CRUD operations interfacing with `dwn`s.
+The `records` class is responsible for providing convenience methods for CRUD operations interfacing with DWNs.
 
 ## Data Types
 
@@ -11,11 +11,17 @@ Every modifying method of the `records` class returns and instance of a `Record`
 
 #### Properties
 
-`recordId` - The unique identifier based on the record entry's composition. Note: all entries across all records are deterministically unique.
+`recordId`
 
-`descriptor` - the descriptor object for the constructed `dwn` message.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; The unique identifier based on the record entry's composition. Note: all entries across all records are deterministically unique.
 
-`data` - An object with the following methods available on it:
+`descriptor`
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; The descriptor object for the constructed DWN message.
+
+`data`
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;An object with the following methods available on it:
 - `text()` - produces a textual representation of the data.
 - `json()` - if the value is JSON data, this method will return a parsed JSON object.
 - `stream()` - returns the raw stream of bytes for the data.
@@ -24,15 +30,19 @@ Every modifying method of the `records` class returns and instance of a `Record`
 
 ### query(target, request)
 
-Method for querying the `dwn` of a provided `target`.
+Method for querying the DWN of a provided `target`.
 
 #### Parameters
 
-`target` - The `did` to query.
+`target`
 
-`request` - An object containing the following:
-- `author` - The `did` of the author signing the query. This may be the same as the `target` parameter if the `target` and the signer of the query are the same entity, which is common for an app querying the `dwn` of its own user.
-- `message` - An object describing the properties of the `dwn` descriptor used to construct a valid `dwn` message.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; The DID to query.
+
+`request`
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;An object containing the following:
+- `author` - The DID of the author signing the query. This may be the same as the `target` parameter if the `target` and the signer of the query are the same entity, which is common for an app querying the DWN of its own user.
+- `message` - An object describing the properties of the DWN descriptor used to construct a valid DWN message.
 
 #### Returns
 
@@ -53,15 +63,15 @@ const response = await web5.dwn.records.query('did:example:bob', {
 
 ### create(target, request)
 
-Method for writing a record to the `dwn` of a provided `target`.
+Method for writing a record to the DWN of a provided `target`.
 
 #### Parameters
 
-`target` - The `did` to query.
+`target` - The DID to query.
 
 `request` - An object containing the following:
-- `author` - The `did` of the author signing the query. This may be the same as the `target` parameter if the `target` and the signer of the query are the same entity, which is common for an app querying the `dwn` of its own user.
-- `message` - An object describing the properties of the `dwn` descriptor used to construct a valid `dwn` message.
+- `author` - The DID of the author signing the query. This may be the same as the `target` parameter if the `target` and the signer of the query are the same entity, which is common for an app querying the DWN of its own user.
+- `message` - An object describing the properties of the DWN descriptor used to construct a valid DWN message.
 - `data` - the data object of the bytes, stream, blob, or file to be sent.
 
 #### Returns
@@ -81,15 +91,20 @@ const { record } = await web5.dwn.records.create('did:example:alice', {
 
 ### write(target, request)
 
-Method for writing a record to the `dwn` of a provided `target`.
+Method for writing a record to the DWN of a provided `target`.
 
 #### Parameters
 
-`target` - The `did` to query.
+`target`
 
-`request` - An object containing the following:
-- `author` - The `did` of the author signing the query. This may be the same as the `target` parameter if the `target` and the signer of the query are the same entity, which is common for an app querying the `dwn` of its own user.
-- `message` - An object describing the properties of the `dwn` descriptor used to construct a valid `dwn` message.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The DID to query.
+
+`request`
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; An object containing the following:
+
+- `author` - The DID of the author signing the query. This may be the same as the `target` parameter if the `target` and the signer of the query are the same entity, which is common for an app querying the DWN of its own user.
+- `message` - An object describing the properties of the DWN descriptor used to construct a valid DWN message.
 - `data` - the data object of the bytes, stream, blob, or file to be sent.
 
 #### Returns
@@ -110,14 +125,20 @@ const { record } = await web5.dwn.records.write('did:example:alice', {
 
 ### delete(target, request)
 
-Method for reading a record to the `dwn` of a provided `target`.
+Method for reading a record to the DWN of a provided `target`.
 
 #### Parameters
 
-`target` - The `did` to query.
-`request` - An object containing the following:
-- `author` - The `did` of the author signing the query. This may be the same as the `target` parameter if the `target` and the signer of the query are the same entity, which is common for an app querying the `dwn` of its own user.
-- `message` - An object describing the properties of the `dwn` descriptor used to construct a valid `dwn` message.
+`target`
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; The DID to query.
+
+`request`
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;An object containing the following:
+
+- `author` - The DID of the author signing the query. This may be the same as the `target` parameter if the `target` and the signer of the query are the same entity, which is common for an app querying the DWN of its own user.
+- `message` - An object describing the properties of the DWN descriptor used to construct a valid DWN message.
     - `recordId` - The `recordId` you are fetching.
 
 #### Returns
