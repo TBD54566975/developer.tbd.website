@@ -87,12 +87,44 @@
     overflow-x: hidden;
 }
 
-.docs-wrapper #__docusaurus h1 ~ p {
+.docs-wrapper #__docusaurus h1 ~ p,
+.docs-wrapper #__docusaurus h2:not(.primary-theme-card h2) ~ p {
     color: var(--color-yellow);
     font-family: var(--tbd-font-mono);
     letter-spacing: 0;
     font-size: 1.125rem;
     line-height: 1.75rem;
+}
+
+.docs-wrapper #__docusaurus h2,
+.docs-wrapper #__docusaurus .primary-theme-card h2 {
+    font-size: 2rem;
+}
+
+.docs-wrapper #__docusaurus .theme-card p:not(.primary-theme-card p) {
+    font-size: 1rem;
+}
+
+.docs-wrapper #__docusaurus .theme-card p {
+    max-width: 70%;
+}
+
+.docs-wrapper #__docusaurus .theme-card img {
+    height: fit-content;
+}
+
+.docs-wrapper #__docusaurus .community-card h3 {
+    font-size: 1.25rem;
+    margin-bottom: 12px;
+}
+
+.docs-wrapper #__docusaurus .community-card p {
+    font-size: 1rem;
+}
+
+.docs-wrapper #__docusaurus .explore-card h3 {
+    font-size: 1rem;
+    margin-block: 0;
 }
 
 @media screen and (max-width: 996px) {
@@ -112,6 +144,15 @@
     .docs-wrapper #__docusaurus footer {
         background: var(--color-black);
     }
+
+    .docs-wrapper #__docusaurus .theme-card {
+        gap: 0;
+        align-items: end;
+    }
+
+    .docs-wrapper #__docusaurus .theme-card p {
+        max-width: unset;
+    }
 }
 
 @media screen and (min-width: 997px) {
@@ -120,7 +161,7 @@
     }
 
     .docs-wrapper #__docusaurus article {
-        padding: 4rem 6rem;
+        padding: 4rem 12vw;
     }
 
     .docs-wrapper #__docusaurus .navbar {
@@ -416,18 +457,7 @@ article .markdown .theme-card > p {
   margin-bottom: 2rem;
 }
 
-html.plugin-docs.plugin-id-default article .theme-card.primary-theme-card h2,
-html.plugin-docs.plugin-id-default article .theme-card.primary-theme-card p,
-html.plugin-docs.plugin-id-default
-  article
-  .theme-card.primary-theme-card
-  .hero-button
-  a
-  > div {
-  color: #fff;
-}
-
-html.plugin-docs.plugin-id-default article .theme-card h2 {
+html.plugin-docs.plugin-id-default article .theme-card h3 {
   color: rgba(var(--color-card));
 }
 html.plugin-docs.plugin-id-default article .theme-card p {
@@ -443,7 +473,7 @@ html.plugin-docs.plugin-id-default article .theme-card p {
 }
 
 .theme-card-purple {
-  --color-card: 213, 162, 235;
+  --color-card: 183, 43, 255;
 }
 
 .community-button {
@@ -452,4 +482,8 @@ html.plugin-docs.plugin-id-default article .theme-card p {
   font-weight: bold;
   background-color: #fff !important;
   color: #000 !important;
+}
+
+.tbd-blue-illustration {
+    filter: var(--color-primary-cyan-filter);
 }
