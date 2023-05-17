@@ -3,41 +3,39 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 :::info
-<h3>Prerequisites</h3>
-<p><a href="https://docs.npmjs.com/downloading-and-installing-node-js-and-npm" 
-  target="_blank">Node Package Manager - NPM</a></p>
-<p>Ensure you have the Node Package Manager, <code>npm</code>, installed and on your system's <code>$PATH</code>.</p>
+<h2>Prerequisites</h2>
+<ul>
+<li>
+  <p>Ensure you have <a href="https://docs.npmjs.com/downloading-and-installing-node-js-and-npm" 
+  target="_blank">Node Package Manager</a>, <code>npm</code>, installed and on your system's <code>$PATH</code>.</p>
+</li>
+</ul>
 :::
 
-# Installation
-### 1. Create Directory
-<p>This will be the home of your new Web5 app.</p>
+<section class="docs-section">
 
-In terminal:
+## Installation
+### 1. Create a directory
+<p>This will be the home of your new Web5 app. In your CLI: </p> 
 
 ```bash
 mkdir web5-app
-```
-
-```bash
 cd web5-app
 ```
 
 ### 2. Install Web5
 
-<p>We'll be using the NPM package manager to install Web5:</p>
+<p>Use NPM to install Web5:</p>
 
 ```bash
 npm install @tbd54566975/web5@0.6.0
 ```
 
 :::note
-After npm resolves the dependency you may see a few warnings which you can ignore for now.
+After `npm` resolves the dependency, you may see a few warnings. You can ignore these for now.
 :::
 
-This adds Web5 as a dependency of the project, which you will see in `package.json`. It also resolves its transitive dependencies in the `package-lock.json` file and places those dependencies in the `node_modules` directory.
-
-Open `package.json` and add `module` as a type:
+This will create a `package.json` in the root of your project. Open `package.json` and add `module` as a type:
 
 ```js
 {
@@ -54,13 +52,7 @@ Let's create a `src` directory and `index.js` file to write our application:
 
 ```bash
 mkdir src
-```
-
-```bash
 cd src
-```
-
-```bash
 touch index.js
 ```
 
@@ -69,4 +61,6 @@ Open `index.js` in your editor and add this line at the top of the file to impor
 import { Web5 } from '@tbd54566975/web5';
 ```
 
-Now, we have the Web5 SDK installed and are ready to start building!
+Now we have the Web5 SDK installed and are ready to start building!
+
+</section>

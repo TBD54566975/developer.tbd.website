@@ -1,10 +1,10 @@
-# Start Building
+<section class="docs-section">
 
-## 1. Create Web5 App Instance
+## Start Building
 
-The `Web5` class is an isolated API object for doing all things Web5.
+### 1. Create a Web5 instance
 
-In `index.js` below the import statement, create a new instance of `Web5`:
+The `Web5` class is an isolated API object for doing all things Web5. In `index.js` below the import statement, create a new instance of `Web5`:
 
 ```js
 const web5 = new Web5();
@@ -19,7 +19,7 @@ Web5 is split into three main top-level objects:
 We're going to focus on `web5.did` and `web5.dwn` in this Quickstart.
 :::
 
-## 2. Create DID
+### 2. Create a DID
 
 In Web5 apps, a user’s unique identifier - like an email address - is called a [Decentralized Identifier (DID)](/docs/web5/learn/decentralized-identifiers). 
 We are building a decentralized app, so your users are using identifiers that aren't tied to a centralized authority.
@@ -34,14 +34,13 @@ We’re using `ion` as the DID method. Learn more about ION and other [DID metho
 <details>
   <summary>Test your code</summary>
   <p>
-  Wanna see the created DID?
 
-  In <code>index.js</code>, add the following line and save your file:
+  Wanna see the DID you just created? In <code>index.js</code>, add the following line and save your file:
   ```js
   console.log(did.id);
   ```
 
-  Then from the terminal, run:
+  Then from your CLI, run:
   ```bash
   node src/index.js
   ```
@@ -50,4 +49,6 @@ We’re using `ion` as the DID method. Learn more about ION and other [DID metho
   </p>
 </details>
 
-Click "Run!" below to create your user's DID right here in your sandbox:
+#### Try it!
+
+</section>

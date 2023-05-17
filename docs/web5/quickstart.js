@@ -435,52 +435,62 @@ function Web5Quickstart() {
     <div>
       <Web5QuickstartIntro />
 
+      <div class="w-full max-w-container"><hr class="bg-slash-dark border-none h-2" /></div>
+
       <Web5QuickstartPrereqsAndInstallation />
+
+      <div class="w-full max-w-container"><hr class="bg-slash-dark border-none h-2" /></div>
 
       <Web5QuickstartCreateDid />
 
-      <section id="did-create">
+      <section id="did-create" class="sandbox-container">
         <div className="input">
-          <button>Run!</button>
+          <button>Run ›</button>
         </div>
         <div className="output">
-          <details>
+          <details class="sandbox-details">
             <summary>
-              <code>...</code>
+              <code><span class="sandbox-placeholder">Your DID will appear here</span></code>
             </summary>
-            <textarea></textarea>
+            <textarea spellCheck="false"></textarea>
           </details>
         </div>
       </section>
 
       <Web5QuickstartRegisterDid />
-      <section id="did-register">
+      <section id="did-register" class="sandbox-container">
         <div className="input">
-          <button disabled>Run!</button>
+          <button disabled>Run ›</button>
         </div>
         <div className="output"></div>
       </section>
 
       <Web5QuickstartWriteDwn />
-
       <section id="dwn-write">
-        <div className="input">
-          <input placeholder="Write text in me!" type="text" disabled />
-          <button disabled>Run!</button>
-          <progress></progress>
+        <div className="input input-container">
+            <label for="dwn-write-input">Your message</label>
+            <input placeholder="Write text in me!" type="text" disabled id="dwn-write-input" />
         </div>
-        <div className="output">
-          <details>
-            <summary>...</summary>
-            <textarea readOnly></textarea>
-          </details>
+        <div class="sandbox-container">
+            <div className="input">
+                <button disabled>Run ›</button>
+                <progress></progress>
+            </div>
+            <div className="output">
+            <details>
+                <summary>
+                    <code><span class="sandbox-placeholder">Your message will appear here</span></code>
+                </summary>
+                <textarea readOnly></textarea>
+            </details>
+            </div>
         </div>
       </section>
 
       <Web5QuickstartReadDwn />
-      <section id="dwn-read">
+      <section id="dwn-read" class="sandbox-container">
         <div className="input">
-          <button disabled>Run!</button>
+          <button disabled>Run ›</button>
           <progress></progress>
         </div>
         <div className="output"></div>
@@ -488,42 +498,35 @@ function Web5Quickstart() {
 
       <Web5QuickstartUpdateDwn />
       <section id="dwn-update">
-        <div className="input">
-          <input placeholder="Update me!" type="text" disabled />
-          <button disabled>Run!</button>
-          <progress></progress>
+        <div className="input input-container">
+            <label for="dwn-update-input">Your updated message</label>
+            <input placeholder="Update me!" type="text" disabled id="dwn-update-input" />
         </div>
-        <div className="output"></div>
+        <div class="sandbox-container">
+            <div className="input">
+                <button disabled>Run ›</button>
+                <progress></progress>
+            </div>
+            <div className="output"></div>
+        </div>
       </section>
 
       <Web5QuickstartDeleteDwn />
-
-      {/* <Web5QuickstartQueryDwn />
-      <section id="dwn-query">
+      <section id="dwn-delete" class="sandbox-container">
         <div className="input">
-          <button disabled>Run!</button>
+          <button disabled>Run ›</button>
           <progress></progress>
         </div>
         <div className="output">
           <details>
-            <summary>...</summary>
-            <textarea readOnly></textarea>
-          </details>
-        </div>
-      </section> */}
-
-      <section id="dwn-delete">
-        <div className="input">
-          <button disabled>Run!</button>
-          <progress></progress>
-        </div>
-        <div className="output">
-          <details>
-            <summary>...</summary>
+            <summary><code><span class="sandbox-placeholder">The result of your delete operation will appear here</span></code></summary>
             <textarea readOnly></textarea>
           </details>
         </div>
       </section>
+
+      <div class="w-full max-w-container"><hr class="bg-slash-dark border-none h-2" /></div>
+
       <Web5QuickstartNextSteps />
     </div>
   );
