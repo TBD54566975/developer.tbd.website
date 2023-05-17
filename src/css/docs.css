@@ -398,7 +398,7 @@
     }
 
     .docs-wrapper #__docusaurus article {
-        padding: 4rem 12vw;
+        padding: 4rem 8vw;
     }
 
     .docs-wrapper #__docusaurus .navbar {
@@ -623,7 +623,7 @@ html.plugin-docs.plugin-id-default .table-of-contents__link--active code {
   text-decoration: none;
 }
 
-.docs-wrapper .table-of-contents ul {
+.docs-wrapper #__docusaurus .table-of-contents ul {
     padding-inline-start: 1rem;
 }
 
