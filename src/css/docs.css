@@ -89,7 +89,8 @@
 
 .docs-wrapper #__docusaurus h1 ~ p,
 .docs-wrapper #__docusaurus h2:not(.theme-card h2, .community-card h2) ~ p,
-.docs-wrapper #__docusaurus h3:not(.theme-card h3, .community-card h3) ~ p {
+.docs-wrapper #__docusaurus h3:not(.theme-card h3, .community-card h3) ~ p,
+.docs-wrapper #__docusaurus p.copy:not(.docs-section p, .alert p) {
     color: var(--color-yellow);
     font-family: var(--tbd-font-mono);
     letter-spacing: 0;
@@ -210,7 +211,7 @@
 
 .docs-wrapper #__docusaurus pre code {
     border: 1px solid #212121;
-    background: #121212;
+    background: #161616;
     padding: 1.5rem 1rem;
     line-height: 1.65;
 }
@@ -245,7 +246,7 @@
     border-radius: 4px;
     border: 1px solid #616161;
     background: none;
-    min-width: 100%;
+    width: 100%;
     max-width: 400px;
 }
 
@@ -280,9 +281,9 @@
 
 .docs-wrapper #__docusaurus .sandbox-container {
     display: flex;
+    flex-direction: column;
     gap: 1rem;
     margin-bottom: 3rem;
-    flex-wrap: wrap;
 }
 
 .docs-wrapper #__docusaurus .sandbox-container button {
@@ -527,12 +528,8 @@ html.plugin-docs.plugin-id-default .thin-scrollbar {
   color: white;
   letter-spacing: 1px;
   margin-top: 24px;
-  top: 0 !important;
+  top: 118px;
   font-family: var(--tbd-font-sans);
-}
-
-html.plugin-docs.plugin-id-default .thin-scrollbar ul li a {
-  color: white;
 }
 
 html.plugin-docs.plugin-id-default article time {
@@ -584,11 +581,6 @@ html.plugin-docs.plugin-id-default .table-of-contents__link--active,
 html.plugin-docs.plugin-id-default .table-of-contents__link--active code {
   color: var(--color-yellow);
   text-decoration: none;
-  text-decoration: underline !important;
-}
-
-html.plugin-docs.plugin-id-default .table-of-contents__link {
-  text-decoration: none !important;
 }
 
 html.plugin-docs.plugin-id-default .table-of-contents a strong {
@@ -596,21 +588,21 @@ html.plugin-docs.plugin-id-default .table-of-contents a strong {
 }
 
 html.plugin-docs.plugin-id-default .table-of-contents li {
-  margin: 0.75rem 1.5rem;
+  padding: 0.75rem 1.5rem;
   list-style: none !important;
 }
 
 html.plugin-docs.plugin-id-default .table-of-contents__link {
+  color: #969696;
   font-size: 0.875rem;
   font-weight: 500;
   line-height: 1.375rem;
-  text-decoration: none !important;
+  text-decoration: none;
 }
 
 html.plugin-docs.plugin-id-default .table-of-contents__left-border {
   border-left: 1px solid #343434;
   padding-left: 1rem;
-  margin-left: 2rem;
 }
 
 html.plugin-docs.plugin-id-default .table-of-contents__left-border li {
