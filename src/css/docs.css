@@ -18,6 +18,8 @@
     padding-block: 0.75rem;
     color: #969696;
     text-decoration: none;
+    font-family: var(--tbd-font-mono);
+    letter-spacing: 0;
 }
 
 .docs-wrapper #__docusaurus aside .menu__list .menu__caret:before {
@@ -91,11 +93,17 @@
 .docs-wrapper #__docusaurus h2:not(.theme-card h2, .community-card h2) ~ p,
 .docs-wrapper #__docusaurus h3:not(.theme-card h3, .community-card h3) ~ p,
 .docs-wrapper #__docusaurus p.copy:not(.docs-section p, .alert p) {
-    color: var(--color-yellow);
+    color: var(--color-white);
     font-family: var(--tbd-font-mono);
     letter-spacing: 0;
     font-size: 1.125rem;
     line-height: 1.75rem;
+}
+
+.docs-wrapper #__docusaurus article .markdown li {
+    font-family: var(--tbd-font-mono);
+    letter-spacing: 0;
+    color: var(--color-white);
 }
 
 .docs-wrapper #__docusaurus h2,
@@ -109,6 +117,8 @@
 
 .docs-wrapper #__docusaurus .theme-card p {
     max-width: 70%;
+    font-family: var(--tbd-font-mono);
+    letter-spacing: 0;
 }
 
 .docs-wrapper #__docusaurus .theme-card img {
@@ -594,7 +604,7 @@ html.plugin-docs.plugin-id-default .table-of-contents li {
 
 html.plugin-docs.plugin-id-default .table-of-contents__link {
   color: #969696;
-  font-size: 0.875rem;
+  font-size: 1rem;
   font-weight: 500;
   line-height: 1.375rem;
   text-decoration: none;
@@ -608,7 +618,8 @@ html.plugin-docs.plugin-id-default .table-of-contents__left-border {
 html.plugin-docs.plugin-id-default .table-of-contents__left-border li {
   margin-right: 0;
   margin-left: 0;
-  font-family: var(--tbd-font-sans);
+  font-family: var(--tbd-font-mono);
+  letter-spacing: 0;
 }
 
 /* Redocusaurus */
