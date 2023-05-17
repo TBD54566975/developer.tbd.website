@@ -14,7 +14,7 @@ function HeroCard({
 }) {
   return (
     <div
-      className={`${primary ? `primary-theme-card `: ``}theme-card theme-card-${themeColor} relative p-8 rounded-xl shadow-lg tablet:w-full desktop:w-full only:w-full min-h-[240px] flex justify-between`}
+      className={`${primary ? `primary-theme-card `: ``}theme-card theme-card-${themeColor} relative p-8 rounded-sm shadow-lg tablet:w-full desktop:w-full only:w-full min-h-[240px] flex justify-between`}
     >
         {imgSrc && (
             <img

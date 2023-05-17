@@ -4,7 +4,7 @@ function ExploreCard({ text, icon, url, imgClass }) {
   return (
     <a
       href={url}
-      className="explore-card no-underline w-70 h-56 border-[#282828] border-2 rounded-lg flex flex-col justify-between items-center"
+      className="explore-card no-underline w-70 h-56 border-[#282828] border-2 rounded-sm flex flex-col justify-between items-center"
       target="_blank"
     >
       {icon && text && (

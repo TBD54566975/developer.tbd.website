@@ -4,7 +4,7 @@ import Button from './Button';
 
 function CommunityCard({ icon, title, CTA, buttonUrl, buttonText }) {
   return (
-    <div className="border border-[#282828] rounded-lg p-8 w-full">
+    <div className="border border-[#282828] rounded-sm p-8 w-full">
       <div className="flex flex-row justify-around">
         <img className="w-9 h-9 mr-6" src={icon} />
         <div>

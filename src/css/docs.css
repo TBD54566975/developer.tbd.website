@@ -1,5 +1,10 @@
 /* Navbar and main */
 
+.docs-wrapper #__docusaurus a:not(.table-of-contents__link) {
+    text-decoration: none;
+    font-weight: 600;
+}
+
 .docs-wrapper #__docusaurus {
     --color-white: #c6c6c6;
 }
@@ -77,12 +82,6 @@
     padding-left: 3.5rem;
 }
 
-/* TODO: Add menu headings to illustrate hierarchy, then add back in to highlight a given menu item */
-/* .docs-wrapper #__docusaurus aside .menu__list .menu__list-item.theme-doc-sidebar-item-link-level-1 .menu__link,
-.docs-wrapper #__docusaurus aside .menu__list .menu__list-item .menu__list-item-collapsible:not(:is(.menu__list-item-collapsible--active, :hover)) > .menu__link {
-    color: #dedede;
-} */
-
 .docs-wrapper #__docusaurus footer {
     border-top: 1px solid var(--ifm-toc-border-color);
     padding-left: 1.5rem;
@@ -96,12 +95,15 @@
 .docs-wrapper #__docusaurus h1 ~ p,
 .docs-wrapper #__docusaurus h2:not(.theme-card h2, .community-card h2) ~ p,
 .docs-wrapper #__docusaurus h3:not(.theme-card h3, .community-card h3) ~ p,
-.docs-wrapper #__docusaurus p.copy:not(.docs-section p, .alert p, .figure-container p) {
-    color: var(--color-white);
+.docs-wrapper #__docusaurus p {
     font-family: var(--tbd-font-mono);
     letter-spacing: 0;
-    font-size: 1.125rem;
     line-height: 1.75rem;
+}
+
+.docs-wrapper #__docusaurus p:not(.docs-section p, .alert p, .figure-container p, .api-card p) {
+    font-size: 1.125rem;
+    color: var(--color-white);
 }
 
 .docs-wrapper #__docusaurus article .markdown li {
@@ -110,9 +112,21 @@
     color: var(--color-white);
 }
 
+.docs-wrapper #__docusaurus .api-card {
+    border: 2px solid var(--color-yellow);
+}
+
+.docs-wrapper #__docusaurus .api-card p {
+    font-size: 1rem;
+}
+
 .docs-wrapper #__docusaurus h2,
 .docs-wrapper #__docusaurus .primary-theme-card h2 {
     font-size: 2rem;
+}
+
+.docs-wrapper #__docusaurus .theme-card {
+    border-width: 2px;
 }
 
 .docs-wrapper #__docusaurus .theme-card p:not(.primary-theme-card p) {
@@ -607,6 +621,10 @@ html.plugin-docs.plugin-id-default .table-of-contents__link--active,
 html.plugin-docs.plugin-id-default .table-of-contents__link--active code {
   color: var(--color-yellow);
   text-decoration: none;
+}
+
+.docs-wrapper .table-of-contents ul {
+    padding-inline-start: 1rem;
 }
 
 html.plugin-docs.plugin-id-default .table-of-contents a strong {
