@@ -14,12 +14,17 @@ The `create` method under the `did` scope enables generation of DIDs for a suppo
 
 #### Parameters
 
-- `method` - Specifies the method on which to create the `did`.
-- `options` (Optional) - enables customization of the did formation.
+`method`
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Specifies the method on which to create the did.
+
+`options` (Optional)
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Enables customization of the did formation.
 
 #### Return Value
 
-Returns a `did` document.
+Returns a did document.
 
 #### Code Example
 
@@ -27,19 +32,25 @@ Returns a `did` document.
 const myDid = await web5.did.create('ion');
 ```
 
-### encrypt(options[])
+### encrypt(options)
 
 Encrypts provided data according to specification
 
 #### Parameters
-`options[]`
-- `did` - `did` of the recepient, whose private key is used to decrypt the data.
-- `payload` - Encryption algorithm output, including the ciphertext, to be decrypted.
-- `keyId` - Key identifier to use form the recepient's `did` document
-- `algorithm` - An object specifying the algorithm to be used and any extra parameters if required.
+`options`
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; `did` - DID of the recepient, whose private key is used to decrypt the data.
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`payload` - Encryption algorithm output, including the ciphertext, to be decrypted.
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`keyId` - Key identifier to use form the recepient's DID documen.
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`algorithm` - An object specifying the algorithm to be used and any extra parameters if required.
 
 #### Return Value
-`Promise<Web5EncryptionResult>` A `Promise`that fulfills with the output of the encryption algorithm.
+`Promise<Web5EncryptionResult>` 
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A `Promise`that fulfills with the output of the encryption algorithm.
 
 #### Code Example
 ```js
@@ -52,14 +63,18 @@ const options = {
 const encryptedText = await web5.did.encrypt(options)
 ```
 
-### decrypt(options[])
+### decrypt(options)
 #### Parameters
-`options[]`
-- `did` - `did` of the recepient, whose private key is used to decrypt the data.
-- `payload` - Encryption algorithm output, including the ciphertext, to be decrypted.
+`options`
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`did` - DID of the recepient, whose private key is used to decrypt the data.
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`payload` - Encryption algorithm output, including the ciphertext, to be decrypted.
 
 #### Return Value
-`Promise<UInt8Array>` A `Promise`that fulfills with a `UInt8Array` containing the plaintext.
+`Promise<UInt8Array>`
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; A `Promise`that fulfills with a `UInt8Array` containing the plaintext.
 
 #### Code Example
 ```js
@@ -69,15 +84,20 @@ const options = {
 const decryptedDID = await web5.did.decrypt(options)
 ```
 
-### sign(method, options[])
+### sign(method, options)
 #### Parameters
-`method` - `did` method to sign on.
+`method`
 
-`options[]`
-- `payload` - Encryption algorithm output, including the ciphertext, to be decrypted.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DID method to sign on.
+
+`options`
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`payload` - Encryption algorithm output, including the ciphertext, to be decrypted.
 
 #### Return Value
-`Promise<UInt8Array>` A `Promise`that fulfills with a `UInt8Array` containing the signed `did`.
+`Promise<UInt8Array>`
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; A `Promise`that fulfills with a `UInt8Array` containing the signed DID.
 
 #### Code Example
 ```js
@@ -87,15 +107,20 @@ const options = {
 const signedData = await web5.did.sign("ion", options)
 ```
 
-### verify(method, options[])
+### verify(method, options)
 #### Parameters
-`method` - `did` method to sign on.
+`method`
 
-`options[]`
-- `payload` - Encryption algorithm output, including the ciphertext, to be decrypted.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The DID method to sign on.
+
+`options`
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`payload` - Encryption algorithm output, including the ciphertext, to be decrypted.
 
 #### Return Value
-`Promise<UInt8Array>` A `Promise`that fulfills with a `UInt8Array` containing the signed `did`.
+`Promise<UInt8Array>`
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; A `Promise`that fulfills with a `UInt8Array` containing the signed DID.
 
 #### Code Example
 ```js
@@ -105,15 +130,20 @@ const options = {
 const verifiedData = await web5.did.verify("ion", options)
 ```
 
-### resolve(did, options[])
+### resolve(did, options)
 #### Parameters
-`method` - `did` method to sign on.
+`method`
 
-`options[]`
-- `payload` - Encryption algorithm output, including the ciphertext, to be decrypted.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The DID method to sign on.
+
+`options`
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; `payload` - Encryption algorithm output, including the ciphertext, to be decrypted.
 
 #### Return Value
-`Promise<UInt8Array>` A `Promise`that fulfills with a `UInt8Array` containing the signed `did`.
+`Promise<UInt8Array>`
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; A `Promise`that fulfills with a `UInt8Array` containing the signed DID.
 
 #### Code Example
 ```js
@@ -123,15 +153,20 @@ const options = {
 const signedData = await web5.did.sign("ion", options)
 ```
 
-### getDidDocument(did, options[])
+### getDidDocument(did, options)
 #### Parameters
-`method` - `did` method to sign on.
+`method`
 
-`options[]`
-- `payload` - Encryption algorithm output, including the ciphertext, to be decrypted.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The DID method to sign on.
+
+`options`
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`payload` - Encryption algorithm output, including the ciphertext, to be decrypted.
 
 #### Return Value
-`Promise<UInt8Array>` A `Promise`that fulfills with a `UInt8Array` containing the signed `did`.
+`Promise<UInt8Array>`
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; A `Promise`that fulfills with a `UInt8Array` containing the signed DID.
 
 #### Code Example
 ```js
@@ -141,15 +176,19 @@ const options = {
 const signedData = await web5.did.sign("ion", options)
 ```
 
-### getServices(did, options[])
+### getServices(did, options)
 #### Parameters
-`method` - `did` method to sign on.
+`method`
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The DID method to sign on.
 
-`options[]`
-- `payload` - Encryption algorithm output, including the ciphertext, to be decrypted.
+`options`
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; `payload` - Encryption algorithm output, including the ciphertext, to be decrypted.
 
 #### Return Value
-`Promise<UInt8Array>` A `Promise`that fulfills with a `UInt8Array` containing the signed `did`.
+`Promise<UInt8Array>` 
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A `Promise`that fulfills with a `UInt8Array` containing the signed DID.
 
 #### Code Example
 ```js
@@ -159,15 +198,20 @@ const options = {
 const signedData = await web5.did.sign("ion", options)
 ```
 
-### getKeys(did, options[])
+### getKeys(did, options)
 #### Parameters
-`method` - `did` method to sign on.
+`method`
 
-`options[]`
-- `payload` - Encryption algorithm output, including the ciphertext, to be decrypted.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The DID method to sign on.
+
+`options`
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`payload` - Encryption algorithm output, including the ciphertext, to be decrypted.
 
 #### Return Value
-`Promise<UInt8Array>` A `Promise`that fulfills with a `UInt8Array` containing the signed `did`.
+`Promise<UInt8Array>` 
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A `Promise`that fulfills with a `UInt8Array` containing the signed DID.
 
 #### Code Example
 ```js
@@ -177,15 +221,20 @@ const options = {
 const signedData = await web5.did.sign("ion", options)
 ```
 
-### getMethodAPI(did, options[])
+### getMethodAPI(did, options)
 #### Parameters
-`method` - `did` method to sign on.
+`method` 
 
-`options[]`
-- `payload` - Encryption algorithm output, including the ciphertext, to be decrypted.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The DID method to sign on.
+
+`options`
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`payload` - Encryption algorithm output, including the ciphertext, to be decrypted.
 
 #### Return Value
-`Promise<UInt8Array>` A `Promise`that fulfills with a `UInt8Array` containing the signed `did`.
+`Promise<UInt8Array>`
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A `Promise`that fulfills with a `UInt8Array` containing the signed DID.
 
 #### Code Example
 ```js
