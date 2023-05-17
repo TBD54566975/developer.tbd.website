@@ -1,4 +1,8 @@
 /* Navbar and main */
+
+.docs-wrapper #__docusaurus {
+    --color-white: #c6c6c6;
+}
 .docs-wrapper #__docusaurus .navbar,
 .docs-wrapper #__docusaurus .main-wrapper {
     max-width: unset;
@@ -92,7 +96,7 @@
 .docs-wrapper #__docusaurus h1 ~ p,
 .docs-wrapper #__docusaurus h2:not(.theme-card h2, .community-card h2) ~ p,
 .docs-wrapper #__docusaurus h3:not(.theme-card h3, .community-card h3) ~ p,
-.docs-wrapper #__docusaurus p.copy:not(.docs-section p, .alert p) {
+.docs-wrapper #__docusaurus p.copy:not(.docs-section p, .alert p, .figure-container p) {
     color: var(--color-white);
     font-family: var(--tbd-font-mono);
     letter-spacing: 0;
@@ -139,18 +143,19 @@
     margin-block: 0;
 }
 
-.docs-wrapper #__docusaurus .docItemCol_node_modules-\@docusaurus-theme-classic-lib-theme-DocItem-Layout-styles-module {
-    max-width: unset !important;
-}
-
 .docs-wrapper #__docusaurus .theme-admonition.alert {
     border-radius: 0;
     margin-bottom: 2rem;
 }
 
 .docs-wrapper #__docusaurus .theme-admonition.alert code,
-.docs-wrapper #__docusaurus code:not(pre code) {
+.docs-wrapper #__docusaurus code:not(pre code, h4 code) {
     background: #626262;
+    color: #fff;
+}
+
+.docs-wrapper #__docusaurus h4 > code {
+    background: #383838
 }
 
 .docs-wrapper #__docusaurus .theme-admonition.alert--info {
@@ -206,8 +211,8 @@
     margin-top: 4rem;
 }
 
-.docs-wrapper #__docusaurus .docs-section h4 {
-    font-size: 1.5rem;
+.docs-wrapper #__docusaurus h4 {
+    font-size: 1.25rem;
     margin-block-start: 2rem;
 }
 
@@ -226,7 +231,7 @@
     line-height: 1.65;
 }
 
-.docs-wrapper #__docusaurus code {
+.docs-wrapper #__docusaurus code:not(h4 > code) {
     font-family: var(--tbd-font-mono);
     letter-spacing: 0;
     font-size: 0.9rem;
@@ -332,6 +337,17 @@
     background: #141414;
     margin: 0;
     border-radius: 0.25rem;
+}
+
+.docs-wrapper #__docusaurus .figure-container {
+    margin-block: 3rem;
+}
+
+.docs-wrapper #__docusaurus .figure-container p.copy {
+    margin-block: 1rem;
+    font-size: 0.875rem;
+    font-family: var(--tbd-font-mono);
+    letter-spacing: 0;
 }
 
 @media screen and (max-width: 996px) {
@@ -598,7 +614,6 @@ html.plugin-docs.plugin-id-default .table-of-contents a strong {
 }
 
 html.plugin-docs.plugin-id-default .table-of-contents li {
-  padding: 0.75rem 1.5rem;
   list-style: none !important;
 }
 
@@ -608,6 +623,7 @@ html.plugin-docs.plugin-id-default .table-of-contents__link {
   font-weight: 500;
   line-height: 1.375rem;
   text-decoration: none;
+  padding: 0.75rem 0.5rem;
 }
 
 html.plugin-docs.plugin-id-default .table-of-contents__left-border {
