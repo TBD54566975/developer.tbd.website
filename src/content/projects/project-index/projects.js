@@ -13,19 +13,19 @@ export const content = {
   projects: [
     {
       icon: '/img/article-icon.svg',
-      title: 'Web5',
-      description:
-        'Builds a decentralized web that returns control over your data and identity',
-      textButton: 'View Project',
-      url: '/projects/web5',
-    },
-    {
-      icon: '/img/article-icon.svg',
       title: 'TBDEX',
       description:
         'Connects the world of legacy money to the world of digital money',
       textButton: 'View Project',
       url: '/projects/tbdex',
+    },
+    {
+      icon: '/img/article-icon.svg',
+      title: 'Web5',
+      description:
+        'Builds an extra decentralized web that returns control over your data and identity',
+      textButton: 'View Project',
+      url: '/projects/web5',
     },
   ],
   Column1: Column1,
