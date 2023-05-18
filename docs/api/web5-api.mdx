@@ -73,7 +73,7 @@ Every modifying method (`create`, `write`, etc.) and the `entries` from queries 
   - **`text`**  - *`function`*: produces a textual representation of the data.
   - **`json`**  - *`function`*: if the value is JSON data, this method will return a parsed JSON object.
   - **`stream`**  - *`function`*: returns the raw stream of bytes for the data.
-- **`send`**  - *`function`*: generates a `delete` entry tombstone for the record. This is a convenience method that allows you to easily delete records with less verbosity.
+- **`send`**  - *`function`*: sends the record represented by the instance to a specified DID's DWeb Node endpoints.
 - **`update`**  - *`function`*: takes in a new request object matching the expected method signature of a `write` and overwrites the record. This is a convenience method that allows you to easily overwrite records with less verbosity.
 - **`delete`**  - *`function`*: generates a `delete` entry tombstone for the record. This is a convenience method that allows you to easily delete records with less verbosity.
 
