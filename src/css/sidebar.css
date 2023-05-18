@@ -1,6 +1,6 @@
 /**SIDEBAR **/
 
-.menu.thin-scrollbar:not(.docs-wrapper .thin-scrollbar) {
+.menu.thin-scrollbar {
   padding: 0;
   scrollbar-gutter: initial;
 }
@@ -33,12 +33,12 @@ aside .menu__list {
   transition: all 221ms ease-in-out 0s !important;
 }
 
-aside .menu__list .menu__list:not(.docs-wrapper .menu__list) {
+aside .menu__list .menu__list {
   display: flex !important;
   margin-top: 0.5rem;
 }
 
-aside .menu__link--sublist.menu__link--active:not(.docs-wrapper .menu__link) {
+aside .menu__link--sublist.menu__link--active {
   color: white !important;
   padding-top: 0rem;
   padding-bottom: 0rem;
@@ -50,7 +50,7 @@ aside .theme-doc-sidebar-item-link > .menu__link.menu__link--active {
   padding-bottom: 0rem;
 }
 
-.menu__caret:before:not(.docs-wrapper .menu__caret:before) {
+.menu__caret:before {
   content: url('/img/arrow-blue.svg');
   background: none !important;
   filter: none !important;
@@ -89,7 +89,7 @@ aside
   content: none;
 }
 
-aside .menu__list .menu__list .menu__link:not(.docs-wrapper .menu__link) {
+aside .menu__list .menu__list .menu__link {
   padding-left: 25px;
   height: fit-content;
 }
@@ -116,8 +116,8 @@ aside .menu__link:hover {
   font-weight: 800;
 }
 
-.theme-doc-sidebar-item-link-level-1 a:not(.docs-wrapper a),
-.theme-doc-sidebar-item-category-level-1 > div > a:not(.docs-wrapper a) {
+.theme-doc-sidebar-item-link-level-1 a,
+.theme-doc-sidebar-item-category-level-1 > div > a {
     font-weight: 800;
     font-size: 18px;
 }

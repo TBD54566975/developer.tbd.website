@@ -2,19 +2,19 @@
 title: Decentralized Identifiers
 ---
 
-**5 minute read**
+_5 minute read_
 
 Alice and Bob want to participate in the decentralized web. We're going to learn about how Alice and Bob do that using Web5 and the concepts that make up the Web5 ecosystem.
 
-## What are DIDs?
+### What are DIDs?
 
-### TL;DR
+#### DID TL;DR
 
 Alice and Bob decide to get DIDs so they can participate in the decentralized internet.
 
 They need DIDs so that others can easily find them on the decentralized web. This is just like how someone would find a website by typing a URL into a web browser, or a person by searching for their handle on a social media platform. Once they find Alice or Bob through their DIDs, they can do things like save them to their contact list, or message them through decentralized channels.
 
-### Let's learn more
+#### Let's learn more
 
 A [Decentralized Identifier (DID)](https://www.w3.org/TR/did-core/) is an address representing who you are on the decentralized web. It can point to a person, organization, thing, data model, or abstract entity. It's through your DID that others can send messages and data, and be granted access to information you wish to share.
 
@@ -22,21 +22,12 @@ A DID is a "type of identifier that enables verifiable, decentralized digital id
 
 DIDs are typically represented as a unique resource identifier (URI) and are designed to be used for identity verification, authentication, and authorization.
 
-<div role="figure" aria-labelledby="caption-1" class="figure-container">
-
 ![](/img/did-example.png)
-
-<span id="caption-1">
-
-Example of a Decentralized Identifier
-
-</span>
-
-</div>
+_Example of a Decentralized Identifier_
 
 The key difference between a traditional centralized identifier, such as a username or email address, and a decentralized identifier is that the latter is not tied to a specific service provider or organization. An example of a centralized identifier you might have would be your Twitter handle or Google email address, where Twitter or Google are the centralized authority.
 
-## Why we need it?
+#### Why we need it?
 
 We need an identifier that isn't tied to a centralized authority, that we can take anywhere with us, and that can be used to identify us across any platform.
 
@@ -46,17 +37,17 @@ Now that Alice and Bob know that they need a DID lets take a look at the differe
 
 There are lots of different implementations of DIDs (called [DID methods](https://www.w3.org/TR/did-core/#methods)) with different use cases. Web5 currently supports a few methods.
 
-#### ```did:key```
+#### did:key
 
 A [did:key](https://w3c-ccg.github.io/did-method-key/) is free and fast to spin up. Since it can be created, but not updated or deleted, it is useful for single, ephemeral interactions.
 
-#### ```did:web```
+#### did:web
 
 [did:web](https://w3c-ccg.github.io/did-method-web/) is somewhat centralized because you need a website to have one. You host your DID Document at a specified location in your website. Here's an example of [TBD's did:web](https://www.tbd.website/.well-known/did.json).
 
 It supports the ability to create, read, update, and deactivate a DID.
 
-#### ```did:ion```
+#### did:ion
 
 [did:ion](https://identity.foundation/sidetree/spec/) is an implementation of the [sidetree](https://identity.foundation/sidetree/spec/) protocol, which logs DID actions on any decentralized anchoring system, like a blockchain or other distributed ledger. In particular, did:ion anchors actions on the Bitcoin blockchain.
 
@@ -89,17 +80,8 @@ The only required field is the `id` field. This value is your DID. You might fin
 
 #### Controller - Subject relationship
 
-<div role="figure" aria-labelledby="caption-2" class="figure-container">
-
 ![](/img/did-controller-trust.png)
-
-<span id="caption-2">
-
-Example of a Controller Subject relationship diagram, from [W3C DID Core Spec](https://www.w3.org/TR/did-core/)
-
-</span>
-
-</div>
+_Example of a Controller Subject relationship diagram, from [W3C DID Core Spec](https://www.w3.org/TR/did-core/)_
 
 One of the fields you might find in a DID Document is the `verificationMethod`, which is an array of objects each representing a controlling entity of the DID. The `controller` field contains controlling entity's DID.
 

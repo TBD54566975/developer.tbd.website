@@ -191,18 +191,7 @@ const config = {
       },
       prism: {
         theme: lightCodeTheme,
-        darkTheme: {
-            ...darkCodeTheme,
-            styles: [
-                ...darkCodeTheme.styles,
-                {
-                    types: ["keyword", "variable"],
-                    style: {
-                      color: "rgb(189, 147, 249)"
-                    }
-                },
-            ]
-        },
+        darkTheme: darkCodeTheme,
       },
     }),
 };

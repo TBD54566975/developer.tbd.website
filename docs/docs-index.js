@@ -5,7 +5,7 @@ import Community from '../src/components/Community';
 
 function DocsIndex() {
   return (
-    <div>
+    <div className="p-8">
       <h1>
         Build Web5 apps that put you in control of your data and identity.
       </h1>
@@ -24,14 +24,12 @@ function DocsIndex() {
           imgClass="w-96"
           bodyText="An interactive guide to get started with Web5"
           themeColor="yellow"
-          primary
         />
       </div>
 
       <div className='padding-top--xl'/>
 
-      <h2 className='mb-4'>Learn More</h2>
-      <p className='mb-8'>Get to know the components of Web5 and try it out in minutes.</p>
+      <h2 className='-mb-6'>LEARN MORE</h2>
 
       <div className="grid grid-cols-1 desktop:grid-cols-2 gap-4">
         <HeroCard
@@ -48,16 +46,16 @@ function DocsIndex() {
           buttonText="Learn"
           imgSrc="/img/data-icon.svg"
           bodyText="Take a journey with Alice and Bob to learn all about DIDs"
-          themeColor="cyan"
+          themeColor="purple"
         />
-        <HeroCard
+          <HeroCard
           heroText="Decentralized Web Nodes"
           buttonUrl="/docs/web5/learn/decentralized-web-nodes"
           buttonText="Learn"
           imgSrc="/img/message-icon.png"
-          imgClass="w-36"
+          imgClass="w-40"
           bodyText="Learn how DWNs act as personal data stores"
-          themeColor="cyan"
+          themeColor="purple"
         />
         <HeroCard
           heroText="Build a ToDo App"
@@ -72,8 +70,7 @@ function DocsIndex() {
 
       <div className='padding-top--xl'/>
 
-      <h2 className='mb-4'>Explore</h2>
-      <p className='mb-8'>Dive into Web5 sample apps, videos, and more.</p>
+      <h2 className='mb-2'>EXPLORE</h2>
       <div className="grid grid-cols-1 tablet:grid-cols-2 desktop-lg:grid-cols-4 gap-4">
 
       <ExploreCard
