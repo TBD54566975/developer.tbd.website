@@ -1,6 +1,6 @@
 /* Navbar and main */
 
-.docs-wrapper #__docusaurus a:not(.table-of-contents__link) {
+.docs-wrapper #__docusaurus a:not(.table-of-contents__link, .navbar__link) {
     text-decoration: none;
     font-weight: 600;
 }
