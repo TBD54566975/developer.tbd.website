@@ -12,12 +12,13 @@ The following snippet allows you to delete from your Web5 instance’s DWN:
 
 ```jsx
 // Create the record
-const { record } = await web5.dwn.records.create({
+const myRecord = await web5.dwn.records.create(myDid.id, {
+    author: myDid.id,
     data: "Hello Web5",
     message: {
         dataFormat: 'text/plain',
     },
 });
 // Delete the record
-const deleteResult = await record.delete();
+const deleteResult = await myRecord.record.delete();
 ```
