@@ -7,7 +7,7 @@ The `manager` class is responsible for providing convenience methods for managin
 
 ### clear()
 
-Clears `web5`'s internal store of all `did` data.
+Clears `web5`'s internal store of all DID data.
 
 #### Returns
 
@@ -36,15 +36,17 @@ if (exists) {
 
 ### get(id)
 
-Gets the `did` assigned to a given `recordId`.
+Gets the DID assigned to a given `recordId`.
 
 #### Parameters
 
-`id` - The `recordId` of the document to fetch.
+`id`
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; The `recordId` of the document to fetch.
 
 #### Returns
 
-The `did` stored with the input `recordId`
+The DID stored with the input `recordId`
 
 #### Code Example
 ```js
@@ -54,11 +56,13 @@ let data = web5.did.manager.get(id);
 
 ### delete(id)
 
-Deletes the `did` assigned to a given `recordId`.
+Deletes the DID assigned to a given `recordId`.
 
 #### Parameters
 
-`id` - The `recordId` of the document to delete.
+`id`
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The `recordId` of the document to delete.
 
 #### Returns
 
@@ -70,14 +74,21 @@ web5.did.manager.delete(id);
 
 ### set(id, value)
 
-The package provides a `did` manager mechanism that handles interactions with a `did` that is being 'managed' by the local code (be it in a web page, agent app, or elsewhere). By adding a `did` to the manager, the library ensures that all interactions with that `did`, including things like signing and encryption, are handled automatically.
+The package provides a DID manager mechanism that handles interactions with a DID that is being 'managed' by the local code (be it in a web page, agent app, or elsewhere). By adding a DID to the manager, the library ensures that all interactions with that DID, including things like signing and encryption, are handled automatically.
 
 #### Parameters
 
-`id` - The `recordId` of the document to set.
-`value` - The value of the data to store.
+`id`
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The `recordId` of the document to set.
+
+`value`
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; The value of the data to store.
 
 #### Returns
+
+None
 
 #### Code Example
 

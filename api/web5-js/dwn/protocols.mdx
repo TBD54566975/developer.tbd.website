@@ -1,7 +1,7 @@
 # protocols
 
 ## Overview
-The `protocols` class is responsible for providing convenience methods for managing protocols between `dwn`s.
+The `protocols` class is responsible for providing convenience methods for managing protocols between DWNs.
 
 ## Methods
 
@@ -9,13 +9,17 @@ The `protocols` class is responsible for providing convenience methods for manag
 
 #### Parameters
 
-`target` - The target `did` to examine.
+`target`
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The target `did` to examine.
 
 `request`
-- `author`: The decentralized identifier of the `did`` signing the query. This may be the same as the target parameter if the target and the signer of the query are the same entity, which is common for an app querying the DWeb Node of its own user.
-- `message`: The properties of the DWeb Node Message Descriptor that will be used to construct a valid `dwn` message.
-    - `definition`: an object that defines the ruleset that will be applied to the records and activities under the protocol.
-    - `protocol`: a URI that represents the protocol being queried for.
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; `author`: The decentralized identifier of the `did`` signing the query. This may be the same as the target parameter if the target and the signer of the query are the same entity, which is common for an app querying the DWeb Node of its own user.
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`message`: The properties of the DWeb Node Message Descriptor that will be used to construct a valid `dwn` message.
+- `definition`: an object that defines the ruleset that will be applied to the records and activities under the protocol.
+- `protocol`: a URI that represents the protocol being queried for.
 
 #### Return Value
 
@@ -63,9 +67,13 @@ Method for querying the protocols that a `target` `did` has added configurations
 
 #### Parameters
 
-`target` - The target `did` to examine.
+`target`
 
-`request` - The query request must contain the following:
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The target `did` to examine.
+
+`request`
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The query request must contain the following:
 
 - `author`: The decentralized identifier of the `did`` signing the query. This may be the same as the target parameter if the target and the signer of the query are the same entity, which is common for an app querying the DWeb Node of its own user.
 - `message`: The properties of the DWeb Node Message Descriptor that will be used to construct a valid DWeb Node message.
