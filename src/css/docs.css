@@ -1,6 +1,6 @@
 /* Navbar and main */
 
-.docs-wrapper #__docusaurus a:not(.table-of-contents__link) {
+.docs-wrapper #__docusaurus a:not(.table-of-contents__link, .navbar__link) {
     text-decoration: none;
     font-weight: 600;
 }
@@ -25,11 +25,28 @@
 .docs-wrapper #__docusaurus aside .menu__list .menu__list-item .menu__link  {
     font-weight: 500;
     padding-block: 0.75rem;
-    color: #969696;
+    color: var(--color-yellow);
     text-decoration: none;
     font-family: var(--tbd-font-mono);
     letter-spacing: 0;
 }
+
+.docs-wrapper #__docusaurus aside .theme-doc-sidebar-item-link > .menu__link.menu__link--active,
+.docs-wrapper #__docusaurus aside .menu__list .menu__list-item-collapsible--active .menu__link--sublist.menu__link--active,
+.docs-wrapper #__docusaurus aside .menu__list-item-collapsible--active {
+    color: var(--color-black) !important;
+    background-color: var(--color-yellow);
+}
+
+.docs-wrapper #__docusaurus aside .menu__list .menu__list-item-collapsible--active .menu__link--sublist.menu__link--active:hover,
+.docs-wrapper #__docusaurus aside .theme-doc-sidebar-item-category .menu__list-item-collapsible:hover .menu__link--sublist.menu__link--active {
+    color: var(--color-blue) !important;
+}
+
+.docs-wrapper #__docusaurus aside .theme-doc-sidebar-item-category .menu__list-item-collapsible:hover {
+    background-color: var(--ifm-menu-color-background-hover);
+}
+
 
 .docs-wrapper #__docusaurus aside .menu__list .menu__caret:before {
     content: url('/img/arrow-blue.svg');
@@ -38,11 +55,12 @@
 
 .docs-wrapper #__docusaurus aside .menu__list .menu__caret:before,
 .docs-wrapper #__docusaurus aside .menu__list .menu__link--sublist-caret:after {
-    filter: invert(100%) sepia(100%) saturate(0%) brightness(300%);
+    filter: brightness(0) var(--color-primary-yellow-filter);
 }
-
+.docs-wrapper #__docusaurus aside .menu__list .menu__list-item-collapsible--active .menu__caret:before {
+    filter: brightness(0);
+}
 .docs-wrapper #__docusaurus aside .menu__list .menu__list-item-collapsible:hover .menu__caret:before,
-.docs-wrapper #__docusaurus aside .menu__list .menu__list-item-collapsible--active .menu__caret:before,
 .docs-wrapper #__docusaurus aside .menu__list .menu__link--sublist-caret:hover:after {
     filter: none;
 }
@@ -56,10 +74,6 @@
 }
 
 /* Submenu */
-
-.docs-wrapper #__docusaurus aside .menu__list .menu__list-item-collapsible--active .menu__link--sublist.menu__link--active {
-    color: var(--color-blue);
-}
 
 .docs-wrapper #__docusaurus aside .menu__list .menu__list-item-collapsible--active ~ .menu__list {
     margin: 0;
