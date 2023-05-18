@@ -125,11 +125,11 @@ const config = {
             label: 'Blog',
             position: 'left',
           },
-          // {
-          //   to: '/events',
-          //   label: 'Events',
-          //   position: 'left',
-          // },
+          {
+            to: '/events',
+            label: 'Events',
+            position: 'left',
+          },
           {
             type: 'doc',
             docId: 'index',
