@@ -1,20 +1,30 @@
----
-title: Create a Decentralized Identifier
----
+# Use an external DID in Web5
 
-Before creating your DID, be sure to check out the [Quickstart guide](../../quickstart) to ensure you’ve properly imported the Web5 SDK. We also have guides to [learn more about DIDs](../../Learn/decentralized-identifiers#DID-Method).
+Although `Web5` offers everything you need to create your own `did`, you may want to use an externally-created `did` in your application instead. For example, you could use a module like `ssi-service` to generate your own `did` outside of your `Web5` application and then bring it over to use in your app.
 
-## Create a DID
+Using `Web5`, you’d normally create a `did` and then save it using the following code:
 
 ```jsx
 import {Web5} from '@tbd54566975/web5'
+
 const web5 = new Web5();
 const myDid = await web5.did.create('ion');
+
+// Save your newly created DID in your DWN
+await web5.did.manager.set(myDid.id, {
+    connected: true,
+    endpoint: 'app://dwn', //this points to the user's local DWN
+    keys: {
+        ['#dwn']: {
+          keyPair: myDid.keys.find(key => key.id === 'dwn').keyPair,
+        },
+    },
+});
 ```
 
-When calling `create`, be sure to pass in a Web5-supported DID method(). `create` returns a JSON representing your newly created DID, which we’ve stored in `myDid`. Here’s an example of what the `myDid` object will look like:
+In order to bring an external DID into your `Web5` project, simply replace the `myDid` object you created using `Web5` with the `did` data of the `did` you’d like to import. The structure of `myDid` is as follows:
 
-```json
+```jsx
 {
    "id":"did:ion:EiD5iTx5H9P_LKxfKkAx4...",
    "internalId":"did:ion:EiD5iTx5H9P_LKxfKkAx4J5oRIAsko9RSsbOoL2sURMsSg",
@@ -45,16 +55,4 @@ When calling `create`, be sure to pass in a Web5-supported DID method(). `create
    ],
    ...
 }
-```
-
-## Store DID Keys in Decentralized Web Node
-
-When you instantiate `Web5`, the SDK internally creates a Decentralized Web Node (DWN) to act as a personal data store to store your DID keys. In order to store your DID, save and encrypt your keys with the Web5 SDK.
-
-```jsx
-web5.did.manager.set(myDid.id, {
-   connected: true,
-   endpoint: 'app://dwn', 
-   keys: ["#dwn"]: { keyPair: myDid.keys[0].keypair }
-});
 ```

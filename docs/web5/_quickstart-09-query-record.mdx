@@ -1,0 +1,57 @@
+## 9. Query DWN Records
+
+Querying a DWN allows you to search records depending on the filter params you pass to it. In the code snippet below, we're querying a DWN for messages that have a MIME type of `text/plain`. 
+
+:::note
+You don't have to query based on MIME type, there are many different attributes you can use to query, such as protocol, schema, contextId, etc.
+:::
+
+Add the following to `index.js`:
+```js
+const queryResult = await web5.dwn.records.query(did.id, {
+    author: did.id,
+    message: {
+        filter: {
+          dataFormat: 'text/plain',
+        },
+    },
+});
+```
+
+<details>
+<summary>Test your code</summary>
+<p>
+To see the DWN records that have the <code>text/plain</code> data format, add the following line to <code>index.js</code>:
+
+```js
+console.log('query result', queryResult);
+```
+
+  Then from the terminal, run:
+  ```bash
+  node src/index.js
+  ```
+
+Your output will resemble:
+
+```js
+query result {
+  status: { code: 200, detail: 'OK' },
+  entries: [ _Record {} ],
+  data: undefined,
+  message: {
+    recordId: null,
+    descriptor: {
+      interface: 'Records',
+      method: 'Query',
+      dateCreated: '2023-04-25T18:52:46.648765Z',
+      filter: [Object]
+    }
+  }
+}
+```
+
+</p>
+</details>
+
+Click "Run!" to query the sandbox DWN for records with an `image/png` data format:
