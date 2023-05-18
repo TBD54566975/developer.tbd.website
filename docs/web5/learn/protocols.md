@@ -2,7 +2,7 @@
 title: Protocols
 ---
 
-_5 minute read_
+**5 minute read**
 
 In this document, you’ll:
 
