@@ -50,11 +50,8 @@ aside .theme-doc-sidebar-item-link > .menu__link.menu__link--active {
   padding-bottom: 0rem;
 }
 
-.menu__caret:before {
-  content: url('/img/arrow-blue.svg');
-}
-
 .menu__caret:before:not(.docs-wrapper .menu__caret:before) {
+  content: url('/img/arrow-blue.svg');
   background: none !important;
   filter: none !important;
 }
