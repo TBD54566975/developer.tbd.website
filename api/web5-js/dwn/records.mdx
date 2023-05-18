@@ -11,7 +11,7 @@ Every modifying method of the `records` class returns and instance of a `Record`
 
 #### Properties
 
-`recordId`
+`id`
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; The unique identifier based on the record entry's composition. Note: all entries across all records are deterministically unique.
 
@@ -26,9 +26,22 @@ Every modifying method of the `records` class returns and instance of a `Record`
 - `json()` - if the value is JSON data, this method will return a parsed JSON object.
 - `stream()` - returns the raw stream of bytes for the data.
 
+`send(did)`
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Sends a given record to the specified `did`.
+
+`delete(id)`
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Generates a `delete` etnry tombstone for the record. This is a convenience method that allows you to easily delete records.
+
+`update()`
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Takes in a new request object matching the expected method signature of a `write` and overwrites the record.
+
+
 ## Methods
 
-### query(target, request)
+### query(request)
 
 Method for querying the DWN of a provided `target`.
 
@@ -72,6 +85,7 @@ Method for writing a record to the DWN of a provided `target`.
 `request` - An object containing the following:
 - `author` - The DID of the author signing the query. This may be the same as the `target` parameter if the `target` and the signer of the query are the same entity, which is common for an app querying the DWN of its own user.
 - `message` - An object describing the properties of the DWN descriptor used to construct a valid DWN message.
+- `store` - A `boolean` specifying whether the `create` function should record the data in the user's DWN.
 - `data` - the data object of the bytes, stream, blob, or file to be sent.
 
 #### Returns
