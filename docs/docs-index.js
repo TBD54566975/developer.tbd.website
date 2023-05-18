@@ -48,7 +48,7 @@ function DocsIndex() {
           buttonText="Learn"
           imgSrc="/img/data-icon.svg"
           bodyText="Take a journey with Alice and Bob to learn all about DIDs"
-          themeColor="cyan"
+          themeColor="purple"
         />
         <HeroCard
           heroText="Decentralized Web Nodes"
@@ -57,7 +57,7 @@ function DocsIndex() {
           imgSrc="/img/message-icon.png"
           imgClass="w-36"
           bodyText="Learn how DWNs act as personal data stores"
-          themeColor="cyan"
+          themeColor="purple"
         />
         <HeroCard
           heroText="Build a ToDo App"
@@ -66,7 +66,7 @@ function DocsIndex() {
           imgSrc="/img/docs-todo-icon.png"
           imgClass="w-24"
           bodyText="Learn how to build a simple, single-user decentralized app"
-          themeColor="cyan"
+          themeColor="yellow"
         />
       </div>
 
