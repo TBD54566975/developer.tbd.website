@@ -7,11 +7,13 @@ import { useLocation } from '@docusaurus/router';
 export default function LayoutWrapper(props) {
     const { hash } = useLocation();
     useEffect(() => {
-        function scrollToAnchor() {
-            document.getElementById(hash.substring(1))?.scrollIntoView();
-            clearTimeout(timeout);
+        if (hash) {
+            function scrollToAnchor() {
+                document.getElementById(hash.substring(1))?.scrollIntoView();
+                clearTimeout(timeout);
+            }
+            const timeout = setTimeout(scrollToAnchor, 0);
         }
-        const timeout = setTimeout(scrollToAnchor, 0);
     }, []);
     return (
     <GlitchWrapper>
