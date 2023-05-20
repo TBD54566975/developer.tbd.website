@@ -4,11 +4,11 @@ import Button from './Button';
 
 function CommunityCard({ icon, title, CTA, buttonUrl, buttonText }) {
   return (
-    <div className="border border-[#282828] rounded-lg p-8 w-full">
+    <div className="border border-[#282828] rounded-sm p-8 w-full">
       <div className="flex flex-row justify-around">
         <img className="w-9 h-9 mr-6" src={icon} />
         <div>
-          <h4 className="text-[#22f1ff]">{title}</h4>
+          <h3 className="text-[#22f1ff]">{title}</h3>
           <p>{CTA}</p>
           <div className='padding-top--lg' />
           <Button label={buttonText} url={buttonUrl} colorDarkMode="cyan" isExternalLink="true" className="community-button "/>
@@ -20,9 +20,11 @@ function CommunityCard({ icon, title, CTA, buttonUrl, buttonText }) {
 
 function Community() {
   return (
-    <div class="py-12">
-      <h2 class="mb-2">JOIN THE COMMUNITY</h2>
-      <div className="grid grid-cols-1 tablet:grid-cols-3 desktop:grid-cols-3 gap-4">
+    <div>
+      <h2 class="mb-4">Join the Community</h2>
+      <p className='mb-8'>Connect with us everywhere.</p>
+
+      <div className="community-card grid grid-cols-1 tablet:grid-cols-3 desktop:grid-cols-3 gap-4">
     
         <CommunityCard
           title="GitHub"

@@ -1,28 +1,16 @@
 import { Web5 } from '@tbd54566975/web5';
-const web5 = new Web5();
 
-const did = await web5.did.create('ion');
+const { web5, did: aliceDid } = await Web5.connect();
 
-await web5.did.manager.set(did.id, {
-    connected: true,
-    endpoint: 'app://dwn', //this points to the user's local DWN
-    keys: {
-        ['#dwn']: {
-          keyPair: did.keys.find(key => key.id === 'dwn').keyPair,
-        },
-    },
-});
-
-const {record} = await web5.dwn.records.create(did.id, {
-    author: did.id,
+const { record } = await web5.dwn.records.create({
     data: "Hello Web5",
     message: {
-        dataFormat: 'text/plain',
+      dataFormat: 'text/plain',
     },
 });
 
 const readResult = await record.data.text();
 
-const updateResult = await record.update({data: "Hello, I'm updated!"});
+const updateResult = await record.update({ data: "Hello, I'm updated!" });
 
 const deleteResult = await record.delete();

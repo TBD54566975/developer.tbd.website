@@ -1,7 +1,8 @@
-## 5. Read DWN Records
+<section class="docs-section">
+
+## 3. Read DWN Records
 
 If the user has given your app read permissions to their DWN, you can read their data by accessing it through the `record` property.
-
 
 To return the text data stored in the `record`, add the following to `index.js`:
 ```js
@@ -14,16 +15,18 @@ const readResult = await record.data.text();
 To see the record that was read from the DWN, add the following to <code>index.js</code>:
 
 ```js
-console.log('Read result: ', readResult);
+console.log('readResult', readResult)
 ```
 
 The output will resemble:
 
-```js
-Read result: Hello Web5
+```
+Hello Web5
 ```
 
 </p>
 </details>
 
-Click "Run!" to view the record stored in the sandbox DWN:
+#### Try it!
+
+</section>

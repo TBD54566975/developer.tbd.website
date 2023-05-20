@@ -5,7 +5,6 @@ hide_table_of_contents: true
 import metacontent from '@site/src/content/global-meta';
 import { content } from '@site/src/content/open-source/open-source';
 import Heading from '@site/src/content/open-source/heading.mdx';
-import Governance from '@site/src/content/open-source/governance.mdx';
 
 <head>
   <title>{content.meta.title}</title>
@@ -26,12 +25,10 @@ import Governance from '@site/src/content/open-source/governance.mdx';
 
 <Heading />
 
+<ButtonGroup buttons={content.buttons} />
+
 <Divider type="slash" />
 
 <PillarList title={content.title} pillars={content.pillars} />
-
-<Divider type="slash" />
-
-<Governance />
 
 </div>

@@ -165,7 +165,7 @@
   }
   .navbar__toggle.clean-btn::before {
     width: 1.125rem;
-    height: 1.875rem;
+    height: 1.125rem;
     content: url('/static/img/menu-mobile.svg');
   }
   .navbar__item {
@@ -282,7 +282,7 @@
   top: -6px;
 }
 
-aside .menu__link {
+aside .menu__link:not(.docs-wrapper .menu__link) {
   color: gray !important;
   padding-top: 0rem;
   padding-bottom: 0rem;

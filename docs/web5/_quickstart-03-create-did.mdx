@@ -1,47 +1,36 @@
-# Start Building
+<section class="docs-section">
 
-## 1. Create Web5 App Instance
+## 1. Instantiate Web5
 
-The `Web5` class is an isolated API object for doing all things Web5.
+The `Web5` class is an isolated API object for doing all things Web5 and the connect() function creates an instance of Web5.
+
+In Web5 apps, a user’s unique identifier - like an email address - is called a [Decentralized Identifier (DID)](/docs/web5/learn/decentralized-identifiers).
+We are building a decentralized app, so your users are using identifiers that aren't tied to a centralized authority.
 
 In `index.js` below the import statement, create a new instance of `Web5`:
-
 ```js
-const web5 = new Web5();
+const { web5, did: aliceDid } = await Web5.connect();
 ```
+
+This Web5 instance is what you'll use to access the other objects of Web5 such as `did` and `dwn`. Within the connect function we’re using `ion` as the DID method. Learn more about ION and other [DID methods](/docs/web5/learn/decentralized-identifiers#methods).
 
 :::info
 Web5 is split into three main top-level objects:
 - web5.did
 - web5.dwn
 - web5.vc
-
-We're going to focus on `web5.did` and `web5.dwn` in this Quickstart.
 :::
-
-## 2. Create DID
-
-In Web5 apps, a user’s unique identifier - like an email address - is called a [Decentralized Identifier (DID)](/docs/web5/learn/decentralized-identifiers). 
-We are building a decentralized app, so your users are using identifiers that aren't tied to a centralized authority.
-
-Assuming a brand new user who does not yet have a DID, let’s create their DID using the Web5 API. Below the Web5 instantiation, add:
-```js
-const did = await web5.did.create('ion');
-```
-
-We’re using `ion` as the DID method. Learn more about ION and other [DID methods](/docs/web5/learn/decentralized-identifiers#methods).
 
 <details>
   <summary>Test your code</summary>
   <p>
-  Wanna see the created DID?
 
-  In <code>index.js</code>, add the following line and save your file:
+  Wanna see the DID you just created? In <code>index.js</code>, add the following line and save your file:
   ```js
-  console.log(did.id);
+  console.log(aliceDid);
   ```
 
-  Then from the terminal, run:
+  Then from your CLI, run:
   ```bash
   node src/index.js
   ```
@@ -50,4 +39,6 @@ We’re using `ion` as the DID method. Learn more about ION and other [DID metho
   </p>
 </details>
 
-Click "Run!" below to create your user's DID right here in your sandbox:
+#### Try it!
+
+</section>

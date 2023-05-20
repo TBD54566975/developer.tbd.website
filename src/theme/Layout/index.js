@@ -4,27 +4,22 @@ import GlitchWrapper from '@site/src/components/GlitchWrapper';
 import MDXContent from '@theme/MDXContent';
 import { useLocation } from '@docusaurus/router';
 
-export function ScrollToTop() {
-  const { pathname } = useLocation();
-
-  useEffect(() => {
-    document.body.scrollTo(0, 0);
-  }, [pathname]);
-
-  return null;
-}
-
 export default function LayoutWrapper(props) {
-  const { pathname } = useLocation();
-
-  return (
+    const { hash } = useLocation();
+    useEffect(() => {
+        if (hash) {
+            function scrollToAnchor() {
+                document.getElementById(hash.substring(1))?.scrollIntoView();
+                clearTimeout(timeout);
+            }
+            const timeout = setTimeout(scrollToAnchor, 0);
+        }
+    }, []);
+    return (
     <GlitchWrapper>
-      <MDXContent>
-        <Layout {...props}>
-          <ScrollToTop />
-          {props.children}
-        </Layout>
-      </MDXContent>
+        <MDXContent>
+        <Layout {...props}>{props.children}</Layout>
+        </MDXContent>
     </GlitchWrapper>
-  );
+    );
 }

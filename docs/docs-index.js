@@ -5,7 +5,7 @@ import Community from '../src/components/Community';
 
 function DocsIndex() {
   return (
-    <div className="p-8">
+    <div>
       <h1>
         Build Web5 apps that put you in control of your data and identity.
       </h1>
@@ -20,16 +20,18 @@ function DocsIndex() {
           heroText="Web5 in 5️⃣ Minutes"
           buttonUrl="/docs/web5/quickstart"
           buttonText="Quickstart 🚀"
-          imgSrc="/img/docs-web5-code.png"
-          imgClass="w-96"
+          imgSrc="/img/docs-web5-code-connect.png"
+          imgClass="w-[50%]"
           bodyText="An interactive guide to get started with Web5"
           themeColor="yellow"
+          primary
         />
       </div>
 
       <div className='padding-top--xl'/>
 
-      <h2 className='-mb-6'>LEARN MORE</h2>
+      <h2 className='mb-4'>Learn More</h2>
+      <p className='mb-8'>Get to know the components of Web5 and try it out in minutes.</p>
 
       <div className="grid grid-cols-1 desktop:grid-cols-2 gap-4">
         <HeroCard
@@ -48,12 +50,12 @@ function DocsIndex() {
           bodyText="Take a journey with Alice and Bob to learn all about DIDs"
           themeColor="purple"
         />
-          <HeroCard
+        <HeroCard
           heroText="Decentralized Web Nodes"
           buttonUrl="/docs/web5/learn/decentralized-web-nodes"
           buttonText="Learn"
           imgSrc="/img/message-icon.png"
-          imgClass="w-40"
+          imgClass="w-36"
           bodyText="Learn how DWNs act as personal data stores"
           themeColor="purple"
         />
@@ -64,13 +66,14 @@ function DocsIndex() {
           imgSrc="/img/docs-todo-icon.png"
           imgClass="w-24"
           bodyText="Learn how to build a simple, single-user decentralized app"
-          themeColor="cyan"
+          themeColor="yellow"
         />
       </div>
 
       <div className='padding-top--xl'/>
 
-      <h2 className='mb-2'>EXPLORE</h2>
+      <h2 className='mb-4'>Explore</h2>
+      <p className='mb-8'>Dive into Web5 sample apps, videos, and more.</p>
       <div className="grid grid-cols-1 tablet:grid-cols-2 desktop-lg:grid-cols-4 gap-4">
 
       <ExploreCard

@@ -1,4 +1,6 @@
-## 6. Update DWN Records
+<section class="docs-section">
+
+## 4. Update DWN Records
 
 To update the record, call `update` on the `record` object itself.
 
@@ -13,16 +15,19 @@ const updateResult = await record.update({data: "Hello, I'm updated!"});
 To see the record that was updated in the DWN, add the following to <code>index.js</code>:
 
 ```js
-console.log('Update result: ', await record.data.text());
+​console.log('updateResult', await record.data.text())
 ```
 
 The output will resemble:
-
 ```
-Update result: Hello, I'm updated!
+updateResult Hello, I'm updated!
 ```
 
 </p>
 </details>
 
 Enter "Hello, I'm updated" in the input field and click "Run!" to update the record in the sandbox DWN:
+
+#### Try it!
+
+</section>
