@@ -66,7 +66,7 @@ function DocsIndex() {
           imgSrc="/img/docs-todo-icon.png"
           imgClass="w-24"
           bodyText="Learn how to build a simple, single-user decentralized app"
-          themeColor="yellow"
+          themeColor="cyan"
         />
       </div>
 
