@@ -21,7 +21,7 @@ function DocsIndex() {
           buttonUrl="/docs/web5/quickstart"
           buttonText="Quickstart 🚀"
           imgSrc="/img/docs-web5-code-connect.png"
-          imgClass="w-[50%]"
+          imgClass="w-[50%] bottom-[1vh]"
           bodyText="An interactive guide to get started with Web5"
           themeColor="yellow"
           primary
