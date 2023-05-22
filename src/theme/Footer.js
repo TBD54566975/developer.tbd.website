@@ -15,7 +15,7 @@ export function Footer() {
       },
       {
         text: 'Code of Conduct',
-        href: '/code-of-conduct',
+        href: '/open-source/code-of-conduct',
       },
     ],
     socialText: 'Connect with us',

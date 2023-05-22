@@ -41,7 +41,15 @@ export const content = {
       type: 'button',
       data: {
         label: 'View Our Code of Conduct',
-        url: '/code-of-conduct',
+        url: '/open-source/code-of-conduct',
+        isExternalLink: false
+      },
+    },
+    {
+      type: 'button',
+      data: {
+        label: 'Join our Incubation Program',
+        url: '/open-source/incubation',
         isExternalLink: false
       },
     },
