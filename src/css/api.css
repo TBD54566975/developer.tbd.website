@@ -338,3 +338,42 @@ html.plugin-docs.plugin-id-api article .theme-card p {
   background-color: #fff !important;
   color: #000 !important;
 }
+
+.docs-wrapper
+  #__docusaurus
+  aside
+  .theme-doc-sidebar-item-link
+  > .menu__link.menu__link--active,
+.docs-wrapper
+  #__docusaurus
+  aside
+  .menu__list
+  .menu__list-item-collapsible--active
+  .menu__link--sublist.menu__link--active,
+.docs-wrapper
+  #__docusaurus
+  aside
+  .menu__list-item-collapsible--active
+  .menu__link--active {
+  color: var(--color-black) !important;
+}
+
+.docs-wrapper
+  #__docusaurus
+  aside
+  .theme-doc-sidebar-item-link
+  > .menu__link.menu__link--active:hover,
+.docs-wrapper
+  #__docusaurus
+  aside
+  .menu__list
+  .menu__list-item-collapsible:hover
+  .menu__link--sublist.menu__link,
+.docs-wrapper
+  #__docusaurus
+  aside
+  .menu__list-item-collapsible
+  .menu__link--active:hover {
+  color: var(--color-blue) !important;
+  background-color: var(--ifm-menu-color-background-hover);
+}
