@@ -28,6 +28,15 @@ const config = {
     [
       '@docusaurus/plugin-content-docs',
       {
+        id: 'api',
+        path: 'api',
+        routeBasePath: 'api',
+        // sidebarPath: require.resolve('./api-sidebars.js'),
+      },
+    ],
+    [
+      '@docusaurus/plugin-content-docs',
+      {
         id: 'events',
         path: 'events',
         breadcrumbs: false,

@@ -1,0 +1,96 @@
+# protocols
+
+## Overview
+The `protocols` class is responsible for providing convenience methods for managing protocols between DWNs.
+
+## Methods
+
+### configure(request)
+
+Method to configure a protocol for a specified DWN.
+
+#### Parameters
+
+`request`
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; `from`: The DID of the DWN to configure.
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; `from`: The decentralized identifier of the `did`` signing the query. This may be the same as the target parameter if the target and the signer of the query are the same entity, which is common for an app querying the DWN of its own user.
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`message`: The properties of the DWN Message Descriptor that will be used to construct a valid `dwn` message.
+- `definition`: an object that defines the ruleset that will be applied to the records and activities under the protocol.
+- `protocol`: a URI that represents the protocol being queried for.
+
+#### Return Value
+
+The response from the query.
+
+#### Code Example
+```js
+
+const response = await web5.dwn.protocols.configure({
+  from: 'did:example:alice',
+  message: {
+    protocol: "https://decentralized-music.org/protocol",
+    definition: {
+      "labels": {
+        "playlist": {
+          "schema": "https://decentralized-music.org/protocol/playlist",
+          "dataFormat": [ "application/json" ]
+        },
+        "track": {
+          "schema": "https://decentralized-music.org/protocol/track",
+          "dataFormat": [ "application/json" ]
+        },
+        "audio": {
+          "schema": "https://decentralized-music.org/protocol/audio",
+          "dataFormat": [ "audio/aac", "audio/mp4" ]
+        }
+      },
+      "records": {
+        "playlist": {},
+        "track": {
+          "records": {
+            "audio": {}
+          }
+        }
+      }
+    }
+  }
+});
+
+```
+
+### query(request)
+
+Method for querying the protocols for DIDs that have added configurations for in their DWN.
+
+#### Parameters
+
+`request`
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; `from`: The DID of the DWN to query.
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; `author`: The decentralized identifier of the `did`` signing the query. This may be the same as the target parameter if the target and the signer of the query are the same entity, which is common for an app querying the DWN of its own user.
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; `message`: The properties of the DWN Message Descriptor that will be used to construct a valid DWN message.
+- `filter`: an object that defines a set of properties to filter results.
+- `protocol`: a URI that represents the protocol being queried for.
+
+#### Return Value
+
+The response of the request as an object.
+
+#### Code Example
+
+```js
+const web5 = new Web5();
+const response = await web5.dwn.protocols.query({
+  from: 'did:example:alice',
+  message: {
+    filter: {
+      protocol: "https://decentralized-music.org/protocol",
+    }
+  }
+});
+```

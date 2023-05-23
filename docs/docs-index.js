@@ -21,7 +21,7 @@ function DocsIndex() {
           buttonUrl="/docs/web5/quickstart"
           buttonText="Quickstart 🚀"
           imgSrc="/img/docs-web5-code-connect.png"
-          imgClass="w-[50%]"
+          imgClass="w-[50%] bottom-[1vh]"
           bodyText="An interactive guide to get started with Web5"
           themeColor="yellow"
           primary
@@ -66,7 +66,7 @@ function DocsIndex() {
           imgSrc="/img/docs-todo-icon.png"
           imgClass="w-24"
           bodyText="Learn how to build a simple, single-user decentralized app"
-          themeColor="yellow"
+          themeColor="cyan"
         />
       </div>
 

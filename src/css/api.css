@@ -1,0 +1,379 @@
+.pagination-nav {
+  display: none;
+}
+
+html.plugin-docs.plugin-id-api body {
+  background-color: #1c1c1c;
+}
+
+html.plugin-docs.plugin-id-api #__docusaurus {
+  padding: 0 !important;
+}
+
+html.plugin-docs.plugin-id-api .main-wrapper {
+  margin-top: 2rem;
+}
+
+html.plugin-docs.plugin-id-api .navbar {
+  border-bottom: 2px solid var(--color-yellow);
+  height: fit-content;
+  padding-bottom: 0px;
+  padding-left: 0px;
+  padding-right: 0px;
+  padding-top: 0px;
+  background-color: black;
+}
+
+html.plugin-docs.plugin-id-api .navbar__items,
+html.plugin-docs.plugin-id-api .navbar__items--right {
+  align-items: baseline;
+}
+
+html.plugin-docs.plugin-id-api .navbar__item {
+  padding-top: 24px;
+}
+
+html.plugin-docs.plugin-id-api .navbar__logo {
+  margin-bottom: 1.5rem;
+  margin-left: 1.5rem;
+  margin-top: 1.5rem;
+  height: 1.5rem;
+}
+
+html.plugin-docs.plugin-id-api .navbar__link {
+  padding-bottom: 2rem;
+}
+
+html.plugin-docs.plugin-id-api .navbar__link:last-child {
+  padding-right: 0.5rem;
+}
+
+html.plugin-docs.plugin-id-api .navbar__link:active {
+  padding-bottom: 2rem;
+}
+
+html.plugin-docs.plugin-id-api
+  .navbar-sidebar
+  .navbar-sidebar__item:last-child
+  .clean-btn.navbar-sidebar__back::before {
+  display: inline-block;
+  content: url('/static/img/arrow-yellow.svg');
+  position: relative;
+}
+
+html.plugin-docs.plugin-id-api aside .menu__link {
+  color: var(--ifm-menu-color);
+  padding-top: 0rem;
+  padding-bottom: 0rem;
+}
+
+html.plugin-docs.plugin-id-api aside aside .menu__link {
+  padding-left: 0;
+}
+
+html.plugin-docs.plugin-id-api aside aside .menu__link li a {
+  padding-left: 0;
+}
+
+html.plugin-docs.plugin-id-api aside aside .menu__link--active {
+  padding-left: 0;
+}
+
+html.plugin-docs.plugin-id-api .thin-scrollbar {
+  color: white;
+  letter-spacing: 1px;
+  margin-top: 24px;
+}
+
+html.plugin-docs.plugin-id-api
+  aside
+  .sidebar_node_modules-\@docusaurus-theme-classic-lib-next-theme-DocSidebar-Desktop-styles-module {
+  top: auto;
+}
+
+html.plugin-docs.plugin-id-api .sidebar_RiAD {
+  top: 0 !important;
+}
+
+@media (min-width: 997px) {
+  html.plugin-docs.plugin-id-api
+    .menu_node_modules-\@docusaurus-theme-classic-lib-next-theme-DocSidebar-Desktop-Content-styles-module {
+    flex-grow: 1;
+    padding-left: 0rem !important;
+    font-size: large;
+  }
+  html.plugin-docs.plugin-id-api
+    aside.docSidebarContainer_src-layout-DocPage-styles-module,
+  html.plugin-docs.plugin-id-api aside.theme-doc-sidebar-container {
+    margin-right: 1.5rem;
+  }
+}
+/* Article styling */
+
+article .markdown p {
+  font-weight: var(--typography-body-1-d-font-weight);
+  font-size: var(--typography-body-1-d-font-size);
+  line-height: var(--typography-body-1-d-line-height);
+  letter-spacing: 1px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+article .markdown li {
+  font-weight: var(--typography-body-1-d-font-weight);
+  font-size: var(--typography-body-1-d-font-size);
+  line-height: var(--typography-body-1-d-line-height);
+  letter-spacing: 1px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+article .markdown blockquote {
+  color: var(--color-yellow);
+  font-style: normal;
+  font-weight: 300;
+}
+
+article .markdown blockquote b {
+  color: white;
+  font-style: normal;
+  font-weight: 800;
+}
+
+article .theme-code-block pre {
+  background: #232323;
+}
+
+article .theme-code-block pre code .token-line span {
+  color: white;
+}
+
+article .markdown p {
+  font-weight: var(--typography-body-1-d-font-weight);
+  font-size: var(--typography-body-1-d-font-size);
+  line-height: var(--typography-body-1-d-line-height);
+  letter-spacing: 1px;
+  font-family: var(--tbd-font-sans);
+}
+
+article .markdown p code {
+  color: white;
+  background-color: gray;
+}
+
+.pagination-nav__sublabel {
+  display: none;
+}
+
+.pagination-nav__label {
+  color: white;
+  letter-spacing: 1px;
+  font-weight: 400;
+  text-decoration: none;
+}
+
+html.plugin-docs.plugin-id-api .thin-scrollbar {
+  color: white;
+  letter-spacing: 1px;
+  margin-top: 24px;
+  top: 0 !important;
+  font-family: var(--tbd-font-sans);
+}
+
+html.plugin-docs.plugin-id-api .thin-scrollbar ul li a {
+  color: white;
+}
+
+html.plugin-docs.plugin-id-api article time {
+  color: white;
+}
+
+html.plugin-docs.plugin-id-api .avatar {
+  color: white;
+}
+
+html.plugin-docs.plugin-id-api .navbar__link {
+  font-size: 18px;
+  padding-bottom: 2rem;
+}
+
+html.plugin-docs.plugin-id-api .navbar__link:hover {
+  border-bottom: 4px solid var(--color-yellow);
+  color: var(--color-yellow);
+  padding-bottom: 2rem;
+}
+
+html.plugin-docs.plugin-id-api .navbar__link--active {
+  border-bottom: 4px solid var(--color-yellow);
+  color: var(--color-yellow);
+  padding-bottom: 2rem;
+}
+
+html.plugin-docs.plugin-id-api .thin-scrollbar ul li a:hover {
+  color: var(--color-yellow);
+}
+
+html.plugin-docs.plugin-id-api
+  .sidebarItemLinkActive_node_modules-\@docusaurus-theme-classic-lib-next-theme-BlogSidebar-styles-module {
+  color: var(--color-yellow);
+}
+
+html.plugin-docs.plugin-id-api article h2 {
+  color: var(--color-yellow);
+  font-size: 24px;
+}
+
+html.plugin-docs.plugin-id-api ul.table-of-contents li a code,
+html.plugin-docs.plugin-id-api ul.table-of-contents li code {
+  background-color: transparent;
+}
+
+html.plugin-docs.plugin-id-api .table-of-contents__link:hover,
+html.plugin-docs.plugin-id-api .table-of-contents__link:hover code,
+html.plugin-docs.plugin-id-api .table-of-contents__link--active,
+html.plugin-docs.plugin-id-api .table-of-contents__link--active code {
+  color: var(--color-yellow);
+  text-decoration: none;
+  text-decoration: underline !important;
+}
+
+html.plugin-docs.plugin-id-api .table-of-contents__link {
+  text-decoration: none !important;
+}
+
+html.plugin-docs.plugin-id-api .table-of-contents a strong {
+  color: white !important;
+}
+
+html.plugin-docs.plugin-id-api .table-of-contents li {
+  margin: 0.75rem 1.5rem;
+  list-style: none !important;
+}
+
+html.plugin-docs.plugin-id-api .table-of-contents__link {
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.375rem;
+  text-decoration: none !important;
+}
+
+html.plugin-docs.plugin-id-api .table-of-contents__left-border {
+  border-left: 1px solid #343434;
+  padding-left: 1rem;
+  margin-left: 2rem;
+}
+
+html.plugin-docs.plugin-id-api .table-of-contents__left-border li {
+  margin-right: 0;
+  margin-left: 0;
+  font-family: var(--tbd-font-sans);
+}
+
+/* Redocusaurus */
+.redocusaurus {
+  overflow: auto;
+  height: 95vh;
+}
+
+/* Changes */
+.hero-button {
+  z-index: 99999;
+  width: fit-content;
+}
+
+.hero-button a {
+  text-decoration: none;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.theme-card {
+  --color-card: 36, 242, 255;
+  border: 1px solid rgba(var(--color-card), 0.35);
+}
+
+.theme-card .hero-button a > div {
+  background: #fff;
+  color: #000;
+}
+
+article .markdown .theme-card > p {
+  line-height: 1.5;
+  font-size: 100%;
+  margin-bottom: 2rem;
+}
+
+html.plugin-docs.plugin-id-api article .theme-card.primary-theme-card h2,
+html.plugin-docs.plugin-id-api article .theme-card.primary-theme-card p,
+html.plugin-docs.plugin-id-api
+  article
+  .theme-card.primary-theme-card
+  .hero-button
+  a
+  > div {
+  color: #fff;
+}
+
+html.plugin-docs.plugin-id-api article .theme-card h2 {
+  color: rgba(var(--color-card));
+}
+html.plugin-docs.plugin-id-api article .theme-card p {
+  color: #fff;
+}
+
+.theme-card-cyan {
+  --color-card: 36, 242, 255;
+}
+
+.theme-card-yellow {
+  --color-card: 255, 236, 25;
+}
+
+.theme-card-purple {
+  --color-card: 213, 162, 235;
+}
+
+.community-button {
+  text-decoration: none;
+  text-transform: uppercase;
+  font-weight: bold;
+  background-color: #fff !important;
+  color: #000 !important;
+}
+
+.docs-wrapper
+  #__docusaurus
+  aside
+  .theme-doc-sidebar-item-link
+  > .menu__link.menu__link--active,
+.docs-wrapper
+  #__docusaurus
+  aside
+  .menu__list
+  .menu__list-item-collapsible--active
+  .menu__link--sublist.menu__link--active,
+.docs-wrapper
+  #__docusaurus
+  aside
+  .menu__list-item-collapsible--active
+  .menu__link--active {
+  color: var(--color-black) !important;
+}
+
+.docs-wrapper
+  #__docusaurus
+  aside
+  .theme-doc-sidebar-item-link
+  > .menu__link.menu__link--active:hover,
+.docs-wrapper
+  #__docusaurus
+  aside
+  .menu__list
+  .menu__list-item-collapsible:hover
+  .menu__link--sublist.menu__link,
+.docs-wrapper
+  #__docusaurus
+  aside
+  .menu__list-item-collapsible
+  .menu__link--active:hover {
+  color: var(--color-blue) !important;
+  background-color: var(--ifm-menu-color-background-hover);
+}
