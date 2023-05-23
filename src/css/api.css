@@ -91,10 +91,6 @@ html.plugin-docs.plugin-id-api
   top: auto;
 }
 
-html.plugin-docs.plugin-id-api .sidebar_RiAD {
-  top: 0 !important;
-}
-
 @media (min-width: 997px) {
   html.plugin-docs.plugin-id-api
     .menu_node_modules-\@docusaurus-theme-classic-lib-next-theme-DocSidebar-Desktop-Content-styles-module {
@@ -174,7 +170,7 @@ html.plugin-docs.plugin-id-api .thin-scrollbar {
   color: white;
   letter-spacing: 1px;
   margin-top: 24px;
-  top: 0 !important;
+  top: 124px !important;
   font-family: var(--tbd-font-sans);
 }
 
@@ -232,11 +228,10 @@ html.plugin-docs.plugin-id-api .table-of-contents__link--active,
 html.plugin-docs.plugin-id-api .table-of-contents__link--active code {
   color: var(--color-yellow);
   text-decoration: none;
-  text-decoration: underline !important;
 }
 
-html.plugin-docs.plugin-id-api .table-of-contents__link {
-  text-decoration: none !important;
+.docs-wrapper #__docusaurus .table-of-contents ul {
+  padding-inline-start: 1rem;
 }
 
 html.plugin-docs.plugin-id-api .table-of-contents a strong {
@@ -244,27 +239,28 @@ html.plugin-docs.plugin-id-api .table-of-contents a strong {
 }
 
 html.plugin-docs.plugin-id-api .table-of-contents li {
-  margin: 0.75rem 1.5rem;
   list-style: none !important;
 }
 
 html.plugin-docs.plugin-id-api .table-of-contents__link {
-  font-size: 0.875rem;
+  color: #969696;
+  font-size: 1rem;
   font-weight: 500;
   line-height: 1.375rem;
-  text-decoration: none !important;
+  text-decoration: none;
+  padding: 0.75rem 0.5rem;
 }
 
 html.plugin-docs.plugin-id-api .table-of-contents__left-border {
   border-left: 1px solid #343434;
   padding-left: 1rem;
-  margin-left: 2rem;
 }
 
 html.plugin-docs.plugin-id-api .table-of-contents__left-border li {
   margin-right: 0;
   margin-left: 0;
-  font-family: var(--tbd-font-sans);
+  font-family: var(--tbd-font-mono);
+  letter-spacing: 0;
 }
 
 /* Redocusaurus */
