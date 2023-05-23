@@ -5,19 +5,19 @@ The `protocols` class is responsible for providing convenience methods for manag
 
 ## Methods
 
-### configure(target, request)
+### configure(request)
+
+Method to configure a protocol for a specified DWN.
 
 #### Parameters
 
-`target`
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The target `did` to examine.
-
 `request`
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; `author`: The decentralized identifier of the `did`` signing the query. This may be the same as the target parameter if the target and the signer of the query are the same entity, which is common for an app querying the DWeb Node of its own user.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; `from`: The DID of the DWN to configure.
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`message`: The properties of the DWeb Node Message Descriptor that will be used to construct a valid `dwn` message.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; `from`: The decentralized identifier of the `did`` signing the query. This may be the same as the target parameter if the target and the signer of the query are the same entity, which is common for an app querying the DWN of its own user.
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`message`: The properties of the DWN Message Descriptor that will be used to construct a valid `dwn` message.
 - `definition`: an object that defines the ruleset that will be applied to the records and activities under the protocol.
 - `protocol`: a URI that represents the protocol being queried for.
 
@@ -28,8 +28,8 @@ The response from the query.
 #### Code Example
 ```js
 
-const response = await web5.dwn.protocols.configure('did:example:alice', {
-  author: 'did:example:alice',
+const response = await web5.dwn.protocols.configure({
+  from: 'did:example:alice',
   message: {
     protocol: "https://decentralized-music.org/protocol",
     definition: {
@@ -61,22 +61,19 @@ const response = await web5.dwn.protocols.configure('did:example:alice', {
 
 ```
 
-### query(target, request)
+### query(request)
 
-Method for querying the protocols that a `target` `did` has added configurations for in their `dwn`
+Method for querying the protocols for DIDs that have added configurations for in their DWN.
 
 #### Parameters
 
-`target`
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The target `did` to examine.
-
 `request`
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The query request must contain the following:
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; `from`: The DID of the DWN to query.
 
-- `author`: The decentralized identifier of the `did`` signing the query. This may be the same as the target parameter if the target and the signer of the query are the same entity, which is common for an app querying the DWeb Node of its own user.
-- `message`: The properties of the DWeb Node Message Descriptor that will be used to construct a valid DWeb Node message.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; `author`: The decentralized identifier of the `did`` signing the query. This may be the same as the target parameter if the target and the signer of the query are the same entity, which is common for an app querying the DWN of its own user.
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; `message`: The properties of the DWN Message Descriptor that will be used to construct a valid DWN message.
 - `filter`: an object that defines a set of properties to filter results.
 - `protocol`: a URI that represents the protocol being queried for.
 
@@ -88,8 +85,8 @@ The response of the request as an object.
 
 ```js
 const web5 = new Web5();
-const response = await web5.dwn.protocols.query('did:example:alice', {
-  author: 'did:example:alice',
+const response = await web5.dwn.protocols.query({
+  from: 'did:example:alice',
   message: {
     filter: {
       protocol: "https://decentralized-music.org/protocol",

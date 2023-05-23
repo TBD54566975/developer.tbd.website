@@ -1,6 +1,8 @@
-## Protocols
+---
+title: Protocols
+---
 
-_5 minute read_
+**5 minute read**
 
 In this document, you’ll:
 
@@ -24,9 +26,9 @@ If you’re interested in reading the source code for protocol definitions, you 
 
 Every protocol document has a few basic keys:
 
-- `labels` - Defines all the data types used in your document
-- `records` - Used as a catch-all to define a list of properties
-- `allow` - The key word used to denote the start of a permission definition
+- `types` - Defines all the data types used in your document
+- `structure` - Used as a catch-all to define a list of properties
+- `actions` - The key word used to denote the start of a permission definition
 
 These terms are combined in a human-readable way to define both the data schema and permissions of your app.
 
@@ -40,192 +42,253 @@ Now let’s imagine how we’d construct the permissions for such an app. We wan
 
 ## Defining a Protocol
 
-We know the key words for defining protocols - `labels`, `records`, and `allow` - as well as our data and permissions schemas. So our protocol would look this:
+We know the key words for defining protocols - `types`, `structure`, and `actions` - as well as our data and permissions schemas. So our protocol would look this:
 
 ```json
 {
-  "labels": {
-    "message": { "schema": "messageSchema" },
-    "reply": { "schema": "replySchema" },
-    "image": { "schema": "imageSchema" },
-    "caption": { "schema": "captionSchema" }
-  },
-  "records": {
+  "protocol": "http://social-media.xyz",
+  "types": {
     "message": {
-      "allow": {
-        "anyone": { "to": ["write"] }
-      },
-      "records": {
-        "reply": {
-          "allow": {
-            "recipient": {
-              "of": "message",
-              "to": ["write"]
-            }
-          }
+      "schema": "messageSchema",
+      "dataFormats": ["text/plain"]
+    },
+    "reply": {
+      "schema": "replySchema",
+      "dataFormats": ["text/plain"]
+    },
+    "image": {
+      "schema": "imageSchema",
+      "dataFormats": ["image/jpeg"]
+    },
+    "caption": {
+      "schema": "captionSchema",
+      "dataFormats": ["text/plain"]
+    }
+  },
+  "structure": {
+    "message": {
+      "$actions": [
+        {
+          "who": "anyone",
+          "can": "write"
         }
+      ],
+      "reply": {
+        "$actions": [
+          {
+            "who": "recipient",
+            "of": "message",
+            "can": "write"
+          }
+        ]
       }
     },
     "image": {
-      "allow": {
-        "anyone": {
-          "to": ["write"]
-        }
-      },
-      "records": {
-        "caption": {
-          "allow": {
-            "author": {
-                "of": "image",
-                "to": ["write"]
-            }
-          }
+      "$actions": [
+        {
+          "who": "anyone",
+          "can": "read"
         },
-        "reply": {
-          "allow": {
-            "recipient": {
-              "of": "image",
-              "to": ["write"]
-            }
-          }
+        {
+          "who": "anyone",
+          "can": "write"
         }
+      ],
+      "caption": {
+        "$actions": [
+          {
+            "who": "anyone",
+            "can": "read"
+          },
+          {
+            "who": "author",
+            "of": "image",
+            "can": "write"
+          }
+        ]
+      },
+      "reply": {
+        "$actions": [
+          {
+            "who": "author",
+            "of": "image",
+            "can": "read"
+          },
+          {
+            "who": "recipient",
+            "of": "image",
+            "can": "write"
+          }
+        ]
       }
     }
   }
 }
 ```
 
-In the `labels` section, we can see how the data schema of each data type is defined. While you’d ideally use a resolvable schema in this property, that is not a requirement. 
+In the `types` section, we can see how the data schema of each data type is defined. While you’d ideally use a resolvable schema in this property, that is not a requirement. 
 
 ```json
-  "labels": {
-    "message": { "schema": "messageSchema" },
-    "reply": { "schema": "replySchema" },
-    "image": { "schema": "imageSchema" },
-    "caption": { "schema": "captionSchema" }
+"types": {
+  "message": {
+    "schema": "messageSchema",
+    "dataFormats": ["text/plain"]
+  },
+  "reply": {
+    "schema": "replySchema",
+    "dataFormats": ["text/plain"]
+  },
+  "image": {
+    "schema": "imageSchema",
+    "dataFormats": ["image/jpeg"]
+  },
+  "caption": {
+    "schema": "captionSchema",
+    "dataFormats": ["text/plain"]
+  }
+}
+```
+
+You’ll then notice how each of those `types` is used in the large `structure` object, which at a top level houses the `message` and `image` data types which are critical to our social network.
+
+```json
+"structure": {
+  "message": {
+    "$actions": [
+      {
+        "who": "anyone",
+        "can": "write"
+      }
+    ],
+    "reply": {
+      "$actions": [
+        {
+          "who": "recipient",
+          "of": "message",
+          "can": "write"
+        }
+      ]
+    }
+  },
+  "image": {
+    "$actions": [
+      {
+        "who": "anyone",
+        "can": "read"
+      },
+      {
+        "who": "anyone",
+        "can": "write"
+      }
+    ],
+    "caption": {
+      "$actions": [
+        {
+          "who": "anyone",
+          "can": "read"
+        },
+        {
+          "who": "author",
+          "of": "image",
+          "can": "write"
+        }
+      ]
+    },
+    "reply": {
+      "$actions": [
+        {
+          "who": "author",
+          "of": "image",
+          "can": "read"
+        },
+        {
+          "who": "recipient",
+          "of": "image",
+          "can": "write"
+        }
+      ]
+    }
+  }
+} 
+```
+
+Within `message`, you’ll notice we define `actions` permissions to let anyone write a message to anyone...
+
+```json
+"message": {
+    "$actions": [
+      {
+        "who": "anyone",
+        "can": "write"
+      }
+    ],
+  ...
+},
+```
+
+But then we nest another `structure` object to hold the child property of `reply` and define permissions on `reply`. 
+
+```json
+"message": {
+    "$actions": [
+      {
+        "who": "anyone",
+        "can": "write"
+      }
+    ],
+    "reply": {
+      "$actions": [
+        {
+          "who": "recipient",
+          "of": "message",
+          "can": "write"
+        }
+      ]
+    }
   },
 ```
 
-You’ll then notice how each of those `labels` is used in the large `records` object, which at a top level houses the `message` and `image` data types which are critical to our social network.
+Additionally, you’ll notice the `image` object below it also defines `actions` permissions, along with more child properties and their permissions.
 
 ```json
-  "records": {
-    //highlight-start
-    "message": {
-    //highlight-end
-      "allow": {
-        "anyone": { "to": ["write"] }
-      },
-      "records": {
-        "reply": {
-          "allow": {
-            "recipient": {
-              "of": "message",
-              "to": ["write"]
-            }
-          }
-        }
-      }
+"image": {
+  "$actions": [
+    {
+      "who": "anyone",
+      "can": "read"
     },
-    //highlight-start
-    "image": {
-    //highlight-end
-      "allow": {
-        "anyone": {
-          "to": ["write"]
-        }
-      },
-      "records": {
-        "caption": {
-          "allow": {
-            "author": {
-                "of": "image",
-                "to": ["write"]
-            }
-          }
-        },
-        "reply": {
-          "allow": {
-            "recipient": {
-              "of": "image",
-              "to": ["write"]
-            }
-          }
-        }
-      }
+    {
+      "who": "anyone",
+      "can": "write"
     }
+  ],
+  "caption": {
+    "$actions": [
+      {
+        "who": "anyone",
+        "can": "read"
+      },
+      {
+        "who": "author",
+        "of": "image",
+        "can": "write"
+      }
+    ]
+  },
+  "reply": {
+    "$actions": [
+      {
+        "who": "author",
+        "of": "image",
+        "can": "read"
+      },
+      {
+        "who": "recipient",
+        "of": "image",
+        "can": "write"
+      }
+    ]
   }
-```
-
-
-
-Within `message`, you’ll notice we define `allow` permissions to let anyone write a message to anyone...
-
-```json
-{
-    "message": {
-      //highlight-start
-      "allow": {
-      //highlight-end
-        "anyone": { "to": ["write"] }
-      },
-    }
-}
-```
-
-But then we nest another `records` object to hold the child property of `reply` and define permissions on `reply`. 
-
-```json
-{
-    "message": {
-      "allow": {
-        "anyone": { "to": ["write"] }
-      },
-      //highlight-start
-      "records": {
-        "reply": {
-          "allow": {
-            "recipient": {
-              "of": "message",
-              "to": ["write"]
-            }
-          }
-        }
-      }
-     //highlight-end 
-    },
-}
-```
-
-Additionally, you’ll notice the `image` object below it also defines `allow` permissions, along with more child properties and their permissions.
-
-```json
-{
-    "image": {
-      "allow": {
-        "anyone": {
-          "to": ["write"]
-        }
-      },
-      "records": {
-        "caption": {
-          "allow": {
-            "author": {
-                "of": "image",
-                "to": ["write"]
-            }
-          }
-        },
-        "reply": {
-          "allow": {
-            "recipient": {
-              "of": "image",
-              "to": ["write"]
-            }
-          }
-        }
-      }
-    }
 }
 ```
 
@@ -242,8 +305,8 @@ Once you’ve installed that protocol to your app, you’re ready to communicate
 Building on our social media example, let’s say that you wanted to post a message to your friend Alice. First, you can check if she also has the `social-media` protocol installed by running:
 
 ```js
-const response = await web5.dwn.protocols.query('did:example:alice', {
-  author: 'did:example:alice',
+const { record } = await web5.dwn.protocols.query({
+  from: 'did:example:alice',
   message: {
     filter: {
       protocol: 'social-media',
@@ -255,15 +318,17 @@ const response = await web5.dwn.protocols.query('did:example:alice', {
 Once you’ve used this call to confirm that she does have the protocol installed, you can write to her DWN via the `social-media` protocol using:
 
 ```js
-const response = await web5.dwn.records.write('did:example:alice', {
-  author: myDid.id,
+const { record } = await web5.dwn.records.create({
   data: 'Hello, world!',
   message: {
+    recipient: 'did:example:alice'
     schema: 'message',
     dataFormat: 'text/plain',
     protocol: 'social-media',
   },
 });
+
+await record.send('did:example:alice')
 ```
 
 And that’s it! You’ve now written a message to Alice’s DWN, which she’ll be able to respond to, and you can both communicate using the `social-media` protocol. 

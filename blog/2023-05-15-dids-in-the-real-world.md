@@ -49,29 +49,7 @@ DIDs vs VCs: DIDs provide a way to create and manage decentralized identities, w
 
 ## Digital Driver's Licenses
 
-The DMV (Department of Motor Vehicles) in the United States and in Queensland Australia are piloting a program that involves issuing [digital driver's licenses](https://www.govtech.com/fs/california-moves-to-test-new-digital-drivers-licenses) and vehicle registration documents that can be accessed and verified using a mobile app. Digital driver's licenses are cryptographically secured, and the apps can be used to verify the authenticity of the license without the need for physical documents.
-
-They are doing this with the use of VCs, which are stored on-chain, tamper-proof, and cannot be altered or forged, which ensures the integrity and authenticity of their credentials.
-
-The main component of VCs are DIDs, see here for example:
-
-```bash
-curl -X PUT -d '{
-  "data": {
-    "givenName": "Alice",
-      "employedAt": "2022-08-20T13:20:10.000+0000"
-  },
-  "issuer": "did:key:z6MkpEQY4FCCtJEVpZ6gGK541fYWynH2ya7D1RikTGfdydCF",
-  "subject": "did:key:z6MkqcFHFXqzsYyDYrEUA2pVCfQGJz2rYoCZy5WWszzSW3o6",
-  "@context": "https://www.w3.org/2018/credentials/v1",
-  "expiry": "2051-10-05T14:48:00.000Z",
-  "schema": "b28feb61-e0b8-454a-86ed-d487a46e8584"
-}' http://localhost:8080/v1/credentials
-```
-
-As you can see there are two DIDs used, one for an Issuer (DMV) and one for a subject (Drivers License recipient, Alice). 
-
-This program will lead to faster and more efficient services for customers, as well as improved security and fraud prevention.
+The DMV (Department of Motor Vehicles) in the United States and in Queensland Australia are piloting a program that involves issuing [digital driver's licenses](https://www.govtech.com/fs/california-moves-to-test-new-digital-drivers-licenses) and vehicle registration documents that can be accessed and verified using a mobile app. Digital driver's license apps are cryptographically secure and can be used to verify the authenticity of the license without the need for physical documents. These apps are backed with the use of Verifiable Credentials (VCs) and DIDs. This program will lead to faster and more efficient services for customers, as well as improved security and fraud prevention.
 
 ## COVID Digital Health Apps
 

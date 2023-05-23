@@ -1,4 +1,6 @@
-## 7. Delete DWN Records
+<section class="docs-section">
+
+## 5. Delete DWN Records
 
 Given permission from the user, your app can delete records from their DWN. Similar to reading, we’ll use the `record` object to remove the record.
 
@@ -13,16 +15,18 @@ const deleteResult = await record.delete();
 To see the status of the delete transaction, add the following to <code>index.js</code>:
 
 ```js
-console.log('Delete result: ', deleteResult.status);
+console.log('deleteResult', deleteResult)
 ```
 
 The output will resemble:
 
-```js
-Delete result: { code: 202, detail: 'Accepted' },
+```
+{ status: { code: 202, detail: 'Accepted' } }
 ```
 
 </p>
 </details>
 
-Click "Run!" to delete the record that was stored in the sandbox DWN:
+#### Try it!
+
+</section>
