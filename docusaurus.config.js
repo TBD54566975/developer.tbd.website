@@ -81,7 +81,7 @@ const config = {
         specs: [
           {
             id: 'ssi-sdk',
-            spec: 'https://raw.githubusercontent.com/TBD54566975/ssi-service/main_swagger/doc/swagger.yaml',
+            spec: 'https://raw.githubusercontent.com/TBD54566975/ssi-service/main/doc/swagger.yaml',
             route: '/docs/apis/ssi-service',
           },
         ],
@@ -201,16 +201,16 @@ const config = {
       prism: {
         theme: lightCodeTheme,
         darkTheme: {
-            ...darkCodeTheme,
-            styles: [
-                ...darkCodeTheme.styles,
-                {
-                    types: ["keyword", "variable"],
-                    style: {
-                      color: "rgb(189, 147, 249)"
-                    }
-                },
-            ]
+          ...darkCodeTheme,
+          styles: [
+            ...darkCodeTheme.styles,
+            {
+              types: ['keyword', 'variable'],
+              style: {
+                color: 'rgb(189, 147, 249)',
+              },
+            },
+          ],
         },
       },
     }),
