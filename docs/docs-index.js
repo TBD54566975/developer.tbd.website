@@ -27,6 +27,16 @@ function DocsIndex() {
           primary
         />
       </div>
+      <div className='padding-top--md'>
+        <HeroCard
+          heroText="Web5 API Reference"
+          buttonUrl="/docs/api/web5-api"
+          buttonText="API Docs 📖"
+          bodyText="API for the Web5 JavaScript SDK"
+          themeColor="cyan"
+          primary
+        />
+      </div>
 
       <div className='padding-top--xl'/>
 
