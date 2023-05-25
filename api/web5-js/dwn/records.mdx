@@ -1,4 +1,6 @@
-# records
+export function IndentWrapper({children}) {
+  return <p style={{marginLeft: '1.5rem'}}>{children}</p>
+};
 
 ## Overview
 The `records` class is responsible for providing convenience methods for CRUD operations interfacing with DWNs.
@@ -13,30 +15,43 @@ Every modifying method of the `records` class returns and instance of a `Record`
 
 `id`
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; The unique identifier based on the record entry's composition. Note: all entries across all records are deterministically unique.
+<IndentWrapper>
+  The unique identifier based on the record entry's composition. Note: all entries across all records are deterministically unique.
+</IndentWrapper>
 
 `descriptor`
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; The descriptor object for the constructed DWN message.
+<IndentWrapper>
+  The descriptor object for the constructed DWN message.
+</IndentWrapper>
 
 `data`
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;An object with the following methods available on it:
+<IndentWrapper>
+  An object with the following methods available on it:
+</IndentWrapper>
+
 - `text()` - produces a textual representation of the data.
 - `json()` - if the value is JSON data, this method will return a parsed JSON object.
 - `stream()` - returns the raw stream of bytes for the data.
 
 `send(did)`
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Sends a given record to the specified `did`.
+<IndentWrapper>
+  Sends a given record to the specified `did`.
+</IndentWrapper>
 
 `delete(id)`
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Generates a `delete` etnry tombstone for the record. This is a convenience method that allows you to easily delete records.
+<IndentWrapper>
+  Generates a `delete` etnry tombstone for the record. This is a convenience method that allows you to easily delete records.
+</IndentWrapper>
 
 `update()`
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Takes in a new request object matching the expected method signature of a `write` and overwrites the record.
+<IndentWrapper>
+  Takes in a new request object matching the expected method signature of a `write` and overwrites the record.
+</IndentWrapper>
 
 
 ## Methods
@@ -49,11 +64,17 @@ Method for querying the DWN of a provided `target`.
 
 `request`
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; `from`: The DID to query from.
+<IndentWrapper> 
+  `from`: The DID to query from. 
+</IndentWrapper>
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; `author`: The DID of the author signing the query. This may be the same as the `target` parameter if the `target` and the signer of the query are the same entity, which is common for an app querying the DWN of its own user.
+<IndentWrapper>
+  `author`: The DID of the author signing the query. This may be the same as the `target` parameter if the `target` and the signer of the query are the same entity, which is common for an app querying the DWN of its own user.
+</IndentWrapper>
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; `message`: An object describing the properties of the DWN descriptor used to construct a valid DWN message.
+<IndentWrapper>
+  `message`: An object describing the properties of the DWN descriptor used to construct a valid DWN message.
+</IndentWrapper>
 
 #### Returns
 
@@ -80,7 +101,10 @@ Method for writing a record to the DWN of a specified DID.
 
 `request`
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  `from` - The DID of the author signing the query. This may be the same as the `target` parameter if the `target` and the signer of the query are the same entity, which is common for an app querying the DWN of its own user.
+<IndentWrapper>
+  `from` - The DID of the author signing the query. This may be the same as the `target` parameter if the `target` and the signer of the query are the same entity, which is common for an app querying the DWN of its own user.
+</IndentWrapper>
+
 - `message` - An object describing the properties of the DWN descriptor used to construct a valid DWN message.
 - `store` - A `boolean` specifying whether the `create` function should record the data in the user's DWN.
 - `data` - the data object of the bytes, stream, blob, or file to be sent.
@@ -110,11 +134,17 @@ Method for writing a record to the DWN of a provided `target`.
 
 `request`
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; `from`: The DID of the author signing the query. This may be the same as the `target` parameter if the `target` and the signer of the query are the same entity, which is common for an app querying the DWN of its own user.
+<IndentWrapper>
+  `from`: The DID of the author signing the query. This may be the same as the `target` parameter if the `target` and the signer of the query are the same entity, which is common for an app querying the DWN of its own user.
+</IndentWrapper>
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; `message`: An object describing the properties of the DWN descriptor used to construct a valid DWN message.
+<IndentWrapper>
+  `message`: An object describing the properties of the DWN descriptor used to construct a valid DWN message.
+</IndentWrapper>
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`data`: the data object of the bytes, stream, blob, or file to be sent.
+<IndentWrapper>
+  `data`: the data object of the bytes, stream, blob, or file to be sent.
+</IndentWrapper>
 
 #### Returns
 
@@ -140,9 +170,15 @@ Method for reading a record to the DWN of a provided `target`.
 
 `request`
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`from`: The DID of the author signing the query. This may be the same as the `target` parameter if the `target` and the signer of the query are the same entity, which is common for an app querying the DWN of its own user.
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`message`: An object describing the properties of the DWN descriptor used to construct a valid DWN message.
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; `recordId`: The `recordId` you are fetching.
+<IndentWrapper>
+  from`: The DID of the author signing the query. This may be the same as the `target` parameter if the `target` and the signer of the query are the same entity, which is common for an app querying the DWN of its own user.
+</IndentWrapper>
+<IndentWrapper>
+  `message`: An object describing the properties of the DWN descriptor used to construct a valid DWN message.
+</IndentWrapper>
+<IndentWrapper>
+  `recordId`: The `recordId` you are fetching.
+</IndentWrapper>
 
 #### Returns
 
