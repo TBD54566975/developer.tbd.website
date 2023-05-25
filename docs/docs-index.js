@@ -30,7 +30,7 @@ function DocsIndex() {
       <div className='padding-top--md'>
         <HeroCard
           heroText="Web5 API Reference"
-          buttonUrl="/docs/api/web5-api"
+          buttonUrl="/api/web5-js"
           buttonText="API Docs 📖"
           bodyText="API for the Web5 JavaScript SDK"
           themeColor="cyan"
