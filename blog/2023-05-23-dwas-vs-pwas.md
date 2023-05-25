@@ -51,7 +51,7 @@ Going back to our ToDo app example, a user would be able to store all of their t
 If you want to migrate a PWA to a DWA, the only thing you’ll need to do is make sure that whatever data you were originally storing remotely and transmitting via API calls is now stored on the user’s DWN and is accessed [using CRUD operations](https://developer.tbd.website/docs/web5/build/decentralized-web-nodes/write-to-dwn) on the user’s DWN. For example, your ToDo app may have previously made an API call to write a new item to your list, but now you’d replace that API call with:
 
 
-```
+```js
 // Write a plain text record to the in-memory DWN
 
 const myRecord = await web5.dwn.records.create(myDid.id, {
