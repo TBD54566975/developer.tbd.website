@@ -28,6 +28,15 @@ const config = {
     [
       '@docusaurus/plugin-content-docs',
       {
+        id: 'api',
+        path: 'api',
+        routeBasePath: 'api',
+        // sidebarPath: require.resolve('./api-sidebars.js'),
+      },
+    ],
+    [
+      '@docusaurus/plugin-content-docs',
+      {
         id: 'events',
         path: 'events',
         breadcrumbs: false,
@@ -192,16 +201,16 @@ const config = {
       prism: {
         theme: lightCodeTheme,
         darkTheme: {
-            ...darkCodeTheme,
-            styles: [
-                ...darkCodeTheme.styles,
-                {
-                    types: ["keyword", "variable"],
-                    style: {
-                      color: "rgb(189, 147, 249)"
-                    }
-                },
-            ]
+          ...darkCodeTheme,
+          styles: [
+            ...darkCodeTheme.styles,
+            {
+              types: ['keyword', 'variable'],
+              style: {
+                color: 'rgb(189, 147, 249)',
+              },
+            },
+          ],
         },
       },
     }),

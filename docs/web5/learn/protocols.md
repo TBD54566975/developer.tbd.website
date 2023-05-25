@@ -20,7 +20,7 @@ If you’re interested in reading the source code for protocol definitions, you 
 
 - [type.ts](https://github.com/TBD54566975/dwn-sdk-js/blob/main/src/interfaces/protocols/types.ts) - The file responsible for serializing your protocol document
 - [protocol-rule-set.json](https://github.com/TBD54566975/dwn-sdk-js/blob/main/json-schemas/protocol-rule-set.json) - A schema defining how protocols should be formatted
-:::
+  :::
 
 ## Protocol Basics
 
@@ -126,7 +126,7 @@ We know the key words for defining protocols - `types`, `structure`, and `action
 }
 ```
 
-In the `types` section, we can see how the data schema of each data type is defined. While you’d ideally use a resolvable schema in this property, that is not a requirement. 
+In the `types` section, we can see how the data schema of each data type is defined. While you’d ideally use a resolvable schema in this property, that is not a requirement.
 
 ```json
 "types": {
@@ -209,7 +209,7 @@ You’ll then notice how each of those `types` is used in the large `structure` 
       ]
     }
   }
-} 
+}
 ```
 
 Within `message`, you’ll notice we define `actions` permissions to let anyone write a message to anyone...
@@ -226,7 +226,7 @@ Within `message`, you’ll notice we define `actions` permissions to let anyone 
 },
 ```
 
-But then we nest another `structure` object to hold the child property of `reply` and define permissions on `reply`. 
+But then we nest another `structure` object to hold the child property of `reply` and define permissions on `reply`.
 
 ```json
 "message": {
@@ -300,7 +300,7 @@ To use a protocol in your app, you’ll need to install that protocol to your ap
 const response = await web5.dwn.protocols.configure(myDid.id, protocolObject);
 ```
 
-Once you’ve installed that protocol to your app, you’re ready to communicate using the schema and permissions it defines. 
+Once you’ve installed that protocol to your app, you’re ready to communicate using the schema and permissions it defines.
 
 Building on our social media example, let’s say that you wanted to post a message to your friend Alice. First, you can check if she also has the `social-media` protocol installed by running:
 
@@ -331,6 +331,6 @@ const { record } = await web5.dwn.records.create({
 await record.send('did:example:alice')
 ```
 
-And that’s it! You’ve now written a message to Alice’s DWN, which she’ll be able to respond to, and you can both communicate using the `social-media` protocol. 
+And that’s it! You’ve now written a message to Alice’s DWN, which she’ll be able to respond to, and you can both communicate using the `social-media` protocol.
 
 This protocol enables a basic social network using Web5, which means we’ve created a basic trustless, decentralized social network where your users host all of their own data; images, captions, and messages are all theirs.
