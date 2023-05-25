@@ -72,7 +72,7 @@ const config = {
         specs: [
           {
             id: 'ssi-sdk',
-            spec: 'https://raw.githubusercontent.com/TBD54566975/ssi-service/main_swagger/doc/swagger.yaml',
+            spec: 'https://raw.githubusercontent.com/TBD54566975/ssi-service/main/doc/swagger.yaml',
             route: '/docs/apis/ssi-service',
           },
         ],
