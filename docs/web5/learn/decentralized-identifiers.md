@@ -42,7 +42,7 @@ We need an identifier that isn't tied to a centralized authority, that we can ta
 
 ### Methods
 
-Now that Alice and Bob know that they need a DID lets take a look at the different kinds of DIDs they can have.
+Now that Alice and Bob know that they need a DID let's take a look at the different kinds of DIDs they can have.
 
 There are lots of different implementations of DIDs (called [DID methods](https://www.w3.org/TR/did-core/#methods)) with different use cases. Web5 currently supports a few methods.
 
@@ -64,7 +64,7 @@ did:ion is a very robust, very decentralized platform for anchoring your DIDs. I
 
 ### DID Documents
 
-Now that Alice and Bob have gone through one of the methods and they have their DIDs, they now need a DID document to store those DIDs. Lets learn about DID documents, what they are and what fields we might see in them.
+Now that Alice and Bob have gone through one of the methods and they have their DIDs, they now need a DID document to store those DIDs. Let's learn about DID documents, what they are and what fields we might see in them.
 
 #### What is it?
 
