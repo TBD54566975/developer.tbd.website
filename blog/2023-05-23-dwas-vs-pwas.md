@@ -27,8 +27,6 @@ tags: [Decentralized Identity, PWA, DWA]
 
 ![Hello DWAs: Building the decentralized future of PWAs](/img/dwas-vs-pwas.png)
 
-# Hello DWAs: Building the decentralized future of PWAs
-
 Whether or not you know the term, you know the experience of using a Progressive Web App (PWA): it’s the slick experience that enables you to install a web experience to your native device and enjoy the speed of use of a website with the tight system integration of a native app. They allow for experiences like recreating [Starbucks’ native app in web](https://www.google.com/url?q=http://app.starbucks.com&sa=D&source=docs&ust=1684856854165941&usg=AOvVaw0I1rf0lo56OgparzhHJ81P), or for creating a [highly 2G-optmized experience](https://www.google.com/url?q=https://www.tigren.com/blog/uber-pwa/&sa=D&source=docs&ust=1684856854166056&usg=AOvVaw23Pjs0N6T_k3SXw3E2bQ8p) like what Uber created for some of their customers. PWAs take advantage of native features such as on-device storage, push notifications, and even windowing without requiring the overhead of a native app and the ability to install them without going through an app store. 
 
 In the same way that HTML5 and PWAs changed the way users expected to consume their apps through the minor addition of manifest, an even larger shift has arrived in the form of Decentralized Web Apps (DWAs), which combine PWAs with Web5. While PWAs redefined the relationship between the client and server by enabling richer on-device experiences through native integrations, DWAs are going to completely redefine data storage for apps resulting in a seismic shift in user privacy, ease-of-use, and data portability.
