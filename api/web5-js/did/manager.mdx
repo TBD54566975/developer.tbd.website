@@ -3,9 +3,11 @@ import Divider from '@site/src/components/Divider';
 # manager
 
 ## Overview
-The `manager` class is responsible for providing convenience methods for managing a DID.
+The `manager` class is responsible for providing convenience methods for managing a DID
 
 <Divider type="slash"/>
+
+<section class="api-docs">
 
 ## Methods
 
@@ -50,7 +52,7 @@ Gets the DID assigned to a given record id
 
 #### Parameters
 
-`id` - The record id of the document to fetch
+`id`: The record id of the document to fetch
 
 #### Return Value
 
@@ -70,7 +72,7 @@ Deletes the DID assigned to a given record id
 
 #### Parameters
 
-`id` - The record id of the document to delete
+`id`: The record id of the document to delete
 
 #### Return Value
 None
@@ -89,9 +91,9 @@ The package provides a DID manager mechanism that handles interactions with a DI
 
 #### Parameters
 
-`id` - The record id of the document to set
+`id`: The record id of the document to set
 
-`value` - The value of the data to store
+`value`: The value of the data to store
 
 #### Return Value
 
@@ -106,3 +108,5 @@ const data = {
 }
 web5.did.manager.set(id, data);
 ```
+
+</section>

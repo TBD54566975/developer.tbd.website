@@ -75,20 +75,23 @@ import { Web5 } from "https://cdn.jsdelivr.net/npm/@tbd54566975/web5@0.7.0/dist/
 
 <Divider type="slash"/>
 
+<section class="api-docs">
+
 ## Methods
 
 ### connect()
 
-Enables an app to request connection to a user's local identity app (like a desktop or mobile agent - work is underway for reference apps of each), or generate an in-app DID to represent the user (e.g. if the user does not have an identity app).
+Enables an app to request connection to a user's local identity app (like a desktop or mobile agent - work is underway for reference apps of each), or generate an in-app DID to represent the user (e.g. if the user does not have an identity app)
 
 #### Return Value
 
-`web5` - A class instance of `Web5` that enables access to a locally running DWN, DID interaction methods, and other capabilities related to the connected DID
+`web5`: A class instance of `Web5` that enables access to a locally running DWN, DID interaction methods, and other capabilities related to the connected DID
 
-`did` - A class instance representing the decentralized identifier that was created or attained connection to
+`did`: A class instance representing the decentralized identifier that was created or attained connection to
 
 #### Code Example
 
 ```js
 const { web5, did } = await Web5.connect();
 ```
+</section>
