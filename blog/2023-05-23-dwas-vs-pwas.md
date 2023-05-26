@@ -12,7 +12,7 @@ tags: [Decentralized Identity, PWA, DWA]
   <meta property="og:type" content="website" />
   <meta property="og:url" content='https://developer.tbd.website/blog/2023-05-23-dwas-vs-pwas' />
   <meta name="og:description" content="How DWAs are the decentralized future of PWAs" />
-  <meta property="og:image" content="https://developer.tbd.website/assets/images/dwas-vs-pwas.png" /> 
+  <meta property="og:image" content="https://developer.tbd.website/assets/images/dwas-vs-pwas-478cc48cbfc1dd8176dc0c98cafcf16f.png" /> 
 
   <meta name="twitter:card" content="summary_large_image" />
   <meta property="twitter:domain" content="developer.tbd.website" />
