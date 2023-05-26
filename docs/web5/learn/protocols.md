@@ -20,7 +20,7 @@ If you’re interested in reading the source code for protocol definitions, you 
 
 - [type.ts](https://github.com/TBD54566975/dwn-sdk-js/blob/main/src/interfaces/protocols/types.ts) - The file responsible for serializing your protocol document
 - [protocol-rule-set.json](https://github.com/TBD54566975/dwn-sdk-js/blob/main/json-schemas/protocol-rule-set.json) - A schema defining how protocols should be formatted
-  :::
+:::
 
 ## Protocol Basics
 
