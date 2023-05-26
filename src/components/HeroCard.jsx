@@ -27,12 +27,17 @@ function HeroCard({
 
       <div className={`theme-card-content`}>
         {primary ? (
-          <h2 className="text-2xl font-bold mb-4">{heroText}</h2>
+          <div>
+            <h2 className="text-2xl font-bold mb-4">{heroText}</h2>
+            <span>{bodyText}</span>
+          </div>
         ) : (
-          <h3 className="text-2xl font-bold mb-4">{heroText}</h3>
+          <div>
+            <h3 className="text-2xl font-bold mb-4">{heroText}</h3>
+            <p>{bodyText}</p>
+          </div>
         )}
-        <p className="mb-8">{bodyText}</p>
-        <div className="max-w-[240px] hero-button">
+        <div className="max-w-[240px] hero-button mt-8">
           <Button
             label={buttonText}
             url={buttonUrl}
