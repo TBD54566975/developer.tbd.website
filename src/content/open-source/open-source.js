@@ -53,13 +53,6 @@ export const content = {
         isExternalLink: false
       },
     },
-    {
-      type: 'button',
-      data: {
-        label: 'Join our Incubation Program',
-        url: '/open-source/incubation',
-        isExternalLink: false
-      },
-    },
+
   ],
 };
