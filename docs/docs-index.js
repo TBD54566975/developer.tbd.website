@@ -10,29 +10,24 @@ function DocsIndex() {
         Build Web5 apps that put you in control of your data and identity.
       </h1>
       <p className="mb-8">
-        Web5 brings decentralized
-        identity and data storage to your applications. It lets developers focus
-        on creating delightful user experiences, while returning ownership of
-        data and identity to individuals.
+        Web5 brings decentralized identity and data storage to your applications. 
+        It lets developers focus on creating delightful user experiences, while returning 
+        ownership of data and identity to individuals.
       </p>
-      <div>
+      <div className="grid grid-cols-1 desktop:grid-cols-2 gap-4">
         <HeroCard
-          heroText="Web5 in 5️⃣ Minutes"
+          heroText="Web5 in 5️ Minutes"
           buttonUrl="/docs/web5/quickstart"
           buttonText="Quickstart 🚀"
-          imgSrc="/img/docs-web5-code-connect.png"
-          imgClass="w-[50%] bottom-[1vh]"
           bodyText="An interactive guide to get started with Web5"
-          themeColor="yellow"
+          themeColor="purple"
           primary
         />
-      </div>
-      <div className='padding-top--md'>
         <HeroCard
           heroText="Web5 API Reference"
           buttonUrl="/api/web5-js"
           buttonText="API Docs 📖"
-          bodyText="API for the Web5 JavaScript SDK"
+          bodyText="API documentation for the Web5 JavaScript SDK"
           themeColor="cyan"
           primary
         />
