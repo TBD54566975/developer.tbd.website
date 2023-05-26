@@ -27,7 +27,7 @@ function DocsIndex() {
           heroText="Web5 API Reference"
           buttonUrl="/api/web5-js"
           buttonText="API Docs 📖"
-          bodyText="API documentation for the Web5 JavaScript SDK"
+          bodyText="API documentation for the Web5 JS SDK"
           themeColor="cyan"
           primary
         />
