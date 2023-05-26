@@ -1,39 +1,79 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import Divider from '@site/src/components/Divider';
+
+
+
 # web5.js
 
-## Intro
-
-`web5.js` consists of the following components:
+Web5 JS consists of the following components:
 
 - Decentralized Identifiers
 - Verifiable Credentials
-- DWeb Node personal datastores
+- Decentralized Web Nodes
 
-The SDK sets out to gather the most oft used functionality from all three of these pillar technologies to provide a simple library that is as close to effortless as possible.
+The SDK sets out to gather the most used functionality from all three of these pillar technologies to provide a simple library that abstracts away the complexity.
 
-## Installation and Importing
+:::caution
+WEB5 JS SDK IS CURRENTLY IN TECH PREVIEW
 
-NPM
-```console
+The SDK is currently still under active development, but having entered the Tech Preview phase there is now a drive to avoid unnecessary changes unless backwards compatibility is provided. Additional functionality will be added in the lead up to 1.0 final, and modifications will be made to address issues and community feedback.
+:::
+
+
+<Divider type="slash"/>
+
+## Install
+
+<Tabs>
+  <TabItem value="npm" label="NPM" default>
+
+```bash
 npm install @tbd54566975/web5
 ```
-
-CDNs
-```
-https://unpkg.com/@tbd54566975/web5@0.7.0/dist/browser.js
-https://cdn.jsdelivr.net/npm/@tbd54566975/web5@0.7.0/dist/browser.mjs
-```
-
-You can import `web5` in your .`js` follow with the following:
+  </TabItem>
+  <TabItem value="cdn" label="CDN">
 
 ```js
-import { Web5 } from '@tbd54566975/web5';
+<script src="https://unpkg.com/@tbd54566975/web5@0.7.0/dist/browser.js"></script>
 ```
 
 or
 
 ```js
-import { Web5 } from CDN_LINK_HERE;
+<script src="https://cdn.jsdelivr.net/npm/@tbd54566975/web5@0.7.0/dist/browser.mjs"></script>
 ```
+
+  </TabItem>
+</Tabs>
+
+<Divider type="slash"/>
+
+## Import
+
+<Tabs>
+  <TabItem value="npm" label="NPM" default>
+
+```js
+import { Web5 } from '@tbd54566975/web5';
+```
+  </TabItem>
+  <TabItem value="cdn" label="CDN">
+
+```js
+import { Web5 } from "https://unpkg.com/@tbd54566975/web5@0.7.0/dist/browser.js";
+```
+
+or
+
+```js
+import { Web5 } from "https://cdn.jsdelivr.net/npm/@tbd54566975/web5@0.7.0/dist/browser.mjs"
+```
+
+  </TabItem>
+</Tabs>
+
+<Divider type="slash"/>
 
 ## Methods
 
@@ -41,12 +81,18 @@ import { Web5 } from CDN_LINK_HERE;
 
 Enables an app to request connection to a user's local identity app (like a desktop or mobile agent - work is underway for reference apps of each), or generate an in-app DID to represent the user (e.g. if the user does not have an identity app).
 
-#### returns
+#### Return Value
 
 `web5`
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; A class instance of `web5` that enables access to a locally running DWN, DID interactio methods, and other capabilities related to the connected DID.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; A class instance of `Web5` that enables access to a locally running DWN, DID interaction methods, and other capabilities related to the connected DID.
 
 `did`
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; A class instance representing the decentralized identifier of the  DID that was created or attained connection to.
+
+#### Code Example
+
+```js
+const { web5, did } = await Web5.connect();
+```

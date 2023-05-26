@@ -1,15 +1,21 @@
+import Divider from '@site/src/components/Divider';
+
 # manager
 
 ## Overview
-The `manager` class is responsible for providing convenience methods for managing your own `did`
+The `manager` class is responsible for providing convenience methods for managing a DID.
+
+<Divider type="slash"/>
 
 ## Methods
 
+<br/>
+
 ### clear()
 
-Clears `web5`'s internal store of all DID data.
+Clears internal store of all DID data
 
-#### Returns
+#### Return Value
 
 None
 
@@ -18,11 +24,13 @@ None
 await web5.did.manager.clear();
 ```
 
+<Divider type="slash"/>
+
 ### exists()
 
-Checks if the `did` store exists or contains any data
+Checks if the DID store exists or contains any data
 
-#### Returns
+#### Return Value
 
 None
 
@@ -34,19 +42,19 @@ if (exists) {
 }
 ```
 
+<Divider type="slash"/>
+
 ### get(id)
 
-Gets the DID assigned to a given `recordId`.
+Gets the DID assigned to a given record id
 
 #### Parameters
 
-`id`
+`id` - The record id of the document to fetch
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; The `recordId` of the document to fetch.
+#### Return Value
 
-#### Returns
-
-The DID stored with the input `recordId`
+The stored DID associated with that record id
 
 #### Code Example
 ```js
@@ -54,17 +62,18 @@ const id = "someRecord";
 let data = web5.did.manager.get(id);
 ```
 
+<Divider type="slash"/>
+
 ### delete(id)
 
-Deletes the DID assigned to a given `recordId`.
+Deletes the DID assigned to a given record id
 
 #### Parameters
 
-`id`
+`id` - The record id of the document to delete
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The `recordId` of the document to delete.
-
-#### Returns
+#### Return Value
+None
 
 #### Code Example
 ```js
@@ -72,21 +81,19 @@ const id = "someRecord";
 web5.did.manager.delete(id);
 ```
 
+<Divider type="slash"/>
+
 ### set(id, value)
 
-The package provides a DID manager mechanism that handles interactions with a DID that is being 'managed' by the local code (be it in a web page, agent app, or elsewhere). By adding a DID to the manager, the library ensures that all interactions with that DID, including things like signing and encryption, are handled automatically.
+The package provides a DID manager mechanism that handles interactions with a DID that is being managed by the local code (be it in a web page, agent app, or elsewhere). By adding a DID to the manager, the library ensures that all interactions with that DID, including things like signing and encryption, are handled automatically.
 
 #### Parameters
 
-`id`
+`id` - The record id of the document to set
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The `recordId` of the document to set.
+`value` - The value of the data to store
 
-`value`
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; The value of the data to store.
-
-#### Returns
+#### Return Value
 
 None
 
@@ -99,5 +106,3 @@ const data = {
 }
 web5.did.manager.set(id, data);
 ```
-
-

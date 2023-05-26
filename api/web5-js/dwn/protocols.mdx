@@ -1,29 +1,37 @@
+import Divider from '@site/src/components/Divider';
+
 # protocols
 
 ## Overview
 The `protocols` class is responsible for providing convenience methods for managing protocols between DWNs.
 
+<Divider type="slash"/>
+
 ## Methods
+
+<br/>
 
 ### configure(request)
 
-Method to configure a protocol for a specified DWN.
+Configures a protocol for a specified DWN
 
 #### Parameters
 
-`request`
+`request` - Object containing:
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; `from`: The DID of the DWN to configure.
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; `from`: The decentralized identifier of the `did`` signing the query. This may be the same as the target parameter if the target and the signer of the query are the same entity, which is common for an app querying the DWN of its own user.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; `author`: The DID signing the query. This may be the same as the target parameter if the target and the signer of the query are the same entity, which is common for an app querying the DWN of its own user.
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`message`: The properties of the DWN Message Descriptor that will be used to construct a valid `dwn` message.
-- `definition`: an object that defines the ruleset that will be applied to the records and activities under the protocol.
-- `protocol`: a URI that represents the protocol being queried for.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`message`: The properties of the DWN Message Descriptor that will be used to construct a valid DWN message
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; `definition`: an object that defines the ruleset that will be applied to the records and activities under the protocol
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; `protocol`: a URI that represents the protocol being queried for
 
 #### Return Value
 
-The response from the query.
+The response from the query
 
 #### Code Example
 ```js
@@ -61,25 +69,29 @@ const response = await web5.dwn.protocols.configure({
 
 ```
 
+<Divider type="slash"/>
+
 ### query(request)
 
-Method for querying the protocols for DIDs that have added configurations for in their DWN.
+Method for querying the protocols for DIDs that have added configurations for in their DWN
 
 #### Parameters
 
-`request`
+`request` - Object containing:
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; `from`: The DID of the DWN to query.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; `from`: The DID of the DWN to query
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; `author`: The decentralized identifier of the `did`` signing the query. This may be the same as the target parameter if the target and the signer of the query are the same entity, which is common for an app querying the DWN of its own user.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; `author`: The DID signing the query. This may be the same as the target parameter if the target and the signer of the query are the same entity, which is common for an app querying the DWN of its own user.
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; `message`: The properties of the DWN Message Descriptor that will be used to construct a valid DWN message.
-- `filter`: an object that defines a set of properties to filter results.
-- `protocol`: a URI that represents the protocol being queried for.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; `message`: The properties of the DWN Message Descriptor that will be used to construct a valid DWN message
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; `filter`: An object that defines a set of properties to filter results
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; `protocol`: A URI that represents the protocol being queried for
 
 #### Return Value
 
-The response of the request as an object.
+The response of the request as an object
 
 #### Code Example
 

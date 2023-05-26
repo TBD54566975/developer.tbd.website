@@ -1,3 +1,5 @@
+import Divider from '@site/src/components/Divider';
+
 export function IndentWrapper({children}) {
   return <p style={{marginLeft: '1.5rem'}}>{children}</p>
 };
@@ -9,76 +11,59 @@ The `records` class is responsible for providing convenience methods for CRUD op
 
 ### Record
 
-Every modifying method of the `records` class returns and instance of a `Record` object, which is a representation fo the record(s) involved in the operation. 
+Every modifying method of the `records` class returns an instance of a `Record` object, which is a representation fo the record(s) involved in the operation. 
+
+<details>
+<summary>Properties and Methods</summary>
 
 #### Properties
 
-`id`
+`id` - The unique identifier based on the record entry's composition. Note that all entries across all records are deterministically unique.
 
-<IndentWrapper>
-  The unique identifier based on the record entry's composition. Note: all entries across all records are deterministically unique.
-</IndentWrapper>
+`descriptor` - The descriptor object for the constructed DWN message.
 
-`descriptor`
+`data` - Object containing:
 
-<IndentWrapper>
-  The descriptor object for the constructed DWN message.
-</IndentWrapper>
 
-`data`
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; `text()` - Produces a textual representation of the data
 
-<IndentWrapper>
-  An object with the following methods available on it:
-</IndentWrapper>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; `json()` - If the value is JSON data, this method will return a parsed JSON object
 
-- `text()` - produces a textual representation of the data.
-- `json()` - if the value is JSON data, this method will return a parsed JSON object.
-- `stream()` - returns the raw stream of bytes for the data.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; `stream()` - Returns the raw stream of bytes for the data
 
-`send(did)`
+### Methods
 
-<IndentWrapper>
-  Sends a given record to the specified `did`.
-</IndentWrapper>
+`send(did)` - Sends a given record to the specified DID
 
-`delete(id)`
 
-<IndentWrapper>
-  Generates a `delete` etnry tombstone for the record. This is a convenience method that allows you to easily delete records.
-</IndentWrapper>
+`delete(id)` -  Generates a `delete` etnry tombstone for the record. This is a convenience method that allows you to easily delete records.
 
-`update()`
+`update()` - Takes in a new request object matching the expected method signature of a `write` and overwrites the record.
 
-<IndentWrapper>
-  Takes in a new request object matching the expected method signature of a `write` and overwrites the record.
-</IndentWrapper>
+</details>
 
+<Divider type="slash"/>
 
 ## Methods
 
 ### query(request)
 
-Method for querying the DWN of a provided `target`.
+Method for querying the DWN of a provided target.
 
 #### Parameters
 
-`request`
+`request` - Object containing:
 
-<IndentWrapper> 
-  `from`: The DID to query from. 
-</IndentWrapper>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; `from`: The DID to query from. 
 
-<IndentWrapper>
-  `author`: The DID of the author signing the query. This may be the same as the `target` parameter if the `target` and the signer of the query are the same entity, which is common for an app querying the DWN of its own user.
-</IndentWrapper>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; `author`: The DID of the author signing the query. This may be the same as the target parameter if the target and the signer of the query are the same entity, which is common for an app querying the DWN of its own user.
 
-<IndentWrapper>
-  `message`: An object describing the properties of the DWN descriptor used to construct a valid DWN message.
-</IndentWrapper>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; `message`: An object describing the properties of the DWN descriptor used to construct a valid DWN message.
 
-#### Returns
 
-The response object of the query.
+#### Return Value
+
+The response object of the query
 
 #### Code Example
 ```js
@@ -93,23 +78,25 @@ const response = await web5.dwn.records.query({
 });
 ```
 
+<Divider type="slash"/>
+
 ### create(request)
 
-Method for writing a record to the DWN of a specified DID.
+Method for writing a record to the DWN of a specified DID
 
 #### Parameters
 
-`request`
+`request` - Object containing:
 
-<IndentWrapper>
-  `from` - The DID of the author signing the query. This may be the same as the `target` parameter if the `target` and the signer of the query are the same entity, which is common for an app querying the DWN of its own user.
-</IndentWrapper>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; `from` - The DID of the author signing the query. This may be the same as the target parameter if the target and the signer of the query are the same entity, which is common for an app querying the DWN of its own user.
 
-- `message` - An object describing the properties of the DWN descriptor used to construct a valid DWN message.
-- `store` - A `boolean` specifying whether the `create` function should record the data in the user's DWN.
-- `data` - the data object of the bytes, stream, blob, or file to be sent.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; `message` - An object describing the properties of the DWN descriptor used to construct a valid DWN message.
 
-#### Returns
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; `store` - A boolean specifying whether the data in the user's DWN should be recorded
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; `data` - The data object of the bytes, stream, blob, or file to be sent
+
+#### Return Value
 
 The response object of the query.
 
@@ -126,29 +113,26 @@ const { record } = await web5.dwn.records.create({
 });
 ```
 
+<Divider type="slash"/>
+
 ### write(request)
 
-Method for writing a record to the DWN of a provided `target`.
+Method for writing a record to the DWN of a provided target
 
 #### Parameters
 
-`request`
+`request` - Object containing:
 
-<IndentWrapper>
-  `from`: The DID of the author signing the query. This may be the same as the `target` parameter if the `target` and the signer of the query are the same entity, which is common for an app querying the DWN of its own user.
-</IndentWrapper>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; `from`: The DID of the author signing the query. This may be the same as the target parameter if the target and the signer of the query are the same entity, which is common for an app querying the DWN of its own user.
 
-<IndentWrapper>
-  `message`: An object describing the properties of the DWN descriptor used to construct a valid DWN message.
-</IndentWrapper>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; `message`: An object describing the properties of the DWN descriptor used to construct a valid DWN message
 
-<IndentWrapper>
-  `data`: the data object of the bytes, stream, blob, or file to be sent.
-</IndentWrapper>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; `data`: The data object of the bytes, stream, blob, or file to be sent
 
-#### Returns
 
-The response object of the query.
+#### Return Value
+
+The response object of the query
 
 #### Code Example
 ```js
@@ -156,33 +140,31 @@ const { record } = await web5.dwn.records.write({
   from: 'did:example:alice',
   data: 'Hello again!',
   message: {
-    recordId: record.recordId,
+    recordId: 'bfw35evr6e54c4cqa4c589h4cq3v7w4nc534c9w7h5',
     dataFormat: 'text/plain'
   }
 });
 ```
 
+<Divider type="slash"/>
+
 ### delete(target, request)
 
-Method for reading a record to the DWN of a provided `target`.
+Method for reading a record to the DWN of a provided target
 
 #### Parameters
 
-`request`
+`request` - Object containing:
 
-<IndentWrapper>
-  from`: The DID of the author signing the query. This may be the same as the `target` parameter if the `target` and the signer of the query are the same entity, which is common for an app querying the DWN of its own user.
-</IndentWrapper>
-<IndentWrapper>
-  `message`: An object describing the properties of the DWN descriptor used to construct a valid DWN message.
-</IndentWrapper>
-<IndentWrapper>
-  `recordId`: The `recordId` you are fetching.
-</IndentWrapper>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; `from`: The DID of the author signing the query. This may be the same as the target parameter if the target and the signer of the query are the same entity, which is common for an app querying the DWN of its own user.
 
-#### Returns
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; `message`: An object containing the recordId
 
-The response object of the query.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  `recordId`: The id of the record to delete
+
+#### Return Value
+
+The response object of the query
 
 #### Code Example
 ```js
