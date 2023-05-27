@@ -373,3 +373,12 @@ html.plugin-docs.plugin-id-api article .theme-card p {
   color: var(--color-blue) !important;
   background-color: var(--ifm-menu-color-background-hover);
 }
+
+.api-docs h3{
+  color: #24f2ff;
+  font-size: 1.6rem;
+}
+
+.api-docs h4{
+  font-weight: 100;
+}

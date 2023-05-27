@@ -3,9 +3,11 @@ import Divider from '@site/src/components/Divider';
 # protocols
 
 ## Overview
-The `protocols` class is responsible for providing convenience methods for managing protocols between DWNs.
+The `protocols` class is responsible for providing convenience methods for managing protocols between DWNs
 
 <Divider type="slash"/>
+
+<section class="api-docs">
 
 ## Methods
 
@@ -35,7 +37,6 @@ The response from the query
 
 #### Code Example
 ```js
-
 const response = await web5.dwn.protocols.configure({
   from: 'did:example:alice',
   message: {
@@ -106,3 +107,4 @@ const response = await web5.dwn.protocols.query({
   }
 });
 ```
+</section>
