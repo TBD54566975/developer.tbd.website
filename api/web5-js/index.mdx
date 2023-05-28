@@ -1,6 +1,7 @@
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import Divider from '@site/src/components/Divider';
+import ApiDetails from '@site/src/components/ApiDetails';
 
 
 
@@ -87,9 +88,23 @@ Enables an app to request connection to a user's local identity app (like a desk
 
 #### Return Value
 
-`web5`: A class instance of `Web5` that enables access to a locally running DWN, DID interaction methods, and other capabilities related to the connected DID
+<ApiDetails
+  details={[
+    {
+      data: {
+        field: 'web5',
+        value: 'A class instance of Web5 that enables access to a locally running DWN, DID interaction methods, and other capabilities related to the connected DID',
+      },
+    },
+    {
+      data: {
+        field: 'did',
+        value: 'A class instance representing the decentralized identifier that was created or attained connection to',
+      },
+    },
+  ]}
+/>
 
-`did`: A class instance representing the decentralized identifier that was created or attained connection to
 
 #### Code Example
 

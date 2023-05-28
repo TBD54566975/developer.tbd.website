@@ -519,3 +519,7 @@ footer a:hover {
 .expandable-content-expanded {
   max-height: 300px; /* Adjust this value based on the actual content height */
 }
+
+.col-span-2 {
+  grid-column: span 2 / span 2;
+}

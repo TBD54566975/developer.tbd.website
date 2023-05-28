@@ -1,4 +1,5 @@
 import Divider from '@site/src/components/Divider';
+import ApiDetails from '@site/src/components/ApiDetails';
 
 # did
 ## Overview
@@ -20,17 +21,36 @@ The `did` class is responsible for providing all operations related to DIDs
 
 ### create(method, options)
 
-Enables generation of DIDs for a supported set of DID Methods. The output is method-specific, and handles things like key generation and assembly of DID Documents that can be published to decentralized DID networks.
+Enables generation of DIDs for a supported set of DID Methods.
+
+:::note
+You do not usually need to manually invoke this, as the <a href="/api/web5-js/#connect">Web5.connect()</a> method already acquires a DID for the user (either by direct creation or connection to an identity agent app).
+:::
 
 #### Parameters
 
-`method`: The method on which to create the did. Supported methods are _ion_, _web_, and _key_
+<ApiDetails
+  details={[
+    {
+      data: {
+        field: 'method',
+        value: 'The method on which to create the did. Supported methods are: ion, web, and key',
+      },
+    },
+    {
+      data: {
+        field: 'options',
+        value: 'Enables customization of the did formation',
+        isOptional: true,
+      },
+    },
+  ]}
+/>
 
-`options` _(Optional)_: Enables customization of the did formation
 
 #### Return Value
 
-Did document
+The output is method-specific, and handles things like key generation and assembly of DID Documents that can be published to DID network
 
 #### Code Example
 
@@ -45,20 +65,63 @@ const myDid = await web5.did.create('ion');
 Encrypts provided data according to specification
 
 #### Parameters
-`options`: Object containing:
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; `did`: DID of the recepient, whose private key is used to decrypt the data
+<ApiDetails
+  details={[
+    {
+      data: {
+        field: 'options',
+        isObject: true,
+        value: <ApiDetails
+                details={[
+                {
+                    data: {
+                        field: 'did',
+                        value: 'DID of the recepient, whose private key is used to encrypt the data',
+                    },
+                },
+                {
+                    data: {
+                        field: 'payload',
+                        value: 'Encryption algorithm output, including the ciphertext, to be decrypted',
+                    },
+                },
+                {
+                    data: {
+                        field: 'keyId',
+                        value: 'Key identifier to use form the recepient\'s DID document',
+                    },
+                },
+                {
+                    data: {
+                        field: 'algorithm',
+                        value: 'An object specifying the algorithm to be used and any extra parameters if required',
+                    },
+                },                                
+            ]}
+            />,
+      },
+    },
+  ]}
+/>
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`payload`: Encryption algorithm output, including the ciphertext, to be decrypted
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`keyId`: Key identifier to use form the recepient's DID document
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`algorithm`: An object specifying the algorithm to be used and any extra parameters if required
 
 #### Return Value
-`Promise<Web5EncryptionResult>`: A promise that fulfills with the output of the encryption algorithm
+
+<ApiDetails
+  details={[
+    {
+      data: {
+        field: 'Promise<Web5EncryptionResult>',
+        value: 'A promise that fulfills with the output of the encryption algorithm',
+      },
+    },
+  ]}
+/>
+
 
 #### Code Example
+
 ```js
 const options = {
     "did" : "firstDid",
@@ -75,14 +138,46 @@ const encryptedText = await web5.did.encrypt(options)
 
 #### Parameters
 
-`options`: Object containing:
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`did`: DID of the recipient, whose private key is used to decrypt the data
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`payload`: Encryption algorithm output, including the ciphertext, to be decrypted
+<ApiDetails
+  details={[
+    {
+      data: {
+        isObject: true,
+        field: 'options',
+        value: <ApiDetails
+                details={[
+                {
+                    data: {
+                        field: 'did',
+                        value: 'DID of the recipient, whose private key is used to decrypt the data',
+                    },
+                },
+                {
+                    data: {
+                        field: 'payload',
+                        value: 'Encryption algorithm output, including the ciphertext, to be decrypted',
+                    },
+                },                              
+            ]}
+            />,
+      },
+    },
+  ]}
+/>
 
 #### Return Value
-`Promise<UInt8Array>`: A promise that fulfills with a UInt8Array containing the plain text
+
+<ApiDetails
+  details={[
+    {
+      data: {
+        field: 'Promise<UInt8Array>',
+        value: 'A promise that fulfills with a UInt8Array containing the plain text',
+      },
+    },
+  ]}
+/>
+
 
 #### Code Example
 ```js
@@ -95,15 +190,55 @@ const decryptedDID = await web5.did.decrypt(options)
 <Divider type="slash"/>
 
 ### sign(method, options)
+
 #### Parameters
-`method`: DID method to sign on
 
-`options`: Object containing:
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`payload`: Encryption algorithm output, including the ciphertext, to be decrypted
+<ApiDetails
+  details={[
+    {
+      data: {
+        field: 'method',
+        value: 'DID method to sign on',
+      },
+    },
+    {
+      data: {
+        isObject: true,
+        field: 'options',
+        value: <ApiDetails
+                details={[
+                {
+                    data: {
+                        field: 'did',
+                        value: 'DID of the recipient, whose private key is used to decrypt the data',
+                    },
+                },
+                {
+                    data: {
+                        field: 'payload',
+                        value: 'Encryption algorithm output, including the ciphertext, to be decrypted',
+                    },
+                },                              
+            ]}
+            />,
+      },
+    },    
+  ]}
+/>
 
 #### Return Value
-`Promise<UInt8Array>`: A promise that fulfills with a UInt8Array containing the signed DID
+
+<ApiDetails
+  details={[
+    {
+      data: {
+        field: 'Promise<UInt8Array>',
+        value: 'A promise that fulfills with a UInt8Array containing the signed DID',
+      },
+    },
+  ]}
+/>
+
 
 #### Code Example
 ```js
@@ -116,15 +251,49 @@ const signedData = await web5.did.sign("ion", options)
 <Divider type="slash"/>
 
 ### verify(method, options)
+
 #### Parameters
-`method`: The DID method to sign on
 
-`options`: Object containing:
+<ApiDetails
+  details={[
+    {
+      data: {
+        field: 'method',
+        value: 'The DID method to sign on',
+      },
+    },
+    {
+      data: {
+        isObject: true,
+        field: 'options',
+        value: <ApiDetails
+                details={[
+                {
+                    data: {
+                        field: 'payload',
+                        value: 'Encryption algorithm output, including the ciphertext, to be decrypted',
+                    },
+                },                                             
+            ]}
+            />,
+      },
+    },    
+  ]}
+/>
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`payload`: Encryption algorithm output, including the ciphertext, to be decrypted
 
 #### Return Value
-`Promise<UInt8Array>`: A promise that fulfills with a UInt8Array containing the signed DID
+
+<ApiDetails
+  details={[
+    {
+      data: {
+        field: 'Promise<UInt8Array>',
+        value: 'A promise that fulfills with a UInt8Array containing the signed DID',
+      },
+    },
+  ]}
+/>
 
 #### Code Example
 ```js
@@ -137,15 +306,48 @@ const verifiedData = await web5.did.verify("ion", options)
 <Divider type="slash"/>
 
 ### resolve(did, options)
+
 #### Parameters
-`method`: The DID method to sign on
 
-`options`: Object containing:
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; `payload`: Encryption algorithm output, including the ciphertext, to be decrypted.
+<ApiDetails
+  details={[
+      {
+       data: {
+         field: 'method',
+         value: 'The DID method to sign on',
+       },
+      },        
+      {
+        data: {
+        isObject: true,
+        field: 'options',
+        value: <ApiDetails
+                details={[
+                {
+                    data: {
+                        field: 'payload',
+                        value: 'Encryption algorithm output, including the ciphertext, to be decrypted',
+                    },
+                },                              
+            ]}
+            />,
+         },
+      },
+  ]}
+/>
 
 #### Return Value
-`Promise<UInt8Array>`: A promise that fulfills with a UInt8Array containing the signed DID
+
+<ApiDetails
+  details={[
+    {
+      data: {
+        field: 'Promise<UInt8Array>',
+        value: 'A promise that fulfills with a UInt8Array containing the signed DID',
+      },
+    },
+  ]}
+/>
 
 #### Code Example
 ```js
@@ -161,14 +363,45 @@ const signedData = await web5.did.sign("ion", options)
 
 #### Parameters
 
-`method`: The DID method to sign on
-
-`options`: Object containing:
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`payload`: Encryption algorithm output, including the ciphertext, to be decrypted
+<ApiDetails
+  details={[
+    {
+        data: {
+            field: 'method',
+            value:'The DID method to sign on',
+        }
+    },
+    {
+      data: {
+        isObject: true,
+        field: 'options',
+        value: <ApiDetails
+                details={[
+                {
+                    data: {
+                        field: 'payload',
+                        value: 'Encryption algorithm output, including the ciphertext, to be decrypted',
+                    },
+                },                              
+            ]}
+            />,
+      },
+    },
+  ]}
+/>
 
 #### Return Value
-`Promise<UInt8Array>`: A promise that fulfills with a UInt8Array containing the signed DID
+
+<ApiDetails
+  details={[
+    {
+      data: {
+        field: 'Promise<UInt8Array>',
+        value: 'A promise that fulfills with a UInt8Array containing the signed DID',
+      },
+    },
+  ]}
+/>
 
 #### Code Example
 ```js
@@ -184,16 +417,48 @@ const signedData = await web5.did.sign("ion", options)
 
 #### Parameters
 
-`method`: The DID method to sign on
-
-`options`: Object containing:
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; `payload`: Encryption algorithm output, including the ciphertext, to be decrypted
+<ApiDetails
+  details={[
+    {
+        data: {
+            field: 'method',
+            value:'The DID method to sign on',
+        }
+    },
+    {
+      data: {
+        isObject: true,
+        field: 'options',
+        value: <ApiDetails
+                details={[
+                {
+                    data: {
+                        field: 'payload',
+                        value: 'Encryption algorithm output, including the ciphertext, to be decrypted',
+                    },
+                },                              
+            ]}
+        />,
+      },
+    },
+  ]}
+/>
 
 #### Return Value
-`Promise<UInt8Array>`: A promise that fulfills with a UInt8Array containing the signed DID
+
+<ApiDetails
+  details={[
+    {
+      data: {
+        field: 'Promise<UInt8Array>',
+        value: 'A promise that fulfills with a UInt8Array containing the signed DID',
+      },
+    },
+  ]}
+/>
 
 #### Code Example
+
 ```js
 const options = {
     "payload" : "somePayload"
@@ -207,14 +472,45 @@ const signedData = await web5.did.sign("ion", options)
 
 #### Parameters
 
-`method`: The DID method to sign on
-
-`options`: Object containing:
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`payload`: Encryption algorithm output, including the ciphertext, to be decrypted
+<ApiDetails
+  details={[
+    {
+        data: {
+            field: 'method',
+            value:'The DID method to sign on',
+        }
+    },
+    {
+      data: {
+        isObject: true,
+        field: 'options',
+        value: <ApiDetails
+                details={[
+                {
+                    data: {
+                        field: 'payload',
+                        value: 'Encryption algorithm output, including the ciphertext, to be decrypted',
+                    },
+                },                              
+            ]}
+        />,
+      },
+    },
+  ]}
+/>
 
 #### Return Value
-`Promise<UInt8Array>`: A promise that fulfills with a UInt8Array containing the signed DID
+
+<ApiDetails
+  details={[
+    {
+      data: {
+        field: 'Promise<UInt8Array>',
+        value: 'A promise that fulfills with a UInt8Array containing the signed DID',
+      },
+    },
+  ]}
+/>
 
 #### Code Example
 ```js
@@ -230,15 +526,45 @@ const signedData = await web5.did.sign("ion", options)
 
 #### Parameters
 
-`method`: The DID method to sign on
-
-`options`: Object containing:
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`payload`: Encryption algorithm output, including the ciphertext, to be decrypted
+<ApiDetails
+  details={[
+    {
+        data: {
+            field: 'method',
+            value:'The DID method to sign on',
+        }
+    },
+    {
+      data: {
+        isObject: true,
+        field: 'options',
+        value: <ApiDetails
+                details={[
+                {
+                    data: {
+                        field: 'payload',
+                        value: 'Encryption algorithm output, including the ciphertext, to be decrypted',
+                    },
+                },                              
+            ]}
+        />,
+      },
+    },
+  ]}
+/>
 
 #### Return Value
 
-`Promise<UInt8Array>`: A promise that fulfills with a UInt8Array containing the signed DID
+<ApiDetails
+  details={[
+    {
+      data: {
+        field: 'Promise<UInt8Array>',
+        value: 'A promise that fulfills with a UInt8Array containing the signed DID',
+      },
+    },
+  ]}
+/>
 
 #### Code Example
 ```js

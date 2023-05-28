@@ -1,4 +1,5 @@
 import Divider from '@site/src/components/Divider';
+import ApiDetails from '@site/src/components/ApiDetails';
 
 # manager
 
@@ -52,7 +53,16 @@ Gets the DID assigned to a given record id
 
 #### Parameters
 
-`id`: The record id of the document to fetch
+<ApiDetails
+  details={[
+    {
+      data: {
+        field: 'id',
+        value: 'The record id of the document to fetch',
+      },
+    },
+  ]}
+/>
 
 #### Return Value
 
@@ -72,7 +82,16 @@ Deletes the DID assigned to a given record id
 
 #### Parameters
 
-`id`: The record id of the document to delete
+<ApiDetails
+  details={[
+    {
+      data: {
+        field: 'id',
+        value: 'The record id of the document to delete',
+      },
+    },
+  ]}
+/>
 
 #### Return Value
 None
@@ -91,12 +110,24 @@ The package provides a DID manager mechanism that handles interactions with a DI
 
 #### Parameters
 
-`id`: The record id of the document to set
-
-`value`: The value of the data to store
+<ApiDetails
+  details={[
+    {
+      data: {
+        field: 'id',
+        value: 'The record id of the document to set',
+      },
+    },
+    {
+      data: {
+        field: 'value',
+        value: 'The value of the data to store',
+      },
+    },    
+  ]}
+/>
 
 #### Return Value
-
 None
 
 #### Code Example
