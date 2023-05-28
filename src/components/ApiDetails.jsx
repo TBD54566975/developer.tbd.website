@@ -19,11 +19,15 @@ const ApiDetails = ({ details }) => {
             <div className="col-span-2">
                 {detail.data.isObject ? (
                     <>
-                    Object containing:
-                    <br/><br/>
-                    </>) : null
+                    <details>
+                      <summary>Show parameters</summary>
+                      <br/> 
+                      <div className="shift-object-left">
+                        {detail.data.value}
+                      </div>
+                    </details>
+                    </>) : (<>{detail.data.value}</>)
                 }
-                {detail.data.value}
             </div>
             </>
       ))}
