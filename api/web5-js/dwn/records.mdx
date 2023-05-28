@@ -1,4 +1,6 @@
 import Divider from '@site/src/components/Divider';
+import ApiDetails from '@site/src/components/ApiDetails';
+
 
 export function IndentWrapper({children}) {
   return <p style={{marginLeft: '1.5rem'}}>{children}</p>
@@ -53,13 +55,38 @@ Method for querying the DWN of a provided target
 
 #### Parameters
 
-`request`: Object containing:
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; `from`: The DID to query from 
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; `author`: The DID of the author signing the query. This may be the same as the target parameter if the target and the signer of the query are the same entity, which is common for an app querying the DWN of its own user.
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; `message`: An object describing the properties of the DWN descriptor used to construct a valid DWN message
+<ApiDetails
+  details={[
+    {
+      data: {
+        isObject: true,
+        field: 'request',
+        value: <ApiDetails
+                details={[
+                {
+                    data: {
+                        field: 'from',
+                        value: 'The DID to query from',
+                    },
+                },
+                {
+                    data: {
+                        field: 'author',
+                        value: 'The DID of the author signing the query. This may be the same as the target parameter if the target and the signer of the query are the same entity, which is common for an app querying the DWN of its own user.',
+                    },
+                }, 
+                {
+                    data: {
+                        field: 'message',
+                        value: 'Object describing the properties of the DWN descriptor used to construct a valid DWN message',
+                    },
+                },                                             
+            ]}
+          />,
+      },
+    },
+  ]}
+/>
 
 
 #### Return Value
@@ -87,15 +114,45 @@ Method for writing a record to the DWN of a specified DID
 
 #### Parameters
 
-`request`: Object containing:
+<ApiDetails
+  details={[
+    {
+      data: {
+        isObject: true,
+        field: 'request',
+        value: <ApiDetails
+                details={[
+                {
+                    data: {
+                        field: 'from',
+                        value: 'The DID of the author signing the query. This may be the same as the target parameter if the target and the signer of the query are the same entity, which is common for an app querying the DWN of its own user.',
+                    },
+                },
+                {
+                    data: {
+                        field: 'store',
+                        value: 'A boolean specifying whether the data in the user\'s DWN should be recorded',
+                    },
+                }, 
+                {
+                    data: {
+                        field: 'data',
+                        value: 'The data object of the bytes, stream, blob, or file to be sent',
+                    },
+                },                                 
+                {
+                    data: {
+                        field: 'message',
+                        value: 'Object describing the properties of the DWN descriptor used to construct a valid DWN message',
+                    },
+                },                                             
+            ]}
+          />,
+      },
+    },
+  ]}
+/>
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; `from`: The DID of the author signing the query. This may be the same as the target parameter if the target and the signer of the query are the same entity, which is common for an app querying the DWN of its own user.
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; `message`: An object describing the properties of the DWN descriptor used to construct a valid DWN message
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; `store`: A boolean specifying whether the data in the user's DWN should be recorded
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; `data`: The data object of the bytes, stream, blob, or file to be sent
 
 #### Return Value
 
@@ -122,14 +179,38 @@ Method for writing a record to the DWN of a provided target
 
 #### Parameters
 
-`request`: Object containing:
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; `from`: The DID of the author signing the query. This may be the same as the target parameter if the target and the signer of the query are the same entity, which is common for an app querying the DWN of its own user.
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; `message`: An object describing the properties of the DWN descriptor used to construct a valid DWN message
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; `data`: The data object of the bytes, stream, blob, or file to be sent
-
+<ApiDetails
+  details={[
+    {
+      data: {
+        isObject: true,
+        field: 'request',
+        value: <ApiDetails
+                details={[
+                {
+                    data: {
+                        field: 'from',
+                        value: 'The DID of the author signing the query. This may be the same as the target parameter if the target and the signer of the query are the same entity, which is common for an app querying the DWN of its own user.',
+                    },
+                },
+                {
+                    data: {
+                        field: 'data',
+                        value: 'The data object of the bytes, stream, blob, or file to be sent',
+                    },
+                },                                 
+                {
+                    data: {
+                        field: 'message',
+                        value: 'Object describing the properties of the DWN descriptor used to construct a valid DWN message',
+                    },
+                },                                             
+            ]}
+          />,
+      },
+    },
+  ]}
+/>
 
 #### Return Value
 
@@ -155,13 +236,42 @@ Method for reading a record to the DWN of a provided target
 
 #### Parameters
 
-`request` - Object containing:
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; `from`: The DID of the author signing the query. This may be the same as the target parameter if the target and the signer of the query are the same entity, which is common for an app querying the DWN of its own user.
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; `message`: An object containing the recordId
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  `recordId`: The id of the record to delete
+<ApiDetails
+  details={[
+    {
+      data: {
+        isObject: true,
+        field: 'request',
+        value: <ApiDetails
+                details={[
+                {
+                    data: {
+                        field: 'from',
+                        value: 'The DID of the author signing the query. This may be the same as the target parameter if the target and the signer of the query are the same entity, which is common for an app querying the DWN of its own user.',
+                    },
+                },                               
+                {
+                    data: {
+                        isObject: true,
+                        field: 'message',
+                        value: <ApiDetails
+                                details={[
+                                {
+                                    data: {
+                                        field: 'recordId',
+                                        value: 'The id of the record to delete',
+                                    },
+                                },                            
+                            ]}
+                            />,
+                  },
+                },                                             
+            ]}
+          />,
+      },
+    },
+  ]}
+/>
 
 #### Return Value
 

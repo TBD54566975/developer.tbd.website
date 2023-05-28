@@ -1,4 +1,5 @@
 import Divider from '@site/src/components/Divider';
+import ApiDetails from '@site/src/components/ApiDetails';
 
 # protocols
 
@@ -19,17 +20,55 @@ Configures a protocol for a specified DWN
 
 #### Parameters
 
-`request` - Object containing:
+<ApiDetails
+  details={[
+    {
+      data: {
+        isObject: true,
+        field: 'request',
+        value: <ApiDetails
+                details={[
+                {
+                    data: {
+                        field: 'from',
+                        value: 'The DID of the DWN to configure',
+                    },
+                },
+                {
+                    data: {
+                        field: 'author',
+                        value: 'The DID signing the query. This may be the same as the target parameter if the target and the signer of the query are the same entity, which is common for an app querying the DWN of its own user.',
+                    },
+                }, 
+                {
+                    data: {
+                        isObject: true,
+                        field: 'message',
+                        value: <ApiDetails
+                                details={[
+                                {
+                                    data: {
+                                        field: 'definition',
+                                        value: 'Object that defines the ruleset that will be applied to the records and activities under the protocol',
+                                    },
+                                },
+                                {
+                                    data: {
+                                        field: 'protocol',
+                                        value: 'URI that represents the protocol being queried for',
+                                    },
+                                },                              
+                            ]}
+                            />,
+                    },
+                },                                             
+            ]}
+            />,
+      },
+    },
+  ]}
+/>
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; `from`: The DID of the DWN to configure.
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; `author`: The DID signing the query. This may be the same as the target parameter if the target and the signer of the query are the same entity, which is common for an app querying the DWN of its own user.
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`message`: The properties of the DWN Message Descriptor that will be used to construct a valid DWN message
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; `definition`: an object that defines the ruleset that will be applied to the records and activities under the protocol
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; `protocol`: a URI that represents the protocol being queried for
 
 #### Return Value
 
@@ -78,17 +117,59 @@ Method for querying the protocols for DIDs that have added configurations for in
 
 #### Parameters
 
-`request` - Object containing:
+<ApiDetails
+  details={[
+    {
+      data: {
+        isObject: true,
+        field: 'request',
+        value: <ApiDetails
+                details={[
+                {
+                    data: {
+                        field: 'from',
+                        value: 'The DID of the DWN to query',
+                    },
+                },
+                {
+                    data: {
+                        field: 'author',
+                        value: 'The DID signing the query. This may be the same as the target parameter if the target and the signer of the query are the same entity, which is common for an app querying the DWN of its own user.',
+                    },
+                }, 
+                {
+                    data: {
+                        isObject: true,
+                        field: 'message',
+                        value: <ApiDetails
+                                details={[
+                                {
+                                    data: {
+                                        isObject: true,
+                                        field: 'filter',
+                                        value: <ApiDetails
+                                                details={[
+                                                {
+                                                    data: {
+                                                        field: 'protocol',
+                                                        value: 'URI that represents the protocol being queried for',
+                                                    },
+                                                },                             
+                                            ]}
+                                            />,
+                                    },
+                                },                            
+                            ]}
+                            />,
+                    },
+                },                                             
+            ]}
+          />,
+      },
+    },
+  ]}
+/>
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; `from`: The DID of the DWN to query
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; `author`: The DID signing the query. This may be the same as the target parameter if the target and the signer of the query are the same entity, which is common for an app querying the DWN of its own user.
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; `message`: The properties of the DWN Message Descriptor that will be used to construct a valid DWN message
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; `filter`: An object that defines a set of properties to filter results
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; `protocol`: A URI that represents the protocol being queried for
 
 #### Return Value
 
