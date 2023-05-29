@@ -20,7 +20,7 @@ docker-compose --version
 Docker Compose version v2.17.2
 ```
 
-### 1. Clone and Run SSI Console
+### Clone and Run SSI Console
 ```bash
 git clone https://github.com/TBD54566975/ssi-console.git
 cd ssi-console
@@ -28,19 +28,19 @@ npm install
 npm start
 ```
 
-Head to `localhost:3000` and follow the guide below for all actions you can take from the homepage.
+Open [localhost:3000](http://localhost:3000/) in a browser and follow the guide below for all actions you can take from the homepage.
 
 ## Create a Decentralized Identifier (DID):
-_To learn more about DIDs see [here](https://developer.tbd.website/docs/web5/learn/decentralized-identifiers)._
+_Learn more about [DIDs](https://developer.tbd.website/docs/web5/learn/decentralized-identifiers)._
 
 Upon installation a DID will be created by default, but you can follow the steps below to create one for yourself.
 
-### 1. Navigate to `localhost:3000/dids` and click `Add New`
+### 1. Navigate to [localhost:3000/dids](http://localhost:3000/dids) and click `Add New`
 
 ### 2. Set DID Method:
 There are three different DID methods to choose from: `Ion`, `Web`, and `Key`. The DID `Key` method is a good method for testing purposes so let's select that for now.
 
-_To learn more about these methods click [here](https://www.w3.org/TR/did-spec-registries/#did-methods)._
+_Learn more about these [DID Methods](https://developer.tbd.website/docs/web5/learn/decentralized-identifiers/#methods)._
 
 ### 3. Set keyType and options:
 Click `Try sample input` and then submit.
@@ -51,23 +51,23 @@ _To learn more about what you can add to this JSON field see [here](https://deve
 - Refresh page and you should see your new DID listed under the `All DIDs` index. -->
 
 ## Create a Verifiable Credential (VC):
-### 1. Navigate to `localhost:3000/credentials` and click `Create New`
+### 1. Navigate to [localhost:3000/credentials](localhost:3000/credentials) and click `Create New`.
 
 ### 2. Add name and description:
 Feel free to use the default placeholders or describe your new VC.
 
 ### 3. Prep VC Schema:
-- Set 'Schema' to 'New Data set'
+- Set `Schema` to `New Data set`
 - Click `Try sample input` and fill in the VC subject's first and last name.
 
-_See [here](https://developer.tbd.website/docs/apis/ssi-service#tag/SchemaAPI) for an example of schema properties._
+_See [properties you can add to this schema](https://developer.tbd.website/docs/apis/ssi-service#tag/SchemaAPI)._
 
 ### 4. Set Presentation Definition:
 Click `Try sample input` and leave the default JSON for now.
 
 This field populates the `presentation_definition` field of the `credential_manifest`. When a subject, for example an employee, applies for this credential, they will be required to present any credentials defined in this field. Here, we are asking for a credential with the subject's `firstName` and a credential with the subject's `lastName`. The `path` field defines which path we can expect to find these values in the subject's provided credentials.
 
-_See [here](https://developer.tbd.website/docs/apis/ssi-service#tag/PresentationDefinitionAPI/paths/~1v1~1presentations~1definitions/put) to learn more about presentation definitions._
+_Learn more about [presentation definitions](https://developer.tbd.website/docs/apis/ssi-service#tag/PresentationDefinitionAPI/paths/~1v1~1presentations~1definitions/put)._
 
 ### 5. Set issuer information:
 Fill in an issuer name (company name) for the employment verification.
@@ -76,9 +76,9 @@ Fill in an issuer name (company name) for the employment verification.
 ### Send an Application:
 Share the Application URL with subjects, employees in this case, to apply for their new employment verifiable credential.
 
-The credential applicant will need to submit a credential application as a JWT. Once they submit the JWT, the application will become available for review in the dashboard, under Credentials > Applications.
+The credential applicant will need to submit a credential application as a [JSON Web Token](https://jwt.io/). Once they submit the JWT, the application will become available for review in the dashboard, under Credentials > Applications.
 
-_See [here](https://developer.tbd.website/docs/apis/ssi-service/#tag/ApplicationAPI/paths/~1v1~1manifests~1applications/put) for more details on applications.
+_Learn more about [applications](https://developer.tbd.website/docs/apis/ssi-service/#tag/ApplicationAPI/paths/~1v1~1manifests~1applications/put)._
 
 <!-- TODO: The Application URL opens up to a hardcoded KYC Credential application in the console app, Kirah going to work on. -->
 
@@ -90,19 +90,20 @@ _See [here](https://developer.tbd.website/docs/apis/ssi-service/#tag/Application
   - `Issuer DID`: Choose one of the employers' DIDs.
 
 ## Verify a Credential:
-### 1. Navigate to: `localhost:3000/verification`
-### Json:
-Click `Try sample input`
 
-We use presentation definitions to create submission links, through which Holders can submit their relevant credentials for verification.
+We use presentation definitions to create submission links, through which subjects can submit their relevant credentials for verification.
 
-### How to create a presentation definition:
-- Choose a name for your presentation definition and add it to the `Name` field
-- Include the purpose of your presentation definition (it should answer: why are you requesting this credential?)
-- Click `Try sample input` again and leave the default added JSON for now. It will be looking for credentials to verify the `firstName` and `lastName`.
-- Choose your verifier DID from the dropdown. You can use the same ion DID youve been using.
+### 1. Navigate to: [localhost:3000/verification](localhost:3000/verification) and click `Create New`.
+### 2. Name your presentation definition.
+### 3. Set Purpose
+Include the purpose of your presentation definition. It should answer: why are you requesting this credential?
 
-_See [here](https://developer.tbd.website/docs/apis/ssi-service#tag/PresentationDefinitionAPI/paths/~1v1~1presentations~1definitions/put) to learn more about presentation definitions_
+### 3. Set input constraints
+- Click `Try sample input` again and leave the default added JSON for now.
+It will be looking for credentials to verify the `firstName` and `lastName`.
+
+### 4. Set verifier
+Choose your verifier DID from the dropdown. You can use the same Ion DID you've been using.
 
 :::info
 Verification `Applications` vs `Submissions`:
@@ -112,8 +113,6 @@ Applications: When an employee applies for a credential with your applicaton lin
 Submissions: When an employer asks a job applicant to submit an education VC for example before accepting their role.
 :::
 
-## Next Steps
-- Learn how to manually issue a VC [here](https://developer.tbd.website/blog/issue-verifiable-credential-manually).
-- See SSI Service [API Docs](https://developer.tbd.website/docs/apis/ssi-service).
-
 <!-- TODO ## Add more next steps -->
+<!-- ## Next Steps
+See SSI Service [API Docs](https://developer.tbd.website/docs/apis/ssi-service). -->

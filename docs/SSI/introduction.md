@@ -1,6 +1,6 @@
 ---
 sidebar_position: 1
-title: Introduction
+title: Run SSI Service
 hide_title: true
 ---
 
@@ -97,6 +97,5 @@ curl localhost:8080/readiness
 ```
 
 ## Next Steps:
-- Learn how to use the SSI Service to [manually issue Verifiable Credentials](https://developer.tbd.website/blog/issue-verifiable-credential-manually).
 - Check out our [SSI Console](https://developer.tbd.website/docs/ssi/ssi-console) which leverages the SSI Service to simplify credential issuance and verification via a web interface.
 - Check out our [SSI SDK](https://github.com/TBD54566975/ssi-sdk).
