@@ -16,7 +16,7 @@ The `protocols` class is responsible for providing convenience methods for manag
 
 ### configure(request)
 
-Configures a protocol for a specified DWN
+Configures a protocol definition in the user's local DWN, remote DWN, or another party's DWN (if permitted). Fields under the `structure` object of the Protocol definition are expected to be either type references matching those defined in the `types` object. The type structures are recursive, so types form a graph and each type can have within it further attached types or rule statements that are all denoted with the prefix $.
 
 #### Parameters
 
@@ -29,41 +29,103 @@ Configures a protocol for a specified DWN
         value: <ApiDetails
                 details={[
                 {
-                    data: {
-                        field: 'from',
-                        value: 'The DID of the DWN to configure',
-                    },
+                  data: {
+                    field: 'from',
+                    value: 'The decentralized identifier signing the query',
+                    isOptional: true,
+                  }
                 },
                 {
-                    data: {
-                        field: 'author',
-                        value: 'The DID signing the query. This may be the same as the target parameter if the target and the signer of the query are the same entity, which is common for an app querying the DWN of its own user.',
-                    },
-                }, 
-                {
-                    data: {
-                        isObject: true,
-                        field: 'message',
-                        value: <ApiDetails
-                                details={[
-                                {
-                                    data: {
-                                        field: 'definition',
-                                        value: 'Object that defines the ruleset that will be applied to the records and activities under the protocol',
-                                    },
+                  data: {
+                    isObject: true,
+                    field: 'message',
+                    value: <ApiDetails
+                            details={[
+                            {
+                                data: {
+                                    isObject: true,
+                                    field: 'definition',
+                                    value: <ApiDetails
+                                            details={[
+                                            {
+                                                data: {
+                                                    field: 'protocol',
+                                                    value: 'URI that represents the protocol being configured',
+                                                },
+                                            },
+                                            {
+                                                data: {
+                                                    isObject: true,
+                                                    field: 'types',
+                                                    value: <ApiDetails
+                                                            details={[
+                                                            {
+                                                                data: {
+                                                                    isOptional: true,
+                                                                    field: 'schema',
+                                                                    value: 'URI of the schema under which the record will be bucketed',
+                                                                },
+                                                            },
+                                                            {
+                                                                data: {
+                                                                    isOptional: true,
+                                                                    field: 'dataFormat',
+                                                                    value: 'the IANA string corresponding with the format of the data the record will be bucketed',
+                                                                },
+                                                            },                              
+                                                        ]}
+                                                      />,
+                                                },
+                                            }, 
+                                            {
+                                                data: {
+                                                    isObject: true,
+                                                    field: 'structure',
+                                                    value: <ApiDetails
+                                                            details={[
+                                                            {
+                                                                data: {
+                                                                    isObject: true,
+                                                                    field: '$actions',
+                                                                    value: <ApiDetails
+                                                                            details={[
+                                                                            {
+                                                                              data: {
+                                                                                field: 'who',
+                                                                                value: 'The actor that is being permitted to invoke a given action. Valid values are: author, recipient',
+                                                                              },
+                                                                            },
+                                                                            {
+                                                                              data: {
+                                                                                isOptional: true,
+                                                                                field: 'of',
+                                                                                value: 'The protocol path that refers to the record subject',
+                                                                              },
+                                                                            }, 
+                                                                            {
+                                                                              data: {
+                                                                                field: 'can',
+                                                                                value: 'The action being permitted by the rule',
+                                                                              }
+                                                                            },                             
+                                                                        ]}
+                                                                      />,
+                                                                },
+                                                            },                              
+                                                        ]}
+                                                      />,
+                                                },
+                                            },                                                             
+                                        ]}
+                                      />,
                                 },
-                                {
-                                    data: {
-                                        field: 'protocol',
-                                        value: 'URI that represents the protocol being queried for',
-                                    },
-                                },                              
-                            ]}
-                            />,
-                    },
-                },                                             
-            ]}
-            />,
+                            },                                            
+                        ]}
+                      />,
+                  },
+                },
+              ]}
+          />
       },
     },
   ]}
@@ -75,38 +137,57 @@ Configures a protocol for a specified DWN
 The response from the query
 
 #### Code Example
+
 ```js
-const response = await web5.dwn.protocols.configure({
-  from: 'did:example:alice',
+const { protocol } = await web5.dwn.protocols.configure({
   message: {
-    protocol: "https://decentralized-music.org/protocol",
     definition: {
-      "labels": {
-        "playlist": {
-          "schema": "https://decentralized-music.org/protocol/playlist",
-          "dataFormat": [ "application/json" ]
+      protocol: "https://photos.org/protocol",
+      types: {
+        album: {
+          schema: "https://photos.org/protocol/album",
+          dataFormat: ["application/json"],
         },
-        "track": {
-          "schema": "https://decentralized-music.org/protocol/track",
-          "dataFormat": [ "application/json" ]
+        photo: {
+          schema: "https://photos.org/protocols/photo",
+          dataFormat: ["application/json"],
         },
-        "audio": {
-          "schema": "https://decentralized-music.org/protocol/audio",
-          "dataFormat": [ "audio/aac", "audio/mp4" ]
-        }
+        binaryImage: {
+          dataFormat: ["image/png", "jpeg", "gif"],
+        },
       },
-      "records": {
-        "playlist": {},
-        "track": {
-          "records": {
-            "audio": {}
-          }
-        }
-      }
-    }
-  }
+      structure: {
+        album: {
+          $actions: [
+            {
+              who: "recipient",
+              can: "read",
+            },
+          ],
+        },
+        photo: {
+          $actions: [
+            {
+              who: "recipient",
+              can: "read",
+            },
+          ],
+          binaryImage: {
+            $actions: [
+              {
+                who: "author",
+                of: "photo",
+                can: "write",
+              },
+            ],
+          },
+        },
+      },
+    },
+  },
 });
 
+protocol.send(myDid); //sends the protocol configuration to the user's other DWNs.
 ```
 
 <Divider type="slash"/>

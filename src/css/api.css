@@ -382,3 +382,7 @@ html.plugin-docs.plugin-id-api article .theme-card p {
 .api-docs h4{
   font-weight: 100;
 }
+
+.api-docs .shift-object-left{
+  margin-left: calc(-25vw + 50%);
+}
