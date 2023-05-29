@@ -29,9 +29,11 @@ The `did:web:` method is a type of Decentralized Identifier (DID) method that en
 A digital storage system that securely stores and manages a DID's cryptographic keys and key material, which is used for security protocols such as digital signing and verification.
 
 ## Signature Algorithm
-
 A mathematical algorithm used to generate digital signatures. These are used to verify the authenticity, integrity, and non-repudiation of electronic documents, messages, or transactions by creating a unique digital signature that can be cryptographically validated.
 
 ## Sidetree Protocol
 The Sidetree protocol is a decentralized and blockchain-agnostic protocol that enables the creation and management of decentralized identifiers (DIDs) and their associated data off-chain, while utilizing the blockchain as a trust anchor for anchoring DID operations, thereby reducing the load on the blockchain and enhancing scalability.
+
+## Self Sovereign Identity (SSI)
+SSI refers to a concept where individuals have full control and ownership over their digital identities. It empowers individuals to manage and control their personal information without relying on centralized authorities or intermediaries. SSI enables individuals to store their pesonal data and identity in a secure and private manner. With self-sovereign identity, individuals can selectively share their personal information with others, granting access on a need-to-know basis all while maintaining privacy and control over their data.
 
