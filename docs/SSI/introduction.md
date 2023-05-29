@@ -10,11 +10,11 @@ import TabItem from '@theme/TabItem';
 
 <div className="prose prose-pink">
 
-# Self Sovereign Identity Service (SSIS) API
+# Self Sovereign Identity (SSI) Service API
 
 ### A web service that exposes the SSI SDK as an HTTP API.
 
-The SSIS facilitates all things relating to DIDs and Verifiable Credentials - in a box!
+The SSI Service facilitates all things relating to DIDs and Verifiable Credentials - in a box!
 
 Not sure what Self Sovereign Identity (SSI) means? See definition [here](https://developer.tbd.website/docs/glossary/#ssi).
 
@@ -40,53 +40,59 @@ Not sure what Self Sovereign Identity (SSI) means? See definition [here](https:/
 ## Core Functionality
 - Create and manage [Decentralized Identifiers](https://developer.tbd.website/docs/web5/learn/decentralized-identifiers)
 - Create and manage [Verifiable Credentials](https://www.w3.org/TR/vc-data-model/)
-- Credential Suspension
-- Interacting with the standards around Verifiable Credentials such as: Credential Revocations, Applying for Credentials, Exchanging Credentials, and Data Schemas (for credentials and other verifiable data).
+- Credential status updates, including suspension and revocation
+- Interacting with the SSI ecosystem and its myriad components to apply for credentials, present credentials, verify credentials, and create verifiable schemas.
 
 ## Run SSI Service
-
 :::info
 The SSI Service is packaged as a Docker container and a Docker Compose file is included to make it simple to run the service locally. First make sure you have [Docker downloaded](https://www.docker.com/products/docker-desktop/) and running on your desktop.
 :::
 
+Verify that both `docker` and `docker-compose` commands are available:
+```bash
+docker --version
+Docker version 20.10.24, build 297e128
+
+docker-compose --version
+Docker Compose version v2.17.2
+```
+
 Locally clone the SSI Service repo:
-```code
+```bash
 git clone https://github.com/TBD54566975/ssi-service.git
 ```
 
 Run the Docker Compose file:
-```code
-cd ssi-service/build
-docker-compose up --build
+```bash
+cd ssi-service/build && docker-compose up --build
 ```
 
 If you'd like to confirm the SSI service and sub-services are functioning, check the health and readiness endpoints:
 
-```code
+```bash
 curl localhost:8080/health
 ```
 
 The following response should be returned:
 
-```code
+```js
 {"status":"OK"}
 curl localhost:8080/readiness
-{
-    "status": {
-        "status": "ready",
-        "message": "all service ready"
+{ 
+  "status": { 
+    "status": "ready",
+    "message": "all service ready"
+  },
+  "serviceStatuses": {
+    "credential": { 
+      "status": "ready" 
     },
-    "serviceStatuses": {
-        "credential": {
-            "status": "ready"
-        },
-        "did": {
-            "status": "ready"
-        },
-        "schema": {
-            "status": "ready"
-        }
-    }
+    "did": { 
+      "status": "ready"
+    }, "schema": {
+      "status": "ready"
+    } ...
+  }
 }
 ```
 
