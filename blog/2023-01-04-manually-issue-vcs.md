@@ -124,7 +124,7 @@ curl localhost:8080/readiness
 
 **b. Create Decentralized Identifier for Credential Issuer (Acme)**
 
-In the world of Self-Sovereign Identity (SSI), Decentralized Identifiers (DIDs) are used to identify any subject (e.g., a person, organization, thing, data model, abstract entity, etc.). In this scenario, both Acme and Alice are represented by their DIDs in the Verifiable Credential we create in step two.
+In the world of [Self-Sovereign Identity](https://developer.tbd.website/docs/glossary#self-sovereign-identity-ssi) (SSI), Decentralized Identifiers[https://developer.tbd.website/docs/glossary#decentralized-identifier-did] (DIDs) are used to identify any subject (e.g., a person, organization, thing, data model, abstract entity, etc.). In this scenario, both Acme and Alice are represented by their DIDs in the Verifiable Credential we create in step two.
 
 <blockquote>
   A <b>DID</b> is a W3C standard for a globally unique identifier that does not

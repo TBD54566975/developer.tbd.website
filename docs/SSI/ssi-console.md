@@ -113,6 +113,6 @@ Applications: When an employee applies for a credential with your applicaton lin
 Submissions: When an employer asks a job applicant to submit an education VC for example before accepting their role.
 :::
 
-<!-- TODO ## Add more next steps -->
-<!-- ## Next Steps
-See SSI Service [API Docs](https://developer.tbd.website/docs/apis/ssi-service). -->
+## Next Steps
+- Learn how to [manually issue a VC](https://developer.tbd.website/blog/issue-verifiable-credential-manually/).
+- See SSI Service [API Docs](https://developer.tbd.website/docs/apis/ssi-service).

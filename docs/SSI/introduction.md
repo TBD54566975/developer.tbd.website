@@ -97,5 +97,6 @@ curl localhost:8080/readiness
 ```
 
 ## Next Steps:
+- Learn how to [manually issue a VC](https://developer.tbd.website/blog/issue-verifiable-credential-manually/)
 - Check out our [SSI Console](https://developer.tbd.website/docs/ssi/ssi-console) which leverages the SSI Service to simplify credential issuance and verification via a web interface.
 - Check out our [SSI SDK](https://github.com/TBD54566975/ssi-sdk).
