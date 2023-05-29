@@ -87,7 +87,7 @@ cd ssi-service/build
 Run the Docker Compose file:
 
 ```sh
-docker-compose up
+docker-compose up --build
 ```
 
 If you'd like to confirm the SSI service and sub-services are functioning, check the health and readiness endpoints:
@@ -98,25 +98,24 @@ curl localhost:8080/health
 
 The following response should be returned:
 
-```json
+```js
 {"status":"OK"}
 curl localhost:8080/readiness
-{
-    "status": {
-        "status": "ready",
-        "message": "all service ready"
+{ 
+  "status": { 
+    "status": "ready",
+    "message": "all service ready"
+  },
+  "serviceStatuses": {
+    "credential": { 
+      "status": "ready" 
     },
-    "serviceStatuses": {
-        "credential": {
-            "status": "ready"
-        },
-        "did": {
-            "status": "ready"
-        },
-        "schema": {
-            "status": "ready"
-        }
-    }
+    "did": { 
+      "status": "ready"
+    }, "schema": {
+      "status": "ready"
+    } ...
+  }
 }
 ```
 
@@ -161,6 +160,7 @@ The following response should be returned:
 ```json
 {
   "did": {
+    "@context": "https://www.w3.org/ns/did/v1",
     //highlight-start
     "id": "did:key:z6MkpEQY4FCCtJEVpZ6gGK541fYWynH2ya7D1RikTGfdydCF",
     //highlight-end
@@ -179,8 +179,6 @@ The following response should be returned:
       ["#z6MkpEQY4FCCtJEVpZ6gGK541fYWynH2ya7D1RikTGfdydCF"]
     ]
   },
-  "privateKeyBase58": "4eMKcoDwfrdxf851Yg4xs8kyGPy6GFXc7kUrsq3jhtQUnGrVnM3qgKxE59DSMJfSFcH6zL4yZ183WTYmwf2iJx5Z",
-  "keyType": "Ed25519"
 }
 ```
 
@@ -223,32 +221,21 @@ curl -X PUT -d '{"keyType":"Ed25519"}' localhost:8080/v1/dids/key
 
 The `employedAt` property is a timestamp data type to define the date and time someone was employed at Acme.
 
-Let's create a Credential Schema for Alice's Employment Status VC, using Acme's DID as the author:
+Let's create a Credential Schema for Alice's Employment Status VC:
+- Set `author` to Acme's DID.
+- Set `authorKid` set to the KID of the author's private key to sign the schema.
 
-```sh
+```bash
 curl -X PUT -d '{
-  //highlight-start
-  "author": "did:key:z6MkpEQY4FCCtJEVpZ6gGK541fYWynH2ya7D1RikTGfdydCF",
-  //highlight-end
+  "author": "did:key:z6MkqRB2Z6G3CQoynBVSMkWX5xCz4EbdivSGpE1MeGyKtwqc",
+  "authorKid": "#z6MkqRB2Z6G3CQoynBVSMkWX5xCz4EbdivSGpE1MeGyKtwqc",
   "name": "Acme",
   "schema": {
-    "$schema": "http://json-schema.org/draft-07/schema#",
-    "description": "Employee Status VC",
-    "type": "object",
-    "properties": {
-      "id": {
-        "type": "string"
-      },
-      "givenName": {
-        "type": "string"
-      },
-      "employedAt": {
-        "type": "string"
-      }
-    },
-    "additionalProperties": false
+    "id": "string",
+    "givenName": "string",
+    "employedAt": "string"
   },
-  "sign": false
+  "sign": true
 }' localhost:8080/v1/schemas
 ```
 
@@ -256,35 +243,25 @@ The following response should be returned:
 
 ```json
 {
-  //highlight-start
-  "id": "b28feb61-e0b8-454a-86ed-d487a46e8584",
-  //highlight-end
+  "id": "6557d0a5-5e2e-427c-80fa-3c220c57648a",
   "schema": {
     "type": "https://w3c-ccg.github.io/vc-json-schemas/schema/2.0/schema.json",
     "version": "1.0",
-    "id": "b28feb61-e0b8-454a-86ed-d487a46e8584",
+    "id": "6557d0a5-5e2e-427c-80fa-3c220c57648a",
     "name": "Acme",
-    "author": "did:key:z6MkpEQY4FCCtJEVpZ6gGK541fYWynH2ya7D1RikTGfdydCF",
+    "author": "did:key:z6MkqRB2Z6G3CQoynBVSMkWX5xCz4EbdivSGpE1MeGyKtwqc",
     "authored": "2022-12-09T18:04:06Z",
     "schema": {
-      "$id": "26dfd04a-39e1-461f-af04-f1f92a8783f2",
+      "$id": "6557d0a5-5e2e-427c-80fa-3c220c57648a",
       "$schema": "http://json-schema.org/draft-07/schema#",
-      "additionalProperties": false,
       "description": "Employee Status VC",
-      "properties": {
-        "employedAt": {
-          "type": "string"
-        },
-        "givenName": {
-          "type": "string"
-        },
-        "id": {
-          "type": "string"
-        }
-      },
-      "required": [],
-      "type": "object"
+      "employedAt": "string",
+      "givenName": "string",
+      "id": "string"
     }
+  },
+  "schemaJwt": "eyJhbGciOiJFZERTQS…"
+}
 ```
 
 <br />
@@ -305,21 +282,18 @@ Now we have all three objects needed to create a VC:
 
 **To create the VC, run:**
 
-```sh
+```bash
 curl -X PUT -d '{
     "data": {
         "givenName": "Alice",
           "employedAt": "2022-08-20T13:20:10.000+0000"
     },
-    //highlight-start
-    "issuer": "did:key:z6MkpEQY4FCCtJEVpZ6gGK541fYWynH2ya7D1RikTGfdydCF",
-    //highlight-end
+    "issuer": "did:key:z6MkqRB2Z6G3CQoynBVSMkWX5xCz4EbdivSGpE1MeGyKtwqc",
+	  "issuerKid": "#z6MkqRB2Z6G3CQoynBVSMkWX5xCz4EbdivSGpE1MeGyKtwqc",
     "subject": "did:key:z6MkqcFHFXqzsYyDYrEUA2pVCfQGJz2rYoCZy5WWszzSW3o6",
     "@context": "https://www.w3.org/2018/credentials/v1",
     "expiry": "2051-10-05T14:48:00.000Z",
-    //highlight-start
-    "schema": "b28feb61-e0b8-454a-86ed-d487a46e8584"
-    //highlight-end
+    "schemaId": "6557d0a5-5e2e-427c-80fa-3c220c57648a"
 }' http://localhost:8080/v1/credentials
 ```
 
@@ -328,11 +302,15 @@ The following response should be returned:
 ```json
 {
   "credential": {
-    "@context": ["https://www.w3.org/2018/credentials/v1"],
-    "id": "2b5b0cfb-5023-4dc4-ae98-1cb94c65a22c",
-    "type": ["VerifiableCredential"],
-    "issuer": "did:key:z6MkpEQY4FCCtJEVpZ6gGK541fYWynH2ya7D1RikTGfdydCF",
-    "issuanceDate": "2022-12-09T18:41:10Z",
+    "@context": [
+      "https://www.w3.org/2018/credentials/v1"
+    ],
+    "id": "850613ab-e1c1-412b-b37c-81be3d9fe427",
+    "type": [
+      "VerifiableCredential"
+    ],
+    "issuer": "did:key:z6MkqRB2Z6G3CQoynBVSMkWX5xCz4EbdivSGpE1MeGyKtwqc",
+    "issuanceDate": "2023-05-29T19:30:34Z",
     "expirationDate": "2051-10-05T14:48:00.000Z",
     "credentialSubject": {
       "employedAt": "2022-08-20T13:20:10.000+0000",
@@ -340,11 +318,11 @@ The following response should be returned:
       "id": "did:key:z6MkqcFHFXqzsYyDYrEUA2pVCfQGJz2rYoCZy5WWszzSW3o6"
     },
     "credentialSchema": {
-      "id": "b28feb61-e0b8-454a-86ed-d487a46e8584",
+      "id": "6557d0a5-5e2e-427c-80fa-3c220c57648a",
       "type": "JsonSchemaValidator2018"
     }
   },
-  "credentialJwt": "eyJhbGciOiJFZERTQSIsImtpZCI6ImRpZDprZXk6ejZNa3Y0MVQ5ZHMzWm5ncEpxcGpjYjVBOXpUeHFIN1FqOHA5bm81TVk2MzViZFRaIiwidHlwIjoiSldUIn0.eyJleHAiOjI1ODAxMzAwODAsImlzcyI6ImRpZDprZXk6ejZNa3Y0MVQ5ZHMzWm5ncEpxcGpjYjVBOXpUeHFIN1FqOHA5bm81TVk2MzViZFRaIiwianRpIjoiMmI1YjBjZmItNTAyMy00ZGM0LWFlOTgtMWNiOTRjNjVhMjJjIiwibmJmIjoxNjcwNjExMjcwLCJzdWIiOiJkaWQ6a2V5Ono2TWtxY0ZIRlhxenNZeURZckVVQTJwVkNmUUdKejJyWW9DWnk1V1dzenpTVzNvNiIsInZjIjp7IkBjb250ZXh0IjpbImh0dHBzOi8vd3d3LnczLm9yZy8yMDE4L2NyZWRlbnRpYWxzL3YxIl0sImlkIjoiMmI1YjBjZmItNTAyMy00ZGM0LWFlOTgtMWNiOTRjNjVhMjJjIiwidHlwZSI6WyJWZXJpZmlhYmxlQ3JlZGVudGlhbCJdLCJpc3N1ZXIiOiJkaWQ6a2V5Ono2TWt2NDFUOWRzM1puZ3BKcXBqY2I1QTl6VHhxSDdRajhwOW5vNU1ZNjM1YmRUWiIsImlzc3VhbmNlRGF0ZSI6IjIwMjItMTItMDlUMTg6NDE6MTBaIiwiZXhwaXJhdGlvbkRhdGUiOiIyMDUxLTEwLTA1VDE0OjQ4OjAwLjAwMFoiLCJjcmVkZW50aWFsU3ViamVjdCI6eyJlbXBsb3llZEF0IjoiMjAyMi0wOC0yMFQxMzoyMDoxMC4wMDArMDAwMCIsImdpdmVuTmFtZSI6IkFsaWNlIiwiaWQiOiJkaWQ6a2V5Ono2TWtxY0ZIRlhxenNZeURZckVVQTJwVkNmUUdKejJyWW9DWnk1V1dzenpTVzNvNiJ9LCJjcmVkZW50aWFsU2NoZW1hIjp7ImlkIjoiYjI4ZmViNjEtZTBiOC00NTRhLTg2ZWQtZDQ4N2E0NmU4NTg0IiwidHlwZSI6Ikpzb25TY2hlbWFWYWxpZGF0b3IyMDE4In19fQ.LxcBOYC9DzqUXcpNRnW29BSg2QrHWNb98tm4h8Agz-MuoCHaOfJ2_sVat9ChyU8d9XYtIf6A4elr8JVE6hERBw"
+  "credentialJwt": "eyJhbGciOiJFZERTQSIsImtpZCI...."
 }
 ```
 
