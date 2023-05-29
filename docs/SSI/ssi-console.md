@@ -96,19 +96,24 @@ Click `Try sample input`
 
 We use presentation definitions to create submission links, through which Holders can submit their relevant credentials for verification.
 
-Here's how to create a presentation definition:
+### How to create a presentation definition:
 - Choose a name for your presentation definition and add it to the `Name` field
 - Include the purpose of your presentation definition (it should answer: why are you requesting this credential?)
 - Click `Try sample input` again and leave the default added JSON for now. It will be looking for credentials to verify the `firstName` and `lastName`.
 - Choose your verifier DID from the dropdown. You can use the same ion DID youve been using.
 
-_See [here]https://developer.tbd.website/docs/apis/ssi-service#tag/PresentationDefinitionAPI/paths/~1v1~1presentations~1definitions/put to learn more about presentation definitions_
+_See [here](https://developer.tbd.website/docs/apis/ssi-service#tag/PresentationDefinitionAPI/paths/~1v1~1presentations~1definitions/put) to learn more about presentation definitions_
 
 :::info
 Verification `Applications` vs `Submissions`:
+
 Applications: When an employee applies for a credential with your applicaton link, and you as the employeer will see that application here for the you (the employer) to approve or decline. If you approve their application you would then issue their employment credential.
 
 Submissions: When an employer asks a job applicant to submit an education VC for example before accepting their role.
 :::
 
-<!-- TODO ## Next Steps -->
+## Next Steps
+- Learn how to manually issue a VC [here](https://developer.tbd.website/blog/issue-verifiable-credential-manually).
+- See SSI Service [API Docs](https://developer.tbd.website/docs/apis/ssi-service).
+
+<!-- TODO ## Add more next steps -->
