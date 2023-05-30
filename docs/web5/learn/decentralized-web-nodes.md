@@ -11,7 +11,7 @@ A Decentralized Web Node is a data storage and message relay mechanism that enti
 A DWN is a personal data store. This means you can:
 
 - **Own your data:** You decide where to host your node. You control who has access.
-- **Back up your data:** Host multiple nodes in different places, keep them all synced. If one goes down, you have your back up. When it comes back up, the sync is effortless.
+- **Back up your data:** Host multiple nodes in different places, and keep them all synced. If one goes down, you have your backup. When it becomes available, the sync is effortless.
 - **Send and receive data:** Alice controls her DWN using her DID. Bob controls his DWN with his DID. Alice can send data to Bob just by resolving his DID.
 
 <div role="figure" aria-labelledby="caption-1" class="figure-container">
@@ -28,7 +28,7 @@ Topology of an exchange between Decentralized Web Nodes, duplicated from the [DI
 
 ## Authorization
 
-DWNs have two mechanisms to allow others access to read, write, or delete data on you node.
+DWNs have two mechanisms to allow others access to read, write, or delete data on your node.
 
 - **Permissions:** Allow someone access to read, write, or delete specific data records on your node.
 - **Protocols:** Install a protocol that lets you define data types and authorization for a decentralized web app.
@@ -37,7 +37,7 @@ The easiest way to understand this distinction is to think of permissions as act
 
 ## Data Model
 
-Data types are bound to known schemas, letting applications agree on data models. This opens the door to applications working together in ways that's been much more difficult in traditional development platform.
+Data types are bound to known schemas, letting applications agree on data models. This opens the door to applications working together in ways that have been much more difficult with traditional development platforms.
 
 ## Messaging
 
