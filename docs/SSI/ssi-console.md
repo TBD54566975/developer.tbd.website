@@ -2,6 +2,8 @@
 
 The SSI Console leverages the SSI Service API to simplify credential issuance and verification in an easy to manage web interface.
 
+![SSI-Console](/img/ssi-console.png)
+
 ## Core Functionality
 - Create and manage Decentralized Identifiers (DIDs)
 - Issue and Verify Verifiable Credentials (VCs)
