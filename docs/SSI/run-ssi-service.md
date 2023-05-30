@@ -10,7 +10,6 @@ hide_title: true
 
 The SSI Service facilitates all things relating to DIDs and Verifiable Credentials - in a box!
 
-<div align="center">
 <ButtonGroup
   className="pt-12"
   buttons={[
@@ -33,7 +32,6 @@ The SSI Service facilitates all things relating to DIDs and Verifiable Credentia
     },
   ]}
 />
-</div>
 
 <Divider type="slash" />
 
