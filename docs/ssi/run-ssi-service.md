@@ -40,7 +40,6 @@ The SSI Service facilitates all things relating to DIDs and Verifiable Credentia
 - Create and manage [Verifiable Credentials](https://www.w3.org/TR/vc-data-model/)
 - Credential status updates, including suspension and revocation
 - Interacting with the SSI ecosystem and its myriad components to:
-
   - Apply for credentials
   - Present credentials
   - Verify credentials
