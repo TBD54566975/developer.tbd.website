@@ -1,11 +1,6 @@
 import Divider from '@site/src/components/Divider';
 import ApiDetails from '@site/src/components/ApiDetails';
 
-
-export function IndentWrapper({children}) {
-  return <p style={{marginLeft: '1.5rem'}}>{children}</p>
-};
-
 ## Overview
 The `records` class is responsible for providing convenience methods for CRUD operations interfacing with DWNs
 
@@ -13,35 +8,7 @@ The `records` class is responsible for providing convenience methods for CRUD op
 
 ### Record
 
-Every modifying method of the `records` class returns an instance of a `Record` object, which is a representation fo the record(s) involved in the operation
-
-<details>
-<summary>Properties and Methods</summary>
-
-#### Properties
-
-`id`: The unique identifier based on the record entry's composition. Note that all entries across all records are deterministically unique
-
-`descriptor`: The descriptor object for the constructed DWN message
-
-`data`: Object containing:
-
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; `text()`: Produces a textual representation of the data
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; `json()`: If the value is JSON data, this method will return a parsed JSON object
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; `stream()`: Returns the raw stream of bytes for the data
-
-### Methods
-
-`send(did)`: Sends a given record to the specified DID
-
-`delete(id)`:  Generates a _delete_ entry tombstone for the record. This is a convenience method that allows you to easily delete records
-
-`update()`: Takes in a new request object matching the expected method signature of a _write_ and overwrites the record
-
-</details>
+Every modifying method of the `records` class returns an instance of a [Record](record.mdx) object, which is a representation of the record involved in the operation
 
 <Divider type="slash"/>
 
@@ -110,7 +77,7 @@ const response = await web5.dwn.records.query({
 
 ### create(request)
 
-Method for writing a record to the DWN of a specified DID
+Writes a record to the local DWN of a specified DID
 
 #### Parameters
 

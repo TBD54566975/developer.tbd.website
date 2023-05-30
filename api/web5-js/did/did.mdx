@@ -468,60 +468,6 @@ const signedData = await web5.did.sign("ion", options)
 
 <Divider type="slash"/>
 
-### getKeys(did, options)
-
-#### Parameters
-
-<ApiDetails
-  details={[
-    {
-        data: {
-            field: 'method',
-            value:'The DID method to sign on',
-        }
-    },
-    {
-      data: {
-        isObject: true,
-        field: 'options',
-        value: <ApiDetails
-                details={[
-                {
-                    data: {
-                        field: 'payload',
-                        value: 'Encryption algorithm output, including the ciphertext, to be decrypted',
-                    },
-                },                              
-            ]}
-        />,
-      },
-    },
-  ]}
-/>
-
-#### Return Value
-
-<ApiDetails
-  details={[
-    {
-      data: {
-        field: 'Promise<UInt8Array>',
-        value: 'A promise that fulfills with a UInt8Array containing the signed DID',
-      },
-    },
-  ]}
-/>
-
-#### Code Example
-```js
-const options = {
-    "payload" : "somePayload"
-}
-const signedData = await web5.did.sign("ion", options)
-```
-
-<Divider type="slash"/>
-
 ### getMethodAPI(did, options)
 
 #### Parameters

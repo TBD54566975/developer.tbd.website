@@ -1,0 +1,152 @@
+import Divider from '@site/src/components/Divider';
+import ApiDetails from '@site/src/components/ApiDetails';
+
+
+## Overview
+Every modifying method of the [Records](records.mdx) class returns an instance of a `Record` object, which is a representation of the record(s) involved in the operation
+
+<Divider type="slash"/>
+
+<section class="api-docs">
+
+## Properties
+
+<ApiDetails
+  details={[
+    {
+      data: {
+        field: 'id',
+        value: 'The unique identifier based on the record entry\'s composition. Note that all entries across all records are deterministically unique.',
+      },
+    },
+    {
+      data: {
+        field: 'descriptor',
+        value: 'The descriptor object for the constructed DWN message',
+      },
+    },
+    {
+      data: {
+        isObject: true,
+        field: 'data',
+        value: <ApiDetails
+                details={[
+                {
+                    data: {
+                        field: 'text()',
+                        value: 'Produces a textual representation of the data',
+                    },
+                },
+                {
+                    data: {
+                        field: 'json()',
+                        value: 'If the value is JSON data, this method will return a parsed JSON object',
+                    },
+                },
+                {
+                    data: {
+                        field: 'stream()',
+                        value: 'Returns the raw stream of bytes for the data',
+                    },
+                },                                              
+            ]}
+        />,
+      },
+    },        
+  ]}
+/>
+
+<Divider type="slash"/>
+
+## Methods
+
+### send(did)
+
+Sends the record to the DWN endpoints of a provided DID
+
+#### Parameters
+
+<ApiDetails
+  details={[
+    {
+      data: {
+        field: 'did',
+        value: 'The DID associated with the DWN endpoints where the record will be sent',
+      }
+    }
+  ]}
+/>
+
+
+#### Return Value
+
+The response object of the request
+
+#### Code Example
+```js
+const { record } = await web5.dwn.records.create({
+  data: "Hello World!",
+  message: {
+    dataFormat: "text/plain",
+  },
+});
+
+//highlight-start
+const { status } = await record.send("did:example:bob");
+//highlight-end
+```
+
+<Divider type="slash"/>
+
+### delete()
+
+Deletes record from DWN
+
+#### Return Value
+
+The response object of the request
+
+#### Code Example
+```js
+const response = await record.delete();
+```
+
+<Divider type="slash"/>
+
+### update(request)
+
+Overwrites an existing record
+
+#### Parameters
+
+<ApiDetails
+  details={[
+    {
+      data: {
+        isObject: true,
+        field: 'request',
+        value: <ApiDetails
+                details={[
+                    {
+                        data: {
+                            field: 'data',
+                            value: 'Data to replace record\'s existing data',
+                        }
+                    }
+                ]}
+            />,
+      }
+    }
+  ]}
+/>
+
+#### Return Value
+
+The response object of the request
+
+#### Code Example
+```js
+const response = await record.update({data: "Hello, I'm updated!"});
+```
+
+</section>
