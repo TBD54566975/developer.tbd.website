@@ -45,7 +45,7 @@ _Learn more about these [DID Methods](https://developer.tbd.website/docs/web5/le
 ### 3. Set keyType and options:
 Click `Try sample input` and then submit.
 
-_To learn more about what you can add to this JSON field see [here](https://developer.tbd.website/docs/apis/ssi-service/#tag/DecentralizedIdentityAPI/paths/~1v1~1dids~1%7Bmethod%7D/put)._
+_Learn more about [keyType and options](https://developer.tbd.website/docs/apis/ssi-service/#tag/DecentralizedIdentityAPI/paths/~1v1~1dids~1%7Bmethod%7D/put)._
 
 <!-- TODO:
 - Refresh page and you should see your new DID listed under the `All DIDs` index. -->
@@ -62,7 +62,7 @@ Feel free to use the default placeholders or describe your new VC.
 
 _See [properties you can add to this schema](https://developer.tbd.website/docs/apis/ssi-service#tag/SchemaAPI)._
 
-### 4. Set Presentation Definition:
+### 4. Set Input Descriptors (optional):
 Click `Try sample input` and leave the default JSON for now.
 
 This field populates the `presentation_definition` field of the `credential_manifest`. When a subject, for example an employee, applies for this credential, they will be required to present any credentials defined in this field. Here, we are asking for a credential with the subject's `firstName` and a credential with the subject's `lastName`. The `path` field defines which path we can expect to find these values in the subject's provided credentials.
