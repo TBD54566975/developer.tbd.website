@@ -17,8 +17,9 @@ The SSI Service facilitates all things relating to DIDs and Verifiable Credentia
       type: 'button',
       data: {
         label: 'More on SSI',
-        url: '/docs/glossary#self-sovereign-identity-ssi',
+        url: 'https://developer.tbd.website/docs/glossary#self-sovereign-identity-ssi',
         imageURL: '/img/external-link-blue-icon.svg',
+        isExternalLink: true,
       },
     },
     {
