@@ -4,7 +4,7 @@ title: TBD partners with Benri to host the SSI console.
 description: TBD partners with Benri to host the SSI console. An SSI Admin Console for Easy Interaction with SSI services.
 authors:
   name: Andor Kesselman
-tags: [Decentralized Identity]
+tags: [Decentralized Identity, Self Sovereign Identity, Web5]
 ---
 
 <head>
