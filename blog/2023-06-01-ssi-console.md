@@ -1,6 +1,6 @@
 ---
 slug: ssi-console
-title: TBD partners with Benri to host the SSI console.
+title: TBD partners with Benri to host the SSI Admin console.
 description: TBD partners with Benri to host the SSI console. An SSI Admin Console for Easy Interaction with SSI services.
 authors:
   name: Andor Kesselman
