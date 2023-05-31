@@ -13,6 +13,8 @@ The SSI Console leverages the SSI Service API to simplify credential issuance an
 ## Installation
 :::info
 The SSI Console leverages the SSI Service which is packaged as a Docker container. Make sure you have [Docker downloaded](https://www.docker.com/products/docker-desktop/) and running on your desktop.
+
+Alternatively, you can visit the [SSI playground](https://console.benri.io/), and skip ahead to the [next section](#create-a-decentralized-identifier-did).
 :::
 
 Verify that both `docker` and `docker-compose` commands are available:
@@ -34,29 +36,27 @@ Open [localhost:3000](http://localhost:3000/) in a browser and follow the guide 
 
 <Divider type="slash" />
 
-## Create a Decentralized Identifier (DID):
+## Create a Decentralized Identifier (DID)
 
 Upon installation, a [DID](https://developer.tbd.website/docs/web5/learn/decentralized-identifiers) will be created by default, but you can follow the steps below to create one for yourself.
 
-### 1. Open a browser and navigate to:
-[localhost:3000/dids](http://localhost:3000/dids)
+### 1. Click `DIDs` tab
 
 ### 2. Click `Add New`
 
-### 3. Set DID Method:
+### 3. Set DID Method
 There are three different [DID methods](https://developer.tbd.website/docs/web5/learn/decentralized-identifiers/#methods) to choose from: `Ion`, `Web`, and `Key`. The DID `Key` method is a good method for testing purposes so let's select that for now.
 
-### 4. Set keyType and options:
+### 4. Set keyType and options
 Click `Try sample input` and then submit.
 
 _Learn more about what you can [add to this field](https://developer.tbd.website/docs/apis/ssi-service/#tag/DecentralizedIdentityAPI/paths/~1v1~1dids~1%7Bmethod%7D/put)._
 
 <Divider type="slash" />
 
-## Create a Verifiable Credential (VC):
+## Create a Verifiable Credential (VC)
 
-### 1. Open a browser and navigate to: 
-[localhost:3000/credentials](http://localhost:3000/credentials) 
+### 1. Click `Credentials` tab 
 
 ### 2. Click `Create New`
 
@@ -70,12 +70,12 @@ Feel free to use the default placeholders or describe your new VC. Then click `N
 
 _See [properties you can add to this schema](https://developer.tbd.website/docs/apis/ssi-service#tag/SchemaAPI)._
 
-### 5. Set Input Descriptors (optional):
+### 5. Set Input Descriptors (optional)
 Click `Try sample input` and leave the default JSON for now, and click `Next`.
 
 This field populates the [presentation_definition](https://developer.tbd.website/docs/apis/ssi-service#tag/PresentationDefinitionAPI/paths/~1v1~1presentations~1definitions/put) field of the `credential_manifest`. When a subject, for example an employee, applies for this credential, they will be required to present any credentials defined in this field. Here, we are asking for a credential with the subject's `firstName` and a credential with the subject's `lastName`. The `path` field defines which path we can expect to find these values in the subject's provided credentials.
 
-### 6. Set issuer information:
+### 6. Set issuer information
 Fill in an issuer name (company name) for the employment verification, then click `Submit`.
 
 A new VC has now been created.
@@ -84,14 +84,14 @@ A new VC has now been created.
 
 ## Next Steps for VCs
 
-### Send an Application:
+### Send an Application
 Share the Application URL with subjects, employees in this case, to apply for their new employment verifiable credential.
 
 The credential applicant will need to submit a credential application as a [JSON Web Token (JWT)](https://jwt.io/). Once they submit the JWT, the application will become available for review in the dashboard, under Credentials > Applications.
 
 _Learn more about [applications](https://developer.tbd.website/docs/apis/ssi-service/#tag/ApplicationAPI/paths/~1v1~1manifests~1applications/put)._
 
-### Issue a VC:
+### Issue a VC
   - Click `Issue` on a created VC.
   - `Subject DID`: Add your employee's DID.
   - `Subject Data`: Fill in your employee's first and last name.
@@ -101,15 +101,16 @@ _Learn more about [applications](https://developer.tbd.website/docs/apis/ssi-ser
 
 <Divider type="slash" />
 
-## Verify a Credential:
+## Verify a Credential
 
 We use presentation definitions to create submission links, through which subjects can submit their relevant credentials for verification.
 
-### 1. Open a browser and navigate to: 
-[localhost:3000/verification](http://localhost:3000/verification) 
+### 1. Click `Verification` tab 
 
 ### 2. Click `Create New`
+
 ### 3. Name your presentation definition
+
 ### 4. Set Purpose
 Include the purpose of your presentation definition. It should answer: why are you requesting this credential?
 
