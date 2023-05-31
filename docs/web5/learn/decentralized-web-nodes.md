@@ -39,6 +39,8 @@ The easiest way to understand this distinction is to think of permissions as act
 
 Data types are bound to known schemas, letting applications agree on data models. This opens the door to applications working together in ways that have been much more difficult with traditional development platforms.
 
+User-defined schemas are not validated on the payload of the record, as this sort of validation is impossible for encrypted payloads since the DWN doesn't have the private keys to decrypt. It is up the application layer if such validation is to be performed on the data. 
+
 ## Messaging
 
 All communication is done through simple JSON objects called messages. Web5 constructs messages and helps you send them to their destination by resolving a recipient's DID and getting the address of their Decentralized Web Node. A message can install protocols, grant permissions, and read, write, query, or delete a record. For example, a message writing a record to a DWN may look like the example below.
