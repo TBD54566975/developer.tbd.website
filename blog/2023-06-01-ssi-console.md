@@ -38,5 +38,5 @@ credential requests, and DID registry access, the [SSI Admin
 Console](https://console.benri.io serves as a gateway to the SSI services hosted
 at [SSI Service](https://ssi.benri.io).
 
-To learn more about how to use it, please visit SSI Console | TBD Developer Docs
-for more information.
+To learn more about how to use it, please visit the [SSI Console | TBD Developer
+Docs](https://developer.tbd.website/docs/ssi/ssi-console) for more information.
