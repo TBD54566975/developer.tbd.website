@@ -1,25 +1,25 @@
 ---
 slug: ssi-console
 title: TBD partners with Benri to host the SSI Console.
-description: TBD partners with Benri to host the SSI Console: an SSI admin interface for easy interaction with SSI services.
+description: 'TBD partners with Benri to host the SSI Console: an SSI admin interface for easy interaction with SSI services.'
 authors:
   name: Andor Kesselman
 tags: [Decentralized Identity, Self Sovereign Identity, Web5]
 ---
 
 <head>
-  <meta property="og:title" content="TBD partners with Benri to host the SSI Console: an SSI admin interface for easy interaction with SSI services" />
+  <meta property="og:title" content='TBD partners with Benri to host the SSI Console: an SSI admin interface for easy interaction with SSI services' />
   <meta property="og:type" content="website" />
   <meta property="og:url" content='https://developer.tbd.website/blog/2023-06-01-ssi-console' />
-  <meta name="og:description" content="TBD partners with Benri to host the SSI Console: an SSI admin interface for easy interaction with SSI services" />
+  <meta name="og:description" content='TBD partners with Benri to host the SSI Console: an SSI admin interface for easy interaction with SSI services' />
   <meta property="og:image" content="https://developer.tbd.website/assets/images/ssi_console.png" />
 
   <meta name="twitter:card" content="summary_large_image" />
   <meta property="twitter:domain" content="developer.tbd.website" />
   <meta name="twitter:site" content="@tbddev" />
-  <meta name="twitter:title" content="TBD partners with Benri to host the SSI Console: an SSI admin interface for easy interaction with SSI services" />
+  <meta name="twitter:title" content='TBD partners with Benri to host the SSI Console: an SSI admin interface for easy interaction with SSI services' />
   <meta property="twitter:url" content='https://developer.tbd.website/blog/2023-06-01-ssi-console' /> 
-  <meta name="twitter:description" content="TBD partners with Benri to host the SSI Console: an SSI admin interface for easy interaction with SSI services" />
+  <meta name="twitter:description" content='TBD partners with Benri to host the SSI Console: an SSI admin interface for easy interaction with SSI services' />
   <meta name="twitter:image" content="https://developer.tbd.website/assets/images/ssi_console.png" />
   <link rel="apple-touch-icon" href="https://developer.tbd.website/img/tbd-fav-icon-main.png" />
 </head>
