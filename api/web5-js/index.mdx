@@ -5,7 +5,7 @@ import ApiDetails from '@site/src/components/ApiDetails';
 
 
 
-# web5.js
+# Web5
 
 Web5 JS consists of the following components:
 
@@ -36,13 +36,13 @@ npm install @tbd54566975/web5
   <TabItem value="cdn" label="CDN">
 
 ```js
-<script src="https://unpkg.com/@tbd54566975/web5@0.7.0/dist/browser.js"></script>
+<script src="https://unpkg.com/@tbd54566975/web5@0.7.6/dist/browser.js"></script>
 ```
 
 or
 
 ```js
-<script src="https://cdn.jsdelivr.net/npm/@tbd54566975/web5@0.7.0/dist/browser.mjs"></script>
+<script src="https://cdn.jsdelivr.net/npm/@tbd54566975/web5@0.7.6/dist/browser.mjs"></script>
 ```
 
   </TabItem>
@@ -62,13 +62,13 @@ import { Web5 } from '@tbd54566975/web5';
   <TabItem value="cdn" label="CDN">
 
 ```js
-import { Web5 } from "https://unpkg.com/@tbd54566975/web5@0.7.0/dist/browser.js";
+import { Web5 } from "https://unpkg.com/@tbd54566975/web5@0.7.6/dist/browser.js";
 ```
 
 or
 
 ```js
-import { Web5 } from "https://cdn.jsdelivr.net/npm/@tbd54566975/web5@0.7.0/dist/browser.mjs"
+import { Web5 } from "https://cdn.jsdelivr.net/npm/@tbd54566975/web5@0.7.6/dist/browser.mjs"
 ```
 
   </TabItem>
@@ -82,9 +82,45 @@ import { Web5 } from "https://cdn.jsdelivr.net/npm/@tbd54566975/web5@0.7.0/dist/
 
 <br/>
 
-### connect()
+### connect(options)
 
 Enables an app to request connection to a user's local identity app (like a desktop or mobile agent - work is underway for reference apps of each), or generate an in-app DID to represent the user (e.g. if the user does not have an identity app)
+
+#### Parameters
+
+<ApiDetails
+  details={[
+    {
+      data: {
+        isObject: true,
+        isOptional: true,
+        field: 'options',
+        value: <ApiDetails
+                details={[
+                {
+                    data: {
+                        isObject: true,
+                        isOptional: true,
+                        field: 'techPreview',
+                        value: <ApiDetails
+                                details={[
+                                {
+                                    data: {
+                                        isOptional: true,
+                                        field: 'dwnEndpoints',
+                                        value: 'a list of DWN endpoints to define in the DID created and returned by this method. If this property is omitted during the Tech Preview, two nodes will be included by default (e.g. https://dwn.tbddev.org/dwn0, https://dwn.tbddev.org/dwn3)',
+                                    },
+                                }                            
+                            ]}
+                            />,
+                    },
+                }                             
+            ]}
+          />,
+        },
+    }
+  ]}
+/>
 
 #### Return Value
 
@@ -106,9 +142,18 @@ Enables an app to request connection to a user's local identity app (like a desk
 />
 
 
-#### Code Example
+#### Code Examples
 
 ```js
 const { web5, did } = await Web5.connect();
 ```
+
+```js
+const { web5, did: myDid } = await Web5.connect({
+  techPreview: {
+    dwnEndpoints: ["https://dwn.your-domain.org/"],
+  },
+});
+```
+
 </section>

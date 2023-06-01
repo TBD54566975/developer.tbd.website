@@ -1,0 +1,95 @@
+import Divider from '@site/src/components/Divider';
+import ApiDetails from '@site/src/components/ApiDetails';
+
+# did
+## Overview
+The `did` class is responsible for providing operations related to DIDs
+
+<Divider type="slash"/>
+
+<section class="api-docs">
+
+## Methods
+
+<br/>
+
+### create(method, options)
+
+Enables generation of DIDs for a [supported set of DID Methods](/docs/web5/learn/decentralized-identifiers#methods).
+
+:::note
+You do not usually need to manually invoke this, as the <a href="/api/web5-js/#connect">Web5.connect()</a> method already acquires a DID for the user (either by direct creation or connection to an identity agent app).
+:::
+
+#### Parameters
+
+<ApiDetails
+  details={[
+    {
+      data: {
+        field: 'method',
+        value: 'The method on which to create the did. Supported methods are: ion, web, and key',
+      },
+    },
+    {
+      data: {
+        field: 'options',
+        value: 'Enables customization of the did formation',
+        isOptional: true,
+      },
+    },
+  ]}
+/>
+
+
+#### Return Value
+
+The output is method-specific, and handles things like key generation and assembly of DID Documents that can be published to DID network
+
+#### Code Example
+
+```js
+const myDid = await web5.did.create('ion');
+```
+
+<Divider type="slash"/>
+
+### resolve(did)
+
+Resolves a DID into a DID document by using the "read" operation of the applicable DID method. DIDs that are resolved are cached for a default of 15 minutes.
+
+#### Parameters
+
+<ApiDetails
+  details={[
+    {
+      data: {
+        field: 'did',
+        value: 'The decentralized identifier to resolve',
+      },
+    },
+  ]}
+/>
+
+#### Return Value
+
+<ApiDetails
+  details={[
+    {
+      data: {
+        field: 'Promise<DidResolutionResult>',
+        value: 'A fulfilled promise with the output of the DID resolution result',
+      },
+    },
+  ]}
+/>
+
+
+#### Code Example
+
+```js
+const myDid = 'did:key:z6MkhvthBZDxVvLUswRey729CquxMiaoYXrT5SYbCAATc8V9';
+const didDocument = await did.resolve(myDid);
+```
+
+</section>
