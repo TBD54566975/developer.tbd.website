@@ -19,7 +19,7 @@
     "@mdx-js/react": "^1.6.22",
     "@react-aria/tooltip": "^3.2.0",
     "@tailwindcss/typography": "^0.5.9",
-    "@tbd54566975/web5": "0.7.6",
+    "@tbd54566975/web5": "0.7.7",
     "autoprefixer": "^10.4.13",
     "clsx": "^1.2.1",
     "docusaurus-plugin-remote-content": "^3.1.0",
