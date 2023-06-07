@@ -160,25 +160,53 @@ The following response should be returned:
 ```json
 {
   "did": {
-    "@context": "https://www.w3.org/ns/did/v1",
-    //highlight-start
-    "id": "did:key:z6MkpEQY4FCCtJEVpZ6gGK541fYWynH2ya7D1RikTGfdydCF",
-    //highlight-end
+    "@context": [
+      "https://www.w3.org/ns/did/v1",
+      "https://w3id.org/security/suites/jws-2020/v1"
+    ],
+    "id": "did:key:z6Mkr5ZYL24Zm9CYfpLVoa7ydsEQNaohmsXCikYxJii7tdqC",
     "verificationMethod": [
       {
-        "id": "#z6MkpEQY4FCCtJEVpZ6gGK541fYWynH2ya7D1RikTGfdydCF",
-        "type": "Ed25519VerificationKey2018",
-        "controller": "did:key:z6MkpEQY4FCCtJEVpZ6gGK541fYWynH2ya7D1RikTGfdydCF",
-        "publicKeyBase58": "An9VTzwmYkk2i4Fyak7DAZzXAD1BZgrrKQopczhd4QQs"
+        "id": "did:key:z6Mkr5ZYL24Zm9CYfpLVoa7ydsEQNaohmsXCikYxJii7tdqC#z6Mkr5ZYL24Zm9CYfpLVoa7ydsEQNaohmsXCikYxJii7tdqC",
+        "type": "JsonWebKey2020",
+        "controller": "did:key:z6Mkr5ZYL24Zm9CYfpLVoa7ydsEQNaohmsXCikYxJii7tdqC",
+        "publicKeyJwk": {
+          "kty": "OKP",
+          "crv": "Ed25519",
+          "x": "rL0_XOkmyecUDV-F55vAnheBsRARvNs6D9GBgeFTErM",
+          "alg": "EdDSA",
+          "kid": "did:key:z6Mkr5ZYL24Zm9CYfpLVoa7ydsEQNaohmsXCikYxJii7tdqC"
+        }
+      },
+      {
+        "id": "did:key:z6Mkr5ZYL24Zm9CYfpLVoa7ydsEQNaohmsXCikYxJii7tdqC#z6LSrwmvtfkZrTzNUUqUYqnE9qedLR7tk56wmXV8aJJEnyLF",
+        "type": "JsonWebKey2020",
+        "controller": "did:key:z6Mkr5ZYL24Zm9CYfpLVoa7ydsEQNaohmsXCikYxJii7tdqC",
+        "publicKeyJwk": {
+          "kty": "OKP",
+          "crv": "X25519",
+          "x": "4t5TLTw1UY5QDMFT-sprx3Pkdl-FFNvZaxtu74MjknQ",
+          "alg": "X25519",
+          "kid": "did:key:z6Mkr5ZYL24Zm9CYfpLVoa7ydsEQNaohmsXCikYxJii7tdqC"
+        }
       }
     ],
-    "authentication": [["#z6MkpEQY4FCCtJEVpZ6gGK541fYWynH2ya7D1RikTGfdydCF"]],
-    "assertionMethod": [["#z6MkpEQY4FCCtJEVpZ6gGK541fYWynH2ya7D1RikTGfdydCF"]],
-    "keyAgreement": [["#z6MkpEQY4FCCtJEVpZ6gGK541fYWynH2ya7D1RikTGfdydCF"]],
+    "authentication": [
+      "did:key:z6Mkr5ZYL24Zm9CYfpLVoa7ydsEQNaohmsXCikYxJii7tdqC#z6Mkr5ZYL24Zm9CYfpLVoa7ydsEQNaohmsXCikYxJii7tdqC"
+    ],
+    "assertionMethod": [
+      "did:key:z6Mkr5ZYL24Zm9CYfpLVoa7ydsEQNaohmsXCikYxJii7tdqC#z6Mkr5ZYL24Zm9CYfpLVoa7ydsEQNaohmsXCikYxJii7tdqC"
+    ],
+    "keyAgreement": [
+      "did:key:z6Mkr5ZYL24Zm9CYfpLVoa7ydsEQNaohmsXCikYxJii7tdqC#z6LSrwmvtfkZrTzNUUqUYqnE9qedLR7tk56wmXV8aJJEnyLF"
+    ],
+    "capabilityInvocation": [
+      "did:key:z6Mkr5ZYL24Zm9CYfpLVoa7ydsEQNaohmsXCikYxJii7tdqC#z6Mkr5ZYL24Zm9CYfpLVoa7ydsEQNaohmsXCikYxJii7tdqC"
+    ],
     "capabilityDelegation": [
-      ["#z6MkpEQY4FCCtJEVpZ6gGK541fYWynH2ya7D1RikTGfdydCF"]
+      "did:key:z6Mkr5ZYL24Zm9CYfpLVoa7ydsEQNaohmsXCikYxJii7tdqC#z6Mkr5ZYL24Zm9CYfpLVoa7ydsEQNaohmsXCikYxJii7tdqC"
     ]
-  },
+  }
 }
 ```
 
@@ -222,20 +250,20 @@ curl -X PUT -d '{"keyType":"Ed25519"}' localhost:8080/v1/dids/key
 The `employedAt` property is a timestamp data type to define the date and time someone was employed at Acme.
 
 Let's create a Credential Schema for Alice's Employment Status VC:
-- Set `author` to Acme's DID.
-- Set `authorKid` set to the KID of the author's private key to sign the schema.
+- Set `issuer` to Acme's DID.
+- Set `issuerKid` set to the KID of the issuer's private key to sign the schema.
 
 ```bash
 curl -X PUT -d '{
-  "author": "did:key:z6MkqRB2Z6G3CQoynBVSMkWX5xCz4EbdivSGpE1MeGyKtwqc",
-  "authorKid": "#z6MkqRB2Z6G3CQoynBVSMkWX5xCz4EbdivSGpE1MeGyKtwqc",
+  "issuer": "did:key:z6Mkr5ZYL24Zm9CYfpLVoa7ydsEQNaohmsXCikYxJii7tdqC",
+  "issuerKid": "did:key:z6Mkr5ZYL24Zm9CYfpLVoa7ydsEQNaohmsXCikYxJii7tdqC#z6Mkr5ZYL24Zm9CYfpLVoa7ydsEQNaohmsXCikYxJii7tdqC",
   "name": "Acme",
   "schema": {
     "id": "string",
     "givenName": "string",
-    "employedAt": "string"
-  },
-  "sign": true
+    "employedAt": "string",
+    "$schema": "https://json-schema.org/draft/2020-12/schema"
+  }
 }' localhost:8080/v1/schemas
 ```
 
@@ -244,23 +272,8 @@ The following response should be returned:
 ```json
 {
   "id": "6557d0a5-5e2e-427c-80fa-3c220c57648a",
-  "schema": {
-    "type": "https://w3c-ccg.github.io/vc-json-schemas/schema/2.0/schema.json",
-    "version": "1.0",
-    "id": "6557d0a5-5e2e-427c-80fa-3c220c57648a",
-    "name": "Acme",
-    "author": "did:key:z6MkqRB2Z6G3CQoynBVSMkWX5xCz4EbdivSGpE1MeGyKtwqc",
-    "authored": "2022-12-09T18:04:06Z",
-    "schema": {
-      "$id": "6557d0a5-5e2e-427c-80fa-3c220c57648a",
-      "$schema": "http://json-schema.org/draft-07/schema#",
-      "description": "Employee Status VC",
-      "employedAt": "string",
-      "givenName": "string",
-      "id": "string"
-    }
-  },
-  "schemaJwt": "eyJhbGciOiJFZERTQS…"
+  "type": "CredentialSchema2023",
+  "credentialSchema": "eyJhbGciOiJFZERTQSIsImtpZCI6ImRpZDprZXk6ejZNa3I1WllMMjRabTlDWWZwTFZvYTd5ZHNFUU5hb2htc1hDaWtZeEppaTd0ZHFDI3o2TWtyNVpZTDI0Wm05Q1lmcExWb2E3eWRzRVFOYW9obXNYQ2lrWXhKaWk3dGRxQyIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2ODYxNzM1MTIsImlzcyI6ImRpZDprZXk6ejZNa3I1WllMMjRabTlDWWZwTFZvYTd5ZHNFUU5hb2htc1hDaWtZeEppaTd0ZHFDIiwianRpIjoiaHR0cDovL2xvY2FsaG9zdDo4MDgwL3YxL3NjaGVtYXMvYzU0YzdjMjMtYTU0YS00NGRlLTg1Y2EtNWY2ODA5YjE1ZjJhIiwibmJmIjoxNjg2MTczNTEyLCJub25jZSI6IjUzMzRlMGYzLWMxOWEtNGQxZC1iYjc5LTIwY2E2NzZhYmExYSIsInN1YiI6Imh0dHA6Ly9sb2NhbGhvc3Q6ODA4MC92MS9zY2hlbWFzL2M1NGM3YzIzLWE1NGEtNDRkZS04NWNhLTVmNjgwOWIxNWYyYSIsInZjIjp7IkBjb250ZXh0IjpbImh0dHBzOi8vd3d3LnczLm9yZy8yMDE4L2NyZWRlbnRpYWxzL3YxIl0sInR5cGUiOlsiVmVyaWZpYWJsZUNyZWRlbnRpYWwiXSwiaXNzdWVyIjoiIiwiaXNzdWFuY2VEYXRlIjoiIiwiY3JlZGVudGlhbFN1YmplY3QiOnsiJGlkIjoiYzU0YzdjMjMtYTU0YS00NGRlLTg1Y2EtNWY2ODA5YjE1ZjJhIiwiJHNjaGVtYSI6Imh0dHBzOi8vanNvbi1zY2hlbWEub3JnL2RyYWZ0LzIwMjAtMTIvc2NoZW1hIiwiYXBwTmFtZSI6InN0cmluZyIsIm5hbWUiOiJBY21lIiwidmFsaWRVbnRpbCI6InN0cmluZyJ9fX0.Gtk2uhnYr-pSmjvaVNTXIktODtY31iEOP1VcaC6PwQUsJRuvsqryXb9Qz5F-RXgAZ7e2MrkxYE7h6f6oBzf4Bw"
 }
 ```
 
@@ -285,11 +298,11 @@ Now we have all three objects needed to create a VC:
 ```bash
 curl -X PUT -d '{
     "data": {
-        "givenName": "Alice",
-          "employedAt": "2022-08-20T13:20:10.000+0000"
+      "givenName": "Alice",
+      "employedAt": "2022-08-20T13:20:10.000+0000"
     },
-    "issuer": "did:key:z6MkqRB2Z6G3CQoynBVSMkWX5xCz4EbdivSGpE1MeGyKtwqc",
-	  "issuerKid": "#z6MkqRB2Z6G3CQoynBVSMkWX5xCz4EbdivSGpE1MeGyKtwqc",
+    "issuer": "did:key:z6Mkr5ZYL24Zm9CYfpLVoa7ydsEQNaohmsXCikYxJii7tdqC",
+    "issuerKid": "did:key:z6Mkr5ZYL24Zm9CYfpLVoa7ydsEQNaohmsXCikYxJii7tdqC#z6Mkr5ZYL24Zm9CYfpLVoa7ydsEQNaohmsXCikYxJii7tdqC",
     "subject": "did:key:z6MkqcFHFXqzsYyDYrEUA2pVCfQGJz2rYoCZy5WWszzSW3o6",
     "@context": "https://www.w3.org/2018/credentials/v1",
     "expiry": "2051-10-05T14:48:00.000Z",
@@ -301,15 +314,17 @@ The following response should be returned:
 
 ```json
 {
+  "id": "aba6dc95-d9ac-43e2-ad6d-4e5120c15a2d",
+  "issuerKid": "did:key:z6Mkr5ZYL24Zm9CYfpLVoa7ydsEQNaohmsXCikYxJii7tdqC#z6Mkr5ZYL24Zm9CYfpLVoa7ydsEQNaohmsXCikYxJii7tdqC",
   "credential": {
     "@context": [
       "https://www.w3.org/2018/credentials/v1"
     ],
-    "id": "850613ab-e1c1-412b-b37c-81be3d9fe427",
+    "id": "aba6dc95-d9ac-43e2-ad6d-4e5120c15a2d",
     "type": [
       "VerifiableCredential"
     ],
-    "issuer": "did:key:z6MkqRB2Z6G3CQoynBVSMkWX5xCz4EbdivSGpE1MeGyKtwqc",
+    "issuer": "did:key:z6Mkr5ZYL24Zm9CYfpLVoa7ydsEQNaohmsXCikYxJii7tdqC",
     "issuanceDate": "2023-05-29T19:30:34Z",
     "expirationDate": "2051-10-05T14:48:00.000Z",
     "credentialSubject": {
@@ -319,7 +334,7 @@ The following response should be returned:
     },
     "credentialSchema": {
       "id": "6557d0a5-5e2e-427c-80fa-3c220c57648a",
-      "type": "JsonSchemaValidator2018"
+      "type": "CredentialSchema2023"
     }
   },
   "credentialJwt": "eyJhbGciOiJFZERTQSIsImtpZCI...."
