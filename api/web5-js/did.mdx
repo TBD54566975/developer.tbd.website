@@ -15,7 +15,7 @@ The `did` class is responsible for providing operations related to DIDs
 
 ### create(method, options)
 
-Enables generation of DIDs for a [supported set of DID Methods](/docs/web5/learn/decentralized-identifiers#methods).
+Enables generation of DIDs for a [supported set of DID Methods](/docs/web5/learn/decentralized-identifiers#methods). The output is method-specific, and handles things like key generation and assembly of DID Documents that can be published to DID networks.
 
 :::note
 You do not usually need to manually invoke this, as the <a href="/api/web5-js/#connect">Web5.connect()</a> method already acquires a DID for the user (either by direct creation or connection to an identity agent app).
@@ -27,14 +27,16 @@ You do not usually need to manually invoke this, as the <a href="/api/web5-js/#c
   details={[
     {
       data: {
+        type: 'string',
         field: 'method',
-        value: 'The method on which to create the did. Supported methods are: ion, web, and key',
+        value: 'The method on which to create the did. Supported methods are: \'ion\' and \'key\'',
       },
     },
     {
       data: {
+        type: 'CreateOptions',
         field: 'options',
-        value: 'Enables customization of the did formation',
+        value: 'Enables customization of the DID formation based on the DID method',
         isOptional: true,
       },
     },
@@ -44,7 +46,7 @@ You do not usually need to manually invoke this, as the <a href="/api/web5-js/#c
 
 #### Return Value
 
-The output is method-specific, and handles things like key generation and assembly of DID Documents that can be published to DID network
+The created DID
 
 #### Code Example
 
@@ -64,6 +66,7 @@ Resolves a DID into a DID document by using the "read" operation of the applicab
   details={[
     {
       data: {
+        type: 'string',
         field: 'did',
         value: 'The decentralized identifier to resolve',
       },
@@ -77,8 +80,9 @@ Resolves a DID into a DID document by using the "read" operation of the applicab
   details={[
     {
       data: {
-        field: 'Promise<DidResolutionResult>',
-        value: 'A fulfilled promise with the output of the DID resolution result',
+        type: 'DidResolutionResult',
+        field: 'result',
+        value: 'DID resolution result which includes DID Document and its metadata',
       },
     },
   ]}

@@ -50,11 +50,13 @@ There are lots of different implementations of DIDs (called [DID methods](https:
 
 A [did:key](https://w3c-ccg.github.io/did-method-key/) is free and fast to spin up. Since it can be created, but not updated or deleted, it is useful for single, ephemeral interactions.
 
+<!--
 #### ```did:web```
 
 [did:web](https://w3c-ccg.github.io/did-method-web/) is somewhat centralized because you need a website to have one. You host your DID Document at a specified location in your website. Here's an example of [TBD's did:web](https://www.tbd.website/.well-known/did.json).
 
 It supports the ability to create, read, update, and deactivate a DID.
+-->
 
 #### ```did:ion```
 
