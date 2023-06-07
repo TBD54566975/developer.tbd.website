@@ -16,7 +16,11 @@ The `protocols` class is responsible for providing convenience methods for manag
 
 ### configure(request)
 
-Configures a protocol definition in the user's local DWN, remote DWN, or another party's DWN (if permitted). Fields under the `structure` object of the Protocol definition are expected to be either type references matching those defined in the `types` object. The type structures are recursive, so types form a graph and each type can have within it further attached types or rule statements that are all denoted with the prefix $.
+Configures a protocol definition in the user's local DWN, remote DWN, or another party's DWN (if permitted). Fields under the `structure` object of the Protocol definition are expected to be one of the type references matching those defined in the `types` object. The type structures are recursive, so types form a graph and each type can have within it further attached types or rule statements that are all denoted with the prefix $.
+
+:::note
+In order to also send the protocol to remote DWNs, configure() should be followed by `protocol.send(did)`
+:::
 
 #### Parameters
 
@@ -25,30 +29,27 @@ Configures a protocol definition in the user's local DWN, remote DWN, or another
     {
       data: {
         isObject: true,
+        type: 'ProtocolsConfigureRequest',
         field: 'request',
         value: <ApiDetails
                 details={[
                 {
                   data: {
-                    field: 'from',
-                    value: 'The decentralized identifier signing the query',
-                    isOptional: true,
-                  }
-                },
-                {
-                  data: {
                     isObject: true,
+                    type: 'ProtocolsConfigureOptions',
                     field: 'message',
                     value: <ApiDetails
                             details={[
                             {
                                 data: {
                                     isObject: true,
+                                    type: 'ProtocolDefinition',
                                     field: 'definition',
                                     value: <ApiDetails
                                             details={[
                                             {
                                                 data: {
+                                                    type: 'string',
                                                     field: 'protocol',
                                                     value: 'URI that represents the protocol being configured',
                                                 },
@@ -56,21 +57,24 @@ Configures a protocol definition in the user's local DWN, remote DWN, or another
                                             {
                                                 data: {
                                                     isObject: true,
+                                                    type: 'ProtocolTypes',
                                                     field: 'types',
                                                     value: <ApiDetails
                                                             details={[
                                                             {
                                                                 data: {
                                                                     isOptional: true,
+                                                                    type: 'string',
                                                                     field: 'schema',
-                                                                    value: 'URI of the schema under which the record will be bucketed',
+                                                                    value: 'URI of the schema under which the records will be bucketed',
                                                                 },
                                                             },
                                                             {
                                                                 data: {
                                                                     isOptional: true,
+                                                                    type: 'string',
                                                                     field: 'dataFormat',
-                                                                    value: 'the IANA string corresponding with the format of the data the record will be bucketed',
+                                                                    value: 'The IANA string corresponding with the format of the data the records will be bucketed. See IANA\'s Media Type list here: https://www.iana.org/assignments/media-types/media-types.xhtml',
                                                                 },
                                                             },                              
                                                         ]}
@@ -80,17 +84,20 @@ Configures a protocol definition in the user's local DWN, remote DWN, or another
                                             {
                                                 data: {
                                                     isObject: true,
+                                                    type: 'ProtocolRuleSet',
                                                     field: 'structure',
                                                     value: <ApiDetails
                                                             details={[
                                                             {
                                                                 data: {
                                                                     isObject: true,
+                                                                    type: 'ProtocolActionRule[]',
                                                                     field: '$actions',
                                                                     value: <ApiDetails
                                                                             details={[
                                                                             {
                                                                               data: {
+                                                                                type: 'string',
                                                                                 field: 'who',
                                                                                 value: 'The actor that is being permitted to invoke a given action. Valid values are: author, recipient',
                                                                               },
@@ -98,12 +105,14 @@ Configures a protocol definition in the user's local DWN, remote DWN, or another
                                                                             {
                                                                               data: {
                                                                                 isOptional: true,
+                                                                                type: 'string',
                                                                                 field: 'of',
                                                                                 value: 'The protocol path that refers to the record subject',
                                                                               },
                                                                             }, 
                                                                             {
                                                                               data: {
+                                                                                type: 'string',
                                                                                 field: 'can',
                                                                                 value: 'The action being permitted by the rule',
                                                                               }
@@ -134,7 +143,18 @@ Configures a protocol definition in the user's local DWN, remote DWN, or another
 
 #### Return Value
 
-The response from the query
+<ApiDetails
+  details={[
+    {
+      data: {
+        field: 'ProtocolsConfigureResponse',
+        value: 'A response object containing the status of the request and a Protocol object if successful',
+      },
+    },
+  ]}
+/>
+
+
 
 #### Code Example
 
@@ -194,7 +214,7 @@ protocol.send(myDid); //sends the protocol configuration to the user's other DWN
 
 ### query(request)
 
-Method for querying the protocols for DIDs that have added configurations for in their DWN
+Queries a DID's DWNs for the presence of a protocol. This method is useful in detecting what protocols a given DID has installed to enable interaction over the protocol.
 
 #### Parameters
 
@@ -203,45 +223,55 @@ Method for querying the protocols for DIDs that have added configurations for in
     {
       data: {
         isObject: true,
+        type: 'ProtocolsQueryRequest',
         field: 'request',
         value: <ApiDetails
                 details={[
                 {
                     data: {
+                        isOptional: true,
+                        type: 'string',
                         field: 'from',
                         value: 'The DID of the DWN to query',
                     },
                 },
                 {
                     data: {
-                        field: 'author',
-                        value: 'The DID signing the query. This may be the same as the target parameter if the target and the signer of the query are the same entity, which is common for an app querying the DWN of its own user.',
-                    },
-                }, 
-                {
-                    data: {
                         isObject: true,
+                        type: 'ProtocolsQueryOptions',
                         field: 'message',
                         value: <ApiDetails
                                 details={[
                                 {
                                     data: {
+                                        isOptional: true,
+                                        type: 'string',
+                                        field: 'dateCreated',
+                                        value: 'Date of creation for the protocols to query',
+                                    }
+                                },                           
+                                {
+                                    data: {
                                         isObject: true,
+                                        isOptional: true,
+                                        type: 'ProtocolsQueryFilter',
                                         field: 'filter',
                                         value: <ApiDetails
                                                 details={[
                                                 {
                                                     data: {
+                                                        type: 'string',
+                                                        isOptional: true,
                                                         field: 'protocol',
-                                                        value: 'URI that represents the protocol being queried for',
+                                                        value: 'URI of the protocol bucket in which to query',
                                                     },
-                                                },                             
+                                                },  
                                             ]}
-                                            />,
+                                        />,
                                     },
                                 },                            
                             ]}
-                            />,
+                        />,
                     },
                 },                                             
             ]}
@@ -254,19 +284,46 @@ Method for querying the protocols for DIDs that have added configurations for in
 
 #### Return Value
 
-The response of the request as an object
+<ApiDetails
+  details={[
+    {
+      data: {
+        field: 'ProtocolsQueryResponse',
+        value: 'A response object containing the status of the request and an array of matching Protocol objects',
+      },
+    },
+  ]}
+/>
 
-#### Code Example
+
+#### Code Examples
 
 ```js
-const web5 = new Web5();
-const response = await web5.dwn.protocols.query({
-  from: 'did:example:alice',
+const { protocols } = await web5.dwn.protocols.query({
   message: {
     filter: {
-      protocol: "https://decentralized-music.org/protocol",
-    }
-  }
+      protocol: "https://music.org/protocol",
+    },
+  },
 });
+
+// logs an array of protocol configurations installed on the user's DWN
+console.log(protocols);
+```
+
+```js
+const { protocols } = await web5.dwn.protocols.query({
+  //highlight-start
+  from: "did:example:bob",
+  //highlight-end
+  message: {
+    filter: {
+      protocol: "https://music.org/protocol",
+    },
+  },
+});
+
+// logs an array of protocol configurations installed on Bob's DWN
+console.log(protocols);
 ```
 </section>

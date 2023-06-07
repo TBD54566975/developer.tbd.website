@@ -16,6 +16,148 @@ Every modifying method of the `records` class returns an instance of a [Record](
 
 ## Methods
 
+### create(request)
+
+Creates a new record and stores it in the user's local DWN, remote DWNs, or another party's DWNs (if permitted)
+
+:::note
+In order to also send the record to remote DWNs, `create()` should be followed by [send()](record#senddid)
+:::
+
+#### Parameters
+
+<ApiDetails
+  details={[
+    {
+      data: {
+        isObject: true,
+        type: 'RecordsCreateRequest',
+        field: 'request',
+        value: <ApiDetails
+                details={[
+                {
+                    data: {
+                        type: 'boolean',
+                        isOptional: true,
+                        field: 'store',
+                        value: 'Specifies whether to store the record in the user\'s local DWN. You might pass false if you don\'t want to retain a copy of the record for yourself.',
+                    },
+                },                   
+                {
+                    data: {
+                        type: 'text|object|file|blob',
+                        field: 'data',
+                        value: 'The data payload of the record',
+                    },
+                },                                 
+                {
+                    data: {
+                        isObject: true,
+                        type: 'RecordsWriteOptions',
+                        field: 'message',
+                        value: <ApiDetails
+                                details={[
+                                {
+                                    data: {
+                                        type: 'string',
+                                        isOptional: true,
+                                        field: 'protocol',
+                                        value: 'The URI of the protocol under which the record will be bucketed',
+                                    },
+                                },  
+                                {
+                                    data: {
+                                        type: 'string',
+                                        isOptional: true,
+                                        field: 'schema',
+                                        value: 'The URI of the schema under which the record will be bucketed',
+                                    },
+                                }, 
+                                {
+                                    data: {
+                                        type: 'string',
+                                        isOptional: true,
+                                        field: 'dataFormat',
+                                        value: 'The IANA string corresponding with the format of the data the record will be bucketed. See IANA\'s Media Type list here: https://www.iana.org/assignments/media-types/media-types.xhtml',
+                                    },
+                                },                                                                                                                            
+                            ]}
+                        />,
+                    },
+                },                                             
+            ]}
+          />,
+      },
+    },
+  ]}
+/>
+
+#### Return Value
+
+<ApiDetails
+    details={[
+    {
+        data: {
+            type: 'RecordsCreateResponse',
+            field: 'response',
+            value: 'A response object containing the status of the request and a Record object if successful',
+        },
+    },                              
+  ]}
+/>
+
+#### Code Examples
+```js
+const { record } = await web5.dwn.records.create({
+  data: playlistJson,
+  message: {
+    recipient: 'did:example:alice'
+    protocol: "https://music.org/protocol",
+    schema: "https://schema.org/Playlist",
+    dataFormat: "application/json",
+  },
+});
+```
+
+```js
+// this creates a record, but does not store it in the user's local DWN
+const { record } = await web5.dwn.records.create({
+  //highlight-start
+  store: false,
+  //highlight-end
+  data: "Hello again, World!",
+  message: {
+    dataFormat: "text/plain",
+  },
+});
+```
+
+```js
+// this creates a record and stores it in the user's local DWN
+const { record } = await web5.dwn.records.create({
+  data: "Hello World!",
+  message: {
+    dataFormat: "text/plain",
+  },
+});
+
+// send the record to the user's remote DWNs
+const { status } = await record.send(myDid); 
+
+// send the newly generated record to Bob's DWNs
+const { status } = await record.send("did:example:bob");
+
+```
+
+
+<Divider type="slash"/>
+
+### write(request)
+
+The [create() method](#createrequest) is an alias for write() and both take the same request object properties, and return the same response.
+
+<Divider type="slash"/>
+
 ### query(request)
 
 Method for querying the DWN of a provided target
@@ -27,25 +169,62 @@ Method for querying the DWN of a provided target
     {
       data: {
         isObject: true,
+        type: 'RecordsQueryRequest',
         field: 'request',
         value: <ApiDetails
                 details={[
                 {
                     data: {
+                        isOptional: true,
+                        type: 'string',
                         field: 'from',
-                        value: 'The DID to query from',
+                        value: 'The DID of the DWN the query will fetch results from',
                     },
                 },
                 {
                     data: {
-                        field: 'author',
-                        value: 'The DID of the author signing the query. This may be the same as the target parameter if the target and the signer of the query are the same entity, which is common for an app querying the DWN of its own user.',
-                    },
-                }, 
-                {
-                    data: {
+                        isObject: true,
+                        type: 'RecordsQueryOptions',
                         field: 'message',
-                        value: 'Object describing the properties of the DWN descriptor used to construct a valid DWN message',
+                        value: <ApiDetails
+                                details={[
+                                {
+                                    data: {
+                                        isObject: true,
+                                        type: 'RecordsQueryFilter',
+                                        field: 'filter',
+                                        value: <ApiDetails
+                                                details={[
+                                                {
+                                                    data: {
+                                                        type: 'string',
+                                                        isOptional: true,
+                                                        field: 'protocol',
+                                                        value: 'The URI of the protocol bucket in which to query',
+                                                    },
+                                                },  
+                                                {
+                                                    data: {
+                                                        type: 'string',
+                                                        isOptional: true,
+                                                        field: 'schema',
+                                                        value: 'The URI of the schema bucket in which to query',
+                                                    },
+                                                }, 
+                                                {
+                                                    data: {
+                                                        type: 'string',
+                                                        isOptional: true,
+                                                        field: 'dataFormat',
+                                                        value: 'The IANA string corresponding with the format of the data to filter for. See IANA\'s Media Type list here: https://www.iana.org/assignments/media-types/media-types.xhtml',
+                                                    },
+                                                },                                                                                                                            
+                                            ]}
+                                        />,
+                                    },
+                                },                             
+                            ]}
+                        />,
                     },
                 },                                             
             ]}
@@ -58,7 +237,17 @@ Method for querying the DWN of a provided target
 
 #### Return Value
 
-The response object of the query
+<ApiDetails
+    details={[
+    {
+        data: {
+            type: 'RecordsQueryResponse',
+            field: 'response',
+            value: 'An object containing an array of records that match the query',
+        },
+    },                              
+  ]}
+/>
 
 #### Code Example
 ```js
@@ -79,74 +268,9 @@ response.records.forEach(record => {
 
 <Divider type="slash"/>
 
-### create(request)
+### read(request)
 
-Writes a record to the local DWN of a specified DID
-
-#### Parameters
-
-<ApiDetails
-  details={[
-    {
-      data: {
-        isObject: true,
-        field: 'request',
-        value: <ApiDetails
-                details={[
-                {
-                    data: {
-                        field: 'from',
-                        value: 'The DID of the author signing the query. This may be the same as the target parameter if the target and the signer of the query are the same entity, which is common for an app querying the DWN of its own user.',
-                    },
-                },
-                {
-                    data: {
-                        field: 'store',
-                        value: 'A boolean specifying whether the data in the user\'s DWN should be recorded',
-                    },
-                }, 
-                {
-                    data: {
-                        field: 'data',
-                        value: 'The data object of the bytes, stream, blob, or file to be sent',
-                    },
-                },                                 
-                {
-                    data: {
-                        field: 'message',
-                        value: 'Object describing the properties of the DWN descriptor used to construct a valid DWN message',
-                    },
-                },                                             
-            ]}
-          />,
-      },
-    },
-  ]}
-/>
-
-
-#### Return Value
-
-The response object of the query
-
-#### Code Example
-```js
-const { record } = await web5.dwn.records.create({
-  data: 'Hello, world!',
-  message: {
-    recipient: 'did:example:alice'
-    schema: 'message',
-    dataFormat: 'text/plain',
-    protocol: 'social-media',
-  },
-});
-```
-
-<Divider type="slash"/>
-
-### write(request)
-
-Method for writing a record to the DWN of a provided target
+Reads a record stored in the user's local DWN, remote DWN, or another party's DWN (if permitted).
 
 #### Parameters
 
@@ -155,86 +279,34 @@ Method for writing a record to the DWN of a provided target
     {
       data: {
         isObject: true,
+        type: 'RecordsReadRequest',
         field: 'request',
         value: <ApiDetails
                 details={[
                 {
                     data: {
+                        type: 'string',
+                        isOptional: true,
                         field: 'from',
-                        value: 'The DID of the author signing the query. This may be the same as the target parameter if the target and the signer of the query are the same entity, which is common for an app querying the DWN of its own user.',
-                    },
-                },
-                {
-                    data: {
-                        field: 'data',
-                        value: 'The data object of the bytes, stream, blob, or file to be sent',
-                    },
-                },                                 
-                {
-                    data: {
-                        field: 'message',
-                        value: 'Object describing the properties of the DWN descriptor used to construct a valid DWN message',
-                    },
-                },                                             
-            ]}
-          />,
-      },
-    },
-  ]}
-/>
-
-#### Return Value
-
-The response object of the query
-
-#### Code Example
-```js
-const { record } = await web5.dwn.records.write({
-  from: 'did:example:alice',
-  data: 'Hello again!',
-  message: {
-    recordId: 'bfw35evr6e54c4cqa4c589h4cq3v7w4nc534c9w7h5',
-    dataFormat: 'text/plain'
-  }
-});
-```
-
-<Divider type="slash"/>
-
-### delete(target, request)
-
-Method for reading a record to the DWN of a provided target
-
-#### Parameters
-
-<ApiDetails
-  details={[
-    {
-      data: {
-        isObject: true,
-        field: 'request',
-        value: <ApiDetails
-                details={[
-                {
-                    data: {
-                        field: 'from',
-                        value: 'The DID of the author signing the query. This may be the same as the target parameter if the target and the signer of the query are the same entity, which is common for an app querying the DWN of its own user.',
+                        value: 'The DID of the DWN the read request will fetch the indicated record from',
                     },
                 },                               
                 {
                     data: {
                         isObject: true,
+                        type: 'RecordsReadOptions',
                         field: 'message',
                         value: <ApiDetails
                                 details={[
                                 {
                                     data: {
+                                        type: 'string',
                                         field: 'recordId',
-                                        value: 'The id of the record to delete',
+                                        value: 'The id that identifies the record data to fetch',
                                     },
                                 },                            
                             ]}
-                            />,
+                        />,
                   },
                 },                                             
             ]}
@@ -246,7 +318,109 @@ Method for reading a record to the DWN of a provided target
 
 #### Return Value
 
-The response object of the query
+<ApiDetails
+  details={[
+    {
+      data: {
+        field: 'RecordsReadResponse',
+        value: 'A response object containing the status of the request and a Record object if successful',
+      },
+    },
+  ]}
+/>
+
+
+#### Code Examples
+```js
+// Reads the indicated record from the user's DWNs
+const { record } = await web5.dwn.records.read({
+  message: {
+    recordId: "bfw35evr6e54c4cqa4c589h4cq3v7w4nc534c9w7h5",
+  },
+});
+
+// assuming the record is a text payload, logs the text
+console.log(await record.data.text());
+```
+
+```js
+// Reads the indicated record from Bob's DWNs
+const { record } = await web5.dwn.records.read({
+  //highlight-start
+  from: "did:example:bob",
+  //highlight-end
+  message: {
+    recordId: "bfw35evr6e54c4cqa4c589h4cq3v7w4nc534c9w7h5",
+  },
+});
+
+// assuming the record is a text payload, logs the text
+console.log(await record.data.text());
+```
+
+<Divider type="slash"/>
+
+### delete(request)
+
+Deletes a record stored in the user's local DWN, remote DWN, or another party's DWN (if permitted)
+
+#### Parameters
+
+<ApiDetails
+  details={[
+    {
+      data: {
+        isObject: true,
+        type: 'RecordsDeleteRequest',
+        field: 'request',
+        value: <ApiDetails
+                details={[
+                {
+                    data: {
+                        type: 'string',
+                        isOptional: true,
+                        field: 'from',
+                        value: 'The DID of the DWN the delete tombstone will be sent to',
+                    },
+                },                               
+                {
+                    data: {
+                        isObject: true,
+                        type: 'RecordsDeleteOptions',
+                        field: 'message',
+                        value: <ApiDetails
+                                details={[
+                                {
+                                    data: {
+                                        type: 'string',
+                                        field: 'recordId',
+                                        value: 'The id of the record to delete',
+                                    },
+                                },                            
+                            ]}
+                        />,
+                  },
+                },                                             
+            ]}
+          />,
+      },
+    },
+  ]}
+/>
+
+#### Return Value
+
+<ApiDetails
+  details={[
+    {
+      data: {
+        field: 'RecordsDeleteResponse',
+        value: 'The status the request',
+      },
+    },
+  ]}
+/>
+
 
 #### Code Example
 ```js
