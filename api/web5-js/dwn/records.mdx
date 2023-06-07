@@ -71,6 +71,10 @@ const response = await web5.dwn.records.query({
     }
   }
 });
+  
+response.records.forEach(record => {
+    console.log(record.id);
+});
 ```
 
 <Divider type="slash"/>

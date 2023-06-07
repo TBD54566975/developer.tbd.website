@@ -1,3 +1,8 @@
+---
+title: Web5 API Reference
+description: API documentation for the Web5 JS SDK
+---
+
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import Divider from '@site/src/components/Divider';
@@ -18,7 +23,7 @@ The SDK sets out to gather the most used functionality from all three of these p
 :::caution
 WEB5 JS SDK IS CURRENTLY IN TECH PREVIEW
 
-The SDK is currently still under active development, but having entered the Tech Preview phase there is now a drive to avoid unnecessary changes unless backwards compatibility is provided. Additional functionality will be added in the lead up to 1.0 final, and modifications will be made to address issues and community feedback.
+The SDK is currently still under active development, but having entered the Tech Preview phase, there is now a drive to avoid unnecessary changes unless backwards compatibility is provided. Additional functionality will be added in the lead up to version 1.0, and modifications will be made to address issues and community feedback.
 :::
 
 
@@ -94,6 +99,7 @@ Enables an app to request connection to a user's local identity app (like a desk
       data: {
         isObject: true,
         isOptional: true,
+        type: 'Web5ConnectOptions',
         field: 'options',
         value: <ApiDetails
                 details={[
@@ -101,12 +107,14 @@ Enables an app to request connection to a user's local identity app (like a desk
                     data: {
                         isObject: true,
                         isOptional: true,
+                        type: 'TechPreviewOptions',
                         field: 'techPreview',
                         value: <ApiDetails
                                 details={[
                                 {
                                     data: {
                                         isOptional: true,
+                                        type: 'string[]',
                                         field: 'dwnEndpoints',
                                         value: 'a list of DWN endpoints to define in the DID created and returned by this method. If this property is omitted during the Tech Preview, two nodes will be included by default (e.g. https://dwn.tbddev.org/dwn0, https://dwn.tbddev.org/dwn3)',
                                     },
@@ -130,12 +138,14 @@ Enables an app to request connection to a user's local identity app (like a desk
       data: {
         field: 'web5',
         value: 'A class instance of Web5 that enables access to a locally running DWN, DID interaction methods, and other capabilities related to the connected DID',
+        type: 'Web5',
       },
     },
     {
       data: {
         field: 'did',
         value: 'A class instance representing the decentralized identifier that was created or attained connection to',
+        type: 'DidApi',
       },
     },
   ]}
