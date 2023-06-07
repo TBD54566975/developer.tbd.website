@@ -11,50 +11,73 @@ Every modifying method of the [Records](records) class returns an instance of a 
 
 ## Properties
 
+### Instance Properties
+<details>
+  <summary>Each Record instance has the following instance properties:</summary>
+  <div className="grid grid-cols-1 desktop:grid-cols-2">
+    <div>
+      <ul>
+        <li>id</li>
+        <li>attestation</li>
+        <li>contextId</li>
+        <li>dataFormat</li>
+        <li>dateCreated</li>
+        <li>dataCid</li>
+        <li>dataSize</li>
+        <li>dateModified</li>
+        <li>datePublished</li>
+      </ul>
+    </div>
+    <div>
+      <ul>
+        <li>encryption</li>
+        <li>interface</li>
+        <li>method</li>
+        <li>parentId</li>
+        <li>protocol</li>
+        <li>protocolPath</li>
+        <li>published</li>
+        <li>recipient</li>
+        <li>schema</li>
+      </ul>
+    </div>    
+  </div>
+</details>
+
+:::note
+The `id` property is a unique identifier based on the record entry's composition. All entries across all records are deterministically unique.
+:::
+
+### data
+A property with the following convenience methods that read out the data of the record entry in the corresponding formats:
+
 <ApiDetails
   details={[
     {
       data: {
-        field: 'id',
-        value: 'The unique identifier based on the record entry\'s composition. Note that all entries across all records are deterministically unique.',
+        field: 'text()',
+        value: 'Returns a textual representation of the data',
       },
     },
     {
       data: {
-        field: 'descriptor',
-        value: 'The descriptor object for the constructed DWN message',
+        field: 'json()',
+        value: 'Returns a parsed JSON object if the value is JSON data',
       },
     },
     {
       data: {
-        isObject: true,
-        field: 'data',
-        value: <ApiDetails
-                details={[
-                {
-                    data: {
-                        field: 'text()',
-                        value: 'Produces a textual representation of the data',
-                    },
-                },
-                {
-                    data: {
-                        field: 'json()',
-                        value: 'If the value is JSON data, this method will return a parsed JSON object',
-                    },
-                },
-                {
-                    data: {
-                        field: 'stream()',
-                        value: 'Returns the raw stream of bytes for the data',
-                    },
-                },                                              
-            ]}
-        />,
+        field: 'stream()',
+        value: 'Returns the raw stream of bytes for the data',
       },
     },        
   ]}
 />
+
+#### Code Example
+```js
+const recordText = await myRecord.data.text();
+```
 
 <Divider type="slash"/>
 
@@ -70,6 +93,7 @@ Sends the record to the DWN endpoints of a provided DID
   details={[
     {
       data: {
+        type: 'string',
         field: 'did',
         value: 'The DID associated with the DWN endpoints where the record will be sent',
       }
@@ -80,7 +104,7 @@ Sends the record to the DWN endpoints of a provided DID
 
 #### Return Value
 
-The response object of the request
+The status of the request
 
 #### Code Example
 ```js
@@ -104,7 +128,7 @@ Deletes record from DWN
 
 #### Return Value
 
-The response object of the request
+The status of the request
 
 #### Code Example
 ```js
@@ -124,11 +148,14 @@ Overwrites an existing record
     {
       data: {
         isObject: true,
+        type: 'RecordUpdateOptions',
         field: 'request',
         value: <ApiDetails
                 details={[
                     {
                         data: {
+                            isOptional: true,
+                            type: 'JSON',
                             field: 'data',
                             value: 'Data to replace record\'s existing data',
                         }
@@ -142,7 +169,7 @@ Overwrites an existing record
 
 #### Return Value
 
-The response object of the request
+The status of the request
 
 #### Code Example
 ```js
