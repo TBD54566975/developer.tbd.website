@@ -57,4 +57,4 @@ With her teenage years coming on, Carol may be tempted to stay up late and messa
 
 Finally, when Carol does age out of her parents’ home, they can relinquish their controllership or even set it to expire at a given date. This parental use case is perfect for Web5 as it showcases how open, universal protocols, a decentralized web, and DID controllership enable improved and seamless experiences over our currently fractured, standardless web.
 
-If all of this sounds interesting to you, join us in building Web5 by checking out our [GitHub](https://github.com/TBD54566975), including our growing [web5.js SDK](https://github.com/TBD54566975/web5-js), where you can find and collaborate on the tools we’re creating to build the next web.
+If all of this sounds interesting to you, join us in building Web5 by checking out our [GitHub](https://github.com/TBD54566975), including our growing [web5.js SDK](https://developer.tbd.website/docs/), where you can find and collaborate on the tools we’re creating to build the next web.
