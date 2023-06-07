@@ -8,10 +8,21 @@ const ApiDetails = ({ details }) => {
            <> 
            <div>
                 <code>{detail.data.field}</code>
+                {detail.data.type ? (
+                    <>
+                    <br/>
+                    <span className="small-label data-type">
+                      {detail.data.type}
+                    </span>
+                    </>
+                    ) : null
+                }
                 {detail.data.isOptional ? (
                     <>
                     <br/>
-                    <small style={{color:'#24f2ff', fontStyle:'italic'}}>Optional</small>
+                    <span className="small-label optional-field">
+                      optional
+                    </span>
                     </>
                     ) : null
                 }
@@ -21,7 +32,7 @@ const ApiDetails = ({ details }) => {
                     <>
                     <details>
                       <summary>Show parameters</summary>
-                      <br/> 
+                      <br/> <br/> <br/>
                       <div className="shift-object-left">
                         {detail.data.value}
                       </div>

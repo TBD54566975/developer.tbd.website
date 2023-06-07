@@ -386,3 +386,18 @@ html.plugin-docs.plugin-id-api article .theme-card p {
 .api-docs .shift-object-left{
   margin-left: calc(-25vw + 50%);
 }
+
+.api-docs .small-label{
+  font-size: 0.75em;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+}
+
+.api-docs .data-type{
+  color:#24f2ff;
+}
+
+.api-docs .optional-field{
+  color:#d5a2eb;
+}
+
