@@ -164,7 +164,9 @@ The following response should be returned:
       "https://www.w3.org/ns/did/v1",
       "https://w3id.org/security/suites/jws-2020/v1"
     ],
+    //highlight-start
     "id": "did:key:z6Mkr5ZYL24Zm9CYfpLVoa7ydsEQNaohmsXCikYxJii7tdqC",
+    //highlight-end
     "verificationMethod": [
       {
         "id": "did:key:z6Mkr5ZYL24Zm9CYfpLVoa7ydsEQNaohmsXCikYxJii7tdqC#z6Mkr5ZYL24Zm9CYfpLVoa7ydsEQNaohmsXCikYxJii7tdqC",
@@ -252,6 +254,7 @@ The `employedAt` property is a timestamp data type to define the date and time s
 Let's create a Credential Schema for Alice's Employment Status VC:
 - Set `issuer` to Acme's DID.
 - Set `issuerKid` set to the KID of the issuer's private key to sign the schema.
+- Our `schema` object conforms to the Draft 2020-12 schema version, so set its `$schema` property to "https://json-schema.org/draft/2020-12/schema".
 
 ```bash
 curl -X PUT -d '{
