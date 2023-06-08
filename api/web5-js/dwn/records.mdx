@@ -61,6 +61,14 @@ In order to also send the record to remote DWNs, `create()` should be followed b
                                     data: {
                                         type: 'string',
                                         isOptional: true,
+                                        field: 'recipient',
+                                        value: 'The DID of the recipient whose DWN to write to',
+                                    },
+                                },                                    
+                                {
+                                    data: {
+                                        type: 'string',
+                                        isOptional: true,
                                         field: 'protocol',
                                         value: 'The URI of the protocol under which the record will be bucketed',
                                     },
