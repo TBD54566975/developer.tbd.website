@@ -95,7 +95,7 @@ button {
   --ifm-navbar-background-color: #000000;
   --ifm-link-color: var(--color-blue);
   --ifm-heading-font-family: 'IBM Plex Mono', monospace;
-  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+  --docusaurus-highlighted-code-line-bg: #ffed182e;
 }
 
 /* Horrible confusing code below */
