@@ -40,20 +40,12 @@ function DocsIndex() {
 
       <div className="grid grid-cols-1 desktop:grid-cols-2 gap-4">
         <HeroCard
-          heroText="What is Web5"
-          buttonUrl="/blog/what-is-web5" 
-          buttonText="Read"
-          imgSrc="/img/search-icon.png"
-          bodyText="Learn how Web5 enables decentralized apps"
-          themeColor="cyan"
-        />
-        <HeroCard
           heroText="Decentralized Identifiers"
           buttonUrl="/docs/web5/learn/decentralized-identifiers"
           buttonText="Learn"
           imgSrc="/img/data-icon.svg"
           bodyText="Take a journey with Alice and Bob to learn all about DIDs"
-          themeColor="purple"
+          themeColor="cyan"
         />
         <HeroCard
           heroText="Decentralized Web Nodes"
@@ -64,6 +56,14 @@ function DocsIndex() {
           bodyText="Learn how DWNs act as personal data stores"
           themeColor="purple"
         />
+        <HeroCard
+          heroText="Protocols"
+          buttonUrl="/docs/web5/learn/protocols" 
+          buttonText="Learn"
+          imgSrc="/img/lock-key.png"
+          bodyText="Learn how to define data schemas and permissions"
+          themeColor="purple"
+        />        
         <HeroCard
           heroText="Build a ToDo App"
           buttonUrl="/docs/web5/build/apps/todo-app-tutorial"
