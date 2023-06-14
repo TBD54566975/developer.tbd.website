@@ -323,7 +323,7 @@ function Web5Quickstart() {
       <Web5QuickstartWriteDwn />
       <section id="dwn-write">
         <div className="input input-container">
-          <label for="dwn-write-input">Your message</label>
+          <label htmlFor="dwn-write-input">Your message</label>
           <input
             placeholder="Write text in me!"
             type="text"
@@ -334,7 +334,7 @@ function Web5Quickstart() {
         <div class="sandbox-container">
           <div className="input">
             <button disabled>Run ›</button>
-            <label className="sr-only" for="dwn-write-progress">
+            <label className="sr-only" htmlFor="dwn-write-progress">
               Write progress
             </label>
             <progress id="dwn-write-progress"></progress>
@@ -358,7 +358,7 @@ function Web5Quickstart() {
       <section id="dwn-read" class="sandbox-container">
         <div className="input">
           <button disabled>Run ›</button>
-          <label className="sr-only" for="dwn-read-progress">
+          <label className="sr-only" htmlFor="dwn-read-progress">
             Read progress
           </label>
           <progress id="dwn-read-progress"></progress>
@@ -375,7 +375,7 @@ function Web5Quickstart() {
       <Web5QuickstartUpdateDwn />
       <section id="dwn-update">
         <div className="input input-container">
-          <label for="dwn-update-input">Your updated message</label>
+          <label htmlFor="dwn-update-input">Your updated message</label>
           <input
             placeholder="Update me!"
             type="text"
@@ -386,7 +386,7 @@ function Web5Quickstart() {
         <div class="sandbox-container">
           <div className="input">
             <button disabled>Run ›</button>
-            <label className="sr-only" for="dwn-update-progress">
+            <label className="sr-only" htmlFor="dwn-update-progress">
               Update progress
             </label>
             <progress id="dwn-update-progress"></progress>
@@ -405,7 +405,7 @@ function Web5Quickstart() {
       <section id="dwn-delete" class="sandbox-container">
         <div className="input">
           <button disabled>Run ›</button>
-          <label className="sr-only" for="dwn-delete-progress">
+          <label className="sr-only" htmlFor="dwn-delete-progress">
             Delete progress
           </label>
           <progress id="dwn-delete-progress"></progress>

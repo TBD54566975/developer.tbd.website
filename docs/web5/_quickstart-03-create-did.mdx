@@ -1,11 +1,11 @@
 <section class="docs-section">
 
-## 1. Instantiate Web5
-
-The `Web5` class is an isolated API object for doing all things Web5 and the connect() function creates an instance of Web5.
+## 1.  Instantiate Web5 and Create DID 
 
 In Web5 apps, a user’s unique identifier - like an email address - is called a [Decentralized Identifier (DID)](/docs/web5/learn/decentralized-identifiers).
 We are building a decentralized app, so your users are using identifiers that aren't tied to a centralized authority.
+
+The `Web5` class is an isolated API object for doing all things Web5. The `connect()` function creates an instance of Web5 and also creates a decentralized identifier or obtains connection to an existing one.
 
 In `index.js` below the import statement, create a new instance of `Web5`:
 ```js
@@ -32,7 +32,7 @@ Web5 is split into three main top-level objects:
 
   Then from your CLI, run:
   ```bash
-  node src/index.js
+  node index.js
   ```
 
   You'll see the newly created DID.
