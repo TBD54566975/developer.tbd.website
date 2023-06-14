@@ -294,10 +294,58 @@ Additionally, you’ll notice the `image` object below it also defines `actions`
 
 ## Protocols in Practice
 
-To use a protocol in your app, you’ll need to install that protocol to your app. You can do so using the following snippet that leverages our [web5.js](https://github.com/TBD54566975/web5-js) library, where `myDid` is your DID object and `protocolObject` is the protocol json defined in the previous section:
+To use a protocol in your app, you’ll need to install that protocol to your app. You can do so using the following snippet that leverages our [web5.js](https://github.com/TBD54566975/web5-js) library:
 
 ```js
-const response = await web5.dwn.protocols.configure(myDid.id, protocolObject);
+const { protocol } = await web5.dwn.protocols.configure({
+  message: {
+    definition: {
+      protocol: "https://photos.org/protocol",
+      types: {
+        album: {
+          schema: "https://photos.org/protocol/album",
+          dataFormat: ["application/json"],
+        },
+        photo: {
+          schema: "https://photos.org/protocols/photo",
+          dataFormat: ["application/json"],
+        },
+        binaryImage: {
+          dataFormat: ["image/png", "jpeg", "gif"],
+        },
+      },
+      structure: {
+        album: {
+          $actions: [
+            {
+              who: "recipient",
+              can: "read",
+            },
+          ],
+        },
+        photo: {
+          $actions: [
+            {
+              who: "recipient",
+              can: "read",
+            },
+          ],
+          binaryImage: {
+            $actions: [
+              {
+                who: "author",
+                of: "photo",
+                can: "write",
+              },
+            ],
+          },
+        },
+      },
+    },
+  },
+});
+
+protocol.send(myDid); // sends the protocol configuration to the user's other DWeb Nodes.
 ```
 
 Once you’ve installed that protocol to your app, you’re ready to communicate using the schema and permissions it defines.
