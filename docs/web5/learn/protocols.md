@@ -304,14 +304,14 @@ const { protocol } = await web5.dwn.protocols.configure({
       types: {
         album: {
           schema: "https://photos.org/protocol/album",
-          dataFormat: ["application/json"],
+          dataFormats: ["application/json"],
         },
         photo: {
           schema: "https://photos.org/protocols/photo",
-          dataFormat: ["application/json"],
+          dataFormats: ["application/json"],
         },
         binaryImage: {
-          dataFormat: ["image/png", "jpeg", "gif"],
+          dataFormats: ["image/png", "jpeg", "gif"],
         },
       },
       structure: {
