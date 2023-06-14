@@ -311,7 +311,7 @@ const { protocol } = await web5.dwn.protocols.configure({
           dataFormat: ["application/json"],
         },
         binaryImage: {
-          dataFormat: ["image/png", "jpeg", "gif"],
+          dataFormats: ["image/png", "jpeg", "gif"],
         },
       },
       structure: {
