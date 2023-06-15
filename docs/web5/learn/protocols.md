@@ -18,7 +18,7 @@ Protocols are written in a json format that is flexible enough to detail what ob
 :::note
 If you’re interested in reading the source code for protocol definitions, you can check out the following core files in the [dwn-sdk-js](https://github.com/TBD54566975/dwn-sdk-js) library:
 
-- [type.ts](https://github.com/TBD54566975/dwn-sdk-js/blob/main/src/interfaces/protocols/types.ts) - The file responsible for serializing your protocol document
+- [protocols-configure.ts](https://github.com/TBD54566975/dwn-sdk-js/blob/main/src/interfaces/protocols/handlers/protocols-configure.ts) - The file responsible for serializing your protocol document
 - [protocol-rule-set.json](https://github.com/TBD54566975/dwn-sdk-js/blob/main/json-schemas/protocol-rule-set.json) - A schema defining how protocols should be formatted
 :::
 
@@ -28,7 +28,7 @@ Every protocol document has a few basic keys:
 
 - `types` - Defines all the data types used in your document
 - `structure` - Used as a catch-all to define a list of properties
-- `actions` - The key word used to denote the start of a permission definition
+- `$actions` - The key word used to denote the start of a permission definition
 
 These terms are combined in a human-readable way to define both the data schema and permissions of your app.
 
@@ -46,7 +46,7 @@ We know the key words for defining protocols - `types`, `structure`, and `action
 
 ```json
 {
-  "protocol": "http://social-media.xyz",
+  "protocol": "http://social-media.xyz/schema/messages",
   "types": {
     "message": {
       "schema": "messageSchema",
@@ -294,58 +294,10 @@ Additionally, you’ll notice the `image` object below it also defines `actions`
 
 ## Protocols in Practice
 
-To use a protocol in your app, you’ll need to install that protocol to your DWN. You can do so using the following snippet that leverages our [web5.js](https://github.com/TBD54566975/web5-js) library:
+To use a protocol in your app, you’ll need to install that protocol to your DWN. You can do so using the following snippet that leverages our [web5.js](https://github.com/TBD54566975/web5-js) library, where `protocolObject` is the messaging protocol object from above:
 
 ```js
-const { protocol } = await web5.dwn.protocols.configure({
-  message: {
-    definition: {
-      protocol: "https://photos.org/protocol",
-      types: {
-        album: {
-          schema: "https://photos.org/protocol/album",
-          dataFormats: ["application/json"],
-        },
-        photo: {
-          schema: "https://photos.org/protocols/photo",
-          dataFormats: ["application/json"],
-        },
-        binaryImage: {
-          dataFormats: ["image/png", "jpeg", "gif"],
-        },
-      },
-      structure: {
-        album: {
-          $actions: [
-            {
-              who: "recipient",
-              can: "read",
-            },
-          ],
-        },
-        photo: {
-          $actions: [
-            {
-              who: "recipient",
-              can: "read",
-            },
-          ],
-          binaryImage: {
-            $actions: [
-              {
-                who: "author",
-                of: "photo",
-                can: "write",
-              },
-            ],
-          },
-        },
-      },
-    },
-  },
-});
-
-protocol.send(myDid); // sends the protocol configuration to the user's other DWeb Nodes.
+const { protocol } = await web5.dwn.protocols.configure(protocolObject);
 ```
 
 Once you’ve installed that protocol to your app, you’re ready to communicate using the schema and permissions it defines.
