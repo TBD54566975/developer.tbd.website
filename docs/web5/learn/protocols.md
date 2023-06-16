@@ -306,7 +306,7 @@ const { protocol, status } = await web5.dwn.protocols.configure({
 
 Once you’ve installed that protocol to your app, you’re ready to communicate using the schema and permissions it defines.
 
-Building on our social media example, let’s say that you wanted to post a message to your friend Alice. First, ensure that she also has the `social-media` protocol installed on her DWN. Then, you can write to her DWN via the `social-media` protocol using:
+Building on our social media example, let’s say that you wanted to post a message to your friend Alice. First, ensure that she also has the `http://social-media.xyz` protocol installed on her DWN. Then, you can write to her DWN via the `http://social-media.xyz` protocol using:
 
 ```js
 const { record, status: createStatus } =
@@ -316,7 +316,7 @@ await web5.dwn.records.create({
     recipient: aliceDid,
     schema: 'http://messageschema',
     dataFormat: 'text/plain',
-    protocol: protocolDefinition.protocol, // or, "http://social-media.xyz", and not 'social-media'
+    protocol: protocolDefinition.protocol,
     protocolPath: 'message'
   },
 });
