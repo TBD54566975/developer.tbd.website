@@ -294,7 +294,7 @@ Additionally, you’ll notice the `image` object below it also defines `actions`
 
 ## Protocols in Practice
 
-To use a protocol in your app, you’ll need to install that protocol to your DWN. You can do so using the following snippet that leverages our [web5.js](https://github.com/TBD54566975/web5-js) library, where `protocolObject` is the messaging protocol object from above:
+To use a protocol in your app, you’ll need to install that protocol to your DWN. You can do so using the following snippet that leverages our [web5.js](https://github.com/TBD54566975/web5-js) library, where `protocolDefinition` is the messaging protocol object from above:
 
 ```js
 const { protocol, status } = await web5.dwn.protocols.configure({
