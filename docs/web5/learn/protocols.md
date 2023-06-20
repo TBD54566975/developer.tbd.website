@@ -18,7 +18,7 @@ Protocols are written in a json format that is flexible enough to detail what ob
 :::note
 If you’re interested in reading the source code for protocol definitions, you can check out the following core files in the [dwn-sdk-js](https://github.com/TBD54566975/dwn-sdk-js) library:
 
-- [type.ts](https://github.com/TBD54566975/dwn-sdk-js/blob/main/src/interfaces/protocols/types.ts) - The file responsible for serializing your protocol document
+- [protocols-configure.ts](https://github.com/TBD54566975/dwn-sdk-js/blob/main/src/interfaces/protocols/handlers/protocols-configure.ts) - The file responsible for serializing your protocol document
 - [protocol-rule-set.json](https://github.com/TBD54566975/dwn-sdk-js/blob/main/json-schemas/protocol-rule-set.json) - A schema defining how protocols should be formatted
 :::
 
@@ -28,7 +28,7 @@ Every protocol document has a few basic keys:
 
 - `types` - Defines all the data types used in your document
 - `structure` - Used as a catch-all to define a list of properties
-- `actions` - The key word used to denote the start of a permission definition
+- `$actions` - The key word used to denote the start of a permission definition
 
 These terms are combined in a human-readable way to define both the data schema and permissions of your app.
 
@@ -49,19 +49,19 @@ We know the key words for defining protocols - `types`, `structure`, and `action
   "protocol": "http://social-media.xyz",
   "types": {
     "message": {
-      "schema": "messageSchema",
+      "schema": "http://social-media.xyz/schemas/messageSchema",
       "dataFormats": ["text/plain"]
     },
     "reply": {
-      "schema": "replySchema",
+      "schema": "http://social-media.xyz/schemas/replySchema",
       "dataFormats": ["text/plain"]
     },
     "image": {
-      "schema": "imageSchema",
+      "schema": "http://social-media.xyz/schemas/imageSchema",
       "dataFormats": ["image/jpeg"]
     },
     "caption": {
-      "schema": "captionSchema",
+      "schema": "http://social-media.xyz/schemas/captionSchema",
       "dataFormats": ["text/plain"]
     }
   },
@@ -131,19 +131,19 @@ In the `types` section, we can see how the data schema of each data type is defi
 ```json
 "types": {
   "message": {
-    "schema": "messageSchema",
+    "schema": "http://social-media.xyz/schemas/messageSchema",
     "dataFormats": ["text/plain"]
   },
   "reply": {
-    "schema": "replySchema",
+    "schema": "http://social-media.xyz/schemas/replySchema",
     "dataFormats": ["text/plain"]
   },
   "image": {
-    "schema": "imageSchema",
+    "schema": "http://social-media.xyz/schemas/imageSchema",
     "dataFormats": ["image/jpeg"]
   },
   "caption": {
-    "schema": "captionSchema",
+    "schema": "http://social-media.xyz/schemas/captionSchema",
     "dataFormats": ["text/plain"]
   }
 }
@@ -294,41 +294,41 @@ Additionally, you’ll notice the `image` object below it also defines `actions`
 
 ## Protocols in Practice
 
-To use a protocol in your app, you’ll need to install that protocol to your app. You can do so using the following snippet that leverages our [web5.js](https://github.com/TBD54566975/web5-js) library, where `myDid` is your DID object and `protocolObject` is the protocol json defined in the previous section:
+To use a protocol in your app, you’ll need to install that protocol to your DWN. You can do so using the following snippet that leverages our [web5.js](https://github.com/TBD54566975/web5-js) library, where `protocolDefinition` is the messaging protocol object from above:
 
 ```js
-const response = await web5.dwn.protocols.configure(myDid.id, protocolObject);
+const { protocol, status } = await web5.dwn.protocols.configure({
+    message: {
+      definition: protocolDefinition 
+    }
+});
 ```
 
 Once you’ve installed that protocol to your app, you’re ready to communicate using the schema and permissions it defines.
 
-Building on our social media example, let’s say that you wanted to post a message to your friend Alice. First, you can check if she also has the `social-media` protocol installed by running:
+Building on our social media example, let’s say that you wanted to post a message to your friend Alice. First, ensure that she also has the `http://social-media.xyz` protocol installed on her DWN. Then, you can write to her DWN via the `http://social-media.xyz` protocol using:
 
 ```js
-const { record } = await web5.dwn.protocols.query({
-  from: 'did:example:alice',
-  message: {
-    filter: {
-      protocol: 'social-media',
-    },
-  },
-});
-```
-
-Once you’ve used this call to confirm that she does have the protocol installed, you can write to her DWN via the `social-media` protocol using:
-
-```js
-const { record } = await web5.dwn.records.create({
+const { record, status: createStatus } =
+await web5.dwn.records.create({
   data: 'Hello, world!',
   message: {
-    recipient: 'did:example:alice'
-    schema: 'message',
+    recipient: aliceDid,
+    schema: 'http://messageschema',
     dataFormat: 'text/plain',
-    protocol: 'social-media',
+    protocol: protocolDefinition.protocol,
+    protocolPath: 'message'
   },
 });
 
-await record.send('did:example:alice')
+const { status: sendStatus } = await record.send(aliceDid);
+
+if (sendStatus.code === 202) {
+    console.log('send to alice success!!')
+}
+else {
+    console.log('send failed!', sendStatus.code, sendStatus.detail)
+}
 ```
 
 And that’s it! You’ve now written a message to Alice’s DWN, which she’ll be able to respond to, and you can both communicate using the `social-media` protocol.
