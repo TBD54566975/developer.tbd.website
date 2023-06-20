@@ -46,22 +46,22 @@ We know the key words for defining protocols - `types`, `structure`, and `action
 
 ```json
 {
-  "protocol": "http://social-media.xyz",
+  "protocol": "https://social-media.xyz",
   "types": {
     "message": {
-      "schema": "http://social-media.xyz/schemas/messageSchema",
+      "schema": "https://social-media.xyz/schemas/messageSchema",
       "dataFormats": ["text/plain"]
     },
     "reply": {
-      "schema": "http://social-media.xyz/schemas/replySchema",
+      "schema": "https://social-media.xyz/schemas/replySchema",
       "dataFormats": ["text/plain"]
     },
     "image": {
-      "schema": "http://social-media.xyz/schemas/imageSchema",
+      "schema": "https://social-media.xyz/schemas/imageSchema",
       "dataFormats": ["image/jpeg"]
     },
     "caption": {
-      "schema": "http://social-media.xyz/schemas/captionSchema",
+      "schema": "https://social-media.xyz/schemas/captionSchema",
       "dataFormats": ["text/plain"]
     }
   },
@@ -131,19 +131,19 @@ In the `types` section, we can see how the data schema of each data type is defi
 ```json
 "types": {
   "message": {
-    "schema": "http://social-media.xyz/schemas/messageSchema",
+    "schema": "https://social-media.xyz/schemas/messageSchema",
     "dataFormats": ["text/plain"]
   },
   "reply": {
-    "schema": "http://social-media.xyz/schemas/replySchema",
+    "schema": "https://social-media.xyz/schemas/replySchema",
     "dataFormats": ["text/plain"]
   },
   "image": {
-    "schema": "http://social-media.xyz/schemas/imageSchema",
+    "schema": "https://social-media.xyz/schemas/imageSchema",
     "dataFormats": ["image/jpeg"]
   },
   "caption": {
-    "schema": "http://social-media.xyz/schemas/captionSchema",
+    "schema": "https://social-media.xyz/schemas/captionSchema",
     "dataFormats": ["text/plain"]
   }
 }
@@ -306,7 +306,7 @@ const { protocol, status } = await web5.dwn.protocols.configure({
 
 Once you’ve installed that protocol to your app, you’re ready to communicate using the schema and permissions it defines.
 
-Building on our social media example, let’s say that you wanted to post a message to your friend Alice. First, ensure that she also has the `http://social-media.xyz` protocol installed on her DWN. Then, you can write to her DWN via the `http://social-media.xyz` protocol using:
+Building on our social media example, let’s say that you wanted to post a message to your friend Alice. First, ensure that she also has the `https://social-media.xyz` protocol installed on her DWN. Then, you can write to her DWN via the `https://social-media.xyz` protocol using:
 
 ```js
 const { record, status: createStatus } =
@@ -314,7 +314,7 @@ await web5.dwn.records.create({
   data: 'Hello, world!',
   message: {
     recipient: aliceDid,
-    schema: 'http://messageschema',
+    schema: 'https://social-media.xyz/schemas/messageSchema',
     dataFormat: 'text/plain',
     protocol: protocolDefinition.protocol,
     protocolPath: 'message'
