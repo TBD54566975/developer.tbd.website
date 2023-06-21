@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkdeveloper_tbd_website=self.webpackChunkdeveloper_tbd_website||[]).push([[3822],{5621:e=>{e.exports=JSON.parse('{"label":"bitcoin","permalink":"/blog/tags/bitcoin","allTagsPath":"/blog/tags","count":1}')}}]);

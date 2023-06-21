@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkdeveloper_tbd_website=self.webpackChunkdeveloper_tbd_website||[]).push([[4997],{8925:e=>{e.exports=JSON.parse('{"label":"W3C","permalink":"/blog/tags/w-3-c","allTagsPath":"/blog/tags","count":1}')}}]);

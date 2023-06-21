@@ -1,0 +1,16 @@
+import { Web5 } from '@tbd54566975/web5';
+
+const { web5, did: aliceDid } = await Web5.connect();
+
+const { record } = await web5.dwn.records.create({
+    data: "Hello Web5",
+    message: {
+      dataFormat: 'text/plain',
+    },
+});
+
+const readResult = await record.data.text();
+
+const updateResult = await record.update({ data: "Hello, I'm updated!" });
+
+const deleteResult = await record.delete();

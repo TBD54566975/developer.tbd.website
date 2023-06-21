@@ -1,0 +1,124 @@
+/*! Bundled license information:
+
+ieee754/index.js:
+  (*! ieee754. BSD-3-Clause License. Feross Aboukhadijeh <https://feross.org/opensource> *)
+
+buffer/index.js:
+  (*!
+   * The buffer module from node.js, for the browser.
+   *
+   * @author   Feross Aboukhadijeh <https://feross.org>
+   * @license  MIT
+   *)
+
+uri-js/dist/es5/uri.all.js:
+  (** @license URI.js v4.4.0 (c) 2011 Gary Court. License: http://github.com/garycourt/uri-js *)
+
+safe-buffer/index.js:
+  (*! safe-buffer. MIT License. Feross Aboukhadijeh <https://feross.org/opensource> *)
+
+safe-buffer/index.js:
+  (*! safe-buffer. MIT License. Feross Aboukhadijeh <https://feross.org/opensource> *)
+
+safe-buffer/index.js:
+  (*! safe-buffer. MIT License. Feross Aboukhadijeh <https://feross.org/opensource> *)
+
+@noble/ed25519/lib/index.js:
+  (*! noble-ed25519 - MIT License (c) 2019 Paul Miller (paulmillr.com) *)
+
+@noble/secp256k1/lib/index.js:
+  (*! noble-secp256k1 - MIT License (c) 2019 Paul Miller (paulmillr.com) *)
+
+hash-wasm/dist/index.umd.js:
+  (*!
+   * hash-wasm (https://www.npmjs.com/package/hash-wasm)
+   * (c) Dani Biro
+   * @license MIT
+   *)
+  (*! *****************************************************************************
+      Copyright (c) Microsoft Corporation.
+  
+      Permission to use, copy, modify, and/or distribute this software for any
+      purpose with or without fee is hereby granted.
+  
+      THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH
+      REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY
+      AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT,
+      INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM
+      LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR
+      OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
+      PERFORMANCE OF THIS SOFTWARE.
+      ***************************************************************************** *)
+
+buffer/index.js:
+  (*!
+   * The buffer module from node.js, for the browser.
+   *
+   * @author   Feross Aboukhadijeh <https://feross.org>
+   * @license  MIT
+   *)
+
+queue-microtask/index.js:
+  (*! queue-microtask. MIT License. Feross Aboukhadijeh <https://feross.org/opensource> *)
+
+run-parallel-limit/index.js:
+  (*! run-parallel-limit. MIT License. Feross Aboukhadijeh <https://feross.org/opensource> *)
+
+@noble/ed25519/lib/esm/index.js:
+  (*! noble-ed25519 - MIT License (c) 2019 Paul Miller (paulmillr.com) *)
+
+@noble/secp256k1/lib/esm/index.js:
+  (*! noble-secp256k1 - MIT License (c) 2019 Paul Miller (paulmillr.com) *)
+
+@noble/ed25519/lib/esm/index.js:
+  (*! noble-ed25519 - MIT License (c) 2019 Paul Miller (paulmillr.com) *)
+
+@noble/secp256k1/lib/esm/index.js:
+  (*! noble-secp256k1 - MIT License (c) 2019 Paul Miller (paulmillr.com) *)
+
+@tbd54566975/dwn-sdk-js/dist/esm/src/interfaces/messages/handlers/messages-get.js:
+  (*! NOTE: this is somewhat duplicate code that also exists in `StorageController.query`. *)
+
+@tbd54566975/dwn-sdk-js/dist/bundles/browser.js:
+  (*! NOTE: this is somewhat duplicate code that also exists in `StorageController.query`. *)
+  (*! Bundled license information:
+  
+  ieee754/index.js:
+    (*! ieee754. BSD-3-Clause License. Feross Aboukhadijeh <https://feross.org/opensource> *)
+  
+  buffer/index.js:
+    (*!
+     * The buffer module from node.js, for the browser.
+     *
+     * @author   Feross Aboukhadijeh <https://feross.org>
+     * @license  MIT
+     *)
+  
+  queue-microtask/index.js:
+    (*! queue-microtask. MIT License. Feross Aboukhadijeh <https://feross.org/opensource> *)
+  
+  run-parallel-limit/index.js:
+    (*! run-parallel-limit. MIT License. Feross Aboukhadijeh <https://feross.org/opensource> *)
+  
+  safe-buffer/index.js:
+    (*! safe-buffer. MIT License. Feross Aboukhadijeh <https://feross.org/opensource> *)
+  
+  safe-buffer/index.js:
+    (*! safe-buffer. MIT License. Feross Aboukhadijeh <https://feross.org/opensource> *)
+  
+  safe-buffer/index.js:
+    (*! safe-buffer. MIT License. Feross Aboukhadijeh <https://feross.org/opensource> *)
+  
+  @noble/ed25519/lib/esm/index.js:
+    (*! noble-ed25519 - MIT License (c) 2019 Paul Miller (paulmillr.com) *)
+  
+  @noble/secp256k1/lib/esm/index.js:
+    (*! noble-secp256k1 - MIT License (c) 2019 Paul Miller (paulmillr.com) *)
+  *)
+*/
+
+//!                       Need to decide how to resolve.
+
+//!                       When DWN SDK returns 404, agentResponse is { status: { code: 404 }} and that's it.
+
+//! TODO: (Frank -> Moe): This quirk is the result of how 4XX errors are being returned by `dwn-server`

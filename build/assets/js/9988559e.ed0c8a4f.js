@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkdeveloper_tbd_website=self.webpackChunkdeveloper_tbd_website||[]).push([[8223],{34496:e=>{e.exports=JSON.parse('{"permalink":"/blog/tags/verifiable-credentials","page":1,"postsPerPage":10,"totalPages":1,"totalCount":3,"blogDescription":"Blog","blogTitle":"Blog"}')}}]);

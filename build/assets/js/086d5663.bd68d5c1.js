@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkdeveloper_tbd_website=self.webpackChunkdeveloper_tbd_website||[]).push([[7754],{55799:e=>{e.exports=JSON.parse('{"label":"ecomonic empowerment","permalink":"/blog/tags/ecomonic-empowerment","allTagsPath":"/blog/tags","count":1}')}}]);
