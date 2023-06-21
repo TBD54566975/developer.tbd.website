@@ -31,3 +31,6 @@ yarn-error.log*
 /src/pages/projects/ssi-service/README.md
 /src/pages/projects/ssi-sdk/README.md
 /src/pages/projects/dwn-sdk-js/README.md
+
+# Local Netlify folder
+.netlify
