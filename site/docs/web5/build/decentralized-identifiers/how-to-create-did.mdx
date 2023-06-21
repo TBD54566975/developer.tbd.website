@@ -1,0 +1,45 @@
+---
+title: Create a Decentralized Identifier
+---
+
+Before creating your DID, be sure to check out the [Quickstart guide](../../quickstart) to ensure you’ve properly imported the Web5 SDK. We also have guides to [learn more about DIDs](../../Learn/decentralized-identifiers#DID-Method).
+
+## Create a DID
+
+```jsx
+const myDid = await Web5.did.create('ion');
+```
+
+When calling create, be sure to pass in a Web5-supported DID method(). create returns a JSON representing your newly created DID, which we’ve stored in myDid.
+
+Here’s an example of what the myDid object will look like:
+
+```json
+{
+  id: 'did:ion:EiA2ZoP6qQm6rmuibI2LCysFfFpG9_j1fI7GxWmI_vLbFA:eyJkZWx0YSI6eyJwYXRjaGVzIjpbeyJhY3Rpb24iOiJyZXBsYWNlIiwiZG9jdW1lbnQiOnsicHVibGljS2V5cyI6W3siaWQiOiJkd24iLCJwdWJsaWNLZXlKd2siOnsiY3J2Ijoic2VjcDI1NmsxIiwia3R5IjoiRUMiLCJ4IjoiWXFlX1JrWW1rd2lsZFJvelF4Yk05bGc1cVpnc2VpdjFBUzdacXl6QUJQayIsInkiOiJsYVlGTDBlbWVfTWU0c3JfYVNETU9QMWdCTnQ1aXRVUkhlMTd0MmpiYm1zIn0sInB1cnBvc2VzIjpbImF1dGhlbnRpY2F0aW9uIl0sInR5cGUiOiJKc29uV2ViS2V5MjAyMCJ9XX19XSwidXBkYXRlQ29tbWl0bWVudCI6IkVpQ3YwVWFsTkRpTEtyWVFvRloxczV3N2xuLTFlT2dIZ2dYSm1ySk9KanBJM3cifSwic3VmZml4RGF0YSI6eyJkZWx0YUhhc2giOiJFaUNLMzhqQmJlU3YxbmkzVnFCSW5QcV8xYmRCNW90QVU3XzlkMkRuS3ByN2hBIiwicmVjb3ZlcnlDb21taXRtZW50IjoiRWlDbVdVRGxKVEkyckp1cGJ6d250TkJuSjJ2Zk4xOWRDTXc1UURxUXJ5azZVdyJ9fQ',
+  internalId: 'did:ion:EiA2ZoP6qQm6rmuibI2LCysFfFpG9_j1fI7GxWmI_vLbFA',
+  didDocument: {
+    '@context': 'https://www.w3.org/ns/did/v1',
+    id: 'did:ion:EiA2ZoP6qQm6rmuibI2LCysFfFpG9_j1fI7GxWmI_vLbFA:eyJkZWx0YSI6eyJwYXRjaGVzIjpbeyJhY3Rpb24iOiJyZXBsYWNlIiwiZG9jdW1lbnQiOnsicHVibGljS2V5cyI6W3siaWQiOiJkd24iLCJwdWJsaWNLZXlKd2siOnsiY3J2Ijoic2VjcDI1NmsxIiwia3R5IjoiRUMiLCJ4IjoiWXFlX1JrWW1rd2lsZFJvelF4Yk05bGc1cVpnc2VpdjFBUzdacXl6QUJQayIsInkiOiJsYVlGTDBlbWVfTWU0c3JfYVNETU9QMWdCTnQ1aXRVUkhlMTd0MmpiYm1zIn0sInB1cnBvc2VzIjpbImF1dGhlbnRpY2F0aW9uIl0sInR5cGUiOiJKc29uV2ViS2V5MjAyMCJ9XX19XSwidXBkYXRlQ29tbWl0bWVudCI6IkVpQ3YwVWFsTkRpTEtyWVFvRloxczV3N2xuLTFlT2dIZ2dYSm1ySk9KanBJM3cifSwic3VmZml4RGF0YSI6eyJkZWx0YUhhc2giOiJFaUNLMzhqQmJlU3YxbmkzVnFCSW5QcV8xYmRCNW90QVU3XzlkMkRuS3ByN2hBIiwicmVjb3ZlcnlDb21taXRtZW50IjoiRWlDbVdVRGxKVEkyckp1cGJ6d250TkJuSjJ2Zk4xOWRDTXc1UURxUXJ5azZVdyJ9fQ',
+    verificationMethod: [ [Object] ],
+    authentication: [ '#dwn' ]
+  },
+  methodData: [
+    {
+      operation: 'create',
+      content: [Object],
+      recovery: [Object],
+      update: [Object]
+    }
+  ],
+  keys: [
+    {
+      id: 'did:ion:EiA2ZoP6qQm6rmuibI2LCysFfFpG9_j1fI7GxWmI_vLbFA:eyJkZWx0YSI6eyJwYXRjaGVzIjpbeyJhY3Rpb24iOiJyZXBsYWNlIiwiZG9jdW1lbnQiOnsicHVibGljS2V5cyI6W3siaWQiOiJkd24iLCJwdWJsaWNLZXlKd2siOnsiY3J2Ijoic2VjcDI1NmsxIiwia3R5IjoiRUMiLCJ4IjoiWXFlX1JrWW1rd2lsZFJvelF4Yk05bGc1cVpnc2VpdjFBUzdacXl6QUJQayIsInkiOiJsYVlGTDBlbWVfTWU0c3JfYVNETU9QMWdCTnQ1aXRVUkhlMTd0MmpiYm1zIn0sInB1cnBvc2VzIjpbImF1dGhlbnRpY2F0aW9uIl0sInR5cGUiOiJKc29uV2ViS2V5MjAyMCJ9XX19XSwidXBkYXRlQ29tbWl0bWVudCI6IkVpQ3YwVWFsTkRpTEtyWVFvRloxczV3N2xuLTFlT2dIZ2dYSm1ySk9KanBJM3cifSwic3VmZml4RGF0YSI6eyJkZWx0YUhhc2giOiJFaUNLMzhqQmJlU3YxbmkzVnFCSW5QcV8xYmRCNW90QVU3XzlkMkRuS3ByN2hBIiwicmVjb3ZlcnlDb21taXRtZW50IjoiRWlDbVdVRGxKVEkyckp1cGJ6d250TkJuSjJ2Zk4xOWRDTXc1UURxUXJ5azZVdyJ9fQ#dwn',
+      type: 'JsonWebKey2020',
+      controller: 'did:ion:EiA2ZoP6qQm6rmuibI2LCysFfFpG9_j1fI7GxWmI_vLbFA:eyJkZWx0YSI6eyJwYXRjaGVzIjpbeyJhY3Rpb24iOiJyZXBsYWNlIiwiZG9jdW1lbnQiOnsicHVibGljS2V5cyI6W3siaWQiOiJkd24iLCJwdWJsaWNLZXlKd2siOnsiY3J2Ijoic2VjcDI1NmsxIiwia3R5IjoiRUMiLCJ4IjoiWXFlX1JrWW1rd2lsZFJvelF4Yk05bGc1cVpnc2VpdjFBUzdacXl6QUJQayIsInkiOiJsYVlGTDBlbWVfTWU0c3JfYVNETU9QMWdCTnQ1aXRVUkhlMTd0MmpiYm1zIn0sInB1cnBvc2VzIjpbImF1dGhlbnRpY2F0aW9uIl0sInR5cGUiOiJKc29uV2ViS2V5MjAyMCJ9XX19XSwidXBkYXRlQ29tbWl0bWVudCI6IkVpQ3YwVWFsTkRpTEtyWVFvRloxczV3N2xuLTFlT2dIZ2dYSm1ySk9KanBJM3cifSwic3VmZml4RGF0YSI6eyJkZWx0YUhhc2giOiJFaUNLMzhqQmJlU3YxbmkzVnFCSW5QcV8xYmRCNW90QVU3XzlkMkRuS3ByN2hBIiwicmVjb3ZlcnlDb21taXRtZW50IjoiRWlDbVdVRGxKVEkyckp1cGJ6d250TkJuSjJ2Zk4xOWRDTXc1UURxUXJ5azZVdyJ9fQ',
+      publicKeyJwk: [Object],
+      privateKeyJwk: [Object]
+    }
+  ]
+}
+```
