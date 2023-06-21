@@ -17,13 +17,13 @@ A JSON document containing details about a DID, including the DID itself, repres
 A specific scheme for creating, resolving, updating, and deactivating DIDs and their associated documents, as outlined in a DID method specification which provides detailed instructions on these operations.
 
 ### DID Method - ION
-The `did:ion:` method leverages the scalability and security of the Bitcoin blockchain by using off-chain transactions to create and update DIDs, while utilizing on-chain transactions for anchoring and providing proof of the DID's existence and integrity. The `did:ion:` method aims to provide a secure, scalable, and decentralized solution for managing digital identities that is interoperable with other decentralized identity solutions.
+The `did:ion` method leverages the scalability and security of the Bitcoin blockchain by using off-chain transactions to create and update DIDs, while utilizing on-chain transactions for anchoring and providing proof of the DID's existence and integrity. The `did:ion:` method aims to provide a secure, scalable, and decentralized solution for managing digital identities that is interoperable with other decentralized identity solutions.
 
 ### DID Method - Key
-The `did:key:` method is a simple, lightweight way to create a DID. It is based on a public key, and it is self-contained, meaning it does not rely on any external blockchain or registry. This makes `did:key` a convenient method for use cases that don't require the complexity and additional features provided by other DID methods.
+The `did:key` method is a simple, lightweight way to create a DID. It is based on a public key, and it is self-contained, meaning it does not rely on any external blockchain or registry. This makes `did:key` a convenient method for use cases that don't require the complexity and additional features provided by other DID methods.
 
 ### DID Method - Web
-The `did:web:` method is a type of Decentralized Identifier (DID) method that enables the creation of DIDs using a web domain name as the unique identifier, allowing for DIDs to be created and managed using existing web infrastructure and technologies, without requiring a specific blockchain or distributed ledger. The method utilizes HTTP(S) URLs to resolve DIDs and provides a flexible and decentralized way to manage digital identities on the web. However, the security and privacy of the `did:web:` method may depend on the web domain provider and the associated security measures in place.
+The `did:web` method is a type of Decentralized Identifier (DID) method that enables the creation of DIDs using a web domain name as the unique identifier, allowing for DIDs to be created and managed using existing web infrastructure and technologies, without requiring a specific blockchain or distributed ledger. The method utilizes HTTP(S) URLs to resolve DIDs and provides a flexible and decentralized way to manage digital identities on the web. However, the security and privacy of the `did:web:` method may depend on the web domain provider and the associated security measures in place.
 
 ## Key Store
 A digital storage system that securely stores and manages a DID's cryptographic keys and key material, which is used for security protocols such as digital signing and verification.
