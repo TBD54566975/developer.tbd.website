@@ -1863,7 +1863,7 @@ packages:
       '@docusaurus/utils-validation': 2.4.1_@docusaurus+types@2.4.1
       '@slorber/static-site-generator-webpack-plugin': 4.0.7
       '@svgr/webpack': 6.5.1
-      autoprefixer: 10.4.13_postcss@8.4.24
+      autoprefixer: 10.4.14_postcss@8.4.24
       babel-loader: 8.3.0_4oy3qd54wjgkpm4romijmime4e
       babel-plugin-dynamic-import-node: 2.3.3
       boxen: 6.2.1
