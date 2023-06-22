@@ -7,40 +7,36 @@ Rather than focusing on a specific example application, this guide will serve as
 By the end, you’ll understand the difference between your traditional web app and a decentralized web app, have gone through a checklist to evaluate how to migrate your app, and be prepared to migrate your app.
 
 
-# Decentralized vs. Centralized Apps
+## Decentralized vs. Centralized Apps
 
 Today, your app probably works something like this:
 
-1. A user installs your app or navigates to your app’s url.
-2. The user signs in with a username and password, or an account likely tied to a major identity provider such as Google or Apple.
-3. Using that provided identity as a key, your app then creates a set of entries in your databases, likely hosted by a cloud provider such as AWS, Azure, or GCP.
-4. As your user begins using your app, the app’s frontend will repeatedly make calls to a backend that you’ve stood up on your cloud provider to query databases and provide data to the user.
+* A user installs your app or navigates to your app’s url.
+* The user signs in with a username and password, or an account likely tied to a major identity provider such as Google or Apple.
+* Using that provided identity as a key, your app then creates a set of entries in your databases, likely hosted by a cloud provider such as AWS, Azure, or GCP.
+* As your user begins using your app, the app’s frontend will repeatedly make calls to a backend that you’ve stood up on your cloud provider to query databases and provide data to the user.
 
 Reading this over, you’ll realize just how much of a dependency both your app and your user take on 3rd party providers. While this has been a stable model for developers for well over a decade, user identity, user data, app data, and app infrastructure are all hosted by 3rd parties. Web5 changes this by restoring control back to end users via  the following flow:
 
-
-
-1. A user installs or navigates to your app’s url.
-2. The user signs in to your app with an account tied to their [Decentralized Identifier ](https://developer.tbd.website/docs/web5/learn/decentralized-identifiers/)(DID).
-3. Using that provided identity as a key, your app then creates a set of entries in the user’s [Decentralized Web Node](https://developer.tbd.website/docs/web5/learn/decentralized-web-nodes) (DWN), a personal data store which they host and own. DWN management can be simplified for end users through the use of a wallet, making decentralized apps accessible to average end users.
-4. As your user begins using your app, the app’s frontend will repeatedly make calls to the user’s DWN to query and provide data to the user. If there is app data needed, the app will query the app’s infrastructure DWNs to retrieve that information.
+* A user installs or navigates to your app’s url.
+* The user signs in to your app with an account tied to their [Decentralized Identifier ](https://developer.tbd.website/docs/web5/learn/decentralized-identifiers/)(DID).
+* Using that provided identity as a key, your app then creates a set of entries in the user’s [Decentralized Web Node](https://developer.tbd.website/docs/web5/learn/decentralized-web-nodes) (DWN), a personal data store which they host and own. DWN management can be simplified for end users through the use of a wallet, making decentralized apps accessible to average end users.
+* As your user begins using your app, the app’s frontend will repeatedly make calls to the user’s DWN to query and provide data to the user. If there is app data needed, the app will query the app’s infrastructure DWNs to retrieve that information.
 
 You’ll notice that while data ownership and location radically changed between these two models, nothing changed for the end user! That means that as a developer, all you need to do to provide the benefits of a web5 application to both yourself and your end users is to simply change where your data is stored.
 
 
-# Redesigning Your Data for Web5
+## Redesigning Your Data for Web5
 
 Right now, your app is probably storing data in a variety of databases. Let’s say, for example, you’ve created a basic todo app - you’ll need to store your user’s account information including settings, plus you’ll need to store their todos ([you can build your own Todo app here](https://developer.tbd.website/docs/web5/build/apps/todo-app-tutorial)). Rather than creating two databases to support this app, you can simply upgrade your app to run on web5 and leverage your user’s DWN to store and manage data. There are a number of ways you can achieve this migration:
 
-
-
-1. Start writing to the DWN. You can write to the user’s DWN as a data store by calling the records.create() method which will allow you to directly write data to their data store so long as you’ve been granted permission to do so.
-2. Establish a [protocol](https://developer.tbd.website/docs/web5/learn/protocols) and programmatically install that protocol on the user’s DWN. By leveraging protocols, you can then remotely access your user’s DWN according to the contract defined by the installed protocol.
+* Start writing to the DWN. You can write to the user’s DWN as a data store by calling the records.create() method which will allow you to directly write data to their data store so long as you’ve been granted permission to do so.
+* Establish a [protocol](/docs/web5/learn/protocols) and programmatically install that protocol on the user’s DWN. By leveraging protocols, you can then remotely access your user’s DWN according to the contract defined by the installed protocol.
 
 Once you’ve established where your data will reside and how it will be organized, then you’re ready to access it in your app.
 
 
-# Accessing Your Data
+## Accessing Your Data
 
 In a traditional web app, you’ll access your app data by repeatedly making calls to an API endpoint where your server will query your databases. Your app is probably full of code that looks something like this:
 
@@ -66,14 +62,16 @@ const readResult = await record.data.text();
 
 The code snippet above has two critical components you need to understand:
 
-* **Creating or connecting with a DWN**
-Unlike in a traditional web app, where storage is remote, your Decentralized Web App (DWA) can store data on a locally reproduced DWN. Although DWNs are publicly addressable, you’ll simply need to connect to your DWN once using the [`connect`](https://developer.tbd.website/api/web5-js#connectoptions) method, then you can repeatedly query its data.
+**Creating or connecting with a DWN**
 
-* **Reading from the DWN**
-DWNs are one monolithic data store, so you don’t need to call specific endpoints on them. Instead, once you’ve connected to a DWN with your instance of `web5`, you can make calls into the data store using the [`query`](https://developer.tbd.website/api/web5-js/dwn/records#queryrequest) method and specify the type of data you’re looking to retrieve based on a semantic type. Getting your data is very straightforward this way, and doesn’t require you to remember the correct API endpoint to call or develop lots of API endpoints.
+Unlike in a traditional web app, where storage is remote, your Decentralized Web App (DWA) can store data on a locally reproduced DWN. Although DWNs are publicly addressable, you’ll simply need to connect to your DWN once using the [connect](/api/web5-js#connectoptions) method, then you can repeatedly query its data.
+
+**Reading from the DWN**
+
+DWNs are one monolithic data store, so you don’t need to call specific endpoints on them. Instead, once you’ve connected to a DWN with your instance of `web5`, you can make calls into the data store using the [query](/api/web5-js/dwn/records#queryrequest) method and specify the type of data you’re looking to retrieve based on a semantic type. Getting your data is very straightforward this way, and doesn’t require you to remember the correct API endpoint to call or develop lots of API endpoints.
 
 
-# Migrating Your App
+## Migrating Your App
 
 To enable your app to run on the decentralized web, you’ll need to take the following steps:
 
