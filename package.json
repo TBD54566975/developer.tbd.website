@@ -1,0 +1,8 @@
+{
+  "scripts": {
+    "preinstall": "npx only-allow pnpm",
+    "start": "pnpm --filter docs run start",
+    "start:todo-tutorial": "pnpm --filter todo-app-tutorial run dev",
+    "build": "pnpm --filter docs run build"
+  }
+}
