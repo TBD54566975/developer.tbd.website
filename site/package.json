@@ -14,10 +14,15 @@
     "write-heading-ids": "docusaurus write-heading-ids"
   },
   "dependencies": {
-    "@docusaurus/core": "2.4.0",
-    "@docusaurus/preset-classic": "2.4.0",
+    "@docusaurus/core": "2.4.1",
+    "@docusaurus/preset-classic": "2.4.1",
+    "@docusaurus/theme-common": "2.4.1",
+    "@docusaurus/utils": "^2.4.1",
     "@mdx-js/react": "^1.6.22",
+    "@react-aria/ssr": "^3.6.0",
     "@react-aria/tooltip": "^3.2.0",
+    "@react-aria/utils": "^3.17.0",
+    "@react-stately/tooltip": "^3.4.1",
     "@tailwindcss/typography": "^0.5.9",
     "@tbd54566975/web5": "0.7.9",
     "autoprefixer": "^10.4.13",
@@ -35,7 +40,8 @@
     "tailwindcss": "^3.2.7"
   },
   "devDependencies": {
-    "@docusaurus/module-type-aliases": "^2.4.0"
+    "@docusaurus/module-type-aliases": "^2.4.0",
+    "prop-types": "^15.8.1"
   },
   "browserslist": {
     "production": [
