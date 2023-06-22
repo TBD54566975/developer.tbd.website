@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkdeveloper_tbd_website=self.webpackChunkdeveloper_tbd_website||[]).push([[2808],{5288:e=>{e.exports=JSON.parse('{"label":"verifiable credentials","permalink":"/blog/tags/verifiable-credentials","allTagsPath":"/blog/tags","count":3}')}}]);

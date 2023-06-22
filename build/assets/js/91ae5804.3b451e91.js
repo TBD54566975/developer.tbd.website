@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkdeveloper_tbd_website=self.webpackChunkdeveloper_tbd_website||[]).push([[20],{93777:e=>{e.exports=JSON.parse('{"permalink":"/blog/tags/w-3-c","page":1,"postsPerPage":10,"totalPages":1,"totalCount":1,"blogDescription":"Blog","blogTitle":"Blog"}')}}]);
