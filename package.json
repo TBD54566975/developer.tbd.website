@@ -3,6 +3,7 @@
     "preinstall": "npx only-allow pnpm",
     "start": "pnpm --filter docs run start",
     "start:todo-tutorial": "pnpm --filter todo-app-tutorial run dev",
+    "start:filter-todo": "pnpm --filter todolist-v1-web5-js run dev",
     "build": "pnpm --filter docs run build"
   }
 }
