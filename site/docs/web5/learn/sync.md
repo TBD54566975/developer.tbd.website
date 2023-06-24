@@ -11,7 +11,7 @@ In this guide, we’ll discuss what sync means in the context of DWNs and Web5, 
 
 ## What is Sync?
 
-In the context of DWNs and Web5, sync is the ability for your DWNs to synchronize everything - from your files to your apps - across all nodes. 
+In the context of DWNs and Web5, sync is the ability to synchronize all data across a user's multiple DWNs. 
 
 When an application calls [Web5.connect()](/api/web5-js#connectoptions), by default, a DWN is created that runs in browser memory and is considered a local DWN. 
 
