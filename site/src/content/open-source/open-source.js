@@ -32,7 +32,15 @@ export const content = {
     {
       type: 'button',
       data: {
-        label: 'Read More About Governance',
+        label: 'Contributing Guide',
+        url: '/open-source/contributing',
+        isExternalLink: false
+      },
+    },
+    {
+      type: 'button',
+      data: {
+        label: 'Project Governance',
         url: '/open-source/governance',
         isExternalLink: false
       },
@@ -40,7 +48,7 @@ export const content = {
     {
       type: 'button',
       data: {
-        label: 'View Our Code of Conduct',
+        label: 'Code of Conduct',
         url: '/open-source/code-of-conduct',
         isExternalLink: false
       },
@@ -48,7 +56,7 @@ export const content = {
     {
       type: 'button',
       data: {
-        label: 'Join our Incubation Program',
+        label: 'Incubation Program',
         url: '/open-source/incubation',
         isExternalLink: false
       },
