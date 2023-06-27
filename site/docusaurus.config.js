@@ -1,6 +1,7 @@
 // @ts-check
 // Note: type annotations allow type checking and IDEs autocompletion
 
+require('dotenv').config();
 const lightCodeTheme = require('prism-react-renderer/themes/github');
 const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 
@@ -14,7 +15,6 @@ const config = {
   url: 'https://developer.tbd.website',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
-
   favicon: '/img/favicon.ico',
   // Even if you don't use internalization, you can use this field to set useful
   // metadata like html lang. For example, if your site is Chinese, you may want
@@ -23,6 +23,9 @@ const config = {
   //   defaultLocale: 'en',
   //   locales: ['en'],
   // },
+  customFields: {
+    WEB5_VERSION: process.env.WEB5_VERSION,
+  },
   plugins: [
     'docusaurus-tailwindcss',
     [
