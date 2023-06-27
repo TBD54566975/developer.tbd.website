@@ -55,6 +55,16 @@ const config = {
       },
     ],
   ],
+  scripts: [
+    {
+      src: 'https://www.datadoghq-browser-agent.com/us1/v4/datadog-rum.js',
+      async: true
+    },
+    {
+      src: '/scripts/dd-analytics.js',
+      async: true
+    }
+  ],
   presets: [
     [
       'classic',
