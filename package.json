@@ -8,6 +8,6 @@
     "update:web5": "pnpm recursive add @tbd54566975/web5@latest"
   },
   "dependencies": {
-    "@tbd54566975/web5": "0.7.10"
+    "@tbd54566975/web5": "0.7.9"
   }
 }
