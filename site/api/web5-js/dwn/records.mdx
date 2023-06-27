@@ -20,10 +20,6 @@ Every modifying method of the `records` class returns an instance of a [Record](
 
 Creates a new record and stores it in the user's local DWN, remote DWNs, or another party's DWNs (if permitted)
 
-:::note
-In order to also send the record to remote DWNs, `create()` should be followed by [send()](record#senddid)
-:::
-
 #### Parameters
 
 <ApiDetails
@@ -149,7 +145,10 @@ const { record } = await web5.dwn.records.create({
   },
 });
 
-// send the record to the user's remote DWNs
+/* 
+send the record to the user's remote DWNs. Only needed 
+if it's a record that cannot wait for sync to occur.
+*/
 const { status } = await record.send(myDid); 
 
 // send the newly generated record to Bob's DWNs
