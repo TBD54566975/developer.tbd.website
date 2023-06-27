@@ -18,10 +18,6 @@ The `protocols` class is responsible for providing convenience methods for manag
 
 Configures a protocol definition in the user's local DWN, remote DWN, or another party's DWN (if permitted). Fields under the `structure` object of the Protocol definition are expected to be one of the type references matching those defined in the `types` object. The type structures are recursive, so types form a graph and each type can have within it further attached types or rule statements that are all denoted with the prefix $.
 
-:::note
-In order to also send the protocol to remote DWNs, configure() should be followed by `protocol.send(did)`
-:::
-
 #### Parameters
 
 <ApiDetails
@@ -207,8 +203,15 @@ const { protocol } = await web5.dwn.protocols.configure({
   },
 });
 
-protocol.send(myDid); //sends the protocol configuration to the user's other DWNs.
+/*
+Sends the protocol configuration to the user's remote DWNs. This function only needs 
+to be called if you'd like to send instantly and cannot wait for sync to occur.
+*/
+protocol.send(myDid); 
 ```
+
+
+
 
 <Divider type="slash"/>
 
