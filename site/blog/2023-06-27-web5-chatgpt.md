@@ -12,7 +12,7 @@ tags: [Web5, AI, ChatGPT]
   <meta property="og:type" content="website" />
   <meta property="og:url" content='https://developer.tbd.website/blog/web5-chatgpt' />
   <meta name="og:description" content="A plugin powered by GPT-4 that assists developers with building Web5 applications" />
-  <meta property="og:image" content="https://developer.tbd.website/assets/images/web5-chatgpt-plugin-blog-banner.png" /> 
+  <meta property="og:image" content="https://developer.tbd.website/assets/images/web5-chatgpt-plugin-blog-banner-3b62f262101b9e89aec9705e936dccc8.png" /> 
 
   <meta name="twitter:card" content="summary_large_image" />
   <meta property="twitter:domain" content="developer.tbd.website" />
@@ -20,7 +20,7 @@ tags: [Web5, AI, ChatGPT]
   <meta name="twitter:title" content="New Web5 Assistant Powered By OpenAI" />
   <meta property="twitter:url" content='https://developer.tbd.website/blog/web5-chatgpt' /> 
   <meta name="twitter:description" content="A plugin powered by GPT-4 that assists developers with building Web5 applications" />
-  <meta name="twitter:image" content="https://developer.tbd.website/assets/images/web5-chatgpt-plugin-blog-banner.png" />
+  <meta name="twitter:image" content="https://developer.tbd.website/assets/images/web5-chatgpt-plugin-blog-banner-3b62f262101b9e89aec9705e936dccc8.png" />
 
   <link rel="apple-touch-icon" href="https://developer.tbd.website/img/tbd-fav-icon-main.png" />
 </head>
