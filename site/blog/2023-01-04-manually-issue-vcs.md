@@ -254,7 +254,7 @@ The `employedAt` property is a timestamp data type to define the date and time s
 Let's create a Credential Schema for Alice's Employment Status VC:
 - Set `issuer` to Acme's DID.
 - Set `issuerKid` set to the KID of the issuer's private key to sign the schema.
-- Our `schema` object conforms to the Draft 2020-12 schema version, so set its `$schema` property to "https://json-schema.org/draft/2020-12/schema".
+- Our `schema` object conforms to the Draft 2020-12 schema version, so set its `$schema` property to https://json-schema.org/draft/2020-12/schema.
 
 ```bash
 curl -X PUT -d '{
