@@ -3,7 +3,7 @@
 ## Agent
 Agents hold a user's [DIDs](#decentralized-identifier-did), private keys, and a [DWN](#decentralized-web-node-dwn), and are permissioned to use the private keys of DIDs to act on a user's behalf to sign and store messages within a DWN. 
 
-[<< More on Agents >>](/web5/learn/agents)
+[<< More on Agents >>](/docs/web5/learn/agents)
 
 ## Centralized Authority
 A single entity or organization that has control over the network and its operations, potentially posing a risk to the principles of decentralization and autonomy.
