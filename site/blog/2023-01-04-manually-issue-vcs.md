@@ -241,7 +241,7 @@ curl -X PUT -d '{"keyType":"Ed25519"}' localhost:8080/v1/dids/key
 
 <blockquote>
   A{' '}
-  <a href="https://www.w3.org/TR/vc-json-schema/#credentialschema2023">
+  <a href="https://www.w3.org/TR/vc-json-schema">
     <b>Credential Schema</b>
   </a>{' '}
   is a document that defines the structure of a VC. It's based on the{' '}
