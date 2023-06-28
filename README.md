@@ -52,9 +52,9 @@ pnpm install
 
 The following scripts are available for running specific tasks within the monorepo:
 
-- `start:site`: Runs the docs site.
-- `start:tutorial-todo-starter`: Starts the local server for the todo app tutorial.
-- `start:tutorial-todo-completed`: Starts the local server for the completed todo app.
+- `pnpm start`: Runs the docs site.
+- `pnpm start:tutorial-todo-starter`: Starts the local server for the todo app tutorial.
+- `pnpm start:tutorial-todo-completed`: Starts the local server for the completed todo app.
 
 ## Running commands
 
