@@ -1,14 +1,22 @@
 # Glossary
 
+## Agent
+An agent is software that acts on behalf of a user to manage identity, public or private data, and interactions with other apps in a decentralized network. Agents hold a user's [DIDs](#decentralized-identifier-did), private keys, and a [DWN](#decentralized-web-node-dwn), and are permissioned to use the private keys of DIDs to act on a user's behalf to sign and store messages within a DWN. 
+
+[<< More on Agents >>](/docs/web5/learn/agents)
 
 ## Centralized Authority
 A single entity or organization that has control over the network and its operations, potentially posing a risk to the principles of decentralization and autonomy.
 
 ## Decentralized Identifier (DID)
-A Decentralized Identifier (DID) is a globally unique identifier that enabled verifiable, decentralized digital identity, without the need for centralized intermediaries. DIDs are typically implemented using decentralized and distributed ledger technologies, such as blockchain, and provide a way to verify and authenticate digital identities, while ensuring privacy and control over personal data.
+A Decentralized Identifier (DID) is a globally unique identifier that enabled verifiable, decentralized digital identity, without the need for centralized intermediaries. DIDs are typically implemented using decentralized and distributed ledger technologies, such as blockchain, and provide a way to verify and authenticate digital identities, while ensuring privacy and control over personal data. 
+
+[<< More on DIDs >>](/docs/web5/learn/decentralized-identifiers/)
 
 ## Decentralized Web Node (DWN)
-A Decentralized Web Node is a personal data store in a decentralized network that stores and shares information, serves as a communication channel, and executes transactions in a distributed manner, without relying on a centralized server, thereby enhancing security, privacy, and resilience of the network.
+A Decentralized Web Node is a personal data store in a decentralized network that stores and shares information, serves as a communication channel, and executes transactions in a distributed manner, without relying on a centralized server, thereby enhancing security, privacy, and resilience of the network. 
+
+[<< More on DWNs >>](/docs/web5/learn/decentralized-web-nodes)
 
 ## DID Document
 A JSON document containing details about a DID, including the DID itself, represented by an `id` field, as well as other data related to the verification and authentication methods of the DID.
