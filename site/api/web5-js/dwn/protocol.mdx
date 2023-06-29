@@ -1,0 +1,131 @@
+import Divider from '@site/src/components/Divider';
+import ApiDetails from '@site/src/components/ApiDetails';
+
+
+## Overview
+Every modifying method of the [Protocols](protocols) class returns an instance of a `Protocol` object, which is a representation of the protocol(s) involved in the operation. [Learn more about Protocols](/docs/web5/learn/protocols).
+
+<Divider type="slash"/>
+
+<section class="api-docs">
+
+## Properties
+
+### definition
+
+Gets the protocol definition
+
+#### Return Value
+
+<ApiDetails
+  details={[
+    {
+      data: {
+        field: 'ProtocolDefinition',
+        value: 'An object containing the URI to the protocol, the ProtocolTypes, and the ProtocolRuleSet'
+      },
+    },
+  ]}
+/>
+
+#### Code Example
+```js
+const { status, protocol } = await web5.dwn.protocols.configure({
+  message: {
+    definition: protocolDefinition
+  }
+});
+
+//highlight-start
+const returnedDefinition = protocol.definition;
+//highlight-end
+console.log('returnedStatus', returnedDefinition.protocol);
+
+```
+
+<Divider type="slash"/>
+
+## Methods
+
+### send(did)
+
+Sends the protocol to the remote DWN endpoints of a provided DID. This function only needs to be called if you'd like to send the protocol to a user's remote DWNs instantly and cannot wait for [sync](/docs/web5/learn/sync#sync-intervals) to occur.
+
+#### Parameters
+
+<ApiDetails
+  details={[
+    {
+      data: {
+        type: 'string',
+        field: 'did',
+        value: 'The DID associated with the DWN endpoints where the protocol will be sent',
+      }
+    }
+  ]}
+/>
+
+
+#### Return Value
+
+<ApiDetails
+  details={[
+    {
+      data: {
+        field: 'DwnResponse',
+        value: 'A response object containing the status of the request',
+      },
+    },
+  ]}
+/>
+
+
+
+#### Code Example
+```js
+const { protocol } = await web5.dwn.protocols.configure({
+  message: { ... }
+});
+
+// sends the protocol configuration to the user's remote DWNs.
+//highlight-start
+await protocol.send(myDid); 
+//highlight-end
+```
+
+
+<Divider type="slash"/>
+
+### toJSON()
+
+Provides a JSON representation of the protocol configuration
+
+#### Return Value
+
+<ApiDetails
+  details={[
+    {
+      data: {
+        field: 'ProtocolsConfigure',
+        value: 'An object containing the protocol\'s configuration information'
+      }
+    }
+  ]}
+/>
+
+#### Code Example
+```js
+const { protocols, status } = await web5.dwn.protocols.query({
+  message: {
+    filter: {
+      protocol: 'http://social-media.xyz'
+    }
+  }
+});
+
+//highlight-start
+const protocolConfig = protocols[0].toJSON();
+//highlight-end
+```
+
+</section>
