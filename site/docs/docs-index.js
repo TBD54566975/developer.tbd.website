@@ -10,8 +10,8 @@ function DocsIndex() {
         Build Web5 apps that put you in control of your data and identity.
       </h1>
       <p className="mb-8">
-        Web5 brings decentralized identity and data storage to your applications. 
-        It lets developers focus on creating delightful user experiences, while returning 
+        <a href="/blog/what-is-web5">Web5</a> brings decentralized identity and data storage to your applications.
+        It lets developers focus on creating delightful user experiences, while returning
         ownership of data and identity to individuals.
       </p>
       <div className="grid grid-cols-1 desktop:grid-cols-2 gap-4">
@@ -58,12 +58,12 @@ function DocsIndex() {
         />
         <HeroCard
           heroText="Protocols"
-          buttonUrl="/docs/web5/learn/protocols" 
+          buttonUrl="/docs/web5/learn/protocols"
           buttonText="Learn"
           imgSrc="/img/lock-key.png"
           bodyText="Learn how to define data schemas and permissions"
           themeColor="purple"
-        />        
+        />
         <HeroCard
           heroText="Build a ToDo App"
           buttonUrl="/docs/web5/build/apps/todo-app-tutorial"
