@@ -50,4 +50,4 @@ Although sync is designed to be automatic, seamless, and work in the background,
 
 ![Alice and Bob messaging via DWNs](/img/alice-bob-dwn.png)
 
-There could also be scenarios where waiting for sync could lead to race conditions. [Support for configuring sync intervals](https://github.com/TBD54566975/web5-js/pull/124) is coming soon, but for now you can force a sync between a user’s DWNs by using the [record.send()](/api/web5-js/dwn/record#senddid).
+There could also be scenarios where waiting for sync could lead to race conditions. [Support for configuring sync intervals](https://github.com/TBD54566975/web5-js/pull/124) is coming soon, but for now you can force a sync between a user’s DWNs by calling [record.send()](/api/web5-js/dwn/record#senddid).
