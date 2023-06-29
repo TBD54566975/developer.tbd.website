@@ -6,9 +6,9 @@ title: Agents
 
 ## What is an agent?
 
-When you [connect to Web5](/api/web5-js#connectoptions), you're connecting to an _agent_. You can think of an agent as a box that contains a user's [DIDs](/docs/web5/learn/decentralized-identifiers/), private keys, and a [DWN](/docs/web5/learn/decentralized-web-nodes/) (which can also hold [VCs](/blog/what-is-web5#verifiable-credentials)).
+When you [connect to Web5](/api/web5-js#connectoptions), you're connecting to an _agent_. An agent is software that acts on behalf of a user to manage identity, public or private data, and interactions with other apps in a decentralized network. 
 
-Agents are capable of managing multiple DIDs and are permissioned to use the private keys of DIDs to act on a user's behalf. 
+You can think of an agent as a box that contains a user's [DIDs](/docs/web5/learn/decentralized-identifiers/), private keys, and a [DWN](/docs/web5/learn/decentralized-web-nodes/) (which can also hold [VCs](/blog/what-is-web5#verifiable-credentials)). Agents are capable of managing multiple DIDs and are permissioned to use the private keys of DIDs to act on a user's behalf. 
 
 ## Why is it called an agent?
 
@@ -33,11 +33,30 @@ Web5 doesn't have remote agents today, so it simply creates an embedded agent if
 
 ## Why can't I connect directly to the DWN without an agent?
 
-Simply put, DWNs are designed to be dumb. 
+Interacting with a DWN is complex and when combined with DIDs, VCs, signing, encryption, and sync, there is a LOT to do.
 
-A DWN's purpose is to process messages. All messages must be signed and associated to an author and tenant. Authors and tenants are represented as DIDs. 
+A good analogy is that of a web browser as a "user agent" that's acting on behalf of a user when it interacts with web servers. Web browsers perform several key functions when interacting with web servers such as:
 
-Messages are signed by a key associated to that DID. So an agent includes all of the things necessary to sign and store messages in a DWN.
+- requesting resources (dereferencing, redirects, caching, etc.)
+- identifying itself with a user agent string to the web server to help the server deliver content that's optimized for the user's specific setup for
+rendering web pages
+- managing cookies, session data, and other local storage
+- handling user interactions
+- providing a user interface that's suitable for human / computer interaction 
+
+If people had to do all of this manually, almost no one would use the web.
+
+Similarly, Web5 agents do a lot of things on behalf of the user when interacting with decentralized web apps and other people/entities on a decentralized network:
+
+- secure storage of data
+- secure messaging and communication
+- interoperability with other agents and networks
+- user-controlled sharing of data
+- identity verification and authentication
+- identity revocation and recovery
+- privacy and anonymity
+
+Agents exist to handle these complexities on the user's behalf because it is too much for a human to do manually.
 
 ## What are future plans for agents?
 

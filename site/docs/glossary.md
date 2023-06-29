@@ -1,7 +1,7 @@
 # Glossary
 
 ## Agent
-Agents hold a user's [DIDs](#decentralized-identifier-did), private keys, and a [DWN](#decentralized-web-node-dwn), and are permissioned to use the private keys of DIDs to act on a user's behalf to sign and store messages within a DWN. 
+An agent is software that acts on behalf of a user to manage identity, public or private data, and interactions with other apps in a decentralized network. Agents hold a user's [DIDs](#decentralized-identifier-did), private keys, and a [DWN](#decentralized-web-node-dwn), and are permissioned to use the private keys of DIDs to act on a user's behalf to sign and store messages within a DWN. 
 
 [<< More on Agents >>](/docs/web5/learn/agents)
 
