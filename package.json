@@ -1,10 +1,11 @@
 {
   "scripts": {
     "preinstall": "npx only-allow pnpm",
-    "start": "pnpm --filter docs run start",
+    "start": "pnpm --filter site run start",
     "start:tutorial-todo-starter": "pnpm --filter todo-starter run dev",
     "start:tutorial-todo-completed": "pnpm --filter todo-completed run dev",
-    "build": "pnpm --filter docs run build"
+    "build": "pnpm --filter site run build",
+    "clear": "pnpm --filter site run clear"
   },
   "dependencies": {
     "@tbd54566975/web5": "0.7.10"
