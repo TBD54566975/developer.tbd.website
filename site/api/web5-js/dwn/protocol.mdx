@@ -83,8 +83,10 @@ Sends the protocol to the remote DWN endpoints of a provided DID. This function 
 
 #### Code Example
 ```js
-const { protocol } = await web5.dwn.protocols.configure({
-  message: { ... }
+const { status, protocol } = await web5.dwn.protocols.configure({
+  message: {
+    definition: protocolDefinition
+  }
 });
 
 //highlight-start
