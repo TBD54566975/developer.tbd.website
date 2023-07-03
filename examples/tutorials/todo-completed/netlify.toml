@@ -1,0 +1,7 @@
+[build]
+  command = "pnpm build"
+  publish = "dist"
+
+[build.environment]
+  NPM_FLAGS = "-store-dir .pnpm-store"
+
