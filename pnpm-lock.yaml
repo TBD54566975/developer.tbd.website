@@ -102,6 +102,9 @@ importers:
       tailwindcss: 3.2.4_postcss@8.4.19
       vite: 4.3.7
 
+  examples/web5-quickstart-widgets:
+    specifiers: {}
+
   site:
     specifiers:
       '@docusaurus/core': 2.4.1
