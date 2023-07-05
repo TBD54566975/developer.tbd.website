@@ -59,7 +59,9 @@ The following scripts are available for running specific tasks within the monore
 
 ## Running commands
 
-If for whatever reason, you'd like target specific packages, you can use the `--filter` flag and refer to the package name of the project.
+If for whatever reason, you'd like to run pnpm commands on specific packages only, use the `--filter` flag and refer to the package name of the project.
+
+Filter docs: https://pnpm.io/filtering
 
 For example, if you wanted to add a library to the docs site itself:
 
