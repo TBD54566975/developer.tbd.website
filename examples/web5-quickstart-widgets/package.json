@@ -1,12 +1,18 @@
 {
   "name": "web5-quickstart-widgets",
   "version": "1.0.0",
-  "description": "Temporary repo and deployment context.",
-  "main": "index.js",
+  "main": "index.mjs",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "rollup --config rollup.config.mjs",
+    "start": "pnpm install && pnpm build && node server.js"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "@rollup/plugin-node-resolve": "^13.0.6",
+    "@tbd54566975/web5": "^0.7.0",
+    "express": "^4.18.2",
+    "rollup": "^2.61.1"
+  }
 }
