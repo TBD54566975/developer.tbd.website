@@ -10,9 +10,10 @@ function DocsIndex() {
         Build Web5 apps that put you in control of your data and identity.
       </h1>
       <p className="mb-8">
-        <a href="/blog/what-is-web5">Web5</a> brings decentralized identity and data storage to your applications.
-        It lets developers focus on creating delightful user experiences, while returning
-        ownership of data and identity to individuals.
+        Web5 brings decentralized identity and data storage to your
+        applications. It lets developers focus on creating delightful user
+        experiences, while returning ownership of data and identity to
+        individuals.
       </p>
       <div className="grid grid-cols-1 desktop:grid-cols-2 gap-4">
         <HeroCard
@@ -33,10 +34,12 @@ function DocsIndex() {
         />
       </div>
 
-      <div className='padding-top--xl'/>
+      <div className="padding-top--xl" />
 
-      <h2 className='mb-4'>Learn More</h2>
-      <p className='mb-8'>Get to know the components of Web5 and try it out in minutes.</p>
+      <h2 className="mb-4">Learn More</h2>
+      <p className="mb-8">
+        Get to know the components of Web5 and try it out in minutes.
+      </p>
 
       <div className="grid grid-cols-1 desktop:grid-cols-2 gap-4">
         <HeroCard
@@ -75,16 +78,15 @@ function DocsIndex() {
         />
       </div>
 
-      <div className='padding-top--xl'/>
+      <div className="padding-top--xl" />
 
-      <h2 className='mb-4'>Explore</h2>
-      <p className='mb-8'>Dive into Web5 sample apps, videos, and more.</p>
+      <h2 className="mb-4">Explore</h2>
+      <p className="mb-8">Dive into Web5 sample apps, videos, and more.</p>
       <div className="grid grid-cols-1 tablet:grid-cols-2 desktop-lg:grid-cols-4 gap-4">
-
-      <ExploreCard
+        <ExploreCard
           text="Sample Apps"
           icon="/img/docs-app.svg"
-          url="https://github.com/TBD54566975/incubating-web5-labs"
+          url="https://github.com/TBD54566975/developer.tbd.website/examples"
         />
         <ExploreCard
           text="Videos"
@@ -103,13 +105,11 @@ function DocsIndex() {
           icon="/img/docs-listen-music.svg"
           url="/learn"
         />
-
       </div>
 
-      <div className='padding-top--xl'/>
+      <div className="padding-top--xl" />
 
       <Community />
-
     </div>
   );
 }
