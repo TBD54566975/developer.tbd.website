@@ -8,16 +8,21 @@ Before deleting from your Decentralized Web Node (DWN), be sure to check out our
 
 ## Deleting from a DWN
 
-The following snippet allows you to delete from your Web5 instance’s DWN:
+The following allows you to delete a record from your Web5 instance’s DWN:
 
 ```jsx
-// Create the record
-const { record } = await web5.dwn.records.create({
-    data: "Hello Web5",
-    message: {
-        dataFormat: 'text/plain',
+// Query for records
+const response = await web5.dwn.records.query({
+  message: {
+    filter: {
+      dataFormat: 'text/plain',
     },
+  },
 });
+
+// For testing purposes grab the first indexed record from the response
+const record = response.records[0];
+
 // Delete the record
 const deleteResult = await record.delete();
 ```
