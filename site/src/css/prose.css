@@ -2,7 +2,6 @@
 .prose.prose-pink {
   width: 100%;
   max-width: none !important;
-  color: var(--color-yellow);
 }
 
 .prose.prose-pink em {
