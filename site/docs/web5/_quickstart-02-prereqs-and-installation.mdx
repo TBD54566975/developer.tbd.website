@@ -1,6 +1,8 @@
 import Link from '@docusaurus/Link';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import Version from '@site/src/components/Version';
+import PackageJson from '@site/src/components/PackageJson';
 
 <section class="docs-section">
 
@@ -29,10 +31,11 @@ cd web5-app
 
 ### 2. Install Web5
 
+
 <p>Use NPM to install Web5:</p>
 
 ```bash
-npm install @tbd54566975/web5@0.7.9
+npm install @tbd54566975/web5
 ```
 
 :::note
@@ -41,14 +44,7 @@ After `npm` resolves the dependency, you may see a few warnings. You can ignore 
 
 This will create a `package.json` in the root of your project. Open `package.json` and add `module` as a type:
 
-```js
-{
-  "dependencies": {
-    "@tbd54566975/web5": "0.7.9"
-  },
-  "type": "module"
-}
-```
+<PackageJson />
 
 ### 3. Import Web5
 

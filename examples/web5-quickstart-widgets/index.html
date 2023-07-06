@@ -1,0 +1,148 @@
+<style>
+
+  body {
+    margin: 0;
+    font-family: sans-serif;
+  }
+  
+  body > progress {
+    position: fixed;
+    inset: 0;
+    display: block;
+    width: 50vw;
+    margin: calc(50vh - 0.5em) 25vw;
+  }
+  
+  body > progress ~ * {
+    display: none;
+  }
+  
+  main {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 1em 2em 5em;
+  }
+  
+  main h1 {
+    text-align: center;
+  }
+  
+  main progress {
+    vertical-align: middle;
+    visibility: hidden;
+  }
+  
+  main input[type="file"] {
+    display: block;
+    margin-bottom: 0.5em;
+  }
+  
+  main textarea {
+    display: block;
+    width: 100%;
+    min-height: 8em;
+    font-family: monospace;
+    resize: vertical;
+  }
+  
+  main code {
+    font-size: 90%;
+  }
+  
+  main .output {
+    width: 100%;
+    margin-top: 1em;
+  }
+  
+  </style>
+  
+  <progress></progress>
+  <main>
+    <h1>Web5</h1>
+    <section id="did-create">
+      <h1>Create a Decentralized Identifier (DID)</h1>
+      <div class="input">
+        <pre><code>
+          let web5;
+          let myDid;
+          ({ web5, did: myDid } = await Web5.connect());
+          </code></pre>
+        <button>Run!</button>
+      </div>
+      <div class="output">
+        <details>
+          <summary>
+            <code>Hit "Run" above to create DID</code>
+          </summary>
+          <textarea></textarea>
+        </details>
+      </div>
+    </section>
+    <section id="dwn-write">
+      <h1>Write some data</h1>
+      <div class="input">
+        <pre><code>
+          let result = await web5.dwn.records.create({
+            data,
+            message: {
+              dataFormat: 'text/plain',
+            },
+          });
+        </code></pre>
+        <input type="text" placeholder="Enter text" disabled>
+        <button disabled>Run!</button>
+        <progress></progress>
+      </div>
+      <div class="output">
+        <details>
+          <summary>
+            <code>...</code>
+          </summary>
+          <textarea readonly></textarea>
+        </details>
+      </div>
+    </section>
+    <section id="dwn-read">
+      <h1>Read the data</h1>
+      <div class="input">
+        <pre><code>
+          const readResult = await record.data.text();
+      </code></pre>
+        <button disabled>Run!</button>
+        <progress></progress>
+      </div>
+      <div class="output"></div>
+    </section>
+    <section id="dwn-update">
+      <h1>Update the message</h1>
+      <div class="input">
+        <pre><code>
+          const updateResult = await record.update({data: "Hello, I'm updated!"});
+        </code></pre>
+        <input type="text" placeholder="Update text" disabled>
+        <button disabled>Run!</button>
+        <progress></progress>
+      </div>
+      <div class="output"></div>
+    </section>
+    <section id="dwn-delete">
+      <h1>Delete the message</h1>
+      <div class="input">
+        <pre><code>
+          const deleteResult = await record.delete();
+        </code></pre>
+        <button disabled>Run!</button>
+        <progress></progress>
+      </div>
+      <div class="output">
+        <details>
+          <summary>...</summary>
+          <textarea readonly></textarea>
+        </details>
+      </div>
+    </section>
+  </main>
+  
+  <script type="module" src="bundle.js"></script>
+
+

@@ -19,7 +19,7 @@ import Illustration from '@site/src/components/Illustration';
 function BreadcrumbsItemLink({ children, href }) {
   const className = 'breadcrumbs__link breadcrumbs-text';
   return href ? (
-    <Link className={className} href={href} itemProp="item">
+    <Link className={className} to={href} itemProp="item">
       <span itemProp="name" className="breadcrumbs-text">
         {children}
       </span>
