@@ -44,7 +44,7 @@ function Community() {
           title="Twitter"
           icon="/img/twitter-icon.svg"
           CTA="Follow us for news and updates"
-          buttonUrl="https://twitter.com/TBD54566975"
+          buttonUrl="https://twitter.com/TBDevs"
           buttonText="Follow"
         />
       </div>
