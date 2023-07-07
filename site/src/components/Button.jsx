@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import { useLocation } from 'react-router-dom';
+import Link from '@docusaurus/Link';
+import { useLocation } from '@docusaurus/router';
 
 const Button = ({
   label,
@@ -40,8 +40,6 @@ const Button = ({
     'bg-primary-yellow dark:bg-transparent text-primary-black shadow-button-sh border-primary-black hover:shadow-button-sh-hv  ' +
     classesDarkMode;
 
-  const { pathname } = useLocation();
-
   const linkContent = imageURL ? (
     <div className={cssClasses}>
       <div className="flex gap-3">
@@ -66,12 +64,7 @@ const Button = ({
     </a>
   ) : (
     <Link
-      to={{
-        pathname: url,
-        state: {
-          from: pathname,
-        },
-      }}
+      href={url}
       className="dark w-[fit-content] no-underline text-[18px] font-medium"
       title={title}
     >

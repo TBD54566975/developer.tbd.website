@@ -4,6 +4,8 @@ import GlitchWrapper from '@site/src/components/GlitchWrapper';
 import MDXContent from '@theme/MDXContent';
 import { useLocation } from '@docusaurus/router';
 
+import { SSRProvider } from '@react-aria/ssr';
+
 export default function LayoutWrapper(props) {
   const { hash } = useLocation();
   useEffect(() => {
@@ -16,10 +18,12 @@ export default function LayoutWrapper(props) {
     }
   }, []);
   return (
-    <GlitchWrapper>
-      <MDXContent>
-        <Layout {...props}>{props.children}</Layout>
-      </MDXContent>
-    </GlitchWrapper>
+    <SSRProvider>
+      <GlitchWrapper>
+        <MDXContent>
+          <Layout {...props}>{props.children}</Layout>
+        </MDXContent>
+      </GlitchWrapper>
+    </SSRProvider>
   );
 }
