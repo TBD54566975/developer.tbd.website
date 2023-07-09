@@ -10,7 +10,7 @@ function DocsIndex() {
         Build Web5 apps that put you in control of your data and identity.
       </h1>
       <p className="mb-8">
-        Web5 brings decentralized identity and data storage to your
+        <a href="/blog/what-is-web5">Web5</a> brings decentralized identity and data storage to your
         applications. It lets developers focus on creating delightful user
         experiences, while returning ownership of data and identity to
         individuals.
