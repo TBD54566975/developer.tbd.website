@@ -11,13 +11,17 @@ Before reading from your Decentralized Web Node (DWN), be sure to check out our 
 The following snippet allows you to read from your `Web5` instance’s DWN:
 
 ```jsx
-// Create the record
-const { record } = await web5.dwn.records.create({
-    data: "Hello Web5",
-    message: {
-        dataFormat: 'text/plain',
+//Query records with plain text data format
+const response = await web5.dwn.records.query({
+  message: {
+    filter: {
+      dataFormat: 'text/plain',
     },
+  },
 });
-// Read the record
-const readResult = await record.data.text();
+
+// Loop through returned records and print text from each
+response.records.forEach(async record => {
+  console.log(await record.data.text());
+});
 ```
