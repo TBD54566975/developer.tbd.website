@@ -1,4 +1,3 @@
 [build]
-  base = "site/"
-  command = "pnpm build"
+  command = "pnpm run build"
   publish = "site/build"
