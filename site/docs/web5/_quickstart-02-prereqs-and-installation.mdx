@@ -21,8 +21,37 @@ import PackageJson from '@site/src/components/PackageJson';
 </ul>
 :::
 
+<details>
+<summary>Additional steps for React Native or Node 18</summary>
+<p>
+This SDK relies indirectly on the `@noble/ed25519` and `@noble/secp256k1` packages. Therefore, in certain environments, you'll need to perform additional steps to make it work.
+</p>
+<p>Node.js 18 or earlier needs globalThis.crypto polyfill:</p>
+```js
+import { webcrypto } from "node:crypto";
+\\ Or @ts-ignore
+if (!globalThis.crypto) globalThis.crypto = webcrypto;
+```
+
+<p>React Native:</p>
+<p>Needs crypto.getRandomValues polyfill and sha512</p>
+```js
+import "react-native-get-random-values";
+import { hmac } from "@noble/hashes/hmac";
+import { sha256 } from "@noble/hashes/sha256";
+import { sha512 } from "@noble/hashes/sha512";
+ed.etc.sha512Sync = (...m) => sha512(ed.etc.concatBytes(...m));
+ed.etc.sha512Async = (...m) => Promise.resolve(ed.etc.sha512Sync(...m));
+
+secp.etc.hmacSha256Sync = (k, ...m) =>
+  hmac(sha256, k, secp.etc.concatBytes(...m));
+secp.etc.hmacSha256Async = (k, ...m) =>
+  Promise.resolve(secp.etc.hmacSha256Sync(k, ...m));
+```
+</details>
+
 ### 1. Create a directory
-<p>This will be the home of your new Web5 app. In your CLI: </p> 
+<p>This will be the home of your new Web5 app. In your CLI: </p>
 
 ```bash
 mkdir web5-app
@@ -30,7 +59,6 @@ cd web5-app
 ```
 
 ### 2. Install Web5
-
 
 <p>Use NPM to install Web5:</p>
 
@@ -55,6 +83,7 @@ touch index.js
 ```
 
 Open `index.js` in your editor and add this line at the top of the file to import Web5:
+
 ```js
 import { Web5 } from '@tbd54566975/web5';
 ```
