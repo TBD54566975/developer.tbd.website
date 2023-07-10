@@ -46,7 +46,7 @@ We’ve designed sync to be a seamless experience that developers and users alik
 
 ## Sync Intervals
 
-Although sync is designed to be automatic, seamless, and work in the background, it does have a 2 second trigger interval that may prove too slow for some use cases. For example, in an instant messaging app, syncing your users messages across devices needs to be instantaneous. 
+Although sync is designed to be automatic, seamless, and work in the background, it does have a 2 minute trigger interval that may prove too slow for some use cases. For example, in an instant messaging app, syncing your users messages across devices needs to be instantaneous. 
 
 ![Alice and Bob messaging via DWNs](/img/alice-bob-dwn.png)
 
