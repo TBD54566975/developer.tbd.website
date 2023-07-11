@@ -1,7 +1,3 @@
----
-sidebar_position: 1
----
-
 # Update DWN Records
 
 Before writing to your Decentralized Web Node (DWN), be sure to check out our [Quickstart guide](../../quickstart) to ensure you’ve properly imported the Web5 SDK. Additionally, make sure you’ve set up a DID before attempting to update data in a DWN.
@@ -14,7 +10,7 @@ The following snippet allows you to query and update a particular record in your
 // Query for the particular record in the in-memory DWN
 const queryResult = await web5.dwn.records.query({
   message: {
-    recordID: "bafyreierrno7ug5nj5wqpjugolx4u4od4d6hibz3rrhjll6ffl343x4fhm",
+    recordID: record.id,
     filter: {
       dataFormat: 'text/plain',
     }
