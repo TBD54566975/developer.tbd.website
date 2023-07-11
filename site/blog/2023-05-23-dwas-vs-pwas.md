@@ -55,7 +55,6 @@ If you want to migrate a PWA to a DWA, the only thing you’ll need to do is mak
 // Write a plain text record to the in-memory DWN
 
 const myRecord = await web5.dwn.records.create(myDid.id, {
- author: myDid.id,
  data: todoItem,
  message: {
      dataFormat: 'text/plain',
