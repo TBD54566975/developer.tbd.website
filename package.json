@@ -9,6 +9,6 @@
     "clear": "pnpm --filter site run clear"
   },
   "dependencies": {
-    "@tbd54566975/web5": "0.7.10"
+    "@tbd54566975/web5": "0.7.11"
   }
 }
