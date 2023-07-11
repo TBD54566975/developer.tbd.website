@@ -1,30 +1,36 @@
-import React from 'react';
+import React, { useState } from 'react';
 import HeroCard from '../../components/HeroCard';
 import Button from '../../components/Button';
 import Divider from '../../components/Divider';
+import SlideOver from '../../components/ChatGPTSearch';  // Import the SlideOver component
 
 function Web5CTA() {
+  const [isOpen, setIsOpen] = useState(false);  // Add state to track if the panel is open
+
   return (
     <div>
       <h1>Web5 is open to build.</h1>
       <p className="mb-8 copy text-primary-yellow">
         The Web5 tech preview is now ready for developers to start building
         decentralized applications that return ownership and control over
-        identity and data to individuals.
+        identity and data to individuals. <SlideOver/>
       </p>
+      
 
-      <div class="theme-card theme-card-cyan relative p-8 rounded-xl shadow-lg tablet:w-full desktop:w-full only:w-full my-8 min-h-[240px] flex flex-col justify-between">
+      <div className="theme-card theme-card-cyan relative p-8 rounded-xl shadow-lg tablet:w-full desktop:w-full only:w-full my-8 min-h-[240px] flex flex-col justify-between">
         <a href="/docs">
           <img
-            class="px-2 absolute bottom-0 right-0 hidden md:block padding-bottom--md w-[45%]"
+            className="px-2 absolute bottom-0 right-0 hidden md:block padding-bottom--md w-[45%]"
             src="/img/docs-web5-code-connect-animated.png"
           />
         </a>
-        <h2 class="text-2xl font-bold mb-4">Get Started with Web5.js</h2>
+        <h2 className="text-2xl font-bold mb-4">Get Started with Web5.js</h2>
         <p>Interactive guides, tutorials, and API docs</p>
         <br />
         <Button label="Web5 JS SDK" url="/docs" />
       </div>
+
+      
 
       <Divider type="slash" />
     </div>
@@ -32,3 +38,4 @@ function Web5CTA() {
 }
 
 export default Web5CTA;
+
