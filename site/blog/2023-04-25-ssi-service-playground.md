@@ -12,7 +12,7 @@ tags: [Self Sovereign Identity, Web5]
   property="og:title" content="SSI-Service upgraded" /> <meta property="og:url"
   content='https://developer.tbd.website/blog/ssi-service-playground' /> <meta
   name="twitter:card" content="summary" /> <meta name="twitter:site"
-  content="@tbddev" /> <meta name="twitter:description" content="ssi-service
+  content="@tbdevs" /> <meta name="twitter:description" content="ssi-service
   upgraded" /> <link rel="apple-touch-icon"
   href="https://developer.tbd.website/img/tbd-fav-icon-main.png" /> </head>
 
