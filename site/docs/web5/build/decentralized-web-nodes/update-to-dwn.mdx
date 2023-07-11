@@ -1,0 +1,30 @@
+---
+sidebar_position: 1
+---
+
+# Update DWN Records
+
+Before writing to your Decentralized Web Node (DWN), be sure to check out our [Quickstart guide](../../quickstart) to ensure you’ve properly imported the Web5 SDK. Additionally, make sure you’ve set up a DID before attempting to update data in a DWN.
+
+## Updating an exisiting record in a DWN
+
+The following snippet allows you to query and update a particular record in your `Web5` instance’s DWN:
+
+```jsx
+// Query for the particular record in the in-memory DWN
+const queryResult = await web5.dwn.records.query({
+  message: {
+    recordID: "bafyreierrno7ug5nj5wqpjugolx4u4od4d6hibz3rrhjll6ffl343x4fhm",
+    filter: {
+      dataFormat: 'text/plain',
+    }
+  }
+});
+
+// Update the record
+const updateResult = await record.update({ data: "Hello, I'm updated!" });
+```
+
+The query `request` must contain the following:
+- **`message`** - *`object`*: The properties of the DWeb Node Message Descriptor that will be used to construct a valid DWeb Node message. `filter` is a container for the record properties you want to search for and `dataFormat` should conform to one of the [IANA media types](https://www.iana.org/assignments/media-types/media-types.xhtml). 
+
