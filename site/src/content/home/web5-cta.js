@@ -2,10 +2,9 @@ import React, { useState } from 'react';
 import HeroCard from '../../components/HeroCard';
 import Button from '../../components/Button';
 import Divider from '../../components/Divider';
-import SlideOver from '../../components/ChatGPTSearch';  // Import the SlideOver component
+import ChatSearch from '../../components/ChatGPTSearch';  // Import the SlideOver component
 
 function Web5CTA() {
-  const [isOpen, setIsOpen] = useState(false);  // Add state to track if the panel is open
 
   return (
     <div>
@@ -13,7 +12,8 @@ function Web5CTA() {
       <p className="mb-8 copy text-primary-yellow">
         The Web5 tech preview is now ready for developers to start building
         decentralized applications that return ownership and control over
-        identity and data to individuals. <SlideOver/>
+        identity and data to individuals. 
+        <ChatSearch/>
       </p>
       
 
