@@ -15,12 +15,6 @@ function PackageJson() {
 
   let jsonString = JSON.stringify(json, null, 2);
 
-  // Replace placeholder with actual version number
-  jsonString = jsonString.replace(
-    'VERSION_PLACEHOLDER',
-    customFields.WEB5_VERSION,
-  );
-
   return <pre>{jsonString}</pre>;
 }
 
