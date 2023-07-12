@@ -6,7 +6,7 @@ Before writing to your Decentralized Web Node (DWN), be sure to check out our [Q
 
 The following snippet allows you to query and update a particular record in your `Web5` instance’s DWN:
 
-```jsx
+```js
 // Query for the particular record
 const { records } = await web5.dwn.records.query({
   message: {
@@ -16,6 +16,7 @@ const { records } = await web5.dwn.records.query({
     }
   }
 });
+
 // Update the record
 const status = await records[0].update({ data: "Hello, I'm updated!" });
 ```
