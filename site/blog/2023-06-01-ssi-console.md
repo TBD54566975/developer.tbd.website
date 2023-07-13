@@ -16,7 +16,7 @@ tags: [Decentralized Identity, Self Sovereign Identity, Web5]
 
   <meta name="twitter:card" content="summary_large_image" />
   <meta property="twitter:domain" content="developer.tbd.website" />
-  <meta name="twitter:site" content="@tbddev" />
+  <meta name="twitter:site" content="@tbdevs" />
   <meta name="twitter:title" content="TBD partners with Benri to host the SSI Console: an SSI admin interface for easy interaction with SSI services" />
   <meta property="twitter:url" content='https://developer.tbd.website/blog/2023-06-01-ssi-console' /> 
   <meta name="twitter:description" content="TBD partners with Benri to host the SSI Console: an SSI admin interface for easy interaction with SSI services" />

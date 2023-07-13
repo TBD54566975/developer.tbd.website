@@ -14,7 +14,7 @@ tags: [Self Sovereign Identity, SSI, AI, ChatGPT]
   <meta property="og:description" content="Using ChatGPT to help add WASM support to the self-sovereign identity SDK" />
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:image" content="/img/wasm-chatgpt-ssi.png" />
-  <meta name="twitter:site" content="@tbddev" />
+  <meta name="twitter:site" content="@tbdevs" />
   <meta name="twitter:title" content="Web Assembly with ChatGPT" />
   <meta name="twitter:description" content="Using ChatGPT to help add WASM support to the self-sovereign identity SDK" />
   <link rel="apple-touch-icon" href="https://developer.tbd.website/img/tbd-fav-icon-main.png" />

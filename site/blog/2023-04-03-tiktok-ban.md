@@ -16,7 +16,7 @@ tags: [web5, TikTok]
   
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:image" content="https://developer.tbd.website/assets/images/tiktok_blog_banner-6372141676e77be2583ff170193c6de4.png" />
-  <meta name="twitter:site" content="@tbddev" />
+  <meta name="twitter:site" content="@tbdevs" />
   <meta name="twitter:title" content="What Happens To My Content If TikTok Gets Banned?" />
   <meta name="twitter:description" content="Discussing how web5 could prevent the negative consequences of a TikTok ban on creators." />
   <link rel="apple-touch-icon" href="https://developer.tbd.website/img/tbd-fav-icon-main.png" />

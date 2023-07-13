@@ -11,7 +11,7 @@ tags: [Community, Incubation]
   <meta property="og:title" content="Announcing the Incubation Program" />
   <meta property="og:url" content='https://developer.tbd.website/blog/announcing-the-incubation-program' />
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:site" content="@tbddev" />
+  <meta name="twitter:site" content="@tbdevs" />
   <meta name="twitter:title" content="Announcing the Incubation Program" />
   <meta name="twitter:description" content="How community contributors propose new projects for the TBD ecosystem" />
   <link rel="apple-touch-icon" href="https://developer.tbd.website/img/tbd-fav-icon-main.png" />

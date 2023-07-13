@@ -16,7 +16,7 @@ tags: [Web5, Decentralized Identity]
   
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:image" content="https://developer.tbd.website/assets/images/practicality-did-blog-banner-2e81ddb567c7950d67869b9b3b05da62.png" />
-  <meta name="twitter:site" content="@tbddev" />
+  <meta name="twitter:site" content="@tbdevs" />
   <meta name="twitter:title" content="The Practicality of Decentralized Identifiers" />
   <meta name="twitter:description" content="What are the practical applications of DIDs?" />
   <link rel="apple-touch-icon" href="https://developer.tbd.website/img/tbd-fav-icon-main.png" />
