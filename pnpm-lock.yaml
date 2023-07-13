@@ -234,7 +234,7 @@ importers:
         version: 2.12.0(react@17.0.2)
       redocusaurus:
         specifier: ^1.5.1
-        version: 1.6.3(@docusaurus/theme-common@2.4.1)(@docusaurus/utils@2.4.1)(core-js@3.31.0)(mobx@6.9.0)(react-dom@17.0.2)(react-is@16.13.1)(react@17.0.2)(styled-components@5.3.11)(webpack@5.88.0)
+        version: 1.6.3(@docusaurus/theme-common@2.4.1)(@docusaurus/utils@2.4.1)(core-js@3.31.0)(mobx@6.9.0)(react-dom@17.0.2)(react-is@18.2.0)(react@17.0.2)(styled-components@5.3.11)(webpack@5.88.0)
       tailwind-component-classes:
         specifier: ^2.0.4
         version: 2.0.4(tailwindcss@3.3.2)
@@ -4729,7 +4729,7 @@ packages:
       babel-plugin-syntax-jsx: 6.18.0
       lodash: 4.17.21
       picomatch: 2.3.1
-      styled-components: 5.3.11(react-dom@17.0.2)(react-is@16.13.1)(react@17.0.2)
+      styled-components: 5.3.11(react-dom@17.0.2)(react-is@18.2.0)(react@17.0.2)
     dev: false
 
   /babel-plugin-syntax-jsx@6.18.0:
@@ -6150,7 +6150,7 @@ packages:
       - ts-node
     dev: false
 
-  /docusaurus-theme-redoc@1.6.3(@docusaurus/theme-common@2.4.1)(core-js@3.31.0)(react-dom@17.0.2)(react-is@16.13.1)(react@17.0.2)(webpack@5.88.0):
+  /docusaurus-theme-redoc@1.6.3(@docusaurus/theme-common@2.4.1)(core-js@3.31.0)(react-dom@17.0.2)(react-is@18.2.0)(react@17.0.2)(webpack@5.88.0):
     resolution: {integrity: sha512-vOdU1WcxFOfp+7HqwEoybmU3t3hC1GN5GnYbT9rjffv5yx4m4x5fQOtTQqCmtk3L9OCFX+pDfwiBXw1EUIaOLA==}
     engines: {node: '>=14'}
     peerDependencies:
@@ -6163,7 +6163,7 @@ packages:
       lodash: 4.17.21
       mobx: 6.9.0
       redoc: 2.0.0(core-js@3.31.0)(mobx@6.9.0)(react-dom@17.0.2)(react@17.0.2)(styled-components@5.3.11)(webpack@5.88.0)
-      styled-components: 5.3.11(react-dom@17.0.2)(react-is@16.13.1)(react@17.0.2)
+      styled-components: 5.3.11(react-dom@17.0.2)(react-is@18.2.0)(react@17.0.2)
     transitivePeerDependencies:
       - core-js
       - encoding
@@ -11244,7 +11244,7 @@ packages:
       slugify: 1.4.7
       stickyfill: 1.1.1
       style-loader: 3.3.3(webpack@5.88.0)
-      styled-components: 5.3.11(react-dom@17.0.2)(react-is@16.13.1)(react@17.0.2)
+      styled-components: 5.3.11(react-dom@17.0.2)(react-is@18.2.0)(react@17.0.2)
       swagger2openapi: 7.0.8
       url-template: 2.0.8
     transitivePeerDependencies:
@@ -11253,7 +11253,7 @@ packages:
       - webpack
     dev: false
 
-  /redocusaurus@1.6.3(@docusaurus/theme-common@2.4.1)(@docusaurus/utils@2.4.1)(core-js@3.31.0)(mobx@6.9.0)(react-dom@17.0.2)(react-is@16.13.1)(react@17.0.2)(styled-components@5.3.11)(webpack@5.88.0):
+  /redocusaurus@1.6.3(@docusaurus/theme-common@2.4.1)(@docusaurus/utils@2.4.1)(core-js@3.31.0)(mobx@6.9.0)(react-dom@17.0.2)(react-is@18.2.0)(react@17.0.2)(styled-components@5.3.11)(webpack@5.88.0):
     resolution: {integrity: sha512-RTo0HyTJwPM1t1ZB5j+yK31ta4Dy2IaGS1j/DKN2Kn2ZsahFO7m3fom/LzRYxzv2H0bd9VxYaxUrlLsMmFzmGA==}
     engines: {node: '>=14'}
     peerDependencies:
@@ -11263,7 +11263,7 @@ packages:
       '@docusaurus/theme-common': 2.4.1(@docusaurus/types@2.4.1)(react-dom@17.0.2)(react@17.0.2)(typescript@5.1.6)
       '@docusaurus/utils': 2.4.1(@docusaurus/types@2.4.1)
       docusaurus-plugin-redoc: 1.6.0(@docusaurus/utils@2.4.1)(core-js@3.31.0)(mobx@6.9.0)(react-dom@17.0.2)(react@17.0.2)(styled-components@5.3.11)(webpack@5.88.0)
-      docusaurus-theme-redoc: 1.6.3(@docusaurus/theme-common@2.4.1)(core-js@3.31.0)(react-dom@17.0.2)(react-is@16.13.1)(react@17.0.2)(webpack@5.88.0)
+      docusaurus-theme-redoc: 1.6.3(@docusaurus/theme-common@2.4.1)(core-js@3.31.0)(react-dom@17.0.2)(react-is@18.2.0)(react@17.0.2)(webpack@5.88.0)
     transitivePeerDependencies:
       - core-js
       - encoding
@@ -12385,7 +12385,7 @@ packages:
       inline-style-parser: 0.1.1
     dev: false
 
-  /styled-components@5.3.11(react-dom@17.0.2)(react-is@16.13.1)(react@17.0.2):
+  /styled-components@5.3.11(react-dom@17.0.2)(react-is@18.2.0)(react@17.0.2):
     resolution: {integrity: sha512-uuzIIfnVkagcVHv9nE0VPlHPSCmXIUGKfJ42LNjxCCTDTL5sgnJ8Z7GZBq0EnLYGln77tPpEpExt2+qa+cZqSw==}
     engines: {node: '>=10'}
     peerDependencies:
@@ -12403,7 +12403,7 @@ packages:
       hoist-non-react-statics: 3.3.2
       react: 17.0.2
       react-dom: 17.0.2(react@17.0.2)
-      react-is: 16.13.1
+      react-is: 18.2.0
       shallowequal: 1.1.0
       supports-color: 5.5.0
     dev: false
