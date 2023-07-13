@@ -48,7 +48,7 @@ Your DID serves as a URI (Unique Resource Identifier) that leads to your DID doc
 
 This user-friendly approach relieves you from the burdens of creating new content or manually downloading from one platform to upload on another. All the content to which you have granted the application access to will be readily available for the application to read/write to, simply by logging in with your DID.
 
-## Benefits of Authentication with Web5:
+## Benefits of Authentication with Web5
 
 One of the biggest benefits of this is the shift in content ownership. In traditional web applications, content is often stored on centralized servers, placing it under the control of the service provider you've created an account with or you're logged into. However, in Web5, individuals maintain ownership and control over their content. When users create and publish content within a Web5 application, their DIDs are linked to that content, establishing a clear link between the creator and their work. The user's content is stored in their own datastore, a DWN, as opposed to stored on the platform they’ve logged into. This ownership grants users greater autonomy and enables them to decide how their content is shared, used, and monetized.
 
