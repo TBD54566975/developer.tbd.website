@@ -1,5 +1,5 @@
 ---
-slug: did-Authentication
+slug: did-authentication
 title: Authentication With Web5
 description: How Web5 is going to redefine authentication
 authors:
