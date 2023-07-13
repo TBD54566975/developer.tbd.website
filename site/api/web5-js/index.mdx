@@ -56,9 +56,52 @@ or
 <Tabs>
   <TabItem value="npm" label="NPM" default>
 
+<details>
+<summary>Node 19+</summary>
+
 ```js
 import { Web5 } from '@tbd54566975/web5';
 ```
+</details>
+
+<details>
+<summary>Node &lt;=18</summary>
+
+```js
+/*
+Needs globalThis.crypto polyfill.
+This is *not* the crypto you're thinking of.
+It's the original crypto...CRYPTOGRAPHY.
+*/
+
+import { webcrypto } from "node:crypto";
+```
+</details>
+
+<details>
+<summary>React Native</summary>
+
+```js
+/*
+React Native needs crypto.getRandomValues polyfill and sha512.
+This is *not* the crypto you're thinking of.
+It's the original crypto...CRYPTOGRAPHY.
+*/
+import "react-native-get-random-values";
+import { hmac } from "@noble/hashes/hmac";
+import { sha256 } from "@noble/hashes/sha256";
+import { sha512 } from "@noble/hashes/sha512";
+
+ed.etc.sha512Sync = (...m) => sha512(ed.etc.concatBytes(...m));
+ed.etc.sha512Async = (...m) => Promise.resolve(ed.etc.sha512Sync(...m));
+
+secp.etc.hmacSha256Sync = (k, ...m) =>
+  hmac(sha256, k, secp.etc.concatBytes(...m));
+secp.etc.hmacSha256Async = (k, ...m) =>
+  Promise.resolve(secp.etc.hmacSha256Sync(k, ...m));
+```
+</details>
+
   </TabItem>
   <TabItem value="cdn" label="CDN">
 
