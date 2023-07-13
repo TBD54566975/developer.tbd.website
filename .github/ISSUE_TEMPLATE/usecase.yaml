@@ -16,16 +16,14 @@ body:
     id: value
     attributes:
       label: Developer Value Added
-      value: |
-        What would completing this let a developer do that they couldn't do before, or let them do better?
+      description: What would completing this let a developer do that they couldn't do before, or let them do better?
     validations:
       required: true
   - type: textarea
     id: usecase
     attributes:
       label: Use Case
-      value: |
-        Paste describe the use case here. This may be a high-level overview of the task a developer would like to accomplish, and may also contain all the necessary detail to outline the information flow required to get it done.
+      description: Describe the use case here. This may be a high-level overview of the task a developer would like to accomplish, and may also contain all the necessary detail to outline the information flow required to get it done.
     validations:
       required: true
   - type: textarea
