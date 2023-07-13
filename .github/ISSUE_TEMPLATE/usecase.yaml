@@ -27,7 +27,7 @@ body:
       value: |
         Paste describe the use case here. This may be a high-level overview of the task a developer would like to accomplish, and may also contain all the necessary detail to outline the information flow required to get it done.
     validations:
-      required: false
+      required: true
   - type: textarea
     id: dependencies
     attributes:
