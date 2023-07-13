@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import 'tailwindcss/tailwind.css';
+import ReactMarkdown from 'react-markdown';
 
 const ChatSearch = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -27,7 +28,6 @@ const ChatSearch = () => {
     }
   }
 
-
   return (
     <div>
       <input onKeyPress={handleKeyPress} type="text" placeholder="Type your query and press enter"/>
@@ -39,14 +39,10 @@ const ChatSearch = () => {
           <h2>...</h2>
           <h2>...</h2>          
           <h2>...</h2>          
-          <h2>...</h2>          
-          <code style={{
-            whiteSpace: 'pre-wrap',
-            overflowWrap: 'break-word'      
-          }}>       
+          <h2>...</h2>
+          <ReactMarkdown>
             {data}
-          </code>
-          
+          </ReactMarkdown>
         </div>
       </div>
     </div>
