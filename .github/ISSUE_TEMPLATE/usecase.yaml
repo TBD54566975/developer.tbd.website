@@ -1,0 +1,37 @@
+name: Use Case Proposal for developer.tbd.website
+description: 
+title: "[USE CASE]: "
+labels:
+  - "triage"
+  - "use-case"
+assignees:
+  - ALRubinger
+  - angiejones
+body:
+  - type: markdown
+    attributes:
+      value: |
+        At TBD we deliver features around developer value. Our open source efforts are designed for developers to bring their ideas and business to life. This `use-case` issue type represents the high-level value we want to give the community. Fulfilling use cases is one way we uphold our principle to "solve real problems for real people".
+  - type: textarea
+    id: value
+    attributes:
+      label: Developer Value Added
+      value: |
+        What would completing this let a developer do that they couldn't do before, or let them do better?
+    validations:
+      required: true
+  - type: textarea
+    id: usecase
+    attributes:
+      label: Use Case
+      value: |
+        Paste describe the use case here. This may be a high-level overview of the task a developer would like to accomplish, and may also contain all the necessary detail to outline the information flow required to get it done.
+    validations:
+      required: false
+  - type: textarea
+    id: dependencies
+    attributes:
+      label: Dependencies
+      description: What must be completed to comprehensively deliver this use case to developers? For instance - documentation in guides, tutorials, example applications? Backing functionality from the underlying software? Programs engineering on the site itself? These may become individual tickets to decompose the work and get them to the DRIs who can fulfill.
+    validations:
+      required: false
