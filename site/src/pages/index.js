@@ -6,6 +6,7 @@ import { content } from '@site/src/content/home/home.js';
 
 export default function Home() {
   const Web5CTA = content.web5cta;
+  const ChatSearch = content.chatSearch;
   const Heading = content.heading;
   return (
     <Layout>
@@ -15,12 +16,15 @@ export default function Home() {
         <link
           rel="apple-touch-icon"
           href="https://developer.tbd.website/img/tbd-fav-icon-main.png"
-        />
+        />        
+        
       </Head>
 
+      
       <main>
+        <ChatSearch/>
         <div className="tablet:max-w-[100%] desktop:max-w-[92%] relative">
-          <div className="h1 mb-16">
+          <div className="h1 mb-16">            
             <Web5CTA />
             <Heading />
           </div>

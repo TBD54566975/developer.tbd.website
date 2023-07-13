@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import HeroCard from '../../components/HeroCard';
 import Button from '../../components/Button';
 import Divider from '../../components/Divider';
-import ChatSearch from '../../components/ChatGPTSearch';  // Import the SlideOver component
 
 function Web5CTA() {
 
@@ -13,7 +12,6 @@ function Web5CTA() {
         The Web5 tech preview is now ready for developers to start building
         decentralized applications that return ownership and control over
         identity and data to individuals. 
-        <ChatSearch/>
       </p>
       
 

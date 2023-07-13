@@ -4,12 +4,14 @@ import OurPhilosophy from './our-philosophy.mdx';
 import OurProjects from './our-projects.mdx';
 import OurProtocol from './our-protocol.mdx';
 import Web5CTA from './web5-cta';
+import ChatSearch from '../../components/ChatGPTSearch';  // Import the SlideOver component
 
 
 export const content = {
   meta: {
     title: 'Developers | TBD',
   },
+  chatSearch: ChatSearch,
   web5cta: Web5CTA,
   heading: Heading,
   features: [
