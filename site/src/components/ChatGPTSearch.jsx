@@ -55,6 +55,8 @@ const ChatSearch = () => {
           <h2>...</h2>
           <h2>...</h2>
           <h2>...</h2>
+          <h2>...</h2>
+          <h2>...</h2>
           <div className="flex justify-center mt-4">
             <button onClick={handleClose} className="px-3 py-2 bg-red-500 text-white rounded">Close</button>
           </div>
