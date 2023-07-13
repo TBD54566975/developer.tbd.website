@@ -18,7 +18,7 @@ const ChatSearch = () => {
 
   useEffect(() => {
     if(query) {
-      fetch(`http://localhost:5003/ask_chat?query=${encodeURIComponent(query)}`)
+      fetch(`https://chatgpt.tbddev.org/ask_chat?query=${encodeURIComponent(query)}`)
         .then(response => response.text())
         .then(data => {
           setData(data);
