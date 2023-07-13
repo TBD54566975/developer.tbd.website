@@ -32,9 +32,9 @@ const ChatSearch = () => {
     setIsOpen(false);
   }
 
-  return (
+  return (    
     <div>
-      <input onKeyPress={handleKeyPress} type="text" placeholder="Ask Me Anything eg: 'how do I add web5 to my nodejs app?' (press ENTER)" size="55"/>
+      Ask Me Anything: <input onKeyPress={handleKeyPress} type="text" placeholder="how do I add web5 to my nodejs app? (and press ENTER)" size="55"/>
       <div className={`fixed width right-0 top-0 h-screen bg-white text-black transition-transform duration-200 ease-in-out transform ${isOpen ? 'translate-x-0' : 'translate-x-full'} z-50 overflow-y-auto w-full md:w-1/2 lg:w-1/3`}>
         <div className="p-4">
           <h2>...</h2>
