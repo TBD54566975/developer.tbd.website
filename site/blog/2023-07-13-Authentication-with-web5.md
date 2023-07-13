@@ -4,7 +4,7 @@ title: Authentication With Web5
 description: How Web5 is going to redefine authentication
 authors:
   name: Ebony Louis
-tags: [Decentralized Identity, Decentralized Webnodes, DID]
+tags: [Decentralized Identity, Decentralized Web Nodes, DID]
 ---
 
 <head>
