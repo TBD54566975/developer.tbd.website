@@ -29,6 +29,8 @@ tags: [Decentralized Identity, Decentralized Webnodes, DID]
 
 With the emergence of Web5 comes the exciting possibilities for individuals seeking more control over their online identities, data and content. With Web5, traditional authentication methods are no longer the sole means of verifying identity and ownership. Instead, users can leverage [Decentralized Identifiers (DIDs)](https://developer.tbd.website/docs/web5/learn/decentralized-identifiers/) to establish their digital presence while retaining full control over their data. Let's explore how this revolutionizes authentication and content ownership as we know it. 
 
+<!--truncate-->
+
 Decentralized Identifiers, or DIDs, lie at the heart of Web5's identity management. DIDs provide individuals with unique and globally resolvable identifiers that are persistent and always under their control. By using a DID, users establish their online presence, similar to a username. This paradigm shift empowers individuals to manage and control their personal information, granting them the freedom to partake in various online platforms all while owning the content and data they share.
 
 
