@@ -65,12 +65,15 @@ import { Web5 } from '@tbd54566975/web5';
 </details>
 
 <details>
-<summary>Node >=18</summary>
+<summary>Node &lt;=18</summary>
 
 ```js
 /*
-Needs globalThis.crypto polyfill. This is *not* the crypto you're thinking of, it's the original crypto...CRYPTOGRAPHY.
+Needs globalThis.crypto polyfill.
+This is *not* the crypto you're thinking of.
+It's the original crypto...CRYPTOGRAPHY.
 */
+
 import { webcrypto } from "node:crypto";
 ```
 </details>
@@ -88,6 +91,7 @@ import "react-native-get-random-values";
 import { hmac } from "@noble/hashes/hmac";
 import { sha256 } from "@noble/hashes/sha256";
 import { sha512 } from "@noble/hashes/sha512";
+
 ed.etc.sha512Sync = (...m) => sha512(ed.etc.concatBytes(...m));
 ed.etc.sha512Async = (...m) => Promise.resolve(ed.etc.sha512Sync(...m));
 
