@@ -21,14 +21,12 @@ const ChatSearch = () => {
 
   const handleKeyPress = (event) => {
     if (event.key === 'Enter') {
-      handleClick(event.target.value);
+      setData('Loading ....');
+      setIsOpen(true);
+      setQuery(event.target.value);
     }
   }
 
-  const handleClick = (queryValue) => {
-    setIsOpen(!isOpen);
-    setQuery(queryValue);
-  }
 
   return (
     <div>
