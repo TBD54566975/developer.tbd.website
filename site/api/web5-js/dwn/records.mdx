@@ -173,12 +173,12 @@ const { status } = await record.send("did:example:bob");
 ```
 
 ```js
+// this creates a record today to be published tomorrow 
 import { Temporal } from '@js-temporal/polyfill';
 
 let today = Temporal.Now.instant();
 let tomorrow = today.add({seconds: 86400});
 
-//Create a record today to be published tomorrow 
 const {record} = await web5.dwn.records.create({
   data: "This record will be created now and published tomorrow",
   message: {
