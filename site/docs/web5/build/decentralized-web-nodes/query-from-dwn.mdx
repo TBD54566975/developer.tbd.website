@@ -39,3 +39,38 @@ const { records } = await web5.dwn.records.query({
 /// logs an array of records found on the user's DWN
 console.log(records);
 ```
+
+## Query via dateSort
+
+### Records
+
+```js
+// Sorting records by datePublished in ascending order
+const response = await web5.dwn.records.query({
+  message: {
+    filter: {
+      dataFormat: 'text/plain',
+    },
+    //highlight-start
+    dateSort: 'publishedAscending'
+    //highlight-end
+  }
+});
+```
+
+### Protocols
+
+```js
+// Sorting protocols by dateCreated in descending order
+const { protocols } = await web5.dwn.protocols.query({
+  message: {
+    filter: {
+      protocol: 'http://social-mediasss.xyz',
+    },
+    //highlight-start
+    dateSort: 'createdDescending'
+    //highlight-end
+  }
+});
+```
+
