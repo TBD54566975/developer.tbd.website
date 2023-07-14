@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import 'tailwindcss/tailwind.css';
 import ReactMarkdown from 'react-markdown';
 
 const ChatSearch = () => {
