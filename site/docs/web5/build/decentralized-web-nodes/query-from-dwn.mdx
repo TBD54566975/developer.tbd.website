@@ -1,0 +1,41 @@
+---
+sidebar_position: 6
+---
+
+# Query from DWN
+
+Before reading from your Decentralized Web Node (DWN), be sure to check out our [Quickstart guide](../../quickstart) to ensure you’ve properly imported the Web5 SDK. Additionally, make sure you’ve set up a DID before attempting to query from a DWN.
+
+## Query Protocols
+
+The following snippet allows you to query for protocols within your `Web5` instance’s DWN:
+
+```jsx
+const { protocols } = await web5.dwn.protocols.query({
+  message: {
+    filter: {
+      protocol: "https://music.org/protocol",
+    },
+  },
+});
+
+// logs an array of protocol configurations installed on the user's DWN
+console.log(protocols);
+```
+
+## Query Records
+
+```js
+const { records } = await web5.dwn.records.query({
+  from: 'did:example:alice',
+  message: {
+    filter: {
+      schema: 'https://schema.org/Playlist',
+      dataFormat: 'application/json'
+    }
+  }
+});
+
+/// logs an array of records found on the user's DWN
+console.log(records);
+```
