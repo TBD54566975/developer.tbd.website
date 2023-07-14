@@ -167,7 +167,7 @@ The [create() method](#createrequest) is an alias for write() and both take the 
 
 ### query(request)
 
-Method for querying the DWN of a provided target
+Method for querying the DWN of a provided target. See [query from DWN guide](/docs/web5/build/decentralized-web-nodes/query-from-dwn) for more details.
 
 #### Parameters
 
@@ -229,7 +229,7 @@ Method for querying the DWN of a provided target
                                             ]}
                                         />,
                                     },
-                                },                             
+                                },                                       
                             ]}
                         />,
                     },
@@ -256,7 +256,7 @@ Method for querying the DWN of a provided target
   ]}
 />
 
-#### Code Example
+#### Code Examples
 ```js
 const response = await web5.dwn.records.query({
   from: 'did:example:alice',
@@ -270,6 +270,20 @@ const response = await web5.dwn.records.query({
   
 response.records.forEach(record => {
     console.log(record.id);
+});
+```
+
+```js
+// Sorting records by datePublished in ascending order
+const response = await web5.dwn.records.query({
+  message: {
+    filter: {
+      dataFormat: 'text/plain',
+    },
+    //highlight-start
+    dateSort: 'publishedAscending'
+    //highlight-end
+  }
 });
 ```
 

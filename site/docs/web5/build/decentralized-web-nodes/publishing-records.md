@@ -1,8 +1,7 @@
 ---
-title: Publishing Records
+title: Make Records Public
+sidebar_position: 2
 ---
-
-**1 minute read**
 
 When records are created, they are private by default. Private records are not accessible without the use of a [protocol](/docs/web5/learn/protocols/) or permissions. To make a record publicly available, the record must be published.
 
