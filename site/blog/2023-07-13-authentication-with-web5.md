@@ -11,7 +11,7 @@ tags: [Decentralized Identity, Decentralized Web Nodes, DID]
   <meta property="og:title" content="Authentication With Web5" />
   <meta property="og:type" content="website" />
   <meta property="og:url" content='https://developer.tbd.website/blog/2023-07-13-authentication-with-web5' />
-  <meta name="og:description" content="How Web5 is going to redefine authentications" />
+  <meta name="og:description" content="How Web5 redefines authentications" />
   <meta property="og:image" content="https://developer.tbd.website/assets/images/did-Authentication-70e18133804e91e065490c80e0c3906d.png" /> 
 
   <meta name="twitter:card" content="summary_large_image" />
@@ -19,7 +19,7 @@ tags: [Decentralized Identity, Decentralized Web Nodes, DID]
   <meta name="twitter:site" content="@tbdevs" />
   <meta name="twitter:title" content="Authentication With Web5" />
   <meta property="twitter:url" content='https://developer.tbd.website/blog/2023-07-13-authentication-with-web5' /> 
-  <meta name="twitter:description" content="How Web5 is going to redefine authentication" />
+  <meta name="twitter:description" content="How Web5 redefines authentication" />
   <meta name="twitter:image" content="https://developer.tbd.website/assets/images/did-Authentication-70e18133804e91e065490c80e0c3906d.png" />
 
   <link rel="apple-touch-icon" href="https://developer.tbd.website/img/tbd-fav-icon-main.png" />
