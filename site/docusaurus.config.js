@@ -66,7 +66,11 @@ const config = {
     {
       src: '/scripts/dd-analytics.js',
       async: true
-    }
+    },
+    {
+      src: '/scripts/custom.js',
+      async: true
+    },
   ],
   presets: [
     [
@@ -110,7 +114,6 @@ const config = {
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
-      // Replace with your project's social card
       colorMode: {
         defaultMode: 'dark',
         disableSwitch: true,
