@@ -523,3 +523,16 @@ footer a:hover {
 .col-span-2 {
   grid-column: span 2 / span 2;
 }
+
+.wiggle-code-block {
+  animation: wiggle 1s linear;
+}
+
+@keyframes wiggle {
+  0% { transform: rotate(0deg); }
+  20% { transform: rotate(-10deg); }
+  40% { transform: rotate(10deg); }
+  60% { transform: rotate(-10deg); }
+  80% { transform: rotate(10deg); }
+  100% { transform: rotate(0deg); }
+}
