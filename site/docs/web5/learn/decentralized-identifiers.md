@@ -1,5 +1,5 @@
 ---
-title: Decentralized Identifiers
+title: Identity (DIDs)
 ---
 
 **5 minute read**

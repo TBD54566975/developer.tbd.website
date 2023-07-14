@@ -1,5 +1,5 @@
 ---
-title: Decentralized Web Nodes
+title: Storage (DWNs)
 ---
 
 **3 minute read**

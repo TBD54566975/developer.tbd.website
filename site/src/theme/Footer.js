@@ -21,10 +21,28 @@ export function Footer() {
     socialText: 'Connect with us',
     socialButtons: [
       {
+        src: '/img/github-icon.svg',
+        url: 'https://github.com/TBD54566975/',
+        altText: 'GitHub button',
+        title: 'Go to GitHub',
+      },
+      {
+        src: '/img/discord-icon.svg',
+        url: 'https://discord.gg/tbd',
+        altText: 'Discord button',
+        title: 'Go to Discord',
+      },
+      {
         src: '/img/twitter-icon.svg',
-        url: 'https://twitter.com/tbd54566975?lang=en',
+        url: 'https://twitter.com/TBDevs',
         altText: 'Twitter button',
         title: 'Go to Twitter',
+      },
+      {
+        src: '/img/youtube-icon.svg',
+        url: 'https://www.youtube.com/channel/UCRAYhEkp3fEuYQAzteNqHsA/featured',
+        altText: 'YouTube button',
+        title: 'Go to YouTube',
       },
       {
         src: '/img/linkedin-icon.svg',
@@ -37,12 +55,7 @@ export function Footer() {
       Removed these social links until we'd like to be responsive to these mediums:
       https://github.com/TBD54566975/developer.tbd.website/issues/293
 
-      {
-        src: '/img/youtube-icon.svg',
-        url: 'https://www.youtube.com/channel/UCRAYhEkp3fEuYQAzteNqHsA/featured',
-        altText: 'YouTube button',
-        title: 'Go to YouTube',
-      },
+
       {
         src: '/img/vimeo-icon.svg',
         url: 'https://vimeo.com/tbd54566975',
@@ -56,12 +69,7 @@ export function Footer() {
         title: 'Go to Instagram',
       },
       */
-      {
-        src: '/img/discord-icon.svg',
-        url: 'https://discord.gg/tbd',
-        altText: 'Discord button',
-        title: 'Go to Discord',
-      },
+
       /*
 
       Removed these social links until we'd like to be responsive to these mediums:
@@ -80,12 +88,6 @@ export function Footer() {
         title: 'Go to TikTok',
       },
       */
-      {
-        src: '/img/github-icon.svg',
-        url: 'https://github.com/TBD54566975/',
-        altText: 'GitHub button',
-        title: 'Go to GitHub',
-      },
     ],
     isLegal: false,
   };
