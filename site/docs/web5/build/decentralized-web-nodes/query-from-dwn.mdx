@@ -8,7 +8,7 @@ Before reading from your Decentralized Web Node (DWN), be sure to check out our 
 
 ## Querying Protocols
 
-The following snippet queries a DWN for protocols that match a given schema
+The following snippet queries a DWN for protocols that match a given schema:
 
 ```js
 const { protocols } = await web5.dwn.protocols.query({
@@ -21,6 +21,8 @@ const { protocols } = await web5.dwn.protocols.query({
 ```
 
 ## Querying Records
+
+The following snippet queries a DWN for records that were written by a specific DID, match a given schema, and are in a specific data format:
 
 ```js
 const { records } = await web5.dwn.records.query({
