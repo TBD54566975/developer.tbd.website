@@ -229,50 +229,7 @@ Method for querying the DWN of a provided target
                                             ]}
                                         />,
                                     },
-                                },
-                                {
-                                    data: {
-                                        isObject: true,
-                                        type: 'RecordsQuerySort',
-                                        field: 'dateSort',
-                                        value: <ApiDetails
-                                                details={[
-                                                {
-                                                    data: {
-                                                        type: 'string',
-                                                        isOptional: true,
-                                                        field: 'createdAscending',
-                                                        value: 'Sorting records by dateCreated in ascending order',
-                                                    },
-                                                },  
-                                                {
-                                                    data: {
-                                                        type: 'string',
-                                                        isOptional: true,
-                                                        field: 'createdDescending',
-                                                        value: 'Sorting records by dateCreated in descending order',
-                                                    },
-                                                }, 
-                                                {
-                                                    data: {
-                                                        type: 'string',
-                                                        isOptional: true,
-                                                        field: 'publishedAscending',
-                                                        value: 'Sorting records by datePublished in ascending order',
-                                                    },
-                                                }, 
-                                                {
-                                                    data: {
-                                                        type: 'string',
-                                                        isOptional: true,
-                                                        field: 'publishedDescending',
-                                                        value: 'Sorting records by datePublished in descending order',
-                                                    },
-                                                },                                                                                                                            
-                                            ]}
-                                        />,
-                                    },
-                                },                                              
+                                },                                       
                             ]}
                         />,
                     },
@@ -323,7 +280,9 @@ const response = await web5.dwn.records.query({
     filter: {
       dataFormat: 'text/plain',
     },
+    //highlight-start
     dateSort: 'publishedAscending'
+    //highlight-end
   }
 });
 ```
