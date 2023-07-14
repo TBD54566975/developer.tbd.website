@@ -84,6 +84,22 @@ Creates a new record and stores it in the user's local DWN, remote DWNs, or anot
                                         field: 'dataFormat',
                                         value: 'The IANA string corresponding with the format of the data the record will be bucketed. See IANA\'s Media Type list here: https://www.iana.org/assignments/media-types/media-types.xhtml',
                                     },
+                                },
+                                {
+                                    data: {
+                                        type: 'boolean',
+                                        isOptional: true,
+                                        field: 'published',
+                                        value: 'When records are created, they are private by default. To make a record publicly available, published must be set to true upon creation',
+                                    },
+                                },
+                                {
+                                    data: {
+                                        type: 'string',
+                                        isOptional: true,
+                                        field: 'datePublished',
+                                        value: 'The date to make the record public. It should be in ISO 8601 (\'YYYY-MM-DDThh:mm:ss.ssssssZ\') format. Note that if the datePublished field is omitted and published is set to true, the record will be published upon creation.',
+                                    },
                                 },                                                                                                                            
                             ]}
                         />,
@@ -154,6 +170,23 @@ const { status } = await record.send(myDid);
 // send the newly generated record to Bob's DWNs
 const { status } = await record.send("did:example:bob");
 
+```
+
+```js
+// this creates a record today to be published tomorrow 
+import { Temporal } from '@js-temporal/polyfill';
+
+let today = Temporal.Now.instant();
+let tomorrow = today.add({seconds: 86400});
+
+const {record} = await web5.dwn.records.create({
+  data: "This record will be created now and published tomorrow",
+  message: {
+    dataFormat: "text/plain",
+    published: true,
+    datePublished: tomorrow.toString({smallestUnit: 'microseconds' }),
+  }
+});
 ```
 
 
