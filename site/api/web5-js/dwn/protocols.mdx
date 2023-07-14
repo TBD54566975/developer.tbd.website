@@ -272,7 +272,50 @@ Queries a DID's DWNs for the presence of a protocol. This method is useful in de
                                             ]}
                                         />,
                                     },
-                                },                            
+                                },
+                                {
+                                    data: {
+                                        isObject: true,
+                                        type: 'ProtocolsQuerySort',
+                                        field: 'dateSort',
+                                        value: <ApiDetails
+                                                details={[
+                                                {
+                                                    data: {
+                                                        type: 'string',
+                                                        isOptional: true,
+                                                        field: 'createdAscending',
+                                                        value: 'Sorting protocols by dateCreated in ascending order',
+                                                    },
+                                                },  
+                                                {
+                                                    data: {
+                                                        type: 'string',
+                                                        isOptional: true,
+                                                        field: 'createdDescending',
+                                                        value: 'Sorting protocols by dateCreated in descending order',
+                                                    },
+                                                }, 
+                                                {
+                                                    data: {
+                                                        type: 'string',
+                                                        isOptional: true,
+                                                        field: 'publishedAscending',
+                                                        value: 'Sorting protocols by datePublished in ascending order',
+                                                    },
+                                                }, 
+                                                {
+                                                    data: {
+                                                        type: 'string',
+                                                        isOptional: true,
+                                                        field: 'publishedDescending',
+                                                        value: 'Sorting protocols by datePublished in descending order',
+                                                    },
+                                                },                                                                                                                            
+                                            ]}
+                                        />,
+                                    },
+                                },                               
                             ]}
                         />,
                     },
@@ -328,5 +371,17 @@ const { protocols } = await web5.dwn.protocols.query({
 
 // logs an array of protocol configurations installed on Bob's DWN
 console.log(protocols);
+```
+
+```js
+// Sorting protocols by dateCreated in descending order
+const { protocols } = await web5.dwn.protocols.query({
+  message: {
+    filter: {
+      protocol: 'http://social-mediasss.xyz',
+    },
+    dateSort: 'createdDescending'
+  }
+});
 ```
 </section>
