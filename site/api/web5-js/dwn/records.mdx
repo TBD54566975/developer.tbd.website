@@ -229,7 +229,50 @@ Method for querying the DWN of a provided target
                                             ]}
                                         />,
                                     },
-                                },                             
+                                },
+                                {
+                                    data: {
+                                        isObject: true,
+                                        type: 'RecordsQuerySort',
+                                        field: 'dateSort',
+                                        value: <ApiDetails
+                                                details={[
+                                                {
+                                                    data: {
+                                                        type: 'string',
+                                                        isOptional: true,
+                                                        field: 'createdAscending',
+                                                        value: 'Sorting records by dateCreated in ascending order',
+                                                    },
+                                                },  
+                                                {
+                                                    data: {
+                                                        type: 'string',
+                                                        isOptional: true,
+                                                        field: 'createdDescending',
+                                                        value: 'Sorting records by dateCreated in descending order',
+                                                    },
+                                                }, 
+                                                {
+                                                    data: {
+                                                        type: 'string',
+                                                        isOptional: true,
+                                                        field: 'publishedAscending',
+                                                        value: 'Sorting records by datePublished in ascending order',
+                                                    },
+                                                }, 
+                                                {
+                                                    data: {
+                                                        type: 'string',
+                                                        isOptional: true,
+                                                        field: 'publishedDescending',
+                                                        value: 'Sorting records by datePublished in ascending order',
+                                                    },
+                                                },                                                                                                                            
+                                            ]}
+                                        />,
+                                    },
+                                },                                              
                             ]}
                         />,
                     },
@@ -256,7 +299,7 @@ Method for querying the DWN of a provided target
   ]}
 />
 
-#### Code Example
+#### Code Examples
 ```js
 const response = await web5.dwn.records.query({
   from: 'did:example:alice',
@@ -270,6 +313,18 @@ const response = await web5.dwn.records.query({
   
 response.records.forEach(record => {
     console.log(record.id);
+});
+```
+
+```js
+// Sorting records by datePublished in ascending order
+const response = await web5.dwn.records.query({
+  message: {
+    filter: {
+      dataFormat: 'text/plain',
+    },
+    dateSort: 'publishedAscending'
+  }
 });
 ```
 
