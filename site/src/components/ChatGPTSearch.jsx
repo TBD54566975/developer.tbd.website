@@ -47,6 +47,16 @@ const ChatSearch = () => {
     setIsOpen(false);
   }
 
+  function CodeBlock(props) {
+    return (
+      <pre style={{backgroundColor: "#f0f0f0", padding: "1em", border: "1px solid #ccc"}}>
+        <code style={{fontWeight: "bold"}}>
+          {props.value}
+        </code>
+      </pre>
+    );
+  }
+
   return (    
     <div>
       <label htmlFor="chatgpt-search">Ask Me Anything: </label><input id="chatgpt-search" onKeyPress={handleKeyPress} type="text" placeholder={placeholder} size="55"/>
@@ -56,9 +66,17 @@ const ChatSearch = () => {
             <button onClick={handleClose} className="w-[fit-content] px-[1.375rem] mb-2 mr-2 button-text border-solid pt-[12px] pb-[14px] border-2 hover:translate-x-[4px] hover:translate-y-[4px] bg-primary-yellow dark:bg-transparent text-primary-black shadow-button-sh border-primary-black hover:shadow-button-sh-hv  dark:shadow-button-sh-cyan dark:border-accent-cyan dark:hover:shadow-button-sh-hv-cyan dark:text-accent-cyan">Close</button>
           </div>
 
-          <ReactMarkdown>
-            {data}
-          </ReactMarkdown>
+          <ReactMarkdown 
+            children={data}
+            components={{
+              code({node, inline, className, children, ...props}) {
+                if (inline) {
+                  return <code className={className} {...props}>{children}</code>
+                }
+                return <CodeBlock {...props} value={children[0]} />
+              }
+  }}
+/>
         </div>
       </div>
     </div>
