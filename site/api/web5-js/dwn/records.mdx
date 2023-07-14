@@ -84,6 +84,22 @@ Creates a new record and stores it in the user's local DWN, remote DWNs, or anot
                                         field: 'dataFormat',
                                         value: 'The IANA string corresponding with the format of the data the record will be bucketed. See IANA\'s Media Type list here: https://www.iana.org/assignments/media-types/media-types.xhtml',
                                     },
+                                },
+                                {
+                                    data: {
+                                        type: 'boolean',
+                                        isOptional: true,
+                                        field: 'published',
+                                        value: 'When records are created, they are private by default. To make a record publicly available, published must be set to true upon creation',
+                                    },
+                                },
+                                {
+                                    data: {
+                                        type: 'string',
+                                        isOptional: true,
+                                        field: 'datePublished',
+                                        value: 'The date the record was published. When specifying to publish a record without providing the datePublished attribute, the record will be published now',
+                                    },
                                 },                                                                                                                            
                             ]}
                         />,
