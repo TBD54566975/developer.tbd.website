@@ -1,10 +1,10 @@
 ---
-sidebar_position: 6
+sidebar_position: 2
 ---
 
 # Query from DWN
 
-Before reading from your Decentralized Web Node (DWN), be sure to check out our [Quickstart guide](../../quickstart) to ensure you’ve properly imported the Web5 SDK. Additionally, make sure you’ve set up a DID before attempting to query from a DWN.
+You can use the `query` function to obtain records and protocols from a DWN. This guide shows how to do both, as well as how to sort the query results.
 
 ## Querying Protocols
 
@@ -38,17 +38,18 @@ const { records } = await web5.dwn.records.query({
 
 ## Sorting Query Results
 
-Query results can also be sorted via the dateSort field.
+Query results can be sorted via the `dateSort` field. Valid values for `dateSort` are:
 
-The valid values for dateSort are:
-createdAscending - sorts results by dateCreated in ascending order
-createdDescending - sorts results by dateCreated in descending order
-publishedAscending - sorts results by datePublished in ascending order
-publishedDescending - sorrts results by datePublished in descending order
+| Value                     | Sorts Results By | Order       |
+| -----------               | -----------      | ----------- |  
+| **createdAscending**      | `dateCreated`    | ascending   |
+| **createdDescending**     | `dateCreated`    | descending  |
+| **publshedAscending**     | `datePublished`  | ascending   |
+| **publishedDescending**   | `datePublished`  | descending  |
 
 ### Ascending Order
 
-This code snippet queries for records and returns them in ascending order by the date they were published.
+This code snippet queries for records with a plain text data format, and returns them in ascending order by the date they were [published](/docs/web5/build/decentralized-web-nodes/publishing-records):
 
 ```js
 const response = await web5.dwn.records.query({
@@ -65,7 +66,7 @@ const response = await web5.dwn.records.query({
 
 ### Descending Order
 
-This code snippet queries for protocols and returns them in descending order by the date they were created.
+This code snippet queries for protocols with a certain URL, and returns them in descending order by the date they were created.
 
 ```js
 const { protocols } = await web5.dwn.protocols.query({
