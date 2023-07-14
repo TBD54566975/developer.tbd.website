@@ -8,9 +8,9 @@ Before reading from your Decentralized Web Node (DWN), be sure to check out our 
 
 ## Querying Protocols
 
-The following snippet allows you to query for protocols within your `Web5` instance’s DWN:
+The following snippet queries a DWN for protocols that match a given schema
 
-```jsx
+```js
 const { protocols } = await web5.dwn.protocols.query({
   message: {
     filter: {
@@ -18,9 +18,6 @@ const { protocols } = await web5.dwn.protocols.query({
     },
   },
 });
-
-// logs an array of protocol configurations installed on the user's DWN
-console.log(protocols);
 ```
 
 ## Querying Records
@@ -35,17 +32,23 @@ const { records } = await web5.dwn.records.query({
     }
   }
 });
-
-/// logs an array of records found on the user's DWN
-console.log(records);
 ```
 
-## Query Sorting
+## Sorting Query Results
 
-### Records
+Query results can also be sorted via the dateSort field.
+
+The valid values for dateSort are:
+createdAscending - sorts results by dateCreated in ascending order
+createdDescending - sorts results by dateCreated in descending order
+publishedAscending - sorts results by datePublished in ascending order
+publishedDescending - sorrts results by datePublished in descending order
+
+### Ascending Order
+
+This code snippet queries for records and returns them in ascending order by the date they were published.
 
 ```js
-// Sorting records by datePublished in ascending order
 const response = await web5.dwn.records.query({
   message: {
     filter: {
@@ -58,14 +61,15 @@ const response = await web5.dwn.records.query({
 });
 ```
 
-### Protocols
+### Descending Order
+
+This code snippet queries for protocols and returns them in descending order by the date they were created.
 
 ```js
-// Sorting protocols by dateCreated in descending order
 const { protocols } = await web5.dwn.protocols.query({
   message: {
     filter: {
-      protocol: 'http://social-mediasss.xyz',
+      protocol: 'http://social-media.xyz',
     },
     //highlight-start
     dateSort: 'createdDescending'
