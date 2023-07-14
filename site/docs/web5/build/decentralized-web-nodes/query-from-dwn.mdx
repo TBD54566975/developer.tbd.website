@@ -6,7 +6,7 @@ sidebar_position: 6
 
 Before reading from your Decentralized Web Node (DWN), be sure to check out our [Quickstart guide](../../quickstart) to ensure you’ve properly imported the Web5 SDK. Additionally, make sure you’ve set up a DID before attempting to query from a DWN.
 
-## Query Protocols
+## Querying Protocols
 
 The following snippet allows you to query for protocols within your `Web5` instance’s DWN:
 
@@ -23,7 +23,7 @@ const { protocols } = await web5.dwn.protocols.query({
 console.log(protocols);
 ```
 
-## Query Records
+## Querying Records
 
 ```js
 const { records } = await web5.dwn.records.query({
@@ -40,7 +40,7 @@ const { records } = await web5.dwn.records.query({
 console.log(records);
 ```
 
-## Query via dateSort
+## Query Sorting
 
 ### Records
 
