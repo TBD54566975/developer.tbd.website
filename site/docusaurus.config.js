@@ -164,6 +164,12 @@ const config = {
             position: 'right',
             label: 'TBD Home',
           },
+          {
+            to: '#search',
+            label: 'Search',
+            
+            className: 'button'
+          },          
         ],
       },
       footer: {
