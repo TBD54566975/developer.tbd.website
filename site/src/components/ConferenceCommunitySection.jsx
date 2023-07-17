@@ -18,10 +18,10 @@ function CommunityCard({ icon, title, CTA, buttonUrl, buttonText }) {
   );
 }
 
-function EventCommunity() {
+function ConferenceCommunity() {
   return (
     <div>
-      <div className="community-card grid grid-cols-1 tablet:grid-cols-3 desktop:grid-cols-3 gap-4">
+      <div className="community-card grid grid-cols-1 tablet:grid-cols-3 desktop:grid-cols-3 gap-4 pb-4">
       <CommunityCard
           title="Discord"
           icon="/img/discord-icon.svg"
@@ -36,12 +36,12 @@ function EventCommunity() {
           buttonUrl="https://github.com/TBD54566975"
           buttonText="View"
         />
-        <CommunityCard
-          title="Docs"
-          icon="/img/docs-task-list.svg"
-          CTA="Dive into our APIs and learn more about Web5"
-          buttonUrl="https://developer.tbd.website/docs/"
-          buttonText="Learn More"
+       <CommunityCard
+          title="Twitter"
+          icon="/img/twitter-icon.svg"
+          CTA="Follow us for news and updates"
+          buttonUrl="https://twitter.com/TBDevs"
+          buttonText="Follow"
         />
       </div>
     </div>
@@ -49,4 +49,4 @@ function EventCommunity() {
   );
 }
 
-export default EventCommunity;
+export default ConferenceCommunity;
