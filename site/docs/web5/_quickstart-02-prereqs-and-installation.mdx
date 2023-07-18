@@ -67,6 +67,11 @@ import { Web5 } from '@tbd54566975/web5';
 Needs globalThis.crypto polyfill. This is *not* the crypto you're thinking of, it's the original crypto...CRYPTOGRAPHY.
 */
 import { webcrypto } from "node:crypto";
+
+if (!globalThis.crypto) {
+	globalThis.crypto = webcrypto;
+}
+
 ```
 </details>
 
