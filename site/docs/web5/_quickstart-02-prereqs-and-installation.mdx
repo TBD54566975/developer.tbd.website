@@ -64,15 +64,14 @@ import { Web5 } from '@tbd54566975/web5';
 
 ```js
 /*
-Needs globalThis.crypto polyfill. This is *not* the crypto you're thinking of, it's the original crypto...CRYPTOGRAPHY.
+Needs globalThis.crypto polyfill. 
+This is *not* the crypto you're thinking of.
+It's the original crypto...CRYPTOGRAPHY.
 */
 import { webcrypto } from "node:crypto";
 
 // @ts-ignore
-if (!globalThis.crypto) {
-	globalThis.crypto = webcrypto;
-}
-
+if (!globalThis.crypto) globalThis.crypto = webcrypto;
 ```
 </details>
 
