@@ -68,6 +68,7 @@ Needs globalThis.crypto polyfill. This is *not* the crypto you're thinking of, i
 */
 import { webcrypto } from "node:crypto";
 
+// @ts-ignore
 if (!globalThis.crypto) {
 	globalThis.crypto = webcrypto;
 }
