@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from '@docusaurus/Link';
 
-function ScheduleCard({ image, DateTime, EventName, EventDetails }) {
+function ScheduleCard({ image, DateTime, EventName, EventDetails,ExtraDetails }) {
   return (
     <div className="p-8 w-full">
       <div className="flex flex-col items-center">
@@ -12,6 +12,7 @@ function ScheduleCard({ image, DateTime, EventName, EventDetails }) {
           <h3 className="text-[#22f1ff]" style={{ whiteSpace: 'nowrap' }}>{DateTime}</h3>
           <p>{EventName}</p>
           <p>{EventDetails}</p>
+          <p style={{ fontWeight: 'bold' }}>{ExtraDetails}</p>
         </div>
       </div>
     </div>
@@ -33,7 +34,8 @@ function ConferenceSchedule() {
           image="/img/happy-hour.png"
           EventName={`TBD Happy Hour`}
           EventDetails={`Hall 2.2, Booth 2_62
-          Drinks, swag & more! We'll be at the booth both days of the conference so feel free to stop by then too. See you there!`}
+          Drinks, swag & more!`}
+          ExtraDetails= {`We'll be at the booth both days so feel free to stop by then too. See you there!`}
         />
         <ScheduleCard
           DateTime="July 28 @ 09:00"
