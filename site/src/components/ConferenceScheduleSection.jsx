@@ -26,19 +26,20 @@ function ConferenceSchedule() {
           DateTime="July 27 @ 11:30"
           image="/img/learn/headshots/angie_jones.png"
           EventName={`"Refactoring the Web"`}
-          EventDetails={`Angie Jones, TBD`}
+          EventDetails={`Angie Jones, Main Stage`}
         />
         <ScheduleCard
           DateTime="July 27, 17:30 - 19:30"
           image="/img/happy-hour.png"
           EventName={`TBD Happy Hour`}
           EventDetails={`Hall 2.2, Booth 2_62
-          Drinks, swag & more!`}
+          Drinks, swag & more! We'll be at the booth both days of the conference so feel free to stop by then too. See you there!`}
         />
         <ScheduleCard
           DateTime="July 28 @ 09:00"
           image="/img/what_is_web5.png"
           EventName={`Web5 Workshop`}
+          EventDetails={"Workshop M5"}
         />
       </div>
     </div>
