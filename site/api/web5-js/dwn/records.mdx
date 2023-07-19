@@ -307,14 +307,14 @@ response.records.forEach(record => {
 ```
 
 ```js
-// Sorting records by datePublished in ascending order
+// Sorting records by dateCreated in ascending order
 const response = await web5.dwn.records.query({
   message: {
     filter: {
       dataFormat: 'text/plain',
     },
     //highlight-start
-    dateSort: 'publishedAscending'
+    dateSort: 'createdAscending'
     //highlight-end
   }
 });
