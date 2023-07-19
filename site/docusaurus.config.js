@@ -166,9 +166,7 @@ const config = {
           },
           {
             to: '#search',
-            label: 'Search',
-            
-            className: 'button'
+            label: 'Search 🔎',                      
           },          
         ],
       },
