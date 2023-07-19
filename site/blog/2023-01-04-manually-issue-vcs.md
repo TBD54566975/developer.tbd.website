@@ -16,7 +16,7 @@ tags: [verifiable credentials]
   
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:image" content="https://developer.tbd.website/img/tutorial_issue_vc.png" />
-  <meta name="twitter:site" content="@tbddev" />
+  <meta name="twitter:site" content="@tbdevs" />
   <meta name="twitter:title" content="Manually Issue a Verifiable Credential" />
   <meta name="twitter:description" content="Learn how to issue a verifiable credential" />
   <link rel="apple-touch-icon" href="https://developer.tbd.website/img/tbd-fav-icon-main.png" />

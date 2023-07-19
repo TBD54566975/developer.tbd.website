@@ -16,7 +16,7 @@ tags: [Decentralized Identity, PWA, DWA]
 
   <meta name="twitter:card" content="summary_large_image" />
   <meta property="twitter:domain" content="developer.tbd.website" />
-  <meta name="twitter:site" content="@tbddev" />
+  <meta name="twitter:site" content="@tbdevs" />
   <meta name="twitter:title" content="Hello DWAs: Building the decentralized future of PWAs" />
   <meta property="twitter:url" content='https://developer.tbd.website/blog/2023-05-23-dwas-vs-pwas' /> 
   <meta name="twitter:description" content="How DWAs are the decentralized future of PWAs" />
@@ -55,7 +55,6 @@ If you want to migrate a PWA to a DWA, the only thing you’ll need to do is mak
 // Write a plain text record to the in-memory DWN
 
 const myRecord = await web5.dwn.records.create(myDid.id, {
- author: myDid.id,
  data: todoItem,
  message: {
      dataFormat: 'text/plain',

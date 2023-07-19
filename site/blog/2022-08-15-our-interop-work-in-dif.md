@@ -11,7 +11,7 @@ tags: [DIF,W3C,Community,Decentralized Identity]
   <meta property="og:title" content="Our Interoperability Work in the Decentralized Identity Foundation" />
   <meta property="og:url" content='https://developer.tbd.website/blog/2022-08-15-our-interop-work-in-dif' />
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:site" content="@tbddev" />
+  <meta name="twitter:site" content="@tbdevs" />
   <meta name="twitter:title" content="Our Interoperability Work in the Decentralized Identity Foundation" />
   <meta name="twitter:description" content="How TBD Contributes with the community to interoperability testing in the Decentralized Identity Foundation" />
   <link rel="apple-touch-icon" href="https://developer.tbd.website/img/tbd-fav-icon-main.png" />

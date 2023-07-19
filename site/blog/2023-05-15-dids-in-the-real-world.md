@@ -16,7 +16,7 @@ tags: [Decentralized Identity]
 
   <meta name="twitter:card" content="summary_large_image" />
   <meta property="twitter:domain" content="developer.tbd.website" />
-  <meta name="twitter:site" content="@tbddev" />
+  <meta name="twitter:site" content="@tbdevs" />
   <meta name="twitter:title" content="Decentralized Identity in the Real World" />
   <meta property="twitter:url" content='https://developer.tbd.website/blog/2023-05-15-dids-in-the-real-world' /> 
   <meta name="twitter:description" content="An overview of how Decentralized Identity is being used today." />
