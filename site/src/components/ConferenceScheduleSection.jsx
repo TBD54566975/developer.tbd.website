@@ -30,7 +30,7 @@ function ConferenceSchedule() {
           EventDetails={`Angie Jones, Main Stage`}
         />
         <ScheduleCard
-          DateTime="July 27, 17:30 - 19:30"
+          DateTime="July 27, 15:00 - 19:00"
           image="/img/happy-hour.png"
           EventName={`TBD Happy Hour`}
           EventDetails={`Hall 2.2, Booth 2_62
