@@ -4,30 +4,16 @@ title: Protocols
 
 **5 minute read**
 
-In this document, you’ll:
+Protocols define a data schema and the contract by which two Decentralized Web Nodes (DWNs) agree to communicate and share data. In other words, protocols define both the data schema and the data permissions as it relates to a certain application or use case.
 
-- Learn what a protocol is
-- See what a protocol looks like
-- Work through defining a protocol
-- Use a protocol in your app
-
-Protocols are a document that define a data scheme and the contract by which two Decentralized Web Nodes (DWNs) agree to communicate and share data as it pertains to the scope defined by the protocol. In other words, protocols define both the data schema and the data permissions as it relates to a certain application or use case.
-
-Protocols are written in a json format that is flexible enough to detail what objects are stored as part of the application, as well as who has what permissions on those objects. Although schema and permissions are traditionally decoupled in Web2 development, protocol documents serve as a robust and concise way to define how your application handles data.
-
-:::note
-If you’re interested in reading the source code for protocol definitions, you can check out the following core files in the [dwn-sdk-js](https://github.com/TBD54566975/dwn-sdk-js) library:
-
-- [protocols-configure.ts](https://github.com/TBD54566975/dwn-sdk-js/blob/main/src/interfaces/protocols/handlers/protocols-configure.ts) - The file responsible for serializing your protocol document
-- [protocol-rule-set.json](https://github.com/TBD54566975/dwn-sdk-js/blob/main/json-schemas/protocol-rule-set.json) - A schema defining how protocols should be formatted
-:::
+Protocols are written in a JSON format that is flexible enough to detail what objects are stored as part of the application, as well as who has what permissions on those objects. Although schema and permissions are traditionally decoupled in Web2 development, protocol documents serve as a robust and concise way to define how your application handles data.
 
 ## Protocol Basics
 
 Every protocol document has a few basic keys:
 
 - `types` - Defines all the data types used in your document
-- `structure` - Used as a catch-all to define a list of properties
+- `structure` - Defines a list of properties
 - `$actions` - The key word used to denote the start of a permission definition
 
 These terms are combined in a human-readable way to define both the data schema and permissions of your app.
@@ -212,7 +198,7 @@ You’ll then notice how each of those `types` is used in the large `structure` 
 }
 ```
 
-Within `message`, you’ll notice we define `actions` permissions to let anyone write a message to anyone...
+Within `message`, you’ll notice we define `actions` permissions to let anyone write a message to anyone.
 
 ```json
 "message": {
@@ -294,7 +280,7 @@ Additionally, you’ll notice the `image` object below it also defines `actions`
 
 ## Protocols in Practice
 
-To use a protocol in your app, you’ll need to install that protocol to your DWN. You can do so using the following snippet that leverages our [web5.js](https://github.com/TBD54566975/web5-js) library, where `protocolDefinition` is the messaging protocol object from above:
+To use a protocol in your app, you’ll need to install that protocol to your DWN. You can do so using the following snippet that leverages the [web5.js](https://github.com/TBD54566975/web5-js) library, where `protocolDefinition` is the messaging protocol object from above:
 
 ```js
 const { protocol, status } = await web5.dwn.protocols.configure({
