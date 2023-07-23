@@ -10,17 +10,17 @@ tags: [Decentralized Identity, Parental Controls, DID]
 <head>
   <meta property="og:title" content="Practical Applications of Decentralized Identifiers: Parental Controls" />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content='https://developer.tbd.website/blog/2023-05-23-dwas-vs-pwas' />
+  <meta property="og:url" content='https://developer.tbd.website/blog/did-parental-controls' />
   <meta name="og:description" content="How Web5 is going to transform parental controls" />
-  <meta property="og:image" content="https://developer.tbd.website/assets/images/dwas-vs-pwas-478cc48cbfc1dd8176dc0c98cafcf16f.png" /> 
+  <meta property="og:image" content="https://developer.tbd.website/assets/images/did-parental-controls-3c3ac221d2b1f467c642531cfbfcef37.png" /> 
 
   <meta name="twitter:card" content="summary_large_image" />
   <meta property="twitter:domain" content="developer.tbd.website" />
   <meta name="twitter:site" content="@tbdevs" />
   <meta name="twitter:title" content="Practical Applications of Decentralized Identifiers: Parental Controls" />
-  <meta property="twitter:url" content='https://developer.tbd.website/blog/2023-05-23-dwas-vs-pwas' /> 
+  <meta property="twitter:url" content='https://developer.tbd.website/blog/did-parental-controls' /> 
   <meta name="twitter:description" content="How Web5 is going to transform parental controls" />
-  <meta name="twitter:image" content="https://developer.tbd.website/assets/images/dwas-vs-pwas-478cc48cbfc1dd8176dc0c98cafcf16f.png" />
+  <meta name="twitter:image" content="https://developer.tbd.website/assets/images/did-parental-controls-3c3ac221d2b1f467c642531cfbfcef37.png" />
 
   <link rel="apple-touch-icon" href="https://developer.tbd.website/img/tbd-fav-icon-main.png" />
 </head>
