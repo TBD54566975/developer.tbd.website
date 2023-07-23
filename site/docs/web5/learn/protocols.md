@@ -278,9 +278,9 @@ Additionally, you’ll notice the `image` object below it also defines `actions`
 }
 ```
 
-## Protocols in Practice
+## Installing a Protocol
 
-To use a protocol in your app, you’ll need to install that protocol to your DWN. You can do so using the following snippet that leverages the [web5.js](https://github.com/TBD54566975/web5-js) library, where `protocolDefinition` is the messaging protocol object from above:
+To use a protocol in your app, you’ll need to install that protocol to your DWN. You can do so using the following snippet where `protocolDefinition` is the messaging protocol object from above:
 
 ```js
 const { protocol, status } = await web5.dwn.protocols.configure({
@@ -288,9 +288,14 @@ const { protocol, status } = await web5.dwn.protocols.configure({
       definition: protocolDefinition 
     }
 });
+
+//sends protocol to remote DWNs immediately (vs waiting for sync)
+await protocol.send(myDid); 
 ```
 
 Once you’ve installed that protocol to your app, you’re ready to communicate using the schema and permissions it defines.
+
+## Protocols in Practice
 
 Building on our social media example, let’s say that you wanted to post a message to your friend Alice. First, ensure that she has also installed the `https://social-media.xyz` protocol on her DWN. Then, you can write to her DWN via the `https://social-media.xyz` protocol using:
 
