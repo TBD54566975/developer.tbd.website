@@ -6,6 +6,7 @@ const ChatSearch = () => {
   const [data, setData] = useState('.. and press ENTER to ask a question on web5, how to write code and more.');
   const [query, setQuery] = useState('');
   const [placeholder, setPlaceholder] = useState("Type your question here.");
+  let eventSource = null; 
 
   const placeholders = [
     "how do I add web5 to my nodejs app?",
@@ -40,16 +41,31 @@ const ChatSearch = () => {
   }
 
   useEffect(() => {
+
     if(query) {
-      fetch(`https://chatgpt.tbddev.org/ask_chat?query=${encodeURIComponent(query)}`)
-        .then(response => response.text())
-        .then(data => {
-          setData(data);
-        })
-        .catch((error) => {
-          console.error('Error:', error);
-        });
-    }
+      // Initialize EventSource with your server endpoint
+      eventSource = new EventSource(`https://chatgpt.tbddev.org/ask_chat?query=${encodeURIComponent(query)}`);
+      //eventSource = new EventSource(`http://localhost:5003/ask_chat?query=${encodeURIComponent(query)}`);
+
+      // The message event is fired when a message comes from the server
+      eventSource.onmessage = (event) => {
+        // Append new data to the existing data
+        // replace event.data instances of |CR| with \n
+        let d = event.data.replaceAll("|CR|", "\n");
+        setData((prevData) => prevData == "Asking... 🚀"? d : prevData + d);
+        
+      };
+
+      // The error event is fired when there is an error with the connection
+      eventSource.onerror = (error) => {
+        console.error('EventSource failed:', error);
+        eventSource.close();
+      };
+
+      // Cleanup on unmount: close the connection
+      return () => eventSource && eventSource.close();    
+    }    
+
 
     const placeholderInterval = setInterval(() => {
       setPlaceholder(placeholders[Math.floor(Math.random() * placeholders.length)]);
@@ -87,7 +103,6 @@ const ChatSearch = () => {
           
           <label htmlFor="chatgpt-search">Ask Me Anything: </label>
           <input id="chatgpt-search" onKeyPress={handleKeyPress} type="text" placeholder={placeholder} size="55" style={{color: "black", backgroundColor: "white"}}/>
-                    
           <ReactMarkdown 
             children={data}
             components={{
