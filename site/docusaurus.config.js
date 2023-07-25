@@ -166,7 +166,7 @@ const config = {
           },
           {
             to: '#search',
-            label: 'Search 🔎',                      
+            label: 'Ask 🔎',                      
           },          
         ],
       },
