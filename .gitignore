@@ -34,3 +34,10 @@ yarn-error.log*
 
 # Local Netlify folder
 .netlify
+
+# Ignore Web5 generated files for testing
+/site/data
+/site/DATASTORE
+/site/EVENTLOG
+/site/INDEX
+/site/MESSAGESTORE
