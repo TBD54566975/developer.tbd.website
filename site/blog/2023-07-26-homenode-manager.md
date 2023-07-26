@@ -1,7 +1,7 @@
 ---
 slug: homenode-manager
 title: Protocol-Based Messaging with HomeNode Manager
-description: Homenode is a project created by community member, longform, which enables you to send and receive DWN messages using a protocol
+description: Homenode Manager is a project created by community member, longform, which enables you to send and receive DWN messages using a protocol
 authors:
   name: longform
 tags: [Decentralized Web Nodes, Decentralized Identity, Protocol, Community]
@@ -11,7 +11,7 @@ tags: [Decentralized Web Nodes, Decentralized Identity, Protocol, Community]
   <meta property="og:title" content="Protocol-Based Messaging with HomeNode Manager" />
   <meta property="og:type" content="website" />
   <meta property="og:url" content='https://developer.tbd.website/blog/homenode-manager' />
-  <meta name="og:description" content="Homenode is a project created by community member, longform, which enables you to send and receive DWN messages using a protocol" />
+  <meta name="og:description" content="Homenode Manager is a project created by community member, longform, which enables you to send and receive DWN messages using a protocol" />
   <meta property="og:image" content="https://developer.tbd.website/assets/images/homenode-porotcol-messaging.jpg" /> 
 
   <meta name="twitter:card" content="summary_large_image" />
@@ -19,7 +19,7 @@ tags: [Decentralized Web Nodes, Decentralized Identity, Protocol, Community]
   <meta name="twitter:site" content="@tbdevs" />
   <meta name="twitter:title" content="Protocol-Based Messaging with HomeNode Manager" />
   <meta property="twitter:url" content='https://developer.tbd.website/blog/homenode-manager' /> 
-  <meta name="twitter:description" content="Homenode is a project created by community member, longform, which enables you to send and receive DWN messages using a protocol" />
+  <meta name="twitter:description" content="Homenode Manager is a project created by community member, longform, which enables you to send and receive DWN messages using a protocol" />
   <meta name="twitter:image" content="https://developer.tbd.website/assets/images/homenode-porotcol-messaging.jpg" />
 
   <link rel="apple-touch-icon" href="https://developer.tbd.website/img/tbd-fav-icon-main.png" />
