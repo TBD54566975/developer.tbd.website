@@ -4,7 +4,7 @@ title: Practical Applications of Decentralized Identifiers - Parental Controls
 description: How Web5 is going to transform parental controls
 authors:
   name: Chris Giglio
-tags: [Decentralized Identity, Parental Controls, DID]
+tags: [Decentralized Identity, DID Controller]
 ---
 
 <head>
