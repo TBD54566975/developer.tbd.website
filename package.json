@@ -7,7 +7,7 @@
     "start:widget": "pnpm --filter web5-quickstart-widgets start",
     "build": "pnpm --filter site run build",
     "clear": "pnpm --filter site run clear",
-    "test": "jest"
+    "test": "pnpm --filter site run test"
   },
   "dependencies": {
     "@tbd54566975/web5": "0.7.11"
