@@ -167,6 +167,10 @@ const config = {
             position: 'right',
             label: 'TBD Home',
           },
+          {
+            to: '#search',
+            label: 'Ask 🔎',                      
+          },          
         ],
       },
       footer: {
