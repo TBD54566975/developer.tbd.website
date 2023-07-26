@@ -135,8 +135,17 @@ function padNewlines(data) {
       }
 
       // If not in a code block and the next line is not empty or a code block start, add an extra newline
-      if (!inCodeBlock && i < lines.length - 1 && lines[i + 1].trim() !== '' && !lines[i + 1].trim().startsWith('```')) {
-          processedData += line + '\n\n';
+      if (!inCodeBlock && i < lines.length - 1 && !lines[i + 1].trim().startsWith('```')) {
+          if (lines[i + 1].trim() !== '') {
+              // Case for single newline
+              processedData += line + '\n\n';
+          } else if (i < lines.length - 2 && lines[i + 2].trim() !== '' && !lines[i + 2].trim().startsWith('```')) {
+              // Case for double newline
+              processedData += line + '\n\n\n\n';
+              i++; // skip the next newline
+          } else {
+              processedData += line + '\n';
+          }
       } else {
           processedData += line + '\n';
       }
@@ -144,6 +153,7 @@ function padNewlines(data) {
 
   return processedData;
 }
+
 
 
 export default ChatSearch;
