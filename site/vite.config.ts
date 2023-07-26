@@ -1,8 +1,11 @@
-/// <reference types="vitest" />
-import { defineConfig } from 'vitest/config'
+import { defineWorkspace } from "vitest/config";
 
-export default defineConfig({
-  test: {
-    globals: true
-  },
-})
+export default defineWorkspace([
+    '/examples/*',
+    '/site/*',
+    {
+      test: {
+        globals: true
+      }
+    }
+])
