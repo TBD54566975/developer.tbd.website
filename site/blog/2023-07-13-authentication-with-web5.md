@@ -1,10 +1,10 @@
 ---
 slug: did-authentication
 title: Authentication With Web5
-description: How Web5 is going to redefine authentication
+description: How Web5 redefines authentication
 authors:
   name: Ebony Louis
-tags: [Decentralized Identity, Decentralized Web Nodes, DID]
+tags: [Decentralized Identity, Decentralized Web Nodes]
 ---
 
 <head>
