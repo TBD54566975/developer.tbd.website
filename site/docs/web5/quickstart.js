@@ -9,7 +9,7 @@ import Web5QuickstartUpdateDwn from './_quickstart-07-update-record.mdx';
 import Web5QuickstartDeleteDwn from './_quickstart-08-delete-record.mdx';
 import Web5QuickstartNextSteps from './_quickstart-10-next-steps.mdx';
 
-import { didCreate } from '../../src/util/web5';
+import { didCreate, dwnWriteTextRecord } from '../../src/util/web5';
 
 let web5;
 let createRecordResult;
@@ -30,18 +30,6 @@ function update() {
     dwnWriteOutputSummary.innerHTML = '...';
     dwnWriteOutputDetailsTextarea.value = '';
   }
-}
-
-async function dwnWriteTextRecord(aliceDid, textData) {
-  const { record } = await web5.dwn.records.create({
-    data: textData,
-    message: {
-      dataFormat: 'text/plain',
-    },
-  });
-
-  createRecordResult = record;
-  return record;
 }
 
 async function dwnUpdateTextRecord(data) {
@@ -174,21 +162,6 @@ function Web5Quickstart() {
       update();
     });
 
-    // didRegisterInputButton.addEventListener('click', async () => {
-    //   //didRegisterInputButton.disabled = true;
-
-    //   let did = parseDid();
-    //   await didRegister(did);
-
-    //   didRegisterOutput.innerHTML = '&#x2714; DID stored!';
-
-    //   dwnWriteInputText.disabled = false;
-    //   // dwnQueryInputButton.disabled = false;
-    //   update();
-    // });
-
-    console.log('testing', dwnWriteInputText);
-
     dwnWriteInputText.addEventListener('input', () => {
       dwnWriteInputButton.disabled = false;
       dwnWriteOutputSummary.innerHTML = '...';
@@ -205,7 +178,7 @@ function Web5Quickstart() {
 
       let data = dwnWriteInputText.value;
 
-      let result = await dwnWriteTextRecord(did, data);
+      let result = await dwnWriteTextRecord(web5, data);
 
       dwnWriteOutputDetailsTextarea.value +=
         JSON.stringify(result, null, 2) + '\n';
