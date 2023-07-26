@@ -102,9 +102,9 @@ const ChatSearch = () => {
           </div>
           
           <label htmlFor="chatgpt-search">Ask Me Anything: </label>
-          <input id="chatgpt-search" onKeyPress={handleKeyPress} type="text" placeholder={placeholder} size="55" style={{color: "black", backgroundColor: "white"}}/>
+          <input id="chatgpt-search" onKeyPress={handleKeyPress} type="text" placeholder={placeholder} className="w-full px-4" style={{color: "black", backgroundColor: "white"}}/>
           <ReactMarkdown 
-            children={data}
+            children={padNewlines(data)}
             components={{
               code({node, inline, className, children, ...props}) {
                 if (inline) {
@@ -119,5 +119,41 @@ const ChatSearch = () => {
     </div>
   );
 };
+
+
+function padNewlines(data) {
+  let inCodeBlock = false;
+  let processedData = '';
+  const lines = data.split('\n');
+
+  for(let i = 0; i < lines.length; i++) {
+      const line = lines[i];
+
+      // Check for code block start or end
+      if(line.trim().startsWith('```')) {
+          inCodeBlock = !inCodeBlock;
+      }
+
+      // If not in a code block and the next line is not empty or a code block start, add an extra newline
+      if (!inCodeBlock && i < lines.length - 1 && !lines[i + 1].trim().startsWith('```')) {
+          if (lines[i + 1].trim() !== '') {
+              // Case for single newline
+              processedData += line + '\n\n';
+          } else if (i < lines.length - 2 && lines[i + 2].trim() !== '' && !lines[i + 2].trim().startsWith('```')) {
+              // Case for double newline
+              processedData += line + '\n\n\n\n';
+              i++; // skip the next newline
+          } else {
+              processedData += line + '\n';
+          }
+      } else {
+          processedData += line + '\n';
+      }
+  }
+
+  return processedData;
+}
+
+
 
 export default ChatSearch;
