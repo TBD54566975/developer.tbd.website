@@ -1,0 +1,21 @@
+---
+sidebar_position: 4
+---
+
+# Update DWN Records
+
+The following snippet allows you to read and update a particular record in a DWN:
+
+```js
+// Get the record
+const { record } = await web5.dwn.records.read({
+  message: {
+    recordId: 'bafyreiaz5oycqbrnmmpvffxqyoqxvx6bcnqueprmt2qnvzcurpc52r5uyy',
+  }
+});
+
+// Update the record
+// highlight-next-line
+const status = await record.update({ data: "Hello, I'm updated!" });
+```
+

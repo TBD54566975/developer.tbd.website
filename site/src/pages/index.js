@@ -15,12 +15,14 @@ export default function Home() {
         <link
           rel="apple-touch-icon"
           href="https://developer.tbd.website/img/tbd-fav-icon-main.png"
-        />
+        />        
+        
       </Head>
 
+      
       <main>
         <div className="tablet:max-w-[100%] desktop:max-w-[92%] relative">
-          <div className="h1 mb-16">
+          <div className="h1 mb-16">            
             <Web5CTA />
             <Heading />
           </div>

@@ -1,16 +1,12 @@
 ---
-sidebar_position: 3
+sidebar_position: 5
 ---
 
 # Delete DWN Records
 
-Before deleting from your Decentralized Web Node (DWN), be sure to check out our [Quickstart guide](../../quickstart) to ensure you’ve properly imported the Web5 SDK. Additionally, make sure you’ve set up a DID before attempting to delete from a DWN.
-
-## Deleting from a DWN
-
 The following snippet allows you to delete from a DWN:
 
-```jsx
+```js
 //Query records with plain text data format
 const response = await web5.dwn.records.query({
   message: {

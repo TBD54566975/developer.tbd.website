@@ -2,7 +2,7 @@
 
 ## 3. Read DWN Records
 
-If the user has given your app read permissions to their DWN, you can read their data by accessing it through the `record` property.
+If the user has given your app read permissions to their DWN, you can read their data by accessing it through the `record` property. If you don't already have access to the record, you can [query](/docs/web5/build/decentralized-web-nodes/query-from-dwn) to obtain it.
 
 To return the text data stored in the `record`, add the following to `index.js`:
 ```js
@@ -16,6 +16,12 @@ To see the record that was read from the DWN, add the following to <code>index.j
 
 ```js
 console.log('readResult', readResult)
+```
+
+Then from the terminal, run:
+
+```bash
+node index.js
 ```
 
 The output will resemble:

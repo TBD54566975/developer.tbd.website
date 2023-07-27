@@ -10,6 +10,8 @@ import PillarList from '@site/src/components/PillarList';
 import SwitchIllustration from '@site/src/components/SwitchIllustration';
 import TwoColumnContainer from '@site/src/components/TwoColumnContainer';
 import Community from '@site/src/components/Community';
+import ConferenceSchedule from '@site/src/components/ConferenceScheduleSection'
+import ConferenceCommunity from '@site/src/components/ConferenceCommunitySection'
 
 export default {
   ...MDXComponents,
@@ -27,5 +29,17 @@ export default {
   li: (props) => <li {...props} className="my-4" />,
   strong: (props) => (
     <strong {...props} className="font-bold text-primary-yellow" />
-  ),
+  ),ConferenceCommunity: ConferenceCommunity,
+  p: (props) => <p {...props} className="my-6 copy" />,
+  ul: (props) => <ul {...props} className="list-disc pl-6 copy my-8" />,
+  li: (props) => <li {...props} className="my-4" />,
+  strong: (props) => (
+    <strong {...props} className="font-bold text-primary-yellow" />
+  ),ConferenceSchedule: ConferenceSchedule,
+  p: (props) => <p {...props} className="my-6 copy" />,
+  ul: (props) => <ul {...props} className="list-disc pl-6 copy my-8" />,
+  li: (props) => <li {...props} className="my-4" />,
+  strong: (props) => (
+    <strong {...props} className="font-bold text-primary-yellow" />
+  )
 };

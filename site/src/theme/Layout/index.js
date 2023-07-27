@@ -3,6 +3,7 @@ import Layout from '@theme-original/Layout';
 import GlitchWrapper from '@site/src/components/GlitchWrapper';
 import MDXContent from '@theme/MDXContent';
 import { useLocation } from '@docusaurus/router';
+import ChatSearch from '../../components/ChatGPTSearch';
 
 import { SSRProvider } from '@react-aria/ssr';
 
@@ -20,7 +21,8 @@ export default function LayoutWrapper(props) {
   return (
     <SSRProvider>
       <GlitchWrapper>
-        <MDXContent>
+      <ChatSearch/>        
+        <MDXContent>          
           <Layout {...props}>{props.children}</Layout>
         </MDXContent>
       </GlitchWrapper>

@@ -1,0 +1,83 @@
+---
+sidebar_position: 2
+---
+
+# Query from DWN
+
+You can use the `query` function to obtain records and protocols from a DWN. This guide shows how to do both, as well as how to sort the query results.
+
+## Querying Protocols
+
+The following snippet queries a DWN for protocols that match a given schema:
+
+```js
+const { protocols } = await web5.dwn.protocols.query({
+  message: {
+    filter: {
+      protocol: "https://music.org/protocol",
+    },
+  },
+});
+```
+
+## Querying Records
+
+The following snippet queries a DWN for records that were written by a specific DID, match a given schema, and are in a specific data format:
+
+```js
+const { records } = await web5.dwn.records.query({
+  from: 'did:example:alice',
+  message: {
+    filter: {
+      schema: 'https://schema.org/Playlist',
+      dataFormat: 'application/json'
+    }
+  }
+});
+```
+
+## Sorting Query Results
+
+Query results can be sorted via the `dateSort` field. Valid values for `dateSort` are:
+
+| Value                     | Sorts Results By | Order       |
+| -----------               | -----------      | ----------- |  
+| **createdAscending**      | `dateCreated`    | ascending   |
+| **createdDescending**     | `dateCreated`    | descending  |
+| **publshedAscending**     | `datePublished`  | ascending   |
+| **publishedDescending**   | `datePublished`  | descending  |
+
+### Ascending Order
+
+This code snippet queries for records with a plain text data format, and returns them in ascending order by the date they were [published](/docs/web5/build/decentralized-web-nodes/publishing-records):
+
+```js
+const response = await web5.dwn.records.query({
+  message: {
+    filter: {
+      dataFormat: 'text/plain',
+    },
+    //highlight-start
+    dateSort: 'publishedAscending'
+    //highlight-end
+  }
+});
+```
+
+### Descending Order
+
+This code snippet queries for protocols with a certain URL, and returns them in descending order by the date they were created.
+
+```js
+const { protocols } = await web5.dwn.protocols.query({
+  message: {
+    filter: {
+      protocol: 'http://social-media.xyz',
+    },
+    //highlight-start
+    dateSort: 'createdDescending'
+    //highlight-end
+  }
+});
+```
+
