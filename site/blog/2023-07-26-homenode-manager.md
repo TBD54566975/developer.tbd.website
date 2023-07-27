@@ -12,7 +12,7 @@ tags: [Decentralized Web Nodes, Decentralized Identity, Protocol, Community]
   <meta property="og:type" content="website" />
   <meta property="og:url" content='https://developer.tbd.website/blog/homenode-manager' />
   <meta name="og:description" content="Homenode Manager is a project created by community member, longform, which enables you to send and receive DWN messages using a protocol" />
-  <meta property="og:image" content="https://developer.tbd.website/assets/images/homenode-porotcol-messaging.jpg" /> 
+  <meta property="og:image" content="https://developer.tbd.website/assets/images/homenode-porotcol-messaging-69d88c01b4574d81bb91c8ee7d55822a.jpg" /> 
 
   <meta name="twitter:card" content="summary_large_image" />
   <meta property="twitter:domain" content="developer.tbd.website" />
@@ -20,7 +20,7 @@ tags: [Decentralized Web Nodes, Decentralized Identity, Protocol, Community]
   <meta name="twitter:title" content="Protocol-Based Messaging with HomeNode Manager" />
   <meta property="twitter:url" content='https://developer.tbd.website/blog/homenode-manager' /> 
   <meta name="twitter:description" content="Homenode Manager is a project created by community member, longform, which enables you to send and receive DWN messages using a protocol" />
-  <meta name="twitter:image" content="https://developer.tbd.website/assets/images/homenode-porotcol-messaging.jpg" />
+  <meta name="twitter:image" content="https://developer.tbd.website/assets/images/homenode-porotcol-messaging-69d88c01b4574d81bb91c8ee7d55822a.jpg" />
 
   <link rel="apple-touch-icon" href="https://developer.tbd.website/img/tbd-fav-icon-main.png" />
 </head>
