@@ -52,11 +52,12 @@ pnpm install
 
 The following scripts are available for running specific tasks within the monorepo:
 
-- `pnpm start`: Runs the docs site.
-- `pnpm start:tutorial-todo-starter`: Starts the local server for the todo app tutorial.
-- `pnpm start:tutorial-todo-completed`: Starts the local server for the completed todo app.
+- `pnpm start`: Runs the docs site for auto-refresh in development mode
+- `pnpm start:tutorial-todo-starter`: Starts the local server for the todo app tutorial
+- `pnpm start:tutorial-todo-completed`: Starts the local server for the completed todo app
 - `pnpm start:widget`: Runs the completed web5 widget
 - `pnpm clear`: Runs docusaurus clear
+- `pnpm build`: Runs the production build for the site so it can be hosted by a static web server. The completed build will be in the folder `site/build`.
 
 ## Running commands
 
