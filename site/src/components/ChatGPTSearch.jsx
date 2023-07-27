@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import ReactMarkdown from 'react-markdown';
+import "../css/search.css";
 
 const ChatSearch = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -100,19 +101,20 @@ const ChatSearch = () => {
           <div className="flex justify-end my-4">
             <button onClick={handleClose} className="w-[fit-content] px-[1.375rem] mb-2 mr-2 button-text border-solid pt-[12px] pb-[14px] border-2 hover:translate-x-[4px] hover:translate-y-[4px] bg-primary-yellow dark:bg-transparent text-primary-black shadow-button-sh border-primary-black hover:shadow-button-sh-hv  dark:shadow-button-sh-cyan dark:border-accent-cyan dark:hover:shadow-button-sh-hv-cyan dark:text-accent-cyan">Close</button>
           </div>
-          
-          <label htmlFor="chatgpt-search">Ask Me Anything: </label>
-          <input id="chatgpt-search" onKeyPress={handleKeyPress} type="text" placeholder={placeholder} className="w-full px-4" style={{color: "black", backgroundColor: "white"}}/>
-          <ReactMarkdown 
-            children={padNewlines(data)}
-            components={{
-              code({node, inline, className, children, ...props}) {
-                if (inline) {
-                  return <code className={className} {...props}>{children}</code>
+        
+          <label htmlFor="chatgpt-search" className='text-2xl font-bold'>Ask Me Anything: </label>
+          <input id="chatgpt-search" onKeyPress={handleKeyPress} type="text" placeholder={placeholder} className="w-full px-4 py-2 my-4 rounded bg-white"/>
+          <ReactMarkdown
+                className="search-widget" 
+                children={padNewlines(data)}
+                components={{
+                code({node, inline, className, children, ...props}) {
+                    if (inline) {
+                    return <code className={className} {...props}>{children}</code>
+                    }
+                    return <CodeBlock {...props} value={children[0]} />
                 }
-                return <CodeBlock {...props} value={children[0]} />
-              }
-            }}
+                }}
           />
         </div>
       </div>
