@@ -1,0 +1,23 @@
+.search-widget p {
+    margin-block: var(--ifm-paragraph-margin-bottom);
+}
+
+.search-widget ol,
+.search-widget ul {
+    margin: 0 0 var(--ifm-list-margin);
+    padding-left: var(--ifm-list-left-padding);
+}
+
+.search-widget ol {
+    list-style: decimal;
+}
+
+.search-widget ul {
+    list-style: disc;
+}
+
+.search-widget a {
+    color: var(--color-black);
+    background: var(--color-blue);
+}
+
