@@ -75,11 +75,14 @@ const ChatSearch = () => {
     return () => clearInterval(placeholderInterval); // Cleanup on unmount
   }, [query]);
 
-  const handleKeyPress = (event) => {
+  const handleKeyUp = (event) => {
     if (event.key === 'Enter') {
       setData('Asking... 🚀');
       setIsOpen(true);
       setQuery(event.target.value);
+    } else {
+        event.target.rows = 1;
+        event.target.rows = ((event.target.scrollHeight - event.target.clientHeight) / 24) + 1;
     }
   }
 
@@ -103,7 +106,7 @@ const ChatSearch = () => {
           </div>
         
           <label htmlFor="chatgpt-search" className='text-2xl font-bold'>Ask Me Anything: </label>
-          <input id="chatgpt-search" onKeyPress={handleKeyPress} type="text" placeholder={placeholder} className="w-full px-4 py-2 my-4 rounded bg-white"/>
+          <textarea id="chatgpt-search" onKeyUp={handleKeyUp} placeholder={placeholder} className="w-full px-4 py-2 my-4 rounded bg-white" rows={1}/>
           <ReactMarkdown
                 className="search-widget" 
                 children={padNewlines(data)}
