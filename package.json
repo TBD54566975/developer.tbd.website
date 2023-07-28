@@ -6,9 +6,13 @@
     "start:tutorial-todo-completed": "pnpm --filter todo-completed run dev",
     "start:widget": "pnpm --filter web5-quickstart-widgets start",
     "build": "pnpm --filter site run build",
-    "clear": "pnpm --filter site run clear"
+    "clear": "pnpm --filter site run clear",
+    "test": "pnpm vitest"
   },
   "dependencies": {
     "@tbd54566975/web5": "0.7.11"
+  },
+  "devDependencies": {
+    "vitest": "^0.33.0"
   }
 }
