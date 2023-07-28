@@ -86,6 +86,12 @@ const ChatSearch = () => {
     }
   }
 
+  const handleKeyDown = (event) => {
+    if (event.key === 'Enter') {
+        event.preventDefault();
+    }
+  }
+
   
   function CodeBlock(props) {
     return (
@@ -106,7 +112,7 @@ const ChatSearch = () => {
           </div>
         
           <label htmlFor="chatgpt-search" className='text-2xl font-bold'>Ask Me Anything: </label>
-          <textarea id="chatgpt-search" onKeyUp={handleKeyUp} placeholder={placeholder} className="w-full px-4 py-2 my-4 rounded bg-white" rows={1}/>
+          <textarea id="chatgpt-search" onKeyDown={handleKeyDown} onKeyUp={handleKeyUp} placeholder={placeholder} className="w-full px-4 py-2 my-4 rounded bg-white" rows={1}/>
           <ReactMarkdown
                 className="search-widget" 
                 children={padNewlines(data)}
