@@ -11,5 +11,8 @@
   },
   "dependencies": {
     "@tbd54566975/web5": "0.7.11"
+  },
+  "devDependencies": {
+    "vitest": "^0.33.0"
   }
 }
