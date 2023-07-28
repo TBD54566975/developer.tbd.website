@@ -180,6 +180,8 @@ function Web5Quickstart() {
 
       let result = await dwnWriteTextRecord(web5, data);
 
+      createRecordResult = result;
+
       dwnWriteOutputDetailsTextarea.value +=
         JSON.stringify(result, null, 2) + '\n';
 
