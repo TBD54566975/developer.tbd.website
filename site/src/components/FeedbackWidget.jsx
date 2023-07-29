@@ -19,7 +19,7 @@ function FeedbackWidget() {
         </p>
         <p>
           Edit this page:{' '}
-          <a href="https://github.com/TBD54566975/developer.tbd.website/tree/main/docs">
+          <a href="https://github.com/TBD54566975/developer.tbd.website/tree/main/site/docs">
             GitHub Repo
           </a>
         </p>
