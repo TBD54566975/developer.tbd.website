@@ -21,6 +21,15 @@ importers:
         specifier: ^8.13.13
         version: 8.13.13
 
+  examples/node:
+    dependencies:
+      '@rollup/plugin-node-resolve':
+        specifier: ^13.0.6
+        version: 13.3.0(rollup@2.79.1)
+      '@tbd54566975/web5':
+        specifier: ^0.7.11
+        version: 0.7.11
+
   examples/tutorials/todo-completed:
     dependencies:
       '@headlessui/vue':
@@ -2982,14 +2991,6 @@ packages:
     resolution: {integrity: sha512-ZnQMnLV4e7hDlUvw8H+U8ASL02SS2Gn6+9Ac3wGGLIe7+je2AeAOxPY+izIPJDfFDb7eDjev0Us8MO1iFRN8hA==}
     dev: true
 
-  /@ipld/dag-cbor@9.0.1:
-    resolution: {integrity: sha512-tImDka4akO7cuD24+nRLOU1kYXoai3VZ1cMeWCFUzwhKrRXyOLfVd9RZGI6aTsE/PYvHmkFobKvTeK9NPVtajA==}
-    engines: {node: '>=16.0.0', npm: '>=7.0.0'}
-    dependencies:
-      cborg: 1.10.2
-      multiformats: 11.0.2
-    dev: false
-
   /@ipld/dag-cbor@9.0.3:
     resolution: {integrity: sha512-A2UFccS0+sARK9xwXiVZIaWbLbPxLGP3UZOjBeOMWfDY04SXi8h1+t4rHBzOlKYF/yWNm3RbFLyclWO7hZcy4g==}
     engines: {node: '>=16.0.0', npm: '>=7.0.0'}
@@ -5361,11 +5362,6 @@ packages:
     engines: {node: '>=6'}
     dev: false
 
-  /cborg@1.10.2:
-    resolution: {integrity: sha512-b3tFPA9pUr2zCUiCfRd2+wok2/LBSNUMKOuRRok+WlvvAgEt/PlbgPTsZUcwCOs53IJvLgTp0eotwtosE6njug==}
-    hasBin: true
-    dev: false
-
   /cborg@2.0.3:
     resolution: {integrity: sha512-f1IbyqgRLQK4ruNM+V3WikfYfXQg/f/zC1oneOw1P7F/Dn2OJX6MaXIdei3JMpz361IjY7OENBKcE53nkJFVCQ==}
     hasBin: true
@@ -6012,7 +6008,7 @@ packages:
       postcss-modules-scope: 3.0.0(postcss@8.4.24)
       postcss-modules-values: 4.0.0(postcss@8.4.24)
       postcss-value-parser: 4.2.0
-      semver: 7.5.2
+      semver: 7.5.4
       webpack: 5.88.0
     dev: false
 
@@ -7738,7 +7734,7 @@ packages:
       memfs: 3.5.3
       minimatch: 3.1.2
       schema-utils: 2.7.0
-      semver: 7.5.2
+      semver: 7.5.4
       tapable: 1.1.3
       typescript: 5.1.6
       webpack: 5.88.0
@@ -8667,7 +8663,7 @@ packages:
     resolution: {integrity: sha512-O5aMawsHoe4DaYk5FFil2EPrNOaU3pkHC6qUR5JMnW7es93W3b/RjJoO7AyDL1rpb+M3K0oRu86Yc5wLNQQ8jg==}
     engines: {node: '>=16.0.0', npm: '>=7.0.0'}
     dependencies:
-      '@ipld/dag-cbor': 9.0.1
+      '@ipld/dag-cbor': 9.0.3
       '@ipld/dag-pb': 4.0.4
       '@multiformats/murmur3': 2.1.5
       err-code: 3.0.1
@@ -11143,7 +11139,7 @@ packages:
       cosmiconfig: 8.2.0
       jiti: 1.18.2
       postcss: 8.4.24
-      semver: 7.5.2
+      semver: 7.5.4
       webpack: 5.88.0
     dev: false
 
@@ -14220,7 +14216,7 @@ packages:
       is-yarn-global: 0.3.0
       latest-version: 5.1.0
       pupa: 2.1.1
-      semver: 7.5.2
+      semver: 7.5.4
       semver-diff: 3.1.1
       xdg-basedir: 4.0.0
     dev: false
