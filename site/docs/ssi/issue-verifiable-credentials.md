@@ -1,17 +1,13 @@
----
-title: Issue Verifiable Credentials
----
+# Issue Verfiable Credentials
 
-# Issue Verfiable Credentials (VC)
-
-This is a walk through of the VC issuance process from the
+This is a walk through of the Verifiable Credential (VC) issuance process from the
 perspective of the issuer. It is using a manual approach to issue verifiable
 credentials and is **not intended to be used in production applications**.
 We are providing this for educational purposes only.
 
 ## **Narrative**
 
-Alice starts a new job at Acme and she'd like a Verifiable Credential (VC) proving her current employment status.
+Alice starts a new job at Acme and she'd like a VC proving her current employment status.
 
 To request a VC, Alice logs into Acme's internal employee portal and clicks Employment Verification. Clicking the button will invoke the VC issuance process via the [SSI Service](https://github.com/TBD54566975/ssi-service) Acme is hosting.
 
@@ -72,7 +68,7 @@ The following response should be returned:
 
 **b. Create Decentralized Identifier for Credential Issuer (Acme)**
 
-In the world of [Self-Sovereign Identity](/docs/glossary#self-sovereign-identity-ssi) (SSI), [Decentralized Identifiers](/docs/glossary#decentralized-identifier-did) (DIDs) are used to identify any subject (e.g., a person, organization, thing, data model, abstract entity, etc.). In this scenario, both Acme and Alice are represented by their DIDs in the Verifiable Credential we create in step two.
+In the world of [Self-Sovereign Identity](/docs/glossary#self-sovereign-identity-ssi) (SSI), [Decentralized Identifiers](/docs/glossary#decentralized-identifier-did) (DIDs) are used to identify any subject (e.g., a person, organization, thing, data model, abstract entity, etc.). In this scenario, both Acme and Alice are represented by their DIDs in the VC we create in step two.
 
 :::info
   A **DID** is a W3C standard for a globally unique identifier that does not
