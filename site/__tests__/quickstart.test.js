@@ -28,9 +28,9 @@ describe('/site/tests/quickstart.test.js', () => {
 
   test('createTextRecord returns a record with aliceDid being the same value as the author attribute', async () => {
     // This is where we write a text record and assign the result to the recordResult variable.
-    const record = await createTextRecord(web5, textInput);
-    recordResult = record;
-    expect(record.author).toBe(aliceDid);
+    const response = await createTextRecord(web5, textInput);
+    recordResult = response.record;
+    expect(recordResult.author).toBe(aliceDid);
   });
 
   test('recordResult returns a record with the textInput being the same value as the data attribute', async () => {

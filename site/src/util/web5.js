@@ -5,12 +5,10 @@ export async function didCreate() {
 }
 
 export async function createTextRecord(web5, textData) {
-  const { record } = await web5.dwn.records.create({
+  return await web5.dwn.records.create({
     data: textData,
     message: {
       dataFormat: 'text/plain',
     },
   });
-
-  return record;
 }
