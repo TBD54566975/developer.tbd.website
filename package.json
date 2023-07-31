@@ -7,7 +7,7 @@
     "start:widget": "pnpm --filter web5-quickstart-widgets start",
     "build": "pnpm --filter site run build",
     "clear": "pnpm --filter site run clear",
-    "test": "pnpm vitest --browser.name=chrome --browser.headless"
+    "test": "pnpm vitest --config vite.config.ts"
   },
   "dependencies": {
     "@tbd54566975/web5": "0.7.11"
