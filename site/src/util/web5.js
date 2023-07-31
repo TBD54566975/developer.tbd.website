@@ -1,8 +1,7 @@
 import { Web5 } from '@tbd54566975/web5/browser';
 
 export async function didCreate() {
-  const { did: aliceDid, web5 } = await Web5.connect();
-  return { web5, aliceDid };
+  return await Web5.connect();
 }
 
 export async function dwnWriteTextRecord(web5, textData) {

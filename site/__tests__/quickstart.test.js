@@ -15,8 +15,9 @@ describe('/site/tests/quickstart.test.js', () => {
   // This is where we create a DID, assign the web5 and aliceDid variables, and then use the aliceDid to write a text record.
   beforeAll(async () => {
     const result = await didCreate();
+
     web5 = result.web5;
-    aliceDid = result.aliceDid;
+    aliceDid = result.did;
   });
 
   test('didCreate returns a decentralized ID', async () => {
