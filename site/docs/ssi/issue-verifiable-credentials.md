@@ -109,7 +109,7 @@ curl -X PUT -d '{"keyType":"Ed25519"}' localhost:8080/v1/dids/key
 ```
 
 :::info
-Each DID has one or more keys, and each key has a type. Some [keytypes]("https://w3c-ccg.github.io/did-method-key/#format") give you different properties and can be used for different purposes. Some keys are better for signing, others for encryption. Some are even provided by the government (NIST). There are variations on how they're constructed to give different security properties. You can use any number of DID types but we recommend Ed25519 as it's sufficient for most use cases.
+Each DID has one or more keys, and each key has a type. Some [keytypes](https://w3c-ccg.github.io/did-method-key/#format) give you different properties and can be used for different purposes. Some keys are better for signing, others for encryption. Some are even provided by the government (NIST). There are variations on how they're constructed to give different security properties. You can use any number of DID types but we recommend `Ed25519` as it's sufficient for most use cases.
 :::
 
 The following response should be returned:
