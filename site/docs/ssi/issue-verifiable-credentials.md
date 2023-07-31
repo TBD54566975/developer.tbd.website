@@ -1,58 +1,32 @@
 ---
-slug: issue-verifiable-credential-manually
-title: Manually Issue a Verifiable Credential
-description: Learn how to issue a verifiable credential
-authors:
-  name: Bobbilee Hartman
-tags: [verifiable credentials]
+title: Issue Verifiable Credentials
 ---
 
-<head>
-  <title>Manually Issue a Verifiable Credential</title>
-  <meta property="og:description" content="Learn how to issue a verifiable credential" />
-  <meta property="og:title" content="Manually Issue a Verifiable Credential" />
-  <meta property="og:url" content='https://developer.tbd.website/blog/issue-verifiable-credential-manually' />
-  <meta property="og:image" content="https://developer.tbd.website/img/tutorial_issue_vc.png" />
-  
-  <meta name="twitter:card" content="summary" />
-  <meta name="twitter:image" content="https://developer.tbd.website/img/tutorial_issue_vc.png" />
-  <meta name="twitter:site" content="@tbdevs" />
-  <meta name="twitter:title" content="Manually Issue a Verifiable Credential" />
-  <meta name="twitter:description" content="Learn how to issue a verifiable credential" />
-  <link rel="apple-touch-icon" href="https://developer.tbd.website/img/tbd-fav-icon-main.png" />
-</head>
+# Issue Verfiable Credentials (VC)
 
-## 
-
-![Manually Issue a Verifiable Credential](/img/tutorial_issue_vc.png)
-
-<blockquote>
-  This is a walk through of the VC issuance process from the
-  perspective of the issuer. It is using a manual approach to issue verifiable
-  credentials and is <b>not intended to be used in production applications</b>.
-  We are providing this for educational purposes only.
-</blockquote>
+This is a walk through of the VC issuance process from the
+perspective of the issuer. It is using a manual approach to issue verifiable
+credentials and is **not intended to be used in production applications**.
+We are providing this for educational purposes only.
 
 ## **Narrative**
 
 Alice starts a new job at Acme and she'd like a Verifiable Credential (VC) proving her current employment status.
 
-<!--truncate-->
-
 To request a VC, Alice logs into Acme's internal employee portal and clicks Employment Verification. Clicking the button will invoke the VC issuance process via the [SSI Service](https://github.com/TBD54566975/ssi-service) Acme is hosting.
 
 Once the process has completed, a new Employment Status VC will be sent to Alice's identity wallet.
 
-<Divider type="dotted" />
+<Divider type="slash" />
 
 ## **Steps to Issue a Verifiable Credential**
 
 1. **[SSI Service Setup](#ssi-service-setup)**
 
-   - Clone & Run SSI Service
-   - Create Decentralized Identifier (DID) for Credential Issuer (Acme)
-   - Create or obtain DID for Credential Subject (Alice)
-   - Create Credential Schema
+  - Clone & Run SSI Service
+  - Create Decentralized Identifier (DID) for Credential Issuer (Acme)
+  - Create or obtain DID for Credential Subject (Alice)
+  - Create Credential Schema
 
 2. **[Create Verifiable Credential](#create-verifiable-credential)**
 
@@ -64,19 +38,13 @@ Once the process has completed, a new Employment Status VC will be sent to Alice
 
 Locally clone the SSI Service repo:
 
-```sh
+```
 git clone https://github.com/TBD54566975/ssi-service.git
 ```
 
-<blockquote>
-  The SSI Service is packaged as a Docker container and a Docker Compose file is
-  included to make it simple to run the service locally. First make sure you
-  have{' '}
-  <a href="https://www.docker.com/products/docker-desktop/">
-    Docker downloaded
-  </a>{' '}
-  and running on your desktop:
-</blockquote>
+The SSI Service is packaged as a Docker container and a Docker Compose file is
+included to make it simple to run the service locally. First make sure you
+have [Docker downloaded](https://www.docker.com/products/docker-desktop/) and running on your desktop:
 
 Switch to the build folder:
 
@@ -99,8 +67,8 @@ curl localhost:8080/health
 The following response should be returned:
 
 ```js
-{"status":"OK"}
-curl localhost:8080/readiness
+{ "status":"OK" }
+  curl localhost:8080/readiness
 { 
   "status": { 
     "status": "ready",
@@ -119,19 +87,16 @@ curl localhost:8080/readiness
 }
 ```
 
-<br />
-<br />
-
 **b. Create Decentralized Identifier for Credential Issuer (Acme)**
 
-In the world of [Self-Sovereign Identity](https://developer.tbd.website/docs/glossary#self-sovereign-identity-ssi) (SSI), Decentralized Identifiers[https://developer.tbd.website/docs/glossary#decentralized-identifier-did] (DIDs) are used to identify any subject (e.g., a person, organization, thing, data model, abstract entity, etc.). In this scenario, both Acme and Alice are represented by their DIDs in the Verifiable Credential we create in step two.
+In the world of [Self-Sovereign Identity](/docs/glossary#self-sovereign-identity-ssi) (SSI), [Decentralized Identifiers](/docs/glossary#decentralized-identifier-did) (DIDs) are used to identify any subject (e.g., a person, organization, thing, data model, abstract entity, etc.). In this scenario, both Acme and Alice are represented by their DIDs in the Verifiable Credential we create in step two.
 
-<blockquote>
-  A <b>DID</b> is a W3C standard for a globally unique identifier that does not
+:::info
+  A **DID** is a W3C standard for a globally unique identifier that does not
   require a centralized registration authority. In contrast to typical,
   federated identifiers, DIDs have been designed so that they may be decoupled
   from centralized registries, identity providers, and certificate authorities.
-</blockquote>
+:::info
 
 Standard format of a DID:
 
@@ -143,17 +108,9 @@ To start the employment verification credential issuance flow we need to create 
 curl -X PUT -d '{"keyType":"Ed25519"}' localhost:8080/v1/dids/key
 ```
 
-<blockquote>
-  Each DID has one or more keys, and each key has a type. Some{' '}
-  <a href="https://w3c-ccg.github.io/did-method-key/#format">
-    <b>keytypes</b>
-  </a>{' '}
-  give you different properties and can be used for different purposes. Some
-  keys are better for signing, others for encryption. Some are even provided by
-  the government (NIST). There are variations on how they're constructed to give
-  different security properties. You can use any number of DID types but we
-  recommend Ed25519 as it's sufficient for most use cases.
-</blockquote>
+:::info
+Each DID has one or more keys, and each key has a type. Some [keytypes]("https://w3c-ccg.github.io/did-method-key/#format") give you different properties and can be used for different purposes. Some keys are better for signing, others for encryption. Some are even provided by the government (NIST). There are variations on how they're constructed to give different security properties. You can use any number of DID types but we recommend Ed25519 as it's sufficient for most use cases.
+:::
 
 The following response should be returned:
 
@@ -210,42 +167,31 @@ The following response should be returned:
 }
 ```
 
-As you can see the DID returned here is using _key_ as its DID method. Learn more about other [DID methods](https://www.w3.org/TR/did-spec-registries/#did-methods) here.
+As you can see the DID returned here is using `key` as its DID method. Learn more about other [DID methods](https://www.w3.org/TR/did-spec-registries/#did-methods).
 
-<blockquote>
+:::note
   Important: Make sure to copy Acme's DID for the next step.
-</blockquote>
-
-<br />
+:::
 
 **c. Create DID for Credential Subject (Alice)**
 
 Here's a generic DID you can use for Alice for testing purposes:
 
-```sh
+```
 did:key:z6MkqcFHFXqzsYyDYrEUA2pVCfQGJz2rYoCZy5WWszzSW3o6
 ```
 
 However, if you'd prefer to create a new DID for Alice, run:
 
-```sh
+```
 curl -X PUT -d '{"keyType":"Ed25519"}' localhost:8080/v1/dids/key
 ```
 
-<br />
-<br />
-
 **d. Create Credential Schema**
 
-<blockquote>
-  A{' '}
-  <a href="https://www.w3.org/TR/vc-json-schema">
-    <b>Credential Schema</b>
-  </a>{' '}
-  is a document that defines the structure of a VC. It's based on the{' '}
-  <a href="https://json-schema.org">json schema</a> and shows which properties
-  the issuer is going to use to create the VC.
-</blockquote>
+:::info
+  A [Credential Schema](https://www.w3.org/TR/vc-json-schema) is a document that defines the structure of a VC. It's based on the [json schema](https://json-schema.org) and shows which properties the issuer is going to use to create the VC.
+:::
 
 The `employedAt` property is a timestamp data type to define the date and time someone was employed at Acme.
 
@@ -278,11 +224,9 @@ The following response should be returned:
 }
 ```
 
-<br />
-
-<blockquote>
+:::note
   Important: Make sure to copy your <b>Schema ID</b> for the next step.
-</blockquote>
+:::
 
 <Divider type="dotted" />
 
@@ -342,12 +286,16 @@ The following response should be returned:
 }
 ```
 
-<blockquote>
-  Note: the value for <b>credentialJwt</b> can be decoded using a tool like{' '}
-  <a href="https://jwt.io/">
-    <b>jwt.io</b>
-  </a>
-  .
-</blockquote>
+:::note
+  The value for <b>credentialJwt</b> can be decoded using a tool like [jwt.io](https://jwt._io/).
+:::
 
 If Alice has an identity wallet she will be able to store the credential and use it however she wishes.
+
+<Divider type="slash" />
+
+## Next Steps
+
+- Learn more about [SSI Service](run-ssi-service) and how to run it.
+- Check out the [SSI Console](ssi-console) which leverages the SSI Service to simplify credential issuance and verification via a web interface.
+- Check out the [SSI SDK project](https://github.com/TBD54566975/ssi-sdk).

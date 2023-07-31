@@ -113,6 +113,6 @@ curl localhost:8080/readiness
 
 ## Next Steps
 
-- Learn how to [manually issue a VC](/blog/issue-verifiable-credential-manually/).
+- Learn how to [manually issue a VC](issue-verifiable-credentials).
 - Check out the [SSI Console](ssi-console) which leverages the SSI Service to simplify credential issuance and verification via a web interface.
 - Check out the [SSI SDK project](https://github.com/TBD54566975/ssi-sdk).
