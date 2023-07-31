@@ -2,5 +2,11 @@ import { defineWorkspace } from 'vitest/config'
 
 export default defineWorkspace([
     '/examples',
-    '/site'
+    '/site',
+    {
+    test: {
+      globals: true,
+      name: 'site',
+    },
+    }
 ])

@@ -1,4 +1,5 @@
-import { test, beforeAll, expect, describe } from 'vitest';
+import indexeddb from 'fake-indexeddb';
+import { test, beforeAll, afterEach, expect, describe } from 'vitest';
 import { didCreate, dwnWriteTextRecord } from '../src/util/web5';
 
 // This is the web5 instance that will be referred to for all tests. This comes back as a result from Web5.connect() being used in the didCreate function.
@@ -14,9 +15,14 @@ const updatedTextInput = 'YEEERR! UPDATED';
 describe('/site/tests/quickstart.test.js', () => {
   // This is where we create a DID, assign the web5 and aliceDid variables, and then use the aliceDid to write a text record.
   beforeAll(async () => {
+    global.indexedDB = indexeddb;
     const result = await didCreate();
     web5 = result.web5;
     aliceDid = result.aliceDid;
+  });
+
+  afterEach(() => {
+    delete global.indexedDB;
   });
 
   test('didCreate returns a decentralized ID', async () => {
@@ -42,8 +48,9 @@ describe('/site/tests/quickstart.test.js', () => {
       data: updatedTextInput,
     });
 
-    expect(updatedRecordResult.status.code).toBe(202);
+    console.log(await recordResult.update());
 
+    expect(updatedRecordResult.status.code).toBe(202);
     expect(updatedTextInput).toBe(await recordResult.data.text());
   });
 

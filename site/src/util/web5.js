@@ -1,4 +1,4 @@
-import { Web5 } from '@tbd54566975/web5';
+import { Web5 } from '@tbd54566975/web5/browser';
 
 export async function didCreate() {
   const { did: aliceDid, web5 } = await Web5.connect();
