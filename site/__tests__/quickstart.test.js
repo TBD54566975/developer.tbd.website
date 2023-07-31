@@ -30,6 +30,7 @@ describe('/site/tests/quickstart.test.js', () => {
     // This is where we write a text record and assign the result to the recordResult variable.
     const response = await createTextRecord(web5, textInput);
     recordResult = response.record;
+    expect.soft(response.status.code).toBe(202);
     expect(recordResult.author).toBe(aliceDid);
   });
 
