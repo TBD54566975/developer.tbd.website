@@ -44,13 +44,13 @@ describe('/site/tests/quickstart.test.js', () => {
       data: updatedTextInput,
     });
 
-    expect(updatedRecordResult.status.code).toBe(202);
+    expect.soft(updatedRecordResult.status.code).toBe(202);
     expect(updatedTextInput).toBe(await recordResult.data.text());
   });
 
   test('recordResult successfully deletes the record', async () => {
     const deletedRecordResult = await recordResult.delete();
-    expect(deletedRecordResult.status.code).toBe(202);
+    expect.soft(deletedRecordResult.status.code).toBe(202);
 
     expect(recordResult.isDeleted).toBe(true);
   });
