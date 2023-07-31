@@ -164,49 +164,47 @@ The following response should be returned:
       "https://www.w3.org/ns/did/v1",
       "https://w3id.org/security/suites/jws-2020/v1"
     ],
-    //highlight-start
-    "id": "did:key:z6Mkr5ZYL24Zm9CYfpLVoa7ydsEQNaohmsXCikYxJii7tdqC",
-    //highlight-end
+    "id": "did:key:z6MkjePG6UBCLbrgUQgURoTSuXAbRpDbCdTLEPUXDqUC4EFw",
     "verificationMethod": [
       {
-        "id": "did:key:z6Mkr5ZYL24Zm9CYfpLVoa7ydsEQNaohmsXCikYxJii7tdqC#z6Mkr5ZYL24Zm9CYfpLVoa7ydsEQNaohmsXCikYxJii7tdqC",
+        "id": "did:key:z6MkjePG6UBCLbrgUQgURoTSuXAbRpDbCdTLEPUXDqUC4EFw#z6MkjePG6UBCLbrgUQgURoTSuXAbRpDbCdTLEPUXDqUC4EFw",
         "type": "JsonWebKey2020",
-        "controller": "did:key:z6Mkr5ZYL24Zm9CYfpLVoa7ydsEQNaohmsXCikYxJii7tdqC",
+        "controller": "did:key:z6MkjePG6UBCLbrgUQgURoTSuXAbRpDbCdTLEPUXDqUC4EFw",
         "publicKeyJwk": {
           "kty": "OKP",
           "crv": "Ed25519",
-          "x": "rL0_XOkmyecUDV-F55vAnheBsRARvNs6D9GBgeFTErM",
+          "x": "TSP7cqEemLaZPUxbc0UzdjGVDUAfzVuOecBGuDgmqj4",
           "alg": "EdDSA",
-          "kid": "did:key:z6Mkr5ZYL24Zm9CYfpLVoa7ydsEQNaohmsXCikYxJii7tdqC"
+          "kid": "did:key:z6MkjePG6UBCLbrgUQgURoTSuXAbRpDbCdTLEPUXDqUC4EFw"
         }
       },
       {
-        "id": "did:key:z6Mkr5ZYL24Zm9CYfpLVoa7ydsEQNaohmsXCikYxJii7tdqC#z6LSrwmvtfkZrTzNUUqUYqnE9qedLR7tk56wmXV8aJJEnyLF",
+        "id": "did:key:z6MkjePG6UBCLbrgUQgURoTSuXAbRpDbCdTLEPUXDqUC4EFw#z6LSrEnnMyZnZbaUw9WNvWogpwAdUgnfn4nXxjwaVqYVMDwp",
         "type": "JsonWebKey2020",
-        "controller": "did:key:z6Mkr5ZYL24Zm9CYfpLVoa7ydsEQNaohmsXCikYxJii7tdqC",
+        "controller": "did:key:z6MkjePG6UBCLbrgUQgURoTSuXAbRpDbCdTLEPUXDqUC4EFw",
         "publicKeyJwk": {
           "kty": "OKP",
           "crv": "X25519",
-          "x": "4t5TLTw1UY5QDMFT-sprx3Pkdl-FFNvZaxtu74MjknQ",
+          "x": "2F555fIs2yg-MOAXyR6Cmnr-CVLf9IyDKeNu44ansFs",
           "alg": "X25519",
-          "kid": "did:key:z6Mkr5ZYL24Zm9CYfpLVoa7ydsEQNaohmsXCikYxJii7tdqC"
+          "kid": "did:key:z6MkjePG6UBCLbrgUQgURoTSuXAbRpDbCdTLEPUXDqUC4EFw"
         }
       }
     ],
     "authentication": [
-      "did:key:z6Mkr5ZYL24Zm9CYfpLVoa7ydsEQNaohmsXCikYxJii7tdqC#z6Mkr5ZYL24Zm9CYfpLVoa7ydsEQNaohmsXCikYxJii7tdqC"
+      "did:key:z6MkjePG6UBCLbrgUQgURoTSuXAbRpDbCdTLEPUXDqUC4EFw#z6MkjePG6UBCLbrgUQgURoTSuXAbRpDbCdTLEPUXDqUC4EFw"
     ],
     "assertionMethod": [
-      "did:key:z6Mkr5ZYL24Zm9CYfpLVoa7ydsEQNaohmsXCikYxJii7tdqC#z6Mkr5ZYL24Zm9CYfpLVoa7ydsEQNaohmsXCikYxJii7tdqC"
+      "did:key:z6MkjePG6UBCLbrgUQgURoTSuXAbRpDbCdTLEPUXDqUC4EFw#z6MkjePG6UBCLbrgUQgURoTSuXAbRpDbCdTLEPUXDqUC4EFw"
     ],
     "keyAgreement": [
-      "did:key:z6Mkr5ZYL24Zm9CYfpLVoa7ydsEQNaohmsXCikYxJii7tdqC#z6LSrwmvtfkZrTzNUUqUYqnE9qedLR7tk56wmXV8aJJEnyLF"
+      "did:key:z6MkjePG6UBCLbrgUQgURoTSuXAbRpDbCdTLEPUXDqUC4EFw#z6LSrEnnMyZnZbaUw9WNvWogpwAdUgnfn4nXxjwaVqYVMDwp"
     ],
     "capabilityInvocation": [
-      "did:key:z6Mkr5ZYL24Zm9CYfpLVoa7ydsEQNaohmsXCikYxJii7tdqC#z6Mkr5ZYL24Zm9CYfpLVoa7ydsEQNaohmsXCikYxJii7tdqC"
+      "did:key:z6MkjePG6UBCLbrgUQgURoTSuXAbRpDbCdTLEPUXDqUC4EFw#z6MkjePG6UBCLbrgUQgURoTSuXAbRpDbCdTLEPUXDqUC4EFw"
     ],
     "capabilityDelegation": [
-      "did:key:z6Mkr5ZYL24Zm9CYfpLVoa7ydsEQNaohmsXCikYxJii7tdqC#z6Mkr5ZYL24Zm9CYfpLVoa7ydsEQNaohmsXCikYxJii7tdqC"
+      "did:key:z6MkjePG6UBCLbrgUQgURoTSuXAbRpDbCdTLEPUXDqUC4EFw#z6MkjePG6UBCLbrgUQgURoTSuXAbRpDbCdTLEPUXDqUC4EFw"
     ]
   }
 }
@@ -253,13 +251,13 @@ The `employedAt` property is a timestamp data type to define the date and time s
 
 Let's create a Credential Schema for Alice's Employment Status VC:
 - Set `issuer` to Acme's DID.
-- Set `issuerKid` set to the KID of the issuer's private key to sign the schema.
+- Set `verificationMethodId` set to the KID of the issuer's private key to sign the schema.
 - Our `schema` object conforms to the Draft 2020-12 schema version, so set its `$schema` property to https://json-schema.org/draft/2020-12/schema.
 
 ```bash
 curl -X PUT -d '{
-  "issuer": "did:key:z6Mkr5ZYL24Zm9CYfpLVoa7ydsEQNaohmsXCikYxJii7tdqC",
-  "issuerKid": "did:key:z6Mkr5ZYL24Zm9CYfpLVoa7ydsEQNaohmsXCikYxJii7tdqC#z6Mkr5ZYL24Zm9CYfpLVoa7ydsEQNaohmsXCikYxJii7tdqC",
+  "issuer": "did:key:z6MkjePG6UBCLbrgUQgURoTSuXAbRpDbCdTLEPUXDqUC4EFw",
+  "verificationMethodId": "did:key:z6MkjePG6UBCLbrgUQgURoTSuXAbRpDbCdTLEPUXDqUC4EFw#z6MkjePG6UBCLbrgUQgURoTSuXAbRpDbCdTLEPUXDqUC4EFw",
   "name": "Acme",
   "schema": {
     "id": "string",
@@ -274,9 +272,9 @@ The following response should be returned:
 
 ```json
 {
-  "id": "6557d0a5-5e2e-427c-80fa-3c220c57648a",
+  "id": "525358c8-1949-495e-becf-aa19d4da6a69",
   "type": "CredentialSchema2023",
-  "credentialSchema": "eyJhbGciOiJFZERTQSIsImtpZCI6ImRpZDprZXk6ejZNa3I1WllMMjRabTlDWWZwTFZvYTd5ZHNFUU5hb2htc1hDaWtZeEppaTd0ZHFDI3o2TWtyNVpZTDI0Wm05Q1lmcExWb2E3eWRzRVFOYW9obXNYQ2lrWXhKaWk3dGRxQyIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2ODYxNzM1MTIsImlzcyI6ImRpZDprZXk6ejZNa3I1WllMMjRabTlDWWZwTFZvYTd5ZHNFUU5hb2htc1hDaWtZeEppaTd0ZHFDIiwianRpIjoiaHR0cDovL2xvY2FsaG9zdDo4MDgwL3YxL3NjaGVtYXMvYzU0YzdjMjMtYTU0YS00NGRlLTg1Y2EtNWY2ODA5YjE1ZjJhIiwibmJmIjoxNjg2MTczNTEyLCJub25jZSI6IjUzMzRlMGYzLWMxOWEtNGQxZC1iYjc5LTIwY2E2NzZhYmExYSIsInN1YiI6Imh0dHA6Ly9sb2NhbGhvc3Q6ODA4MC92MS9zY2hlbWFzL2M1NGM3YzIzLWE1NGEtNDRkZS04NWNhLTVmNjgwOWIxNWYyYSIsInZjIjp7IkBjb250ZXh0IjpbImh0dHBzOi8vd3d3LnczLm9yZy8yMDE4L2NyZWRlbnRpYWxzL3YxIl0sInR5cGUiOlsiVmVyaWZpYWJsZUNyZWRlbnRpYWwiXSwiaXNzdWVyIjoiIiwiaXNzdWFuY2VEYXRlIjoiIiwiY3JlZGVudGlhbFN1YmplY3QiOnsiJGlkIjoiYzU0YzdjMjMtYTU0YS00NGRlLTg1Y2EtNWY2ODA5YjE1ZjJhIiwiJHNjaGVtYSI6Imh0dHBzOi8vanNvbi1zY2hlbWEub3JnL2RyYWZ0LzIwMjAtMTIvc2NoZW1hIiwiYXBwTmFtZSI6InN0cmluZyIsIm5hbWUiOiJBY21lIiwidmFsaWRVbnRpbCI6InN0cmluZyJ9fX0.Gtk2uhnYr-pSmjvaVNTXIktODtY31iEOP1VcaC6PwQUsJRuvsqryXb9Qz5F-RXgAZ7e2MrkxYE7h6f6oBzf4Bw"
+  "credentialSchema": "eyJhbGciOiJFZERTQSIsImtpZCI6ImRpZDprZXk6ejZNa2plU..."
 }
 ```
 
@@ -304,12 +302,12 @@ curl -X PUT -d '{
       "givenName": "Alice",
       "employedAt": "2022-08-20T13:20:10.000+0000"
     },
-    "issuer": "did:key:z6Mkr5ZYL24Zm9CYfpLVoa7ydsEQNaohmsXCikYxJii7tdqC",
-    "issuerKid": "did:key:z6Mkr5ZYL24Zm9CYfpLVoa7ydsEQNaohmsXCikYxJii7tdqC#z6Mkr5ZYL24Zm9CYfpLVoa7ydsEQNaohmsXCikYxJii7tdqC",
+    "issuer": "did:key:z6MkjePG6UBCLbrgUQgURoTSuXAbRpDbCdTLEPUXDqUC4EFw",
+    "verificationMethodId": "did:key:z6MkjePG6UBCLbrgUQgURoTSuXAbRpDbCdTLEPUXDqUC4EFw#z6MkjePG6UBCLbrgUQgURoTSuXAbRpDbCdTLEPUXDqUC4EFw",
     "subject": "did:key:z6MkqcFHFXqzsYyDYrEUA2pVCfQGJz2rYoCZy5WWszzSW3o6",
     "@context": "https://www.w3.org/2018/credentials/v1",
     "expiry": "2051-10-05T14:48:00.000Z",
-    "schemaId": "6557d0a5-5e2e-427c-80fa-3c220c57648a"
+    "schemaId": "525358c8-1949-495e-becf-aa19d4da6a69"
 }' http://localhost:8080/v1/credentials
 ```
 
@@ -317,18 +315,18 @@ The following response should be returned:
 
 ```json
 {
-  "id": "aba6dc95-d9ac-43e2-ad6d-4e5120c15a2d",
-  "issuerKid": "did:key:z6Mkr5ZYL24Zm9CYfpLVoa7ydsEQNaohmsXCikYxJii7tdqC#z6Mkr5ZYL24Zm9CYfpLVoa7ydsEQNaohmsXCikYxJii7tdqC",
+  "id": "4f294b40-addc-4c39-840c-c17432680538",
+  "fullyQualifiedVerificationMethodId": "did:key:z6MkjePG6UBCLbrgUQgURoTSuXAbRpDbCdTLEPUXDqUC4EFw#z6MkjePG6UBCLbrgUQgURoTSuXAbRpDbCdTLEPUXDqUC4EFw",
   "credential": {
     "@context": [
       "https://www.w3.org/2018/credentials/v1"
     ],
-    "id": "aba6dc95-d9ac-43e2-ad6d-4e5120c15a2d",
+    "id": "4f294b40-addc-4c39-840c-c17432680538",
     "type": [
       "VerifiableCredential"
     ],
-    "issuer": "did:key:z6Mkr5ZYL24Zm9CYfpLVoa7ydsEQNaohmsXCikYxJii7tdqC",
-    "issuanceDate": "2023-05-29T19:30:34Z",
+    "issuer": "did:key:z6MkjePG6UBCLbrgUQgURoTSuXAbRpDbCdTLEPUXDqUC4EFw",
+    "issuanceDate": "2023-07-31T15:38:58Z",
     "expirationDate": "2051-10-05T14:48:00.000Z",
     "credentialSubject": {
       "employedAt": "2022-08-20T13:20:10.000+0000",
@@ -336,11 +334,11 @@ The following response should be returned:
       "id": "did:key:z6MkqcFHFXqzsYyDYrEUA2pVCfQGJz2rYoCZy5WWszzSW3o6"
     },
     "credentialSchema": {
-      "id": "6557d0a5-5e2e-427c-80fa-3c220c57648a",
+      "id": "525358c8-1949-495e-becf-aa19d4da6a69",
       "type": "CredentialSchema2023"
     }
   },
-  "credentialJwt": "eyJhbGciOiJFZERTQSIsImtpZCI...."
+  "credentialJwt": "eyJhbGciOiJFZERTQSIsImtpZCI6ImRpZDprZXk6ejZNa2plUEc2VUJ..."
 }
 ```
 
