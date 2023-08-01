@@ -1,5 +1,5 @@
 import { test, beforeAll, expect, describe } from 'vitest';
-import { didCreate, createTextRecord } from '../src/util/web5';
+import { didCreate, createTextRecord } from '../src/util/code-snippets';
 
 // This is the web5 instance that will be referred to for all tests. This comes back as a result from Web5.connect() being used in the didCreate function.
 let web5;

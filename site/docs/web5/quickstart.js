@@ -9,7 +9,7 @@ import Web5QuickstartUpdateDwn from './_quickstart-07-update-record.mdx';
 import Web5QuickstartDeleteDwn from './_quickstart-08-delete-record.mdx';
 import Web5QuickstartNextSteps from './_quickstart-10-next-steps.mdx';
 
-import { didCreate, dwnWriteTextRecord } from '../../src/util/web5';
+import { didCreate, createTextRecord } from '../../src/util/code-snippets';
 
 let web5;
 let createRecordResult;
@@ -142,11 +142,15 @@ function Web5Quickstart() {
     // event listeners
 
     didCreateInputButton.addEventListener('click', async () => {
-      let did = await didCreate();
+      let result = await didCreate();
 
-      web5 = did.web5;
+      let did = result.did;
 
-      didCreateOutputSummaryCode.innerHTML = did.aliceDid;
+      web5 = result.web5;
+
+      console.log(did);
+
+      didCreateOutputSummaryCode.innerHTML = did;
 
       dwnWriteInputButton.disabled = false;
       dwnWriteInputText.disabled = false;
@@ -178,9 +182,9 @@ function Web5Quickstart() {
 
       let data = dwnWriteInputText.value;
 
-      let result = await dwnWriteTextRecord(web5, data);
+      let result = await createTextRecord(web5, data);
 
-      createRecordResult = result;
+      createRecordResult = result.record;
 
       dwnWriteOutputDetailsTextarea.value +=
         JSON.stringify(result, null, 2) + '\n';
@@ -204,6 +208,8 @@ function Web5Quickstart() {
       dwnReadInputProgress.style.visibility = 'visible';
 
       dwnReadOutput.innerHTML = '';
+
+      console.log('createRecordResult', createRecordResult);
 
       const result = await createRecordResult.data.text();
 
