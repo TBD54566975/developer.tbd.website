@@ -24,15 +24,6 @@ importers:
         specifier: ^8.13.13
         version: 8.13.13
 
-  examples/node:
-    dependencies:
-      '@rollup/plugin-node-resolve':
-        specifier: ^13.0.6
-        version: 13.3.0(rollup@2.79.1)
-      '@tbd54566975/web5':
-        specifier: ^0.7.11
-        version: 0.7.11
-
   examples/tutorials/todo-completed:
     dependencies:
       '@headlessui/vue':

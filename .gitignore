@@ -4,6 +4,7 @@
 
 # Production
 /site/build
+examples/web5-quickstart-widgets/bundle.js
 
 # Generated files
 .docusaurus
