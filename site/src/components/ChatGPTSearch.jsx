@@ -105,7 +105,7 @@ const ChatSearch = () => {
 
   return (    
     <div>
-      <div className={`fixed width right-0 top-0 h-screen bg-primary-yellow text-primary-black transition-transform duration-200 ease-in-out transform ${isOpen ? 'translate-x-0' : 'translate-x-full'} z-[999] overflow-y-auto w-full md:w-1/2 lg:w-1/3`}>
+      <div className={`fixed width right-0 top-0 h-screen bg-primary-yellow text-primary-black transition-transform duration-200 ease-in-out transform ${isOpen ? 'translate-x-0' : 'translate-x-full'} z-[9999999] overflow-y-auto w-full md:w-1/2 lg:w-1/3`}>
         <div className="p-4">
           <div className="flex justify-end my-4">
             <button onClick={handleClose} className="w-[fit-content] px-[1.375rem] mb-2 mr-2 button-text border-solid pt-[12px] pb-[14px] border-2 hover:translate-x-[4px] hover:translate-y-[4px] bg-primary-yellow dark:bg-transparent text-primary-black shadow-button-sh border-primary-black hover:shadow-button-sh-hv  dark:shadow-button-sh-cyan dark:border-accent-cyan dark:hover:shadow-button-sh-hv-cyan dark:text-accent-cyan">Close</button>
