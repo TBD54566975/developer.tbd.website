@@ -20,16 +20,16 @@ export async function createTextRecord(textData) {
   return result;
 }
 
-async function dwnUpdateDataFromRecordWithId(data) {
+export async function dwnUpdateDataFromRecordWithId(data) {
   await record.update({ data });
   return await record.data.text();
 }
 
-async function dwnReadDataFromRecordWithId() {
+export async function dwnReadDataFromRecordWithId() {
   return await record.data.text();
 }
 
-async function dwnDeleteRecordWithId() {
+export async function dwnDeleteRecordWithId() {
   await record.delete();
   record = null;
 }
@@ -37,6 +37,7 @@ async function dwnDeleteRecordWithId() {
 /* ========== Web5 ========== */
 /* ========================== */
 
+// TODO: co-locate any scripts that reference/manipulate the dom with the html, as test are failing otherwise.
 document.querySelector("progress").remove();
 
 let didCreateInputButton = document.querySelector("#did-create .input button");
@@ -194,3 +195,4 @@ dwnDeleteInputButton.addEventListener("click", async () => {
 
   update();
 });
+ 
