@@ -90,23 +90,6 @@ The following response should be returned:
 
 ```js
 {"status":"OK"}
-curl localhost:8080/readiness
-{ 
-  "status": { 
-    "status": "ready",
-    "message": "all service ready"
-  },
-  "serviceStatuses": {
-    "credential": { 
-      "status": "ready" 
-    },
-    "did": { 
-      "status": "ready"
-    }, "schema": {
-      "status": "ready"
-    } ...
-  }
-}
 ```
 
 <Divider type="slash" />
