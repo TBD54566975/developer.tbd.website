@@ -1,5 +1,5 @@
 ---
-sidebar_position: 1
+sidebar_position: 2
 title: Create Credentials
 hide_title: true
 ---
@@ -8,20 +8,14 @@ hide_title: true
 
 VCs are a core component of [SSI](/docs/glossary#self-sovereign-identity-ssi) systems and work hand-in-hand with [DIDs](/docs/web5/learn/decentralized-identifiers). In this tutorial we'll show you how DIDs are used to represent the issuer as well as the subject of the credential, and to define which content is in the credential we make use of JSON schemas.
 
-:::note
-SSI Service is still in tech preview and not intended to be used in production applications.
-:::
-
 ## **Narrative**
 Alice starts a new job at Acme and she'd like a VC proving her current employment status.
 
 To request a VC, Alice logs into Acme's internal employee portal and clicks Employment Verification. Clicking the button will invoke the VC credential process via the [SSI Service](https://github.com/TBD54566975/ssi-service) Acme is hosting.
 
-Once the process has completed, a new Employment Status VC will be sent to Alice's identity wallet. (WIP, come back to if this is true)
+Once the process has completed, a new Employment Status VC can be sent to Alice's identity wallet.
 
-<Divider type="slash" />
-
-## **Steps to Create a Verifiable Credential**
+## **Steps to Create a VC**
 
 **[1. SSI Service Setup](#ssi-service-setup)**
 
@@ -32,9 +26,9 @@ Once the process has completed, a new Employment Status VC will be sent to Alice
 
 **[2. Create a Verifiable Credential](#create-verifiable-credential)**
 
-<Divider type="dotted" />
+<Divider type="slash" />
 
-## **SSI Service Setup**
+## **1. SSI Service Setup**
 
 **a. Clone and Run SSI Service**
 
@@ -144,7 +138,7 @@ The following response should be returned:
 As you can see the DID returned here is using `key` as its DID method. Learn more about other [DID methods](https://www.w3.org/TR/did-spec-registries/#did-methods).
 
 :::note
-  Important: Make sure to copy and set aside Acme's `DID` and the `id` property under the first object in the `verificationMethod` array.
+  Important: Make sure to copy and set aside your response from above for the next step.
 :::
 
 **c. Create DID for Credential Subject (Alice)**
@@ -161,17 +155,19 @@ However, if you'd prefer to create a new DID for Alice, run:
 curl -X PUT -d '{"keyType":"Ed25519"}' localhost:8080/v1/dids/key
 ```
 
-**d. Create Credential Schema**
+**d. Create a Credential Schema**
 
-:::info
-  A [Credential Schema](https://www.w3.org/TR/vc-json-schema) is a document that defines the structure of a VC. It's based on the [json schema](https://json-schema.org) and shows which properties the issuer is going to use to create the VC.
-:::
+A [Credential Schema](https://www.w3.org/TR/vc-json-schema) is a document that defines the structure of a VC. It's based on the [json schema](https://json-schema.org) and shows which properties the issuer is going to use to create the VC.
 
-Let's create a *signed* Credential Schema for Alice's Employment Status VC:
+Because we want to include information about the subject in the credential, let's first create a schema to define the shape of the credential's data with the following values:
 - Set `issuer` to Acme's DID.
-- Set `verificationMethodId` to the `id` property under the first object in the `verificationMethod` array above.
+- Set `verificationMethodId` to the `id` property of the first object in the `verificationMethod` array.
 - The `employedAt` property is a timestamp data type to define the date and time someone was employed at Acme.
 - Our `schema` object conforms to the Draft 2020-12 schema version, so set its `$schema` property to [json-schema.org/draft/2020-12/schema](/files/schema.txt).
+
+:::note
+Although it is not required to add `issuer` and `verificationMethodId` when creating a credential schema, we're adding them in this example to show how you can prove who created the schema, an extra layer of security, and that it's not been tampered with.
+:::
 
 Once we have our schema, we'll submit it to the service with a PUT request to `v1/schemas`:
 
@@ -220,7 +216,7 @@ The following response should be returned:
 
 <Divider type="dotted" />
 
-## **Create Verifiable Credential**
+## **2. Create Verifiable Credential**
 
 Now we have all three objects needed to create a VC:
 
