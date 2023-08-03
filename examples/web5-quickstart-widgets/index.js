@@ -4,19 +4,20 @@ let web5;
 let myDid;
 let record;
 
-async function didCreate() {
-  ({ web5, did: myDid } = await Web5.connect());
-  return myDid;
+export async function didCreate() {
+  return await Web5.connect();
 }
 
-async function dwnWriteTextRecord(inputText) {
-  ({ record } = await web5.dwn.records.create({
-    data: inputText,
+export async function createTextRecord(textData) {
+  const result = await web5.dwn.records.create({
+    data: textData,
     message: {
       dataFormat: "text/plain",
     },
-  }));
-  return record;
+  });
+
+  record = result.record;
+  return result;
 }
 
 async function dwnUpdateDataFromRecordWithId(data) {
@@ -123,7 +124,9 @@ function update() {
 }
 
 didCreateInputButton.addEventListener("click", async () => {
-  myDid = await didCreate();
+  const result = await didCreate();
+  myDid = result.did;
+  web5 = result.web5;
   registered = true;
   update();
 });
@@ -146,7 +149,7 @@ dwnWriteInputButton.addEventListener("click", async () => {
   dwnWriteInputButton.disabled = true;
   dwnWriteInputProgress.style.visibility = "visible";
   dwnWriteOutputSummary.innerHTML = "...";
-  await dwnWriteTextRecord(dwnWriteInputFile.value);
+  await createTextRecord(dwnWriteInputFile.value);
   dwnWriteOutputDetailsTextarea.value = "ALR WHAT";
   dwnWriteInputButton.disabled = false;
   dwnWriteInputProgress.style.visibility = "hidden";

@@ -6,9 +6,17 @@
     "start:tutorial-todo-completed": "pnpm --filter todo-completed run dev",
     "start:widget": "pnpm --filter web5-quickstart-widgets start",
     "build": "pnpm --filter site run build",
-    "clear": "pnpm --filter site run clear"
+    "clear": "pnpm --filter site run clear",
+    "test": "pnpm vitest --config vite.config.ts"
   },
   "dependencies": {
     "@tbd54566975/web5": "0.7.11"
+  },
+  "devDependencies": {
+    "@vitest/browser": "^0.33.0",
+    "@vitest/coverage-istanbul": "^0.33.0",
+    "fake-indexeddb": "^4.0.2",
+    "vitest": "^0.33.0",
+    "webdriverio": "^8.13.13"
   }
 }

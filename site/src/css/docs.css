@@ -181,7 +181,7 @@
 
 .docs-wrapper
   #__docusaurus
-  p:not(.docs-section p, .alert p, .figure-container p, .api-card p) {
+  p:not(.docs-section p, .alert p, .figure-container p, .api-card p, .search-widget p) {
   font-size: 1.125rem;
   color: var(--color-white);
 }
