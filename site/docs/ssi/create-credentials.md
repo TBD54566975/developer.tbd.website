@@ -8,6 +8,10 @@ hide_title: true
 
 VCs are a core component of [SSI](/docs/glossary#self-sovereign-identity-ssi) systems and work hand-in-hand with [DIDs](/docs/web5/learn/decentralized-identifiers). In this tutorial we'll show you how DIDs are used to represent the issuer as well as the subject of the credential, and to define which content is in the credential we make use of JSON schemas.
 
+:::info
+SSI Service is in tech preview mode, and not intended to be used in production applications at this time.
+:::
+
 ## **Narrative**
 Alice starts a new job at Acme and she'd like a VC proving her current employment status.
 
