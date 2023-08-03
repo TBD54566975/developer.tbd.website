@@ -2,23 +2,29 @@
 import { onBeforeMount, ref, toRaw } from 'vue';
 import { PlusIcon as PlusIconMini } from '@heroicons/vue/solid';
 import { CheckCircleIcon, TrashIcon } from '@heroicons/vue/outline';
-import { Web5 } from '@tbd54566975/web5';
+import {didCreate, createRecordWithSchema, queryDWNRecords, deleteRecord, readRecord, updateRecord} from './code-snippets'
 
 let web5;
 let myDid;
 const todos = ref([]);
 
 onBeforeMount(async () => {
-  ({ web5, did: myDid } = await Web5.connect());
-  // Populate todos from DWN
-  const { records } = await web5.dwn.records.query({
+  const result = await didCreate()
+
+  web5 = result.web5
+  myDid = result.did
+
+  const queryResult = await queryDWNRecords(web5, {
     message: {
       filter: {
         schema: 'http://some-schema-registry.org/todo'
       },
       dateSort: 'createdAscending'
     }
-  });
+  })
+
+  // Populate todos from DWN
+  const records = queryResult.records;
   
   // Add entry to Todo array
   for (let record of records) {
@@ -41,14 +47,18 @@ async function addTodo() {
   console.log(todoData);
 
   // Create the record.
-  const { record } = await web5.dwn.records.create({
+  const result =  await createRecordWithSchema(web5, {
     data    : todoData,
     message : {
       schema     : 'http://some-schema-registry.org/todo',
       dataFormat : 'application/json'
     }
-  });
+  })
 
+  
+  const record = result.record;
+  
+  
   // add DWeb message recordId as a way to reference the message for further operations
   // e.g. updating it or overwriting it
   const data = await record.data.json();
@@ -60,7 +70,8 @@ async function deleteTodo(todoItem) {
   let deletedTodo;
   let index = 0;
 
-  for (let todo of todos.value) {
+  for (let todo of toRaw(todos.value)) {
+
     if (todoItem.id === todo.id) {
       deletedTodo = todo;
       break;
@@ -70,13 +81,12 @@ async function deleteTodo(todoItem) {
 
   todos.value.splice(index, 1);
 
+  console.log('deletedTodo', deletedTodo.record)
+
   // Delete the record.
-  await web5.dwn.records.delete({
-    message: {
-      recordId: deletedTodo.id
-    }
-  });
+  await deleteRecord(deletedTodo.record);
 }
+
 
 // Toggling Todo Status
 async function toggleTodoComplete(todoItem) {
@@ -93,14 +103,12 @@ async function toggleTodoComplete(todoItem) {
   }
 
   // Read the record
-  const { record } = await web5.dwn.records.read({
-    message: {
-      recordId: toggledTodo.id,
-    }
-  });
+  const result = await readRecord(web5, {message: {recordId: toggledTodo.id}})
+
+  const record = result.record
 
   // Update the record
-  await record.update({ data: updatedTodoData });
+  await updateRecord(record);
 }
 
 </script>
