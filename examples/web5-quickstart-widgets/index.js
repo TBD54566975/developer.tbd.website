@@ -1,35 +1,29 @@
-import { Web5 } from "@tbd54566975/web5/browser";
+import { Web5 } from "/node_modules/@tbd54566975/web5/dist/browser.mjs";
 
-let web5;
-let myDid;
-let record;
-
- export async function didCreate() {
+export async function didCreate() {
   return await Web5.connect();
 }
 
-export async function createTextRecord(textData) {
+export async function createTextRecord(web5, textData) {
   const result = await web5.dwn.records.create({
     data: textData,
     message: {
       dataFormat: "text/plain",
     },
   });
-
-  record = result.record;
   return result;
-} 
+}
 
-export async function dwnUpdateDataFromRecordWithId(data) {
+export async function dwnUpdateDataFromRecord(record, data) {
   await record.update({ data });
   return await record.data.text();
 }
 
-export async function dwnReadDataFromRecordWithId() {
+export async function dwnReadDataFromRecord(record) {
   return await record.data.text();
 }
 
-export async function dwnDeleteRecordWithId() {
+export async function dwnDeleteRecord(record) {
   await record.delete();
   record = null;
 }
