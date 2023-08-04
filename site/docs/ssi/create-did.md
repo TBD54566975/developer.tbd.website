@@ -1,6 +1,6 @@
 ---
-sidebar_position: 3
-title: Create DID
+sidebar_position: 2
+title: Create a DID
 hide_title: true
 ---
 
@@ -14,11 +14,15 @@ In the world of SSI, [DIDs](/docs/web5/learn/decentralized-identifiers) are used
 Follow guide to [Clone & Run SSI Service](run-ssi-service).
 :::
 
-**To create your DID run:**
+**To create your DID run the following request**
+
+The returned DID is using `key` as its DID method because that's what we specified in our request:
 
 ```sh
 curl -X PUT -d '{"keyType":"Ed25519"}' localhost:8080/v1/dids/key
 ```
+
+Other supported DID methods are `ion` and `web`. Learn more about [DID methods](https://www.w3.org/TR/did-spec-registries/#did-methods).
 
 The following response should be returned:
 
@@ -79,4 +83,8 @@ The following response should be returned:
 The DID returned is using `key` as its DID method. Learn more about other [DID methods](https://www.w3.org/TR/did-spec-registries/#did-methods).
 
 ### DID Keytypes
-Each DID has one or more keys, and each key has a type. Some [keytypes](https://w3c-ccg.github.io/did-method-key/#format) give you different properties and can be used for different purposes. Some keys are better for signing, others for encryption. Some are even provided by the government (NIST). There are variations on how they're constructed to give different security properties. You can use any number of DID types but we recommend `Ed25519` as it's sufficient for most use cases.
+Each DID has one or more keys, and each key has a type. In our request, we specified `Ed25519` as it's sufficient for most use cases:
+
+`curl -X PUT -d '{"keyType":"Ed25519"}' localhost:8080/v1/dids/key`
+
+Some [keytypes](https://w3c-ccg.github.io/did-method-key/#format) give you different properties and can be used for different purposes. Some keys are better for signing, others for encryption. Some are even provided by the government (NIST). There are variations on how they're constructed to give different security properties.
