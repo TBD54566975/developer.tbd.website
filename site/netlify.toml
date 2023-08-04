@@ -1,6 +1,6 @@
 [[redirects]]
-from = "/docs/tutorials/issue-verifiable-credential-manually"
-to = "/blog/issue-verifiable-credential-manually"
+from = "/blog/issue-verifiable-credential-manually"
+to = "/docs/ssi/create-credentials"
 
 [[redirects]]
 from = "/code-of-conduct"
