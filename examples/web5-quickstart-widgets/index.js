@@ -4,7 +4,7 @@ let web5;
 let myDid;
 let record;
 
-export async function didCreate() {
+ export async function didCreate() {
   return await Web5.connect();
 }
 
@@ -18,7 +18,7 @@ export async function createTextRecord(textData) {
 
   record = result.record;
   return result;
-}
+} 
 
 export async function dwnUpdateDataFromRecordWithId(data) {
   await record.update({ data });
