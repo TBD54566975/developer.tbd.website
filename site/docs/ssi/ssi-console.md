@@ -133,4 +133,4 @@ Submissions: When an employer asks a job applicant to submit an education VC for
 
 ## Next Steps
 - See SSI Service [API Docs](https://developer.tbd.website/docs/apis/ssi-service)
-- Learn how to [manually issue a VC](https://developer.tbd.website/blog/issue-verifiable-credential-manually/)
+- Learn how to [create a VC](create-credentials)
