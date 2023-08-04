@@ -21,9 +21,9 @@ Once the process has completed, a new Employment Status VC can be sent to Alice'
 
 ## **Steps to Create a VC**
 
-**[1. SSI Service Setup](#ssi-service-setup)**
+**[1. SSI Service Setup](#ssi-service-setup)** 
 
-  - Clone & Run SSI Service
+  - [Clone & Run SSI Service](run-ssi-service)
   - Create Decentralized Identifier (DID) for Credential Issuer (Acme)
   - Create or obtain DID for Credential Subject (Alice)
   - Create Credential Schema
@@ -32,45 +32,9 @@ Once the process has completed, a new Employment Status VC can be sent to Alice'
 
 <Divider type="slash" />
 
-## **1. SSI Service Setup**
+## **SSI Service Setup**
 
-**a. Clone and Run SSI Service**
-
-Locally clone the SSI Service repo:
-
-```
-git clone https://github.com/TBD54566975/ssi-service.git
-```
-
-The SSI Service is packaged as a Docker container and a Docker Compose file is
-included to make it simple to run the service locally. First make sure you
-have [Docker downloaded](https://www.docker.com/products/docker-desktop/) and running on your desktop:
-
-Switch to the build folder:
-
-```sh
-cd ssi-service/build
-```
-
-Run the Docker Compose file:
-
-```sh
-docker-compose up --build
-```
-
-If you'd like to confirm the SSI service and sub-services are functioning, check the health and readiness endpoints:
-
-```sh
-curl localhost:8080/health
-```
-
-The following response should be returned:
-
-```js
-{ "status":"OK" }
-```
-
-**b. Create DID for Credential Issuer (Acme)**
+**a. Create DID for Credential Issuer (Acme)**
 
 In the world of SSI, DIDs are used to identify any subject (e.g., a person, organization, thing, data model, abstract entity, etc.). In this scenario, both Acme (issuer) and Alice (subject) are represented by their DIDs in the VC creation process.
 
@@ -145,7 +109,7 @@ As you can see the DID returned here is using `key` as its DID method. Learn mor
   Important: Make sure to copy and set aside your response from above for the next step.
 :::
 
-**c. Create DID for Credential Subject (Alice)**
+**b. Create DID for Credential Subject (Alice)**
 
 Here's a generic DID you can use for Alice for testing purposes:
 
@@ -159,7 +123,7 @@ However, if you'd prefer to create a new DID for Alice, run:
 curl -X PUT -d '{"keyType":"Ed25519"}' localhost:8080/v1/dids/key
 ```
 
-**d. Create a Credential Schema**
+**c. Create a Credential Schema**
 
 A [Credential Schema](https://www.w3.org/TR/vc-json-schema) is a document that defines the structure of a VC. It's based on the [json schema](https://json-schema.org) and shows which properties the issuer is going to use to create the VC.
 
@@ -220,7 +184,7 @@ The following response should be returned:
 
 <Divider type="dotted" />
 
-## **2. Create Verifiable Credential**
+## **Create Verifiable Credential**
 
 Now we have all three objects needed to create a VC:
 
@@ -282,10 +246,3 @@ The VC is signed and packaged as a JWT in the credentialJwt property. If you're 
 Once you've created multiple credentials, you can view all credentials by making a GET request to `/v1/credentials`. This endpoint also supports three query parameters: `issuer`, `schema`, and `subject` which can be used mutually exclusively.
 
 You can get a single credential by making a `GET` request to `/v1/credentials/{id}`.
-
-<Divider type="slash" />
-
-## Next Steps
-- Learn more about [SSI Service](run-ssi-service) and how to run it.
-- Check out the [SSI Console](ssi-console) which leverages the SSI Service to simplify credential issuance and verification via a web interface.
-- Check out the [SSI SDK project](https://github.com/TBD54566975/ssi-sdk).
