@@ -22,12 +22,9 @@ describe('/examples/web5-quickstart-widgets/__tests__/widget.test.js', () => {
         expect(typeof aliceDid).toBe('string');
         const didRegex = /^did:[a-z0-9]+:.+/i;
         expect(didRegex.test(aliceDid)).toBe(true);
-      });
+    });
 
-    /* failing with: TypeError: Cannot read properties of undefined (reading 'dwn')
- ❯ Module.createTextRecord http:/localhost:63315/examples/web5-quickstart-widgets/index.js:15:29
- */
-    test.skip('createTextRecord returns a record with aliceDid being the same value as the author attribute', async () => {
+    test('createTextRecord returns a record with aliceDid being the same value as the author attribute', async () => {
         // This is where we write a text record and assign the result to the recordResult variable.
         const response = await createTextRecord(web5, textInput);
         recordResult = response.record;
@@ -35,8 +32,24 @@ describe('/examples/web5-quickstart-widgets/__tests__/widget.test.js', () => {
         expect(recordResult.author).toBe(aliceDid);
     });
 
-    test.skip('recordResult returns a record with the textInput being the same value as the data attribute', async () => {
+    test('recordResult returns a record with the textInput being the same value as the data attribute', async () => {
         const textResult = await recordResult.data.text();
         expect(textResult).toBe(textInput);
-      });
+    });
+
+    test('recordResult successfully sends an updated textInput', async () => {
+        const updatedRecordResult = await recordResult.update({
+            data: updatedTextInput,
+        });
+
+        expect.soft(updatedRecordResult.status.code).toBe(202);
+        expect(updatedTextInput).toBe(await recordResult.data.text());
+    });
+
+    test('recordResult successfully deletes the record', async () => {
+        const deletedRecordResult = await recordResult.delete();
+        expect.soft(deletedRecordResult.status.code).toBe(202);
+
+        expect(recordResult.isDeleted).toBe(true);
+    });
 });
