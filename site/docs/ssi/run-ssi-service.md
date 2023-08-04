@@ -46,8 +46,8 @@ The SSI Service facilitates all things relating to DIDs and Verifiable Credentia
 <Divider type="slash" />
 
 ## Core Functionality
-- Create and manage [Decentralized Identifiers](https://developer.tbd.website/docs/web5/learn/decentralized-identifiers)
-- Create and manage [Verifiable Credentials](https://www.w3.org/TR/vc-data-model/)
+- Create and manage [Decentralized Identifiers](/docs/web5/learn/decentralized-identifiers)
+- Create and manage [Verifiable Credentials](create-credentials)
 - Credential status updates, including suspension and revocation
 - Interacting with the SSI ecosystem and its myriad components to:
   - Apply for credentials
@@ -90,29 +90,10 @@ The following response should be returned:
 
 ```js
 {"status":"OK"}
-curl localhost:8080/readiness
-{ 
-  "status": { 
-    "status": "ready",
-    "message": "all service ready"
-  },
-  "serviceStatuses": {
-    "credential": { 
-      "status": "ready" 
-    },
-    "did": { 
-      "status": "ready"
-    }, "schema": {
-      "status": "ready"
-    } ...
-  }
-}
 ```
 
 <Divider type="slash" />
 
 ## Next Steps
-
-- Learn how to [manually issue a VC](/blog/issue-verifiable-credential-manually/).
 - Check out the [SSI Console](ssi-console) which leverages the SSI Service to simplify credential issuance and verification via a web interface.
 - Check out the [SSI SDK project](https://github.com/TBD54566975/ssi-sdk).

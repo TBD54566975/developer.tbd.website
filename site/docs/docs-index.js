@@ -86,7 +86,7 @@ function DocsIndex() {
         <ExploreCard
           text="Sample Apps"
           icon="/img/docs-app.svg"
-          url="https://github.com/TBD54566975/developer.tbd.website/examples"
+          url="https://github.com/TBD54566975/developer.tbd.website/tree/main/examples"
         />
         <ExploreCard
           text="Videos"
