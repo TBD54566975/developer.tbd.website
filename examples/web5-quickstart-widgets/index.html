@@ -208,7 +208,7 @@
   let registered = false;
 
   function update() {
-    if(record?.isDeleted) {
+    if(record && record?.isDeleted) {
       record = null;
     }
 
@@ -245,7 +245,7 @@
     dwnUpdateInputButton.disabled = noRecord || !dwnUpdateInputFile.value;
 
     dwnDeleteInputButton.disabled = noRecord;
-    dwnDeleteOutputSummary.innerHTML = noRecord ? `&#x2714; Deleted!` : "...";
+    dwnDeleteOutputSummary.innerHTML = record?.isDeleted ? `&#x2714; Deleted!` : "...";
     dwnDeleteOutputDetailsTextarea.value = noRecord
       ? JSON.stringify(record, null, 2)
       : "";
