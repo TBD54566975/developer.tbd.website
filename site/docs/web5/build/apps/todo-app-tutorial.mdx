@@ -99,6 +99,7 @@ Add to `src/App.vue`:
 ```js
 onBeforeMount(async () => {
   ({ web5, did: myDid } = await Web5.connect());
+});
 ```
 
 ## Displaying Todos
@@ -117,6 +118,7 @@ onBeforeMount(async () => {
       dateSort: 'createdAscending'
     }
   });
+});
 ```
 
 Once you’ve loaded the query data, you can map this data from the DWN into an object for your app to use:
@@ -178,7 +180,7 @@ In the template add this code block to `<!-- Add ToDos Form -->`:
 </div>
 ```
 
-Then, writing a ToDo into storage is done by binding a `addTodo()` method to the UI and leveraging the `newTodoDescription` model referenced in the `textarea` to call the `web5` method `dwn.records.write`:
+Then, writing a ToDo into storage is done by binding a `addTodo()` method to the UI and leveraging the `newTodoDescription` model referenced in the `textarea` to call the `web5` method `dwn.records.create`:
 
 ```js
 // Adding ToDos
