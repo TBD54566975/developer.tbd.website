@@ -14,15 +14,11 @@ In the world of SSI, [DIDs](/docs/web5/learn/decentralized-identifiers) are used
 Follow guide to [Clone & Run SSI Service](run-ssi-service).
 :::
 
-**To create your DID run the following request**
-
-The returned DID is using `key` as its DID method because that's what we specified in our request:
+**To create your DID, run the following request**
 
 ```sh
 curl -X PUT -d '{"keyType":"Ed25519"}' localhost:8080/v1/dids/key
 ```
-
-Other supported DID methods are `ion` and `web`. Learn more about [DID methods](https://www.w3.org/TR/did-spec-registries/#did-methods).
 
 The following response should be returned:
 
@@ -80,7 +76,7 @@ The following response should be returned:
 ```
 
 ### DID Methods
-The DID returned is using `key` as its DID method. Learn more about other [DID methods](https://www.w3.org/TR/did-spec-registries/#did-methods).
+The returned DID is using `key` as its DID method because that's what we specified in our request. Other supported DID methods are `ion` and `web`. Learn more about [DID methods](https://www.w3.org/TR/did-spec-registries/#did-methods).
 
 ### DID Keytypes
 Each DID has one or more keys, and each key has a type. In our request, we specified `Ed25519` as it's sufficient for most use cases:
