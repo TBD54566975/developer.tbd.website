@@ -10,9 +10,7 @@
     "build": "pnpm --filter site run build"
   },
   "dependencies": {
-    "@tbd54566975/web5": "0.7.11"
-  },
-  "devDependencies": {
+    "@tbd54566975/web5": "0.7.11",
     "@vitejs/plugin-vue": "4.2.3",
     "@vitest/browser": "^0.33.0",
     "@vitest/coverage-istanbul": "^0.33.0",
