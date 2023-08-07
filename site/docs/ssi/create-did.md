@@ -79,9 +79,7 @@ A [DID document](/docs/glossary#did-document) will be returned, which includes t
 ```
 
 ### DID Methods
-The returned DID
-`did:key:z6MkjePG6UBCLbrgUQgURoTSuXAbRpDbCdTLEPUXDqUC4EFw`
- is using `key` as its DID method because that's what we specified in our request:
+The returned DID `did:key:z6MkjePG6UBCLbrgUQgURoTSuXAbRpDbCdTLEPUXDqUC4EFw` is using `key` as its DID method because that's what we specified in our request:
 
 ```bash
 curl -X PUT -d '{"keyType":"Ed25519"}' localhost:8080/v1/dids/key
