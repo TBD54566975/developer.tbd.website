@@ -1,7 +1,9 @@
 ---
 title: Identity (DIDs)
+hide_title: true
 ---
 
+# Decentralized Identifiers
 **5 minute read**
 
 Alice and Bob want to participate in the decentralized web. We're going to learn about how Alice and Bob do that using Web5 and the concepts that make up the Web5 ecosystem.
@@ -10,13 +12,11 @@ Alice and Bob want to participate in the decentralized web. We're going to learn
 
 ### TL;DR
 
-Alice and Bob decide to get DIDs so they can participate in the decentralized internet.
-
-They need DIDs so that others can easily find them on the decentralized web. This is just like how someone would find a website by typing a URL into a web browser, or a person by searching for their handle on a social media platform. Once they find Alice or Bob through their DIDs, they can do things like save them to their contact list, or message them through decentralized channels.
+Alice and Bob decide to get Decentralized Identifiers (DIDs) so that others can easily find them on the decentralized web. This is just like how someone would find a website by typing a URL into a web browser, or a person by searching for their handle on a social media platform. Once they find Alice or Bob through their DIDs, they can do things like save them to their contact list, or message them through decentralized channels.
 
 ### Let's learn more
 
-A [Decentralized Identifier (DID)](https://www.w3.org/TR/did-core/) is an address representing who you are on the decentralized web. It can point to a person, organization, thing, data model, or abstract entity. It's through your DID that others can send messages and data, and be granted access to information you wish to share.
+A [DID](https://www.w3.org/TR/did-core/) is an address representing who you are on the decentralized web. It can point to a person, organization, thing, data model, or abstract entity. It's through your DID that others can send messages and data, and be granted access to information you wish to share.
 
 A DID is a "type of identifier that enables verifiable, decentralized digital identity" ([DID Core Spec](https://www.w3.org/TR/did-core/)). It is created and managed independently of any centralized authority or organization. The basic idea behind a DID is to give individuals and organizations control over their own identity information and to allow them to share that information selectively and securely with others as needed. This means that they can choose when and how to share their identity information, and with whom.
 
