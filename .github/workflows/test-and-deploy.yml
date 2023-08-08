@@ -1,16 +1,12 @@
-name: Deploy to Netlify
+name: Test and Deploy to Netlify
 
 on:
-  pull_request:
-    branches:
-      - main
   push:
-    branches-ignore:
+    branches:
       - main
 
 jobs:
   test:
-    name: Run Tests
     runs-on: ubuntu-latest
 
     steps:
@@ -31,35 +27,10 @@ jobs:
     - name: Run tests
       run: pnpm test
 
-  build:
-    name: Build and Deploy to Netlify
+  deploy:
     needs: test
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
-
-    - name: Setup Node.js
-      uses: actions/setup-node@v2
-      with:
-        node-version: '18'
-
-    - name: Install pnpm
-      run: npm install -g pnpm
-
-    - name: Install dependencies
-      run: pnpm install
-
-    - name: Build site
-      run: pnpm build
-
-    - name: Install Netlify CLI
-      run: npm install -g netlify-cli
-      
-    - name: Deploy to Netlify
-      env:
-        NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-        NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
-      run: netlify deploy --dir ./site/build --prod
-
+    - name: Trigger Netlify Build via Build Hook
+      run: curl -X POST -d {} ${{ secrets.TEST_BUILDHOOK }}
