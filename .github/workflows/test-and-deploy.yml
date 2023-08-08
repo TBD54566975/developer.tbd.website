@@ -35,9 +35,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Trigger Netlify Build via Build Hook
-      run: |
-        BRANCH_NAME=${GITHUB_REF##*/}
-        ENCODED_BRANCH_NAME=$(echo "$BRANCH_NAME" | sed 's|/|%2F|g')
-        TITLE="${ENCODED_BRANCH_NAME} Branch Deploy"
-        curl -X POST "https://api.netlify.com/build_hooks/${{ secrets.TEST_BUILDHOOK }}?trigger_branch=$ENCODED_BRANCH_NAME&trigger_title=$TITLE&clear_cache=true"
+      - name: Trigger Netlify Build via Build Hook with Dynamic Params
+        run: |
+          BRANCH_NAME=${GITHUB_REF##*/}
+          echo "Branch Name: $BRANCH_NAME"
+          ENCODED_BRANCH_NAME=$(echo "$BRANCH_NAME" | sed 's|/|%2F|g')
+          echo "Encoded Branch Name: $ENCODED_BRANCH_NAME"
+          TITLE="${ENCODED_BRANCH_NAME} Branch Deploy"
+          echo "Title: $TITLE"
+          curl -X POST "https://api.netlify.com/build_hooks/${{ secrets.TEST_BUILDHOOK }}?trigger_branch=$ENCODED_BRANCH_NAME&trigger_title=$TITLE&clear_cache=true"
+
