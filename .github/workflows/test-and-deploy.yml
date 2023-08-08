@@ -9,38 +9,37 @@ on:
       - main
 
 jobs:
-  # test:
-  #   runs-on: ubuntu-latest
-
-  #   steps:
-  #   - name: Checkout code
-  #     uses: actions/checkout@v2
-
-  #   - name: Setup Node.js
-  #     uses: actions/setup-node@v2
-  #     with:
-  #       node-version: '18'
-
-  #   - name: Install pnpm
-  #     run: npm install -g pnpm
-
-  #   - name: Install dependencies
-  #     run: pnpm install
-
-  #   - name: Run tests
-  #     run: pnpm test
-
-  deploy:
-    # needs: test
+  test:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Trigger Netlify Build via Build Hook with Dynamic Params
-        run: |
-          BRANCH_NAME=${GITHUB_REF##*/}
-          ENCODED_BRANCH_NAME=$(echo "$BRANCH_NAME" | sed 's|/|%2F|g')
-          echo "URL: https://api.netlify.com/build_hooks/${{ secrets.TEST_BUILDHOOK }}?trigger_branch=$ENCODED_BRANCH_NAME&trigger_title=$TITLE&clear_cache=true"
-          TITLE="${ENCODED_BRANCH_NAME} Branch Deploy"
-          curl -v -X POST -d "trigger_branch=$ENCODED_BRANCH_NAME&trigger_title=$TITLE&clear_cache=true" "https://api.netlify.com/build_hooks/${{ secrets.TEST_BUILDHOOK }}"
+    - name: Checkout code
+      uses: actions/checkout@v2
 
+    - name: Setup Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '18'
 
+    - name: Install pnpm
+      run: npm install -g pnpm
+
+    - name: Install dependencies
+      run: pnpm install
+
+    - name: Run tests
+      run: pnpm test
+
+  deploy:
+    needs: test
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Trigger Netlify Build via Build Hook with Dynamic Params
+      run: |
+        BRANCH_NAME=${GITHUB_REF##*/}
+        ENCODED_BRANCH_NAME=$(echo "$BRANCH_NAME" | sed 's|/|%2F|g' | sed 's| |%20|g')
+        TITLE="${BRANCH_NAME} Branch Deploy"
+        ENCODED_TITLE=$(echo "$TITLE" | sed 's| |%20|g')
+        echo "URL: https://api.netlify.com/build_hooks/${{ secrets.TEST_BUILDHOOK }}?trigger_branch=$ENCODED_BRANCH_NAME&trigger_title=$ENCODED_TITLE&clear_cache=true"
+        curl -v -X POST -d "trigger_branch=$ENCODED_BRANCH_NAME&trigger_title=$ENCODED_TITLE&clear_cache=true" "https://api.netlify.com/build_hooks/${{ secrets.TEST_BUILDHOOK }}"
