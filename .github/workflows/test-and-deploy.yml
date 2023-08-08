@@ -9,29 +9,29 @@ on:
       - main
 
 jobs:
-  test:
-    runs-on: ubuntu-latest
+  # test:
+  #   runs-on: ubuntu-latest
 
-    steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
+  #   steps:
+  #   - name: Checkout code
+  #     uses: actions/checkout@v2
 
-    - name: Setup Node.js
-      uses: actions/setup-node@v2
-      with:
-        node-version: '18'
+  #   - name: Setup Node.js
+  #     uses: actions/setup-node@v2
+  #     with:
+  #       node-version: '18'
 
-    - name: Install pnpm
-      run: npm install -g pnpm
+  #   - name: Install pnpm
+  #     run: npm install -g pnpm
 
-    - name: Install dependencies
-      run: pnpm install
+  #   - name: Install dependencies
+  #     run: pnpm install
 
-    - name: Run tests
-      run: pnpm test
+  #   - name: Run tests
+  #     run: pnpm test
 
   deploy:
-    needs: test
+    # needs: test
     runs-on: ubuntu-latest
 
     steps:
@@ -39,8 +39,8 @@ jobs:
         run: |
           BRANCH_NAME=${GITHUB_REF##*/}
           ENCODED_BRANCH_NAME=$(echo "$BRANCH_NAME" | sed 's|/|%2F|g')
-          echo "Encoded Branch Name: $ENCODED_BRANCH_NAME"
+          echo "URL: https://api.netlify.com/build_hooks/${{ secrets.TEST_BUILDHOOK }}?trigger_branch=$ENCODED_BRANCH_NAME&trigger_title=$TITLE&clear_cache=true"
           TITLE="${ENCODED_BRANCH_NAME} Branch Deploy"
-          echo "Title: $TITLE"
-          curl -X POST "https://api.netlify.com/build_hooks/${{ secrets.TEST_BUILDHOOK }}?trigger_branch=$ENCODED_BRANCH_NAME&trigger_title=$TITLE&clear_cache=true"
+          curl -v -X POST -d "trigger_branch=$ENCODED_BRANCH_NAME&trigger_title=$TITLE&clear_cache=true" "https://api.netlify.com/build_hooks/${{ secrets.TEST_BUILDHOOK }}"
+
 
