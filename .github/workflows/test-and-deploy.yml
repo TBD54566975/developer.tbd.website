@@ -37,9 +37,8 @@ jobs:
     steps:
     - name: Trigger Netlify Build via Build Hook with Dynamic Params
       run: |
-        BRANCH_NAME=${GITHUB_REF##*/}
-        ENCODED_BRANCH_NAME=$(echo "$BRANCH_NAME" | sed 's|/|%2F|g' | sed 's| |%20|g')
+        BRANCH_NAME=$(echo "${GITHUB_REF#refs/heads/}")
+        ENCODED_BRANCH_NAME=$(echo "$BRANCH_NAME" | sed 's|/|%2F|g')
         TITLE="${BRANCH_NAME} Branch Deploy"
         ENCODED_TITLE=$(echo "$TITLE" | sed 's| |%20|g')
-        echo "URL: https://api.netlify.com/build_hooks/${{ secrets.TEST_BUILDHOOK }}?trigger_branch=$ENCODED_BRANCH_NAME&trigger_title=$ENCODED_TITLE&clear_cache=true"
         curl -v -X POST -d "trigger_branch=$ENCODED_BRANCH_NAME&trigger_title=$ENCODED_TITLE&clear_cache=true" "https://api.netlify.com/build_hooks/${{ secrets.TEST_BUILDHOOK }}"
