@@ -1,9 +1,9 @@
 name: Deploy to Netlify
 
 on:
-  push:
+  pull_request:
     branches:
-      - issue-634/todo-completed-tests
+      - main
 
 jobs:
   test:
@@ -52,7 +52,7 @@ jobs:
       run: pnpm build
 
     - name: Deploy to Netlify
-      uses: netlify/actions/cli@master
+      uses: jsmrcaga/action-netlify-deploy@master
       env:
         NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
         NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
