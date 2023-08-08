@@ -36,4 +36,8 @@ jobs:
 
     steps:
     - name: Trigger Netlify Build via Build Hook
-      run: curl -X POST -d {} ${{ secrets.TEST_BUILDHOOK }}
+      run: |
+        BRANCH_NAME=${GITHUB_REF##*/}
+        ENCODED_BRANCH_NAME=$(echo "$BRANCH_NAME" | sed 's|/|%2F|g')
+        TITLE="${ENCODED_BRANCH_NAME} Branch Deploy"
+        curl -X POST "https://api.netlify.com/build_hooks/${{ secrets.TEST_BUILDHOOK }}?trigger_branch=$ENCODED_BRANCH_NAME&trigger_title=$TITLE&clear_cache=true"
