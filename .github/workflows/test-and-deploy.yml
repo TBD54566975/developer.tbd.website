@@ -54,10 +54,11 @@ jobs:
     - name: Build site
       run: pnpm build
 
+    - name: Install Netlify CLI
+      run: npm install -g netlify-cli
+
     - name: Deploy to Netlify
-      uses: jsmrcaga/action-netlify-deploy@master
-      env:
-        NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
-        NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-      with:
-        args: deploy --prod --dir ./site/build
+      run: |
+        netlify deploy --dir ./site/build --prod \
+        --auth ${{ secrets.NETLIFY_AUTH_TOKEN }} \
+        --site ${{ secrets.NETLIFY_SITE_ID }}
