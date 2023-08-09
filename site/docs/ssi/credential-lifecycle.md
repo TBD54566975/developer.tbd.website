@@ -3,7 +3,7 @@ sidebar_position: 2
 title: Credential Lifecyle Flow
 ---
 
-This tutorial walks you through the lifecycle of a verifiable credential (VC) from issuing one to using it. 
+This tutorial walks you through the lifecycle of a verifiable credential (VC) from designing a schema, issuing a credential, presenting the credential, and verifying it. 
 
 :::info
 ## Prerequisites
