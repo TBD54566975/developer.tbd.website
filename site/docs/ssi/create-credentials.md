@@ -4,7 +4,7 @@ title: Create Credentials
 hide_title: true
 ---
 
-# How to Create a Verifiable Credential (VC)
+# Create a Verifiable Credential (VC)
 
 VCs are a core component of [SSI](/docs/glossary#self-sovereign-identity-ssi) systems and work hand-in-hand with [DIDs](/docs/web5/learn/decentralized-identifiers). In this tutorial we'll show you how DIDs are used to represent the issuer as well as the subject of the credential, and to define which content is in the credential we make use of JSON schemas.
 
