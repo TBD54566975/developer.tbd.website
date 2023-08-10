@@ -1,5 +1,5 @@
 ---
-title: Credential Lifecyle Flow
+title: Credential Issuance Service
 ---
 
 This tutorial walks you through the lifecycle of a verifiable credential (VC) from designing a schema, issuing a credential, presenting the credential, and verifying it. 
