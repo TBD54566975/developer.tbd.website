@@ -474,6 +474,6 @@ Credentials are: { creditScore: 76, id: 'did:web:mic.com' }
 Issued by:  did:key:z6MkqGF11YyzCgVr6G3dVJULjbBokSXN4J3cjSB5MQdXto4o
 ```
 
-This shows that the credential is in tact and issued by an issuer that the financial institution trusts. It also will expire automatically on expiration date provided when creating the credential. 
+This shows that the credential is in tact and issued by an issuer that the financial institution trusts. It also will expire automatically on the expiration date that was provided when creating the credential. 
 
 This shows a small glimpse of what VC issuance can be, as well as presenting credentials, the ssi-service utilities, and more.
