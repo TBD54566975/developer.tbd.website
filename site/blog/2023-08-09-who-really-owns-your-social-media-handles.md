@@ -1,37 +1,37 @@
 ---
 slug: did-social-handles
 title: Who Really Owns Your Social Media Handles?
-description: Understanding social media handle ownership and embracing decentralized identifiers as a solution
+description: Decentralized IDs - Your Social Media Power Move! 
 authors:
   name: Ebony Louis
 tags: [Decentralized Identity]
 ---
 
 <head>
-  <meta property="og:title" content="Who really owns your social media handles?" />
+  <meta property="og:title" content="Who Really Owns Your Social Media Handles?" />
   <meta property="og:type" content="website" />
   <meta property="og:url" content='https://developer.tbd.website/blog/2023-08-09-who-really-owns-your-social-media-handles' />
-  <meta name="og:description" content="Understanding social media handle ownership and embracing decentralized identifiers as a solution" />
-  <meta property="og:image" content="https://developer.tbd.website/assets/images/social-media-handles-b46e47192370dfdde849b6cb2cd9fa2f.pngg" /> 
+  <meta name="og:description" content="Decentralized IDs: Your Social Media Power Move!" />
+  <meta property="og:image" content="https://developer.tbd.website/assets/images/blog_social_media_handles_vs_dids-b46e47192370dfdde849b6cb2cd9fa2f.png" /> 
 
   <meta name="twitter:card" content="summary_large_image" />
   <meta property="twitter:domain" content="developer.tbd.website" />
   <meta name="twitter:site" content="@tbdevs" />
-  <meta name="twitter:title" content="Understanding social media handle ownership and embracing decentralized identifiers as a solution" />
+  <meta name="twitter:title" content="Who Really Owns Your Social Media Handles?" />
   <meta property="twitter:url" content='https://developer.tbd.website/blog/2023-08-09-who-really-owns-your-social-media-handles' /> 
-  <meta name="twitter:description" content="Understanding social media handle ownership and embracing decentralized identifiers as a solution" />
-  <meta name="twitter:image" content="https://developer.tbd.website/assets/images/social-media-handles-b46e47192370dfdde849b6cb2cd9fa2f.png" />
+  <meta name="twitter:description" content="Decentralized IDs: Your Social Media Power Move!" />
+  <meta name="twitter:image" content="https://developer.tbd.website/assets/images/blog_social_media_handles_vs_dids-b46e47192370dfdde849b6cb2cd9fa2f.png" />
 
   <link rel="apple-touch-icon" href="https://developer.tbd.website/img/tbd-fav-icon-main.png" />
 </head>
 
-![Who really owns your social media handles?](/img/social-media-handles.png)
+![Who really owns your social media handles?](/img/blog_social_media_handles_vs_dids.png)
 
 In today’s age of social media dominance, our online identities have become integral to both our personal lives and professional endeavors. From connecting with friends and family to building brands and businesses, platforms like Twitter and Instagram have given us the power to create digital personas that resonate with others where your user handle serves as a unique identifier in the digital world. However, recent incidents have shed light on a fundamental question: Do we truly own our user handles on these platforms? Events, such as Twitter's rebranding and the subsequent takeover of the @X handle from a longtime user, shed light on the intricate web of ownership, accountability that revolves around these usernames, and how account models across the web work today.
 
 <!--truncate-->
 
-## Borrowing vs. Owning:
+## Borrowing vs. Owning
 
 User handles, also known as usernames, are a string of characters that represent your digital presence on platforms like Twitter, Instagram, and TikTok. While users assume that the handles they create are tied to their accounts, the reality is more complex, often dictated by the terms of service set by the platform. These terms outline the rights and limitations users have over their usernames/accounts, establishing a virtual "landlord and tenant" relationship between you and the platform provider. 
 
