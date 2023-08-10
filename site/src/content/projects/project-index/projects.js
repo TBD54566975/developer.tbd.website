@@ -27,7 +27,16 @@ export const content = {
       textButton: 'View Project',
       url: '/projects/tbdex',
     },
+    {
+      icon: '/img/article-icon.svg',
+      title: 'SSI',
+      description:
+        'Identity created, owned, and controlled by individuals, without reliance on centralized entities',
+      textButton: 'View Project',
+      url: '/projects/ssi',
+    },    
   ],
+  
   Column1: Column1,
   Column2: Column2,
 };
