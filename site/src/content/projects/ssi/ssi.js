@@ -2,6 +2,7 @@
 import SSIService from '../ssi-service.mdx';
 import TBDEXProtocol from '../tbdex-protocol.mdx';
 import Heading from './heading.mdx';
+
 export const content = {
   meta: {
     title: 'SSI | TBD',
@@ -97,3 +98,5 @@ export const content = {
     ],
   },
 };
+
+
