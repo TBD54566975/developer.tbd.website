@@ -10,7 +10,8 @@
     "test": "pnpm vitest --config vite.config.ts"
   },
   "dependencies": {
-    "@tbd54566975/web5": "0.7.11"
+    "@tbd54566975/web5": "0.7.11",
+    "react-markdown": "^8.0.7"
   },
   "devDependencies": {
     "@vitest/browser": "^0.33.0",
