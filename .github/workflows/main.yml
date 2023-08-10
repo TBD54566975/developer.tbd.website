@@ -7,6 +7,12 @@ on:
   push:
     branches-ignore:
       - main
+  workflow_dispatch:
+    inputs:
+      reason:
+        description: 'Manual trigger'
+        required: true
+        default: 'Just because.'
 
 jobs:
   test:
