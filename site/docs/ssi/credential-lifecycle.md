@@ -1,5 +1,4 @@
 ---
-sidebar_position: 2
 title: Credential Lifecyle Flow
 ---
 
@@ -294,7 +293,7 @@ This will be a web app which takes a user's DID and name, and then returns a VC 
 
 ### Design a Schema
 
-MoeX has 2 items in its credit credential: Overall Score and Number of Defaults. This credential is only good for 30 days, but otherwise isn't revoked. So, let's create a schema for this:
+MoeX has 2 items in its credit credential: Credit Score (required) and Number of Defaults (optional). So, let's create a schema for this:
 
 ```bash
 curl -X PUT localhost:8080/v1/schemas -d '{
@@ -370,6 +369,7 @@ app.get('/issue', async (req, res) => {
         verificationMethodId: "did:key:z6MkqGF11YyzCgVr6G3dVJULjbBokSXN4J3cjSB5MQdXto4o#z6MkqGF11YyzCgVr6G3dVJULjbBokSXN4J3cjSB5MQdXto4o",
         subject: userDid,
         schemaId: "da43f310-dd2f-4e26-b571-840a93ec4071",
+        expiry: "2023-09-09T14:48:00.000Z",
         data: {
           creditScore: score
         }
@@ -474,6 +474,6 @@ Credentials are: { creditScore: 76, id: 'did:web:mic.com' }
 Issued by:  did:key:z6MkqGF11YyzCgVr6G3dVJULjbBokSXN4J3cjSB5MQdXto4o
 ```
 
-This shows that the credential is in tact and issued by an issuer that the financial institution trusts. It also will expire automatically after 30 days. 
+This shows that the credential is in tact and issued by an issuer that the financial institution trusts. It also will expire automatically on expiration date provided when creating the credential. 
 
 This shows a small glimpse of what VC issuance can be, as well as presenting credentials, the ssi-service utilities, and more.
