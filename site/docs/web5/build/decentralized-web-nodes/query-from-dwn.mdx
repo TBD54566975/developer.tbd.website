@@ -37,19 +37,32 @@ const { records } = await web5.dwn.records.query({
 ```
 
 ## Filterable Record Properties
+Here are the properties you can use to filter your record query, along with explanations and examples for each.
 
 | Property            | Value                                                |   Example   |
 | -----------         | ----------                                           | ----------- |  
-| **`attester`**      | Author DID of message                                | "did:example:bob" |
 | **`recipient`**     | Recipient DID of message                             | "did:example:alice"  |
 | **`protocol`**      | The URI of the protocol bucket in which to query     | "example.com" |
 | **`protocolPath`**  | Records under a protocol path across all context IDs | "example" |
-| **`contextId`**     | Message thread contextId                             | "12345678" |
+| **`contextId`**     | `recordId` of a root record of a protocol            | "bafyreianzpmhbgcgam5mys722vnsiuwn..." |
 | **`schema`**        | The URI of the schema bucket in which to query       | "https://schema.org/Message" |
 | **`recordId`**      | Property contains the message recordId               | "aa36ec55-c59b-4f20-8143-10f74aac696d" |
-| **`parentId`**      | RecordsWrite message’s `entryId`                     | "91011123" |
+| **`parentId`**      | `recordId` of the parent record in a protocol        | "iadsfdreianzpmasdffcgam5mys722vnd..." |
 | **`dataFormat`**    | The IANA string for the data format to filter        | "application/json" |
 | **`dateCreated`**   | Date the record was created                          | "2023-04-30T22:49:37.713976Z" |
+
+### Code Sample
+This snippet queries the DWN for records that have a parent record with a specific record ID:
+
+```js
+const response = await web5.dwn.records.query({
+  message: {
+    filter: {
+      parentId: 'bafyreianzpmhbgcgam5mys722vnsiuwn7y4ek6kjeyjptttquasw4hge2m',
+    }
+  }
+});
+```
 
 ## Sorting Query Results
 
