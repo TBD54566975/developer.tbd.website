@@ -47,16 +47,16 @@ const config = {
     //     sidebarPath: require.resolve('./event-sidebars.js'),
     //   },
     // ],
-    [
-      '@docusaurus/plugin-content-docs',
-      {
-        id: 'learn',
-        path: 'learn',
-        breadcrumbs: false,
-        routeBasePath: 'learn',
-        sidebarPath: require.resolve('./learn-sidebars.js'),
-      },
-    ],
+    // [
+    //   '@docusaurus/plugin-content-docs',
+    //   {
+    //     id: 'learn',
+    //     path: 'learn',
+    //     breadcrumbs: false,
+    //     routeBasePath: 'learn',
+    //     sidebarPath: require.resolve('./learn-sidebars.js'),
+    //   },
+    // ],
   ],
   scripts: [
     {
@@ -139,11 +139,11 @@ const config = {
             position: 'left',
           },
 
-          {
-            to: '/learn',
-            label: 'Learn',
-            position: 'left',
-          },
+          // {
+          //   to: '/learn',
+          //   label: 'Learn',
+          //   position: 'left',
+          // },
 
           {
             to: '/blog',
@@ -163,14 +163,14 @@ const config = {
             position: 'left',
           },
           {
+            to: '#search',
+            label: 'Ask 🔎',                      
+          },  
+          {
             to: 'https://tbd.website',
             position: 'right',
             label: 'TBD Home',
-          },
-          {
-            to: '#search',
-            label: 'Ask 🔎',                      
-          },          
+          },        
         ],
       },
       footer: {

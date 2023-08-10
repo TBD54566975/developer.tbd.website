@@ -41,8 +41,8 @@ export const content = {
       title: 'Our Approach',
       description: OurApproach,
       cta: {
-        label: 'Double-click',
-        url: '/learn',
+        label: 'View',
+        url: '/projects/web5#components',
       },
     },
   ],

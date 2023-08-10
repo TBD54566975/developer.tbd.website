@@ -103,7 +103,7 @@ function DocsIndex() {
         <ExploreCard
           text="Discussions"
           icon="/img/docs-listen-music.svg"
-          url="/learn"
+          url="https://soundcloud.com/user-625850228/sets/the-blockchain-discussion"
         />
       </div>
 
