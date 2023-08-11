@@ -66,7 +66,8 @@ While X's actions towards these users might not have violated any legal boundari
  
 Web5 will revolutionize identity management by restoring it to us, the users, while allowing applications to focus solely on enhancing our user experience. 
 
-Tune in to this insightful discussion with Angie Jones, Kelsey Hightower, and Daniel Buchner to hear what industry leaders are saying about Decentralized Identity.
+## Twitter Space with Industry Leaders
+Industry leaders Angie Jones, Kelsey Hightower, and Daniel Buchner discussed this very topic on a recent Twitter Space. Tune in to hear their thoughts on how Decentralized Identity solves this problem.
 
 <div className="mb-8">
   <Audio url="https://soundcloud.com/user-625850228/who-really-owns-your-social-media-handles-with-kelsey-hightower-and-daniel-buchner" />
