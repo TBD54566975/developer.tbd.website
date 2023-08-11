@@ -1,3 +1,7 @@
 {
-  "queryRecordsWithFilter": "const { protocols } = await Web5.dwn.records.query({\n    message: {\n      filter: {\n        protocol: 'http://social-media.xyz',\n      },\n      //highlight-start\n      dateSort: 'createdDescending',\n      //highlight-end\n    },\n  });"
+  "queryProtocolsForMusic": "const { protocols } = await web5.dwn.protocols.query({\n    message: {\n      filter: {\n        protocol: 'https://music.org/protocol',\n      },\n    },\n  });",
+  "queryProtocolsWithFilterDescending": "const { protocols } = await web5.dwn.protocols.query({\n    message: {\n      filter: {\n        protocol: 'http://social-media.xyz',\n      },\n      //highlight-start\n      dateSort: 'createdDescending',\n      //highlight-end\n    },\n  });",
+  "queryRecordsWithFilterAscending": "const response = await web5.dwn.records.query({\n    message: {\n      filter: {\n        dataFormat: 'text/plain',\n      },\n      dateSort: 'publishedAscending',\n    },\n  });",
+  "queryRecordFromDID": "const { records } = await web5.dwn.records.query({\n    from: 'did:example:alice',\n    message: {\n      filter: {\n        schema: 'https://schema.org/Playlist',\n        dataFormat: 'application/json',\n      },\n    },\n  });",
+  "queryRecordWithParentId": "const response = await web5.dwn.records.query({\n    message: {\n      filter: {\n        parentId: 'bafyreianzpmhbgcgam5mys722vnsiuwn7y4ek6kjeyjptttquasw4hge2m',\n      },\n    },\n  });"
 }
