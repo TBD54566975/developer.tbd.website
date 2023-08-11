@@ -10,17 +10,17 @@ tags: [Decentralized Identity, Social Media]
 <head>
   <meta property="og:title" content="Who Really Owns Your Social Media Handles?" />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content='https://developer.tbd.website/blog/2023-08-09-who-really-owns-your-social-media-handles' />
+  <meta property="og:url" content='https://developer.tbd.website/blog/did-social-handles' />
   <meta name="og:description" content="Decentralized IDs: Your Social Media Power Move!" />
-  <meta property="og:image" content="https://developer.tbd.website/assets/images/blog_social_media_handles_vs_dids-b46e47192370dfdde849b6cb2cd9fa2f.png" /> 
+  <meta property="og:image" content="https://developer.tbd.website/assets/images/blog_social_media_handles_vs_dids-f7ac53fbc8229bd699209ca808e619f2.png" /> 
 
   <meta name="twitter:card" content="summary_large_image" />
   <meta property="twitter:domain" content="developer.tbd.website" />
   <meta name="twitter:site" content="@tbdevs" />
   <meta name="twitter:title" content="Who Really Owns Your Social Media Handles?" />
-  <meta property="twitter:url" content='https://developer.tbd.website/blog/2023-08-09-who-really-owns-your-social-media-handles' /> 
+  <meta property="twitter:url" content='https://developer.tbd.website/blog/did-social-handles' /> 
   <meta name="twitter:description" content="Decentralized IDs: Your Social Media Power Move!" />
-  <meta name="twitter:image" content="https://developer.tbd.website/assets/images/blog_social_media_handles_vs_dids-b46e47192370dfdde849b6cb2cd9fa2f.png" />
+  <meta name="twitter:image" content="https://developer.tbd.website/assets/images/blog_social_media_handles_vs_dids-f7ac53fbc8229bd699209ca808e619f2.png" />
 
   <link rel="apple-touch-icon" href="https://developer.tbd.website/img/tbd-fav-icon-main.png" />
 </head>
