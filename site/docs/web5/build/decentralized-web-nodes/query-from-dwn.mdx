@@ -2,6 +2,8 @@
 sidebar_position: 2
 ---
 
+import CodeSnippet from '@site/src/components/CodeSnippet';
+
 # Query from DWN
 
 You can use the `query` function to obtain records and protocols from a DWN. This guide shows how to do both, as well as how to sort the query results.
@@ -51,26 +53,27 @@ Query results can be sorted via the `dateSort` field. Valid values for `dateSort
 
 This code snippet queries for records with a plain text data format, and returns them in ascending order by the date they were [published](/docs/web5/build/decentralized-web-nodes/publishing-records):
 
+Create your message object
 ```js
-const response = await web5.dwn.records.query({
-  message: {
+const message = {
     filter: {
-      dataFormat: 'text/plain',
+      protocol: 'http://social-media.xyz',
     },
     //highlight-start
     dateSort: 'publishedAscending'
     //highlight-end
   }
-});
 ```
+
+Pass it to the query function
+<CodeSnippet functionName="queryRecordsWithFilter" />
 
 ### Descending Order
 
-This code snippet queries for protocols with a certain URL, and returns them in descending order by the date they were created.
 
+Create your message object
 ```js
-const { protocols } = await web5.dwn.protocols.query({
-  message: {
+const message = {
     filter: {
       protocol: 'http://social-media.xyz',
     },
@@ -78,6 +81,8 @@ const { protocols } = await web5.dwn.protocols.query({
     dateSort: 'createdDescending'
     //highlight-end
   }
-});
 ```
+
+Pass it to the query function
+<CodeSnippet functionName="queryRecordsWithFilter" />
 
