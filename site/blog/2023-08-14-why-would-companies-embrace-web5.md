@@ -32,7 +32,7 @@ hide_table_of_contents: true
 
 Web5 prescribes that users maintain control of their content by [decoupling their data](/blog/what-is-web5#decentralized-web-nodes) from the applications that they use.
 
-I'm frequently asked why would major companies who have made billions of dollars off of our data buy into this model?
+I'm frequently asked why major companies who have made billions of dollars off of our data would buy into this model?
 
 This is a fair question. Let's dig into it.
 
