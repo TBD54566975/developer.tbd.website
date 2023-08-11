@@ -6,9 +6,9 @@ import { content } from '@site/src/content/projects/ssi/ssi.js';
 
 Self-sovereign identity (SSI) is an approach to digital identity that gives individuals control over the information they use to prove who they are to websites, services, and applications across the web.
 
-SSI brings <TooltipWrapper trigger="decentralized identity">identity created, owned, and controlled by individuals, without reliance on centralized entities</TooltipWrapper> together with <TooltipWrapper trigger="Verifiable Credentials">W3C standard for proving credentials connected to a users self sovereign identity.</TooltipWrapper>. It lets devs focus on creating delightful user experiences, while returning ownership of data and identity to individuals.
+SSI brings <TooltipWrapper trigger="Decentralized Identity">identity created, owned, and controlled by individuals, without reliance on centralized entities</TooltipWrapper> together with <TooltipWrapper trigger="Verifiable Credentials">W3C standard for proving credentials connected to a users self sovereign identity.</TooltipWrapper>. It lets devs focus on creating delightful user experiences, while returning ownership of data and identity to individuals.
 
-The following is sometimes called the "triangle of trust":
+The following is sometimes called the **triangle of trust**:
 
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 100 960 450" fill="none">
     <defs>
@@ -42,18 +42,18 @@ The following is sometimes called the "triangle of trust":
     <path className="link" d="m710 318l-550 20"/>
     <text x="390" y="370" role="heading" aria-level="2">Trust the issuer</text>
     <text x="380" y="385" fontWeight="normal">(can do privacy preserving check)</text>
-    
   </svg>
 
+
 The Issuers are a trusted source of credentials, perhaps issuing passports of drivers licenses, or perhaps a trusted person. 
-They can use services like the ssi-service or the ssi-sdk to create new credentials and issue them to holders. 
+They can use services like the [SSI Service](https://github.com/TBD54566975/ssi-service) or the [SSI SDK](https://github.com/TBD54566975/ssi-sdk) to create new credentials and issue them to holders. 
 
-The holder presents their <TooltipWrapper trigger="did">Decentralized Identifier: a URI that is their identity.</TooltipWrapper> to the Issuer, who then decides to issue a credential to the holder (or not). This is called Issuance.
+The holder provides their <TooltipWrapper trigger="DID">Decentralized Identifier: a URI that is their identity.</TooltipWrapper> to the Issuer, who then decides whether or not to issue a credential to the holder. This is called Issuance.
 
-The holders then keep their credentials for later use. The holder can present the credential (as a presentation, or as a json or jwt string) to a Verifier.
-The Verifier will check that the credential belongs to the holder (via their did), and that they (the Verifier) trusts the Issuer (via their did): if they do, they can trust the Holder that they have the qualifications presented to them.
+The holders then keep their credentials for later use. The holder can present the credential (as a presentation, or as a JSON or [JWT](https://jwt.io/) string) to a Verifier.
+The Verifier will check that the credential belongs to the holder (via their DID), and that they (the Verifier) trusts the Issuer (via their DID). If they do, they can trust the Holder that they have the qualifications presented to them.
 
-The ssi-sdk and ssi-serice provide utilities for issuing credentials and managing them, and the ssi-sdk and (many other) libraries can help you validate presented credentials.
+The SSI SDK and SSI Service provide utilities for issuing credentials and managing them, and the SSI SDK and (many other) libraries can help you validate presented credentials.
 
 
 <ButtonGroup
@@ -62,7 +62,7 @@ The ssi-sdk and ssi-serice provide utilities for issuing credentials and managin
     {
       type: 'button',
       data: {
-        label: '🚀 Getting Started',
+        label: '🚀 SSI Docs',
         url: '/docs',
       },
     },
