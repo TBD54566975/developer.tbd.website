@@ -9,7 +9,7 @@ hide_title: true
 There are numerous factors to determine a credential's validity. Verifiers will ultimately define their own unique criteria for determining validity from a range of possibilities:
 
 - **Signature Verification** - Has it been signed by the issuer? If so, has the signature been tampered with?
-- **Credential Status** - Has it been revoked or suspended?
+- **Credential Status** - Is it still active, and not revoked or suspended?
 - **Credential Validity** - Has it expired?
 - **Credential Issuer** - Is the issuer trusted for the claims they're attesting to?
 - **Credential Evidence** - Is there evidence supporting the claims being made?
@@ -27,12 +27,12 @@ Determining the validity of a VC can be a complex topic. The data model itself [
 :::info
 ## Prerequisites
 
-Building upon the credential created in the [How To: Create a Credential](create-credentials) guide, take the credential you created, which is a JWT, and verify it.
+Create a verifiable credential using the [How To Create a Verifiable Credential](create-credentials) guide.
 :::
 
-As a part of the service's credential API `/v1/credentials/verification` is used as a stateless utility to verify any credential.
+As a part of SSI Service, `/v1/credentials/verification` is used as a stateless utility to verify any credential.
 
-To verify the VC, run:
+To verify the VC, run the follow command after replacing the credentialJWT value with the one from your credential:
 
 ```bash
 curl -X PUT localhost:8080/v1/credentials/verification -d '{
@@ -50,13 +50,16 @@ Upon success the following response should be returned:
 
 The request above performs the following verification process:
 
-- Make sure the credential is complaint with the VC Data Model
-- Make sure the credential is not expired
-- Make sure the signature of the credential is valid (currently supports both JWT and some Linked Data credentials)
-- If the credential has a schema, makes sure its data complies with the schema (note: the schema must be hosted within the service)
+✅ Make sure the credential is complaint with the VC Data Model
+
+✅ Make sure the credential is not expired
+
+✅ Make sure the signature of the credential is valid (currently supports both JWT and some Linked Data credentials)
+
+✅ Make sure its data complies with the credential schema if one exists (note: the schema must be hosted within the service)
 
 :::info
-In the future this endpoint can (and should!) be expanded to support status checks and external schema resolution, among other optional checks.
+In the future, this endpoint will likely be expanded to support status checks and external schema resolution, as well as other optional checks.
 :::
 
 ## Other Types of Verification
