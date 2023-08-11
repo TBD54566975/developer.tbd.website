@@ -1,0 +1,88 @@
+import { content } from '@site/src/content/projects/ssi/ssi.js';
+
+# SSI: Self Sovereign Identity
+
+## Putting you in control of your identity
+
+Self-sovereign identity (SSI) is an approach to digital identity that gives individuals control over the information they use to prove who they are to websites, services, and applications across the web.
+
+SSI brings <TooltipWrapper trigger="decentralized identity">identity created, owned, and controlled by individuals, without reliance on centralized entities</TooltipWrapper> together with <TooltipWrapper trigger="Verifiable Credentials">W3C standard for proving credentials connected to a users self sovereign identity.</TooltipWrapper>. It lets devs focus on creating delightful user experiences, while returning ownership of data and identity to individuals.
+
+The following is sometimes called the "triangle of trust":
+
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 100 960 450" fill="none">
+    <defs>
+      {/* For the styles, you might want to move them to a CSS-in-JS library or an external stylesheet. */}
+      <style>{`
+        path.link {stroke:#000;strokeWidth:4;markerEnd: url(#arrow)}
+        rect, circle {stroke:#000;strokeWidth:1px}
+        rect.none {stroke:none}
+        text {fill:#000;fontSize:14px;fontFamily:sans-serif}
+        text[aria-level ='1']{fontSize:2em;fontWeight:bold;fontStyle:italic}
+        text[aria-level = '2']{fontSize:1.5em;fontWeight:bold}
+        #background {fill:#fff;width:100%;height:100%;stroke:none}
+      `}</style>
+    </defs>
+    <rect id="background"/>
+    <rect fill="#dfd" x="20" y="300" width="115" height="85"/>
+    
+    <text role="heading" aria-level="2" x="40" y="345">Issuer</text>
+    <path className="link" d="m140 320l245 -60"/>
+    <text x="200" y="270" role="heading" aria-level="2">Issue credential</text>
+    <rect fill="#def" x="450" y="220" width="115" height="85"/>
+    <rect fill="#def" x="430" y="200" width="115" height="85"/>
+    <rect fill="#def" x="410" y="180" width="115" height="85"/>
+    <text id='holder' role="heading" aria-level="2" x="425" y="240">Holders</text>
+    <path className="link" d="m550 215c30 0 30 5 145 40"/>
+    <text id="present" x="610" y="210" role="heading" aria-level="2">Present the credential</text>
+    <rect fill="#fe9" x="755" y="285" width="115" height="85"/>
+    <rect fill="#fe9" x="735" y="265" width="115" height="85"/>
+    <rect fill="#fe9" x="715" y="245" width="115" height="85"/>
+    <text role="heading" aria-level="2" x="720" y="300">Verifiers</text>
+    <path className="link" d="m710 318l-550 20"/>
+    <text x="390" y="370" role="heading" aria-level="2">Trust the issuer</text>
+    <text x="380" y="385" fontWeight="normal">(can do privacy preserving check)</text>
+    
+  </svg>
+
+The Issuers are a trusted source of credentials, perhaps issuing passports of drivers licenses, or perhaps a trusted person. 
+They can use services like the ssi-service or the ssi-sdk to create new credentials and issue them to holders. 
+
+The holder presents their <TooltipWrapper trigger="did">Decentralized Identifier: a URI that is their identity.</TooltipWrapper> to the Issuer, who then decides to issue a credential to the holder (or not). This is called Issuance.
+
+The holders then keep their credentials for later use. The holder can present the credential (as a presentation, or as a json or jwt string) to a Verifier.
+The Verifier will check that the credential belongs to the holder (via their did), and that they (the Verifier) trusts the Issuer (via their did): if they do, they can trust the Holder that they have the qualifications presented to them.
+
+The ssi-sdk and ssi-serice provide utilities for issuing credentials and managing them, and the ssi-sdk and (many other) libraries can help you validate presented credentials.
+
+
+<ButtonGroup
+  className="pt-24"
+  buttons={[
+    {
+      type: 'button',
+      data: {
+        label: '🚀 Getting Started',
+        url: '/docs',
+      },
+    },
+    {
+      type: 'button',
+      data: {
+        label: 'Contribute',
+        url: '/open-source/contributing',
+        isExternalLink: true,
+        imageURL: '/img/heart.svg',
+      },
+    },
+    {
+      type: 'button',
+      data: {
+        label: 'Chat on Discord',
+        url: 'https://discord.gg/tbd',
+        isExternalLink: true,
+        imageURL: '/img/discord-icon.svg',
+      },
+    },
+  ]}
+/>
