@@ -16,15 +16,6 @@ export const content = {
     projects: [
       {
         icon: '/img/component-icon.svg',
-        title: 'tbDEX Whitepaper',
-        description:
-          'Whitepaper defining a decentralized liquidity protocol for exchanging assets.',
-        textButton: 'View Whitepaper',
-        url: 'https://tbdex.io/whitepaper.pdf',
-        isExternalLink: true,
-      },
-      {
-        icon: '/img/component-icon.svg',
         title: 'Decentralized Web Node',
         description: TBDEXProtocol,
         textButton: 'View Component',
