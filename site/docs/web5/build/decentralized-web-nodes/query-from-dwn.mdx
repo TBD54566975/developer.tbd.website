@@ -2,6 +2,8 @@
 sidebar_position: 2
 ---
 
+import CodeSnippet from '@site/src/components/CodeSnippet';
+
 # Query from DWN
 
 You can use the `query` function to obtain records and protocols from a DWN. This guide shows how to do both, as well as how to sort the query results.
@@ -108,4 +110,6 @@ const { protocols } = await web5.dwn.protocols.query({
   }
 });
 ```
+
+<CodeSnippet functionName="queryRecordsWithFilter" />
 

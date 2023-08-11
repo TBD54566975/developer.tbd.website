@@ -1,0 +1,3 @@
+{
+  "queryRecordsWithFilter": "const { protocols } = await Web5.dwn.records.query({\n    message: {\n      filter: {\n        protocol: 'http://social-media.xyz',\n      },\n      //highlight-start\n      dateSort: 'createdDescending',\n      //highlight-end\n    },\n  });"
+}
