@@ -4,7 +4,7 @@ title: Who Really Owns Your Social Media Handles?
 description: Decentralized IDs - Your Social Media Power Move! 
 authors:
   name: Ebony Louis
-tags: [Decentralized Identity]
+tags: [Decentralized Identity, Social Media]
 ---
 
 <head>
@@ -27,15 +27,29 @@ tags: [Decentralized Identity]
 
 ![Who really owns your social media handles?](/img/blog_social_media_handles_vs_dids.png)
 
-In today’s age of social media dominance, our online identities have become integral to both our personal lives and professional endeavors. From connecting with friends and family to building brands and businesses, platforms like Twitter and Instagram have given us the power to create digital personas that resonate with others where your user handle serves as a unique identifier in the digital world. However, recent incidents have shed light on a fundamental question: Do we truly own our user handles on these platforms? Events, such as Twitter's rebranding and the subsequent takeover of the @X handle from a longtime user, shed light on the intricate web of ownership, accountability that revolves around these usernames, and how account models across the web work today.
+In today’s age of social media dominance, our online identities have become integral to both our personal lives and professional endeavors. From connecting with friends and family to building brands and businesses, platforms like Twitter and Instagram have given us the power to create digital personas that resonate with others where your user handle serves as a unique identifier in the digital world. 
 
 <!--truncate-->
+
+However, recent incidents have shed light on a fundamental question: Do we truly own our user handles on these platforms? Events, such as Twitter's rebranding and the subsequent takeover of the @X handle from a longtime user, shed light on the intricate web of ownership, accountability that revolves around these usernames, and how account models across the web work today.
+
+
+[![NPR article on @X handle takeover](/img/npr-article-on-x-handle.png)](https://www.npr.org/2023/07/29/1190891082/twitter-x-account-owner-gene-hwang-elon-musk)
 
 ## Borrowing vs. Owning
 
 User handles, also known as usernames, are a string of characters that represent your digital presence on platforms like Twitter, Instagram, and TikTok. While users assume that the handles they create are tied to their accounts, the reality is more complex, often dictated by the terms of service set by the platform. These terms outline the rights and limitations users have over their usernames/accounts, establishing a virtual "landlord and tenant" relationship between you and the platform provider. 
 
-This relationship was exemplified when Twitter rebranded as "X," causing collateral damage as the company took repossession of user handles like @X, without notice or compensation. This was echoed in cases like @Music, which was created by a user who curated their digital presence with this handle for more than 16 years. While this is certainly alarming, it’s not illegal. Most people don’t read the fine print of the Terms of Service agreements when joining these applications, and therefore don’t realize how much control these centralized organizations have over our data and digital identity.  
+This relationship was exemplified when Twitter rebranded as "X," causing collateral damage as the company took repossession of user handles like @X, without notice or monetary compensation. This was echoed in cases like @Music, which was created by a user who curated their digital presence with this handle for more than 16 years. 
+
+![@Music handle takeover](/img/tweet-from-music-handle.png)
+
+The notice from Twitter to this account holder reads:
+
+> The user handle associated with account @Music will be affiliated with X Corp. Accordingly, your user handle will be changed to a new user handle. 
+
+
+While this is certainly alarming, it’s not illegal. Most people don’t read the fine print of the Terms of Service agreements when joining these applications, and therefore don’t realize how much control these centralized organizations have over our data and digital identity.  
 
 ## The Problem & The Solution
 
