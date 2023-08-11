@@ -25,6 +25,9 @@ tags: [Decentralized Identity, Social Media]
   <link rel="apple-touch-icon" href="https://developer.tbd.website/img/tbd-fav-icon-main.png" />
 </head>
 
+import Audio from '@site/src/components/Audio';
+
+
 ![Who really owns your social media handles?](/img/blog_social_media_handles_vs_dids.png)
 
 In today’s age of social media dominance, our online identities have become integral to both our personal lives and professional endeavors. From connecting with friends and family to building brands and businesses, platforms like Twitter and Instagram have given us the power to create digital personas that resonate with others where your user handle serves as a unique identifier in the digital world. 
@@ -61,4 +64,11 @@ Fortunately, Twitter automatically gave the user who created @X a new (albeit wa
 
 While X's actions towards these users might not have violated any legal boundaries, is this the way we truly want the web to be? Social media has transcended its original purpose of mere social interaction; it now intertwines with our livelihoods. When signing up for a new platform many of us adopt the same usernames. These usernames serve as both personal and professional branding tools, encapsulating not just our individual identities but also the essence of our businesses.
  
-Web5 will revolutionize data ownership by restoring it to us, the users, while allowing applications to focus solely on enhancing our user experience. If you're eager to delve into the world of Web5, our [documentation](https://developer.tbd.website/docs/) serves as an excellent starting point. For those seeking to contribute, we invite you to [explore our contributing guide](https://developer.tbd.website/open-source/contributing) or head on over and checkout [our projects in GitHub](https://github.com/TBD54566975/web5-js). We warmly welcome you to join our [Discord community](https://discord.gg/tbd) and embark on this exciting journey with us.
+Web5 will revolutionize identity management by restoring it to us, the users, while allowing applications to focus solely on enhancing our user experience. 
+
+Tune in to this insightful discussion with Angie Jones, Kelsey Hightower, and Daniel Buchner to hear what industry leaders are saying about Decentralized Identity.
+
+<div className="mb-8">
+  <Audio url="https://soundcloud.com/user-625850228/who-really-owns-your-social-media-handles-with-kelsey-hightower-and-daniel-buchner" />
+</div>
+
