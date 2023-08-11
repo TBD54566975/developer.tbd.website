@@ -35,9 +35,20 @@ That's why we've created a Web5 Assistant in the form of a ChatGPT plugin. The W
 
 <!--truncate-->
 
-![Web5 assistant](/img/chatgpt-plugin-install.png)
+## Ask Chad
 
-So, instead of digging through several tutorials to find the one piece of information you need, simply ask your question to the Web5 Assistant and it will be happy to help you.
+Internally, we have given ChatGPT the nickname of Chad 😂. We've brought our version of Chad to life on our website. Look above in the top menu. See that 'Ask' menu item? That's Chad. While on our site, you can ask Chad anything you want about Web5, and he'll answer your question.
+
+![Web5 assistant](/img/ask-chad.png)
+
+So, instead of digging through several tutorials to find the one piece of information you need, simply ask your question to Chad and he will be happy to help you.
+
+
+## ChatGPT Plugin
+
+For those times when you're not actively on our site, you can use our Web5 Assistant plugin which is in ChatGPT itself.
+
+![Web5 assistant](/img/chatgpt-plugin-install.png)
 
 :::note
 To add a plugin to ChatGPT, you must be a [ChatGPT Plus subscriber](https://openai.com/blog/chatgpt-plus). Find more info on [installing ChatGPT plugins](https://www.producthunt.com/stories/best-chatgpt-plugins-how-to-add-install-use).
@@ -58,4 +69,5 @@ Or you can get into more complex things like asking the Web5 Assistant to genera
 
 ![generate protocol](/img/chatgpt-plugin-create-protocol.png)
 
-So, as you can see, the plugin can help you with all things Web5. And of course, we've [opened sourced](https://github.com/TBD54566975/web5-chatgpt-plugin) the knowledge base so feel free to contribute anything we may have missed.
+
+So, as you can see, no matter if you're on our site or using ChatGPT directly, our assistant can help you with all things Web5. And of course, we've [opened sourced](https://github.com/TBD54566975/web5-chatgpt-plugin) the knowledge base so feel free to contribute anything we may have missed.
