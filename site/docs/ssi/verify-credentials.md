@@ -25,9 +25,9 @@ Determining the validity of a VC can be a complex topic. The data model itself [
 ## Verify the VC
 
 :::info
-## Prerequisites
+## Prerequisite
 
-Create a verifiable credential using the [How To Create a Verifiable Credential](create-credentials) guide.
+### [Create a VC](create-credentials)
 :::
 
 As a part of SSI Service, `/v1/credentials/verification` is used as a stateless utility to verify any credential.
