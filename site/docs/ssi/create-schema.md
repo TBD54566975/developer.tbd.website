@@ -14,7 +14,7 @@ When constructing and processing Verifiable Credentials (VCs) as pure JSON it is
 For more background checkout out our SSI Service Guide on [Schemas](https://github.com/TBD54566975/ssi-service/blob/main/doc/howto/schema.md).
 
 ### JSON Schema with VCs
-Utilizing the `credentialSchema` property, as outlined in the [VC Data Model](https://www.w3.org/TR/vc-data-model/#data-schemas) TBD, along with W3C collaborators, is actively developing a [new specification](https://w3c.github.io/vc-json-schema/). This specification enables a standards-compliant path to using JSON Schema with VCs. It introduces two JSON Schema options: the initial one can be applied to _any set of properties_ within a VC, while the second involves a VC encapsulating a JSON Schema.
+Utilizing the `credentialSchema` property, as outlined in the [VC Data Model](https://www.w3.org/TR/vc-data-model/#data-schemas) TBD, along with W3C collaborators, is actively developing a [new specification](https://w3c.github.io/vc-json-schema/). This specification enables a standards-compliant path to using JSON Schema with VCs.
 
 <Divider type="slash" />
 
@@ -97,18 +97,19 @@ Upon success you'll see a response which includes the schema you passed in, with
 :::info
 ## Prerequisite
 
-### [Create a DID](create-did)
+Follow the [Create a DID](create-did) guide and save: 
+- `issuer` DID (ie: `did:key:z6MkjePG6UBCL...`)
+- `verificationMethodId`: The ID of the verification method used to sign the schema (aka the `id` property of the first object in the `verificationMethod` array)
 :::
 
 As mentioned earlier, the signed version of a schema is packaged as a VC. In some cases it is useful to package a JSON Schema as a VC to retain information about authorship (who created the schema), when it was created, and enable other features the VC Data Model offers, such as the ability to suspend the usage of a schema with [a status](https://www.w3.org/TR/vc-data-model/#status).
 
-To show this type of schema let's create an **Employment Verification** schema.
+To show this use case let's create an **Employment Verification** schema.
 
 In this case you will need to pass in a few additional properties: 
-
-- An `issuer` DID
-- A `verificationMethodId` the ID of the verification method used to sign the schema (aka the `id` property of the first object in the `verificationMethod` array)
-- Change schema name to `Employment Verification`
+-  `issuer` DID 
+- `verificationMethodId`
+- Set new schema `"name": "Employment Verification"`
 - Remove the `emailAddress` property and add `givenName` and `employedAt` (timestamp data type to define the date and time someone was employed)
 
 After forming our new schema, let's generate another `PUT` request to `v1/schemas`:
