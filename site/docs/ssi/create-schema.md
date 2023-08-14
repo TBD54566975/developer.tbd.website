@@ -26,7 +26,9 @@ Utilizing the `credentialSchema` property, as outlined in the [VC Data Model](ht
 ### [Clone & Run SSI Service](run-ssi-service)
 :::
 
-The service exposes a set of APIs for managing schemas. To create a schema you have two options: signed or unsigned.
+The SSI Service exposes a set of APIs for managing schemas. To create a schema you have two options: signed or unsigned.
+
+The signed version of a schema is packaged as a VC. In some cases it is useful to package a JSON Schema as a VC to retain information about authorship (who created the schema), when it was created, and enable other features the VC Data Model offers, such as the ability to suspend the usage of a schema with [a status](https://www.w3.org/TR/vc-data-model/#status).
 
 Initially, we will guide you through the process of crafting an **Email Credential** schema—one that has not been packaged as a VC (unsigned).
 
@@ -66,8 +68,14 @@ Upon success you'll see a response which includes the schema you passed in, with
 
 ```json
 {
+  // Schema identifier
+  //highlight-next-line
   "id": "ebeebf7b-d452-4832-b8d3-0042ec80e108",
+  // Schema type
+  //highlight-next-line
   "type": "JsonSchema2023",
+  // Schema that was passed into request
+  //highlight-start
   "schema": {
     "$id": "http://localhost:3000/v1/schemas/ebeebf7b-d452-4832-b8d3-0042ec80e108",
     "$schema": "https://json-schema.org/draft/2020-12/schema",
@@ -88,6 +96,7 @@ Upon success you'll see a response which includes the schema you passed in, with
     },
     "type": "object"
   }
+  //highlight-end
 }
 ```
 
@@ -102,9 +111,7 @@ Follow the [Create a DID](create-did) guide and save:
 - `verificationMethodId`: The ID of the verification method used to sign the schema (aka the `id` property of the first object in the `verificationMethod` array)
 :::
 
-As mentioned earlier, the signed version of a schema is packaged as a VC. In some cases it is useful to package a JSON Schema as a VC to retain information about authorship (who created the schema), when it was created, and enable other features the VC Data Model offers, such as the ability to suspend the usage of a schema with [a status](https://www.w3.org/TR/vc-data-model/#status).
-
-To show this use case let's create an **Employment Verification** schema.
+To show a signed schema use case let's create an **Employment Verification** schema.
 
 In this case you will need to pass in a few additional properties: 
 -  `issuer` DID 
@@ -143,7 +150,7 @@ curl -X PUT localhost:8080/v1/schemas -d '{
 }'
 ```
 
-The following response should be returned:
+A response resembling the following should be returned:
 
 ```json
 {
@@ -158,9 +165,3 @@ The following response should be returned:
 ## Now what?
 
 If you're on a roll and want to learn more, save your Schema ID from your Employment Verfication schema response and create your first [Verifiable Credential](create-credentials)!
-
-## Getting Schemas
-
-Once you've created multiple schemas, you can view them all by make a `GET` request to the `v1/schemas` endpoint. Future enhancements may enable filtering based on name, author, or other properties.
-
-You can get a specific schema by make a `GET` request to the `v1/schemas/{schemaId}` endpoint.
