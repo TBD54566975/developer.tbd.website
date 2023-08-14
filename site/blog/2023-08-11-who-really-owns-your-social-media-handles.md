@@ -62,7 +62,7 @@ At the core of Web5's paradigm lie DIDs, which serve as identities that users ow
 
 Fortunately, Twitter automatically gave the user who created @X a new (albeit way less cool) handle. However, what if the company simply closed that account instead? The user would have  lost not just their username, but potentially their entire digital existence on that platform if their profile had been wiped out.  
 
-While X's actions towards these users might not have violated any legal boundaries, is this the way we truly want the web to be? Social media has transcended its original purpose of mere social interaction; it now intertwines with our livelihoods. When signing up for a new platform many of us adopt the same usernames. These usernames serve as both personal and professional branding tools, encapsulating not just our individual identities but also the essence of our businesses.
+While Twitter's actions towards these users might not have violated any legal boundaries, is this the way we truly want the web to be? Social media has transcended its original purpose of mere social interaction; it now intertwines with our livelihoods. When signing up for a new platform many of us adopt the same usernames. These usernames serve as both personal and professional branding tools, encapsulating not just our individual identities but also the essence of our businesses.
  
 Web5 will revolutionize identity management by restoring it to us, the users, while allowing applications to focus solely on enhancing our user experience. 
 
