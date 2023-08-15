@@ -1,13 +1,14 @@
 {
   "scripts": {
     "preinstall": "npx only-allow pnpm",
-    "start": "pnpm --filter site run start",
+    "start": "node extract-snippets && pnpm --filter site run start",
     "start:tutorial-todo-starter": "pnpm --filter todo-starter run dev",
     "start:tutorial-todo-completed": "pnpm --filter todo-completed run dev",
     "start:widget": "pnpm --filter web5-quickstart-widgets start",
-    "build": "pnpm --filter site run build",
+    "build": "node extract-snippets && pnpm --filter site run build",
     "clear": "pnpm --filter site run clear",
-    "test": "pnpm vitest --config vite.config.ts"
+    "test": "node extract-snippets && pnpm vitest run --config vite.config.ts",
+    "test:watch": "node extract-snippets && pnpm vitest --config vite.config.ts --watch"
   },
   "dependencies": {
     "@tbd54566975/web5": "0.7.11",
