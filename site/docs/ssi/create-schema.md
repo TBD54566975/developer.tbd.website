@@ -179,7 +179,7 @@ Upon success, you'll see a response which includes the schema you passed in, a s
 ### Create Signed Schema
 
 Signed schemas are packaged as VCs themselves, and therefore require a few additional properties. At minimum, we'd need: 
--  **issuer** - the DID of the VC issuer
+-  **issuer** - The DID of the VC issuer
 - **verificationMethodId** - The ID of the verification method
 
 ```json
