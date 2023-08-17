@@ -33,7 +33,7 @@ Web5 prescribes that users maintain control of their content by [decoupling thei
 
 <!--truncate-->
 
-### Data is a liability.
+**Data is a liability.**
 
 Holding people's data was all fun and games. Until it wasn't. By collecting and storing user data, companies are responsible for adhering to all sorts of regulations. Not only are they responsible, but the liability is biting into the very profits that once seemed so alluring. 
 
