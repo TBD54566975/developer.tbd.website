@@ -7,7 +7,7 @@ hide_title: true
 
 Though VCs are designed to give the holder a large degree of freedom in using their data, credential issuers are able to retain some control over the data they attest to after [issuance](credential-issuance-service). One of the mechanisms by which they retain this control is through the usage of credential status.
 
-Credential status can be implemented through any valid JSON-LD type, to specify any status such as whether a credential is `suspended` or `revoked`. The most prominently used type is through the [Status List](https://w3c.github.io/vc-status-list-2021/) type, a work item in the [VC Working Group](https://www.w3.org/groups/wg/vc).
+Credential status can be implemented through any valid JSON-LD type, to specify any status such as whether a credential is `suspended` or `revoked`. The most prominently used type is the [Status List](https://w3c.github.io/vc-status-list-2021/) type, a work item in the [VC Working Group](https://www.w3.org/groups/wg/vc).
 
 To make use of credential status, issuers must follow the rules outlined in the [Status List specification](https://w3c.github.io/vc-status-list-2021/#statuslist2021credential) to build a status list credential, and then include the requisite values in the `credentialStatus` property of any VC they issue according to the [Status List Entry](https://w3c.github.io/vc-status-list-2021/#statuslist2021entry) portion of the specification.
 
@@ -32,8 +32,8 @@ Then, for each new credential an issuer creates for a given schema:
 Status credentials use a bitstring which can provide herd privacy for credential holders — in simpler terms this means that many credentials can be represented in a single bitstring, so it is not clear which credential/holder a verifier is requesting information about — this is great for holder privacy!
 </details>
 
-## Example Credential Status Credential:
-In this example below we have a **status list credential** which is used for many credentials issued by the issuer identified by the DID `did:example:12345`:
+## Status List Credential:
+Here is an example of a **status list credential**. Note that in addition to being of type `VerifiableCredential`, it also is of type `StatusList2021Credential`. Also note the `credentialSubject.type` property is set to `Status2021`:
 
 ```json
 {
@@ -57,15 +57,9 @@ In this example below we have a **status list credential** which is used for man
 }
 ```
 
-## Example Credential with a Credential Status:
+## Credential with a Credential Status:
 
-In this second example we can see a credential that `did:example:12345` issued to `did:example:6789`. The example also shows a reference to the **status list credential** in the given `credentialStatus` block.
-
-We see that the credential has a `"statusListIndex": "94567"` which is needed by any verifier of the holder's credential to check its status.
-
-The verification process would be as follows:
-- Holder `did:example:6789` presents their credential to a verifier.
-- Verifier makes a request to resolve the credential status credential identified by `https://example.com/credentials/status/3`.
+In this example, the credential references a **status list credential** in the given `credentialStatus` section. Also, notice that the credential also has a `statusListIndex` of `94567`, which is an arbitrary integer that identifies the position of the status of the verifiable credential:
 
 ```json
 {
@@ -94,7 +88,146 @@ The verification process would be as follows:
   "proof": { ... }
 }
 ```
-Upon resolution of this credential the verifier checks the value of the bit string at index `94567`. If present, the credential has the associated status `revoked`, if absent, the credential does not have the associated status `not revoked`.
+
+#### The verification process would be as follows:
+
+- Holder `did:example:6789` presents their credential to a verifier.
+- Verifier makes a request to resolve the credential status credential identified by `https://example.com/credentials/status/3`.
+- Upon resolution of this credential the verifier checks the value of the bit string at index `94567`.
+- If present, the credential has a `revoked` status. If absent, the credential does not have a `revoked` status.
+
+## Create a Credential with Status
+
+:::info
+### Prerequsites
+
+- Follow guide to [Clone & Run SSI Service](run-ssi-service).
+- [Create an issuer DID](create-did) and an unsigned [schema](/docs/ssi/create-schema#create-unsigned-schema). Save the DID `id` and the schema `id`.
+- For testing purposes use the subject DID in our example below.
+:::
+
+### 1. Create Credential:
+
+Create a `PUT` request to `/v1/credentials` making sure the request body has the value `revocable` set to `true`:
+
+```bash
+curl -X PUT localhost:8080/v1/credentials -d '{
+  "issuer": "did:key:z6Mkm1TmRWRPK6n21QncUZnk1tdYkje896mYCzhMfQ67assD",
+  "verificationMethodId": "did:key:z6Mkm1TmRWRPK6n21QncUZnk1tdYkje896mYCzhMfQ67assD#z6Mkm1TmRWRPK6n21QncUZnk1tdYkje896mYCzhMfQ67assD",
+  "subject": "did:key:z6MkmNnvnfzW3nLiePweN3niGLnvp2BjKx3NM186vJ2yRg2z",
+  "schemaId": "aed6f4f0-5ed7-4d7a-a3df-56430e1b2a88",
+  "data": {
+    "firstName": "Satoshi",
+    "lastName": "Nakamoto"
+  },
+  "revocable": true
+}'
+```
+
+Upon success we should see a response such as:
+
+```json
+{
+  "id": "8f9d58b2-c978-4317-96bd-35949ce76121",
+  "fullyQualifiedVerificationMethodId": "did:key:z6Mkm1TmRWRPK6n21QncUZnk1tdYkje896mYCzhMfQ67assD#z6Mkm1TmRWRPK6n21QncUZnk1tdYkje896mYCzhMfQ67assD",
+  "credential": {
+    "@context": ["https://www.w3.org/2018/credentials/v1"],
+    "id": "http://localhost:8080/v1/credentials/8f9d58b2-c978-4317-96bd-35949ce76121",
+    "type": ["VerifiableCredential"],
+    "issuer": "did:key:z6Mkm1TmRWRPK6n21QncUZnk1tdYkje896mYCzhMfQ67assD",
+    "issuanceDate": "2023-07-31T11:18:26-07:00",
+    //highlight-start
+    "credentialStatus": {
+      "id": "http://localhost:8080/v1/credentials/8f9d58b2-c978-4317-96bd-35949ce76121/status",
+      "statusListCredential": "http://localhost:8080/v1/credentials/status/b7a8bd19-f20d-4132-ac2e-137ff4d1511a",
+      "statusListIndex": "106493",
+      "statusPurpose": "revocation",
+      "type": "StatusList2021Entry"
+    },
+    //highlight-end
+    "credentialSubject": {
+      "firstName": "Satoshi",
+      "id": "did:key:z6MkmNnvnfzW3nLiePweN3niGLnvp2BjKx3NM186vJ2yRg2z",
+      "lastName": "Nakamoto"
+    },
+    "credentialSchema": {
+      "id": "aed6f4f0-5ed7-4d7a-a3df-56430e1b2a88",
+      "type": "JsonSchema2023"
+    }
+  },
+  "credentialJwt": "eyJhbGciOiJFZER..."
+}
+```
+
+Notably we see the `credentialStatus` entry in the credential we've created, with id `http://localhost:8080/v1/credentials/8f9d58b2-c978-4317-96bd-35949ce76121/status` and the status list credential that has been created, with id `http://localhost:8080/v1/credentials/status/b7a8bd19-f20d-4132-ac2e-137ff4d1511a`.
+
+### 2. Get a Status List Credential:
+
+Next, let's get the credential's associated `statusListCredential` via a request to `/v1/credentials/status/{id}`:
+
+```bash
+curl http://localhost:8080/v1/credentials/status/b7a8bd19-f20d-4132-ac2e-137ff4d1511a
+```
+
+Upon success we should see a response such as:
+
+```json
+{
+  "id": "b7a8bd19-f20d-4132-ac2e-137ff4d1511a",
+  "credential": {
+    "@context": [
+      "https://www.w3.org/2018/credentials/v1",
+      //highlight-next-line
+      "https://w3id.org/vc/status-list/2021/v1"
+    ],
+    //highlight-next-line
+    "id": "http://localhost:8080/v1/credentials/status/b7a8bd19-f20d-4132-ac2e-137ff4d1511a",
+    "type": [
+      "VerifiableCredential",
+      //highlight-next-line
+      "StatusList2021Credential"
+    ],
+    "issuer": "did:key:z6Mkm1TmRWRPK6n21QncUZnk1tdYkje896mYCzhMfQ67assD",
+    "issuanceDate": "2023-07-31T18:18:26Z",
+    "credentialSubject": {
+      "encodedList": "H4sIAAAAAAAA/2IAAweGUTAKRsEoGAWjYBSMPAAIAAD//9BoYmEICAAA",
+      "id": "http://localhost:8080/v1/credentials/status/b7a8bd19-f20d-4132-ac2e-137ff4d1511a",
+      //highlight-start
+      "statusPurpose": "revocation",
+      "type": "StatusList2021"
+      //highlight-end
+    }
+  },
+  "credentialJwt": "eyJhbGciOiJFZERTQSIs..."
+}
+```
+
+With this `statusListCredential` we're able to check the status for the credential we created, which is identified by its `"id": "b7a8bd19-f20d-4132-ac2e-137ff4d1511a"` and status list index `106493`.
+
+#### To check the status you have a few options:
+
+- Run the [verification algorithm](https://w3c.github.io/vc-status-list-2021/#validate-algorithm) yourself using the specification.
+- Use the [utility in the SSI SDK](https://github.com/TBD54566975/ssi-sdk/blob/d5c302a1d9b9d04c1636a0c8dfda015f61bb0f6b/credential/status/statuslist2021.go#L254) to check the status.
+- Use the SSI Service's endpoint for status validation.
+
+### 3. Verify a Credential's Status
+
+The SSI Service has an endpoint which you can make `GET` requests to at `/v1/credentials/{id}/status` to check the status for any credential. Using our credential's `"id": "b7a8bd19-f20d-4132-ac2e-137ff4d1511a"`, here's how we would make the request:
+
+```bash
+curl localhost:8080/v1/credentials/8f9d58b2-c978-4317-96bd-35949ce76121/status
+```
+
+Upon success we should see a response saying the credential is neither revoked or suspended:
+
+```json
+{
+  //highlight-start
+  "revoked": false,
+  "suspended": false
+  //highlight-end
+}
+```
 
 ## Next Steps
-Learn how to [revoke a credential](revoke-credentials)!
+Learn how to [revoke this credential](revoke-credentials)
