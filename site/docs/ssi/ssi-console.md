@@ -1,3 +1,7 @@
+---
+sidebar_position: 2
+---
+
 # SSI Console
 
 The SSI Console leverages the SSI Service API to simplify credential issuance and verification in an easy to manage web interface.
