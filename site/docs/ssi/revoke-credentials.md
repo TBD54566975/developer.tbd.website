@@ -8,7 +8,7 @@ hide_title: true
 
 When forming a request to [create a credential](/docs/apis/ssi-service#tag/Credentials/paths/~1v1~1credentials/put), there are a number of possible request values, two of which are `revocable` and `suspendable`. These options are exposed to give issuers the ability to specify [status for credentials](credential-status) they create in the service.
 
-In this guide we'll go over how to revoke a credential.
+In this guide, we'll go over how to revoke a credential.
 
 :::info
 ### Prerequsite
@@ -36,6 +36,5 @@ Upon success, you'll see the following response:
 }
 ```
 
-:::note
-It is possible to reverse the status of a credential. To do so, make a PUT request to /v1/credentials/{id}/status, and set the value of revoked to false.
-:::
+
+It is possible to reverse the status of a credential. To do so, make a `PUT` request to `/v1/credentials/{id}/`status, and set the value of `revoked` to false.
