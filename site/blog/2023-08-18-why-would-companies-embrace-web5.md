@@ -37,7 +37,7 @@ Web5 prescribes that users maintain control of their content by [decoupling thei
 
 Holding people's data was all fun and games. Until it wasn't. By collecting and storing user data, companies are responsible for adhering to all sorts of regulations. Not only are they responsible, but the liability is biting into the very profits that once seemed so alluring. 
 
-### DMCA
+## DMCA
 Consider the Digital Millennium Copyright Act (DMCA). Hosting content that violates copyright laws may lead to legal battles, and the enforcement of the DMCA can require companies to enact costly compliance measures. 
 
 Just ask YouTube, which has had to develop sophisticated content management systems to respond to DMCA takedown notices.
@@ -46,7 +46,7 @@ Twitch has received a significant number of DMCA takedown requests for copyright
 
 Soundcloud has faced several controversies related to DMCA takedown requests, particularly from record labels claiming copyright infringement. Artists have sometimes found their own original content taken down.
 
-### Legal Cases
+## Legal Cases
 But the DMCA is just the tip of the iceberg. When data gets personal, as it so often does, companies can find themselves caught in the middle of even more delicate legal situations. 
 
 From private messages to social media posts, the data hosted can become the subject of subpoenas and legal requests from law enforcement and other government entities. 
@@ -60,7 +60,7 @@ And let's not forget - none of these companies have any interest in being involv
 So, is data still a golden goose for companies? Perhaps, but it's a goose that now comes with shackles and a court summons. 
 
 
-### GDPR
+## GDPR
 But wait, let's not forget about the GDPR, or General Data Protection Regulation. This is another thorn in the sides of companies who are hosting user data. 
 
 You think the DMCA's tough? This rule, which has been in place in Europe since 2018 and [gaining momentum in the US under similar legislation](https://iapp.org/resources/article/us-state-privacy-legislation-tracker/), can cut right through a company's bottom line. GDPR fines can reach up to 4% of a company's annual global turnover or €20 million, whichever is higher. Meta felt this sting to the tune of €1.2 billion, and Amazon took a hit of €746 million.
@@ -69,7 +69,7 @@ And it's not just the big players who should be wary. If you're dealing with Eur
 
 Data breaches used to be like shadows, lurking and ominous. Now, under GDPR, they're like flashing neon signs. A company has to report specific breaches within 72 hours. Miss that window, and you're in for even more fines and a potential public relations nightmare.
 
-### Web5 Offers a Way Out
+## Web5 Offers a Way Out
 Web5's model of giving users control of their data is looking like a lifeboat to many of these companies. By granting users autonomy over their data, companies transition from the role of “data controller” to that of “data processor/service provider”, incurring fewer legal obligations.
 
 With this reduction of responsibility, companies can focus on their primary business and less on the political, legal, and financial consequences that come with hosting user data.
@@ -86,7 +86,7 @@ Decentralization doesn’t mean chaos or disorder. It means establishing a new f
 Just as the internet itself has always adapted to accommodate laws and regulations, so will Web5, aligning seamlessly with legal and societal standards.
 
 
-### Opportunity for New Business Models
+## Opportunity for New Business Models
 
 Innovation is the lifeblood of the technology industry, and with the rise of Web5, businesses are primed to pivot their models to a user-centric approach. Historically, companies that garnered large user bases dominated the market, leveraging their numbers to continue growing. Their approach often emphasized the quantity of users over the quality of service, leading to predatory models that locked users in and made switching to competitors a daunting task.
 
