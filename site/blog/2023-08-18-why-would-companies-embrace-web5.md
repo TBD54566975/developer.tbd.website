@@ -65,7 +65,7 @@ But wait, let's not forget about the GDPR, or General Data Protection Regulation
 
 You think the DMCA's tough? This rule, which has been in place in Europe since 2018 and [gaining momentum in the US under similar legislation](https://iapp.org/resources/article/us-state-privacy-legislation-tracker/), can cut right through a company's bottom line. GDPR fines can reach up to 4% of a company's annual global turnover or €20 million, whichever is higher. Meta felt this sting to the tune of €1.2 billion, and Amazon took a hit of €746 million.
 
-And it's not just the big players who should be wary. If you're dealing with European citizens' data, GDPR cares, and it doesn't matter where in the world you're located. Miss a step, mishandle information, or suffer a data breach, and you'll find yourself dealing with regulators who lead with a heavy hand.
+And it's not just the big players who should be wary. If you're dealing with European citizens' data, GDPR cares, and it doesn't matter where in the world you're located. Miss a step, mishandle information, or suffer a data breach, and companies are likely to find themselves dealing with regulators who lead with a heavy hand.
 
 Data breaches used to be like shadows, lurking and ominous. Now, under GDPR, they're like flashing neon signs. A company has to report specific breaches within 72 hours. Miss that window, and you're in for even more fines and a potential public relations nightmare.
 
@@ -78,12 +78,11 @@ Let's face it, the data game has changed. It's looking less and less like a trea
 
 But, it’s essential to frame this correctly; the essence of Web5 isn't about ditching responsibility but about streamlining operations while giving users true ownership of their data.
 
-In the era of Web5, companies no longer need to act like banks, holding onto your data (akin to your money) in a vault. Instead, with Web5, each individual gets their own secure vault for their data, deciding who can access it and when. It’s a shift from centralized trust to decentralized assurance.
+In the era of Web5, companies no longer need to function like banks, safeguarding user data as if it were money in a vault. Instead, with Web5, each individual gets their own secure vault for their data, deciding who can access it and when. It’s a shift from centralized trust to decentralized assurance.
 
-This isn’t about creating anarchy or complicating law enforcement’s job. In fact, over 40 governments worldwide are already adopting the technology that Web5 utilizes. As the world leans more into decentralized identity and verifiable credentials, platforms echoing Decentralized Web Nodes (DWN) will be more prevalent.
+This isn’t about creating anarchy or complicating law enforcement’s job. Decentralization doesn’t mean chaos or disorder.  It means establishing a new framework where individuals are empowered, yet responsibilities are clear. 
 
-Decentralization doesn’t mean chaos or disorder. It means establishing a new framework where individuals are empowered, yet responsibilities are clear. 
-Just as the internet itself has always adapted to accommodate laws and regulations, so will Web5, aligning seamlessly with legal and societal standards.
+In fact, over 40 governments worldwide are already adopting the technology that Web5 utilizes. As the world leans more into decentralized identity and verifiable credentials, platforms echoing Decentralized Web Nodes (DWN) will be more prevalent. And just as the internet itself has always adapted to accommodate laws and regulations, so will Web5, aligning seamlessly with legal and societal standards.
 
 
 ## Opportunity for New Business Models
