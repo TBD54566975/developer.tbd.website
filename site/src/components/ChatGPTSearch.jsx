@@ -95,7 +95,7 @@ const ChatSearch = () => {
   
   function CodeBlock(props) {
     return (
-      <pre style={{backgroundColor: "#f0f0f0", padding: "1em", border: "1px solid #ccc"}}>
+      <pre style={{backgroundColor: "#f0f0f0", padding: "1em", border: "1px solid #ccc", color: '#333'}}>
         <code style={{fontWeight: "bold"}}>
           {props.value}
         </code>
