@@ -321,7 +321,7 @@
   margin-top: 0.75rem;
 }
 
-.docs-wrapper #__docusaurus pre code {
+.docs-wrapper #__docusaurus pre code:not(.search-widget pre code) {
   border: 1px solid #212121;
   background: #161616;
   padding: 1.5rem 1rem;
