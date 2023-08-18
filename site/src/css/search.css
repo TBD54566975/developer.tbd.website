@@ -21,3 +21,8 @@
     background: var(--color-blue);
 }
 
+.search-widget pre code {
+    background: initial;
+    border: initial;
+}
+
