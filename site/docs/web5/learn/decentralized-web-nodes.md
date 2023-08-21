@@ -1,6 +1,7 @@
 ---
 title: Storage (DWNs)
 hide_title: true
+sidebar_position: 2
 ---
 
 # Decentralized Web Nodes
