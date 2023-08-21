@@ -1,6 +1,7 @@
 ---
 title: Identity (DIDs)
 hide_title: true
+sidebar_position: 1
 ---
 
 # Decentralized Identifiers
