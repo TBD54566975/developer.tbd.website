@@ -6,10 +6,16 @@ title: Credential Manifests
 # Credential Manifests
 
 ## What is a Credential Manifest?
-By definition, [Credential Manifests](https://identity.foundation/credential-manifest/) are a resource format that defines preconditional requirements, *Issuer* style preferences, and other facets *User Agents* (e.g digital wallets) utilize to help articulate and select the inputs necessary for processing and issuing a credential.
+A [Credential Manifest](https://identity.foundation/credential-manifest/) is like a checklist of requirements needed to acquire a credential from an Issuer. Imagine you want to apply for a digital driver's license. To obtain this license, you need to know which pieces of information the license issuer (e.g., vehicle and driver's licensing agency or, in the U.S., the DMV) requires from you. The Credential Manifest is a JSON object that informs a User Agent (e.g., digital wallet) about the specific details it must submit to the Issuer on your behalf.
+
+For instance, if you're applying for a digital driver's license, the Credential Manifest might instruct your wallet: "The user should provide their name, photo, and driving test results."
+
+However, the Credential Manifest does not specify how the final digital driver's license will appear, the method the DMV uses to verify your information, or the communication process between your wallet and the DMV. Its primary role is to guide your wallet on the necessary data that it needs to submit on your behalf.
+
+By the way, the "checklist" item mentioned in our example is called an Output Descriptor. This descriptor outlines the credentials that an Issuer, like the DMV, offers.
 
 :::note
-Credential Manifest is a draft specification being developed within the [Decentralized Identity Foundation](https://identity.foundation/) (DIF). The design work on the data model is ongoing and participants are encouraged to open issues or otherwise contribute at the [DIF-hosted Github repo](https://github.com/decentralized-identity/credential-manifest), whether as input to stable versions or as recommendations for future versions.
+Credential Manifest is a draft specification being developed within the Decentralized Identity Foundation (DIF). The design work on the data model is ongoing and participants are encouraged to open issues or otherwise contribute to the [DIF-hosted GitHub repo](https://github.com/decentralized-identity/credential-manifest), whether as input to stable versions or as recommendations for future versions.
 :::
 
 ## Manifest API Requests
@@ -27,7 +33,7 @@ Within the SSI Service [Manifest API](/docs/apis/ssi-service#tag/Manifests) you 
 
 - `format` (object) - Formats that the Issuer can support when issuing the credential. At least one needs to be set. We currently only support `jwt_vc` for issuance. See [claim format registry](https://identity.foundation/claim-format-registry/#registry) for the definition.
 - `issuerDid` (string) - DID that identifies who the Issuer of the credential(s) will be.
-- `outputDescriptors` - Array of objects `manifest.OutputDescriptor` as defined in the Credential Manifest [Output Descripter](https://identity.foundation/credential-manifest/#output-descriptor) spec.
+- `outputDescriptors` - Array of objects used to describe the Claims an Issuer is offering to a Holder.
 - `verificationMethodId` (string) - The `id` of the [verificationMethod](https://www.w3.org/TR/did-core/#verification-methods) who's `privateKey` is stored in ssi-service. The `verificationMethod` must be part of the DID document associated with Issuer. The private key associated with the `verificationMethod`'s `publicKey` will be used to sign the issued credentials.
 
 #### Optional
@@ -39,29 +45,80 @@ Within the SSI Service [Manifest API](/docs/apis/ssi-service#tag/Manifests) you 
 
 </details>
 
-Via a `PUT` request to `v1/manifests`, pass in the following required fields to create a Manifest.
+Issuers create and host Credential Manifests for the credentials they offer. Assuming the DMV wants to create a Credential Manifest for their digital driver's license credential, they can use the SSI Service to do so.
 
-```bash
-curl -X PUT localhost:8080/v1/manifests -d '{
+Here is the payload to submit to the `v1/manifests` endpoint. Notice the `outputDescriptors` section outlines the checklist of required information that the wallet must provide on behalf of the user who is requesting this credential.
+
+```json
+{
   "format": {
     "jwt_vc": {
-      "alg": [
-        "EdDSA"
-      ]
+      "alg": ["EdDSA"]
     }
   },
   "issuerDid": "did:key:z6MkkZDjunoN4gyPMx5TSy7Mfzw22D2RZQZUcx46bii53Ex3",
   "outputDescriptors": [
-    {
+	{
       "id": "driver_license_output",
-      "schema": "https://schema.org/EducationalOccupationalCredential"
+      "schema": "https://schema.org/EducationalOccupationalCredential",
+      "display": {
+        "title": {
+          "path": ["$.name", "$.vc.name"],
+          "schema": {"type": "string"},
+          "fallback": "Digital Driver's License"
+        },
+        "subtitle": {
+          "path": ["$.class", "$.vc.class"],
+          "schema": {"type": "string"},
+          "fallback": "Standard Automobile License"
+        },
+        "description": {
+          "text": "License that certifies the holder has passed relevant tests and is authorized to drive an automobile."
+        },
+        "properties": [
+          {
+            "path": ["$.fullName", "$.vc.fullName"],
+            "schema": {"type": "string"},
+            "fallback": "No name provided.",
+            "label": "Applicant's Full Name"
+          },
+          {
+            "path": ["$.photo", "$.vc.photo"],
+            "schema": {
+              "type": "string",
+              "format": "uri"
+            },
+            "fallback": "No photo provided.",
+            "label": "Applicant's Photo"
+          },
+          {
+            "path": ["$.drivingTestResults", "$.vc.drivingTestResults"],
+            "schema": {
+              "type": "string",
+              "format": "uri"
+            },
+            "fallback": "Results not provided.",
+            "label": "Driving Test Results"
+          }
+        ]
+      }
     }
   ],
   "verificationMethodId": "did:key:z6MkkZDjunoN4gyPMx5TSy7Mfzw22D2RZQZUcx46bii53Ex3#z6MkkZDjunoN4gyPMx5TSy7Mfzw22D2RZQZUcx46bii53Ex3"
-}'
+}
 ```
 
-Upon success, you'll see the following response:
+Save the JSON to a file (e.g., cm_dl.json) and make a `PUT` request to create the Credental Manifest:
+
+```bash
+curl -X PUT localhost:8080/v1/manifests -d @cm_dl.json
+```
+
+:::note
+We saved the payload as a file because its special characters can be mistaken as variable indicators by the shell interpreter
+:::
+
+Upon success, the Credential Manifest will be returned in the form of a JSON object:
 
 ```json
 {
@@ -74,7 +131,69 @@ Upon success, you'll see the following response:
     "output_descriptors": [
       {
         "id": "driver_license_output",
-        "schema": "https://schema.org/EducationalOccupationalCredential"
+        "schema": "https://schema.org/EducationalOccupationalCredential",
+        "display": {
+          "title": {
+            "path": [
+              "$.name",
+              "$.vc.name"
+            ],
+            "schema": {
+              "type": "string"
+            },
+            "fallback": "Digital Driver's License"
+          },
+          "subtitle": {
+            "path": [
+              "$.class",
+              "$.vc.class"
+            ],
+            "schema": {
+              "type": "string"
+            },
+            "fallback": "Standard Automobile License"
+          },
+          "description": {
+            "text": "License that certifies the holder has passed relevant tests and is authorized to drive an automobile."
+          },
+          "properties": [
+            {
+              "label": "Applicant's Full Name",
+              "path": [
+                "$.fullName",
+                "$.vc.fullName"
+              ],
+              "schema": {
+                "type": "string"
+              },
+              "fallback": "No name provided."
+            },
+            {
+              "label": "Applicant's Photo",
+              "path": [
+                "$.photo",
+                "$.vc.photo"
+              ],
+              "schema": {
+                "type": "string",
+                "format": "uri"
+              },
+              "fallback": "No photo provided."
+            },
+            {
+              "label": "Driving Test Results",
+              "path": [
+                "$.drivingTestResults",
+                "$.vc.drivingTestResults"
+              ],
+              "schema": {
+                "type": "string",
+                "format": "uri"
+              },
+              "fallback": "Results not provided."
+            }
+          ]
+        }
       }
     ],
     "format": {
@@ -90,15 +209,13 @@ Upon success, you'll see the following response:
 
 ### List Credential Manifests
 
-Via a `GET` request to `v1/manifests`, the API will return all Manifests.
-
-Return all Manifests:
+Via a `GET` request to `v1/manifests`, the API will return all Manifests:
 
 ```bash
 curl -X GET localhost:8080/v1/manifests
 ```
 
-Return all Manifests associated with a specific Issuer `id`:
+To return all Manifests associated with a specific Issuer, pass in Issuer's DID as the `id`:
 
 ```bash
 curl -X GET localhost:8080/v1/manifests -d '{
@@ -142,13 +259,13 @@ Upon success, you'll see the following response:
 
 ### Get a Credential Manifest
 
-Via a `GET` request to `/v1/manifests/{id}`, pass in the `id` of the Manifest you wish to read.
+To get a specific Manifest, submit a `GET` request to `/v1/manifests/{id}` and pass in the `id` of the Manifest:
 
 ```bash
 curl -X GET localhost:8080/v1/manifests/8e612ac9-e450-45f8-ae57-f70c37d52441
 ```
 
-If there is a matching Manifest `id`, you'll see the following response:
+If there is a matching Manifest, it will be returned as a JSON object:
 
 ```json
 {
