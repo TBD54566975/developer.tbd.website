@@ -12,7 +12,7 @@ In our digital driver's license example, the Credential Manifest might instruct 
 
 However, the Credential Manifest does not specify the content of the eventual digital driver's license, the method the DMV uses to verify your information, or the communication process between your wallet and the DMV. Its primary role is to guide your wallet on the necessary data that it needs to submit on your behalf.
 
-By the way, this _checklist_ item in our example is called an **Input Descriptor**. It describes the information that is required.
+By the way, the items of the checklist in our example are called **Input Descriptors**. They describe the information that is required.
 
 :::note
 Credential Manifest is a [draft specification](https://identity.foundation/credential-manifest/) being developed within the Decentralized Identity Foundation (DIF). The design work on the data model is ongoing and participants are encouraged to open issues or otherwise contribute to the [project](https://github.com/decentralized-identity/credential-manifest), whether as input to stable versions or as recommendations for future versions.
