@@ -5,6 +5,10 @@ require('dotenv').config();
 const lightCodeTheme = require('prism-react-renderer/themes/github');
 const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 
+const algoliaApiKey = process.env.DOC_SEARCH_API_KEY;
+const algoliaIndexName = process.env.DOC_SEARCH_INDEX_NAME;
+const algoliaAppId = process.env.DOC_SEARCH_APP_ID;
+
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: `TBD Developer Docs`,
@@ -115,9 +119,9 @@ const config = {
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
       algolia: {
-        appId: 'V0PAFRHA1Z',
-        apiKey: '57294d07c67540228ec0cb1a860f891c',
-        indexName: 'developer-tbd',
+        appId: algoliaAppId,
+        apiKey: algoliaApiKey,
+        indexName: algoliaIndexName,
         insights: true,
         contextualSearch: true,
       },
