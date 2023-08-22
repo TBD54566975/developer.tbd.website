@@ -17,6 +17,10 @@ export function Footer() {
         text: 'Code of Conduct',
         href: '/open-source/code-of-conduct',
       },
+      {
+        text: 'TBD Home',
+        href: 'https://www.tbd.website',
+      },
     ],
     socialText: 'Connect with us',
     socialButtons: [
