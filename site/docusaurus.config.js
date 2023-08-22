@@ -61,15 +61,15 @@ const config = {
   scripts: [
     {
       src: 'https://www.datadoghq-browser-agent.com/us1/v4/datadog-rum.js',
-      async: true
+      async: true,
     },
     {
       src: '/scripts/dd-analytics.js',
-      async: true
+      async: true,
     },
     {
       src: '/scripts/custom.js',
-      async: true
+      async: true,
     },
   ],
   presets: [
@@ -114,6 +114,14 @@ const config = {
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
+      algolia: {
+        appId: 'V0PAFRHA1Z',
+        apiKey: '57294d07c67540228ec0cb1a860f891c',
+        indexName: 'developer-tbd',
+        insights: true,
+        contextualSearch: true,
+        searchPagePath: '/search',
+      },
       colorMode: {
         defaultMode: 'dark',
         disableSwitch: true,
@@ -125,7 +133,6 @@ const config = {
           alt: 'TBD-Logo',
           src: 'img/tbd-logo.svg',
         },
-
         items: [
           {
             to: '/open-source',
@@ -164,13 +171,13 @@ const config = {
           },
           {
             to: '#search',
-            label: 'Ask 🔎',                      
-          },  
-          {
-            to: 'https://tbd.website',
-            position: 'right',
-            label: 'TBD Home',
-          },        
+            label: 'Ask 🤖',
+          },
+          // {
+          //   to: 'https://tbd.website',
+          //   position: 'right',
+          //   label: 'TBD Home',
+          // },
         ],
       },
       footer: {
