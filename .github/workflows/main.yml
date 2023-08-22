@@ -6,8 +6,6 @@ on:
       - main
     types: [opened, synchronize, reopened]
   push:
-    branches:
-      - '**'
     branches-ignore:
       - main
   workflow_dispatch:
