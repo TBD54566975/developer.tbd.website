@@ -1,10 +1,8 @@
 ---
 sidebar_position: 3
-title: Create Schema
-hide_title: true
+title: Create a Schema
 ---
 
-# Create a Schema
 
 A Credential Schema is a document that defines the structure of a Verifiable Credential (VC). It's based on [JSON Schema](https://json-schema.org/) and specifies which properties the issuer will use to create the VC. In this tutorial, you'll learn how to construct a schema and use the SSI Service to create it.
 
