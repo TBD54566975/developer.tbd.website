@@ -120,7 +120,6 @@ const config = {
         indexName: 'developer-tbd',
         insights: true,
         contextualSearch: true,
-        searchPagePath: '/search',
       },
       colorMode: {
         defaultMode: 'dark',
