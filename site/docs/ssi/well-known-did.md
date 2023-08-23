@@ -2,13 +2,13 @@
 sidebar_position: 13
 ---
 
-# Well Known DID Configuration
+# Link a DID to a Domain
 
-Enabling the bridge between current systems and DIDs is essential to amplify their adoption and practicality. A method to achieve this connection involves utilizing a resource known as a [Well Known DID Configuration](https://identity.foundation/.well-known/resources/did-configuration/).
+Connecting DIDs to existing systems is essential to amplify their adoption and practicality. One way to do this is by proving that the entity that controls a DID is also in control of a specific web origin (a website's location). A method to achieve this connection involves utilizing a resource known as a [Well Known DID Configuration](https://identity.foundation/.well-known/resources/did-configuration/).
 
-This type of resource serves as proof of a bi-directional link between a website manager and their DID. This verification is established through a cryptographically secure digital signature associated with essential DID information.
+Imagine Alice controls a reputable website, `example.com`. She can use DID Configuration to prove that she is the same entity controlling her DID and her website. This proof involves cryptographic signatures that show Alice is connected to both, allowing others to verify that Alice's DID and her website are indeed managed by the same entity.
 
-The SSI Service does all the heavy lifting to set this up for you, linking DIDs that were created within the service to a website you control.
+This configuration can be created via the SSI Service.
 
 <Divider type="slash" />
 
@@ -16,19 +16,19 @@ The SSI Service does all the heavy lifting to set this up for you, linking DIDs 
 :::info
 ## Prerequisites
 
-- [Create an Issuer DID](create-did): Save the DID `id` and `verificationMethodId`
-- An origin you control (e.g., https://www.tbd.website)
-- The ability to host files in a path within that origin. (e.g., you could host the file returned via https://www.tbd.website/.well-known/did-configuration.json)
+- [Create a DID](create-did) (or use an existing one): Save the DID `id` and `verificationMethodId`
+- An origin you control (e.g., https://example.com)
+- The ability to host files in a path within that origin. (e.g., you could host the file returned via https://example.com/.well-known/did-configuration.json)
 :::
 
-With an `issuerDid`, `verificationMethodId`, and `origin` / website you control, make a `PUT` request to `/v1/did-configurations` to create a DID configuration like so:
+To make the claim that her DID is associated with her `origin`, Alice uses the SSI Service to issue herself a Domain Linkage Credential. In this request, she'll also need to include the `verificationMethodId` so that its private key can be used to sign the credential. This can done via a `PUT` request to `/v1/did-configurations`:
 
 ```bash
 curl -X PUT 'localhost:8080/v1/did-configurations' -d '{
   "expirationDate": "2051-10-05T14:48:00.000Z",
   "issuanceDate": "2023-10-08T14:48:00.000Z",
   "issuerDid": "did:key:z6MkmM43K3x5xAgzkLRW9r6HCv5c4QKfD2wjfi6tiW3CuzjZ",
-  "origin": "https://www.tbd.website",
+  "origin": "https://example.com",
   "verificationMethodId": "did:key:z6MkmM43K3x5xAgzkLRW9r6HCv5c4QKfD2wjfi6tiW3CuzjZ#z6MkmM43K3x5xAgzkLRW9r6HCv5c4QKfD2wjfi6tiW3CuzjZ"
 }'
 ```
@@ -37,7 +37,7 @@ Upon success the following response should be returned:
 
 ```json
 {
-  "wellKnownLocation": "https://www.tbd.website/.well-known/did-configuration.json",
+  "wellKnownLocation": "https://example.com/.well-known/did-configuration.json",
   "didConfiguration": {
     "@context": "https://identity.foundation/.well-known/did-configuration/v1",
     "linked_dids": [
@@ -50,11 +50,15 @@ Upon success the following response should be returned:
 #### Key Properties for Describing DID Configuration:
 - `wellKnownLocation` -  Indicating the hosting location for the content.
 - `didConfiguration` - The hosted content related to the configuration.
+- `linked_dids` - Array of JWT formatted Domain Linkage Credential entries.
 
 ## Host the Created DID Configuration
-Now that we have `wellKnownLocation`, let's ensure it resolves to a JSON file, and the contents of that file are the value of `didConfiguration`.
 
-With that in mind, in our example the URL `https://www.tbd.website/.well-known/did-configuration.json` should return the JSON object described below:
+Now that we have `wellKnownLocation`, let's ensure it resolves to a JSON file.
+
+- Create a directory at the root of your server called `.well-known`.
+- Create a new file in the `.well-known` directory called `did-configuration.json`.
+- Copy the json and paste it into the `did-configuration.json` file and save it.
 
 ```json
 {
@@ -64,3 +68,5 @@ With that in mind, in our example the URL `https://www.tbd.website/.well-known/d
   ]
 }
 ```
+
+After completing this, by opening your URL `https://{YOUR_DOMAIN}/.well-known/did-configuration.json` in a browser, you should see the JSON object.
