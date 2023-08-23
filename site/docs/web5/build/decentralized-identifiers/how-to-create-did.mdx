@@ -2,14 +2,14 @@
 title: Create a DID
 ---
 
+import CodeSnippet from '@site/src/components/CodeSnippet';
+
 ## Create a DID automatically
 
 The `Web5.connect()` function creates a decentralized identifier (DID) or obtains connection to an existing one either by direct creation or connection to an [identity agent app](/docs/web5/learn/agents). This function also creates an instance of Web5.
 See more details in the [API reference](/api/web5-js/#connectoptions).
 
-```js
-const { web5, did: myDid } = await Web5.connect();
-```
+<CodeSnippet functionName="createDidAutomatically" />
 
 By default, the `Web5.connect()` function creates the DID using the [ION DID method](/docs/web5/learn/decentralized-identifiers#didion).
 
@@ -25,10 +25,7 @@ The `Web5.connect()` function above is the preferred way to create a DID, but th
 
 When calling `create()`, be sure to pass in a [Web5-supported DID method](/docs/web5/learn/decentralized-identifiers#methods).
 
-
-```js
-const myDid = await Web5.did.create('ion');
-```
+<CodeSnippet functionName="createDidManually" />
 
 Here’s an example of what the `myDid` object will look like:
 
