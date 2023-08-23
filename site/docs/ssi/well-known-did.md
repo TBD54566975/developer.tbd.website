@@ -70,3 +70,34 @@ Now that we have `wellKnownLocation`, let's ensure it resolves to a JSON file.
 ```
 
 After completing this, by opening your URL `https://{YOUR_DOMAIN}/.well-known/did-configuration.json` in a browser, you should see the JSON object.
+
+## Verify DID Configuration
+
+After fetching and validating the resource via the DID Configuration Resource process above, the service can check if any of Alice's Domain Linkage Credentials are valid or not.
+
+To establish the validity it MUST carry out the following steps:
+
+- Ensure `credentialSubject.id` matches both Subject and Issuer, and is a DID.
+- Use Linked Data Proof Format or JSON Web Token Proof Format for the Credential.
+- Check `credentialSubject.origin` against requested resource's `origin`.
+- Resolve DID in Issuer's Domain Linkage Credential to get DID document.
+- Validate credential's signature using DID document's `assertionMethod` key material.
+- Successful verification implies `origin` and DID Controller equivalence.
+- Failed validation of one entry doesn’t affect others; continuation is up to the processing entity's choice.
+
+To verify Alice's configuration, a request can be done via `PUT` to `/v1/did-configurations/verification` passing in Alice's `origin`:
+
+```bash
+curl -X PUT 'localhost:8080/v1/did-configurations/verification' -d '{
+  "origin": "https://example.com"
+}
+```
+
+Upon success, the following will be returned:
+
+```json
+{
+  "verified": true,
+  "didConfiguration": "{\"@context\":\"https://identity.foundation/.well-known/contexts/did-configuration-v0.0.jsonld\",\"linked_dids\":[\"...\",\"...\"]}"
+}
+```
