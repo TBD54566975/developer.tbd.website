@@ -1,4 +1,6 @@
 {
+  "createDidManually": "const myDid = await Web5.did.create('ion');",
+  "createDidAutomatically": "const { web5, did: myDid } = await Web5.connect();",
   "queryProtocolsForMusic": "const { protocols } = await web5.dwn.protocols.query({\n    message: {\n      filter: {\n        protocol: 'https://music.org/protocol',\n      },\n    },\n  });",
   "queryProtocolsWithFilterDescending": "const { protocols } = await web5.dwn.protocols.query({\n    message: {\n      filter: {\n        protocol: 'http://social-media.xyz',\n      },\n      //highlight-start\n      dateSort: 'createdDescending',\n      //highlight-end\n    },\n  });",
   "queryRecordsWithFilterAscending": "const response = await web5.dwn.records.query({\n    message: {\n      filter: {\n        dataFormat: 'text/plain',\n      },\n      dateSort: 'publishedAscending',\n    },\n  });",
