@@ -10,6 +10,10 @@
   line-height: 24px;
 }
 
+.navbar__inner {
+  align-items: center;
+}
+
 .navbar a {
   text-decoration: none;
 }

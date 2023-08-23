@@ -4,6 +4,12 @@
 require('dotenv').config();
 const lightCodeTheme = require('prism-react-renderer/themes/github');
 const darkCodeTheme = require('prism-react-renderer/themes/dracula');
+const WEB5_VERSION =
+  require('../package.json').dependencies['@tbd54566975/web5'];
+
+const algoliaApiKey = process.env.DOC_SEARCH_API_KEY;
+const algoliaIndexName = process.env.DOC_SEARCH_INDEX_NAME;
+const algoliaAppId = process.env.DOC_SEARCH_APP_ID;
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
@@ -24,7 +30,7 @@ const config = {
   //   locales: ['en'],
   // },
   customFields: {
-    WEB5_VERSION: process.env.WEB5_VERSION,
+    WEB5_VERSION,
   },
   plugins: [
     'docusaurus-tailwindcss',
@@ -61,15 +67,15 @@ const config = {
   scripts: [
     {
       src: 'https://www.datadoghq-browser-agent.com/us1/v4/datadog-rum.js',
-      async: true
+      async: true,
     },
     {
       src: '/scripts/dd-analytics.js',
-      async: true
+      async: true,
     },
     {
       src: '/scripts/custom.js',
-      async: true
+      async: true,
     },
   ],
   presets: [
@@ -114,6 +120,13 @@ const config = {
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
+      algolia: {
+        appId: algoliaAppId,
+        apiKey: algoliaApiKey,
+        indexName: algoliaIndexName,
+        insights: true,
+        contextualSearch: true,
+      },
       colorMode: {
         defaultMode: 'dark',
         disableSwitch: true,
@@ -125,7 +138,6 @@ const config = {
           alt: 'TBD-Logo',
           src: 'img/tbd-logo.svg',
         },
-
         items: [
           {
             to: '/open-source',
@@ -164,13 +176,13 @@ const config = {
           },
           {
             to: '#search',
-            label: 'Ask 🔎',                      
-          },  
-          {
-            to: 'https://tbd.website',
-            position: 'right',
-            label: 'TBD Home',
-          },        
+            label: 'Ask 🤖',
+          },
+          // {
+          //   to: 'https://tbd.website',
+          //   position: 'right',
+          //   label: 'TBD Home',
+          // },
         ],
       },
       footer: {
