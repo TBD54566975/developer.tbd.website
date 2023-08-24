@@ -9,6 +9,8 @@ import Divider from '@site/src/components/Divider';
 import ApiDetails from '@site/src/components/ApiDetails';
 import ScriptSrc from '@site/src/components/ScriptSrc';
 
+import CodeSnippet from '@site/src/components/CodeSnippet';
+
 
 # Web5
 
@@ -189,9 +191,7 @@ The outputs of this method invocation will be used throughout the other API meth
 
 #### Code Examples
 
-```js
-const { web5, did } = await Web5.connect();
-```
+<CodeSnippet functionName="createDidAutomatically" />
 
 ```js
 const { web5, did: myDid } = await Web5.connect({
