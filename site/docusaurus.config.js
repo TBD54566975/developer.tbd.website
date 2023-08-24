@@ -11,8 +11,19 @@ const algoliaApiKey = process.env.DOC_SEARCH_API_KEY;
 const algoliaIndexName = process.env.DOC_SEARCH_INDEX_NAME;
 const algoliaAppId = process.env.DOC_SEARCH_APP_ID;
 
+let algoliaConfig = null;
+if (algoliaApiKey && algoliaIndexName && algoliaAppId) {
+  algoliaConfig = {
+    appId: algoliaAppId,
+    apiKey: algoliaApiKey,
+    indexName: algoliaIndexName,
+    contextualSearch: true,
+    searchParameters: {},
+  };
+}
+
 /** @type {import('@docusaurus/types').Config} */
-const config = {
+let config = {
   title: `TBD Developer Docs`,
   tagline: '',
   organizationName: 'TBD54566975',
@@ -120,13 +131,6 @@ const config = {
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
-      algolia: {
-        appId: algoliaAppId,
-        apiKey: algoliaApiKey,
-        indexName: algoliaIndexName,
-        insights: true,
-        contextualSearch: true,
-      },
       colorMode: {
         defaultMode: 'dark',
         disableSwitch: true,
@@ -247,5 +251,12 @@ const config = {
       },
     }),
 };
+
+if (algoliaConfig) {
+  config.themeConfig = {
+    ...config.themeConfig,
+    algolia: algoliaConfig,
+  };
+}
 
 module.exports = config;
