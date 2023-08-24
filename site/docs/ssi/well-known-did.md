@@ -81,8 +81,11 @@ curl -X PUT 'localhost:8080/v1/did-configurations/verification' -d '{
 To establish the validity, the SSI Service will verify the:
 
 ✅ Subject and Issuer DIDs are the same
+
 ✅ Domain Linkage Credential is in either a Linked Data Proof Format or JSON Web Token Proof Format
+
 ✅ Origin matches the resource it was requested from
+
 ✅ Credential's signature against key material in the resolved DID document's `assertionMethod` section
 
 Upon a successful verification, the entity can trust that Alice controls both the DID as well as the origin, `https://example.com`.
