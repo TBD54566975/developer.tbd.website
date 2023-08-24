@@ -1,5 +1,6 @@
 {
   "createMyDid": "const myDid = await web5.did.create('ion');",
+  "createDidWithDWNEndpoint": "const { web5, did: myDid } = await Web5.connect({\n    techPreview: {\n      dwnEndpoints: ['https://dwn.your-domain.org/'],\n    },\n  });",
   "createAliceDid": "const { web5, did: aliceDid } = await Web5.connect();\n\n  // Create the record\n  const { record } = await web5.dwn.records.create({\n    data: 'Hello Web5',\n    message: {\n      dataFormat: 'text/plain',\n    },\n  });\n\n  // Read the record\n  const readResult = await record.data.text();",
   "createDidManually": "const myDid = await Web5.did.create('ion');",
   "createDidAutomatically": "const { web5, did: myDid } = await Web5.connect();",
