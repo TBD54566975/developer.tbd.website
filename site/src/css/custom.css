@@ -585,3 +585,8 @@ footer a:hover {
     transform: rotate(0deg);
   }
 }
+
+ol {
+  list-style: auto;
+  margin: 30px;
+}

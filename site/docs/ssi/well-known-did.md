@@ -10,18 +10,15 @@ Imagine Alice controls a reputable website, `https://example.com`. She can use D
 
 This configuration can be created via the SSI Service.
 
-<Divider type="slash" />
-
 ## Create a DID Configuration
 
 :::info
-
 ## Prerequisites
 
 - [Create a DID](create-did) (or use an existing one): Save the DID `id` and `verificationMethodId`
-- An origin you control (e.g., https://example.com)
-- The ability to host files in a path within that origin. (i.e., you are able to host the file returned via https://example.com/.well-known/did-configuration.json)
-  :::
+- An origin you control (e.g., `https://example.com`)
+- The ability to host files in a path within that origin. (i.e., you are able to host the file returned via `https://example.com/.well-known/did-configuration.json`)
+:::
 
 To make the claim that her DID is associated with her `origin`, Alice uses the SSI Service to issue herself a **Domain Linkage Credential**. In this request, she'll also need to include the `verificationMethodId` so that its private key can be used to sign the credential. This can done via a `PUT` request to `/v1/did-configurations`:
 
@@ -38,7 +35,7 @@ curl -X PUT 'localhost:8080/v1/did-configurations' -d '{
 Upon success, the response will include two key properties:
 
 - `wellKnownLocation` - the location on the web where the DID Configuration can be found
-- `didConfiguration` - the actual configuration details including an array of `linked_dids`, which consists of Domain Linkage Credential entries in JWT Proof format
+- `didConfiguration` - the actual configuration details including an array of **linked_dids**, which consists of Domain Linkage Credential entries in JWT Proof format
 
 ```json
 {
@@ -54,10 +51,11 @@ Upon success, the response will include two key properties:
 
 Now that Alice has her DID Configuration Resource, she must place it at her origin. To do so, she completes the following steps:
 
-<ol>
-<li>Create a directory at the root of your server called `.well-known`.</li>
-<li>Create a new file in the `.well-known` directory called `did-configuration.json`.</li>
-<li>Copy the json and paste it into the `did-configuration.json` file and save it:
+1. Create a directory at the root of your server called `.well-known`.
+
+2. Create a new file in the `.well-known` directory called `did-configuration.json`.
+
+3. Copy the json and paste it into the `did-configuration.json` file and save it:
 
 ```json
 {
@@ -65,9 +63,6 @@ Now that Alice has her DID Configuration Resource, she must place it at her orig
   "linked_dids": ["eyJhbGciOiJFZERTQSIs..."]
 }
 ```
-
-</li>
-</ol>
 
 After completing this, by opening the URL of the `wellKnownLocation` in a browser, the contents of the DID Configuration Resource are visible.
 
@@ -89,7 +84,7 @@ To establish the validity, the SSI Service will verify the:
 
 ✅ Origin matches the resource it was requested from
 
-✅ Credential's signature against key material in the resolved DID document's `assertionMethod` section
+✅ Credential's signature against key material in the resolved DID Document's `assertionMethod` section
 
 Upon a successful verification, the entity can trust that Alice controls both the DID as well as the origin, `https://example.com`.
 
