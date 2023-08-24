@@ -8,41 +8,60 @@ on:
   workflow_dispatch:
     inputs:
       reason:
-        description: 'Manual trigger'
+        description: "Manual trigger"
         required: true
-        default: 'Just because.'
+        default: "Just because."
 
 jobs:
   test:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-    - name: Setup Node.js
-      uses: actions/setup-node@v2
-      with:
-        node-version: '18'
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: "18"
 
-    - name: Install pnpm
-      run: npm install -g pnpm
+      - name: Install pnpm
+        run: npm install -g pnpm
 
-    - name: Install dependencies
-      run: pnpm install
+      - name: Install dependencies
+        run: pnpm install
 
-    - name: Run tests
-      run: pnpm test
+      - name: Run tests
+        run: pnpm test
 
   deploy:
     needs: test
     runs-on: ubuntu-latest
 
     steps:
-    - name: Trigger Netlify Build via Build Hook with Dynamic Params
-      run: |
-        BRANCH_NAME=$(echo "${GITHUB_REF#refs/heads/}")
-        ENCODED_BRANCH_NAME=$(echo "$BRANCH_NAME" | sed 's|/|%2F|g')
-        TITLE="${BRANCH_NAME} Branch Deploy"
-        ENCODED_TITLE=$(echo "$TITLE" | sed 's| |%20|g')
-        curl -v -X POST -d "trigger_branch=$ENCODED_BRANCH_NAME&trigger_title=$ENCODED_TITLE&clear_cache=true" "https://api.netlify.com/build_hooks/${{ secrets.TEST_BUILDHOOK }}"
+      - name: Trigger Netlify Build via Build Hook with Dynamic Params
+        run: |
+          BRANCH_NAME=$(echo "${GITHUB_REF#refs/heads/}")
+          ENCODED_BRANCH_NAME=$(echo "$BRANCH_NAME" | sed 's|/|%2F|g')
+          TITLE="${BRANCH_NAME} Branch Deploy"
+          ENCODED_TITLE=$(echo "$TITLE" | sed 's| |%20|g')
+          curl -v -X POST -d "trigger_branch=$ENCODED_BRANCH_NAME&trigger_title=$ENCODED_TITLE&clear_cache=true" "https://api.netlify.com/build_hooks/${{ secrets.TEST_BUILDHOOK }}"
+
+      - name: Install Netlify CLI
+        run: npm install netlify-cli -g
+
+      - name: Get Deploy Preview URL
+        id: get-url
+        run: |
+          NETLIFY_SITE_ID=${{ secrets.NETLIFY_SITE_ID }}
+          DEPLOY_DETAILS=$(netlify api getSiteDeploys --site_id $NETLIFY_SITE_ID | jq '.[0] | { url: .deploy_ssl_url, state: .state }')
+          echo "$DEPLOY_DETAILS" > deploy-details.json
+          echo "::set-output name=deploy-url::$(jq -r '.url' deploy-details.json)"
+          echo "::set-output name=deploy-state::$(jq -r '.state' deploy-details.json)"
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+
+      - name: Display Deploy Preview URL
+        id: display-url
+        run: |
+          echo "Deploy Preview URL: ${{ steps.get-url.outputs.deploy-url }}"
