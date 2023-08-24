@@ -54,11 +54,10 @@ jobs:
         id: get-url
         run: |
           NETLIFY_SITE_ID=${{ secrets.NETLIFY_SITE_ID }}
-          DEPLOY_DETAILS=$(netlify api getSiteDeploys --site_id $NETLIFY_SITE_ID | jq '.[0] | { url: .deploy_ssl_url, state: .state }')
+          DEPLOY_DETAILS=$(netlify api listSiteDeploys --data '{"site_id": "'$NETLIFY_SITE_ID'"}' | jq '.[0] | { url: .deploy_ssl_url, state: .state }')
           echo "$DEPLOY_DETAILS" > deploy-details.json
           echo "deploy-url=$(jq -r '.url' deploy-details.json)" >> $GITHUB_ENV
           echo "deploy-state=$(jq -r '.state' deploy-details.json)" >> $GITHUB_ENV
-
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
 
