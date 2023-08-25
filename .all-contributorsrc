@@ -25,6 +25,15 @@
         "code",
         "question"
       ]
+    },
+    {
+      "login": "sarathcodes",
+      "name": "Sarah Nair",
+      "avatar_url": "https://avatars.githubusercontent.com/u/58284608?v=4",
+      "profile": "https://github.com/sarathcodes",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 7,
