@@ -4,8 +4,7 @@
 require('dotenv').config();
 const lightCodeTheme = require('prism-react-renderer/themes/github');
 const darkCodeTheme = require('prism-react-renderer/themes/dracula');
-const WEB5_VERSION =
-  require('../package.json').dependencies['@web5/api'];
+const WEB5_VERSION = require('../package.json').dependencies['@web5/api'];
 
 const algoliaApiKey = process.env.DOC_SEARCH_API_KEY;
 const algoliaIndexName = process.env.DOC_SEARCH_INDEX_NAME;
@@ -74,6 +73,27 @@ let config = {
     //     sidebarPath: require.resolve('./learn-sidebars.js'),
     //   },
     // ],
+
+    function polyfills() {
+      console.log('adding polyfills for webpack');
+      return {
+        name: 'polyfills',
+        configureWebpack() {
+          return {
+            resolve: {
+              fallback: {
+                stream: require.resolve('stream-browserify'),
+                crypto: require.resolve('crypto-browserify'),
+                // adding these just in case
+                // buffer: require.resolve('buffer/'),
+                // util: require.resolve('util/'),
+                // assert: require.resolve('assert/'),
+              },
+            },
+          };
+        },
+      };
+    },
   ],
   scripts: [
     {
