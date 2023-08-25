@@ -8,7 +8,7 @@ function PackageJson() {
   } = useDocusaurusContext();
   const json = {
     dependencies: {
-      '@tbd54566975/web5': customFields.WEB5_VERSION,
+      '@web5/api': customFields.WEB5_VERSION,
     },
     type: 'module',
   };

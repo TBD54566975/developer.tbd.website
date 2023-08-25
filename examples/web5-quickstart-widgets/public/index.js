@@ -1,4 +1,4 @@
-import { Web5 } from '../../../../../../../../node_modules/@tbd54566975/web5/dist/browser.mjs';
+import { Web5 } from '../../../../../../../../node_modules/@web5/dist/browser.mjs';
 
 async function didCreate() {
   return await Web5.connect();
