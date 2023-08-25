@@ -25,6 +25,17 @@
         "code",
         "question"
       ]
+    },
+    {
+      "login": "andorsk",
+      "name": "Andor Kesselman",
+      "avatar_url": "https://avatars.githubusercontent.com/u/8604639?v=4",
+      "profile": "https://github.com/andorsk",
+      "contributions": [
+        "code",
+        "doc",
+        "example"
+      ]
     }
   ],
   "contributorsPerLine": 7,
