@@ -25,6 +25,15 @@
         "code",
         "question"
       ]
+    },
+    {
+      "login": "mathieurivest",
+      "name": "Mathieu Rivest",
+      "avatar_url": "https://avatars.githubusercontent.com/u/4664198?v=4",
+      "profile": "https://github.com/mathieurivest",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 7,
