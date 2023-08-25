@@ -17,6 +17,14 @@
       ]
     },
     {
+      "login": "aguywithcode",
+      "name": "Michael Brown",
+      "avatar_url": "https://avatars.githubusercontent.com/u/13209683?v=4",
+      "profile": "http://aguywhocodes.com",
+      "contributions": [
+        "code"
+    },
+    }
       "login": "nearlyjuly",
       "name": "nearlyjuly",
       "avatar_url": "https://avatars.githubusercontent.com/u/112702586?v=4",
@@ -31,6 +39,27 @@
       "name": "shoito",
       "avatar_url": "https://avatars.githubusercontent.com/u/37051?v=4",
       "profile": "https://github.com/shoito",
+    },
+    {
+      "login": "sarathcodes",
+      "name": "Sarah Nair",
+      "avatar_url": "https://avatars.githubusercontent.com/u/58284608?v=4",
+      "profile": "https://github.com/sarathcodes",
+    },
+    {
+      "login": "acekyd",
+      "name": "Adewale Abati",
+      "avatar_url": "https://avatars.githubusercontent.com/u/4003538?v=4",
+      "profile": "https://www.acekyd.com",
+      "contributions": [
+        "code",
+        "content"
+     },
+     {
+      "login": "alec-brooks",
+      "name": "alec-brooks",
+      "avatar_url": "https://avatars.githubusercontent.com/u/1539341?v=4",
+      "profile": "https://github.com/alec-brooks",
       "contributions": [
         "doc"
       ]
