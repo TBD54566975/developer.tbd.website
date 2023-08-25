@@ -172,6 +172,11 @@ let config = {
           //   position: 'left',
           // },
           {
+            to: '/community',
+            label: 'Community',
+            position: 'left',
+          },
+          {
             type: 'doc',
             docId: 'index',
             to: '/docs',

@@ -23,8 +23,9 @@
       "profile": "http://aguywhocodes.com",
       "contributions": [
         "code"
+      ]
     },
-    }
+    {
       "login": "nearlyjuly",
       "name": "nearlyjuly",
       "avatar_url": "https://avatars.githubusercontent.com/u/112702586?v=4",
@@ -39,6 +40,9 @@
       "name": "Prod1gy0ne",
       "avatar_url": "https://avatars.githubusercontent.com/u/96172348?v=4",
       "profile": "https://github.com/Prod1gy0ne",
+      "contributions": [
+        "doc"
+      ]
     },
     {
       "login": "andorsk",
@@ -49,12 +53,16 @@
         "code",
         "doc",
         "example"
+      ]
     },
-    {  
+    {
       "login": "adityakode",
       "name": "Aditya Kode",
       "avatar_url": "https://avatars.githubusercontent.com/u/105551807?v=4",
       "profile": "https://github.com/adityakode",
+      "contributions": [
+        "doc"
+      ]
     },
     {
       "login": "jsahagun91",
@@ -63,24 +71,34 @@
       "profile": "http://jsahagun.io/",
       "contributions": [
         "code"
+      ]
     },
     {
       "login": "mathieurivest",
       "name": "Mathieu Rivest",
       "avatar_url": "https://avatars.githubusercontent.com/u/4664198?v=4",
       "profile": "https://github.com/mathieurivest",
+      "contributions": [
+        "doc"
+      ]
     },
     {
       "login": "shoito",
       "name": "shoito",
       "avatar_url": "https://avatars.githubusercontent.com/u/37051?v=4",
       "profile": "https://github.com/shoito",
+      "contributions": [
+        "doc"
+      ]
     },
     {
       "login": "sarathcodes",
       "name": "Sarah Nair",
       "avatar_url": "https://avatars.githubusercontent.com/u/58284608?v=4",
       "profile": "https://github.com/sarathcodes",
+      "contributions": [
+        "doc"
+      ]
     },
     {
       "login": "acekyd",
@@ -90,8 +108,9 @@
       "contributions": [
         "code",
         "content"
-     },
-     {
+      ]
+    },
+    {
       "login": "alec-brooks",
       "name": "alec-brooks",
       "avatar_url": "https://avatars.githubusercontent.com/u/1539341?v=4",
