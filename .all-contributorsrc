@@ -25,6 +25,15 @@
         "code",
         "question"
       ]
+    },
+    {
+      "login": "adityakode",
+      "name": "Aditya Kode",
+      "avatar_url": "https://avatars.githubusercontent.com/u/105551807?v=4",
+      "profile": "https://github.com/adityakode",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 7,
