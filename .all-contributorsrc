@@ -25,6 +25,16 @@
         "code",
         "question"
       ]
+    },
+    {
+      "login": "acekyd",
+      "name": "Adewale Abati",
+      "avatar_url": "https://avatars.githubusercontent.com/u/4003538?v=4",
+      "profile": "https://www.acekyd.com",
+      "contributions": [
+        "code",
+        "content"
+      ]
     }
   ],
   "contributorsPerLine": 7,
