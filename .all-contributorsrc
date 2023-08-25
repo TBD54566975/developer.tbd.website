@@ -15,6 +15,16 @@
       "contributions": [
         "content"
       ]
+    },
+    {
+      "login": "nearlyjuly",
+      "name": "nearlyjuly",
+      "avatar_url": "https://avatars.githubusercontent.com/u/112702586?v=4",
+      "profile": "https://github.com/nearlyjuly",
+      "contributions": [
+        "code",
+        "question"
+      ]
     }
   ],
   "contributorsPerLine": 7,
