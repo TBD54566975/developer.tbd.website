@@ -25,6 +25,15 @@
         "code",
         "question"
       ]
+    },
+    {
+      "login": "Prod1gy0ne",
+      "name": "Prod1gy0ne",
+      "avatar_url": "https://avatars.githubusercontent.com/u/96172348?v=4",
+      "profile": "https://github.com/Prod1gy0ne",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 7,
