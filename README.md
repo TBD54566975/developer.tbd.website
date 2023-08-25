@@ -1,6 +1,6 @@
 # TBD Developer Site
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-3-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 This is a monorepo powered by [pnpm](https://pnpm.io/) that includes a documentation site, tutorials and examples. This repository allows you to conveniently manage multiple projects within a single repository.
@@ -123,6 +123,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <tr>
       <td align="center" valign="top" width="14.28%"><a href="https://www.linkedin.com/in/yuusufoladipo"><img src="https://avatars.githubusercontent.com/u/77832856?v=4?s=100" width="100px;" alt="Yuusuf Oyelola Oladipo"/><br /><sub><b>Yuusuf Oyelola Oladipo</b></sub></a><br /><a href="#content-Civil-captain" title="Content">🖋</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/nearlyjuly"><img src="https://avatars.githubusercontent.com/u/112702586?v=4?s=100" width="100px;" alt="nearlyjuly"/><br /><sub><b>nearlyjuly</b></sub></a><br /><a href="https://github.com/TBD54566975/developer.tbd.website/commits?author=nearlyjuly" title="Code">💻</a> <a href="#question-nearlyjuly" title="Answering Questions">💬</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="http://jsahagun.io/"><img src="https://avatars.githubusercontent.com/u/34168252?v=4?s=100" width="100px;" alt="Jose Sahagun"/><br /><sub><b>Jose Sahagun</b></sub></a><br /><a href="https://github.com/TBD54566975/developer.tbd.website/commits?author=jsahagun91" title="Code">💻</a></td>
     </tr>
   </tbody>
 </table>
