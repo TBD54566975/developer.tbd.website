@@ -11,7 +11,7 @@
     "test:watch": "node extract-snippets && pnpm vitest --config vite.config.ts --watch"
   },
   "dependencies": {
-    "@web5/api": "0.8.0-alpha-20230823-44789a4",
+    "@web5/api": "0.8.0",
     "react-markdown": "^8.0.7"
   },
   "devDependencies": {
