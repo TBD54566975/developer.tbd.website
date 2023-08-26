@@ -24,7 +24,7 @@ if (algoliaApiKey && algoliaIndexName && algoliaAppId) {
 
 /** @type {import('@docusaurus/types').Config} */
 let config = {
-  title: `TBD Developer Docs`,
+  title: `TBD`,
   tagline: '',
   organizationName: 'TBD54566975',
   projectName: 'developer.tbd.website',

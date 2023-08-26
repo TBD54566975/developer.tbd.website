@@ -4,15 +4,16 @@ import Community from '../../components/Community';
 import DiscordMessagesView from './discord-messages-view.js';
 import Layout from '@theme/Layout';
 import contributorsData from '@site/src/contributors.json';
+import Head from '@docusaurus/Head';
 
 function CommunityIndex() {
   return (
     <Layout>
+      <Head title="Community | TBD">
+        <meta property="og:title" />
+      </Head>
       <h1>Welcome to your TBD community!</h1>
-      {/* <p className="mb-8 justify-center">
-        Join community members from all over the world and lets advance the
-        discovery of decentralized applications together
-      </p> */}
+
       {/* contributor spotlight section */}
       <div className="pb-11">
         <h2 className="pt-6">TBD Spotlight</h2>

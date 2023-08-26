@@ -99,7 +99,7 @@ function DiscordMessagesView({ channelID, channelName }) {
                 src={
                   message.author.avatar
                     ? `https://cdn.discordapp.com/avatars/${message.author.id}/${message.author.avatar}.png`
-                    : '/img/discord-avatar.png'
+                    : '/img/discord-icon.svg'
                 }
                 alt={message.author.username}
                 style={{
