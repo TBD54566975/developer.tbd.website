@@ -8,73 +8,41 @@ on:
   workflow_dispatch:
     inputs:
       reason:
-        description: 'Manual trigger'
+        description: "Manual trigger"
         required: true
-        default: 'Just because.'
-
-name: Update Contributors
-
-on:
-  push:
-    branches:
-      - main
-
-jobs:
-  build:
-    runs-on: ubuntu-latest
-
-    steps:
-    - name: Checkout repo
-      uses: actions/checkout@v2
-
-    - name: Run script
-      run: node generate-contributors-json.js
-
-    - name: Commit and push if changes
-      run: |
-        # Check for changes to contributors.json
-        if git diff --exit-code --name-only | grep 'src/contributors.json'; then
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
-          git add src/contributors.json
-          git commit -m "Update contributors.json"
-          git push
-        else
-          echo "No changes to contributors.json, skipping commit and push."
-        fi
-
+        default: "Just because."
 
 jobs:
   test:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-    - name: Setup Node.js
-      uses: actions/setup-node@v2
-      with:
-        node-version: '18'
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: "18"
 
-    - name: Install pnpm
-      run: npm install -g pnpm
+      - name: Install pnpm
+        run: npm install -g pnpm
 
-    - name: Install dependencies
-      run: pnpm install
+      - name: Install dependencies
+        run: pnpm install
 
-    - name: Run tests
-      run: pnpm test
+      - name: Run tests
+        run: pnpm test
 
   deploy:
     needs: test
     runs-on: ubuntu-latest
 
     steps:
-    - name: Trigger Netlify Build via Build Hook with Dynamic Params
-      run: |
-        BRANCH_NAME=$(echo "${GITHUB_REF#refs/heads/}")
-        ENCODED_BRANCH_NAME=$(echo "$BRANCH_NAME" | sed 's|/|%2F|g')
-        TITLE="${BRANCH_NAME} Branch Deploy"
-        ENCODED_TITLE=$(echo "$TITLE" | sed 's| |%20|g')
-        curl -v -X POST -d "trigger_branch=$ENCODED_BRANCH_NAME&trigger_title=$ENCODED_TITLE&clear_cache=true" "https://api.netlify.com/build_hooks/${{ secrets.TEST_BUILDHOOK }}"
+      - name: Trigger Netlify Build via Build Hook with Dynamic Params
+        run: |
+          BRANCH_NAME=$(echo "${GITHUB_REF#refs/heads/}")
+          ENCODED_BRANCH_NAME=$(echo "$BRANCH_NAME" | sed 's|/|%2F|g')
+          TITLE="${BRANCH_NAME} Branch Deploy"
+          ENCODED_TITLE=$(echo "$TITLE" | sed 's| |%20|g')
+          curl -v -X POST -d "trigger_branch=$ENCODED_BRANCH_NAME&trigger_title=$ENCODED_TITLE&clear_cache=true" "https://api.netlify.com/build_hooks/${{ secrets.TEST_BUILDHOOK }}"
