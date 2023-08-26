@@ -73,7 +73,7 @@ If a verifier wants to make sure that Alice's DID Configuration Resource is vali
 ```bash
 curl -X PUT 'localhost:8080/v1/did-configurations/verification' -d '{
   "origin": "https://example.com"
-}
+}'
 ```
 
 To establish the validity, the SSI Service will verify the:
