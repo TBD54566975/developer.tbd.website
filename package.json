@@ -11,11 +11,16 @@
     "test:watch": "node extract-snippets && pnpm vitest --config vite.config.ts --watch"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^6.4.2",
+    "@fortawesome/free-solid-svg-icons": "^6.4.2",
+    "@fortawesome/react-fontawesome": "^0.2.0",
+    "@web5/api": "0.8.1",
+    "font-awesome": "^4.7.0",
+    "react-fontawesome": "^1.7.1",
+    "react-markdown": "^8.0.7",
     "node-fetch": "^3.3.2",
     "react-slick": "^0.29.0",
-    "slick-carousel": "^1.8.1",
-    "@web5/api": "0.8.1",
-    "react-markdown": "8.0.7"
+    "slick-carousel": "^1.8.1"
   },
   "devDependencies": {
     "@vitest/browser": "0.33.0",
