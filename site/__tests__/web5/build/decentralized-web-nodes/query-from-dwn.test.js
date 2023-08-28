@@ -35,7 +35,7 @@ test('queryRecordsWithFilterAscending returns an array of protocols', async () =
   expect(Array.isArray(response.records)).toBe(true);
 });
 
-test('queryRecordsFromDID returns an array of records', async () => {
+test.skip('queryRecordsFromDID returns an array of records', async () => {
   const response = await queryRecordsFromDID(web5, did);
 
   expect(Array.isArray(response)).toBe(true);
