@@ -1,12 +1,32 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import HeroCard from '@site/src/components/HeroCard';
 import Community from '../../components/Community';
 import DiscordMessagesView from './discord-messages-view.js';
 import Layout from '@theme/Layout';
 import contributorsData from '@site/src/contributors.json';
 import Head from '@docusaurus/Head';
+import ExecutionEnvironment from '@docusaurus/ExecutionEnvironment';
 
 function CommunityIndex() {
+  const [isMobile, setIsMobile] = useState(
+    ExecutionEnvironment.canUseDOM ? window.innerWidth <= 768 : false,
+  );
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (ExecutionEnvironment.canUseDOM) {
+        setIsMobile(window.innerWidth <= 768);
+      }
+    };
+
+    if (ExecutionEnvironment.canUseDOM) {
+      window.addEventListener('resize', handleResize);
+      return () => {
+        window.removeEventListener('resize', handleResize);
+      };
+    }
+  }, []);
+
   return (
     <Layout>
       <Head title="Community | TBD">
@@ -130,9 +150,10 @@ function CommunityIndex() {
           }}
         >
           <h2> 👀 Sneakpeak into the community 👀</h2>
+
           <div
             style={{
-              display: 'flex',
+              display: isMobile ? 'block' : 'flex',
               justifyContent: 'space-between',
               alignItems: 'center',
               gap: '10px',
@@ -141,15 +162,25 @@ function CommunityIndex() {
             <DiscordMessagesView
               channelID="1068273971432280196"
               channelName="DWN"
-              style={{ flex: 1, marginRight: '5px' }}
+              style={{
+                flex: 1,
+                marginRight: isMobile ? '0px' : '5px',
+                marginBottom: isMobile ? '10px' : '0px',
+                width: isMobile ? '100%' : 'auto',
+              }}
             />
             <DiscordMessagesView
               channelID="969272658501976117"
               channelName="WEB5"
-              style={{ flex: 1, marginLeft: '5px' }}
+              style={{
+                flex: 1,
+                marginLeft: isMobile ? '0px' : '5px',
+                width: isMobile ? '100%' : 'auto',
+              }}
             />
           </div>
         </div>
+
         <Community />
       </div>
     </Layout>

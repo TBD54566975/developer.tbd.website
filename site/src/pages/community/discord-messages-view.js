@@ -1,26 +1,62 @@
 import React, { useState, useEffect } from 'react';
+import ExecutionEnvironment from '@docusaurus/ExecutionEnvironment';
 
-function DiscordMessagesView({ channelID, channelName }) {
+function DiscordMessagesView({ channelID, channelName, style }) {
   const [messages, setMessages] = useState([]);
+  const [screenWidth, setScreenWidth] = useState(
+    ExecutionEnvironment.canUseDOM ? window.innerWidth : 1000,
+  );
+
+  const mockMessages = [
+    {
+      id: 'mock1',
+      type: 0,
+      content: 'This is a mock message.',
+      author: {
+        avatar: null,
+        username: 'MockUser',
+      },
+      timestamp: new Date().getTime(),
+    },
+    {
+      id: 'mock2',
+      type: 0,
+      content: 'This is a mock message.',
+      author: {
+        avatar: null,
+        username: 'MockUser',
+      },
+      timestamp: new Date().getTime(),
+    },
+  ];
 
   useEffect(() => {
     async function fetchMessages() {
       const response = await fetch(
         `/.netlify/functions/discord-messages?channelID=${channelID}`,
       );
-
       if (!response.ok) {
         console.error(
           `There was an issue fetching messages: ${response.statusText}`,
         );
+        setMessages(mockMessages);
         return;
       }
-
       const data = await response.json();
       setMessages(data);
     }
 
-    fetchMessages();
+    const handleResize = () => {
+      if (ExecutionEnvironment.canUseDOM) {
+        setScreenWidth(window.innerWidth);
+      }
+    };
+
+    if (ExecutionEnvironment.canUseDOM) {
+      window.addEventListener('resize', handleResize);
+      fetchMessages();
+      return () => window.removeEventListener('resize', handleResize);
+    }
   }, [channelID]);
 
   const formatTimestamp = (timestamp) => {
@@ -30,10 +66,13 @@ function DiscordMessagesView({ channelID, channelName }) {
     return `${hours}:${minutes}`;
   };
 
+  const isSmallScreen = screenWidth < 480;
+  const avatarSize = isSmallScreen ? '30px' : '50px';
+
   return (
     <div
       style={{
-        width: '100%',
+        ...style,
         backgroundColor: '#36393F',
         borderRadius: '8px',
         overflow: 'hidden',
@@ -53,7 +92,10 @@ function DiscordMessagesView({ channelID, channelName }) {
           <img
             src="/img/discord-icon.svg"
             alt="Discord Logo"
-            style={{ width: '30px', marginRight: '10px' }}
+            style={{
+              width: isSmallScreen ? '15px' : '30px',
+              marginRight: '10px',
+            }}
           />
           <h2
             style={{
@@ -61,7 +103,6 @@ function DiscordMessagesView({ channelID, channelName }) {
               color: '#FFFFFF',
               fontWeight: 'bold',
               fontSize: '1.5em',
-              font: 'Uni Sans Heavy',
             }}
           >
             Discord
@@ -93,6 +134,7 @@ function DiscordMessagesView({ channelID, channelName }) {
                 margin: '5px 0',
                 borderRadius: '5px',
                 display: 'flex',
+                flexDirection: isSmallScreen ? 'column' : 'row',
               }}
             >
               <img
@@ -103,11 +145,12 @@ function DiscordMessagesView({ channelID, channelName }) {
                 }
                 alt={message.author.username}
                 style={{
-                  width: '50px',
-                  height: '50px',
+                  width: avatarSize,
+                  height: avatarSize,
                   borderRadius: '50%',
                   objectFit: 'cover',
-                  marginRight: '10px',
+                  marginRight: isSmallScreen ? '0' : '10px',
+                  marginBottom: isSmallScreen ? '10px' : '0',
                 }}
               />
               <div style={{ flex: 1 }}>
@@ -116,6 +159,7 @@ function DiscordMessagesView({ channelID, channelName }) {
                     display: 'flex',
                     justifyContent: 'space-between',
                     alignItems: 'center',
+                    marginBottom: isSmallScreen ? '5px' : '0',
                   }}
                 >
                   <strong style={{ color: '#FFFFFF' }}>
@@ -135,4 +179,5 @@ function DiscordMessagesView({ channelID, channelName }) {
     </div>
   );
 }
+
 export default DiscordMessagesView;
