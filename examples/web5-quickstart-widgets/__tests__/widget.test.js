@@ -11,7 +11,7 @@ let recordResult;
 const textInput = "YEEERR!";
 const updatedTextInput = "YEEERR! UPDATED";
 
-describe.skip("/examples/web5-quickstart-widgets/__tests__/widget.test.js", () => {
+describe("/examples/web5-quickstart-widgets/__tests__/widget.test.js", () => {
   beforeAll(async () => {
     const result = await didCreate();
     web5 = result.web5;
