@@ -38,7 +38,7 @@ function FeedbackWidget() {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'csrf-token': csrfToken
+        'x-csrf-token': csrfToken
       },
       credentials: 'include',
       body: JSON.stringify(requestBody),
