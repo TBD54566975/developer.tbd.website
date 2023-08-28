@@ -2,7 +2,7 @@ import { defineConfig } from 'vitest/config'
 
 export default defineConfig({
   test: {
-    hookTimeout: 100000,
+    hookTimeout: 20000,
     //TODO: Investigate coverage options later for output files
     // coverage: {
     //   provider: 'istanbul',
