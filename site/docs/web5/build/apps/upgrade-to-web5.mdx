@@ -43,7 +43,7 @@ In a traditional web app, you’ll access your app data by repeatedly making cal
 Whether you’re developing with Vanilla JavaScript, React, or another framework, you’re going to make lots of REST calls to power your app. Since Web5 fundamentally restructures the way your data is stored, that means that all of your REST calls will need to change too. Now instead of fetching data via a POST call, you’ll fetch data like this:
 
 ```js
-import { Web5 } from '@tbd54566975/web5';
+import { Web5 } from '@web5/api';
 
 const { web5, did: aliceDid } = await Web5.connect();
 

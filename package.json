@@ -11,17 +11,17 @@
     "test:watch": "node extract-snippets && pnpm vitest --config vite.config.ts --watch"
   },
   "dependencies": {
-    "@tbd54566975/web5": "0.7.11",
     "node-fetch": "^3.3.2",
-    "react-markdown": "^8.0.7",
     "react-slick": "^0.29.0",
-    "slick-carousel": "^1.8.1"
+    "slick-carousel": "^1.8.1",
+    "@web5/api": "0.8.1",
+    "react-markdown": "8.0.7"
   },
   "devDependencies": {
-    "@vitest/browser": "^0.33.0",
-    "@vitest/coverage-istanbul": "^0.33.0",
-    "fake-indexeddb": "^4.0.2",
-    "vitest": "^0.33.0",
-    "webdriverio": "^8.13.13"
+    "@vitest/browser": "0.33.0",
+    "@vitest/coverage-istanbul": "0.33.0",
+    "fake-indexeddb": "4.0.2",
+    "vitest": "0.33.0",
+    "webdriverio": "8.13.13"
   }
 }
