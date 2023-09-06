@@ -6,11 +6,30 @@ import Layout from '@theme/Layout';
 import contributorsData from '@site/src/contributors.json';
 import Head from '@docusaurus/Head';
 import ExecutionEnvironment from '@docusaurus/ExecutionEnvironment';
+import Gallery from '@site/src/components/Gallery';
 
 function CommunityIndex() {
   const [isMobile, setIsMobile] = useState(
     ExecutionEnvironment.canUseDOM ? window.innerWidth <= 768 : false,
   );
+
+  const imageGalleryData = [
+    {
+      path: '/img/time-blind.png',
+      caption: 'ex1',
+      url: 'https://dev.to/github/building-an-ai-powered-decentralized-app-for-time-management-88l',
+    },
+    {
+      path: '/img/time-blind.png',
+      caption: 'ex2',
+      url: 'http://example.com',
+    },
+  ];
+
+  const contributionMapping = {
+    example: 'projects',
+    question: 'engagement',
+  };
 
   useEffect(() => {
     const handleResize = () => {
@@ -112,7 +131,7 @@ function CommunityIndex() {
                       color: 'black',
                     }}
                   >
-                    {contribution}
+                    {contributionMapping[contribution] || contribution}
                   </span>
                 ))}
               </div>
@@ -138,6 +157,19 @@ function CommunityIndex() {
             themeColor="cyan"
             primary
           />
+        </div>
+
+        {/* Featured Communtiy Projects */}
+        <div className="pb-20">
+          <h2>TBD Innovators: Monthly Showcase</h2>
+          <p className="pb-12">
+            Click on each image to learn more about individual projects.
+            Interested in starting your own project that might be featured here?
+            Check out our{' '}
+            <a href="https://developer.tbd.website/docs/">docs section</a> to
+            get started.
+          </p>
+          <Gallery images={imageGalleryData} />
         </div>
 
         {/* discord messages component */}
