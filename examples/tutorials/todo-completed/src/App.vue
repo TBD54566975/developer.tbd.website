@@ -2,7 +2,7 @@
 import { onBeforeMount, ref, toRaw } from 'vue';
 import { PlusIcon as PlusIconMini } from '@heroicons/vue/solid';
 import { CheckCircleIcon, TrashIcon } from '@heroicons/vue/outline';
-import { Web5 } from '@tbd54566975/web5';
+import { Web5 } from "@web5/api";
 
 let web5;
 let myDid;
@@ -19,7 +19,7 @@ onBeforeMount(async () => {
       dateSort: 'createdAscending'
     }
   });
-  
+
   // Add entry to Todo array
   for (let record of records) {
     const data = await record.data.json();

@@ -12,7 +12,6 @@
   "dependencies": {
     "@rollup/plugin-dynamic-import-vars": "^2.0.4",
     "@rollup/plugin-node-resolve": "^13.0.6",
-    "@tbd54566975/web5": "^0.7.11",
     "express": "^4.18.2",
     "rollup": "^2.61.1"
   }
