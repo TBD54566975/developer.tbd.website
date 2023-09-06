@@ -15,14 +15,20 @@ function CommunityIndex() {
 
   const imageGalleryData = [
     {
-      path: '/img/time-blind.png',
-      caption: 'ex1',
+      path: '/img/innovator-projects/netonomy.png',
+      url: 'https://twitter.com/netonomyinc/status/1694366100664819936',
+    },
+    {
+      path: '/img/innovator-projects/time-blind.png',
       url: 'https://dev.to/github/building-an-ai-powered-decentralized-app-for-time-management-88l',
     },
     {
-      path: '/img/time-blind.png',
-      caption: 'ex2',
-      url: 'http://example.com',
+      path: '/img/innovator-projects/home-node.png',
+      url: 'https://developer.tbd.website/blog/homenode-manager',
+    },
+    {
+      path: '/img/innovator-projects/qnav-links.png',
+      url: 'https://github.com/flothjl/QNav#qnav-links',
     },
   ];
 
