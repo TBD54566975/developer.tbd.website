@@ -169,11 +169,16 @@ function CommunityIndex() {
         <div className="pb-20">
           <h2>TBD Innovators: Monthly Showcase</h2>
           <p className="pb-12">
-            Click on each image to learn more about individual projects.
-            Interested in starting your own project that might be featured here?
-            Check out our{' '}
-            <a href="https://developer.tbd.website/docs/">docs section</a> to
-            get started.
+            Click on each image to learn more about individual projects. Have a
+            cool project that incorporates TBD's technologies? We'd love to hear
+            about it! Share your work with us in Discord in our{' '}
+            <a
+              href="https://discord.com/channels/937858703112155166/1098207585661878402"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              #share-what-you-do channel!
+            </a>{' '}
           </p>
           <Gallery images={imageGalleryData} />
         </div>
@@ -187,7 +192,7 @@ function CommunityIndex() {
             marginBottom: '70px',
           }}
         >
-          <h2> 👀 Sneakpeak into the community 👀</h2>
+          <h2> 👀 Sneak peek into the community 👀</h2>
 
           <div
             style={{
@@ -200,6 +205,7 @@ function CommunityIndex() {
             <DiscordMessagesView
               channelID="1068273971432280196"
               channelName="DWN"
+              discordChannelUrl="https://discord.com/channels/937858703112155166/1068273971432280196"
               style={{
                 flex: 1,
                 marginRight: isMobile ? '0px' : '5px',
@@ -210,6 +216,7 @@ function CommunityIndex() {
             <DiscordMessagesView
               channelID="969272658501976117"
               channelName="WEB5"
+              discordChannelUrl="https://discord.com/channels/937858703112155166/969272658501976117"
               style={{
                 flex: 1,
                 marginLeft: isMobile ? '0px' : '5px',

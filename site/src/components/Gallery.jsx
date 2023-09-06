@@ -35,7 +35,11 @@ function Gallery({ images }) {
             onMouseOver={() => setHoverIndex(index)}
             onMouseOut={() => setHoverIndex(null)}
           >
-            <a href={image.url || '#'}>
+            <a
+              href={image.url || '#'}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               {' '}
               <img
                 src={image.path}

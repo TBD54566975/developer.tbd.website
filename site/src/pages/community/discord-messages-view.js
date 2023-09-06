@@ -1,7 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import ExecutionEnvironment from '@docusaurus/ExecutionEnvironment';
 
-function DiscordMessagesView({ channelID, channelName, style }) {
+function DiscordMessagesView({
+  channelID,
+  channelName,
+  discordChannelUrl,
+  style,
+}) {
   const [messages, setMessages] = useState([]);
   const [screenWidth, setScreenWidth] = useState(
     ExecutionEnvironment.canUseDOM ? window.innerWidth : 1000,
@@ -97,16 +102,23 @@ function DiscordMessagesView({ channelID, channelName, style }) {
               marginRight: '10px',
             }}
           />
-          <h2
-            style={{
-              margin: 0,
-              color: '#FFFFFF',
-              fontWeight: 'bold',
-              fontSize: '1.5em',
-            }}
+          <a
+            href={discordChannelUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ textDecoration: 'none' }}
           >
-            Discord
-          </h2>
+            <h2
+              style={{
+                margin: 0,
+                color: '#FFFFFF',
+                fontWeight: 'bold',
+                fontSize: '1.5em',
+              }}
+            >
+              Discord
+            </h2>
+          </a>
         </div>
         <span
           style={{ color: '#FFFFFF', fontSize: '0.9em', fontWeight: 'bold' }}
