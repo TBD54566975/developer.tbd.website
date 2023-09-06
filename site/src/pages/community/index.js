@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import HeroCard from '@site/src/components/HeroCard';
 import Community from '../../components/Community';
 import DiscordMessagesView from './discord-messages-view.js';
@@ -9,10 +9,6 @@ import ExecutionEnvironment from '@docusaurus/ExecutionEnvironment';
 import Gallery from '@site/src/components/Gallery';
 
 function CommunityIndex() {
-  const [isMobile, setIsMobile] = useState(
-    ExecutionEnvironment.canUseDOM ? window.innerWidth <= 768 : false,
-  );
-
   const imageGalleryData = [
     {
       path: '/img/innovator-projects/netonomy.png',
@@ -36,21 +32,6 @@ function CommunityIndex() {
     example: 'projects',
     question: 'engagement',
   };
-
-  useEffect(() => {
-    const handleResize = () => {
-      if (ExecutionEnvironment.canUseDOM) {
-        setIsMobile(window.innerWidth <= 768);
-      }
-    };
-
-    if (ExecutionEnvironment.canUseDOM) {
-      window.addEventListener('resize', handleResize);
-      return () => {
-        window.removeEventListener('resize', handleResize);
-      };
-    }
-  }, []);
 
   return (
     <Layout>
@@ -194,34 +175,18 @@ function CommunityIndex() {
         >
           <h2> 👀 Sneak peek into the community 👀</h2>
 
-          <div
-            style={{
-              display: isMobile ? 'block' : 'flex',
-              justifyContent: 'space-between',
-              alignItems: 'center',
-              gap: '10px',
-            }}
-          >
+          <div className="flex flex-col md:flex-row justify-between items-center md:space-x-5 space-y-5 md:space-y-0">
             <DiscordMessagesView
               channelID="1068273971432280196"
               channelName="DWN"
               discordChannelUrl="https://discord.com/channels/937858703112155166/1068273971432280196"
-              style={{
-                flex: 1,
-                marginRight: isMobile ? '0px' : '5px',
-                marginBottom: isMobile ? '10px' : '0px',
-                width: isMobile ? '100%' : 'auto',
-              }}
+              style={{ width: '100%' }}
             />
             <DiscordMessagesView
               channelID="969272658501976117"
               channelName="WEB5"
               discordChannelUrl="https://discord.com/channels/937858703112155166/969272658501976117"
-              style={{
-                flex: 1,
-                marginLeft: isMobile ? '0px' : '5px',
-                width: isMobile ? '100%' : 'auto',
-              }}
+              style={{ width: '100%' }}
             />
           </div>
         </div>
