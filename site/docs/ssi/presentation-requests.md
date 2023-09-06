@@ -3,22 +3,18 @@ sidebar_position: 11
 title: Presentation Requests
 ---
 
-[Presentation Requests](https://identity.foundation/presentation-exchange/spec/v2.0.0/#presentation-request) are transport mechanisms used to send a [Presentation Definition](https://identity.foundation/presentation-exchange/spec/v2.0.0/#presentation-definition) from a Verifier to a Holder. Presentations (aka Presentation Definition) are objects that articulate what proofs a Verifier requires. These help the Verifier to decide how or whether to interact with a Holder. They consist of input descriptions and optional selection rules to offer Holders flexibility in meeting input requirements.
+A [Presentation Request](https://identity.foundation/presentation-exchange/spec/v2.0.0/#presentation-request) is essentially a message from a Verifier asking a Holder for specific information. Imagine it as a checklist the Verifier sends to a Holder outlining what they need to know. This checklist is formally known as a [Presentation Definition](https://identity.foundation/presentation-exchange/spec/v2.0.0/#presentation-definition), and it details the credentials or "claims" the Holder needs to show. The goal is to provide the Holder with options on how to meet these criteria.
 
-To illustrate, consider the situation where Alice, as the holder, possesses a driver's license VC in her wallet, and she intends to secure a car rental from Acme Car Rentals, acting as the verifying entity. The Presentation Request would be the message format being sent from Acme to Alice's wallet checking to see if her VC is present. In other words, it’s the message Acme constructs for Alice's wallet to be able to submit credentials for verfication.
-
-:::note
-Presentation Exchange is a [ratified specification](https://identity.foundation/presentation-exchange/spec/v2.0.0/) developed within the Decentralized Identity Foundation (DIF). It incorporates requirements and learnings from related work of many active industry players into a shared specification that meets the collective needs of the community.
-:::
+To illustrate, consider the situation where Alice, as the Holder, possesses a driver's license VC in her wallet, and she intends to secure a car rental from Acme Car Rentals, acting as the verifying entity. The Presentation Request would be the message format being sent from Acme to Alice's wallet, checking to see if her VC is present. In other words, it’s the message Acme constructs for Alice's wallet to be able to submit credentials for verification.
 
 ## Presentation API Requests
-Within the SSI Service [PresentationRequests API](/docs/apis/ssi-service#tag/PresentationRequests) you can create, list, read, or delete Presentation Requests.
+Within the SSI Service, first you'll wan [PresentationRequests API](/docs/apis/ssi-service#tag/PresentationRequests) you can create, list, read, or delete Presentation Requests.
 
 :::info
 ## Prerequisites
 - Follow guide to [Run SSI Service](run-ssi-service)
 - Create a [Presentation Definition](/docs/apis/ssi-service#tag/Presentations/paths/~1v1~1presentations~1definitions/put)
-- Create a [DID](create-did)
+- Create a [DID](create-did) (or use an existing one): Save the DID `id` and `verificationMethodId`
 :::
 
 ### Create a Presentation Request
@@ -36,8 +32,7 @@ Within the SSI Service [PresentationRequests API](/docs/apis/ssi-service#tag/Pre
 
 #### Optional
 
-- `audience`	(array of strings) - The audience claim identifies the recipients that the JWT is
-   intended for. [Audience Claim](https://www.rfc-editor.org/rfc/rfc7519.html#section-4.1.3).  
+- `audience`	(array of strings) - The [audience claim](https://www.rfc-editor.org/rfc/rfc7519.html#section-4.1.3) identifies the recipients that the JWT is intended for.
 
 - `callbackUrl`	(string) - The URL that the presenter should be submitting the Presentation Submission to. 
 
@@ -45,7 +40,9 @@ Within the SSI Service [PresentationRequests API](/docs/apis/ssi-service#tag/Pre
 
 </details>
 
-Create a `PUT` request to `v1/presentations/requests` including the DID `id` and the Presentention Definition `id`:
+Alice walks into Acme Car Rentals, ready to rent a car for the weekend. They ask for Alice's driver's license to verify she's able to rent a car.
+
+Acme initiates a `PUT` request to `v1/presentations/requests`, to ask for Alice's credentials:
 
 ```bash
 curl -X PUT localhost:8080/v1/presentations/requests -d '{
@@ -55,7 +52,7 @@ curl -X PUT localhost:8080/v1/presentations/requests -d '{
 }'
 ```
 
-The following response should be returned:
+The presentation request will be returned::
 ```json
 {
   "presentationRequest": {
@@ -70,7 +67,7 @@ The following response should be returned:
 
 ### List Presentation Requests
 
-To obtain a list of all Presentation Requests, make a `GET` request to `v1/presentations/requests`:
+To confirm Alice's wallet received the Presentation Request, her wallet sends a `GET` request to `v1/presentations/requests` to obtain all Presentation Requests created:
 
 ```bash
 curl -X GET localhost:8080/v1/presentations/requests
@@ -78,7 +75,7 @@ curl -X GET localhost:8080/v1/presentations/requests
 
 ### Get a Presentation Request
 
-To get a specific Presentation Request, submit a `GET` request to `v1/presentations/requests/{id}` and pass in the `id` of the Presentation Request:
+Alice would like to review the details before sharing her credentials. Her wallet sends a `GET` request to `v1/presentations/requests/{id}`, using the `id` received, to retrieve the specific Presentation Request.
 
 ```bash
 curl -X GET localhost:8080/v1/presentations/requests/24ae411e-e3ca-4217-b055-5fb306b2bb5c
@@ -86,7 +83,7 @@ curl -X GET localhost:8080/v1/presentations/requests/24ae411e-e3ca-4217-b055-5fb
 
 ### Delete a Presentation Request
 
-To delete an existing Presentation Request, make a `DELETE` request to `v1/presentations/requests/{id}` passing in the `id` of the Presentation Request you wish to delete:
+Alice decides she'd rather not rent a car today and tells Acme to cancel the request. Acme issues a `DELETE` request to `v1/presentations/requests/{id}` to remove Alice's Presentation Request.
 
 ```bash
 curl -X DELETE localhost:8080/v1/presentations/requests/24ae411e-e3ca-4217-b055-5fb306b2bb5c
