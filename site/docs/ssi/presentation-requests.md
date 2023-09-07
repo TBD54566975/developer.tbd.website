@@ -47,7 +47,6 @@ Let's explore how the [Presentation Requests resource](/docs/apis/ssi-service#ta
 </details>
 
 
-
 Alice uses her digital wallet app to scan the QR code displayed at the Acme counter. The QR code contains initial data that lets Alice's wallet know that a Presentation Request will be coming from Acme.
 
 At this point, Acme's system receives a notification indicating that Alice's wallet has scanned the QR code and is awaiting a Presentation Request.
