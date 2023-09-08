@@ -1,7 +1,11 @@
 {
   "createMyDid": "console.log('web5', web5);\n  // const myDid = await web5.did.create('ion');",
+  "createRecord": "const { record } = await web5.dwn.records.create({\n    data: 'Hello World!',\n    message: {\n      dataFormat: 'text/plain',\n    },\n  });\n\n  const { status } = await record.send('did:example:bob');",
+  "deleteRecord": "const response = await record.delete();",
+  "updateRecord": "const response = await record.update({ data: \"Hello', I'm updated\" });",
   "createDidWithDWNEndpoint": "const { web5, did: myDid } = await Web5.connect({\n    techPreview: {\n      dwnEndpoints: ['https://dwn.your-domain.org/'],\n    },\n  });",
-  "getProtocolDefinition": "const { status, protocol } = await web5.dwn.protocols.configure({\n    message: {\n      definition: protocolDefinition,\n    },\n  });\n\n  const \n  console.log('",
+  "getProtocolDefinition": "const { status, protocol } = await web5.dwn.protocols.configure({\n    message: {\n      definition: protocolDefinition,\n    },\n  });\n\n  const",
+  "sendDefinition": "const { protocol } = await web5.dwn.protocols.configure({\n    message: {\n      definition: protocolDefinition,\n    },\n  });\n\n  await protocol.send(myDid);",
   "createRecordWithTodoItem": "const myRecord = await web5.dwn.records.create(myDid.id, {\n    data: 'todoItem',\n    message: {\n      dataFormat: 'text/plain',\n    },\n  });",
   "createAliceDid": "const { web5, did: aliceDid } = await Web5.connect();\n\n  // Create the record\n  const { record } = await web5.dwn.records.create({\n    data: 'Hello Web5',\n    message: {\n      dataFormat: 'text/plain',\n    },\n  });\n\n  // Read the record\n  const readResult = await record.data.text();",
   "createDidManually": "const myDid = await Web5.did.create('ion');",
