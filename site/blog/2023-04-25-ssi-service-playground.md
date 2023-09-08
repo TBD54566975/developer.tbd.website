@@ -7,7 +7,7 @@ authors:
 tags: [Self Sovereign Identity, Web5]
 ---
 
-<head> <title>SSI-Service Playground Upgraded</title> <meta
+<head> <meta
   property="og:description" content="SSI-Service upgraded" /> <meta
   property="og:title" content="SSI-Service upgraded" /> <meta property="og:url"
   content='https://developer.tbd.website/blog/ssi-service-playground' /> <meta

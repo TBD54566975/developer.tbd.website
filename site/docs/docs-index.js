@@ -2,18 +2,22 @@ import React from 'react';
 import HeroCard from '@site/src/components/HeroCard';
 import ExploreCard from '../src/components/ExploreCard';
 import Community from '../src/components/Community';
+import Head from '@docusaurus/Head';
 
 function DocsIndex() {
   return (
     <div>
+      <Head title="Developer Docs | TBD">
+        <meta property="og:title" />
+      </Head>
       <h1>
         Build Web5 apps that put you in control of your data and identity.
       </h1>
       <p className="mb-8">
-        <a href="/blog/what-is-web5">Web5</a> brings decentralized identity and data storage to your
-        applications. It lets developers focus on creating delightful user
-        experiences, while returning ownership of data and identity to
-        individuals.
+        <a href="/blog/what-is-web5">Web5</a> brings decentralized identity and
+        data storage to your applications. It lets developers focus on creating
+        delightful user experiences, while returning ownership of data and
+        identity to individuals.
       </p>
       <div className="grid grid-cols-1 desktop:grid-cols-2 gap-4">
         <HeroCard
