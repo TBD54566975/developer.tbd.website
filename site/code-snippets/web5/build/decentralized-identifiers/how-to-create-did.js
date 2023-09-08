@@ -1,4 +1,4 @@
-import { Web5 } from '@tbd54566975/web5/browser';
+import { Web5 } from '@web5/api/browser';
 
 export async function createDidManually() {
   const myDid = await Web5.did.create('ion');
