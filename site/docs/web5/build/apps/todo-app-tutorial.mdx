@@ -2,7 +2,7 @@ import PackageJson from '@site/src/components/PackageJson';
 
 # Build a ToDo App
 
-In this tutorial, you will learn how to build a basic single-party decentralized ToDo app written using `web5.js`. It’s composed of a `Vue.js` app powered by [web5.js](https://www.npmjs.com/package/@tbd54566975/web5) which adds data storage underpinned by a [Decentralized Web Node](/docs/web5/learn/decentralized-web-nodes) (DWN).
+In this tutorial, you will learn how to build a basic single-party decentralized ToDo app written using `web5.js`. It’s composed of a `Vue.js` app powered by [web5.js](https://www.npmjs.com/package/@web5/api) which adds data storage underpinned by a [Decentralized Web Node](/docs/web5/learn/decentralized-web-nodes) (DWN).
 
 The ToDo app is a basic single-user, local application that only leverages `web5.js` for storage purposes, but serves as an important precursor to building larger decentralized apps.
 
@@ -75,7 +75,7 @@ Because we’ve built this sample using `Vue.js`, you’ll find both the HTML st
 
 Open `src/App.vue` in your editor and add this next to the other imports:
 ```js
-import { Web5 } from '@tbd54566975/web5';
+import { Web5 } from "@web5/api";
 ```
 
 First we'll set up instances to hold data you'll use throughout your application.

@@ -27,7 +27,7 @@ The SDK is currently still under active development, but having entered the Tech
   <TabItem value="npm" label="NPM" default>
 
 ```bash
-npm install @tbd54566975/web5
+npm install @web5/api
 ```
   </TabItem>
   <TabItem value="cdn" label="CDN">
@@ -52,7 +52,7 @@ or
 <summary>Node 19+</summary>
 
 ```js
-import { Web5 } from '@tbd54566975/web5';
+import { Web5 } from '@web5/api';
 ```
 </details>
 
@@ -66,7 +66,7 @@ This is *not* the crypto you're thinking of.
 It's the original crypto...CRYPTOGRAPHY.
 */
 import { webcrypto } from "node:crypto";
-import { Web5 } from '@tbd54566975/web5';
+import { Web5 } from '@web5/api';
 
 // @ts-ignore
 if (!globalThis.crypto) globalThis.crypto = webcrypto;
@@ -86,7 +86,7 @@ import "react-native-get-random-values";
 import { hmac } from "@noble/hashes/hmac";
 import { sha256 } from "@noble/hashes/sha256";
 import { sha512 } from "@noble/hashes/sha512";
-import { Web5 } from '@tbd54566975/web5';
+import { Web5 } from '@web5/api';
 
 ed.etc.sha512Sync = (...m) => sha512(ed.etc.concatBytes(...m));
 ed.etc.sha512Async = (...m) => Promise.resolve(ed.etc.sha512Sync(...m));

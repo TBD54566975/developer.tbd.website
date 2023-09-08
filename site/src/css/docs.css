@@ -5,6 +5,10 @@
   font-weight: 600;
 }
 
+.docs-wrapper .DocSearch-Modal {
+  margin-top: 120px;
+}
+
 .docs-wrapper #__docusaurus {
   --color-white: #c6c6c6;
 }
@@ -181,7 +185,13 @@
 
 .docs-wrapper
   #__docusaurus
-  p:not(.docs-section p, .alert p, .figure-container p, .api-card p, .search-widget p) {
+  p:not(
+    .docs-section p,
+    .alert p,
+    .figure-container p,
+    .api-card p,
+    .search-widget p
+  ) {
   font-size: 1.125rem;
   color: var(--color-white);
 }

@@ -4,9 +4,25 @@
 require('dotenv').config();
 const lightCodeTheme = require('prism-react-renderer/themes/github');
 const darkCodeTheme = require('prism-react-renderer/themes/dracula');
+const WEB5_VERSION = require('../package.json').dependencies['@web5/api'];
+
+const algoliaApiKey = process.env.DOC_SEARCH_API_KEY;
+const algoliaIndexName = process.env.DOC_SEARCH_INDEX_NAME;
+const algoliaAppId = process.env.DOC_SEARCH_APP_ID;
+
+let algoliaConfig = null;
+if (algoliaApiKey && algoliaIndexName && algoliaAppId) {
+  algoliaConfig = {
+    appId: algoliaAppId,
+    apiKey: algoliaApiKey,
+    indexName: algoliaIndexName,
+    contextualSearch: true,
+    searchParameters: {},
+  };
+}
 
 /** @type {import('@docusaurus/types').Config} */
-const config = {
+let config = {
   title: `TBD Developer Docs`,
   tagline: '',
   organizationName: 'TBD54566975',
@@ -24,7 +40,7 @@ const config = {
   //   locales: ['en'],
   // },
   customFields: {
-    WEB5_VERSION: process.env.WEB5_VERSION,
+    WEB5_VERSION,
   },
   plugins: [
     'docusaurus-tailwindcss',
@@ -57,19 +73,40 @@ const config = {
     //     sidebarPath: require.resolve('./learn-sidebars.js'),
     //   },
     // ],
+
+    function polyfills() {
+      console.log('adding polyfills for webpack');
+      return {
+        name: 'polyfills',
+        configureWebpack() {
+          return {
+            resolve: {
+              fallback: {
+                stream: require.resolve('stream-browserify'),
+                crypto: require.resolve('crypto-browserify'),
+                // adding these just in case
+                // buffer: require.resolve('buffer/'),
+                // util: require.resolve('util/'),
+                // assert: require.resolve('assert/'),
+              },
+            },
+          };
+        },
+      };
+    },
   ],
   scripts: [
     {
       src: 'https://www.datadoghq-browser-agent.com/us1/v4/datadog-rum.js',
-      async: true
+      async: true,
     },
     {
       src: '/scripts/dd-analytics.js',
-      async: true
+      async: true,
     },
     {
       src: '/scripts/custom.js',
-      async: true
+      async: true,
     },
   ],
   presets: [
@@ -125,7 +162,6 @@ const config = {
           alt: 'TBD-Logo',
           src: 'img/tbd-logo.svg',
         },
-
         items: [
           {
             to: '/open-source',
@@ -164,13 +200,13 @@ const config = {
           },
           {
             to: '#search',
-            label: 'Ask 🔎',                      
-          },  
-          {
-            to: 'https://tbd.website',
-            position: 'right',
-            label: 'TBD Home',
-          },        
+            label: 'Ask 🤖',
+          },
+          // {
+          //   to: 'https://tbd.website',
+          //   position: 'right',
+          //   label: 'TBD Home',
+          // },
         ],
       },
       footer: {
@@ -235,5 +271,12 @@ const config = {
       },
     }),
 };
+
+if (algoliaConfig) {
+  config.themeConfig = {
+    ...config.themeConfig,
+    algolia: algoliaConfig,
+  };
+}
 
 module.exports = config;
