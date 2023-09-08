@@ -165,6 +165,7 @@ function CommunityIndex() {
         </div>
 
         {/* discord messages component */}
+        {/*
         <div
           style={{
             backgroundColor: '#1C1C1C',
@@ -173,6 +174,7 @@ function CommunityIndex() {
             marginBottom: '70px',
           }}
         >
+         
           <h2> 👀 Sneak peek into the community 👀</h2>
 
           <div className="flex flex-col md:flex-row justify-between items-center md:space-x-5 space-y-5 md:space-y-0">
@@ -188,8 +190,10 @@ function CommunityIndex() {
               discordChannelUrl="https://discord.com/channels/937858703112155166/969272658501976117"
               style={{ width: '100%' }}
             />
-          </div>
+          </div> 
+          
         </div>
+        */}
 
         <Community />
       </div>
