@@ -141,7 +141,7 @@ The outputs of this method invocation will be used throughout the other API meth
                   {
                     data: {
                         isOptional: true,
-                        type: 'Web5Agent instance',
+                        type: 'Web5Agent',
                         field: 'agent',
                         value: 'An instance of a Web5Agent implementation. Defaults to creating a local Web5UserAgent if not provided.',
                     },
@@ -149,9 +149,9 @@ The outputs of this method invocation will be used throughout the other API meth
                 {
                     data: {
                         isOptional: true,
-                        type: 'AppDataStore instance',
+                        type: 'AppDataStore',
                         field: 'appData',
-                        value: 'An instance of an AppDataStore implementation. Defaults to a LevelDB-backed store with an insecure, static unlock passphrase if not provided. To allow the end user to enter a secure passphrase of their choosing, provide an initialized `AppDataVault`.',
+                        value: 'An instance of an AppDataStore implementation. Defaults to a LevelDB-backed store with an insecure, static unlock passphrase if not provided. To allow the end user to enter a secure passphrase of their choosing, provide an initialized AppDataVault.',
                     },
                 },
                 {
@@ -167,7 +167,7 @@ The outputs of this method invocation will be used throughout the other API meth
                         isOptional: true,
                         type: 'string',
                         field: 'sync',
-                        value: "Enable or disable synchronization of DWN records between local and remote DWNs. Sync defaults to running every 2 minutes and can be set to any value accepted by `ms`. To disable sync set to `'off'",
+                        value: "Enable or disable synchronization of DWN records between local and remote DWNs. Sync defaults to running every 2 minutes and can be set to any value accepted by ms (https://www.npmjs.com/package/ms). To disable sync set to 'off'",
                     },
                 },
                 {
@@ -238,8 +238,8 @@ const { web5, did: myDid } = await Web5.connect({
 ##### Instantiate Web5 instance with a Web5Agent and existing DID to connect to.
 ```js
 const web5 = new Web5({
-  agent: testAgent.agent,
-  connectedDid: myExistingDid
+  agent: identityAgent,
+  connectedDid: 'did:ion:EiD7Q...Q',
 });
 ```
 </section>
