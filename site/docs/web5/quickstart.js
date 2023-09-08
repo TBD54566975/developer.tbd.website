@@ -54,6 +54,7 @@ async function dwnDeleteRecordWithId() {
 }
 
 let didCreateInputButton;
+let didCreateInputProgress;
 let didCreateOutputSummaryCode;
 let didCreateOutputDetailsTextarea;
 
@@ -87,6 +88,9 @@ function Web5Quickstart() {
     // query selectors
 
     didCreateInputButton = document.querySelector('#did-create .input button');
+    didCreateInputProgress = document.querySelector(
+      '#did-create .input progress',
+    );
     didCreateOutputSummaryCode = document.querySelector(
       '#did-create .output details summary code',
     );
@@ -142,6 +146,8 @@ function Web5Quickstart() {
     // event listeners
 
     didCreateInputButton.addEventListener('click', async () => {
+      didCreateInputButton.disabled = true;
+      didCreateInputProgress.style.visibility = 'visible';
       let result = await didCreate();
 
       let did = result.did;
@@ -155,6 +161,8 @@ function Web5Quickstart() {
       dwnWriteInputButton.disabled = false;
       dwnWriteInputText.disabled = false;
       console.log(didCreateInputButton);
+      didCreateInputButton.disabled = false;
+      didCreateInputProgress.style.visibility = 'hidden';
       update();
     });
 
@@ -282,6 +290,10 @@ function Web5Quickstart() {
       <section id="did-create" class="sandbox-container">
         <div className="input">
           <button>Run ›</button>
+          <label className="sr-only" htmlFor="did-create-progress">
+            DID Creation Progress
+          </label>
+          <progress id="did-create-progress"></progress>
         </div>
         <div className="output">
           <details class="sandbox-details">
