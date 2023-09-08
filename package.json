@@ -17,6 +17,9 @@
     "@tbd54566975/web5": "0.7.11",
     "font-awesome": "^4.7.0",
     "react-fontawesome": "^1.7.1",
+    "node-fetch": "^3.3.2",
+    "react-slick": "^0.29.0",
+    "slick-carousel": "^1.8.1",
     "@web5/api": "0.8.1",
     "react-markdown": "8.0.7"
   },

@@ -138,6 +138,38 @@ The outputs of this method invocation will be used throughout the other API meth
         field: 'options',
         value: <ApiDetails
                 details={[
+                  {
+                    data: {
+                        isOptional: true,
+                        type: 'Web5Agent',
+                        field: 'agent',
+                        value: 'An instance of a Web5Agent implementation. Defaults to creating a local Web5UserAgent if not provided.',
+                    },
+                },
+                {
+                    data: {
+                        isOptional: true,
+                        type: 'AppDataStore',
+                        field: 'appData',
+                        value: 'An instance of an AppDataStore implementation. Defaults to a LevelDB-backed store with an insecure, static unlock passphrase if not provided. To allow the end user to enter a secure passphrase of their choosing, provide an initialized AppDataVault.',
+                    },
+                },
+                {
+                    data: {
+                        isOptional: true,
+                        type: 'string',
+                        field: 'connectedDid',
+                        value: 'An existing DID to connect to.',
+                    },
+                },
+                {
+                    data: {
+                        isOptional: true,
+                        type: 'string',
+                        field: 'sync',
+                        value: "Enable or disable synchronization of DWN records between local and remote DWNs. Sync defaults to running every 2 minutes and can be set to any value accepted by ms (https://www.npmjs.com/package/ms). To disable sync set to 'off'",
+                    },
+                },
                 {
                     data: {
                         isObject: true,
@@ -153,11 +185,11 @@ The outputs of this method invocation will be used throughout the other API meth
                                         field: 'dwnEndpoints',
                                         value: 'a list of DWN endpoints to define in the DID created and returned by this method. If this property is omitted during the Tech Preview, two nodes will be included by default (e.g. https://dwn.tbddev.org/dwn0, https://dwn.tbddev.org/dwn3)',
                                     },
-                                }                            
+                                }
                             ]}
                             />,
                     },
-                }                             
+                }
             ]}
           />,
         },
@@ -189,10 +221,12 @@ The outputs of this method invocation will be used throughout the other API meth
 
 #### Code Examples
 
+##### Connect to web5
 ```js
 const { web5, did } = await Web5.connect();
 ```
 
+##### Specify list of decentralized web nodes endpoints to define
 ```js
 const { web5, did: myDid } = await Web5.connect({
   techPreview: {
@@ -201,4 +235,11 @@ const { web5, did: myDid } = await Web5.connect({
 });
 ```
 
+##### Instantiate Web5 instance with an agent and existing DID to connect to.
+```js
+const web5 = new Web5({
+  agent: identityAgent,
+  connectedDid: 'did:ion:EiD7Q...Q',
+});
+```
 </section>
