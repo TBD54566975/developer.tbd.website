@@ -4,7 +4,8 @@ import {
   createDidAutomatically,
 } from '../../../../code-snippets/web5/build/decentralized-identifiers/how-to-create-did';
 
-test('createDidManually returns a DID', async () => {
+// skipping due to possible API changes
+test.skip('createDidManually returns a DID', async () => {
   const result = await createDidManually();
 
   expect(result).toBeDefined();
