@@ -165,7 +165,6 @@ function CommunityIndex() {
         </div>
 
         {/* discord messages component */}
-        {/*
         <div
           style={{
             backgroundColor: '#1C1C1C',
@@ -179,21 +178,21 @@ function CommunityIndex() {
 
           <div className="flex flex-col md:flex-row justify-between items-center md:space-x-5 space-y-5 md:space-y-0">
             <DiscordMessagesView
-              channelID="1068273971432280196"
-              channelName="DWN"
-              discordChannelUrl="https://discord.com/channels/937858703112155166/1068273971432280196"
+              channelID="984873257666768936"
+              channelName="Announcements"
+              discordChannelUrl="https://discord.com/channels/937858703112155166/984873257666768936"
               style={{ width: '100%' }}
             />
             <DiscordMessagesView
-              channelID="969272658501976117"
-              channelName="WEB5"
-              discordChannelUrl="https://discord.com/channels/937858703112155166/969272658501976117"
+              channelID="1101192919706255430"
+              channelName="Events"
+              discordChannelUrl="https://discord.com/channels/937858703112155166/1101192919706255430"
               style={{ width: '100%' }}
             />
           </div> 
           
         </div>
-        */}
+       
 
         <Community />
       </div>
