@@ -10,13 +10,13 @@ function ScriptSrc(unpkg = false, jsdelivr = false) {
   if (unpkg) {
     return (
       <CodeBlock language="js">
-        {`<script src="https://unpkg.com/@web5/api@${customFields.WEB5_VERSION}/dist/browser"></script>`}
+        {`<script src="https://unpkg.com/@web5/api@${customFields.WEB5_VERSION}/dist/browser.js"></script>`}
       </CodeBlock>
     );
   } else if (jsdelivr) {
     return (
       <CodeBlock language="js" title="index.js">
-        {`<script src="https://cdn.jsdelivr.net/npm/@web5/api@${customFields.WEB5_VERSION}/dist/browser"></script>`}
+        {`<script src="https://cdn.jsdelivr.net/npm/@web5/api@${customFields.WEB5_VERSION}/dist/browser.mjs"></script>`}
       </CodeBlock>
     );
   }
