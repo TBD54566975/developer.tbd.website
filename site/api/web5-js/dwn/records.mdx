@@ -147,6 +147,7 @@ const { record } = await web5.dwn.records.create({
   //highlight-end
   data: "Hello again, World!",
   message: {
+    recipient: 'did:example:alice',
     dataFormat: "text/plain",
   },
 });
