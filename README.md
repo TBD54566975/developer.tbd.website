@@ -1,11 +1,43 @@
 # TBD Developer Site
+
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
+
 [![All Contributors](https://img.shields.io/badge/all_contributors-3-orange.svg?style=flat-square)](#contributors-)
+
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
-This is a monorepo powered by [pnpm](https://pnpm.io/) that includes a documentation site, tutorials and examples. This repository allows you to conveniently manage multiple projects within a single repository.
+## 🎉 **We're participating in Hacktoberfest 2023!** 🎉
+
+Want to contribute during Hacktoberfest? We'd love to have you! Dive in, and your contributions could earn you some exclusive rewards. The first 10 merged PRs will secure TBD bucks, redeemable for exclusive swag at our [TBD shop](https://www.tbd.shop/s/shop). Keep an eye on our [leaderboard issue]() to see where you rank!
+
+## **Hacktoberfest Guidelines:**
+
+- Ensure your contribution is meaningful and fits within the scope of our project.
+- Check out our `good-first-issue` and `hacktoberfest` labels in the issues section.
+- Join our Discord: Connect with the community, stay up to date with Hacktoberfest events/prizes, and discuss Hacktoberfest contributions on our Discord server. Click [here](https://discord.com/channels/937858703112155166/1151216855957123104) to join.
+- Always be respectful and follow our [code of conduct](https://developer.tbd.website/open-source/code-of-conduct).
+- If in doubt about what to contribute, reach out to maintainers by raise a question in the relevant issue.
+- **Other participating TBD Repo's:**
+  - [DWN-Server](https://github.com/TBD54566975/dwn-server/issues?q=is%3Aopen+is%3Aissue+label%3A%22good+first+issue%22)
+  - [DWN-SDK-JS](https://github.com/TBD54566975/dwn-sdk-js/issues?q=is%3Aopen+is%3Aissue+label%3A%22good+first+issue%22)
+  - [Web5-js](https://github.com/TBD54566975/web5-js/issues?q=is%3Aopen+is%3Aissue+label%3A%22good+first+issue%22)
+
+## **What is Hacktoberfest?**
+
+Celebrate the 10th anniversary of Hacktoberfest this year! Hosted annually every October, Hacktoberfest is a month-long event sponsored by DigitalOcean, GitHub, and various other partners, championing open-source contributions. This milestone year introduces exciting digital prizes:
+
+- Digital Reward Kit:
+  - A dynamic badge that evolves with every pull/merge request that maintainers accept.
+  - Distinctive achievement badges.
+  - Surprise gifts from the event sponsors
+- Plant a Tree:
+  - For the environment-conscious, rejoice! The first 50,000 participants with merged PRs/MRs will have a tree planted in their honor.
+
+If you're new to Hacktoberfest, you can learn more and register to participate [here](https://hacktoberfest.com/participation/).
 
 ## Prerequisites
+
+This is a monorepo powered by [pnpm](https://pnpm.io/) that includes a documentation site, tutorials and examples. This repository allows you to conveniently manage multiple projects within a single repository.
 
 Before you begin, ensure that you have the following installed on your local machine:
 
@@ -63,6 +95,7 @@ The following scripts are available for running specific tasks within the monore
 - `pnpm build`: Runs the production build for the site so it can be hosted by a static web server. The completed build will be in the folder `site/build`.
 
 ### Note
+
 This repo made a switch from using `npm` to `pnpm` as the package manager in July 2023. If you have used prior versions of this repo built on your machine with `npm`, you may encounter build failures, like:
 
 ```
