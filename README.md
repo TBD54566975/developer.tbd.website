@@ -12,11 +12,11 @@ Want to contribute during Hacktoberfest? We'd love to have you! Dive in, and you
 
 ## **Hacktoberfest Guidelines:**
 
-- Ensure your contribution is meaningful and fits within the scope of our project.
+- Ensure your contribution is meaningful and fits within the scope of our project, by reading an open issue in its entirety before diving in.
 - Check out our `good-first-issue` and `hacktoberfest` labels in the issues section.
 - Join our Discord: Connect with the community, stay up to date with Hacktoberfest events/prizes, and discuss Hacktoberfest contributions on our Discord server. Click [here](https://discord.com/channels/937858703112155166/1151216855957123104) to join.
 - Always be respectful and follow our [code of conduct](https://developer.tbd.website/open-source/code-of-conduct).
-- If in doubt about what to contribute, reach out to maintainers by raise a question in the relevant issue.
+- If in doubt about what to contribute, reach out to maintainers by raising a question in the relevant issue or specified discord channel.
 - **Other participating TBD Repo's:**
   - [DWN-Server](https://github.com/TBD54566975/dwn-server/issues?q=is%3Aopen+is%3Aissue+label%3A%22good+first+issue%22)
   - [DWN-SDK-JS](https://github.com/TBD54566975/dwn-sdk-js/issues?q=is%3Aopen+is%3Aissue+label%3A%22good+first+issue%22)
