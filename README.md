@@ -5,6 +5,12 @@
 
 This is a monorepo powered by [pnpm](https://pnpm.io/) that includes a documentation site, tutorials and examples. This repository allows you to conveniently manage multiple projects within a single repository.
 
+## GitHub Codespaces
+
+Are you new to this project? You can skip the local environment setup, and run the project in GitHub Codespaces:
+
+[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/TBD54566975/developer.tbd.website?quickstart=1)
+
 ## Prerequisites
 
 Before you begin, ensure that you have the following installed on your local machine:

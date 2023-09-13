@@ -1,0 +1,15 @@
+{
+    "name": "TBD Website - GitHub Codespaces container",
+    "dockerFile": "Dockerfile",
+    "postCreateCommand": "pnpm install",
+    "postAttachCommand": "pnpm start",
+    "portsAttributes": {
+        "3000": {
+            "label": "Application",
+            "onAutoForward": "openPreview"
+        }
+    },
+    "forwardPorts": [
+        3000
+    ]
+}
