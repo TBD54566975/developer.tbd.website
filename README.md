@@ -8,7 +8,7 @@
 
 ## 🎉 **We're participating in Hacktoberfest 2023!** 🎉
 
-Want to contribute during Hacktoberfest? We'd love to have you! Dive in, and your contributions could earn you some exclusive rewards. The first 10 merged PRs will secure TBD bucks, redeemable for exclusive swag at our [TBD shop](https://www.tbd.shop/s/shop). Keep an eye on our [leaderboard issue]() to see where you rank!
+Want to contribute during Hacktoberfest? We'd love to have you! Dive in, and your contributions could earn you some exclusive rewards. The first 10 contributors to succesfully merge a PR will secure exclusive swag of their choosing from our [TBD shop](https://www.tbd.shop/s/shop). Keep an eye on our [leaderboard issue](https://github.com/TBD54566975/developer.tbd.website/issues/721) to see where you rank! ⭐️
 
 ## **Hacktoberfest Guidelines:**
 
@@ -17,7 +17,7 @@ Want to contribute during Hacktoberfest? We'd love to have you! Dive in, and you
 - Join our Discord: Connect with the community, stay up to date with Hacktoberfest events/prizes, and discuss Hacktoberfest contributions on our Discord server. Click [here](https://discord.com/channels/937858703112155166/1151216855957123104) to join.
 - Always be respectful and follow our [code of conduct](https://developer.tbd.website/open-source/code-of-conduct).
 - If in doubt about what to contribute, reach out to maintainers by raising a question in the relevant issue or specified discord channel.
-- **Other participating TBD Repo's:**
+- **Other participating TBD Repos:**
   - [DWN-Server](https://github.com/TBD54566975/dwn-server/issues?q=is%3Aopen+is%3Aissue+label%3A%22good+first+issue%22)
   - [DWN-SDK-JS](https://github.com/TBD54566975/dwn-sdk-js/issues?q=is%3Aopen+is%3Aissue+label%3A%22good+first+issue%22)
   - [Web5-js](https://github.com/TBD54566975/web5-js/issues?q=is%3Aopen+is%3Aissue+label%3A%22good+first+issue%22)
