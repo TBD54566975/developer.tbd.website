@@ -1,5 +1,5 @@
 {
-    "name": "TBD Website - GitHub Codespaces container",
+    "name": "TBDeveloper Website",
     "dockerFile": "Dockerfile",
     "postCreateCommand": "pnpm install",
     "postAttachCommand": "pnpm start",
