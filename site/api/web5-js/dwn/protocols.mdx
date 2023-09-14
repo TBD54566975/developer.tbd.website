@@ -72,11 +72,11 @@ Configures a protocol definition in the user's local DWN, remote DWN, or another
                                                                     field: 'dataFormats',
                                                                     value: 'Array of the IANA strings corresponding with the formats of how the data will be bucketed. See IANA\'s Media Type list here: https://www.iana.org/assignments/media-types/media-types.xhtml',
                                                                 },
-                                                            },                              
+                                                            },
                                                         ]}
                                                       />,
                                                 },
-                                            }, 
+                                            },
                                             {
                                                 data: {
                                                     isObject: true,
@@ -105,26 +105,26 @@ Configures a protocol definition in the user's local DWN, remote DWN, or another
                                                                                 field: 'of',
                                                                                 value: 'The protocol path that refers to the record subject',
                                                                               },
-                                                                            }, 
+                                                                            },
                                                                             {
                                                                               data: {
                                                                                 type: 'string',
                                                                                 field: 'can',
                                                                                 value: 'The action being permitted by the rule',
                                                                               }
-                                                                            },                             
+                                                                            },
                                                                         ]}
                                                                       />,
                                                                 },
-                                                            },                              
+                                                            },
                                                         ]}
                                                       />,
                                                 },
-                                            },                                                             
+                                            },
                                         ]}
                                       />,
                                 },
-                            },                                            
+                            },
                         ]}
                       />,
                   },
@@ -159,6 +159,7 @@ const { protocol } = await web5.dwn.protocols.configure({
   message: {
     definition: {
       protocol: "https://photos.org/protocol",
+      publish: true,
       types: {
         album: {
           schema: "https://photos.org/protocol/album",
@@ -204,10 +205,10 @@ const { protocol } = await web5.dwn.protocols.configure({
 });
 
 /*
-Sends the protocol configuration to the user's remote DWNs. This function only needs 
+Sends the protocol configuration to the user's remote DWNs. This function only needs
 to be called if you'd like to send instantly and cannot wait for sync to occur.
 */
-protocol.send(myDid); 
+protocol.send(myDid);
 ```
 
 
@@ -252,7 +253,7 @@ Queries a DID's DWNs for the presence of a protocol. This method is useful in de
                                         field: 'dateCreated',
                                         value: 'Date of creation for the protocols to query',
                                     }
-                                },                           
+                                },
                                 {
                                     data: {
                                         isObject: true,
@@ -268,15 +269,15 @@ Queries a DID's DWNs for the presence of a protocol. This method is useful in de
                                                         field: 'protocol',
                                                         value: 'URI of the protocol bucket in which to query',
                                                     },
-                                                },  
+                                                },
                                             ]}
                                         />,
                                     },
-                                },                            
+                                },
                             ]}
                         />,
                     },
-                },                                             
+                },
             ]}
           />,
       },
