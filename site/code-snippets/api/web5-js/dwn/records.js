@@ -68,9 +68,9 @@ export async function queryPlaylistFromDid(web5, myDid) {
 
 export async function readRecordFromRecordId(web5, recordId) {
   // Reads the indicated record from the user's DWNs
-  const { record } = await web5.dwn.records.read({
+  let { record } = await web5.dwn.records.read({
     message: {
-      recordId,
+      recordId: recordId,
     },
   });
 
@@ -86,4 +86,6 @@ export async function deleteRecordFromDid(web5, record, did) {
       recordId: record.id,
     },
   });
+
+  return response;
 }

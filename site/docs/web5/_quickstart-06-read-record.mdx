@@ -1,3 +1,5 @@
+import CodeSnippet from '@site/src/components/CodeSnippet';
+
 <section class="docs-section">
 
 ## 3. Read DWN Records
@@ -5,9 +7,8 @@
 If the user has given your app read permissions to their DWN, you can read their data by accessing it through the `record` property. If you don't already have access to the record, you can [query](/docs/web5/build/decentralized-web-nodes/query-from-dwn) to obtain it.
 
 To return the text data stored in the `record`, add the following to `index.js`:
-```js
-const readResult = await record.data.text();
-```
+
+<CodeSnippet functionName="readTextRecord" />
 
 <details>
 <summary>Test your code</summary>

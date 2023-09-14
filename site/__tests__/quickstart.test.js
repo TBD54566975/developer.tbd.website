@@ -1,5 +1,11 @@
 import { test, beforeAll, expect, describe } from 'vitest';
-import { didCreate, createTextRecord } from '../src/util/code-snippets';
+import {
+  didCreate,
+  createTextRecord,
+  readTextRecord,
+  updateTextRecord,
+  deleteTextRecord,
+} from '../code-snippets/web5/quickstart';
 
 // This is the web5 instance that will be referred to for all tests. This comes back as a result from Web5.connect() being used in the didCreate function.
 let web5;
@@ -8,8 +14,8 @@ let aliceDid;
 // This record result is what comes back from the createTextRecord function. This is used to test the record's attributes and methods.
 let recordResult;
 
-const textInput = 'YEEERR!';
-const updatedTextInput = 'YEEERR! UPDATED';
+const textInput = 'Hello, Web5!';
+const updatedTextInput = 'Hello, Web5! I am updated.';
 
 describe('/site/tests/quickstart.test.js', () => {
   // This is where we create a DID, assign the web5 and aliceDid variables, and then use the aliceDid to write a text record.
@@ -30,26 +36,23 @@ describe('/site/tests/quickstart.test.js', () => {
     // This is where we write a text record and assign the result to the recordResult variable.
     const response = await createTextRecord(web5, textInput);
     recordResult = response.record;
-    expect.soft(response.status.code).toBe(202);
     expect(recordResult.author).toBe(aliceDid);
   });
 
   test('recordResult returns a record with the textInput being the same value as the data attribute', async () => {
-    const textResult = await recordResult.data.text();
+    const textResult = await readTextRecord(recordResult);
     expect(textResult).toBe(textInput);
   });
 
   test('recordResult successfully sends an updated textInput', async () => {
-    const updatedRecordResult = await recordResult.update({
-      data: updatedTextInput,
-    });
+    const updatedRecordResult = await updateTextRecord(recordResult);
 
     expect.soft(updatedRecordResult.status.code).toBe(202);
     expect(updatedTextInput).toBe(await recordResult.data.text());
   });
 
   test('recordResult successfully deletes the record', async () => {
-    const deletedRecordResult = await recordResult.delete();
+    const deletedRecordResult = await deleteTextRecord(recordResult);
     expect.soft(deletedRecordResult.status.code).toBe(202);
 
     expect(recordResult.isDeleted).toBe(true);

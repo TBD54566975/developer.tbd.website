@@ -30,7 +30,7 @@ describe('tests for /api/web5-js/dwn/records', async () => {
 
   test('createRecordWithoutStore creates a record', async () => {
     const result = await createRecordWithoutStore(web5);
-    record = result;
+    // record = result;
 
     expect(result).toBeDefined();
   });
@@ -51,15 +51,14 @@ describe('tests for /api/web5-js/dwn/records', async () => {
   });
 
   //skipping until we figure out why passing a real record id gives back an undefined record
-  test.skip('readRecordFromRecordId reads a record', async () => {
+  test('readRecordFromRecordId reads a record', async () => {
     const result = await readRecordFromRecordId(web5, record.id);
-    console.log('gimme result', result);
 
     expect(result).toBeDefined();
   });
 
   //skipping until we figure out why passing a real record id gives back an undefined record
-  test.skip('deleteRecordFromDid deletes a record', async () => {
+  test('deleteRecordFromDid deletes a record', async () => {
     const result = await deleteRecordFromDid(web5, record, myDid);
 
     expect(result).toBeDefined();
