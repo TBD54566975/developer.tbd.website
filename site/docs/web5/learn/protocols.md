@@ -12,6 +12,7 @@ Protocols are written in a JSON format that is flexible enough to detail what ob
 
 Every protocol document has a few basic keys:
 
+- `published` - Determines whether the protocol appears in the results of `protocols.query`
 - `types` - Defines all the data types used in your document
 - `structure` - Defines a list of properties
 - `$actions` - The key word used to denote the start of a permission definition
@@ -28,7 +29,7 @@ Now let’s imagine how we’d construct the permissions for such an app. We wan
 
 ## Defining a Protocol
 
-We know the key words for defining protocols - `types`, `structure`, and `actions` - as well as our data and permissions schemas. So our protocol would look this:
+We know the key words for defining protocols - `published`, `types`, `structure`, and `actions` - as well as our data and permissions schemas. So our protocol would look this:
 
 ```json
 {
@@ -110,6 +111,15 @@ We know the key words for defining protocols - `types`, `structure`, and `action
       }
     }
   }
+}
+```
+With the `published` attribute, protocols can be set to appear in the results of a `protocol.query` method. All matching protocols are returned when a tenant calls `protocols.query` but when called by someone else, only published protocols are returned.
+
+```json
+{
+  "protocol": "https://social-media.xyz",
+  "published": true,
+  ...
 }
 ```
 
