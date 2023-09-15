@@ -338,3 +338,6 @@ else {
 And that’s it! You’ve now written a message to Alice’s DWN, which she’ll be able to respond to, and you can both communicate using the `social-media` protocol.
 
 This protocol enables a basic social network using Web5, which means we’ve created a basic trustless, decentralized social network where your users host all of their own data; images, captions, and messages are all theirs.
+
+## Example Protocols
+Here's a bunch of [example protocols](https://github.com/TBD54566975/dwn-sdk-js/tree/main/tests/vectors/protocol-definitions) for more inspiration!
