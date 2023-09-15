@@ -33,6 +33,7 @@ We know the key words for defining protocols - `types`, `structure`, and `action
 ```json
 {
   "protocol": "https://social-media.xyz",
+  "published": true,
   "types": {
     "message": {
       "schema": "https://social-media.xyz/schemas/messageSchema",
@@ -109,6 +110,18 @@ We know the key words for defining protocols - `types`, `structure`, and `action
       }
     }
   }
+}
+```
+
+The value for `protocol` is a URI that represents the protocol being configured.
+
+The `published` attribute indicates whether the protocol should be public. Published protocols are accessible by anyone who [queries](/api/web5-js/dwn/protocols#queryrequest) for them.
+
+```json
+{
+  "protocol": "https://social-media.xyz",
+  "published": true,
+  ...
 }
 ```
 
@@ -285,12 +298,12 @@ To use a protocol in your app, you’ll need to install that protocol to your DW
 ```js
 const { protocol, status } = await web5.dwn.protocols.configure({
     message: {
-      definition: protocolDefinition 
+      definition: protocolDefinition
     }
 });
 
 //sends protocol to remote DWNs immediately (vs waiting for sync)
-await protocol.send(myDid); 
+await protocol.send(myDid);
 ```
 
 Once you’ve installed that protocol to your app, you’re ready to communicate using the schema and permissions it defines.
