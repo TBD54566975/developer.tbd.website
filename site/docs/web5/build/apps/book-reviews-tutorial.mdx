@@ -2,10 +2,10 @@ import PackageJson from '@site/src/components/PackageJson';
 
 # Build a Book Review App
 
-There are many sites that allow users to write book reviews such as Amazon, GoodReads, Barnes & Noble, LibraryThing, and BookBub just to name a few. 
-Some of these apps even function as social media sites for book enthusiasts. 
+There are many sites that allow users to write book reviews such as Amazon, GoodReads, Barnes & Noble, LibraryThing, and BookBub just to name a few.
+Some of these apps even function as social media sites for book enthusiasts.
 
-Let's create a decentralized app for readers who want to keep reviews on the various books they've read. Rather than being locked into one book review app, they wish to have control over their reviews and easily share them across different platforms. 
+Let's create a decentralized app for readers who want to keep reviews on the various books they've read. Rather than being locked into one book review app, they wish to have control over their reviews and easily share them across different platforms.
 
 This tutorial demonstrates how to use Web5.js to create an app that stores users' book reviews within their [DWNs](/docs/web5/learn/decentralized-web-nodes) so that they can be accessed by any app on the web that has [permission](/docs/web5/learn/decentralized-web-nodes/#authorization).
 
@@ -34,7 +34,7 @@ import { Web5 } from "@web5/api";
 
 ```js
 /*
-Needs globalThis.crypto polyfill. 
+Needs globalThis.crypto polyfill.
 This is *not* the crypto you're thinking of.
 It's the original crypto...CRYPTOGRAPHY.
 */
@@ -72,13 +72,13 @@ Now we have the Web5 SDK installed and are ready to start building!
 
 ## Connect to Web5
 
-The first thing we want to do is **connect**. In Web5 apps, this replaces the traditional login step. Instead of centralized accounts that belong to one application, users have [DIDs](/docs/web5/learn/decentralized-identifiers) and [DWNs](/docs/web5/learn/decentralized-web-nodes), decentralized identity and storage, respectively. 
+The first thing we want to do is **connect**. In Web5 apps, this replaces the traditional login step. Instead of centralized accounts that belong to one application, users have [DIDs](/docs/web5/learn/decentralized-identifiers) and [DWNs](/docs/web5/learn/decentralized-web-nodes), decentralized identity and storage, respectively.
 
 ```js
 const {web5, did: userDid} = await Web5.connect();
 ```
 
-Without parameters, this function will look for a local DWN and DID on the user's device and will connect to it. If it doesn't already exist, a DID and local DWN will be automatically created. 
+Without parameters, this function will look for a local DWN and DID on the user's device and will connect to it. If it doesn't already exist, a DID and local DWN will be automatically created.
 
 
 
@@ -90,7 +90,7 @@ Note that your app can [allow users to connect with an agent](/api/web5-js#conne
 
 ## Create Interoperable Data
 
-Now that the user has connected, your app can obtain any public or permissioned data from their DWN, even if your app didn't create the data. This is the power of DWNs - users are able to keep their data with them and utilize it in any app that allows this. 
+Now that the user has connected, your app can obtain any public or permissioned data from their DWN, even if your app didn't create the data. This is the power of DWNs - users are able to keep their data with them and utilize it in any app that allows this.
 
 In order for data to be interoperable across apps, the apps must understand and support the same data structure. Fortunately, this is not a new concept. In fact, [schema.org](https://schema.org) exists for this very reason - to provide a shared vocabulary for structured data.
 
@@ -139,7 +139,7 @@ Your app may offer the ability for users to create new book reviews. If so, you'
 
 Your interface may allow the user to enter a star rating (1-5) as well as a review for any given book. Your app would then take that data and structure objects that match the Review schema.
 
-This JSON represents multiple reviews the user wants to add and follows the Review schema. 
+This JSON represents multiple reviews the user wants to add and follows the Review schema.
 
 ```js
 //Book Reviews
@@ -243,7 +243,7 @@ let reviews = [
             "ratingValue": "4.8"
         },
         "reviewBody": "A deeply disturbing yet essential read. Huxley's vision of a future driven by technology and hedonism serves as a potent warning for society."
-    }        
+    }
 ]
 ```
 
@@ -275,7 +275,7 @@ async function addReviews() {
         let reviewExists = await isReviewPresent(review);
         if (reviewExists) {
             console.log(`Review for ${review.itemReviewed.name} already exists`);
-        } 
+        }
         else {
             //highlight-start
             const response = await web5.dwn.records.create({
@@ -289,6 +289,8 @@ async function addReviews() {
             //highlight-end
 
             if (response.status.code === 202) {
+                //highlight-next-line
+                existingReviews.push(response.record);
                 console.log(`Review for ${review.itemReviewed.name} added successfully`);
             } else {
                 console.log(`${response.status}. Error adding review for ${review.itemReviewed.name}`);
@@ -337,7 +339,7 @@ async function updateReviewRating(review, newRating) {
     let bookData = await review.data.json();
     console.log(`old rating for ${bookData.itemReviewed.name}`, bookData.reviewRating.ratingValue);
 
-    //highlight-start  
+    //highlight-start
     //Update the value within the JSON then send the entire JSON to update
     bookData.reviewRating.ratingValue = newRating;
     let response = await review.update({
@@ -353,7 +355,7 @@ async function updateReviewRating(review, newRating) {
             },
         });
         const updatedData = await updatedReview.data.json();
-        console.log(`updated rating for ${bookData.itemReviewed.name}`, updatedData.reviewRating.ratingValue);    
+        console.log(`updated rating for ${bookData.itemReviewed.name}`, updatedData.reviewRating.ratingValue);
     }
     else console.log(`${response.status}. Error updating rating for ${bookData.itemReviewed.name}`);
 }
