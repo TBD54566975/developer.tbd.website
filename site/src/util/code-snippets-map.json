@@ -1,5 +1,8 @@
 {
   "createMyDid": "const myDid = await web5.did.create('ion');",
+  "configureProtocol": "const { status, protocol } = await web5.dwn.protocols.configure({\n    message: {\n      definition: protocolDefinition,\n    },\n  });\n\n  //highlight-start\n  const definitionResult = protocol.definition;\n  //highlight-end\n\n  console.log('resultStatus', definitionResult.protocol);",
+  "configureProtocolAndSend": "const { status, protocol } = await web5.dwn.protocols.configure({\n    message: {\n      definition: protocolDefinition,\n    },\n  });\n\n  //highlight-start\n  await protocol.send(myDid);\n  //highlight-end",
+  "queryProtocol": "const { protocols, status } = await web5.dwn.protocols.query({\n    message: {\n      filter: {\n        protocol: 'http://social-media.xyz',\n      },\n    },\n  });\n\n  //highlight-start\n  const protocolConfig = protocols[0].toJSON();\n  //highlight-end",
   "createRecord": "const { record } = await web5.dwn.records.create({\n    data: 'Hello World!',\n    message: {\n      dataFormat: 'text/plain',\n    },\n  });\n\n  const { status } = await record.send(myDid);",
   "deleteRecord": "const response = await record.delete();",
   "updateRecord": "const response = await record.update({ data: \"Hello', I'm updated\" });",
