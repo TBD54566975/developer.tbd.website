@@ -40,6 +40,12 @@ importers:
         specifier: 8.13.13
         version: 8.13.13
 
+  examples/tutorials/book-reviews:
+    dependencies:
+      '@web5/api':
+        specifier: ^0.8.1
+        version: 0.8.1
+
   examples/tutorials/todo-completed:
     dependencies:
       '@headlessui/vue':
