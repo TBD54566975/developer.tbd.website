@@ -1,7 +1,4 @@
 # TBD Developer Site
-<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-3-orange.svg?style=flat-square)](#contributors-)
-<!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 This is a monorepo powered by [pnpm](https://pnpm.io/) that includes a documentation site, tutorials and examples. This repository allows you to conveniently manage multiple projects within a single repository.
 
@@ -63,6 +60,7 @@ The following scripts are available for running specific tasks within the monore
 - `pnpm build`: Runs the production build for the site so it can be hosted by a static web server. The completed build will be in the folder `site/build`.
 
 ### Note
+
 This repo made a switch from using `npm` to `pnpm` as the package manager in July 2023. If you have used prior versions of this repo built on your machine with `npm`, you may encounter build failures, like:
 
 ```
@@ -110,36 +108,3 @@ If you wish to contribute to this project, please follow the guidelines outlined
 ## License
 
 This project is licensed under the [MIT License](LICENSE).
-
-## Contributors ✨
-
-Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
-
-<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
-<!-- prettier-ignore-start -->
-<!-- markdownlint-disable -->
-<table>
-  <tbody>
-    <tr>
-      <td align="center" valign="top" width="14.28%"><a href="https://www.linkedin.com/in/yuusufoladipo"><img src="https://avatars.githubusercontent.com/u/77832856?v=4?s=100" width="100px;" alt="Yuusuf Oyelola Oladipo"/><br /><sub><b>Yuusuf Oyelola Oladipo</b></sub></a><br /><a href="#content-Civil-captain" title="Content">🖋</a></td>
-      <td align="center" valign="top" width="14.28%"><a href="http://aguywhocodes.com"><img src="https://avatars.githubusercontent.com/u/13209683?v=4?s=100" width="100px;" alt="Michael Brown"/><br /><sub><b>Michael Brown</b></sub></a><br /><a href="https://github.com/TBD54566975/developer.tbd.website/commits?author=aguywithcode" title="Code">💻</a></td>
-      <td align="center" valign="top" width="14.28%"><a href="https://github.com/nearlyjuly"><img src="https://avatars.githubusercontent.com/u/112702586?v=4?s=100" width="100px;" alt="nearlyjuly"/><br /><sub><b>nearlyjuly</b></sub></a><br /><a href="https://github.com/TBD54566975/developer.tbd.website/commits?author=nearlyjuly" title="Code">💻</a> <a href="#question-nearlyjuly" title="Answering Questions">💬</a></td>
-      <td align="center" valign="top" width="14.28%"><a href="https://github.com/Prod1gy0ne"><img src="https://avatars.githubusercontent.com/u/96172348?v=4?s=100" width="100px;" alt="Prod1gy0ne"/><br /><sub><b>Prod1gy0ne</b></sub></a><br /><a href="https://github.com/TBD54566975/developer.tbd.website/commits?author=Prod1gy0ne" title="Documentation">📖</a></td>
-      <td align="center" valign="top" width="14.28%"><a href="https://github.com/andorsk"><img src="https://avatars.githubusercontent.com/u/8604639?v=4?s=100" width="100px;" alt="Andor Kesselman"/><br /><sub><b>Andor Kesselman</b></sub></a><br /><a href="https://github.com/TBD54566975/developer.tbd.website/commits?author=andorsk" title="Code">💻</a> <a href="https://github.com/TBD54566975/developer.tbd.website/commits?author=andorsk" title="Documentation">📖</a> <a href="#example-andorsk" title="Examples">💡</a></td>
-      <td align="center" valign="top" width="14.28%"><a href="https://github.com/adityakode"><img src="https://avatars.githubusercontent.com/u/105551807?v=4?s=100" width="100px;" alt="Aditya Kode"/><br /><sub><b>Aditya Kode</b></sub></a><br /><a href="https://github.com/TBD54566975/developer.tbd.website/commits?author=adityakode" title="Documentation">📖</a></td>
-      <td align="center" valign="top" width="14.28%"><a href="http://jsahagun.io/"><img src="https://avatars.githubusercontent.com/u/34168252?v=4?s=100" width="100px;" alt="Jose Sahagun"/><br /><sub><b>Jose Sahagun</b></sub></a><br /><a href="https://github.com/TBD54566975/developer.tbd.website/commits?author=jsahagun91" title="Code">💻</a></td>
-      <td align="center" valign="top" width="14.28%"><a href="https://github.com/mathieurivest"><img src="https://avatars.githubusercontent.com/u/4664198?v=4?s=100" width="100px;" alt="Mathieu Rivest"/><br /><sub><b>Mathieu Rivest</b></sub></a><br /><a href="https://github.com/TBD54566975/developer.tbd.website/commits?author=mathieurivest" title="Documentation">📖</a></td>
-      <td align="center" valign="top" width="14.28%"><a href="https://github.com/shoito"><img src="https://avatars.githubusercontent.com/u/37051?v=4?s=100" width="100px;" alt="shoito"/><br /><sub><b>shoito</b></sub></a><br /><a href="https://github.com/TBD54566975/developer.tbd.website/commits?author=shoito" title="Documentation">📖</a></td>
-      <td align="center" valign="top" width="14.28%"><a href="https://github.com/sarathcodes"><img src="https://avatars.githubusercontent.com/u/58284608?v=4?s=100" width="100px;" alt="Sarah Nair"/><br /><sub><b>Sarah Nair</b></sub></a><br /><a href="https://github.com/TBD54566975/developer.tbd.website/commits?author=sarathcodes" title="Documentation">📖</a></td>
-      <td align="center" valign="top" width="14.28%"><a href="https://www.acekyd.com"><img src="https://avatars.githubusercontent.com/u/4003538?v=4?s=100" width="100px;" alt="Adewale Abati"/><br /><sub><b>Adewale Abati</b></sub></a><br /><a href="https://github.com/TBD54566975/developer.tbd.website/commits?author=acekyd" title="Code">💻</a> <a href="#content-acekyd" title="Content">🖋</a></td>
-      <td align="center" valign="top" width="14.28%"><a href="https://github.com/alec-brooks"><img src="https://avatars.githubusercontent.com/u/1539341?v=4?s=100" width="100px;" alt="alec-brooks"/><br /><sub><b>alec-brooks</b></sub></a><br /><a href="https://github.com/TBD54566975/developer.tbd.website/commits?author=alec-brooks" title="Documentation">📖</a></td>
-    </tr>
-  </tbody>
-</table>
-
-<!-- markdownlint-restore -->
-<!-- prettier-ignore-end -->
-
-<!-- ALL-CONTRIBUTORS-LIST:END -->
-
-This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!

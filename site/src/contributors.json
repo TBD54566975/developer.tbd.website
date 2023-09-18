@@ -2,61 +2,33 @@
   {
     "login": "Civil-captain",
     "avatar_url": "https://avatars.githubusercontent.com/u/77832856?v=4",
-    "contributions": ["content"]
+    "contributions": ["Content Creator Award"]
   },
   {
     "login": "nearlyjuly",
     "avatar_url": "https://avatars.githubusercontent.com/u/112702586?v=4",
-    "contributions": ["code", "question"]
+    "contributions": ["Community Hero Award"],
+    "description": "Thank you for your incredible activity this month. Your enthusiastic participation is truly invaluable to us!"
   },
   {
     "login": "aguywithcode",
     "avatar_url": "https://avatars.githubusercontent.com/u/13209683?v=4",
-    "contributions": ["code"]
+    "contributions": ["New Contributor Award"],
+    "description": ""
   },
   {
     "login": "Prod1gy0ne",
     "avatar_url": "https://avatars.githubusercontent.com/u/96172348?v=4",
-    "contributions": ["doc"]
-  },
-  {
-    "login": "andorsk",
-    "avatar_url": "https://avatars.githubusercontent.com/u/8604639?v=4",
-    "contributions": ["code", "doc", "example"]
+    "contributions": ["Rising Star Award"]
   },
   {
     "login": "adityakode",
     "avatar_url": "https://avatars.githubusercontent.com/u/105551807?v=4",
-    "contributions": ["doc"]
+    "contributions": ["Feedback Champion Award"]
   },
   {
     "login": "jsahagun91",
     "avatar_url": "https://avatars.githubusercontent.com/u/34168252?v=4",
-    "contributions": ["code"]
-  },
-  {
-    "login": "mathieurivest",
-    "avatar_url": "https://avatars.githubusercontent.com/u/4664198?v=4",
-    "contributions": ["doc"]
-  },
-  {
-    "login": "shoito",
-    "avatar_url": "https://avatars.githubusercontent.com/u/37051?v=4",
-    "contributions": ["doc"]
-  },
-  {
-    "login": "sarathcodes",
-    "avatar_url": "https://avatars.githubusercontent.com/u/58284608?v=4",
-    "contributions": ["doc"]
-  },
-  {
-    "login": "acekyd",
-    "avatar_url": "https://avatars.githubusercontent.com/u/4003538?v=4",
-    "contributions": ["code", "content"]
-  },
-  {
-    "login": "alec-brooks",
-    "avatar_url": "https://avatars.githubusercontent.com/u/1539341?v=4",
-    "contributions": ["doc"]
+    "contributions": ["Docs Wizard Award"]
   }
 ]
