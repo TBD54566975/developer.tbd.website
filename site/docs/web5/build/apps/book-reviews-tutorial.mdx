@@ -80,8 +80,6 @@ const {web5, did: userDid} = await Web5.connect();
 
 Without parameters, this function will look for a local DWN and DID on the user's device and will connect to it. If it doesn't already exist, a DID and local DWN will be automatically created.
 
-
-
 The `connect()` function returns an instance of `Web5` as `web5` as well as the user's DID as `did`. The `web5` instance gives you access to Web5's three core pillars: `web5.did`, `web5.vc`, and `web5.dwn`.
 
 :::note
@@ -289,8 +287,6 @@ async function addReviews() {
             //highlight-end
 
             if (response.status.code === 202) {
-                //highlight-next-line
-                existingReviews.push(response.record);
                 console.log(`Review for ${review.itemReviewed.name} added successfully`);
             } else {
                 console.log(`${response.status}. Error adding review for ${review.itemReviewed.name}`);
