@@ -23,7 +23,7 @@ The **first 10 contributors** to succesfully merge a PR will secure exclusive sw
 - Check out our `good-first-issue` and `hacktoberfest` labels in the issues section.
 - Join our Discord: Connect with the community, stay up to date with Hacktoberfest events/prizes, and discuss Hacktoberfest contributions on our Discord server. Click [here](https://discord.com/channels/937858703112155166/1151216855957123104) to join.
 - Always be respectful and follow our [code of conduct](https://developer.tbd.website/open-source/code-of-conduct).
-- If in doubt about what to contribute, reach out to maintainers by raising a question in the relevant issue or specified discord channel.
+- If in doubt about what to contribute, reach out to maintainers by raising a question in the relevant issue or specified [discord channel](https://discord.com/channels/937858703112155166/1151216855957123104).
 - **Other participating TBD Repos:**
   - [DWN-Server](https://github.com/TBD54566975/dwn-server/issues?q=is%3Aopen+is%3Aissue+label%3A%22good+first+issue%22)
   - [DWN-SDK-JS](https://github.com/TBD54566975/dwn-sdk-js/issues?q=is%3Aopen+is%3Aissue+label%3A%22good+first+issue%22)
@@ -31,7 +31,7 @@ The **first 10 contributors** to succesfully merge a PR will secure exclusive sw
 
 ## **What is Hacktoberfest?**
 
-Celebrate the 10th anniversary of Hacktoberfest this year! Hosted annually every October, Hacktoberfest is a month-long event sponsored by DigitalOcean, GitHub, and various other partners, championing open-source contributions. This milestone year introduces exciting digital prizes:
+Celebrate the 10th anniversary of Hacktoberfest this year! Hosted annually every October, Hacktoberfest is a month-long event sponsored by DigitalOcean, GitHub, and various other partners, championing open-source contributions. This milestone year introduces exciting digital prizes when you **successfully merge 4 PRs**:
 
 - Digital Reward Kit:
   - A dynamic badge that evolves with every pull/merge request that maintainers accept.
