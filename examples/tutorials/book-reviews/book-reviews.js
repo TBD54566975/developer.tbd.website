@@ -175,6 +175,7 @@ async function addReviews() {
       }
     }
   }
+  existingReviews = await getReviews();
 }
 
 //Update book review rating
@@ -217,7 +218,7 @@ async function deleteReviews() {
   }
 }
 
-const existingReviews = await getReviews();
+let existingReviews = await getReviews();
 await addReviews();
 await updateReviewRating(existingReviews[1], "4.2");
 await deleteReviews();
