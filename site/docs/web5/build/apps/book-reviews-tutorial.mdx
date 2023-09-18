@@ -131,7 +131,7 @@ async function getReviews() {
     return records;
 }
 
-const existingReviews = await getReviews();
+let existingReviews = await getReviews();
 process.exit();
 ```
 
@@ -299,9 +299,10 @@ async function addReviews() {
             }
         }
     }
+    existingReviews = await getReviews();
 }
 
-const existingReviews = await getReviews();
+let existingReviews = await getReviews();
 //highlight-next-line
 await addReviews();
 process.exit();
@@ -362,7 +363,7 @@ async function updateReviewRating(review, newRating) {
     else console.log(`${response.status}. Error updating rating for ${bookData.itemReviewed.name}`);
 }
 
-const existingReviews = await getReviews();
+let existingReviews = await getReviews();
 await addReviews();
 //highlight-next-line
 await updateReviewRating(existingReviews[1], "4.2");
@@ -391,7 +392,7 @@ async function deleteReviews() {
 }
 
 
-const existingReviews = await getReviews();
+let existingReviews = await getReviews();
 await addReviews();
 await updateReviewRating(existingReviews[1], "4.2");
 //highlight-next-line
