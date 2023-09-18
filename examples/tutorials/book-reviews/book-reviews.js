@@ -1,15 +1,14 @@
 import { Web5 } from "@web5/api";
-/*
-Needs globalThis.crypto polyfill.
-This is *not* the crypto you're thinking of.
-It's the original crypto...CRYPTOGRAPHY.
-*/
-import { webcrypto } from "node:crypto";
 
+//Node 18 users: the following 3 lines are needed
+import { webcrypto } from "node:crypto";
 // @ts-ignore
 if (!globalThis.crypto) globalThis.crypto = webcrypto;
 
+
+
 const { web5, did: userDid } = await Web5.connect();
+
 //Schema we'll use for Book Reviews
 const schema = {
   context: "https://schema.org/",
@@ -170,14 +169,9 @@ async function addReviews() {
       });
 
       if (response.status.code === 202) {
-        existingReviews.push(response.record);
-        console.log(
-          `Review for ${review.itemReviewed.name} added successfully`,
-        );
+        console.log(`Review for ${review.itemReviewed.name} added successfully`);
       } else {
-        console.log(
-          `${response.status}. Error adding review for ${review.itemReviewed.name}`,
-        );
+        console.log(`${response.status}. Error adding review for ${review.itemReviewed.name}`);
       }
     }
   }
@@ -186,10 +180,7 @@ async function addReviews() {
 //Update book review rating
 async function updateReviewRating(review, newRating) {
   let bookData = await review.data.json();
-  console.log(
-    `old rating for ${bookData.itemReviewed.name}`,
-    bookData.reviewRating.ratingValue,
-  );
+  console.log(`old rating for ${bookData.itemReviewed.name}`, bookData.reviewRating.ratingValue);
 
   //Update the value within the JSON then send the entire JSON to update
   bookData.reviewRating.ratingValue = newRating;
@@ -204,15 +195,11 @@ async function updateReviewRating(review, newRating) {
         recordId: review.id,
       },
     });
+
     const updatedData = await updatedReview.data.json();
-    console.log(
-      `updated rating for ${bookData.itemReviewed.name}`,
-      updatedData.reviewRating.ratingValue,
-    );
-  } else
-    console.log(
-      `${response.status}. Error updating rating for ${bookData.itemReviewed.name}`,
-    );
+    console.log(`updated rating for ${bookData.itemReviewed.name}`, updatedData.reviewRating.ratingValue);
+  } 
+  else console.log(`${response.status}. Error updating rating for ${bookData.itemReviewed.name}`);
 }
 
 //Delete all book reviews
