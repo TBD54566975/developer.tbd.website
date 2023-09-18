@@ -10,8 +10,6 @@ import { webcrypto } from "node:crypto";
 if (!globalThis.crypto) globalThis.crypto = webcrypto;
 
 const { web5, did: userDid } = await Web5.connect();
-let existingReviews = [];
-
 //Schema we'll use for Book Reviews
 const schema = {
   context: "https://schema.org/",
@@ -232,7 +230,7 @@ async function deleteReviews() {
   }
 }
 
-existingReviews = await getReviews();
+const existingReviews = await getReviews();
 await addReviews();
 await updateReviewRating(existingReviews[1], "4.2");
 await deleteReviews();
