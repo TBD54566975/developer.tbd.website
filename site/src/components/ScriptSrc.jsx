@@ -2,20 +2,20 @@ import React from 'react';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import CodeBlock from '@theme/CodeBlock';
 
-function ScriptSrc(unpkg = false, jsdelivr = false) {
+function ScriptSrc(site) {
   const {
     siteConfig: { customFields },
   } = useDocusaurusContext();
 
-  if (unpkg) {
+  if (site.src === "unpkg") {
     return (
       <CodeBlock language="js">
         {`<script src="https://unpkg.com/@web5/api@${customFields.WEB5_VERSION}/dist/browser.js"></script>`}
       </CodeBlock>
     );
-  } else if (jsdelivr) {
+  } else {
     return (
-      <CodeBlock language="js" title="index.js">
+      <CodeBlock language="js">
         {`<script src="https://cdn.jsdelivr.net/npm/@web5/api@${customFields.WEB5_VERSION}/dist/browser.mjs"></script>`}
       </CodeBlock>
     );
