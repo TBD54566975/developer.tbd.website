@@ -23,6 +23,7 @@ export async function configureProtocolWithDefinition(web5, myDid) {
               {
                 who: 'recipient',
                 can: 'read',
+                of: 'album',
               },
             ],
           },
@@ -31,6 +32,7 @@ export async function configureProtocolWithDefinition(web5, myDid) {
               {
                 who: 'recipient',
                 can: 'read',
+                of: 'photo',
               },
             ],
             binaryImage: {
