@@ -53,26 +53,60 @@ let config = {
         // sidebarPath: require.resolve('./api-sidebars.js'),
       },
     ],
-    [
-      'docusaurus-plugin-typedoc',
+    // [
+    //   'docusaurus-plugin-typedoc',
 
-      // Plugin / TypeDoc options
-      {
-        entryPoints: [
-          '../../web5-js/packages/api',
-          '../../web5-js/packages/crypto',
-          '../../web5-js/packages/dids',
-        ],
-        entryPointStrategy: 'packages',
-        out: 'web5/api-reference',
-        sidebar: {
-          categoryLabel: 'API Reference',
-          collapsed: true,
-          position: 4,
-          fullNames: true,
-        },
-      },
-    ],
+    //   // Plugin / TypeDoc options
+    //   {
+    //     id: '@web5/api',
+    //     entryPoints: [
+    //       '../../web5-js/packages/api',
+    //       // '../../web5-js/packages/crypto/src/index.ts',
+    //       // '../../web5-js/packages/dids/src/index.ts',
+    //     ],
+    //     entryPointStrategy: 'packages',
+    //     out: 'web5/api-reference/web5--api',
+    //     readme: 'none',
+    //     sidebar: {
+    //       categoryLabel: '@web5/api',
+    //       collapsed: true,
+    //       position: 4,
+    //       fullNames: true,
+    //     },
+    //   },
+    // ],
+    // [
+    //   'docusaurus-plugin-typedoc',
+    //   {
+    //     id: '@web5/crypto',
+    //     entryPoints: ['../../web5-js/packages/crypto'],
+    //     entryPointStrategy: 'packages',
+    //     out: 'web5/api-reference/web5--crypto',
+    //     readme: 'none',
+    //     sidebar: {
+    //       categoryLabel: '@web5/crypto',
+    //       collapsed: true,
+    //       position: 4,
+    //       fullNames: true,
+    //     },
+    //   },
+    // ],
+    // [
+    //   'docusaurus-plugin-typedoc',
+    //   {
+    //     id: '@web5/dids',
+    //     entryPoints: ['../../web5-js/packages/dids'],
+    //     entryPointStrategy: 'packages',
+    //     out: 'web5/api-reference/web5--dids',
+    //     readme: 'none',
+    //     sidebar: {
+    //       categoryLabel: '@web5/dids',
+    //       collapsed: true,
+    //       position: 4,
+    //       fullNames: true,
+    //     },
+    //   },
+    // ],
     // [
     //   '@docusaurus/plugin-content-docs',
     //   {
