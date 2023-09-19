@@ -18,7 +18,12 @@ The following snippet queries a DWN for protocols that match a given schema:
 
 The following snippet queries a DWN for records that were written by a specific DID, match a given schema, and are in a specific data format:
 
-<CodeSnippet functionName="queryRecordFromDID" />
+<CodeSnippet functionName="queryRecordsFromDID" />
+
+:::note
+`records.query()` does not guarantee that the data is returned unless it is under a specific threshold (100 kb). 
+To guarantee record data, call [records.read()](/api/web5-js/dwn/records#readrequest).
+:::
 
 
 ## Filterable Record Properties
