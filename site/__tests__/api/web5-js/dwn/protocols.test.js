@@ -9,6 +9,17 @@ import {
 let web5;
 let myDid;
 
+const protocolDefinition = {
+  protocol: 'http://social-media.xyz',
+  published: false,
+  types: {
+    foo: {},
+  },
+  structure: {
+    foo: {},
+  },
+};
+
 beforeAll(async () => {
   const result = await Web5.connect();
   web5 = result.web5;
@@ -24,9 +35,10 @@ describe('tests for /api/web5-js/dwn/protocols.js', () => {
   });
 
   test('configureProtocolWithDefinition', async () => {
-    const { protocols, status } = await configureProtocolWithDefinition(
+    const { protocol, status } = await configureProtocolWithDefinition(
       web5,
       myDid,
+      protocolDefinition,
     );
     // We do 202 for this test because protocols comes back undefined, need to check if this is expected behavior.
     expect(status.code).toBe(202);

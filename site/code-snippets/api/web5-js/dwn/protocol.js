@@ -16,8 +16,8 @@ export async function configureProtocol(web5, protocolDefinition) {
 
 export async function configureProtocolAndSend(
   web5,
-  protocolDefinition,
   myDid,
+  protocolDefinition,
 ) {
   const { status, protocol } = await web5.dwn.protocols.configure({
     message: {

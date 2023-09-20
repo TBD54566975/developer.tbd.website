@@ -34,7 +34,7 @@ describe('tests for /api/web5-js/dwn/protocol.js', () => {
 
   // The function doesn't return anything, however if this fails it will throw an error.
   test('configureProtocolAndSend can run without any errors', async () => {
-    await configureProtocolAndSend(web5, protocolDefinition, myDid);
+    await configureProtocolAndSend(web5, myDid, protocolDefinition);
   });
 
   test('queryProtocol successfully queries the protocol', async () => {
