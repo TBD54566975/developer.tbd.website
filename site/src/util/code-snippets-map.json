@@ -15,7 +15,7 @@
   "queryPlaylistFromDid": "const response = await web5.dwn.records.query({\n    from: myDid,\n    message: {\n      filter: {\n        schema: 'https://schema.org/Playlist',\n        dataFormat: 'application/json',\n      },\n    },\n  });\n\n  response.records.forEach((record) => {\n    console.log(record.id);\n  });",
   "readRecordFromRecordId": "// Reads the indicated record from the user's DWNs\n  let { record } = await web5.dwn.records.read({\n    message: {\n      recordId: recordId,\n    },\n  });\n\n  // assuming the record is a text payload, logs the text",
   "deleteRecordFromDid": "const response = await web5.dwn.records.delete({\n    from: did,\n    message: {\n      recordId: record.id,\n    },\n  });",
-  "createDidWithDWNEndpoint": "const { web5, did: myDid } = await Web5.connect({\n    techPreview: {\n      dwnEndpoints: ['https://dwn.your-domain.org/'],\n    },\n  });",
+  "createDidWithDWNEndpoint": "const {\n    web5,\n    did: myDid,\n    status,\n  } = await Web5.connect({\n    techPreview: {\n      dwnEndpoints: ['https://dwn.your-domain.org/'],\n    },\n  });",
   "getProtocolDefinition": "const { status, protocol } = await web5.dwn.protocols.configure({\n    message: {\n      definition: protocolDefinition,\n    },\n  });\n\n  const",
   "sendDefinition": "const { protocol } = await web5.dwn.protocols.configure({\n    message: {\n      definition: protocolDefinition,\n    },\n  });\n\n  await protocol.send(myDid);",
   "createRecordWithTodoItem": "const myRecord = await web5.dwn.records.create(myDid.id, {\n    data: 'todoItem',\n    message: {\n      dataFormat: 'text/plain',\n    },\n  });",
