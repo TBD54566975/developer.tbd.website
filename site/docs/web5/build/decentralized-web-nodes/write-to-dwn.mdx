@@ -4,21 +4,19 @@ sidebar_position: 1
 
 # Write DWN Records
 
-You can store different types of data as records in a DWN.
+Various data types, such as text, JSON, images, streams or files, can be stored as records in a DWN. Below are examples of each.
 
-The following snippet allows you to create a record with a text string:
+### Create a text record
 
 ```js
 // Create a plain text record
 const { record } = await web5.dwn.records.create({
     data: "Hello Web5",
     message: {
-        dataFormat: 'text/plain',
-    },
+        dataFormat: 'text/plain'
+    }
 });
 ```
-
-The `data` property can be a string, JSON, blob, stream, or file.
 
 ### Create a JSON record
 
@@ -27,11 +25,11 @@ The `data` property can be a string, JSON, blob, stream, or file.
 const { record } = await web5.dwn.records.create({
     data: {
         content: "Hello Web5",
-        description: "Keep Building!",
+        description: "Keep Building!"
     },
     message: {
-        dataFormat: 'application/json',
-    },
+        dataFormat: 'application/json'
+    }
 });
 ```
 
@@ -42,10 +40,10 @@ const { record } = await web5.dwn.records.create({
 async function upload(event) {
   const blob = new Blob(event.currentTarget.files, { type: "image/png" });
   const { record } = await web5.dwn.records.create({
-      data: blob
+      data: blob,
       message: {
-          schema: "https://schema.org/path/to/schema"
-          dataFormat: "application/octet-stream"
+          schema: "https://schema.org/path/to/schema",
+          dataFormat: "image/png"
       }
   });
 }
@@ -57,10 +55,10 @@ async function upload(event) {
 // Create a file record
 async function upload(event) {
   const file = event.currentTarget.files[0];
-  const { status: uploadStatus, record: fileRecord } = await web5.dwn.records.create({
-      data: file
+  const { status: fileStatus, record } = await web5.dwn.records.create({
+      data: file,
       message: {
-          schema: "https://schema.org/path/to/schema"
+          schema: "https://schema.org/path/to/schema",
           dataFormat: "application/octet-stream"
       }
   });
@@ -68,7 +66,7 @@ async function upload(event) {
 ```
 
 ### Create records with mixed data
-You can also store mixed data - including text, images, or files.
+You can also store mixed data via JSON - including text, images, or files.
 
 ```js
   // Create a mixed record
@@ -88,14 +86,14 @@ You can also store mixed data - including text, images, or files.
     const messageData = {
       username,
       message: messageText,
-      image: base64Image,
+      image: base64Image
     };
 
     const { record } = await web5.dwn.records.create({
       data: messageData,
       message: {
         schema: "http://schema-registry.org/message",
-        dataFormat: "application/json",
+        dataFormat: "application/json"
       },
     });
   }
