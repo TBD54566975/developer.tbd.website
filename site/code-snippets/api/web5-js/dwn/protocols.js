@@ -1,5 +1,5 @@
 export async function configureProtocolWithDefinition(web5, myDid) {
-  const { protocol } = await web5.dwn.protocols.configure({
+  const { protocol, status } = await web5.dwn.protocols.configure({
     message: {
       definition: {
         protocol: 'https://photos.org/protocol',
@@ -50,17 +50,19 @@ export async function configureProtocolWithDefinition(web5, myDid) {
     },
   });
 
+  console.log('protocol', protocol.protocol);
+
   /*
 Sends the protocol configuration to the user's remote DWNs. This function only needs 
 to be called if you'd like to send instantly and cannot wait for sync to occur.
 */
   protocol.send(myDid);
 
-  return protocol;
+  return { protocol, status };
 }
 
 export async function queryMusicProtocol(web5) {
-  const { protocols } = await web5.dwn.protocols.query({
+  const { protocols, status } = await web5.dwn.protocols.query({
     message: {
       filter: {
         protocol: 'https://music.org/protocol',
@@ -71,13 +73,13 @@ export async function queryMusicProtocol(web5) {
   // logs an array of protocol configurations installed on the user's DWN
   console.log(protocols);
 
-  return protocols;
+  return { protocols, status };
 }
 
 export async function queryProtocolDescending(web5) {
   // Sorting protocols by dateCreated in descending order
 
-  const { protocols } = await web5.dwn.protocols.query({
+  const { protocols, status } = await web5.dwn.protocols.query({
     message: {
       filter: {
         protocol: 'http://social-media.xyz',
@@ -88,5 +90,5 @@ export async function queryProtocolDescending(web5) {
     },
   });
 
-  return protocols;
+  return { protocols, status };
 }
