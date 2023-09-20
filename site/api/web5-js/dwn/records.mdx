@@ -1,5 +1,6 @@
 import Divider from '@site/src/components/Divider';
 import ApiDetails from '@site/src/components/ApiDetails';
+import CodeSnippet from '@site/src/components/CodeSnippet';
 
 ## Overview
 The `records` class is responsible for providing convenience methods for CRUD operations interfacing with DWNs
@@ -127,51 +128,11 @@ Creates a new record and stores it in the user's local DWN, remote DWNs, or anot
 />
 
 #### Code Examples
-```js
-const { record } = await web5.dwn.records.create({
-  data: playlistJson,
-  message: {
-    recipient: 'did:example:alice'
-    protocol: "https://music.org/protocol",
-    schema: "https://schema.org/Playlist",
-    dataFormat: "application/json",
-  },
-});
-```
+<CodeSnippet functionName="createRecordsWithPlaylist" />
 
-```js
-// this creates a record, but does not store it in the user's local DWN
-const { record } = await web5.dwn.records.create({
-  //highlight-start
-  store: false,
-  //highlight-end
-  data: "Hello again, World!",
-  message: {
-    recipient: 'did:example:alice',
-    dataFormat: "text/plain",
-  },
-});
-```
+<CodeSnippet functionName="createRecordWithoutStore" />
 
-```js
-// this creates a record and stores it in the user's local DWN
-const { record } = await web5.dwn.records.create({
-  data: "Hello World!",
-  message: {
-    dataFormat: "text/plain",
-  },
-});
-
-/* 
-send the record to the user's remote DWNs. Only needed 
-if it's a record that cannot wait for sync to occur.
-*/
-const { status } = await record.send(myDid); 
-
-// send the newly generated record to Bob's DWNs
-const { status } = await record.send("did:example:bob");
-
-```
+<CodeSnippet functionName="createRecordAndSend" />
 
 ```js
 // this creates a record today to be published tomorrow 
@@ -291,21 +252,7 @@ Method for querying the DWN of a provided target. See [query from DWN guide](/do
 />
 
 #### Code Examples
-```js
-const response = await web5.dwn.records.query({
-  from: 'did:example:alice',
-  message: {
-    filter: {
-      schema: 'https://schema.org/Playlist',
-      dataFormat: 'application/json'
-    }
-  }
-});
-  
-response.records.forEach(record => {
-    console.log(record.id);
-});
-```
+<CodeSnippet functionName='queryPlaylistFromDid' />
 
 ```js
 // Sorting records by dateCreated in ascending order

@@ -1,3 +1,5 @@
+import CodeSnippet from '@site/src/components/CodeSnippet';
+
 <section class="docs-section">
 
 ## 5. Delete DWN Records
@@ -5,9 +7,7 @@
 Given permission from the user, your app can delete records from their DWN. Similar to reading, we’ll use the `record` object to remove the record.
 
 Add the following to `index.js`:
-```js
-const deleteResult = await record.delete();
-```
+<CodeSnippet functionName="deleteTextRecord" />
 
 <details>
 <summary>Test your code</summary>

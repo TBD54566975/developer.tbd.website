@@ -1,5 +1,6 @@
 import Divider from '@site/src/components/Divider';
 import ApiDetails from '@site/src/components/ApiDetails';
+import CodeSnippet from '@site/src/components/CodeSnippet';
 
 # protocols
 
@@ -161,62 +162,7 @@ Configures a protocol definition in the user's local DWN, remote DWN, or another
 
 #### Code Example
 
-```js
-const { protocol } = await web5.dwn.protocols.configure({
-  message: {
-    definition: {
-      protocol: "https://photos.org/protocol",
-      published: true,
-      types: {
-        album: {
-          schema: "https://photos.org/protocol/album",
-          dataFormats: ["application/json"],
-        },
-        photo: {
-          schema: "https://photos.org/protocols/photo",
-          dataFormats: ["application/json"],
-        },
-        binaryImage: {
-          dataFormats: ["image/png", "jpeg", "gif"],
-        },
-      },
-      structure: {
-        album: {
-          $actions: [
-            {
-              who: "recipient",
-              can: "read",
-            },
-          ],
-        },
-        photo: {
-          $actions: [
-            {
-              who: "recipient",
-              can: "read",
-            },
-          ],
-          binaryImage: {
-            $actions: [
-              {
-                who: "author",
-                of: "photo",
-                can: "write",
-              },
-            ],
-          },
-        },
-      },
-    },
-  },
-});
-
-/*
-Sends the protocol configuration to the user's remote DWNs. This function only needs
-to be called if you'd like to send instantly and cannot wait for sync to occur.
-*/
-protocol.send(myDid);
-```
+<CodeSnippet functionName="configureProtocolWithDefinition" />
 
 
 
@@ -309,18 +255,7 @@ Queries a DID's DWNs for the presence of a protocol. This method is useful in de
 
 #### Code Examples
 
-```js
-const { protocols } = await web5.dwn.protocols.query({
-  message: {
-    filter: {
-      protocol: "https://music.org/protocol",
-    },
-  },
-});
-
-// logs an array of protocol configurations installed on the user's DWN
-console.log(protocols);
-```
+<CodeSnippet functionName="queryMusicProtocol" />
 
 ```js
 const { protocols } = await web5.dwn.protocols.query({
@@ -338,17 +273,5 @@ const { protocols } = await web5.dwn.protocols.query({
 console.log(protocols);
 ```
 
-```js
-// Sorting protocols by dateCreated in descending order
-const { protocols } = await web5.dwn.protocols.query({
-  message: {
-    filter: {
-      protocol: 'http://social-media.xyz',
-    },
-    //highlight-start
-    dateSort: 'createdDescending'
-    //highlight-end
-  }
-});
-```
+<CodeSnippet functionName="queryProtocolDescending" />
 </section>
