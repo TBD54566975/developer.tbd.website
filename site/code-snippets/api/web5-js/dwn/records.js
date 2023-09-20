@@ -75,7 +75,7 @@ export async function readRecordFromRecordId(web5, recordId) {
   });
 
   // assuming the record is a text payload, logs the text
-
+  console.log(record);
   return record;
 }
 
