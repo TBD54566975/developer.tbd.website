@@ -50,7 +50,7 @@ export async function configureProtocolWithDefinition(web5, myDid) {
     },
   });
 
-  console.log('protocol', protocol.protocol);
+  console.log('protocol', protocol);
 
   /*
 Sends the protocol configuration to the user's remote DWNs. This function only needs 
