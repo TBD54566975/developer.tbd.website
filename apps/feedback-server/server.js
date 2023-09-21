@@ -4,7 +4,6 @@ const express = require('express');
 const { GoogleSpreadsheet } = require('google-spreadsheet');
 const { JWT } = require('google-auth-library');
 
-// @octokit/rest
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
@@ -12,6 +11,7 @@ const session = require('express-session');
 const config = {
   port: process.env.PORT || 3001,
   serverSecret: process.env.SERVER_SECRET,
+  serverAllowedOrigins: (process.env.SERVER_ALLOWED_ORIGINS || '').split(','),
   googleClientEmail: process.env.GOOGLE_CLIENT_EMAIL,
   googlePrivateKey: process.env.GOOGLE_PRIVATE_KEY,
   googleSpreadsheetId: process.env.GOOGLE_SPREADSHEET_ID,
@@ -35,11 +35,7 @@ app.use(
 // Init CORS with options
 const corsOptions = {
   origin: function (origin, callback) {
-    const allowedOrigins = [
-      'https://developer.tbd.website',
-      'https://deploy-preview-714--tbd-website-developer.netlify.app',
-      null,
-    ];
+    const allowedOrigins = config.serverAllowedOrigins;
     if (allowedOrigins.includes(origin)) {
       callback(null, true);
     } else {
