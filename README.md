@@ -64,7 +64,7 @@ Before you begin, ensure that you have the following installed on your local mac
 ## Running online environment
 Interested in contributing instantly? You can make your updates directly without cloning in the running CodeSandbox environment.
 
-[![Edit in CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/github/TBD54566975/developer.tbd.website/tree/main)
+[![Edit in CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/github/TBD54566975/developer.tbd.website/main)
 
 ## Installation
 
