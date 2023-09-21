@@ -3,7 +3,7 @@ require('dotenv').config();
 const express = require('express');
 const { GoogleSpreadsheet } = require('google-spreadsheet');
 const { JWT } = require('google-auth-library');
-// const lusca = require('lusca');
+
 // @octokit/rest
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
@@ -22,22 +22,6 @@ console.info('Server secret:', { config });
 // Init express app
 const app = express();
 
-// Middleware checking if the user is authenticated
-// const isAuthenticated = (req, res, next) => {
-//   if (req.session && req.session.isAuthenticated) {
-//     next();
-//   } else {
-//     res.status(403).json({ message: 'Haha - Beat you to it! Not authorized' });
-//   }
-// };
-
-// Security headers middleware
-// app.use((req, res, next) => {
-//   res.setHeader('Strict-Transport-Security', 'max-age=31536000; includeSubDomains');
-//   res.setHeader('X-Content-Type-Options', 'nosniff');
-//   next();
-// });
-
 // Init session
 app.use(
   session({
@@ -47,26 +31,6 @@ app.use(
     cookie: { secure: true, sameSite: 'Strict' },
   }),
 );
-
-// Init Lusca for CSRF
-// app.use(lusca({
-//   csrf: {
-//     key: 'x-csrf-token'
-//   },
-//   xframe: 'SAMEORIGIN',
-//   p3p: 'ABCDEF',
-//   hsts: { maxAge: 31536000, includeSubDomains: true, preload: true },
-//   xssProtection: true
-// }));
-
-// Middleware to check the incoming header
-// app.use((req, res, next) => {
-//   const referer = req.header('Referer');
-//   if (referer && !referer.startsWith('https://developer.tbd.website')) {
-//     return res.status(403).send('Invalid Referer');
-//   }
-//   next();
-// });
 
 // Init CORS with options
 const corsOptions = {
@@ -107,14 +71,10 @@ const doc = new GoogleSpreadsheet(
   serviceAccountJWT,
 );
 
-// Route to get the CSRF token
-// app.get("/api/csrf-token", isAuthenticated, (req, res) => {
 app.get('/api/csrf-token', (req, res) => {
   res.json({ csrfToken: req.csrfToken });
 });
 
-// Route to POST the feedback
-// app.post("/api/feedback", lusca.csrf(), async (req, res) => {
 app.post('/api/feedback', async (req, res) => {
   console.log('Received request:', req.body);
   try {
