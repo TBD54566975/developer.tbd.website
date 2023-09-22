@@ -13,11 +13,15 @@ const config = {
   serverSecret: process.env.SERVER_SECRET,
   serverAllowedOrigins: (process.env.SERVER_ALLOWED_ORIGINS || '').split(','),
   googleClientEmail: process.env.GOOGLE_CLIENT_EMAIL,
-  googlePrivateKey: process.env.GOOGLE_PRIVATE_KEY,
+  googlePrivateKey: process.env.GOOGLE_PRIVATE_KEY.replace(/\\n/g, '\n'),
   googleSpreadsheetId: process.env.GOOGLE_SPREADSHEET_ID,
 };
 
-console.info('Server secret:', { config });
+console.info('Server secret:', {
+  ...config,
+  serverSecret: '***',
+  googlePrivateKey: '***',
+});
 
 // Init express app
 const app = express();
@@ -56,16 +60,8 @@ app.use(cookieParser());
 const serviceAccountJWT = new JWT({
   email: config.googleClientEmail,
   key: config.googlePrivateKey,
-  scopes: [
-    'https://www.googleapis.com/auth/spreadsheets',
-    'https://www.googleapis.com/auth/drive.file',
-  ],
+  scopes: ['https://www.googleapis.com/auth/spreadsheets'],
 });
-
-const doc = new GoogleSpreadsheet(
-  config.googleSpreadsheetId,
-  serviceAccountJWT,
-);
 
 app.get('/api/csrf-token', (req, res) => {
   res.json({ csrfToken: req.csrfToken });
@@ -73,45 +69,31 @@ app.get('/api/csrf-token', (req, res) => {
 
 app.post('/api/feedback', async (req, res) => {
   console.log('Received request:', req.body);
+  const { rating, pageLink } = req.body;
+
+  if (!rating || !pageLink) {
+    res.status(400).json({ message: 'Missing rating or pageLink' });
+    return;
+  } else if (rating !== 'helpful' && rating !== 'notHelpful') {
+    res.status(400).json({ message: 'Invalid rating' });
+    return;
+  }
+
   try {
     console.log('Loading spreadsheet info...');
+    const doc = new GoogleSpreadsheet(
+      config.googleSpreadsheetId,
+      serviceAccountJWT,
+    );
     await doc.loadInfo();
-    console.log('Accessing sheet...');
+
+    console.log('Accessing sheet...', doc.title);
     const sheet = doc.sheetsByIndex[0];
-    console.log('Processing feedback...');
-    const { rating, pageLink } = req.body;
 
-    // Find the next empty row
-    await sheet.loadCells('A2:C' + sheet.rowCount);
-    let nextRowIndex;
-    for (let i = 1; i < sheet.rowCount; i++) {
-      const cell = sheet.getCell(i, 2); // 2 is the index for column C
-      if (!cell.value) {
-        nextRowIndex = i;
-        break;
-      }
-    }
-
-    if (nextRowIndex === undefined) {
-      nextRowIndex = sheet.rowCount;
-      await sheet.addRow({}); // Add a new empty row
-    }
-
-    const helpfulCell = sheet.getCell(nextRowIndex, 0);
-    const notHelpfulCell = sheet.getCell(nextRowIndex, 1);
-    const pageLinkCell = sheet.getCell(nextRowIndex, 2);
-
-    if (rating === 'helpful') {
-      helpfulCell.value = 1;
-      notHelpfulCell.value = 0;
-    } else if (rating === 'notHelpful') {
-      helpfulCell.value = 0;
-      notHelpfulCell.value = 1;
-    }
-
-    pageLinkCell.value = pageLink;
-
-    await sheet.saveCells([helpfulCell, notHelpfulCell, pageLinkCell]);
+    const helpfulCell = rating === 'helpful' ? 1 : 0;
+    const notHelpfulCell = rating === 'notHelpful' ? 1 : 0;
+    console.log('Processing feedback...', { rating, pageLink });
+    await sheet.addRow([helpfulCell, notHelpfulCell, pageLink]);
 
     console.log('Sending response...');
     res.json({ message: 'Feedback collected successfully!' });
