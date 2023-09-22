@@ -5,6 +5,7 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "node_modules/nodemon/bin/nodemon.js --watch . server.js",
     "start": "node server.js"
   },
   "dependencies": {
@@ -15,5 +16,8 @@
     "express-session": "^1.17.3",
     "google-auth-library": "^8.8.0",
     "google-spreadsheet": "^4.0.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
   }
 }
