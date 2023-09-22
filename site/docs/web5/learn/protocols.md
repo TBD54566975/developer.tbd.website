@@ -44,7 +44,6 @@ We know the key words for defining protocols - `types`, `structure`, and `action
       "dataFormats": ["text/plain"]
     },
     "image": {
-      "schema": "https://social-media.xyz/schemas/imageSchema",
       "dataFormats": ["image/jpeg"]
     },
     "caption": {
@@ -138,7 +137,6 @@ In the `types` section, we can see how the data schema of each data type is defi
     "dataFormats": ["text/plain"]
   },
   "image": {
-    "schema": "https://social-media.xyz/schemas/imageSchema",
     "dataFormats": ["image/jpeg"]
   },
   "caption": {
