@@ -34,7 +34,7 @@ Hey there, fellow techies! 🍁 With October rolling in, we're greeted by the cr
 
 This October, it's more than just code and commits; we're spicing things up with exclusive rewards. Be among the **first 20 to get their PRs merged** and snag some exclusive swag from our [TBD shop](https://www.tbd.shop/) — we're in the midst of uploading new swag! And for a bit of fun competition? Keep track of your contributions with our [leaderboard issues](https://github.com/TBD54566975/developer.tbd.website/issues/721). Ready to climb the ranks?
 
-**📅 Mark Your Calendars!** Our Hacktoberfest Launch event is on October 2nd. Stay in the loop and don't miss out on any of our events by checking our [events-and-updates channel](https://discord.com/channels/937858703112155166/1151972299814215701) regularly.
+**📅 Mark Your Calendars!** Our Hacktoberfest Launch event is on October 2nd. Stay in the loop and don't miss out on any of our events by checking our [events-and-updates channel](https://discord.com/invite/tbd) regularly.
 
 ## 📌 What is Hacktoberfest?
 
@@ -54,9 +54,9 @@ For the uninitiated, Hacktoberfest is a month-long celebration of open-source so
 
 3. **Code and Conduct**: Adhere to our [code of conduct](https://developer.tbd.website/open-source/code-of-conduct) and ensure your PR aligns with the repository's goals.
 
-4. **Community Vibes**: Engage with fellow contributors on our [Discord server](https://discord.com/channels/937858703112155166/1151216855957123104) for all the Hacktoberfest gossips, and a getting started checklist!
+4. **Community Vibes**: Engage with fellow contributors on our [Discord server](https://discord.com/invite/tbd) for all the Hacktoberfest gossips, and a getting started checklist!
 
-5. **Seek Help**: If in doubt, don't stress! Connect with the maintainers by commenting on the issue or ping us on [Discord](https://discord.com/channels/937858703112155166/1151216855957123104).
+5. **Seek Help**: If in doubt, don't stress! Connect with the maintainers by commenting on the issue or ping us on [Discord](https://discord.com/invite/tbd).
 
 ## 🎤 From a First-time Contributor
 
@@ -66,7 +66,7 @@ I remember my first-time contribution jitters. Every step felt like a monumental
 
 You can check out my complete thread and the roller-coaster of emotions I went through [here](https://twitter.com/EbonyJLouis/status/1445864374762020866). If I could do it, trust me so can you!
 
-> **Hot Tip**: Pair up with someone from our [`hack-together`](https://discord.com/channels/937858703112155166/1151519449837482044) channel on Discord. Two heads (or more) are always better than one.
+> **Hot Tip**: Pair up with someone from our [`hack-together`](https://discord.com/invite/tbd) channel on Discord. Two heads (or more) are always better than one.
 
 ## 🎁 **Rewards, Events, and Excitement**
 
@@ -86,9 +86,9 @@ Dive into our bustling Hacktoberfest schedule! Whether you're keen on learning o
 
 - Every Friday: Engage with us for **PR reviews**, live Q&A, and more interactive sessions.
 
-- Never Miss Out: Keep a tab on our [events-and-updates channel](https://discord.com/channels/937858703112155166/1151972299814215701) - we're always brewing something new!
+- Never Miss Out: Keep a tab on our [events-and-updates channel](https://discord.com/invite/tbd) - we're always brewing something new!
 
-## 📂 Dive into Our Repos
+## 📂 Dive into Our Projects
 
 Not sure where to start? Hacktoberfest isn't just about addressing existing issues. If you spot a bug, typo, or see room for improvement, **feel free to create a new issue or dive in with a fix!** Explore these repos and see where you can make an impact:
 
