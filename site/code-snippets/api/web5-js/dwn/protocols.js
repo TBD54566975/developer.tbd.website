@@ -16,47 +16,60 @@ export async function configureProtocolWithDefinition(web5, myDid) {
           binaryImage: {
             dataFormats: ['image/png', 'jpeg', 'gif'],
           },
+          comment: {
+            schema: 'https://photos.org/protocols/comment',
+            dataFormats: ['application/json'],
+          }
         },
         structure: {
           album: {
             $actions: [
               {
-                who: 'recipient',
-                can: 'read',
+                //author of album can write
+                who: 'author',
                 of: 'album',
+                can: 'write'
               },
             ],
           },
           photo: {
             $actions: [
               {
+                //recipeint of photo can read
                 who: 'recipient',
-                can: 'read',
                 of: 'photo',
+                can: 'read'                
               },
             ],
             binaryImage: {
               $actions: [
                 {
+                  //author of photo can write
                   who: 'author',
                   of: 'photo',
                   can: 'write',
                 },
               ],
             },
+            comment: {
+              $actions: [
+                {
+                  //anyone can write a comment
+                  who: 'anyone',
+                  can: 'write',
+                },
+                {
+                  //anyone can read a comment
+                  who: 'anyone',
+                  can: 'read',
+                },                
+              ],
+            },            
           },
         },
       },
     },
   });
-
-  console.log('protocol', protocol);
-
-  /*
-Sends the protocol configuration to the user's remote DWNs. This function only needs 
-to be called if you'd like to send instantly and cannot wait for sync to occur.
-*/
-  protocol.send(myDid);
 
   return { protocol, status };
 }
