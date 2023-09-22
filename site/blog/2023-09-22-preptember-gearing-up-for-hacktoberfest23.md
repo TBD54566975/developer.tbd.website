@@ -88,7 +88,7 @@ Dive into our bustling Hacktoberfest schedule! Whether you're keen on learning o
 
 - Never Miss Out: Keep a tab on our [events-and-updates channel](https://discord.com/channels/937858703112155166/1151972299814215701) - we're always brewing something new!
 
-## 📂 Dive into Our Repos
+## 📂 Dive into Our Projects
 
 Not sure where to start? Hacktoberfest isn't just about addressing existing issues. If you spot a bug, typo, or see room for improvement, **feel free to create a new issue or dive in with a fix!** Explore these repos and see where you can make an impact:
 
