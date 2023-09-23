@@ -2,7 +2,7 @@
 import { onBeforeMount, ref, toRaw } from 'vue';
 import { PlusIcon as PlusIconMini } from '@heroicons/vue/solid';
 import { CheckCircleIcon, TrashIcon } from '@heroicons/vue/outline';
-import { Web5 } from '@web5/api/browser';
+import { Web5 } from '@web5/api';
 
 let web5;
 let myDid;
