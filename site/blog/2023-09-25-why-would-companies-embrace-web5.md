@@ -33,7 +33,9 @@ Web5 prescribes that users maintain control of their content by [decoupling thei
 
 <!--truncate-->
 
-I challenge you to think of this from a different perspective. In the ever-evolving technological landscape, Web5 is not a call to convince the giants to relinquish control over our data, but an invitation to explore a new path. A decentralized app model might not immediately grab the attention of today's market leaders, but it opens up exciting possibilities for the innovators of tomorrow, particularly around open data models.
+I challenge you to think of this from a different perspective. In the ever-evolving technological landscape, Web5 is not a call to convince the giants to relinquish control over our data, but about expanding what's possible on the web.
+
+A decentralized app model might not immediately grab the attention of today's market leaders, but it opens up exciting possibilities for the innovators of tomorrow, particularly around open data models.
 
 ## The Incentive
 
@@ -60,7 +62,7 @@ Here’s how I envision the journey of Web5 adoption.
 
 ## Evolution
 
-It’s worth emphasizing that Web5 isn’t about replacing the old with the new, but about expanding what's possible on the web. It's about enabling a world where data isn't hoarded, but shared, and where developers can create applications free of traditional restraints.
+It’s worth emphasizing that Web5 isn’t about replacing the old with the new, but an invitation to explore a new application model. It's about enabling a world where data isn't hoarded, but shared, and where developers can create applications free of traditional restraints.
 
 In this unfolding story of the web's evolution, it's not the dominant players who will dictate the narrative. Instead, the stage is set for those who see beyond the status quo, for applications that redefine what's possible, and for consumers who champion their own data rights.
 
