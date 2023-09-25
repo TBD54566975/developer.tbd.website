@@ -61,6 +61,100 @@ We've highlighted some repositories with new open issues to help you get started
   />
 </a>
 
+## Contributing Code Snippets
+If you're working on tutorials or guides of any sort, we have a Code Snippet system that allows us to update the code in one place but also allows it to be runnable and tested.
+
+Here are some steps on how you'd make a Code Snippet:
+
+We have to make updates in 3 places per Code Snippet.
+
+1. The code snippet itself will go in the `code-snippets` directory. We make code snippets based on the page.
+
+So if you're making a code snippet for the `api/web5-js/protocols.md` page, you'd make a file at `api/web5-js/protocols.js` and put the code snippet in there.
+If you wanted to make a code snippet specifically for the web5-js index page, you'd name it `index.js`. So the path to the code snippet would be `code-snippets/api/web5-js/index.js`.
+
+** Note: **
+Your code snippet should be within a function block. The function block is how we name the code snippet, we only display what's in the body of the function block.
+
+For example:
+
+```js
+function codeSnippetFunctionName() {
+  // Your code snippet goes here
+
+  const result = Web5.connect();
+  
+  return result;
+}
+```
+
+It's important to make your function name as specific as possible, because it me used to reference the code snippet in the code-snippets.json file. Similar names will overwrite one another.
+
+(We should probably come up with an agreed upon naming convention)
+
+
+Under the hood, a script will run called `extract-code-snippets` which will add your code snippet to the `code-snippets.json` file. This file is used to reference your code snippet within the `<CodeSnippet />` component.
+
+2. The second update you'll make would be on the content page itself. Where you wanted the code snippet to exist at `api/web5-js/protocols.md`, you'd add the following:
+
+```jsx
+<CodeSnippet functionName="codeSnippetFunctionName" />
+```
+
+The CodeSnippet component will look for the function name you provided in the `code-snippets.json` file and render the code snippet. If the name doesn't exist it will display an error instead.
+
+3. The 3rd step from here is to write tests for the code snippet.
+
+Below is a template we can use that will be necessary for nearly every test we write for Web5.
+
+```js
+import { test, beforeAll, expect, describe } from 'vitest';
+import { Web5 } from '@web5/api/browser';
+// import your functions from your codesnippet file here
+
+let web5;
+let record;
+let myDid;
+
+beforeAll(async () => {
+  const result = await Web5.connect();
+  web5 = result.web5;
+  myDid = result.did;
+});
+
+// example of what real tests look like for the protocols.js file
+describe('tests for /api/web5-js/dwn/protocols.js', () => {
+  test('queryMusicProtocol', async () => {
+    const { protocols, status } = await queryMusicProtocol(web5);
+    // This will return an empty array, if it fails it will be undefined.
+    expect.soft(protocols).toBeDefined();
+    expect(status.code).toBe(200);
+  });
+
+  test('configureProtocolWithDefinition', async () => {
+    const { protocol, status } = await configureProtocolWithDefinition(
+      web5,
+      myDid,
+      protocolDefinition,
+    );
+    // We do 202 for this test because protocols comes back undefined, need to check if this is expected behavior.
+    expect(status.code).toBe(202);
+  });
+
+  test('queryProtocolDescending', async () => {
+    const { protocols, status } = await queryProtocolDescending(web5);
+    expect.soft(protocols).toBeDefined();
+    expect(status.code).toBe(200);
+  });
+});
+```
+
+### Caveats for Code Snippets
+
+- It's crucial that the `return` lines are a single line only. It only hides the return line, but it's still there for testing purposes.
+- Tests won't be high quality depending on what gets returned. In some examples we only return a DID, but not the status code so we'll have to make tests around those types of instances.
+
+
 ## License
 
 When contributing to projects under TBD you agree to license your contributions under [Apache License 2.0](https://github.com/TBD54566975/tbd-project-template/blob/main/LICENSE).
