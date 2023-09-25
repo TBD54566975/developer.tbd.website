@@ -103,7 +103,7 @@ Configures a protocol definition in the user's local DWN, remote DWN, or another
                                                                               data: {
                                                                                 type: 'string',
                                                                                 field: 'who',
-                                                                                value: 'The actor that is being permitted to invoke a given action. Valid values are: author, recipient',
+                                                                                value: 'The actor that is being permitted to invoke a given action. Valid values are: \'anyone\' | \'author\' | \'recipient\'',
                                                                               },
                                                                             },
                                                                             {
@@ -111,14 +111,14 @@ Configures a protocol definition in the user's local DWN, remote DWN, or another
                                                                                 isOptional: true,
                                                                                 type: 'string',
                                                                                 field: 'of',
-                                                                                value: 'The protocol path that refers to the record subject',
+                                                                                value: 'The protocol path. Must be present if the actor is \'author\' or \'recipient\'. Must be absent if the actor is \'anyone\'',
                                                                               },
                                                                             },
                                                                             {
                                                                               data: {
                                                                                 type: 'string',
                                                                                 field: 'can',
-                                                                                value: 'The action being permitted by the rule',
+                                                                                value: 'The action that the actor can perform. May be \'read\' | \'write\'',
                                                                               }
                                                                             },
                                                                         ]}
