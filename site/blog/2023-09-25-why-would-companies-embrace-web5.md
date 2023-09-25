@@ -50,7 +50,7 @@ Here’s where things get interesting. As early adopters interact with and under
 We’ve seen this unfold with products like Google Search and StackOverflow in the wake of [ChatGPT](https://openai.com/chatgpt). These players have dominated their respective markets for quite some time. Not even a year ago, the thought of a new app threatening these business models seemed improbable... comical even. And yet, almost overnight, we saw consumers’ expectations change. All of a sudden, asking a question and clicking through multiple links to get to the answer felt outdated. Dealing with snarky users in order to get technical help no longer seemed worth the trouble.
 
 
-This new expectation forced these companies to reassess their business models and innovate accordingly in order to appease their user base.
+This new expectation forced these companies, who are the market leaders in their spaces, to reassess their business models and innovate accordingly in order to appease their user base.
 
 ## The Journey to Adoption
 
