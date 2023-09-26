@@ -4,7 +4,7 @@ import Link from '@docusaurus/Link';
 
 function FeedbackWidget() {
   return (
-    <div className="flex justify-end lg:mt-8">
+    <div className="flex justify-end mt-3 lg:mt-8 ">
       <Card className={'w-full'}>
         <h3 className="text-3xl">Was this page helpful?</h3>
         <p>
