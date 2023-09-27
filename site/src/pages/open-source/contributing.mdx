@@ -107,6 +107,10 @@ The CodeSnippet component will look for the function name you provided in the `c
 
 Below is a template we can use that will be necessary for nearly every test we write for Web5.
 
+The file path should match the same path as both code snippet and the actual content:
+
+`__tests__/code-snippets/api/web5-js/protocols.test.js` would be the path for the protocols example above.
+
 ```js
 import { test, beforeAll, expect, describe } from 'vitest';
 import { Web5 } from '@web5/api/browser';
