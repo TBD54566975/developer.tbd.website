@@ -95,7 +95,7 @@ It's important to make your function name as specific as possible, because it wi
 
 Under the hood, a script will run called `extract-code-snippets` which will add your code snippet to the `code-snippets.json` file. This file is used to reference your code snippet within the `<CodeSnippet />` component.
 
-2. The second update you'll make would be on the content page itself. Where you wanted the code snippet to exist at `api/web5-js/protocols.md`, you'd add the following:
+2. The second update you'll make would be on the content page itself. Add the following snippet where you'd like the code snippet to exist:
 
 ```jsx
 <CodeSnippet functionName="codeSnippetFunctionName" />
