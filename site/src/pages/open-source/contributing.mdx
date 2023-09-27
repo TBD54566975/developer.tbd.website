@@ -74,7 +74,7 @@ So if you're making a code snippet for the `api/web5-js/protocols.md` page, you'
 If you wanted to make a code snippet specifically for the web5-js index page, you'd name it `index.js`. So the path to the code snippet would be `code-snippets/api/web5-js/index.js`.
 
 ** Note: **
-Your code snippet should be within a function block. The function block is how we name the code snippet, we only display what's in the body of the function block.
+Your code snippet should be within a function block. The function block is how we name the code snippet. We only display what's in the body of the function block, minus the return statement.
 
 For example:
 
@@ -88,14 +88,14 @@ function codeSnippetFunctionName() {
 }
 ```
 
-It's important to make your function name as specific as possible, because it me used to reference the code snippet in the code-snippets.json file. Similar names will overwrite one another.
+It's important to make your function name as specific as possible, because it will be used to reference the code snippet in the code-snippets.json file. Duplicate names will overwrite one another.
 
 (We should probably come up with an agreed upon naming convention)
 
 
 Under the hood, a script will run called `extract-code-snippets` which will add your code snippet to the `code-snippets.json` file. This file is used to reference your code snippet within the `<CodeSnippet />` component.
 
-2. The second update you'll make would be on the content page itself. Where you wanted the code snippet to exist at `api/web5-js/protocols.md`, you'd add the following:
+2. The second update you'll make would be on the content page itself. Add the following snippet where you'd like the code snippet to exist:
 
 ```jsx
 <CodeSnippet functionName="codeSnippetFunctionName" />
@@ -103,7 +103,7 @@ Under the hood, a script will run called `extract-code-snippets` which will add 
 
 The CodeSnippet component will look for the function name you provided in the `code-snippets.json` file and render the code snippet. If the name doesn't exist it will display an error instead.
 
-3. The 3rd step from here is to write tests for the code snippet.
+3. Write tests for the code snippet.
 
 Below is a template we can use that will be necessary for nearly every test we write for Web5.
 
@@ -130,8 +130,9 @@ beforeAll(async () => {
 // example of what real tests look like for the protocols.js file
 describe('tests for /api/web5-js/dwn/protocols.js', () => {
   test('queryMusicProtocol', async () => {
+    //this calls the function that returns the code snippet
     const { protocols, status } = await queryMusicProtocol(web5);
-    // This will return an empty array, if it fails it will be undefined.
+    // expect.soft() will note any failures if they occur but will continue running the test
     expect.soft(protocols).toBeDefined();
     expect(status.code).toBe(200);
   });
@@ -156,7 +157,7 @@ describe('tests for /api/web5-js/dwn/protocols.js', () => {
 ### Caveats for Code Snippets
 
 - It's crucial that the `return` lines are a single line only. It only hides the return line, but it's still there for testing purposes.
-- Tests won't be high quality depending on what gets returned. In some examples we only return a DID, but not the status code so we'll have to make tests around those types of instances.
+- These tests are only testing the code snippets. There are more thorough tests that actually test the SDK.
 
 
 ## License
