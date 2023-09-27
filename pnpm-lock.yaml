@@ -39,7 +39,7 @@ importers:
   examples/tutorials/book-reviews:
     dependencies:
       '@web5/api':
-        specifier: ^0.8.0
+        specifier: 0.8.1
         version: 0.8.1
 
   examples/tutorials/todo-completed:
@@ -129,6 +129,9 @@ importers:
       '@vueuse/core':
         specifier: 9.6.0
         version: 9.6.0(vue@3.2.41)
+      '@web5/api':
+        specifier: 0.8.1
+        version: 0.8.1
       multiformats:
         specifier: 10.0.2
         version: 10.0.2
