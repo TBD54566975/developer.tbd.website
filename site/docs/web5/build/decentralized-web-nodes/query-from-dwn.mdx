@@ -25,6 +25,17 @@ The following snippet queries a DWN for records that were written by a specific 
 To guarantee record data, call [records.read()](/api/web5-js/dwn/records#readrequest).
 :::
 
+## Querying Records by Path and Type
+The following snippets demonstrates how to query records by path and type to match a defined protocol.
+
+The protocol definition below has an audio type and a video type:
+
+<CodeSnippet functionName="definedProtocol" />
+
+Based on the the protocol definition above, you can use the the following snippet to query for audio records by path and type:
+
+<CodeSnippet functionName="queryRecordsByPathAndType" />
+
 
 ## Filterable Record Properties
 Here are the properties you can use to filter your record query, along with explanations and examples for each.

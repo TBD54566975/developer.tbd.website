@@ -63,3 +63,30 @@ export async function queryRecordWithParentId(web5) {
 
   return response;
 }
+
+export async function definedProtocol(web5) {
+  const musicProtocolDefinition = {
+    protocol: PROTOCOL_URI,
+    types: {
+      audio: {
+        schema:  PROTOCOL_URI,
+        dataFormats: ["audio/mp3"],
+      },
+      video: {
+        schema: PROTOCOL_SCHEMA,
+        dataFormats: ["video/mp4"],
+      },
+    },
+  };
+}
+
+export async function queryRecordsByPathAndType(web5) {
+  const { records } = await web5.dwn.records.query({
+    message: {
+      filter: {
+        protocol: PROTOCOL_SCHEMA,
+        protocolPath: 'audio',
+      },
+    },
+  });
+}

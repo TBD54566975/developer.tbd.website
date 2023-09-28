@@ -27,6 +27,8 @@
   "queryRecordsWithFilterAscending": "const response = await web5.dwn.records.query({\n    message: {\n      filter: {\n        dataFormat: 'text/plain',\n      },\n      dateSort: 'publishedAscending',\n    },\n  });",
   "queryRecordsFromDID": "const { records } = await web5.dwn.records.query({\n    from: did,\n    message: {\n      filter: {\n        schema: 'https://schema.org/Playlist',\n        dataFormat: 'application/json',\n      },\n    },\n  });",
   "queryRecordWithParentId": "const response = await web5.dwn.records.query({\n    message: {\n      filter: {\n        parentId: 'bafyreianzpmhbgcgam5mys722vnsiuwn7y4ek6kjeyjptttquasw4hge2m',\n      },\n    },\n  });",
+  "definedProtocol": "const musicProtocolDefinition = {\n    protocol: PROTOCOL_URI,\n    types: {\n      audio: {\n        schema:  PROTOCOL_URI,\n        dataFormats: [\"audio/mp3\"],\n      },\n      video: {\n        schema: PROTOCOL_SCHEMA,\n        dataFormats: [\"video/mp4\"],\n      },\n    },\n  };\n  \n  return musicProtocolDefinition",
+  "queryRecordsByPathAndType": "const { records } = await web5.dwn.records.query({\n    message: {\n      filter: {\n        protocol: PROTOCOL_SCHEMA,\n        protocolPath: 'audio',\n      },\n    },\n  });",
   "didCreate": "const { web5, did: aliceDid } = await Web5.connect();",
   "createTextRecord": "const { record } = await web5.dwn.records.create({\n    data: 'Hello, Web5!',\n    message: {\n      dataFormat: 'text/plain',\n    },\n  });",
   "readTextRecord": "const readResult = await record.data.text();",
