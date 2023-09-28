@@ -19,7 +19,7 @@ export async function configureProtocolWithDefinition(web5, myDid) {
           comment: {
             schema: 'https://photos.org/protocols/comment',
             dataFormats: ['application/json'],
-          }
+          },
         },
         structure: {
           album: {
@@ -28,7 +28,7 @@ export async function configureProtocolWithDefinition(web5, myDid) {
                 //author of album can write
                 who: 'author',
                 of: 'album',
-                can: 'write'
+                can: 'write',
               },
             ],
           },
@@ -38,7 +38,7 @@ export async function configureProtocolWithDefinition(web5, myDid) {
                 //recipeint of photo can read
                 who: 'recipient',
                 of: 'photo',
-                can: 'read'                
+                can: 'read',
               },
             ],
             binaryImage: {
@@ -62,9 +62,9 @@ export async function configureProtocolWithDefinition(web5, myDid) {
                   //anyone can read a comment
                   who: 'anyone',
                   can: 'read',
-                },                
+                },
               ],
-            },            
+            },
           },
         },
       },
@@ -104,4 +104,22 @@ export async function queryProtocolDescending(web5) {
   });
 
   return { protocols, status };
+}
+
+export async function queryProtocolsFromDid(web5, bobDid) {
+  const { protocols } = await web5.dwn.protocols.query({
+    //highlight-start
+    from: bobDid,
+    //highlight-end
+    message: {
+      filter: {
+        protocol: 'https://music.org/protocol',
+      },
+    },
+  });
+
+  // logs an array of protocol configurations installed on Bob's DWN
+  console.log(protocols);
+
+  return { protocols };
 }

@@ -4,6 +4,7 @@ import {
   queryMusicProtocol,
   configureProtocolWithDefinition,
   queryProtocolDescending,
+  queryProtocolsFromDid,
 } from '../../../../code-snippets/api/web5-js/dwn/protocols';
 
 let web5;
@@ -49,4 +50,9 @@ describe('tests for /api/web5-js/dwn/protocols.js', () => {
     expect.soft(protocols).toBeDefined();
     expect(status.code).toBe(200);
   });
+});
+
+test('queryProtocolsFromDid', async () => {
+  const { protocols } = await queryProtocolsFromDid(web5, myDid);
+  expect.soft(protocols).toBeDefined();
 });
