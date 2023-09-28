@@ -28,7 +28,23 @@ To guarantee record data, call [records.read()](/api/web5-js/dwn/records#readreq
 ## Querying Records by Path and Type
 The following snippets demonstrate how to query records by path and type to match a defined protocol. The protocol definition below has an audio type and a video type:
 
-<CodeSnippet functionName="queryFromDwnDefinedProtocol" />
+```javascript
+  const musicProtocolDefinition = {
+    protocol: "https://example.com/musicProtocol",
+    types: {
+      // highlight-start
+      audio: {
+      // highlight-end
+        schema:  "https://example.com/musicProtocol/audio",
+        dataFormats: ["audio/mp3"],
+      },
+      video: {
+        schema: "https://example.com/musicProtocol/video",
+        dataFormats: ["video/mp4"],
+      },
+    },
+  };
+```
 
 Based on the the protocol definition above, you can use the the following snippet to query for audio records by path and type:
 
