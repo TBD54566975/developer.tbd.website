@@ -75,4 +75,5 @@ export async function queryFromDwnByPathAndType(web5) {
       },
     },
   });
+  return records;
 }
