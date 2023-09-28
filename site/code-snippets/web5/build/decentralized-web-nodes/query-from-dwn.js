@@ -64,23 +64,6 @@ export async function queryRecordWithParentId(web5) {
   return response;
 }
 
-export async function queryFromDwnDefinedProtocol(web5) {
-  const musicProtocolDefinition = {
-    protocol: "https://example.com/musicProtocol",
-    types: {
-      // highlight-start
-      audio: {
-      // highlight-end
-        schema:  "https://example.com/musicProtocol/audio",
-        dataFormats: ["audio/mp3"],
-      },
-      video: {
-        schema: "https://example.com/musicProtocol/video",
-        dataFormats: ["video/mp4"],
-      },
-    },
-  };
-}
 export async function queryFromDwnByPathAndType(web5) {
   const { records } = await web5.dwn.records.query({
     message: {
