@@ -63,3 +63,33 @@ export async function queryRecordWithParentId(web5) {
 
   return response;
 }
+
+export async function queryFromDwnDefinedProtocol(web5) {
+  const musicProtocolDefinition = {
+    protocol: PROTOCOL_URI,
+    types: {
+      // highlight-start
+      audio: {
+      // highlight-end
+        schema:  PROTOCOL_URI,
+        dataFormats: ["audio/mp3"],
+      },
+      video: {
+        schema: PROTOCOL_SCHEMA,
+        dataFormats: ["video/mp4"],
+      },
+    },
+  };
+}
+export async function queryFromDwnByPathAndType(web5) {
+  const { records } = await web5.dwn.records.query({
+    message: {
+      filter: {
+        protocol: PROTOCOL_SCHEMA,
+        // highlight-start
+        protocolPath: 'audio',
+        // highlight-end
+      },
+    },
+  });
+}
