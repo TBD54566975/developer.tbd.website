@@ -64,11 +64,13 @@ export async function queryRecordWithParentId(web5) {
   return response;
 }
 
-export async function definedProtocol(web5) {
+export async function queryRecordsDefinedProtocol(web5) {
   const musicProtocolDefinition = {
     protocol: PROTOCOL_URI,
     types: {
+      // highlight-start
       audio: {
+      // highlight-end
         schema:  PROTOCOL_URI,
         dataFormats: ["audio/mp3"],
       },
@@ -85,7 +87,9 @@ export async function queryRecordsByPathAndType(web5) {
     message: {
       filter: {
         protocol: PROTOCOL_SCHEMA,
+        // highlight-start
         protocolPath: 'audio',
+        // highlight-end
       },
     },
   });
