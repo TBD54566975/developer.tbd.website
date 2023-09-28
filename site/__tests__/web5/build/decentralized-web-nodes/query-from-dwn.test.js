@@ -5,6 +5,7 @@ import {
   queryProtocolsForMusic,
   queryRecordsFromDID,
   queryRecordWithParentId,
+  queryFromDwnByPathAndType,
 } from '../../../../code-snippets/web5/build/decentralized-web-nodes/query-from-dwn';
 import { Web5 } from '@web5/api/browser';
 
@@ -46,4 +47,10 @@ test.todo('queryRecordWithParentId returns a record', async () => {
 
   expect.soft(response.status.code).toBe(200);
   expect(response.record).toBeDefined();
+});
+
+test('queryFromDwnByPathAndType returns an array of records', async () => {
+  const response = await queryFromDwnByPathAndType(web5);
+
+  expect(Array.isArray(response)).toBe(true);
 });
