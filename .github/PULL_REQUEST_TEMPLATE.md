@@ -55,12 +55,22 @@ Resolves #
 - [ ] 🙅 no, because they aren't needed
 - [ ] 🙋 no, because I need help
 
+### No tests? Add a note
+<!-- 
+If you didn't provide tests with this PR, please explain here why they aren't needed.
+-->
+
 ## Added to documentation?
 
 - [ ] 📜 readme
 - [ ] 📜 contributing.md
 - [ ] 📓 general documentation
 - [ ] 🙅 no documentation needed
+
+### No docs? Add a note
+<!-- 
+If you didn't provide documentation with this PR, please explain here why it's not needed.
+-->
 
 ## [optional] Are there any post-deployment tasks we need to perform?
 
