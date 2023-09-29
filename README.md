@@ -61,6 +61,11 @@ Before you begin, ensure that you have the following installed on your local mac
 - [Node.js](https://nodejs.org/) (version 18.16.0 or later)
 - [pnpm](https://pnpm.io/) (version 7.29.1 or later)
 
+## Running online environment
+Interested in contributing instantly? You can make your updates directly without cloning in the running CodeSandbox environment.
+
+[![Edit in CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/github/TBD54566975/developer.tbd.website/main)
+
 ## Installation
 
 To install `pnpm` globally on your local machine, follow these steps:
