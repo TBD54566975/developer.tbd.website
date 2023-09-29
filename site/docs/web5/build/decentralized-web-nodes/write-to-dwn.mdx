@@ -42,7 +42,6 @@ async function upload(event) {
   const { record } = await web5.dwn.records.create({
       data: blob,
       message: {
-          schema: "https://schema.org/path/to/schema",
           dataFormat: "image/png"
       }
   });
