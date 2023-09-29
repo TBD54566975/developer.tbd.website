@@ -66,10 +66,14 @@ export async function queryRecordWithParentId(web5) {
 
 export async function queryFromDwnByPathAndStructure(web5) {
 
-  const musicProtocolDefinition = {
-    protocol: "https://music.org/protocol",
+  const playlistProtocolDefinition = {
+    protocol: "https://playlist.org/protocol",
     published: true,
     types: {
+      playlist: {
+        schema: "https://schema.org/MusicPlaylist",
+        dataFormats: ["application/json"],
+      },
       audio: {
         schema: "https://schema.org/AudioObject",
         dataFormats: ["audio/mp3"],
@@ -80,24 +84,25 @@ export async function queryFromDwnByPathAndStructure(web5) {
       },
     },
     structure: {
-      audio: {
+      playlist: {
         $actions: [
           { who: "anyone", can: "write" },
-          { who: "author", of: "audio", can: "read" },
-          { who: "recipient", of: "audio", can: "read" },
+          { who: "author", of: "playlist", can: "read" },
+          { who: "recipient", of: "playlist", can: "read" },
         ],
-      },
-      video: {
-        $actions: [
-          { who: "anyone", can: "write" },
-          { who: "author", of: "video", can: "read" },
-          { who: "recipient", of: "video", can: "read" },
-        ],
-        // highlight-next-line
-        subtitles: {
+        audio: {
           $actions: [
-            { "who": "recipient", "of": "subtitles", "can": "read" },
-            { "who": "author", "of": "subtitles", "can": "write" }
+            { who: "anyone", can: "write" },
+            { who: "author", of: "audio", can: "read" },
+            { who: "recipient", of: "audio", can: "read" },
+          ],
+        },
+        // highlight-next-line
+        video: {
+          $actions: [
+            { who: "anyone", can: "write" },
+            { who: "author", of: "video", can: "read" },
+            { who: "recipient", of: "video", can: "read" },
           ]
         },
       },
@@ -107,9 +112,9 @@ export async function queryFromDwnByPathAndStructure(web5) {
   const { records } = await web5.dwn.records.query({
     message: {
       filter: {
-        protocol: "https://example.com/musicProtocol",
+        protocol: "https://playlist.org/protocol",
         // highlight-next-line
-        protocolPath: 'video/subtitles',
+        protocolPath: 'playlist/videos',
       },
     },
   });
