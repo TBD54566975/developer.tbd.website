@@ -41,7 +41,7 @@ const initDb = async () => {
     CREATE TABLE IF NOT EXISTS feedback_votes (
       id SERIAL PRIMARY KEY,
       url VARCHAR(255) NOT NULL,
-      vote TINYINT NOT NULL,
+      vote CHAR NOT NULL,
       created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
     );
   `);
@@ -106,8 +106,8 @@ app.post('/api/feedback', async (req, res) => {
   }
 
   try {
-    // helpful = 1, notHelpful = -1, noVote = 0
-    const voteValue = rating === 'helpful' ? 1 : 'notHelpful' ? -1 : 0;
+    // helpful = H, notHelpful = N, noVote = space
+    const voteValue = rating === 'helpful' ? 'H' : 'notHelpful' ? 'N' : ' ';
     storeVote(pageLink, voteValue);
     console.log('Sending response...');
     res.json({ message: 'Feedback collected successfully!' });
