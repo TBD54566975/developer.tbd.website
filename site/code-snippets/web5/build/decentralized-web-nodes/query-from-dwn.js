@@ -68,6 +68,7 @@ export async function queryFromDwnByPathAndStructure(web5) {
 
   const musicProtocolDefinition = {
     protocol: "https://music.org/protocol",
+    published:true,
     types: {
       audio: {
         schema: "https://schema.org/Playlist",
