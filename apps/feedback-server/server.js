@@ -12,7 +12,7 @@ const config = {
   serverSecret: process.env.SERVER_SECRET,
   serverAllowedOrigins: (process.env.SERVER_ALLOWED_ORIGINS || '').split(','),
   db: {
-    address: process.env.DB_ADDRESS,
+    address: process.env.DB_CONNECTION,
     user: process.env.DB_USER,
     password: process.env.DB_PASSWORD,
     port: process.env.DB_PORT,
