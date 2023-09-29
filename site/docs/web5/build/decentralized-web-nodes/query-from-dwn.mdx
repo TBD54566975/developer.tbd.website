@@ -25,30 +25,12 @@ The following snippet queries a DWN for records that were written by a specific 
 To guarantee record data, call [records.read()](/api/web5-js/dwn/records#readrequest).
 :::
 
-## Querying Records by Path and Type
-The following snippets demonstrate how to query records by protocol path and type to match a defined protocol. The protocol definition below has an audio type and a video type:
+## Querying Records by Path and Structure
 
-```javascript
-  const musicProtocolDefinition = {
-    protocol: "https://example.com/musicProtocol",
-    types: {
-      // highlight-start
-      audio: {
-      // highlight-end
-        schema:  "https://example.com/musicProtocol/audio",
-        dataFormats: ["audio/mp3"],
-      },
-      video: {
-        schema: "https://example.com/musicProtocol/video",
-        dataFormats: ["video/mp4"],
-      },
-    },
-  };
-```
+Before querying records by path and structure, ensure that the protocol is [defined](https://developer.tbd.website/docs/web5/learn/protocols/#defining-a-protocol) and [installed](https://developer.tbd.website/docs/web5/learn/protocols/#installing-a-protocol). 
+The following snippets demonstrate how to query records by protocol path and structure to match a defined protocol. The protocol definition below has an audio structure and a video structure:
 
-Based on the the protocol definition above, you can use the the following snippet to query for audio records by path and type:
-
-<CodeSnippet functionName="queryFromDwnByPathAndType" />
+<CodeSnippet functionName="queryFromDwnByPathAndStructure" />
 
 ## Filterable Record Properties
 Here are the properties you can use to filter your record query, along with explanations and examples for each.

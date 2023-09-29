@@ -64,7 +64,40 @@ export async function queryRecordWithParentId(web5) {
   return response;
 }
 
-export async function queryFromDwnByPathAndType(web5) {
+export async function queryFromDwnByPathAndStructure(web5) {
+
+  const chatProtocolDefinition = {
+    protocol: "https://music.org/protocol",
+    types: {
+      // highlight-start
+      audio: {
+        // highlight-end
+        schema: "https://schema.org/Playlist",
+        dataFormats: ["audio/mp3"],
+      },
+      video: {
+        schema: "https://schema.org/Playlist",
+        dataFormats: ["video/mp4"],
+      },
+    },
+    structure: {
+      audio: {
+        $actions: [
+          { who: "anyone", can: "write" },
+          { who: "author", of: "audio", can: "read" },
+          { who: "recipient", of: "audio", can: "read" },
+        ],
+      },
+      video: {
+        $actions: [
+          { who: "anyone", can: "write" },
+          { who: "author", of: "video", can: "read" },
+          { who: "recipient", of: "video", can: "read" },
+        ],
+      }
+    }
+  };
+
   const { records } = await web5.dwn.records.query({
     message: {
       filter: {
@@ -75,5 +108,6 @@ export async function queryFromDwnByPathAndType(web5) {
       },
     },
   });
+
   return records;
 }
