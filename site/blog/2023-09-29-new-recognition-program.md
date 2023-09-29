@@ -12,7 +12,7 @@ tags: [Community]
   <meta property="og:type" content="website" />
   <meta property="og:url" content='https://developer.tbd.website/blog/new-recognition-program' />
   <meta name="og:description" content="Announcing a monthly celebration of our community members 💛" />
-  <meta property="og:image" content="https://developer.tbd.website/assets/images/http://localhost:3000/assets/images/blog_recognition_program-99868671688323ad273657487f5a8617.png" /> 
+  <meta property="og:image" content="https://developer.tbd.website/assets/images/blog_recognition_program-99868671688323ad273657487f5a8617.png" /> 
 
   <meta name="twitter:card" content="summary_large_image" />
   <meta property="twitter:domain" content="developer.tbd.website" />
@@ -20,7 +20,7 @@ tags: [Community]
   <meta name="twitter:title" content="Exciting News! Introducing Our Recognition Program" />
   <meta property="twitter:url" content='https://developer.tbd.website/blog/new-recognition-program' /> 
   <meta name="twitter:description" content="Announcing a monthly celebration of our community members 💛" />
-  <meta name="twitter:image" content="https://developer.tbd.website/assets/images/http://localhost:3000/assets/images/blog_recognition_program-99868671688323ad273657487f5a8617.png" />
+  <meta name="twitter:image" content="https://developer.tbd.website/assets/images/blog_recognition_program-99868671688323ad273657487f5a8617.png" />
 
   <link rel="apple-touch-icon" href="https://developer.tbd.website/img/tbd-fav-icon-main.png" />
 </head>
