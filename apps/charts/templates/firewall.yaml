@@ -1,0 +1,14 @@
+apiVersion: security.istio.io/v1beta1
+kind: AuthorizationPolicy
+metadata:
+  name: developer-tbd-website-ingress-policy-to-host
+spec:
+  action: ALLOW
+  rules:
+  - to:
+    - operation:
+        hosts:
+        - "{{ .Values.dns }}"
+  - from:
+    - source:
+        namespaces: ["istio-system"]

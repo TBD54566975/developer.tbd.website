@@ -1,0 +1,15 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: developer-tbd-website-ingress
+spec:
+  gateways:
+    - istio-system/primary-gateway
+  hosts:
+    - {{ .Values.dns }}
+  http:
+    - route:
+        - destination:
+            host: developer-tbd-website-service
+            port:
+              number: 8080
