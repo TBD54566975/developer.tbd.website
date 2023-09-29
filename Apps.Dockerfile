@@ -11,7 +11,7 @@ COPY apps /repo/apps
 
 # Base dependencies installation
 FROM base AS prod-deps
-RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install --prod --frozen-lockfile
+RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install --ignore-scripts --prod --frozen-lockfile
 
 # feedback-server-app
 FROM base AS feedback-server-app
