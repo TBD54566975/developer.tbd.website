@@ -1,27 +1,60 @@
 require('dotenv').config();
 
 const express = require('express');
-const { GoogleSpreadsheet } = require('google-spreadsheet');
-const { JWT } = require('google-auth-library');
 
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
+const { Pool: DbPool } = require('pg');
 
 const config = {
   port: process.env.PORT || 3001,
   serverSecret: process.env.SERVER_SECRET,
   serverAllowedOrigins: (process.env.SERVER_ALLOWED_ORIGINS || '').split(','),
-  googleClientEmail: process.env.GOOGLE_CLIENT_EMAIL,
-  googlePrivateKey: process.env.GOOGLE_PRIVATE_KEY.replace(/\\n/g, '\n'),
-  googleSpreadsheetId: process.env.GOOGLE_SPREADSHEET_ID,
+  db: {
+    address: process.env.DB_ADDRESS,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    port: process.env.DB_PORT,
+    database: process.env.DB_DATABASE,
+  },
 };
 
 console.info('Server secret:', {
   ...config,
   serverSecret: '***',
-  googlePrivateKey: '***',
 });
+
+const dbPool = new DbPool({
+  host: config.db.address,
+  user: config.db.user,
+  password: config.db.password,
+  port: config.db.port,
+  database: config.db.database,
+  max: 20,
+  idleTimeoutMillis: 30000,
+  connectionTimeoutMillis: 2000,
+});
+
+const initDb = async () => {
+  await dbPool.query(`
+    CREATE TABLE IF NOT EXISTS feedback_votes (
+      id SERIAL PRIMARY KEY,
+      url VARCHAR(255) NOT NULL,
+      vote TINYINT NOT NULL,
+      created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+    );
+  `);
+};
+
+const storeVote = async (url, vote) => {
+  // insert vote into feedback_votes table
+  const res = await dbPool.query(
+    'INSERT INTO feedback_votes (url, vote) VALUES ($1, $2);',
+    [url, vote],
+  );
+  console.info('>>> Inserted vote:', res.rows);
+};
 
 // Init express app
 const app = express();
@@ -56,13 +89,6 @@ app.use(cors(corsOptions));
 app.use(express.json());
 app.use(cookieParser());
 
-// Google Spreadsheet settings
-const serviceAccountJWT = new JWT({
-  email: config.googleClientEmail,
-  key: config.googlePrivateKey,
-  scopes: ['https://www.googleapis.com/auth/spreadsheets'],
-});
-
 app.get('/api/csrf-token', (req, res) => {
   res.json({ csrfToken: req.csrfToken });
 });
@@ -80,21 +106,9 @@ app.post('/api/feedback', async (req, res) => {
   }
 
   try {
-    console.log('Loading spreadsheet info...');
-    const doc = new GoogleSpreadsheet(
-      config.googleSpreadsheetId,
-      serviceAccountJWT,
-    );
-    await doc.loadInfo();
-
-    console.log('Accessing sheet...', doc.title);
-    const sheet = doc.sheetsByIndex[0];
-
-    const helpfulCell = rating === 'helpful' ? 1 : 0;
-    const notHelpfulCell = rating === 'notHelpful' ? 1 : 0;
-    console.log('Processing feedback...', { rating, pageLink });
-    await sheet.addRow([helpfulCell, notHelpfulCell, pageLink]);
-
+    // helpful = 1, notHelpful = -1, noVote = 0
+    const voteValue = rating === 'helpful' ? 1 : 'notHelpful' ? -1 : 0;
+    storeVote(pageLink, voteValue);
     console.log('Sending response...');
     res.json({ message: 'Feedback collected successfully!' });
   } catch (error) {
@@ -105,6 +119,8 @@ app.post('/api/feedback', async (req, res) => {
   }
 });
 
-app.listen(config.port, () => {
-  console.log(`Server running at http://localhost:${config.port}`);
+initDb().then(() => {
+  app.listen(config.port, () => {
+    console.log(`Server running at http://localhost:${config.port}`);
+  });
 });
