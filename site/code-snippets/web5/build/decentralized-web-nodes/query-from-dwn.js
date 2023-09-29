@@ -66,12 +66,10 @@ export async function queryRecordWithParentId(web5) {
 
 export async function queryFromDwnByPathAndStructure(web5) {
 
-  const chatProtocolDefinition = {
+  const musicProtocolDefinition = {
     protocol: "https://music.org/protocol",
     types: {
-      // highlight-start
       audio: {
-        // highlight-end
         schema: "https://schema.org/Playlist",
         dataFormats: ["audio/mp3"],
       },
@@ -81,7 +79,9 @@ export async function queryFromDwnByPathAndStructure(web5) {
       },
     },
     structure: {
+      // highlight-start
       audio: {
+        // highlight-end
         $actions: [
           { who: "anyone", can: "write" },
           { who: "author", of: "audio", can: "read" },
