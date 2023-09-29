@@ -18,10 +18,6 @@ const config = {
 console.info('Server secret:', {
   ...config,
   serverSecret: '***',
-  db: {
-    ...config.db,
-    password: '***',
-  },
 });
 
 // Init express app
@@ -81,14 +77,15 @@ app.post('/api/feedback', async (req, res) => {
   try {
     // helpful = Y, notHelpful = N
     const voteValue = rating === 'helpful' ? 'Y' : 'N';
-    db.storeVote(pageLink, voteValue);
+    await db.storeVote(pageLink, voteValue);
     console.log('Sending response...');
-    res.json({ message: 'Feedback collected successfully!' });
+    res.json({ success: true });
   } catch (error) {
     console.error('Error occurred:', error);
-    res
-      .status(500)
-      .json({ message: 'An error occurred while processing the feedback' });
+    res.status(500).json({
+      success: false,
+      message: 'An error occurred while processing the feedback',
+    });
   }
 });
 
