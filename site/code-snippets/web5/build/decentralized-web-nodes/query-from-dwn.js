@@ -68,7 +68,7 @@ export async function queryFromDwnByPathAndStructure(web5) {
 
   const musicProtocolDefinition = {
     protocol: "https://music.org/protocol",
-    published:true,
+    published: true,
     types: {
       audio: {
         schema: "https://schema.org/AudioObject",
@@ -80,9 +80,7 @@ export async function queryFromDwnByPathAndStructure(web5) {
       },
     },
     structure: {
-      // highlight-start
       audio: {
-        // highlight-end
         $actions: [
           { who: "anyone", can: "write" },
           { who: "author", of: "audio", can: "read" },
@@ -95,7 +93,14 @@ export async function queryFromDwnByPathAndStructure(web5) {
           { who: "author", of: "video", can: "read" },
           { who: "recipient", of: "video", can: "read" },
         ],
-      }
+        // highlight-next-line
+        subtitles: {
+          $actions: [
+            { "who": "recipient", "of": "subtitles", "can": "read" },
+            { "who": "author", "of": "subtitles", "can": "write" }
+          ]
+        },
+      },
     }
   };
 
@@ -103,9 +108,8 @@ export async function queryFromDwnByPathAndStructure(web5) {
     message: {
       filter: {
         protocol: "https://example.com/musicProtocol",
-        // highlight-start
-        protocolPath: 'audio',
-        // highlight-end
+        // highlight-next-line
+        protocolPath: 'video/subtitles',
       },
     },
   });
