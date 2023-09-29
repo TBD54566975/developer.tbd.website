@@ -23,6 +23,10 @@ const config = {
 console.info('Server secret:', {
   ...config,
   serverSecret: '***',
+  db: {
+    ...config.db,
+    password: '***',
+  },
 });
 
 const dbPool = new DbPool({
