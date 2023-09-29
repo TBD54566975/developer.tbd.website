@@ -75,7 +75,7 @@ export async function queryFromDwnByPathAndStructure(web5) {
         dataFormats: ["audio/mp3"],
       },
       video: {
-        schema: "https://schema.org/Playlist",
+        schema: "https://schema.org/VideoObject",
         dataFormats: ["video/mp4"],
       },
     },
