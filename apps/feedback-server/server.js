@@ -51,7 +51,7 @@ const doubleCsrfOptions = {
   getSecret: () => config.serverSecret,
   cookieName: `${config.devMode ? 'dev' : '__Host'}-psifi.x-csrf-token`,
   cookieOptions: {
-    sameSite: 'lax',
+    sameSite: 'none',
     path: '/',
     secure: !config.devMode,
   },
