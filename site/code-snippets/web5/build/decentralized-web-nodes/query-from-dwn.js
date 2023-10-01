@@ -114,7 +114,7 @@ export async function queryFromDwnByPathAndStructure(web5) {
       filter: {
         protocol: "https://playlist.org/protocol",
         // highlight-next-line
-        protocolPath: 'playlist/videos',
+        protocolPath: 'playlist/video',
       },
     },
   });
