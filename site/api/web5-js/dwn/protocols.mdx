@@ -257,21 +257,7 @@ Queries a DID's DWNs for the presence of a protocol. This method is useful in de
 
 <CodeSnippet functionName="queryMusicProtocol" />
 
-```js
-const { protocols } = await web5.dwn.protocols.query({
-  //highlight-start
-  from: "did:example:bob",
-  //highlight-end
-  message: {
-    filter: {
-      protocol: "https://music.org/protocol",
-    },
-  },
-});
-
-// logs an array of protocol configurations installed on Bob's DWN
-console.log(protocols);
-```
+<CodeSnippet functionName="queryProtocolsFromDid" />
 
 <CodeSnippet functionName="queryProtocolDescending" />
 </section>
