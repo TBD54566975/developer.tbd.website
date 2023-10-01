@@ -3,7 +3,11 @@ name: Create and publish a Docker image
 on:
   push:
     branches: ['main']
+    paths:
+      - 'apps/feedback-server/**/*.js'
   pull_request:
+    paths:
+      - 'apps/feedback-server/**/*.js'
   workflow_dispatch:
 
 env:
