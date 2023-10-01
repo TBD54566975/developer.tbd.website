@@ -25,6 +25,15 @@ The following snippet queries a DWN for records that were written by a specific 
 To guarantee record data, call [records.read()](/api/web5-js/dwn/records#readrequest).
 :::
 
+## Querying Records by Protocol Path
+
+The following snippet demonstrates how to query records that match a specific protocol path:
+
+<CodeSnippet functionName="queryFromDwnByPathAndStructure" />
+
+:::note
+Before querying records by protocol path, ensure that the protocol is [installed](https://developer.tbd.website/docs/web5/learn/protocols/#installing-a-protocol). 
+:::
 
 ## Filterable Record Properties
 Here are the properties you can use to filter your record query, along with explanations and examples for each.

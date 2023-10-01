@@ -63,3 +63,61 @@ export async function queryRecordWithParentId(web5) {
 
   return response;
 }
+
+export async function queryFromDwnByPathAndStructure(web5) {
+
+  const playlistProtocolDefinition = {
+    protocol: "https://playlist.org/protocol",
+    published: true,
+    types: {
+      playlist: {
+        schema: "https://schema.org/MusicPlaylist",
+        dataFormats: ["application/json"],
+      },
+      audio: {
+        schema: "https://schema.org/AudioObject",
+        dataFormats: ["audio/mp3"],
+      },
+      video: {
+        schema: "https://schema.org/VideoObject",
+        dataFormats: ["video/mp4"],
+      },
+    },
+    structure: {
+      playlist: {
+        $actions: [
+          { who: "anyone", can: "write" },
+          { who: "author", of: "playlist", can: "read" },
+          { who: "recipient", of: "playlist", can: "read" },
+        ],
+        audio: {
+          $actions: [
+            { who: "anyone", can: "write" },
+            { who: "author", of: "audio", can: "read" },
+            { who: "recipient", of: "audio", can: "read" },
+          ],
+        },
+        // highlight-next-line
+        video: {
+          $actions: [
+            { who: "anyone", can: "write" },
+            { who: "author", of: "video", can: "read" },
+            { who: "recipient", of: "video", can: "read" },
+          ]
+        },
+      },
+    }
+  };
+
+  const { records } = await web5.dwn.records.query({
+    message: {
+      filter: {
+        protocol: "https://playlist.org/protocol",
+        // highlight-next-line
+        protocolPath: 'playlist/video',
+      },
+    },
+  });
+
+  return records;
+}
