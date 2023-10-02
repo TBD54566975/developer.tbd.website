@@ -1,0 +1,33 @@
+version: '3'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Apps.Dockerfile
+      target: feedback-server-app
+    ports:
+      - "3001:3001"
+    environment:
+      DB_CONNECTION: postgresdb
+      DB_USER: feedback_user
+      DB_PASSWORD: feedback_pass
+      DB_PORT: 5432
+      DB_DATABASE: feedback_widget
+      SERVER_SECRET: superSecureSecret
+    depends_on:
+      - postgresdb
+
+  postgresdb:
+    image: postgres:latest
+    environment:
+      POSTGRES_USER: feedback_user
+      POSTGRES_PASSWORD: feedback_pass
+      POSTGRES_DB: feedback_widget
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:

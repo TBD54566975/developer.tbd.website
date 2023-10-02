@@ -116,6 +116,21 @@ The following scripts are available for running specific tasks within the monore
 - `pnpm clear`: Runs docusaurus clear
 - `pnpm build`: Runs the production build for the site so it can be hosted by a static web server. The completed build will be in the folder `site/build`.
 
+## Extra Features
+
+We have implemented extra features in the website that don't come turned on by default, as an example we have the Feedback Widget feature, which allows an user to upvote or downvote a docs page. 
+
+These features are enabled from environment variables set in the file .env, inside the site folder. To enable them, copy the example .env file:
+
+```sh
+cp site/.env.example site/.env
+```
+
+And modify the parameters accordingly to the feature you want to play with! Check their instructions below:
+
+- `FEEDBACK_WIDGET_API_URL`: enables feedback widget api url; [Feedback server app instructions](./apps/feedback-server/README.md)
+- `DOC_SEARCH_*`: enables the search bar powered by Algolia; [Algolia connecting instructions](https://docusaurus.io/docs/search#connecting-algolia)
+
 ### Note
 
 This repo made a switch from using `npm` to `pnpm` as the package manager in July 2023. If you have used prior versions of this repo built on your machine with `npm`, you may encounter build failures, like:

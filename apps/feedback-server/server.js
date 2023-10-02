@@ -49,7 +49,7 @@ const doubleCsrfOptions = {
   cookieOptions: {
     sameSite: 'none',
     path: '/',
-    secure: !config.devMode,
+    secure: true,
   },
   getTokenFromRequest: (req) => req.headers['x-csrf-token'],
 };
