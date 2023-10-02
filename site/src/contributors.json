@@ -1,34 +1,38 @@
 [
   {
-    "login": "Civil-captain",
-    "avatar_url": "https://avatars.githubusercontent.com/u/77832856?v=4",
-    "contributions": ["Content Creator Award"]
+    "login": "vpavlyshyn",
+    "avatar_url": "https://yt3.googleusercontent.com/ytc/APkrFKY1Y6jp75kF1x3hpzxaldvPsaEUSIufWqpuQLvjkw=s100-c-k-c0x00ffffff-no-rj",
+    "contributions": ["Content Creator Award"],
+    "description": "Thank you for shaing your videos with the community. Can't wait to watch the next one!"
+  },
+  {
+    "login": "pippella",
+    "avatar_url": "https://avatars.githubusercontent.com/u/108896743?v=4",
+    "contributions": ["Community Hero Award"],
+    "description": "From the beginning to now, your impact has been invalauble. Launching this without celebrating you? Impossible."
+  },
+  {
+    "login": "euj1n0ng",
+    "avatar_url": "https://avatars.githubusercontent.com/u/62314480?v=4",
+    "contributions": ["New Contributor Award"],
+    "description": "Thank you for your curiosity and insightful questions, it's helped in making the community even more welcoming!"
+  },
+  {
+    "login": "Sondreb",
+    "avatar_url": "https://avatars.githubusercontent.com/u/309938?v=4",
+    "contributions": ["Rising Star Award"],
+    "description": "From the moment you joined you've been asking really great questions. I look forward to learning more about your Angular integration 🥳"
   },
   {
     "login": "nearlyjuly",
     "avatar_url": "https://avatars.githubusercontent.com/u/112702586?v=4",
-    "contributions": ["Community Hero Award"],
-    "description": "Thank you for your incredible activity this month. Your enthusiastic participation is truly invaluable to us!"
+    "contributions": ["Feedback Champion Award"],
+    "description": "Your insight on the Discord component was invaluable. Thanks for guiding us toward the right choice!"
   },
   {
-    "login": "aguywithcode",
-    "avatar_url": "https://avatars.githubusercontent.com/u/13209683?v=4",
-    "contributions": ["New Contributor Award"],
-    "description": ""
-  },
-  {
-    "login": "Prod1gy0ne",
-    "avatar_url": "https://avatars.githubusercontent.com/u/96172348?v=4",
-    "contributions": ["Rising Star Award"]
-  },
-  {
-    "login": "adityakode",
-    "avatar_url": "https://avatars.githubusercontent.com/u/105551807?v=4",
-    "contributions": ["Feedback Champion Award"]
-  },
-  {
-    "login": "jsahagun91",
-    "avatar_url": "https://avatars.githubusercontent.com/u/34168252?v=4",
-    "contributions": ["Docs Wizard Award"]
+    "login": "captain-Akshay",
+    "avatar_url": "https://avatars.githubusercontent.com/u/59491379?v=4",
+    "contributions": ["Docs Wizard Award"],
+    "description": "In one day you swiped this award. Truly our Docs Wizard. Thank you we look forward to seeing what other contributions you make!"
   }
 ]
