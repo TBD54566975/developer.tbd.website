@@ -30,6 +30,7 @@ export async function queryRecordsWithFilterAscending(web5) {
       filter: {
         dataFormat: 'text/plain',
       },
+      //highlight-next-line
       dateSort: 'publishedAscending',
     },
   });
