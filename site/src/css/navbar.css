@@ -158,6 +158,7 @@
     justify-content: space-between;
     display: flex;
     flex-direction: row-reverse;
+    align-items: center;
   }
 
   .navbar__toggle.clean-btn {
