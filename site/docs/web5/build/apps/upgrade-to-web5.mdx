@@ -1,3 +1,5 @@
+import CodeSnippet from '@site/src/components/CodeSnippet';
+
 # Upgrade Your App to Web5
 
 In this tutorial, you’ll learn how to upgrade from a standard web app to a decentralized app powered by Web5.js. Whether you’re using React, Vue, or another front-end framework, it’s easy to convert your app to run on the decentralized web.
@@ -42,22 +44,8 @@ In a traditional web app, you’ll access your app data by repeatedly making cal
 
 Whether you’re developing with Vanilla JavaScript, React, or another framework, you’re going to make lots of REST calls to power your app. Since Web5 fundamentally restructures the way your data is stored, that means that all of your REST calls will need to change too. Now instead of fetching data via a POST call, you’ll fetch data like this:
 
-```js
-import { Web5 } from '@web5/api';
+<CodeSnippet functionName='createAliceDid' importString="'import { Web5 } from '@web5/api'" />
 
-const { web5, did: aliceDid } = await Web5.connect();
-
-// Create the record
-const { record } = await web5.dwn.records.create({
-    data: "Hello Web5",
-    message: {
-        dataFormat: 'text/plain',
-    },
-});
-
-// Read the record
-const readResult = await record.data.text();
-```
 
 The code snippet above has two critical components you need to understand:
 

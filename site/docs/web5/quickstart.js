@@ -275,19 +275,19 @@ function Web5Quickstart() {
     <div>
       <Web5QuickstartIntro />
 
-      <div class="w-full max-w-container">
-        <hr class="bg-slash-dark border-none h-2" />
+      <div className="w-full max-w-container">
+        <hr className="bg-slash-dark border-none h-2" />
       </div>
 
       <Web5QuickstartPrereqsAndInstallation />
 
-      <div class="w-full max-w-container">
-        <hr class="bg-slash-dark border-none h-2" />
+      <div className="w-full max-w-container">
+        <hr className="bg-slash-dark border-none h-2" />
       </div>
 
       <Web5QuickstartCreateDid />
 
-      <section id="did-create" class="sandbox-container">
+      <section id="did-create" className="sandbox-container">
         <div className="input">
           <button>Run ›</button>
           <label className="sr-only" htmlFor="did-create-progress">
@@ -299,7 +299,7 @@ function Web5Quickstart() {
           <details class="sandbox-details">
             <summary>
               <code>
-                <span class="sandbox-placeholder">
+                <span className="sandbox-placeholder">
                   Your DID will appear here
                 </span>
               </code>
@@ -320,7 +320,7 @@ function Web5Quickstart() {
             id="dwn-write-input"
           />
         </div>
-        <div class="sandbox-container">
+        <div className="sandbox-container">
           <div className="input">
             <button disabled>Run ›</button>
             <label className="sr-only" htmlFor="dwn-write-progress">
@@ -332,7 +332,7 @@ function Web5Quickstart() {
             <details>
               <summary>
                 <code>
-                  <span class="sandbox-placeholder">
+                  <span className="sandbox-placeholder">
                     Your message will appear here
                   </span>
                 </code>
@@ -344,7 +344,7 @@ function Web5Quickstart() {
       </section>
 
       <Web5QuickstartReadDwn />
-      <section id="dwn-read" class="sandbox-container">
+      <section id="dwn-read" className="sandbox-container">
         <div className="input">
           <button disabled>Run ›</button>
           <label className="sr-only" htmlFor="dwn-read-progress">
@@ -354,7 +354,7 @@ function Web5Quickstart() {
         </div>
         <div className="output">
           <code>
-            <span class="sandbox-placeholder">
+            <span className="sandbox-placeholder">
               Your read result will appear here
             </span>
           </code>
@@ -372,7 +372,7 @@ function Web5Quickstart() {
             id="dwn-update-input"
           />
         </div>
-        <div class="sandbox-container">
+        <div className="sandbox-container">
           <div className="input">
             <button disabled>Run ›</button>
             <label className="sr-only" htmlFor="dwn-update-progress">
@@ -382,7 +382,7 @@ function Web5Quickstart() {
           </div>
           <div className="output">
             <code>
-              <span class="sandbox-placeholder">
+              <span className="sandbox-placeholder">
                 Your updated message will appear here
               </span>
             </code>
@@ -391,7 +391,7 @@ function Web5Quickstart() {
       </section>
 
       <Web5QuickstartDeleteDwn />
-      <section id="dwn-delete" class="sandbox-container">
+      <section id="dwn-delete" className="sandbox-container">
         <div className="input">
           <button disabled>Run ›</button>
           <label className="sr-only" htmlFor="dwn-delete-progress">
@@ -403,7 +403,7 @@ function Web5Quickstart() {
           <details>
             <summary>
               <code>
-                <span class="sandbox-placeholder">
+                <span className="sandbox-placeholder">
                   The result of your delete operation will appear here
                 </span>
               </code>
@@ -413,8 +413,8 @@ function Web5Quickstart() {
         </div>
       </section>
 
-      <div class="w-full max-w-container">
-        <hr class="bg-slash-dark border-none h-2" />
+      <div className="w-full max-w-container">
+        <hr className="bg-slash-dark border-none h-2" />
       </div>
 
       <Web5QuickstartNextSteps />

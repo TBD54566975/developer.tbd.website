@@ -4,16 +4,99 @@ sidebar_position: 1
 
 # Write DWN Records
 
-The following snippet allows you to create a record in a DWN:
+Various data types, such as text, JSON, images, streams or files, can be stored as records in a DWN. Below are examples of each.
+
+### Create a text record
 
 ```js
 // Create a plain text record
 const { record } = await web5.dwn.records.create({
     data: "Hello Web5",
     message: {
-        dataFormat: 'text/plain',
-    },
+        dataFormat: 'text/plain'
+    }
 });
 ```
 
-The `data` property can be a string, JSON, blob, stream, or file. For more information on writing records to DWNs, see our [API Guide](/api/web5-js/dwn/records#createrequest).
+### Create a JSON record
+
+```js
+// Create a JSON record
+const { record } = await web5.dwn.records.create({
+    data: {
+        content: "Hello Web5",
+        description: "Keep Building!"
+    },
+    message: {
+        dataFormat: 'application/json'
+    }
+});
+```
+
+### Create a blob or image record
+
+```js
+// Create a blob record
+async function upload(event) {
+  const blob = new Blob(event.currentTarget.files, { type: "image/png" });
+  const { record } = await web5.dwn.records.create({
+      data: blob,
+      message: {
+          dataFormat: "image/png"
+      }
+  });
+}
+```
+
+### Create a file record
+
+```js
+// Create a file record
+async function upload(event) {
+  const file = event.currentTarget.files[0];
+  const { status: fileStatus, record } = await web5.dwn.records.create({
+      data: file,
+      message: {
+          schema: "https://schema.org/path/to/schema",
+          dataFormat: "application/octet-stream"
+      }
+  });
+}
+```
+
+### Create records with mixed data
+You can also store mixed data via JSON - including text, images, or files.
+
+```js
+  // Create a mixed record
+  async function createMessage(username, messageText, imageFile) {
+    let base64Image = null;
+
+    if (imageFile) {
+      const binaryImage = await imageFile.arrayBuffer();
+      base64Image = btoa(
+        new Uint8Array(binaryImage).reduce(
+          (data, byte) => data + String.fromCharCode(byte),
+          ""
+        )
+      );
+    }
+
+    const messageData = {
+      username,
+      message: messageText,
+      image: base64Image
+    };
+
+    const { record } = await web5.dwn.records.create({
+      data: messageData,
+      message: {
+        schema: "http://schema-registry.org/message",
+        dataFormat: "application/json"
+      },
+    });
+  }
+```
+
+
+For more information on writing records to DWNs, see our [API Guide](/api/web5-js/dwn/records#createrequest).

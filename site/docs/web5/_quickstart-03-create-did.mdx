@@ -1,3 +1,5 @@
+import CodeSnippet from '@site/src/components/CodeSnippet';
+
 <section class="docs-section">
 
 ## 1.  Instantiate Web5 and Create DID 
@@ -8,9 +10,7 @@ We are building a decentralized app, so your users are using identifiers that ar
 The `Web5` class is an isolated API object for doing all things Web5. The `connect()` function creates an instance of Web5 and also creates a decentralized identifier or obtains connection to an existing one.
 
 In `index.js` below the import statement, create a new instance of `Web5`:
-```js
-const { web5, did: aliceDid } = await Web5.connect();
-```
+<CodeSnippet functionName="didCreate" />
 
 This Web5 instance is what you'll use to access the other objects of Web5 such as `did` and `dwn`. Within the connect function we’re using `ion` as the DID method. Learn more about ION and other [DID methods](/docs/web5/learn/decentralized-identifiers#methods).
 
@@ -23,7 +23,6 @@ Web5 is split into three main top-level objects:
 
 <details>
   <summary>Test your code</summary>
-  <p>
 
   Wanna see the DID you just created? 
   
@@ -38,7 +37,7 @@ Web5 is split into three main top-level objects:
   ```
 
   You'll see the newly created DID.
-  </p>
+  
 </details>
 
 #### Try it!

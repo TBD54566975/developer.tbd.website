@@ -1,3 +1,5 @@
+import CodeSnippet from '@site/src/components/CodeSnippet';
+
 <section class="docs-section">
 
 ## 4. Update DWN Records
@@ -5,13 +7,11 @@
 To update the record, call `update` on the `record` object itself.
 
 Add the following to `index.js`:
-```js
-const updateResult = await record.update({data: "Hello, I'm updated!"});
-```
+<CodeSnippet functionName="updateTextRecord" />
 
 <details>
 <summary>Test your code</summary>
-<p>
+
 To see the record that was updated in the DWN, add the following to <code>index.js</code>:
 
 ```js
@@ -29,7 +29,7 @@ The output will resemble:
 updateResult Hello, I'm updated!
 ```
 
-</p>
+
 </details>
 
 Enter "Hello, I'm updated" in the input field and click "Run!" to update the record in the sandbox DWN:

@@ -1,3 +1,5 @@
+import CodeSnippet from "@site/src/components/CodeSnippet";
+
 <section class="docs-section">
 
 ## 2. Write DWN Records
@@ -8,28 +10,22 @@ A DWN is a personal data store - a platform for messages, pictures, videos, medi
 
 <details>
   <summary>Read more about DWN</summary>
-  <p>
+  
 Your app should not store users' data in your centralized database. Instead, their data should be stored in their DWN. This is how the user retains ownership over their content. Through permissions, users can decide which apps can read, write, and delete content from their DWN.
 
 The DWN exists in local storage under the name `dwn-info`. The DWN persists across browser sessions and can be synched across a user's devices.
 
 A user can host their DWN in mulitple locations. The Web5 SDK is both browser and Node.js compliant, meaning you can use the same APIs on both client side and serverside.
-</p>
+
 </details>
 
 Add the following to `index.js`:
-```js
-const { record } = await web5.dwn.records.create({
-  data: "Hello Web5",
-  message: {
-    dataFormat: 'text/plain',
-  },
-});
-```
+
+<CodeSnippet functionName="createTextRecord" />
 
 <details>
   <summary>Test your code</summary>
-  <p>
+  
   Let's see what was just written to the DWN.
 
   In <code>index.js</code>, add the following line and save your file:
@@ -46,7 +42,7 @@ const { record } = await web5.dwn.records.create({
   ```js
     writeResult _Record {}
   ```
-  </p>
+  
 </details>
 
 Enter "Hello Web5" in the input field and click "Run" to write a record to the sandbox DWN.

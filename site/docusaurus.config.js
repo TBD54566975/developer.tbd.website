@@ -10,6 +10,8 @@ const algoliaApiKey = process.env.DOC_SEARCH_API_KEY;
 const algoliaIndexName = process.env.DOC_SEARCH_INDEX_NAME;
 const algoliaAppId = process.env.DOC_SEARCH_APP_ID;
 
+const feedbackWidgetApiUrl = process.env.FEEDBACK_WIDGET_API_URL;
+
 let algoliaConfig = null;
 if (algoliaApiKey && algoliaIndexName && algoliaAppId) {
   algoliaConfig = {
@@ -41,6 +43,7 @@ let config = {
   // },
   customFields: {
     WEB5_VERSION,
+    feedbackWidgetApiUrl,
   },
   plugins: [
     'docusaurus-tailwindcss',

@@ -1,5 +1,6 @@
 import Divider from '@site/src/components/Divider';
 import ApiDetails from '@site/src/components/ApiDetails';
+import CodeSnippet from '@site/src/components/CodeSnippet';
 
 
 ## Overview
@@ -29,19 +30,7 @@ Gets the protocol definition
 />
 
 #### Code Example
-```js
-const { status, protocol } = await web5.dwn.protocols.configure({
-  message: {
-    definition: protocolDefinition
-  }
-});
-
-//highlight-start
-const returnedDefinition = protocol.definition;
-//highlight-end
-console.log('returnedStatus', returnedDefinition.protocol);
-
-```
+<CodeSnippet functionName="configureProtocol" />
 
 <Divider type="slash"/>
 
@@ -82,17 +71,8 @@ Sends the protocol to the remote DWN endpoints of a provided DID. This function 
 
 
 #### Code Example
-```js
-const { status, protocol } = await web5.dwn.protocols.configure({
-  message: {
-    definition: protocolDefinition
-  }
-});
 
-//highlight-start
-await protocol.send(myDid); 
-//highlight-end
-```
+<CodeSnippet functionName="configureProtocolAndSend" />
 
 
 <Divider type="slash"/>
