@@ -24,7 +24,7 @@
   "createDidManually": "const myDid = await Web5.did.create('ion');",
   "createDidAutomatically": "const { web5, did: myDid } = await Web5.connect();",
   "queryProtocolsForMusic": "const { protocols } = await web5.dwn.protocols.query({\n    message: {\n      filter: {\n        protocol: 'https://music.org/protocol',\n      },\n    },\n  });",
-  "queryProtocolsWithFilterDescending": "const { protocols } = await web5.dwn.protocols.query({\n    message: {\n      filter: {\n        protocol: 'http://social-media.xyz',\n      },\n      //highlight-start\n      dateSort: 'createdDescending',\n      //highlight-end\n    },\n  });",
+  "queryProtocolsWithFilterDescending": "const { protocols } = await web5.dwn.protocols.query({\n    message: {\n      filter: {\n        protocol: 'http://social-media.xyz',\n      },\n      //highlight-next-line\n      dateSort: 'createdDescending'\n    },\n  });",
   "queryRecordsWithFilterAscending": "const response = await web5.dwn.records.query({\n    message: {\n      filter: {\n        dataFormat: 'text/plain',\n      },\n      dateSort: 'publishedAscending',\n    },\n  });",
   "queryRecordsFromDID": "const { records } = await web5.dwn.records.query({\n    from: did,\n    message: {\n      filter: {\n        schema: 'https://schema.org/Playlist',\n        dataFormat: 'application/json',\n      },\n    },\n  });",
   "queryRecordWithParentId": "const response = await web5.dwn.records.query({\n    message: {\n      filter: {\n        parentId: 'bafyreianzpmhbgcgam5mys722vnsiuwn7y4ek6kjeyjptttquasw4hge2m',\n      },\n    },\n  });",
