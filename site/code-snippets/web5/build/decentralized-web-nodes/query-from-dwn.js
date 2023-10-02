@@ -64,9 +64,8 @@ export async function queryRecordWithParentId(web5) {
   return response;
 }
 
-export async function queryFromDwnByPathAndStructure(web5) {
-
-  const playlistProtocolDefinition = {
+export async function playlistProtocolDefinition(web5){
+  const playlistProtocolDefinition =  {
     protocol: "https://playlist.org/protocol",
     published: true,
     types: {
@@ -97,7 +96,6 @@ export async function queryFromDwnByPathAndStructure(web5) {
             { who: "recipient", of: "audio", can: "read" },
           ],
         },
-        // highlight-next-line
         video: {
           $actions: [
             { who: "anyone", can: "write" },
@@ -109,12 +107,17 @@ export async function queryFromDwnByPathAndStructure(web5) {
     }
   };
 
+  return playlistProtocolDefinition;
+}
+
+export async function queryFromDwnByProtocolPath(web5) {
   const { records } = await web5.dwn.records.query({
     message: {
       filter: {
-        protocol: "https://playlist.org/protocol",
-        // highlight-next-line
-        protocolPath: 'playlist/video',
+        //highlight-start
+        protocol: 'https://playlist.org/protocol',
+        protocolPath: 'playlist/video'
+        //highlight-end
       },
     },
   });
