@@ -1,0 +1,61 @@
+{
+  // These tasks will run in order when initializing your CodeSandbox project.
+  "setupTasks": [
+    {
+      "name": "Install Dependencies",
+      "command": "pnpm install"
+    }
+  ],
+
+  // These tasks can be run from CodeSandbox. Running one will open a log in the app.
+  "tasks": {
+    "preinstall": {
+      "name": "preinstall",
+      "command": "pnpm preinstall",
+      "runAtStart": false
+    },
+    "start": {
+      "name": "start",
+      "command": "pnpm start",
+      "runAtStart": true,
+      "preview": {
+        "port": 3000
+      }
+    },
+    "start:tutorial-todo-starter": {
+      "name": "start:tutorial-todo-starter",
+      "command": "pnpm start:tutorial-todo-starter",
+      "runAtStart": false
+    },
+    "start:tutorial-todo-completed": {
+      "name": "start:tutorial-todo-completed",
+      "command": "pnpm start:tutorial-todo-completed",
+      "runAtStart": false
+    },
+    "start:widget": {
+      "name": "start:widget",
+      "command": "pnpm start:widget",
+      "runAtStart": false
+    },
+    "build": {
+      "name": "build",
+      "command": "pnpm build",
+      "runAtStart": false
+    },
+    "clear": {
+      "name": "clear",
+      "command": "pnpm clear",
+      "runAtStart": false
+    },
+    "test": {
+      "name": "test",
+      "command": "pnpm test",
+      "runAtStart": false
+    },
+    "test:watch": {
+      "name": "test:watch",
+      "command": "pnpm test:watch",
+      "runAtStart": false
+    }
+  }
+}
