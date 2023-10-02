@@ -25,16 +25,6 @@ The following snippet queries a DWN for records that were written by a specific 
 To guarantee record data, call [records.read()](/api/web5-js/dwn/records#readrequest).
 :::
 
-## Querying Records by Protocol Path
-
-The following snippet demonstrates how to query records that match a specific protocol path:
-
-<CodeSnippet functionName="queryFromDwnByPathAndStructure" />
-
-:::note
-Before querying records by protocol path, ensure that the protocol is [installed](https://developer.tbd.website/docs/web5/learn/protocols/#installing-a-protocol). 
-:::
-
 ## Filterable Record Properties
 Here are the properties you can use to filter your record query, along with explanations and examples for each.
 
@@ -50,10 +40,24 @@ Here are the properties you can use to filter your record query, along with expl
 | **`dataFormat`**    | The IANA string for the data format to filter        | "application/json" |
 | **`dateCreated`**   | Date the record was created                          | "2023-04-30T22:49:37.713976Z" |
 
-### Code Sample
+### Filter by parentId
 This snippet queries the DWN for records that have a parent record with a specific record ID:
 
 <CodeSnippet functionName="queryRecordWithParentId" />
+
+### Filter by protocol and protocolPath
+Given the following protocol definition is installed:
+
+<details>
+<summary>Playlist Protocol Definition</summary>
+
+<CodeSnippet functionName="playlistProtocolDefinition" />
+
+</details>
+
+And assuming `playlist` and `video` records have been created using this protocol, the following snippet demonstrates how to query for video records that match the protocol:
+
+<CodeSnippet functionName="queryFromDwnByProtocolPath" />
 
 ## Sorting Query Results
 
