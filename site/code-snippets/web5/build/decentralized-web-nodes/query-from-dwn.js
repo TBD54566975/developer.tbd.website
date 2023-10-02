@@ -16,9 +16,8 @@ export async function queryProtocolsWithFilterDescending(web5) {
       filter: {
         protocol: 'http://social-media.xyz',
       },
-      //highlight-start
-      dateSort: 'createdDescending',
-      //highlight-end
+      //highlight-next-line
+      dateSort: 'createdDescending'
     },
   });
 
