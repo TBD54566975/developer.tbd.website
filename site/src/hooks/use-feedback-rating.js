@@ -58,7 +58,6 @@ const postFeedbackRating = async (feedbackWidgetUrl, csrfToken, rating) => {
     rating: rating === 'like' ? 'helpful' : 'notHelpful',
     pageLink: window.location.href,
   };
-  console.info('Sending request:', requestBody);
 
   fetch(`${feedbackWidgetUrl}/feedback`, {
     method: 'POST',
