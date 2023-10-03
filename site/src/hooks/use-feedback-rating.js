@@ -20,6 +20,8 @@ export const useFeedbackRating = () => {
     }
   }, []);
 
+  const wait = (duration) => new Promise(resolve => setTimeout(resolve, duration));
+
   const submitUserRating = async (rating, maxTries = 3) => {
     if (!csrfToken) {
       throw new Error("Can't send feedback without CSRF token");
@@ -37,7 +39,7 @@ export const useFeedbackRating = () => {
         
         if (currentTry < maxTries) {
           const waitTime = currentTry * 1000;
-          await new Promise(resolve => setTimeout(resolve, waitTime));
+          await wait(waitTime);
         }
       }
     }
