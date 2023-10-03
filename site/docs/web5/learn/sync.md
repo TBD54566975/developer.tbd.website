@@ -28,7 +28,7 @@ In Web5.js, the same features that built billion dollar businesses are included,
 
 ## Agents and Sync
 
-Sync is orchestrated by an _agent_, which is responsible for acting on a user’s behalf to invoke the sync interface between nodes since the nodes themselves don’t actually implement this interface. In the same way that your browser has a user agent, so does your Web5 environmnent, which enables its agent to orchestrate privileged activities of user management on your behalf.
+Sync is orchestrated by an _agent_, which is responsible for acting on a user’s behalf to invoke the sync interface between nodes since the nodes themselves don’t actually implement this interface. In the same way that your browser has a user agent, so does your Web5 environment, which enables its agent to orchestrate privileged activities of user management on your behalf.
 
 So why do we have agents to facilitate sync? The primary reason is because Web5 is built from a number of core components and libraries that all need to be knitted together. Libraries for DWN, DID, VC, networking, and more are all required to perform fundamental operations like sync, which is why we delegate that responsibility to an agent rather than asking app developers to perform these tasks. 
 
