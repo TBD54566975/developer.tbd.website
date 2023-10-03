@@ -20,17 +20,29 @@ export const useFeedbackRating = () => {
     }
   }, []);
 
-  const submitUserRating = async (rating) => {
+  const submitUserRating = async (rating, maxTries = 3) => {
     if (!csrfToken) {
       throw new Error("Can't send feedback without CSRF token");
     }
-
-    // TODO: we need to handle cases where the rating request fails
-    setUserFeedback(rating);
-
-    await postFeedbackRating(feedbackWidgetUrl, csrfToken, rating);
+  
+    for (let currentTry = 1; currentTry <= maxTries; currentTry++) {
+      try {
+        setUserFeedback('submitting');
+        await postFeedbackRating(feedbackWidgetUrl, csrfToken, rating);
+        setUserFeedback(rating);
+        break; 
+      } catch (error) {
+        console.error(`Attempt ${currentTry} failed:`, error);
+        setUserFeedback('failed');
+        
+        if (currentTry < maxTries) {
+          const waitTime = currentTry * 1000;
+          await new Promise(resolve => setTimeout(resolve, waitTime));
+        }
+      }
+    }
   };
-
+  
   return {
     isFeedbackRatingEnabled,
     userFeedback,
