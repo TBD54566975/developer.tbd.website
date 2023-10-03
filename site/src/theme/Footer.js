@@ -43,6 +43,12 @@ export function Footer() {
         title: 'Go to Twitter',
       },
       {
+        src: '/img/shopping-cart.svg',
+        url: 'https://tbd.shop/',
+        altText: 'TBD Shop',
+        title: 'Go to TBD Shop',
+      },
+      {
         src: '/img/youtube-icon.svg',
         url: 'https://www.youtube.com/channel/UCRAYhEkp3fEuYQAzteNqHsA/featured',
         altText: 'YouTube button',
