@@ -37,7 +37,7 @@ export function Footer() {
         title: 'Go to Discord',
       },
       {
-        src: '/img/twitter-x-icon.svg',
+        src: '/img/twitter-icon.svg',
         url: 'https://twitter.com/TBDevs',
         altText: 'Twitter button',
         title: 'Go to Twitter',
