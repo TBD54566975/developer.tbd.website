@@ -241,7 +241,7 @@
   .menu__list
   .menu__link.menu__link--active::before {
   content: url('/static/img/selected-arrow-yellow.svg');
-  top: -3px;
+  top: 5px;
   position: relative;
   margin-right: -1.5rem;
   left: -1.75rem;
