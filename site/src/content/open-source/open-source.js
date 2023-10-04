@@ -33,7 +33,7 @@ export const content = {
       type: 'button',
       data: {
         label: 'Contributing Guide',
-        url: '/open-source/contributing',
+        url: 'https://developer.tbd.website/open-source/contributing',
         isExternalLink: false
       },
     },
@@ -41,7 +41,7 @@ export const content = {
       type: 'button',
       data: {
         label: 'Project Governance',
-        url: '/open-source/governance',
+        url: 'https://developer.tbd.website/open-source/governance',
         isExternalLink: false
       },
     },
@@ -49,7 +49,7 @@ export const content = {
       type: 'button',
       data: {
         label: 'Code of Conduct',
-        url: '/open-source/code-of-conduct',
+        url: 'https://developer.tbd.website/open-source/code-of-conduct',
         isExternalLink: false
       },
     },
@@ -57,7 +57,7 @@ export const content = {
       type: 'button',
       data: {
         label: 'Incubation Program',
-        url: '/open-source/incubation',
+        url: 'https://developer.tbd.website/open-source/incubation',
         isExternalLink: false
       },
     },
