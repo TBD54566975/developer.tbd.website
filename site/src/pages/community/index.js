@@ -202,7 +202,7 @@ function CommunityIndex() {
         <div className="grid grid-cols-1 desktop:grid-cols-2 gap-4 pt-7 pb-20">
           <HeroCard
             heroText="Contributor Guide"
-            buttonUrl="../open-source/contributing"
+            buttonUrl="https://developer.tbd.website/open-source/contributing"
             buttonText="Learn More"
             bodyText="Looking for ways to contribute to the community?"
             themeColor="purple"
@@ -210,7 +210,7 @@ function CommunityIndex() {
           />
           <HeroCard
             heroText="Incubation Projects"
-            buttonUrl="../open-source/incubation"
+            buttonUrl="https://developer.tbd.website/open-source/incubation"
             buttonText="Discover More"
             bodyText="TBD Incubation projects are managed by community contributors."
             themeColor="cyan"
