@@ -17,7 +17,7 @@ export const content = {
       description:
         'Builds a decentralized web that returns control over your data and identity',
       textButton: 'View Project',
-      url: '/projects/web5',
+      url: 'https://developer.tbd.website/projects/web5',
     },
     {
       icon: '/img/article-icon.svg',
@@ -25,7 +25,7 @@ export const content = {
       description:
         'Connects the world of legacy money to the world of digital money',
       textButton: 'View Project',
-      url: '/projects/tbdex',
+      url: 'https://developer.tbd.website/projects/tbdex',
     },
     {
       icon: '/img/article-icon.svg',
@@ -33,7 +33,7 @@ export const content = {
       description:
         'Identity created, owned, and controlled by individuals, without reliance on centralized entities',
       textButton: 'View Project',
-      url: '/projects/ssi',
+      url: 'https://developer.tbd.website/projects/ssi',
     },    
   ],
   
