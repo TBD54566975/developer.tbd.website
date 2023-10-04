@@ -22,6 +22,22 @@ root {
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
 }
 
+::-webkit-scrollbar {
+  width: .7vw;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-black);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-yellow);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #ffec199e;
+}
+
 h1,
 h2,
 h3,
