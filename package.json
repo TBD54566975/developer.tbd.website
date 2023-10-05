@@ -19,7 +19,7 @@
     "font-awesome": "^4.7.0",
     "react-fontawesome": "^1.7.1",
     "react-markdown": "^8.0.7",
-    "node-fetch": "^3.3.2",
+    "node-fetch": "^3.3.0",
     "react-slick": "^0.29.0",
     "slick-carousel": "^1.8.1"
   },
