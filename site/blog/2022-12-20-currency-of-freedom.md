@@ -40,12 +40,12 @@ Many people, especially those who do not live under authoritarian rule, struggle
 
 Mike Brock, Head of TBD, sat down with Human Rights Foundation Chairman, Garry Kasparov, to discuss bitcoin as a tool to help protect and expand democracy and freedom around the world.
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/l2rC7lbyom4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/l2rC7lbyom4" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 
 Angie Jones, TBD's Head of Developer Relations, spoke with human rights activist Meron Estefanos, who shared her story of using bitcoin to send money to Eritrean refugees in East Africa.
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/eDNr_Pi6sLo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/eDNr_Pi6sLo" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 Unfortunately, powerful stories such as these are not widely shared. TBD is committed to making the decentralized financial world accessible to everyone!
 
