@@ -2,6 +2,12 @@
 title: '@tbdex/protocol'
 ---
 
+Library that can be used to create, parse, verify, and validate
+the tbDEX Messages and Resources defined in the
+[protocol specification](https://github.com/TBD54566975/tbdex-protocol/blob/main/README.md).
+
+[Link to GitHub Repo](https://github.com/TBD54566975/tbdex-js/tree/main/packages/protocol)
+
 ## Classes
 
 - [Close](classes/Close.md)
