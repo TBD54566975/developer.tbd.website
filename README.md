@@ -60,6 +60,8 @@ Interested in contributing instantly? You can make your updates directly without
 
 [![Edit in CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/github/TBD54566975/developer.tbd.website/main)
 
+[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/TBD54566975/developer.tbd.website)
+
 ## Installation
 
 To install `pnpm` globally on your local machine, follow these steps:
