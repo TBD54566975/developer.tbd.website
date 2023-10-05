@@ -20,24 +20,35 @@ export const useFeedbackRating = () => {
     }
   }, []);
 
+  const refreshCsrfToken = async (feedbackWidgetUrl) => {
+    const freshToken = await getFeedbackCsrfToken(feedbackWidgetUrl);
+    setCsrfToken(freshToken);
+    return freshToken;
+  };
+
   const wait = (duration) => new Promise(resolve => setTimeout(resolve, duration));
 
   const submitUserRating = async (rating, maxTries = 3) => {
-    if (!csrfToken) {
-      throw new Error("Can't send feedback without CSRF token");
-    }
+    let currentToken = csrfToken;
   
     for (let currentTry = 1; currentTry <= maxTries; currentTry++) {
       try {
         setUserFeedback('submitting');
-        await postFeedbackRating(feedbackWidgetUrl, csrfToken, rating);
+        await postFeedbackRating(feedbackWidgetUrl, currentToken, rating);
         setUserFeedback(rating);
-        break; 
+        break;
       } catch (error) {
         console.error(`Attempt ${currentTry} failed:`, error);
         setUserFeedback('failed');
         
         if (currentTry < maxTries) {
+          try {
+            currentToken = await refreshCsrfToken(feedbackWidgetUrl);
+          } catch (tokenError) {
+            console.error('Failed to refresh CSRF token:', tokenError);
+            continue; 
+          }
+  
           const waitTime = currentTry * 1000;
           await wait(waitTime);
         }
