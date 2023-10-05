@@ -56,7 +56,7 @@ While this is certainly alarming, it’s not illegal. Most people don’t read t
 
 ## The Problem & The Solution
 
-The way the web stands today, each time we engage with online platforms that require accounts, we borrow an identity from them and then proceed to build a reputation and possibly brand associated with this borrowed identity. The recent turmoil experienced by Twitter has thrust the very nature of the web into the spotlight for those who previously might not have contemplated its issues. This is precisely why Decentralized Identifiers ([DIDs](https://developer.tbd.website/docs/web5/learn/decentralized-identifiers#what-is-it)) bear immense significance.
+The way the web stands today, each time we engage with online platforms that require accounts, we borrow an identity from them and then proceed to build a reputation and possibly a brand associated with this borrowed identity. The recent turmoil experienced by Twitter has thrust the very nature of the web into the spotlight for those who previously might not have contemplated its issues. This is precisely why Decentralized Identifiers ([DIDs](https://developer.tbd.website/docs/web5/learn/decentralized-identifiers#what-is-it)) bear immense significance.
 
 At the core of Web5's paradigm lie DIDs, which serve as identities that users own and control. DIDs provide individuals with distinctive, universally resolvable identifiers that persist through time and consistently remain under their control. Unlike conventional usernames, DIDs can't be confiscated by platforms, thus empowering users to truly possess their digital identities. This transformative shift adds an identity layer to the web eradicating platform-mediated handles.
 
