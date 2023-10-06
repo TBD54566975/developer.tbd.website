@@ -1,5 +1,7 @@
 const { Pool: DbPool } = require('pg');
 
+const { logger } = require('./logger');
+
 const dbConfig = {
   address: process.env.DB_CONNECTION,
   user: process.env.DB_USER,
@@ -55,18 +57,18 @@ class FakeDb {
 
   async storeVote(url, vote) {
     this.votes.push({ url, vote });
-    console.info('>>> (Mocked) Inserted vote:', { url, vote });
-    console.info('>>> Total votes:', this.votes.length);
+    logger.info('>>> (Mocked) Inserted vote: %o', { url, vote });
+    logger.info('>>> Total votes: %d', this.votes.length);
   }
 }
 
 let db;
 
 if (dbConfig.address) {
-  console.info('>>> Using Postgres DB', { ...dbConfig, password: '***' });
+  logger.info('>>> Using Postgres DB %o', { ...dbConfig, password: '***' });
   db = new PostgresDb(dbConfig);
 } else {
-  console.info('>>> Using FakeDB');
+  logger.info('>>> Using FakeDB');
   db = new FakeDb();
 }
 

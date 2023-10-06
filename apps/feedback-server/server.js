@@ -6,6 +6,7 @@ const { doubleCsrf } = require('csrf-csrf');
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
 
+const { logger, httpLogger } = require('./logger');
 const { db } = require('./db');
 
 const config = {
@@ -15,24 +16,18 @@ const config = {
   serverAllowedOrigins: (process.env.SERVER_ALLOWED_ORIGINS || '').split(','),
 };
 
-console.info('Server secret:', {
+logger.info('Server config: %o', {
   ...config,
   serverSecret: '***',
 });
 
 // Init express app
 const app = express();
+app.use(httpLogger);
 
 // Init CORS with options
 const corsOptions = {
-  origin: function (origin, callback) {
-    const allowedOrigins = config.serverAllowedOrigins;
-    if (allowedOrigins.includes(origin)) {
-      callback(null, true);
-    } else {
-      callback(new Error('Oops! Not allowed by CORS'));
-    }
-  },
+  origin: config.serverAllowedOrigins,
   methods: 'GET,POST',
   credentials: true,
   optionsSuccessStatus: 204,
@@ -53,7 +48,8 @@ const doubleCsrfOptions = {
   },
   getTokenFromRequest: (req) => req.headers['x-csrf-token'],
 };
-const { generateToken, doubleCsrfProtection } = doubleCsrf(doubleCsrfOptions);
+const { generateToken, doubleCsrfProtection, invalidCsrfTokenError } =
+  doubleCsrf(doubleCsrfOptions);
 
 app.get('/api/csrf-token', (req, res) => {
   const csrfToken = generateToken(req, res);
@@ -63,7 +59,7 @@ app.get('/api/csrf-token', (req, res) => {
 app.use(doubleCsrfProtection);
 
 app.post('/api/feedback', async (req, res) => {
-  console.log('Received request:', req.body);
+  req.log.info('Received request: %o', req.body);
   const { rating, pageLink } = req.body;
 
   if (!rating || !pageLink) {
@@ -78,10 +74,10 @@ app.post('/api/feedback', async (req, res) => {
     // helpful = Y, notHelpful = N
     const voteValue = rating === 'helpful' ? 'Y' : 'N';
     await db.storeVote(pageLink, voteValue);
-    console.log('Sending response...');
+    req.log.info('Vote accepted!');
     res.json({ success: true });
   } catch (error) {
-    console.error('Error occurred:', error);
+    req.log.error('Error occurred: %s\nStack=%s', error, error.stack);
     res.status(500).json({
       success: false,
       message: 'An error occurred while processing the feedback',
@@ -89,8 +85,20 @@ app.post('/api/feedback', async (req, res) => {
   }
 });
 
+app.use((error, req, res, next) => {
+  if (error == invalidCsrfTokenError) {
+    req.log.error('Invalid CSRF Token Error');
+    res.status(403).json({
+      error: 'csrf validation error',
+    });
+  } else {
+    req.log.error('SERVER ERROR\nStack=%s', error.stack);
+    res.status(500).json({ success: false, message: 'Server error' });
+  }
+});
+
 db.initDb().then(() => {
   app.listen(config.port, () => {
-    console.log(`Server running at http://localhost:${config.port}`);
+    logger.info(`Server running at http://localhost:${config.port}`);
   });
 });
