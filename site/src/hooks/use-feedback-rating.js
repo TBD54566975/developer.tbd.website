@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { wait } from '../util/feedback-retry-wait';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 
 export const useFeedbackRating = () => {
@@ -25,8 +26,6 @@ export const useFeedbackRating = () => {
     setCsrfToken(freshToken);
     return freshToken;
   };
-
-  const wait = (duration) => new Promise(resolve => setTimeout(resolve, duration));
 
   const submitUserRating = async (rating, maxTries = 3) => {
     let currentToken = csrfToken;
