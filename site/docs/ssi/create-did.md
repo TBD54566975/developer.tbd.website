@@ -6,7 +6,7 @@ hide_title: true
 
 # Create a Decentralized Identifier (DID)
 
-In the world of SSI, [DIDs](/docs/web5/learn/decentralized-identifiers) are used to identify any subject (e.g., a person, organization, thing, data model, abstract entity, etc.). In this tutorial we'll show you how to create a DID using the [SSI Service](https://github.com/TBD54566975/ssi-service). 
+In the world of SSI, [DIDs](/docs/web5/learn/decentralized-identifiers) are used to identify any subject (e.g., a person, organization, thing, data model, abstract entity, etc.). In this tutorial we'll show you how to create a DID using the [SSI Service](https://github.com/TBD54566975/ssi-service).
 
 :::info
 ## Prerequisites
