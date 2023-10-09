@@ -15,11 +15,13 @@ services:
       DB_PORT: 5432
       DB_DATABASE: feedback_widget
       SERVER_SECRET: superSecureSecret
+      SERVER_ALLOWED_ORIGINS: http://localhost:3000
+      NODE_ENV: production
     depends_on:
       - postgresdb
 
   postgresdb:
-    image: postgres:latest
+    image: postgres:16-alpine
     environment:
       POSTGRES_USER: feedback_user
       POSTGRES_PASSWORD: feedback_pass

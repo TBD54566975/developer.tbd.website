@@ -1,9 +1,10 @@
-import { defineConfig } from 'vitest/config'
+import { defineConfig, configDefaults } from "vitest/config";
 
 export default defineConfig({
   test: {
     testTimeout: 40000,
     hookTimeout: 40000,
+    exclude: [...configDefaults.exclude, "apps/**"],
     //TODO: Investigate coverage options later for output files
     // coverage: {
     //   provider: 'istanbul',
@@ -11,9 +12,9 @@ export default defineConfig({
     //   reporter: 'html'
     // },
     browser: {
-      name: 'chrome',
+      name: "chrome",
       enabled: true,
-      headless: true
-    }
-  }
-})
+      headless: true,
+    },
+  },
+});
