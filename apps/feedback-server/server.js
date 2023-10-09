@@ -1,20 +1,12 @@
-require('dotenv').config();
+import express from 'express';
 
-const express = require('express');
+import { doubleCsrf } from 'csrf-csrf';
+import cors from 'cors';
+import cookieParser from 'cookie-parser';
 
-const { doubleCsrf } = require('csrf-csrf');
-const cors = require('cors');
-const cookieParser = require('cookie-parser');
-
-const { logger, httpLogger } = require('./logger');
-const { db } = require('./db');
-
-const config = {
-  devMode: !process.env.NODE_ENV || process.env.NODE_ENV === 'development',
-  port: process.env.PORT || 3001,
-  serverSecret: process.env.SERVER_SECRET,
-  serverAllowedOrigins: (process.env.SERVER_ALLOWED_ORIGINS || '').split(','),
-};
+import { logger, httpLogger } from './logger.js';
+import { db } from './db.js';
+import { config } from './config.js';
 
 logger.info('Server config: %o', {
   ...config,
@@ -22,7 +14,7 @@ logger.info('Server config: %o', {
 });
 
 // Init express app
-const app = express();
+export const app = express();
 app.use(httpLogger);
 
 // Init CORS with options
@@ -40,7 +32,7 @@ app.use(express.json());
 // Setup CSRF Config
 const doubleCsrfOptions = {
   getSecret: () => config.serverSecret,
-  cookieName: `${config.devMode ? 'dev' : '__Host'}-psifi.x-csrf-token`,
+  cookieName: `${config.devMode ? 'dev' : '__Host'}-tbd.x-csrf-token`,
   cookieOptions: {
     sameSite: 'none',
     path: '/',
@@ -84,6 +76,12 @@ app.post('/api/feedback', async (req, res) => {
     });
   }
 });
+
+if (config.testMode) {
+  app.get('/fake-error', (req, res) => {
+    throw new Error('fake error!');
+  });
+}
 
 app.use((error, req, res, next) => {
   if (error == invalidCsrfTokenError) {

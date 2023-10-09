@@ -1,17 +1,22 @@
-const { Pool: DbPool } = require('pg');
+import pg from 'pg';
+const DbPool = pg.Pool;
 
-const { logger } = require('./logger');
-
-const dbConfig = {
-  address: process.env.DB_CONNECTION,
-  user: process.env.DB_USER,
-  password: process.env.DB_PASSWORD,
-  port: process.env.DB_PORT,
-  database: process.env.DB_DATABASE,
-};
+import { logger } from './logger.js';
+import { dbConfig } from './config.js';
 
 /** PostgresDb */
 class PostgresDb {
+  INIT_QUERY = `
+    CREATE TABLE IF NOT EXISTS feedback_votes (
+      id SERIAL PRIMARY KEY,
+      url VARCHAR(255) NOT NULL,
+      vote CHAR NOT NULL,
+      created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+    );
+  `;
+
+  VOTE_QUERY = 'INSERT INTO feedback_votes (url, vote) VALUES ($1, $2);';
+
   constructor(dbConfig) {
     this.dbPool = new DbPool({
       host: dbConfig.address,
@@ -26,22 +31,12 @@ class PostgresDb {
   }
 
   async initDb() {
-    await this.dbPool.query(`
-        CREATE TABLE IF NOT EXISTS feedback_votes (
-          id SERIAL PRIMARY KEY,
-          url VARCHAR(255) NOT NULL,
-          vote CHAR NOT NULL,
-          created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
-        );
-      `);
+    await this.dbPool.query(this.INIT_QUERY);
   }
 
   async storeVote(url, vote) {
     // insert vote into feedback_votes table
-    await this.dbPool.query(
-      'INSERT INTO feedback_votes (url, vote) VALUES ($1, $2);',
-      [url, vote],
-    );
+    await this.dbPool.query(this.VOTE_QUERY, [url, vote]);
   }
 }
 
@@ -72,4 +67,4 @@ if (dbConfig.address) {
   db = new FakeDb();
 }
 
-module.exports = { db };
+export { db, PostgresDb, FakeDb };

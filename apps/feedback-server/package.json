@@ -3,10 +3,12 @@
   "version": "0.1.0",
   "description": "",
   "main": "server.js",
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "coverage": "vitest run --coverage",
     "dev": "node_modules/nodemon/bin/nodemon.js --watch . server.js",
-    "start": "node server.js"
+    "start": "node server.js",
+    "test": "vitest"
   },
   "dependencies": {
     "cookie-parser": "^1.4.6",
@@ -19,7 +21,10 @@
     "pino-http": "^8.5.0"
   },
   "devDependencies": {
+    "@vitest/coverage-v8": "^0.34.6",
     "nodemon": "^3.0.1",
-    "pino-pretty": "^10.2.3"
+    "pino-pretty": "^10.2.3",
+    "supertest": "^6.3.3",
+    "vitest": "^0.34.6"
   }
 }

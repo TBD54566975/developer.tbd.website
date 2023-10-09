@@ -1,14 +1,27 @@
-const pino = require('pino');
-const pinoHttp = require('pino-http');
+import pino from 'pino';
+import pinoHttp from 'pino-http';
 
-let pinoPrettyConfig;
-try {
-  pinoPrettyConfig = require('pino-pretty')({ colorize: true });
-} catch (e) {
-  // this is fine, production environment won't have nor need pino-pretty
+import { config } from './config.js';
+
+let pinoConfig;
+if (config.devMode || config.testMode) {
+  // pino-pretty makes the logs look nice in development mode
+  pinoConfig = {
+    transport: {
+      target: 'pino-pretty',
+      options: {
+        colorize: true,
+      },
+    },
+  };
 }
 
-const logger = pino(pinoPrettyConfig);
+// set test level to warning
+if (config.testMode) {
+  pinoConfig.level = 'warn';
+}
+
+const logger = pino(pinoConfig);
 const httpLogger = pinoHttp({ logger });
 
-module.exports = { logger, httpLogger };
+export { logger, httpLogger };
