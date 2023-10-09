@@ -131,6 +131,8 @@ And modify the parameters accordingly to the feature you want to play with! Chec
 - `FEEDBACK_WIDGET_API_URL`: enables feedback widget api url; [Feedback server app instructions](./apps/feedback-server/README.md)
 - `DOC_SEARCH_*`: enables the search bar powered by Algolia; [Algolia connecting instructions](https://docusaurus.io/docs/search#connecting-algolia)
 
+Remember, when these environment variables are not set these features are disabled by default.
+
 ### Note
 
 This repo made a switch from using `npm` to `pnpm` as the package manager in July 2023. If you have used prior versions of this repo built on your machine with `npm`, you may encounter build failures, like:

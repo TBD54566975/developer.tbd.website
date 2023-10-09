@@ -70,6 +70,25 @@ docker compose up -d
 After voting on a couple of pages, use your favorite DB Client (tip: SQLTools on VSCode) to
 query for the voting data.
 
+Your connection settings will be exactly what you set for your database. Say you are using 
+our docker compose above, this will be your connection settings:
+
+- Address: localhost
+- Port: 5432
+- User: feedback_user
+- Password: feedback_pass
+- Database: feedback_widget
+
+This should work in any Postgres client, including psql! We are using two extensions in VSCode:
+
+- [SQLTools](https://marketplace.visualstudio.com/items?itemName=mtxr.sqltools)
+- [SQLTools PostgreSQL/Cockroach Driver](https://marketplace.visualstudio.com/items?itemName=mtxr.sqltools-driver-pg)
+
+After installing both extensions and reloading your editor, just click on the SQLTools Icon on 
+the left menu > Add New Connection > Postgres > fill the information above > then press Test 
+Connection and everything should work. Just run the following queries after submitting a few 
+votes through the local website.
+
 ```sql
 -- select the most recent 100 votes
 SELECT *
