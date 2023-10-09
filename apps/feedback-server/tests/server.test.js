@@ -148,7 +148,6 @@ describe('Server endpoints', () => {
   describe('General error handling', () => {
     it('fallbacks to a generic 500 for unhandled errors', async () => {
       const res = await request(app).get('/fake-error');
-      console.info(res);
 
       expect(res.status).toBe(500);
       expect(res.body).toStrictEqual({
