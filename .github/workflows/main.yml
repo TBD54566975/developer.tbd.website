@@ -34,6 +34,9 @@ jobs:
       - name: Run tests
         run: pnpm test
 
+      - name: Run apps tests
+        run: pnpm --filter feedback-server test run
+
   deploy:
     needs: test
     runs-on: ubuntu-latest
