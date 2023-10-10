@@ -65,7 +65,6 @@ const Button = ({
   ) : (
     <a
       className="dark w-[fit-content] no-underline text-[18px] font-medium"
-      rel="noopener noreferrer"
       target="_self"
       href={url}
       title={title}
