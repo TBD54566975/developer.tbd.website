@@ -35,4 +35,4 @@
   "readTextRecord": "const readResult = await record.data.text();",
   "updateTextRecord": "const updateResult = await record.update({\n    data: 'Hello, Web5! I am updated.',\n  });",
   "deleteTextRecord": "const deleteResult = await record.delete();"
- }
+
