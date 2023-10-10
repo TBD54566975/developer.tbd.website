@@ -141,4 +141,4 @@ You can also decode the JWT VC value within the `verifiableCredential` property 
 ```
 
 ### Transmission of Verifiable Presentations
-Simliar to [credential issuance](/docs/ssi/credential-issuance-service), transmission of Verifiable Presentations can be accomplished with a number of different mechanisms including [Web5](/docs/web5/learn/decentralized-web-nodes) and [OpenID Connect](https://openid.net/sg/openid4vc/). 
+Similar to [credential issuance](/docs/ssi/credential-issuance-service), transmission of Verifiable Presentations can be accomplished with a number of different mechanisms including [Web5](/docs/web5/learn/decentralized-web-nodes) and [OpenID Connect](https://openid.net/sg/openid4vc/). 
