@@ -63,13 +63,14 @@ const Button = ({
       {linkContent}
     </a>
   ) : (
-    <Link
-      href={url}
+    <a
       className="dark w-[fit-content] no-underline text-[18px] font-medium"
+      target="_self"
+      href={url}
       title={title}
     >
       {linkContent}
-    </Link>
+    </a>
   );
 
   return link;
