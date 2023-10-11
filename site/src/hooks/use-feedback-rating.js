@@ -83,7 +83,7 @@ const postFeedbackRating = async (feedbackWidgetUrl, csrfToken, rating) => {
     pageLink: window.location.href,
   };
 
-  fetch(`${feedbackWidgetUrl}/feedback`, {
+  const res = await fetch(`${feedbackWidgetUrl}/feedback`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -92,4 +92,7 @@ const postFeedbackRating = async (feedbackWidgetUrl, csrfToken, rating) => {
     credentials: 'include',
     body: JSON.stringify(requestBody),
   });
-};
+
+  if (!res.ok) {
+    throw new Error('Failed to submit feedback rating');
+  }
