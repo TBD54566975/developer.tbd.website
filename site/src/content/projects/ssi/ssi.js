@@ -26,16 +26,16 @@ export const content = {
         icon: '/img/component-icon.svg',
         title: 'Verifiable Credentials',
         description:
-          'Verifiable Credentials are a W3C standard: Credentials are a part of our daily lives; This specification provides a mechanism to express these sorts of credentials on the Web in a way that is cryptographically secure, privacy respecting, and machine-verifiable.',
+          'Verifiable Credentials are a W3C standard: Credentials are a part of our daily lives; This specification provides a mechanism to express these sorts of credentials on the Web in a way that is cryptographically secure, privacy respecting, and machine-verifiable',
         textButton: 'View Component',
         url: 'https://w3c.github.io/did-core/',
         isExternalLink: true,
-      },      
+      },
       {
         icon: '/img/component-icon.svg',
         title: 'Self-Sovereign Identity Service',
         description:
-          'An in-a-box service that handles the full Verifiable Credentials lifecycle, including issuance, verification, revocation, and more.',
+          'An in-a-box service that handles the full Verifiable Credentials lifecycle, including issuance, verification, revocation, and more',
         textButton: 'View Component',
         url: 'https://github.com/TBD54566975/ssi-service#readme',
         isExternalLink: true,
@@ -51,7 +51,8 @@ export const content = {
       {
         icon: '/img/component-icon.svg',
         title: 'Self-Sovereign Identity Console',
-        description: 'A user-friendly GUI Console for managing Verifiable Credentials lifecycle, from issuance to revocation.',
+        description:
+          'A user-friendly GUI Console for managing Verifiable Credentials lifecycle, from issuance to revocation',
         textButton: 'View Component',
         url: 'https://github.com/TBD54566975/ssi-admin-ui/blob/main/README.md',
         isExternalLink: true,
@@ -63,16 +64,17 @@ export const content = {
       {
         title: 'Wallets',
         description:
-          'wallets act as agents for individuals or institutions by facilitating identity and data interactions.',
+          'wallets act as agents for individuals or institutions by facilitating identity and data interactions',
       },
       {
         title: 'Credential Issuers',
-        description: 'Trusted organizations or individuals who issue credentails.',
+        description:
+          'Trusted organizations or individuals who issue credentails',
       },
       {
         title: 'Credential Verifiers',
         description:
-          'Applications or individuals who verify credentials issued by credential issuers that they trust.',
+          'Applications or individuals who verify credentials issued by credential issuers that they trust',
       },
     ],
     imgDesktop: '/img/actors-web5-desktop.svg',
@@ -98,5 +100,3 @@ export const content = {
     ],
   },
 };
-
-

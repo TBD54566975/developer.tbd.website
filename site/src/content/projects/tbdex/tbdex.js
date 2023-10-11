@@ -35,7 +35,7 @@ export const content = {
         icon: '/img/component-icon.svg',
         title: 'Self-Sovereign Identity Service',
         description:
-          'An in-a-box service that handles the full Verifiable Credentials lifecycle, including issuance, verification, revocation, and more.',
+          'An in-a-box service that handles the full Verifiable Credentials lifecycle, including issuance, verification, revocation, and more',
         textButton: 'View Component',
         url: 'https://github.com/TBD54566975/ssi-service#readme',
         isExternalLink: true,
