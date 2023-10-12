@@ -104,7 +104,7 @@ importers:
         specifier: ^1.0.6
         version: 1.0.6(vue@3.3.4)
       '@web5/api':
-        specifier: ^0.8.1
+        specifier: 0.8.1
         version: 0.8.1
     devDependencies:
       '@nuxt/devtools':
@@ -20559,7 +20559,7 @@ packages:
     dependencies:
       cac: 6.7.14
       debug: 4.3.4(supports-color@5.5.0)
-      mlly: 1.4.2
+      mlly: 1.4.0
       pathe: 1.1.1
       picocolors: 1.0.0
       vite: 4.3.7(@types/node@18.18.0)(sass@1.68.0)
