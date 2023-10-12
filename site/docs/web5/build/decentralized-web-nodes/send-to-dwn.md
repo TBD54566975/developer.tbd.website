@@ -10,9 +10,10 @@ import CodeSnippet from '@site/src/components/CodeSnippet';
 
 With Web5, records can be:
 * [written to a user's local DWN](#write-to-local-dwn)
-* [written to a recipient's local DWN](#write-to-recipients-local-dwn)
+<!--//blocked by https://github.com/TBD54566975/dwn-sdk-js/issues/550 -->
+<!--* [written to a recipient's local DWN](#write-to-recipients-local-dwn)-->
 * [sent to a user's remote DWNs](#send-to-users-remote-dwns)
-* [sent to another user's remote DWNs](#send-to-recipients-remote-dwns)
+* [sent to another user's DWNs](#send-to-recipients-dwns)
 
 This guide shows how to use Web5 to handle each scenario.
 
@@ -27,11 +28,12 @@ The same is true for the [protocols.configure()](/api/web5-js/dwn/protocols#conf
 <CodeSnippet functionName="createLocalProtocol" />
 
 
-## Write to Recipient's Local DWN
+<!--//blocked by https://github.com/TBD54566975/dwn-sdk-js/issues/550-->
+<!--## Write to Recipient's Local DWN-->
 
-Assuming permission has been established, you can send records to a recipient on behalf of a user. The records are sent to the recipient's local DWN if the `recipient` property is specified when creating the record. Calling `records.create()` accomplishes this, and you do _not_ need to call `send()`.
+<!--Assuming permission has been established, one party can send records to another. The records are sent to the recipient's local DWN if the `target` property is specified when creating the record. Calling `records.create()` accomplishes this, and you do _not_ need to call `send()`.-->
 
-<CodeSnippet functionName="sendLocalRecordToRecipient" />
+<!--<CodeSnippet functionName="sendLocalRecordToTarget" /> -->
 
 
 ## Send to User's Remote DWNs
@@ -45,10 +47,9 @@ However, sync happens on a predefined [interval](/docs/web5/learn/sync#sync-inte
 <CodeSnippet functionName="sendProtocolToRemoteDWNs" />
 
 
-## Send to Recipient's Remote DWNs
+## Send to Recipient's DWNs
 
-After writing a record to a recipient's local DWN on behalf of the user, it will also be sent to the recipient's remote DWNs when [sync](/docs/web5/learn/sync) occurs.
+Assuming permission has been established, one party can send records to another. To do so, the user can create the record and then call `send()` to send it to another party.
 
-However, if you want to immediately send the record to the recipient's remote DWNs, you can use `send()` to do so.
 
-<CodeSnippet functionName="sendRecordToRemoteDWNsOfRecipient" />
+<CodeSnippet functionName="sendRecordToDWNOfRecipient" />

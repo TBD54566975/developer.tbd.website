@@ -2,10 +2,10 @@ import { test, beforeAll, expect } from 'vitest';
 import {
   createLocalRecord,
   createLocalProtocol,
-  sendLocalRecordToRecipient,
+  sendLocalRecordToTarget,
   sendRecordToRemoteDWNs,
   sendProtocolToRemoteDWNs,
-  sendRecordToRemoteDWNsOfRecipient
+  sendRecordToDWNOfRecipient
 } from '../../../../code-snippets/web5/build/decentralized-web-nodes/send';
 import { Web5 } from '@web5/api/browser';
 
@@ -47,8 +47,9 @@ test('createLocalProtocol installs a protocol', async () => {
   expect(response.status.code).toBe(202);
 });
 
-test('sendLocalRecordToRecipient creates record', async () => {
-  const record = await sendLocalRecordToRecipient(web5, did);
+//blocked by https://github.com/TBD54566975/dwn-sdk-js/issues/550
+test.todo('sendLocalRecordToTarget creates record', async () => {
+  const record = await sendLocalRecordToTarget(web5, did);
   expect(record).toBeDefined();
 });
 
@@ -80,7 +81,7 @@ test('sendProtocolToRemoteDWNs sends a protocol', async () => {
   expect(status.code).toBe(202);
 });
 
-test('sendRecordToRemoteDWNsOfRecipient can be configured', async () => {
-  const status = await sendRecordToRemoteDWNsOfRecipient(web5, did);
+test('sendRecordToDWNOfRecipient can be configured', async () => {
+  const status = await sendRecordToDWNOfRecipient(web5, did);
   expect(status.code).toBe(202);
 });

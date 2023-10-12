@@ -19,11 +19,12 @@ const response = await web5.dwn.protocols.configure({
 return response;
 }
 
-export async function sendLocalRecordToRecipient(web5, recipientDid) {
+//blocked by https://github.com/TBD54566975/dwn-sdk-js/issues/550
+export async function sendLocalRecordToTarget(web5, targetDid) {
 const { record } = await web5.dwn.records.create({
-    data: "this record will be written to the recipient's local DWN",
+    data: "this record will be written to the target's local DWN",
     message: {
-        recipient: recipientDid,
+        target: targetDid,
         dataFormat: 'text/plain'
     }
 });
@@ -58,16 +59,16 @@ const {status} = await protocol.send(userDid);
 return status;
 }
 
-export async function sendRecordToRemoteDWNsOfRecipient(web5, recipientDid) {
+export async function sendRecordToDWNOfRecipient(web5, recipientDid) {
 const { record } = await web5.dwn.records.create({
-    data: "this record will be written to the recipient's local DWN",
+    data: "this record will be created but not saved to DWN",
+    store: false, //remove this line if you want to keep a copy of the record in the sender's DWN
     message: {
-        recipient: recipientDid,
         dataFormat: 'text/plain'
     },
 });
 
-//immediately send record to recipient's remote DWNs
+//send record to recipient's DWN
 const {status} = await record.send(recipientDid);
 
 return status;
