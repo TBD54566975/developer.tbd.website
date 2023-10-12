@@ -27,7 +27,7 @@ messages in a given Exchange
 
 ### validNext
 
-• `Readonly` **validNext**: `any`
+• `Readonly` **validNext**: `Set`<[`MessageKind`](../index.md#messagekind)\>
 
 ___
 

@@ -30,7 +30,7 @@ ___
 
 ### validNext
 
-• `Readonly` **validNext**: `any`
+• `Readonly` **validNext**: `Set`<[`MessageKind`](../index.md#messagekind)\>
 
 a set of valid Message kinds that can come after an rfq
 

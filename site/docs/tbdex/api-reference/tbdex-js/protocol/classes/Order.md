@@ -26,7 +26,7 @@ Message sent by Alice to the PFI to accept a Quote.
 
 ### validNext
 
-• `Readonly` **validNext**: `any`
+• `Readonly` **validNext**: `Set`<[`MessageKind`](../index.md#messagekind)\>
 
 ___
 

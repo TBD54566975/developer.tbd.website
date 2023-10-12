@@ -27,7 +27,7 @@ the quote expires
 
 ### validNext
 
-• `Readonly` **validNext**: `any`
+• `Readonly` **validNext**: `Set`<[`MessageKind`](../index.md#messagekind)\>
 
 ___
 

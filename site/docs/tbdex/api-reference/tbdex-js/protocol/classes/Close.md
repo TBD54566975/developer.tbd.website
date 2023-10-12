@@ -26,7 +26,7 @@ a Close can be sent by Alice or the PFI as a reply to an RFQ or a Quote
 
 ### validNext
 
-• `Readonly` **validNext**: `any`
+• `Readonly` **validNext**: `Set`<[`MessageKind`](../index.md#messagekind)\>
 
 a set of valid Message kinds that can come after a close
 
