@@ -1,6 +1,6 @@
 ---
+sidebar_position: 2
 title: Verifiable Credentials
-sidebar_position: 2b
 ---
 
 **5 minute read**
