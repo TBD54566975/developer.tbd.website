@@ -1,6 +1,6 @@
 # Shared Todo App - Starter
 
-This is the UI scaffolding of a simple Web5 app to Manage a set of todos towards your goals with friends.
+This is the UI scaffolding of a simple Web5 app to manage a set of todos towards your goals with friends.
 
 Currently set up with:
 - Nuxt 3
