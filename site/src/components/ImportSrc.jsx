@@ -10,13 +10,13 @@ function ImportSrc(site) {
   if (site.src === "unpkg") {
     return (
       <CodeBlock language="js">
-        {`import { Web5 } from 'https://unpkg.com/@web5/api@0.8.1/dist/browser.js';`}
+        {`import { Web5 } from 'https://unpkg.com/@web5/api@${customFields.WEB5_VERSION}/dist/browser.js';`}
       </CodeBlock>
     );
   } else {
     return (
       <CodeBlock language="js">
-        {`import { Web5 } from 'https://cdn.jsdelivr.net/npm/@web5/api@0.8.1/dist/browser.mjs'`}
+        {`import { Web5 } from 'https://cdn.jsdelivr.net/npm/@web5/api@${customFields.WEB5_VERSION}/dist/browser.mjs'`}
       </CodeBlock>
     );
   }
