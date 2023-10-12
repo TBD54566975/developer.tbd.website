@@ -5,7 +5,6 @@ This is the UI scaffolding of a simple Web5 app to manage a set of todos towards
 Currently set up with:
 - Nuxt 3
 - TailWind CSS (including Typography and forms)
-- Vitest
 - SASS
 
 To be added:
