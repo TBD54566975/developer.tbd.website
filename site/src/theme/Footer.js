@@ -54,6 +54,12 @@ export function Footer() {
         altText: 'LinkedIn button',
         title: 'Go to LinkedIn',
       },
+      {
+        src: '/img/shopping-cart.svg',
+        url: 'https://tbd.shop/',
+        altText: 'TBD Shop',
+        title: 'Go to TBD Shop',
+      }
       /*
 
       Removed these social links until we'd like to be responsive to these mediums:
@@ -132,7 +138,7 @@ export function Footer() {
               footer.links.map((link, index) => (
                 <li key={index} className="ml-12 flex items-center py-0.5">
                   <TextLink
-                    className="py-3 text-primary-black hover:text-primary-black"
+                    className="py-3 text-primary-black hover:text-primary-black hoverLink"
                     href={link.href}
                     text={link.text}
                   />

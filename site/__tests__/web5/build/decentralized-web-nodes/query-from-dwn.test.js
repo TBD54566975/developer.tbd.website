@@ -5,6 +5,8 @@ import {
   queryProtocolsForMusic,
   queryRecordsFromDID,
   queryRecordWithParentId,
+  playlistProtocolDefinition,
+  queryFromDwnByProtocolPath,
 } from '../../../../code-snippets/web5/build/decentralized-web-nodes/query-from-dwn';
 import { Web5 } from '@web5/api/browser';
 
@@ -37,13 +39,28 @@ test('queryRecordsWithFilterAscending returns an array of protocols', async () =
 
 test('queryRecordsFromDID returns an array of records', async () => {
   const response = await queryRecordsFromDID(web5, did);
-
   expect(Array.isArray(response)).toBe(true);
 });
 
-test.todo('queryRecordWithParentId returns a record', async () => {
+test('queryRecordWithParentId returns a record', async () => {
   const response = await queryRecordWithParentId(web5);
-
   expect.soft(response.status.code).toBe(200);
-  expect(response.record).toBeDefined();
+  expect(Array.isArray(response.records)).toBe(true);
+});
+
+test('playlistProtocolDefinition can be configured', async () => {
+  const protocolDefinition = await playlistProtocolDefinition(web5);
+  const response = await web5.dwn.protocols.configure({
+    message: {
+      definition: protocolDefinition
+    }
+  })
+
+  expect(response.status.code).toBe(202);
+});
+
+test('queryFromDwnByProtocolPath returns an array of records', async () => {
+  const response = await queryFromDwnByProtocolPath(web5);
+
+  expect(Array.isArray(response)).toBe(true);
 });

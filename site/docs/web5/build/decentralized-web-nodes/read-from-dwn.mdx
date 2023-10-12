@@ -15,6 +15,8 @@ const { record } = await web5.dwn.records.read({
     recordId: 'bafyreiaz5oycqbrnmmpvffxqyoqxvx6bcnqueprmt2qnvzcurpc52r5uyy',
   }
 });
+
+const text = await record.data.text();
 ```
 
 ## Get Records that Match Filter

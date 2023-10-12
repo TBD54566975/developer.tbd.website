@@ -1,5 +1,6 @@
 # Dependencies
 **/node_modules/
+.nuxt
 
 
 # Production
@@ -49,3 +50,5 @@ DATASTORE
 EVENTLOG
 INDEX
 MESSAGESTORE
+.vercel
+temp

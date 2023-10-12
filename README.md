@@ -1,16 +1,10 @@
 # TBD Developer Site
 
-<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-
-[![All Contributors](https://img.shields.io/badge/all_contributors-3-orange.svg?style=flat-square)](#contributors-)
-
-<!-- ALL-CONTRIBUTORS-BADGE:END -->
-
 # 🎉 **We're participating in Hacktoberfest 2023!** 🎉
 
 Want to contribute during Hacktoberfest? We'd love to have you! Dive in, and your contributions could earn you some exclusive rewards.
 
-The **first 20 contributors** to succesfully merge a PR will secure exclusive swag of their choosing from our [TBD shop](https://www.tbd.shop/). Keep an eye on our [leaderboard issue](https://github.com/TBD54566975/developer.tbd.website/issues/721) to see where you rank! ⭐️
+The **first 20 contributors** to successfully merge a PR will secure exclusive swag of their choosing from our [TBD shop](https://www.tbd.shop/). Keep an eye on our [leaderboard issue](https://github.com/TBD54566975/developer.tbd.website/issues/721) to see where you rank! ⭐️
 
 🚀 **Gear up for a month packed with exciting events!** 🎉
 
@@ -42,7 +36,7 @@ We wholeheartedly embrace new contributors to our community. Remember, every exp
 - **Join Our Discord Channel**:
   - Once inside, check out the [`Hacktoberfest`](https://discord.com/channels/937858703112155166/1151216855957123104) section. This has all you need: resources, guidelines, and a checklist to help you make your first hacktoberfest contribution.
 - **Feeling Anxious or Unsure? Find a Buddy!**:
-  - Head over to our [`hack-together`](https://discord.com/channels/937858703112155166/1151519449837482044) section on Discord. It's perfectly normal to feel a tad overwhelmed or even the imposter syndrome on your first go. In this space, you can partner with someone to collaborate, share thoughts, or jointly tackle an issue. You know what they say, two heads are better than one!
+  - Head over to our [`hack-together`](https://discord.com/channels/937858703112155166/1151519449837482044) section on Discord. It's perfectly normal to feel a tad overwhelmed or even the impostor syndrome on your first go. In this space, you can partner with someone to collaborate, share thoughts, or jointly tackle an issue. You know what they say, two heads are better than one!
 - **Dive In**:
   - Skim through our [open issues](https://github.com/TBD54566975/developer.tbd.website/edit/main/README.md#hacktoberfest-guidelines) and pick one you vibe with. And if you're on the fence about anything, don't hesitate to ask. Your new community is here to assist and walk with you every step of the way.
   - Mark your calendars for our **Hacktoberfest Launch event on [October 2nd](https://discord.com/events/937858703112155166/1154126364484583465)**.
@@ -116,6 +110,23 @@ The following scripts are available for running specific tasks within the monore
 - `pnpm clear`: Runs docusaurus clear
 - `pnpm build`: Runs the production build for the site so it can be hosted by a static web server. The completed build will be in the folder `site/build`.
 
+## Extra Features
+
+We have implemented extra features in the website that don't come turned on by default, as an example we have the Feedback Widget feature, which allows an user to upvote or downvote a docs page. 
+
+These features are enabled from environment variables set in the file .env, inside the site folder. To enable them, copy the example .env file:
+
+```sh
+cp site/.env.example site/.env
+```
+
+And modify the parameters accordingly to the feature you want to play with! Check their instructions below:
+
+- `FEEDBACK_WIDGET_API_URL`: enables feedback widget api url; [Feedback server app instructions](./apps/feedback-server/README.md)
+- `DOC_SEARCH_*`: enables the search bar powered by Algolia; [Algolia connecting instructions](https://docusaurus.io/docs/search#connecting-algolia)
+
+Remember, when these environment variables are not set these features are disabled by default.
+
 ### Note
 
 This repo made a switch from using `npm` to `pnpm` as the package manager in July 2023. If you have used prior versions of this repo built on your machine with `npm`, you may encounter build failures, like:
@@ -165,36 +176,3 @@ If you wish to contribute to this project, please follow the guidelines outlined
 ## License
 
 This project is licensed under the [MIT License](LICENSE).
-
-## Contributors ✨
-
-Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
-
-<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
-<!-- prettier-ignore-start -->
-<!-- markdownlint-disable -->
-<table>
-  <tbody>
-    <tr>
-      <td align="center" valign="top" width="14.28%"><a href="https://www.linkedin.com/in/yuusufoladipo"><img src="https://avatars.githubusercontent.com/u/77832856?v=4?s=100" width="100px;" alt="Yuusuf Oyelola Oladipo"/><br /><sub><b>Yuusuf Oyelola Oladipo</b></sub></a><br /><a href="#content-Civil-captain" title="Content">🖋</a></td>
-      <td align="center" valign="top" width="14.28%"><a href="http://aguywhocodes.com"><img src="https://avatars.githubusercontent.com/u/13209683?v=4?s=100" width="100px;" alt="Michael Brown"/><br /><sub><b>Michael Brown</b></sub></a><br /><a href="https://github.com/TBD54566975/developer.tbd.website/commits?author=aguywithcode" title="Code">💻</a></td>
-      <td align="center" valign="top" width="14.28%"><a href="https://github.com/nearlyjuly"><img src="https://avatars.githubusercontent.com/u/112702586?v=4?s=100" width="100px;" alt="nearlyjuly"/><br /><sub><b>nearlyjuly</b></sub></a><br /><a href="https://github.com/TBD54566975/developer.tbd.website/commits?author=nearlyjuly" title="Code">💻</a> <a href="#question-nearlyjuly" title="Answering Questions">💬</a></td>
-      <td align="center" valign="top" width="14.28%"><a href="https://github.com/Prod1gy0ne"><img src="https://avatars.githubusercontent.com/u/96172348?v=4?s=100" width="100px;" alt="Prod1gy0ne"/><br /><sub><b>Prod1gy0ne</b></sub></a><br /><a href="https://github.com/TBD54566975/developer.tbd.website/commits?author=Prod1gy0ne" title="Documentation">📖</a></td>
-      <td align="center" valign="top" width="14.28%"><a href="https://github.com/andorsk"><img src="https://avatars.githubusercontent.com/u/8604639?v=4?s=100" width="100px;" alt="Andor Kesselman"/><br /><sub><b>Andor Kesselman</b></sub></a><br /><a href="https://github.com/TBD54566975/developer.tbd.website/commits?author=andorsk" title="Code">💻</a> <a href="https://github.com/TBD54566975/developer.tbd.website/commits?author=andorsk" title="Documentation">📖</a> <a href="#example-andorsk" title="Examples">💡</a></td>
-      <td align="center" valign="top" width="14.28%"><a href="https://github.com/adityakode"><img src="https://avatars.githubusercontent.com/u/105551807?v=4?s=100" width="100px;" alt="Aditya Kode"/><br /><sub><b>Aditya Kode</b></sub></a><br /><a href="https://github.com/TBD54566975/developer.tbd.website/commits?author=adityakode" title="Documentation">📖</a></td>
-      <td align="center" valign="top" width="14.28%"><a href="http://jsahagun.io/"><img src="https://avatars.githubusercontent.com/u/34168252?v=4?s=100" width="100px;" alt="Jose Sahagun"/><br /><sub><b>Jose Sahagun</b></sub></a><br /><a href="https://github.com/TBD54566975/developer.tbd.website/commits?author=jsahagun91" title="Code">💻</a></td>
-      <td align="center" valign="top" width="14.28%"><a href="https://github.com/mathieurivest"><img src="https://avatars.githubusercontent.com/u/4664198?v=4?s=100" width="100px;" alt="Mathieu Rivest"/><br /><sub><b>Mathieu Rivest</b></sub></a><br /><a href="https://github.com/TBD54566975/developer.tbd.website/commits?author=mathieurivest" title="Documentation">📖</a></td>
-      <td align="center" valign="top" width="14.28%"><a href="https://github.com/shoito"><img src="https://avatars.githubusercontent.com/u/37051?v=4?s=100" width="100px;" alt="shoito"/><br /><sub><b>shoito</b></sub></a><br /><a href="https://github.com/TBD54566975/developer.tbd.website/commits?author=shoito" title="Documentation">📖</a></td>
-      <td align="center" valign="top" width="14.28%"><a href="https://github.com/sarathcodes"><img src="https://avatars.githubusercontent.com/u/58284608?v=4?s=100" width="100px;" alt="Sarah Nair"/><br /><sub><b>Sarah Nair</b></sub></a><br /><a href="https://github.com/TBD54566975/developer.tbd.website/commits?author=sarathcodes" title="Documentation">📖</a></td>
-      <td align="center" valign="top" width="14.28%"><a href="https://www.acekyd.com"><img src="https://avatars.githubusercontent.com/u/4003538?v=4?s=100" width="100px;" alt="Adewale Abati"/><br /><sub><b>Adewale Abati</b></sub></a><br /><a href="https://github.com/TBD54566975/developer.tbd.website/commits?author=acekyd" title="Code">💻</a> <a href="#content-acekyd" title="Content">🖋</a></td>
-      <td align="center" valign="top" width="14.28%"><a href="https://github.com/alec-brooks"><img src="https://avatars.githubusercontent.com/u/1539341?v=4?s=100" width="100px;" alt="alec-brooks"/><br /><sub><b>alec-brooks</b></sub></a><br /><a href="https://github.com/TBD54566975/developer.tbd.website/commits?author=alec-brooks" title="Documentation">📖</a></td>
-    </tr>
-  </tbody>
-</table>
-
-<!-- markdownlint-restore -->
-<!-- prettier-ignore-end -->
-
-<!-- ALL-CONTRIBUTORS-LIST:END -->
-
-This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!

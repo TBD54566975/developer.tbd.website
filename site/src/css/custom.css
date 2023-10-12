@@ -516,7 +516,10 @@ footer a:hover {
   border-bottom: 4px solid var(--color-yellow);
   color: var(--color-yellow);
 }
-
+footer .hoverLink:hover{
+  border-bottom: 4px solid #000;
+  color: #000;
+}
 .tooltipBorder {
   border-image-slice: 0 30 30 0 !important;
   border-image-width: 12px 11px 11px 12px !important;

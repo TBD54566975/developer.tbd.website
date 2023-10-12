@@ -28,7 +28,7 @@ In Web5.js, the same features that built billion dollar businesses are included,
 
 ## Agents and Sync
 
-Sync is orchestrated by an _agent_, which is responsible for acting on a user’s behalf to invoke the sync interface between nodes since the nodes themselves don’t actually implement this interface. In the same way that your browser has a user agent, so does your Web5 environmnent, which enables its agent to orchestrate privileged activities of user management on your behalf.
+Sync is orchestrated by an _agent_, which is responsible for acting on a user’s behalf to invoke the sync interface between nodes since the nodes themselves don’t actually implement this interface. In the same way that your browser has a user agent, so does your Web5 environment, which enables its agent to orchestrate privileged activities of user management on your behalf.
 
 So why do we have agents to facilitate sync? The primary reason is because Web5 is built from a number of core components and libraries that all need to be knitted together. Libraries for DWN, DID, VC, networking, and more are all required to perform fundamental operations like sync, which is why we delegate that responsibility to an agent rather than asking app developers to perform these tasks. 
 
@@ -50,4 +50,4 @@ Although sync is designed to be automatic, seamless, and work in the background,
 
 ![Alice and Bob messaging via DWNs](/img/alice-bob-dwn.png)
 
-There could also be scenarios where waiting for sync could lead to race conditions. [Support for configuring sync intervals](https://github.com/TBD54566975/web5-js/pull/124) is coming soon, but for now you can force a sync between a user’s DWNs by calling [record.send()](/api/web5-js/dwn/record#senddid).
+There could also be scenarios where waiting for sync could lead to race conditions. You can [configure sync intervals](/api/web5-js#configure-sync-interval-when-connecting-to-web5), or force a sync between a user’s DWNs by calling [record.send()](/api/web5-js/dwn/record#senddid).

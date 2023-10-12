@@ -161,7 +161,7 @@ The outputs of this method invocation will be used throughout the other API meth
                         isOptional: true,
                         type: 'string',
                         field: 'connectedDid',
-                        value: 'An existing DID to connect to.',
+                        value: 'An existing DID to connect to. If provided, the agent property must also be provided.',
                     },
                 },
                 {
@@ -222,23 +222,22 @@ The outputs of this method invocation will be used throughout the other API meth
 
 
 #### Code Examples
+Below are examples of how to use `Web5.connect()`
 
+##### Connect with no parameters
 <CodeSnippet functionName="createDidAutomatically" />
 
-##### Specify a Decentralized Web Node endpoint
-```js
-const { web5, did: myDid } = await Web5.connect({
-  techPreview: {
-    dwnEndpoints: ["https://dwn.your-domain.org/"],
-  },
-});
-```
+##### Connect with an existing Decentralized Web Node endpoint
+<CodeSnippet functionName="connectWithDWNEndpoint" />
 
-##### Connect to Web5 with an exiting agent and existing DID
-```js
-const web5 = new Web5({
-  agent: identityAgent,
-  connectedDid: 'did:ion:EiD7Q...Q',
-});
-```
+
+##### Connect with an existing agent and existing DID
+If `connectedDid` is provided, the `agent` property must also be provided.
+<CodeSnippet functionName="connectWithAgentAndConnectedDid" />
+
+
+##### Configure sync interval when connecting to Web5
+Sync defaults to running every 2 minutes and can be set to [any value accepted by ms](https://www.npmjs.com/package/ms). To disable sync set to 'off'.
+<CodeSnippet functionName="connectWithSyncConfig" />
+
 </section>

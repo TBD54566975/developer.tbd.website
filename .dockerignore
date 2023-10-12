@@ -1,0 +1,7 @@
+examples
+netlify
+node_modules
+.github
+.git
+.gitignore
+.env

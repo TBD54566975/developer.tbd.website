@@ -16,9 +16,8 @@ export async function queryProtocolsWithFilterDescending(web5) {
       filter: {
         protocol: 'http://social-media.xyz',
       },
-      //highlight-start
-      dateSort: 'createdDescending',
-      //highlight-end
+      //highlight-next-line
+      dateSort: 'createdDescending'
     },
   });
 
@@ -31,6 +30,7 @@ export async function queryRecordsWithFilterAscending(web5) {
       filter: {
         dataFormat: 'text/plain',
       },
+      //highlight-next-line
       dateSort: 'publishedAscending',
     },
   });
@@ -62,4 +62,65 @@ export async function queryRecordWithParentId(web5) {
   });
 
   return response;
+}
+
+export async function playlistProtocolDefinition(web5){
+  const playlistProtocolDefinition =  {
+    protocol: "https://playlist.org/protocol",
+    published: true,
+    types: {
+      playlist: {
+        schema: "https://schema.org/MusicPlaylist",
+        dataFormats: ["application/json"],
+      },
+      audio: {
+        schema: "https://schema.org/AudioObject",
+        dataFormats: ["audio/mp3"],
+      },
+      video: {
+        schema: "https://schema.org/VideoObject",
+        dataFormats: ["video/mp4"],
+      },
+    },
+    structure: {
+      playlist: {
+        $actions: [
+          { who: "anyone", can: "write" },
+          { who: "author", of: "playlist", can: "read" },
+          { who: "recipient", of: "playlist", can: "read" },
+        ],
+        audio: {
+          $actions: [
+            { who: "anyone", can: "write" },
+            { who: "author", of: "audio", can: "read" },
+            { who: "recipient", of: "audio", can: "read" },
+          ],
+        },
+        video: {
+          $actions: [
+            { who: "anyone", can: "write" },
+            { who: "author", of: "video", can: "read" },
+            { who: "recipient", of: "video", can: "read" },
+          ]
+        },
+      },
+    }
+  };
+
+  return playlistProtocolDefinition;
+}
+
+export async function queryFromDwnByProtocolPath(web5) {
+  const { records } = await web5.dwn.records.query({
+    message: {
+      filter: {
+        //highlight-start
+        protocol: 'https://playlist.org/protocol',
+        protocolPath: 'playlist/video'
+        //highlight-end
+      },
+    },
+  });
+
+  return records;
 }
