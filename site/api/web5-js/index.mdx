@@ -8,6 +8,7 @@ import TabItem from '@theme/TabItem';
 import Divider from '@site/src/components/Divider';
 import ApiDetails from '@site/src/components/ApiDetails';
 import ScriptSrc from '@site/src/components/ScriptSrc';
+import ImportSrc from '@site/src/components/ImportSrc';
 
 import CodeSnippet from '@site/src/components/CodeSnippet';
 
@@ -103,11 +104,11 @@ secp.etc.hmacSha256Async = (k, ...m) =>
   </TabItem>
   <TabItem value="cdn" label="CDN">
 
-<ScriptSrc src='unpkg' />
+<ImportSrc src='unpkg' />
 
 or
 
-<ScriptSrc src='jsdelivr' />
+<ImportSrc src='jsdelivr' />
 
   </TabItem>
 </Tabs>
