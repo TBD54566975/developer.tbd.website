@@ -2,6 +2,8 @@
 
 This is the UI scaffolding of a simple Web5 app to manage a set of todos towards your goals with friends.
 
+[![Edit in CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/TBD54566975/developer.tbd.website/tree/main/examples/tutorials/shared-todo-starter)
+
 Currently set up with:
 - Nuxt 3
 - TailWind CSS (including Typography and forms)
