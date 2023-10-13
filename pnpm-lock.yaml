@@ -185,9 +185,6 @@ importers:
       '@web5/api':
         specifier: 0.8.1
         version: 0.8.1
-
-  examples/tutorials/dinger-starter/my-app:
-    dependencies:
       next:
         specifier: 13.5.4
         version: 13.5.4(@babel/core@7.22.10)(react-dom@18.2.0)(react@18.2.0)
