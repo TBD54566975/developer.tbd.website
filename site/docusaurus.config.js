@@ -138,7 +138,7 @@ let config = {
         specs: [
           {
             id: 'ssi-sdk',
-            spec: './swagger.yaml',
+            spec: 'https://raw.githubusercontent.com/TBD54566975/ssi-service/main/doc/swagger.yaml',
             route: '/docs/apis/ssi-service',
           },
         ],
