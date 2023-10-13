@@ -95,4 +95,5 @@ const postFeedbackRating = async (feedbackWidgetUrl, csrfToken, rating) => {
 
   if (!res.ok) {
     throw new Error('Failed to submit feedback rating');
-  }
+  } 
+};
