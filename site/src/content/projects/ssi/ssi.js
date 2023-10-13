@@ -26,7 +26,7 @@ export const content = {
         icon: '/img/component-icon.svg',
         title: 'Verifiable Credentials',
         description:
-          'Verifiable Credentials are a W3C standard: Credentials are a part of our daily lives; This specification provides a mechanism to express these sorts of credentials on the Web in a way that is cryptographically secure, privacy respecting, and machine-verifiable',
+          'Verifiable Credentials, a W3C standard, provide a mechanism to express digital credentials on the Web in a way that is cryptographically secure, privacy respecting, and machine-verifiable',
         textButton: 'View Component',
         url: 'https://w3c.github.io/did-core/',
         isExternalLink: true,
