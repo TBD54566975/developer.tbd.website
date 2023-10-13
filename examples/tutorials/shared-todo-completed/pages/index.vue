@@ -47,7 +47,7 @@
 
 <script setup>
 import { ref } from 'vue';
-import { Web5 } from '@web5/api/browser';
+import { Web5 } from '@web5/api';
 import protocolDefinition from "assets/shared-todo-protocol.json";
 
 let web5;

@@ -45,9 +45,9 @@
                         <p class="text-gray-400 text-sm">Added by: {{ item.data.author.substr(0,22) }}...</p>
                     </div>
                     <div class="ml-auto">
-                        <div @click="deleteTodo(item)" class="cursor-pointer" v-show="myDID == item.data.author">
+                        <!-- <div @click="deleteTodo(item)" class="cursor-pointer" v-show="myDID == item.data.author">
                             <TrashIcon class="h-8 text-gray-200 w-8" :class="'text-red-500'" />
-                        </div>
+                        </div> -->
                         <div v-show="myDID != item.data.author && item.data.completed">
                             <CheckCircleIcon class="h-8 text-gray-200 w-8" :class="{ 'text-green-500': item.data.completed }" />
                         </div>
@@ -68,7 +68,7 @@ import { ref } from 'vue'
 import { useRoute } from 'vue-router'
 import { PlusIcon as PlusIconMini } from '@heroicons/vue/solid';
 import { CheckCircleIcon, TrashIcon } from '@heroicons/vue/outline';
-import { Web5 } from '@web5/api/browser'
+import { Web5 } from '@web5/api'
 import protocolDefinition from "assets/shared-todo-protocol.json";
 
 const route = useRoute()
