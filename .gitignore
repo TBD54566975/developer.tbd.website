@@ -2,6 +2,7 @@
 **/node_modules/
 .nuxt
 
+.next
 
 # Production
 /site/build
