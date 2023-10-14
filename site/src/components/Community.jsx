@@ -41,7 +41,7 @@ function Community() {
           buttonText="Join"
         />
         <CommunityCard
-          title="Twitter"
+          title="X(fka Twitter)"
           icon="/img/twitter-icon.svg"
           CTA="Follow us for news and updates"
           buttonUrl="https://twitter.com/TBDevs"
