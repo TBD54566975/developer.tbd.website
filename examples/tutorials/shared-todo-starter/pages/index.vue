@@ -5,10 +5,10 @@
             <p>Manage a set of todos towards your goals with friends.</p>
         </header>
         <hr class="my-5" />
-        <div v-if="sharedTodos.length === 0" class="empty-state text-center pt-20">
+        <div v-if="sharedList.length === 0" class="empty-state text-center pt-20">
             <p class="mb-4 text-gray-500">No Shared Todos yet.</p>
         </div>
-        <form v-if="showForm" @submit.prevent="createSharedTodo" class="mb-4">
+        <form v-if="showForm" @submit.prevent="createSharedList" class="mb-4">
             <div class="mb-4">
                 <label for="title" class="block mb-2">Goal Title:</label>
                 <input type="text" id="title" v-model="newTodo.title" class="w-full p-2 border rounded" required />
@@ -28,11 +28,11 @@
         </form>
         <div v-else>
             <ul class="mb-10">
-                <li v-for="(todo, index) in sharedTodos" :key="index" class="mb-2 p-4 border rounded">
-                    <nuxt-link :to="`/todos/${index}`" class="text-blue-500">
-                        <h2 class="text-xl font-bold">{{ todo.title }}</h2>
-                        <p>{{ todo.description }}</p>
-                        <p class="text-gray-500">Created by: {{ todo.recipientDID }}</p>
+                <li v-for="(todo, index) in sharedList" :key="index" class="mb-2 p-4 border rounded">
+                    <nuxt-link :to="`/todos/${todo.id}`" class="text-blue-500">
+                        <h2 class="text-xl font-bold">{{ todo.titletodo.data.title }}</h2>
+                        <p>{{ todo.data.description }}</p>
+                        <p class="text-gray-500">Created by: {{ todo.data.author.substr(0, 22) }}...</p>
                     </nuxt-link>
                 </li>
             </ul>
@@ -52,7 +52,7 @@ const newTodo = ref({
     description: '',
     recipientDID: '',
 })
-const sharedTodos = ref([
+const sharedList = ref([
     {
         "title": "Build a house",
         "description": "A couple of things we need to do to compete this goal",
@@ -65,8 +65,14 @@ const sharedTodos = ref([
     }
 ])
 
-const createSharedTodo = () => {
-    sharedTodos.value.push({ ...newTodo.value })
+const createSharedList = () => {
+    const generatedListID = Math.random().toString(36).substring(2);
+    sharedTodos.value.push({
+        id: generatedListID,
+        data: {
+            ...newTodo.value
+        }
+    })
     newTodo.value = { title: '', description: '', userId: '', alias: '' }
     showForm.value = false
 }
