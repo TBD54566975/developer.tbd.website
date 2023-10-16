@@ -1,0 +1,283 @@
+import KnowledgeCheck from '@site/src/components/KnowledgeCheck';
+
+# Build a Chat App
+
+Welcome to Web5, the magical land where Web2 and Web3 intertwine. My name is Alice. I am a wanderer in search of an application where I can send short-text messages to my best friend, Bob.
+
+🚀 **Your mission**
+
+Build [Dinger](https://dinger-chat.vercel.app/), a self-sovereign, modern day pager that allows users to send short text-based messages or "dings" to each other.
+
+🛠️ **Your toolkit**
+
+To build this app, you will wield the following technologies:
+
+- [React](https://react.dev/) - A JavaScript library, your brush to paint user interfaces, craft reusable components, and manage the state of your creation.
+- [Next.js](https://nextjs.org/) - A React metaframework, your compass to guide you through creating pages, managing routes, and managing server-side rendering.
+- [Web5.js](https://developer.tbd.website/api/web5-js/) - A Web5 JavaScript SDK, your key to creating decentralized applications, facilitating direct communication between users, and granting them sovereignty over their data and identity.
+
+🏆 **Your reward**
+
+By the end of this journey, you will acquire a deeper understanding of peer-to-peer communication in a Web5 ecosystem. 
+
+If you're ready for the challenge, let's get started!
+
+:::note
+This tutorial is most suitable for those who prefer to learn by doing.
+:::
+
+## Level 1: Explore the starter code
+
+Good news! You don't have to start from scratch. There is a pre-built application that contains the user interface for Dinger. Right now, the functions in the code don’t do much. They just print messages to the console and don’t have any real actions. As you progress through the tutorial, you will add logic to the functions.
+### 📝 Task
+
+To access the starter code, follow the instructions below or explore the project directly in CodeSandbox.
+
+[![Play in CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/TBD54566975/developer.tbd.website/tree/main/examples/tutorials/dinger-starter)
+
+<details><summary>Finished Dinger App</summary>
+<p>
+
+If you’d like to skip ahead and see the finished version of this tutorial, you can check out the running app on CodeSandbox.
+
+[![Play in CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/TBD54566975/developer.tbd.website/tree/main/examples/tutorials/dinger-completed)
+
+There is also a hosted example deployed at [https://dinger-chat.vercel.app/](https://dinger-chat.vercel.app/)
+</p>
+</details>
+
+### 🕵️ What to Explore
+- Navigate to the `src/pages/index.js` file.
+- Identify the functions that currently only print console.logs.
+- Try to understand how each function interacts.
+
+## Level 2: Connect to Web5 and create a DID
+### 📝 Task
+Locate the line:
+```javascript
+console.log(`this log is in initWeb5`);
+``` 
+and replace it with the following code snippet:
+```javascript
+const { web5, did } = await Web5.connect();
+setWeb5(web5);
+setMyDid(did);
+```
+
+### 🧩 Breaking it down
+- **Web5.connect()** returns a Web5 instance: It initializes and returns an instance of Web5, allowing you to interact with the Web5 ecosystem.
+- **Web5.connect()** also creates or connects to a DID: A DID ([Decentralized Identifier](https://developer.tbd.website/docs/web5/learn/decentralized-identifiers)) is a user’s unique ID card for the decentralized, digital world. It belongs only to you. `Web5.connect()` will either connect to an existing DID that you have or create a new one for you if you don't have one yet. A DID acts as an authenticator for Web5 apps, removing the need for login credentials. 
+
+### 📘 Learn more
+Learn more about [DID authentication](https://developer.tbd.website/blog/did-authentication/&sa=D&source=docs&ust=1696216092697555&usg=AOvVaw1dujW2JHcAlpPUCjLunVn6).
+
+## Level 3: Define and install a protocol
+### 📝 Task
+Locate the line: 
+```javascript 
+console.log(`this log is in configureProtocol`);
+```
+
+And replace it with the following code snippet:
+```javascript 
+const dingerProtocolDefinition = {
+  protocol: "https://blackgirlbytes.dev/dinger-chat-protocol",
+  published: true,
+  types: {
+    ding: {
+      schema: "https://blackgirlbytes.dev/ding",
+      dataFormats: ["application/json"],
+    },
+  },
+  structure: {
+    ding: {
+      $actions: [
+        { who: "anyone", can: "write" },
+        { who: "author", of: "ding", can: "read" },
+        { who: "recipient", of: "ding", can: "read" },
+      ],
+    },
+  },
+};
+
+const { protocols, status: protocolStatus } =
+  await web5.dwn.protocols.query({
+    message: {
+      filter: {
+        protocol: "https://blackgirlbytes.dev/dinger-chat-protocol",
+      },
+    },
+  });
+
+if (protocolStatus.code !== 200 || protocols.length === 0) {
+  const { protocolStatus } = await web5.dwn.protocols.configure({
+    message: {
+      definition: dingerProtocolDefinition,
+    },
+  });
+  console.log("Configure protocol status", protocolStatus);
+};
+```
+### 🧩 Breaking it down
+- **dingerProtocolDefinition:** This object defines the protocol, its structure, and it grants permissions outlining who can perform specific actions like reading or writing a ding.
+- **web5.dwn.protocols.query():** This function checks if the protocol already exists.
+- **web5.dwn.protocols.configure():** This function installs the protocol.
+
+### 📘 Learn more
+- Learn more about [protocols](https://developer.tbd.website/docs/web5/learn/protocols/).
+
+## Level 4: Write to the DWN
+
+### 📝 Task
+Locate the line:
+```javascript
+console.log(`this log is in writeToDwn`);
+```
+
+And replace it with the following code snippet:
+```javascript
+const { record } = await web5.dwn.records.write({
+  data: ding,
+  message: {
+    protocol: "https://blackgirlbytes.dev/dinger-chat-protocol",
+    protocolPath: "ding",
+    schema: "https://blackgirlbytes.dev/ding",
+    recipient: recipientDid,
+  },
+});
+return record;
+```
+
+### 🧩 Breaking it down
+- You are storing each ding on a Decentralized Web Node (DWN), or personal data store. This method **web5.dwn.records.write()** is responsible for writing data to the DWN.
+
+
+### 📘 Learn more
+- Learn more about[ Decentralized Web Nodes](https://developer.tbd.website/docs/web5/learn/decentralized-web-nodes) and [writing DWN records](https://developer.tbd.website/docs/web5/build/decentralized-web-nodes/write-to-dwn).
+
+## Level 5: Send dings
+
+### 📝 Task
+Locate the line:
+```javascript
+console.log(`this log is in sendRecord`);
+```
+
+And replace it with the following code snippet:
+```javascript
+return await record.send(recipientDid);
+```
+
+### 🧩 Breaking it down
+- Users can have multiple DWNs, such as on their phone, laptop, or in the cloud. The method **record.send()** immediately sends the ding to all of the recipient's Decentralized Web Nodes (DWNs). 
+
+
+### 📘 Learn more
+- Learn more about [sync intervals](https://developer.tbd.website/docs/web5/learn/sync#sync-intervals).
+
+## Level 6: Receive dings
+### 📝 Task
+Locate the line:
+```javascript
+console.log(`this log is in fetchDings`);
+```
+And replace it with the following code snippet:
+```javascript    
+const { records, status: recordStatus } = await web5.dwn.records.query({
+  message: {
+    filter: {
+      protocol: "https://blackgirlbytes.dev/dinger-chat-protocol",
+      protocolPath: "ding",
+    },
+    dateSort: "createdAscending",
+  },
+});
+
+try {
+  const results = await Promise.all(
+    records.map(async (record) => record.data.json())
+  );
+
+  if (recordStatus.code == 200) {
+    const received = results.filter((result) => result?.recipient === did);
+    const sent = results.filter((result) => result?.sender === did);
+    setReceivedDings(received);
+    setSentDings(sent);
+  }
+} catch (error) {
+  console.error(error);
+}
+```
+### 🧩 Breaking it down
+- The method **web5.dwn.records.query()** queries the DWN for records matching a specified filter. In the above code snippet, it retrieves records with the protocol `https://blackgirlbytes.dev/dinger-chat-protocol` and the protocol path `ding`.
+
+### 📘 Learn more
+- Learn more about how to [query DWN records](https://developer.tbd.website/docs/web5/build/decentralized-web-nodes/query-from-dwn) and [filterable record properties](https://developer.tbd.website/docs/web5/build/decentralized-web-nodes/query-from-dwn#filterable-record-properties).
+
+## Level 7: Sync the UI with the DWN
+
+### 📝 Task
+Locate the line:
+```javascript
+console.log(`this log is in intervalId`);
+```
+
+And replace it with the following code snippet:
+```javascript
+await fetchDings(web5, myDid);
+```
+
+This line is located within the following function:
+```javascript 
+  useEffect(() => {
+    if (!web5 || !myDid) return;
+
+    const intervalId = setInterval(async () => {
+      console.log(`this log is in intervalId`);
+    }, 2000);
+
+    return () => clearInterval(intervalId);
+  }, [web5, myDid]);
+```
+### 🧩 Breaking it down
+- The **useEffect()** and **setInterval()** fetch new dings every two seconds, allowing the UI to accurately display the chat.  
+
+### 📘 Learn more 
+- Learn more about React's [useEffect()](https://react.dev/reference/react/useEffect) hook and JavaScript's [setInterval()](https://developer.mozilla.org/en-US/docs/Web/API/setInterval) method.
+
+## Level 8: Try it out!
+### 📝 Task
+Time to test the Dinger app by simulating a conversation between two users by using two different browser sessions.
+
+**Set Up Your Browsers**:
+- Open your browser in **regular mode**.
+- Open a new window in **incognito/private mode**.
+
+**Send a Message from Incognito to Regular Mode**:
+- In the **incognito** window, locate and press the `Copy DID` button to copy the DID.
+- Switch to the **regular mode** browser window.
+- Press the `Create +` button
+- Paste the copied DID into the `recipient DID` input box, then `Confirm`
+- Type a short message in the `note` input box.
+- Press `Send` to send the message.
+
+**Reply from Regular Mode to Incognito**:
+- In the **regular mode** window, locate and press the `Copy DID` button to copy the DID.
+- Switch back to the **incognito** window.
+- Press the `Create +` button
+- Paste the copied DID into the `recipient DID` input box, then `Confirm`
+- Type a reply in the `note` input box.
+- Press `Send` to send your reply.
+
+After following these steps, you should see a conversation taking place between the two browser sessions!
+
+## 🧠 Knowledge check
+
+<KnowledgeCheck url="https://codesandbox.io/embed/kc-1-chatty-h99tnx?fontsize=14&hidenavigation=1&theme=dark&view=preview"/>
+
+## 🫡 Mission complete
+Congratulations! By building Dinger, you've successfully empowered users like Alice to communicate peer-to-peer and maintain sovereignty over her data and identity. Now, Alice can send messages to her best friend, Bob.
+
+
+
+
