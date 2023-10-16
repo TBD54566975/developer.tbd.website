@@ -6,11 +6,14 @@
             <p>Manage a set of todos towards your goals with friends.</p>
 
             <hr class="my-5" />
-            <div class="">
-                <h2 class="text-xl font-bold">{{ todo.title }}</h2>
-                <p>{{ todo.description }}</p> <br />
-                <p>{{ todo.creatorDID }}</p>
-                <p>{{ todo.recipientID }}</p>
+            <div v-if="!fetchingListInfo">
+                <h2 class="text-xl font-bold">{{ todoList.title }}</h2>
+                <p>{{ todoList.description }}</p> <br />
+                <p>{{ todoList.author?.substr(0, 22) }}...</p>
+                <p>{{ todoList.recipient?.substr(0, 22) }}...</p>
+            </div>
+            <div v-else>
+                <p>Fetching todoList...</p>
             </div>
 
         </header>
@@ -31,20 +34,20 @@
                 </button>
             </form>
             </div>
-            <h2 class="text-xl font-bold mb-2">Todos</h2>
+            <h2 v-if="!fetchingListInfo" class="text-xl font-bold mb-2">Todos</h2>
             <ul>
-                <li v-for="(item, index) in todo.items" :key="index" class="flex items-center mb-2 p-4 border rounded">
+                <li v-for="(item, index) in todoItems" :key="index" class="flex items-center mb-2 p-4 border rounded">
                      <div @click="toggleTodoComplete(item)" class="cursor-pointer">
-                        <CheckCircleIcon class="h-8 text-gray-200 w-8" :class="{ 'text-green-500': item.completed }" />
+                        <CheckCircleIcon class="h-8 text-gray-200 w-8" :class="{ 'text-green-500': item.data.completed }" />
                     </div>
                     <div class="font-light ml-3 text-gray-500 text-xl">
-                        {{ item.description }}
-                        <p class="text-gray-400 text-sm">Added by: {{ item.addedBy }}</p>
+                        {{ item.data.description }}
+                        <p class="text-gray-400 text-sm">Added by: {{ item.data.author.substr(0, 22) }}...</p>
                     </div>
                     <div class="ml-auto">
-                        <div @click="deleteTodo(item)" class="cursor-pointer">
+                        <!-- <div @click="deleteTodo(item)" class="cursor-pointer">
                             <TrashIcon class="h-8 text-gray-200 w-8" :class="'text-red-500'" />
-                        </div>
+                        </div> -->
                     </div>
 
                 </li>
@@ -64,35 +67,40 @@ import { PlusIcon as PlusIconMini } from '@heroicons/vue/solid';
 import { CheckCircleIcon, TrashIcon } from '@heroicons/vue/outline';
 
 const route = useRoute()
-const todoId = ref(route.params.id)
+const listId = ref(route.params.id)
 const myDID = "did:example:12abcsdsd"; //placeholder
 
 // Adding Todos
 const newTodoDescription = ref('');
+const fetchingListInfo = ref(true);
 
-const todo = ref({
+
+const todoList = ref({
     title: 'Todo List 3',
     description: 'This is the third todo list',
-    items: [
-        {
-            description: 'Item 1',
-            addedBy: 'did:example:123456789abcdefghi',
-            completed: false
-        },
-        {
-            description: 'Item 2',
-            addedBy: 'did:another:12abcsdsd',
-            completed: false
-        },
-        {
-            description: 'Item 3',
-            addedBy: 'did:example:12abcsdsd',
-            completed: false
-        }
-    ],
     creatorDID: 'did:example:12abcsdsd',
     recipientID: 'did:example:123456789abcdefghi',
 })
+
+const todoItems = ref([
+    {
+        id: dffgdgdgdfgdfg,
+        data: {
+            description: 'Item 1',
+            author: 'did:example:123456789abcdefghi',
+            completed: false
+        }
+
+    },
+    {
+        id: erfe436fgfhjj56,
+        data: {
+            description: 'Item 2',
+            author: 'did:another:12abcsdsd',
+            completed: false
+        }
+    }
+]);
 
 async function addTodo() {
 
@@ -102,9 +110,9 @@ async function toggleTodoComplete(todo) {
 
 }
 
-async function deleteTodo() {
+// async function deleteTodo() {
 
-}
+// }
 
 
 </script>
