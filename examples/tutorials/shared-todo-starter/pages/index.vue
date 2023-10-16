@@ -30,7 +30,7 @@
             <ul class="mb-10">
                 <li v-for="(todo, index) in sharedList" :key="index" class="mb-2 p-4 border rounded">
                     <nuxt-link :to="`/todos/${todo.id}`" class="text-blue-500">
-                        <h2 class="text-xl font-bold">{{ todo.titletodo.data.title }}</h2>
+                        <h2 class="text-xl font-bold">{{ todo.data.title }}</h2>
                         <p>{{ todo.data.description }}</p>
                         <p class="text-gray-500">Created by: {{ todo.data.author.substr(0, 22) }}...</p>
                     </nuxt-link>
@@ -50,18 +50,27 @@ const showForm = ref(false)
 const newTodo = ref({
     title: '',
     description: '',
+    author: 'did:author:1saddad6789abcdefghi',
     recipientDID: '',
 })
 const sharedList = ref([
     {
-        "title": "Build a house",
-        "description": "A couple of things we need to do to compete this goal",
-        "recipientDID": "did:example:123456789abcdefghi",
+        id: '123',
+        data: {
+            "title": "Build a house",
+            "description": "A couple of things we need to do to compete this goal",
+            "author": "did:author:1saddad6789abcdefghi",
+            "recipientDID": "did:example:123456789abcdefghi",
+        }
     },
     {
-        "title": "My second shared todo",
-        "description": "This is my second shared todo",
-        "recipientDID": "did:ion:123456789abcdefghi",
+        id: '456',
+        data: {
+            "title": "My second shared todo",
+            "description": "This is my second shared todo",
+            "author": "did:ion:123456789abcdefghi",
+            "recipientDID": "did:author:1saddad6789abcdefghi",
+        }
     }
 ])
 
@@ -73,7 +82,7 @@ const createSharedList = () => {
             ...newTodo.value
         }
     })
-    newTodo.value = { title: '', description: '', userId: '', alias: '' }
+    newTodo.value = { title: '', description: '', recipientDID: '', alias: '' }
     showForm.value = false
 }
 </script>Z
