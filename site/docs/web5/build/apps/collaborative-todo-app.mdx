@@ -1,25 +1,33 @@
 import PackageJson from '@site/src/components/PackageJson';
 
-# Build a Decentralized Collaborative Todo App with Nuxt and Web5
+# Build a Collaborative Todo App with Nuxt and Web5
 
-In the [Build a Todo App](/todo-app-tutorial) tutorial, you learnt how to build a basic single-user decentralized todo app with `web5.js` and `Vue.js`.
+In the [Build a Todo App](/docs/web5/build/apps/todo-app-tutorial) tutorial, we learnt how to build a basic single-user decentralized todo app with `web5.js` and `Vue.js`.
 
-For this tutorial, we will be expanding on the core features introduced with the todo app and build out a collaborative app that allows multiple users work on the same todo list.
+For this tutorial, we will be expanding on the core features introduced with the todo app and build out a more collaborative app that allows multiple users work on the same, shared todo list.
 
-## What you will learn
-- Enforcing permissions or authorization on records through protocols.
-- Sending and sharing updates across multiple users' Decentralized Web Nodes.
+## What we will learn
 
-By the end of this tutorial, you'll have an understanding of protocols, DWN to DWN communication and how to build a collaborative app on the Decentralized Web.
+We are going to learn how to;
+- Enforce permissions or authorization on records through protocols.
+- Send and update records across multiple users' Decentralized Web Nodes.
 
-## What you will build
-Bob and Alice are two friends that love doing things together. They often have specific goals and a bunch of tasks each of them have to complete to achieve this goal. They have decided to build a todo app that allows them to collaborate on their tasks and keep track of their progress while also being able to have their tasks on other tools they use. They have decided to use the Decentralized Web to build this app so they can have full control of their data and not have to worry about their data being sold to third parties.
+By the end of this tutorial, we'll have an understanding of protocols, DWN to DWN communication and how to build a multi-user app on the Decentralized Web.
+
+## What we will build
+Bob and Alice are two friends that love doing things together. They often have specific goals and a bunch of tasks each of them have to complete to achieve this goal.
+
+They have decided to build a todo app that allows them to collaborate on their tasks and keep track of their progress while also being able to have these tasks on other apps they use if needed - A decentralized shared todo app.
+
+## Our toolkit
+We will be using the following tools to build our app:
+- [NuxtJS](https://nuxtjs.org/) - A VueJS framework for building web applications.
+- [Web5 SDK](https://www.npmjs.com/package/@web5/api) - A JavaScript SDK for building decentralized web apps.
+- [TailwindCSS](https://tailwindcss.com/) - A utility-first CSS framework for rapidly building custom designs.
 
 ## Getting the Skeleton App
 
-You can follow along with this tutorial using your own layout, or you can use the starter project. As you go through the tutorial, you can add logic to the methods and update the UI.
-
-### 📝 Task
+You can follow along with this tutorial using your own UI layout, or you can use the starter project. As you go through the tutorial, you can add logic to the methods and update the UI.
 
 To access the starter code, follow the instructions below or explore the project directly in CodeSandbox.
 
@@ -49,15 +57,17 @@ npm install
 npm run dev
 ```
 
-You should now have the app running on ['http://localhost:3000'](http://localhost:3000).
+You should now have the app running on [http://localhost:3000](http://localhost:3000).
 
 ## App Architecture
-We are building a ['NuxtJS App'](https://nuxt.com/) using the `pages/` folder. We have
+
+We are building a [NuxtJS App](https://nuxt.com/) using file-based routing through the `pages` folder. We have the following key files in our app:
+
 - `pages/index.vue` - The home page of the app.
 - `pages/todos/_id.vue` - The page for viewing a todo list.
 - `assets/shared-todo-protocol.json`: A JSON file defining the protocol used for sharing to-do lists.
 
-Our shared todo app will have a few features necessary to be implemented. We will be building out the following features:
+Our shared todo app will have the following features that we need to build out:
 
 - Creating a todo list with another user.
 - Displaying all todo lists with different users.
@@ -72,7 +82,6 @@ Open `pages/index.vue` and add the following code to the other imports:
 import { Web5 } from "@web5/api";
 ```
 
-First we'll set up instances to hold data you'll use throughout your application.
 
 Copy the following block and paste under all `import` statements in `pages/index.vue`:
 
@@ -103,6 +112,7 @@ onBeforeMount(async () => {
 Create a new file called `shared-todo-protocol.json` under the `assets/` folder.
 
 ```json
+// assets/shared-todo-protocol.json
 {
   "protocol": "https://didcomm.org/shared-todo",
   "published": true,
@@ -148,10 +158,12 @@ Create a new file called `shared-todo-protocol.json` under the `assets/` folder.
 
 ```
 
-Here we are defining the objects that we want to use in our app - `list` and `todo` with who has what permissions.
+Here we are defining the objects that we want to use in our app - `list` and `todo` with who has what permissions:
 
-Anyone can read and write a list. The author and recipient of a list can write to the todo list.
+- Anyone can read and write a list.
+- The author and recipient of a list can write to the todo list.
 
+### Installing the protocol
 To implement this protocol, we have to install it in our app for any of the users.
 
 In `pages/index.vue`, Add the protocol from the json.
@@ -159,6 +171,8 @@ In `pages/index.vue`, Add the protocol from the json.
 ```js
 import sharedTodoProtocol from "~/assets/shared-todo-protocol.json";
 ```
+
+Now we create the function that checks if the protocol is installed and installs it if it isn't.
 
 ```js
 const configureProtocol = async () => {
@@ -210,10 +224,10 @@ onBeforeMount(async () => {
     await configureProtocol()
 });
 ```
-
+## Create new Shared Lists
 Right now, we have no existing lists, so we need to create one.
 
-We have our variables already declared, so we can add the following function to `pages/index.vue`:
+We can add the following variable declarations to `pages/index.vue`:
 
 ```js
 const newTodo = ref({
@@ -275,7 +289,6 @@ const createSharedList = async () => {
         console.error(e);
         return;
     }
-
 }
 ...
 </script>
@@ -350,18 +363,14 @@ onBeforeMount(async () => {
 We are querying the DWN for all records that match the schema of our protocol. We then add each record to our `sharedList` array.
 
 
-This is what our app now looks like:
-
-* TODO: Add image of app
-
 We have completed the first feature of our app. We can now create todolists and share them with another user.
 
-## Adding tasks to a todo list
+## Adding new tasks
 The next part of our project involves adding specific todos to each list. We want both participants of the list to be able to add todos, but only the author of each task can mark it as done. This behaviour is enforced by the protocols that we added earlier.
 
-Using Nuxt Link, we are able to navigate to our list page by passing the `listId` as a url paramete e.g `localhost:3000/todos/[id]`. This is why we have `pages/todos/[id].vue` in our project to dynamically render based on the list we open.
+Using NuxtLink, we are able to navigate to our list page by passing the `listId` as a url paramete e.g `localhost:3000/todos/[id]`. This is why we have `pages/todos/[id].vue` in our project to dynamically render based on the list we open.
 
-## Fetching specific list details
+### Fetching specific list details
 In our dynamic todo page, we can reconnect to Web5 by importing both the sdk and protocolDefinition document again so they can be reused.
 
 ```js
@@ -400,7 +409,7 @@ onBeforeMount(async () => {
 
 We update the `todoList` variable with the data from the DWN which we already have showing up on our page.
 
-## Fetching tasks from a todo list
+### Fetching tasks from a todo list
 Every list comes with it's own tasks. And we can fetch this also in the `onBeforeMount()` method.
 
 ```js
@@ -439,7 +448,7 @@ onBeforeMount(async () => {
 });
 ```
 
-## Adding tasks to a todo list
+### Adding tasks to the todolist
 To add a task, we want to connect it to the list as the parent, identify who authored it, store it with the schema matching the protocol and then also send it to the other party's DWN.
 
 To get correct DID of which party to send the record to, since either of the author or recipient of the list could be the one creating the todo, we use a `getTodoRecipient()` to help us out.
