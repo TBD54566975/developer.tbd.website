@@ -35,7 +35,7 @@ Join the [decentralized identity hackathon](https://difhackathon.devpost.com/) t
 
 The Decentralized Identity Foundation is hosting a hackthon for people both new and experienced with decentralized identity.
 
-We're thrilled to sponsor a Web5 challenge worth $5,0000 in prizes.
+We're thrilled to sponsor a Web5 challenge worth $5,000 in prizes.
 
 Your mission, should you choose to accept: **Build a decentralized web app using Web5.js and wow us with your innovative use of Decentralized Web Nodes.**
 
