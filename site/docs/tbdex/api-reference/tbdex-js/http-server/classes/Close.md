@@ -1,4 +1,4 @@
-a Close can be sent by Alice or the PFI as a reply to an RFQ or a Quote
+A Close can be sent by Alice or the PFI as a reply to an RFQ or a Quote
 
 ## Hierarchy
 
@@ -102,7 +102,7 @@ ___
 
 • `get` **exchangeId**(): `string`
 
-ID for an "exchange" of messages between Alice <-> PFI. Uses the id of the RFQ that initiated the exchange
+ID for an "exchange" of messages between Alice - PFI. Uses the id of the RFQ that initiated the exchange
 
 #### Returns
 
@@ -329,7 +329,7 @@ ___
 
 ▸ **toJSON**(): [`MessageModel`](../index.md#messagemodel)<``"close"``\>
 
-returns the message as a json object. Automatically used by JSON.stringify method.
+returns the message as a json object. Automatically used by `JSON.stringify` method.
 
 #### Returns
 
@@ -369,11 +369,13 @@ ___
 
 ▸ `Static` **create**(`opts`): [`Close`](Close.md)
 
+Creates a close message with the given options
+
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `opts` | [`CreateCloseOptions`](../index.md#createcloseoptions) |
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `opts` | [`CreateCloseOptions`](../index.md#createcloseoptions) | options to create a close message |
 
 #### Returns
 
@@ -395,9 +397,9 @@ returns an instance of the appropriate MessageKind class based on the value of `
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `jsonMessage` | [`MessageModel`](../index.md#messagemodel)<`T`\> |
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `jsonMessage` | [`MessageModel`](../index.md#messagemodel)<`T`\> | the message to parse |
 
 #### Returns
 
@@ -412,6 +414,8 @@ ___
 ### generateId
 
 ▸ `Static` **generateId**(`messageKind`): `string`
+
+Generates a unique id with the message kind's prefix
 
 #### Parameters
 
@@ -451,6 +455,8 @@ parses the json message into a message instance. performs format validation and 
 
 `Promise`<[`MessageKindClass`](../index.md#messagekindclass)\>
 
+[Message](Message.md)
+
 #### Inherited from
 
 [Message](Message.md).[parse](Message.md#parse)
@@ -477,7 +483,7 @@ validates `data` based on the value of `metadata.kind`
 
 **`Throws`**
 
-if validation fails
+`Error` if validation fails
 
 #### Inherited from
 

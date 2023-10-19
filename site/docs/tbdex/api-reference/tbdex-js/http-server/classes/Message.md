@@ -1,3 +1,6 @@
+Representation of the protocol messages.
+It also provides helper functions to manipulate raw messages, JSON and parsing.
+
 ## Type parameters
 
 | Name | Type |
@@ -114,7 +117,7 @@ ___
 
 • `get` **exchangeId**(): `string`
 
-ID for an "exchange" of messages between Alice <-> PFI. Uses the id of the RFQ that initiated the exchange
+ID for an "exchange" of messages between Alice - PFI. Uses the id of the RFQ that initiated the exchange
 
 #### Returns
 
@@ -277,7 +280,7 @@ ___
 
 ▸ **toJSON**(): [`MessageModel`](../index.md#messagemodel)<`T`\>
 
-returns the message as a json object. Automatically used by JSON.stringify method.
+returns the message as a json object. Automatically used by `JSON.stringify` method.
 
 #### Returns
 
@@ -319,9 +322,9 @@ returns an instance of the appropriate MessageKind class based on the value of `
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `jsonMessage` | [`MessageModel`](../index.md#messagemodel)<`T`\> |
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `jsonMessage` | [`MessageModel`](../index.md#messagemodel)<`T`\> | the message to parse |
 
 #### Returns
 
@@ -332,6 +335,8 @@ ___
 ### generateId
 
 ▸ `Static` **generateId**(`messageKind`): `string`
+
+Generates a unique id with the message kind's prefix
 
 #### Parameters
 
@@ -367,6 +372,8 @@ parses the json message into a message instance. performs format validation and 
 
 `Promise`<[`MessageKindClass`](../index.md#messagekindclass)\>
 
+[Message](Message.md)
+
 ___
 
 ### validate
@@ -389,7 +396,7 @@ validates `data` based on the value of `metadata.kind`
 
 **`Throws`**
 
-if validation fails
+`Error` if validation fails
 
 ___
 

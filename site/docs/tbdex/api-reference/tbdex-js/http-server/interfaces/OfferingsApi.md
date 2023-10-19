@@ -1,8 +1,12 @@
+PFI Offerings API
+
 ## Methods
 
 ### getOffering
 
 ▸ **getOffering**(`opts`): `Promise`<[`Offering`](../classes/Offering.md)\>
+
+Retrieve a single offering if found
 
 #### Parameters
 
@@ -20,6 +24,8 @@ ___
 ### getOfferings
 
 ▸ **getOfferings**(`opts?`): `Promise`<[`Offering`](../classes/Offering.md)[]\>
+
+Retrieve a list of offerings based on the given filter
 
 #### Parameters
 

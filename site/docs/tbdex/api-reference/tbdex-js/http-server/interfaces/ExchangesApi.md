@@ -1,8 +1,12 @@
+PFI Exchanges API
+
 ## Methods
 
 ### getClose
 
 ▸ **getClose**(`opts`): `Promise`<[`Close`](../classes/Close.md)\>
+
+Retrieve the close reason if found
 
 #### Parameters
 
@@ -21,6 +25,8 @@ ___
 
 ▸ **getExchange**(`opts`): `Promise`<[`MessageKindClass`](../index.md#messagekindclass)[]\>
 
+Retrieve a single exchange if found
+
 #### Parameters
 
 | Name | Type |
@@ -37,6 +43,8 @@ ___
 ### getExchanges
 
 ▸ **getExchanges**(`opts?`): `Promise`<[`MessageKindClass`](../index.md#messagekindclass)[][]\>
+
+Retrieve a list of exchanges based on the given filter
 
 #### Parameters
 
@@ -55,6 +63,8 @@ ___
 
 ▸ **getOrder**(`opts`): `Promise`<[`Order`](../classes/Order.md)\>
 
+Retrieve an Order if found
+
 #### Parameters
 
 | Name | Type |
@@ -71,6 +81,8 @@ ___
 ### getOrderStatuses
 
 ▸ **getOrderStatuses**(`opts`): `Promise`<[`OrderStatus`](../classes/OrderStatus.md)[]\>
+
+Retrieve the order statuses if found
 
 #### Parameters
 
@@ -89,6 +101,8 @@ ___
 
 ▸ **getQuote**(`opts`): `Promise`<[`Quote`](../classes/Quote.md)\>
 
+Retrieve a Quote if found
+
 #### Parameters
 
 | Name | Type |
@@ -105,6 +119,8 @@ ___
 ### getRfq
 
 ▸ **getRfq**(`opts`): `Promise`<[`Rfq`](../classes/Rfq.md)\>
+
+Retrieve a RFQ if found
 
 #### Parameters
 

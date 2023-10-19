@@ -16,9 +16,9 @@ creates a verifiable credential using the options provided. This method is inten
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `opts` | [`CreateCredentialOptions`](../index.md#createcredentialoptions) |
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `opts` | [`CreateCredentialOptions`](../index.md#createcredentialoptions) | options used to create the credential |
 
 #### Returns
 
@@ -48,15 +48,20 @@ ___
 
 ▸ `Static` **createJwt**(`opts`): `Promise`<`string`\>
 
+Creates a JWT using the options provided.
+It's signed with the issuer's first verification method private key JWK
+
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `opts` | [`CreateJwtOptions`](../index.md#createjwtoptions) |
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `opts` | [`CreateJwtOptions`](../index.md#createjwtoptions) | options used to create the JWT |
 
 #### Returns
 
 `Promise`<`string`\>
+
+a compact JWT
 
 ___
 
