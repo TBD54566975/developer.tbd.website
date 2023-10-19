@@ -68,6 +68,8 @@ due to each concrete Resource Kind class extending Resource. Library consumers d
 
 • `get` **createdAt**(): `string`
 
+Resource creation time. Expressed as ISO8601
+
 #### Returns
 
 `string`
@@ -81,6 +83,8 @@ ___
 ### data
 
 • `get` **data**(): [`ResourceKindModel`](../index.md#resourcekindmodel)<`T`\>
+
+the actual resource kind's content data
 
 #### Returns
 
@@ -107,6 +111,8 @@ ___
 ### from
 
 • `get` **from**(): `string`
+
+The sender's DID
 
 #### Returns
 
@@ -138,6 +144,8 @@ ___
 
 • `get` **kind**(): `T`
 
+the resource kind (e.g. offering)
+
 #### Returns
 
 `T`
@@ -151,6 +159,8 @@ ___
 ### metadata
 
 • `get` **metadata**(): [`ResourceMetadata`](../index.md#resourcemetadata)<`T`\>
+
+The metadata object contains fields about the resource and is present in every tbdex resource.
 
 #### Returns
 
@@ -254,6 +264,8 @@ ___
 
 • `get` **updatedAt**(): `string`
 
+Resource last updated time. Expressed as ISO8601
+
 #### Returns
 
 `string`
@@ -307,7 +319,7 @@ ___
 
 ▸ **toJSON**(): [`ResourceModel`](../index.md#resourcemodel)<``"offering"``\>
 
-returns the message as a json object. Automatically used by JSON.stringify method.
+returns the message as a json object. Automatically used by `JSON.stringify` method.
 
 #### Returns
 
@@ -347,11 +359,13 @@ ___
 
 ▸ `Static` **create**(`opts`): [`Offering`](Offering.md)
 
+Creates an Offering with the given options
+
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `opts` | [`CreateOfferingOptions`](../index.md#createofferingoptions) |
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `opts` | [`CreateOfferingOptions`](../index.md#createofferingoptions) | options to create an offering |
 
 #### Returns
 
@@ -362,6 +376,8 @@ ___
 ### generateId
 
 ▸ `Static` **generateId**(`resourceKind`): `string`
+
+Generates a unique id with the resource kind's prefix
 
 #### Parameters
 
@@ -427,7 +443,7 @@ validates `data` based on the value of `metadata.kind`
 
 **`Throws`**
 
-if validation fails
+`Error` if validation fails
 
 #### Inherited from
 

@@ -2,7 +2,7 @@
 title: '@tbdex/http-client'
 ---
 
-An HTTP client that can be used to send tbdex messages to PFIs
+A client that can be used to interface with tbDEX PFIs over an HTTP transport
 
 [Link to GitHub Repo](https://github.com/TBD54566975/tbdex-js/tree/main/packages/http-client)
 
@@ -26,7 +26,7 @@ An HTTP client that can be used to send tbdex messages to PFIs
 
 Ƭ **CloseData**: `Object`
 
-a Close can be sent by Alice or the PFI as a reply to an RFQ or a Quote
+A Close can be sent by Alice or the PFI as a reply to an RFQ or a Quote
 
 #### Type declaration
 
@@ -40,7 +40,7 @@ ___
 
 Ƭ **CreateCloseOptions**: `Object`
 
-options passed to [OrderStatus.create](classes/OrderStatus.md#create)
+Options passed to [OrderStatus.create](classes/OrderStatus.md#create)
 
 #### Type declaration
 
@@ -55,13 +55,15 @@ ___
 
 Ƭ **CreateCredentialOptions**: `Omit`<[`CreateJwtOptions`](index.md#createjwtoptions), ``"payload"``\> & { `data`: `Record`<`string`, `any`\> ; `type`: `string`  }
 
-options passed to [DevTools.createCredential](classes/DevTools.md#createcredential)
+Options passed to [DevTools.createCredential](classes/DevTools.md#createcredential)
 
 ___
 
 ### CreateJwtOptions
 
 Ƭ **CreateJwtOptions**: `Object`
+
+Options passed to [DevTools.createJwt](classes/DevTools.md#createjwt)
 
 #### Type declaration
 
@@ -77,7 +79,7 @@ ___
 
 Ƭ **CreateOfferingOptions**: `Object`
 
-options passed to [Offering.create](classes/Offering.md#create)
+Options passed to [Offering.create](classes/Offering.md#create)
 
 #### Type declaration
 
@@ -92,7 +94,7 @@ ___
 
 Ƭ **CreateOrderOptions**: `Object`
 
-options passed to [Order.create](classes/Order.md#create)
+Options passed to [Order.create](classes/Order.md#create)
 
 #### Type declaration
 
@@ -107,7 +109,7 @@ ___
 
 Ƭ **CreateOrderStatusOptions**: `Object`
 
-options passed to [OrderStatus.create](classes/OrderStatus.md#create)
+Options passed to [OrderStatus.create](classes/OrderStatus.md#create)
 
 #### Type declaration
 
@@ -122,7 +124,7 @@ ___
 
 Ƭ **CreateQuoteOptions**: `Object`
 
-options passed to [Quote.create](classes/Quote.md#create)
+Options passed to [Quote.create](classes/Quote.md#create)
 
 #### Type declaration
 
@@ -137,7 +139,7 @@ ___
 
 Ƭ **CreateRfqOptions**: `Object`
 
-options passed to [Rfq.create](classes/Rfq.md#create)
+Options passed to [Rfq.create](classes/Rfq.md#create)
 
 #### Type declaration
 
@@ -153,6 +155,8 @@ ___
 
 Ƭ **CurrencyDetails**: `Object`
 
+Currency details object
+
 #### Type declaration
 
 | Name | Type | Description |
@@ -167,6 +171,8 @@ ___
 
 Ƭ **DataResponse**<`T`\>: [`HttpResponse`](index.md#httpresponse) & { `data`: `T` ; `errors?`: `never`  }
 
+HTTP Response with data
+
 #### Type parameters
 
 | Name |
@@ -179,17 +185,23 @@ ___
 
 Ƭ **DidMethodOptions**: ``"key"`` \| ``"ion"``
 
+Supported DID Methods
+
 ___
 
 ### DidResource
 
 Ƭ **DidResource**: `DidDocument` \| `VerificationMethod` \| `DidService`
 
+A DID Resource is either a DID Document, a DID Verification method or a DID Service
+
 ___
 
 ### ErrorDetail
 
 Ƭ **ErrorDetail**: `Object`
+
+Error received from the PFI server response
 
 #### Type declaration
 
@@ -211,6 +223,8 @@ ___
 ### ErrorResponse
 
 Ƭ **ErrorResponse**: [`HttpResponse`](index.md#httpresponse) & { `data?`: `never` ; `errors`: [`ErrorDetail`](index.md#errordetail)[]  }
+
+HTTP Response with errors
 
 ___
 
@@ -271,6 +285,8 @@ ___
 
 Ƭ **HttpResponse**: `Object`
 
+HTTP Response
+
 #### Type declaration
 
 | Name | Type |
@@ -290,17 +306,23 @@ ___
 
 Ƭ **MessageKind**: ``"rfq"`` \| ``"quote"`` \| ``"order"`` \| ``"orderstatus"`` \| ``"close"``
 
+Type alias to represent a set of message kind string keys
+
 ___
 
 ### MessageKindClass
 
 Ƭ **MessageKindClass**: [`Rfq`](classes/Rfq.md) \| [`Quote`](classes/Quote.md) \| [`Order`](classes/Order.md) \| [`OrderStatus`](classes/OrderStatus.md) \| [`Close`](classes/Close.md)
 
+Type alias for all message kinds classes
+
 ___
 
 ### MessageKindClasses
 
 Ƭ **MessageKindClasses**: `Object`
+
+Type alias for all message kinds classes mapped by string keys
 
 #### Type declaration
 
@@ -318,6 +340,8 @@ ___
 
 Ƭ **MessageKindModel**<`T`\>: [`MessageKinds`](index.md#messagekinds)[`T`]
 
+Type alias to represent the data content of a message kind
+
 #### Type parameters
 
 | Name | Type |
@@ -329,6 +353,8 @@ ___
 ### MessageKinds
 
 Ƭ **MessageKinds**: `Object`
+
+Type alias to map a message kind to its key string value
 
 #### Type declaration
 
@@ -346,6 +372,8 @@ ___
 
 Ƭ **MessageMetadata**<`T`\>: `Object`
 
+Message's metadata
+
 #### Type parameters
 
 | Name | Type |
@@ -357,7 +385,7 @@ ___
 | Name | Type | Description |
 | :------ | :------ | :------ |
 | `createdAt` | `string` | Message creation time. Expressed as ISO8601 |
-| `exchangeId` | `string` | ID for an "exchange" of messages between Alice <-> PFI. Uses the id of the RFQ that initiated the exchange |
+| `exchangeId` | `string` | ID for an "exchange" of messages between Alice - PFI. Uses the id of the RFQ that initiated the exchange |
 | `from` | `string` | The sender's DID |
 | `id` | `string` | the message id |
 | `kind` | `T` | the message kind (e.g. rfq, quote) |
@@ -368,6 +396,8 @@ ___
 ### MessageModel
 
 Ƭ **MessageModel**<`T`\>: `Object`
+
+Represents the full message object: metadata + message kind data + signature
 
 #### Type parameters
 
@@ -389,6 +419,8 @@ ___
 
 Ƭ **NewMessage**<`T`\>: `Omit`<[`MessageModel`](index.md#messagemodel)<`T`\>, ``"signature"``\> & { `signature?`: `string`  }
 
+Type alias to represent a brand new message (signature is optional)
+
 #### Type parameters
 
 | Name | Type |
@@ -400,6 +432,8 @@ ___
 ### NewResource
 
 Ƭ **NewResource**<`T`\>: `Omit`<[`ResourceModel`](index.md#resourcemodel)<`T`\>, ``"signature"``\> & { `signature?`: `string`  }
+
+Type alias to represent a brand new resource (signature is optional)
 
 #### Type parameters
 
@@ -462,6 +496,8 @@ ___
 
 Ƭ **PaymentInstruction**: `Object`
 
+Describes the payment instructions with plain text and/or a link
+
 #### Type declaration
 
 | Name | Type | Description |
@@ -474,6 +510,8 @@ ___
 ### PaymentInstructions
 
 Ƭ **PaymentInstructions**: `Object`
+
+Payment Instructions payin and payout pairs
 
 #### Type declaration
 
@@ -488,6 +526,8 @@ ___
 
 Ƭ **PaymentMethod**: `Object`
 
+The payment method specified by the resource pay in and pay out
+
 #### Type declaration
 
 | Name | Type | Description |
@@ -500,6 +540,8 @@ ___
 ### Private
 
 Ƭ **Private**: `Record`<`string`, `any`\>
+
+Holds private data: PII, PCI, etc.
 
 ___
 
@@ -525,6 +567,8 @@ ___
 
 Ƭ **QuoteDetails**: `Object`
 
+A QuoteDetails object describes the amount of a currency that is being sent or received
+
 #### Type declaration
 
 | Name | Type | Description |
@@ -539,17 +583,23 @@ ___
 
 Ƭ **ResourceKind**: keyof [`ResourceKinds`](index.md#resourcekinds)
 
+Type alias to represent a set of resource kind string keys
+
 ___
 
 ### ResourceKindClass
 
 Ƭ **ResourceKindClass**: [`Offering`](classes/Offering.md)
 
+Type alias for all resource kinds classes
+
 ___
 
 ### ResourceKindClasses
 
 Ƭ **ResourceKindClasses**: `Object`
+
+Type alias for all resource kinds classes mapped by string keys
 
 #### Type declaration
 
@@ -563,6 +613,8 @@ ___
 
 Ƭ **ResourceKindModel**<`T`\>: [`ResourceKinds`](index.md#resourcekinds)[`T`]
 
+Type alias to represent the data content of a resource kind
+
 #### Type parameters
 
 | Name | Type |
@@ -575,6 +627,8 @@ ___
 
 Ƭ **ResourceKinds**: `Object`
 
+Type alias to map a resource kind to its key string value
+
 #### Type declaration
 
 | Name | Type |
@@ -586,6 +640,8 @@ ___
 ### ResourceMetadata
 
 Ƭ **ResourceMetadata**<`T`\>: `Object`
+
+Resource's metadata
 
 #### Type parameters
 
@@ -609,6 +665,8 @@ ___
 
 Ƭ **ResourceModel**<`T`\>: `Object`
 
+Represents the full resource object: metadata + resource kind data + signature
+
 #### Type parameters
 
 | Name | Type |
@@ -629,6 +687,8 @@ ___
 
 Ƭ **RfqData**: `Object`
 
+Data contained in a RFQ message
+
 #### Type declaration
 
 | Name | Type | Description |
@@ -645,19 +705,21 @@ ___
 
 Ƭ **RfqOptions**: `Object`
 
-options passed to [DevTools.createRfq](classes/DevTools.md#createrfq)
+Options passed to [DevTools.createRfq](classes/DevTools.md#createrfq)
 
 #### Type declaration
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `sender` | `PortableDid` | PortableDid of the rfq sender. used to generate a random credential that fulfills the vcRequirements of the offering returned by [DevTools.createOffering](classes/DevTools.md#createoffering) |
+| `sender` | `PortableDid` | @web5/dids#PortableDid of the rfq sender. used to generate a random credential that fulfills the vcRequirements of the offering returned by [DevTools.createOffering](classes/DevTools.md#createoffering) |
 
 ___
 
 ### SelectedPaymentMethod
 
 Ƭ **SelectedPaymentMethod**: `Object`
+
+The payment methods selected by Alice in the RFQ
 
 #### Type declaration
 
@@ -692,7 +754,7 @@ ___
 
 Ƭ **SignOptions**: `Object`
 
-options passed to [Crypto.sign](classes/Crypto.md#sign)
+Options passed to [Crypto.sign](classes/Crypto.md#sign)
 
 #### Type declaration
 
@@ -709,7 +771,7 @@ ___
 
 Ƭ **VerifyOptions**: `Object`
 
-options passed to [Crypto.verify](classes/Crypto.md#verify)
+Options passed to [Crypto.verify](classes/Crypto.md#verify)
 
 #### Type declaration
 
@@ -724,7 +786,7 @@ options passed to [Crypto.verify](classes/Crypto.md#verify)
 
 • `Const` **DidResolver**: `Web5DidResolver`
 
-can be used to resolve did:ion and did:key DIDs
+Can be used to resolve did:ion and did:key DIDs
 
 ## Functions
 
@@ -764,17 +826,19 @@ ___
 
 ▸ **isVerificationMethod**(`didResource`): didResource is VerificationMethod
 
-type guard for VerificationMethod
+type guard for @web5/dids#VerificationMethod
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `didResource` | [`DidResource`](index.md#didresource) |
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `didResource` | [`DidResource`](index.md#didresource) | the resource to check |
 
 #### Returns
 
 didResource is VerificationMethod
+
+true if the didResource is a `VerificationMethod`
 
 ___
 
@@ -782,7 +846,7 @@ ___
 
 ▸ **resolveDid**(`did`): `Promise`<`DidDocument`\>
 
-resolves the DID provided
+Resolves the DID provided
 
 #### Parameters
 
@@ -793,3 +857,5 @@ resolves the DID provided
 #### Returns
 
 `Promise`<`DidDocument`\>
+
+@web5/dids#DidDocument

@@ -1,3 +1,5 @@
+HTTP client for interacting with TBDex PFIs
+
 ## Constructors
 
 ### constructor
@@ -168,4 +170,4 @@ if the token is invalid
 
 **`Throws`**
 
-see [Crypto.verify](Crypto.md#verify)
+see @tbdex/protocol#Crypto.verify
