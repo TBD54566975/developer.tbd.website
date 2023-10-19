@@ -2,9 +2,9 @@ import PackageJson from '@site/src/components/PackageJson';
 
 # Build a Collaborative Todo App with Nuxt and Web5
 
-In the [Build a Todo App](/docs/web5/build/apps/todo-app-tutorial) tutorial, we learnt how to build a basic single-user decentralized todo app with `web5.js` and `Vue.js`.
+In the [Build a Todo App](/docs/web5/build/apps/todo-app-tutorial) tutorial, we learned how to build a single-user decentralized todo app with `Web5.js` and `Vue.js`.
 
-For this tutorial, we will be expanding on the core features introduced with the todo app and build out a more collaborative app that allows multiple users work on the same, shared todo list.
+This tutorial takes it a step further. We will expand on the core features introduced in the todo app to make it more collaborative - enabling multiple users to interact with a shared todo list.
 
 ## What we will learn
 
@@ -12,12 +12,14 @@ We are going to learn how to;
 - Enforce permissions or authorization on records through protocols.
 - Send and update records across multiple users' Decentralized Web Nodes.
 
-By the end of this tutorial, we'll have an understanding of protocols, DWN to DWN communication and how to build a multi-user app on the Decentralized Web.
+By the end of this tutorial, we'll have gained an understanding of protocols, DWN to DWN communication, and how to build a multi-user app on the Decentralized Web.
 
 ## What we will build
-Bob and Alice are two friends that love doing things together. They often have specific goals and a bunch of tasks each of them have to complete to achieve this goal.
+Bob and Alice are two friends that love doing things together. They often set collective goals and divide tasks between themselves to reach these goals.
 
 They have decided to build a todo app that allows them to collaborate on their tasks and keep track of their progress while also being able to have these tasks on other apps they use if needed - A decentralized shared todo app.
+
+Let's help them build it! 🚀
 
 ## Our toolkit
 We will be using the following tools to build our app:
@@ -26,6 +28,8 @@ We will be using the following tools to build our app:
 - [TailwindCSS](https://tailwindcss.com/) - A utility-first CSS framework for rapidly building custom designs.
 
 ## Getting the Skeleton App
+
+To follow this tutorial, you can use your own UI design or use our starter code. As you work through the tutorial, we'll add logic to the various methods and make adjustments to the UI.
 
 You can follow along with this tutorial using your own UI layout, or you can use the starter project. As you go through the tutorial, you can add logic to the methods and update the UI.
 
@@ -166,7 +170,7 @@ Here we are defining the objects that we want to use in our app - `list` and `to
 ### Installing the protocol
 To implement this protocol, we have to install it in our app for any of the users.
 
-In `pages/index.vue`, Add the protocol from the json.
+In `pages/index.vue`, add the protocol from the json.
 
 ```js
 import sharedTodoProtocol from "~/assets/shared-todo-protocol.json";
@@ -210,9 +214,9 @@ const configureProtocol = async () => {
 }
 ```
 
-- First we query the list of existing protocols on the DWN.
-- If the protocol already exists, we return.
-- If the protocol does not exist, we configure it on the local DWN and send it to the remote DWN.
+- First we query the list of existing protocols to check if our protocol already exists on the DWN.
+- If the protocol already exists, we return and do nothing.
+- If the protocol does not exist, we set it up on the local DWN and send it to the remote DWN.
 
 
 Once this is done, we add the `configureProtocol` function to the `onBeforeMount` function.
@@ -301,7 +305,7 @@ To break this down, we are creating a new list with the following properties:
 - `author`: The DID of the author of the list.
 - `recipient`: The DID of the recipient of the list.
 
-Then we pass all this to our `web5.dwn.records.create` function to create the list. Along with the data, we have to pass the protocol definition to the function. This ensures all our permissions and structure is enforced on the data we pass.
+Then we use the `web5.dwn.records.create` function to create the list, providing it with both the data and the protocol definition. The protocol definition ensures our data adheres to the correct permissions and structure.
 
 Now we have to ensure that the recipient also receives this new list data. And for that, we use `record.send()`.
 
