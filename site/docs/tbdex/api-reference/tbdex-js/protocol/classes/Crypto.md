@@ -1,3 +1,5 @@
+Cryptographic utility functions, such as hashing, signing, and verifying
+
 ## Constructors
 
 ### constructor
