@@ -58,8 +58,8 @@ function DocsIndex() {
           heroText="Decentralized Web Nodes"
           buttonUrl="/docs/web5/learn/decentralized-web-nodes"
           buttonText="Learn"
-          imgSrc="/img/message-icon.png"
-          imgClass="w-36"
+          imgSrc="/img/docs-page-icon.svg"
+          imgClass="w-32"
           bodyText="Learn how DWNs act as personal data stores"
           themeColor="purple"
         />
@@ -72,12 +72,12 @@ function DocsIndex() {
           themeColor="purple"
         />
         <HeroCard
-          heroText="Build a ToDo App"
-          buttonUrl="/docs/web5/build/apps/todo-app-tutorial"
+          heroText="Build a Chat App"
+          buttonUrl="/docs/web5/build/apps/dinger-tutorial"
           buttonText="Build"
-          imgSrc="/img/docs-todo-icon.png"
-          imgClass="w-24"
-          bodyText="Learn how to build a simple, single-user decentralized app"
+          imgSrc="/img/message-icon-purple.png"
+          imgClass="w-36"
+          bodyText="Learn how to build a decentralized chat app"
           themeColor="cyan"
         />
       </div>

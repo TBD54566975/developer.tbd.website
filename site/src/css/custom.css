@@ -19,6 +19,7 @@ root {
   --color-black: #000000;
   --color-yellow: #ffec19;
   --color-blue: #24f2ff;
+  --color-purple: #9a1aff;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
 }
 
@@ -593,3 +594,16 @@ ol {
   list-style: auto;
   margin: 30px;
 }
+
+.color-yellow{
+  color: var(--color-yellow);
+}
+
+.color-purple{
+  color: var(--color-purple);
+}
+
+.color-blue{
+  color: var(--color-blue);
+}
+
