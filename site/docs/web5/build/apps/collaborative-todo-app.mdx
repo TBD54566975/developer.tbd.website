@@ -8,15 +8,7 @@ import PackageJson from '@site/src/components/PackageJson';
 
 In the [Build a Todo App](/docs/web5/build/apps/todo-app-tutorial) tutorial, we learned how to build a single-user decentralized todo app with `Web5.js` and `Vue.js`.
 
-This tutorial takes it a step further. We will expand on the core features introduced in the todo app to make it more collaborative - enabling multiple users to interact with a shared todo list.
-
-## What we will learn
-
-We are going to learn how to;
-- Enforce permissions or authorization on records through protocols.
-- Send and update records across multiple users' Decentralized Web Nodes.
-
-By the end of this tutorial, we'll have gained an understanding of protocols, DWN to DWN communication, and how to build a multi-user app on the Decentralized Web.
+This tutorial takes it a step further. We will expand on the core features and build out a more collaborative app that allows multiple users work on the same, shared todo list.
 
 ## Objectives
 
@@ -28,7 +20,7 @@ We are going to learn how to:
 - Enforce permissions or authorization on records through [protocols](/docs/web5/learn/protocols)
 - Send and update records across multiple users' [Decentralized Web Nodes (DWN)](/docs/web5/learn/decentralized-web-nodes)
 
-By the end of this tutorial, we'll have an understanding of protocols, DWN to DWN communication and how to build a multi-user app on the decentralized web.
+By the end of this tutorial, we'll have gained an understanding of protocols, DWN to DWN communication, and how to build a multi-user app on the decentralized web.
 
 
 ## Our Toolkit
@@ -41,8 +33,6 @@ We will use the following tools to build our app:
 ## Get the Skeleton App
 
 To follow this tutorial, you can use your own UI design or use our starter code. As you work through the tutorial, we'll add logic to the various methods and make adjustments to the UI.
-
-You can follow along with this tutorial using your own UI layout, or you can use the starter project. As you go through the tutorial, you'll add logic to the methods and update the UI.
 
 To access the starter code, follow the instructions below or explore the project directly in CodeSandbox.
 
@@ -179,7 +169,7 @@ Create a new file called `shared-todo-protocol.json` under the `assets/` folder 
 ### Install the Protocol
 To implement this protocol, we have to install it in our app for any of the users.
 
-In `pages/index.vue`, Add the protocol from the json.
+Let's import the protocol definition:
 
 ```js title="pages/index.vue"
 import sharedTodoProtocol from "~/assets/shared-todo-protocol.json";
@@ -218,17 +208,8 @@ const configureProtocol = async () => {
     });
 
     console.log('Protocol configured', configureStatus, protocol);
-
-    // instantly send protocol to remote DWNs as well
-    const { status: configureRemoteStatus } = protocol.send(myDID);
-    console.log('Protocol configured on remote DWN', configureRemoteStatus);
 }
 ```
-
-- First we query the list of existing protocols to check if our protocol already exists on the DWN.
-- If the protocol already exists, we return and do nothing.
-- If the protocol does not exist, we set it up on the local DWN and send it to the remote DWN.
-
 
 Once this is done, we add the `configureProtocol` function to the `onBeforeMount` function.
 
@@ -462,7 +443,7 @@ onBeforeMount(async () => {
 ### Add Tasks to List
 To add a task, we want to connect it to the list as the parent, identify who authored it, store it with the schema matching the protocol and then also send it to the other party's DWN.
 
-To get the DID of the recipient to send the record to, since either of the author or recipient of the list could be the one creating the todo, we use a `getTodoRecipient()` to help us out.
+To get the DID of the recipient to send the record to, since either of the author or recipient of the list could be the one creating the todo, we use a `getTodoRecipient()` method to help us out.
 
 ```js title="pages/todos/_id.vue"
 let todoRecipient;
