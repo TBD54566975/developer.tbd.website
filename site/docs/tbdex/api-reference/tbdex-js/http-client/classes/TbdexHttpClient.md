@@ -42,7 +42,7 @@ ___
 
 ### getExchange
 
-▸ `Static` **getExchange**(`opts`): `Promise`<[`ErrorResponse`](../index.md#errorresponse) \| [`DataResponse`](../index.md#dataresponse)<[`MessageKindClass`](../index.md#messagekindclass)[]\>\>
+▸ `Static` **getExchange**(`opts`): `Promise`<[`ErrorResponse`](../index.md#errorresponse) \| [`DataResponse`](../index.md#dataresponse)<`MessageKindClass`[]\>\>
 
 get a specific exchange from the pfi provided
 
@@ -54,13 +54,13 @@ get a specific exchange from the pfi provided
 
 #### Returns
 
-`Promise`<[`ErrorResponse`](../index.md#errorresponse) \| [`DataResponse`](../index.md#dataresponse)<[`MessageKindClass`](../index.md#messagekindclass)[]\>\>
+`Promise`<[`ErrorResponse`](../index.md#errorresponse) \| [`DataResponse`](../index.md#dataresponse)<`MessageKindClass`[]\>\>
 
 ___
 
 ### getExchanges
 
-▸ `Static` **getExchanges**(`opts`): `Promise`<[`ErrorResponse`](../index.md#errorresponse) \| [`DataResponse`](../index.md#dataresponse)<[`MessageKindClass`](../index.md#messagekindclass)[][]\>\>
+▸ `Static` **getExchanges**(`opts`): `Promise`<[`ErrorResponse`](../index.md#errorresponse) \| [`DataResponse`](../index.md#dataresponse)<`MessageKindClass`[][]\>\>
 
 returns all exchanges created by requester
 
@@ -72,13 +72,13 @@ returns all exchanges created by requester
 
 #### Returns
 
-`Promise`<[`ErrorResponse`](../index.md#errorresponse) \| [`DataResponse`](../index.md#dataresponse)<[`MessageKindClass`](../index.md#messagekindclass)[][]\>\>
+`Promise`<[`ErrorResponse`](../index.md#errorresponse) \| [`DataResponse`](../index.md#dataresponse)<`MessageKindClass`[][]\>\>
 
 ___
 
 ### getOfferings
 
-▸ `Static` **getOfferings**(`opts`): `Promise`<[`ErrorResponse`](../index.md#errorresponse) \| [`DataResponse`](../index.md#dataresponse)<[`Offering`](Offering.md)[]\>\>
+▸ `Static` **getOfferings**(`opts`): `Promise`<[`ErrorResponse`](../index.md#errorresponse) \| [`DataResponse`](../index.md#dataresponse)<`Offering`[]\>\>
 
 gets offerings from the pfi provided
 
@@ -90,7 +90,7 @@ gets offerings from the pfi provided
 
 #### Returns
 
-`Promise`<[`ErrorResponse`](../index.md#errorresponse) \| [`DataResponse`](../index.md#dataresponse)<[`Offering`](Offering.md)[]\>\>
+`Promise`<[`ErrorResponse`](../index.md#errorresponse) \| [`DataResponse`](../index.md#dataresponse)<`Offering`[]\>\>
 
 ___
 
@@ -122,7 +122,7 @@ sends the message provided to the intended recipient
 
 | Name | Type |
 | :------ | :------ |
-| `T` | extends [`MessageKind`](../index.md#messagekind) |
+| `T` | extends `MessageKind` |
 
 #### Parameters
 
