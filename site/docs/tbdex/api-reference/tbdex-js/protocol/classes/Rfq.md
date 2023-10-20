@@ -1,3 +1,5 @@
+Message sent by Alice to PFI to requesting for a quote (RFQ)
+
 ## Hierarchy
 
 - [`Message`](Message.md)<``"rfq"``\>
@@ -26,11 +28,13 @@
 
 • **\_private**: `Record`<`string`, `any`\>
 
+private data (PII or PCI)
+
 ___
 
 ### validNext
 
-• `Readonly` **validNext**: `any`
+• `Readonly` **validNext**: `Set`<[`MessageKind`](../index.md#messagekind)\>
 
 a set of valid Message kinds that can come after an rfq
 
@@ -118,7 +122,7 @@ ___
 
 • `get` **exchangeId**(): `string`
 
-ID for an "exchange" of messages between Alice <-> PFI. Uses the id of the RFQ that initiated the exchange
+ID for an "exchange" of messages between Alice - PFI. Uses the id of the RFQ that initiated the exchange
 
 #### Returns
 
@@ -381,7 +385,7 @@ ___
 
 ▸ **toJSON**(): [`MessageModel`](../index.md#messagemodel)<``"rfq"``\>
 
-returns the message as a json object. Automatically used by JSON.stringify method.
+Converts this rfq message to a json object
 
 #### Returns
 
@@ -457,7 +461,7 @@ evaluates this rfq against the provided offering
 
 **`Throws`**
 
-if [offeringId](Rfq.md#offeringid) doesn't match the provided offering's id
+if [Rfq.offeringId](Rfq.md#offeringid) doesn't match the provided offering's id
 
 ___
 
@@ -465,15 +469,19 @@ ___
 
 ▸ `Static` **create**(`opts`): [`Rfq`](Rfq.md)
 
+Creates an rfq with the given options
+
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `opts` | [`CreateRfqOptions`](../index.md#createrfqoptions) |
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `opts` | [`CreateRfqOptions`](../index.md#createrfqoptions) | options to create an rfq |
 
 #### Returns
 
 [`Rfq`](Rfq.md)
+
+[Rfq](Rfq.md)
 
 ___
 
@@ -491,9 +499,9 @@ returns an instance of the appropriate MessageKind class based on the value of `
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `jsonMessage` | [`MessageModel`](../index.md#messagemodel)<`T`\> |
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `jsonMessage` | [`MessageModel`](../index.md#messagemodel)<`T`\> | the message to parse |
 
 #### Returns
 
@@ -508,6 +516,8 @@ ___
 ### generateId
 
 ▸ `Static` **generateId**(`messageKind`): `string`
+
+Generates a unique id with the message kind's prefix
 
 #### Parameters
 
@@ -547,6 +557,8 @@ parses the json message into a message instance. performs format validation and 
 
 `Promise`<[`MessageKindClass`](../index.md#messagekindclass)\>
 
+[Message](Message.md)
+
 #### Inherited from
 
 [Message](Message.md).[parse](Message.md#parse)
@@ -573,7 +585,7 @@ validates `data` based on the value of `metadata.kind`
 
 **`Throws`**
 
-if validation fails
+`Error` if validation fails
 
 #### Inherited from
 

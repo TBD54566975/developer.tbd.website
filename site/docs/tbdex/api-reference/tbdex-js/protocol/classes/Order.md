@@ -26,7 +26,9 @@ Message sent by Alice to the PFI to accept a Quote.
 
 ### validNext
 
-• `Readonly` **validNext**: `any`
+• `Readonly` **validNext**: `Set`<[`MessageKind`](../index.md#messagekind)\>
+
+a set of valid Message kinds that can come after an order
 
 ___
 
@@ -100,7 +102,7 @@ ___
 
 • `get` **exchangeId**(): `string`
 
-ID for an "exchange" of messages between Alice <-> PFI. Uses the id of the RFQ that initiated the exchange
+ID for an "exchange" of messages between Alice - PFI. Uses the id of the RFQ that initiated the exchange
 
 #### Returns
 
@@ -315,7 +317,7 @@ ___
 
 ▸ **toJSON**(): [`MessageModel`](../index.md#messagemodel)<``"order"``\>
 
-returns the message as a json object. Automatically used by JSON.stringify method.
+returns the message as a json object. Automatically used by `JSON.stringify` method.
 
 #### Returns
 
@@ -355,11 +357,13 @@ ___
 
 ▸ `Static` **create**(`opts`): [`Order`](Order.md)
 
+Creates an order with the given options
+
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `opts` | [`CreateOrderOptions`](../index.md#createorderoptions) |
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `opts` | [`CreateOrderOptions`](../index.md#createorderoptions) | options to create an order |
 
 #### Returns
 
@@ -381,9 +385,9 @@ returns an instance of the appropriate MessageKind class based on the value of `
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `jsonMessage` | [`MessageModel`](../index.md#messagemodel)<`T`\> |
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `jsonMessage` | [`MessageModel`](../index.md#messagemodel)<`T`\> | the message to parse |
 
 #### Returns
 
@@ -398,6 +402,8 @@ ___
 ### generateId
 
 ▸ `Static` **generateId**(`messageKind`): `string`
+
+Generates a unique id with the message kind's prefix
 
 #### Parameters
 
@@ -437,6 +443,8 @@ parses the json message into a message instance. performs format validation and 
 
 `Promise`<[`MessageKindClass`](../index.md#messagekindclass)\>
 
+[Message](Message.md)
+
 #### Inherited from
 
 [Message](Message.md).[parse](Message.md#parse)
@@ -463,7 +471,7 @@ validates `data` based on the value of `metadata.kind`
 
 **`Throws`**
 
-if validation fails
+`Error` if validation fails
 
 #### Inherited from
 
