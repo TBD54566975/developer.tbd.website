@@ -1,4 +1,4 @@
-import { Web5 } from '@web5/api';
+import { Web5 } from '@web5/api/browser';
 
 export default defineNuxtPlugin({
     async setup (nuxtApp) {
