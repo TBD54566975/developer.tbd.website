@@ -69,7 +69,7 @@ You should now have the app running on [http://localhost:3000](http://localhost:
 We are building a [NuxtJS App](https://nuxt.com/) using file-based routing through the `pages` folder. We have the following key files in our app:
 
 - `pages/index.vue` - the home page of the app
-- `pages/todos/_id.vue` - the page for viewing a todo list
+- `pages/todos/[id].vue` - the page for viewing a todo list
 - `assets/shared-todo-protocol.json`: a JSON file defining the protocol used for sharing to-do lists
 
 Our shared todo app will have the following features that we need to build out:
@@ -381,13 +381,13 @@ Using NuxtLink, we are able to navigate to our list page by passing the `listId`
 ### Fetch List Details
 In our dynamic todo page, let's import the protocol definition document so it can be reused.
 
-```js title="pages/todos/_id.vue"
+```js title="pages/todos/[id].vue"
 import sharedTodoProtocol from "~/assets/shared-todo-protocol.json";
 ```
 
 We need to fetch the list details from the DWN so let's get the list id from the url parameter, get our global `web5` and `myDID` variables and use the `listId` to query the DWN for the list.
 
-```js title="pages/todos/_id.vue"
+```js title="pages/todos/[id].vue"
 const route = useRoute();
 const listId = ref(route.params.id);
 
@@ -415,7 +415,7 @@ We update the `todoList` variable with the data from the DWN which is shown on o
 ### Fetch Tasks from List
 Every list comes with its own tasks. We can fetch this also in the `onBeforeMount()` method.
 
-```js title="pages/todos/_id.vue"
+```js title="pages/todos/[id].vue"
 onBeforeMount(async () => {
     console.log("this is your DID", myDID);
 
@@ -453,7 +453,7 @@ To add a task, we want to connect it to the list as the parent, identify who aut
 
 To get the DID of the recipient to send the record to, since either of the author or recipient of the list could be the one creating the todo, we use a `getTodoRecipient()` method to help us out.
 
-```js title="pages/todos/_id.vue"
+```js title="pages/todos/[id].vue"
 let todoRecipient;
 
 const getTodoRecipient = (list) => {
@@ -468,7 +468,7 @@ const getTodoRecipient = (list) => {
 
 Then in the `onBeforeMount()` method, let's update the `todoRecipient` variable so that it's only updated when we've fetched the list details and gotten the participating DIDs.
 
-```js title="pages/todos/_id.vue"
+```js title="pages/todos/[id].vue"
 onBeforeMount(async () => {
 ...
 
@@ -482,7 +482,7 @@ onBeforeMount(async () => {
 ### Create Task
 We create a new todo by calling the `web5.dwn.records.create()` method. We pass the data we want to store, and the protocol definition.
 
-```js title="pages/todos/_id.vue"
+```js title="pages/todos/[id].vue"
 async function addTodo() {
     const todoData = {
         completed: false,
@@ -524,7 +524,7 @@ async function addTodo() {
 ## Toggle Todo Status
 We can toggle the status of a todo as completed by updating the `completed` property of the todo and sending it to the other party:
 
-```js title="pages/todos/_id.vue"
+```js title="pages/todos/[id].vue"
 async function toggleTodoComplete(todoItem) {
     let toggledTodo;
     let updatedTodoData;
