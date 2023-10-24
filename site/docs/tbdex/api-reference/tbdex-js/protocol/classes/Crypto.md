@@ -8,26 +8,11 @@ Cryptographic utility functions, such as hashing, signing, and verifying
 
 ## Properties
 
-### crvToAlgMap
+### algorithms
 
-▪ `Static` **crvToAlgMap**: `Object`
+▪ `Static` **algorithms**: `Object`
 
-map of named curves to cryptographic algorithms. Necessary for JWS/JWK
-
-#### Type declaration
-
-| Name | Type |
-| :------ | :------ |
-| `Ed25519` | `string` |
-| `secp256k1` | `string` |
-
-___
-
-### signers
-
-▪ `Static` **signers**: `Object`
-
-supported cryptographic algorithms
+supported cryptographic algorithms. keys are `${alg}:${crv}`.
 
 #### Index signature
 
@@ -35,27 +20,25 @@ supported cryptographic algorithms
 
 ## Methods
 
-### hash
+### digest
 
-▸ `Static` **hash**(`payload`): `string`
+▸ `Static` **digest**(`payload`): `Uint8Array`
 
-hashes the payload provided in the following manner:
-base64url(
- sha256(
-   cbor(payload)
- )
-)
-TODO: add link to tbdex protocol hash section
+Computes a digest of the payload by:
+* JSON serializing the payload as per [RFC-8785: JSON Canonicalization Scheme](https://www.rfc-editor.org/rfc/rfc8785)
+* sha256 hashing the serialized payload
 
 #### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `payload` | `any` | the payload to hash |
+| Name | Type |
+| :------ | :------ |
+| `payload` | `any` |
 
 #### Returns
 
-`string`
+`Uint8Array`
+
+The SHA-256 hash of the canonicalized payload, represented as a byte array.
 
 ___
 
@@ -63,17 +46,23 @@ ___
 
 ▸ `Static` **sign**(`opts`): `Promise`<`string`\>
 
-signs the payload provided as a compact JWS
+Signs the provided payload and produces a compact JSON Web Signature (JWS).
 
 #### Parameters
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `opts` | [`SignOptions`](../index.md#signoptions) | signing options |
+| `opts` | [`SignOptions`](../index.md#signoptions) | The options required for signing. |
 
 #### Returns
 
 `Promise`<`string`\>
+
+A promise that resolves to the generated compact JWS.
+
+**`Throws`**
+
+Will throw an error if the specified algorithm is not supported.
 
 ___
 
@@ -81,46 +70,20 @@ ___
 
 ▸ `Static` **verify**(`opts`): `Promise`<`string`\>
 
-verifies the cryptographic integrity of the message or resource's signature
+Verifies the integrity of a message or resource's signature.
 
 #### Parameters
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `opts` | [`VerifyOptions`](../index.md#verifyoptions) | verification options |
+| `opts` | [`VerifyOptions`](../index.md#verifyoptions) | The options required for verification. |
 
 #### Returns
 
 `Promise`<`string`\>
 
-**`Throws`**
-
-if no signature present on the message or resource
+A promise that resolves to the DID of the signer if verification is successful.
 
 **`Throws`**
 
-if the signature is not a valid compact JWS
-
-**`Throws`**
-
-if the JWS' content is not detached
-
-**`Throws`**
-
-if the JWS header does not contain alg and kid
-
-**`Throws`**
-
-if DID in kid of JWS header does not match metadata.from
-
-**`Throws`**
-
-if signer's DID cannot be resolved
-
-**`Throws`**
-
-if signer's DID Document does not have the necessary verification method
-
-**`Throws`**
-
-if the verification method does not include a publicKeyJwk
+Various errors related to invalid input or failed verification.

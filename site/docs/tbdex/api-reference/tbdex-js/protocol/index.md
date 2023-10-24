@@ -626,12 +626,12 @@ Options passed to [Crypto.sign](classes/Crypto.md#sign)
 
 #### Type declaration
 
-| Name | Type |
-| :------ | :------ |
-| `detachedPayload?` | `string` |
-| `kid` | `string` |
-| `payload?` | `object` |
-| `privateKeyJwk` | `Web5PrivateKeyJwk` |
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `detached` | `boolean` | Indicates whether the payload is detached from the JWS. If `true`, the payload is not included in the resulting JWS. |
+| `kid` | `string` | A unique identifier for the key used to sign in the form of a DID URL. |
+| `payload` | `Uint8Array` | The payload to be signed. |
+| `privateKeyJwk` | `Web5PrivateKeyJwk` | The private key in JWK (JSON Web Key) format used for signing. |
 
 ___
 
@@ -645,7 +645,7 @@ Options passed to [Crypto.verify](classes/Crypto.md#verify)
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `detachedPayload?` | `string` | the message or resource to verify the signature of |
+| `detachedPayload?` | `Uint8Array` | The payload that was signed. required only if the signature is a detached JWS |
 | `signature` | `string` | - |
 
 ## Variables
