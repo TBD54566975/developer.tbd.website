@@ -47,11 +47,10 @@
 
 <script setup>
 import { ref } from 'vue';
-import { Web5 } from '@web5/api';
 import protocolDefinition from "assets/shared-todo-protocol.json";
 
-let web5;
-let myDID;
+const { $web5: web5, $myDID: myDID } = useNuxtApp();
+
 
 const showForm = ref(false);
 const newTodo = ref({
@@ -63,9 +62,6 @@ const newTodo = ref({
 const sharedList = ref([]);
 
 onBeforeMount(async () => {
-    ({ web5, did: myDID } = await Web5.connect({
-        sync: '5s'
-    }));
     console.log("this is your DID", myDID);
 
     await configureProtocol();
@@ -100,7 +96,7 @@ const createSharedList = async () => {
         "recipient": newTodo.value.recipientDID,
     }
 
-    newTodo.value = { title: '', description: '', userId: '', alias: '' }
+    newTodo.value = { title: '', description: '', recipientDID: '' }
 
     try {
         const { record } = await web5.dwn.records.create({

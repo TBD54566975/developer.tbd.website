@@ -68,14 +68,13 @@ import { ref } from 'vue'
 import { useRoute } from 'vue-router'
 import { PlusIcon as PlusIconMini } from '@heroicons/vue/solid';
 import { CheckCircleIcon, TrashIcon } from '@heroicons/vue/outline';
-import { Web5 } from '@web5/api'
 import protocolDefinition from "assets/shared-todo-protocol.json";
 
 const route = useRoute()
 const listId = ref(route.params.id);
 
-let web5;
-let myDID;
+const { $web5: web5, $myDID: myDID } = useNuxtApp();
+
 let todoRecipient;
 let todoList = ref({});
 let todoItems = ref([]);
@@ -94,9 +93,6 @@ const getTodoRecipient = () => {
 
 
 onBeforeMount(async () => {
-    ({ web5, did: myDID } = await Web5.connect({
-        sync: '5s'
-    }));
     console.log("this is your DID", myDID);
 
     // fetch shared list details.
