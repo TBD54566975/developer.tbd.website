@@ -4,7 +4,7 @@ PFI Offerings API
 
 ### getOffering
 
-▸ **getOffering**(`opts`): `Promise`<`Offering`\>
+▸ **getOffering**(`opts`): `Promise`<[`Offering`](../classes/Offering.md)\>
 
 Retrieve a single offering if found
 
@@ -17,13 +17,13 @@ Retrieve a single offering if found
 
 #### Returns
 
-`Promise`<`Offering`\>
+`Promise`<[`Offering`](../classes/Offering.md)\>
 
 ___
 
 ### getOfferings
 
-▸ **getOfferings**(`opts?`): `Promise`<`Offering`[]\>
+▸ **getOfferings**(`opts?`): `Promise`<[`Offering`](../classes/Offering.md)[]\>
 
 Retrieve a list of offerings based on the given filter
 
@@ -36,4 +36,4 @@ Retrieve a list of offerings based on the given filter
 
 #### Returns
 
-`Promise`<`Offering`[]\>
+`Promise`<[`Offering`](../classes/Offering.md)[]\>

@@ -4,7 +4,7 @@ PFI Exchanges API
 
 ### getClose
 
-▸ **getClose**(`opts`): `Promise`<`Close`\>
+▸ **getClose**(`opts`): `Promise`<[`Close`](../classes/Close.md)\>
 
 Retrieve the close reason if found
 
@@ -17,13 +17,13 @@ Retrieve the close reason if found
 
 #### Returns
 
-`Promise`<`Close`\>
+`Promise`<[`Close`](../classes/Close.md)\>
 
 ___
 
 ### getExchange
 
-▸ **getExchange**(`opts`): `Promise`<`MessageKindClass`[]\>
+▸ **getExchange**(`opts`): `Promise`<[`MessageKindClass`](../index.md#messagekindclass)[]\>
 
 Retrieve a single exchange if found
 
@@ -36,13 +36,13 @@ Retrieve a single exchange if found
 
 #### Returns
 
-`Promise`<`MessageKindClass`[]\>
+`Promise`<[`MessageKindClass`](../index.md#messagekindclass)[]\>
 
 ___
 
 ### getExchanges
 
-▸ **getExchanges**(`opts?`): `Promise`<`MessageKindClass`[][]\>
+▸ **getExchanges**(`opts?`): `Promise`<[`MessageKindClass`](../index.md#messagekindclass)[][]\>
 
 Retrieve a list of exchanges based on the given filter
 
@@ -55,13 +55,13 @@ Retrieve a list of exchanges based on the given filter
 
 #### Returns
 
-`Promise`<`MessageKindClass`[][]\>
+`Promise`<[`MessageKindClass`](../index.md#messagekindclass)[][]\>
 
 ___
 
 ### getOrder
 
-▸ **getOrder**(`opts`): `Promise`<`Order`\>
+▸ **getOrder**(`opts`): `Promise`<[`Order`](../classes/Order.md)\>
 
 Retrieve an Order if found
 
@@ -74,13 +74,13 @@ Retrieve an Order if found
 
 #### Returns
 
-`Promise`<`Order`\>
+`Promise`<[`Order`](../classes/Order.md)\>
 
 ___
 
 ### getOrderStatuses
 
-▸ **getOrderStatuses**(`opts`): `Promise`<`OrderStatus`[]\>
+▸ **getOrderStatuses**(`opts`): `Promise`<[`OrderStatus`](../classes/OrderStatus.md)[]\>
 
 Retrieve the order statuses if found
 
@@ -93,13 +93,13 @@ Retrieve the order statuses if found
 
 #### Returns
 
-`Promise`<`OrderStatus`[]\>
+`Promise`<[`OrderStatus`](../classes/OrderStatus.md)[]\>
 
 ___
 
 ### getQuote
 
-▸ **getQuote**(`opts`): `Promise`<`Quote`\>
+▸ **getQuote**(`opts`): `Promise`<[`Quote`](../classes/Quote.md)\>
 
 Retrieve a Quote if found
 
@@ -112,13 +112,13 @@ Retrieve a Quote if found
 
 #### Returns
 
-`Promise`<`Quote`\>
+`Promise`<[`Quote`](../classes/Quote.md)\>
 
 ___
 
 ### getRfq
 
-▸ **getRfq**(`opts`): `Promise`<`Rfq`\>
+▸ **getRfq**(`opts`): `Promise`<[`Rfq`](../classes/Rfq.md)\>
 
 Retrieve a RFQ if found
 
@@ -131,4 +131,4 @@ Retrieve a RFQ if found
 
 #### Returns
 
-`Promise`<`Rfq`\>
+`Promise`<[`Rfq`](../classes/Rfq.md)\>
