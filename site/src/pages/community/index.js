@@ -92,6 +92,7 @@ function CommunityIndex() {
                 width: '200px',
                 position: 'relative',
                 marginBottom: '20px',
+                cursor: 'pointer',
               }}
               onClick={() =>
                 setFlippedCardIndex(flippedCardIndex === index ? null : index)
