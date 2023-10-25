@@ -255,8 +255,8 @@ options passed to [TbdexHttpClient.getExchanges](classes/TbdexHttpClient.md#gete
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `filter?` | { `exchangeId`: `string` \| `string`[]  } | - |
-| `filter.exchangeId` | `string` \| `string`[] | - |
+| `filter?` | { `id`: `string` \| `string`[]  } | - |
+| `filter.id` | `string` \| `string`[] | - |
 | `kid` | `string` | - |
 | `pfiDid` | `string` | the DID of the PFI from whom you want to get offerings |
 | `privateKeyJwk` | `Web5PrivateKeyJwk` | - |
