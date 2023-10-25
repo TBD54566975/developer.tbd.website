@@ -69,7 +69,7 @@ You should now have the app running on [http://localhost:3000](http://localhost:
 We are building a [NuxtJS App](https://nuxt.com/) using file-based routing through the `pages` folder. We have the following key files in our app:
 
 - `pages/index.vue` - the home page of the app
-- `pages/todos/_id.vue` - the page for viewing a todo list
+- `pages/todos/[id].vue` - the page for viewing a todo list
 - `assets/shared-todo-protocol.json`: a JSON file defining the protocol used for sharing to-do lists
 
 Our shared todo app will have the following features that we need to build out:
@@ -81,35 +81,50 @@ Our shared todo app will have the following features that we need to build out:
 
 ## Initialize Constants and Variables
 
-Open `pages/index.vue` and add the following code to the other imports:
+We are building a multi-paged application and as a result, we will need to access Web5 on multiple pages. However we want to avoid running `Web5.connect()` on every page as it would impact performance. Instead, we will create a Nuxt plugin and have our Web5 instance and DID available across our application.
 
-```js title="pages/index.vue"
-import { Web5 } from "@web5/api";
+Create a new file at `plugins/web5.client.js` and add the following code:
+
+```js title="plugins/web5.client.js"
+    import { Web5 } from '@web5/api';
+
+    export default defineNuxtPlugin({
+        async setup (nuxtApp) {
+            console.log("Plugin loaded")
+            let web5;
+            let myDID;
+
+            ({ web5, did: myDID } = await Web5.connect({
+                sync: '5s'
+            }));
+
+            console.log("My DID exist", myDID)
+
+            return {
+                provide: {
+                    web5,
+                    myDID
+                }
+            };
+        },
+    });
 ```
+The first time a user accesses your Shared Todo app, you’ll need to handle creating an _account_ for them - this means ensuring they have a DID and DWN available to access their app data. Once they come back for subsequent sessions, you’ll want to fetch and load that data for them.
 
 
-Copy the following block and paste under all `import` statements:
+In the code above, we import and connect to Web5 while setting `sync` interval to 5 seconds. This is the amount of time between automatic syncs of the user's local and remote DWNs. We also return the `web5` and `myDID` variables to be available across our application.
+
+Open `pages/index.vue` and add the following code after all the `import` statements:
 
 ```js title="pages/index.vue"
-let web5;
-let myDid;
+// Get our global web5 instance and DID.
+const { $web5: web5, $myDID: myDID } = useNuxtApp();
 
 // The lists of existing todo items
 const sharedList = ref([]);
 ```
 
 The `web5` object is the single entry point for all Web5 operations. You've also set up a `sharedList` array to hold our shared lists, and a variable to remember the app user's decentralized identifier (DID) as `myDid`.
-
-## Connect to Web5
-The first time a user accesses your Shared Todo app, you’ll need to handle creating an _account_ for them - this means ensuring they have a DID and DWN available to access their app data. Once they come back for subsequent sessions, you’ll want to fetch and load that data for them.
-
-Let's call the `Web5.connect()` function, which will create a new DID and DWN for them if they don't already have these components.
-
-```js title="pages/index.vue"
-onBeforeMount(async () => {
-    ({ web5, did: myDID } = await Web5.connect());
-});
-```
 
 ## Set Permissions and Authorizations
 [Protocols](docs/web5/learn/protocols) help define both the data schema and permissions as it relates to a certain application or use case. It details what objects are stored as part of the application and who has what permissions on these objects.
@@ -251,7 +266,7 @@ const createSharedList = async () => {
         "recipient": newTodo.value.recipientDID,
     }
 
-    newTodo.value = { title: '', description: '', userId: '', alias: '' }
+    newTodo.value = { title: '', description: '', recipientDID: '' }
 
     try {
         const { record } = await web5.dwn.records.create({
@@ -364,26 +379,22 @@ The next part of our project involves adding specific todos to each list. We wan
 Using NuxtLink, we are able to navigate to our list page by passing the `listId` as a url parameter (e.g `localhost:3000/todos/[id]`). This is why we have `pages/todos/[id].vue` in our project to dynamically render based on the list we open.
 
 ### Fetch List Details
-In our dynamic todo page, let's import `Web5` and the protocol definition document again so they can be reused.
+In our dynamic todo page, let's import the protocol definition document so it can be reused.
 
-```js title="pages/todos/_id.vue"
-import { Web5 } from "@web5/api";
+```js title="pages/todos/[id].vue"
 import sharedTodoProtocol from "~/assets/shared-todo-protocol.json";
 ```
 
-We need to fetch the list details from the DWN so let's get the list id from the url parameter, connect to Web5 and use the listId to query the DWN for the list.
+We need to fetch the list details from the DWN so let's get the list id from the url parameter, get our global `web5` and `myDID` variables and use the `listId` to query the DWN for the list.
 
-```js title="pages/todos/_id.vue"
+```js title="pages/todos/[id].vue"
 const route = useRoute();
 const listId = ref(route.params.id);
 
-let web5;
-let myDID;
+const { $web5: web5, $myDID: myDID } = useNuxtApp();
+
 
 onBeforeMount(async () => {
-    ({ web5, did: myDID } = await Web5.connect({
-        sync: '5s'
-    }));
     console.log("this is your DID", myDID);
 
     // fetch shared list details
@@ -404,11 +415,8 @@ We update the `todoList` variable with the data from the DWN which is shown on o
 ### Fetch Tasks from List
 Every list comes with its own tasks. We can fetch this also in the `onBeforeMount()` method.
 
-```js title="pages/todos/_id.vue"
+```js title="pages/todos/[id].vue"
 onBeforeMount(async () => {
-    ({ web5, did: myDID } = await Web5.connect({
-        sync: '5s'
-    }));
     console.log("this is your DID", myDID);
 
     // fetch shared list details
@@ -445,7 +453,7 @@ To add a task, we want to connect it to the list as the parent, identify who aut
 
 To get the DID of the recipient to send the record to, since either of the author or recipient of the list could be the one creating the todo, we use a `getTodoRecipient()` method to help us out.
 
-```js title="pages/todos/_id.vue"
+```js title="pages/todos/[id].vue"
 let todoRecipient;
 
 const getTodoRecipient = (list) => {
@@ -460,7 +468,7 @@ const getTodoRecipient = (list) => {
 
 Then in the `onBeforeMount()` method, let's update the `todoRecipient` variable so that it's only updated when we've fetched the list details and gotten the participating DIDs.
 
-```js title="pages/todos/_id.vue"
+```js title="pages/todos/[id].vue"
 onBeforeMount(async () => {
 ...
 
@@ -474,7 +482,7 @@ onBeforeMount(async () => {
 ### Create Task
 We create a new todo by calling the `web5.dwn.records.create()` method. We pass the data we want to store, and the protocol definition.
 
-```js title="pages/todos/_id.vue"
+```js title="pages/todos/[id].vue"
 async function addTodo() {
     const todoData = {
         completed: false,
@@ -516,7 +524,7 @@ async function addTodo() {
 ## Toggle Todo Status
 We can toggle the status of a todo as completed by updating the `completed` property of the todo and sending it to the other party:
 
-```js title="pages/todos/_id.vue"
+```js title="pages/todos/[id].vue"
 async function toggleTodoComplete(todoItem) {
     let toggledTodo;
     let updatedTodoData;
