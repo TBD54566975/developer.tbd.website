@@ -1,0 +1,26 @@
+name: Update to New Web5 Release
+description: Update the docs, examples, guides on developer.tbd.website for a new Web5 version
+title: "[Web5 Upgrade]: $version"
+assignees:
+  - ALRubinger
+  - dayhaysoos
+  - AngieJones
+body:
+  - type: checkboxes
+    id: Tasks
+    attributes:
+      label: Tasks
+      description: Tasks to be completed in issuing a new Web5 release
+      options:
+        - label: (Web5 Team) Cut preview/alpha release for acceptance testing     
+        - label: (Web5 Team) Run Web5 tests against [acceptance suite](https://github.com/TBD54566975/bundler-bonanza)
+        - label: (Open Source Programs Engineering) Create new branch on site repo for the upgrade
+        - label: (Open Source Programs Engineering) Open PR on this branch to activate Deploy Previews in Netlify
+        - label: (Open Source Programs Engineering) Update the Web5 version to the alpha release in site monorepo
+        - label: (Open Source Programs Engineering) Run the monorepo tests - this will cover code snippets and examples
+        - label: (Open Source Programs Engineering) Check results of tests
+        - label: (DevRel) If errors, issue updates to guides, examples in the release branch until tests pass
+        - label: (Web5 Team) Cut release of Web5 available on [Releases Page](https://github.com/TBD54566975/web5-js/releases)
+        - label: (Open Source Programs Engineering) Update Web5 version in site to new Web5 version on branch
+        - label: (Open Source Programs Engineering) The release of Web5 will trigger tbdocs automation and open a PR for that against the site. Merge that PR in the branch.
+        - label: (Open Source Programs Engineering) Rebase and merge site to `main`, run tests, push upstream

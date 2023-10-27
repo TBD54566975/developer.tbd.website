@@ -1,3 +1,7 @@
+---
+sidebar_position: 1
+---
+
 import KnowledgeCheck from '@site/src/components/KnowledgeCheck';
 
 # Build a Chat App
@@ -34,7 +38,7 @@ Good news! You don't have to start from scratch. There is a pre-built applicatio
 To access the starter code, follow the instructions below or explore the project directly in CodeSandbox.
 
 [![Play in CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/TBD54566975/developer.tbd.website/tree/main/examples/tutorials/dinger-starter)
-
+ 
 <details><summary>Finished Dinger App</summary>
 <p>
 
@@ -46,6 +50,10 @@ There is also a hosted example deployed at [https://dinger-chat.vercel.app/](htt
 </p>
 </details>
 
+To fully interact with the web app, please click **"Open in New Tab"** as demonstrated in the GIF below.
+
+![Description of the image](@site/static/img/open-sandbox-in-new-tab.gif)
+
 ### 🕵️ What to Explore
 - Navigate to the `src/pages/index.js` file.
 - Identify the functions that currently only print console.logs.
@@ -54,11 +62,11 @@ There is also a hosted example deployed at [https://dinger-chat.vercel.app/](htt
 ## Level 2: Connect to Web5 and create a DID
 ### 📝 Task
 Locate the line:
-```javascript
+```javascript title="src/pages/index.js"
 console.log(`this log is in initWeb5`);
 ``` 
 and replace it with the following code snippet:
-```javascript
+```javascript title="src/pages/index.js"
 const { web5, did } = await Web5.connect();
 setWeb5(web5);
 setMyDid(did);
@@ -69,17 +77,17 @@ setMyDid(did);
 - **Web5.connect()** also creates or connects to a DID: A DID ([Decentralized Identifier](https://developer.tbd.website/docs/web5/learn/decentralized-identifiers)) is a user’s unique ID card for the decentralized, digital world. It belongs only to you. `Web5.connect()` will either connect to an existing DID that you have or create a new one for you if you don't have one yet. A DID acts as an authenticator for Web5 apps, removing the need for login credentials. 
 
 ### 📘 Learn more
-Learn more about [DID authentication](https://developer.tbd.website/blog/did-authentication/&sa=D&source=docs&ust=1696216092697555&usg=AOvVaw1dujW2JHcAlpPUCjLunVn6).
+Learn more about [DID authentication](https://developer.tbd.website/blog/did-authentication).
 
 ## Level 3: Define and install a protocol
 ### 📝 Task
 Locate the line: 
-```javascript 
+```javascript title="src/pages/index.js"
 console.log(`this log is in configureProtocol`);
 ```
 
 And replace it with the following code snippet:
-```javascript 
+```javascript title="src/pages/index.js"
 const dingerProtocolDefinition = {
   protocol: "https://blackgirlbytes.dev/dinger-chat-protocol",
   published: true,
@@ -130,12 +138,12 @@ if (protocolStatus.code !== 200 || protocols.length === 0) {
 
 ### 📝 Task
 Locate the line:
-```javascript
+```javascript title="src/pages/index.js"
 console.log(`this log is in writeToDwn`);
 ```
 
 And replace it with the following code snippet:
-```javascript
+```javascript title="src/pages/index.js"
 const { record } = await web5.dwn.records.write({
   data: ding,
   message: {
@@ -159,12 +167,12 @@ return record;
 
 ### 📝 Task
 Locate the line:
-```javascript
+```javascript title="src/pages/index.js"
 console.log(`this log is in sendRecord`);
 ```
 
 And replace it with the following code snippet:
-```javascript
+```javascript title="src/pages/index.js"
 return await record.send(recipientDid);
 ```
 
@@ -178,11 +186,11 @@ return await record.send(recipientDid);
 ## Level 6: Receive dings
 ### 📝 Task
 Locate the line:
-```javascript
+```javascript title="src/pages/index.js"
 console.log(`this log is in fetchDings`);
 ```
 And replace it with the following code snippet:
-```javascript    
+```javascript title="src/pages/index.js"    
 const { records, status: recordStatus } = await web5.dwn.records.query({
   message: {
     filter: {
@@ -218,17 +226,17 @@ try {
 
 ### 📝 Task
 Locate the line:
-```javascript
+```javascript title="src/pages/index.js"
 console.log(`this log is in intervalId`);
 ```
 
 And replace it with the following code snippet:
-```javascript
+```javascript title="src/pages/index.js"
 await fetchDings(web5, myDid);
 ```
 
 This line is located within the following function:
-```javascript 
+```javascript title="src/pages/index.js"
   useEffect(() => {
     if (!web5 || !myDid) return;
 
@@ -271,12 +279,30 @@ Time to test the Dinger app by simulating a conversation between two users by us
 
 After following these steps, you should see a conversation taking place between the two browser sessions!
 
+<details><summary>Not receiving any messages?</summary>
+<a href="https://developer.tbd.website/docs/web5/learn/sync/">Sync</a> intervals occur every two minutes. If you're eager to see immediate updates for testing purposes, you can adjust the sync settings. Update the line:
+
+```javascript title="src/pages/index.js"
+const { web5, did } = await Web5.connect();
+```
+
+to:
+
+```javascript title="src/pages/index.js"
+const { web5, did } = await Web5.connect({sync: '5s'});
+```
+This change forces a synchronization interval to happen every 5 seconds. However, be cautious: this is not recommended for production applications as it can lead to higher resource usage, battery drain, and potential rate limiting.
+</details>
+
 ## 🧠 Knowledge check
 
 <KnowledgeCheck url="https://codesandbox.io/embed/kc-1-chatty-h99tnx?fontsize=14&hidenavigation=1&theme=dark&view=preview"/>
 
 ## 🫡 Mission complete
 Congratulations! By building Dinger, you've successfully empowered users like Alice to communicate peer-to-peer and maintain sovereignty over her data and identity. Now, Alice can send messages to her best friend, Bob.
+You can check out the finished version of the app running on CodeSandbox.
+
+[![Play in CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/TBD54566975/developer.tbd.website/tree/main/examples/tutorials/dinger-completed)
 
 
 
