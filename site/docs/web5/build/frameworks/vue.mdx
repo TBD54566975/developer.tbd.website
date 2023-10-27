@@ -57,6 +57,16 @@ export default defineNuxtPlugin({
 });
 ```
 
+You can use this plugin in your Nuxt page as;
+
+```js title="pages/index.vue"
+<script setup>
+  const { $web5: web5, $myDID: myDID } = useNuxtApp();
+
+  console.log(web5, myDID);
+</script>
+```
+
 ## Address polyfill errors
 Sometimes, you may get errors where the Web5 SDK isn't initializing in your client app. This is usually because some polyfills are missing. To solve this;
 
