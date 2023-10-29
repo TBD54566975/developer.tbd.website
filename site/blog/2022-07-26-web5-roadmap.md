@@ -63,4 +63,4 @@ In Q4 of 2023, the Web5 platform components and a Wallet app with identity suppo
 
 <br/><br/>
 
-Web5 is open source and we welcome your [contributions](https://github.com/TBD54566975/collaboration/blob/main/projects/GETTING_STARTED_DWP.md)!
+Web5 is open source and we welcome your [contributions](https://github.com/TBD54566975/collaboration/blob/main/projects/GETTING_STARTED_WEB5.md)!
