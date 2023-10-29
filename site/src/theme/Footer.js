@@ -21,6 +21,10 @@ export function Footer() {
         text: 'TBD Home',
         href: 'https://www.tbd.website',
       },
+      {
+        text: 'TBD Shop',
+        href: 'https://tbd.shop/',
+      },
     ],
     socialText: 'Connect with us',
     socialButtons: [
