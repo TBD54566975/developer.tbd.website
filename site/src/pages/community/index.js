@@ -92,6 +92,7 @@ function CommunityIndex() {
                 width: '200px',
                 position: 'relative',
                 marginBottom: '20px',
+                cursor: 'pointer',
               }}
               onClick={() =>
                 setFlippedCardIndex(flippedCardIndex === index ? null : index)
@@ -146,6 +147,10 @@ function CommunityIndex() {
                       <div
                         key={cIndex}
                         style={{
+                          height:'50px',
+                          display:'flex',
+                          alignItems:'center',
+                          overflow:'hidden',
                           padding: '2px 5px',
                           borderRadius: '4px',
                           backgroundColor: '#FFEC18',

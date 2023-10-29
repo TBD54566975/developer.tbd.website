@@ -34,7 +34,7 @@ export const content = {
         icon: '/img/component-icon.svg',
         title: 'Self-Sovereign Identity Service',
         description:
-          'An in-a-box service that handles the full Verifiable Credentials lifecycle, including issuance, verification, revocation, and more.',
+          'An in-a-box service that handles the full Verifiable Credentials lifecycle, including issuance, verification, revocation, and more',
         textButton: 'View Component',
         url: 'https://github.com/TBD54566975/ssi-service#readme',
         isExternalLink: true,
@@ -50,7 +50,8 @@ export const content = {
       {
         icon: '/img/component-icon.svg',
         title: 'Self-Sovereign Identity Console',
-        description: 'A user-friendly GUI Console for managing Verifiable Credentials lifecycle, from issuance to revocation.',
+        description:
+          'A user-friendly GUI Console for managing Verifiable Credentials lifecycle, from issuance to revocation',
         textButton: 'View Component',
         url: 'https://github.com/TBD54566975/ssi-admin-ui/blob/main/README.md',
         isExternalLink: true,
@@ -63,16 +64,16 @@ export const content = {
       {
         title: 'Wallets',
         description:
-          'wallets act as agents for individuals or institutions by facilitating identity and data interactions.',
+          'wallets act as agents for individuals or institutions by facilitating identity and data interactions',
       },
       {
         title: 'Decentralized Web Nodes (DWNs)',
-        description: 'personal datastores that hold public and encrypted data.',
+        description: 'personal datastores that hold public and encrypted data',
       },
       {
         title: 'Decentralized Web Apps (DWAs)',
         description:
-          'web apps enhanced with decentralized identity and data storage capabilities.',
+          'web apps enhanced with decentralized identity and data storage capabilities',
       },
     ],
     imgDesktop: '/img/actors-web5-desktop.svg',
