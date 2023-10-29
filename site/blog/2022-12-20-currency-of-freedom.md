@@ -39,13 +39,39 @@ Block recently partnered with the [Human Rights Foundation](https://hrf.org/) to
 Many people, especially those who do not live under authoritarian rule, struggle to see the potential of bitcoin beyond an investment opportunity. But for those who live under oppressive regimes, bitcoin has quite literally been a currency of freedom.
 
 Mike Brock, Head of TBD, sat down with Human Rights Foundation Chairman, Garry Kasparov, to discuss bitcoin as a tool to help protect and expand democracy and freedom around the world.
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/l2rC7lbyom4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
+<div className="flex justify-center">
+<div className="w-full sm:w-auto sm:max-w-[560px]">
+<div className="overflow-hidden relative" style={{ paddingTop: "56.25%" }}>
+<iframe 
+width="560" 
+height="315" 
+src="https://www.youtube.com/embed/l2rC7lbyom4" 
+title="YouTube video player" 
+frameBorder="0" 
+allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen
+className="absolute top-0 left-0 w-full h-full"></iframe>
+</div>
+</div>
+</div>
 
 Angie Jones, TBD's Head of Developer Relations, spoke with human rights activist Meron Estefanos, who shared her story of using bitcoin to send money to Eritrean refugees in East Africa.
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/eDNr_Pi6sLo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<div className="flex justify-center">
+<div className="w-full sm:w-auto sm:max-w-[560px]">
+<div className="overflow-hidden relative" style={{ paddingTop: "56.25%" }}>
+<iframe 
+width="560" 
+height="315" 
+src="https://www.youtube.com/embed/eDNr_Pi6sLo" 
+title="YouTube video player" 
+frameBorder="0" 
+allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+allowfullscreen
+className="absolute top-0 left-0 w-full h-full"></iframe>
+</div>
+</div>
+</div>
+
 
 Unfortunately, powerful stories such as these are not widely shared. TBD is committed to making the decentralized financial world accessible to everyone!
 

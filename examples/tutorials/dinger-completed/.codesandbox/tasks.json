@@ -1,0 +1,17 @@
+{
+  "$schema": "https://codesandbox.io/schemas/tasks.json",
+  "setupTasks": [
+    {
+      "name": "Install Dependencies",
+      "command": "pnpm install"
+    }
+  ],
+
+  "tasks": {
+    "dev": {
+      "name": "pnpm run dev",
+      "command": "pnpm run dev",
+      "runAtStart": true
+    }
+  }
+}

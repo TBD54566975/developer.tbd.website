@@ -1,6 +1,7 @@
 // src/components/PackageJson.js
 import React from 'react';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
+import CodeBlock from '@theme/CodeBlock';
 
 function PackageJson() {
   const {
@@ -15,7 +16,7 @@ function PackageJson() {
 
   let jsonString = JSON.stringify(json, null, 2);
 
-  return <pre>{jsonString}</pre>;
+  return <CodeBlock language="js">{jsonString}</CodeBlock>;
 }
 
 export default PackageJson;
