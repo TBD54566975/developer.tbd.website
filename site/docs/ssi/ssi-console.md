@@ -36,7 +36,7 @@ npm install
 npm start
 ```
 
-Open [localhost:3000](http://localhost:3000/) in a browser and follow the guide below for all actions you can take from the homepage.
+Open `localhost:3000` in a browser and follow the guide below for all actions you can take from the homepage.
 
 <Divider type="slash" />
 
