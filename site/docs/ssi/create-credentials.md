@@ -240,7 +240,7 @@ The following response should be returned:
 }
 ```
 
-The VC is signed and packaged as a JWT in the credentialJwt property. If you're interested, you can decode the JWT using a tool such as [jwt.io](https://jwt._io/). If you were to `issue` or transmit the credential to a holder you would just send this JWT value.
+The VC is signed and packaged as a JWT in the credentialJwt property. If you're interested, you can decode the JWT using a tool such as [jwt.io](https://jwt.io/). If you were to `issue` or transmit the credential to a holder you would just send this JWT value.
 
 ### Getting Credentials
 Once you've created multiple credentials, you can view all credentials by making a GET request to `/v1/credentials`. This endpoint also supports three query parameters: `issuer`, `schema`, and `subject` which can be used mutually exclusively.
