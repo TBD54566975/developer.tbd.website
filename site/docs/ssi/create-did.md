@@ -143,8 +143,8 @@ It relies on the controller of an existing domain to host a custom file with the
 
 :::info
 **Prerequisites**
-* You control an existing domain (e.g. like https://www.example.com).
-* You are able to host files in a path within that origin (e.g. you can host the file returned by https://www.example.com/.well-known/did.json).
+* You control an existing domain (e.g. like `https://www.example.com`).
+* You are able to host files in a path within that origin (e.g. you can host the file returned by `https://www.example.com/.well-known/did.json`).
 :::
 
 ```bash
