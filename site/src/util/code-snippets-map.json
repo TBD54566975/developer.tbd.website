@@ -25,6 +25,7 @@
   "createAliceDid": "const { web5, did: aliceDid } = await Web5.connect();\n\n  // Create the record\n  const { record } = await web5.dwn.records.create({\n    data: 'Hello Web5',\n    message: {\n      dataFormat: 'text/plain',\n    },\n  });\n\n  // Read the record\n  const readResult = await record.data.text();",
   "createDidManually": "const myDid = await Web5.did.create('ion');",
   "createDidAutomatically": "const { web5, did: myDid } = await Web5.connect();",
+  "updateDwnRecord": "const { record } = await web5.dwn.records.read({\n  message: {\n    recordId: createdRecord.id,\n  }\n});\n\nconst status = await record.update({ data: \"Hello, I'm updated!\" });",
   "queryProtocolsForMusic": "const { protocols } = await web5.dwn.protocols.query({\n    message: {\n      filter: {\n        protocol: 'https://music.org/protocol',\n      },\n    },\n  });",
   "queryProtocolsWithFilterDescending": "const { protocols } = await web5.dwn.protocols.query({\n    message: {\n      filter: {\n        protocol: 'http://social-media.xyz',\n      },\n      //highlight-next-line\n      dateSort: 'createdDescending'\n    },\n  });",
   "queryRecordsWithFilterAscending": "const response = await web5.dwn.records.query({\n    message: {\n      filter: {\n        dataFormat: 'text/plain',\n      },\n      //highlight-next-line\n      dateSort: 'publishedAscending',\n    },\n  });",
