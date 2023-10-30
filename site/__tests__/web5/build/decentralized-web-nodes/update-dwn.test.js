@@ -9,8 +9,16 @@ let web5;
 // connect to web5 beforeAll tests and assign it to web5 variable
 beforeAll(async () => {
   ({web5} = await Web5.connect());
-});
-  test ("updateDwnRecord updates an existing record", async () => {
-const update = await updateDwnRecord(web5);
-expect(Array.isArray(update)).toBe 
+//Create record to update
+const {record: createdRecord} = await web5.dwn.records.create({
+    data: "test record",
+    message: {
+      dataFormat: "text/plain"
+    }
   });
+
+  //Call code snippet to update record
+
+
+  //Assert that status code is 202
+});
