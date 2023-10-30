@@ -89,7 +89,7 @@ Here is the payload to submit to the `v1/manifests` endpoint. Notice the `input_
 }
 ```
 
-Save the JSON above to a file (e.g., cm_dl.json) and make a `PUT` request to create the Credental Manifest:
+Save the JSON above to a file (e.g., cm_dl.json) and make a `PUT` request to create the Credential Manifest:
 
 ```bash
 curl -X PUT localhost:8080/v1/manifests -d @cm_dl.json

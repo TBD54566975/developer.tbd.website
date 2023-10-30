@@ -65,7 +65,7 @@ ___
 
 used by [Resource.parse](Resource.md#parse) to return an instance of resource kind's class. This abstraction is needed
 because importing the Resource Kind classes (e.g. Offering) creates a circular dependency
-due to each concrete Resource Kind class extending Resource. Library consumers dont have to worry about setting this
+due to each concrete Resource Kind class extending Resource. Library consumers don't have to worry about setting this
 
 ##### Type parameters
 

@@ -97,7 +97,7 @@ There are different ways to secure VCs, let's look into securing them with JWT. 
 
 In our example, for Alice's potential employer to verify that she did indeed graduate from Decentralized University, Alice would need to give them a [Verifiable Presentation](/docs/ssi/verifiable-presentations#what-is-a-verifiable-presentation) that contains her VC's JWT string. 
 
-The employer(verifier) would then get the university's public key through the [Verifiable Data Registry](https://www.w3.org/TR/vc-data-model-2.0/#ecosystem-overview). In order for the university to create that JWT string, they need their pubic-private key pair. The employer would then verify the JWT using the univeristy's public key and the JWT's encoded signature (the characters after the last period in the above string #3). 
+The employer(verifier) would then get the university's public key through the [Verifiable Data Registry](https://www.w3.org/TR/vc-data-model-2.0/#ecosystem-overview). In order for the university to create that JWT string, they need their pubic-private key pair. The employer would then verify the JWT using the university's public key and the JWT's encoded signature (the characters after the last period in the above string #3).
 
 A successful verification tells the employer that the VC is authentic. If this step fails, it's a sign that Alice's VC was forged. After verification, the employer can decode the JWT, as shown on [JWT.io](https://jwt.io/) to obtain it's payload. The payload contains all the information that is written inside of the VC that Alice has presented to them. The employer can trust that the information contained in the now verified payload was indeed issued by the university.
 
