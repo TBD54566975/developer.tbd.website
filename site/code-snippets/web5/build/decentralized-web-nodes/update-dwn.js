@@ -5,6 +5,6 @@ const { record } = await web5.dwn.records.read({
   }
 });
 
-const status = await record.update({ data: "Hello, I'm updated!" });
+const {status} = await record.update({ data: "Hello, I'm updated!" });
 return status;
 }
