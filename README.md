@@ -1,12 +1,12 @@
 # TBD Developer Site
 
-# 🎉 **We're participating in Hacktoberfest 2023!** 🎉
+# :tada: **We're participating in Hacktoberfest 2023!** :tada:
 
 Want to contribute during Hacktoberfest? We'd love to have you! Dive in, and your contributions could earn you some exclusive rewards.
 
-The **first 20 contributors** to successfully merge a PR will secure exclusive swag of their choosing from our [TBD shop](https://www.tbd.shop/). Keep an eye on our [leaderboard issue](https://github.com/TBD54566975/developer.tbd.website/issues/721) to see where you rank! ⭐️
+The **first 20 contributors** to successfully merge a PR will secure exclusive swag of their choosing from our [TBD shop](https://www.tbd.shop/). Keep an eye on our [leaderboard issue](https://github.com/TBD54566975/developer.tbd.website/issues/721) to see where you rank! :star:
 
-🚀 **Gear up for a month packed with exciting events!** 🎉
+:rocket: **Gear up for a month packed with exciting events!** :tada:
 
 - Mark your calendars for our **Hacktoberfest Launch event on [October 2nd](https://discord.com/events/937858703112155166/1154126364484583465)**.
 - Stay in the loop - keep an eye on our Discord calendar and pop into our [events-and-updates channel](https://discord.com/channels/937858703112155166/1151972299814215701) regularly! You won't want to miss out!
@@ -27,9 +27,9 @@ The **first 20 contributors** to successfully merge a PR will secure exclusive s
 
 Celebrate the 10th anniversary of Hacktoberfest this year! Hosted annually every October, Hacktoberfest is a month-long event sponsored by DigitalOcean, GitHub, and various other partners, championing open-source contributions.
 
-> ⭐️ If you're new to Hacktoberfest, you can learn more and register to participate [here](https://hacktoberfest.com/participation/). Registration is from **September 26th- October 31st**.
+> :star: If you're new to Hacktoberfest, you can learn more and register to participate [here](https://hacktoberfest.com/participation/). Registration is from **September 26th- October 31st**.
 
-## **New Contributor? Welcome!** 🌟
+## **New Contributor? Welcome!** :star2:
 
 We wholeheartedly embrace new contributors to our community. Remember, every expert was once a beginner, and we understand the initial hurdles you might feel. Here’s how you can dive in:
 
@@ -42,9 +42,9 @@ We wholeheartedly embrace new contributors to our community. Remember, every exp
   - Mark your calendars for our **Hacktoberfest Launch event on [October 2nd](https://discord.com/events/937858703112155166/1154126364484583465)**.
   - Stay in the loop - keep an eye on our Discord calendar and pop into our [#events-and-updates channel](https://discord.com/channels/937858703112155166/1151972299814215701) regularly! You won't want to miss out!
 
-Your contribution, be it big or minuscule, carries immense value. We eagerly await to see the waves you'll make in our community! 🚀
+Your contribution, be it big or minuscule, carries immense value. We eagerly await to see the waves you'll make in our community! :rocket:
 
-Here's to a thrilling Hacktoberfest voyage with us! 🎉
+Here's to a thrilling Hacktoberfest voyage with us! :tada:
 
 ## Prerequisites
 
@@ -58,7 +58,7 @@ Before you begin, ensure that you have the following installed on your local mac
 ## Running online environment
 Interested in contributing instantly? You can make your updates directly without cloning in the running CodeSandbox environment.
 
-[![Edit in CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/github/TBD54566975/developer.tbd.website/main)
+[![Button to edit in CodeSandbox environment](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/github/TBD54566975/developer.tbd.website/main)
 
 ## Installation
 
