@@ -45,12 +45,12 @@ In Quarter 2 (Q2) of 2022, we publicly announced Web5 as an open source communit
 
 ## Milestone 2
 
-In Q3, we’ll deliver initial implementations of the [SSI SDK](https://github.com/TBD54566975/ssi-sdk), [SSI Service](https://github.com/TBD54566975/ssi-service), and [Decentralized Web Nodes](https://github.com/TBD54566975/dwn-sdk-js) .
+In Q3, we’ll deliver initial implementations of the [SSI SDK](https://github.com/TBD54566975/ssi-sdk#readme), [SSI Service](https://github.com/TBD54566975/ssi-service#readme), and [Decentralized Web Nodes](https://github.com/TBD54566975/dwn-sdk-js#readme) .
 
 
 ## Milestone 3
 
-In Q1 of 2023, the [SSI SDK](https://github.com/TBD54566975/ssi-sdk), [SSI Service](https://github.com/TBD54566975/ssi-service), and [Decentralized Web Nodes](https://github.com/TBD54566975/dwn-sdk-js) will be feature complete.
+In Q1 of 2023, the [SSI SDK](https://github.com/TBD54566975/ssi-sdk#readme), [SSI Service](https://github.com/TBD54566975/ssi-service#readme), and [Decentralized Web Nodes](https://github.com/TBD54566975/dwn-sdk-js#readme) will be feature complete.
 
 The [DID](https://w3c.github.io/did-core/) network node will be deployed.
 
