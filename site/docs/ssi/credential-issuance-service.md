@@ -393,7 +393,7 @@ app.listen(port, () => {
 ```
 
 :::info
-WIthin the curl request, change the **issuer** value to the DID of the issuance server, and the **verificationMethodId** to the value from the issuer's DID document. If you don't have it handy, you can use the `/v1/credentials` endpoint to fetch it.
+Within the curl request, change the **issuer** value to the DID of the issuance server, and the **verificationMethodId** to the value from the issuer's DID document. If you don't have it handy, you can use the `/v1/credentials` endpoint to fetch it.
 
 Also, update the **schemaId** to the id returned in the response of the new schema we created in the previous step.
 :::
@@ -424,7 +424,7 @@ A wallet holding the VC would make the presentation of it more user-friendly so 
 
 ### Verify the Credential
 
-The financial instituion could then verify Mic's credit.  
+The financial institution could then verify Mic's credit.  
 
 In an NPM project, install these JavaScript libraries (there are libraries in all languages to do this):
 
