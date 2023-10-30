@@ -3,6 +3,7 @@ sidebar_position: 1
 title: Run SSI Service
 hide_title: true
 ---
+import SSIService from '@site/src/components/SSIService'
 
 # Self Sovereign Identity (SSI) Service API
 
@@ -60,7 +61,11 @@ The SSI Service facilitates all things relating to DIDs and Verifiable Credentia
 ## Run SSI Service
 
 :::info
-The SSI Service is packaged as a Docker container and a Docker Compose file is included to make it simple to run the service locally. First make sure you have [Docker downloaded](https://www.docker.com/products/docker-desktop/) and running on your desktop.
+<SSIService 
+content='The SSI Service is packaged as a Docker container and a Docker Compose file is included to make it simple to run the service locally. First make sure you have Docker downloaded and running on your desktop.'
+link='products/docker-desktop/'
+linkText='Docker downloaded'
+/>
 :::
 
 Verify that both `docker` and `docker-compose` commands are available:

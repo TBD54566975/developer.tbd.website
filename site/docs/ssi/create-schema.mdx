@@ -2,7 +2,7 @@
 sidebar_position: 3
 title: Create a Schema
 ---
-
+import SSIService from '@site/src/components/SSIService'
 
 A Credential Schema is a document that defines the structure of a Verifiable Credential (VC). It's based on [JSON Schema](https://json-schema.org/) and specifies which properties the issuer will use to create the VC. In this tutorial, you'll learn how to construct a schema and use the SSI Service to create it.
 
@@ -98,8 +98,11 @@ This means that any piece of JSON we apply this schema to will pass if a valid `
 Now that we have a valid JSON Schema, we'll need to transform it so that it's not just any arbitrary JSON, but can be applied to a Verifiable Credential.
 
 :::info
-## Prerequisite
-Follow guide to [Clone & Run SSI Service](run-ssi-service)
+## Prerequisites
+
+<SSIService 
+content='SSI Service is in tech preview mode, and not intended to be used in production applications at this time.'
+/>
 :::
 
 ### Signed vs. Unsigned Schemas
