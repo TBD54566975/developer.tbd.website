@@ -33,7 +33,7 @@ Join the [decentralized identity hackathon](https://difhackathon.devpost.com/) t
 
 <!--truncate-->
 
-The Decentralized Identity Foundation is hosting a hackthon for people both new and experienced with decentralized identity.
+The Decentralized Identity Foundation is hosting a hackathon for people both new and experienced with decentralized identity.
 
 We're thrilled to sponsor a Web5 challenge worth $5,000 in prizes.
 
