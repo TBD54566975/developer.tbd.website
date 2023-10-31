@@ -483,6 +483,12 @@
   .docs-wrapper #__docusaurus .theme-card p {
     max-width: unset;
   }
+  .navbar-sidebar__item.menu{
+    margin-bottom: 100px;
+  }
+  .navbar-sidebar__item.menu .menu__list {
+    padding-right: 100px;
+  }
 }
 
 @media screen and (min-width: 997px) {
