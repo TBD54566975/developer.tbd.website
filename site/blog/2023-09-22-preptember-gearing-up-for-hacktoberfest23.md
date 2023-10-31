@@ -62,7 +62,7 @@ For the uninitiated, Hacktoberfest is a month-long celebration of open-source so
 
 I remember my first-time contribution jitters. Every step felt like a monumental task, and the fear of making a mistake? Oh boy! Here’s a snippet from my Twitter thread on my first contribution experience:
 
-> "... I made all of the changes locally, and then opened a PR. Looked over it a zillion times, because, you know, it's in the public's eye! Yikes! And despite all the caution, I still goofed up my first PR. 🤦🏾‍♀️ But guess what? The community stepped in, guided me, and boom! PR merged. It was .."
+> "... I made all the changes locally, and then opened a PR. Looked over it a zillion times, because, you know, it's in the public's eye! Yikes! And despite all the caution, I still goofed up my first PR. 🤦🏾‍♀️ But guess what? The community stepped in, guided me, and boom! PR merged. It was .."
 
 You can check out my complete thread and the roller-coaster of emotions I went through [here](https://twitter.com/EbonyJLouis/status/1445864374762020866). If I could do it, trust me so can you!
 

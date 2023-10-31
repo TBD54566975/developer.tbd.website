@@ -151,7 +151,7 @@ The key components of a DID Document are:
   ]
 ```
 
-These are just some of the common fields you might encounter in a DID Document. The structure and contents of a DID Document can vary depending on the specific [DID method](/docs/glossary#did-method) being used and the requirements of the application or use case.
+These are just some common fields you might encounter in a DID Document. The structure and contents of a DID Document can vary depending on the specific [DID method](/docs/glossary#did-method) being used and the requirements of the application or use case.
 
 ## DID Document Management
 Managing a DID Document is essential to maintain its integrity, relevance, and security. A DID subject can indicate to their authorized [user agent](/docs/web5/learn/agents) (e.g., wallet) a change they'd like to make, and that agent will determine if the DID Document needs to be modified, and if so, will do so on the subject's behalf. Here are a few possible actions:

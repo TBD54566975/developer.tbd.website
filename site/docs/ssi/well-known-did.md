@@ -20,7 +20,7 @@ This configuration can be created via the SSI Service.
 - The ability to host files in a path within that origin. (i.e., you are able to host the file returned via `https://example.com/.well-known/did-configuration.json`)
 :::
 
-To make the claim that her DID is associated with her `origin`, Alice uses the SSI Service to issue herself a **Domain Linkage Credential**. In this request, she'll also need to include the `verificationMethodId` so that its private key can be used to sign the credential. This can done via a `PUT` request to `/v1/did-configurations`:
+To make the claim that her DID is associated with her `origin`, Alice uses the SSI Service to issue herself a **Domain Linkage Credential**. In this request, she'll also need to include the `verificationMethodId` so that its private key can be used to sign the credential. This can be done via a `PUT` request to `/v1/did-configurations`:
 
 ```bash
 curl -X PUT 'localhost:8080/v1/did-configurations' -d '{

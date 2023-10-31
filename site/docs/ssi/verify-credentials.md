@@ -49,7 +49,7 @@ Upon success the following response should be returned:
 
 The request above performs the following verification process:
 
-✅ Make sure the credential is complaint with the VC Data Model
+✅ Make sure the credential is compliant with the VC Data Model
 
 ✅ Make sure the credential is not expired
 

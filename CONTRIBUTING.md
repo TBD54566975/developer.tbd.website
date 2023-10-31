@@ -23,7 +23,7 @@ Learn more here: https://docusaurus.io/docs
 
 #### Contributing Content
 
-It's important for the integrity of our documentation to remain in tact while adding content to our docs site. We do this by making sure that most of the code snippets we display are also testable from an execution standpoint. If you plan on editing or adding code snippets to our docs, please follow the guideline below:
+It's important for the integrity of our documentation to remain intact while adding content to our docs site. We do this by making sure that most of the code snippets we display are also testable from an execution standpoint. If you plan on editing or adding code snippets to our docs, please follow the guideline below:
 
 #### Adding Code Snippets
 

@@ -157,7 +157,7 @@ From the response, take note of the credential id for the next step.
 
 ## Issue a Credential
 
-To issue a credential, enter the **issuer's DID**, **verification method ID**, and **schema ID** obtained from the previous responses into the request below. Also for the **subject**, enter the DID of who you'd like to issue the credential to:
+To issue a credential, enter the **issuer's DID**, **verification method ID**, and **schema ID** obtained from the previous responses into the request below. Also, for the **subject**, enter the DID of whom you'd like to issue the credential to:
 
 ```json
 curl -X PUT localhost:8080/v1/credentials -d '{
@@ -280,7 +280,7 @@ Credentials are: {
 Issued by:  did:key:z6MkqGF11YyzCgVr6G3dVJULjbBokSXN4J3cjSB5MQdXto4o
 ```
 
-Note that this shows that the credential is in tact and valid. However, it is up to the verifier to determine if they trust the issuer DID. That is the link between the verifier and issuer in the triangle of trust. You can establish this trust ahead of time - to know in the future you can trust any credentials they issue.
+Note that this shows that the credential is intact and valid. However, it is up to the verifier to determine if they trust the issuer DID. That is the link between the verifier and issuer in the triangle of trust. You can establish this trust ahead of time - to know in the future you can trust any credentials they issue.
 
 There is a lot more in that `vc` object, such as URLs to check for revocation and more, but this is the heart of it. Below, we'll demonstrate the VC lifecycle with an example.
 
@@ -475,6 +475,6 @@ Credentials are: { creditScore: 76, id: 'did:web:mic.com' }
 Issued by:  did:key:z6MkqGF11YyzCgVr6G3dVJULjbBokSXN4J3cjSB5MQdXto4o
 ```
 
-This shows that the credential is in tact and issued by an issuer that the financial institution trusts. It also will expire automatically on the expiration date that was provided when creating the credential. 
+This shows that the credential is intact and issued by an issuer that the financial institution trusts. It also will expire automatically on the expiration date that was provided when creating the credential.
 
 This shows a small glimpse of what VC issuance can be, as well as presenting credentials, the ssi-service utilities, and more.

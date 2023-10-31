@@ -35,7 +35,7 @@ Today we unveil something special - our very own Recognition Program! ✨
 
 ## 💭 What's this all about?
 
-This program is our way of expressing our deepest gratitude to each and every one of you. We know that our community thrives because of your dedication and contributions, and it's high time we recognize your amazing efforts.
+This program is our way of expressing our deepest gratitude to each one of you. We know that our community thrives because of your dedication and contributions, and it's high time we recognize your amazing efforts.
 
 
 ## 🏆 The Categories

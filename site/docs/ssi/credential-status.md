@@ -125,7 +125,7 @@ curl -X PUT localhost:8080/v1/credentials -d '{
 }'
 ```
 
-Upon success we should see a response such as:
+Upon success, we should see a response such as:
 
 ```json
 {
@@ -170,7 +170,7 @@ Next, let's get the credential's associated `statusListCredential` via a request
 curl http://localhost:8080/v1/credentials/status/b7a8bd19-f20d-4132-ac2e-137ff4d1511a
 ```
 
-Upon success we should see a response such as:
+Upon success, we should see a response such as:
 
 ```json
 {
@@ -214,7 +214,7 @@ To check the status for any credential, you can make a `GET` request to `/v1/cre
 curl localhost:8080/v1/credentials/8f9d58b2-c978-4317-96bd-35949ce76121/status
 ```
 
-Upon success, we should see a response saying the credential is neither revoked or suspended:
+Upon success, we should see a response saying the credential is neither revoked nor suspended:
 
 ```json
 {

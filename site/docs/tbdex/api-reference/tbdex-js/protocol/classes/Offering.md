@@ -40,7 +40,7 @@ consumers should use concrete classes to programmatically create resources (e.g.
 
 used by [Resource.parse](Resource.md#parse) to return an instance of resource kind's class. This abstraction is needed
 because importing the Resource Kind classes (e.g. Offering) creates a circular dependency
-due to each concrete Resource Kind class extending Resource. Library consumers dont have to worry about setting this
+due to each concrete Resource Kind class extending Resource. Library consumers don't have to worry about setting this
 
 ##### Type parameters
 
@@ -224,7 +224,7 @@ ___
 
 • `get` **payoutUnitsPerPayinUnit**(): `string`
 
-Number of payout currency units for one payin currency unit (i.e 290000 USD for 1 BTC)
+Number of payout currency units for one payin currency unit (i.e. 290000 USD for 1 BTC)
 
 #### Returns
 

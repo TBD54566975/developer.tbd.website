@@ -13,7 +13,7 @@ SSI Service is in tech preview mode, and not intended to be used in production a
 :::
 
 ## Narrative
-Alice starts a new job at Acme and she'd like a VC proving her current employment status.
+Alice starts a new job at Acme, and she'd like a VC proving her current employment status.
 
 To request a VC, Alice logs into Acme's internal employee portal and clicks Employment Verification. Clicking the button will invoke the VC credential process via the [SSI Service](https://github.com/TBD54566975/ssi-service) Acme is hosting.
 

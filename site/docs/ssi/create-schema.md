@@ -71,7 +71,7 @@ Next, we'll define the data needed for our schema: an email address. This includ
 
 We see that the schema defines a property `emailAddress` of type `string` and format `email`.
 
-The next part of the JSON specifies any required properties. We want an email address to be a required property of the schema so we indicate that as such:
+The next part of the JSON specifies any required properties. We want an email address to be a required property of the schema, so we indicate that as such:
 
 ```json
 {

@@ -43,7 +43,7 @@ Web5 enables a web that eliminates the traditional barriers of centralized data 
 
 Let's take AI-driven applications as an example. Through today's lens, it may appear that data equates to unparalleled value and thus, retaining control of that data would be attractive. However, as AI technologies evolve, they increasingly depend on rich, diverse, and open datasets — the kind that are best obtained by participating in a more open, decentralized data ecosystem.
 
-But this shift isn't limited to AI. Web5 creates an ideal setting for innovation for all sorts of companies from many different verticals. Up-and-coming apps, unburdened by legacy systems and the status quo, can fully embrace the benefits of Web5, paving the way for a new era of web applications. This unique advantage allows them to immediately offer something that top companies don't: the ability for users to take their data with them.
+But this shift isn't limited to AI. Web5 creates an ideal setting for innovation for all sorts of companies from many verticals. Up-and-coming apps, unburdened by legacy systems and the status quo, can fully embrace the benefits of Web5, paving the way for a new era of web applications. This unique advantage allows them to immediately offer something that top companies don't: the ability for users to take their data with them.
 
 ## Consumer Expectations
 

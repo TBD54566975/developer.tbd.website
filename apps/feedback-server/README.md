@@ -17,7 +17,7 @@ pnpm dev
 
 The server should be ready to support the local docusaurus Helpful/Not Helpful button clicks.
 
-By default, if you don't setup a PostgresDB connection in the config, it will be running with 
+By default, if you don't set up a PostgresDB connection in the config, it will be running with
 an in-memory fake database (aka just an array 😝).
 
 ### Testing

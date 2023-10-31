@@ -32,7 +32,7 @@ $> go version
 go version go1.17.6 darwin/amd64
 ```
 
-If you do not have go, we recommend installing it by:
+If you do not have Go, we recommend installing it by:
 
 #### MacOS
 

@@ -65,7 +65,7 @@ Upon success, the following response should be returned:
 <Divider type="slash" />
 
 ## Other Projects for Verifiable Presentations
-There's more that you can do with Verifiable Presentations outside of the SSI Service.
+There's more that you can do with Verifiable Presentations outside the SSI Service.
 
 ### Constructing a Verifiable Presentation
 Constructing a Verifiable Presentation is out of scope for the SSI Service since the service acts as a utility for organizations managing their own credentials. However, the [SSI SDK](https://github.com/TBD54566975/ssi-sdk) provides a standards-based implementation of Verifiable Presentations using the [JWT representation](https://www.w3.org/TR/vc-data-model/#jwt-and-jws-considerations).

@@ -1,5 +1,5 @@
 tbDEX Resources are published by PFIs for anyone to consume and generally used as a part of the discovery process.
-They are not part of the message exchange, i.e Alice cannot reply to a Resource.
+They are not part of the message exchange, i.e. Alice cannot reply to a Resource.
 
 ## Type parameters
 
