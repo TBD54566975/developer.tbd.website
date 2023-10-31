@@ -1,0 +1,36 @@
+---
+sidebar_position: 2
+---
+
+import PackageJson from '@site/src/components/PackageJson';
+
+# React
+
+Setting up the Web5 SDK in a React or NextJS project.
+
+## Create your project
+You can add Web5 to an existing React or NextJS project, or create a new one with the CLI:
+
+```bash
+npx create-next-app@latest my-project --typescript --eslint
+cd my-project
+```
+
+## Install the Web5 SDK via NPM
+
+```bash
+npm install @web5/api
+```
+
+## Update your package.json
+
+Add `module` as a type to your `package.json`:
+
+<PackageJson />
+
+## Add the Web5 import to your React app
+Then, add the plugin to your React or NextJS app:
+
+```js title="src/pages/index.js"
+import { Web5 } from "@web5/api";
+```

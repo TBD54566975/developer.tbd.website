@@ -81,7 +81,7 @@ Acme verifies Alice's credentials and proceeds with renting Alice a car.
 
 ### List Presentation Requests
 
-The manager of Acme Car Rentals occassionally performs audits of their rental processes to measure several aspects such as transaction time, credential acceptance rates, etc. 
+The manager of Acme Car Rentals occasionally performs audits of their rental processes to measure several aspects such as transaction time, credential acceptance rates, etc. 
 
 The manager initiates a `GET` request to `v1/presentations/requests` in order to obtain a list of all the Presentation Requests that they processed:
 

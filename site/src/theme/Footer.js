@@ -40,7 +40,7 @@ export function Footer() {
         src: '/img/twitter-icon.svg',
         url: 'https://twitter.com/TBDevs',
         altText: 'Twitter button',
-        title: 'Go to Twitter',
+        title: 'Go to Twitter/X',
       },
       {
         src: '/img/youtube-icon.svg',

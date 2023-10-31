@@ -80,13 +80,7 @@ export const content = {
         title: 'Proving your identity',
         alt: '',
         description: ProvingIdentity,
-      },
-      {
-        img: '/img/wallet-icon.svg',
-        title: 'Data self-ownership',
-        alt: '',
-        description: DataOwnership,
-      },
+      }
     ],
   },
 };

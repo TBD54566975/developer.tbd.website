@@ -1,8 +1,12 @@
+---
+sidebar_position: 2
+---
+
 import PackageJson from '@site/src/components/PackageJson';
 
 # Build a ToDo App
 
-In this tutorial, you will learn how to build a basic single-party decentralized ToDo app written using `web5.js`. It’s composed of a `Vue.js` app powered by [web5.js](https://www.npmjs.com/package/@web5/api) which adds data storage underpinned by a [Decentralized Web Node](/docs/web5/learn/decentralized-web-nodes) (DWN).
+In this tutorial, you will learn how to build a basic single-party decentralized ToDo app built using `web5.js`. It’s composed of a `Vue.js` app powered by [web5.js](https://www.npmjs.com/package/@web5/api) which adds data storage underpinned by a [Decentralized Web Node](/docs/web5/learn/decentralized-web-nodes) (DWN).
 
 The ToDo app is a basic single-user, local application that only leverages `web5.js` for storage purposes, but serves as an important precursor to building larger decentralized apps.
 
@@ -16,11 +20,12 @@ Note: If you don't have `pnpm` installed, you can install it by running `npm ins
 
 ```bash
 git clone https://github.com/TBD54566975/developer.tbd.website.git
+cd developer.tbd.website
 pnpm install
 pnpm start:tutorial-todo-starter
 ```
 
-In this tutorial, you’ll work through completing the `/todo-app/src/App.vue` file to use `web5.js`.
+In this tutorial, you’ll work through completing the `src/App.vue` file under `/examples/tutorials/todo-starter` to use `web5.js`.
 
 <details><summary>Finished ToDo App</summary>
 <p>
@@ -35,6 +40,7 @@ Note: If you don't have `pnpm` installed, you can install it by running `npm ins
 
 ```bash
 git clone https://github.com/TBD54566975/developer.tbd.website.git
+cd developer.tbd.website
 pnpm install
 pnpm start:tutorial-todo-completed
 ```
@@ -59,7 +65,7 @@ pnpm install
 pnpm run dev
 ```
 
-You should now have the app running on [`https://localhost:5173`](https://localhost:5173/); this will be a starter application with a mostly blank page. In this tutorial, we'll build the rest.
+You should now have the app running on `https://localhost:5173`; this will be a starter application with a mostly blank page. In this tutorial, we'll build the rest.
 
 ## App Architecture
 
@@ -69,7 +75,7 @@ There are 3 main components to your ToDo app: HTML, CSS, and Javascript. The way
 Think of `web5.js` as your storage, RESTful API service, and the backing data store.
 :::
 
-Because we’ve built this sample using `Vue.js`, you’ll find both the HTML structure of the app and the JS logic within the `App.vue` file. Your ToDo app will have a few main responsibilities to implement:
+Because we’ve built this sample app using `Vue.js`, you’ll find both the HTML structure of the app and the JS logic within the `App.vue` file. Your ToDo app will have a few main responsibilities to implement:
 
 - Create a new DWN for the user or load their saved DWN for storage
 - Display ToDos
@@ -186,7 +192,7 @@ In the template add this code block to `<!-- Add ToDos Form -->`:
 </div>
 ```
 
-Then, writing a ToDo into storage is done by binding a `addTodo()` method to the UI and leveraging the `newTodoDescription` model referenced in the `textarea` to call the `web5` method `dwn.records.create`:
+Next, you can add a Todo to storage by binding a `addTodo()` method to the UI and leveraging the `newTodoDescription` model referenced in the `textarea` to call the `web5` method `dwn.records.create`:
 
 ```js
 // Adding ToDos
@@ -208,6 +214,7 @@ async function addTodo() {
       dataFormat : 'application/json'
     }
   });
+}
 ```
 
 This code uses the `myDid` object we loaded or created in the `onBeforeMount` function and uses it to write into the DWN that `web5` is using to store your app user's data.
@@ -254,7 +261,7 @@ async function deleteTodo(todoItem) {
 }
 ```
 
-We’ll connect that to the UI with the following code. This replaces the `<!-- Delete ToDo goes here later -->` comment we placed from above:
+We’ll connect that to the UI with the following code. This replaces the `<!-- Delete ToDo goes here later -->` comment we added earlier:
 
 ```jsx
 <div class="ml-auto">

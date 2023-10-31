@@ -37,7 +37,7 @@ function ConferenceCommunity() {
           buttonText="View"
         />
        <CommunityCard
-          title="X(fka Twitter)"
+          title="Twitter/X"
           icon="/img/twitter-icon.svg"
           CTA="Follow us for news and updates"
           buttonUrl="https://twitter.com/TBDevs"

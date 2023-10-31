@@ -65,7 +65,7 @@ ___
 
 used by [Resource.parse](Resource.md#parse) to return an instance of resource kind's class. This abstraction is needed
 because importing the Resource Kind classes (e.g. Offering) creates a circular dependency
-due to each concrete Resource Kind class extending Resource. Library consumers dont have to worry about setting this
+due to each concrete Resource Kind class extending Resource. Library consumers don't have to worry about setting this
 
 ##### Type parameters
 
@@ -89,6 +89,8 @@ due to each concrete Resource Kind class extending Resource. Library consumers d
 
 • `get` **createdAt**(): `string`
 
+Resource creation time. Expressed as ISO8601
+
 #### Returns
 
 `string`
@@ -99,6 +101,8 @@ ___
 
 • `get` **data**(): [`ResourceKindModel`](../index.md#resourcekindmodel)<`T`\>
 
+the actual resource kind's content data
+
 #### Returns
 
 [`ResourceKindModel`](../index.md#resourcekindmodel)<`T`\>
@@ -108,6 +112,8 @@ ___
 ### from
 
 • `get` **from**(): `string`
+
+The sender's DID
 
 #### Returns
 
@@ -131,6 +137,8 @@ ___
 
 • `get` **kind**(): `T`
 
+the resource kind (e.g. offering)
+
 #### Returns
 
 `T`
@@ -140,6 +148,8 @@ ___
 ### metadata
 
 • `get` **metadata**(): [`ResourceMetadata`](../index.md#resourcemetadata)<`T`\>
+
+The metadata object contains fields about the resource and is present in every tbdex resource.
 
 #### Returns
 
@@ -162,6 +172,8 @@ ___
 ### updatedAt
 
 • `get` **updatedAt**(): `string`
+
+Resource last updated time. Expressed as ISO8601
 
 #### Returns
 
@@ -204,7 +216,7 @@ ___
 
 ▸ **toJSON**(): [`ResourceModel`](../index.md#resourcemodel)<`T`\>
 
-returns the message as a json object. Automatically used by JSON.stringify method.
+returns the message as a json object. Automatically used by `JSON.stringify` method.
 
 #### Returns
 
@@ -235,6 +247,8 @@ ___
 ### generateId
 
 ▸ `Static` **generateId**(`resourceKind`): `string`
+
+Generates a unique id with the resource kind's prefix
 
 #### Parameters
 
@@ -292,7 +306,7 @@ validates `data` based on the value of `metadata.kind`
 
 **`Throws`**
 
-if validation fails
+`Error` if validation fails
 
 ___
 

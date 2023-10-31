@@ -32,8 +32,7 @@ they follow our [Code of Conduct](/open-source/code-of-conduct)
 and Governance model, 
 fostering an inclusive community. Incubation projects 
 benefit from TBD’s open source programs including 
-[GitHub](https://github.com/TBD54566975), 
-[TBD Forums](https://forums.tbd.website), 
+[GitHub](https://github.com/TBD54566975),
 and our [Discord](https://discord.gg/tbd) server.
 
 When projects reach maturity, they may apply to be 
@@ -44,7 +43,7 @@ More on that to come from the project founders!
 
 Got ideas you’d like to build with us? Propose an 
 idea in our 
-[Governance Forums](https://forums.tbd.website/c/tbd-governance/12),
+[Governance Forums](https://discord.gg/tbd),
 and include:
 
 * Statement of value to the TBD ecosystem (Web5, tbDEX, etc)
