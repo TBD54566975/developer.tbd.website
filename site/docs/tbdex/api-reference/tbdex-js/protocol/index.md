@@ -406,7 +406,7 @@ Payment Instructions payin and payout pairs
 | Name | Type | Description |
 | :------ | :------ | :------ |
 | `payin?` | [`PaymentInstruction`](index.md#paymentinstruction) | link or instruction describing how to send payin currency to the PFI. |
-| `payout?` | [`PaymentInstruction`](index.md#paymentinstruction) | link or Instruction describing how to get recieve payout currency from the PFI |
+| `payout?` | [`PaymentInstruction`](index.md#paymentinstruction) | link or Instruction describing how to get receive payout currency from the PFI |
 
 ___
 
