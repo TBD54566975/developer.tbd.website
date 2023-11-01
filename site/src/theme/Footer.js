@@ -133,18 +133,19 @@ export function Footer() {
             </span>
             <span className="copy">{footer.year}</span>
           </div>
-          <ul className="flex justify-end flex-auto nav-links">
+          <ul className="flex justify-end flex-auto flex-wrap lg:flex-nowrap nav-links">
             {footer.links &&
               footer.links.map((link, index) => (
-                <li key={index} className="ml-12 flex items-center py-0.5">
+                <li key={index} className="ml-8 lg:ml-12 flex items-center py-0 mx-auto lg:mx-0">
                   <TextLink
-                    className="py-3 text-primary-black hover:text-primary-black hoverLink"
+                    className="py-0 text-primary-black hover:text-primary-black hoverLink"
                     href={link.href}
                     text={link.text}
                   />
                 </li>
               ))}
           </ul>
+
         </div>
         <div className="flex flex-col bg-black mt-9 tablet:h-18 desktop:h-32 tablet:px-6 desktop:px-12 tablet:mt-0 tablet:flex-row tablet:items-center desktop:flex-row">
           <div className="flex-1">
