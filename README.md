@@ -1,6 +1,6 @@
 # TBD Developer Site
 
-[![OpenSSF Scorecard](https://api.securityscorecards.dev/projects/github.com/{owner}/{repo}/badge)](https://securityscorecards.dev/viewer/?uri=github.com/{owner}/{repo})
+[![OpenSSF Scorecard](https://api.securityscorecards.dev/projects/github.com/TBD54566975/developer.tbd.website/badge)](https://securityscorecards.dev/viewer/?uri=github.com/TBD54566975/developer.tbd.website)
 
 ## Prerequisites
 
