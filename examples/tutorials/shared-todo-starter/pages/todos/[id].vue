@@ -68,39 +68,14 @@ import { CheckCircleIcon, TrashIcon } from '@heroicons/vue/outline';
 
 const route = useRoute()
 const listId = ref(route.params.id)
-const myDID = "did:example:12abcsdsd"; //placeholder
 
 // Adding Todos
 const newTodoDescription = ref('');
 const fetchingListInfo = ref(true);
 
 
-const todoList = ref({
-    title: 'Todo List 3',
-    description: 'This is the third todo list',
-    creatorDID: 'did:example:12abcsdsd',
-    recipientID: 'did:example:123456789abcdefghi',
-})
-
-const todoItems = ref([
-    {
-        id: dffgdgdgdfgdfg,
-        data: {
-            description: 'Item 1',
-            author: 'did:example:123456789abcdefghi',
-            completed: false
-        }
-
-    },
-    {
-        id: erfe436fgfhjj56,
-        data: {
-            description: 'Item 2',
-            author: 'did:another:12abcsdsd',
-            completed: false
-        }
-    }
-]);
+const todoList = ref({})
+const todoItems = ref([]);
 
 async function addTodo() {
 
