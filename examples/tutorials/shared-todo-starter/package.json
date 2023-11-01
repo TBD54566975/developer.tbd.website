@@ -1,5 +1,5 @@
 {
-  "name": "web5-shared-todo-starter",
+  "name": "shared-todo-starter",
   "private": true,
   "scripts": {
     "build": "nuxt build",
