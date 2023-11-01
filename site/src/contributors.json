@@ -1,38 +1,38 @@
 [
   {
-    "login": "vpavlyshyn",
-    "avatar_url": "https://yt3.googleusercontent.com/ytc/APkrFKY1Y6jp75kF1x3hpzxaldvPsaEUSIufWqpuQLvjkw=s100-c-k-c0x00ffffff-no-rj",
-    "contributions": ["Content Creator Award"],
-    "description": "Thank you for shaing your videos with the community. Can't wait to watch the next one!"
-  },
-  {
-    "login": "pippella",
-    "avatar_url": "https://avatars.githubusercontent.com/u/108896743?v=4",
-    "contributions": ["Community Hero Award"],
-    "description": "From the beginning to now, your impact has been invalauble. Launching this without celebrating you? Impossible."
-  },
-  {
-    "login": "euj1n0ng",
-    "avatar_url": "https://avatars.githubusercontent.com/u/62314480?v=4",
+    "login": "chrissycodes",
+    "avatar_url": "https://avatars.githubusercontent.com/u/105683440?v=4",
     "contributions": ["New Contributor Award"],
-    "description": "Thank you for your curiosity and insightful questions, it's helped in making the community even more welcoming!"
+    "description": "YOU DID IT! 🥳 We're so excited we could be apart of your open source journey! I hope you continue contributing beyond Hacktoberfest!💖"
   },
   {
-    "login": "Sondreb",
-    "avatar_url": "https://avatars.githubusercontent.com/u/309938?v=4",
+    "login": "gregkramer",
+    "avatar_url": "https://avatars.githubusercontent.com/u/31805591?v=4",
+    "contributions": ["Community Hero Award"],
+    "description": "Thank you for always being super supportive within the community. From reacting to messages to almost never missing a meeting/event. We truly appreciate it! 🤗"
+  },
+  {
+    "login": "scarlett(🍋,✨)",
+    "avatar_url": "https://avatars.githubusercontent.com/u/78459369?v=4",
+    "contributions": ["New Contributor Award"],
+    "description": "You made your FIRST contribution WOOT! WOOT! 🥂 We're so happy we got to be apart of your journey, I hope to see more commits from you in the future!"
+  },
+  {
+    "login": "g0g0gadget",
+    "avatar_url": "https://avatars.githubusercontent.com/u/48335772?v=4",
     "contributions": ["Rising Star Award"],
-    "description": "From the moment you joined you've been asking really great questions. I look forward to learning more about your Angular integration 🥳"
+    "description": "We're all thrilled to have you in the community, thank you so much for hosting events with us this month. You've shared so many gems, we look forward to learning more 💖"
   },
   {
-    "login": "nearlyjuly",
-    "avatar_url": "https://avatars.githubusercontent.com/u/112702586?v=4",
-    "contributions": ["Feedback Champion Award"],
-    "description": "Your insight on the Discord component was invaluable. Thanks for guiding us toward the right choice!"
+    "login": "captainbrando",
+    "avatar_url": "https://avatars.githubusercontent.com/u/82909107?v=4",
+    "contributions": ["Community Champion Award"],
+    "description": "Community is truly about sharing knowledge and helping the next person! Thank you for helping a fellow member land their first commit. We're so happy to have you! 🥳"
   },
   {
-    "login": "captain-Akshay",
-    "avatar_url": "https://avatars.githubusercontent.com/u/59491379?v=4",
+    "login": "flothjl",
+    "avatar_url": "https://avatars.githubusercontent.com/u/16403356?v=4",
     "contributions": ["Docs Wizard Award"],
-    "description": "In one day you swiped this award. Truly our Docs Wizard. Thank you we look forward to seeing what other contributions you make!"
+    "description": "Your contributions for the month of October and the month prior are always super genuine and valuable. Thank you for sharing your time with us and for all your Hacktoberfest contributions! 🔥"
   }
 ]

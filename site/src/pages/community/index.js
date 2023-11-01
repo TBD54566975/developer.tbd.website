@@ -33,8 +33,8 @@ function CommunityIndex() {
 
   return (
     <Layout>
-      {/* banner */}
-      <div
+      {/* banner if you ever want to display anything on the top of the page pls use this*/}
+      {/* <div
         style={{
           borderColor: '#4b3852',
           borderWidth: '1px',
@@ -51,7 +51,7 @@ function CommunityIndex() {
           Find out more here
         </Link>
         .
-      </div>
+      </div> */}
 
       <Head title="Community | TBD">
         <meta property="og:title" />
@@ -147,10 +147,10 @@ function CommunityIndex() {
                       <div
                         key={cIndex}
                         style={{
-                          height:'50px',
-                          display:'flex',
-                          alignItems:'center',
-                          overflow:'hidden',
+                          height: '50px',
+                          display: 'flex',
+                          alignItems: 'center',
+                          overflow: 'hidden',
                           padding: '2px 5px',
                           borderRadius: '4px',
                           backgroundColor: '#FFEC18',
