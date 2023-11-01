@@ -1,0 +1,343 @@
+---
+sidebar_position: 1
+---
+
+# Build a NextJS Todo App
+
+In this tutorial, you will learn how to create a simple todo application using `Next.js 13` and the `Web5.js` library from TBD. This tutorial will provide you with a step-by-step guide to building your todo app.
+
+## 🛠️ Toolkit
+
+To build this app, we will use these tech:
+
+- [Next.js](https://nextjs.org/) &mdash; A React metaframework, your compass to guide you through creating pages, managing routes, and managing server-side rendering.
+- [TailwindCSS](https://tailwindcss.com/) &mdash; A utility-first CSS framework that can be composed to build any design, directly in your markup.
+- [Web5.js](https://developer.tbd.website/api/web5-js/) &mdash; A Web5 JavaScript SDK, your key to creating decentralized applications, facilitating direct communication between users, and granting them sovereignty over their data and identity.
+
+Make sure you know a bit of [TypeScript](https://www.typescriptlang.org/) as well!
+
+## Step 1: Setting Up the Project
+
+Start by creating a new Next.js project and installing the Web5 library. We'll walk you through the process of setting up your development environment.
+
+```bash
+# Create a new Next.js project
+npx create-next-app@latest web5-todo-app --use-pnpm
+# Make sure to say `yes` to use TypeScript for this project
+# And, say `yes` to install TailwindCSS as well.
+
+# Navigate to the project directory
+cd web5-todo-app
+
+# Install the Web5.js library
+pnpm install @web5/api
+```
+
+Edit `/app/page.tsx` to import Web5.js
+
+```tsx
+// @ts-ignore
+import * as W5 from '../node_modules/@web5/api/dist/browser';
+
+const { Web5 } = W5;
+```
+
+> Web5.js is in _tech preview_ so it still has issues when compiling with Next.js. The above code is one way to get around this.
+
+## Step 2: Initializing Web5
+
+First, we will add some states to this app.
+
+```tsx
+type Todo = {
+  record: Record;
+  data: {
+    text: string;
+    completed: boolean;
+  };
+  id: string;
+};
+
+// To store our Web5 connection
+const [web5, setWeb5] = useState<typeof Web5>();
+
+// To store our DID
+const [myDid, setMyDid] = useState('');
+
+// To store our todo items
+const [todos, setTodos] = useState<Todo[]>([]);
+```
+
+Then, we will create a `useEffect()` hook that is called every time our app first renders. This hook will call `Web5.connect()` to initialize our Web5 connection ensuring users have a DID and DWN available to access their app data. Once they come back for subsequent sessions, we will fetch and load that data for them.
+
+```tsx
+useEffect(() => {
+  const initWeb5 = async () => {
+    try {
+      const { web5, did } = await Web5.connect();
+      setWeb5(web5);
+      setMyDid(did);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+  initWeb5();
+}, []);
+```
+
+## Step 3: Interacting with Web5
+
+Now, we will write some functions to interact with Web5. We will add functions to retrieve, add, remove, and check/uncheck todo items:
+
+- `getTodos()` retrieves todo items from our Web5 connection.
+
+```tsx
+const getTodos = async () => {
+  try {
+    const response = await web5?.dwn.records.query({
+      message: {
+        filter: {
+          schema: 'http://some-schema-registry.org/todo',
+        },
+        dateSort: 'createdDescending' as any,
+      },
+    });
+    if (!response) return setTodos([]);
+
+    const { records } = response;
+    if (!records) return setTodos([]);
+
+    let todos: Todo[] = [];
+    for (let record of records) {
+      const data = await record.data.json();
+      todos.push({ record, data, id: record.id });
+    }
+
+    // List unchecked todo items first
+    todos = todos.sort(
+      (a, b) => Number(a.data.completed) - Number(b.data.completed),
+    );
+
+    return setTodos(todos);
+  } catch (error) {
+    console.error(error);
+    return setTodos([]);
+  }
+};
+```
+
+Next, we will put `getTodos()` inside a `useEffect()` hook to retrieve user's todo items.
+
+```tsx
+useEffect(() => {
+  const getTodos = async () => {
+    // ...
+  };
+  getTodos();
+}, [web5]);
+```
+
+- `addTodo()` add todo items to `todos`.
+
+```tsx
+// Add `description` state to control user's input for todos' text
+const [description, setDescription] = useState('');
+
+const addTodo = async (event: SyntheticEvent) => {
+  event.preventDefault();
+  try {
+    if (!web5) throw 'Error init Web5';
+
+    const { record } = await web5.dwn.records.create({
+      data: {
+        text: description,
+        completed: false,
+      },
+      message: {
+        schema: 'http://some-schema-registry.org/todo',
+        dataFormat: 'application/json',
+      },
+    });
+
+    if (!record) throw 'Error creating record';
+
+    const data = await record.data.json();
+    const todo = { record, data, id: record.id };
+    setTodos((prev) => [todo, ...prev]);
+    setDescription('');
+  } catch (error) {
+    console.error(error);
+  }
+};
+```
+
+- `deleteTodo()` deletes todo items from `todo`.
+
+```tsx
+const deleteTodo = async ({ todo }: { todo: Todo }) => {
+  try {
+    if (!web5) throw 'Error init Web5';
+
+    await web5.dwn.records.delete({
+      message: {
+        recordId: todo.record.id,
+      },
+    });
+
+    setTodos((prev) =>
+      prev.filter((item) => item.record.id !== todo.record.id),
+    );
+  } catch (error) {
+    console.error(error);
+  }
+};
+```
+
+- `toggleTodoStatus()` checks/unchecks our `todos` item.
+
+```tsx
+const toggleTodoStatus = async ({ todo }: { todo: Todo }) => {
+  try {
+    if (!web5) throw 'Error init Web5';
+
+    // Get record in DWN
+    const { record } = await web5.dwn.records.read({
+      message: {
+        recordId: todo.record.id,
+      },
+    });
+
+    // Update the record in DWN
+    await record.update({
+      data: {
+        ...todo.data,
+        completed: !todo.data.completed,
+      },
+    });
+
+    setTodos((prev) =>
+      prev.map((item) => {
+        if (item.record.id === todo.record.id) {
+          item.data.completed = !todo.data.completed;
+        }
+
+        return item;
+      }),
+    );
+  } catch (error) {
+    console.error(error);
+  }
+};
+```
+
+## Step 4: Adding UI components
+
+In this step, we will add some UI components and use TailwindCSS to style them so users can have something to interact with.
+
+```tsx
+// ...
+
+return (
+  <main className="bg-slate-100 pt-10 px-3 min-h-screen m-auto">
+    <div className="w-fit m-auto">
+      <form
+        onSubmit={addTodo}
+        className="w-[350px] h-[70px] bg-white drop-shadow-lg flex justify-around items-center p-3 my-3 rounded-lg text-slate-500"
+      >
+        <input
+          autoComplete="off"
+          className="text-black outline-none border-2 border-slate-300 p-2 rounded-lg"
+          type="text"
+          placeholder="Type here"
+          value={description}
+          onChange={({ target }) => setDescription(target.value)}
+        />
+
+        <button type="submit" className="bg-slate-50 p-2 rounded-lg ml-3">
+          Add
+        </button>
+      </form>
+
+      {todos.map((item, index) => (
+        <TodoCard
+          key={index}
+          todo={item}
+          deleteTodo={deleteTodo}
+          toggleTodoStatus={toggleTodoStatus}
+        />
+      ))}
+    </div>
+  </main>
+);
+
+// ...
+```
+
+Our React component `TodoCard()`:
+
+```tsx
+function TodoCard({
+  todo,
+  deleteTodo,
+  toggleTodoStatus,
+}: {
+  todo: Todo;
+  toggleTodoStatus: ({ todo }: { todo: Todo }) => void;
+  deleteTodo: ({ todo }: { todo: Todo }) => void;
+}) {
+  return (
+    <div
+      className={
+        'w-[350px] h-[70px] bg-white drop-shadow-lg flex justify-around items-center p-3 my-3 rounded-lg ' +
+        `${todo.data.completed ? 'opacity-40' : ''}`
+      }
+    >
+      <input
+        type="checkbox"
+        checked={todo.data.completed}
+        onChange={() => toggleTodoStatus({ todo })}
+      />
+
+      <p
+        className={
+          'truncate mx-3 ' + `${todo.data.completed ? 'line-through' : ''}`
+        }
+      >
+        {todo.data.text}
+      </p>
+
+      <button
+        type="button"
+        className="text-red-500 bg-red-100 p-2 rounded-lg"
+        onClick={() => deleteTodo({ todo })}
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="25"
+          height="25"
+          viewBox="0 0 256 256"
+        >
+          <path
+            fill="currentColor"
+            d="M216 48h-36V36a28 28 0 0 0-28-28h-48a28 28 0 0 0-28 28v12H40a12 12 0 0 0 0 24h4v136a20 20 0 0 0 20 20h128a20 20 0 0 0 20-20V72h4a12 12 0 0 0 0-24ZM100 36a4 4 0 0 1 4-4h48a4 4 0 0 1 4 4v12h-56Zm88 168H68V72h120Zm-72-100v64a12 12 0 0 1-24 0v-64a12 12 0 0 1 24 0Zm48 0v64a12 12 0 0 1-24 0v-64a12 12 0 0 1 24 0Z"
+          />
+        </svg>
+      </button>
+    </div>
+  );
+}
+```
+
+## Step 5: Deployment
+
+Once your todo app is complete, you can push all your code to GitHub and use services like [Vercel](https://vercel.com/dashboard) or [Netlify](https://www.netlify.com/) to deploy it.
+
+## Conclusion
+
+By following this tutorial, you've created a fully functional todo app using `Next.js` and the `Web5.js`.
+
+See how `Web5.js` changes the layout of your todo app compared to the way a traditional web app would be laid out is by replacing the RESTful calls you’d normally make with calls to the DWN.
+
+> Think of web5.js as your storage, RESTful API service, and the backing data store!
+
+Congrats, you've built a Web5 app! Happy coding!
