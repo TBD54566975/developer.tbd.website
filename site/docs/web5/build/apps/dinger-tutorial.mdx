@@ -22,7 +22,7 @@ To build this app, you will wield the following technologies:
 
 🏆 **Your reward**
 
-By the end of this journey, you will acquire a deeper understanding of peer-to-peer communication in a Web5 ecosystem. 
+By the end of this journey, you will acquire a deeper understanding of peer-to-peer communication in a Web5 ecosystem.
 
 If you're ready for the challenge, let's get started!
 
@@ -37,14 +37,34 @@ Good news! You don't have to start from scratch. There is a pre-built applicatio
 
 To access the starter code, follow the instructions below or explore the project directly in CodeSandbox.
 
+Note: If you don't have `pnpm` installed, you can install it by running `npm install -g pnpm`.
+
+```bash
+git clone https://github.com/TBD54566975/developer.tbd.website.git
+cd developer.tbd.website
+pnpm install
+pnpm start:tutorial-dinger-starter
+```
+
 [![Play in CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/TBD54566975/developer.tbd.website/tree/main/examples/tutorials/dinger-starter)
- 
+
 <details><summary>Finished Dinger App</summary>
 <p>
 
 If you’d like to skip ahead and see the finished version of this tutorial, you can check out the running app on CodeSandbox.
 
 [![Play in CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/TBD54566975/developer.tbd.website/tree/main/examples/tutorials/dinger-completed)
+
+You can also download and run the example by executing:
+
+Note: If you don't have `pnpm` installed, you can install it by running `npm install -g pnpm`.
+
+```bash
+git clone https://github.com/TBD54566975/developer.tbd.website.git
+cd developer.tbd.website
+pnpm install
+pnpm start:tutorial-dinger-completed
+```
 
 There is also a hosted example deployed at [https://dinger-chat.vercel.app/](https://dinger-chat.vercel.app/)
 </p>
@@ -64,7 +84,7 @@ To fully interact with the web app, please click **"Open in New Tab"** as demons
 Locate the line:
 ```javascript title="src/pages/index.js"
 console.log(`this log is in initWeb5`);
-``` 
+```
 and replace it with the following code snippet:
 ```javascript title="src/pages/index.js"
 const { web5, did } = await Web5.connect();
@@ -74,14 +94,14 @@ setMyDid(did);
 
 ### 🧩 Breaking it down
 - **Web5.connect()** returns a Web5 instance: It initializes and returns an instance of Web5, allowing you to interact with the Web5 ecosystem.
-- **Web5.connect()** also creates or connects to a DID: A DID ([Decentralized Identifier](https://developer.tbd.website/docs/web5/learn/decentralized-identifiers)) is a user’s unique ID card for the decentralized, digital world. It belongs only to you. `Web5.connect()` will either connect to an existing DID that you have or create a new one for you if you don't have one yet. A DID acts as an authenticator for Web5 apps, removing the need for login credentials. 
+- **Web5.connect()** also creates or connects to a DID: A DID ([Decentralized Identifier](https://developer.tbd.website/docs/web5/learn/decentralized-identifiers)) is a user’s unique ID card for the decentralized, digital world. It belongs only to you. `Web5.connect()` will either connect to an existing DID that you have or create a new one for you if you don't have one yet. A DID acts as an authenticator for Web5 apps, removing the need for login credentials.
 
 ### 📘 Learn more
 Learn more about [DID authentication](https://developer.tbd.website/blog/did-authentication).
 
 ## Level 3: Define and install a protocol
 ### 📝 Task
-Locate the line: 
+Locate the line:
 ```javascript title="src/pages/index.js"
 console.log(`this log is in configureProtocol`);
 ```
@@ -177,7 +197,7 @@ return await record.send(recipientDid);
 ```
 
 ### 🧩 Breaking it down
-- Users can have multiple DWNs, such as on their phone, laptop, or in the cloud. The method **record.send()** immediately sends the ding to all of the recipient's Decentralized Web Nodes (DWNs). 
+- Users can have multiple DWNs, such as on their phone, laptop, or in the cloud. The method **record.send()** immediately sends the ding to all of the recipient's Decentralized Web Nodes (DWNs).
 
 
 ### 📘 Learn more
@@ -190,7 +210,7 @@ Locate the line:
 console.log(`this log is in fetchDings`);
 ```
 And replace it with the following code snippet:
-```javascript title="src/pages/index.js"    
+```javascript title="src/pages/index.js"
 const { records, status: recordStatus } = await web5.dwn.records.query({
   message: {
     filter: {
@@ -248,9 +268,9 @@ This line is located within the following function:
   }, [web5, myDid]);
 ```
 ### 🧩 Breaking it down
-- The **useEffect()** and **setInterval()** fetch new dings every two seconds, allowing the UI to accurately display the chat.  
+- The **useEffect()** and **setInterval()** fetch new dings every two seconds, allowing the UI to accurately display the chat.
 
-### 📘 Learn more 
+### 📘 Learn more
 - Learn more about React's [useEffect()](https://react.dev/reference/react/useEffect) hook and JavaScript's [setInterval()](https://developer.mozilla.org/en-US/docs/Web/API/setInterval) method.
 
 ## Level 8: Try it out!
@@ -303,7 +323,3 @@ Congratulations! By building Dinger, you've successfully empowered users like Al
 You can check out the finished version of the app running on CodeSandbox.
 
 [![Play in CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/TBD54566975/developer.tbd.website/tree/main/examples/tutorials/dinger-completed)
-
-
-
-
