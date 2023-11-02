@@ -10,6 +10,8 @@ In the [Build a Todo App](/docs/web5/build/apps/todo-app-tutorial) tutorial, we 
 
 This tutorial takes it a step further. We will expand on the core features and build out a more collaborative app that allows multiple users work on the same, shared todo list.
 
+This is also a multi-paged app, so we will learn how we can reuse a `web5` instance across multiple pages.
+
 ## Objectives
 
 Bob and Alice are two friends that love doing things together. They often have specific goals and a bunch of tasks each of them have to complete to achieve this goal.
@@ -119,7 +121,7 @@ Create a new file at `plugins/web5.client.js` and add the following code:
                 sync: '5s'
             }));
 
-            console.log("My DID exist", myDID)
+            console.log("Here's your DID", myDID)
 
             return {
                 provide: {
@@ -135,7 +137,7 @@ The first time a user accesses your Shared Todo app, you’ll need to handle cre
 
 In the code above, we import and connect to Web5 while setting `sync` interval to 5 seconds. This is the amount of time between automatic syncs of the user's local and remote DWNs. We also return the `web5` and `myDID` variables to be available across our application.
 
-Open `pages/index.vue` and add the following code after all the `import` statements:
+Open `pages/index.vue` and add the following code after all the `import` statements under `<script setup>`:
 
 ```js title="pages/index.vue"
 // Get our global web5 instance and DID.
@@ -208,7 +210,7 @@ To implement this protocol, we have to install it in our app for any of the user
 Let's import the protocol definition:
 
 ```js title="pages/index.vue"
-import sharedTodoProtocol from "~/assets/shared-todo-protocol.json";
+import protocolDefinition from "~/assets/shared-todo-protocol.json";
 ```
 
 Now, we can create the function that checks if the protocol is installed and installs it if it isn't.
@@ -247,12 +249,10 @@ const configureProtocol = async () => {
 }
 ```
 
-Once this is done, we add the `configureProtocol` function to the `onBeforeMount` function.
+Once this is done, we create an `onBeforeMount` function and call the `configureProtocol` function as the page loads.
 
 ```js title="pages/index.vue"
 onBeforeMount(async () => {
-    ({ web5, did: myDID } = await Web5.connect());
-
     await configureProtocol()
 });
 ```
@@ -260,7 +260,8 @@ onBeforeMount(async () => {
 ## Create Shared List
 Right now, we have no existing lists, so we need to create one.
 
-We can add the following variable declarations:
+We currently have the following variables already declared - `newTodo` and `sharedList`. We will use these to store the form data for a new list and all other existing lists respectively.
+
 
 ```js title="pages/index.vue"
 const newTodo = ref({
@@ -272,11 +273,9 @@ const newTodo = ref({
 const sharedList = ref([]);
 ```
 
-Now we proceed to create the `createSharedList` function.
+Now we proceed to update the `createSharedList` function.
 
 ```js title="pages/index.vue"
-<script setup>
-...
 const createSharedList = async () => {
     let recipientDID = newTodo.value.recipientDID;
     const sharedListData = {
@@ -321,8 +320,6 @@ const createSharedList = async () => {
         return;
     }
 }
-...
-</script>
 ```
 
 To break this down, we are creating a new list with the following properties:
@@ -358,6 +355,13 @@ And in the `<template>` section, we update the header to include the copy DID bu
     <button v-if="myDID" class="btn" id="copy-did" @click="copyDID">Copy your DID</button>
 </header>
 ```
+
+We are now able to create new lists, which updates our UI immediately. The next step is to fetch existing lists from the DWN for both the authors and recipient.
+
+:::info
+## Testing the App
+To simulate multiple users with different DIDs in order to test the app, you can have a tab open in different browsers, or have one tab in normal browser mode and another tab in incognito mode.
+:::
 
 
 ## Display Todo Lists
@@ -403,7 +407,7 @@ Using NuxtLink, we are able to navigate to our list page by passing the `listId`
 In our dynamic todo page, let's import the protocol definition document so it can be reused.
 
 ```js title="pages/todos/[id].vue"
-import sharedTodoProtocol from "~/assets/shared-todo-protocol.json";
+import protocolDefinition from "~/assets/shared-todo-protocol.json";
 ```
 
 We need to fetch the list details from the DWN so let's get the list id from the url parameter, get our global `web5` and `myDID` variables and use the `listId` to query the DWN for the list.
@@ -477,14 +481,14 @@ To get the DID of the recipient to send the record to, since either of the autho
 ```js title="pages/todos/[id].vue"
 let todoRecipient;
 
-const getTodoRecipient = (list) => {
-    if (list.author === myDID) {
-        return list.recipient;
-    }
-    else {
-        return list.author;
+const getTodoRecipient = () => {
+    if (myDID === todoList.author) {
+        return todoList.recipient;
+    } else {
+        return todoList.author;
     }
 }
+
 ```
 
 Then in the `onBeforeMount()` method, let's update the `todoRecipient` variable so that it's only updated when we've fetched the list details and gotten the participating DIDs.

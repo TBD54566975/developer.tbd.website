@@ -50,31 +50,11 @@ const showForm = ref(false)
 const newTodo = ref({
     title: '',
     description: '',
-    author: 'did:author:1saddad6789abcdefghi',
     recipientDID: '',
 })
-const sharedList = ref([
-    {
-        id: '123',
-        data: {
-            "title": "Build a house",
-            "description": "A couple of things we need to do to compete this goal",
-            "author": "did:author:1saddad6789abcdefghi",
-            "recipientDID": "did:example:123456789abcdefghi",
-        }
-    },
-    {
-        id: '456',
-        data: {
-            "title": "My second shared todo",
-            "description": "This is my second shared todo",
-            "author": "did:ion:123456789abcdefghi",
-            "recipientDID": "did:author:1saddad6789abcdefghi",
-        }
-    }
-])
+const sharedList = ref([])
 
-const createSharedList = () => {
+const createSharedList = async () => {
     const generatedListID = Math.random().toString(36).substring(2);
     sharedTodos.value.push({
         id: generatedListID,
@@ -85,7 +65,7 @@ const createSharedList = () => {
     newTodo.value = { title: '', description: '', recipientDID: '', alias: '' }
     showForm.value = false
 }
-</script>Z
+</script>
 
 <style scoped>
 .btn {
