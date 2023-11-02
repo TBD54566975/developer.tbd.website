@@ -9,7 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@web5/api": "0.8.1",
+    "@web5/api": "0.8.2-alpha-20231101-b865b10",
     "next": "13.5.4",
     "react": "^18",
     "react-dom": "^18"
