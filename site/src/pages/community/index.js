@@ -7,6 +7,7 @@ import contributorsData from '@site/src/contributors.json';
 import Head from '@docusaurus/Head';
 import ExecutionEnvironment from '@docusaurus/ExecutionEnvironment';
 import Gallery from '@site/src/components/Gallery';
+import CalendarComponent from '@site/src/components/CalendarComponent';
 import Link from '@docusaurus/Link';
 
 function CommunityIndex() {
@@ -222,7 +223,8 @@ function CommunityIndex() {
             primary
           />
         </div>
-
+        {/* community calendar view  */}
+        <CalendarComponent />
         {/* Featured Communtiy Projects */}
         <div className="pb-20 mb-10">
           <h2 className="pt-10">TBD Innovators: Monthly Showcase</h2>
