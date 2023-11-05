@@ -2,22 +2,15 @@
 sidebar_position: 3
 ---
 
+import CodeSnippet from '@site/src/components/CodeSnippet';
+
 # Read DWN Records
 You can get a specific record from a DWN, or an array of records.
 
 ## Get Record by recordId
 If you know the `recordId` of the record you'd like to obtain, you can use the `read` function:
 
-```js
-// Get the record
-const { record } = await web5.dwn.records.read({
-  message: {
-    recordId: 'bafyreiaz5oycqbrnmmpvffxqyoqxvx6bcnqueprmt2qnvzcurpc52r5uyy',
-  }
-});
-
-const text = await record.data.text();
-```
+<CodeSnippet functionName='readRecordFromId'/>
 
 ## Get Records that Match Filter
 However, you may not have the `recordId` avaialble, and instead need to query for records that match a [specific filter](/docs/web5/build/decentralized-web-nodes/query-from-dwn#filterable-record-properties). This will return an array of records:
