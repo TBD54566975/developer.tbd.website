@@ -75,8 +75,9 @@ describe('tests for /api/web5-js/dwn/records', async () => {
     expect(initialData).toEqual(returnedData)
   });
 
+  //failed: https://github.com/TBD54566975/web5-js/issues/259
   test('deleteRecordFromDid deletes a record', async () => {
     const result = await deleteRecordFromDid(web5, record, myDid);
-    expect(result).toBeDefined();
+    expect(result.status.code).toBe(202);
   });
 });
