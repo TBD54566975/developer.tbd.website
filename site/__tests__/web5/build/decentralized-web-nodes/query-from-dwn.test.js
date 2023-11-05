@@ -3,7 +3,7 @@ import {
   queryProtocolsWithFilterDescending,
   queryRecordsWithFilterAscending,
   queryProtocolsForMusic,
-  queryRecordsFromDID,
+  queryRecordsFromDid,
   queryRecordWithParentId,
   playlistProtocolDefinition,
   queryFromDwnByProtocolPath,
@@ -37,8 +37,9 @@ test('queryRecordsWithFilterAscending returns an array of protocols', async () =
   expect(Array.isArray(response.records)).toBe(true);
 });
 
-test('queryRecordsFromDID returns an array of records', async () => {
-  const response = await queryRecordsFromDID(web5, did);
+//failed: https://github.com/TBD54566975/web5-js/issues/259
+test('queryRecordsFromDid returns an array of records', async () => {
+  const response = await queryRecordsFromDid(web5, did);
   expect(Array.isArray(response)).toBe(true);
 });
 

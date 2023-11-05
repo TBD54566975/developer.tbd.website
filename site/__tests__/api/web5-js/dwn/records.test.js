@@ -5,7 +5,7 @@ import {
   createRecordAndSend,
   queryPlaylistFromDid,
   readRecordFromId,
-  readRecordFromBobDwn,
+  readRecordByIdFromDid,
   deleteRecordFromDid,
 } from '../../../../code-snippets/api/web5-js/dwn/records';
 import { Web5 } from '@web5/api/browser';
@@ -44,6 +44,7 @@ describe('tests for /api/web5-js/dwn/records', async () => {
     expect(result.bobStatus).toBeDefined();
   });
 
+  //failed: https://github.com/TBD54566975/web5-js/issues/259
   test('queryPlaylistFromDid queries records', async () => {
     const result = await queryPlaylistFromDid(web5, myDid);
     expect(result).toBeDefined();
@@ -61,7 +62,8 @@ describe('tests for /api/web5-js/dwn/records', async () => {
     expect(returnedText).toBe(text);
   });
 
-  test('readRecordFromBobDwn reads a record from Bob\'s DWN', async () => {
+  //failed: https://github.com/TBD54566975/web5-js/issues/259
+  test('readRecordByIdFromDid reads a record by ID from a specific DID', async () => {
     const initialData = {name: 'bob'};
     const {record: jsonRecord} = await web5.dwn.records.create({
       data: initialData,
@@ -69,7 +71,7 @@ describe('tests for /api/web5-js/dwn/records', async () => {
         dataFormat: "application/json"
       }
     });
-    const returnedData = await readRecordFromBobDwn(web5, myDid, jsonRecord.id);
+    const returnedData = await readRecordByIdFromDid(web5, myDid, jsonRecord.id);
     expect(initialData).toEqual(returnedData)
   });
 
