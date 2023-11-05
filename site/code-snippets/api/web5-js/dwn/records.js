@@ -101,6 +101,7 @@ return data;
 
 export async function deleteRecordFromDid(web5, record, did) {
   const response = await web5.dwn.records.delete({
+    //highlight-next-line
     from: did,
     message: {
       recordId: record.id,
