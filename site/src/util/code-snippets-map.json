@@ -43,8 +43,9 @@
   "sendProtocolToRemoteDWNs": "const { protocol } = await web5.dwn.protocols.configure({\n    message: {\n        definition: protocolDefinition\n    }\n});\n\n//immediately send protocol to user's remote DWNs\nconst {status} = await protocol.send(userDid);",
   "sendRecordToDWNOfRecipient": "const { record } = await web5.dwn.records.create({\n    data: \"this record will be created but not saved to DWN\",\n    store: false, //remove this line if you want to keep a copy of the record in the sender's DWN\n    message: {\n        dataFormat: 'text/plain'\n    },\n});\n\n//send record to recipient's DWN\nconst {status} = await record.send(recipientDid);",
   "updateDwnRecord": "// Get the record\nconst { record } = await web5.dwn.records.read({\n  message: {\n    filter: {\n      recordId: createdRecord.id\n    }\n  }\n});\n\n// Update the record\n// highlight-next-line\nconst {status} = await record.update({ data: \"Hello, I'm updated!\" });",
-  "didCreate": "const { web5, did: aliceDid } = await Web5.connect();",
   "createTextRecord": "const { record } = await web5.dwn.records.create({\n    data: 'Hello, Web5!',\n    message: {\n      dataFormat: 'text/plain',\n    },\n  });",
+  "createJsonRecord": "// Create a JSON record\nconst { record } = await web5.dwn.records.create({\n    data: {\n        content: \"Hello Web5\",\n        description: \"Keep Building!\"\n    },\n    message: {\n        dataFormat: 'application/json'\n    }\n});",
+  "didCreate": "const { web5, did: aliceDid } = await Web5.connect();",
   "readTextRecord": "const readResult = await record.data.text();",
   "updateTextRecord": "const updateResult = await record.update({\n    data: 'Hello, Web5! I am updated.',\n  });",
   "deleteTextRecord": "const deleteResult = await record.delete();"
