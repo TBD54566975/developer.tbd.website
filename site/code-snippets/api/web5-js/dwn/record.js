@@ -13,12 +13,10 @@ export async function createRecord(web5, myDid) {
 
 export async function deleteRecord(record) {
   const response = await record.delete();
-
   return response;
 }
 
 export async function updateRecord(record) {
   const response = await record.update({ data: "Hello', I'm updated" });
-
   return response;
 }
