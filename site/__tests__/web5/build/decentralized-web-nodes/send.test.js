@@ -53,11 +53,13 @@ test.todo('sendLocalRecordToTarget creates record', async () => {
   expect(record).toBeDefined();
 });
 
+//failed: https://github.com/TBD54566975/web5-js/issues/261
 test('sendRecordToRemoteDWNs sends record', async () => {
   const status = await sendRecordToRemoteDWNs(web5, did);
   expect(status.code).toBe(202);
 });
 
+//failed: https://github.com/TBD54566975/web5-js/issues/261
 test('sendProtocolToRemoteDWNs sends a protocol', async () => {
   const protocolDefinition = {
     protocol: 'example:remoteprotocol',
@@ -81,6 +83,7 @@ test('sendProtocolToRemoteDWNs sends a protocol', async () => {
   expect(status.code).toBe(202);
 });
 
+//failed: https://github.com/TBD54566975/web5-js/issues/261
 test('sendRecordToDWNOfRecipient can be configured', async () => {
   const status = await sendRecordToDWNOfRecipient(web5, did);
   expect(status.code).toBe(202);
