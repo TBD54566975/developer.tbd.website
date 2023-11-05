@@ -333,32 +333,11 @@ Reads a record stored in the user's local DWN, remote DWN, or another party's DW
 
 
 #### Code Examples
-```js
-// Reads the indicated record from the user's DWNs
-const { record } = await web5.dwn.records.read({
-  message: {
-    recordId: "bfw35evr6e54c4cqa4c589h4cq3v7w4nc534c9w7h5",
-  },
-});
 
-// assuming the record is a text payload, logs the text
-console.log(await record.data.text());
-```
+<CodeSnippet functionName='readRecordFromId'/>
 
-```js
-// Reads the indicated record from Bob's DWNs
-const { record } = await web5.dwn.records.read({
-  //highlight-start
-  from: "did:example:bob",
-  //highlight-end
-  message: {
-    recordId: "bfw35evr6e54c4cqa4c589h4cq3v7w4nc534c9w7h5",
-  },
-});
+<CodeSnippet functionName='readRecordFromBobDwn'/>
 
-// assuming the record is a text payload, logs the text
-console.log(await record.data.text());
-```
 
 <Divider type="slash"/>
 

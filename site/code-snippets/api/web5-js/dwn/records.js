@@ -37,9 +37,9 @@ export async function createRecordAndSend(web5, myDid, bobDid) {
   });
 
   /* 
-send the record to the user's remote DWNs. Only needed 
-if it's a record that cannot wait for sync to occur.
-*/
+  send the record to the user's remote DWNs. Only needed 
+  if it's a record that cannot wait for sync to occur.
+  */
   const { status: myDidStatus } = await record.send(myDid);
 
   // send the newly generated record to Bob's DWNs
@@ -66,17 +66,37 @@ export async function queryPlaylistFromDid(web5, myDid) {
   return response;
 }
 
-export async function readRecordFromRecordId(web5, recordId) {
-  // Reads the indicated record from the user's DWNs
-  let { record } = await web5.dwn.records.read({
-    message: {
-      recordId: recordId,
-    },
-  });
+export async function readRecordFromId(web5, recordId) {
+// Reads the indicated record from the user's DWNs
+let { record } = await web5.dwn.records.read({
+  message: {
+    filter: {
+      recordId: recordId
+    }
+  }
+});
 
-  // assuming the record is a text payload, logs the text
-  console.log(record);
-  return record;
+// assuming the record has a text payload
+const text = await record.data.text();
+return text;
+}
+
+export async function readRecordFromBobDwn(web5, bobDid, recordId) {
+// Reads the indicated record from Bob's DWNs
+const { record } = await web5.dwn.records.read({
+  //highlight-start
+  from: bobDid,
+  //highlight-end
+  message: {
+    filter:{
+      recordId: recordId
+    }
+  }
+});
+
+// assuming the record is a json payload
+const data = await record.data.json();
+return data;
 }
 
 export async function deleteRecordFromDid(web5, record, did) {

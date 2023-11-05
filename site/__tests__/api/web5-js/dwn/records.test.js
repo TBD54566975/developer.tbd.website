@@ -4,7 +4,8 @@ import {
   createRecordWithoutStore,
   createRecordAndSend,
   queryPlaylistFromDid,
-  readRecordFromRecordId,
+  readRecordFromId,
+  readRecordFromBobDwn,
   deleteRecordFromDid,
 } from '../../../../code-snippets/api/web5-js/dwn/records';
 import { Web5 } from '@web5/api/browser';
@@ -20,6 +21,7 @@ beforeAll(async () => {
 });
 
 describe('tests for /api/web5-js/dwn/records', async () => {
+
   test('createRecordsWithPlaylist creates a record', async () => {
     const playlistJson = { songs: [{ title: 'song1' }, { title: 'song2' }] };
     const result = await createRecordsWithPlaylist(web5, playlistJson);
@@ -30,8 +32,6 @@ describe('tests for /api/web5-js/dwn/records', async () => {
 
   test('createRecordWithoutStore creates a record', async () => {
     const result = await createRecordWithoutStore(web5);
-    // record = result;
-
     expect(result).toBeDefined();
   });
 
@@ -46,21 +46,35 @@ describe('tests for /api/web5-js/dwn/records', async () => {
 
   test('queryPlaylistFromDid queries records', async () => {
     const result = await queryPlaylistFromDid(web5, myDid);
-
     expect(result).toBeDefined();
   });
 
-  //skipping until we figure out why passing a real record id gives back an undefined record
-  test('readRecordFromRecordId reads a record', async () => {
-    const result = await readRecordFromRecordId(web5, record.id);
-
-    expect(result).toBeDefined();
+  test('readRecordFromId reads a record', async () => {
+    const text = "readRecordFromId";
+    const {record: textRecord} = await web5.dwn.records.create({
+      data: text,
+      message: {
+        dataFormat: "text/plain"
+      }
+    });
+    const returnedText = await readRecordFromId(web5, textRecord.id);
+    expect(returnedText).toBe(text);
   });
 
-  //skipping until we figure out why passing a real record id gives back an undefined record
+  test('readRecordFromBobDwn reads a record from Bob\'s DWN', async () => {
+    const initialData = {name: 'bob'};
+    const {record: jsonRecord} = await web5.dwn.records.create({
+      data: initialData,
+      message: {
+        dataFormat: "application/json"
+      }
+    });
+    const returnedData = await readRecordFromBobDwn(web5, myDid, jsonRecord.id);
+    expect(initialData).toEqual(returnedData)
+  });
+
   test('deleteRecordFromDid deletes a record', async () => {
     const result = await deleteRecordFromDid(web5, record, myDid);
-
     expect(result).toBeDefined();
   });
 });
