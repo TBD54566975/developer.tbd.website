@@ -38,7 +38,7 @@ export async function queryRecordsWithFilterAscending(web5) {
   return response;
 }
 
-export async function queryRecordsFromDID(web5, did) {
+export async function queryRecordsFromDid(web5, did) {
   const { records } = await web5.dwn.records.query({
     from: did,
     message: {
