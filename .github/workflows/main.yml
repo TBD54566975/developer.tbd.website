@@ -7,9 +7,9 @@ on:
   workflow_dispatch:
     inputs:
       reason:
-        description: "Manual trigger"
+        description: 'Manual trigger'
         required: true
-        default: "Just because."
+        default: 'Just because.'
 
 jobs:
   test:
@@ -22,7 +22,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: "18"
+          node-version: '18'
 
       - name: Install pnpm
         run: npm install -g pnpm
@@ -38,6 +38,8 @@ jobs:
 
       - name: Run tests
         run: pnpm test
+        env:
+          VITE_APP_TEST_DWN_URL: http://localhost:3000
 
       - name: Run apps tests
         run: pnpm --filter feedback-server test run

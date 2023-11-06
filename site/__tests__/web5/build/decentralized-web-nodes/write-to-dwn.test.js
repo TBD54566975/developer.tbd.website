@@ -1,28 +1,27 @@
-import { test, beforeAll, expect } from 'vitest';
+import { test, beforeAll, expect, describe } from 'vitest';
+
 import {
-    createTextRecord,
-    createJsonRecord
+  createTextRecord,
+  createJsonRecord,
 } from '../../../../code-snippets/web5/build/decentralized-web-nodes/write-to-dwn';
-import { Web5 } from '@web5/api/browser';
 
 let web5;
 let did;
 
-// connect to web5 beforeAll tests and assign it to web5 variable
-beforeAll(async () => {
-  const result = await Web5.connect();
-  web5 = result.web5;
-  did = result.did;
-});
+describe('write-to-dwn', () => {
+  // connect to web5 beforeAll tests and assign it to web5 variable
+  beforeAll(async () => {
+    web5 = globalThis.web5;
+    did = globalThis.did;
+  });
 
-test('createTextRecord creates a text record', async () => {
-  const record = await createTextRecord(web5);
-  expect(record).toBeDefined();
-});
+  test('createTextRecord creates a text record', async () => {
+    const record = await createTextRecord(web5);
+    expect(record).toBeDefined();
+  });
 
-test('createJsonRecord creates a JSON record', async () => {
+  test('createJsonRecord creates a JSON record', async () => {
     const record = await createJsonRecord(web5);
     expect(record).toBeDefined();
+  });
 });
-
-

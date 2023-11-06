@@ -1,4 +1,5 @@
 import { test, beforeAll, expect, describe } from 'vitest';
+
 import {
   createRecordsWithPlaylist,
   createRecordWithoutStore,
@@ -8,76 +9,79 @@ import {
   readRecordByIdFromDid,
   deleteRecordFromDid,
 } from '../../../../code-snippets/api/web5-js/dwn/records';
-import { Web5 } from '@web5/api/browser';
 
 let web5;
 let record;
 let myDid;
 
-beforeAll(async () => {
-  const result = await Web5.connect();
-  web5 = result.web5;
-  myDid = result.did;
-});
-
-describe('tests for /api/web5-js/dwn/records', async () => {
-
-  test('createRecordsWithPlaylist creates a record', async () => {
-    const playlistJson = { songs: [{ title: 'song1' }, { title: 'song2' }] };
-    const result = await createRecordsWithPlaylist(web5, playlistJson);
-    record = result;
-
-    expect(result).toBeDefined();
+describe('records', () => {
+  beforeAll(async () => {
+    web5 = globalThis.web5;
+    myDid = globalThis.did;
   });
 
-  test('createRecordWithoutStore creates a record', async () => {
-    const result = await createRecordWithoutStore(web5);
-    expect(result).toBeDefined();
-  });
+  describe('tests for /api/web5-js/dwn/records', async () => {
+    test('createRecordsWithPlaylist creates a record', async () => {
+      const playlistJson = { songs: [{ title: 'song1' }, { title: 'song2' }] };
+      const result = await createRecordsWithPlaylist(web5, playlistJson);
+      record = result;
 
-  test('createRecordAndSend creates a record', async () => {
-    // passing myDid twice because we can't show the second example of sending a status to bob without a real DID.
-    // One solution to this would be creating another DID manually, but that's not possible at the moment.
-    const result = await createRecordAndSend(web5, myDid, myDid);
-
-    expect(result.myDidStatus).toBeDefined();
-    expect(result.bobStatus).toBeDefined();
-  });
-
-  //failed: https://github.com/TBD54566975/web5-js/issues/259
-  test('queryPlaylistFromDid queries records', async () => {
-    const result = await queryPlaylistFromDid(web5, myDid);
-    expect(result).toBeDefined();
-  });
-
-  test('readRecordFromId reads a record', async () => {
-    const text = "readRecordFromId";
-    const {record: textRecord} = await web5.dwn.records.create({
-      data: text,
-      message: {
-        dataFormat: "text/plain"
-      }
+      expect(result).toBeDefined();
     });
-    const returnedText = await readRecordFromId(web5, textRecord.id);
-    expect(returnedText).toBe(text);
-  });
 
-  //failed: https://github.com/TBD54566975/web5-js/issues/259
-  test('readRecordByIdFromDid reads a record by ID from a specific DID', async () => {
-    const initialData = {name: 'bob'};
-    const {record: jsonRecord} = await web5.dwn.records.create({
-      data: initialData,
-      message: {
-        dataFormat: "application/json"
-      }
+    test('createRecordWithoutStore creates a record', async () => {
+      const result = await createRecordWithoutStore(web5);
+      expect(result).toBeDefined();
     });
-    const returnedData = await readRecordByIdFromDid(web5, myDid, jsonRecord.id);
-    expect(initialData).toEqual(returnedData)
-  });
 
-  //failed: https://github.com/TBD54566975/web5-js/issues/259
-  test('deleteRecordFromDid deletes a record', async () => {
-    const result = await deleteRecordFromDid(web5, record, myDid);
-    expect(result.status.code).toBe(202);
+    test('createRecordAndSend creates a record', async () => {
+      // passing myDid twice because we can't show the second example of sending a status to bob without a real DID.
+      // One solution to this would be creating another DID manually, but that's not possible at the moment.
+      const result = await createRecordAndSend(web5, myDid, myDid);
+
+      expect(result.myDidStatus).toBeDefined();
+      expect(result.bobStatus).toBeDefined();
+    });
+
+    //failed: https://github.com/TBD54566975/web5-js/issues/259
+    test('queryPlaylistFromDid queries records', async () => {
+      const result = await queryPlaylistFromDid(web5, myDid);
+      expect(result).toBeDefined();
+    });
+
+    test('readRecordFromId reads a record', async () => {
+      const text = 'readRecordFromId';
+      const { record: textRecord } = await web5.dwn.records.create({
+        data: text,
+        message: {
+          dataFormat: 'text/plain',
+        },
+      });
+      const returnedText = await readRecordFromId(web5, textRecord.id);
+      expect(returnedText).toBe(text);
+    });
+
+    //failed: https://github.com/TBD54566975/web5-js/issues/259
+    test('readRecordByIdFromDid reads a record by ID from a specific DID', async () => {
+      const initialData = { name: 'bob' };
+      const { record: jsonRecord } = await web5.dwn.records.create({
+        data: initialData,
+        message: {
+          dataFormat: 'application/json',
+        },
+      });
+      const returnedData = await readRecordByIdFromDid(
+        web5,
+        myDid,
+        jsonRecord.id,
+      );
+      expect(initialData).toEqual(returnedData);
+    });
+
+    //failed: https://github.com/TBD54566975/web5-js/issues/259
+    test('deleteRecordFromDid deletes a record', async () => {
+      const result = await deleteRecordFromDid(web5, record, myDid);
+      expect(result.status.code).toBe(202);
+    });
   });
 });
