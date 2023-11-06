@@ -9,10 +9,11 @@ import Web5QuickstartUpdateDwn from './_quickstart-07-update-record.mdx';
 import Web5QuickstartDeleteDwn from './_quickstart-08-delete-record.mdx';
 import Web5QuickstartNextSteps from './_quickstart-10-next-steps.mdx';
 
-import { didCreate, createTextRecord } from '../../src/util/code-snippets';
-
 let web5;
 let createRecordResult;
+
+let didCreate;
+let createTextRecord;
 
 function parseDid() {
   try {
@@ -85,6 +86,13 @@ let dwnUpdateOutput;
 
 function Web5Quickstart() {
   useEffect(() => {
+    const loadWeb5 = async () => {
+      const codeSnippetsUtils = await import('../../src/util/code-snippets');
+      didCreate = codeSnippetsUtils.didCreate;
+      createTextRecord = codeSnippetsUtils.createTextRecord;
+    }
+    loadWeb5();
+
     // query selectors
 
     didCreateInputButton = document.querySelector('#did-create .input button');
@@ -271,6 +279,7 @@ function Web5Quickstart() {
       update();
     });
   }, []);
+
   return (
     <div>
       <Web5QuickstartIntro />
