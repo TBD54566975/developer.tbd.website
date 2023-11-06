@@ -14,7 +14,11 @@ let did;
 
 // connect to web5 beforeAll tests and assign it to web5 variable
 beforeAll(async () => {
-  const result = await Web5.connect();
+  const result = await Web5.connect({
+    techPreview: {
+      dwnEndpoints: ["http://localhost:3000"]
+    },
+  });
   web5 = result.web5;
   did = result.did;
 });
