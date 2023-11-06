@@ -1,44 +1,33 @@
 module.exports = {
   parserOptions: {
-    ecmaVersion: 2022
+    ecmaVersion: 2022,
   },
   env: {
     node: true,
   },
-  extends: [
-    'eslint:recommended',
-    'plugin:vue/vue3-strongly-recommended',
-  ],
+  extends: ['eslint:recommended', 'plugin:vue/vue3-strongly-recommended'],
   rules: {
-    'key-spacing': [
+    quotes: ['error', 'single', { allowTemplateLiterals: true }],
+    semi: ['error', 'always'],
+    'vue/html-closing-bracket-newline': [
       'error',
       {
-        'align': {
-          'afterColon'  : true,
-          'beforeColon' : true,
-          'on'          : 'colon'
-        }
-      }
+        multiline: 'never',
+        singleline: 'never',
+      },
     ],
-    'quotes': [
+    'vue/max-attributes-per-line': [
       'error',
-      'single',
-      { 'allowTemplateLiterals': true }
+      {
+        multiline: {
+          max: 4,
+        },
+        singleline: {
+          max: 4,
+        },
+      },
     ],
-    'semi'                             : ['error', 'always'],
-    'vue/html-closing-bracket-newline' : ['error', {
-      'multiline'  : 'never',
-      'singleline' : 'never'
-    }],
-    'vue/max-attributes-per-line': ['error', {
-      'multiline': {
-        'max': 4
-      },
-      'singleline': {
-        'max': 4
-      },
-    }],
-    'vue/static-class-names-order' : 'error',
-    'indent'                       : ['error', 2]
-  }
+    'vue/static-class-names-order': 'error',
+    indent: ['error', 2],
+  },
 };

@@ -52,3 +52,6 @@ INDEX
 MESSAGESTORE
 .vercel
 temp
+
+playwright-report
+test-results

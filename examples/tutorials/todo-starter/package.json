@@ -6,7 +6,9 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "test": "playwright test",
+    "test:browser": "start-server-and-test dev http://localhost:5173 test"
   },
   "dependencies": {
     "@headlessui/vue": "1.7.4",
