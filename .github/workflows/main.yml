@@ -28,11 +28,11 @@ jobs:
       - name: Install pnpm
         run: npm install -g pnpm
 
-      - name: Install Playwright browsers
-        run: pnpm exec playwright install
-
       - name: Install dependencies
         run: pnpm install
+
+      - name: Install Playwright browsers
+        run: pnpm exec playwright install
 
       - name: Run tests
         run: pnpm test
