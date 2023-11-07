@@ -8,7 +8,7 @@
     "build": "vite build",
     "preview": "vite preview",
     "test": "playwright test",
-    "test:browser": "start-server-and-test dev http://localhost:5173 test"
+    "test:browser": "start-server-and-test dev http://localhost:5174 test"
   },
   "dependencies": {
     "@headlessui/vue": "1.7.4",
