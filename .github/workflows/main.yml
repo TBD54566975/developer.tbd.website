@@ -8,9 +8,9 @@ on:
   workflow_dispatch:
     inputs:
       reason:
-        description: "Manual trigger"
+        description: 'Manual trigger'
         required: true
-        default: "Just because."
+        default: 'Just because.'
 
 jobs:
   test:
@@ -23,10 +23,13 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: "18"
+          node-version: '18'
 
       - name: Install pnpm
         run: npm install -g pnpm
+
+      - name: Install Playwright browsers
+        run: pnpm exec playwright install
 
       - name: Install dependencies
         run: pnpm install
