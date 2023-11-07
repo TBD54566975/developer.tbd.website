@@ -12,7 +12,6 @@ tbDEX is architected on Web5 infrastructure, utilizing decentralized technologie
 
 * [Decentralized Identifiers](/docs/web5/learn/decentralized-identifiers) (DIDs)
 * [Verifiable Credentials](/docs/web5/learn/verifiable-credentials) (VCs)
-* [Decentralized Web Notes](/docs/web5/learn/decentralized-web-nodes) (DWNs)
 
 The protocol has no opinion on anonymity as a feature or consequence of transactions. Instead, it allows willing counterparties to negotiate and establish the minimum information acceptable for an exchange.
 
@@ -59,6 +58,10 @@ As part of negotiating an exchange, PFIs and wallets message each other using th
 
 * **Order**: an agreement to execute the transaction. At this time, both parties have agreed upon a settlement method for the transaction and can smoothly off-ramp from the tbDEX platform to the desired method of settlement.
 
+* **Order Status**: updates on execution of the order, sent by the PFI. 
+
+* **Close**: signifies that the exchange has reached a terminal state. It can be used if the PFI is unable to provide a guaranteed quote to the RFQ, if Alice is no longer interested in the quote, if the order has failed, or if the order has completed. No messages can be added to an Exchange after a Close has been sent. 
+
 
 ## Example Scenario
 
@@ -80,7 +83,9 @@ Alice holds a digital wallet that securely manages her identity, including her i
 
 8. **Alice's Wallet** accepts the quote by placing the order. 
 
-9. The **PFI** fulfills the order.
+9. The **PFI** sends order statuses to the Wallet to update Alice about the order.
+
+10. The **PFI** fulfills the order then sends a close message to Alice’s Wallet.
 
 
 ## Try tbDEX
