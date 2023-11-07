@@ -6,7 +6,7 @@ import {
   createRecordAndSend,
   queryPlaylistFromDid,
   readRecordFromId,
-  readRecordByIdFromDid,
+  readRecordFromBobDwn as readRecordByIdFromDid,
   deleteRecordFromDid,
 } from '../../../../code-snippets/api/web5-js/dwn/records';
 
@@ -70,6 +70,11 @@ describe('records', () => {
           dataFormat: 'application/json',
         },
       });
+
+      // immediately send record to user's remote DWNs
+      // so that we can read it from there in the below test
+      await jsonRecord.send(myDid);
+
       const returnedData = await readRecordByIdFromDid(
         web5,
         myDid,
@@ -80,6 +85,10 @@ describe('records', () => {
 
     //failed: https://github.com/TBD54566975/web5-js/issues/259
     test('deleteRecordFromDid deletes a record', async () => {
+      // immediately send record to user's remote DWNs
+      // so that we can delete it from there in the below test
+      await record.send(myDid);
+
       const result = await deleteRecordFromDid(web5, record, myDid);
       expect(result.status.code).toBe(202);
     });
