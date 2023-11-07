@@ -13,7 +13,7 @@
   "start:widget": "pnpm --filter web5-quickstart-widgets start",
   "build": "node extract-snippets && pnpm --filter site run build",
   "clear": "pnpm --filter site run clear",
-  "test": "node extract-snippets && pnpm vitest run --config vite.config.ts",
+  "test": "node extract-snippets && pnpm vitest run --config vite.config.ts && pnpm test:browser",
   "test:watch": "node extract-snippets && pnpm vitest --config vite.config.ts --watch",
   "test:browser": "pnpm -r test:browser"
 },
