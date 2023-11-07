@@ -43,7 +43,6 @@ describe('records', () => {
       expect(result.bobStatus).toBeDefined();
     });
 
-    //failed: https://github.com/TBD54566975/web5-js/issues/259
     test('queryPlaylistFromDid queries records', async () => {
       const result = await queryPlaylistFromDid(web5, myDid);
       expect(result).toBeDefined();
@@ -61,7 +60,6 @@ describe('records', () => {
       expect(returnedText).toBe(text);
     });
 
-    //failed: https://github.com/TBD54566975/web5-js/issues/259
     test('readRecordByIdFromDid reads a record by ID from a specific DID', async () => {
       const initialData = { name: 'bob' };
       const { record: jsonRecord } = await web5.dwn.records.create({
@@ -83,7 +81,6 @@ describe('records', () => {
       expect(initialData).toEqual(returnedData);
     });
 
-    //failed: https://github.com/TBD54566975/web5-js/issues/259
     test('deleteRecordFromDid deletes a record', async () => {
       // immediately send record to user's remote DWNs
       // so that we can delete it from there in the below test

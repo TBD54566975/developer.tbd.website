@@ -37,7 +37,6 @@ describe('query-from-dwn', () => {
     expect(Array.isArray(response.records)).toBe(true);
   });
 
-  //failed: https://github.com/TBD54566975/web5-js/issues/259
   test('queryRecordsFromDid returns an array of records', async () => {
     const response = await queryRecordsFromDid(web5, did);
     expect(Array.isArray(response)).toBe(true);
