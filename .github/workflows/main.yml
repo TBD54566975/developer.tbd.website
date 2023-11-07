@@ -27,9 +27,6 @@ jobs:
       - name: Install pnpm
         run: npm install -g pnpm
 
-      - name: Install Playwright browsers
-        run: pnpm exec playwright install
-
       - name: Install dependencies
         run: pnpm install
 
@@ -38,6 +35,8 @@ jobs:
 
       - name: Wait for dwn-server to be ready
         run: until curl -sf http://localhost:3000/health; do echo -n .; sleep .1; done
+      - name: Install Playwright browsers
+        run: pnpm exec playwright install
 
       - name: Run tests
         run: pnpm test
