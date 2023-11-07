@@ -4,7 +4,7 @@ export default defineConfig({
   test: {
     testTimeout: 40000,
     hookTimeout: 40000,
-    exclude: [...configDefaults.exclude, "apps/**"],
+    exclude: [...configDefaults.exclude, "apps/**", "**/*.spec.{js,ts,jsx,tsx}"],
     //TODO: Investigate coverage options later for output files
     // coverage: {
     //   provider: 'istanbul',
