@@ -1,14 +1,11 @@
 import React, { useState } from 'react';
 import HeroCard from '@site/src/components/HeroCard';
 import Community from '../../components/Community';
-import DiscordMessagesView from './discord-messages-view.js';
 import Layout from '@theme/Layout';
 import contributorsData from '@site/src/contributors.json';
 import Head from '@docusaurus/Head';
-import ExecutionEnvironment from '@docusaurus/ExecutionEnvironment';
 import Gallery from '@site/src/components/Gallery';
-import CalendarComponent from '@site/src/components/CalendarComponent';
-import Link from '@docusaurus/Link';
+import CalendarComponent from '@site/src/components/Calendar';
 
 function CommunityIndex() {
   const imageGalleryData = [
@@ -223,6 +220,21 @@ function CommunityIndex() {
             primary
           />
         </div>
+        <h2 className="pt-10">Upcoming Events 🥳 </h2>
+        <p className="pb-10">
+          Filter through our exciting events: 👀 Show & Tells for project
+          highlights, 🏢 Office Hours for open discussions, 💡 Workshops for
+          skill-building, 🎮 Twitch Streams for everything fun. Miss an event?
+          checkout our{' '}
+          <a
+            href="https://www.youtube.com/playlist?list=PLji3z0eqSkXEws2wrNjyVyW3xQTW_dNlq"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            YouTube channel
+          </a>{' '}
+          to catch up. Whether live or later, we're thrilled to have you!
+        </p>
         {/* community calendar view  */}
         <CalendarComponent />
         {/* Featured Communtiy Projects */}
@@ -242,32 +254,6 @@ function CommunityIndex() {
           </p>
           <Gallery images={imageGalleryData} />
         </div>
-
-        {/* discord messages component */}
-        {/* <div
-          style={{
-            backgroundColor: '#1C1C1C',
-            padding: '20px',
-            borderRadius: '8px',
-            marginBottom: '70px',
-          }}
-        >
-          <h2> 👀 Sneak peek into the community 👀</h2>
-          <div className="flex flex-col md:flex-row justify-between items-center md:space-x-5 space-y-5 md:space-y-0">
-            <DiscordMessagesView
-              channelID="1068273971432280196"
-              channelName="DWN"
-              discordChannelUrl="https://discord.com/channels/937858703112155166/1068273971432280196"
-              style={{ width: '100%' }}
-            />
-            <DiscordMessagesView
-              channelID="969272658501976117"
-              channelName="WEB5"
-              discordChannelUrl="https://discord.com/channels/937858703112155166/969272658501976117"
-              style={{ width: '100%' }}
-            />
-          </div>
-        </div> */}
         <Community />
       </div>
     </Layout>
