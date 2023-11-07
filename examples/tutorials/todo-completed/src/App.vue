@@ -5,11 +5,14 @@ import { CheckCircleIcon, TrashIcon } from '@heroicons/vue/outline';
 import { Web5 } from '@web5/api';
 
 let web5;
-let myDid;
+let myDid = ref('');
 const todos = ref([]);
 
 onBeforeMount(async () => {
-  ({ web5, did: myDid } = await Web5.connect());
+  const web5Result = await Web5.connect();
+  web5 = web5Result.web5;
+  myDid.value = web5Result.did;
+
   // Populate todos from DWN
   const { records } = await web5.dwn.records.query({
     message: {
@@ -115,6 +118,7 @@ async function toggleTodoComplete(todoItem) {
         Todo List
       </h2>
     </div>
+    <div id="mydid-container" v-if="myDid">Web5 Connected</div>
 
     <!-- Add Todo Form -->
     <div class="mt-16">
