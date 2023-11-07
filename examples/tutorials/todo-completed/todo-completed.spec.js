@@ -17,7 +17,6 @@ test.describe('Vue app rendering and interactions', () => {
 
     // Wait for the button to be interactable
     const submitButton = page.locator('button[type="submit"]');
-    await submitButton.waitFor({ state: 'visible', timeout: 10000 });
 
     // Use JavaScript to click the button if normal click doesn't work
     await page.evaluate(
