@@ -49,7 +49,7 @@ const eventTypes = [
   { label: '👀 Show & Tells', value: '#ShowTell' },
   { label: '🏢 Office Hours', value: '#OfficeHours' },
   { label: '💡 Workshops', value: '#Workshop' },
-  { label: '🎮 Twitch Streams', value: '#TwitchStream' },
+  { label: '🎮 Twitch Streams', value: '#TwitchStreams' },
   { label: '🎤 Conferences/Talks', value: '#ConferenceTalk' },
 ];
 
