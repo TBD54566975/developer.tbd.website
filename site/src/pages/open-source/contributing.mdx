@@ -52,23 +52,8 @@ We've highlighted some repositories with new open issues to help you get started
 - [DWN-Server](https://github.com/TBD54566975/dwn-server/issues?q=is%3Aissue+is%3Aopen+no%3Aassignee)
 - [DWN-SDK-JS](https://github.com/TBD54566975/dwn-sdk-js/issues?q=is%3Aissue+is%3Aopen+no%3Aassignee)
 
-## Upcoming Community Events
-
-<a href="https://discord.com/events/937858703112155166/1158855382496727191">
-  <img
-    style={{ height: '446px' }}
-    src="https://hackmd.io/_uploads/H12LMn8G6.png"
-  />
-</a>
-<a href="https://discord.com/events/937858703112155166/1166756631963521024">
-  <img
-    style={{ height: '446px' }}
-    src="https://hackmd.io/_uploads/SJQPz2LMT.png"
-  />
-</a>
-
-
 ## Contributing Code Snippets
+
 If you're working on tutorials or guides of any sort, we have a Code Snippet system that allows us to update the code in one place but also allows it to be runnable and tested.
 
 Here are some steps on how you'd make a Code Snippet:
@@ -90,7 +75,7 @@ function codeSnippetFunctionName() {
   // Your code snippet goes here
 
   const result = Web5.connect();
-  
+
   return result;
 }
 ```
@@ -98,7 +83,6 @@ function codeSnippetFunctionName() {
 It's important to make your function name as specific as possible, because it will be used to reference the code snippet in the code-snippets.json file. Duplicate names will overwrite one another.
 
 (We should probably come up with an agreed upon naming convention)
-
 
 Under the hood, a script will run called `extract-code-snippets` which will add your code snippet to the `code-snippets.json` file. This file is used to reference your code snippet within the `<CodeSnippet />` component.
 
@@ -125,8 +109,8 @@ import { Web5 } from '@web5/api/browser';
 import {
   queryMusicProtocol,
   queryProtocolDescending,
-  configureProtocolWithDefinition
-  } from '../../../code-snippets/api/web5-js/protocols'
+  configureProtocolWithDefinition,
+} from '../../../code-snippets/api/web5-js/protocols';
 
 let web5;
 let record;
@@ -169,7 +153,6 @@ describe('tests for /api/web5-js/dwn/protocols.js', () => {
 
 - It's crucial that the `return` lines are a single line only. It only hides the return line, but it's still there for testing purposes.
 - These tests are only testing the code snippets. There are more thorough tests that actually test the SDK.
-
 
 ## License
 
