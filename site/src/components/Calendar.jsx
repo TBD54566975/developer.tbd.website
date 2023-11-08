@@ -142,7 +142,6 @@ const CalendarComponent = () => {
       )
         .then((response) => response.json())
         .then((data) => {
-          // Filter out old events
           const now = new Date();
           const upcomingEvents = data.filter((event) => {
             const eventStartDate = new Date(event.start);
@@ -371,8 +370,7 @@ const CalendarComponent = () => {
                     }}
                     onMouseOver={(e) => {
                       e.currentTarget.style.transform = 'translateY(-2px)';
-                      e.currentTarget.style.boxShadow =
-                        '2px 4px 7px rgba(0, 0, 0, 0.5)';
+                      e.currentTarget.style.boxShadow = '2px 4px 7px #2ce2ea';
                     }}
                     onMouseOut={(e) => {
                       e.currentTarget.style.transform = 'translateY(0)';
