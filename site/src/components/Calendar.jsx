@@ -420,7 +420,7 @@ const CalendarComponent = () => {
           href="#"
           onClick={(e) => {
             e.stopPropagation();
-            window.open(createGoogleCalendarLink(event), '_blank');
+            window.open(createGoogleCalendarLink(selectedEvent), '_blank');
           }}
           style={{
             display: 'inline-block',
