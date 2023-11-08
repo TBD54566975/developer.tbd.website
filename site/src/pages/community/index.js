@@ -233,7 +233,8 @@ function CommunityIndex() {
           >
             YouTube channel
           </a>{' '}
-          to catch up. Whether live or later, we're thrilled to have you!
+          to catch up. Whether you're with us live or watching later, we're
+          thrilled to have you!
         </p>
         {/* community calendar view  */}
         <CalendarComponent />
