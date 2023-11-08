@@ -89,6 +89,7 @@ export async function handler(event, context) {
       body: JSON.stringify(calEvents),
       headers: {
         'Content-Type': 'application/json',
+        'Cache-Control': 'public, max-age=259200',
       },
     };
   } catch (error) {
