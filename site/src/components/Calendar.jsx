@@ -6,7 +6,7 @@ Modal.setAppElement('#__docusaurus');
 //  modal styling
 const customStyles = {
   content: {
-    width: '60%',
+    width: 'auto',
     maxWidth: '800px',
     height: 'auto',
     backgroundColor: '#202124',
@@ -19,6 +19,8 @@ const customStyles = {
     marginRight: '-50%',
     transform: 'translate(-50%, -50%)',
     overflow: 'hidden',
+    overflowY: 'auto',
+    maxHeight: '80vh',
     zIndex: '1000',
     padding: '20px 40px',
     color: '#FFFFFF',
@@ -78,6 +80,33 @@ const CalendarComponent = () => {
   const [selectedEvent, setSelectedEvent] = useState(null);
   const [selectedTypes, setSelectedTypes] = useState(new Set(['all']));
   const [hasFilteredEvents, setHasFilteredEvents] = useState(true);
+  const [modalStyle, setModalStyle] = useState(customStyles);
+
+  useEffect(() => {
+    function applyCustomStyles() {
+      const newStyles = { ...modalStyle };
+      if (window.innerWidth < 768) {
+        newStyles.content = {
+          ...newStyles.content,
+          width: '90%',
+          padding: '10px',
+        };
+      } else {
+        newStyles.content = {
+          ...newStyles.content,
+          width: 'auto',
+          padding: '20px 40px',
+        };
+      }
+      setModalStyle(newStyles);
+    }
+    applyCustomStyles();
+    window.addEventListener('resize', applyCustomStyles);
+
+    return () => {
+      window.removeEventListener('resize', applyCustomStyles);
+    };
+  }, []);
 
   const handleTypeChange = (event) => {
     const type = event.target.value;
@@ -402,11 +431,11 @@ const CalendarComponent = () => {
       <Modal
         isOpen={modalIsOpen}
         onRequestClose={closeModal}
-        style={customStyles}
+        style={modalStyle}
       >
         {selectedEvent ? (
           <>
-            <button onClick={closeModal} style={customStyles.closeButton}>
+            <button onClick={closeModal} style={modalStyle.closeButton}>
               &times;
             </button>
 
