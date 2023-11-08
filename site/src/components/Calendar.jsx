@@ -77,6 +77,7 @@ const CalendarComponent = () => {
   const [modalIsOpen, setIsOpen] = useState(false);
   const [selectedEvent, setSelectedEvent] = useState(null);
   const [selectedTypes, setSelectedTypes] = useState(new Set(['all']));
+  const [hasFilteredEvents, setHasFilteredEvents] = useState(true);
 
   const handleTypeChange = (event) => {
     const type = event.target.value;
@@ -103,16 +104,18 @@ const CalendarComponent = () => {
   };
 
   const filterEventsByType = (allEvents, selectedTypes) => {
+    let filteredEvents;
     if (selectedTypes.has('all') || selectedTypes.size === 0) {
-      groupEventsByDate(allEvents);
-      return;
+      filteredEvents = allEvents;
+    } else {
+      filteredEvents = allEvents.filter((event) =>
+        Array.from(selectedTypes).some(
+          (type) => event.description && event.description.includes(type),
+        ),
+      );
     }
-    const filteredEvents = allEvents.filter((event) =>
-      Array.from(selectedTypes).some(
-        (type) => event.description && event.description.includes(type),
-      ),
-    );
     groupEventsByDate(filteredEvents);
+    setHasFilteredEvents(filteredEvents.length > 0);
   };
 
   useEffect(() => {
@@ -323,76 +326,79 @@ const CalendarComponent = () => {
         ))}
       </form>
 
-      {/* event section  */}
+      {/* event section */}
       <div style={eventCardStyles.eventListContainer}>
-        {Object.keys(groupedEvents).map((date) => (
-          <div key={date} style={eventCardStyles.section}>
-            <div style={eventCardStyles.date}>
-              {new Date(date).toLocaleDateString('en-US', {
-                weekday: 'long',
-                month: 'long',
-                day: 'numeric',
-              })}
-            </div>
-            {groupedEvents[date].map((event, index) => (
-              <div
-                key={index}
-                style={eventCardStyles.card}
-                onClick={() => openModal(event)}
-              >
-                {event.imagePath && (
-                  <img
-                    src={event.imagePath}
-                    alt={`Event: ${event.summary}`}
-                    style={{
-                      maxWidth: '100%',
-                      height: 'auto',
-                      marginTop: '10px',
-                    }}
-                  />
-                )}
-
-                <div style={eventCardStyles.summary}>{event.summary}</div>
-                <div style={eventCardStyles.time}>
-                  {formatEventDateTime(event).time}
-                </div>
-                <a
-                  href="#"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    window.open(createGoogleCalendarLink(event), '_blank');
-                  }}
-                  style={{
-                    display: 'inline-block',
-                    background: 'linear-gradient(to bottom, #111, #000)',
-                    color: '#5d768b',
-                    padding: '10px 20px',
-                    borderRadius: '5px',
-                    border: 'none',
-                    textDecoration: 'none',
-                    fontSize: '16px',
-                    cursor: 'pointer',
-                    transition: 'transform 0.2s, box-shadow 0.2s',
-                    boxShadow: '2px 2px 5px rgba(0, 0, 0, 0.5)',
-                    marginTop: '15px',
-                    fontWeight: 'bold',
-                  }}
-                  onMouseOver={(e) => {
-                    e.currentTarget.style.transform = 'translateY(-2px)';
-                    e.currentTarget.style.boxShadow = '2px 4px 7px #2ce2ea';
-                  }}
-                  onMouseOut={(e) => {
-                    e.currentTarget.style.transform = 'translateY(0)';
-                    e.currentTarget.style.boxShadow =
-                      '2px 2px 5px rgba(0, 0, 0, 0.5)';
-                  }}
-                >
-                  🗓️ Add to Calendar
-                </a>
+        {hasFilteredEvents ? (
+          Object.keys(groupedEvents).map((date) => (
+            <div key={date} style={eventCardStyles.section}>
+              <div style={eventCardStyles.date}>
+                {new Date(date).toLocaleDateString('en-US', {
+                  weekday: 'long',
+                  month: 'long',
+                  day: 'numeric',
+                })}
               </div>
-            ))}
+              {groupedEvents[date].map((event, index) => (
+                <div
+                  key={index}
+                  style={eventCardStyles.card}
+                  onClick={() => openModal(event)}
+                >
+                  <div style={eventCardStyles.summary}>{event.summary}</div>
+                  <div style={eventCardStyles.time}>
+                    {formatEventDateTime(event).time}
+                  </div>
+                  <a
+                    href="#"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      window.open(createGoogleCalendarLink(event), '_blank');
+                    }}
+                    style={{
+                      display: 'inline-block',
+                      background: 'linear-gradient(to bottom, #111, #000)',
+                      color: '#5d768b',
+                      padding: '10px 20px',
+                      borderRadius: '5px',
+                      border: 'none',
+                      textDecoration: 'none',
+                      fontSize: '16px',
+                      cursor: 'pointer',
+                      transition: 'transform 0.2s, box-shadow 0.2s',
+                      boxShadow: '2px 2px 5px rgba(0, 0, 0, 0.5)',
+                      marginTop: '15px',
+                      fontWeight: 'bold',
+                    }}
+                    onMouseOver={(e) => {
+                      e.currentTarget.style.transform = 'translateY(-2px)';
+                      e.currentTarget.style.boxShadow =
+                        '2px 4px 7px rgba(0, 0, 0, 0.5)';
+                    }}
+                    onMouseOut={(e) => {
+                      e.currentTarget.style.transform = 'translateY(0)';
+                      e.currentTarget.style.boxShadow =
+                        '2px 2px 5px rgba(0, 0, 0, 0.5)';
+                    }}
+                  >
+                    🗓️ Add to Calendar
+                  </a>
+                </div>
+              ))}
+            </div>
+          ))
+        ) : (
+          <div style={{ textAlign: 'center', padding: '20px', color: 'white' }}>
+            Events coming soon! Got an event idea? Head over to our{' '}
+            <a
+              href="https://discord.gg/tbd"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Discord #general channel
+            </a>{' '}
+            we'd love to hear about it! 💖
           </div>
-        ))}
+        )}
       </div>
 
       <Modal
