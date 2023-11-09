@@ -18,8 +18,8 @@ importers:
         specifier: ^0.2.0
         version: 0.2.0(@fortawesome/fontawesome-svg-core@6.4.2)(react@18.2.0)
       '@web5/api':
-        specifier: 0.8.2-alpha-20231101-b865b10
-        version: 0.8.2-alpha-20231101-b865b10
+        specifier: 0.8.2-alpha-20231109-019e92e
+        version: 0.8.2-alpha-20231109-019e92e
       font-awesome:
         specifier: ^4.7.0
         version: 4.7.0
@@ -95,14 +95,14 @@ importers:
   examples/tutorials/book-reviews:
     dependencies:
       '@web5/api':
-        specifier: 0.8.2-alpha-20231101-b865b10
-        version: 0.8.2-alpha-20231101-b865b10
+        specifier: 0.8.2-alpha-20231109-019e92e
+        version: 0.8.2-alpha-20231109-019e92e
 
   examples/tutorials/dinger-completed:
     dependencies:
       '@web5/api':
-        specifier: 0.8.2-alpha-20231101-b865b10
-        version: 0.8.2-alpha-20231101-b865b10
+        specifier: 0.8.2-alpha-20231109-019e92e
+        version: 0.8.2-alpha-20231109-019e92e
       next:
         specifier: 13.5.4
         version: 13.5.4(@babel/core@7.23.2)(react-dom@18.2.0)(react@18.2.0)
@@ -116,8 +116,8 @@ importers:
   examples/tutorials/dinger-starter:
     dependencies:
       '@web5/api':
-        specifier: 0.8.2-alpha-20231101-b865b10
-        version: 0.8.2-alpha-20231101-b865b10
+        specifier: 0.8.2-alpha-20231109-019e92e
+        version: 0.8.2-alpha-20231109-019e92e
       next:
         specifier: 13.5.4
         version: 13.5.4(@babel/core@7.23.2)(react-dom@18.2.0)(react@18.2.0)
@@ -134,8 +134,8 @@ importers:
         specifier: ^1.0.6
         version: 1.0.6(vue@3.3.4)
       '@web5/api':
-        specifier: 0.8.2-alpha-20231101-b865b10
-        version: 0.8.2-alpha-20231101-b865b10
+        specifier: 0.8.2-alpha-20231109-019e92e
+        version: 0.8.2-alpha-20231109-019e92e
     devDependencies:
       '@nuxt/test-utils':
         specifier: ^3.6.5
@@ -168,8 +168,8 @@ importers:
         specifier: ^1.0.6
         version: 1.0.6(vue@3.3.4)
       '@web5/api':
-        specifier: 0.8.2-alpha-20231101-b865b10
-        version: 0.8.2-alpha-20231101-b865b10
+        specifier: 0.8.2-alpha-20231109-019e92e
+        version: 0.8.2-alpha-20231109-019e92e
     devDependencies:
       '@nuxt/test-utils':
         specifier: ^3.6.5
@@ -211,8 +211,8 @@ importers:
         specifier: 9.6.0
         version: 9.6.0(vue@3.3.4)
       '@web5/api':
-        specifier: 0.8.2-alpha-20231101-b865b10
-        version: 0.8.2-alpha-20231101-b865b10
+        specifier: 0.8.2-alpha-20231109-019e92e
+        version: 0.8.2-alpha-20231109-019e92e
       multiformats:
         specifier: 10.0.2
         version: 10.0.2
@@ -284,8 +284,8 @@ importers:
         specifier: 9.6.0
         version: 9.6.0(vue@3.3.4)
       '@web5/api':
-        specifier: 0.8.2-alpha-20231101-b865b10
-        version: 0.8.2-alpha-20231101-b865b10
+        specifier: 0.8.2-alpha-20231109-019e92e
+        version: 0.8.2-alpha-20231109-019e92e
       multiformats:
         specifier: 10.0.2
         version: 10.0.2
@@ -5789,14 +5789,14 @@ packages:
       import-meta-resolve: 3.0.0
     dev: true
 
-  /@web5/agent@0.2.3-alpha-20231101-b865b10:
-    resolution: {integrity: sha512-1bpwUXSi96cpEMvJfW9cvP2nhGRfXv9fGnfux/Ys1qq30IPOcQxneRXG8JFnooDfXL+P5TeZpz0950jIUsTXfQ==}
+  /@web5/agent@0.2.3-alpha-20231109-019e92e:
+    resolution: {integrity: sha512-jUoRX8r7kkLj+tKcR0uJ8QrItY7cL5xaza0y5LKCjawGhR1lfb46lgZ91lfO/pkUNF2N0vZKL7gEwC6GlLkxmg==}
     engines: {node: '>=18.0.0'}
     dependencies:
       '@tbd54566975/dwn-sdk-js': 0.2.4
-      '@web5/common': 0.2.1-alpha-20231101-b865b10
-      '@web5/crypto': 0.2.1-alpha-20231101-b865b10
-      '@web5/dids': 0.2.2-alpha-20231101-b865b10
+      '@web5/common': 0.2.1-alpha-20231109-019e92e
+      '@web5/crypto': 0.2.1-alpha-20231109-019e92e
+      '@web5/dids': 0.2.2-alpha-20231109-019e92e
       level: 8.0.0
       readable-stream: 4.4.2
       readable-web-to-node-stream: 3.0.2
@@ -5805,15 +5805,15 @@ packages:
       - supports-color
     dev: false
 
-  /@web5/api@0.8.2-alpha-20231101-b865b10:
-    resolution: {integrity: sha512-cHR07fCJnaGol/fA+n5PSdFGNFUs7pZoZr6TXcde485C+4XtFuKXSeMIDqEt5F2Ejdn3h79qiZrLWZjCb/4isg==}
+  /@web5/api@0.8.2-alpha-20231109-019e92e:
+    resolution: {integrity: sha512-UF1kB6bbGlcUB8JlCKnpteCkM3pxZze6qZy7SXGYrK0FGqBAz0AvCySn/AjYuPNJOlQnA2YlbL24OjuzF5tIwg==}
     engines: {node: '>=18.0.0'}
     dependencies:
       '@tbd54566975/dwn-sdk-js': 0.2.4
-      '@web5/agent': 0.2.3-alpha-20231101-b865b10
-      '@web5/crypto': 0.2.1-alpha-20231101-b865b10
-      '@web5/dids': 0.2.2-alpha-20231101-b865b10
-      '@web5/user-agent': 0.2.3-alpha-20231101-b865b10
+      '@web5/agent': 0.2.3-alpha-20231109-019e92e
+      '@web5/crypto': 0.2.1-alpha-20231109-019e92e
+      '@web5/dids': 0.2.2-alpha-20231109-019e92e
+      '@web5/user-agent': 0.2.3-alpha-20231109-019e92e
       level: 8.0.0
       ms: 2.1.3
       readable-stream: 4.4.2
@@ -5823,32 +5823,32 @@ packages:
       - supports-color
     dev: false
 
-  /@web5/common@0.2.1-alpha-20231101-b865b10:
-    resolution: {integrity: sha512-GubsLYWMj//0x9diOiIvQG5SBzS1mPGWFn2kpgnQ20HDpRqthPkxGK1guuKLjj+xDiwIROU8a4pjTbGVWydRtw==}
+  /@web5/common@0.2.1-alpha-20231109-019e92e:
+    resolution: {integrity: sha512-AVGsdXUVk14bAh2BN6Xyqccp1FmEWTVy9CurlnS/huqTXNsbHPYb+7lfz0ej0oSrlZFYiDKSeLB2jBXTNdArPw==}
     engines: {node: '>=18.0.0'}
     dependencies:
       level: 8.0.0
       multiformats: 11.0.2
     dev: false
 
-  /@web5/crypto@0.2.1-alpha-20231101-b865b10:
-    resolution: {integrity: sha512-yqLdt6w2qSD0x+PRQ6965oUNZ9V6yKYXbS4/Sx8e4a+xQ0CkrHS6D0BIcR/uJJOeY7cdtNiwvM57so9CMw/nDw==}
+  /@web5/crypto@0.2.1-alpha-20231109-019e92e:
+    resolution: {integrity: sha512-/Supx2Xk+qM4BMJGpqS7x42lhvOyD8Y8hWv4ZAogNoQpbdfFPIoOX3Pwp2t0QQUYk+5m5WK4/1VzNYLRXtCWqA==}
     engines: {node: '>=18.0.0'}
     dependencies:
       '@noble/ciphers': 0.1.4
       '@noble/curves': 1.1.0
       '@noble/hashes': 1.3.1
-      '@web5/common': 0.2.1-alpha-20231101-b865b10
+      '@web5/common': 0.2.1-alpha-20231109-019e92e
     dev: false
 
-  /@web5/dids@0.2.2-alpha-20231101-b865b10:
-    resolution: {integrity: sha512-FCx7zMyDfX9rbQ9ASVevxU9wqzrYqwM7sI01a0nOhhc58R7knk3qAuX6s+7lWeTxx98zzPux17HLqnh/BV0Jaw==}
+  /@web5/dids@0.2.2-alpha-20231109-019e92e:
+    resolution: {integrity: sha512-IsK/R4yTLEkOY5i8TSkitnFtXuCPQaonVIZi8zyXQb+NyFUPo4QiVJ6wzVtl3tLHAVmm4zQmwBtSFlXc5uvhaw==}
     engines: {node: '>=18.0.0'}
     dependencies:
       '@decentralized-identity/ion-pow-sdk': 1.0.17
       '@decentralized-identity/ion-sdk': 1.0.1
-      '@web5/common': 0.2.1-alpha-20231101-b865b10
-      '@web5/crypto': 0.2.1-alpha-20231101-b865b10
+      '@web5/common': 0.2.1-alpha-20231109-019e92e
+      '@web5/crypto': 0.2.1-alpha-20231109-019e92e
       did-resolver: 4.1.0
       dns-packet: 5.6.1
       level: 8.0.0
@@ -5860,14 +5860,14 @@ packages:
       - supports-color
     dev: false
 
-  /@web5/user-agent@0.2.3-alpha-20231101-b865b10:
-    resolution: {integrity: sha512-F2tVqB4lRZX1Sd+4H30eVdrUpSahAEwPxnySF51ZnuzoZmINJpb7+XI553e3Bu0PMpHvx8TzHsaty3ooqBVr7w==}
+  /@web5/user-agent@0.2.3-alpha-20231109-019e92e:
+    resolution: {integrity: sha512-5ksKwtneyQRTFy8jxkZinfwbiIPsQWSVwYclQtcW+Cu+Y2tgn3H6KwzJpcUeoQrWbDts6bD4pgWnze0mtaA7hg==}
     engines: {node: '>=18.0.0'}
     dependencies:
-      '@web5/agent': 0.2.3-alpha-20231101-b865b10
-      '@web5/common': 0.2.1-alpha-20231101-b865b10
-      '@web5/crypto': 0.2.1-alpha-20231101-b865b10
-      '@web5/dids': 0.2.2-alpha-20231101-b865b10
+      '@web5/agent': 0.2.3-alpha-20231109-019e92e
+      '@web5/common': 0.2.1-alpha-20231109-019e92e
+      '@web5/crypto': 0.2.1-alpha-20231109-019e92e
+      '@web5/dids': 0.2.2-alpha-20231109-019e92e
     transitivePeerDependencies:
       - encoding
       - supports-color
