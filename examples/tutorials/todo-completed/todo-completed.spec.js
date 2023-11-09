@@ -31,6 +31,5 @@ test.describe('Vue app rendering and interactions', () => {
     // Check if the Todo has been added
     const todoCount = await page.locator('div:text("New Todo Item")').count();
     expect(todoCount).toBeGreaterThan(0);
-    await page.screenshot({ path: 'after.png' });
   });
 });
