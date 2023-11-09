@@ -109,30 +109,48 @@ importers:
       '@web5/api':
         specifier: 0.8.2-alpha-20231109-019e92e
         version: 0.8.2-alpha-20231109-019e92e
+      crypto-browserify:
+        specifier: 3.12.0
+        version: 3.12.0
       next:
         specifier: 13.5.4
         version: 13.5.4(@babel/core@7.23.2)(react-dom@18.2.0)(react@18.2.0)
+      process:
+        specifier: ^0.11.10
+        version: 0.11.10
       react:
         specifier: ^18
         version: 18.2.0
       react-dom:
         specifier: ^18
         version: 18.2.0(react@18.2.0)
+      stream-browserify:
+        specifier: 3.0.0
+        version: 3.0.0
 
   examples/tutorials/dinger-starter:
     dependencies:
       '@web5/api':
         specifier: 0.8.2-alpha-20231109-019e92e
         version: 0.8.2-alpha-20231109-019e92e
+      crypto-browserify:
+        specifier: 3.12.0
+        version: 3.12.0
       next:
         specifier: 13.5.4
         version: 13.5.4(@babel/core@7.23.2)(react-dom@18.2.0)(react@18.2.0)
+      process:
+        specifier: ^0.11.10
+        version: 0.11.10
       react:
         specifier: ^18
         version: 18.2.0
       react-dom:
         specifier: ^18
         version: 18.2.0(react@18.2.0)
+      stream-browserify:
+        specifier: 3.0.0
+        version: 3.0.0
 
   examples/tutorials/shared-todo-completed:
     dependencies:
