@@ -11,7 +11,7 @@
   "dependencies": {
     "@headlessui/vue": "1.7.4",
     "@heroicons/vue": "1.0.6",
-    "@noble/ed25519": "1.7.1",
+    "@noble/ed25519": "1.7.3",
     "@vueuse/core": "9.6.0",
     "multiformats": "10.0.2",
     "uuid": "9.0.0",
