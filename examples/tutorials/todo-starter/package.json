@@ -13,7 +13,7 @@
     "@heroicons/vue": "1.0.6",
     "@noble/ed25519": "1.7.1",
     "@vueuse/core": "9.6.0",
-    "multiformats": "10.0.2",
+    "multiformats": "10.0.3",
     "uuid": "9.0.0",
     "varint": "6.0.0",
     "vue": "^3.2.41",
