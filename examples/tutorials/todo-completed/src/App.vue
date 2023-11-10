@@ -95,7 +95,9 @@ async function toggleTodoComplete(todoItem) {
   // Read the record
   const { record } = await web5.dwn.records.read({
     message: {
-      recordId: toggledTodo.id,
+      filter: {
+        recordId: toggledTodo.id
+      }
     }
   });
 
