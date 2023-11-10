@@ -302,9 +302,20 @@ Reads a record stored in the user's local DWN, remote DWN, or another party's DW
                                 details={[
                                 {
                                     data: {
-                                        type: 'string',
-                                        field: 'recordId',
-                                        value: 'The id that identifies the record data to fetch',
+                                        isObject: true,
+                                        type: 'RecordsFilter',
+                                        field: 'filter',
+                                        value: <ApiDetails
+                                                details={[
+                                                {
+                                                    data: {
+                                                        type: 'string',
+                                                        field: 'recordId',
+                                                        value: 'The id that identifies the record data to fetch',
+                                                    },
+                                                },                            
+                                            ]}
+                                        />,
                                     },
                                 },                            
                             ]}

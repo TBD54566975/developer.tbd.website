@@ -81,7 +81,7 @@ const text = await record.data.text();
 return text;
 }
 
-export async function readRecordFromBobDwn(web5, bobDid, recordId) {
+export async function readRecordByIdFromDid(web5, bobDid, recordId) {
 // Reads the indicated record from Bob's DWNs
 const { record } = await web5.dwn.records.read({
   //highlight-start
