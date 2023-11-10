@@ -371,7 +371,9 @@ async function updateReviewRating(review, newRating) {
         //Obtain the updated record
         const { record: updatedReview } = await web5.dwn.records.read({
             message: {
-                recordId: review.id,
+                filter: {
+                    recordId: review.id       
+                }
             },
         });
         const updatedData = await updatedReview.data.json();

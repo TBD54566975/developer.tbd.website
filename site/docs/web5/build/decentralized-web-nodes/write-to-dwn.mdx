@@ -1,6 +1,7 @@
 ---
 sidebar_position: 1
 ---
+import CodeSnippet from '@site/src/components/CodeSnippet';
 
 # Write DWN Records
 
@@ -8,30 +9,11 @@ Various data types, such as text, JSON, images, streams or files, can be stored 
 
 ### Create a text record
 
-```js
-// Create a plain text record
-const { record } = await web5.dwn.records.create({
-    data: "Hello Web5",
-    message: {
-        dataFormat: 'text/plain'
-    }
-});
-```
+<CodeSnippet functionName='createTextRecord'/>
 
 ### Create a JSON record
 
-```js
-// Create a JSON record
-const { record } = await web5.dwn.records.create({
-    data: {
-        content: "Hello Web5",
-        description: "Keep Building!"
-    },
-    message: {
-        dataFormat: 'application/json'
-    }
-});
-```
+<CodeSnippet functionName='createJsonRecord'/>
 
 ### Create a blob or image record
 

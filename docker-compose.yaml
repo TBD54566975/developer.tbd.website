@@ -31,5 +31,11 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data
 
+  dwn-server:
+    container_name: dwn-server
+    image: ghcr.io/tbd54566975/dwn-server:dwn-sdk-0.2.4
+    ports:
+      - "3000:3000"
+
 volumes:
   postgres_data:
