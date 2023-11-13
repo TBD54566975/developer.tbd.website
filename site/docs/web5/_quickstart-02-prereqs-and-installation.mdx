@@ -9,11 +9,11 @@ import PackageJson from '@site/src/components/PackageJson';
 ## Installation
 
 :::info
+
 <h2>Prerequisites</h2>
 <ul>
   <li>
-    <p><a href="https://docs.npmjs.com/downloading-and-installing-node-js-and-npm" 
-    target="_blank">Node Package Manager</a>, <code>npm</code>, installed and on your system's <code>$PATH</code>.</p>
+    <p><a href="https://docs.npmjs.com/downloading-and-installing-node-js-and-npm" target="_blank">Node Package Manager</a>, <code>npm</code>, installed and on your system's <code>$PATH</code>.</p>
   </li>
   <li>
     <p>Node version 18 and above</p>
@@ -22,7 +22,8 @@ import PackageJson from '@site/src/components/PackageJson';
 :::
 
 ### 1. Create a directory
-<p>This will be the home of your new Web5 app. In your CLI: </p> 
+
+<p>This will be the home of your new Web5 app. In your CLI: </p>{' '}
 
 ```bash
 mkdir web5-app
@@ -31,6 +32,11 @@ cd web5-app
 
 ### 2. Install Web5
 
+Use NPM to initialize a `package.json` file:
+
+```bash
+npm init -y
+```
 
 <p>Use NPM to install Web5:</p>
 
@@ -38,11 +44,7 @@ cd web5-app
 npm install @web5/api
 ```
 
-:::note
-After `npm` resolves the dependency, you may see a few warnings. You can ignore these for now.
-:::
-
-This will create a `package.json` in the root of your project. Open `package.json` and add `module` as a type:
+These steps will create a `package.json` in the root of your project. Open `package.json` and add `module` as a type:
 
 <PackageJson />
 
@@ -54,9 +56,20 @@ Let's create an `index.js` file to write our application:
 touch index.js
 ```
 
+For Windows using PowerShell:
+
+```powershell
+New-Item index.js -ItemType File
+```
+
+:::note
+After `npm` resolves the dependency, you may see a few warnings. You can ignore these for now.
+:::
+
 Open `index.js` in your editor and add this line at the top of the file to import Web5:
+
 ```js
-import { Web5 } from "@web5/api";
+import { Web5 } from '@web5/api';
 ```
 
 <details>
@@ -68,11 +81,12 @@ Needs globalThis.crypto polyfill.
 This is *not* the crypto you're thinking of.
 It's the original crypto...CRYPTOGRAPHY.
 */
-import { webcrypto } from "node:crypto";
+import { webcrypto } from 'node:crypto';
 
 // @ts-ignore
 if (!globalThis.crypto) globalThis.crypto = webcrypto;
 ```
+
 </details>
 
 <details>
@@ -84,10 +98,10 @@ React Native needs crypto.getRandomValues polyfill and sha512.
 This is *not* the crypto you're thinking of.
 It's the original crypto...CRYPTOGRAPHY.
 */
-import "react-native-get-random-values";
-import { hmac } from "@noble/hashes/hmac";
-import { sha256 } from "@noble/hashes/sha256";
-import { sha512 } from "@noble/hashes/sha512";
+import 'react-native-get-random-values';
+import { hmac } from '@noble/hashes/hmac';
+import { sha256 } from '@noble/hashes/sha256';
+import { sha512 } from '@noble/hashes/sha512';
 ed.etc.sha512Sync = (...m) => sha512(ed.etc.concatBytes(...m));
 ed.etc.sha512Async = (...m) => Promise.resolve(ed.etc.sha512Sync(...m));
 
@@ -96,6 +110,7 @@ secp.etc.hmacSha256Sync = (k, ...m) =>
 secp.etc.hmacSha256Async = (k, ...m) =>
   Promise.resolve(secp.etc.hmacSha256Sync(k, ...m));
 ```
+
 </details>
 
 Now we have the Web5 SDK installed and are ready to start building!

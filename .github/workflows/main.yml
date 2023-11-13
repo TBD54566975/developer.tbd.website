@@ -4,7 +4,6 @@ on:
   pull_request:
     branches:
       - main
-    types: [opened, synchronize, reopened]
   workflow_dispatch:
     inputs:
       reason:
@@ -33,9 +32,16 @@ jobs:
 
       - name: Install Playwright browsers
         run: pnpm playwright install --with-deps
+      - name: Start dwn-server container
+        run: docker-compose up -d dwn-server
+
+      - name: Wait for dwn-server to be ready
+        run: until curl -sf http://localhost:3000/health; do echo -n .; sleep .1; done
 
       - name: Run tests
         run: pnpm test
+        env:
+          VITE_APP_TEST_DWN_URL: http://localhost:3000
 
       - name: Run apps tests
         run: pnpm --filter feedback-server test run

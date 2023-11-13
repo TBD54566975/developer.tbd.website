@@ -9,9 +9,12 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@web5/api": "0.8.1",
+    "@web5/api": "0.8.2",
+    "crypto-browserify": "3.12.0",
     "next": "13.5.4",
+    "process": "^0.11.10",
     "react": "^18",
-    "react-dom": "^18"
+    "react-dom": "^18",
+    "stream-browserify": "3.0.0"
   }
 }
