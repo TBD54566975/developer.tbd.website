@@ -12,7 +12,7 @@ tags: [Decentralized Identity, Decentralized Web Nodes, Artificial Intelligence,
   <meta property="og:type" content="website" />
   <meta property="og:url" content='https://developer.tbd.website/blog/2023-11-14-web5-meets-generative-ai' />
   <meta name="og:description" content="How Netonomy is reimagining the future of digital identity with Web5 and AI" />
-  <meta property="og:image" content="https://developer.tbd.website/assets/images/web5-meets-generative-ai.png" /> 
+  <meta property="og:image" content="https://developer.tbd.website/assets/images/web5-meets-generative-ai-e7fbd1102260f1678942d38122397748.png" /> 
 
   <meta name="twitter:card" content="summary_large_image" />
   <meta property="twitter:domain" content="developer.tbd.website" />
