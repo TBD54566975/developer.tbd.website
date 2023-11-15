@@ -1,0 +1,98 @@
+---
+sidebar_position: 2
+---
+
+# Next.js
+
+This guide will walk you through the process of setting up the Web5 SDK in a Next.js project. You can integrate Web5 into an existing project or start a new one.
+
+## Create your project
+To start a new Next.js project, use the following commands in your terminal:
+
+```bash
+npx create-next-app@latest my-project
+cd my-project
+```
+
+## Install the Web5 SDK via NPM
+
+```bash
+npm install @web5/api
+```
+
+## Add the Web5 import to your Next app
+Then, add the plugin to your app:
+
+```js title="src/pages/index.js"
+import { Web5 } from "@web5/api";
+```
+
+## Encountering Errors?
+
+If you encounter errors related to `node:crypto`, follow the steps below to resolve them.
+
+<details><summary>Example Error: Node:crypto not handled by plugin</summary>
+Module build failed: UnhandledSchemeError: Reading from "node:crypto" is not handled by plugins (Unhandled scheme).
+Webpack supports "data:" and "file:" URIs by default.
+You may need an additional plugin to handle "node:" URIs.
+Import trace for requested module:
+node:crypto
+./node_modules/@web5/crypto/dist/esm/crypto-primitives/pbkdf2.js
+./node_modules/@web5/crypto/dist/esm/crypto-primitives/index.js
+./node_modules/@web5/crypto/dist/esm/index.js
+./node_modules/@web5/agent/dist/esm/app-data-store.js
+./node_modules/@web5/agent/dist/esm/index.js
+./node_modules/@web5/api/dist/esm/did-api.js
+./node_modules/@web5/api/dist/esm/index.js
+./src/context/web5.tsx
+</details>
+
+This error occurs when browser polyfills for stream and crypto modules are missing in Webpack. Follow these steps to add the necessary polyfills and plugins to your Next.js configuration.
+
+### Install Required Modules
+
+First, install `stream-browserify`, `crypto-browserify`, and `process`:
+
+```bash
+npm install stream-browserify crypto-browserify process
+```
+
+### Update Next.js Webpack Configuration
+
+Modify your `next.config.js` to include the necessary Webpack plugins:
+
+```js title="next.config.js"
+const webpack = require('webpack');
+
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  reactStrictMode: true,
+
+  webpack: (config, { isServer }) => {
+    if (!isServer) {
+      config.resolve.fallback = {
+        ...config.resolve.fallback,
+        stream: require.resolve('stream-browserify'),
+        crypto: require.resolve('crypto-browserify'),
+      };
+
+      config.plugins.push(
+        new webpack.ProvidePlugin({
+          process: 'process/browser',
+        }),
+        new webpack.NormalModuleReplacementPlugin(
+          /node:crypto/,
+          (resource) => {
+            resource.request = resource.request.replace(/^node:/, '');
+          }
+        )
+      );
+    }
+    return config;
+  },
+};
+
+module.exports = nextConfig;
+```
+
+If you run into any errors, check out our [troubleshooting guide](/docs/web5/build/troubleshooting-guide).
