@@ -44,7 +44,6 @@ Anthony used the following Web5 technologies to build Netonomy:
 * **[Decentralized Identifiers (DID)](https://developer.tbd.website/docs/web5/learn/decentralized-identifiers)** - The app generates a DID to identify you when you first launch it. This is stored in the browser and acts as your identity.
 * **[Decentralized Web Nodes (DWN)](https://developer.tbd.website/docs/web5/learn/decentralized-web-nodes)** - A DWN is created in the browser to store your data encrypted securely. Anthony uses it to store uploaded files.
 
-
 ## Future plans
 
 There are many cool features Anthony wants to explore next, including:
@@ -56,11 +55,9 @@ There are many cool features Anthony wants to explore next, including:
 * **Messages** - Decentralized messaging between DWNs
 * **Mobile app** - Bundle DWN in a mobile app for access across devices
 
-
 ## Check it out!
 
 To accelerate development, Anthony plans to open-source the project and invite community contributions. You can check out [Netonomy on GitHub](https://github.com/Netonomy/netonomy). 
-
 
 ## Rewatch the full episode
 Learn more about what he's building and watch the full live stream [here](https://www.youtube.com/watch?v=oQ9Vq_Moa8I).
