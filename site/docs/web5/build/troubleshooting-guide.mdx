@@ -4,7 +4,7 @@
 
 This is an issue with Webpack that happens mostly in Next.js projects. Here's how to solve it:
 
-1. Run the following command to install two packages that will enable cryptographic functions and stream handling within the browser:
+1. Run the following command to install three packages that will enable cryptographic functions and stream handling within the browser:
 ```bash
 npm install crypto-browserify stream-browserify process
 ```
@@ -73,4 +73,4 @@ await web5.dwn.records.create({
 ```
 
 ## Error: 'undefined' is not supported by the IPLD Data Model and cannot be encoded
-This is most likely a syntax error. Check your code for any typos or missing attributes.
+This is a syntax error in the calling functon that causes the error. Check this function for any typos or missing attributes.
