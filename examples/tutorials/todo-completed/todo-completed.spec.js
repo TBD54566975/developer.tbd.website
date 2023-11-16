@@ -10,7 +10,7 @@ test.describe('Vue app rendering and interactions', () => {
 
   test('should allow adding a Todo', async ({ page }) => {
     await page.goto('http://localhost:5174/');
-    // await page.waitForTimeout(10000); // Wait for 10 seconds
+
     await page.waitForSelector('#mydid-container');
 
     // Fill the textarea for adding todos
