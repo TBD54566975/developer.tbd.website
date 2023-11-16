@@ -147,3 +147,64 @@ You can use the following scripts to run the tests:
 
 `pnpm test` to run tests just once
 `pnpm test:watch` to run tests in dev mode
+
+
+## Browser Testing Tutorial Projects
+
+### 1. **Configure Playwright**
+
+First, set up the Playwright configuration. Add or modify the Playwright configuration in your project like this:
+
+    export default {...defaultPlayWrightConfig, otherConfig: ''}
+
+### 2. **Update `package.json`**
+
+To run tests, update the `scripts` section in `package.json`:
+
+- Use the `start-server-and-test` script to set a port and trigger the Playwright test.
+- Ensure the port used is unique to avoid conflicts with other running services.
+
+Here is an example configuration for a `todo-starter` app:
+
+    "scripts": {
+      "test": "playwright test",
+      "test:browser": "start-server-and-test dev http://localhost:5173 test"
+    }
+
+### 3. **Create Test Files**
+
+Playwright will automatically recognize and run tests from files with the `.spec.` pattern. For example, for the `todo-completed` test, name your file `todo-completed.spec.js`.
+
+### 4. **Leverage ChatGPT for Test Writing**
+
+Utilize ChatGPT to help write your tests:
+
+- Input the main UI file of your tutorial into ChatGPT.
+- Request ChatGPT to create a Playwright test for a specific feature in your app.
+- For the `todo-completed` app, we asked ChatGPT to test if a todo item is created and displayed correctly.
+
+Be prepared to refine and adjust the test script provided by ChatGPT.
+
+### **Important Considerations**
+
+- **Handling Long Operations**: If your app uses `Web5.connect()`, which can be time-consuming, it's crucial to detect when this operation completes. Typically, you should wait for a UI element to change post `Web5.connect()`. If your app doesn't have such an indicator, you'll need to implement one.
+
+- **Example**: In the `todo-completed` app, we use the following test to ensure the UI is ready before proceeding:
+
+    test('should allow adding a Todo', async ({ page }) => {
+      await page.goto('http://localhost:5174/');
+      
+      // Wait for the Web5 connection to complete
+      await page.waitForSelector('#mydid-container');
+
+      // Rest of the test script...
+    });
+
+### **Remember**
+
+Adhere to the project's coding standards and guidelines. Before submitting your contribution, ensure all tests pass and your code is well-documented.
+
+---
+
+We look forward to your contributions and thank you for helping us improve this project!
+

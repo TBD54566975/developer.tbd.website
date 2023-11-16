@@ -4,9 +4,11 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --port 5174",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "test": "playwright test",
+    "test:browser": "start-server-and-test dev http://localhost:5174 test"
   },
   "dependencies": {
     "@headlessui/vue": "1.7.4",

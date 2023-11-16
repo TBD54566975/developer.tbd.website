@@ -30,11 +30,15 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
+      - name: Install Playwright browsers
+        run: pnpm playwright install --with-deps
       - name: Start dwn-server container
         run: docker-compose up -d dwn-server
 
       - name: Wait for dwn-server to be ready
         run: until curl -sf http://localhost:3000/health; do echo -n .; sleep .1; done
+      - name: Install Playwright browsers
+        run: pnpm playwright install --with-deps
 
       - name: Run tests
         run: pnpm test
