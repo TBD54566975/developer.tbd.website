@@ -30,6 +30,8 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
+      - name: Install Playwright browsers
+        run: pnpm playwright install --with-deps
       - name: Start dwn-server container
         run: docker-compose up -d dwn-server
 
