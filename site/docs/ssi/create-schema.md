@@ -99,7 +99,7 @@ Now that we have a valid JSON Schema, we'll need to transform it so that it's no
 
 :::info
 ## Prerequisite
-Follow guide to [Clone & Run SSI Service](run-ssi-service)
+Follow guide to [Clone & Run SSI Service](/docs/ssi/run-ssi-service)
 :::
 
 ### Signed vs. Unsigned Schemas
