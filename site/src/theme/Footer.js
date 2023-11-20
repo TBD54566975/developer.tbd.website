@@ -40,13 +40,7 @@ export function Footer() {
         src: '/img/twitter-icon.svg',
         url: 'https://twitter.com/TBDevs',
         altText: 'Twitter button',
-        title: 'Go to Twitter',
-      },
-      {
-        src: '/img/shopping-cart.svg',
-        url: 'https://tbd.shop/',
-        altText: 'TBD Shop',
-        title: 'Go to TBD Shop',
+        title: 'Go to Twitter/X',
       },
       {
         src: '/img/youtube-icon.svg',
@@ -60,6 +54,12 @@ export function Footer() {
         altText: 'LinkedIn button',
         title: 'Go to LinkedIn',
       },
+      {
+        src: '/img/shopping-cart.svg',
+        url: 'https://tbd.shop/',
+        altText: 'TBD Shop',
+        title: 'Go to TBD Shop',
+      }
       /*
 
       Removed these social links until we'd like to be responsive to these mediums:
@@ -133,12 +133,12 @@ export function Footer() {
             </span>
             <span className="copy">{footer.year}</span>
           </div>
-          <ul className="flex justify-end flex-auto nav-links">
+          <ul className="flex justify-end flex-auto flex-wrap lg:flex-nowrap nav-links">
             {footer.links &&
               footer.links.map((link, index) => (
-                <li key={index} className="ml-12 flex items-center py-0.5">
+                <li key={index} className="ml-8 lg:ml-12 flex items-center py-0 mx-auto lg:mx-0">
                   <TextLink
-                    className="py-3 text-primary-black hover:text-primary-black"
+                    className="py-0 text-primary-black hover:text-primary-black hoverLink"
                     href={link.href}
                     text={link.text}
                   />

@@ -41,7 +41,7 @@ The short answer is: you don’t have to explicitly think about this. Sync is au
 
 Although support for multiple remote DWNs does work, there are a number of improvements in store for this functionality. For now, you can expect a user who creates multiple DWNs with the same DID to get sync for free between their DWNs. All DWN URIs for a given DID are listed in the associated DID document, so Web5.js knows where to sync a DID subject’s data to, even if they later add more nodes. 
 
-We’ve designed sync to be a seamless experience that developers and users alike shouldn’t have to think about. Web5 is built to remove the burden of sync development from developers and make data portability and ownership a front-and-center feature.
+We’ve designed sync to be a seamless experience that developers and users alike shouldn't have to think about. Web5 is built to remove the burden of sync development from developers and make data portability and ownership a front-and-center feature.
 
 
 ## Sync Intervals

@@ -1,0 +1,20 @@
+{
+  "name": "dinger-starter",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev -p 8080",
+    "build": "next build",
+    "start": "next start -p 8080",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@web5/api": "0.8.2",
+    "crypto-browserify": "3.12.0",
+    "next": "13.5.4",
+    "process": "^0.11.10",
+    "react": "^18",
+    "react-dom": "^18",
+    "stream-browserify": "3.0.0"
+  }
+}

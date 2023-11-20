@@ -21,6 +21,8 @@ A Decentralized Web Node is a personal data store in a decentralized network tha
 ## DID Document
 A JSON document containing details about a DID, including the DID itself, represented by an `id` field, as well as other data related to the verification and authentication methods of the DID.
 
+[<< More on DID Documents >>](/docs/web5/learn/did_document)
+
 ## DID Method
 A specific scheme for creating, resolving, updating, and deactivating DIDs and their associated documents, as outlined in a DID method specification which provides detailed instructions on these operations.
 

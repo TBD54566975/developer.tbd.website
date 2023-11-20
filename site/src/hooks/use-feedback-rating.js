@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { wait } from '../util/feedback-retry-wait';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 
 export const useFeedbackRating = () => {
@@ -20,17 +21,40 @@ export const useFeedbackRating = () => {
     }
   }, []);
 
-  const submitUserRating = async (rating) => {
-    if (!csrfToken) {
-      throw new Error("Can't send feedback without CSRF token");
-    }
-
-    // TODO: we need to handle cases where the rating request fails
-    setUserFeedback(rating);
-
-    await postFeedbackRating(feedbackWidgetUrl, csrfToken, rating);
+  const refreshCsrfToken = async (feedbackWidgetUrl) => {
+    const freshToken = await getFeedbackCsrfToken(feedbackWidgetUrl);
+    setCsrfToken(freshToken);
+    return freshToken;
   };
 
+  const submitUserRating = async (rating, maxTries = 3) => {
+    let currentToken = csrfToken;
+  
+    for (let currentTry = 1; currentTry <= maxTries; currentTry++) {
+      try {
+        setUserFeedback('submitting');
+        await postFeedbackRating(feedbackWidgetUrl, currentToken, rating);
+        setUserFeedback(rating);
+        break;
+      } catch (error) {
+        console.error(`Attempt ${currentTry} failed:`, error);
+        setUserFeedback('failed');
+        
+        if (currentTry < maxTries) {
+          try {
+            currentToken = await refreshCsrfToken(feedbackWidgetUrl);
+          } catch (tokenError) {
+            console.error('Failed to refresh CSRF token:', tokenError);
+            continue; 
+          }
+  
+          const waitTime = currentTry * 1000;
+          await wait(waitTime);
+        }
+      }
+    }
+  };
+  
   return {
     isFeedbackRatingEnabled,
     userFeedback,
@@ -58,9 +82,8 @@ const postFeedbackRating = async (feedbackWidgetUrl, csrfToken, rating) => {
     rating: rating === 'like' ? 'helpful' : 'notHelpful',
     pageLink: window.location.href,
   };
-  console.info('Sending request:', requestBody);
 
-  fetch(`${feedbackWidgetUrl}/feedback`, {
+  const res = await fetch(`${feedbackWidgetUrl}/feedback`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -69,4 +92,8 @@ const postFeedbackRating = async (feedbackWidgetUrl, csrfToken, rating) => {
     credentials: 'include',
     body: JSON.stringify(requestBody),
   });
+
+  if (!res.ok) {
+    throw new Error('Failed to submit feedback rating');
+  } 
 };

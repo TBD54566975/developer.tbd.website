@@ -45,12 +45,12 @@ In Quarter 2 (Q2) of 2022, we publicly announced Web5 as an open source communit
 
 ## Milestone 2
 
-In Q3, we’ll deliver initial implementations of the [SSI SDK](https://developer.tbd.website/projects/ssi-service/readme/), [SSI Service](https://developer.tbd.website/projects/ssi-service/README), and [Decentralized Web Nodes](https://developer.tbd.website/projects/dwn-sdk-js/README).
+In Q3, we’ll deliver initial implementations of the [SSI SDK](https://github.com/TBD54566975/ssi-sdk#readme), [SSI Service](https://github.com/TBD54566975/ssi-service#readme), and [Decentralized Web Nodes](https://github.com/TBD54566975/dwn-sdk-js#readme) .
 
 
 ## Milestone 3
 
-In Q1 of 2023, the [SSI SDK](https://developer.tbd.website/projects/ssi-service/readme/), [SSI Service](https://developer.tbd.website/projects/ssi-service/README), and [Decentralized Web Nodes](https://developer.tbd.website/projects/dwn-sdk-js/README) will be feature complete.
+In Q1 of 2023, the [SSI SDK](https://github.com/TBD54566975/ssi-sdk#readme), [SSI Service](https://github.com/TBD54566975/ssi-service#readme), and [Decentralized Web Nodes](https://github.com/TBD54566975/dwn-sdk-js#readme) will be feature complete.
 
 The [DID](https://w3c.github.io/did-core/) network node will be deployed.
 
@@ -63,4 +63,4 @@ In Q4 of 2023, the Web5 platform components and a Wallet app with identity suppo
 
 <br/><br/>
 
-Web5 is open source and we welcome your [contributions](https://github.com/TBD54566975/collaboration/blob/main/projects/GETTING_STARTED_DWP.md)!
+Web5 is open source and we welcome your [contributions](https://github.com/TBD54566975/collaboration/blob/main/projects/GETTING_STARTED_WEB5.md)!

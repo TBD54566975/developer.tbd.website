@@ -1,13 +1,11 @@
 import React, { useState } from 'react';
 import HeroCard from '@site/src/components/HeroCard';
 import Community from '../../components/Community';
-import DiscordMessagesView from './discord-messages-view.js';
 import Layout from '@theme/Layout';
 import contributorsData from '@site/src/contributors.json';
 import Head from '@docusaurus/Head';
-import ExecutionEnvironment from '@docusaurus/ExecutionEnvironment';
 import Gallery from '@site/src/components/Gallery';
-import Link from '@docusaurus/Link';
+import CalendarComponent from '@site/src/components/Calendar';
 
 function CommunityIndex() {
   const imageGalleryData = [
@@ -33,8 +31,8 @@ function CommunityIndex() {
 
   return (
     <Layout>
-      {/* banner */}
-      <div
+      {/* banner if you ever want to display anything on the top of the page pls use this*/}
+      {/* <div
         style={{
           borderColor: '#4b3852',
           borderWidth: '1px',
@@ -51,7 +49,7 @@ function CommunityIndex() {
           Find out more here
         </Link>
         .
-      </div>
+      </div> */}
 
       <Head title="Community | TBD">
         <meta property="og:title" />
@@ -92,6 +90,7 @@ function CommunityIndex() {
                 width: '200px',
                 position: 'relative',
                 marginBottom: '20px',
+                cursor: 'pointer',
               }}
               onClick={() =>
                 setFlippedCardIndex(flippedCardIndex === index ? null : index)
@@ -146,6 +145,10 @@ function CommunityIndex() {
                       <div
                         key={cIndex}
                         style={{
+                          height: '50px',
+                          display: 'flex',
+                          alignItems: 'center',
+                          overflow: 'hidden',
                           padding: '2px 5px',
                           borderRadius: '4px',
                           backgroundColor: '#FFEC18',
@@ -202,7 +205,7 @@ function CommunityIndex() {
         <div className="grid grid-cols-1 desktop:grid-cols-2 gap-4 pt-7 pb-20">
           <HeroCard
             heroText="Contributor Guide"
-            buttonUrl="../open-source/contributing"
+            buttonUrl="/open-source/contributing"
             buttonText="Learn More"
             bodyText="Looking for ways to contribute to the community?"
             themeColor="purple"
@@ -210,14 +213,31 @@ function CommunityIndex() {
           />
           <HeroCard
             heroText="Incubation Projects"
-            buttonUrl="../open-source/incubation"
+            buttonUrl="/community/incubation-projects/"
             buttonText="Discover More"
             bodyText="TBD Incubation projects are managed by community contributors."
             themeColor="cyan"
             primary
           />
         </div>
-
+        <h2 className="pt-10">Upcoming Events 🥳 </h2>
+        <p className="pb-10">
+          Filter through our exciting events: 👀 Show & Tells for project
+          highlights, 🏢 Office Hours for open discussions, 💡 Workshops for
+          skill-building, 🎮 Twitch Streams for everything fun. Miss an event?
+          checkout our{' '}
+          <a
+            href="https://www.youtube.com/playlist?list=PLji3z0eqSkXEws2wrNjyVyW3xQTW_dNlq"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            YouTube channel
+          </a>{' '}
+          to catch up. Whether you're with us live or watching later, we're
+          thrilled to have you!
+        </p>
+        {/* community calendar view  */}
+        <CalendarComponent />
         {/* Featured Communtiy Projects */}
         <div className="pb-20 mb-10">
           <h2 className="pt-10">TBD Innovators: Monthly Showcase</h2>
@@ -235,32 +255,6 @@ function CommunityIndex() {
           </p>
           <Gallery images={imageGalleryData} />
         </div>
-
-        {/* discord messages component */}
-        {/* <div
-          style={{
-            backgroundColor: '#1C1C1C',
-            padding: '20px',
-            borderRadius: '8px',
-            marginBottom: '70px',
-          }}
-        >
-          <h2> 👀 Sneak peek into the community 👀</h2>
-          <div className="flex flex-col md:flex-row justify-between items-center md:space-x-5 space-y-5 md:space-y-0">
-            <DiscordMessagesView
-              channelID="1068273971432280196"
-              channelName="DWN"
-              discordChannelUrl="https://discord.com/channels/937858703112155166/1068273971432280196"
-              style={{ width: '100%' }}
-            />
-            <DiscordMessagesView
-              channelID="969272658501976117"
-              channelName="WEB5"
-              discordChannelUrl="https://discord.com/channels/937858703112155166/969272658501976117"
-              style={{ width: '100%' }}
-            />
-          </div>
-        </div> */}
         <Community />
       </div>
     </Layout>

@@ -12,14 +12,14 @@ VCs are a core component of [SSI](/docs/glossary#self-sovereign-identity-ssi) sy
 SSI Service is in tech preview mode, and not intended to be used in production applications at this time.
 :::
 
-## **Narrative**
+## Narrative
 Alice starts a new job at Acme and she'd like a VC proving her current employment status.
 
 To request a VC, Alice logs into Acme's internal employee portal and clicks Employment Verification. Clicking the button will invoke the VC credential process via the [SSI Service](https://github.com/TBD54566975/ssi-service) Acme is hosting.
 
 Once the process has completed, a new Employment Status VC can be sent to Alice's identity wallet.
 
-## **Steps to Create a VC**
+## Steps to Create a VC
 
 **[1. SSI Service Setup](#ssi-service-setup)** 
 
@@ -32,7 +32,7 @@ Once the process has completed, a new Employment Status VC can be sent to Alice'
 
 <Divider type="slash" />
 
-## **SSI Service Setup**
+## SSI Service Setup
 
 **a. Create DID for Credential Issuer (Acme)**
 
@@ -184,7 +184,7 @@ The following response should be returned:
 
 <Divider type="dotted" />
 
-## **Create Verifiable Credential**
+## Create Verifiable Credential
 
 Now we have all three objects needed to create a VC:
 
@@ -240,7 +240,7 @@ The following response should be returned:
 }
 ```
 
-The VC is signed and packaged as a JWT in the credentialJwt property. If you're interested, you can decode the JWT using a tool such as [jwt.io](https://jwt._io/). If you were to `issue` or transmit the credential to a holder you would just send this JWT value.
+The VC is signed and packaged as a JWT in the credentialJwt property. If you're interested, you can decode the JWT using a tool such as [jwt.io](https://jwt.io/). If you were to `issue` or transmit the credential to a holder you would just send this JWT value.
 
 ### Getting Credentials
 Once you've created multiple credentials, you can view all credentials by making a GET request to `/v1/credentials`. This endpoint also supports three query parameters: `issuer`, `schema`, and `subject` which can be used mutually exclusively.

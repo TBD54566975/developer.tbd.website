@@ -19,6 +19,7 @@ root {
   --color-black: #000000;
   --color-yellow: #ffec19;
   --color-blue: #24f2ff;
+  --color-purple: #9a1aff;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
 }
 
@@ -516,7 +517,10 @@ footer a:hover {
   border-bottom: 4px solid var(--color-yellow);
   color: var(--color-yellow);
 }
-
+footer .hoverLink:hover{
+  border-bottom: 4px solid #000;
+  color: #000;
+}
 .tooltipBorder {
   border-image-slice: 0 30 30 0 !important;
   border-image-width: 12px 11px 11px 12px !important;
@@ -590,3 +594,16 @@ ol {
   list-style: auto;
   margin: 30px;
 }
+
+.color-yellow{
+  color: var(--color-yellow);
+}
+
+.color-purple{
+  color: var(--color-purple);
+}
+
+.color-blue{
+  color: var(--color-blue);
+}
+

@@ -36,7 +36,7 @@ npm install
 npm start
 ```
 
-Open [localhost:3000](http://localhost:3000/) in a browser and follow the guide below for all actions you can take from the homepage.
+Open `localhost:3000` in a browser and follow the guide below for all actions you can take from the homepage.
 
 <Divider type="slash" />
 
@@ -128,7 +128,7 @@ Choose your verifier DID from the dropdown. You can use the same Ion DID you use
 :::info
 Verification `Applications` vs `Submissions`:
 
-Applications: When an employee applies for a credential with your applicaton link, and you as the employeer will see that application here for the you (the employer) to approve or decline. If you approve their application you would then issue their employment credential.
+Applications: When an employee applies for a credential with your application link, and you as the employeer will see that application here for the you (the employer) to approve or decline. If you approve their application you would then issue their employment credential.
 
 Submissions: When an employer asks a job applicant to submit an education VC for example before accepting their role.
 :::

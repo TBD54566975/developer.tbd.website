@@ -2,23 +2,22 @@
 sidebar_position: 5
 ---
 
+import CodeSnippet from '@site/src/components/CodeSnippet';
+
+
 # Delete DWN Records
 
-The following snippet allows you to delete from a DWN:
+You can delete a record stored in the user's DWN, or another party's DWN (if permission has been granted).
 
-```js
-//Query records with plain text data format
-const response = await web5.dwn.records.query({
-  message: {
-    filter: {
-      dataFormat: 'text/plain',
-    },
-  },
-});
+The following snippets allow you to delete from a DWN:
 
-// Grab the first indexed record
-const record = response.records[0];
+### Delete record from the user's local DWN
 
-// Delete the record
-const deleteResult = await record.delete();
-```
+<CodeSnippet functionName='deleteFromLocalDWN'/>
+
+
+### Delete record from a remote DWN
+
+<CodeSnippet functionName='deleteRecordFromDid'/>
+
+The value for `from` is the target DID that you wish to delete the record from.

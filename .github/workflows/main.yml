@@ -4,13 +4,12 @@ on:
   pull_request:
     branches:
       - main
-    types: [opened, synchronize, reopened]
   workflow_dispatch:
     inputs:
       reason:
-        description: "Manual trigger"
+        description: 'Manual trigger'
         required: true
-        default: "Just because."
+        default: 'Just because.'
 
 jobs:
   test:
@@ -23,7 +22,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: "18"
+          node-version: '18'
 
       - name: Install pnpm
         run: npm install -g pnpm
@@ -31,8 +30,23 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
+      - name: Install Playwright browsers
+        run: pnpm playwright install --with-deps
+      - name: Start dwn-server container
+        run: docker-compose up -d dwn-server
+
+      - name: Wait for dwn-server to be ready
+        run: until curl -sf http://localhost:3000/health; do echo -n .; sleep .1; done
+      - name: Install Playwright browsers
+        run: pnpm playwright install --with-deps
+
       - name: Run tests
         run: pnpm test
+        env:
+          VITE_APP_TEST_DWN_URL: http://localhost:3000
+
+      - name: Run apps tests
+        run: pnpm --filter feedback-server test run
 
   deploy:
     needs: test

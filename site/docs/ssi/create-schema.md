@@ -18,7 +18,7 @@ Though the core data model is a JSON-LD data model, processing VCs as JSON-LD is
 
 When constructing and processing VCs as pure JSON, it's useful to have a mechanism to define the data and add some light validation onto the shape that data takes. 
 
-[JSON Schema](https://json-schema.org/) is a widely used, and widely supported toolset that enables such functionalty: the ability to define a schema, which provides a set of properties (both required and optional), and some light validation on top of those properties. The VC Data Model has [a section on data schemas](https://www.w3.org/TR/vc-data-model/#data-schemas) that enables this functionality.
+[JSON Schema](https://json-schema.org/) is a widely used, and widely supported toolset that enables such functionality: the ability to define a schema, which provides a set of properties (both required and optional), and some light validation on top of those properties. The VC Data Model has [a section on data schemas](https://www.w3.org/TR/vc-data-model/#data-schemas) that enables this functionality.
 </details>
 
 ## 1. Construct the JSON Schema
@@ -99,7 +99,7 @@ Now that we have a valid JSON Schema, we'll need to transform it so that it's no
 
 :::info
 ## Prerequisite
-Follow guide to [Clone & Run SSI Service](run-ssi-service)
+Follow guide to [Clone & Run SSI Service](/docs/ssi/run-ssi-service)
 :::
 
 ### Signed vs. Unsigned Schemas

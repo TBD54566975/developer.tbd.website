@@ -27,7 +27,7 @@ const ApiDetails = ({ details }) => {
             {detail.data.isObject ? (
               <>
                 <details>
-                  <summary>Show parameters</summary>
+                  <summary className="cursor-pointer">Show parameters</summary>
                   <br /> <br /> <br />
                   <div className="shift-object-left">{detail.data.value}</div>
                 </details>
