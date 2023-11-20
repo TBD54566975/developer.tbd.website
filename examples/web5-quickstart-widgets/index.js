@@ -1,4 +1,4 @@
-import { Web5 } from "../../node_modules/@web5/api/dist/browser.mjs";
+import { Web5 } from '@web5/api/browser';
 
 export async function didCreate() {
   return await Web5.connect();
@@ -8,7 +8,7 @@ export async function createTextRecord(web5, textData) {
   const result = await web5.dwn.records.create({
     data: textData,
     message: {
-      dataFormat: "text/plain",
+      dataFormat: 'text/plain',
     },
   });
   return result;

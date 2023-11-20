@@ -1,18 +1,16 @@
-import { Web5 } from "@web5/api";
+import { Web5 } from '@web5/api';
 
 //Node 18 users: the following 3 lines are needed
-import { webcrypto } from "node:crypto";
+import { webcrypto } from 'node:crypto';
 // @ts-ignore
 if (!globalThis.crypto) globalThis.crypto = webcrypto;
-
-
 
 const { web5, did: userDid } = await Web5.connect();
 
 //Schema we'll use for Book Reviews
 const schema = {
-  context: "https://schema.org/",
-  type: "Review",
+  context: 'https://schema.org/',
+  type: 'Review',
   get uri() {
     return this.context + this.type;
   },
@@ -21,105 +19,105 @@ const schema = {
 //Book Reviews
 let reviews = [
   {
-    "@context": schema.context,
-    "@type": schema.type,
+    '@context': schema.context,
+    '@type': schema.type,
     itemReviewed: {
-      "@type": "Book",
-      name: "The Great Gatsby",
+      '@type': 'Book',
+      name: 'The Great Gatsby',
       author: {
-        "@type": "Person",
-        name: "F. Scott Fitzgerald",
+        '@type': 'Person',
+        name: 'F. Scott Fitzgerald',
       },
-      datePublished: "1925",
-      genre: "Fiction",
-      identifier: "978-1982149482",
+      datePublished: '1925',
+      genre: 'Fiction',
+      identifier: '978-1982149482',
     },
     author: {
-      "@type": "Person",
+      '@type': 'Person',
       identifier: userDid,
     },
-    datePublished: "2023-09-18",
+    datePublished: '2023-09-18',
     reviewRating: {
-      "@type": "Rating",
-      ratingValue: "4.5",
+      '@type': 'Rating',
+      ratingValue: '4.5',
     },
     reviewBody:
       "A classic novel with timeless themes and memorable characters. Fitzgerald's prose is simply enchanting.",
   },
   {
-    "@context": schema.context,
-    "@type": schema.type,
+    '@context': schema.context,
+    '@type': schema.type,
     itemReviewed: {
-      "@type": "Book",
-      name: "To Kill a Mockingbird",
+      '@type': 'Book',
+      name: 'To Kill a Mockingbird',
       author: {
-        "@type": "Person",
-        name: "Harper Lee",
+        '@type': 'Person',
+        name: 'Harper Lee',
       },
-      datePublished: "1960",
-      genre: "Fiction",
-      identifier: "978-0446310789",
+      datePublished: '1960',
+      genre: 'Fiction',
+      identifier: '978-0446310789',
     },
     author: {
-      "@type": "Person",
+      '@type': 'Person',
       identifier: userDid,
     },
-    datePublished: "2023-09-18",
+    datePublished: '2023-09-18',
     reviewRating: {
-      "@type": "Rating",
-      ratingValue: "5.0",
+      '@type': 'Rating',
+      ratingValue: '5.0',
     },
     reviewBody:
-      "A powerful exploration of morality, justice, and the human condition. Truly a must-read.",
+      'A powerful exploration of morality, justice, and the human condition. Truly a must-read.',
   },
   {
-    "@context": schema.context,
-    "@type": schema.type,
+    '@context': schema.context,
+    '@type': schema.type,
     itemReviewed: {
-      "@type": "Book",
-      name: "1984",
+      '@type': 'Book',
+      name: '1984',
       author: {
-        "@type": "Person",
-        name: "George Orwell",
+        '@type': 'Person',
+        name: 'George Orwell',
       },
-      datePublished: "1949",
-      genre: "Dystopian",
-      identifier: "978-0451524935",
+      datePublished: '1949',
+      genre: 'Dystopian',
+      identifier: '978-0451524935',
     },
     author: {
-      "@type": "Person",
+      '@type': 'Person',
       identifier: userDid,
     },
-    datePublished: "2023-09-18",
+    datePublished: '2023-09-18',
     reviewRating: {
-      "@type": "Rating",
-      ratingValue: "4.7",
+      '@type': 'Rating',
+      ratingValue: '4.7',
     },
     reviewBody:
       "A disturbing vision of a totalitarian future. Orwell's work is as relevant today as it was when it was first published.",
   },
   {
-    "@context": schema.context,
-    "@type": schema.type,
+    '@context': schema.context,
+    '@type': schema.type,
     itemReviewed: {
-      "@type": "Book",
-      name: "Brave New World",
+      '@type': 'Book',
+      name: 'Brave New World',
       author: {
-        "@type": "Person",
-        name: "Aldous Huxley",
+        '@type': 'Person',
+        name: 'Aldous Huxley',
       },
-      datePublished: "1932",
-      genre: "Dystopian",
-      identifier: "978-0060850524",
+      datePublished: '1932',
+      genre: 'Dystopian',
+      identifier: '978-0060850524',
     },
     author: {
-      "@type": "Person",
+      '@type': 'Person',
       identifier: userDid,
     },
-    datePublished: "2023-09-18",
+    datePublished: '2023-09-18',
     reviewRating: {
-      "@type": "Rating",
-      ratingValue: "4.8",
+      '@type': 'Rating',
+      ratingValue: '4.8',
     },
     reviewBody:
       "A deeply disturbing yet essential read. Huxley's vision of a future driven by technology and hedonism serves as a potent warning for society.",
@@ -134,7 +132,7 @@ async function getReviews() {
         schema: schema.uri,
       },
     },
-    dateSort: "createdAscending",
+    dateSort: 'createdAscending',
   });
   return records;
 }
@@ -153,7 +151,7 @@ async function isReviewPresent(review) {
 }
 
 //Create book review (write record to DWN)
-async function addReviews() {
+export async function addReviews() {
   for (const review of reviews) {
     let reviewExists = await isReviewPresent(review);
     if (reviewExists) {
@@ -163,25 +161,34 @@ async function addReviews() {
         data: review,
         message: {
           schema: schema.uri,
-          dataFormat: "application/json",
+          dataFormat: 'application/json',
           published: true,
         },
       });
 
       if (response.status.code === 202) {
-        console.log(`Review for ${review.itemReviewed.name} added successfully`);
+        console.log(
+          `Review for ${review.itemReviewed.name} added successfully`
+        );
       } else {
-        console.log(`${response.status}. Error adding review for ${review.itemReviewed.name}`);
+        console.log(
+          `${response.status}. Error adding review for ${review.itemReviewed.name}`
+        );
       }
     }
   }
   existingReviews = await getReviews();
+
+  return existingReviews;
 }
 
 //Update book review rating
 async function updateReviewRating(review, newRating) {
   let bookData = await review.data.json();
-  console.log(`old rating for ${bookData.itemReviewed.name}`, bookData.reviewRating.ratingValue);
+  console.log(
+    `old rating for ${bookData.itemReviewed.name}`,
+    bookData.reviewRating.ratingValue
+  );
 
   //Update the value within the JSON then send the entire JSON to update
   bookData.reviewRating.ratingValue = newRating;
@@ -194,15 +201,20 @@ async function updateReviewRating(review, newRating) {
     const { record: updatedReview } = await web5.dwn.records.read({
       message: {
         filter: {
-          recordId: review.id
-        }
-      }
+          recordId: review.id,
+        },
+      },
     });
 
     const updatedData = await updatedReview.data.json();
-    console.log(`updated rating for ${bookData.itemReviewed.name}`, updatedData.reviewRating.ratingValue);
-  } 
-  else console.log(`${response.status}. Error updating rating for ${bookData.itemReviewed.name}`);
+    console.log(
+      `updated rating for ${bookData.itemReviewed.name}`,
+      updatedData.reviewRating.ratingValue
+    );
+  } else
+    console.log(
+      `${response.status}. Error updating rating for ${bookData.itemReviewed.name}`
+    );
 }
 
 //Delete all book reviews
@@ -222,7 +234,7 @@ async function deleteReviews() {
 
 let existingReviews = await getReviews();
 await addReviews();
-await updateReviewRating(existingReviews[1], "4.2");
+await updateReviewRating(existingReviews[1], '4.2');
 await deleteReviews();
 
 process.exit();
