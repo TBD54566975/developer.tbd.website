@@ -107,6 +107,8 @@ export async function queryProtocolDescending(web5) {
 }
 
 export async function queryProtocolsFromDid(web5, bobDid) {
+  //Query protocol on someone else's DWN
+  
   const { protocols } = await web5.dwn.protocols.query({
     //highlight-start
     from: bobDid,
