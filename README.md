@@ -1,6 +1,7 @@
 # TBD Developer Site
 
 [![OpenSSF Scorecard](https://api.securityscorecards.dev/projects/github.com/TBD54566975/developer.tbd.website/badge)](https://securityscorecards.dev/viewer/?uri=github.com/TBD54566975/developer.tbd.website)
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FTBD54566975%2Fdeveloper.tbd.website.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2FTBD54566975%2Fdeveloper.tbd.website?ref=badge_shield)
 
 ## Prerequisites
 
@@ -132,3 +133,6 @@ If you wish to contribute to this project, please follow the guidelines outlined
 ## License
 
 This project is licensed under the [MIT License](LICENSE).
+
+
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FTBD54566975%2Fdeveloper.tbd.website.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2FTBD54566975%2Fdeveloper.tbd.website?ref=badge_large)
