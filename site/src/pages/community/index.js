@@ -213,7 +213,7 @@ function CommunityIndex() {
           />
           <HeroCard
             heroText="Incubation Projects"
-            buttonUrl="/open-source/incubation"
+            buttonUrl="/community/incubation-projects/"
             buttonText="Discover More"
             bodyText="TBD Incubation projects are managed by community contributors."
             themeColor="cyan"
