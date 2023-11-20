@@ -237,4 +237,6 @@ await addReviews();
 await updateReviewRating(existingReviews[1], '4.2');
 await deleteReviews();
 
-process.exit();
+if (process.env.NODE_ENV !== 'test') {
+  process.exit();
+}

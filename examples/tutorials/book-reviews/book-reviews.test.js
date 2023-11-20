@@ -1,11 +1,11 @@
-import { test, expect, describe } from 'vitest';
+import { test, expect, describe, vi } from 'vitest';
 import { addReviews } from './book-reviews';
 
-describe.skip('addReviews tests', () => {
+describe('addReviews tests', () => {
   test('should work correctly', async () => {
     // Arrange
-    const reviews = []; // replace with actual reviews
-    const expected = []; // replace with expected result
+    const reviews = [];
+    const expected = [];
 
     // Act
     const result = await addReviews(reviews);
