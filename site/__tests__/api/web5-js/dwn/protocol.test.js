@@ -34,7 +34,7 @@ describe('tests for /api/web5-js/dwn/protocol.js', () => {
 
   test('configureProtocolAndSend sends a protocol to remote DWNs', async () => {
     const status = await configureProtocolAndSend(web5, myDid, protocolDefinition);
-    expect(status.code).toBe(200);
+    expect(status.code).toBe(202);
   });
 
   test('queryProtocol queries an installed protocol', async () => {
