@@ -165,12 +165,11 @@ const CalendarComponent = () => {
       ).toISOString();
 
       fetch(
-        `/.netlify/functions/fetch-calendar-events?timeMin=${encodeURIComponent(
-          startOfMonth,
-        )}&timeMax=${encodeURIComponent(endOfMonth)}`,
+        `https://developer-tbd-website-calendar-service.tbddev.org/events`,
       )
         .then((response) => response.json())
         .then((data) => {
+          console.info(data);
           const now = new Date();
           const upcomingEvents = data.filter((event) => {
             const eventStartDate = new Date(event.start);
