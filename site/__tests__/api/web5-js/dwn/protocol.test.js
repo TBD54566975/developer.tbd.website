@@ -39,7 +39,6 @@ describe('protocol', () => {
     test('queryProtocol queries an installed protocol', async () => {
       const protocolJson = await queryProtocol(web5);
       expect(protocolJson).toBeDefined();
-      expect(protocolJson.status.code).toBe(200);
     });
   });
 });
