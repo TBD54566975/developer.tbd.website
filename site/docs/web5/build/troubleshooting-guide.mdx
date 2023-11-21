@@ -1,0 +1,76 @@
+# Troubleshooting Guide
+
+## UnhandledSchemeError: Reading from "node:crypto" is not handled by plugins (Unhandled scheme)
+
+This is an issue with Webpack that happens mostly in Next.js projects. Here's how to solve it:
+
+1. Run the following command to install three packages that will enable cryptographic functions and stream handling within the browser:
+```bash
+npm install crypto-browserify stream-browserify process
+```
+
+2. Then, in your `next.config.js` file, add the following:
+
+```js
+const webpack = require('webpack');
+
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  reactStrictMode: true,
+
+  webpack: (config, { isServer, buildId, dev, webpack }) => {
+    if (!isServer) {
+      config.resolve.fallback = {
+        ...config.resolve.fallback,
+        stream: require.resolve('stream-browserify'),
+        crypto: require.resolve('crypto-browserify'),
+      };
+
+      config.plugins.push(
+        new webpack.ProvidePlugin({
+          process: 'process/browser',
+        }),
+        new webpack.NormalModuleReplacementPlugin(
+          /node:crypto/,
+          (resource) => {
+            resource.request = resource.request.replace(/^node:/, '');
+          }
+        )
+      );
+    }
+    return config;
+  },
+};
+
+module.exports = nextConfig;
+```
+
+## ReferenceError: process is not defined
+
+When starting up and connecting to the Web5 SDK, some polyfills might be missing. To fix this, update your Web5 import:
+
+```js
+import { Web5 } from '@web5/api/browser';
+```
+
+## ProtocolAuthorizationIncorrectProtocolPath: Declared protocol path 'x' is not the same as actual protocol path 'y/x'
+
+This could happen for a few reasons when working with protocols. Here are the debugging steps you could take:
+- Confirm that the `protocolPath` in your `message` object is correct and matches the protocol path you declared in your protocol definition.
+- Next check that you are not missing a `parentId` attribute when sending your request. This is a common mistake when creating a record in a protocol. For example, if you are creating a todo item in a todo list, you need to pass the `parentId` of the todo list to the todo item. Here's an example:
+
+```js
+await web5.dwn.records.create({
+    data: todoData,
+    message: {
+        protocol: protocolDefinition.protocol,
+        protocolPath: 'list/todo',
+        schema: protocolDefinition.types.todo.schema,
+        dataFormat: protocolDefinition.types.todo.dataFormats[0],
+        parentId: listId.value,
+    }
+});
+```
+
+## Error: 'undefined' is not supported by the IPLD Data Model and cannot be encoded
+This is a syntax error in the calling functon that causes the error. Check this function for any typos or missing attributes.

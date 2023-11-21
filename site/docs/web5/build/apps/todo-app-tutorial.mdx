@@ -293,7 +293,9 @@ async function toggleTodoComplete(todoItem) {
   // Get record in DWN
   const { record } = await web5.dwn.records.read({
     message: {
-      recordId: toggledTodo.id,
+      filter: {
+        recordId: toggledTodo.id
+      }
     }
   });
 

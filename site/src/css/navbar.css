@@ -286,6 +286,10 @@
   top: -6px;
 }
 
+.navbar-sidebar__item.menu{
+  margin-bottom: 100px;
+}
+
 aside .menu__link:not(.docs-wrapper .menu__link) {
   color: gray !important;
   padding-top: 0rem;

@@ -47,6 +47,7 @@ let config = {
   },
   plugins: [
     'docusaurus-tailwindcss',
+    require.resolve("./webpackPlugin"),
     [
       '@docusaurus/plugin-content-docs',
       {
@@ -76,27 +77,6 @@ let config = {
     //     sidebarPath: require.resolve('./learn-sidebars.js'),
     //   },
     // ],
-
-    function polyfills() {
-      console.log('adding polyfills for webpack');
-      return {
-        name: 'polyfills',
-        configureWebpack() {
-          return {
-            resolve: {
-              fallback: {
-                stream: require.resolve('stream-browserify'),
-                crypto: require.resolve('crypto-browserify'),
-                // adding these just in case
-                // buffer: require.resolve('buffer/'),
-                // util: require.resolve('util/'),
-                // assert: require.resolve('assert/'),
-              },
-            },
-          };
-        },
-      };
-    },
   ],
   scripts: [
     {

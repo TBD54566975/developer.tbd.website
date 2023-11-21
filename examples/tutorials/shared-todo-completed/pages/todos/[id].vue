@@ -98,7 +98,9 @@ onBeforeMount(async () => {
     // fetch shared list details.
     const { record } = await web5.dwn.records.read({
         message: {
-            recordId: listId.value
+            filter: {
+                recordId: listId.value
+            }
         }
     })
 
@@ -182,7 +184,9 @@ async function toggleTodoComplete(todoItem) {
     // Get record in DWN
     const { record } = await web5.dwn.records.read({
         message: {
-            recordId: toggledTodo.id,
+            filter: {
+                recordId: toggledTodo.id,
+            }
         }
     });
 

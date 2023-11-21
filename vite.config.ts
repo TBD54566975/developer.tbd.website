@@ -4,7 +4,8 @@ export default defineConfig({
   test: {
     testTimeout: 40000,
     hookTimeout: 40000,
-    exclude: [...configDefaults.exclude, "apps/**"],
+    teardownTimeout: 40000,
+    exclude: [...configDefaults.exclude, "apps/**", "**/*.spec.{js,ts,jsx,tsx}"],
     //TODO: Investigate coverage options later for output files
     // coverage: {
     //   provider: 'istanbul',
@@ -16,5 +17,6 @@ export default defineConfig({
       enabled: true,
       headless: true,
     },
+    setupFiles: ["./site/__tests__/setup-web5.js"],
   },
 });

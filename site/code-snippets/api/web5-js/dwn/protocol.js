@@ -1,17 +1,15 @@
-export async function configureProtocol(web5, protocolDefinition) {
-  const { status, protocol } = await web5.dwn.protocols.configure({
+export async function getProtocolDefinition(web5, protocolDefinition) {
+  const { protocol } = await web5.dwn.protocols.configure({
     message: {
-      definition: protocolDefinition,
-    },
+      definition: protocolDefinition
+    }
   });
 
   //highlight-start
-  const definitionResult = protocol.definition;
+  const definition = protocol.definition;
   //highlight-end
 
-  console.log('resultStatus', definitionResult.protocol);
-
-  return definitionResult;
+  return definition;
 }
 
 export async function configureProtocolAndSend(
@@ -19,29 +17,32 @@ export async function configureProtocolAndSend(
   myDid,
   protocolDefinition,
 ) {
-  const { status, protocol } = await web5.dwn.protocols.configure({
+  const { protocol } = await web5.dwn.protocols.configure({
     message: {
-      definition: protocolDefinition,
-    },
+      definition: protocolDefinition
+    }
   });
 
+ 
   //highlight-start
-  await protocol.send(myDid);
+  const {status} = await protocol.send(myDid);
   //highlight-end
+
+  return status;
 }
 
 export async function queryProtocol(web5) {
-  const { protocols, status } = await web5.dwn.protocols.query({
+  const { protocols } = await web5.dwn.protocols.query({
     message: {
       filter: {
-        protocol: 'http://social-media.xyz',
-      },
-    },
+        protocol: 'http://social-media.xyz'
+      }
+    }
   });
 
   //highlight-start
   const protocolConfig = protocols[0].toJSON();
   //highlight-end
 
-  return { status };
+  return protocolConfig;
 }
