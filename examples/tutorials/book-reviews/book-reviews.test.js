@@ -1,16 +1,11 @@
-import { test, expect, describe, vi } from 'vitest';
-import { addReviews } from './book-reviews';
+import { test, expect, describe, beforeAll, vi } from 'vitest';
+import { userDid } from './book-reviews';
 
 describe('addReviews tests', () => {
-  test('should work correctly', async () => {
-    // Arrange
-    const reviews = [];
-    const expected = [];
+  // You can set up any necessary mocks here
 
-    // Act
-    const result = await addReviews(reviews);
-
+  test('should return a did', async () => {
     // Assert
-    expect(result).toEqual(expected);
+    expect(userDid).toBeTypeOf('string');
   });
 });

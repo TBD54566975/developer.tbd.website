@@ -5,7 +5,7 @@ import { webcrypto } from 'node:crypto';
 // @ts-ignore
 if (!globalThis.crypto) globalThis.crypto = webcrypto;
 
-const { web5, did: userDid } = await Web5.connect();
+export const { web5, did: userDid } = await Web5.connect();
 
 //Schema we'll use for Book Reviews
 const schema = {
@@ -125,7 +125,7 @@ let reviews = [
 ];
 
 //Query book review (search for DWN records)
-async function getReviews() {
+export async function getReviews() {
   let { records } = await web5.dwn.records.query({
     message: {
       filter: {
@@ -178,8 +178,6 @@ export async function addReviews() {
     }
   }
   existingReviews = await getReviews();
-
-  return existingReviews;
 }
 
 //Update book review rating
