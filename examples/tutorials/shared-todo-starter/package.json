@@ -11,17 +11,17 @@
     "test:browser": "start-server-and-test dev http://localhost:5176 test"
   },
   "devDependencies": {
-    "@nuxt/test-utils": "^3.6.5",
-    "@nuxtjs/tailwindcss": "^6.8.0",
+    "@nuxt/test-utils": "3.6.5",
+    "@nuxtjs/tailwindcss": "6.8.0",
     "@tailwindcss/forms": "0.5.3",
-    "@tailwindcss/typography": "^0.5.9",
-    "@types/node": "^18.16.19",
-    "nuxt": "^3.6.5",
-    "sass": "^1.63.6",
-    "sass-loader": "^13.3.2"
+    "@tailwindcss/typography": "0.5.9",
+    "@types/node": "18.16.19",
+    "nuxt": "3.6.5",
+    "sass": "1.63.6",
+    "sass-loader": "13.3.2"
   },
   "dependencies": {
-    "@heroicons/vue": "^1.0.6",
+    "@heroicons/vue": "1.0.6",
     "@web5/api": "0.8.2"
   }
 }
