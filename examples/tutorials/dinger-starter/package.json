@@ -6,7 +6,9 @@
     "dev": "next dev -p 8080",
     "build": "next build",
     "start": "next start -p 8080",
-    "lint": "next lint"
+    "lint": "next lint",
+    "test": "playwright test",
+    "test:browser": "start-server-and-test dev http://localhost:8080 test"
   },
   "dependencies": {
     "@web5/api": "0.8.2",
