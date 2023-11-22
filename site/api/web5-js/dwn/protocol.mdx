@@ -30,7 +30,7 @@ Gets the protocol definition
 />
 
 #### Code Example
-<CodeSnippet functionName="configureProtocol" />
+<CodeSnippet functionName="getProtocolDefinition" />
 
 <Divider type="slash"/>
 
@@ -95,18 +95,6 @@ Provides a JSON representation of the protocol configuration
 />
 
 #### Code Example
-```js
-const { protocols, status } = await web5.dwn.protocols.query({
-  message: {
-    filter: {
-      protocol: 'http://social-media.xyz'
-    }
-  }
-});
-
-//highlight-start
-const protocolConfig = protocols[0].toJSON();
-//highlight-end
-```
+<CodeSnippet functionName="queryProtocol" />
 
 </section>
