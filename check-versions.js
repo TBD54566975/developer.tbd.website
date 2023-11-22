@@ -22,20 +22,13 @@ function checkVersionRanges(packageJsonPath) {
 }
 
 function findPackageJsonFiles() {
-  const directories = ['site', 'examples/tutorials', 'apps'];
+  const directories = ['site', 'examples', 'apps'];
 
   directories.forEach((directory) => {
-    // Exclude node_modules directories in the glob pattern
-    const directoryPath = path.join(
-      __dirname,
-      directory,
-      '**',
-      '!node_modules',
-      '**',
-      'package.json'
-    );
+    // Use a more inclusive glob pattern that traverses all subdirectories
+    const directoryPath = path.join(__dirname, directory, '**', 'package.json');
     const packageJsonFiles = glob.sync(directoryPath, {
-      ignore: '**/node_modules/**',
+      ignore: '**/node_modules/**', // Make sure to ignore node_modules
     });
 
     packageJsonFiles.forEach((packageJsonPath) => {
@@ -43,6 +36,7 @@ function findPackageJsonFiles() {
     });
   });
 
+  // Check the root package.json as well
   checkVersionRanges(path.join(__dirname, 'package.json'));
 }
 
