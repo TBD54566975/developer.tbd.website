@@ -22,7 +22,7 @@ function checkVersionRanges(packageJsonPath) {
 }
 
 function findPackageJsonFiles() {
-  const directories = ['site', 'examples', 'apps'];
+  const directories = ['site', 'examples/tutorials', 'apps'];
 
   directories.forEach((directory) => {
     // Exclude node_modules directories in the glob pattern
