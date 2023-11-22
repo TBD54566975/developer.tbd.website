@@ -51,7 +51,7 @@ importers:
         specifier: 10.3.10
         version: 10.3.10
       husky:
-        specifier: 8.0.3
+        specifier: ^8.0.3
         version: 8.0.3
       playwright:
         specifier: 1.39.0
