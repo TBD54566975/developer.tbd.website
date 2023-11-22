@@ -19,26 +19,27 @@
     "test:node": "pnpm -r test:node"
   },
   "dependencies": {
-    "@fortawesome/fontawesome-svg-core": "^6.4.2",
-    "@fortawesome/free-solid-svg-icons": "^6.4.2",
-    "@fortawesome/react-fontawesome": "^0.2.0",
+    "@fortawesome/fontawesome-svg-core": "6.4.2",
+    "@fortawesome/free-solid-svg-icons": "6.4.2",
+    "@fortawesome/react-fontawesome": "0.2.0",
+    "googleapis": "128.0.0",
     "@web5/api": "0.8.2",
-    "font-awesome": "^4.7.0",
-    "node-fetch": "^3.3.2",
-    "react-fontawesome": "^1.7.1",
-    "react-markdown": "^8.0.7",
-    "react-slick": "^0.29.0",
-    "slick-carousel": "^1.8.1"
+    "font-awesome": "4.7.0",
+    "node-fetch": "3.3.2",
+    "react-fontawesome": "1.7.1",
+    "react-markdown": "8.0.7",
+    "react-slick": "0.29.0",
+    "slick-carousel": "1.8.1"
   },
   "devDependencies": {
     "@vitest/browser": "0.33.0",
     "@vitest/coverage-istanbul": "0.33.0",
     "fake-indexeddb": "4.0.2",
-    "node-stdlib-browser": "^1.2.0",
-    "playwright": "^1.39.0",
-    "start-server-and-test": "^2.0.2",
-    "vite-plugin-commonjs": "^0.10.1",
-    "vite-plugin-node-stdlib-browser": "^0.2.1",
+    "node-stdlib-browser": "1.2.0",
+    "vite-plugin-commonjs": "0.10.1",
+    "vite-plugin-node-stdlib-browser": "0.2.1",
+    "playwright": "1.39.0",
+    "start-server-and-test": "2.0.2",
     "vitest": "0.33.0",
     "webdriverio": "8.13.13"
   }
