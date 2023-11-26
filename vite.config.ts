@@ -5,7 +5,7 @@ export default defineConfig({
     testTimeout: 40000,
     hookTimeout: 40000,
     teardownTimeout: 40000,
-    exclude: [...configDefaults.exclude, "apps/**", "**/*.spec.{js,ts,jsx,tsx}"],
+    exclude: [...configDefaults.exclude, "apps/**", "**/*.spec.{js,ts,jsx,tsx}", "examples/tutorials/**"],
     //TODO: Investigate coverage options later for output files
     // coverage: {
     //   provider: 'istanbul',

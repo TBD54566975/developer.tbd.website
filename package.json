@@ -13,9 +13,10 @@
     "start:widget": "pnpm --filter web5-quickstart-widgets start",
     "build": "node extract-snippets && pnpm --filter site run build",
     "clear": "pnpm --filter site run clear",
-    "test": "node extract-snippets && pnpm vitest run --config vite.config.ts && pnpm test:browser",
+    "test": "node extract-snippets && pnpm vitest run --config vite.config.ts && pnpm test:browser && pnpm test:node",
     "test:watch": "node extract-snippets && pnpm vitest --config vite.config.ts --watch",
-    "test:browser": "pnpm -r test:browser"
+    "test:browser": "pnpm -r test:browser",
+    "test:node": "pnpm -r test:node"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "6.4.2",
@@ -34,6 +35,9 @@
     "@vitest/browser": "0.33.0",
     "@vitest/coverage-istanbul": "0.33.0",
     "fake-indexeddb": "4.0.2",
+    "node-stdlib-browser": "1.2.0",
+    "vite-plugin-commonjs": "0.10.1",
+    "vite-plugin-node-stdlib-browser": "0.2.1",
     "playwright": "1.39.0",
     "start-server-and-test": "2.0.2",
     "vitest": "0.33.0",

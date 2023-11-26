@@ -47,12 +47,21 @@ importers:
       fake-indexeddb:
         specifier: 4.0.2
         version: 4.0.2
+      node-stdlib-browser:
+        specifier: 1.2.0
+        version: 1.2.0
       playwright:
         specifier: 1.39.0
         version: 1.39.0
       start-server-and-test:
         specifier: 2.0.2
         version: 2.0.2
+      vite-plugin-commonjs:
+        specifier: 0.10.1
+        version: 0.10.1
+      vite-plugin-node-stdlib-browser:
+        specifier: 0.2.1
+        version: 0.2.1(node-stdlib-browser@1.2.0)(rollup@2.61.1)(vite@4.3.7)
       vitest:
         specifier: 0.33.0
         version: 0.33.0(@vitest/browser@0.33.0)(playwright@1.39.0)(webdriverio@8.13.13)
@@ -19978,6 +19987,24 @@ packages:
       vscode-uri: 3.0.8
     dev: true
 
+  /vite-plugin-commonjs@0.10.1:
+    resolution: {integrity: sha512-taP8R9kYGlCW5OzkVR0UIWRCnG6rSxeWWuA7tnU5b9t5MniibOnDY219NhisTeDhJAeGT8cEnrhVWZ9A5yD+vg==}
+    dependencies:
+      acorn: 8.11.2
+      fast-glob: 3.3.2
+      magic-string: 0.30.5
+      vite-plugin-dynamic-import: 1.5.0
+    dev: true
+
+  /vite-plugin-dynamic-import@1.5.0:
+    resolution: {integrity: sha512-Qp85c+AVJmLa8MLni74U4BDiWpUeFNx7NJqbGZyR2XJOU7mgW0cb7nwlAMucFyM4arEd92Nfxp4j44xPi6Fu7g==}
+    dependencies:
+      acorn: 8.11.2
+      es-module-lexer: 1.4.1
+      fast-glob: 3.3.2
+      magic-string: 0.30.5
+    dev: true
+
   /vite-plugin-node-stdlib-browser@0.2.1(node-stdlib-browser@1.2.0)(rollup@2.61.1)(vite@4.3.7):
     resolution: {integrity: sha512-6u2i613Dkqj5KaTNIrnZvE6y3/awWAp0S5TjucTvGxdhetftB1Mgvblc+nwYzlw6sntPlac8UOC7ttXNh+LZKA==}
     peerDependencies:
@@ -20969,7 +20996,3 @@ packages:
   /zwitch@1.0.5:
     resolution: {integrity: sha512-V50KMwwzqJV0NpZIZFwfOD5/lyny3WlSzRiXgA0G7VUnRlqttta1L6UQIHzd6EuBY/cHGfwTIck7w1yH6Q5zUw==}
     dev: false
-
-settings:
-  autoInstallPeers: true
-  excludeLinksFromLockfile: false
