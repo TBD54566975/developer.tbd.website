@@ -102,6 +102,7 @@ export default function Home() {
     console.log("Send record status", status);
 
     await fetchDings(web5, myDid);
+    setNoteValue("");
   };
 
   const handleCopyDid = async () => {

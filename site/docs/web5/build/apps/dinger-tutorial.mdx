@@ -255,7 +255,7 @@ return await record.send(recipientDid);
 - Learn more about [sync intervals](https://developer.tbd.website/docs/web5/learn/sync#sync-intervals).
 
 ## Level 9: Retrieve dings
-### 📝 Task
+### 📝 Task 1
 Locate the line:
 ```javascript title="src/pages/index.js"
 console.log(`this log is in fetchSentMessages`);
@@ -283,7 +283,7 @@ if (response.status.code === 200) {
   console.log("error", response.status);
 }
 ```
-### 📝 Task
+### 📝 Task 2
 Locate the line:
 ```javascript title="src/pages/index.js"
 console.log(`this log is in fetchReceivedMessages`);
@@ -313,6 +313,20 @@ if (response.status.code === 200) {
   console.log("error", response.status);
 }
 ```
+### 📝 Task 3
+Locate the line:
+```javascript title="src/pages/index.js"
+console.log(`this log is in fetchDings`);
+```
+And replace it with the following code snippet:
+```javascript title="src/pages/index.js"
+const sentMessages = await fetchSentMessages(web5, did);
+const receivedMessages = await fetchReceivedMessages(web5, did);
+const allMessages = [...(sentMessages || []), ...(receivedMessages || [])];
+setAllDings(allMessages);
+
+```
+
 ### 🧩 Breaking it down
 - The method web5.dwn.records.query() queries the DWN for records matching a specified filter. In the above code snippet, it retrieves records with the protocol https://blackgirlbytes.dev/dinger-chat-protocol.
 
