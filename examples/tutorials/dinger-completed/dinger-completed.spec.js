@@ -49,8 +49,8 @@ test.describe('Next.js app renders - Dinger Chat', () => {
         await checkCopyDIDButton(page);
     });
 
-    // test('Copy DID button copies DID and pastes it in new chat input', async ({ page }) => {
-    //     await page.goto(dingerUrl);
-    //     await testCopyDIDButton(page);
-    // });
+    test('Copy DID button copies DID and pastes it in new chat input', async ({ page }) => {
+        await page.goto(dingerUrl);
+        await testCopyDIDButton(page);
+    });
 });
