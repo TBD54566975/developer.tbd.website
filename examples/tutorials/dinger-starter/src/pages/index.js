@@ -169,6 +169,7 @@ export default function Home() {
           handleConfirmNewChat={handleConfirmNewChat}
           setRecipientDid={setRecipientDid}
           recipientDid={recipientDid}
+          isWeb5Connected={!!web5 && !!myDid}
         />
         <section>
           {activeRecipient ? (
