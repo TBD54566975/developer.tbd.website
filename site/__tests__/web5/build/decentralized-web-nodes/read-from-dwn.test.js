@@ -3,16 +3,13 @@ import { readFromDwn } from '../../../../code-snippets/web5/build/decentralized-
 
 let web5;
 
-describe('Testing snippet at /site/docs/web5/build/decentralized-web-nodes/read-from-dwn.mdx', () => {
+describe('Testing reading from DWNs', () => {
   beforeAll(async () => {
     web5 = globalThis.web5;
   });
 
-  test('readFromDwn fires successfully', async () => {
+  test('readFromDwn returns 200 status code', async () => {
     const result = await readFromDwn(web5);
-
-    console.log(result);
-
     expect(result.status.code).toBe(200);
   });
 });
