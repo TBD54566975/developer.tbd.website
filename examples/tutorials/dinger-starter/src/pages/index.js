@@ -55,7 +55,7 @@ export default function Home() {
     console.log('this log is in createProtocolDefinition');
   };
 
-  const configureProtocol = async (web5) => {
+  const configureProtocol = async (web5, did) => {
     console.log(`this log is in configureProtocol`);
   };
 
