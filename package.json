@@ -15,7 +15,8 @@
     "clear": "pnpm --filter site run clear",
     "test": "node extract-snippets && pnpm vitest run --config vite.config.ts && pnpm test:browser",
     "test:watch": "node extract-snippets && pnpm vitest --config vite.config.ts --watch",
-    "test:browser": "pnpm -r test:browser"
+    "test:browser": "pnpm -r test:browser",
+    "test:versions": "node check-versions.js"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "6.4.2",
@@ -34,6 +35,8 @@
     "@vitest/browser": "0.33.0",
     "@vitest/coverage-istanbul": "0.33.0",
     "fake-indexeddb": "4.0.2",
+    "glob": "10.3.10",
+    "husky": "8.0.3",
     "playwright": "1.39.0",
     "start-server-and-test": "2.0.2",
     "vitest": "0.33.0",
