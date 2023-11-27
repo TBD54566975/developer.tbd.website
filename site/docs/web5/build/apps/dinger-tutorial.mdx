@@ -99,11 +99,11 @@ setMyDid(did);
 ### 📘 Learn more
 Learn more about [DID authentication](https://developer.tbd.website/blog/did-authentication).
 
-## Level 3: Define and install a protocol
+## Level 3: Define a protocol
 ### 📝 Task
 Locate the line:
 ```javascript title="src/pages/index.js"
-console.log(`this log is in configureProtocol`);
+console.log('this log is in createProtocolDefinition');
 ```
 
 And replace it with the following code snippet:
@@ -127,34 +127,85 @@ const dingerProtocolDefinition = {
     },
   },
 };
-
-const { protocols, status: protocolStatus } =
-  await web5.dwn.protocols.query({
-    message: {
-      filter: {
-        protocol: "https://blackgirlbytes.dev/dinger-chat-protocol",
-      },
-    },
-  });
-
-if (protocolStatus.code !== 200 || protocols.length === 0) {
-  const { protocolStatus } = await web5.dwn.protocols.configure({
-    message: {
-      definition: dingerProtocolDefinition,
-    },
-  });
-  console.log("Configure protocol status", protocolStatus);
-};
+return dingerProtocolDefinition;
 ```
 ### 🧩 Breaking it down
 - **dingerProtocolDefinition:** This object defines the protocol, its structure, and it grants permissions outlining who can perform specific actions like reading or writing a ding.
-- **web5.dwn.protocols.query():** This function checks if the protocol already exists.
-- **web5.dwn.protocols.configure():** This function installs the protocol.
+
+### 📘 Learn more
+Learn more about [defining protocols](https://developer.tbd.website/docs/web5/learn/protocols#defining-a-protocol).
+
+## Level 4: Install the defined protocol
+### 📝 Task
+Locate the line:
+```javascript title="src/pages/index.js"
+console.log(`this log is in installProtocolLocally`);
+```
+
+And replace it with the following code snippet:
+```javascript title="src/pages/index.js"
+    return await web5.dwn.protocols.configure({
+      message: {
+        definition: protocolDefinition,
+      },
+    });
+```
+### 🧩 Breaking it down
+- **web5.dwn.protocols.configure():** This function installs the protocol. The protocol needs to be installed because it ensures that both the sender's and recipient's applications (or Decentralized Web Nodes - DWNs) are aligned in terms of communication standards and data formats. 
+
+## Level 5: Query the protocol
+### 📝 Task
+```javascript title="src/pages/index.js"
+console.log(`this log is in queryForProtocol`);
+```
+
+And replace it with the following code snippet:
+```javascript title="src/pages/index.js"
+return await web5.dwn.protocols.query({
+  message: {
+    filter: {
+      protocol: "https://blackgirlbytes.dev/dinger-chat-protocol",
+    },
+  },
+});
+```
+### 🧩 Breaking it down
+- **web5.dwn.protocols.query():** This function checks if the protocol already exists
+
+### 📘 Learn more
+Learn more about [querying protocols](https://developer.tbd.website/docs/web5/learn/protocols#protocols-in-practice).
+
+## Level 6: Bring all the protocol steps together
+### 📝 Task
+```javascript title="src/pages/index.js"
+console.log(`this log is in configureProtocol`);
+```
+And replace it with the following code snippet:
+```javascript title="src/pages/index.js"
+const protocolDefinition = await createProtocolDefinition();
+
+const { protocols: localProtocol, status: localProtocolStatus } = await queryForProtocol(web5);
+
+console.log({ localProtocol, localProtocolStatus });
+
+if (localProtocolStatus.code !== 200 || localProtocol.length === 0) {
+    
+  const { protocol, status } = await installProtocolLocally(web5, protocolDefinition);
+  console.log("Protocol installed locally", protocol, status);
+  const { status: configureRemoteStatus } = await protocol.send(did);
+  console.log("Did the protocol install on the remote DWN?", configureRemoteStatus);
+    
+} else {
+  console.log("Protocol already installed");
+}
+```
+- **configureProtocol()**: This function is responsible for configuring the protocol in both the local and remote DWNs. It first checks if the protocol is already installed locally. If not, it installs the protocol locally and then attempts to install it on the remote DWN associated with the user's DID. 
 
 ### 📘 Learn more
 - Learn more about [protocols](https://developer.tbd.website/docs/web5/learn/protocols/).
 
-## Level 4: Write to the DWN
+
+## Level 7: Write to the DWN
 
 ### 📝 Task
 Locate the line:
@@ -183,7 +234,7 @@ return record;
 ### 📘 Learn more
 - Learn more about[ Decentralized Web Nodes](https://developer.tbd.website/docs/web5/learn/decentralized-web-nodes) and [writing DWN records](https://developer.tbd.website/docs/web5/build/decentralized-web-nodes/write-to-dwn).
 
-## Level 5: Send dings
+## Level 8: Send dings
 
 ### 📝 Task
 Locate the line:
@@ -203,46 +254,73 @@ return await record.send(recipientDid);
 ### 📘 Learn more
 - Learn more about [sync intervals](https://developer.tbd.website/docs/web5/learn/sync#sync-intervals).
 
-## Level 6: Receive dings
+## Level 9: Retrieve dings
 ### 📝 Task
 Locate the line:
 ```javascript title="src/pages/index.js"
-console.log(`this log is in fetchDings`);
+console.log(`this log is in fetchSentMessages`);
 ```
 And replace it with the following code snippet:
 ```javascript title="src/pages/index.js"
-const { records, status: recordStatus } = await web5.dwn.records.query({
+const response = await web5.dwn.records.query({
   message: {
     filter: {
       protocol: "https://blackgirlbytes.dev/dinger-chat-protocol",
-      protocolPath: "ding",
     },
-    dateSort: "createdAscending",
   },
 });
 
-try {
-  const results = await Promise.all(
-    records.map(async (record) => record.data.json())
+if (response.status.code === 200) {
+  const sentDings = await Promise.all(
+    response.records.map(async (record) => {
+      const data = await record.data.json();
+      return data;
+    })
   );
+  console.log(sentDings, "I sent these dings");
+  return sentDings;
+} else {
+  console.log("error", response.status);
+}
+```
+### 📝 Task
+Locate the line:
+```javascript title="src/pages/index.js"
+console.log(`this log is in fetchReceivedMessages`);
+```
+And replace it with the following code snippet:
+```javascript title="src/pages/index.js"
+const response = await web5.dwn.records.query({
+  from: did,
+  message: {
+    filter: {
+      protocol: "https://blackgirlbytes.dev/dinger-chat-protocol",
+      schema: "https://blackgirlbytes.dev/ding",
+    },
+  },
+});
 
-  if (recordStatus.code == 200) {
-    const received = results.filter((result) => result?.recipient === did);
-    const sent = results.filter((result) => result?.sender === did);
-    setReceivedDings(received);
-    setSentDings(sent);
-  }
-} catch (error) {
-  console.error(error);
+if (response.status.code === 200) {
+  const receivedDings = await Promise.all(
+    response.records.map(async (record) => {
+      const data = await record.data.json();
+      return data;
+    })
+  );
+  console.log(receivedDings, "I received these dings");
+  return receivedDings;
+} else {
+  console.log("error", response.status);
 }
 ```
 ### 🧩 Breaking it down
-- The method **web5.dwn.records.query()** queries the DWN for records matching a specified filter. In the above code snippet, it retrieves records with the protocol `https://blackgirlbytes.dev/dinger-chat-protocol` and the protocol path `ding`.
+- The method web5.dwn.records.query() queries the DWN for records matching a specified filter. In the above code snippet, it retrieves records with the protocol https://blackgirlbytes.dev/dinger-chat-protocol.
 
 ### 📘 Learn more
-- Learn more about how to [query DWN records](https://developer.tbd.website/docs/web5/build/decentralized-web-nodes/query-from-dwn) and [filterable record properties](https://developer.tbd.website/docs/web5/build/decentralized-web-nodes/query-from-dwn#filterable-record-properties).
+- - Learn more about how to [query DWN records](https://developer.tbd.website/docs/web5/build/decentralized-web-nodes/query-from-dwn) and [filterable record properties](https://developer.tbd.website/docs/web5/build/decentralized-web-nodes/query-from-dwn#filterable-record-properties).
 
-## Level 7: Sync the UI with the DWN
+
+## Level 10: Sync the UI with the DWN
 
 ### 📝 Task
 Locate the line:
@@ -273,7 +351,7 @@ This line is located within the following function:
 ### 📘 Learn more
 - Learn more about React's [useEffect()](https://react.dev/reference/react/useEffect) hook and JavaScript's [setInterval()](https://developer.mozilla.org/en-US/docs/Web/API/setInterval) method.
 
-## Level 8: Try it out!
+## Level 11: Try it out!
 ### 📝 Task
 Time to test the Dinger app by simulating a conversation between two users by using two different browser sessions.
 

@@ -10,9 +10,6 @@ export default function Home() {
   const [myDid, setMyDid] = useState(null);
   const [activeRecipient, setActiveRecipient] = useState(null);
 
-  const [receivedDings, setReceivedDings] = useState([]);
-  const [sentDings, setSentDings] = useState([]);
-
   const [noteValue, setNoteValue] = useState("");
   const [errorMessage, setErrorMessage] = useState('');
   const [recipientDid, setRecipientDid] = useState("");
@@ -20,7 +17,7 @@ export default function Home() {
   const [didCopied, setDidCopied] = useState(false);
   const [showNewChatInput, setShowNewChatInput] = useState(false);
 
-  const allDings = [...receivedDings, ...sentDings];
+  const [allDings, setAllDings] = useState([]);
 
   const sortedDings = allDings.sort(
     (a, b) => new Date(a.timestampWritten) - new Date(b.timestampWritten)
@@ -38,7 +35,7 @@ export default function Home() {
       console.log(`this log is in initWeb5`);
 
       if (web5 && did) {
-        await configureProtocol(web5);
+        await configureProtocol(web5, did);
         await fetchDings(web5, did);
       }
     };
@@ -54,8 +51,20 @@ export default function Home() {
     return () => clearInterval(intervalId);
   }, [web5, myDid]);
 
+  const createProtocolDefinition = () => {
+    console.log('this log is in createProtocolDefinition');
+  };
+
   const configureProtocol = async (web5) => {
     console.log(`this log is in configureProtocol`);
+  };
+
+  const installProtocolLocally = async (web5, protocolDefinition) => {
+    console.log(`this log is in installProtocolLocally`);
+  };
+
+  const queryForProtocol = async (web5) => {
+   console.log(`this log is in queryForProtocol`);
   };
 
   const constructDing = () => {
@@ -108,6 +117,14 @@ export default function Home() {
         console.log("Failed to copy DID: " + err);
       }
     }
+  };
+
+  const fetchSentMessages = async (web5, did) => {
+    console.log(`this log is in fetchSentMessages`);
+  };
+
+  const fetchReceivedMessages = async (web5, did) => {
+    console.log(`this log is in fetchReceivedMessages`);
   };
 
   const fetchDings = async (web5, did) => {
