@@ -1,6 +1,6 @@
 import Divider from '@site/src/components/Divider';
 import ApiDetails from '@site/src/components/ApiDetails';
-
+import CodeSnippet from '@site/src/components/CodeSnippet';
 
 ## Overview
 Every modifying method of the [Records](/api/web5-js/dwn/records) class returns an instance of a `Record` object, which is a representation of the record(s) involved in the operation
@@ -75,9 +75,8 @@ A property with the following convenience methods that read out the data of the 
 />
 
 #### Code Example
-```js
-const recordText = await myRecord.data.text();
-```
+
+<CodeSnippet functionName="readRecord" />
 
 <Divider type="slash"/>
 
