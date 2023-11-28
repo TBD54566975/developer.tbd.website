@@ -24,3 +24,15 @@ const { record } = await web5.dwn.records.create({
 
 return record;
 }
+
+export async function uploadImage(event) {
+    // Create a blob record
+    const blob = new Blob(event.currentTarget.files, { type: "image/png" });
+    const { record } = await web5.dwn.records.create({
+        data: blob,
+        message: {
+            dataFormat: "image/png"
+        }
+    });
+    return record;
+}
