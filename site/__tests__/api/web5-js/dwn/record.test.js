@@ -1,7 +1,7 @@
 import { test, beforeAll, expect, describe } from 'vitest';
 
 import {
-  createRecord,
+  createRecordHelloWorld,
   deleteRecord,
   updateRecord,
   readRecord,
@@ -19,7 +19,7 @@ describe('record', () => {
 
   describe('tests for /api/web5-js/dwn/record', async () => {
     test('createRecord creates a record', async () => {
-      const result = await createRecord(web5, myDid);
+      const result = await createRecordHelloWorld(web5, myDid);
       record = result;
 
       expect(result).toBeDefined();
