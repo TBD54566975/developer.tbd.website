@@ -2,7 +2,6 @@ import Divider from '@site/src/components/Divider';
 import ApiDetails from '@site/src/components/ApiDetails';
 import CodeSnippet from '@site/src/components/CodeSnippet';
 
-
 ## Overview
 Every modifying method of the [Records](/api/web5-js/dwn/records) class returns an instance of a `Record` object, which is a representation of the record(s) involved in the operation
 
@@ -108,18 +107,8 @@ Sends the record to the remote DWN endpoints of a provided DID. This function on
 The status of the request
 
 #### Code Example
-```js
-const { record } = await web5.dwn.records.create({
-  data: "Hello World!",
-  message: {
-    dataFormat: "text/plain",
-  },
-});
 
-//highlight-start
-const { status } = await record.send("did:example:bob");
-//highlight-end
-```
+<CodeSnippet functionName="createRecord" />
 
 <Divider type="slash"/>
 

@@ -1,12 +1,14 @@
 export async function createRecord(web5, myDid) {
   const { record } = await web5.dwn.records.create({
-    data: 'Hello World!',
+    data: "Hello World!",
     message: {
-      dataFormat: 'text/plain',
+      dataFormat: "text/plain",
     },
   });
 
+  //highlight-start
   const { status } = await record.send(myDid);
+  //highlight-end
 
   return record;
 }
