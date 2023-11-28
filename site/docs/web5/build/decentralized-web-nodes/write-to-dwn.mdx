@@ -17,18 +17,7 @@ Various data types, such as text, JSON, images, streams or files, can be stored 
 
 ### Create a blob or image record
 
-```js
-// Create a blob record
-async function upload(event) {
-  const blob = new Blob(event.currentTarget.files, { type: "image/png" });
-  const { record } = await web5.dwn.records.create({
-      data: blob,
-      message: {
-          dataFormat: "image/png"
-      }
-  });
-}
-```
+<CodeSnippet functionName='uploadImage'/>
 
 ### Create a file record
 
