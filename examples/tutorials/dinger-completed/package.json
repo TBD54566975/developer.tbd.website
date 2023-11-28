@@ -3,10 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev -p 8080",
+    "dev": "next dev -p 8081",
     "build": "next build",
-    "start": "next start -p 8080",
-    "lint": "next lint"
+    "start": "next start -p 8081",
+    "lint": "next lint",
+    "test": "playwright test",
+    "test:browser": "start-server-and-test dev http://localhost:8081 test"
   },
   "dependencies": {
     "@web5/api": "0.8.2",
