@@ -5,6 +5,7 @@ import {
   createJsonRecord,
   uploadImage,
   uploadFile,
+  createMixedRecord,
 } from '../../../../code-snippets/web5/build/decentralized-web-nodes/write-to-dwn';
 
 let web5;
@@ -46,6 +47,14 @@ describe('write-to-dwn', () => {
     };
 
     const record = await uploadFile(mockEvent);
+    expect(record).toBeDefined();
+  });
+  test('createMixedRecord creates a message with an image and file', async () => {
+    const username = 'testUser';
+    const messageText = 'testMessage';
+    const imageFile = new Blob(['fake image data'], { type: 'image/png' });
+
+    const record = await createMixedRecord(username, messageText, imageFile);
     expect(record).toBeDefined();
   });
 });

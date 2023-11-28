@@ -26,36 +26,7 @@ Various data types, such as text, JSON, images, streams or files, can be stored 
 ### Create records with mixed data
 You can also store mixed data via JSON - including text, images, or files.
 
-```js
-  // Create a mixed record
-  async function createMessage(username, messageText, imageFile) {
-    let base64Image = null;
-
-    if (imageFile) {
-      const binaryImage = await imageFile.arrayBuffer();
-      base64Image = btoa(
-        new Uint8Array(binaryImage).reduce(
-          (data, byte) => data + String.fromCharCode(byte),
-          ""
-        )
-      );
-    }
-
-    const messageData = {
-      username,
-      message: messageText,
-      image: base64Image
-    };
-
-    const { record } = await web5.dwn.records.create({
-      data: messageData,
-      message: {
-        schema: "http://schema-registry.org/message",
-        dataFormat: "application/json"
-      },
-    });
-  }
-```
+<CodeSnippet functionName='createMixedRecord'/>
 
 
 For more information on writing records to DWNs, see our [API Guide](/api/web5-js/dwn/records#createrequest).
