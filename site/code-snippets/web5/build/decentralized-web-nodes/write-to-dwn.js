@@ -36,3 +36,16 @@ export async function uploadImage(event) {
     });
     return record;
 }
+
+export async function uploadFile(event) {
+    // Create a file record
+    const file = event.currentTarget.files[0];
+    const { status: fileStatus, record } = await web5.dwn.records.create({
+        data: file,
+        message: {
+            schema: "https://schema.org/path/to/schema",
+            dataFormat: "application/octet-stream"
+        }
+    });
+    return record;
+}

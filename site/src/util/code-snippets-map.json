@@ -48,6 +48,7 @@
   "createTextRecord": "const { record } = await web5.dwn.records.create({\n    data: 'Hello, Web5!',\n    message: {\n      dataFormat: 'text/plain',\n    },\n  });",
   "createJsonRecord": "// Create a JSON record\nconst { record } = await web5.dwn.records.create({\n    data: {\n        content: \"Hello Web5\",\n        description: \"Keep Building!\"\n    },\n    message: {\n        dataFormat: 'application/json'\n    }\n});",
   "uploadImage": "// Create a blob record\n    const blob = new Blob(event.currentTarget.files, { type: \"image/png\" });\n    const { record } = await web5.dwn.records.create({\n        data: blob,\n        message: {\n            dataFormat: \"image/png\"\n        }\n    });",
+  "uploadFile": "// Create a file record\n    const file = event.currentTarget.files[0];\n    const { status: fileStatus, record } = await web5.dwn.records.create({\n        data: file,\n        message: {\n            schema: \"https://schema.org/path/to/schema\",\n            dataFormat: \"application/octet-stream\"\n        }\n    });",
   "didCreate": "const { web5, did: aliceDid } = await Web5.connect();",
   "readTextRecord": "const readResult = await record.data.text();",
   "updateTextRecord": "const updateResult = await record.update({\n    data: 'Hello, Web5! I am updated.',\n  });",

@@ -21,19 +21,7 @@ Various data types, such as text, JSON, images, streams or files, can be stored 
 
 ### Create a file record
 
-```js
-// Create a file record
-async function upload(event) {
-  const file = event.currentTarget.files[0];
-  const { status: fileStatus, record } = await web5.dwn.records.create({
-      data: file,
-      message: {
-          schema: "https://schema.org/path/to/schema",
-          dataFormat: "application/octet-stream"
-      }
-  });
-}
-```
+<CodeSnippet functionName='uploadFile'/>
 
 ### Create records with mixed data
 You can also store mixed data via JSON - including text, images, or files.
