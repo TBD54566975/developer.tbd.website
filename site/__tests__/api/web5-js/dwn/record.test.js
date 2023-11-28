@@ -4,6 +4,7 @@ import {
   createRecordHelloWorld,
   deleteRecord,
   updateRecord,
+  readRecord,
 } from '../../../../code-snippets/api/web5-js/dwn/record';
 
 let web5;
@@ -22,6 +23,12 @@ describe('record', () => {
       record = result;
 
       expect(result).toBeDefined();
+    });
+
+    test('readRecord reads the created record', async () => {
+      const result = await readRecord(record);
+
+      expect(result).toBe('Hello World!'); 
     });
 
     test('updateRecord updates the created record', async () => {
