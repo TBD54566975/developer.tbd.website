@@ -1,5 +1,6 @@
 import Divider from '@site/src/components/Divider';
 import ApiDetails from '@site/src/components/ApiDetails';
+import CodeSnippet from '@site/src/components/CodeSnippet';
 
 
 ## Overview
@@ -131,9 +132,8 @@ Deletes record from DWN
 The status of the request
 
 #### Code Example
-```js
-const response = await record.delete();
-```
+
+<CodeSnippet functionName="deleteRecord" />
 
 <Divider type="slash"/>
 
@@ -172,8 +172,7 @@ Overwrites an existing record
 The status of the request
 
 #### Code Example
-```js
-const response = await record.update({data: "Hello, I'm updated!"});
-```
+
+<CodeSnippet functionName="updateRecord" />
 
 </section>
