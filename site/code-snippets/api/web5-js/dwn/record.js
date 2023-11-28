@@ -11,8 +11,8 @@ export async function createRecord(web5, myDid) {
   return record;
 }
 
-export async function readRecord(myRecord) {
-  const recordText = await myRecord.data.text();
+export async function readRecord(textRecord) {
+  const recordText = await textRecord.data.text();
   return recordText;
 }
 
