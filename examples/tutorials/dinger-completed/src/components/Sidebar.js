@@ -9,6 +9,7 @@ export function Sidebar({
   showNewChatInput,
   didCopied,
   recipientDid,
+  isWeb5Connected,
 }) {
   return (
     <aside>
@@ -41,9 +42,11 @@ export function Sidebar({
         </div>
       )}
       <div className="button-group">
-        <div className="fixed-button button" onClick={handleCopyDid}>
-          <span>{didCopied ? "DID Copied!" : "Copy DID"}</span>
-        </div>
+        {isWeb5Connected && (
+        <button className="fixed-button button" id="copy-did-button" onClick={handleCopyDid}>
+            {didCopied ? "DID Copied!" : "Copy DID"}
+        </button>
+        )}
         <div className="fixed-button button" onClick={handleStartNewChat}>
           <span>Create +</span>
         </div>
