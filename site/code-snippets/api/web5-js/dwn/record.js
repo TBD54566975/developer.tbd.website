@@ -1,4 +1,4 @@
-export async function createRecord(web5, myDid) {
+export async function createRecordHelloWorld(web5, myDid) {
   const { record } = await web5.dwn.records.create({
     data: "Hello World!",
     message: {
