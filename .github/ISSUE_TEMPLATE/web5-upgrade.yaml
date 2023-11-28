@@ -12,7 +12,7 @@ body:
       label: Tasks
       description: Tasks to be completed in issuing a new Web5 release
       options:
-        - label: (Web5 Team) Cut preview/alpha release for acceptance testing. Version: `versionNumberHere`. Link: here.
+        - label: (Web5 Team) Cut preview/alpha release for acceptance testing. Version: versionNumberHere. Link: here.
         - label: (Web5 Team) Run Web5 tests against [acceptance suite](https://github.com/TBD54566975/bundler-bonanza). Link to branch with passing bundler-bonanza w/ upgraded Web5 dep:
         - label: (Open Source Programs Engineering) Create new branch on site repo for the upgrade. Branch: Link here
         - label: (Open Source Programs Engineering) This will trigger a Deploy Preview on Netlify. to activate Deploy Previews in Netlify. Deploy Preview: Link here
