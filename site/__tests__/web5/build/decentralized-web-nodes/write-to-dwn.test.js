@@ -27,7 +27,6 @@ describe('write-to-dwn', () => {
   });
 
   test('uploadImage uploads an image', async () => {
-    // Create a fake event with a Blob representing an image
     const fakeEvent = {
       currentTarget: {
         files: [new Blob(['fake image data'], { type: 'image/png' })],
