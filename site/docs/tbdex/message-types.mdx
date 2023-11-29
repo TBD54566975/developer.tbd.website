@@ -1,0 +1,17 @@
+---
+sidebar_position: 2
+---
+
+# Message Types
+
+PFIs are able to communicate with and offer liquidity to Wallets by conforming to the tbDEX messaging protocol, which outlines the following main messages:
+
+
+
+* **RFQ** - A message sent by a wallet to a PFI requesting a quote for an ask
+* **Quote** - A quote sent by the PFI in response to an RFQ, including a locked-in price that the PFI is willing to honor until a built-in expiration date
+* **Order** - a message sent by a wallet to a PFI to accept a quote
+* **OrderStatus** - A message sent by the PFI to a wallet to convey the current status of an order.
+* **Close** - A message sent by a wallet or a PFI in response to an RFQ or Quote
+
+Additionally as a PFI, there is a key internal concept known as an Offering, which is a resource used to describe a currency pair that can be exchanged and includes requirements, conditions, and constraints needed to fulfill the described swap. For example, an offering could represent the exchange rate between USD and BTC, as well as what conditions the PFI requires in order to perform that exchange.

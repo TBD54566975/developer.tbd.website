@@ -1,0 +1,13 @@
+---
+sidebar_position: 3
+---
+
+# Required SDKs
+
+To implement a PFI, you’ll need to make use of the following SDKs:
+
+
+
+* **web5/dids** - In order to deal with [Decentralized Identifiers (DID)](https://developer.tbd.website/docs/web5/learn/decentralized-identifiers), including verifying identities and performing any other required cryptographic functions, you’ll need the appropriate DID SDK.
+* **web5/credentials** - As a PFI you’ll want to verify information about your customers, including things like they’re identity or whether they’re on a sanctions list. Verifiable Credentials provide a decentralized and trustworthy way of proving facts about an entity.
+* **tbdex/server** - To send and receive messages on the tbDEX network, you’ll need a networking solution. This SDK provides convenience methods for setting up routing and networking to facilitate your PFI.
