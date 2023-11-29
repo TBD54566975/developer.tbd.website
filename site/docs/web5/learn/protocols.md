@@ -76,7 +76,7 @@ const protocolDefinition = {
               "who": "author",
               "of": "post",
               "can": "write"
-            }            
+            }
           ]
         }
       },
@@ -183,7 +183,7 @@ You’ll then notice how each of those `types` is used in the large `structure` 
             "who": "author",
             "of": "post",
             "can": "write"
-          }            
+          }
       ]
     }
   },
@@ -238,7 +238,7 @@ Within `post`, you’ll notice we define `actions` permissions to let anyone rea
       {
         "who": "anyone",
         "can": "read"
-      },      
+      },
       {
         "who": "anyone",
         "can": "write"
@@ -255,7 +255,7 @@ But then we nest another `structure` object to hold the child property of `reply
       {
         "who": "anyone",
         "can": "read"
-      },      
+      },
       {
         "who": "anyone",
         "can": "write"
@@ -273,7 +273,7 @@ But then we nest another `structure` object to hold the child property of `reply
         "who": "author",
         "of": "post",
         "can": "write"
-      }            
+      }
     ]
   }
 },
@@ -394,6 +394,8 @@ And that’s it! Via the `social-media` protocol, you’ve now written a message
 
 This protocol enables a basic social network using Web5, which means we’ve created a basic trustless, decentralized social network where your users host all of their own data.
 
+## Validating Protocols
+As you write your protocol documents, you can use this [simple protocol validator UI](https://radiant-semifreddo-af73bb.netlify.app/) app to explore and validate the types and structures in your protocol. This should help with testing and improving your protocol. Find out more about how to use this project on [GitHub](https://github.com/kirahsapong/protocol-validator#protocol-validator).
 
 ## Example Protocols
 Here's a bunch of [example protocols](https://github.com/TBD54566975/dwn-sdk-js/tree/main/tests/vectors/protocol-definitions) for more inspiration!
