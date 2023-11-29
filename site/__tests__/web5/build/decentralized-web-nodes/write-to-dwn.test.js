@@ -3,6 +3,7 @@ import { test, beforeAll, expect, describe } from 'vitest';
 import {
   createTextRecord,
   createJsonRecord,
+  uploadImage,
 } from '../../../../code-snippets/web5/build/decentralized-web-nodes/write-to-dwn';
 
 let web5;
@@ -22,6 +23,17 @@ describe('write-to-dwn', () => {
 
   test('createJsonRecord creates a JSON record', async () => {
     const record = await createJsonRecord(web5);
+    expect(record).toBeDefined();
+  });
+
+  test('uploadImage uploads an image', async () => {
+    const fakeEvent = {
+      currentTarget: {
+        files: [new Blob(['fake image data'], { type: 'image/png' })],
+      },
+    };
+
+    const record = await uploadImage(fakeEvent);
     expect(record).toBeDefined();
   });
 });

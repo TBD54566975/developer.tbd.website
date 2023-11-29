@@ -1,7 +1,8 @@
 import { test, beforeAll, expect, describe } from 'vitest';
 
 import {
-  createRecordHelloWorld,
+  createRecordWithHighlight,
+  createRecord,
   deleteRecord,
   updateRecord,
   readRecord,
@@ -18,8 +19,15 @@ describe('record', () => {
   });
 
   describe('tests for /api/web5-js/dwn/record', async () => {
+    test('createRecordWitHighlight creates a record but has highlighted lines', async () => {
+      const result = await createRecordWithHighlight(web5, myDid);
+      record = result;
+
+      expect(result).toBeDefined();
+    });
+
     test('createRecord creates a record', async () => {
-      const result = await createRecordHelloWorld(web5, myDid);
+      const result = await createRecord(web5, myDid);
       record = result;
 
       expect(result).toBeDefined();
