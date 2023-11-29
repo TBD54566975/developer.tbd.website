@@ -7,6 +7,7 @@ import {
   queryPlaylistFromDid,
   readRecordFromId,
   readRecordByIdFromDid,
+  sortQueriedRecordsByDate,
   deleteRecordFromDid,
 } from '../../../../code-snippets/api/web5-js/dwn/records';
 
@@ -45,6 +46,11 @@ describe('records', () => {
 
     test('queryPlaylistFromDid queries records', async () => {
       const result = await queryPlaylistFromDid(web5, myDid);
+      expect(result).toBeDefined();
+    });
+
+    test('sortQueriedRecordsByDate queries and sorts records', async () => {
+      const result = await sortQueriedRecordsByDate(web5);
       expect(result).toBeDefined();
     });
 

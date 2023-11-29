@@ -36,8 +36,8 @@ export async function createRecordAndSend(web5, myDid, bobDid) {
     },
   });
 
-  /* 
-  send the record to the user's remote DWNs. Only needed 
+  /*
+  send the record to the user's remote DWNs. Only needed
   if it's a record that cannot wait for sync to occur.
   */
   const { status: myDidStatus } = await record.send(myDid);
@@ -61,6 +61,22 @@ export async function queryPlaylistFromDid(web5, myDid) {
 
   response.records.forEach((record) => {
     console.log(record.id);
+  });
+
+  return response;
+}
+
+export async function sortQueriedRecordsByDate(web5) {
+  // Sorting records by dateCreated in ascending order
+  const response = await web5.dwn.records.query({
+    message: {
+      filter: {
+        dataFormat: 'text/plain',
+      },
+      //highlight-start
+      dateSort: 'createdAscending'
+      //highlight-end
+    }
   });
 
   return response;

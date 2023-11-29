@@ -254,19 +254,7 @@ Method for querying the DWN of a provided target. See [query from DWN guide](/do
 #### Code Examples
 <CodeSnippet functionName='queryPlaylistFromDid' />
 
-```js
-// Sorting records by dateCreated in ascending order
-const response = await web5.dwn.records.query({
-  message: {
-    filter: {
-      dataFormat: 'text/plain',
-    },
-    //highlight-start
-    dateSort: 'createdAscending'
-    //highlight-end
-  }
-});
-```
+<CodeSnippet functionName='sortQueriedRecordsByDate' />
 
 <Divider type="slash"/>
 
@@ -318,58 +306,8 @@ Reads a record stored in the user's local DWN, remote DWN, or another party's DW
                                         />,
                                     },
                                 },
-                                {
-                                  data: {
-                                    isOptional: true,
-                                    type: 'string',
-                                    field: 'messageTimestamp',
-                                    value: 'Time the record was created.',
-                                  },
-                                },
-                                {
-                                  data: {
-                                    isOptional: true,
-                                    type: 'string',
-                                    field: 'permissionsGrantId',
-                                    value: 'The id of the permission granted to the record.',
-                                  },
-                                },
-                                {
-                                  data: {
-                                    isOptional: true,
-                                    type: 'string',
-                                    field: 'protocolRole',
-                                    value: 'The protocol path to a $globalRole record whose recipient is the author of this RecordsRead',
-                                  },
-                                },
-                                {
-                                  data: {
-                                    isOptional: true,
-                                    isObject: true,
-                                    type: 'Signer',
-                                    field: 'signer',
-                                    value: <ApiDetails
-                                              details={[
-                                              {
-                                                  data: {
-                                                      type: 'string',
-                                                      field: 'keyId',
-                                                      value: 'The fully-qualified ID (prefixed with did) of the "key" used by this signer. This value will be used as the kid parameter in JWS produced. Example: did:example:alice#key1',
-                                                  },
-                                              },
-                                              {
-                                                  data: {
-                                                      type: 'string',
-                                                      field: 'algorithm',
-                                                      value: 'The name of the signature algorithm used by this signer. This value will be used as the "alg" parameter in JWS produced. Valid signature algorithm values can be found at https://www.iana.org/assignments/jose/jose.xhtml',
-                                                  },
-                                              }
-                                          ]}
-                                      />,
-                                },
-                              },
-                          ]}
-                      />,
+                            ]}
+                        />,
                   },
                 },
             ]}
