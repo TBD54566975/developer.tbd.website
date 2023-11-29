@@ -1,4 +1,4 @@
-export async function createRecordHelloWorld(web5, myDid) {
+export async function createRecordWithHighlight(web5, myDid) {
   const { record } = await web5.dwn.records.create({
     data: "Hello World!",
     message: {
@@ -12,6 +12,20 @@ export async function createRecordHelloWorld(web5, myDid) {
 
   return record;
 }
+
+export async function createRecord(web5, myDid) {
+  const { record } = await web5.dwn.records.create({
+    data: 'Hello World!',
+    message: {
+      dataFormat: 'text/plain',
+    },
+  });
+
+  const { status } = await record.send(myDid);
+
+  return record;
+}
+
 
 export async function readRecord(textRecord) {
   const recordText = await textRecord.data.text();
