@@ -39,14 +39,14 @@ Creates a new record and stores it in the user's local DWN, remote DWNs, or anot
                         field: 'store',
                         value: 'Specifies whether to store the record in the user\'s local DWN. You might pass false if you don\'t want to retain a copy of the record for yourself.',
                     },
-                },                   
+                },
                 {
                     data: {
                         type: 'text|object|file|blob',
                         field: 'data',
                         value: 'The data payload of the record',
                     },
-                },                                 
+                },
                 {
                     data: {
                         isObject: true,
@@ -61,7 +61,7 @@ Creates a new record and stores it in the user's local DWN, remote DWNs, or anot
                                         field: 'recipient',
                                         value: 'The DID of the recipient whose DWN to write to',
                                     },
-                                },                                    
+                                },
                                 {
                                     data: {
                                         type: 'string',
@@ -69,7 +69,7 @@ Creates a new record and stores it in the user's local DWN, remote DWNs, or anot
                                         field: 'protocol',
                                         value: 'The URI of the protocol under which the record will be bucketed',
                                     },
-                                },  
+                                },
                                 {
                                     data: {
                                         type: 'string',
@@ -77,7 +77,7 @@ Creates a new record and stores it in the user's local DWN, remote DWNs, or anot
                                         field: 'schema',
                                         value: 'The URI of the schema under which the record will be bucketed',
                                     },
-                                }, 
+                                },
                                 {
                                     data: {
                                         type: 'string',
@@ -101,11 +101,11 @@ Creates a new record and stores it in the user's local DWN, remote DWNs, or anot
                                         field: 'datePublished',
                                         value: 'The date to make the record public. It should be in ISO 8601 (\'YYYY-MM-DDThh:mm:ss.ssssssZ\') format. Note that if the datePublished field is omitted and published is set to true, the record will be published upon creation.',
                                     },
-                                },                                                                                                                            
+                                },
                             ]}
                         />,
                     },
-                },                                             
+                },
             ]}
           />,
       },
@@ -123,7 +123,7 @@ Creates a new record and stores it in the user's local DWN, remote DWNs, or anot
             field: 'response',
             value: 'A response object containing the status of the request and a Record object if successful',
         },
-    },                              
+    },
   ]}
 />
 
@@ -135,7 +135,7 @@ Creates a new record and stores it in the user's local DWN, remote DWNs, or anot
 <CodeSnippet functionName="createRecordAndSend" />
 
 ```js
-// this creates a record today to be published tomorrow 
+// this creates a record today to be published tomorrow
 import { Temporal } from '@js-temporal/polyfill';
 
 let today = Temporal.Now.instant();
@@ -204,7 +204,7 @@ Method for querying the DWN of a provided target. See [query from DWN guide](/do
                                                         field: 'protocol',
                                                         value: 'The URI of the protocol bucket in which to query',
                                                     },
-                                                },  
+                                                },
                                                 {
                                                     data: {
                                                         type: 'string',
@@ -212,7 +212,7 @@ Method for querying the DWN of a provided target. See [query from DWN guide](/do
                                                         field: 'schema',
                                                         value: 'The URI of the schema bucket in which to query',
                                                     },
-                                                }, 
+                                                },
                                                 {
                                                     data: {
                                                         type: 'string',
@@ -220,15 +220,15 @@ Method for querying the DWN of a provided target. See [query from DWN guide](/do
                                                         field: 'dataFormat',
                                                         value: 'The IANA string corresponding with the format of the data to filter for. See IANA\'s Media Type list here: https://www.iana.org/assignments/media-types/media-types.xhtml',
                                                     },
-                                                },                                                                                                                            
+                                                },
                                             ]}
                                         />,
                                     },
-                                },                                       
+                                },
                             ]}
                         />,
                     },
-                },                                             
+                },
             ]}
           />,
       },
@@ -247,26 +247,14 @@ Method for querying the DWN of a provided target. See [query from DWN guide](/do
             field: 'response',
             value: 'An object containing an array of records that match the query',
         },
-    },                              
+    },
   ]}
 />
 
 #### Code Examples
 <CodeSnippet functionName='queryPlaylistFromDid' />
 
-```js
-// Sorting records by dateCreated in ascending order
-const response = await web5.dwn.records.query({
-  message: {
-    filter: {
-      dataFormat: 'text/plain',
-    },
-    //highlight-start
-    dateSort: 'createdAscending'
-    //highlight-end
-  }
-});
-```
+<CodeSnippet functionName='sortQueriedRecordsByDate' />
 
 <Divider type="slash"/>
 
@@ -292,7 +280,7 @@ Reads a record stored in the user's local DWN, remote DWN, or another party's DW
                         field: 'from',
                         value: 'The DID of the DWN the read request will fetch the indicated record from',
                     },
-                },                               
+                },
                 {
                     data: {
                         isObject: true,
@@ -313,15 +301,15 @@ Reads a record stored in the user's local DWN, remote DWN, or another party's DW
                                                         field: 'recordId',
                                                         value: 'The id that identifies the record data to fetch',
                                                     },
-                                                },                            
+                                                },
                                             ]}
                                         />,
                                     },
-                                },                            
+                                },
                             ]}
                         />,
                   },
-                },                                             
+                },
             ]}
           />,
       },
@@ -374,7 +362,7 @@ Deletes a record stored in the user's local DWN, remote DWN, or another party's 
                         field: 'from',
                         value: 'The DID of the DWN the delete tombstone will be sent to',
                     },
-                },                               
+                },
                 {
                     data: {
                         isObject: true,
@@ -388,11 +376,11 @@ Deletes a record stored in the user's local DWN, remote DWN, or another party's 
                                         field: 'recordId',
                                         value: 'The id of the record to delete',
                                     },
-                                },                            
+                                },
                             ]}
                         />,
                   },
-                },                                             
+                },
             ]}
           />,
       },
