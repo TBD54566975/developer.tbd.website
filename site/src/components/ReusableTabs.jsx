@@ -6,18 +6,16 @@ const ReusableTabs = ({MacCommand, WinCommand}) => {
     return (
         <Tabs >
             <TabItem value="mac" label="Mac" default>
-                {MacCommand}
+                <pre class="prism-code language-bash codeBlock_node_modules-@docusaurus-theme-classic-lib-theme-CodeBlock-Content-styles-module thin-scrollbar">
+                    <code class="codeBlockLines_node_modules-@docusaurus-theme-classic-lib-theme-CodeBlock-Content-styles-module">{MacCommand}</code>
+                </pre>
             </TabItem>
             <TabItem value="windows" label="Windows">
-                {WinCommand}
+                <pre class="prism-code language-json codeBlock_node_modules-@docusaurus-theme-classic-lib-theme-CodeBlock-Content-styles-module thin-scrollbar">
+                    <code class="codeBlockLines_node_modules-@docusaurus-theme-classic-lib-theme-CodeBlock-Content-styles-module">{WinCommand}</code>
+                </pre>
             </TabItem>
         </Tabs>
 )};
-
-// Set default commands if not provided
-ReusableTabs.defaultProps = {
-    MacCommand: `curl -X PUT localhost:8080/v1/dids/key -d '{"keyType":"Ed25519"}'`,
-    WinCommand: `curl -X PUT localhost:8080/v1/dids/key -d "{\"keyType\":\"Ed25519\"}"`,
-};
 
 export default ReusableTabs;
