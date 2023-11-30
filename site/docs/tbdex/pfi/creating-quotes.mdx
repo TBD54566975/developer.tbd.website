@@ -13,7 +13,7 @@ When your PFI receives an RFQ message, you’ll want to do the following:
 * Verify the Wallet’s credentials as required by the Offering selected
 * Create a Quote and store it in your PFI database
 
-RFQ storage was discussed in the [Exchange API Provider](docs/tbdex/anatomy-of-a-pfi) section, so this section will discuss the next 3 steps.
+RFQ storage was discussed in the [Exchange API Provider](docs/tbdex/anatomy-of-a-pfi) section, so this section will discuss the following steps.
 
 
 ### Find an Offering
@@ -22,6 +22,8 @@ After inserting the RFQ you received into your database, you’ll want to search
 
 
 ```js
+import { Quote } from '@tbdex/http-server'
+
 async write(opts: { message: MessageKindClass }) {
    const { message } = opts
    const subject = aliceMessageKinds.has(message.kind) ? message.from : message.to
@@ -46,7 +48,7 @@ async write(opts: { message: MessageKindClass }) {
 
 ### Verifying the Wallet’s Credentials
 
-After receiving an RFQ and finding the matching Offering for it, you’ll want to verify that the Wallet satisfies the necessary requirements for the Offering. The RFQ class offers the `[verifyOfferingRequirements](https://developer.tbd.website/docs/tbdex/api-reference/tbdex-js/protocol/classes/rfq/#verifyofferingrequirements)` method to do so, which uses PEX to check that the claim or credential provided in the RFQ satisfies the presentation definition that was given on the offering. That may look like this:
+After receiving an RFQ and finding the matching Offering for it, you’ll want to verify that the Wallet satisfies the necessary requirements for the Offering. The RFQ class offers the [verifyOfferingRequirements](/docs/tbdex/api-reference/tbdex-js/protocol/classes/Rfq#verifyofferingrequirements) method to do so, which uses PEX to check that the claim or credential provided in the RFQ satisfies the presentation definition that was given on the offering. That may look like this:
 
 
 ```js

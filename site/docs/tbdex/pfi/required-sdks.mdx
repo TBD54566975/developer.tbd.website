@@ -1,0 +1,26 @@
+---
+sidebar_position: 3
+---
+
+# Required SDKs
+
+To implement a PFI, you’ll need to make use of the following SDKs:
+
+
+* [**web5/dids**](https://github.com/TBD54566975/web5-js) - In order to deal with [Decentralized Identifiers (DID)](docs/web5/learn/decentralized-identifiers), including verifying identities and performing any other required cryptographic functions, you’ll need the appropriate DID SDK.
+* [**web5/credentials**](https://github.com/TBD54566975/web5-js) - As a PFI you’ll want to verify information about your customers, including things like they’re identity or whether they’re on a sanctions list. Verifiable Credentials provide a decentralized and trustworthy way of proving facts about an entity.
+* [**tbdex/server**](https://github.com/TBD54566975/tbdex-js) - To send and receive messages on the tbDEX network, you’ll need a networking solution. This SDK provides convenience methods for setting up routing and networking to facilitate your PFI.
+
+To obtain the required tbDEX SDKs in your project, run the following command:
+
+```bash
+npm install @tbdex/http-server
+```
+
+With this installed, you'll make imports that look something like this in your project:
+
+```js
+import { TbdexHttpServer } from `@tbdex/http-server`
+import type { Rfq, Order, Close } from '@tbdex/http-server'
+
+```

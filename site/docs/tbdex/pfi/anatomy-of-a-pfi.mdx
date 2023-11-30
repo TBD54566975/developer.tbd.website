@@ -26,6 +26,8 @@ To begin, you’ll want to configure your server with the required exchange and 
 
 
 ```js
+import { TbdexHttpServer } from '@tbdex/http-server'
+
 const httpApi = new TbdexHttpServer({ exchangesApi: ExchangeApiProvider, offeringsApi: OfferingApiProvider })
 ```
 
@@ -51,7 +53,7 @@ httpApi.submit('close', async (ctx, close) => {
 With your routes configured, you’ll then want to set your server to begin listening:
 
 
-```
+```js
 const server = httpApi.listen(config.port, () => {
   log.info(`Mock PFI listening on port ${config.port}`)
 })
@@ -63,7 +65,7 @@ Now your server is configured with the appropriate routing setup!
 
 ### Exchange API Provider
 
-The Exchanges API is the set of methods that deals with reading and writing any messages data, based on the [`ExchangesApi`](https://developer.tbd.website/docs/tbdex/api-reference/tbdex-js/http-server/interfaces/ExchangesApi) class. Although the interface for `ExchangesApi` only requires to be filled out with read operations, you may find it useful to couple write operations into the class as well. 
+The Exchanges API is the set of methods that deals with reading and writing any messages data, based on the [`ExchangesApi`](docs/tbdex/api-reference/tbdex-js/http-server/interfaces/ExchangesApi) class. Although the interface for `ExchangesApi` only requires to be filled out with read operations, you may find it useful to couple write operations into the class as well. 
 
 Using the sample code above as reference, the submission of RFQ, Order, or Close data will result in the triggering of the Exchange API Provider’s `write()`, while the required methods such as `getOrder()` will serve as read methods. 
 
@@ -94,12 +96,15 @@ After writing an RFQ to the database, you’ll then want to [create a Quote](doc
 
 ### Offerings API Provider
 
-The Offerings API is the set of methods that deals with reading and writing any offering data, based on the [OfferingsApi](https://developer.tbd.website/docs/tbdex/api-reference/tbdex-js/http-server/interfaces/OfferingsApi) class. Although the interface for `OfferingsApi` only requires to be filled out with read operations, you may find it useful to couple write operations into the class as well. 
+The Offerings API is the set of methods that deals with reading and writing any offering data, based on the [OfferingsApi](docs/tbdex/api-reference/tbdex-js/http-server/interfaces/OfferingsApi) class. Although the interface for `OfferingsApi` only requires to be filled out with read operations, you may find it useful to couple write operations into the class as well. 
 
 Although the Offerings API isn’t directly exposed in the main server entrypoint, it is still used to fetch and write offerings to your PFIs database. To get a single or multiple offerings as specified by the OfferingsApi interface, you could write the following:
 
 
 ```js
+
+import { Offering } from '@tbdex/http-server'
+
 async getOffering(opts: {id: string}): Promise<Offering> {
     const [ result ] =  await dataProvider.queryForOffering('offering', opts.id);
 

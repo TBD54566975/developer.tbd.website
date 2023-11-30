@@ -4,7 +4,7 @@ sidebar_position: 8
 
 # Processing Orders
 
-Order storage was discussed in the [Offerings API Provider](docs/tbdex/anatomy-of-a-pfi) section, so this section will discuss the next 3 steps.
+Order storage was discussed in the [Offerings API Provider](docs/tbdex/anatomy-of-a-pfi) section, so this section will discuss the following steps.
 
 
 ### Provide an Initial OrderStatus
@@ -13,6 +13,8 @@ Upon receipt of the Order message and after storing that message, you will want 
 
 
 ```js
+import { Order, OrderStatus } from '@tbdex/http-server'
+
     if (message.kind == 'order') {
       const orderStatus = OrderStatus.create(
         {
