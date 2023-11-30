@@ -4,4 +4,24 @@ sidebar_position: 4
 
 # Onboarding
 
-Before beginning development of your PFI’s code, you’ll need to create an identity to make your PFI discoverable on the network. The tbDEX network is built to be decentralized, which is why you’ll need to create your own DID to assign to the PFI. That DID will represent the PFI, as well as serve as the signer for tbDEX messages and resources that are sent to other parties.
+Before beginning development of your PFI’s code, you’ll need to create an identity to use on the network. The tbDEX network is built to be decentralized, which is why you’ll need to create your own [Decentralized Identifier](/docs/web5/learn/decentralized-identifiers) (DID) to assign to the PFI. That DID will represent the PFI, as well as serve as the signer for tbDEX messages and resources that are sent to other parties.
+
+DIDs are associated with [DID Documents](/docs/web5/learn/did_document) which describe how to engage with your PFI.
+
+
+To create a DID and identify yourself as a PFI, use the [@web5/dids SDK](https://www.npmjs.com/package/@web5/dids):
+
+```js
+import { DidDhtMethod } from '@web5/dids'
+
+const did = await DidDhtMethod.create({
+  publish: true,
+  services: [{
+    type: 'PFI',
+    id: 'pfi',
+    serviceEndpoint: 'tbdex-pfi.tbddev.org'
+  }]
+})
+```
+
+Note that the value for `serviceEndpoint` should be the URL to your PFI's service entry.
