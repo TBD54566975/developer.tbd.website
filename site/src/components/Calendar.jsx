@@ -73,6 +73,7 @@ const createGoogleCalendarLink = (event) => {
 };
 
 const CalendarComponent = () => {
+  const [unfilteredEvents, setUnfilteredEvents] = useState([]);
   const [events, setEvents] = useState([]);
   const [groupedEvents, setGroupedEvents] = useState({});
   const [currentMonth, setCurrentMonth] = useState(new Date());
@@ -152,34 +153,40 @@ const CalendarComponent = () => {
   }, [selectedTypes, events]);
 
   useEffect(() => {
-    const fetchEvents = () => {
-      const startOfMonth = new Date(
-        currentMonth.getFullYear(),
-        currentMonth.getMonth(),
-        1,
-      ).toISOString();
+    const fetchEvents = async () => {
+      // We only load events once, because the API will retrieve all of them
+      let allEvents = unfilteredEvents;
+      if (!allEvents?.length) {
+        try {
+          const allEventsRes = await fetch(
+            `https://developer-tbd-website-calendar-service.tbddev.org/events`,
+          );
+          const allEvents = await allEventsRes.json();
+          setUnfilteredEvents(allEvents);
+        } catch (error) {
+          console.error('Error fetching events:', error);
+        }
+      }
+
+      const now = new Date();
+      const nextMonthNumber =
+        currentMonth.getMonth() === 12 ? 1 : currentMonth.getMonth() + 1;
+
       const endOfMonth = new Date(
         currentMonth.getFullYear(),
-        currentMonth.getMonth() + 1,
+        nextMonthNumber,
         0,
-      ).toISOString();
+      );
 
-      fetch(
-        `/.netlify/functions/fetch-calendar-events?timeMin=${encodeURIComponent(
-          startOfMonth,
-        )}&timeMax=${encodeURIComponent(endOfMonth)}`,
-      )
-        .then((response) => response.json())
-        .then((data) => {
-          const now = new Date();
-          const upcomingEvents = data.filter((event) => {
-            const eventStartDate = new Date(event.start);
-            return eventStartDate >= now;
-          });
-          groupEventsByDate(upcomingEvents);
-          setEvents(upcomingEvents);
-        })
-        .catch((error) => console.error('Error fetching events:', error));
+      const monthEvents = allEvents.filter((event) => {
+        const eventStartDate = new Date(event.start);
+        const isUpcoming =
+          eventStartDate >= now && eventStartDate >= currentMonth;
+        const isThisMonth = eventStartDate <= endOfMonth;
+        return isUpcoming && isThisMonth;
+      });
+      groupEventsByDate(monthEvents);
+      setEvents(monthEvents);
     };
 
     fetchEvents();

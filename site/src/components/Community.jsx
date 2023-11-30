@@ -10,8 +10,14 @@ function CommunityCard({ icon, title, CTA, buttonUrl, buttonText }) {
         <div>
           <h3 className="text-[#22f1ff]">{title}</h3>
           <p>{CTA}</p>
-          <div className='padding-top--lg' />
-          <Button label={buttonText} url={buttonUrl} colorDarkMode="cyan" isExternalLink="true" className="community-button "/>
+          <div className="padding-top--lg" />
+          <Button
+            label={buttonText}
+            url={buttonUrl}
+            colorDarkMode="cyan"
+            isExternalLink={true}
+            className="community-button "
+          />
         </div>
       </div>
     </div>
@@ -21,11 +27,10 @@ function CommunityCard({ icon, title, CTA, buttonUrl, buttonText }) {
 function Community() {
   return (
     <div>
-      <h2 class="mb-4">Join the Community</h2>
-      <p className='mb-8'>Connect with us everywhere.</p>
+      <h2 className="mb-4">Join the Community</h2>
+      <p className="mb-8">Connect with us everywhere.</p>
 
       <div className="community-card grid grid-cols-1 tablet:grid-cols-3 desktop:grid-cols-3 gap-4">
-    
         <CommunityCard
           title="GitHub"
           icon="/img/github-icon.svg"
@@ -49,7 +54,6 @@ function Community() {
         />
       </div>
     </div>
-
   );
 }
 
