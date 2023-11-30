@@ -13,12 +13,12 @@ When your PFI receives an RFQ message, you’ll want to do the following:
 * Verify the Wallet’s credentials as required by the Offering selected
 * Create a Quote and store it in your PFI database
 
-RFQ storage was discussed in the [Exchange API Provider](docs/tbdex/anatomy-of-a-pfi) section, so this section will discuss the following steps.
+RFQ storage was discussed in the [Exchange API Provider](docs/tbdex/pfi/anatomy-of-a-pfi) section, so this section will discuss the following steps.
 
 
 ### Find an Offering
 
-After inserting the RFQ you received into your database, you’ll want to search your offerings database for the Offering the RFQ is requesting. RFQs contain a required `offeringId` field that you can call your Offerings API provider’s `getOffering()` method to find exactly what you’re looking for. Building on the example from our [Exchange API Provider section](docs/tbdex/anatomy-of-a-pfi), your code might look like this:
+After inserting the RFQ you received into your database, you’ll want to search your offerings database for the Offering the RFQ is requesting. RFQs contain a required `offeringId` field that you can call your Offerings API provider’s `getOffering()` method to find exactly what you’re looking for. Building on the example from our [Exchange API Provider section](pfi/anatomy-of-a-pfi), your code might look like this:
 
 
 ```js

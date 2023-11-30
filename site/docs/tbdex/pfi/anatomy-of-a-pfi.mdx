@@ -32,7 +32,7 @@ const httpApi = new TbdexHttpServer({ exchangesApi: ExchangeApiProvider, offerin
 ```
 
 
-Referring back to the [message types](docs/tbdex/message-types), you’ll notice that of the five listed, three of them will be sent from Wallets to PFIs: RFQ, Order, and Close. As a result, you’ll want to ensure that your PFI is programmed to accept those 3 messages and set appropriate callbacks to each request:
+Referring back to the [message types](docs/tbdex/pfi/message-types), you’ll notice that of the five listed, three of them will be sent from Wallets to PFIs: RFQ, Order, and Close. As a result, you’ll want to ensure that your PFI is programmed to accept those 3 messages and set appropriate callbacks to each request:
 
 
 ```js
@@ -91,7 +91,7 @@ As a PFI developer you’ll be responsible for designing your own data storage a
 ```
 
 
-After writing an RFQ to the database, you’ll then want to [create a Quote](docs/tbdex/creating-quotes). Similarly, after writing an Order to your database, you’ll want to ensure you properly [process that Order](docs/tbdex/processing-orders).
+After writing an RFQ to the database, you’ll then want to [create a Quote](docs/tbdex/pfi/creating-quotes). Similarly, after writing an Order to your database, you’ll want to ensure you properly [process that Order](docs/tbdex/pfi/processing-orders).
 
 
 ### Offerings API Provider
