@@ -74,10 +74,7 @@ As a PFI developer you’ll be responsible for designing your own data storage a
 
 ```js
  async write(opts: { message: MessageKindClass }) {
-    const { message } = opts
-    const subject = aliceMessageKinds.has(message.kind) ? message.from : message.to
-
-    const result = await dataProvider.insert(
+  const result = await dataProvider.insert(
         'exchange',
       {
         exchangeid: message.exchangeId,
