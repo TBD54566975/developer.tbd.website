@@ -1,8 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { useEffect, useState } from 'react';
-import Link from '@docusaurus/Link';
-import { useLocation } from '@docusaurus/router';
 
 const Button = ({
   label,

@@ -156,7 +156,7 @@ const CalendarComponent = () => {
     const fetchEvents = async () => {
       // We only load events once, because the API will retrieve all of them
       let allEvents = unfilteredEvents;
-      if (!allEvents) {
+      if (!allEvents?.length) {
         try {
           const allEventsRes = await fetch(
             `https://developer-tbd-website-calendar-service.tbddev.org/events`,
@@ -169,15 +169,21 @@ const CalendarComponent = () => {
       }
 
       const now = new Date();
+      const nextMonthNumber =
+        currentMonth.getMonth() === 12 ? 1 : currentMonth.getMonth() + 1;
+
       const endOfMonth = new Date(
         currentMonth.getFullYear(),
-        currentMonth.getMonth() + 1,
+        nextMonthNumber,
         0,
       );
 
       const monthEvents = allEvents.filter((event) => {
         const eventStartDate = new Date(event.start);
-        return eventStartDate >= now && eventStartDate <= endOfMonth;
+        const isUpcoming =
+          eventStartDate >= now && eventStartDate >= currentMonth;
+        const isThisMonth = eventStartDate <= endOfMonth;
+        return isUpcoming && isThisMonth;
       });
       groupEventsByDate(monthEvents);
       setEvents(monthEvents);
