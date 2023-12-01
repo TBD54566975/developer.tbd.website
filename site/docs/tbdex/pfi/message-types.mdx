@@ -1,0 +1,19 @@
+---
+sidebar_position: 2
+---
+
+# Message Types
+
+PFIs are able to communicate with Wallets by using the following tbDEX message types:
+
+* [**RFQ**](/docs/tbdex/api-reference/tbdex-js/protocol/classes/Rfq) - A message sent by a wallet to a PFI requesting a quote for an ask
+
+* [**Quote**](/docs/tbdex/pfi/creating-quotes) - A quote sent by the PFI in response to an RFQ, including a locked-in price that the PFI is willing to honor until a built-in expiration date
+
+* [**Order**](/docs/tbdex/pfi/processing-orders) - a message sent by a wallet to a PFI to accept a quote
+
+* [**OrderStatus**](/docs/tbdex/pfi/processing-orders#provide-an-initial-orderstatus) - A message sent by the PFI to a wallet to convey the current status of an order.
+
+* [**Close**](/docs/tbdex/pfi/processing-orders#close-the-order) - A message sent by a wallet or a PFI in response to an RFQ or Quote
+
+Additionally as a PFI, you'll offer a list of [Offerings](/docs/tbdex/pfi/creating-offerings), which is represented by a resource used to describe a currency pair that can be exchanged and includes requirements, conditions, and constraints needed to fulfill the described swap. 

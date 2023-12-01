@@ -1,0 +1,181 @@
+---
+sidebar_position: 6
+---
+
+# Creating Offerings
+
+Offerings describe a currency pair that can be exchanged and specify the requirements, conditions, and constraints needed to fulfill the described swap. 
+
+In other words, an `Offering` is a way of describing a financial product you’re offering as a PFI on a tbDEX network. 
+
+## Offering Object
+
+As part of creating your offering, you’d need the following properties:
+
+* Currency pairings for the swap
+* Pay-in methods
+* Pay-out methods
+* Pay-out conversion
+* Required credentials
+
+To define these parameters, you’ll create a JSON object per the [Offering schema](https://github.com/TBD54566975/tbdex/tree/main/specs/protocol#offering):
+
+
+<table>
+  <tr>
+   <td><strong>Offering Trait</strong>
+   </td>
+   <td><strong>tbDEX Field</strong>
+   </td>
+   <td><strong>Data Type</strong>
+   </td>
+  </tr>
+  <tr>
+   <td>Currency Pairing for swap
+   </td>
+   <td>payinCurrency and payoutCurrency
+   </td>
+   <td>CurrencyDetails
+   </td>
+  </tr>
+  <tr>
+   <td>Pay-in Method
+   </td>
+   <td>payinMethods
+   </td>
+   <td>PaymentMethod[]
+   </td>
+  </tr>
+  <tr>
+   <td>Pay-out Method
+   </td>
+   <td>payoutMethods
+   </td>
+   <td>PaymentMethods[]
+   </td>
+  </tr>
+  <tr>
+   <td>Pay-out Conversion
+   </td>
+   <td>payoutUnitsPerPayinUnit
+   </td>
+   <td>string
+   </td>
+  </tr>
+  <tr>
+   <td>Required Credentials
+   </td>
+   <td>requiredClaims
+   </td>
+   <td>PresentationDefinitionV2
+   </td>
+  </tr>
+</table>
+
+
+## Sample Offering
+
+```js
+{
+  "metadata": {
+    "from": "did:ex:pfi",
+    "kind": "offering",
+    "id": "offering_01ha82y8d0fhstg95hhfjwmgxf",
+    "createdAt": "2023-09-13T20:15:22.528Z"
+  },
+  "data": {
+    "description": "Selling BTC for USD",
+    "payinCurrency": {
+      "currencyCode": "USD"
+    },
+    "payoutCurrency": {
+      "currencyCode": "BTC",
+      "maxSubunits": "99952611"
+    },
+    "payoutUnitsPerPayinUnit": "0.00003826",
+    "payinMethods": [
+      {
+        "kind": "DEBIT_CARD",
+        "requiredPaymentDetails": {
+          "$schema": "http://json-schema.org/draft-07/schema",
+          "type": "object",
+          "properties": {
+            "cardNumber": {
+              "type": "string",
+              "description": "The 16-digit debit card number",
+              "minLength": 16,
+              "maxLength": 16
+            },
+            "expiryDate": {
+              "type": "string",
+              "description": "The expiry date of the card in MM/YY format",
+              "pattern": "^(0[1-9]|1[0-2])\\/([0-9]{2})$"
+            },
+            "cardHolderName": {
+              "type": "string",
+              "description": "Name of the cardholder as it appears on the card"
+            },
+            "cvv": {
+              "type": "string",
+              "description": "The 3-digit CVV code",
+              "minLength": 3,
+              "maxLength": 3
+            }
+          },
+          "required": [
+            "cardNumber",
+            "expiryDate",
+            "cardHolderName",
+            "cvv"
+          ],
+          "additionalProperties": false
+        }
+      }
+    ],
+    "payoutMethods": [
+      {
+        "kind": "BTC_ADDRESS",
+        "requiredPaymentDetails": {
+          "$schema": "http://json-schema.org/draft-07/schema",
+          "type": "object",
+          "properties": {
+            "btcAddress": {
+              "type": "string",
+              "description": "your Bitcoin wallet address"
+            }
+          },
+          "required": [
+            "btcAddress"
+          ],
+          "additionalProperties": false
+        }
+      }
+    ],
+    "requiredClaims": {
+      "id": "7ce4004c-3c38-4853-968b-e411bafcd945",
+      "input_descriptors": [
+        {
+          "id": "bbdb9b7c-5754-4f46-b63b-590bada959e0",
+          "constraints": {
+            "fields": [
+              {
+                "path": [
+                  "$.type"
+                ],
+                "filter": {
+                  "type": "string",
+                  "const": "YoloCredential"
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  },
+  "signature": "eyJhbGciOiJFZERTQSIsImtpZCI6ImRpZDprZXk6ejZNa2syc1QyZUtvQWdUUTdzWjY3YTdmRDMzR21jYzZ1UXdaYmlxeWF5Rk1hYkhHI3o2TWtrMnNUMmVLb0FnVFE3c1o2N2E3ZkQzM0dtY2M2dVF3WmJpcXlheUZNYWJIRyJ9..9EBTL3VcajsQzSNOm8GElhcwvYcFGaRp24FTwmC845RCF84Md-ZB-CxdCo7kEjzsAY8OaB55XFSH_8K9vedhAw"
+}
+```
+
+
+Once the Offering has been generated, you can store it in your database using code as shown in the [Exchange API Provider section](/docs/tbdex/pfi/anatomy-of-a-pfi#exchange-api-provider).
