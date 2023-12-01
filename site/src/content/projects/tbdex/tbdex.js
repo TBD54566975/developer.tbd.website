@@ -61,7 +61,7 @@ export const content = {
       {
         title: 'Participating Financial Institutions (PFIs)',
         description:
-          'entities that offer liquidity services on the tbDEX network',
+          'entities that offer liquidity services on a tbDEX network',
       },
       {
         title: 'Credential Issuer',

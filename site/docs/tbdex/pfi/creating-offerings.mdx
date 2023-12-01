@@ -4,9 +4,13 @@ sidebar_position: 6
 
 # Creating Offerings
 
-Offerings describe a currency pair that can be exchanged and specify the requirements, conditions, and constraints needed to fulfill the described swap. In other words, an Offering is a way of describing a financial product you’re offering as a PFI on the tbDEX network. As part of creating your offering as described by our definition, you’d need the following traits:
+Offerings describe a currency pair that can be exchanged and specify the requirements, conditions, and constraints needed to fulfill the described swap. 
 
+In other words, an `Offering` is a way of describing a financial product you’re offering as a PFI on a tbDEX network. 
 
+## Offering Object
+
+As part of creating your offering, you’d need the following properties:
 
 * Currency pairings for the swap
 * Pay-in methods
@@ -14,7 +18,7 @@ Offerings describe a currency pair that can be exchanged and specify the require
 * Pay-out conversion
 * Required credentials
 
-To define these parameters, you’ll create a json object per the [Offering schema](https://github.com/TBD54566975/tbdex/tree/main/specs/protocol#offering) as defined by tbDEX and map them to fields defined by the protocol in the following way:
+To define these parameters, you’ll create a JSON object per the [Offering schema](https://github.com/TBD54566975/tbdex/tree/main/specs/protocol#offering):
 
 
 <table>
@@ -69,8 +73,7 @@ To define these parameters, you’ll create a json object per the [Offering sche
 </table>
 
 
-A sample Offering could look like this:
-
+## Sample Offering
 
 ```js
 {
@@ -175,4 +178,4 @@ A sample Offering could look like this:
 ```
 
 
-Once the Offering has been generated, you can store it in your database using code as shown in the [Exchange API Provider section](/docs/tbdex/pfi/anatomy-of-a-pfi#exchange-api-provider)
+Once the Offering has been generated, you can store it in your database using code as shown in the [Exchange API Provider section](/docs/tbdex/pfi/anatomy-of-a-pfi#exchange-api-provider).

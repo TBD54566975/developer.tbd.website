@@ -4,13 +4,12 @@ sidebar_position: 5
 
 # Anatomy of a PFI
 
-To participate in the tbDEX network as a PFI, you’ll need to stand up a server that allows you to receive tbDEX protocol messages, process those messages, and provide an appropriate response. As a result, you’ll need 3 core components: 
-
-
-
+To participate in a tbDEX network as a PFI, you’ll need to stand up a server that allows you to receive tbDEX protocol messages, process those messages, and provide an appropriate response. As a result, you’ll need these core components: 
 
 * **A main server entry point** - this will leverage the tbDEX SDK to create an http server subscribed to tbDEX messaging.
+
 * **An exchange API provider** - this class is responsible for implementing the ExchangeApi protocol, which is a common interface for managing the database containing your tbDEX offer, order, quote, close, and RFQ data.
+
 * **An offering API provider** - this class is responsible for implementing the OfferingsApi protocol, which is a common interface for managing the database containing your offerings data.
 
 
@@ -18,13 +17,10 @@ To participate in the tbDEX network as a PFI, you’ll need to stand up a server
 
 Your main server entrypoint should fulfill the following responsibilities:
 
-
-* Accept GET requests for offerings and exchanges data
-* Handle submission requests for new RFQs, Orders, and Closes
+* Accept `GET` requests for Offerings and Exchanges data
+* Handle submission requests for new `RFQ`, `Order`, and `Close` messages
 
 To begin, you’ll want to configure your server with the required exchange and offerings API providers:
-
-
 ```js
 import { TbdexHttpServer } from '@tbdex/http-server'
 
@@ -32,7 +28,8 @@ const httpApi = new TbdexHttpServer({ exchangesApi: ExchangeApiProvider, offerin
 ```
 
 
-Referring back to the [message types](docs/tbdex/pfi/message-types), you’ll notice that of the five listed, three of them will be sent from Wallets to PFIs: RFQ, Order, and Close. As a result, you’ll want to ensure that your PFI is programmed to accept those 3 messages and set appropriate callbacks to each request:
+The [message types](/docs/tbdex/pfi/message-types) that are sent from Wallets to PFIs are: `RFQ`, `Order`, and `Close`. 
+As a result, you’ll want to ensure that your PFI is programmed to accept those messages and create appropriate messages in response:
 
 
 ```js
@@ -50,7 +47,7 @@ httpApi.submit('close', async (ctx, close) => {
 ```
 
 
-With your routes configured, you’ll then want to set your server to begin listening:
+With your routes configured, set your server to begin listening:
 
 
 ```js
@@ -60,16 +57,17 @@ const server = httpApi.listen(config.port, () => {
 ```
 
 
-Now your server is configured with the appropriate routing setup!
+Now your server is configured with the appropriate routing setup.
 
 
 ### Exchange API Provider
 
-The Exchanges API is the set of methods that deals with reading and writing any messages data, based on the [`ExchangesApi`](docs/tbdex/api-reference/tbdex-js/http-server/interfaces/ExchangesApi) class. Although the interface for `ExchangesApi` only requires to be filled out with read operations, you may find it useful to couple write operations into the class as well. 
+The Exchanges API is the set of methods that deals with reading and writing any messages data, based on the [ExchangesApi](/docs/tbdex/api-reference/tbdex-js/http-server/interfaces/ExchangesApi) class. Although the interface for `ExchangesApi` only requires to be filled out with read operations, you may find it useful to couple write operations into the class as well. 
 
-Using the sample code above as reference, the submission of RFQ, Order, or Close data will result in the triggering of the Exchange API Provider’s `write()`, while the required methods such as `getOrder()` will serve as read methods. 
+Using the sample code above as reference, the submission of `RFQ`, `Order`, or `Close` data will result in the triggering of the Exchange API Provider’s `write()`, while the required methods such as `getOrder()` will serve as read methods. 
 
-As a PFI developer you’ll be responsible for designing your own data storage and provider to access your data. Assuming a generic `dataProvider` class serves as your PFI’s means of accessing your Exchange data, then your `write()` implementation could look something like as follows:
+As a PFI developer, you’ll be responsible for designing your own data storage and provider to access your data. 
+Assuming a generic `dataProvider` class serves as your PFI’s means of accessing your Exchange data, here's an example of a `write()` implementation:
 
 
 ```js
@@ -83,23 +81,23 @@ As a PFI developer you’ll be responsible for designing your own data storage a
         subject,
         message: JSON.stringify(message)
       });
-}
-    
+}  
 ```
 
 
-After writing an RFQ to the database, you’ll then want to [create a Quote](docs/tbdex/pfi/creating-quotes). Similarly, after writing an Order to your database, you’ll want to ensure you properly [process that Order](docs/tbdex/pfi/processing-orders).
+After writing an `RFQ` to the database, you can [create a Quote](/docs/tbdex/pfi/creating-quotes). 
+Similarly, after writing an `Order` to your database, you’ll want to ensure you properly [process that Order](/docs/tbdex/pfi/processing-orders).
 
 
 ### Offerings API Provider
 
-The Offerings API is the set of methods that deals with reading and writing any offering data, based on the [OfferingsApi](docs/tbdex/api-reference/tbdex-js/http-server/interfaces/OfferingsApi) class. Although the interface for `OfferingsApi` only requires to be filled out with read operations, you may find it useful to couple write operations into the class as well. 
+The `Offerings` API is the set of methods that deals with reading and writing any offering data, based on the [OfferingsApi](/docs/tbdex/api-reference/tbdex-js/http-server/interfaces/OfferingsApi) class. Although the interface for `OfferingsApi` only requires to be filled out with read operations, you may find it useful to couple write operations into the class as well. 
 
-Although the Offerings API isn’t directly exposed in the main server entrypoint, it is still used to fetch and write offerings to your PFIs database. To get a single or multiple offerings as specified by the `OfferingsApi` interface, you could write the following:
+Although the Offerings API isn’t directly exposed in the main server entrypoint, it is still used to fetch and write offerings to your PFI's database. 
+Here's an example of how to get offerings as specified by the `OfferingsApi` interface:
 
 
 ```js
-
 import { Offering } from '@tbdex/http-server'
 
 async getOffering(opts: {id: string}): Promise<Offering> {
@@ -127,7 +125,7 @@ async getOffering(opts: {id: string}): Promise<Offering> {
 ```
 
 
-Additionally, you could write offerings into your database using code that looks as follows:
+Additionally, you could write `Offerings` into your database:
 
 ```js
 async create(offering: Offering) {
