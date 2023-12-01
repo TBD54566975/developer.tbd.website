@@ -13,7 +13,7 @@ To participate in a tbDEX network as a PFI, you’ll need to stand up a server t
 * **An offering API provider** - this class is responsible for implementing the OfferingsApi protocol, which is a common interface for managing the database containing your offerings data.
 
 
-### Main Server Entrypoint
+## Main Server Entrypoint
 
 Your main server entrypoint should fulfill the following responsibilities:
 
@@ -60,7 +60,7 @@ const server = httpApi.listen(config.port, () => {
 Now your server is configured with the appropriate routing setup.
 
 
-### Exchange API Provider
+## Exchange API Provider
 
 The Exchanges API is the set of methods that deals with reading and writing any messages data, based on the [ExchangesApi](/docs/tbdex/api-reference/tbdex-js/http-server/interfaces/ExchangesApi) class. Although the interface for `ExchangesApi` only requires to be filled out with read operations, you may find it useful to couple write operations into the class as well. 
 
@@ -89,7 +89,7 @@ After writing an `RFQ` to the database, you can [create a Quote](/docs/tbdex/pfi
 Similarly, after writing an `Order` to your database, you’ll want to ensure you properly [process that Order](/docs/tbdex/pfi/processing-orders).
 
 
-### Offerings API Provider
+## Offerings API Provider
 
 The `Offerings` API is the set of methods that deals with reading and writing any offering data, based on the [OfferingsApi](/docs/tbdex/api-reference/tbdex-js/http-server/interfaces/OfferingsApi) class. Although the interface for `OfferingsApi` only requires to be filled out with read operations, you may find it useful to couple write operations into the class as well. 
 

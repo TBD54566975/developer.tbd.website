@@ -12,7 +12,7 @@ When you receive an `RFQ` message, you’ll want to do the following:
 4. Create a `Quote` and store it in your database
 
 
-### Get the Offering
+## Get the Offering
 
 After inserting the `RFQ` into your database, you can search your database for the `Offering` the `RFQ` is requesting. 
 
@@ -48,7 +48,7 @@ async write(opts: { message: MessageKindClass }) {
 
 
 
-### Verifying the Required Claims
+## Verifying the Required Claims
 
 After receiving an `RFQ` and finding the matching `Offering`, you’ll want to verify that the user satisfies the necessary requirements for the `Offering`. 
 
@@ -64,7 +64,7 @@ The `RFQ` class offers the [verifyOfferingRequirements](/docs/tbdex/api-referenc
 }
 ```
 
-### Creating and Sending a Quote
+## Creating and Sending a Quote
 
 Before creating a `Quote` in response to the received `RFQ`, you may want to review the [protocol definition for Quotes](https://github.com/TBD54566975/tbdex/tree/main/specs/protocol#quote). 
 With that in mind, you can then create your quote using the `Quote.create()` method as shown below:

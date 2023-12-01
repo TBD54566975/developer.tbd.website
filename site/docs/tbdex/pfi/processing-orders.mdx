@@ -6,7 +6,7 @@ sidebar_position: 8
 
 As described in the [Offerings API Provider](/docs/tbdex/pfi/anatomy-of-a-pfi#offerings-api-provider) guide, you should process the orders you receive. This guide outlines how that is done.
 
-### Provide an Initial OrderStatus
+## Provide an Initial OrderStatus
 
 Upon storing the `Order` message, you will want to create an initial [OrderStatus](https://github.com/TBD54566975/tbdex/tree/main/specs/protocol#orderstatus) to update the Wallet on the status of their `Order`:
 
@@ -36,7 +36,7 @@ import { Order, OrderStatus } from '@tbdex/http-server'
 Since the Wallet application isn't addressable, you’ll write the `OrderStatus` to your database and the Wallet will poll for `OrderStatus` data.
 
 
-### Process the Order
+## Process the Order
 
 The [Order message](https://github.com/TBD54566975/tbdex/tree/main/specs/protocol#order) will contain the information you initially stored in an `Offering` object that will specify the pay-in, pay-out, and rate of conversion needed. 
 
@@ -48,7 +48,7 @@ That responsibility lies with each PFI.
 As you deem appropriate for your customers, you can provide them with multiple `OrderStatus` messages using the same code as in the section above.
 
 
-### Close the Order
+## Close the Order
 
 When the `Order` has reached a terminal state (e.g. order fulfilled, order rejected, wallet canceled, etc), you can write the `Close` message to your database. Here's an example of a `Close` message:
 
