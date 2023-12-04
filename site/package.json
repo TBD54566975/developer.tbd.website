@@ -28,7 +28,7 @@
     "autoprefixer": "10.4.13",
     "clsx": "1.2.1",
     "crypto-browserify": "3.12.0",
-    "docusaurus-plugin-remote-content": "3.1.0",
+    "docusaurus-plugin-remote-content": "4.0.0",
     "docusaurus-tailwindcss": "0.1.0",
     "dotenv": "16.3.1",
     "gh": "2.8.9",
