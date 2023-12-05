@@ -1,38 +1,38 @@
 [
   {
-    "login": "chrissycodes",
-    "avatar_url": "https://avatars.githubusercontent.com/u/105683440?v=4",
-    "contributions": ["New Contributor Award"],
-    "description": "YOU DID IT! 🥳 We're so excited we could be apart of your open source journey! I hope you continue contributing beyond Hacktoberfest!💖"
-  },
-  {
-    "login": "gregkramer",
-    "avatar_url": "https://avatars.githubusercontent.com/u/10204580?v=4",
-    "contributions": ["Community Hero Award"],
-    "description": "Thank you for always being super supportive within the community. From reacting to messages to almost never missing a meeting/event. We truly appreciate it! 🤗"
-  },
-  {
-    "login": "scarlett(🍋,✨)",
-    "avatar_url": "https://avatars.githubusercontent.com/u/78459369?v=4",
-    "contributions": ["New Contributor Award"],
-    "description": "You made your FIRST contribution WOOT! WOOT! 🥂 We're so happy we got to be apart of your journey, I hope to see more commits from you in the future!"
-  },
-  {
-    "login": "flothjl",
-    "avatar_url": "https://avatars.githubusercontent.com/u/16403356?v=4",
-    "contributions": ["Rising Star Award"],
-    "description": "Your contributions for the month of October and the month prior are always super genuine and valuable. Thank you for sharing your time with us and for all your Hacktoberfest contributions! 🔥"
-  },
-  {
-    "login": "captainbrando",
-    "avatar_url": "https://avatars.githubusercontent.com/u/82909107?v=4",
+    "login": "koha",
+    "avatar_url": "https://avatars.githubusercontent.com/u/66284362?v=4",
     "contributions": ["Community Champion Award"],
-    "description": "Community is truly about sharing knowledge and helping the next person! Thank you for helping a fellow member land their first commit. We're so happy to have you! 🥳"
+    "description": "From the moment you joined you brought this vibrant, and welcoming engergy with you. Thank you for always being willing to answer questions, give office hour recaps, and your 10 days of DevRel is really cool to follow: https://dub.sh/10-days-of-web5-koha 💖"
   },
   {
-    "login": "aniketh-varma",
-    "avatar_url": "https://avatars.githubusercontent.com/u/55805574?v=4",
-    "contributions": ["Docs Wizard Award"],
-    "description": "Thank you so much for all of your documentation catches this month! 🔍 We're happy that you spent Hacktoberfest with us! We hope you continue contributing! 🥳"
+    "login": "moisesj",
+    "avatar_url": "https://avatars.githubusercontent.com/u/6315778?v=4",
+    "contributions": ["Content Creator Award"],
+    "description": "From creating absolutely amazing web5 projects to answering questions to sharing resources, you do it all! Thank you, you really have added so much to our community! 🤗"
+  },
+  {
+    "login": "chrissiku",
+    "avatar_url": "https://avatars.githubusercontent.com/u/101924220?v=4",
+    "contributions": ["Community Champion Award"],
+    "description": "The moment you were nomiated I knew we had to chose you, you've helped your fellow community members so much! Thank you, we're so happy you're here! 🎉"
+  },
+  {
+    "login": "Mcnoble",
+    "avatar_url": "https://avatars.githubusercontent.com/u/40045755?v=4",
+    "contributions": ["Rising Star Award"],
+    "description": "It's really great to see how dedicated you are to helping your fellow community members. Thank you for going above and beyond, we're thrilled you're here 🔥"
+  },
+  {
+    "login": "Taras{M}",
+    "avatar_url": "https://avatars.githubusercontent.com/u/82909107?v=4",
+    "contributions": ["Community Hero Award"],
+    "description": "Community is truly about sharing knowledge and helping the next person! Thank you for being active in Discord by asking questions and answering questions 🥳"
+  },
+  {
+    "login": "alizzyshire",
+    "avatar_url": "https://avatars.githubusercontent.com/u/149564051?v=4",
+    "contributions": ["Rising Star Award"],
+    "description": "I admire how you came in asking questions and a few days later you began answering questions and helping your fellow community members. Thank you! 🥳"
   }
 ]
