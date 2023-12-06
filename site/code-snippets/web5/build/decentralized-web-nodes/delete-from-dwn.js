@@ -13,8 +13,10 @@ export async function deleteFromLocalDWN(web5, recordId) {
 
   // Delete the record
   const deleteResult = await web5.dwn.records.delete({
-    from: web5.did,
-    message: { recordId },
+    message: {
+      recordId: recordId
+    },
   });
+
   return deleteResult;
 }
