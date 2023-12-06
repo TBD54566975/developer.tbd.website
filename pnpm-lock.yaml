@@ -14,8 +14,8 @@ importers:
         specifier: 0.2.0
         version: 0.2.0(@fortawesome/fontawesome-svg-core@6.4.2)(react@18.2.0)
       '@web5/api':
-        specifier: 0.8.2
-        version: 0.8.2
+        specifier: 0.8.3-rc.0
+        version: 0.8.3-rc.0
       font-awesome:
         specifier: 4.7.0
         version: 4.7.0
@@ -106,14 +106,14 @@ importers:
   examples/tutorials/book-reviews:
     dependencies:
       '@web5/api':
-        specifier: 0.8.2
-        version: 0.8.2
+        specifier: 0.8.3-rc.0
+        version: 0.8.3-rc.0
 
   examples/tutorials/dinger-completed:
     dependencies:
       '@web5/api':
-        specifier: 0.8.2
-        version: 0.8.2
+        specifier: 0.8.3-rc.0
+        version: 0.8.3-rc.0
       crypto-browserify:
         specifier: 3.12.0
         version: 3.12.0
@@ -136,8 +136,8 @@ importers:
   examples/tutorials/dinger-starter:
     dependencies:
       '@web5/api':
-        specifier: 0.8.2
-        version: 0.8.2
+        specifier: 0.8.3-rc.0
+        version: 0.8.3-rc.0
       crypto-browserify:
         specifier: 3.12.0
         version: 3.12.0
@@ -169,8 +169,8 @@ importers:
         specifier: 1.3.1
         version: 1.3.1
       '@web5/api':
-        specifier: 0.8.2
-        version: 0.8.2
+        specifier: 0.8.3-rc.0
+        version: 0.8.3-rc.0
       vue:
         specifier: 3.3.4
         version: 3.3.4
@@ -212,8 +212,8 @@ importers:
         specifier: 1.3.1
         version: 1.3.1
       '@web5/api':
-        specifier: 0.8.2
-        version: 0.8.2
+        specifier: 0.8.3-rc.0
+        version: 0.8.3-rc.0
       vue:
         specifier: 3.3.4
         version: 3.3.4
@@ -264,8 +264,8 @@ importers:
         specifier: 9.6.0
         version: 9.6.0(vue@3.2.41)
       '@web5/api':
-        specifier: 0.8.2
-        version: 0.8.2
+        specifier: 0.8.3-rc.0
+        version: 0.8.3-rc.0
       multiformats:
         specifier: 10.0.2
         version: 10.0.2
@@ -340,8 +340,8 @@ importers:
         specifier: 9.6.0
         version: 9.6.0(vue@3.3.4)
       '@web5/api':
-        specifier: 0.8.2
-        version: 0.8.2
+        specifier: 0.8.3-rc.0
+        version: 0.8.3-rc.0
       multiformats:
         specifier: 10.0.2
         version: 10.0.2
@@ -4008,6 +4008,10 @@ packages:
     resolution: {integrity: sha512-d3ZR8vGSpy3v/nllS+bD/OMN5UZqusWiQqkyj7AwzTnhXFH72pF5oB4Ach6DQ50g5kXxC28LdaYBEpsyv9KOUQ==}
     dev: false
 
+  /@noble/ciphers@0.3.0:
+    resolution: {integrity: sha512-ldbrnOjmNRwFdXcTM6uXDcxpMIFrbzAWNnpBPp4oTJTFF0XByGD6vf45WrehZGXRQTRVV+Zm8YP+EgEf+e4cWA==}
+    dev: false
+
   /@noble/curves@1.1.0:
     resolution: {integrity: sha512-091oBExgENk/kGj3AZmtBDMpxQPDtxQABR2B9lb1JbVTs6ytdzZNwvhxQ4MWasRNEzlbEH8jCWFCwhF/Obj5AA==}
     dependencies:
@@ -5333,8 +5337,8 @@ packages:
       tailwindcss: 3.3.5
     dev: true
 
-  /@tbd54566975/dwn-sdk-js@0.2.4:
-    resolution: {integrity: sha512-d2/8o0sA+kNqyyFovReyviczABPyi5wPNuaS7oPojrmMDN2GC+okifF/rqr4qO393Dk/m07ngk8eXnPPk/oiMQ==}
+  /@tbd54566975/dwn-sdk-js@0.2.8:
+    resolution: {integrity: sha512-oiKk+ekAQO94bUkt6yk+xkDY8uCGmNC+rKaYQLhAoTrhYrczeRSuDT04F5/vPBT5K6NfAoRcQsIyBmvgRCUvgA==}
     engines: {node: '>= 18'}
     dependencies:
       '@ipld/dag-cbor': 9.0.3
@@ -5345,7 +5349,7 @@ packages:
       ajv: 8.12.0
       blockstore-core: 4.2.0
       cross-fetch: 4.0.0
-      eciesjs: 0.4.0
+      eciesjs: 0.4.5
       flat: 5.0.2
       interface-blockstore: 5.2.3
       interface-store: 5.1.2
@@ -5357,7 +5361,7 @@ packages:
       ms: 2.1.3
       multiformats: 11.0.2
       randombytes: 2.1.0
-      readable-stream: 4.4.0
+      readable-stream: 4.4.2
       ulidx: 2.1.0
       uuid: 8.3.2
       varint: 6.0.0
@@ -6205,14 +6209,14 @@ packages:
       import-meta-resolve: 3.1.1
     dev: true
 
-  /@web5/agent@0.2.3:
-    resolution: {integrity: sha512-S4qfIrz/Mp3YTuvnu6Kxj2vcx16V/vy0YOWuZRxsY2J0Befd33p2jGvpB9HsMZfJ1oXYnXoV0+8Kiat0NAR7lA==}
+  /@web5/agent@0.2.5-rc.0:
+    resolution: {integrity: sha512-LomSI5F6W+64U0jtx6y/2juPDQMCCh1aD7avAhc9Dk+vwTJVFQ5jwFEcdgx2SIfEnMFRpVaEXzd7RbVxxPqFNA==}
     engines: {node: '>=18.0.0'}
     dependencies:
-      '@tbd54566975/dwn-sdk-js': 0.2.4
-      '@web5/common': 0.2.1
+      '@tbd54566975/dwn-sdk-js': 0.2.8
+      '@web5/common': 0.2.2-rc.0
       '@web5/crypto': 0.2.2
-      '@web5/dids': 0.2.2
+      '@web5/dids': 0.2.3-rc.0
       level: 8.0.0
       readable-stream: 4.4.2
       readable-web-to-node-stream: 3.0.2
@@ -6221,15 +6225,16 @@ packages:
       - supports-color
     dev: false
 
-  /@web5/api@0.8.2:
-    resolution: {integrity: sha512-Yu/nY0TdRHkTYhYMw/EdabwyXsY3QLzD5aEWlngWUwwQdhABa4qqKl8iqAkMHhmu0wFGHouM1xGVk8kweA9ftA==}
+  /@web5/api@0.8.3-rc.0:
+    resolution: {integrity: sha512-AK0P4OKo7cDE1JkLAuWXd8Wr8Nepj/GA8DuqOcMhRd2AnWU3pEOdhWSU+oIpnLo52vIEWOuGP6uixLLTeW/cxQ==}
     engines: {node: '>=18.0.0'}
     dependencies:
-      '@tbd54566975/dwn-sdk-js': 0.2.4
-      '@web5/agent': 0.2.3
+      '@tbd54566975/dwn-sdk-js': 0.2.8
+      '@web5/agent': 0.2.5-rc.0
+      '@web5/common': 0.2.2-rc.0
       '@web5/crypto': 0.2.2
-      '@web5/dids': 0.2.2
-      '@web5/user-agent': 0.2.3
+      '@web5/dids': 0.2.3-rc.0
+      '@web5/user-agent': 0.2.5-rc.0
       level: 8.0.0
       ms: 2.1.3
       readable-stream: 4.4.2
@@ -6247,6 +6252,15 @@ packages:
       multiformats: 11.0.2
     dev: false
 
+  /@web5/common@0.2.2-rc.0:
+    resolution: {integrity: sha512-S7de/WSHe5djdeV0PJHerVvF+389azyKyo5kflHb0i5E7vnFZAAhGe+V+k1B8T3AhiPidKoySkNWp3l9mqMuXA==}
+    engines: {node: '>=18.0.0'}
+    dependencies:
+      level: 8.0.0
+      multiformats: 11.0.2
+      readable-stream: 4.4.2
+    dev: false
+
   /@web5/crypto@0.2.2:
     resolution: {integrity: sha512-vHFg0wXQSQXrwuBNQyDHnmSZchfTfO6/Sv+7rDsNkvofs+6lGTE8CZ02cwUYMeIwTRMLer12c+fMfzYrXokEUQ==}
     engines: {node: '>=18.0.0'}
@@ -6257,13 +6271,13 @@ packages:
       '@web5/common': 0.2.1
     dev: false
 
-  /@web5/dids@0.2.2:
-    resolution: {integrity: sha512-dARcpQIMzmayINWFemxP+shhfHLtYB+ZXoSZ1TKKnjF7qzraL30KwBSDwaNEPYaAzgo0x/1rvyv+zAgfa5MeNw==}
+  /@web5/dids@0.2.3-rc.0:
+    resolution: {integrity: sha512-rkSqc3faHJB6RncL+VBR78O4nKJz++1tTiawPjAzSnUOK8IIUad0OYvfnZK6sKBDfSy9/Q/YjvI9eWltlLusww==}
     engines: {node: '>=18.0.0'}
     dependencies:
       '@decentralized-identity/ion-pow-sdk': 1.0.17
       '@decentralized-identity/ion-sdk': 1.0.1
-      '@web5/common': 0.2.1
+      '@web5/common': 0.2.2-rc.0
       '@web5/crypto': 0.2.2
       did-resolver: 4.1.0
       dns-packet: 5.6.1
@@ -6276,14 +6290,14 @@ packages:
       - supports-color
     dev: false
 
-  /@web5/user-agent@0.2.3:
-    resolution: {integrity: sha512-s+etNIypvfr9TrhkK2Kys/gHcF/5xZ7cT+xRxRnWAmxTh+z3QLOwPUKkrFhYTcFinXdeDr2Gu7DMaciOUNOALw==}
+  /@web5/user-agent@0.2.5-rc.0:
+    resolution: {integrity: sha512-UL56qrCmJ3nsbUWylYOW9cFWl/IhDx0K45Zgvj8hWacj5Fkq4qqTipvdQB2tcfXmiG0L4vU26PABboipJGW5kw==}
     engines: {node: '>=18.0.0'}
     dependencies:
-      '@web5/agent': 0.2.3
-      '@web5/common': 0.2.1
+      '@web5/agent': 0.2.5-rc.0
+      '@web5/common': 0.2.2-rc.0
       '@web5/crypto': 0.2.2
-      '@web5/dids': 0.2.2
+      '@web5/dids': 0.2.3-rc.0
     transitivePeerDependencies:
       - encoding
       - supports-color
@@ -9326,10 +9340,13 @@ packages:
       safe-buffer: 5.2.1
     dev: false
 
-  /eciesjs@0.4.0:
-    resolution: {integrity: sha512-z4dEeaH16xxYVgtxJ8YVwpifH4Keg4gyp5F451mnDNwbAN3MgL5jcoEQGpqJrapv/zW8KwDnXG21Dw5B0hqvmw==}
+  /eciesjs@0.4.5:
+    resolution: {integrity: sha512-2zSRIygO48LpdS95Rwt9ryIkJNO37IdbkjRsnYyAn7gx7e4WPBNimnk6jGNdx2QQYr/VJRPnSVdwQpO5bycYZw==}
+    engines: {node: '>=16.0.0'}
     dependencies:
+      '@noble/ciphers': 0.3.0
       '@noble/curves': 1.2.0
+      '@noble/hashes': 1.3.2
     dev: false
 
   /edge-paths@3.0.5:
@@ -16761,16 +16778,6 @@ packages:
       inherits: 2.0.4
       string_decoder: 1.3.0
       util-deprecate: 1.0.2
-
-  /readable-stream@4.4.0:
-    resolution: {integrity: sha512-kDMOq0qLtxV9f/SQv522h8cxZBqNZXuXNyjyezmfAAuribMyVXziljpQ/uQhfE1XLg2/TLTW2DsnoE4VAi/krg==}
-    engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
-    dependencies:
-      abort-controller: 3.0.0
-      buffer: 6.0.3
-      events: 3.3.0
-      process: 0.11.10
-    dev: false
 
   /readable-stream@4.4.2:
     resolution: {integrity: sha512-Lk/fICSyIhodxy1IDK2HazkeGjSmezAWX2egdtJnYhtzKEsBPJowlI6F6LPb5tqIQILrMbx22S5o3GuJavPusA==}
