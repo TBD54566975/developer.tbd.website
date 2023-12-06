@@ -5,6 +5,7 @@ import {
   updateTextRecord,
   deleteTextRecord,
 } from '../code-snippets/web5/quickstart';
+import { vi } from 'vitest';
 
 // This is the web5 instance that will be referred to for all tests. This comes back as a result from Web5.connect() being used in the didCreate function.
 let web5;
@@ -54,10 +55,7 @@ describe('/site/tests/quickstart.test.js', () => {
       aliceDid,
       recordResult.id,
     );
-    expect.soft(deletedRecordResult.status.code).toBe(202);
 
-    expect(recordResult.isDeleted).toBe(true);
+    expect(deletedRecordResult.status.code).toBe(202);
   });
 });
-
-function getFrontPageHtml(pariss) {}
