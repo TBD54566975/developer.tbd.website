@@ -451,6 +451,9 @@ importers:
       autoprefixer:
         specifier: 10.4.13
         version: 10.4.13(postcss@8.4.31)
+      buffer:
+        specifier: 6.0.3
+        version: 6.0.3
       clsx:
         specifier: 1.2.1
         version: 1.2.1
@@ -478,6 +481,9 @@ importers:
       prism-react-renderer:
         specifier: 1.3.5
         version: 1.3.5(react@17.0.2)
+      process:
+        specifier: 0.11.10
+        version: 0.11.10
       react:
         specifier: 17.0.2
         version: 17.0.2
