@@ -31,8 +31,13 @@ export async function updateTextRecord(record) {
   return updateResult;
 }
 
-export async function deleteTextRecord(record) {
-  const deleteResult = await record.delete();
+export async function deleteTextRecord(web5, did, recordId) {
+  const deleteResult = await web5.dwn.records.delete({
+    from: did,
+    message: {
+      recordId,
+    },
+  });
 
   return deleteResult;
 }
