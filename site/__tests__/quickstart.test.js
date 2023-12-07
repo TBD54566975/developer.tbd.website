@@ -56,7 +56,8 @@ describe('/site/tests/quickstart.test.js', () => {
     );
     expect.soft(deletedRecordResult.status.code).toBe(202);
 
-    expect(recordResult.isDeleted).toBe(true);
+    // expect(recordResult.isDeleted).toBe(true);
+    // .isDeleted is no longer part of the record object
   });
 });
 
