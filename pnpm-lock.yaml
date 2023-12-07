@@ -110,14 +110,14 @@ importers:
   examples/tutorials/book-reviews:
     dependencies:
       '@web5/api':
-        specifier: 0.8.3-rc.0
-        version: 0.8.3-rc.0
+        specifier: 0.8.3
+        version: 0.8.3
 
   examples/tutorials/dinger-completed:
     dependencies:
       '@web5/api':
-        specifier: 0.8.3-rc.0
-        version: 0.8.3-rc.0
+        specifier: 0.8.3
+        version: 0.8.3
       crypto-browserify:
         specifier: 3.12.0
         version: 3.12.0
@@ -140,8 +140,8 @@ importers:
   examples/tutorials/dinger-starter:
     dependencies:
       '@web5/api':
-        specifier: 0.8.3-rc.0
-        version: 0.8.3-rc.0
+        specifier: 0.8.3
+        version: 0.8.3
       crypto-browserify:
         specifier: 3.12.0
         version: 3.12.0
@@ -173,8 +173,8 @@ importers:
         specifier: 1.3.1
         version: 1.3.1
       '@web5/api':
-        specifier: 0.8.3-rc.0
-        version: 0.8.3-rc.0
+        specifier: 0.8.3
+        version: 0.8.3
       vue:
         specifier: 3.3.4
         version: 3.3.4
@@ -216,8 +216,8 @@ importers:
         specifier: 1.3.1
         version: 1.3.1
       '@web5/api':
-        specifier: 0.8.3-rc.0
-        version: 0.8.3-rc.0
+        specifier: 0.8.3
+        version: 0.8.3
       vue:
         specifier: 3.3.4
         version: 3.3.4
@@ -268,8 +268,8 @@ importers:
         specifier: 9.6.0
         version: 9.6.0(vue@3.2.41)
       '@web5/api':
-        specifier: 0.8.3-rc.0
-        version: 0.8.3-rc.0
+        specifier: 0.8.3
+        version: 0.8.3
       multiformats:
         specifier: 10.0.2
         version: 10.0.2
@@ -344,8 +344,8 @@ importers:
         specifier: 9.6.0
         version: 9.6.0(vue@3.3.4)
       '@web5/api':
-        specifier: 0.8.3-rc.0
-        version: 0.8.3-rc.0
+        specifier: 0.8.3
+        version: 0.8.3
       multiformats:
         specifier: 10.0.2
         version: 10.0.2
@@ -6206,22 +6206,6 @@ packages:
       - supports-color
     dev: false
 
-  /@web5/agent@0.2.5-rc.0:
-    resolution: {integrity: sha512-LomSI5F6W+64U0jtx6y/2juPDQMCCh1aD7avAhc9Dk+vwTJVFQ5jwFEcdgx2SIfEnMFRpVaEXzd7RbVxxPqFNA==}
-    engines: {node: '>=18.0.0'}
-    dependencies:
-      '@tbd54566975/dwn-sdk-js': 0.2.8
-      '@web5/common': 0.2.2-rc.0
-      '@web5/crypto': 0.2.2
-      '@web5/dids': 0.2.3-rc.0
-      level: 8.0.0
-      readable-stream: 4.4.2
-      readable-web-to-node-stream: 3.0.2
-    transitivePeerDependencies:
-      - encoding
-      - supports-color
-    dev: false
-
   /@web5/api@0.8.3:
     resolution: {integrity: sha512-YXQ++ZShtd5LeFRqEMGlhVqJ7Zg5P6bMequpaLl068bCGjtjCwiFFgDtM1KeL36IAzQ4pFLFyj9aTGZ/JgCXHA==}
     engines: {node: '>=18.0.0'}
@@ -6241,25 +6225,6 @@ packages:
       - supports-color
     dev: false
 
-  /@web5/api@0.8.3-rc.0:
-    resolution: {integrity: sha512-AK0P4OKo7cDE1JkLAuWXd8Wr8Nepj/GA8DuqOcMhRd2AnWU3pEOdhWSU+oIpnLo52vIEWOuGP6uixLLTeW/cxQ==}
-    engines: {node: '>=18.0.0'}
-    dependencies:
-      '@tbd54566975/dwn-sdk-js': 0.2.8
-      '@web5/agent': 0.2.5-rc.0
-      '@web5/common': 0.2.2-rc.0
-      '@web5/crypto': 0.2.2
-      '@web5/dids': 0.2.3-rc.0
-      '@web5/user-agent': 0.2.5-rc.0
-      level: 8.0.0
-      ms: 2.1.3
-      readable-stream: 4.4.2
-      readable-web-to-node-stream: 3.0.2
-    transitivePeerDependencies:
-      - encoding
-      - supports-color
-    dev: false
-
   /@web5/common@0.2.1:
     resolution: {integrity: sha512-Tt5P17HgQCx+Epw0IHnhRKqp5UU3E4xtsE8PkdghOBnvntBB0op5P6efvR1WqmJft5+VunDHt3yZAZstuqQkNg==}
     engines: {node: '>=18.0.0'}
@@ -6270,15 +6235,6 @@ packages:
 
   /@web5/common@0.2.2:
     resolution: {integrity: sha512-dRn6SmALExeTLMTK/W5ozGarfaddK+Lraf5OjuIGLAaLfcX1RWx3oDMoY5Hr9LjfxHJC8mGXB8DnKflbeYJRgA==}
-    engines: {node: '>=18.0.0'}
-    dependencies:
-      level: 8.0.0
-      multiformats: 11.0.2
-      readable-stream: 4.4.2
-    dev: false
-
-  /@web5/common@0.2.2-rc.0:
-    resolution: {integrity: sha512-S7de/WSHe5djdeV0PJHerVvF+389azyKyo5kflHb0i5E7vnFZAAhGe+V+k1B8T3AhiPidKoySkNWp3l9mqMuXA==}
     engines: {node: '>=18.0.0'}
     dependencies:
       level: 8.0.0
@@ -6315,25 +6271,6 @@ packages:
       - supports-color
     dev: false
 
-  /@web5/dids@0.2.3-rc.0:
-    resolution: {integrity: sha512-rkSqc3faHJB6RncL+VBR78O4nKJz++1tTiawPjAzSnUOK8IIUad0OYvfnZK6sKBDfSy9/Q/YjvI9eWltlLusww==}
-    engines: {node: '>=18.0.0'}
-    dependencies:
-      '@decentralized-identity/ion-pow-sdk': 1.0.17
-      '@decentralized-identity/ion-sdk': 1.0.1
-      '@web5/common': 0.2.2-rc.0
-      '@web5/crypto': 0.2.2
-      did-resolver: 4.1.0
-      dns-packet: 5.6.1
-      level: 8.0.0
-      ms: 2.1.3
-      pkarr: 1.1.1
-      z32: 1.0.1
-    transitivePeerDependencies:
-      - encoding
-      - supports-color
-    dev: false
-
   /@web5/user-agent@0.2.5:
     resolution: {integrity: sha512-qv5M698C5HSvq30xUgLWtcsbZppjfOH5qZthpTRx4ItL5UWA/eQ9DsQiQeb4vet3uIUy3NHRDIQezclOdwYErw==}
     engines: {node: '>=18.0.0'}
@@ -6342,19 +6279,6 @@ packages:
       '@web5/common': 0.2.2
       '@web5/crypto': 0.2.2
       '@web5/dids': 0.2.3
-    transitivePeerDependencies:
-      - encoding
-      - supports-color
-    dev: false
-
-  /@web5/user-agent@0.2.5-rc.0:
-    resolution: {integrity: sha512-UL56qrCmJ3nsbUWylYOW9cFWl/IhDx0K45Zgvj8hWacj5Fkq4qqTipvdQB2tcfXmiG0L4vU26PABboipJGW5kw==}
-    engines: {node: '>=18.0.0'}
-    dependencies:
-      '@web5/agent': 0.2.5-rc.0
-      '@web5/common': 0.2.2-rc.0
-      '@web5/crypto': 0.2.2
-      '@web5/dids': 0.2.3-rc.0
     transitivePeerDependencies:
       - encoding
       - supports-color
