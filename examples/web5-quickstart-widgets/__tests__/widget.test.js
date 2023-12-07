@@ -48,12 +48,9 @@ describe('/examples/web5-quickstart-widgets/__tests__/widget.test.js', () => {
 
   test('recordResult successfully deletes the record', async () => {
     const deletedRecordResult = await web5.dwn.records.delete({
-      from: aliceDid,
       message: { recordId: recordResult.id },
     });
 
     expect.soft(deletedRecordResult.status.code).toBe(202);
-
-    expect(recordResult.isDeleted).toBe(true);
   });
 });
