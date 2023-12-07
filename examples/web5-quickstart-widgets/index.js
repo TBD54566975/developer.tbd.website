@@ -1,18 +1,14 @@
-import { Web5 } from '../../node_modules/@web5/api/dist/browser.mjs';
-
-let web5;
+import { Web5 } from "../../node_modules/@web5/api/dist/browser.mjs";
 
 export async function didCreate() {
-  let result = await Web5.connect();
-  web5 = result.web5;
-  return result;
+  return await Web5.connect();
 }
 
 export async function createTextRecord(web5, textData) {
   const result = await web5.dwn.records.create({
     data: textData,
     message: {
-      dataFormat: 'text/plain',
+      dataFormat: "text/plain",
     },
   });
   return result;
@@ -28,10 +24,6 @@ export async function dwnReadDataFromRecord(record) {
 }
 
 export async function dwnDeleteRecord(record) {
-  await web5.dwn.records.delete({
-    from: web5.did,
-    message: {
-      recordId: record.id,
-    },
-  });
+  await record.delete();
+  record = null;
 }

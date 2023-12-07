@@ -49,13 +49,9 @@ describe('/site/tests/quickstart.test.js', () => {
   });
 
   test('recordResult successfully deletes the record', async () => {
-    const deletedRecordResult = await deleteTextRecord(
-      web5,
-      aliceDid,
-      recordResult.id,
-    );
+    const deletedRecordResult = await deleteTextRecord(recordResult);
     expect.soft(deletedRecordResult.status.code).toBe(202);
+
+    expect(recordResult.isDeleted).toBe(true);
   });
 });
-
-function getFrontPageHtml(pariss) {}
