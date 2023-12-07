@@ -23,7 +23,7 @@ npm install
 The index.js file contains the main logic for the example. It performs the following steps:
 
 * Creates issuer and subject DIDs.
-* Defines a ticket credential class (TSwiftFanClub).
+* Defines a ticket credential class (SwiftiesFanClub).
 * Creates an unsigned VC.
 * Signs the VC using the issuer's did.
 * Verifies the signed VC.
