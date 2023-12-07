@@ -2,7 +2,7 @@
 title: Protocols
 ---
 
-**5 minute read**
+import ReactPlayer from 'react-player';
 
 Protocols define a data schema and the contract by which two Decentralized Web Nodes (DWNs) agree to communicate and share data. In other words, protocols define both the data schema and the data permissions as it relates to a certain application or use case.
 
@@ -398,4 +398,17 @@ This protocol enables a basic social network using Web5, which means we’ve cre
 As you write your protocol documents, you can use this [simple protocol validator UI](https://radiant-semifreddo-af73bb.netlify.app/) app to explore and validate the types and structures in your protocol. This should help with testing and improving your protocol. Find out more about how to use this project on [GitHub](https://github.com/kirahsapong/protocol-validator#protocol-validator).
 
 ## Example Protocols
-Here's a bunch of [example protocols](https://github.com/TBD54566975/dwn-sdk-js/tree/main/tests/vectors/protocol-definitions) for more inspiration!
+Here are a bunch of [example protocols](https://github.com/TBD54566975/dwn-sdk-js/tree/main/tests/vectors/protocol-definitions) for more inspiration!
+
+## Video Tutorials
+
+<div className="grid grid-cols-1 desktop:grid-cols-2 gap-5">
+
+  <iframe class="w-full aspect-video" src="https://www.youtube.com/embed/RfUE-bd73bE?si=eEZPwauDvRgEywIU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+  <iframe class="w-full aspect-video" src="https://www.youtube.com/embed/KE1s8NfomKk?si=dRXbfQHaXHNMLoas" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+  <iframe class="w-full aspect-video" src="https://www.youtube.com/embed/AioiNfpsPu0?si=zx9eva4AKJ7r4end" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+</div>
+
