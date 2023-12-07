@@ -36,7 +36,7 @@ describe('record', () => {
     test('readRecord reads the created record', async () => {
       const result = await readRecord(record);
 
-      expect(result).toBe('Hello World!');
+      expect(result).toBe('Hello World!'); 
     });
 
     test('updateRecord updates the created record', async () => {
@@ -46,7 +46,7 @@ describe('record', () => {
     });
 
     test('deleteRecord deletes the updated record', async () => {
-      const result = await deleteRecord(web5, myDid, record.id);
+      const result = await deleteRecord(record);
 
       expect.soft(result.status.code).toBe(202);
     });

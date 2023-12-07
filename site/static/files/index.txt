@@ -13,4 +13,4 @@ const readResult = await record.data.text();
 
 const updateResult = await record.update({ data: "Hello, I'm updated!" });
 
-const deleteResult = await web5.dwn.records.delete({ from: aliceDid, message: { recordId: record.id } });
+const deleteResult = await record.delete();

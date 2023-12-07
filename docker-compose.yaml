@@ -7,7 +7,7 @@ services:
       dockerfile: Apps.Dockerfile
       target: feedback-server-app
     ports:
-      - '3001:3001'
+      - "3001:3001"
     environment:
       DB_CONNECTION: postgresdb
       DB_USER: feedback_user
@@ -27,15 +27,15 @@ services:
       POSTGRES_PASSWORD: feedback_pass
       POSTGRES_DB: feedback_widget
     ports:
-      - '5432:5432'
+      - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
 
   dwn-server:
     container_name: dwn-server
-    image: ghcr.io/tbd54566975/dwn-server:dwn-sdk-0.2.8
+    image: ghcr.io/tbd54566975/dwn-server:dwn-sdk-0.2.4
     ports:
-      - '3000:3000'
+      - "3000:3000"
 
 volumes:
   postgres_data:
