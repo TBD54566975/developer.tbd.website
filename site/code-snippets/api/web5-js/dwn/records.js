@@ -59,9 +59,9 @@ export async function queryPlaylistFromDid(web5, myDid) {
     },
   });
 
-  response.records.forEach((record) => {
-    console.log(record.id);
-  });
+  // response.records.forEach((record) => {
+  //   console.log(record.id);
+  // });
 
   return response;
 }
@@ -74,45 +74,45 @@ export async function sortQueriedRecordsByDate(web5) {
         dataFormat: 'text/plain',
       },
       //highlight-start
-      dateSort: 'createdAscending'
+      dateSort: 'createdAscending',
       //highlight-end
-    }
+    },
   });
 
   return response;
 }
 
 export async function readRecordFromId(web5, recordId) {
-// Reads the indicated record from the user's DWNs
-let { record } = await web5.dwn.records.read({
-  message: {
-    filter: {
-      recordId: recordId
-    }
-  }
-});
+  // Reads the indicated record from the user's DWNs
+  let { record } = await web5.dwn.records.read({
+    message: {
+      filter: {
+        recordId: recordId,
+      },
+    },
+  });
 
-// assuming the record has a text payload
-const text = await record.data.text();
-return text;
+  // assuming the record has a text payload
+  const text = await record.data.text();
+  return text;
 }
 
 export async function readRecordByIdFromDid(web5, bobDid, recordId) {
-// Reads the indicated record from Bob's DWNs
-const { record } = await web5.dwn.records.read({
-  //highlight-start
-  from: bobDid,
-  //highlight-end
-  message: {
-    filter:{
-      recordId: recordId
-    }
-  }
-});
+  // Reads the indicated record from Bob's DWNs
+  const { record } = await web5.dwn.records.read({
+    //highlight-start
+    from: bobDid,
+    //highlight-end
+    message: {
+      filter: {
+        recordId: recordId,
+      },
+    },
+  });
 
-// assuming the record is a json payload
-const data = await record.data.json();
-return data;
+  // assuming the record is a json payload
+  const data = await record.data.json();
+  return data;
 }
 
 export async function deleteRecordFromDid(web5, record, did) {
