@@ -90,7 +90,7 @@ function Web5Quickstart() {
       const codeSnippetsUtils = await import('../../src/util/code-snippets');
       didCreate = codeSnippetsUtils.didCreate;
       createTextRecord = codeSnippetsUtils.createTextRecord;
-    }
+    };
     loadWeb5();
 
     // query selectors
@@ -263,7 +263,10 @@ function Web5Quickstart() {
 
       dwnDeleteOutputSummary.innerHTML = '...';
 
-      const result = createRecordResult.delete();
+      const result = await web5.dwn.records.delete({
+        from: parseDid(),
+        message: { recordId: createRecordResult.id },
+      });
 
       dwnDeleteOutputDetailsTextarea.value +=
         JSON.stringify(result, null, 2) + '\n';
