@@ -2,6 +2,7 @@
 import { VerifiableCredential, PresentationExchange } from '@web5/credentials';
 import { DidKeyMethod } from '@web5/dids';
 import { Web5 } from '@web5/api';
+import { Web5UserAgent } from '@web5/user-agent';
 
 import { webcrypto } from 'node:crypto';
 if (!globalThis.crypto) globalThis.crypto = webcrypto;
@@ -88,8 +89,24 @@ console.log('\nPresentation Result: ' + JSON.stringify(presentationResult));
  */
 
 // Web5 Connect
-const web5Did = await DidKeyMethod.create();
-const { web5, did: myDid } = await Web5.connect({ did: web5Did.did });
+const myDid = await DidKeyMethod.create();
+const userAgent = await Web5UserAgent.create();
+
+// Start the agent.
+await userAgent.start({ passphrase: 'insecure-static-phrase' });
+
+// Import the did and create an identity
+const identity = await userAgent.identityManager.import({
+  did       : myDid,
+  identity  : { did: myDid.did, name: 'whatever' },
+  kms       : 'local'
+});
+
+/** Import the Identity metadata to the User Agent's tenant so that it can be restored
+ * on subsequent launches or page reloads. */
+await userAgent.identityManager.import({ identity, context: userAgent.agentDid });
+
+const web5 = new Web5({ agent: userAgent, connectedDid: myDid.did });
 
 class DateOfBirth {
   constructor(dob) {
@@ -98,8 +115,8 @@ class DateOfBirth {
 }
 
 // Create self signed VC
-const dwnVc = await VerifiableCredential.create({ type: 'DateOfBirth', issuer: web5Did.did, subject: web5Did.did, data: new DateOfBirth('1989-11-11') });
-const signedDwnVc = await dwnVc.sign({ did: web5Did });
+const dwnVc = await VerifiableCredential.create({ type: 'DateOfBirth', issuer: myDid.did, subject: myDid.did, data: new DateOfBirth('1989-11-11') });
+const signedDwnVc = await dwnVc.sign({ did: myDid });
 
 console.log(signedDwnVc)
 
