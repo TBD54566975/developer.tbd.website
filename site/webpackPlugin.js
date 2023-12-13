@@ -22,6 +22,13 @@ module.exports = function (context, options) {
           ),
           new webpack.ProvidePlugin({
             process: "process/browser.js",
+          }),
+          new webpack.DefinePlugin({
+            /*
+             IMPORTANT: To fix debug library‘s bug
+             {}.DEBUG = namespaces; // SyntaxError: Unexpected token '.'
+            */
+            'process.env.DEBUG': 'process.env.DEBUG'
           })
         ]
       };
