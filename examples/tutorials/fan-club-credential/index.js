@@ -1,8 +1,6 @@
 /** This is an example of how to use the web5/credentials package:  https://www.npmjs.com/package/@web5/credentials */
-
 import { VerifiableCredential, PresentationExchange } from '@web5/credentials';
-import { DidKeyMethod, utils as didUtils } from '@web5/dids';
-import { Ed25519 } from '@web5/crypto';
+import { DidKeyMethod } from '@web5/dids';
 import { Web5 } from '@web5/api';
 
 import { webcrypto } from 'node:crypto';
@@ -26,41 +24,28 @@ class SwiftiesFanClub {
   }
 }
 // Credential needs: type, issuer, subject, data
-const vc = VerifiableCredential.create({type: 'SwiftiesFanClub', issuer: fanClubIssuerDid.did, subject: aliceDid.did, data: new SwiftiesFanClub('#1 Fan', true)});
+const vc = await VerifiableCredential.create({ type: 'SwiftiesFanClub', issuer: fanClubIssuerDid.did, subject: aliceDid.did, data: new SwiftiesFanClub('#1 Fan', true) });
 console.log('Unsigned VC: \n ' + vc.toString() + '\n');
 
 // Sign credential
-const { privateKeyJwk } = aliceDid.keySet.verificationMethodKeys[0];
-
-console.log(privateKeyJwk);
-
-// TODO: This is going away soon
-const signOptions = {
-  issuerDid  : fanClubIssuerDid.did,
-  subjectDid : aliceDid.did,
-  kid        : `${fanClubIssuerDid.did}#${fanClubIssuerDid.did.split(':')[2]}`,
-  signer     : async (data) => await Ed25519.sign({ data, key: privateKeyJwk })
-};
-
-const signedVcJwt = await vc.sign(signOptions);
+const signedVcJwt = await vc.sign({ did: fanClubIssuerDid });
 console.log('\nSigned VC: \n' + signedVcJwt + '\n');
-
 
 // Verify
 try {
-  await VerifiableCredential.verify(signedVcJwt);
+  await VerifiableCredential.verify({ vcJwt: signedVcJwt });
   console.log('\nVC Verification successful!\n');
 } catch (err) {
   console.log('\nVC Verification failed: ' + err.message + '\n');
 }
 
-
 // Parse
-const parsedVc= VerifiableCredential.parseJwt(signedVcJwt);
+const parsedVc = VerifiableCredential.parseJwt({ vcJwt: signedVcJwt} );
 console.log('\nParsed VC: \n' + parsedVc.toString() + '\n');
 
-
-/** Presentation Exchange */
+/** 
+ * Presentation Exchange 
+ */
 
 // Prerequisites: Create Presentation Definition
 const presentationDefinition = {
@@ -86,8 +71,8 @@ const presentationDefinition = {
 
 // Satisfies Presentation Definition
 try {
-  PresentationExchange.validateDefinition(presentationDefinition);
-  PresentationExchange.satisfiesPresentationDefinition([signedVcJwt], presentationDefinition);
+  PresentationExchange.validateDefinition({ presentationDefinition });
+  PresentationExchange.satisfiesPresentationDefinition({vcJwts: [signedVcJwt], presentationDefinition: presentationDefinition});
   console.log('\nVC Satisfies Presentation Definition!\n');
 } catch (err) {
   console.log('VC does not satisfy Presentation Definition: ' + err.message);
@@ -95,24 +80,16 @@ try {
 
 
 // Create Presentation Result that contains a Verifiable Presentation and Presentation Submission
-const presentationResult = PresentationExchange.createPresentationFromCredentials([signedVcJwt], presentationDefinition);
+const presentationResult = PresentationExchange.createPresentationFromCredentials({vcJwts: [signedVcJwt], presentationDefinition: presentationDefinition });
 console.log('\nPresentation Result: ' + JSON.stringify(presentationResult));
 
-
-/** Storing a self signed VC in a DWN */
+/** 
+ * Storing a self signed VC in a DWN
+ */
 
 // Web5 Connect
-const { web5, did: myDid } = await Web5.connect();
-
-// Create VC Signer
-const vcSigner = await constructVcSigner(myDid, web5);
-const vcSignOptions = {
-  issuerDid  : myDid,
-  subjectDid : myDid,
-  kid        : vcSigner.keyId,
-  alg        : vcSigner.algorithm,
-  signer     : vcSigner.sign
-};
+const web5Did = await DidKeyMethod.create();
+const { web5, did: myDid } = await Web5.connect({ did: web5Did.did });
 
 class DateOfBirth {
   constructor(dob) {
@@ -121,8 +98,10 @@ class DateOfBirth {
 }
 
 // Create self signed VC
-const dwnVc = VerifiableCredential.create({type: 'DateOfBirth', issuer: myDid, subject: myDid, data: new DateOfBirth('1989-11-11')});
-const signedDwnVc = await dwnVc.sign(vcSignOptions);
+const dwnVc = await VerifiableCredential.create({ type: 'DateOfBirth', issuer: web5Did.did, subject: web5Did.did, data: new DateOfBirth('1989-11-11') });
+const signedDwnVc = await dwnVc.sign({ did: web5Did });
+
+console.log(signedDwnVc)
 
 // Storing VC in DWN
 const { record } = await web5.dwn.records.create({
@@ -137,7 +116,7 @@ console.log('\nVC Record ID: ' + record.id + '\n');
 
 
 // Reading VC from DWN
-let { record: readRecord } = await web5.dwn.records.read({
+const { record: readRecord } = await web5.dwn.records.read({
   message: {
     filter: {
       recordId: record.id
@@ -149,45 +128,3 @@ const readVcJwt = await readRecord.data.text();
 console.log('\nVC Record: \n' + readVcJwt + '\n');
 
 console.log('Finished!');
-
-async function constructVcSigner(author, web5Object) {
-  const signingKeyId = await web5Object.agent.didManager.getDefaultSigningKey({ did: author });
-
-  if (!signingKeyId) {
-    throw new Error (`VcManager: Unable to determine signing key id for author: '${author}'`);
-  }
-
-  // DID keys stored in KeyManager use the canonicalId as an alias, so
-  // normalize the signing key ID before attempting to retrieve the key.
-  const parsedDid = didUtils.parseDid({ didUrl: signingKeyId });
-  if (!parsedDid) {
-    throw new Error(`DidIonMethod: Unable to parse DID: ${signingKeyId}`);
-  }
-
-  const normalizedDid = parsedDid.did.split(':', 3).join(':');
-  const normalizedSigningKeyId = `${normalizedDid}#${parsedDid.fragment}`;
-  const signingKey = await web5Object.agent.keyManager.getKey({ keyRef: normalizedSigningKeyId });
-
-  // if (!isManagedKeyPair(signingKey)) {
-  //   throw new Error(`VcManager: Signing key not found for author: '${author}'`);
-  // }
-
-  // const { alg } = Jose.webCryptoToJose(signingKey.privateKey.algorithm);
-  // if (alg === undefined) {
-  //   throw Error(`No algorithm provided to sign with key ID ${signingKeyId}`);
-  // }
-
-  const alg = 'EdDSA';
-
-  return {
-    keyId     : signingKeyId,
-    algorithm : alg,
-    sign      : async (content) => {
-      return await web5Object.agent.keyManager.sign({
-        algorithm : signingKey.privateKey.algorithm,
-        data      : content,
-        keyRef    : normalizedSigningKeyId
-      });
-    }
-  };
-}
