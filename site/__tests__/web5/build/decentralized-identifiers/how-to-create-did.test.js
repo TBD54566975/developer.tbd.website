@@ -1,20 +1,35 @@
-import { test, expect } from 'vitest';
+import { test, expect, describe } from 'vitest';
 import {
-  createDidManually,
   createDidAutomatically,
+  createDidDht,
+  createDidIon,
+  createDidKey
 } from '../../../../code-snippets/web5/build/decentralized-identifiers/how-to-create-did';
 
-// skipping due to possible API changes
-test.skip('createDidManually returns a DID', async () => {
-  const result = await createDidManually();
+describe('create-dids', () => {
 
-  expect(result).toBeDefined();
-  expect(result.id).toMatch(/^did:ion:/);
-});
+  test('createDidAutomatically returns a DID', async () => {
+    const did = await createDidAutomatically();
+    expect(did).toBeDefined();
+    expect(did).toMatch(/^did:/);
+  });
 
-test('createDidAutomatically returns a DID', async () => {
-  const did = await createDidAutomatically();
+  test('createDidDht creates a DID with did:dht method', async () => {
+    const createdDid = await createDidDht();
+    expect(createdDid).toBeDefined();
+    expect(createdDid.id).toMatch(/^did:dht:/);
+  });
 
-  expect(did).toBeDefined();
-  expect(did).toMatch(/^did:/);
+  test('createDidKey creates a DID with did:key method', async () => {
+    const createdDid = await createDidKey();
+    expect(createdDid).toBeDefined();
+    expect(createdDid.id).toMatch(/^did:key:/);
+  });
+
+  test('createDidIon creates a DID with did:ion method', async () => {
+    const createdDid = await createDidIon();
+    expect(createdDid).toBeDefined();
+    expect(createdDid.id).toMatch(/^did:ion:/);
+  });
+
 });

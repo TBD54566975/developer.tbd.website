@@ -47,9 +47,16 @@ Now that Alice and Bob know that they need a DID let's take a look at the differ
 
 There are lots of different implementations of DIDs (called [DID methods](https://www.w3.org/TR/did-core/#methods)) with different use cases. Web5 currently supports a few methods.
 
+#### ```did:dht```
+
+The [did:dht](https://did-dht.com/) method, based on the Pkarr project, utilizes Bittorent's Mainline Distributed Hash Table (DHT) to anchor DIDs and store [DID Documents](#did-documents). This approach ensures that the identity information is maintained in a decentralized manner. 
+
+The did:dht method allows operations like creating, reading, updating, and deactivating DIDs, and includes optional features like type indexing and gateway APIs for extended functionalities.
+
+
 #### ```did:key```
 
-A [did:key](https://w3c-ccg.github.io/did-method-key/) is free and fast to spin up. Since it can be created, but not updated or deleted, it is useful for single, ephemeral interactions.
+A [did:key](https://w3c-ccg.github.io/did-method-key/) DID is quick and easy to spin up. Since it can be created, but not updated or deleted, it is useful for single, ephemeral interactions.
 
 <!--
 #### ```did:web```
@@ -61,9 +68,7 @@ It supports the ability to create, read, update, and deactivate a DID.
 
 #### ```did:ion```
 
-[did:ion](https://identity.foundation/sidetree/spec/) is an implementation of the [sidetree](https://identity.foundation/sidetree/spec/) protocol, which logs DID actions on any decentralized anchoring system, like a blockchain or other distributed ledger. In particular, did:ion anchors actions on the Bitcoin blockchain.
-
-did:ion is a very robust, very decentralized platform for anchoring your DIDs. It supports the ability to create, update, recover, and deactivate a DID.
+[did:ion](https://identity.foundation/sidetree/spec/) is an implementation of the [sidetree](https://identity.foundation/sidetree/spec/) protocol, which logs DID actions on any decentralized anchoring system, like a blockchain or other distributed ledger. In particular, did:ion anchors actions on the Bitcoin blockchain. did:ion supports the ability to create, update, recover, and deactivate a DID.
 
 ### DID Documents
 

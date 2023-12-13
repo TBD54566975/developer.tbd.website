@@ -4,6 +4,9 @@ title: Create a DID
 
 import CodeSnippet from '@site/src/components/CodeSnippet';
 
+[Decentralized Identifiers (DIDs)](/docs/web5/learn/decentralized-identifiers) are how you are identified on the decentralized web. 
+This guide covers how to use Web5 to create a DID.
+
 ## Create a DID automatically
 
 The `Web5.connect()` function creates a decentralized identifier (DID) or obtains connection to an existing one either by direct creation or connection to an [identity agent app](/docs/web5/learn/agents). This function also creates an instance of Web5.
@@ -13,7 +16,7 @@ See more details in the [API reference](/api/web5-js/#connectoptions).
 
 By default, the `Web5.connect()` function creates the DID using the [ION DID method](/docs/web5/learn/decentralized-identifiers#didion).
 
-Here’s an example of what the `myDid` object will look like:
+Here’s an example of what the `userDid` object will look like:
 
 ```
 did:ion:EiD3a17O2DCebpcZli-1BHRtMQ0LtTfrU85hHnAux6LrRQ:eyJkZWx0YSI6eyJwYXRjaGVzIjpbeyJhY3Rpb24iOiJyZXBsYWNlIiwiZG9jdW1lbnQiOnsicHVibGljS2V5cyI6W3siaWQiOiJkd24iLCJwdWJsaWNLZXlKd2siOnsiY3J2Ijoic2VjcDI1NmsxIiwia3R5IjoiRUMiLCJ4IjoiR1hoNkpFeHlqaWk0UHNiQ2NQdG5OWmlCT0MxZGVaSDdiYS1oVERXajlFZyIsInkiOiJ4SFF6VjhXR0VGdVZyelFIN0tFN1lQTDBEdWtkbUhwY0lOM1doQmlYSEhrIn0sInB1cnBvc2VzIjpbImF1dGhlbnRpY2F0aW9uIl0sInR5cGUiOiJKc29uV2ViS2V5MjAyMCJ9XX19XSwidXBkYXRlQ29tbWl0bWVudCI6IkVpQ3Z4bHlrZ0ZpeVZfLThxdUdVMjlkN0JTX1hMV0REVnFjUGxVVnBVNGFXU3cifSwic3VmZml4RGF0YSI6eyJkZWx0YUhhc2giOiJFaUQwT3didlJxQngwc1Atai16YjlXbzRZekp4Q1N3QU1oeUw2NnlySEVmSXR3IiwicmVjb3ZlcnlDb21taXRtZW50IjoiRWlEbk1JcVFLRTdPbWQwcFd0UHM0RmVKSFkxY1RCTllzMHdhX0stRWdnVEJFQSJ9fQ
@@ -21,40 +24,29 @@ did:ion:EiD3a17O2DCebpcZli-1BHRtMQ0LtTfrU85hHnAux6LrRQ:eyJkZWx0YSI6eyJwYXRjaGVzI
 
 ## Create a DID manually
 
-The `Web5.connect()` function above is the preferred way to create a DID, but there may be a case where you need to create another DID in real time. You can do so by calling [did.create()](/api/web5-js/did#createmethod-options).
+The `Web5.connect()` function above is the preferred way to create a DID, but there may be a case where you need to create another DID in real time. You can create a DID using any of the [Web5-supported DID methods](/docs/web5/learn/decentralized-identifiers#methods) by using the [DID package](https://www.npmjs.com/package/@web5/dids).
 
-When calling `create()`, be sure to pass in a [Web5-supported DID method](/docs/web5/learn/decentralized-identifiers#methods).
-
-<CodeSnippet functionName="createDidManually" />
-
-Here’s an example of what the `myDid` object will look like:
-
+**Import the DID Method you'd like to use:**
 ```js
-{
-  id: 'did:ion:EiDkWWhFezuDhJkGDJBmuIGDO2oOmzWVaL6SgWIyjqaJTw:eyJkZWx0YSI6eyJwYXRjaGVzIjpbeyJhY3Rpb24iOiJyZXBsYWNlIiwiZG9jdW1lbnQiOnsicHVibGljS2V5cyI6W3siaWQiOiJkd24iLCJwdWJsaWNLZXlKd2siOnsiY3J2Ijoic2VjcDI1NmsxIiwia3R5IjoiRUMiLCJ4IjoiOEpVUE5kSmxhQW50d2RyeUlDZEJUdEljeGdYRHJiXzRmYjJ5bFd3UlZrcyIsInkiOiJRR3o2QjhGTVRuaUhlMFhxY19SdmduTnQ4djJ0NFFJMW5mRVRiOXpsYldZIn0sInB1cnBvc2VzIjpbImF1dGhlbnRpY2F0aW9uIl0sInR5cGUiOiJKc29uV2ViS2V5MjAyMCJ9XX19XSwidXBkYXRlQ29tbWl0bWVudCI6IkVpQkFtTE5RaDdkX1NBcDRDOUV6SmV0M240ajJWNmJ6VVJGSUk4NE9mOS1KbUEifSwic3VmZml4RGF0YSI6eyJkZWx0YUhhc2giOiJFaUR3U05saVE3RjBXLU9zX2hRUkp1WnlPbzBTUTUzMjBCR3pBRG5Od053ZmJ3IiwicmVjb3ZlcnlDb21taXRtZW50IjoiRWlCUmYxY05pbUJFRXJZU1gtelJNNHdFSGRJZXdzUGZYNGRBVklYd0xKaFg0USJ9fQ',
-  internalId: 'did:ion:EiDkWWhFezuDhJkGDJBmuIGDO2oOmzWVaL6SgWIyjqaJTw',
-  didDocument: {
-    '@context': 'https://www.w3.org/ns/did/v1',
-    id: 'did:ion:EiDkWWhFezuDhJkGDJBmuIGDO2oOmzWVaL6SgWIyjqaJTw:eyJkZWx0YSI6eyJwYXRjaGVzIjpbeyJhY3Rpb24iOiJyZXBsYWNlIiwiZG9jdW1lbnQiOnsicHVibGljS2V5cyI6W3siaWQiOiJkd24iLCJwdWJsaWNLZXlKd2siOnsiY3J2Ijoic2VjcDI1NmsxIiwia3R5IjoiRUMiLCJ4IjoiOEpVUE5kSmxhQW50d2RyeUlDZEJUdEljeGdYRHJiXzRmYjJ5bFd3UlZrcyIsInkiOiJRR3o2QjhGTVRuaUhlMFhxY19SdmduTnQ4djJ0NFFJMW5mRVRiOXpsYldZIn0sInB1cnBvc2VzIjpbImF1dGhlbnRpY2F0aW9uIl0sInR5cGUiOiJKc29uV2ViS2V5MjAyMCJ9XX19XSwidXBkYXRlQ29tbWl0bWVudCI6IkVpQkFtTE5RaDdkX1NBcDRDOUV6SmV0M240ajJWNmJ6VVJGSUk4NE9mOS1KbUEifSwic3VmZml4RGF0YSI6eyJkZWx0YUhhc2giOiJFaUR3U05saVE3RjBXLU9zX2hRUkp1WnlPbzBTUTUzMjBCR3pBRG5Od053ZmJ3IiwicmVjb3ZlcnlDb21taXRtZW50IjoiRWlCUmYxY05pbUJFRXJZU1gtelJNNHdFSGRJZXdzUGZYNGRBVklYd0xKaFg0USJ9fQ',
-    verificationMethod: [ [Object] ],
-    authentication: [ '#dwn' ]
-  },
-  methodData: [
-    {
-      operation: 'create',
-      content: [Object],
-      recovery: [Object],
-      update: [Object]
-    }
-  ],
-  keys: [
-    {
-      id: 'did:ion:EiDkWWhFezuDhJkGDJBmuIGDO2oOmzWVaL6SgWIyjqaJTw:eyJkZWx0YSI6eyJwYXRjaGVzIjpbeyJhY3Rpb24iOiJyZXBsYWNlIiwiZG9jdW1lbnQiOnsicHVibGljS2V5cyI6W3siaWQiOiJkd24iLCJwdWJsaWNLZXlKd2siOnsiY3J2Ijoic2VjcDI1NmsxIiwia3R5IjoiRUMiLCJ4IjoiOEpVUE5kSmxhQW50d2RyeUlDZEJUdEljeGdYRHJiXzRmYjJ5bFd3UlZrcyIsInkiOiJRR3o2QjhGTVRuaUhlMFhxY19SdmduTnQ4djJ0NFFJMW5mRVRiOXpsYldZIn0sInB1cnBvc2VzIjpbImF1dGhlbnRpY2F0aW9uIl0sInR5cGUiOiJKc29uV2ViS2V5MjAyMCJ9XX19XSwidXBkYXRlQ29tbWl0bWVudCI6IkVpQkFtTE5RaDdkX1NBcDRDOUV6SmV0M240ajJWNmJ6VVJGSUk4NE9mOS1KbUEifSwic3VmZml4RGF0YSI6eyJkZWx0YUhhc2giOiJFaUR3U05saVE3RjBXLU9zX2hRUkp1WnlPbzBTUTUzMjBCR3pBRG5Od053ZmJ3IiwicmVjb3ZlcnlDb21taXRtZW50IjoiRWlCUmYxY05pbUJFRXJZU1gtelJNNHdFSGRJZXdzUGZYNGRBVklYd0xKaFg0USJ9fQ#dwn',
-      type: 'JsonWebKey2020',
-      controller: 'did:ion:EiDkWWhFezuDhJkGDJBmuIGDO2oOmzWVaL6SgWIyjqaJTw:eyJkZWx0YSI6eyJwYXRjaGVzIjpbeyJhY3Rpb24iOiJyZXBsYWNlIiwiZG9jdW1lbnQiOnsicHVibGljS2V5cyI6W3siaWQiOiJkd24iLCJwdWJsaWNLZXlKd2siOnsiY3J2Ijoic2VjcDI1NmsxIiwia3R5IjoiRUMiLCJ4IjoiOEpVUE5kSmxhQW50d2RyeUlDZEJUdEljeGdYRHJiXzRmYjJ5bFd3UlZrcyIsInkiOiJRR3o2QjhGTVRuaUhlMFhxY19SdmduTnQ4djJ0NFFJMW5mRVRiOXpsYldZIn0sInB1cnBvc2VzIjpbImF1dGhlbnRpY2F0aW9uIl0sInR5cGUiOiJKc29uV2ViS2V5MjAyMCJ9XX19XSwidXBkYXRlQ29tbWl0bWVudCI6IkVpQkFtTE5RaDdkX1NBcDRDOUV6SmV0M240ajJWNmJ6VVJGSUk4NE9mOS1KbUEifSwic3VmZml4RGF0YSI6eyJkZWx0YUhhc2giOiJFaUR3U05saVE3RjBXLU9zX2hRUkp1WnlPbzBTUTUzMjBCR3pBRG5Od053ZmJ3IiwicmVjb3ZlcnlDb21taXRtZW50IjoiRWlCUmYxY05pbUJFRXJZU1gtelJNNHdFSGRJZXdzUGZYNGRBVklYd0xKaFg0USJ9fQ',
-      publicKeyJwk: [Object],
-      privateKeyJwk: [Object]
-    }
-  ]
-}
+//did:dht
+import { DidDhtMethod } from '@web5/dids'
+
+//did:key
+import { DidKeyMethod } from '@web5/dids'
+
+//did:ion
+import { DidIonMethod } from '@web5/dids'
 ```
+
+### did:dht
+
+<CodeSnippet functionName="createDidDht" />
+
+### did:key
+
+<CodeSnippet functionName="createDidKey" />
+
+### did:ion
+
+<CodeSnippet functionName="createDidIon" />
+
