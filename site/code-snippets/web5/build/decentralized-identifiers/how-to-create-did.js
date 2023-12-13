@@ -8,7 +8,7 @@ export async function createDidAutomatically() {
 
 export async function createDidDht() {
 //Creates a DID using the DHT method and publishes the DID Document to the DHT  
-const didDht = await DidDhtMethod.create({ publish: false });
+const didDht = await DidDhtMethod.create({ publish: true });
 
 //DID and its associated data which can be exported and used in different contexts/apps
 const portableDID = JSON.stringify(didDht);
