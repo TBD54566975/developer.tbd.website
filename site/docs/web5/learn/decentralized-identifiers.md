@@ -49,7 +49,7 @@ There are lots of different implementations of DIDs (called [DID methods](https:
 
 #### ```did:dht```
 
-The [did:dht](https://did-dht.com/) method, based on the Pkarr project, utilizes Bittorent's Mainline Distributed Hash Table (DHT) to anchor DIDs and store [DID Documents](#did-documents). This approach ensures that the identity information is maintained in a decentralized manner. 
+The [did:dht](https://did-dht.com/) method, based on the Pkarr project, utilizes BitTorrent's Mainline Distributed Hash Table (DHT) to anchor DIDs and store [DID Documents](#did-documents). This approach ensures that the identity information is maintained in a decentralized manner. 
 
 The did:dht method allows operations like creating, reading, updating, and deactivating DIDs, and includes optional features like type indexing and gateway APIs for extended functionalities.
 
