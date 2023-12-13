@@ -1,4 +1,4 @@
-import { Web5 } from '@web5/api/browser';
+import { Web5 } from '@web5/api';
 import { DidDhtMethod, DidKeyMethod, DidIonMethod } from '@web5/dids';
 
 export async function createDidAutomatically() {

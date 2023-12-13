@@ -32,6 +32,9 @@ importers:
       node-fetch:
         specifier: 3.3.2
         version: 3.3.2
+      process:
+        specifier: 0.11.10
+        version: 0.11.10
       react-fontawesome:
         specifier: 1.7.1
         version: 1.7.1(react@18.2.0)

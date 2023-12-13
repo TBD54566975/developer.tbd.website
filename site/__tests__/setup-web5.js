@@ -1,5 +1,5 @@
 import { beforeAll } from 'vitest';
-import { Web5 } from '@web5/api/browser';
+import { Web5 } from '@web5/api';
 
 const testDwnUrl = import.meta.env.VITE_APP_TEST_DWN_URL;
 
