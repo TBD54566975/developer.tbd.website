@@ -5,7 +5,6 @@ import { DidKeyMethod, utils as didUtils } from '@web5/dids';
 import { Ed25519 } from '@web5/crypto';
 import { Web5 } from '@web5/api';
 
-// From: https://developer.tbd.website/docs/web5/quickstart
 import { webcrypto } from 'node:crypto';
 if (!globalThis.crypto) globalThis.crypto = webcrypto;
 
