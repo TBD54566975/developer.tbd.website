@@ -20,6 +20,9 @@ importers:
       '@web5/api':
         specifier: 0.8.3
         version: 0.8.3
+      '@web5/dids':
+        specifier: 0.2.3
+        version: 0.2.3
       font-awesome:
         specifier: 4.7.0
         version: 4.7.0
