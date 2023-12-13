@@ -27,6 +27,7 @@ The index.js file contains the main logic for the example. It performs the follo
 * Creates an unsigned VC.
 * Signs the VC using the issuer's did.
 * Verifies the signed VC.
+* Stores a date of birth VC in local DWN
 
 Run the script using Node.js:
 
