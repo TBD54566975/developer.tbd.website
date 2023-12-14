@@ -25,7 +25,12 @@ class SwiftiesFanClub {
   }
 }
 // Credential needs: type, issuer, subject, data
-const vc = await VerifiableCredential.create({ type: 'SwiftiesFanClub', issuer: fanClubIssuerDid.did, subject: aliceDid.did, data: new SwiftiesFanClub('#1 Fan', true) });
+const vc = await VerifiableCredential.create({ 
+                type: 'SwiftiesFanClub', 
+                issuer: fanClubIssuerDid.did, 
+                subject: aliceDid.did, 
+                data: new SwiftiesFanClub('Stan', true) 
+            });
 console.log('Unsigned VC: \n ' + vc.toString() + '\n');
 
 // Sign credential
