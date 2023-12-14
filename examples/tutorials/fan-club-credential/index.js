@@ -19,18 +19,20 @@ const aliceDid = await DidKeyMethod.create();
 
 // Create new credential
 class SwiftiesFanClub {
-  constructor(level, legit) {
-    this.level = level;
+  constructor(name, legit) {
+    this.name = name;
     this.legit = legit;
   }
 }
+
 // Credential needs: type, issuer, subject, data
 const vc = await VerifiableCredential.create({ 
-                type: 'SwiftiesFanClub', 
-                issuer: fanClubIssuerDid.did, 
-                subject: aliceDid.did, 
-                data: new SwiftiesFanClub('Stan', true) 
-            });
+  type: 'SwiftiesFanClub', 
+  issuer: fanClubIssuerDid.did, 
+  subject: aliceDid.did, 
+  data: new SwiftiesFanClub('Stan', true) 
+});
+
 console.log('Unsigned VC: \n ' + vc.toString() + '\n');
 
 // Sign credential
