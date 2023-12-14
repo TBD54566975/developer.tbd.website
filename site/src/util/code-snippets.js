@@ -1,4 +1,4 @@
-import { Web5 } from '@web5/api/browser';
+import { Web5 } from '@web5/api';
 
 export async function didCreate() {
   return await Web5.connect();

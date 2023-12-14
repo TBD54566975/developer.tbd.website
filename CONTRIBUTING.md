@@ -123,7 +123,7 @@ import {
   queryRecordsFromDID,
   queryRecordWithParentId,
 } from "../../../../code-snippets/web5/build/decentralized-web-nodes/query-from-dwn";
-import { Web5 } from "@web5/api/browser";
+import { Web5 } from "@web5/api";
 
 let web5;
 let did;

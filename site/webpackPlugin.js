@@ -10,22 +10,28 @@ module.exports = function (context, options) {
           fallback: {
             stream: require.resolve("stream-browserify"),
             crypto: require.resolve("crypto-browserify"),
-            // buffer: require.resolve("buffer"),
-          },
+            buffer: require.resolve("buffer")
+          }
         },
         plugins: [
-          // TODO: #66 - needed when we want to get rid of the `@web5/api/site`
-          // new webpack.ProvidePlugin({
-          //   process: "process/browser.js",
-          // }),
           new webpack.NormalModuleReplacementPlugin(
             /node:crypto/,
             (resource) => {
               resource.request = resource.request.replace(/^node:/, "");
             }
           ),
-        ],
+          new webpack.ProvidePlugin({
+            process: "process/browser.js",
+          }),
+          new webpack.DefinePlugin({
+            /*
+             IMPORTANT: To fix debug library‘s bug
+             {}.DEBUG = namespaces; // SyntaxError: Unexpected token '.'
+            */
+            'process.env.DEBUG': 'process.env.DEBUG'
+          })
+        ]
       };
-    },
+    }
   };
 };
