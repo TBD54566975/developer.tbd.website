@@ -818,3 +818,7 @@ html.plugin-docs.plugin-id-default article .theme-card p {
 .tbd-blue-illustration {
   filter: var(--color-primary-cyan-filter);
 }
+
+.markdown > h3 {
+  font-size: 1.5rem;
+}
