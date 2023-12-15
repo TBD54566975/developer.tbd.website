@@ -25,7 +25,6 @@
   "connectWithSyncConfig": "const {web5, did} = await Web5.connect({\n  sync: '5s'\n});",
   "createRecordWithTodoItem": "const myRecord = await web5.dwn.records.create(myDid.id, {\n    data: 'todoItem',\n    message: {\n      dataFormat: 'text/plain',\n    },\n  });",
   "createAliceDid": "const { web5, did: aliceDid } = await Web5.connect();\n\n  // Create the record\n  const { record } = await web5.dwn.records.create({\n    data: 'Hello Web5',\n    message: {\n      dataFormat: 'text/plain',\n    },\n  });\n\n  // Read the record\n  const readResult = await record.data.text();",
-  "createDidManually": "const myDid = await Web5.did.create('ion');",
   "createDidAutomatically": "const { web5, did: myDid } = await Web5.connect();",
   "deleteFromLocalDWN": "//Query records with plain text data format\n  const response = await web5.dwn.records.query({\n    message: {\n      filter: {\n        recordId: recordId,\n      },\n    },\n  });\n\n  // Grab the first indexed record\n  const record = response.records[0];\n\n  // Delete the record\n  const deleteResult = await web5.dwn.records.delete({\n    message: {\n      recordId: recordId\n    },\n  });",
   "createPublishedRecord": "const {record} = await web5.dwn.records.create({\n    data: \"a published record\",\n    message: {\n      dataFormat: \"text/plain\",\n      //highlight-start\n      published: true\n      //highlight-end\n    }\n  });",
@@ -53,5 +52,5 @@
   "didCreate": "const { web5, did: aliceDid } = await Web5.connect();",
   "readTextRecord": "const readResult = await record.data.text();",
   "updateTextRecord": "const updateResult = await record.update({\n    data: 'Hello, Web5! I am updated.',\n  });",
-  "deleteTextRecord": "const deleteResult = await web5.dwn.records.delete({\n    message: {\n      recordId,\n    },\n  });"
+  "deleteTextRecord": "const deleteResult = await web5.dwn.records.delete({\n    message: {\n      recordId: recordId,\n    },\n  });"
 }

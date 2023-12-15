@@ -74,3 +74,9 @@ await web5.dwn.records.create({
 
 ## Error: 'undefined' is not supported by the IPLD Data Model and cannot be encoded
 This is a syntax error in the calling functon that causes the error. Check this function for any typos or missing attributes.
+
+## Error: connect() failed due to unexpected state: ${storedIdentities} stored identities
+This error happens when you try to connect to the Web5 SDK, but there are multiple stored identities in the application's data store, which causes a conflict during the connection process. 
+
+
+Since identities are stored in the browser memory, you can resolve this issue by **clearing your browser's cache**. Clearing the browser's cache will remove all stored identities and reset the application's state.

@@ -4,6 +4,9 @@ title: Create a DID
 
 import CodeSnippet from '@site/src/components/CodeSnippet';
 
+[Decentralized Identifiers (DIDs)](/docs/web5/learn/decentralized-identifiers) are how you are identified on the decentralized web. 
+This guide covers how to use Web5 to create a DID.
+
 ## Create a DID automatically
 
 The `Web5.connect()` function creates a decentralized identifier (DID) or obtains connection to an existing one either by direct creation or connection to an [identity agent app](/docs/web5/learn/agents). This function also creates an instance of Web5.
@@ -13,7 +16,7 @@ See more details in the [API reference](/api/web5-js/#connectoptions).
 
 By default, the `Web5.connect()` function creates the DID using the [ION DID method](/docs/web5/learn/decentralized-identifiers#didion).
 
-Here’s an example of what the `myDid` object will look like:
+Here’s an example of what the `userDid` object will look like:
 
 ```
 did:ion:EiD3a17O2DCebpcZli-1BHRtMQ0LtTfrU85hHnAux6LrRQ:eyJkZWx0YSI6eyJwYXRjaGVzIjpbeyJhY3Rpb24iOiJyZXBsYWNlIiwiZG9jdW1lbnQiOnsicHVibGljS2V5cyI6W3siaWQiOiJkd24iLCJwdWJsaWNLZXlKd2siOnsiY3J2Ijoic2VjcDI1NmsxIiwia3R5IjoiRUMiLCJ4IjoiR1hoNkpFeHlqaWk0UHNiQ2NQdG5OWmlCT0MxZGVaSDdiYS1oVERXajlFZyIsInkiOiJ4SFF6VjhXR0VGdVZyelFIN0tFN1lQTDBEdWtkbUhwY0lOM1doQmlYSEhrIn0sInB1cnBvc2VzIjpbImF1dGhlbnRpY2F0aW9uIl0sInR5cGUiOiJKc29uV2ViS2V5MjAyMCJ9XX19XSwidXBkYXRlQ29tbWl0bWVudCI6IkVpQ3Z4bHlrZ0ZpeVZfLThxdUdVMjlkN0JTX1hMV0REVnFjUGxVVnBVNGFXU3cifSwic3VmZml4RGF0YSI6eyJkZWx0YUhhc2giOiJFaUQwT3didlJxQngwc1Atai16YjlXbzRZekp4Q1N3QU1oeUw2NnlySEVmSXR3IiwicmVjb3ZlcnlDb21taXRtZW50IjoiRWlEbk1JcVFLRTdPbWQwcFd0UHM0RmVKSFkxY1RCTllzMHdhX0stRWdnVEJFQSJ9fQ
@@ -21,40 +24,370 @@ did:ion:EiD3a17O2DCebpcZli-1BHRtMQ0LtTfrU85hHnAux6LrRQ:eyJkZWx0YSI6eyJwYXRjaGVzI
 
 ## Create a DID manually
 
-The `Web5.connect()` function above is the preferred way to create a DID, but there may be a case where you need to create another DID in real time. You can do so by calling [did.create()](/api/web5-js/did#createmethod-options).
+The `Web5.connect()` function above is the preferred way to create a DID, but there may be a case where you need to create another DID in real time. You can create a DID using any of the [Web5-supported DID methods](/docs/web5/learn/decentralized-identifiers#methods) by using the [DID package](https://www.npmjs.com/package/@web5/dids).
 
-When calling `create()`, be sure to pass in a [Web5-supported DID method](/docs/web5/learn/decentralized-identifiers#methods).
-
-<CodeSnippet functionName="createDidManually" />
-
-Here’s an example of what the `myDid` object will look like:
+**Import the DID Method you'd like to use:**
 
 ```js
+//did:dht
+import { DidDhtMethod } from '@web5/dids'
+
+//did:key
+import { DidKeyMethod } from '@web5/dids'
+
+//did:ion
+import { DidIonMethod } from '@web5/dids'
+```
+
+### did:dht
+
+```js
+//Creates a DID using the DHT method and publishes the DID Document to the DHT  
+const didDht = await DidDhtMethod.create({ publish: true });
+
+//DID and its associated data which can be exported and used in different contexts/apps
+const portableDID = JSON.stringify(didDht);
+
+//DID string
+const did = didDht.did;
+
+//DID Document
+const didDocument = JSON.stringify(didDht.document);
+
+//Cryptographic keys associated with DID
+const keys = JSON.stringify(didDht.keySet);
+
+//Primary form of a DID. more info: https://www.w3.org/TR/did-core/#dfn-canonicalid
+const canonicalId = didDht.canonicalId;
+```
+
+### did:key
+
+```js
+//Creates a DID using the did:key method 
+const didKey = await DidKeyMethod.create();
+
+//DID and its associated data which can be exported and used in different contexts/apps
+const portableDID = JSON.stringify(didKey);
+
+//DID string
+const did = didKey.did;
+
+//DID Document
+const didDocument = JSON.stringify(didKey.document);
+
+//Cryptographic keys associated with DID
+const keys = JSON.stringify(didKey.keySet);
+
+//Primary form of a DID. more info: https://www.w3.org/TR/did-core/#dfn-canonicalid
+const canonicalId = didKey.canonicalId;
+```
+
+### did:ion
+
+```js
+//Creates a DID using the did:ion method
+const didIon = await DidIonMethod.create();
+
+//DID and its associated data which can be exported and used in different contexts/apps
+const portableDID = JSON.stringify(didIon);
+
+//DID string
+const did = didIon.did;
+
+//DID Document
+const didDocument = JSON.stringify(didIon.document);
+
+//Cryptographic keys associated with DID
+const keys = JSON.stringify(didIon.keySet);
+
+//Primary form of a DID. more info: https://www.w3.org/TR/did-core/#dfn-canonicalid
+const canonicalId = didIon.canonicalId;
+```
+
+
+## Example of DID properties
+
+Here are examples of what's returned when creating a DID with Web5:
+
+### DID
+
+The ID of a DID Document is the DID as a string:
+
+```
+did:ion:EiCjuSOM6lPIszaRhM1Y5nttjGb-pRAzY3Cb7-6vtvwNDw:eyJkZWx0YSI6eyJwYXRjaGVzIjpbeyJhY3Rpb24iOiJyZXBsYWNlIiwiZG9jdW1lbnQiOnsicHVibGljS2V5cyI6W3siaWQiOiJkd24tc2lnIiwicHVibGljS2V5SndrIjp7ImNydiI6IkVkMjU1MTkiLCJrdHkiOiJPS1AiLCJ4IjoiWVpJQXRoYWQ3ZjlSWWdjamF4TlNTbXVQZGN5RkU0ZHowd3hGQi1ubUViOCJ9LCJwdXJwb3NlcyI6WyJhdXRoZW50aWNhdGlvbiIsImFzc2VydGlvbk1ldGhvZCJdLCJ0eXBlIjoiSnNvbldlYktleTIwMjAifV0sInNlcnZpY2VzIjpbXX19XSwidXBkYXRlQ29tbWl0bWVudCI6IkVpQnU2THlvZXl5b1dkQm9mR3RCMl82SmFQWUZDaG1kRWVGVmtYUVhlbXV0U2cifSwic3VmZml4RGF0YSI6eyJkZWx0YUhhc2giOiJFaUJzaDRuU2YtdXp0MzdNTUh1dkFRMmlIS1VOX0c1Z3ByMDZ4akI4c0NmX0pRIiwicmVjb3ZlcnlDb21taXRtZW50IjoiRWlCNGRkYTFVOEYxSzBSU0NOb0c3dlpRcmVRUXMxSTNldUlnNU01TTA5LWMzZyJ9fQ
+```
+
+### Portable DID
+As shown [above](#create-a-did-manually), `@web5/dids` provides methods to create a DID manually. A Portable DID is returned, which is a DID and its associated data which can be exported and used in different contexts and apps. 
+You should securely store your Portable DID in a trustworthy identity wallet or password manager.
+
+:::important
+In the example below, the `d` property of the private key component is masked. That's because this is the critical, sensitive part that must be kept secret. It allows the holder to perform private key operations, like signing data. Do not share your private key!
+:::
+
+```json
 {
-  id: 'did:ion:EiDkWWhFezuDhJkGDJBmuIGDO2oOmzWVaL6SgWIyjqaJTw:eyJkZWx0YSI6eyJwYXRjaGVzIjpbeyJhY3Rpb24iOiJyZXBsYWNlIiwiZG9jdW1lbnQiOnsicHVibGljS2V5cyI6W3siaWQiOiJkd24iLCJwdWJsaWNLZXlKd2siOnsiY3J2Ijoic2VjcDI1NmsxIiwia3R5IjoiRUMiLCJ4IjoiOEpVUE5kSmxhQW50d2RyeUlDZEJUdEljeGdYRHJiXzRmYjJ5bFd3UlZrcyIsInkiOiJRR3o2QjhGTVRuaUhlMFhxY19SdmduTnQ4djJ0NFFJMW5mRVRiOXpsYldZIn0sInB1cnBvc2VzIjpbImF1dGhlbnRpY2F0aW9uIl0sInR5cGUiOiJKc29uV2ViS2V5MjAyMCJ9XX19XSwidXBkYXRlQ29tbWl0bWVudCI6IkVpQkFtTE5RaDdkX1NBcDRDOUV6SmV0M240ajJWNmJ6VVJGSUk4NE9mOS1KbUEifSwic3VmZml4RGF0YSI6eyJkZWx0YUhhc2giOiJFaUR3U05saVE3RjBXLU9zX2hRUkp1WnlPbzBTUTUzMjBCR3pBRG5Od053ZmJ3IiwicmVjb3ZlcnlDb21taXRtZW50IjoiRWlCUmYxY05pbUJFRXJZU1gtelJNNHdFSGRJZXdzUGZYNGRBVklYd0xKaFg0USJ9fQ',
-  internalId: 'did:ion:EiDkWWhFezuDhJkGDJBmuIGDO2oOmzWVaL6SgWIyjqaJTw',
-  didDocument: {
-    '@context': 'https://www.w3.org/ns/did/v1',
-    id: 'did:ion:EiDkWWhFezuDhJkGDJBmuIGDO2oOmzWVaL6SgWIyjqaJTw:eyJkZWx0YSI6eyJwYXRjaGVzIjpbeyJhY3Rpb24iOiJyZXBsYWNlIiwiZG9jdW1lbnQiOnsicHVibGljS2V5cyI6W3siaWQiOiJkd24iLCJwdWJsaWNLZXlKd2siOnsiY3J2Ijoic2VjcDI1NmsxIiwia3R5IjoiRUMiLCJ4IjoiOEpVUE5kSmxhQW50d2RyeUlDZEJUdEljeGdYRHJiXzRmYjJ5bFd3UlZrcyIsInkiOiJRR3o2QjhGTVRuaUhlMFhxY19SdmduTnQ4djJ0NFFJMW5mRVRiOXpsYldZIn0sInB1cnBvc2VzIjpbImF1dGhlbnRpY2F0aW9uIl0sInR5cGUiOiJKc29uV2ViS2V5MjAyMCJ9XX19XSwidXBkYXRlQ29tbWl0bWVudCI6IkVpQkFtTE5RaDdkX1NBcDRDOUV6SmV0M240ajJWNmJ6VVJGSUk4NE9mOS1KbUEifSwic3VmZml4RGF0YSI6eyJkZWx0YUhhc2giOiJFaUR3U05saVE3RjBXLU9zX2hRUkp1WnlPbzBTUTUzMjBCR3pBRG5Od053ZmJ3IiwicmVjb3ZlcnlDb21taXRtZW50IjoiRWlCUmYxY05pbUJFRXJZU1gtelJNNHdFSGRJZXdzUGZYNGRBVklYd0xKaFg0USJ9fQ',
-    verificationMethod: [ [Object] ],
-    authentication: [ '#dwn' ]
+  "keySet": {
+    "verificationMethodKeys": [
+      {
+        "privateKeyJwk": {
+          "d": "*************",
+          "alg": "EdDSA",
+          "crv": "Ed25519",
+          "kty": "OKP",
+          "ext": "true",
+          "key_ops": [
+            "sign"
+          ],
+          "x": "YZIAthad7f9RYgcjaxNSSmuPdcyFE4dz0wxFB-nmEb8",
+          "kid": "dwn-sig"
+        },
+        "publicKeyJwk": {
+          "alg": "EdDSA",
+          "crv": "Ed25519",
+          "kty": "OKP",
+          "ext": "true",
+          "key_ops": [
+            "verify"
+          ],
+          "x": "YZIAthad7f9RYgcjaxNSSmuPdcyFE4dz0wxFB-nmEb8",
+          "kid": "dwn-sig"
+        },
+        "relationships": [
+          "authentication",
+          "assertionMethod"
+        ]
+      }
+    ],
+    "recoveryKey": {
+      "privateKeyJwk": {
+        "d": "*************",
+        "alg": "ES256K",
+        "crv": "secp256k1",
+        "kty": "EC",
+        "ext": "true",
+        "key_ops": [
+          "sign"
+        ],
+        "x": "Sq8xGmrFue_MsTr-OK2z3id89nVhrw4hC2p6UbS6teI",
+        "y": "kMP3ZEiQpFHJ9TYZEHig-BB0J0HULq1BydLQMVl6XE8",
+        "kid": "ion-recovery-1"
+      },
+      "publicKeyJwk": {
+        "alg": "ES256K",
+        "crv": "secp256k1",
+        "kty": "EC",
+        "ext": "true",
+        "key_ops": [
+          "verify"
+        ],
+        "x": "Sq8xGmrFue_MsTr-OK2z3id89nVhrw4hC2p6UbS6teI",
+        "y": "kMP3ZEiQpFHJ9TYZEHig-BB0J0HULq1BydLQMVl6XE8",
+        "kid": "ion-recovery-1"
+      }
+    },
+    "updateKey": {
+      "privateKeyJwk": {
+        "d": "*************",
+        "alg": "ES256K",
+        "crv": "secp256k1",
+        "kty": "EC",
+        "ext": "true",
+        "key_ops": [
+          "sign"
+        ],
+        "x": "c5dhXdcetUzIMQ5dKqUTmUxYTT7H2fA9mEPwj1EoaJY",
+        "y": "TtduVH7I62dijy35-Zhqwsss1Z3vZBahlyq6FUDOyL4",
+        "kid": "ion-update-1"
+      },
+      "publicKeyJwk": {
+        "alg": "ES256K",
+        "crv": "secp256k1",
+        "kty": "EC",
+        "ext": "true",
+        "key_ops": [
+          "verify"
+        ],
+        "x": "c5dhXdcetUzIMQ5dKqUTmUxYTT7H2fA9mEPwj1EoaJY",
+        "y": "TtduVH7I62dijy35-Zhqwsss1Z3vZBahlyq6FUDOyL4",
+        "kid": "ion-update-1"
+      }
+    }
   },
-  methodData: [
+  "did": "did:ion:EiCjuSOM6lPIszaRhM1Y5nttjGb-pRAzY3Cb7-6vtvwNDw:eyJkZWx0YSI6eyJwYXRjaGVzIjpbeyJhY3Rpb24iOiJyZXBsYWNlIiwiZG9jdW1lbnQiOnsicHVibGljS2V5cyI6W3siaWQiOiJkd24tc2lnIiwicHVibGljS2V5SndrIjp7ImNydiI6IkVkMjU1MTkiLCJrdHkiOiJPS1AiLCJ4IjoiWVpJQXRoYWQ3ZjlSWWdjamF4TlNTbXVQZGN5RkU0ZHowd3hGQi1ubUViOCJ9LCJwdXJwb3NlcyI6WyJhdXRoZW50aWNhdGlvbiIsImFzc2VydGlvbk1ldGhvZCJdLCJ0eXBlIjoiSnNvbldlYktleTIwMjAifV0sInNlcnZpY2VzIjpbXX19XSwidXBkYXRlQ29tbWl0bWVudCI6IkVpQnU2THlvZXl5b1dkQm9mR3RCMl82SmFQWUZDaG1kRWVGVmtYUVhlbXV0U2cifSwic3VmZml4RGF0YSI6eyJkZWx0YUhhc2giOiJFaUJzaDRuU2YtdXp0MzdNTUh1dkFRMmlIS1VOX0c1Z3ByMDZ4akI4c0NmX0pRIiwicmVjb3ZlcnlDb21taXRtZW50IjoiRWlCNGRkYTFVOEYxSzBSU0NOb0c3dlpRcmVRUXMxSTNldUlnNU01TTA5LWMzZyJ9fQ",
+  "canonicalId": "did:ion:EiCjuSOM6lPIszaRhM1Y5nttjGb-pRAzY3Cb7-6vtvwNDw",
+  "document": {
+    "id": "did:ion:EiCjuSOM6lPIszaRhM1Y5nttjGb-pRAzY3Cb7-6vtvwNDw:eyJkZWx0YSI6eyJwYXRjaGVzIjpbeyJhY3Rpb24iOiJyZXBsYWNlIiwiZG9jdW1lbnQiOnsicHVibGljS2V5cyI6W3siaWQiOiJkd24tc2lnIiwicHVibGljS2V5SndrIjp7ImNydiI6IkVkMjU1MTkiLCJrdHkiOiJPS1AiLCJ4IjoiWVpJQXRoYWQ3ZjlSWWdjamF4TlNTbXVQZGN5RkU0ZHowd3hGQi1ubUViOCJ9LCJwdXJwb3NlcyI6WyJhdXRoZW50aWNhdGlvbiIsImFzc2VydGlvbk1ldGhvZCJdLCJ0eXBlIjoiSnNvbldlYktleTIwMjAifV0sInNlcnZpY2VzIjpbXX19XSwidXBkYXRlQ29tbWl0bWVudCI6IkVpQnU2THlvZXl5b1dkQm9mR3RCMl82SmFQWUZDaG1kRWVGVmtYUVhlbXV0U2cifSwic3VmZml4RGF0YSI6eyJkZWx0YUhhc2giOiJFaUJzaDRuU2YtdXp0MzdNTUh1dkFRMmlIS1VOX0c1Z3ByMDZ4akI4c0NmX0pRIiwicmVjb3ZlcnlDb21taXRtZW50IjoiRWlCNGRkYTFVOEYxSzBSU0NOb0c3dlpRcmVRUXMxSTNldUlnNU01TTA5LWMzZyJ9fQ",
+    "@context": [
+      "https://www.w3.org/ns/did/v1",
+      {
+        "@base": "did:ion:EiCjuSOM6lPIszaRhM1Y5nttjGb-pRAzY3Cb7-6vtvwNDw:eyJkZWx0YSI6eyJwYXRjaGVzIjpbeyJhY3Rpb24iOiJyZXBsYWNlIiwiZG9jdW1lbnQiOnsicHVibGljS2V5cyI6W3siaWQiOiJkd24tc2lnIiwicHVibGljS2V5SndrIjp7ImNydiI6IkVkMjU1MTkiLCJrdHkiOiJPS1AiLCJ4IjoiWVpJQXRoYWQ3ZjlSWWdjamF4TlNTbXVQZGN5RkU0ZHowd3hGQi1ubUViOCJ9LCJwdXJwb3NlcyI6WyJhdXRoZW50aWNhdGlvbiIsImFzc2VydGlvbk1ldGhvZCJdLCJ0eXBlIjoiSnNvbldlYktleTIwMjAifV0sInNlcnZpY2VzIjpbXX19XSwidXBkYXRlQ29tbWl0bWVudCI6IkVpQnU2THlvZXl5b1dkQm9mR3RCMl82SmFQWUZDaG1kRWVGVmtYUVhlbXV0U2cifSwic3VmZml4RGF0YSI6eyJkZWx0YUhhc2giOiJFaUJzaDRuU2YtdXp0MzdNTUh1dkFRMmlIS1VOX0c1Z3ByMDZ4akI4c0NmX0pRIiwicmVjb3ZlcnlDb21taXRtZW50IjoiRWlCNGRkYTFVOEYxSzBSU0NOb0c3dlpRcmVRUXMxSTNldUlnNU01TTA5LWMzZyJ9fQ"
+      }
+    ],
+    "service": [],
+    "verificationMethod": [
+      {
+        "id": "#dwn-sig",
+        "controller": "did:ion:EiCjuSOM6lPIszaRhM1Y5nttjGb-pRAzY3Cb7-6vtvwNDw:eyJkZWx0YSI6eyJwYXRjaGVzIjpbeyJhY3Rpb24iOiJyZXBsYWNlIiwiZG9jdW1lbnQiOnsicHVibGljS2V5cyI6W3siaWQiOiJkd24tc2lnIiwicHVibGljS2V5SndrIjp7ImNydiI6IkVkMjU1MTkiLCJrdHkiOiJPS1AiLCJ4IjoiWVpJQXRoYWQ3ZjlSWWdjamF4TlNTbXVQZGN5RkU0ZHowd3hGQi1ubUViOCJ9LCJwdXJwb3NlcyI6WyJhdXRoZW50aWNhdGlvbiIsImFzc2VydGlvbk1ldGhvZCJdLCJ0eXBlIjoiSnNvbldlYktleTIwMjAifV0sInNlcnZpY2VzIjpbXX19XSwidXBkYXRlQ29tbWl0bWVudCI6IkVpQnU2THlvZXl5b1dkQm9mR3RCMl82SmFQWUZDaG1kRWVGVmtYUVhlbXV0U2cifSwic3VmZml4RGF0YSI6eyJkZWx0YUhhc2giOiJFaUJzaDRuU2YtdXp0MzdNTUh1dkFRMmlIS1VOX0c1Z3ByMDZ4akI4c0NmX0pRIiwicmVjb3ZlcnlDb21taXRtZW50IjoiRWlCNGRkYTFVOEYxSzBSU0NOb0c3dlpRcmVRUXMxSTNldUlnNU01TTA5LWMzZyJ9fQ",
+        "type": "JsonWebKey2020",
+        "publicKeyJwk": {
+          "crv": "Ed25519",
+          "kty": "OKP",
+          "x": "YZIAthad7f9RYgcjaxNSSmuPdcyFE4dz0wxFB-nmEb8"
+        }
+      }
+    ],
+    "authentication": [
+      "#dwn-sig"
+    ],
+    "assertionMethod": [
+      "#dwn-sig"
+    ]
+  }
+}
+```
+
+### DID Document
+The [DID Document](/docs/web5/learn/did_document) is a self-contained representation of the DID and provides metadata and cryptographic material associated with the DID
+
+```json
+{
+  "id": "did:ion:EiCjuSOM6lPIszaRhM1Y5nttjGb-pRAzY3Cb7-6vtvwNDw:eyJkZWx0YSI6eyJwYXRjaGVzIjpbeyJhY3Rpb24iOiJyZXBsYWNlIiwiZG9jdW1lbnQiOnsicHVibGljS2V5cyI6W3siaWQiOiJkd24tc2lnIiwicHVibGljS2V5SndrIjp7ImNydiI6IkVkMjU1MTkiLCJrdHkiOiJPS1AiLCJ4IjoiWVpJQXRoYWQ3ZjlSWWdjamF4TlNTbXVQZGN5RkU0ZHowd3hGQi1ubUViOCJ9LCJwdXJwb3NlcyI6WyJhdXRoZW50aWNhdGlvbiIsImFzc2VydGlvbk1ldGhvZCJdLCJ0eXBlIjoiSnNvbldlYktleTIwMjAifV0sInNlcnZpY2VzIjpbXX19XSwidXBkYXRlQ29tbWl0bWVudCI6IkVpQnU2THlvZXl5b1dkQm9mR3RCMl82SmFQWUZDaG1kRWVGVmtYUVhlbXV0U2cifSwic3VmZml4RGF0YSI6eyJkZWx0YUhhc2giOiJFaUJzaDRuU2YtdXp0MzdNTUh1dkFRMmlIS1VOX0c1Z3ByMDZ4akI4c0NmX0pRIiwicmVjb3ZlcnlDb21taXRtZW50IjoiRWlCNGRkYTFVOEYxSzBSU0NOb0c3dlpRcmVRUXMxSTNldUlnNU01TTA5LWMzZyJ9fQ",
+  "@context": [
+    "https://www.w3.org/ns/did/v1",
     {
-      operation: 'create',
-      content: [Object],
-      recovery: [Object],
-      update: [Object]
+      "@base": "did:ion:EiCjuSOM6lPIszaRhM1Y5nttjGb-pRAzY3Cb7-6vtvwNDw:eyJkZWx0YSI6eyJwYXRjaGVzIjpbeyJhY3Rpb24iOiJyZXBsYWNlIiwiZG9jdW1lbnQiOnsicHVibGljS2V5cyI6W3siaWQiOiJkd24tc2lnIiwicHVibGljS2V5SndrIjp7ImNydiI6IkVkMjU1MTkiLCJrdHkiOiJPS1AiLCJ4IjoiWVpJQXRoYWQ3ZjlSWWdjamF4TlNTbXVQZGN5RkU0ZHowd3hGQi1ubUViOCJ9LCJwdXJwb3NlcyI6WyJhdXRoZW50aWNhdGlvbiIsImFzc2VydGlvbk1ldGhvZCJdLCJ0eXBlIjoiSnNvbldlYktleTIwMjAifV0sInNlcnZpY2VzIjpbXX19XSwidXBkYXRlQ29tbWl0bWVudCI6IkVpQnU2THlvZXl5b1dkQm9mR3RCMl82SmFQWUZDaG1kRWVGVmtYUVhlbXV0U2cifSwic3VmZml4RGF0YSI6eyJkZWx0YUhhc2giOiJFaUJzaDRuU2YtdXp0MzdNTUh1dkFRMmlIS1VOX0c1Z3ByMDZ4akI4c0NmX0pRIiwicmVjb3ZlcnlDb21taXRtZW50IjoiRWlCNGRkYTFVOEYxSzBSU0NOb0c3dlpRcmVRUXMxSTNldUlnNU01TTA5LWMzZyJ9fQ"
     }
   ],
-  keys: [
+  "service": [],
+  "verificationMethod": [
     {
-      id: 'did:ion:EiDkWWhFezuDhJkGDJBmuIGDO2oOmzWVaL6SgWIyjqaJTw:eyJkZWx0YSI6eyJwYXRjaGVzIjpbeyJhY3Rpb24iOiJyZXBsYWNlIiwiZG9jdW1lbnQiOnsicHVibGljS2V5cyI6W3siaWQiOiJkd24iLCJwdWJsaWNLZXlKd2siOnsiY3J2Ijoic2VjcDI1NmsxIiwia3R5IjoiRUMiLCJ4IjoiOEpVUE5kSmxhQW50d2RyeUlDZEJUdEljeGdYRHJiXzRmYjJ5bFd3UlZrcyIsInkiOiJRR3o2QjhGTVRuaUhlMFhxY19SdmduTnQ4djJ0NFFJMW5mRVRiOXpsYldZIn0sInB1cnBvc2VzIjpbImF1dGhlbnRpY2F0aW9uIl0sInR5cGUiOiJKc29uV2ViS2V5MjAyMCJ9XX19XSwidXBkYXRlQ29tbWl0bWVudCI6IkVpQkFtTE5RaDdkX1NBcDRDOUV6SmV0M240ajJWNmJ6VVJGSUk4NE9mOS1KbUEifSwic3VmZml4RGF0YSI6eyJkZWx0YUhhc2giOiJFaUR3U05saVE3RjBXLU9zX2hRUkp1WnlPbzBTUTUzMjBCR3pBRG5Od053ZmJ3IiwicmVjb3ZlcnlDb21taXRtZW50IjoiRWlCUmYxY05pbUJFRXJZU1gtelJNNHdFSGRJZXdzUGZYNGRBVklYd0xKaFg0USJ9fQ#dwn',
-      type: 'JsonWebKey2020',
-      controller: 'did:ion:EiDkWWhFezuDhJkGDJBmuIGDO2oOmzWVaL6SgWIyjqaJTw:eyJkZWx0YSI6eyJwYXRjaGVzIjpbeyJhY3Rpb24iOiJyZXBsYWNlIiwiZG9jdW1lbnQiOnsicHVibGljS2V5cyI6W3siaWQiOiJkd24iLCJwdWJsaWNLZXlKd2siOnsiY3J2Ijoic2VjcDI1NmsxIiwia3R5IjoiRUMiLCJ4IjoiOEpVUE5kSmxhQW50d2RyeUlDZEJUdEljeGdYRHJiXzRmYjJ5bFd3UlZrcyIsInkiOiJRR3o2QjhGTVRuaUhlMFhxY19SdmduTnQ4djJ0NFFJMW5mRVRiOXpsYldZIn0sInB1cnBvc2VzIjpbImF1dGhlbnRpY2F0aW9uIl0sInR5cGUiOiJKc29uV2ViS2V5MjAyMCJ9XX19XSwidXBkYXRlQ29tbWl0bWVudCI6IkVpQkFtTE5RaDdkX1NBcDRDOUV6SmV0M240ajJWNmJ6VVJGSUk4NE9mOS1KbUEifSwic3VmZml4RGF0YSI6eyJkZWx0YUhhc2giOiJFaUR3U05saVE3RjBXLU9zX2hRUkp1WnlPbzBTUTUzMjBCR3pBRG5Od053ZmJ3IiwicmVjb3ZlcnlDb21taXRtZW50IjoiRWlCUmYxY05pbUJFRXJZU1gtelJNNHdFSGRJZXdzUGZYNGRBVklYd0xKaFg0USJ9fQ',
-      publicKeyJwk: [Object],
-      privateKeyJwk: [Object]
+      "id": "#dwn-sig",
+      "controller": "did:ion:EiCjuSOM6lPIszaRhM1Y5nttjGb-pRAzY3Cb7-6vtvwNDw:eyJkZWx0YSI6eyJwYXRjaGVzIjpbeyJhY3Rpb24iOiJyZXBsYWNlIiwiZG9jdW1lbnQiOnsicHVibGljS2V5cyI6W3siaWQiOiJkd24tc2lnIiwicHVibGljS2V5SndrIjp7ImNydiI6IkVkMjU1MTkiLCJrdHkiOiJPS1AiLCJ4IjoiWVpJQXRoYWQ3ZjlSWWdjamF4TlNTbXVQZGN5RkU0ZHowd3hGQi1ubUViOCJ9LCJwdXJwb3NlcyI6WyJhdXRoZW50aWNhdGlvbiIsImFzc2VydGlvbk1ldGhvZCJdLCJ0eXBlIjoiSnNvbldlYktleTIwMjAifV0sInNlcnZpY2VzIjpbXX19XSwidXBkYXRlQ29tbWl0bWVudCI6IkVpQnU2THlvZXl5b1dkQm9mR3RCMl82SmFQWUZDaG1kRWVGVmtYUVhlbXV0U2cifSwic3VmZml4RGF0YSI6eyJkZWx0YUhhc2giOiJFaUJzaDRuU2YtdXp0MzdNTUh1dkFRMmlIS1VOX0c1Z3ByMDZ4akI4c0NmX0pRIiwicmVjb3ZlcnlDb21taXRtZW50IjoiRWlCNGRkYTFVOEYxSzBSU0NOb0c3dlpRcmVRUXMxSTNldUlnNU01TTA5LWMzZyJ9fQ",
+      "type": "JsonWebKey2020",
+      "publicKeyJwk": {
+        "crv": "Ed25519",
+        "kty": "OKP",
+        "x": "YZIAthad7f9RYgcjaxNSSmuPdcyFE4dz0wxFB-nmEb8"
+      }
     }
+  ],
+  "authentication": [
+    "#dwn-sig"
+  ],
+  "assertionMethod": [
+    "#dwn-sig"
   ]
+}
+```
+
+### Canonical ID
+A DID method can define different forms of a DID that are logically equivalent. 
+An example is when a DID takes one form prior to registration in a verifiable data registry and another form after such registration. 
+Prior to registration, the DID string is extra long because it's encoding a lot of necessary data. 
+Once that DID is registered, there's no need to carry around all of this data anymore, and therefore a shorter version of the DID can be used.
+This shorter version of the DID is the [canonical ID](https://www.w3.org/TR/did-core/#dfn-canonicalid) which refers to the standard or primary form of a DID. 
+
+```
+did:ion:EiCjuSOM6lPIszaRhM1Y5nttjGb-pRAzY3Cb7-6vtvwNDw
+```
+
+
+### Cryptographic Keys
+A DID has an associated set of keys that can be used for verification and authentication.
+The keyset contains a DID subject's public and private keys (for signing, recovery, and updates).
+
+:::important
+In the example below, the `d` property of the private key component is masked. That's because this is the critical, sensitive part that must be kept secret. It allows the holder to perform private key operations, like signing data. Do not share your private key!
+:::
+
+```json
+{
+  "verificationMethodKeys": [
+    {
+      "privateKeyJwk": {
+        "d": "*************",
+        "alg": "EdDSA",
+        "crv": "Ed25519",
+        "kty": "OKP",
+        "ext": "true",
+        "key_ops": [
+          "sign"
+        ],
+        "x": "YZIAthad7f9RYgcjaxNSSmuPdcyFE4dz0wxFB-nmEb8",
+        "kid": "dwn-sig"
+      },
+      "publicKeyJwk": {
+        "alg": "EdDSA",
+        "crv": "Ed25519",
+        "kty": "OKP",
+        "ext": "true",
+        "key_ops": [
+          "verify"
+        ],
+        "x": "YZIAthad7f9RYgcjaxNSSmuPdcyFE4dz0wxFB-nmEb8",
+        "kid": "dwn-sig"
+      },
+      "relationships": [
+        "authentication",
+        "assertionMethod"
+      ]
+    }
+  ],
+  "recoveryKey": {
+    "privateKeyJwk": {
+      "d": "*************",
+      "alg": "ES256K",
+      "crv": "secp256k1",
+      "kty": "EC",
+      "ext": "true",
+      "key_ops": [
+        "sign"
+      ],
+      "x": "Sq8xGmrFue_MsTr-OK2z3id89nVhrw4hC2p6UbS6teI",
+      "y": "kMP3ZEiQpFHJ9TYZEHig-BB0J0HULq1BydLQMVl6XE8",
+      "kid": "ion-recovery-1"
+    },
+    "publicKeyJwk": {
+      "alg": "ES256K",
+      "crv": "secp256k1",
+      "kty": "EC",
+      "ext": "true",
+      "key_ops": [
+        "verify"
+      ],
+      "x": "Sq8xGmrFue_MsTr-OK2z3id89nVhrw4hC2p6UbS6teI",
+      "y": "kMP3ZEiQpFHJ9TYZEHig-BB0J0HULq1BydLQMVl6XE8",
+      "kid": "ion-recovery-1"
+    }
+  },
+  "updateKey": {
+    "privateKeyJwk": {
+      "d": "*************",
+      "alg": "ES256K",
+      "crv": "secp256k1",
+      "kty": "EC",
+      "ext": "true",
+      "key_ops": [
+        "sign"
+      ],
+      "x": "c5dhXdcetUzIMQ5dKqUTmUxYTT7H2fA9mEPwj1EoaJY",
+      "y": "TtduVH7I62dijy35-Zhqwsss1Z3vZBahlyq6FUDOyL4",
+      "kid": "ion-update-1"
+    },
+    "publicKeyJwk": {
+      "alg": "ES256K",
+      "crv": "secp256k1",
+      "kty": "EC",
+      "ext": "true",
+      "key_ops": [
+        "verify"
+      ],
+      "x": "c5dhXdcetUzIMQ5dKqUTmUxYTT7H2fA9mEPwj1EoaJY",
+      "y": "TtduVH7I62dijy35-Zhqwsss1Z3vZBahlyq6FUDOyL4",
+      "kid": "ion-update-1"
+    }
+  }
 }
 ```
