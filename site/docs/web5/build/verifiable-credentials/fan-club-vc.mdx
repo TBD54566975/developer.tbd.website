@@ -96,18 +96,16 @@ Let's break down the `VerifiableCredential.create()` method to understand what e
 `VerifiableCredential.create()` returns a VC as a JSON object:
 
 ```js
-VerifiableCredential {
-  vcDataModel: {
-    '@context': [ 'https://www.w3.org/2018/credentials/v1' ],
-    type: [ 'VerifiableCredential', 'SwiftiesFanClub' ],
-    id: 'urn:uuid:daa5ff01-9b7d-485b-9410-22a42952d46c',
-    issuer: 'did:key:z6Mkn4w6nSaWe4fjNJRvaHZwFnMm5VexvjzDeozEu2G7jC34',
-    issuanceDate: '2023-12-14T08:20:41Z',
-    credentialSubject: {
-      id: 'did:key:z6MkjGSeekPGE9QfczHWyW8v2ZzJU68kqSHzV7L2dmQyuyDu',
-      level: 'Stan',
-      legit: true
-    }
+vcDataModel: {
+  '@context': [ 'https://www.w3.org/2018/credentials/v1' ],
+  type: [ 'VerifiableCredential', 'SwiftiesFanClub' ],
+  id: 'urn:uuid:daa5ff01-9b7d-485b-9410-22a42952d46c',
+  issuer: 'did:key:z6Mkn4w6nSaWe4fjNJRvaHZwFnMm5VexvjzDeozEu2G7jC34',
+  issuanceDate: '2023-12-14T08:20:41Z',
+  credentialSubject: {
+    id: 'did:key:z6MkjGSeekPGE9QfczHWyW8v2ZzJU68kqSHzV7L2dmQyuyDu',
+    level: 'Stan',
+    legit: true
   }
 }
 ```
@@ -128,7 +126,6 @@ Here's a truncated JWT for your reference:
 ```
 eyJ0eXAiOipOSl...WndCJ9.eyJ2YyTk0MN2pDMzQhdG...UR1In0.rtlg8k9KU8_ENkrY06y...
 ```
-
 
 ## Act 2: Presentation Exchange
 Now that Alice has her credential, she'd like to present it in order to get free merchandise. She can do this via a **presentation exchange**.
@@ -263,6 +260,35 @@ try {
   console.log('\nVC Verification successful!\n');
 } catch (err) {
   console.log('\nVC Verification failed: ' + err.message + '\n');
+}
+```
+
+### Parse JWT into VC
+
+The signed VC JWT is a secure representation of the credential, ideal for transmission or storage.
+However, the verifier will likely need to inspect or use the data within the credential.
+They can use `parseJwt()` to convert the JWT back into a `VerifiableCredential` object. 
+This object format is more convenient for accessing and manipulating the credential's data within their application.
+
+```js title="Verifier.js"
+const parsedVC = await VerifiableCredential.parseJwt( { vcJwt: signedVcJwt });
+console.log(JSON.stringify(parsedVC));
+```
+
+This returns:
+
+```js
+vcDataModel: {
+  '@context': [ 'https://www.w3.org/2018/credentials/v1' ],
+  type: [ 'VerifiableCredential', 'SwiftiesFanClub' ],
+  id: 'urn:uuid:daa5ff01-9b7d-485b-9410-22a42952d46c',
+  issuer: 'did:key:z6Mkn4w6nSaWe4fjNJRvaHZwFnMm5VexvjzDeozEu2G7jC34',
+  issuanceDate: '2023-12-14T08:20:41Z',
+  credentialSubject: {
+    id: 'did:key:z6MkjGSeekPGE9QfczHWyW8v2ZzJU68kqSHzV7L2dmQyuyDu',
+    level: 'Stan',
+    legit: true
+  }
 }
 ```
 
