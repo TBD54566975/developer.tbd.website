@@ -45,6 +45,7 @@ yarn-error.log*
 /site/INDEX
 /site/MESSAGESTORE
 
+DATA
 data
 DATASTORE
 EVENTLOG
