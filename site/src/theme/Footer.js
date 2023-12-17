@@ -1,27 +1,7 @@
 import React from 'react';
 import Illustration from '../components/Illustration';
+import SmallSocialButton from '../components/SmallSocialButton';
 import TextLink from '../components/TextLink';
-
-function SmallSocialButton({ src, url, altText, title, isBlackWhite }) {
-  return (
-    <a
-      href={url}
-      target="_blank"
-      rel="noopener noreferrer"
-      className={`transition-transform transform hover:scale-105`}
-    >
-      <img
-        src={src}
-        alt={altText}
-        title={title}
-        className={`w-7 h-7 tablet:w-9 tablet:h-9 desktop:w-11 desktop:h-6 ${
-          isBlackWhite ? 'filter invert' : ''
-        }`}
-      />
-    </a>
-  );
-}
-
 
 export function Footer() {
   const footer = {
