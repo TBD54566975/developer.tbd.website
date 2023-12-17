@@ -43,6 +43,11 @@
   width: 10rem;
   height: 4.375rem;
   margin-bottom: 3.4375rem;
+  transition: transform 0.3s ease-in-out;
+  }
+.navbar__logo:hover,
+.navbar__logo:focus {
+  transform: scale(1.05);
 }
 
 .navbar--fixed-top {
@@ -58,6 +63,11 @@
   padding: 0px;
   margin-right: 3rem;
   padding-bottom: 3rem;
+  transition: transform 0.3s ease-in-out;
+  }
+.navbar__item:hover,
+.navbar__item:focus {
+  transform: scale(1.05);
 }
 
 .navbar__items.navbar__items--right .navbar__item {
