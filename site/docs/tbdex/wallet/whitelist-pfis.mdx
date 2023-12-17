@@ -31,12 +31,5 @@ These may or may not be provided in the form of verifiable credentials.
 The approach you take to maintain a list of verified PFIs is your choice. 
 This could be a database table of whitelisted PFIs, where you store details such as the PFIs' DIDs.
 
-Given you have a PFI's DID, you can query their DID document to get their most recent service endpoint URL.
-
-```js
-const foundService = pfiDid.document.service.find(service => service.type === 'PFI');
-const serviceEndpoint = foundService.serviceEndpoint;
-```
-
 It's recommended that you regularly review the PFIs on your network.
 Monitor your customers' satisfaction when transacting with specific PFIs, and remove any that no longer meet your standards.
