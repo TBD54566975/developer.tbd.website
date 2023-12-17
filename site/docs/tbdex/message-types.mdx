@@ -4,7 +4,7 @@ sidebar_position: 2
 
 # Message Types
 
-PFIs are able to communicate with Wallets by using the following tbDEX message types:
+PFIs and Wallets are able to communicate with each other by using the following tbDEX message types:
 
 * [**RFQ**](/docs/tbdex/api-reference/tbdex-js/protocol/classes/Rfq) - A message sent by a wallet to a PFI requesting a quote for an ask
 
@@ -16,4 +16,5 @@ PFIs are able to communicate with Wallets by using the following tbDEX message t
 
 * [**Close**](/docs/tbdex/pfi/processing-orders#close-the-order) - A message sent by a wallet or a PFI in response to an RFQ or Quote
 
-Additionally as a PFI, you'll offer a list of [Offerings](/docs/tbdex/pfi/creating-offerings), which is represented by a resource used to describe a currency pair that can be exchanged and includes requirements, conditions, and constraints needed to fulfill the described swap. 
+Additionally PFIs offer a list of [Offerings](/docs/tbdex/pfi/creating-offerings), which is represented by a resource used to describe a currency pair that can be exchanged and includes requirements, conditions, and constraints needed to fulfill the described swap. 
+Wallets can fetch a PFI's list of Offerings and present them to their users.
