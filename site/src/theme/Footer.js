@@ -49,6 +49,12 @@ export function Footer() {
         title: 'Go to YouTube',
       },
       {
+        src: '/img/twitch-icon.svg',
+        url: 'https://www.twitch.tv/tbdevs',
+        altText: 'Twitch button',
+        title: 'Go to Twitch',
+      },
+      {
         src: '/img/linkedin-icon.svg',
         url: 'https://www.linkedin.com/company/tbd54566975',
         altText: 'LinkedIn button',
@@ -64,8 +70,6 @@ export function Footer() {
 
       Removed these social links until we'd like to be responsive to these mediums:
       https://github.com/TBD54566975/developer.tbd.website/issues/293
-
-
       {
         src: '/img/vimeo-icon.svg',
         url: 'https://vimeo.com/tbd54566975',
@@ -77,19 +81,6 @@ export function Footer() {
         url: 'https://instagram.com/tbd54566975?igshid=YmMyMTA2M2Y=',
         altText: 'Instagram button',
         title: 'Go to Instagram',
-      },
-      */
-
-      /*
-
-      Removed these social links until we'd like to be responsive to these mediums:
-      https://github.com/TBD54566975/developer.tbd.website/issues/293
-
-      {
-        src: '/img/twitch-icon.svg',
-        url: 'https://www.twitch.tv/tbd54566975',
-        altText: 'Twitch button',
-        title: 'Go to Twitch',
       },
       {
         src: '/img/tiktok-icon.svg',

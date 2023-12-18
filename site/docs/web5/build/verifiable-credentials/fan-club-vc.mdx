@@ -1,0 +1,295 @@
+---
+title: VC Workflow
+hide_title: true
+---
+
+# Verifiable Credentials for Fan Club Membership
+
+Alice is a long-time fan of one of the biggest pop stars in the world! 
+In this tutorial, we'll learn how to use [verifiable credentials](/docs/web5/learn/verifiable-credentials) (VC) to ensure Alice is recognized as an official member of the exclusive Swifties Fan Club. 
+
+![Fan Club Membership](/img/vc-fanclub.png)
+
+## Setting the Stage
+Before we start issuing and verifying credentials, let's set up our environment by installing the [@web5/credentials](https://www.npmjs.com/package/@web5/credentials) and [@web5/dids](https://www.npmjs.com/package/@web5/dids) packages:
+
+```bash
+npm install @web5/credentials
+npm install @web5/dids
+```
+
+## The Cast
+There are a few characters involved in our story:
+
+* **The Issuer (Fan Club)**: This is the entity (us, in this case) responsible for issuing the verifiable credentials. Think of it as the guardian of the Swifties Fan Club.
+* **The Holder (Alice)**: A dedicated fan who wants to join the club. She will be the recipient of the credential, and she uses her Wallet app to show her credentials.
+* **The Verifier (Swag Supplier)**: This company provides free swag to Swiftie Fan Club members, but they have to verify that the person is indeed an official member.
+
+## Act 1: Issuing the Credential
+
+In this section, we'll walk through all of the steps required to create and issue a verifiable credential.
+
+### Create DIDs
+As a prerequisite, both the Fan Club and Alice need [decentralized identitifiers](/docs/web5/learn/decentralized-identifiers).
+This is because verifiable credentials use DIDs to identify issuers and holders.
+
+If you need to create DIDs, you can do so with the [@web5/dids](https://www.npmjs.com/package/@web5/dids) package:
+
+```js
+import { DidKeyMethod } from '@web5/dids';
+
+const fanClubIssuerDid = await DidKeyMethod.create();
+const aliceDid = await DidKeyMethod.create();
+```
+
+### Model Credential
+
+Now, let's create the **SwiftiesFanClub** credential. 
+We'll first model it with a class with some basic properties, `level` and `legit`:
+
+```js title="Issuer.js"
+import { VerifiableCredential, PresentationExchange } from "@web5/credentials";
+
+class SwiftiesFanClub {
+  constructor(level, legit) {
+    // indicates the fan's dedication level
+    this.level = level; 
+
+    // indicates if the fan is a genuine Swiftie
+    this.legit = legit; 
+  }
+}
+```
+
+:::note
+Note that credentials can be customized to fit various needs and scenarios. In our example, we used `level` and `legit`, but you could add more properties like `memberSince`, `favoriteAlbum`, or any other relevant data that suits your use case.
+:::
+
+### Create Credential
+
+Next we can create the verifiable credential with an instance of the class:
+
+```js title="Issuer.js"
+const vc = await VerifiableCredential.create({
+  type: 'SwiftiesFanClub',
+  issuer: fanClubIssuerDid.did,
+  subject: aliceDid.did,
+  data: new SwiftiesFanClub('Stan', true)
+});
+```
+
+### Credential Properties
+
+Let's break down the `VerifiableCredential.create()` method to understand what each property means and how it contributes to our credential:
+
+* **type**: The type of credential being created. In our case, it's `SwiftiesFanClub`. This helps in categorizing and understanding the purpose of the credential.
+
+* **issuer**: The DID of the issuer of the credential. It's crucial for establishing trust and verifying the origin of the credential. In our narrative, the issuer is the fan club itself.
+
+* **subject**: The DID of the person or entity the credential is about - in our case, Alice, the fan.
+
+* **data**: An instance of our `SwiftiesFanClub` class. This instance contains the specific information or claims about the subject, such as their fan level and legitimacy as a fan.
+
+
+### Credential JSON
+
+`VerifiableCredential.create()` returns a VC as a JSON object:
+
+```js
+vcDataModel: {
+  '@context': [ 'https://www.w3.org/2018/credentials/v1' ],
+  type: [ 'VerifiableCredential', 'SwiftiesFanClub' ],
+  id: 'urn:uuid:daa5ff01-9b7d-485b-9410-22a42952d46c',
+  issuer: 'did:key:z6Mkn4w6nSaWe4fjNJRvaHZwFnMm5VexvjzDeozEu2G7jC34',
+  issuanceDate: '2023-12-14T08:20:41Z',
+  credentialSubject: {
+    id: 'did:key:z6MkjGSeekPGE9QfczHWyW8v2ZzJU68kqSHzV7L2dmQyuyDu',
+    level: 'Stan',
+    legit: true
+  }
+}
+```
+
+### Sign Credential
+
+Last but not least, we must cryptographically sign the VC to make it official:
+
+```js title="Issuer.js"
+const signedVcJwt = await vc.sign({ did: fanClubIssuerDid });
+```
+
+### VC JWT
+Signing the credential returns a VC JSON Web Token, which is a compact, URL-safe means of representing claims to be transferred between two parties. 
+JWT format is used to encode the credentials, making them both secure and easily transmissible.
+
+Here's a truncated JWT for your reference:
+```
+eyJ0eXAiOipOSl...WndCJ9.eyJ2YyTk0MN2pDMzQhdG...UR1In0.rtlg8k9KU8_ENkrY06y...
+```
+
+## Act 2: Presentation Exchange
+Now that Alice has her credential, she'd like to present it in order to get free merchandise. She can do this via a **presentation exchange**.
+
+A presentation exchange is the process where the holder of VCs presents them to a verifier in order to prove certain claims or information. 
+
+### Components of Presentation Exchange
+
+* **Holder**: The individual or entity that possesses one or more verifiable credentials. In our Swifties Fan Club example, Alice is the holder.
+
+* **Verifier**: The party requesting to verify the information contained in the holder's credentials. This could be a website, service, or another individual who needs proof of certain claims. In our example, this would be the Swag Supplier.
+
+* **Presentation**: A package of information, compiled by the holder, that typically includes the verifiable credentials and possibly additional data required by the verifier. This presentation is what the holder submits to the verifier.
+
+* **Presentation Definition**: A set of criteria defined by the verifier detailing what they need to see in the presentation. This can include specific types of credentials, claims, or formats.
+
+### Create Presentation Definition
+
+To kick off the presentation exchange, the Swag Supplier (verifier) will send a request to Alice, which includes a presentation definition, specifying what credentials or claims are needed.
+Here's how the verifier can create the presentation definition, and validate that it is properly formed:
+
+```js title="Verifier.js"
+import { VerifiableCredential, PresentationExchange } from "@web5/credentials";
+
+const presentationDefinition = {
+  'id'                : 'presDefId123',
+  'name'              : 'Swifties Fan Club Presentation Definition',
+  'purpose'           : 'for proving membership in the fan club',
+  'input_descriptors' : [
+    {
+      'id'          : 'legitness',
+      'purpose'     : 'are you legit or not?',
+      'constraints' : {
+        'fields': [
+          {
+            'path': [
+              '$.credentialSubject.legit',
+            ]
+          }
+        ]
+      }
+    }
+  ]
+};
+
+const definitionValidation = PresentationExchange.validateDefinition({ presentationDefinition });
+```
+
+A successful validation would result in:
+
+```js
+[ Checked { tag: 'root', status: 'info', message: 'ok' } ]
+```
+
+### Satisfy Presentation Definition
+
+Once a presentation definition is presented to Alice, she'd want to make sure that the credentials she has satifies the requirements before submitting them.
+This can be done by passing the JWT(s) and the presentation definition to `satisfiesPresentationDefinition()` method.
+Typically this step is done by the app that Alice is using to store and present her credentials:
+
+```js title="Wallet.js"
+// Does VC Satisfy the Presentation Definition
+try {
+  PresentationExchange.satisfiesPresentationDefinition({vcJwts: [signedVcJwt], presentationDefinition: presentationDefinition});
+  console.log('\nVC Satisfies Presentation Definition!\n');
+} catch (err) {
+  console.log('VC does not satisfy Presentation Definition: ' + err.message);
+}
+```
+
+### Create Presentation
+
+Once Alice's app is confident that her credential satisfies the presentation definition, the presentation would be created:
+
+```js title="Wallet.js"
+// Create Presentation Result that contains a Verifiable Presentation and Presentation Submission
+const presentationResult = PresentationExchange.createPresentationFromCredentials({vcJwts: [signedVcJwt], presentationDefinition: presentationDefinition });
+console.log('\nPresentation Result: ' + JSON.stringify(presentationResult));
+```
+
+The result of the presentation:
+
+```json
+{
+  "presentation": {
+    "@context": [
+      "https://www.w3.org/2018/credentials/v1",
+      "https://identity.foundation/presentation-exchange/submission/v1"
+    ],
+    "type": [
+      "VerifiablePresentation",
+      "PresentationSubmission"
+    ],
+    "presentation_submission": {
+      "id": "kMqRP0zRKaiZNlbtbEIxd",
+      "definition_id": "presDefId123",
+      "descriptor_map": [
+        {
+          "id": "legitness",
+          "format": "jwt_vc",
+          "path": "$.verifiableCredential[0]"
+        }
+      ]
+    },
+    "verifiableCredential": [
+      "eyJ0eXAiOipOSl...WndCJ9.eyJ2YyTk0MN2pDMzQhdG...UR1In0.rtlg8k9KU8_ENkrY06y..."
+    ]
+  },
+  "presentationSubmissionLocation": 1,
+  "presentationSubmission": {
+    "id": "kMqRP0zRKaiZNlbtbEIxd",
+    "definition_id": "presDefId123",
+    "descriptor_map": [
+      {
+        "id": "legitness",
+        "format": "jwt_vc",
+        "path": "$.verifiableCredential[0]"
+      }
+    ]
+  }
+}
+```
+
+## Act 3: Verifying the Credential
+
+After receiving the credential, the verifier will want to verify it to ensure that it is valid and has not been tampered with. 
+They can do this with `VerifiableCredential.verify()`. If verification is unsuccessful, an error will be thrown:
+
+```js title="Verifier.js"
+try {
+  await VerifiableCredential.verify({ vcJwt: signedVcJwt });
+  console.log('\nVC Verification successful!\n');
+} catch (err) {
+  console.log('\nVC Verification failed: ' + err.message + '\n');
+}
+```
+
+### Parse JWT into VC
+
+The signed VC JWT is a secure representation of the credential, ideal for transmission or storage.
+However, the verifier will likely need to inspect or use the data within the credential.
+They can use `parseJwt()` to convert the JWT back into a `VerifiableCredential` object. 
+This object format is more convenient for accessing and manipulating the credential's data within their application.
+
+```js title="Verifier.js"
+const parsedVC = await VerifiableCredential.parseJwt( { vcJwt: signedVcJwt });
+console.log(JSON.stringify(parsedVC));
+```
+
+This returns:
+
+```js
+vcDataModel: {
+  '@context': [ 'https://www.w3.org/2018/credentials/v1' ],
+  type: [ 'VerifiableCredential', 'SwiftiesFanClub' ],
+  id: 'urn:uuid:daa5ff01-9b7d-485b-9410-22a42952d46c',
+  issuer: 'did:key:z6Mkn4w6nSaWe4fjNJRvaHZwFnMm5VexvjzDeozEu2G7jC34',
+  issuanceDate: '2023-12-14T08:20:41Z',
+  credentialSubject: {
+    id: 'did:key:z6MkjGSeekPGE9QfczHWyW8v2ZzJU68kqSHzV7L2dmQyuyDu',
+    level: 'Stan',
+    legit: true
+  }
+}
+```
+
+Given Alice's verified credential, she's all set to receive her free merch for being a proud member of the Swifties Fan Club!
