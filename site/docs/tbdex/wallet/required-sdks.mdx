@@ -1,0 +1,40 @@
+---
+sidebar_position: 2
+---
+
+# Required SDKs
+
+To implement and operate as a Wallet on a tbDEX network, you’ll need to use the following SDKs:
+
+
+* [**web5/dids**](https://www.npmjs.com/package/@web5/dids) - In order to create [Decentralized Identifiers (DID)](/docs/web5/learn/decentralized-identifiers) for your customers and perform any other required cryptographic functions, you’ll need the DID SDK.
+* [**web5/credentials**](https://www.npmjs.com/package/@web5/credentials) - Your application may need to present [Verifiable Credentials (VC)](/docs/web5/learn/verifiable-credentials) to PFIs on your customers' behalf. You may also want to verify that the PFIs you wish to engage with have certain credentials.
+* [**tbdex/client**](https://www.npmjs.com/package/@tbdex/http-client) - This SDK enables you to send tbDEX messages to PFIs.
+
+## Install SDKs
+To install `@web5/dids`:
+
+```bash
+npm i @web5/dids
+```
+
+To install `@web5/credentials`:
+
+```bash
+npm i @web5/credentials
+```
+
+To install `@tbdex/http-client`:
+
+```bash
+npm i @tbdex/http-client
+```
+
+## Import Classes
+
+To send and receive tbDEX messages, import the following classes:
+
+```js
+import { TbdexHttpClient, Rfq, Quote, Order} from '@tbdex/http-client';
+import { VerifiableCredential, PresentationExchange } from "@web5/credentials";
+```
