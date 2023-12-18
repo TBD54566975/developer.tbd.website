@@ -30,7 +30,7 @@ const matchedOfferings = [];
 
 for (const pfiDid of pfiDids) {
   //Makes a request to the PFI to get their offerings
-  const { data: offerings } = await TbdexHttpClient.getOfferings({ pfiDid });
+  const { data: offerings } = await TbdexHttpClient.getOfferings({ pfiDid: pfiDid });
 
   // Filter offerings based on the currency pair
   const filteredOfferings = offerings.filter(offering =>
