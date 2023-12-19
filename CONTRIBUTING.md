@@ -40,7 +40,7 @@ export async function queryRecordWithParentId(web5) {
   const response = await web5.dwn.records.query({
     message: {
       filter: {
-        parentId: "bafyreianzpmhbgcgam5mys722vnsiuwn7y4ek6kjeyjptttquasw4hge2m",
+        parentId: 'bafyreianzpmhbgcgam5mys722vnsiuwn7y4ek6kjeyjptttquasw4hge2m',
       },
     },
   });
@@ -69,7 +69,7 @@ We have a `<CodeSnippets />` component for displaying the code within the JSON m
 **Example**
 
 ```jsx
-import CodeSnippet from "@site/src/components/CodeSnippet";
+import CodeSnippet from '@site/src/components/CodeSnippet';
 
 <CodeSnippet functionName="queryProtocolsForMusic" />;
 ```
@@ -80,7 +80,7 @@ This will display the following:
 const { protocols } = await web5.dwn.protocols.query({
   message: {
     filter: {
-      protocol: "https://music.org/protocol",
+      protocol: 'https://music.org/protocol',
     },
   },
 });
@@ -93,7 +93,7 @@ export async function queryProtocolsForMusic(web5) {
   const { protocols } = await web5.dwn.protocols.query({
     message: {
       filter: {
-        protocol: "https://music.org/protocol",
+        protocol: 'https://music.org/protocol',
       },
     },
   });
@@ -115,15 +115,15 @@ We will have a `__tests__` directory per project within the monorepo, to it shou
 Import the code snippets from the original file to run tests against them. Here's an example:
 
 ```js
-import { test, beforeAll, expect } from "vitest";
+import { test, beforeAll, expect } from 'vitest';
 import {
   queryProtocolsWithFilterDescending,
   queryRecordsWithFilterAscending,
   queryProtocolsForMusic,
   queryRecordsFromDID,
   queryRecordWithParentId,
-} from "../../../../code-snippets/web5/build/decentralized-web-nodes/query-from-dwn";
-import { Web5 } from "@web5/api/browser";
+} from '../../../../code-snippets/web5/build/decentralized-web-nodes/query-from-dwn';
+import { Web5 } from '@web5/api';
 
 let web5;
 let did;
@@ -135,7 +135,7 @@ beforeAll(async () => {
   did = result.did;
 });
 
-test("queryProtocolsForMusic returns an array of protocols", async () => {
+test('queryProtocolsForMusic returns an array of protocols', async () => {
   const protocols = await queryProtocolsForMusic(web5);
   expect(Array.isArray(protocols)).toBe(true);
 });
@@ -147,7 +147,6 @@ You can use the following scripts to run the tests:
 
 `pnpm test` to run tests just once
 `pnpm test:watch` to run tests in dev mode
-
 
 ## Browser Testing Tutorial Projects
 
@@ -191,14 +190,15 @@ Be prepared to refine and adjust the test script provided by ChatGPT.
 
 - **Example**: In the `todo-completed` app, we use the following test to ensure the UI is ready before proceeding:
 
-    test('should allow adding a Todo', async ({ page }) => {
-      await page.goto('http://localhost:5174/');
-      
+  test('should allow adding a Todo', async ({ page }) => {
+  await page.goto('http://localhost:5174/');
+
       // Wait for the Web5 connection to complete
       await page.waitForSelector('#mydid-container');
 
       // Rest of the test script...
-    });
+
+  });
 
 ### **Remember**
 
@@ -207,4 +207,3 @@ Adhere to the project's coding standards and guidelines. Before submitting your 
 ---
 
 We look forward to your contributions and thank you for helping us improve this project!
-
