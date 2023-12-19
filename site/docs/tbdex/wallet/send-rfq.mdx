@@ -80,7 +80,7 @@ const rfq = Rfq.create({
 Signing the RFQ ensures its authenticity. You can do so with the customer's [Portable DID](/docs/web5/build/decentralized-identifiers/how-to-create-did#portable-did):
 
 ```js
-await rfq.sign(customer);
+await rfq.sign(customer); // Customer's PortableDid
 ```
 
 ## Send RFQ to PFI
