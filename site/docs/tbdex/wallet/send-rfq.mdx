@@ -1,0 +1,160 @@
+---
+sidebar_position: 7
+---
+
+# Sending RFQs
+
+After your customer selects an Offering, the next step is to send a **Request for Quote (RFQ)** to the PFI in order to initiate the transaction.
+The Offering provided an estimate, but the Quote will provide a formal offer based on the financial exchange the customer is requesting as well as the payment methods provided.
+
+## Create the RFQ
+An RFQ is a structured tbDEX message that specifies the details of the transaction your customer wishes to make. 
+It includes information about the Offering, payment methods, and any required [verifiable credentials (VCs)](/docs/tbdex/wallet/managing-credentials).
+
+To create the message, call `Rfq.create()` passing `metadata` and `data`:
+
+```js
+const rfq = Rfq.create({
+  metadata: {},
+  data: {},
+});
+```
+
+### metadata
+`metadata` identifies the DIDs of the sender (your customer) and the recipient (the PFI):
+
+```js
+const rfq = Rfq.create({
+  //highlight-start
+  metadata: {
+    from: customer.did, // Customer DID
+    to: selectedOffering.metadata.from    // PFI's DID
+  },
+  //highlight-end
+  data: {}
+});
+```
+
+### data
+`data` contains the specifics of the transaction, such as the id of the Offering you're requesting the Quote for, payment methods, and credentials:
+
+* **offeringId** - The unique identifier of the PFI's Offering the customer is interested in
+* **payinSubunits** - Total amount of payin currency the customer wants to pay in exchange for payout currency
+* **payinMethod** - How the customer intends to pay, including the currency and amount. This includes a `paymentDetails` object which should contain the properties defined in the Offering's `requiredPaymentDetails` JSON schema
+* **payoutMethod** - How the customer wishes to receive the payout. This includes a `paymentDetails` object which should contain the properties defined in the Offering's `requiredPaymentDetails` JSON schema
+* **claims** - The [VCs that satisfy the requirements of the Offer](/docs/tbdex/wallet/managing-credentials#select-credentials-that-satisfy-requirements)
+
+```js
+const rfq = Rfq.create({
+  metadata: {
+    from: customer.did, // Customer DID
+    to: selectedOffering.metadata.from    // PFI's DID
+  },
+  //highlight-start
+  data: {
+    offeringId: selectedOffering.metadata.id,   // The ID of the selected offering
+    payinSubunits: '0.012',  // The amount of the payin currency
+    payinMethod: {
+      kind: 'BTC_WALLET_ADDRESS',   // The method of payment
+      paymentDetails: {
+        btcAddress: BTC_ADDRESS       // Customer's BTC wallet address
+      }           
+    },
+    payoutMethod: {
+      kind: 'DEBIT_CARD',  // The method for receiving payout
+      paymentDetails: {
+        cvv: '123',
+        cardNumber: '1234567890123456789',
+        expiryDate: '05/25',
+        cardHolderName: 'Alice Doe'
+      }
+    },
+    claims: selectedCredentials     // Array of signed VCs required by the PFI
+  }
+  //highlight-end
+});
+```
+
+
+## Sign the RFQ
+Signing the RFQ ensures its authenticity. You can do so with the customer's [Portable DID](/docs/web5/build/decentralized-identifiers/how-to-create-did#portable-did):
+
+```js
+await rfq.sign(customer); // Customer's PortableDid
+```
+
+## Send RFQ to PFI
+Use `TbdexHttpClient` to send the RFQ to the PFI:
+
+```js
+const rfqResponse = await TbdexHttpClient.sendMessage({ message: rfq });
+```
+
+The response contains a `status`, where success would be `202`:
+
+```js
+{
+  "status": 202,
+  "headers": {}
+}
+```
+
+## Receive Quote
+
+At this point, the RFQ has been successfully sent to the PFI and an **exchange** has been created.
+This exchange serves as a thread of messages between your application and the PFI regarding this transaction.
+
+Your application will poll this exchange until a message of kind `quote` appears in the exchange:
+
+```js
+let quote;
+
+//Wait for Quote message to appear in the exchange
+while (!quote) {
+  const exchanges = await TbdexHttpClient.getExchanges({
+    pfiDid: rfq.metadata.to,
+    did: customer,
+    filter: { id: rfq.exchangeId }
+  });
+
+  const exchange = exchanges.data[0];
+  quote = exchange.find(msg => msg.kind === 'quote');
+
+  if (!quote) {
+    // Wait 2 seconds before making another request
+    await new Promise(resolve => setTimeout(resolve, 2000));
+  }
+}
+```
+
+The Quote will be returned in JSON form:
+
+```js
+{
+  "metadata": {
+    "from": " /* PFI's DID */ ",    
+    "to": " /* Customer's DID */ ",   ,
+    "exchangeId": "rfq_01hj07tb0rev8avhmqd8gggnkh",
+    "kind": "quote",
+    "id": "quote_01hj07tb6be2htn8bbx8afcjw9",
+    "createdAt": "2023-12-19T05:12:16.331Z"
+  },
+  "data": {
+    "expiresAt": "2024-05-01T05:00:00.000Z",
+    "payin": {
+      "currencyCode": "BTC",
+      "amountSubunits": "1000"
+    },
+    "payout": {
+      "currencyCode": "KES",
+      "amountSubunits": "123456789"
+    }
+  },
+  "signature": " /* PFI's cryptographic signature */ "
+}
+```
+
+Now that you've received a Quote, you can present this to your user and give them the option to place an Order.
+
+
+
