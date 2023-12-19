@@ -1,0 +1,92 @@
+---
+title: Store, Query & Read VCs in Your DWN
+hide_title: true
+---
+
+# Handling VCs in your DWN
+
+In this guide, we'll cover how to write a [Verifiable Credential (VC)](https://developer.tbd.website/docs/web5/learn/verifiable-credentials) to your [Decentralized Web Node (DWN)](https://developer.tbd.website/docs/web5/learn/decentralized-web-nodes), how to read it from your DWN and how to query it from your DWN.
+
+## Storing VC in DWN
+
+To store a VC in your DWN, you need to create a record with the VC data. The VC should already be [created](https://developer.tbd.website/docs/web5/build/verifiable-credentials/fan-club-vc#create-credential) and in a [signed JWT format](https://developer.tbd.website/docs/web5/build/verifiable-credentials/fan-club-vc#sign-credential). This is what that would look like:
+
+```javascript
+const { record } = await web5.dwn.records.create({
+  data: signedVcJwt,
+  message: {
+    schema: 'EmploymentCredential',
+    dataFormat: 'application/vc+jwt',
+  },
+});
+
+console.log('\nVC Record ID: ' + record.id + '\n');
+
+// (optional) immediately send record to your remote DWNs
+const { status } = await record.send(yourDid);
+```
+
+`signedVcJwt` represents your signed JWT VC. The `schema` property needs to be the name of the [constructor class](https://developer.tbd.website/docs/web5/build/verifiable-credentials/fan-club-vc#model-credential) you used when creating your VC, and `dataFormat` specifies the format of the VC, this will always be `application/vc+jwt`.
+
+## Reading VC from DWN
+
+Once your VC is stored, you can retrieve it from the DWN using the `recordId` that was created:
+
+```javascript
+let { record: readRecord } = await web5.dwn.records.read({
+  message: {
+    filter: {
+      recordId: record.id, // this is the record ID that was logged above
+    },
+  },
+});
+
+const signedVcJwt = await readRecord.data.text();
+console.log('\nVC Record: \n' + readVcJwt + '\n');
+```
+
+If you don't have access to your VC's `recordId` you can query your DWN for the record:
+
+## Querying VC From DWN
+
+```javascript
+const response = await web5.dwn.records.query({
+  from: yourDid,
+  message: {
+    filter: {
+      schema: 'EmploymentCredential',
+      dataFormat: 'application/vc+jwt',
+    },
+  },
+});
+
+const signedVcJwt = await response[0].data.text();
+console.log('\nVC Record: \n' + signedVcJwt + '\n');
+```
+
+This will log the first record matching the filters you specified, `schema` and `dataFormat`. Keep in mind that this will access your VC that is now a signed JWT string.
+
+If you would like to turn your VC back into a json object you can use the `parseJwt()` method:
+
+```javascript
+const parsedVc = VerifiableCredential.parseJwt(signedVcJwt);
+console.log(JSON.stringify(parsedVc));
+```
+
+This returns:
+
+```javascript
+vcDataModel: {
+  '@context': ['https://www.w3.org/2018/credentials/v1'],
+  type: ['VerifiableCredential', 'EmploymentCredential'],
+  id: 'urn:uuid:12345678-9abc-def0-1234-56789abcdef0',
+  issuer: 'did:key:z6Mkn4w6nSaWe4fjNJRvaHZwFnMm5VexvjzDeozEu2G7jC34',
+  issuanceDate: '2023-12-14T08:20:41Z',
+  credentialSubject: {
+    id: 'did:key:z6MkjGSeekPGE9QfczHWyW8v2ZzJU68kqSHzV7L2dmQyuyDu',
+    employmentStatus: 'employed',
+    company: 'TBD',
+    position: 'Software Engineer'
+  }
+}
+```
