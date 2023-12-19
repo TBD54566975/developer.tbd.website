@@ -39,7 +39,7 @@ const rfq = Rfq.create({
 `data` contains the specifics of the transaction, such as the id of the Offering you're requesting the Quote for, payment methods, and credentials:
 
 * **offeringId** - The unique identifier of the PFI's Offering the customer is interested in
-* **payinSubunits** - Amount of payin currency the customer wants in exchange for payout currency
+* **payinSubunits** - Total amount of payin currency the customer wants to pay in exchange for payout currency
 * **payinMethod** - How the customer intends to pay, including the currency and amount. This includes a `paymentDetails` object which should contain the properties defined in the Offering's `requiredPaymentDetails` JSON schema
 * **payoutMethod** - How the customer wishes to receive the payout. This includes a `paymentDetails` object which should contain the properties defined in the Offering's `requiredPaymentDetails` JSON schema
 * **claims** - The [VCs that satisfy the requirements of the Offer](/docs/tbdex/wallet/managing-credentials#select-credentials-that-satisfy-requirements)
