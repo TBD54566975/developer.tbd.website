@@ -84,7 +84,7 @@ await rfq.sign(customer); // Customer's PortableDid
 ```
 
 ## Send RFQ to PFI
-Use `TbdexHttpClient` to send the RFQ to the PFI, specifying the message type as `rfq`:
+Use `TbdexHttpClient` to send the RFQ to the PFI:
 
 ```js
 const rfqResponse = await TbdexHttpClient.sendMessage({ message: rfq });
