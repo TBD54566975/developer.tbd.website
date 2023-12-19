@@ -1,11 +1,11 @@
 ---
-title: Store, Query & Read VCs in Your DWN
+title: Store, Query, Read & Parse VCs in Your DWN
 hide_title: true
 ---
 
-# Handling VCs in your DWN
+# Handling VCs in Your DWN
 
-In this guide, we'll cover how to write a [Verifiable Credential (VC)](https://developer.tbd.website/docs/web5/learn/verifiable-credentials) to your [Decentralized Web Node (DWN)](https://developer.tbd.website/docs/web5/learn/decentralized-web-nodes), how to read it from your DWN and how to query it from your DWN.
+In this guide, we'll cover how to write a [Verifiable Credential (VC)](https://developer.tbd.website/docs/web5/learn/verifiable-credentials) to your [Decentralized Web Node (DWN)](https://developer.tbd.website/docs/web5/learn/decentralized-web-nodes), how to read it from your DWN, how to query it from your DWN, and lastly how to parse it.
 
 ## Storing VC in DWN
 
@@ -45,7 +45,7 @@ const signedVcJwt = await readRecord.data.text();
 console.log('\nVC Record: \n' + readVcJwt + '\n');
 ```
 
-If you don't have access to your VC's `recordId` you can query your DWN for the record:
+This will return your signed JWT string. If you don't have access to your VC's `recordId` you can query your DWN for the record:
 
 ## Querying VC From DWN
 
@@ -66,7 +66,9 @@ console.log('\nVC Record: \n' + signedVcJwt + '\n');
 
 This will log the first record matching the filters you specified, `schema` and `dataFormat`. Keep in mind that this will access your VC that is now a signed JWT string.
 
-If you would like to turn your VC back into a json object you can use the `parseJwt()` method:
+## Parsing a VC JWT
+
+After retrieving your signed JWT string, if you would like to turn your VC back into a readable JSON object you can use the `parseJwt()` method:
 
 ```javascript
 const parsedVc = VerifiableCredential.parseJwt(signedVcJwt);
