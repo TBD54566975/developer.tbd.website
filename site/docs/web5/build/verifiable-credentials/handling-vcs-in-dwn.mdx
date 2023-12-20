@@ -40,7 +40,6 @@ let { record: readRecord } = await web5.dwn.records.read({
 });
 
 const signedVcJwt = await readRecord.data.text();
-console.log('\nVC Record: \n' + readVcJwt + '\n');
 ```
 
 This will return your signed JWT string. If you don't have access to your VC's `recordId` you can query your DWN for the record:
