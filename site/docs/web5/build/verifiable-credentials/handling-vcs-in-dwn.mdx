@@ -43,7 +43,7 @@ const response = await web5.dwn.records.query({
 const signedVcJwt = await response[0].data.text();
 ```
 
-This will log the first record matching the filters you specified, `schema` and `dataFormat`. Keep in mind that this will access the VC as a JWT string.
+This will access the first record matching the filters you specified, `schema` and `dataFormat`. Keep in mind that this will access the VC as a JWT string.
 
 ## Parsing a VC JWT
 
