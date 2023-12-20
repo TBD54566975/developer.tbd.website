@@ -1,5 +1,10 @@
 import { beforeAll } from 'vitest';
-import { Web5 } from '@web5/api/browser';
+import { Web5 } from '@web5/api';
+
+// node.js 18 and earlier,  needs globalThis.crypto polyfill
+import { webcrypto } from 'node:crypto';
+// @ts-ignore
+if (!globalThis.crypto) globalThis.crypto = webcrypto;
 
 const testDwnUrl = import.meta.env.VITE_APP_TEST_DWN_URL;
 
