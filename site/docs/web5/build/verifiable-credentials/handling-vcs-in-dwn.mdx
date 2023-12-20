@@ -4,7 +4,7 @@ sidebar_position: 1
 
 # VCs in DWNs
 
-In this guide, we'll cover how to write a [Verifiable Credential (VC)](/docs/web5/learn/verifiable-credentials) to a [Decentralized Web Node (DWN)](/docs/web5/learn/decentralized-web-nodes), how to query and read a VC that is stored in a DWN, and lastly how to parse the VC into a format that your application can work with.
+In this guide, we'll cover how to write a [Verifiable Credential (VC)](/docs/web5/learn/verifiable-credentials) to a [Decentralized Web Node (DWN)](/docs/web5/learn/decentralized-web-nodes), how to retrieve that stored VC by querying the DWN for it, and lastly how to parse the VC into a format that your application can work with.
 
 ## Storing VC in DWN
 
@@ -19,32 +19,15 @@ const { record } = await web5.dwn.records.create({
   },
 });
 
-
-// (optional) immediately send record to your remote DWNs
-const { status } = await record.send(yourDid);
+// (optional) immediately send record to users remote DWNs
+const { status } = await record.send(userDid);
 ```
 
-`signedVcJwt` represents a signed VC JWT. The `schema` property should be the same as the VC type, and `dataFormat` specifies the format of the VC, this will always be `application/vc+jwt`.
-
-## Reading VC from DWN
-
-Once the VC is stored, you can retrieve it from the DWN using the `recordId` that was created:
-
-```javascript
-let { record: readRecord } = await web5.dwn.records.read({
-  message: {
-    filter: {
-      recordId: record.id, // this is the record ID that was logged above
-    },
-  },
-});
-
-const signedVcJwt = await readRecord.data.text();
-```
-
-This will return your signed JWT string. If you don't have access to your VC's `recordId` you can query your DWN for the record:
+`signedVcJwt` represents a signed VC JWT. The `schema` property should be the same as the VC type, and `dataFormat` specifies the format of the VC which is `application/vc+jwt`.
 
 ## Querying VC From DWN
+
+To retrieve a stored VC from a DWN, you can use the `records.query()` method:
 
 ```javascript
 const response = await web5.dwn.records.query({
@@ -58,14 +41,13 @@ const response = await web5.dwn.records.query({
 });
 
 const signedVcJwt = await response[0].data.text();
-console.log('\nVC Record: \n' + signedVcJwt + '\n');
 ```
 
-This will log the first record matching the filters you specified, `schema` and `dataFormat`. Keep in mind that this will access your VC that is now a signed JWT string.
+This will log the first record matching the filters you specified, `schema` and `dataFormat`. Keep in mind that this will access the VC as a JWT string.
 
 ## Parsing a VC JWT
 
-After retrieving your signed JWT string, if you would like to turn your VC back into a readable JSON object you can use the `parseJwt()` method:
+After retrieving the signed JWT, you can convert the VC back into a readable JSON object with the `parseJwt()` method:
 
 ```javascript
 const parsedVc = VerifiableCredential.parseJwt(signedVcJwt);
