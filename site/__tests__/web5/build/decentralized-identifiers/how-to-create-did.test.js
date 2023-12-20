@@ -29,7 +29,6 @@ describe('how-to-create-did', () => {
   });
 
 
-  //timing out
   test('createDidAutomatically returns a DID', async () => {
     const did = await createDidAutomatically();
     expect(did).toBeDefined();
