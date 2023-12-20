@@ -117,7 +117,7 @@ while (!quote) {
     filter: { id: rfq.exchangeId }
   });
 
-  const [ exchange ] = exchanges.data;
+  const exchange = exchanges.data[0];
   quote = exchange.find(msg => msg instanceof Quote);
 
   if (!quote) {
