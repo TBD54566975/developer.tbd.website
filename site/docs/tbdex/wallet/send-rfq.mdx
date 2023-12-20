@@ -118,7 +118,7 @@ while (!quote) {
   });
 
   const exchange = exchanges.data[0];
-  quote = exchange.find(msg => msg instanceof Quote);
+  quote = exchange.find(msg => msg.kind === 'quote');
 
   if (!quote) {
     // Wait 2 seconds before making another request
