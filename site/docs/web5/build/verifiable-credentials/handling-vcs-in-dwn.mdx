@@ -24,7 +24,7 @@ const { record } = await web5.dwn.records.create({
 const { status } = await record.send(yourDid);
 ```
 
-`signedVcJwt` represents your signed JWT VC. The `schema` property needs to be the name of the [constructor class](https://developer.tbd.website/docs/web5/build/verifiable-credentials/fan-club-vc#model-credential) you used when creating your VC, and `dataFormat` specifies the format of the VC, this will always be `application/vc+jwt`.
+`signedVcJwt` represents a signed VC JWT. The `schema` property should be the same as the VC type, and `dataFormat` specifies the format of the VC, this will always be `application/vc+jwt`.
 
 ## Reading VC from DWN
 
