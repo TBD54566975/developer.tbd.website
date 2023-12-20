@@ -1,0 +1,92 @@
+---
+sidebar_position: 8
+---
+
+# Receiving Quotes
+
+After [sending an RFQ](/docs/tbdex/wallet/send-rfq#send-rfq-to-pfi), the PFI will respond with an exact **Quote** for your customer. 
+This message will be written to the exchange.
+
+## Polling for Quote
+
+To get the Quote message, your application will poll the exchange until the Quote message is written:
+
+```js
+let quote;
+
+//Wait for Quote message to appear in the exchange
+while (!quote) {
+  const exchanges = await TbdexHttpClient.getExchanges({
+    pfiDid: rfq.metadata.to,
+    did: customer,
+    filter: { id: rfq.exchangeId }
+  });
+
+  const [ exchange ] = exchanges.data;
+  quote = exchange.find(msg => msg instanceof Quote);
+
+  if (!quote) {
+    // Wait 2 seconds before making another request
+    await new Promise(resolve => setTimeout(resolve, 2000));
+  }
+}
+```
+
+## Quote Object
+
+Now that you've received a Quote, you can present it to your customer and give them the option to [place an Order](/docs/tbdex/wallet/place-order/) or cancel the exchange.
+
+The Quote will be returned in JSON form:
+
+```js
+{
+  "metadata": {
+    "from": " /* PFI's DID */ ",    
+    "to": " /* Customer's DID */ ",   ,
+    "exchangeId": "rfq_01hj07tb0rev8avhmqd8gggnkh",
+    "kind": "quote",
+    "id": "quote_01hj07tb6be2htn8bbx8afcjw9",
+    "createdAt": "2023-12-19T05:12:16.331Z"
+  },
+  "data": {
+    "expiresAt": "2024-05-01T05:00:00.000Z",
+    "payin": {
+      "currencyCode": "BTC",
+      "amountSubunits": "1000"
+    },
+    "payout": {
+      "currencyCode": "KES",
+      "amountSubunits": "123456789"
+    }
+  },
+  "signature": " /* PFI's cryptographic signature */ "
+}
+```
+
+
+## Cancel Exchange
+
+After receiving the exact Quote, your customer may decide not to place an order. 
+In this case, you can send a **Close** message to the PFI which will end the exchange.
+
+To terminate the exchange, create a `Close` message, sign it with the customer's [Portable DID](/docs/web5/build/decentralized-identifiers/how-to-create-did#portable-did), and send the message.
+
+```js
+const close = Close.create({
+  metadata: {
+    from: customer.did,
+    to: quote.metadata.from,
+    exchangeId: quote.exchangeId
+  },
+  data: {
+    reason: 'Canceled by customer'
+  }
+});
+
+await close.sign(customer); // Customer's PortableDid
+await TbdexHttpClient.sendMessage({ message: close });
+```
+
+At this point, the exchange has been closed, and your customer is free to start a new exchange with this PFI or any other.
+
+
