@@ -1,0 +1,45 @@
+---
+sidebar_position: 5
+---
+
+# Get Offerings
+
+An [Offering](/docs/tbdex/pfi/creating-offerings#offering-object) describes a currency pair that can be exchanged. 
+They also specify any requirements, conditions, and constraints needed to fulfill the described swap. 
+This can include exchange rates, minimum and maximum transaction sizes, and other relevant details.
+
+In other words, an Offering is a way of describing a financial product that a PFI is offering on a tbDEX network. 
+
+Let's say your customer, Alice, is looking to exchange USD for GBP.
+As a wallet application, you would loop through your list of PFIs and make a request to each to obtain their list of Offerings and determine if any offer this currency pair.
+You'd then provide a list of the matching Offerings to Alice, showing her the options available.
+
+Let's walk through how this is done.
+
+## Find Matching Offerings
+
+Given you have a list of PFIs on your network, you can check their Offerings for any matches:
+
+```js
+const pfiDids = [/* array of PFI DIDs */];
+const payinCurrencyCode = 'USD'; // Desired payin currency code
+const payoutCurrencyCode = 'GBP'; // Desired payout currency code
+
+// Array to store the matched offerings
+const matchedOfferings = [];
+
+for (const pfiDid of pfiDids) {
+  //Makes a request to the PFI to get their offerings
+  const { data: offerings } = await TbdexHttpClient.getOfferings({ pfiDid: pfiDid });
+
+  // Filter offerings based on the currency pair
+  const filteredOfferings = offerings.filter(offering =>
+    offering.data.payinCurrency.currencyCode === payinCurrencyCode &&
+    offering.data.payoutCurrency.currencyCode === payoutCurrencyCode
+  );
+
+  matchedOfferings.push(...filteredOfferings);
+}
+```
+
+Now, you'd present the `matchedOfferings` to Alice.

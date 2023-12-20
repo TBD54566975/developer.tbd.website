@@ -1,4 +1,4 @@
-import { Web5 } from '@web5/api/browser';
+import { Web5 } from '@web5/api';
 
 export async function didCreate() {
   const { web5, did: aliceDid } = await Web5.connect();
@@ -34,7 +34,7 @@ export async function updateTextRecord(record) {
 export async function deleteTextRecord(web5, did, recordId) {
   const deleteResult = await web5.dwn.records.delete({
     message: {
-      recordId: recordId
+      recordId: recordId,
     },
   });
 
