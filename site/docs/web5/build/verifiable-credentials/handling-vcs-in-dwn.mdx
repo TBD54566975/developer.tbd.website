@@ -8,7 +8,7 @@ In this guide, we'll cover how to write a [Verifiable Credential (VC)](/docs/web
 
 ## Storing VC in DWN
 
-To store a VC in your DWN, you need to create a record with the VC data. The VC should already be [created](https://developer.tbd.website/docs/web5/build/verifiable-credentials/fan-club-vc#create-credential) and in a [signed JWT format](https://developer.tbd.website/docs/web5/build/verifiable-credentials/fan-club-vc#sign-credential). This is what that would look like:
+To store a VC in a DWN, you need to create a record with the VC data. The VC should already be [created](/docs/web5/build/verifiable-credentials/fan-club-vc#create-credential) and in a [signed JWT format](/docs/web5/build/verifiable-credentials/fan-club-vc#sign-credential). This is what that would look like:
 
 ```javascript
 const { record } = await web5.dwn.records.create({
