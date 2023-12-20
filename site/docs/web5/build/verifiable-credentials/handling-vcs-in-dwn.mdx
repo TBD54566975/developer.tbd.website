@@ -19,7 +19,6 @@ const { record } = await web5.dwn.records.create({
   },
 });
 
-console.log('\nVC Record ID: ' + record.id + '\n');
 
 // (optional) immediately send record to your remote DWNs
 const { status } = await record.send(yourDid);
