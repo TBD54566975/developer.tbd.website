@@ -99,62 +99,7 @@ The response contains a `status`, where success would be `202`:
 }
 ```
 
-## Receive Quote
-
 At this point, the RFQ has been successfully sent to the PFI and an **exchange** has been created.
 This exchange serves as a thread of messages between your application and the PFI regarding this transaction.
 
-Your application will poll this exchange until a message of kind `quote` appears in the exchange:
-
-```js
-let quote;
-
-//Wait for Quote message to appear in the exchange
-while (!quote) {
-  const exchanges = await TbdexHttpClient.getExchanges({
-    pfiDid: rfq.metadata.to,
-    did: customer,
-    filter: { id: rfq.exchangeId }
-  });
-
-  const exchange = exchanges.data[0];
-  quote = exchange.find(msg => msg.kind === 'quote');
-
-  if (!quote) {
-    // Wait 2 seconds before making another request
-    await new Promise(resolve => setTimeout(resolve, 2000));
-  }
-}
-```
-
-The Quote will be returned in JSON form:
-
-```js
-{
-  "metadata": {
-    "from": " /* PFI's DID */ ",    
-    "to": " /* Customer's DID */ ",   ,
-    "exchangeId": "rfq_01hj07tb0rev8avhmqd8gggnkh",
-    "kind": "quote",
-    "id": "quote_01hj07tb6be2htn8bbx8afcjw9",
-    "createdAt": "2023-12-19T05:12:16.331Z"
-  },
-  "data": {
-    "expiresAt": "2024-05-01T05:00:00.000Z",
-    "payin": {
-      "currencyCode": "BTC",
-      "amountSubunits": "1000"
-    },
-    "payout": {
-      "currencyCode": "KES",
-      "amountSubunits": "123456789"
-    }
-  },
-  "signature": " /* PFI's cryptographic signature */ "
-}
-```
-
-Now that you've received a Quote, you can present this to your user and give them the option to place an Order.
-
-
-
+The next message written to the exchange will be a [Quote](/docs/tbdex/wallet/receive-quote) from the PFI.
