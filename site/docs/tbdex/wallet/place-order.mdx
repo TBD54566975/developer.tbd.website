@@ -4,7 +4,7 @@ sidebar_position: 9
 
 # Placing Orders
 
-Once the PFI writes a [Quote](/docs/tbdex/wallet/send-rfq#receive-quote) message to the exchange in response to an [RFQ](/docs/tbdex/wallet/send-rfq), you'd present that Quote to your customer and give them the option to place an **Order**.
+Once the PFI writes a [Quote](/docs/tbdex/wallet/receive-quote) message to the exchange in response to an [RFQ](/docs/tbdex/wallet/send-rfq), you'd present that Quote to your customer and give them the option to place an **Order**.
 
 If the customer chooses to place the order, your application will create an Order object, send it to the PFI, listen for status updates, and wait until the order is closed.
 
@@ -54,8 +54,8 @@ Your application would likely want to show these status updates to your customer
 Your application can poll the exchange to continuously check for `OrderStatus` messages until a `Close` message has been written to the exchange:
 
 ```js
-let closedMessage;
-while (!closedMessage) {
+let closeMessage;
+while (!closeMessage) {
 
   const exchanges = await TbdexHttpClient.getExchanges({
     did: customer,
@@ -71,13 +71,13 @@ while (!closedMessage) {
     }
     else if (message instanceof Close){
       //final message of exchange has been written
-      closedMessage = message;
+      closeMessage = message;
     }
   }
 }
 ```
 
-## Receiving Close Message
+## Receive Close Message
 
 Once a `Close` message is written, the exchange is ended and no additional messages can be added to the exchange.
 
@@ -103,5 +103,5 @@ Once a `Close` message is written, the exchange is ended and no additional messa
 When the PFI closes the Order, it's important to check the `reason` on the Close message and report that to your customer, as it could be because the transaction was completed successfully or it could be that the Order has failed.
 
 ```js
-const reasonForClose = closedMessage.data.reason;
+const reasonForClose = closeMessage.data.reason;
 ```
