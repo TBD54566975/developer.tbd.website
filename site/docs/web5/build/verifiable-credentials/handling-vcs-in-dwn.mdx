@@ -28,7 +28,7 @@ const { status } = await record.send(yourDid);
 
 ## Reading VC from DWN
 
-Once your VC is stored, you can retrieve it from the DWN using the `recordId` that was created:
+Once the VC is stored, you can retrieve it from the DWN using the `recordId` that was created:
 
 ```javascript
 let { record: readRecord } = await web5.dwn.records.read({
