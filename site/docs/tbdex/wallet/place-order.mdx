@@ -1,0 +1,107 @@
+---
+sidebar_position: 8
+---
+
+# Placing Orders
+
+Once the PFI writes a [Quote](/docs/tbdex/wallet/send-rfq#receive-quote) message to the exchange in response to an [RFQ](/docs/tbdex/wallet/send-rfq), you'd present that Quote to your customer and give them the option to place an **Order**.
+
+If the customer chooses to place the order, your application will create an Order object, send it to the PFI, listen for status updates, and wait until the order is closed.
+
+
+## Create Order Object
+To place an Order in response to a Quote, the first step is to create the `Order` object. 
+This instantiates a new Order, including metadata such as the customer's DID, the PFI's DID, and the exchange ID obtained from the Quote.
+
+```js
+const order = Order.create({
+  metadata: {
+    from: customer.did,           // Customer's DID
+    to: quote.metadata.from,      // PFI's DID
+    exchangeId: quote.exchangeId  // Exchange ID from the Quote
+  }
+});
+```
+
+## Sign Order
+
+Then sign the Order with the customer's [Portable DID](/docs/web5/build/decentralized-identifiers/how-to-create-did#portable-did):
+
+```js
+await order.sign(customer);    // Customer's PortableDID
+```
+
+## Send Order
+After creating and signing the Order, it needs to be sent to the PFI. This is done using the `TbdexHttpClient.sendMessage` method:
+
+```js
+const orderResponse = await TbdexHttpClient.sendMessage({ message: order });
+```
+
+The response contains a `status`, where success would be `202`:
+
+```js
+{
+  "status": 202,
+  "headers": {}
+}
+```
+
+## Listen for Order Status Updates
+As the PFI is processing the Order, they'll write `OrderStatus` messages to the exchange to keep you posted on the Order's status.
+Your application would likely want to show these status updates to your customer to keep them informed of progress.
+
+Your application can poll the exchange to continuously check for `OrderStatus` messages until a `Close` message has been written to the exchange:
+
+```js
+let closedMessage;
+while (!closedMessage) {
+
+  const exchanges = await TbdexHttpClient.getExchanges({
+    did: customer,
+    pfiDid: order.metadata.to,
+    filter: { id: order.exchangeId }
+  })
+  const [ exchange ] = exchanges.data;
+
+  for (const message of exchange) {
+    if (message instanceof OrderStatus) {
+      //a status update to display to your customer
+      const orderStatus = message.data.orderStatus;
+    }
+    else if (message instanceof Close){
+      //final message of exchange has been written
+      closedMessage = message;
+    }
+  }
+}
+```
+
+## Closed Order
+
+Once a `Close` message is written, the exchange is ended and no additional messages can be added to the exchange.
+
+**Example of Close message**
+
+```js
+{
+  "metadata": {
+    "from": " /* PFI DID */ ",
+    "to": " /* CUSTOMER DID */ ",
+    "exchangeId": "rfq_01hj2g5wrzfp4tmrfkhz277g9w",
+    "kind": "close",
+    "id": "close_01hj2g6493fadax5xazq2d2da6",
+    "createdAt": "2023-12-20T02:16:59.939Z"
+  },
+  "data": {
+    "reason": "Order fulfilled"
+  },
+  "signature": " /* PFI's cryptographic signature */ "
+}
+```
+
+When the PFI closes the Order, it's important to check the `reason` on the Close message and report that to your customer, as it could be because the transaction was completed successfully or it could be that the Order has failed.
+
+```js
+const reasonForClose = closedMessage.data.reason;
+```
