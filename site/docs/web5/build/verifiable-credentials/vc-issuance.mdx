@@ -82,10 +82,7 @@ The next step is signing the VC. This cryptographic process, performed by the is
 
 <CodeSnippet functionName="signCredential" />
 
-Signing the credential returns a VC JSON Web Token (JWT), which is a compact, URL-safe means of representing claims to be transferred between two parties. 
-JWT format is used to encode the credentials, making them both secure and easily transmissible.
-
-Here's a truncated JWT for your reference:
+Signing the credential returns a [VC JWT](/docs/web5/build/verifiable-credentials/jwt-to-vc#what-is-a-jwt):
 
 ```
 eyJ0eXAiOiJKV1QiLCJhbGciOiJFZERTQSIsI...
@@ -93,4 +90,4 @@ eyJ0eXAiOiJKV1QiLCJhbGciOiJFZERTQSIsI...
 
 Giving this VC JWT to the holder completes the issuance of the credential.
 
-VC JWTs can be converted back to a JSON object by applications that need to engage with the contents of the credential.
+VC JWTs can be [converted back](/docs/web5/build/verifiable-credentials/jwt-to-vc#decoding-jwt) to a JSON object by applications that need to engage with the contents of the credential.
