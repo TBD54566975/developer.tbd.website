@@ -1,0 +1,72 @@
+---
+sidebar_position: 1
+---
+
+# VCs in DWNs
+
+In this guide, we'll cover how to write a [Verifiable Credential (VC)](/docs/web5/learn/verifiable-credentials) to a [Decentralized Web Node (DWN)](/docs/web5/learn/decentralized-web-nodes), how to retrieve that stored VC by querying the DWN for it, and lastly how to parse the VC into a format that your application can work with.
+
+## Storing VC in DWN
+
+To store a VC in a DWN, you need to create a record with the VC data. The VC should already be [created](/docs/web5/build/verifiable-credentials/fan-club-vc#create-credential) and in a [signed JWT format](/docs/web5/build/verifiable-credentials/fan-club-vc#sign-credential). This is what that would look like:
+
+```javascript
+const { record } = await web5.dwn.records.create({
+  data: signedVcJwt,
+  message: {
+    schema: 'EmploymentCredential',
+    dataFormat: 'application/vc+jwt',
+  },
+});
+
+// (optional) immediately send record to users remote DWNs
+const { status } = await record.send(userDid);
+```
+
+`signedVcJwt` represents a signed VC JWT. The `schema` property should be the same as the VC type, and `dataFormat` specifies the format of the VC which is `application/vc+jwt`.
+
+## Querying VC From DWN
+
+To retrieve a stored VC from a DWN, you can use the `records.query()` method:
+
+```javascript
+const response = await web5.dwn.records.query({
+  from: userDid,
+  message: {
+    filter: {
+      schema: 'EmploymentCredential',
+      dataFormat: 'application/vc+jwt',
+    },
+  },
+});
+
+const signedVcJwt = await response[0].data.text();
+```
+
+This will access the first record matching the filters you specified, `schema` and `dataFormat`. Keep in mind that this will access the VC as a JWT string.
+
+## Parsing a VC JWT
+
+After retrieving the signed JWT, you can convert the VC back into a readable JSON object with the `parseJwt()` method:
+
+```javascript
+const parsedVc = VerifiableCredential.parseJwt(signedVcJwt);
+```
+
+This returns:
+
+```javascript
+vcDataModel: {
+  '@context': ['https://www.w3.org/2018/credentials/v1'],
+  type: ['VerifiableCredential', 'EmploymentCredential'],
+  id: 'urn:uuid:12345678-9abc-def0-1234-56789abcdef0',
+  issuer: 'did:key:z6Mkn4w6nSaWe4fjNJRvaHZwFnMm5VexvjzDeozEu2G7jC34',
+  issuanceDate: '2023-12-14T08:20:41Z',
+  credentialSubject: {
+    id: 'did:key:z6MkjGSeekPGE9QfczHWyW8v2ZzJU68kqSHzV7L2dmQyuyDu',
+    employmentStatus: 'employed',
+    company: 'TBD',
+    position: 'Software Engineer'
+  }
+}
+```

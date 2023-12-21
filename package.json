@@ -23,6 +23,7 @@
     "@fortawesome/free-solid-svg-icons": "6.4.2",
     "@fortawesome/react-fontawesome": "0.2.0",
     "@web5/api": "0.8.3",
+    "@web5/dids": "0.2.3",
     "font-awesome": "4.7.0",
     "googleapis": "128.0.0",
     "node-fetch": "3.3.2",
