@@ -43,30 +43,5 @@ const response = await web5.dwn.records.query({
 const signedVcJwt = await response[0].data.text();
 ```
 
-This will access the first record matching the filters you specified, `schema` and `dataFormat`. Keep in mind that this will access the VC as a JWT string.
-
-## Parsing a VC JWT
-
-After retrieving the signed JWT, you can convert the VC back into a readable JSON object with the `parseJwt()` method:
-
-```js
-const parsedVc = VerifiableCredential.parseJwt(signedVcJwt);
-```
-
-This returns:
-
-```js
-vcDataModel: {
-  '@context': ['https://www.w3.org/2018/credentials/v1'],
-  type: ['VerifiableCredential', 'EmploymentCredential'],
-  id: 'urn:uuid:12345678-9abc-def0-1234-56789abcdef0',
-  issuer: 'did:key:z6Mkn4w6nSaWe4fjNJRvaHZwFnMm5VexvjzDeozEu2G7jC34',
-  issuanceDate: '2023-12-14T08:20:41Z',
-  credentialSubject: {
-    id: 'did:key:z6MkjGSeekPGE9QfczHWyW8v2ZzJU68kqSHzV7L2dmQyuyDu',
-    employmentStatus: 'employed',
-    company: 'TBD',
-    position: 'Software Engineer'
-  }
-}
-```
+This will access the first record matching the filters you specified, `schema` and `dataFormat`. 
+Keep in mind that this will return a JWT string, which can be [converted to a readable JSON object](/docs/web5/build/verifiable-credentials/jwt-to-vc#decoding-jwt).
