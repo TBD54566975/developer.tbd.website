@@ -16,7 +16,7 @@ Here are general steps your app should follow to whitelist PFIs:
 Research and identify PFIs that align with the types of transactions you'd like to offer to your customers.
 Consider factors like transaction fees, currency pairs offered, and reputation.
 
-To determine if a PFI is part of the tbDEX network, you can check their DID document for the `PFI` service type:
+To determine if a PFI is part of the tbDEX network, you can check their [DID document](/docs/web5/learn/did_document) for the `PFI` service type:
 
 ```js
 const isPFI = pfiDid.document.service.some(service => service.type === 'PFI');
