@@ -1,5 +1,5 @@
 ---
-sidebar_position: 1
+sidebar_position: 9
 ---
 
 # VCs in DWNs
@@ -8,9 +8,9 @@ In this guide, we'll cover how to write a [Verifiable Credential (VC)](/docs/web
 
 ## Storing VC in DWN
 
-To store a VC in a DWN, you need to create a record with the VC data. The VC should already be [created](/docs/web5/build/verifiable-credentials/fan-club-vc#create-credential) and in a [signed JWT format](/docs/web5/build/verifiable-credentials/fan-club-vc#sign-credential). This is what that would look like:
+To store a VC in a DWN, you need to create a record with the VC data. The VC should already be [created](/docs/web5/build/verifiable-credentials/vc-issuance#create-vc) and in a [signed JWT format](/docs/web5/build/verifiable-credentials/vc-issuance#sign-vc). This is what that would look like:
 
-```javascript
+```js
 const { record } = await web5.dwn.records.create({
   data: signedVcJwt,
   message: {
@@ -29,7 +29,7 @@ const { status } = await record.send(userDid);
 
 To retrieve a stored VC from a DWN, you can use the `records.query()` method:
 
-```javascript
+```js
 const response = await web5.dwn.records.query({
   from: userDid,
   message: {
@@ -49,13 +49,13 @@ This will access the first record matching the filters you specified, `schema` a
 
 After retrieving the signed JWT, you can convert the VC back into a readable JSON object with the `parseJwt()` method:
 
-```javascript
+```js
 const parsedVc = VerifiableCredential.parseJwt(signedVcJwt);
 ```
 
 This returns:
 
-```javascript
+```js
 vcDataModel: {
   '@context': ['https://www.w3.org/2018/credentials/v1'],
   type: ['VerifiableCredential', 'EmploymentCredential'],
