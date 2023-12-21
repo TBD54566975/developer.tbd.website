@@ -2,6 +2,9 @@
 sidebar_position: 1
 ---
 
+import CodeSnippet from '@site/src/components/CodeSnippet';
+
+
 # Issue a VC
 
 This guide provides a step-by-step process for issuing a [verifiable credential (VC)](/docs/web5/learn/verifiable-credentials), covering everything from installation to signing the credential.
@@ -44,19 +47,8 @@ Credentials are created in JSON form and contains the following properties:
 
 To create the VC, utilize the `VerifiableCredential.create()` method. Pass a JSON object containing the properties as shown below:
 
-```js
-const vc = await VerifiableCredential.create({
-  type: 'EmploymentCredential',
-  issuer: employerDid,
-  subject: employeeDid,
-  expirationDate: '2023-09-30T12:34:56Z',
-  data: {
-    "position": "Software Developer",
-    "startDate": "2023-04-01T12:34:56Z",
-    "employmentStatus": "Contractor"
-  }
-});
-```
+<CodeSnippet functionName="createEducationCredential" />
+
 
 This results in:
 
@@ -88,9 +80,7 @@ This results in:
 
 The next step is signing the VC. This cryptographic process, performed by the issuer, ensures the integrity and authenticity of the VC:
 
-```js
-const vc_jwt_employment = await vc.sign({ did: employerDid });
-```
+<CodeSnippet functionName="signCredential" />
 
 Signing the credential returns a VC JSON Web Token (JWT), which is a compact, URL-safe means of representing claims to be transferred between two parties. 
 JWT format is used to encode the credentials, making them both secure and easily transmissible.
