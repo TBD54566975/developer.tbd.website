@@ -2,15 +2,13 @@
 sidebar_position: 6
 ---
 
-# Creating Offerings
+# Offerings
 
-Offerings describe a currency pair that can be exchanged and specify the requirements, conditions, and constraints needed to fulfill the described swap. 
+Offerings describe a currency pair that can be exchanged and specify the requirements, conditions, and constraints needed to fulfill the described swap. In other words, an `Offering` is a way of describing a financial product you’re offering as a PFI on a tbDEX network. Any Wallet that has your PFI's DID will be able to query your PFI for all Offerings that it is making available, as well as fetch specific offerings. Wallets will then use that data to make an Request for Quote (RFQ) to your PFI to begin a potential transaction process.
 
-In other words, an `Offering` is a way of describing a financial product you’re offering as a PFI on a tbDEX network. 
+## Offering Data Schema
 
-## Offering Object
-
-As part of creating your offering, you’d need the following properties:
+At a top-level, the Offering data object is described by the following properties:
 
 * Currency pairings for the swap
 * Pay-in methods
@@ -71,6 +69,90 @@ To define these parameters, you’ll create a JSON object per the [Offering sche
    </td>
   </tr>
 </table>
+
+### Currencies
+
+Both the `payinCurrency` and `payoutCurrency` fields are described by the [`CurrencyDetails`](https://github.com/TBD54566975/tbdex/tree/main/specs/protocol#currencydetails) data type, which has the following fields:
+
+| Field        | Data Type | Description                                            |
+|--------------|-----------|--------------------------------------------------------|
+| `currencyCode` | string    | ISO 4217 currency code string. This field is required. |
+| `minSubunits`  | string    | Minimum amount of currency that the offer is valid for |
+| `maxSubunits`  | string    | Maximum amount of currency that the offer is valid for |
+
+To find more information on currency code strings to ensure your PFI uses a valid and correct value, see the [currency lists provided here](https://www.six-group.com/en/products-services/financial-information/data-standards.html).
+
+### Payment Methods
+
+Both the `payinMethods` and `payoutMethods` field are described by the [`PaymentMethod`](https://github.com/TBD54566975/tbdex/blob/main/specs/protocol/README.md#paymentmethod) data type, which has the following fields:
+
+| Field                    | Data Type | Description                                                                                                                                                             |
+|--------------------------|-----------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `kind`                   | string    | Type of payment method (i.e. `DEBIT_CARD`, `CREDIT_CARD`, etc.). Note that because this field is of type string, the values are not standardized. This field is required. |
+| `requiredPaymentDetails` | JSON      | A JSON schema containing the fields the Wallet must enter in order to use this payment method. This field is not enforced as required despite its name.                 |
+| `required`               | string[]  | A list of all the properties described `requiredPaymentDetails`.                                                                                                        |
+| `feeSubunits`            | string    | The fee expressed in the currency's sub units to make use of this payment method.                                                                                       |
+
+When structuring your `requiredPaymentDetails` object, it will look similar to the following:
+
+```json
+{
+  "requiredPaymentDetails": {
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "type": "object",
+    "properties": {
+      "property1": {
+        "type": "string",
+        "description": "A description of the first property",
+        "property1MaxLength": 16,
+      },
+      "property2": {
+        "type": "string",
+        "description": "A description of the first property",
+        "patternToMatch": "^(0[1-9]|1[0-2])\\/([0-9]{2})$"
+      }
+    }
+  }
+}
+```
+Note that the while `type` and `description` fields are more intuitive and standard for you to include in your `requiredPaymentDetails` schema, you have the flexibility to detail any requirements you have in this object. Each `payinMethod` or `payoutMethod` can be represented by an array of `PaymentMethods`.
+
+### Credentials and Claims
+
+Before placing an Offer on an RFQ that a Wallet has submitted for your Offering, you'll likely want to verify some kind of information about the owner of that Wallet. To do this, you'll request a claim or claims from the Wallet in the form of [Verifiable Credentials (VCs)](/docs/web5/learn/verifiable-credentials). As a PFI, you only require specific knowledge of the VCs you need and how to request them; however if you'd like to learn more about [issuing](/docs/web5/build/verifiable-credentials/vc-issuance), [sharing](/docs/web5/build/verifiable-credentials/jwt-to-vc), and [storing](/docs/web5/build/verifiable-credentials/vcs-in-dwn) VCs, you can do so at each link. Additionally, you can learn about [building an end-to-end VC workflow here](/docs/web5/build/verifiable-credentials/fan-club-vc) if interested.
+
+You will specify the `requiredClaims` of your Offering by following [the DIF Presentation Definition](https://identity.foundation/presentation-exchange/#presentation-definition) - a way of defining what proof you as a Verifier require. You'll specify all required forms and details of proof, optional selection rules, and define flexibility where possible when different types of input may satisfy the requirements.
+
+For a full breakdown of all the available fields and combinations, [see the DIF website](https://identity.foundation/presentation-exchange/#presentation-definition) for details. Below is a simple example of what a single required claim object could look like:
+
+```json
+{
+  "comment": "Note: VP, OIDC, DIDComm, or CHAPI outer wrapper would be here.",
+  "presentation_definition": {
+    "id": "32f54163-7166-48f1-93d8-ff217bdb0653",
+    "input_descriptors": [
+      {
+        "id": "wa_driver_license",
+        "name": "Washington State Business License",
+        "purpose": "We can only allow licensed Washington State business representatives into the WA Business Conference",
+        "constraints": {
+          "fields": [
+            {
+              "path": [
+                "$.credentialSubject.dateOfBirth",
+                "$.credentialSubject.dob",
+                "$.vc.credentialSubject.dateOfBirth",
+                "$.vc.credentialSubject.dob"
+              ]
+            }
+          ]
+        }
+      }
+    ]
+  }
+}
+```
+
 
 
 ## Sample Offering
