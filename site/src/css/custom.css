@@ -607,3 +607,7 @@ ol {
   color: var(--color-blue);
 }
 
+.aspect-video{
+  aspect-ratio: 16 / 9;
+  width: 100%;
+}

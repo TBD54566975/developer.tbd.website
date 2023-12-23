@@ -9,3 +9,7 @@ to = "/open-source/code-of-conduct"
 [[redirects]]
 from = "/docs/Decentralized%20Web%20Platform%20-%20Public.pdf"
 to = "/files/Decentralized-Web-Platform.pdf"
+
+[[redirects]]
+from = "/docs/web5/build/troubleshooting-guide"
+to = "/docs/web5/troubleshooting-guide"

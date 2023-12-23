@@ -6,7 +6,7 @@ tbDEX is a decentralized, permissionless liquidity discovery protocol that unloc
 
 ![illustration of tbDEX network](/img/tbdex-protocol-illustration.png)
 
-Using the tbDEX protocol, developers can build financial applications that facilitate the smooth transfer of currencies across borders. tbDEX serves as an open network protocol where anyone can seek liquidity, and Participating Financial Institutions (PFIs) can provide that liquidity while specifying the regulatory requirements needed to fulfill the request.
+Using the tbDEX protocol, developers can build financial applications that facilitate the smooth transfer of currencies across borders. tbDEX serves as an open network protocol where anyone can seek liquidity, and [Participating Financial Institutions (PFIs)](/docs/tbdex/pfi/overview) can provide that liquidity while specifying the regulatory requirements needed to fulfill the request.
 
 tbDEX is architected on Web5 infrastructure, utilizing decentralized technologies such as:
 
@@ -27,7 +27,7 @@ tbDEX isn’t just another exchange or centralized financial institution; it’s
 
 Furthermore, tbDEX cultivates a network that encourages competition among financial institutions for customers' business, offering them a choice among multiple providers. This competitive landscape incentivizes PFIs to offer more reasonable transaction fees, as they vie to attract and retain users within the tbDEX ecosystem. 
 
-The integration of financial institutions and wallet applications into one protocol ensures that every wallet has access to every participating financial institution, fostering a customer-centric environment where quality of service and cost-efficiency become key differentiators. This is transformative for liquidity companies, where the challenge to integrate with all wallets, especially smaller ones, is too high. With tbDEX, liquidity providers and aggregators can adopt the protocol once and enable thousands of wallets.
+The integration of financial institutions and [wallet applications](/docs/tbdex/wallet/overview) into one protocol ensures that every wallet has access to every participating financial institution, fostering a customer-centric environment where quality of service and cost-efficiency become key differentiators. This is transformative for liquidity companies, where the challenge to integrate with all wallets, especially smaller ones, is too high. With tbDEX, liquidity providers and aggregators can adopt the protocol once and enable thousands of wallets.
 
 
 ## How does tbDEX work?
@@ -42,8 +42,8 @@ There are essentially three types of actors involved in a tbDEX network:
 
 ![Wallet, PFI, and VC Issuer](/img/tbdex-actors.png)
 
-* **Wallet Apps:** These hold identifiers and credentials, acting as an agent to facilitate exchanges on behalf of a person seeking liquidity
-* **PFIs:** The entities offering liquidity services on the tbDEX network
+* **[Wallet Apps:](/docs/tbdex/wallet/overview)** These hold identifiers and credentials, acting as an agent to facilitate exchanges on behalf of a person seeking liquidity
+* **[PFIs:](/docs/tbdex/pfi/overview)** The entities offering liquidity services on a tbDEX network
 * **VC Issuers:** Organizations that act as sources of verifiable credentials
 
 ### Messages
@@ -70,23 +70,77 @@ Alice holds a digital wallet that securely manages her identity, including her i
 1. **Alice** informs her wallet of her need to make the exchange.
 
 2. **Alice's Wallet** discovers PFIs that offer this currency pairing, compares their credential requirements with the VCs Alice holds, and if necessary, applies for any missing VCs.
+    <details>
+    <summary>Related Guides</summary>
+
+    * [Onboard as PFI](/docs/tbdex/pfi/onboarding)
+    * [Whitelist PFIs](/docs/tbdex/wallet/whitelist-pfis)
+    * [Present Credentials](/docs/tbdex/wallet/managing-credentials)
+
+    </details>
 
 3. The **Credential Issuer** (if applicable) issues the required VCs to Alice, which are stored in her wallet.
+    <details>
+    <summary>Related Guides</summary>
+
+    * [Issue a VC](/docs/web5/build/verifiable-credentials/vc-issuance)
+
+    </details>
 
 4. **Alice’s Wallet** presents the offerings to Alice, allowing her to choose the one she’d like to transact with.
+    <details>
+    <summary>Related Guides</summary>
+
+    * [Get Offerings](/docs/tbdex/wallet/get-offerings)
+
+    </details>
 
 5. **Alice** considers the reputation of the PFIs as well as the transaction fees before choosing a PFI. 
 
 6. **Alice's Wallet** creates a request for a quote (RFQ) with Alice's DID, the details of her request, and the required VC - which Alice has already obtained from another PFI in the past. 
+    <details>
+    <summary>Related Guides</summary>
+
+    * [Send RFQs](/docs/tbdex/wallet/send-rfq)
+
+    </details>
 
 7. The **PFI** receives the RFQ, verifies the credentials, and responds with a quote. 
+    <details>
+    <summary>Related Guides</summary>
+
+    * [Create Quotes](/docs/tbdex/pfi/creating-quotes)
+    * [Verify Required Claims](/docs/tbdex/pfi/creating-quotes#verifying-the-required-claims)
+
+    </details>
 
 8. **Alice's Wallet** accepts the quote by placing the order. 
+    <details>
+    <summary>Related Guides</summary>
+
+    * [Place Orders](/docs/tbdex/wallet/place-order)
+    * [Cancel Exchange](/docs/tbdex/wallet/receive-quote#cancel-exchange)
+
+    </details>
 
 9. The **PFI** sends order statuses to the Wallet to update Alice about the order.
+    <details>
+    <summary>Related Guides</summary>
+
+    * [PFI: Process Orders](/docs/tbdex/pfi/processing-orders)
+    * [Wallet: Listen for Order Status Updates](/docs/tbdex/wallet/place-order#listen-for-order-status-updates)
+
+    </details>
 
 10. The **PFI** fulfills the order then sends a close message to Alice’s Wallet.
+    <details>
+    <summary>Related Guides</summary>
 
+    * [PFI: Close Order](/docs/tbdex/pfi/processing-orders#close-the-order)
+    * [Wallet: Receive Close Message](/docs/tbdex/wallet/place-order#receive-close-message)
+    * [Wallet: Cancel Exchange](/docs/tbdex/wallet/receive-quote#cancel-exchange)
+
+    </details>
 
 ## Try tbDEX
 
