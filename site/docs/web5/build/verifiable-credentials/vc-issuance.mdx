@@ -7,7 +7,7 @@ import CodeSnippet from '@site/src/components/CodeSnippet';
 
 # Issue a VC
 
-This guide provides a step-by-step process for issuing a [verifiable credential (VC)](/docs/web5/learn/verifiable-credentials), covering everything from installation to signing the credential.
+This guide provides a step-by-step process for issuing a [verifiable credential (VC)](/docs/web5/learn/verifiable-credentials), covering everything from installing the SDK to signing the credential.
 
 <details>
 <summary>Prerequisites</summary>
@@ -27,14 +27,14 @@ import { VerifiableCredential } from "@web5/credentials";
 **Obtain DIDs**
 
 VCs are issued to and from subjects of [Decentralized Identifiers (DID)](/docs/web5/learn/decentralized-identifiers).
-* If you don't already one, you can [create a DID](/docs/web5/build/decentralized-identifiers/how-to-create-did#create-a-did-manually).
+* If you don't already have one, you can [create a DID](/docs/web5/build/decentralized-identifiers/how-to-create-did#create-a-did-manually).
 * Also, you'll need the DID of the entity you'll like to issue the VC to.
 
 </details>
 
 ## VC Properties
 
-Credentials are created in JSON form and contains the following properties:
+Credentials are created in JSON format and contain the following properties:
 
 * **type:** Type of the credential (e.g. EmploymentCredential, EducationCredential)
 * **issuer:** DID of the entity who is issuing the credential
@@ -47,7 +47,7 @@ Credentials are created in JSON form and contains the following properties:
 
 To create the VC, utilize the `VerifiableCredential.create()` method. Pass a JSON object containing the properties as shown below:
 
-<CodeSnippet functionName="createEducationCredential" />
+<CodeSnippet functionName="createEmploymentCredential" />
 
 
 This results in:
