@@ -5,7 +5,7 @@ The output of this credential is hard-coded in the guide.
 If you change any of the data below, please regenerate the 
 output and paste it in the guide.
 */
-export async function createEducationCredential(employerDid, employeeDid) {
+export async function createEmploymentCredential(employerDid, employeeDid) {
 const vc = await VerifiableCredential.create({
     type: 'EmploymentCredential',
     issuer: employerDid,

@@ -1,7 +1,7 @@
 import { test, beforeAll, expect, describe } from 'vitest';
 import { DidDhtMethod } from '@web5/dids'
 import {
-    createEducationCredential,
+    createEmploymentCredential,
     signCredential
 } from '../../../../code-snippets/web5/build/verifiable-credentials/vc-issuance';
 
@@ -11,7 +11,7 @@ const subjectDid = await DidDhtMethod.create();
 describe('issue a credential', () => {
 
     test('VerifiableCredential.create() creates a VC', async () => {
-      const vc = await createEducationCredential(issuerDid.did, subjectDid.did);
+      const vc = await createEmploymentCredential(issuerDid.did, subjectDid.did);
       expect(vc).toBeDefined();
       expect.soft(vc).toHaveProperty('type', 'EmploymentCredential');
       expect.soft(vc).toHaveProperty('issuer', issuerDid.did);
@@ -25,7 +25,7 @@ describe('issue a credential', () => {
     });
 
     test('VerifiableCredential.sign() signs a VC', async () => {
-        const vc = await createEducationCredential(issuerDid.did, subjectDid.did);
+        const vc = await createEmploymentCredential(issuerDid.did, subjectDid.did);
         const vc_jwt = await signCredential(vc, issuerDid);
         expect(vc_jwt).toBeDefined();
         expect(vc_jwt).toMatch(/^[a-zA-Z0-9-_]+\.[a-zA-Z0-9-_]+\.[a-zA-Z0-9-_]+$/);
