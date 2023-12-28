@@ -89,9 +89,7 @@ Both the `payinMethods` and `payoutMethods` fields are described by the [`Paymen
 | Field                    | Data Type | Description                                                                                                                                                             |
 |--------------------------|-----------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `kind`                   | string    | Type of payment method (i.e. `DEBIT_CARD`, `CREDIT_CARD`, etc.). Note that because this field is of type string, the values are not standardized. This field is required. |
-| `requiredPaymentDetails` | JSON      | A JSON schema containing the fields the Wallet must enter in order to use this payment method. This field is not enforced as required despite its name.                 |
-| `required`               | string[]  | A list of all the properties described `requiredPaymentDetails`.                                                                                                        |
-| `feeSubunits`            | string    | The fee expressed in the currency's sub units to make use of this payment method.                                                                                       |
+| `requiredPaymentDetails` | JSON      | A JSON schema containing the fields the Wallet must enter in order to use this payment method.                 |
 
 When structuring your `requiredPaymentDetails` object, it will look similar to the following:
 
@@ -123,27 +121,25 @@ In order to comply with certain financial regulations, you may require informati
 
 To specify the exact credentials you need, you can do so in the `requiredClaims` section of your Offering by following [the DIF Presentation Definition](https://identity.foundation/presentation-exchange/#presentation-definition). You'll specify all required forms and details of proof, optional selection rules, and define flexibility where possible when different types of input may satisfy the requirements.
 
-For a full breakdown of all the available fields and combinations, [see the DIF website](https://identity.foundation/presentation-exchange/#presentation-definition) for details. Below is a simple example of what a single required claim object could look like:
+For a full breakdown of all the available fields and combinations, [see the DIF website](https://identity.foundation/presentation-exchange/#presentation-definition) for details. Below is a example of how you could request a Wallet provide a VC of type **SanctionsCredential**:
 
 ```json
 {
   "comment": "Note: VP, OIDC, DIDComm, or CHAPI outer wrapper would be here.",
   "presentation_definition": {
-    "id": "32f54163-7166-48f1-93d8-ff217bdb0653",
+    "id": "6bdaec32-e511-489d-b2fd-27a051bd819b",
     "input_descriptors": [
       {
-        "id": "wa_driver_license",
-        "name": "Washington State Business License",
-        "purpose": "We can only allow licensed Washington State business representatives into the WA Business Conference",
+        "id": "65752b5a-a454-4605-85de-7f159b22ce01",
+        "purpose": "We need to know if you are a sanctioned individual",
         "constraints": {
           "fields": [
             {
-              "path": [
-                "$.credentialSubject.dateOfBirth",
-                "$.credentialSubject.dob",
-                "$.vc.credentialSubject.dateOfBirth",
-                "$.vc.credentialSubject.dob"
-              ]
+              "path": [ "$.type[*]" ],
+              "filter": {
+                "type": "string",
+                "const": "SanctionsCredential"
+              }
             }
           ]
         }
@@ -203,14 +199,7 @@ When combining all the data above, you can end up with a full Offering object th
               "minLength": 3,
               "maxLength": 3
             }
-          },
-          "required": [
-            "cardNumber",
-            "expiryDate",
-            "cardHolderName",
-            "cvv"
-          ],
-          "additionalProperties": false
+          }
         }
       }
     ],
@@ -225,10 +214,7 @@ When combining all the data above, you can end up with a full Offering object th
               "type": "string",
               "description": "your Bitcoin wallet address"
             }
-          },
-          "required": [
-            "btcAddress"
-          ],
+          }
           "additionalProperties": false
         }
       }
