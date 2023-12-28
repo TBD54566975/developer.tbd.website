@@ -1,0 +1,159 @@
+# Onboarding as a tbDEX Issuer
+
+Issuers are a critical component of the tbDEX ecosystem that ensure trust between Wallets and PFIs by independently verifying claims about the party to whom they are issuing the credential; a typical example of a claim in tbDEX is verifying that a Wallet owner is not on a sanctions list. Although issuance is not a concept that is exclusive to tbDEX - it can be applied across [Web5](/docs/) in general -, as a tbDEX issuer you'll apply the same concepts to your app. The goal of this guide is to serve as a map to existing documentation we've provided for developers using our Web5 SDK, as well as provide you with information specific to your use case as a tbDEX developer. In this guide, we'll cover a basic implementation of an express server using the `@web5/credentials` class to issue your own VC.
+
+## Background
+
+Although you may know you want to build a service to issue Verifiable Credentails (VCs) to faciliate trust and transactions through tbDEX, you may be looking for more background knowledge before beginning development. Our [overview guide on VCs](/docs/web5/learn/verifiable-credentials) serves as background on the overall topic of issuance and VCs.
+
+Additionally, developing an Issuer app will require use of our `@web5/credentials` package via `npm`, which we'll cover in more specifics later.
+
+## Overview
+
+A credential issuer app runs as an API service that exposes endpoints where third parties can request credentials. You can see a full end-to-end implementation of a credential issuer's workflow [in our documentation here](/docs/web5/build/verifiable-credentials/fan-club-vc). For the sake of this section, we'll go over what you as a tbDEX issuer will need to set up your app:
+
+- Create a web server using a technology like ** [express](https://expressjs.com/) ** that will serve as an API endpoint.
+- Design the credential you'd like to offer.
+- Implement your issuance path, where you'll accept a request for issuance, perform checks required to verify the requester's information, and mint the credential.
+- Return the credential to the requester.
+
+## Environment Setup
+
+You'll perform the following commands to install the packages required for your Issuer:
+
+```bash
+npm i @web5/credentials
+npm i express
+```
+
+Within your files, you'll use these imports:
+
+```typescript
+import { VerifiableCredential } from "@web5/credentials";
+import { api } from './api.js'
+```
+
+Additionally, you'll want to ensure that you create a Decentralized Identifier (DID), which will serve as your Issuer's identity, following the [instructions outlined here](/docs/web5/build/decentralized-identifiers/how-to-create-did#create-a-did-manually). You can find a sample code snippet below:
+
+```typescript
+import { DidKeyMethod } from '@web5/dids';
+
+const issuerDid = await DidKeyMethod.create();
+```
+
+Note that the method above does require installing the `@web5/dids` package.
+
+With all of this, you can start up your basic express API service in a `main.ts` file that looks as follows:
+
+```typescript
+import { api } from './api.js'
+
+const server = api.listen(config.port, () => {
+  log.info(`Server listening on port ${config.port}`)
+})
+
+api.get('/credential', async (req, res) => {
+    // Implement the /credential API route
+ });
+```
+
+With this basic structure in place, you'll be ready to now design your credential and implement your issuance path. If you'd like to view a full, runnable project that implements this, see our [VC Issuer GitHub Example](https://github.com/TBD54566975/workshop-tbdex-abc-vc-issuer/tree/main).
+
+## Design Your Credential
+
+With your app set up to accept incoming routes, you can then design a model file to represent your VC. As a tbDEX-focused Issuer a typical example for issuance would be that you are issuing a credential that certifies that a person isn't on a sanctions list. You could model that class as follows:
+
+```typescript
+import { VerifiableCredential, PresentationExchange } from "@web5/credentials";
+
+class SanctionsCredential {
+  constructor(listsChecked) {
+    // indicates the sanctions lists checked against
+    this.listsChecked = listsChecked; 
+  }
+}
+```
+
+In our example above, we can offer a class property that stores all the sanctions lists checked against to issue the credential. You have wide flexibility with what you can store in your credential class, which means that you're free to include any public attributes that may be relevant to the credential you are verifying.
+
+Your credential model is ** not ** the place to store private information about the user you are issuing the credential to, such as banking information or other PII. 
+
+## Implement Issuance
+
+With your web server structure in place and credential designed, you're now ready to build out your issuance codepath. 
+
+** BLOCKED ON THIS PART TO SHOW HOW TO ACTUALLY TAKE IN INFO TO BE VERIFIED **
+
+Once you've performed any verification tasks within your own business logic, you can mint the VC:
+
+```typescript
+api.get('/credential', async (req, res) => {
+    try {
+        // Intake user data or send back any responses/redirects requesting more info
+        const authHeader = req.headers['authorization'];
+
+        if (!authHeader) {
+            return res.status(401).json({ errors: ['Authorization header required'] });
+        }
+
+        const [_, compactJwt] = authHeader.split('Bearer ');
+        const { signer, payload } = await JwtVerifier.verify(compactJwt);
+
+        // Process & verify user data
+        const listsChecked = verifyUserData(payload);
+
+        if (listsChecked == null) {
+            res.status(401).json({
+                errors: "User failed sanctions Check."
+            })
+        }
+
+        // Mint the credential
+        const vc = await VerifiableCredential.create({
+            type: "SanctionsCredential",
+            issuer: issuerDid.did,
+            subject: signer,
+            data: new SanctionsCredential(listsChecked)
+        });
+    }
+ });
+```
+
+Now the `vc` object you have at the end of this snippet will be a raw VC that looks like this:
+
+```json
+vcDataModel: {
+  "@context": [ "https://www.w3.org/2018/credentials/v1" ],
+  type: [ "VerifiableCredential", "SanctionsCredential" ],
+  id: "urn:uuid:daa5ff01-9b7d-485b-9410-22a42952d46c",
+  issuer: "did:key:z6Mkn4w6nSaWe4fjNJRvaHZwFnMm5VexvjzDeozEu2G7jC34",
+  issuanceDate: "2023-12-14T08:20:41Z",
+  credentialSubject: {
+    id: "did:key:z6MkjGSeekPGE9QfczHWyW8v2ZzJU68kqSHzV7L2dmQyuyDu",
+    listsChecked: "FBI's Most Wanted, USA Watchlist, EU Watchlist"
+  }
+}
+```
+
+To complete your basic VC issuance flow, you can now sign and return the credential. Signing will return a [VC JSON Web Token](/docs/web5/build/verifiable-credentials/jwt-to-vc#what-is-a-jwt), which is ideal for secure transmission of the credential:
+
+```typescript
+const signedVC = await vc.sign({did: issuerDid});
+return res.status(201).json({ credential: signedVC });
+```
+
+With that, you've implmented a basic API service to accept requests, process user data, and issue a VC!
+
+## Additional Resources
+
+For more specific details on the topics and APIs covered, see the following resources:
+
+- [Learn about VCs](/docs/web5/learn/verifiable-credentials)
+- [Creating DIDs](/docs/web5/build/decentralized-identifiers/how-to-create-did)
+- [Issue a VC](/docs/web5/build/verifiable-credentials/vc-issuance)
+- [Parse a JWT into a VC](/docs/web5/build/verifiable-credentials/jwt-to-vc)
+- [Full VC Workflow Example](/docs/web5/build/verifiable-credentials/fan-club-vc)
+
+
+
+
