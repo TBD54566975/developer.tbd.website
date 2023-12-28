@@ -117,7 +117,7 @@ When structuring your `requiredPaymentDetails` object, it will look similar to t
 ```
 Note that the while `type` and `description` fields are more intuitive and standard for you to include in your `requiredPaymentDetails` schema, you have the flexibility to detail any requirements you have in this object. Each `payinMethod` or `payoutMethod` can be represented by an array of `PaymentMethods`.
 
-### Credentials and Claims
+### Required Claims
 
 Before placing an Offer on an RFQ that a Wallet has submitted for your Offering, you'll likely want to verify some kind of information about the owner of that Wallet. To do this, you'll request a claim or claims from the Wallet in the form of [Verifiable Credentials (VCs)](/docs/web5/learn/verifiable-credentials). As a PFI, you only require specific knowledge of the VCs you need and how to request them; however if you'd like to learn more about [issuing](/docs/web5/build/verifiable-credentials/vc-issuance), [sharing](/docs/web5/build/verifiable-credentials/jwt-to-vc), and [storing](/docs/web5/build/verifiable-credentials/vcs-in-dwn) VCs, you can do so at each link. Additionally, you can learn about [building an end-to-end VC workflow here](/docs/web5/build/verifiable-credentials/fan-club-vc) if interested.
 
