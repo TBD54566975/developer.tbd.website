@@ -119,7 +119,7 @@ Note that while `type` and `description` fields are more intuitive and standard 
 
 ### Required Claims
 
-Before placing an Offer on an RFQ that a Wallet has submitted for your Offering, you'll likely want to verify some kind of information about the owner of that Wallet. To do this, you'll request a claim or claims from the Wallet in the form of [Verifiable Credentials (VCs)](/docs/web5/learn/verifiable-credentials). As a PFI, you only require specific knowledge of the VCs you need and how to request them; however if you'd like to learn more about [issuing](/docs/web5/build/verifiable-credentials/vc-issuance), [sharing](/docs/web5/build/verifiable-credentials/jwt-to-vc), and [storing](/docs/web5/build/verifiable-credentials/vcs-in-dwn) VCs, you can do so at each link. Additionally, you can learn about [building an end-to-end VC workflow here](/docs/web5/build/verifiable-credentials/fan-club-vc) if interested.
+In order to comply with certain financial regulations, you may require information about the customer you are transacting with. You can obtain this information via [Verifiable Credentials](/docs/web5/learn/verifiable-credentials). 
 
 You will specify the `requiredClaims` of your Offering by following [the DIF Presentation Definition](https://identity.foundation/presentation-exchange/#presentation-definition) - a way of defining what proof you as a Verifier require. You'll specify all required forms and details of proof, optional selection rules, and define flexibility where possible when different types of input may satisfy the requirements.
 
