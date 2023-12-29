@@ -150,7 +150,7 @@ const signedVC = await vc.sign({did: issuerDid});
 return res.status(201).json({ credential: signedVC });
 ```
 
-With that, you've implmented a basic API service to accept requests, process user data, and issue a VC!
+With that, you've implmented a basic credential issuance service to accept requests and issue VCs.
 
 ## Additional Resources
 
