@@ -1,6 +1,12 @@
 # Onboarding
 
-Issuers are a critical component of the tbDEX ecosystem that ensure trust between Wallets and PFIs by independently verifying claims about the party to whom they are issuing the credential; a typical example of a claim in tbDEX is verifying that a Wallet owner is not on a sanctions list. Although issuance is not a concept that is exclusive to tbDEX - it can be applied across [Web5](/docs/) in general -, as a tbDEX issuer you'll apply the same concepts to your app. The goal of this guide is to serve as a map to existing documentation we've provided for developers using our Web5 SDK, as well as provide you with information specific to your use case as a tbDEX developer. In this guide, we'll cover a basic implementation of an express server using the `@web5/credentials` class to issue your own VC.
+In a tbDEX network, Credential Issuers ensure trust between Wallets and PFIs by independently attesting claims about the party to whom they are issuing the [verifiable credential (VC)](/docs/web5/learn/verifiable-credentials).
+
+Common examples of credentials that are necessary in financial transactions are ones that verify the identity of a Wallet owner.
+
+Although credential issuance is not a concept that is exclusive to tbDEX, it's a key element in enabling compliant transactions.
+
+In this guide, we'll cover the basic steps to set up your own Credential Issuance service.
 
 ## Background
 
