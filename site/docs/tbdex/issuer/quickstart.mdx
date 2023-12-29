@@ -142,7 +142,7 @@ vcDataModel: {
 }
 ```
 
-To complete your basic VC issuance flow, you can now sign and return the credential. Signing will return a [VC JSON Web Token](/docs/web5/build/verifiable-credentials/jwt-to-vc#what-is-a-jwt), which is ideal for secure transmission of the credential:
+To complete the issuance, you must sign the credential. Signing will return a [VC JSON Web Token](/docs/web5/build/verifiable-credentials/jwt-to-vc#what-is-a-jwt), which is ideal for secure transmission of the credential:
 
 ```typescript
 const signedVC = await vc.sign({did: issuerDid});
