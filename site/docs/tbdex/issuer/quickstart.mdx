@@ -40,7 +40,7 @@ import { VerifiableCredential } from "@web5/credentials";
 import { api } from './api.js'
 ```
 
-Additionally, you'll want to ensure that you create a Decentralized Identifier (DID), which will serve as your Issuer's identity, following the [instructions outlined here](/docs/web5/build/decentralized-identifiers/how-to-create-did#create-a-did-manually). You can find a sample code snippet below:
+Additionally, to issue credentials, you're required to have a [Decentralized Identifier (DID)](/docs/web5/learn/decentralized-identifiers) which will serve as your Issuer's identity. If you do not already have one, you'll need to [create a DID](/docs/web5/build/decentralized-identifiers/how-to-create-did#create-a-did-manually). 
 
 ```typescript
 import { DidKeyMethod } from '@web5/dids';
