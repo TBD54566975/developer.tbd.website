@@ -50,7 +50,7 @@ const issuerDid = await DidKeyMethod.create();
 
 Note that the method above does require installing the `@web5/dids` package.
 
-With all of this, you can start up your basic express API service in a `main.ts` file that looks as follows:
+To start up your Express API service, add the following to a `main.ts` file:
 
 ```typescript
 import { api } from './api.js'
@@ -64,14 +64,20 @@ api.get('/credential', async (req, res) => {
  });
 ```
 
-With this basic structure in place, you'll be ready to now design your credential and implement your issuance path. If you'd like to view a full, runnable project that implements this, see our [VC Issuer GitHub Example](https://github.com/TBD54566975/workshop-tbdex-abc-vc-issuer/tree/main).
+With this basic structure in place, you'll be ready to now design your credential and implement your issuance path. 
 
-## Design Your Credential
+:::note
+If you'd like to view a full, runnable project that implements this, see our [VC Issuer Example](https://github.com/TBD54566975/super-simple-sanctions).
+:::
 
-With your app set up to accept incoming routes, you can then design a model file to represent your VC. As a tbDEX-focused Issuer a typical example for issuance would be that you are issuing a credential that certifies that a person isn't on a sanctions list. You could model that class as follows:
+## Design the Credential
+
+With your app set up to accept incoming routes, you can then design a model file to represent the specific type of credential you'd like to issue. 
+
+Let's design a VC that attests that a person isn't on a Sanctions list. You could model that class as follows:
 
 ```typescript
-import { VerifiableCredential, PresentationExchange } from "@web5/credentials";
+import { VerifiableCredential } from "@web5/credentials";
 
 class SanctionsCredential {
   constructor(listsChecked) {
@@ -81,7 +87,7 @@ class SanctionsCredential {
 }
 ```
 
-In our example above, we can offer a class property that stores all the sanctions lists checked against to issue the credential. You have wide flexibility with what you can store in your credential class, which means that you're free to include any public attributes that may be relevant to the credential you are verifying.
+In the example above, you provide a class property that stores all the sanctions lists checked against to issue the credential. You have wide flexibility with what you can store in the credential model class, which means that you're free to include any public attributes that may be relevant to the credential you are issuing.
 
 Your credential model is ** not ** the place to store private information about the user you are issuing the credential to, such as banking information or other PII. 
 
