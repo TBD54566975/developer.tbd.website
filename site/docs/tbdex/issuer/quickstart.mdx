@@ -35,24 +35,16 @@ npm i @web5/credentials
 
 Within your service's entry point file (e.g. index.js), import the following:
 
-```typescript
+```typescript title=index.ts
 import { VerifiableCredential } from "@web5/credentials";
 import { api } from './api.js'
 ```
 
 Additionally, to issue credentials, you're required to have a [Decentralized Identifier (DID)](/docs/web5/learn/decentralized-identifiers) which will serve as your Issuer's identity. If you do not already have one, you'll need to [create a DID](/docs/web5/build/decentralized-identifiers/how-to-create-did#create-a-did-manually). 
 
-```typescript
-import { DidKeyMethod } from '@web5/dids';
-
-const issuerDid = await DidKeyMethod.create();
-```
-
-Note that the method above does require installing the `@web5/dids` package.
-
 To start up your Express API service, add the following to a `main.ts` file:
 
-```typescript
+```typescript title=main.ts
 import { api } from './api.js'
 
 const server = api.listen(config.port, () => {
@@ -76,7 +68,7 @@ With your app set up to accept incoming routes, you can then design a model file
 
 Let's design a VC that attests that a person isn't on a Sanctions list. You could model that class as follows:
 
-```typescript
+```typescript title=SanctionsCredential.ts
 import { VerifiableCredential } from "@web5/credentials";
 
 class SanctionsCredential {
@@ -89,17 +81,15 @@ class SanctionsCredential {
 
 In the example above, you provide a class property that stores all the sanctions lists checked against to issue the credential. You have wide flexibility with what you can store in the credential model class, which means that you're free to include any public attributes that may be relevant to the credential you are issuing.
 
-Your credential model is ** not ** the place to store private information about the user you are issuing the credential to, such as banking information or other PII. 
+Your credential is ** not ** the place to store private information about the user you are issuing the credential to, such as banking information or other PII. Do not include PII in your credential and by extension your credential's model.
 
 ## Implement Issuance
 
-With your web server structure in place and credential designed, you're now ready to build out your issuance codepath. 
+With your web server structure in place and credential designed, you're now ready to build out your issuance codepath. This is the code you'll execute when a user requests to be issued a VC.
 
-** BLOCKED ON THIS PART TO SHOW HOW TO ACTUALLY TAKE IN INFO TO BE VERIFIED **
+In that code, you'll want to perform any checks required for you to issue them their credential which will later be verified by an interested 3rd party. In the example below, we'll assume that any user that makes the API request with a valid JWT token is who they say they are, and that the `verifyUserData()` method will then use the identity represented by the JWT token to check this individual against known sanctions lists.
 
-Once you've performed any verification tasks within your own business logic, you can mint the VC:
-
-```typescript
+```typescript title=main.ts
 api.get('/credential', async (req, res) => {
     try {
         // Intake user data or send back any responses/redirects requesting more info
@@ -150,7 +140,7 @@ vcDataModel: {
 
 To complete the issuance, you must sign the credential. Signing will return a [VC JSON Web Token](/docs/web5/build/verifiable-credentials/jwt-to-vc#what-is-a-jwt), which is ideal for secure transmission of the credential:
 
-```typescript
+```typescript title=main.ts
 const signedVC = await vc.sign({did: issuerDid});
 return res.status(201).json({ credential: signedVC });
 ```
