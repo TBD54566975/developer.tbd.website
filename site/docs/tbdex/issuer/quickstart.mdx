@@ -116,7 +116,7 @@ api.get('/credential', async (req, res) => {
             })
         }
 
-        // Mint the credential
+        // Create the credential
         const vc = await VerifiableCredential.create({
             type: "SanctionsCredential",
             issuer: issuerDid.did,
