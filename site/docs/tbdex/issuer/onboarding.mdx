@@ -73,9 +73,7 @@ class SanctionsCredential {
 }
 ```
 
-In the example above, you provide a class property that stores all the sanctions lists checked against to issue the credential. You have wide flexibility with what you can store in the credential model class, which means that you're free to include any public attributes that may be relevant to the credential you are issuing.
-
-Your credential is ** not ** the place to store private information about the user you are issuing the credential to, such as banking information or other PII. Do not include PII in your credential and by extension your credential's model.
+In the example above, you provide a class property that stores all the sanctions lists checked against to issue the credential. You have wide flexibility with what you can store in the credential model class, which means that you're free to include any attributes that may be relevant to the credential you are issuing.
 
 ## Implement Issuance
 
