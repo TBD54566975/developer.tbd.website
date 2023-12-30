@@ -16,11 +16,15 @@ Additionally, developing an Issuer app will require use of our `@web5/credential
 
 ## Overview
 
-A credential issuer app runs as an API service that exposes endpoints where third parties can request credentials. You can see a full end-to-end implementation of a credential issuer's workflow [in our documentation here](/docs/web5/build/verifiable-credentials/fan-club-vc). For the sake of this section, we'll go over what you as a tbDEX issuer will need to set up your app:
+A Credential Issuer app runs as an API service that exposes endpoints where third parties can request credentials. 
 
-- Create a web server using a technology like ** [express](https://expressjs.com/) ** that will serve as an API endpoint.
+If you already have an Issuer app up and running,  check out the guide on [how to issue credentials with Web5](/docs/web5/build/verifiable-credentials/vc-issuance/).
+
+If you need to create a Credential Issuer app from scratch, continue on with this guide where we'll cover how to: 
+
+- Create a web server using a technology like ** [Express](https://expressjs.com/) ** that will serve as an API endpoint.
 - Design the credential you'd like to offer.
-- Implement your issuance path, where you'll accept a request for issuance, perform checks required to verify the requester's information, and mint the credential.
+- Implement an issuance path where you'll accept a request for issuance, perform any necessary checks, and issue the credential.
 - Return the credential to the requester.
 
 ## Environment Setup
@@ -33,9 +37,9 @@ You'll also need to install `@web5/credentials` to create and issue credentials:
 npm i @web5/credentials
 ```
 
-Within your service's entry point file (e.g. index.js), import the following:
+Within your service's entry point file (e.g. main.ts), import the following:
 
-```typescript title=index.ts
+```typescript title=main.ts
 import { VerifiableCredential } from "@web5/credentials";
 import { api } from './api.js'
 ```
@@ -106,7 +110,7 @@ api.get('/credential', async (req, res) => {
         const listsChecked = verifyUserData(payload);
 
         if (listsChecked == null) {
-            res.status(401).json({
+            return res.status(401).json({
                 errors: "User failed sanctions Check."
             })
         }
