@@ -27,18 +27,18 @@ You'll also need to install `@web5/credentials` to create and issue credentials:
 npm i @web5/credentials
 ```
 
-Within your service's entry point file (e.g. main.ts), import the following:
+Within your service's entry point file (e.g. main.js), import the following:
 
-```typescript title=main.ts
+```js title=main.js
 import { VerifiableCredential } from "@web5/credentials";
 import { api } from './api.js'
 ```
 
 Additionally, to issue credentials, you're required to have a [Decentralized Identifier (DID)](/docs/web5/learn/decentralized-identifiers) which will serve as your Issuer's identity. If you do not already have one, you'll need to [create a DID](/docs/web5/build/decentralized-identifiers/how-to-create-did#create-a-did-manually). 
 
-To start up your Express API service, add the following to a `main.ts` file:
+To start up your Express API service, add the following to a `main.js` file:
 
-```typescript title=main.ts
+```js title=main.js
 import { api } from './api.js'
 
 const server = api.listen(config.port, () => {
@@ -62,7 +62,7 @@ With your app set up to accept incoming routes, you can then design a model file
 
 Let's design a VC that attests that a person isn't on a Sanctions list. You could model that class as follows:
 
-```typescript title=SanctionsCredential.ts
+```js title=SanctionsCredential.js
 import { VerifiableCredential } from "@web5/credentials";
 
 class SanctionsCredential {
@@ -83,7 +83,7 @@ With your web server structure in place and credential designed, you're now read
 
 In that code, you'll want to perform any checks required for you to issue them their credential which will later be verified by an interested 3rd party. In the example below, we'll assume that any user that makes the API request with a valid JWT token is who they say they are, and that the `verifyUserData()` method will then use the identity represented by the JWT token to check this individual against known sanctions lists.
 
-```typescript title=main.ts
+```js title=main.js
 api.get('/credential', async (req, res) => {
     try {
         // Intake user data or send back any responses/redirects requesting more info
@@ -134,7 +134,7 @@ vcDataModel: {
 
 To complete the issuance, you must sign the credential. Signing will return a [VC JSON Web Token](/docs/web5/build/verifiable-credentials/jwt-to-vc#what-is-a-jwt), which is ideal for secure transmission of the credential:
 
-```typescript title=main.ts
+```js title=main.js
 const signedVC = await vc.sign({did: issuerDid});
 return res.status(201).json({ credential: signedVC });
 ```
