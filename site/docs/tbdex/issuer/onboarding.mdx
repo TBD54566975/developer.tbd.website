@@ -1,15 +1,5 @@
 # Onboarding
 
-In a tbDEX network, Credential Issuers ensure trust between Wallets and PFIs by independently attesting claims about the party to whom they are issuing the [verifiable credential (VC)](/docs/web5/learn/verifiable-credentials).
-
-Common examples of credentials that are necessary in financial transactions are ones that verify the identity of a Wallet owner.
-
-Although credential issuance is not a concept that is exclusive to tbDEX, it's a key element in enabling compliant transactions.
-
-In this guide, we'll cover the basic steps to set up your own Credential Issuance service.
-
-## Background
-
 Although you may know you want to build a service to issue Verifiable Credentails (VCs) to faciliate trust and transactions through tbDEX, you may be looking for more background knowledge before beginning development. Our [overview guide on VCs](/docs/web5/learn/verifiable-credentials) serves as background on the overall topic of issuance and VCs.
 
 Additionally, developing an Issuer app will require use of our `@web5/credentials` package via `npm`, which we'll cover in more specifics later.
@@ -150,16 +140,6 @@ return res.status(201).json({ credential: signedVC });
 ```
 
 With that, you've implmented a basic credential issuance service to accept requests and issue VCs.
-
-## Additional Resources
-
-For more specific details on the topics and APIs covered, see the following resources:
-
-- [Learn about VCs](/docs/web5/learn/verifiable-credentials)
-- [Creating DIDs](/docs/web5/build/decentralized-identifiers/how-to-create-did)
-- [Issue a VC](/docs/web5/build/verifiable-credentials/vc-issuance)
-- [Parse a JWT into a VC](/docs/web5/build/verifiable-credentials/jwt-to-vc)
-- [Full VC Workflow Example](/docs/web5/build/verifiable-credentials/fan-club-vc)
 
 
 
