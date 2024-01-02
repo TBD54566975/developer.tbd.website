@@ -34,7 +34,9 @@ export async function readRecord(textRecord) {
 export async function deleteRecord(web5, did, recordId) {
   const response = await web5.dwn.records.delete({
     from: did,
-    message: { recordId },
+    message: { 
+      recordId: recordId
+    },
   });
 
   return response;
