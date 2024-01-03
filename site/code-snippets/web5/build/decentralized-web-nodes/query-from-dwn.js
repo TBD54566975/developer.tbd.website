@@ -40,6 +40,7 @@ export async function queryRecordsWithFilterAscending(web5) {
 
 export async function queryRecordsFromDid(web5, did) {
   const { records } = await web5.dwn.records.query({
+    //highlight-next-line
     from: did,
     message: {
       filter: {
