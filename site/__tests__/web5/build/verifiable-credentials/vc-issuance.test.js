@@ -1,5 +1,5 @@
-import { test, beforeAll, expect, describe } from 'vitest';
-import { DidDhtMethod } from '@web5/dids'
+import { test, expect, describe } from 'vitest';
+import { DidDhtMethod } from '@web5/dids';
 import {
     createEmploymentCredential,
     signCredential
