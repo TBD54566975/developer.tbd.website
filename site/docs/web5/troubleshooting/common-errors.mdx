@@ -84,3 +84,20 @@ This is a syntax error in the calling functon that causes the error. Check this 
 This error happens when you try to connect to the Web5 SDK, but there are multiple stored identities in the application's data store, which causes a conflict during the connection process.
 
 Since identities are stored in the browser memory, you can resolve this issue by **clearing your browser's cache**. Clearing the browser's cache will remove all stored identities and reset the application's state.
+
+
+## Error: PrivateKeyStoreDwn: Failed to write imported DID to store
+
+This error happens with Node versions prior to version 20.
+
+To fix these errors, **upgrade to Node 20.9.0 or later.**
+
+If you're unable to upgrade, add the following to your file:
+
+```js
+import { webcrypto } from "node:crypto";
+import { Web5 } from "@web5/api";
+
+// @ts-ignore
+if (!globalThis.crypto) globalThis.crypto = webcrypto;
+```
