@@ -84,3 +84,8 @@ This is a syntax error in the calling functon that causes the error. Check this 
 This error happens when you try to connect to the Web5 SDK, but there are multiple stored identities in the application's data store, which causes a conflict during the connection process.
 
 Since identities are stored in the browser memory, you can resolve this issue by **clearing your browser's cache**. Clearing the browser's cache will remove all stored identities and reset the application's state.
+
+## Error: TypeError: Cannot read properties of undefined (reading 'verificationMethodKeys')
+
+- Sometimes DID issue might arise with the web5 connection, web5.connect() results in did-ion which is giving error while trying to sign.
+- Ensure that you are using only one method for author and reciever and Try creating with a new did:dht or did:ion to make it work.
