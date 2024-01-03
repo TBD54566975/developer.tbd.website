@@ -123,7 +123,7 @@ const protocolDefinition = {
 }
 ```
 
-The value for `protocol` is a URI that represents the protocol being configured.
+The value for `protocol` is a URI that serves as the key of the protocol being configured. If two or more applications use the same protocol, identified by the URL, you can create common experiences across these apps in a more interoperable way.
 
 The `published` attribute indicates whether the protocol should be public. Published protocols are accessible by anyone who [queries](/api/web5-js/dwn/protocols#queryrequest) for them.
 
@@ -411,4 +411,3 @@ Here are a bunch of [example protocols](https://github.com/TBD54566975/dwn-sdk-j
   <iframe class="aspect-video" src="https://www.youtube.com/embed/AioiNfpsPu0?si=zx9eva4AKJ7r4end" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
 </div>
-
