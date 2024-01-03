@@ -89,3 +89,9 @@ Since identities are stored in the browser memory, you can resolve this issue by
 
 - Sometimes DID issue might arise with the web5 connection, web5.connect() results in did-ion which is giving error while trying to sign.
 - Ensure that you are using only one method for author and reciever and Try creating with a new did:dht or did:ion to make it work.
+
+## Error: ProtocolAuthorizationProtocolNotFound: unable to find protocol definition for ..
+
+- This error arises due to the fact that the reciever needs to sign and allow the protocol, before the author of the protocol can start writing to this dns.
+- Open your app as an Author on a browser or device and for the Recipient on another device or browser.
+- With this, both can communicate effectively on the same protocol.
