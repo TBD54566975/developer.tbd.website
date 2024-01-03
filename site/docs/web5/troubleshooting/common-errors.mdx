@@ -101,3 +101,11 @@ import { Web5 } from "@web5/api";
 // @ts-ignore
 if (!globalThis.crypto) globalThis.crypto = webcrypto;
 ```
+
+## Error: TypeError: Cannot read properties of undefined (reading 'verificationMethodKeys')
+
+This error occurs when you attempt to sign a verifiable credential using the String version of a DID. To resolve this, sign with a [Portable DID](/docs/web5/build/decentralized-identifiers/how-to-create-did/#portable-did) so that your private key is used to cryptographically sign the credential.
+
+## Error: ProtocolAuthorizationProtocolNotFound: unable to find protocol definition
+
+This error occurs when attempting to interact with a DWN that does not have the required protocol installed. To solve this, **ensure both parties have successfully [installed the protocol definition](/docs/web5/learn/protocols#installing-a-protocol)**.
