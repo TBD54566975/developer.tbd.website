@@ -1,5 +1,4 @@
 {
-  "createMyDid": "const myDid = await web5.did.create('ion');",
   "getProtocolDefinition": "const { protocol } = await web5.dwn.protocols.configure({\n    message: {\n      definition: protocolDefinition\n    }\n  });\n\n  //highlight-start\n  const definition = protocol.definition;\n  //highlight-end",
   "configureProtocolAndSend": "const { protocol } = await web5.dwn.protocols.configure({\n    message: {\n      definition: protocolDefinition\n    }\n  });\n\n \n  //highlight-start\n  const {status} = await protocol.send(myDid);\n  //highlight-end",
   "queryProtocol": "const { protocols } = await web5.dwn.protocols.query({\n    message: {\n      filter: {\n        protocol: 'http://social-media.xyz'\n      }\n    }\n  });\n\n  //highlight-start\n  const protocolConfig = protocols[0].toJSON();\n  //highlight-end",
