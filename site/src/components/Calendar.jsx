@@ -166,25 +166,7 @@ const CalendarComponent = () => {
           console.error('Error fetching events:', error);
         }
       }
-
-      const now = new Date();
-      const nextMonthNumber =
-        currentMonth.getMonth() === 12 ? 1 : currentMonth.getMonth() + 1;
-      const endOfMonth = new Date(
-        currentMonth.getFullYear(),
-        nextMonthNumber,
-        0,
-      );
-
-      const monthEvents = allEvents.filter((event) => {
-        const eventStartDate = new Date(event.start);
-        const isThisMonth =
-          eventStartDate >= now && eventStartDate <= endOfMonth;
-        return isThisMonth;
-      });
-
-      setEvents(monthEvents);
-      groupEventsByDate(monthEvents);
+      filterAndGroupEvents(allEvents, currentMonth);
     };
 
     fetchEvents();
@@ -227,6 +209,25 @@ const CalendarComponent = () => {
     }, {});
 
     setGroupedEvents(grouped);
+  };
+
+  const filterAndGroupEvents = (allEvents, newCurrentMonth) => {
+    const now = new Date();
+    const nextMonthNumber =
+      newCurrentMonth.getMonth() === 12 ? 1 : newCurrentMonth.getMonth() + 1;
+    const endOfMonth = new Date(
+      newCurrentMonth.getFullYear(),
+      nextMonthNumber,
+      0,
+    );
+
+    const monthEvents = allEvents.filter((event) => {
+      const eventStartDate = new Date(event.start);
+      return eventStartDate >= now && eventStartDate <= endOfMonth;
+    });
+
+    setEvents(monthEvents);
+    groupEventsByDate(monthEvents);
   };
 
   const navigateMonth = (offset) => {
