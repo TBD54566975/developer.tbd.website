@@ -2,72 +2,52 @@ export async function configureProtocolWithDefinition(web5, myDid) {
   const { protocol, status } = await web5.dwn.protocols.configure({
     message: {
       definition: {
-        protocol: 'https://photos.org/protocol',
-        published: false,
-        types: {
-          album: {
-            schema: 'https://photos.org/protocol/album',
-            dataFormats: ['application/json'],
+        "protocol": "https://photos.org/protocol",
+        "published": false,
+        "types": {
+          "album": {
+            "schema": "https://photos.org/protocol/album",
+            "dataFormats": ["application/json"]
           },
-          photo: {
-            schema: 'https://photos.org/protocols/photo',
-            dataFormats: ['application/json'],
+          "photo": {
+            "schema": "https://photos.org/protocols/photo",
+            "dataFormats": ["application/json"]
           },
-          binaryImage: {
-            dataFormats: ['image/png', 'jpeg', 'gif'],
+          "binaryImage": {
+            "dataFormats": ["image/png", "jpeg", "gif"]
           },
-          comment: {
-            schema: 'https://photos.org/protocols/comment',
-            dataFormats: ['application/json'],
-          },
+          "comment": {
+            "schema": "https://photos.org/protocols/comment",
+            "dataFormats": ["application/json"]
+          }
         },
-        structure: {
-          album: {
-            $actions: [
-              {
-                //author of album can write
-                who: 'author',
-                of: 'album',
-                can: 'write',
-              },
-            ],
+        "structure": {
+          "album": {
+            "$actions": [
+              { "who": "author", "of": "album", "can": "write" }
+            ]
           },
-          photo: {
-            $actions: [
-              {
-                //recipeint of photo can read
-                who: 'recipient',
-                of: 'photo',
-                can: 'read',
-              },
+          "photo": {
+            "$actions": [
+              { "who": "recipient", "of": "photo", "can": "read" }
             ],
-            binaryImage: {
-              $actions: [
-                {
-                  //author of photo can write
-                  who: 'author',
-                  of: 'photo',
-                  can: 'write',
-                },
-              ],
+            "binaryImage": {
+              "$actions": [
+                { "who": "author", "of": "photo", "can": "write" }
+              ]
             },
-            comment: {
-              $actions: [
-                {
-                  //anyone can write a comment
-                  who: 'anyone',
-                  can: 'write',
-                },
-                {
-                  //anyone can read a comment
-                  who: 'anyone',
-                  can: 'read',
-                },
-              ],
-            },
-          },
-        },
-      },
+            "comment": {
+              "$actions": [
+                { "who": "anyone", "can": "write" },
+                { "who": "anyone", "can": "read" },
+                { "who": "author", "of": "comment", "can": "delete" },
+                { "who": "recipient", "of": "comment", "can": "delete" },
+                { "who": "author", "of": "comment", "can": "update" }
+              ]
+            }
+          }
+        }
+      }
     },
   });
 

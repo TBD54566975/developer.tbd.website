@@ -12,4 +12,8 @@ to = "/files/Decentralized-Web-Platform.pdf"
 
 [[redirects]]
 from = "/docs/web5/build/troubleshooting-guide"
-to = "/docs/web5/troubleshooting-guide"
+to = "/docs/web5/troubleshooting/common-errors"
+
+[[redirects]]
+from = "/docs/web5/troubleshooting-guide"
+to = "/docs/web5/troubleshooting/common-errors"
