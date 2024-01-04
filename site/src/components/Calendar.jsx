@@ -430,7 +430,7 @@ const CalendarComponent = () => {
             >
               Discord #general channel
             </a>{' '}
-            we'd love to hear about it! 💖
+            we'd love to hear about it!
           </div>
         )}
       </div>
