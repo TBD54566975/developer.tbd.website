@@ -154,14 +154,13 @@ const CalendarComponent = () => {
 
   useEffect(() => {
     const fetchEvents = async () => {
-      // We only load events once, because the API will retrieve all of them
       let allEvents = unfilteredEvents;
       if (!allEvents?.length) {
         try {
           const allEventsRes = await fetch(
             `https://developer-tbd-website-calendar-service.tbddev.org/events`,
           );
-          const allEvents = await allEventsRes.json();
+          allEvents = await allEventsRes.json();
           setUnfilteredEvents(allEvents);
         } catch (error) {
           console.error('Error fetching events:', error);
@@ -171,7 +170,6 @@ const CalendarComponent = () => {
       const now = new Date();
       const nextMonthNumber =
         currentMonth.getMonth() === 12 ? 1 : currentMonth.getMonth() + 1;
-
       const endOfMonth = new Date(
         currentMonth.getFullYear(),
         nextMonthNumber,
@@ -180,15 +178,13 @@ const CalendarComponent = () => {
 
       const monthEvents = allEvents.filter((event) => {
         const eventStartDate = new Date(event.start);
-        const isUpcoming =
-          eventStartDate >= now && eventStartDate >= currentMonth;
-        const isThisMonth = eventStartDate <= endOfMonth;
-        return isUpcoming && isThisMonth;
+        const isThisMonth =
+          eventStartDate >= now && eventStartDate <= endOfMonth;
+        return isThisMonth;
       });
-      console.log(monthEvents);
-      groupEventsByDate(monthEvents);
 
       setEvents(monthEvents);
+      groupEventsByDate(monthEvents);
     };
 
     fetchEvents();
@@ -432,7 +428,7 @@ const CalendarComponent = () => {
             >
               Discord #general channel
             </a>{' '}
-            we'd love to hear about it!
+            we'd love to hear about it! 💖
           </div>
         )}
       </div>
