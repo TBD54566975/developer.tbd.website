@@ -1,0 +1,185 @@
+# Credential Issuance
+
+This guide introduces how to issue [verifiable credentials (VC)](/docs/web5/learn/verifiable-credentials), a process for establishing trust between [Wallets](/docs/tbdex/wallet/overview) and [PFIs](/docs/tbdex/pfi/overview) in a tbDEX network.
+
+Common examples of credentials that are necessary in financial transactions are ones that verify the identity of a Wallet owner.
+
+Although credential issuance is not a concept that is exclusive to tbDEX, it's a key element in enabling compliant transactions.
+
+In this guide, we'll cover the basic steps to set up your own Credential Issuance service
+
+## Overview
+
+A Credential Issuance app operates as an API service, exposing endpoints for third parties to request credentials.
+
+If you already have an Issuance app up and running,  check out the guide on [how to issue credentials with Web5](/docs/web5/build/verifiable-credentials/vc-issuance/).
+
+If you need to create a Credential Issuance app from scratch, continue on with this guide where we'll cover how to: 
+
+- Create a web server using [Express](https://expressjs.com/) that will serve as an API endpoint.
+- Design the credential you'd like to offer.
+- Implement an issuance path where you'll accept a request for issuance, perform any necessary checks, and issue the credential.
+- Return the credential to the requester.
+
+## Environment Setup
+
+
+### Install Express
+We'll use Express to set up the VC issuance service. Follow these instructions to [install Express](https://expressjs.com/en/starter/installing.html). 
+
+### Install Credentials Package
+You'll also need to install `@web5/credentials` to create and issue credentials:
+
+```bash
+npm i @web5/credentials
+```
+
+### Create a DID
+Additionally, to issue credentials, you need a [Decentralized Identifier (DID)](/docs/web5/learn/decentralized-identifiers) which will serve as your Issuer's identity. 
+If you don't already have one, you'll need to [create a DID](/docs/web5/build/decentralized-identifiers/how-to-create-did#create-a-did-manually). 
+
+### Create API Service
+
+1. Create a file to serve as your API's entry point (e.g. `main.js`)
+
+2. Within the file, import the following:
+
+```js title=main.js
+import { VerifiableCredential, Jwt } from "@web5/credentials";
+import { api } from './api.js'
+```
+
+3. To start your Express API service, add the following:
+
+```js title=main.js
+const server = api.listen(config.port, () => {
+  log.info(`Server listening on port ${config.port}`)
+})
+
+api.get('/check-sanctions', async (req, res) => {
+    // we'll implement the API route here
+ });
+```
+
+With this basic structure, you can now design a credential and implement your issuance path.
+
+:::note
+If you'd like to view a full, runnable project, see our [VC Issuer Example](https://github.com/TBD54566975/super-simple-sanctions).
+:::
+
+## Design the Credential
+
+With your app set up to accept incoming routes, you can design a model class to represent the specific type of credential you'd like to issue. 
+
+Let's design a VC that attests that a person isn't on a Sanctions list. You could model that class as follows:
+
+```js title=SanctionsCredential.js
+import { VerifiableCredential } from "@web5/credentials";
+
+class SanctionsCredential {
+  constructor(check) {
+    // indicates the sanctions lists checked against
+    this.listsCleared = check.listsCleared; 
+  }
+}
+```
+
+In the example above, you provide a class property that stores all the sanctions lists checked against. 
+You have wide flexibility with what you can store in the credential model class, which means that you're free to include any attributes that may be relevant to the credential you are issuing.
+
+## Implement Issuance
+
+With your web server structure in place and credential designed, you're now ready to build out your issuance codepath. 
+This is the code you'll execute when a user requests to be issued a VC.
+
+In this code, you'll want to perform any checks required to issue them a credential which will later be verified by an interested third party. 
+
+In the example below, we'll assume the user provides identity information, and your application checks applicable sanctions lists to determine if this user is on them:
+
+```js title=main.js
+api.get('/check-sanctions', async (req, res) => {
+    try {
+        // Intake user data or send back any responses/redirects requesting more info
+        const authHeader = req.headers['authorization'];
+
+        if (!authHeader) {
+            return res.status(401).json({ 
+              errors: ['Authorization header required'] 
+            });
+        }
+
+        const tokenParts = authHeader.split('Bearer ');
+        if (tokenParts.length !== 2) {
+            return res.status(401).json({ 
+              errors: ['Authorization header format is Bearer <token>'] 
+            });
+        }
+        const compactJwt = tokenParts[1];
+
+        let signer, payload;
+        try {
+            const verificationResult = await Jwt.verify({ jwt: myJwt });
+            
+            //assuming the user signed the JWT, this is their DID
+            signer = verificationResult.signer;
+            payload = verificationResult.payload;
+        } catch (error) {
+            return res.status(401).json({ 
+              errors: ['Invalid token'] 
+            });
+        }
+
+        // Perform the sanctions check and get the result
+        const sanctionsListResult = checkSanctionsLists(payload);
+
+        // Check if the sanctions list result is valid for credential creation
+        if (!sanctionsListResult || sanctionsListResult.isSanctioned) {
+            return res.status(403).json({
+                errors: ['User is not eligible for a credential due to sanctions']
+            });
+        }
+
+        // Create the credential
+        //highlight-start
+        const sanctions_credential = await VerifiableCredential.create({
+            type: "SanctionsCredential",
+            issuer: issuerDid,
+            subject: signer,
+            data: new SanctionsCredential(sanctionsListResult)
+        });
+        //highlight-end
+
+    } catch (error) {
+        // Generic error handling
+        return res.status(500).json({ 
+          errors: [`An unexpected error occurred: ${error.message}`] 
+        });
+    }
+ });
+```
+
+The `sanctions_credential` object that's returned will be a raw VC that looks like this:
+
+```json
+vcDataModel: {
+  "@context": [ "https://www.w3.org/2018/credentials/v1" ],
+  type: [ "VerifiableCredential", "SanctionsCredential" ],
+  id: "urn:uuid:daa5ff01-9b7d-485b-9410-22a42952d46c",
+  issuer: "did:key:z6Mkn4w6nSaWe4fjNJRvaHZwFnMm5VexvjzDeozEu2G7jC34",
+  issuanceDate: "2023-12-14T08:20:41Z",
+  credentialSubject: {
+    id: "did:key:z6MkjGSeekPGE9QfczHWyW8v2ZzJU68kqSHzV7L2dmQyuyDu",
+    listsCleared: "FBI's Most Wanted, USA Watchlist, EU Watchlist"
+  }
+}
+```
+
+To complete the issuance, you must sign the credential. 
+Signing will return a [VC JSON Web Token](/docs/web5/build/verifiable-credentials/jwt-to-vc#what-is-a-jwt), which is ideal for secure transmission of the credential:
+
+```js title=main.js
+const credential_token = await sanctions_credential.sign({did: issuerDid});
+return res.status(200).json({ credential: credential_token });
+```
+
+With that, you've implmented a basic credential issuance service to accept requests and issue VCs.
