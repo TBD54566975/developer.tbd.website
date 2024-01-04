@@ -26,6 +26,6 @@ PFIs and Wallets are able to communicate with each other by using the following 
 
 ## Exchanges
 
-The word "exchange" typically referes to an open market for financial instruments; however in the case of tbDEX the term "exchange" refers to an exchange of messages between a PFI and a potential customer. Whenever a Wallet wants to submit an RFQ to a PFI, a new exchange is created that involves the Wallet owner and the PFI in question, and that exchange object will store all of the messages outlined above as well as any other Offerings data transmitted in the exchange.
+Within tbDEX, the term "exchange" refers to a thread of messages between a PFI and a Wallet. Whenever a Wallet submits an RFQ to a PFI, a new exchange is created that involves the Wallet owner and the PFI, and all subsequent messages about the transaction are a part of the exchange.
 
-For each RFQ-PFI combo, you'll want to create a new exchange object to store releveant data. Note that every RFQ is associated with an Offering, so each exchange is really representing a Wallet's ask for a quote on an Offering and all subsequent conversations.
+For each RFQ, you'll want to create a new exchange object to store relevant data. Note that every RFQ is associated with an Offering, so each exchange represents all messages about a specific transaction.
