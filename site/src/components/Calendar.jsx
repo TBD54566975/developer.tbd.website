@@ -185,7 +185,9 @@ const CalendarComponent = () => {
         const isThisMonth = eventStartDate <= endOfMonth;
         return isUpcoming && isThisMonth;
       });
+      console.log(monthEvents);
       groupEventsByDate(monthEvents);
+
       setEvents(monthEvents);
     };
 
