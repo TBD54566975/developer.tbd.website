@@ -152,25 +152,47 @@ const CalendarComponent = () => {
     filterEventsByType(events, selectedTypes);
   }, [selectedTypes, events]);
 
+  const filterAndGroupEvents = (allEvents, newCurrentMonth) => {
+    const startOfMonth = new Date(
+      newCurrentMonth.getFullYear(),
+      newCurrentMonth.getMonth(),
+      1,
+    );
+    const endOfMonth = new Date(
+      newCurrentMonth.getFullYear(),
+      newCurrentMonth.getMonth() + 1,
+      0,
+    );
+
+    const monthEvents = allEvents.filter((event) => {
+      const eventStartDate = new Date(event.start);
+      return eventStartDate >= startOfMonth && eventStartDate <= endOfMonth;
+    });
+
+    setEvents(monthEvents);
+    groupEventsByDate(monthEvents);
+  };
+
   useEffect(() => {
     const fetchEvents = async () => {
-      let allEvents = unfilteredEvents;
-      if (!allEvents?.length) {
-        try {
-          const allEventsRes = await fetch(
-            `https://developer-tbd-website-calendar-service.tbddev.org/events`,
-          );
-          allEvents = await allEventsRes.json();
-          setUnfilteredEvents(allEvents);
-        } catch (error) {
-          console.error('Error fetching events:', error);
-        }
+      try {
+        const allEventsRes = await fetch(
+          `https://developer-tbd-website-calendar-service.tbddev.org/events`,
+        );
+        const allEvents = await allEventsRes.json();
+        setUnfilteredEvents(allEvents);
+        filterAndGroupEvents(allEvents, currentMonth);
+      } catch (error) {
+        console.error('Error fetching events:', error);
       }
-      filterAndGroupEvents(allEvents, currentMonth);
     };
 
     fetchEvents();
-  }, [currentMonth]);
+  }, []);
+
+  useEffect(() => {
+    filterAndGroupEvents(unfilteredEvents, currentMonth);
+  }, [currentMonth, unfilteredEvents]);
 
   const formatEventDateTime = (event) => {
     if (!event) {
@@ -211,29 +233,13 @@ const CalendarComponent = () => {
     setGroupedEvents(grouped);
   };
 
-  const filterAndGroupEvents = (allEvents, newCurrentMonth) => {
-    const now = new Date();
-    const nextMonthNumber =
-      newCurrentMonth.getMonth() === 12 ? 1 : newCurrentMonth.getMonth() + 1;
-    const endOfMonth = new Date(
-      newCurrentMonth.getFullYear(),
-      nextMonthNumber,
-      0,
-    );
-
-    const monthEvents = allEvents.filter((event) => {
-      const eventStartDate = new Date(event.start);
-      return eventStartDate >= now && eventStartDate <= endOfMonth;
-    });
-
-    setEvents(monthEvents);
-    groupEventsByDate(monthEvents);
-  };
-
   const navigateMonth = (offset) => {
-    setCurrentMonth(
-      new Date(currentMonth.getFullYear(), currentMonth.getMonth() + offset, 1),
+    const newMonth = new Date(
+      currentMonth.getFullYear(),
+      currentMonth.getMonth() + offset,
+      1,
     );
+    setCurrentMonth(newMonth);
   };
 
   const openModal = (event) => {
