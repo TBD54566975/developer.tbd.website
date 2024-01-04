@@ -1,0 +1,31 @@
+---
+sidebar_position: 2
+---
+
+# Key Concepts
+
+Although each of the three actors in the tbDEX network have distinct roles and concepts associated with them, there are three concepts that bind them together: Messages, Offerings, and Exchanges.
+
+## Messages
+
+PFIs and Wallets are able to communicate with each other by using the following tbDEX message types:
+
+* [**RFQ**](/docs/tbdex/api-reference/tbdex-js/protocol/classes/Rfq) - A message sent by a wallet to a PFI requesting a quote for an ask
+
+* [**Quote**](/docs/tbdex/pfi/creating-quotes) - A quote sent by the PFI in response to an RFQ, including a locked-in price that the PFI is willing to honor until a built-in expiration date
+
+* [**Order**](/docs/tbdex/pfi/processing-orders) - a message sent by a wallet to a PFI to accept a quote
+
+* [**OrderStatus**](/docs/tbdex/pfi/processing-orders#provide-an-initial-orderstatus) - A message sent by the PFI to a wallet to convey the current status of an order.
+
+* [**Close**](/docs/tbdex/pfi/processing-orders#close-the-order) - A message sent by a wallet or a PFI in response to an RFQ or Quote
+
+## Offerings
+
+[Offerings](/docs/tbdex/pfi/creating-offerings) describe a currency pair that can be exchanged and include requirements, conditions, and constraints needed to fulfill the described swap. They are created and stored by PFIs, and they are consumed via the [OfferingsApi](/docs/tbdex/api-reference/tbdex-js/http-server/interfaces/OfferingsApi) by Wallets. 
+
+## Exchanges
+
+The word "exchange" typically referes to an open market for financial instruments; however in the case of tbDEX the term "exchange" refers to an exchange of messages between a PFI and a potential customer. Whenever a Wallet wants to submit an RFQ to a PFI, a new exchange is created that involves the Wallet owner and the PFI in question, and that exchange object will store all of the messages outlined above as well as any other Offerings data transmitted in the exchange.
+
+For each RFQ-PFI combo, you'll want to create a new exchange object to store releveant data. Note that every RFQ is associated with an Offering, so each exchange is really representing a Wallet's ask for a quote on an Offering and all subsequent conversations.
