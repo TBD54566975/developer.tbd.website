@@ -152,45 +152,47 @@ const CalendarComponent = () => {
     filterEventsByType(events, selectedTypes);
   }, [selectedTypes, events]);
 
+  const filterAndGroupEvents = (allEvents, newCurrentMonth) => {
+    const startOfMonth = new Date(
+      newCurrentMonth.getFullYear(),
+      newCurrentMonth.getMonth(),
+      1,
+    );
+    const endOfMonth = new Date(
+      newCurrentMonth.getFullYear(),
+      newCurrentMonth.getMonth() + 1,
+      0,
+    );
+
+    const monthEvents = allEvents.filter((event) => {
+      const eventStartDate = new Date(event.start);
+      return eventStartDate >= startOfMonth && eventStartDate <= endOfMonth;
+    });
+
+    setEvents(monthEvents);
+    groupEventsByDate(monthEvents);
+  };
+
   useEffect(() => {
     const fetchEvents = async () => {
-      // We only load events once, because the API will retrieve all of them
-      let allEvents = unfilteredEvents;
-      if (!allEvents?.length) {
-        try {
-          const allEventsRes = await fetch(
-            `https://developer-tbd-website-calendar-service.tbddev.org/events`,
-          );
-          const allEvents = await allEventsRes.json();
-          setUnfilteredEvents(allEvents);
-        } catch (error) {
-          console.error('Error fetching events:', error);
-        }
+      try {
+        const allEventsRes = await fetch(
+          `https://developer-tbd-website-calendar-service.tbddev.org/events`,
+        );
+        const allEvents = await allEventsRes.json();
+        setUnfilteredEvents(allEvents);
+        filterAndGroupEvents(allEvents, currentMonth);
+      } catch (error) {
+        console.error('Error fetching events:', error);
       }
-
-      const now = new Date();
-      const nextMonthNumber =
-        currentMonth.getMonth() === 12 ? 1 : currentMonth.getMonth() + 1;
-
-      const endOfMonth = new Date(
-        currentMonth.getFullYear(),
-        nextMonthNumber,
-        0,
-      );
-
-      const monthEvents = allEvents.filter((event) => {
-        const eventStartDate = new Date(event.start);
-        const isUpcoming =
-          eventStartDate >= now && eventStartDate >= currentMonth;
-        const isThisMonth = eventStartDate <= endOfMonth;
-        return isUpcoming && isThisMonth;
-      });
-      groupEventsByDate(monthEvents);
-      setEvents(monthEvents);
     };
 
     fetchEvents();
-  }, [currentMonth]);
+  }, []);
+
+  useEffect(() => {
+    filterAndGroupEvents(unfilteredEvents, currentMonth);
+  }, [currentMonth, unfilteredEvents]);
 
   const formatEventDateTime = (event) => {
     if (!event) {
@@ -232,9 +234,12 @@ const CalendarComponent = () => {
   };
 
   const navigateMonth = (offset) => {
-    setCurrentMonth(
-      new Date(currentMonth.getFullYear(), currentMonth.getMonth() + offset, 1),
+    const newMonth = new Date(
+      currentMonth.getFullYear(),
+      currentMonth.getMonth() + offset,
+      1,
     );
+    setCurrentMonth(newMonth);
   };
 
   const openModal = (event) => {
