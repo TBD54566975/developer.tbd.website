@@ -17,3 +17,11 @@ to = "/docs/web5/troubleshooting/common-errors"
 [[redirects]]
 from = "/docs/web5/troubleshooting-guide"
 to = "/docs/web5/troubleshooting/common-errors"
+
+[[redirects]]
+from = "/docs/web5/build/frameworks/next"
+to = "/docs/web5/troubleshooting/next"
+
+[[redirects]]
+from = "/docs/web5/build/frameworks/vue"
+to = "/docs/web5/troubleshooting/vue"
