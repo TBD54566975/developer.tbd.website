@@ -1,0 +1,54 @@
+---
+sidebar_position: 1
+---
+
+import CodeSnippet from '@site/src/components/CodeSnippet';
+
+# Create Protocol Roles
+
+[Protocols](http://developer.tbd.website/docs/web5/learn/protocols) define rules regarding data access and interaction. Protocols use roles to manage permissions for different actors within an application. This guide explains how to define and use these roles in your applications.
+
+## Default roles
+By default, every protocol includes three roles: 
+- **Author**: The entity that created the record.
+- **Recipient**: The entity that the record is shared with.
+- **Anyone**: Any user who can access the application and has installed the protocol.
+
+Actors with these roles can be assigned various permissions like read, write, query, update, or delete operations on the data stored in the application's [Decentralized Web Node (DWN)](https://developer.tbd.website/docs/web5/learn/decentralized-web-nodes/).
+
+## Use case for protocol roles
+
+Roles management is a common concept in everyday web applications. For example, in a cloud-based word processor, such as Google Docs, users can set permissions and share documents, determining who can access them and what level of interaction (view, edit, comment) is allowed.
+
+## Custom roles
+
+Beyond the three default actors (author, recipient, anyone), you can create custom roles to grant permissions to a specific group of people. There are two types of custom roles: a `$contextRole` and a `$globalRole`. 
+
+- **$globalRole** -  used to assign universally applicable permissions. For example, an admin role with access to all areas of a system could be a `$globalRole`. Global roles are defined at the root level of the protocol structure. 
+
+- **$contextRole** -useful when you need to assign permissions that are relevant only within a specific context or specific part of the system. For example, a moderator role for a particular forum within a larger platform could be a context role. These roles are defined at the second level of the protocol structure.
+
+## Defining custom roles
+To define custom roles, create a protocol definition with role specifications. The protocol definition below has two roles for an event book booking platform.
+
+### Creating a $globalRole
+The first role is a `$globalRole` defined at the root level of the protocol structure called `admin`. The `admin` actor can perform actions on data in any context defined in this protocol, such as events, guests, and RSVPs. While the author can create an event, an admin also has permission. The admin can also delete guests and query RSVPs.
+
+### Creating a $contextRole
+The second role is a `$contextRole` called `guest`. It's nested within the event. The `guest` actor can only perform actions within the context of an event. Guests can write, read, and query RSVPs for a particular event. 
+
+:::note  
+Use the `role` property to assign permissions for a custom role, instead of the typical `who` property used for assigning permissions to an author, recipient, or anyone.
+:::
+
+<CodeSnippet functionName="eventBookingProtocolDefinitionWithRoles" />
+
+## Assigning roles
+After installing the protocol on the actors' DWNs, assign roles using the records interface. Then, send the record to your DWN and the recipient's DWN. Below is an example of assigning an actor to a guest role by sending the actor a guest object.
+### Assigning a $globalRole
+<CodeSnippet functionName="assignGlobalRole" />
+
+### Assigning a $contextRole
+<CodeSnippet functionName="assignContextRole" />
+
+
