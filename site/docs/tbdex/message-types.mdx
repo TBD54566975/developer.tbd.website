@@ -2,7 +2,11 @@
 sidebar_position: 2
 ---
 
-# Message Types
+# Key Concepts
+
+Although each of the three actors in the tbDEX network have distinct roles and concepts associated with them, there are three concepts that bind them together: Messages, Offerings, and Exchanges.
+
+## Messages
 
 PFIs and Wallets are able to communicate with each other by using the following tbDEX message types:
 
@@ -16,5 +20,12 @@ PFIs and Wallets are able to communicate with each other by using the following 
 
 * [**Close**](/docs/tbdex/pfi/processing-orders#close-the-order) - A message sent by a wallet or a PFI in response to an RFQ or Quote
 
-Additionally PFIs offer a list of [Offerings](/docs/tbdex/pfi/creating-offerings), which is represented by a resource used to describe a currency pair that can be exchanged and includes requirements, conditions, and constraints needed to fulfill the described swap. 
-Wallets can fetch a PFI's list of Offerings and present them to their users.
+## Offerings
+
+[Offerings](/docs/tbdex/pfi/creating-offerings) describe a currency pair that can be exchanged and include requirements, conditions, and constraints needed to fulfill the described swap. They are created and stored by PFIs, and they are consumed via the [OfferingsApi](https://tbd54566975.github.io/tbdex-js/interfaces/_tbdex_http_server.OfferingsApi.html) by Wallets. 
+
+## Exchanges
+
+Within tbDEX, the term "exchange" refers to a thread of messages between a PFI and a Wallet. Whenever a Wallet submits an RFQ to a PFI, a new exchange is created that involves the Wallet owner and the PFI, and all subsequent messages about the transaction are a part of the exchange.
+
+For each RFQ, you'll want to create a new exchange object to store relevant data. Note that every RFQ is associated with an Offering, so each exchange represents all messages about a specific transaction.
