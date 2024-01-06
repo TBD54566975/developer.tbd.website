@@ -52,7 +52,7 @@ async write(opts: { message: MessageKindClass }) {
 
 After receiving an `RFQ` and finding the matching `Offering`, you’ll want to verify that the user satisfies the necessary requirements for the `Offering`. 
 
-The `RFQ` class offers the [verifyOfferingRequirements](/docs/tbdex/api-reference/tbdex-js/protocol/classes/Rfq#verifyofferingrequirements) method to do so, which checks that the claim or credential provided in the `RFQ` satisfies the presentation definition that was specified on the `Offering`. 
+The `RFQ` class offers the [verifyOfferingRequirements](https://tbd54566975.github.io/tbdex-js/classes/_tbdex_http_server.Rfq.html#verifyOfferingRequirements) method to do so, which checks that the claim or credential provided in the `RFQ` satisfies the presentation definition that was specified on the `Offering`. 
 
 ```js
  function processRfq(rfq, offering) {

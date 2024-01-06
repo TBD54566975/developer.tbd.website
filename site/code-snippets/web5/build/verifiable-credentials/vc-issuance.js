@@ -5,11 +5,11 @@ The output of this credential is hard-coded in the guide.
 If you change any of the data below, please regenerate the 
 output and paste it in the guide.
 */
-export async function createEmploymentCredential(employerDid, employeeDid) {
+export async function createEmploymentCredential(employer, employee) {
 const vc = await VerifiableCredential.create({
     type: 'EmploymentCredential',
-    issuer: employerDid,
-    subject: employeeDid,
+    issuer: employer.did,
+    subject: employee.did,
     expirationDate: '2023-09-30T12:34:56Z',
     data: {
         "position": "Software Developer",
@@ -20,7 +20,8 @@ const vc = await VerifiableCredential.create({
 return vc;
 }
 
-export async function signCredential(vc, employerDid) {
-const vc_jwt_employment = await vc.sign({ did: employerDid });
+export async function signCredential(vc, employer) {
+//sign with PortableDid
+const vc_jwt_employment = await vc.sign({ did: employer });
 return vc_jwt_employment;
 }
