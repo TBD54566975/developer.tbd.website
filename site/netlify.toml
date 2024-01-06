@@ -25,7 +25,3 @@ to = "/docs/web5/troubleshooting/next"
 [[redirects]]
 from = "/docs/web5/build/frameworks/vue"
 to = "/docs/web5/troubleshooting/vue"
-
-[[redirects]]
-from = "/docs/tbdex/api_ref"
-to = "https://tbd54566975.github.io/tbdex-js/index.html"
