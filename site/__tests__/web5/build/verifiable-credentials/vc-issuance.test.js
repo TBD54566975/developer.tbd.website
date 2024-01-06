@@ -5,17 +5,17 @@ import {
     signCredential
 } from '../../../../code-snippets/web5/build/verifiable-credentials/vc-issuance';
 
-const issuerDid = await DidDhtMethod.create();
-const subjectDid = await DidDhtMethod.create();
+const issuer = await DidDhtMethod.create();
+const subject = await DidDhtMethod.create();
 
 describe('issue a credential', () => {
 
     test('VerifiableCredential.create() creates a VC', async () => {
-      const vc = await createEmploymentCredential(issuerDid.did, subjectDid.did);
+      const vc = await createEmploymentCredential(issuer, subject);
       expect(vc).toBeDefined();
       expect.soft(vc).toHaveProperty('type', 'EmploymentCredential');
-      expect.soft(vc).toHaveProperty('issuer', issuerDid.did);
-      expect.soft(vc).toHaveProperty('subject', subjectDid.did);
+      expect.soft(vc).toHaveProperty('issuer', issuer.did);
+      expect.soft(vc).toHaveProperty('subject', subject.did);
       expect.soft(vc.vcDataModel).toHaveProperty('id');
       expect.soft(vc.vcDataModel).toHaveProperty('expirationDate', '2023-09-30T12:34:56Z');
       expect.soft(vc.vcDataModel.credentialSubject).toHaveProperty('id');
@@ -25,8 +25,8 @@ describe('issue a credential', () => {
     });
 
     test('VerifiableCredential.sign() signs a VC', async () => {
-        const vc = await createEmploymentCredential(issuerDid.did, subjectDid.did);
-        const vc_jwt = await signCredential(vc, issuerDid);
+        const vc = await createEmploymentCredential(issuer, subject);
+        const vc_jwt = await signCredential(vc, issuer);
         expect(vc_jwt).toBeDefined();
         expect(vc_jwt).toMatch(/^[a-zA-Z0-9-_]+\.[a-zA-Z0-9-_]+\.[a-zA-Z0-9-_]+$/);
     });
