@@ -62,7 +62,7 @@ Now your server is configured with the appropriate routing setup.
 
 ## Exchange API Provider
 
-The Exchanges API is the set of methods that deals with reading and writing any messages data, based on the [ExchangesApi](/docs/tbdex/api-reference/tbdex-js/http-server/interfaces/ExchangesApi) class. Although the interface for `ExchangesApi` only requires to be filled out with read operations, you may find it useful to couple write operations into the class as well. 
+The Exchanges API is the set of methods that deals with reading and writing any messages data, based on the [ExchangesApi](https://tbd54566975.github.io/tbdex-js/interfaces/_tbdex_http_server.ExchangesApi.html) class. Although the interface for `ExchangesApi` only requires to be filled out with read operations, you may find it useful to couple write operations into the class as well. 
 
 Using the sample code above as reference, the submission of `RFQ`, `Order`, or `Close` data will result in the triggering of the Exchange API Provider’s `write()`, while the required methods such as `getOrder()` will serve as read methods. 
 
@@ -91,7 +91,7 @@ Similarly, after writing an `Order` to your database, you’ll want to ensure yo
 
 ## Offerings API Provider
 
-The `Offerings` API is the set of methods that deals with reading and writing any offering data, based on the [OfferingsApi](/docs/tbdex/api-reference/tbdex-js/http-server/interfaces/OfferingsApi) class. Although the interface for `OfferingsApi` only requires to be filled out with read operations, you may find it useful to couple write operations into the class as well. 
+The `Offerings` API is the set of methods that deals with reading and writing any offering data, based on the [OfferingsApi](https://tbd54566975.github.io/tbdex-js/interfaces/_tbdex_http_server.OfferingsApi.html) class. Although the interface for `OfferingsApi` only requires to be filled out with read operations, you may find it useful to couple write operations into the class as well. 
 
 Although the Offerings API isn’t directly exposed in the main server entrypoint, it is still used to fetch and write offerings to your PFI's database. 
 Here's an example of how to get offerings as specified by the `OfferingsApi` interface:
