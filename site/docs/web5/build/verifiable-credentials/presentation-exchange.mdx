@@ -1,0 +1,178 @@
+---
+sidebar_position: 3
+---
+
+import CodeSnippet from '@site/src/components/CodeSnippet';
+
+# Presentation Exchange
+
+In this guide, we'll cover the process of presenting Verifiable Credentials (VCs) to a verifier. The method for sharing VCs with another party is through a
+Presentation Exchange (PEX). This process involves selecting credentials that satisfy a presentation definition, creating a presentation based on that definition, and submitting the presentation.
+
+:::note
+Before presenting VCs in a PEX, it's important to note that the VCs would have already been [created](/docs/web5/build/verifiable-credentials/vc-issuance#create-vc),
+[signed in a JWT format](/docs/web5/build/verifiable-credentials/vc-issuance#sign-vc), and [stored](/docs/web5/build/verifiable-credentials/vcs-in-dwn#storing-vc-in-dwn)
+either in Decentralized Web Nodes (DWNs) or in a Wallet of the user's choosing.
+:::
+
+## Presentation Definition
+
+The entity requesting credentials will have defined the presentation requirements using a [presentation definition](/docs/web5/build/verifiable-credentials/presentation-definition). This definition specifies the criteria that the VCs need to meet.
+
+Assume a lender has an existing presentation definition specifying that applicants must provide VCs to confirm their legal name, date of birth, and employment status:
+
+```js
+const presentationDefinition = {
+  id: 'presDefIdloanAppVerification123',
+  name: 'Loan Application Employment Verification',
+  purpose: 'To verify applicant’s employment, date of birth, and name',
+  input_descriptors: [
+    // Employment Verification
+    {
+      id: 'employmentVerification',
+      purpose: 'Confirm current employment status',
+      constraints: {
+        fields: [
+          {
+            path: ['$.credentialSubject.employmentStatus'],
+            filter: {
+              type: 'string',
+              pattern: 'employed',
+            },
+          },
+        ],
+      },
+    },
+    // Date of Birth Verification
+    {
+      id: 'dobVerification',
+      purpose: 'Confirm the applicant’s date of birth',
+      constraints: {
+        fields: [
+          {
+            path: ['$.credentialSubject.dateOfBirth'],
+            filter: {
+              type: 'string',
+              format: 'date',
+            },
+          },
+        ],
+      },
+    },
+    // Name Verification
+    {
+      id: 'nameVerification',
+      purpose: 'Confirm the applicant’s legal name',
+      constraints: {
+        fields: [
+          {
+            path: ['$.credentialSubject.name'],
+            filter: {
+              type: 'string',
+            },
+          },
+        ],
+      },
+    },
+  ],
+};
+```
+
+We'll use the definition above to present credentials that meet the definition's requirements.
+
+## Select Credentials
+
+Before creating a Presentation, the VCs that match the presentation definition requirements need to be selected. This can be done with the `selectCredentials()` method:
+
+:::note
+These steps are normally performed by the user's wallet app
+:::
+
+<CodeSnippet functionName="selectCredentials" />
+
+This method filters through all of the user's credentials and only selects the ones that match the presentation definition requirements.
+
+## Satisfy Presentation Definition
+
+To ensure that the selected credentials completely satisfy the definition's requirements, use the `satisfiesPresentationDefinition()` method:
+
+<CodeSnippet functionName="checkPresentationDefinitionSatisfaction" />
+
+## Create Presentation
+
+Once you've confirmed that the VCs successfully satisfy the Presentation Definition, you can create a presentation using the `createPresentationFromCredentials()` method:
+
+<CodeSnippet functionName="createPresentation" />
+
+This method requires the signed JWT VCs and the presentation definition. This will result in successfully creating a presentation:
+
+```js
+{
+  "presentation": {
+    "@context": [
+      "https://www.w3.org/2018/credentials/v1",
+      "https://identity.foundation/presentation-exchange/submission/v1"
+    ],
+    "type": [
+      "VerifiablePresentation",
+      "PresentationSubmission"
+    ],
+    "presentation_submission": {
+      "id": "HKqRZ0zIKaiZNlbtbEIeY",
+      "definition_id": "presDefIdloanAppVerification123",
+      "descriptor_map": [
+        {
+          "id": "employmentVerification",
+          "format": "jwt_vc",
+          "path": "$.verifiableCredential[0]"
+        },
+        {
+          "id": "nameAndDobVerification",
+          "format": "jwt_vc",
+          "path": "$.verifiableCredential[1]"
+        }
+      ]
+    },
+    "verifiableCredential": [
+       "eyJhbGciOiJIUzI1N...VyaWZpY2F0aW9uIiw.iaXNJ0aFZlcmlm...zIjoiZGlkOm.iwZGl...QssZGlw5c",
+       "eyJhbGciOiJIUzI1N...RlT2ZCaXJ0aFZlcmlmaW.NhdGlvb...GFtcGxlOmlzc3.VlciIsImNyZ...toLlk"
+    ]
+  },
+  "presentationSubmissionLocation": 1,
+  "presentationSubmission": {
+    "id": "HKqRZ0zIKaiZNlbtbEIeY",
+    "definition_id": "presDefIdloanAppVerification123",
+    "descriptor_map": [
+      {
+        "id": "employmentVerification",
+        "format": "jwt_vc",
+        "path": "$.verifiableCredential[0]"
+      },
+      {
+        "id": "nameAndDobVerification",
+        "format": "jwt_vc",
+        "path": "$.verifiableCredential[1]"
+      }
+    ]
+  }
+}
+```
+
+## Validate Presentation
+
+Before submitting the presentation to a lender, in this example. It's important to validate the presentation first. The `validateSubmission()` method can be used to achieve this:
+
+<CodeSnippet functionName="submissionCheck" />
+This method checks the presentation submission for any errors.
+
+## Understanding Validation Results
+
+The `validateSubmission()` method returns an array of Checked objects, each one representing a validation check performed on the presentation submission. Each Checked object contains:
+
+- **tag**: shows the part of the submission that was checked `root`
+- **status**: Shows the result of the check, which can be `info` for successful checks or `error` for failed checks.
+- **message**: shows `ok` if successful, and if unsuccessful this is where you'll find error messages, to work through.
+
+## Submitting Presentation
+
+Once the Presentation is error-free and has passed the validation checks, you can now submit the Presentation by providing the lender with the `presentation` JSON object.
