@@ -95,7 +95,7 @@ const nextConfig = {
 module.exports = nextConfig;
 ```
 
-### Error: No native build was found for xxx
+### Error: No native build was found
 
 If you encounter errors similar to the above structure, ensure your node version and web5.js versions are up to date. If it persists, you can change how you initialize Web5 to use `useEffect()`:
 
@@ -104,7 +104,7 @@ If you encounter errors similar to the above structure, ensure your node version
 
     const initWeb5 = async () => {
       // @ts-ignore
-      const { Web5 } = await import('@web5/api');
+      const { Web5 } = await import('@web5/api/browser');
 
       try {
         const { web5, did } = await Web5.connect({sync: '5s'});
