@@ -68,12 +68,27 @@ You can use this plugin in your Nuxt page as;
 ```
 
 ## Address polyfill errors
-Sometimes, you may get errors where the Web5 SDK isn't initializing in your client app. This is usually because some polyfills are missing. To solve this;
+Sometimes, you may get errors where the Web5 SDK isn't initializing in your client app e.g `process.nextTick is not a function`. This is usually because some polyfills are missing. To solve this;
 
 - Install the `vite-plugin-node-stdlib-browser` plugin:
 
 ```bash
 npm install vite-plugin-node-stdlib-browser --save-dev
+```
+
+If you are using Nuxt, add this to your `nuxt.config.js` file:
+
+```js title="nuxt.config.ts"
+import nodePolyfills from 'vite-plugin-node-stdlib-browser';
+
+// https://nuxt.com/docs/api/configuration/nuxt-config
+export default defineNuxtConfig({
+  devtools: { enabled: true },
+  ssr: false,
+  vite: {
+    plugins: [nodePolyfills()],
+  },
+})
 ```
 
 Then add the following to your `vite.config.js` file:
