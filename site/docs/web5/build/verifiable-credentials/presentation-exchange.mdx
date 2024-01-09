@@ -55,7 +55,7 @@ To ensure that the selected credentials collectively satisfy all of the Presenta
 
 <CodeSnippet functionName="pex_checkPresentationDefinitionSatisfaction" />
 
-This method will throw an error if the VCs do not satisfy the Presentation Definition.
+This method will throw an error if all requirements of the Presentation Definition are not satisfied.
 
 ## Create Presentation
 
@@ -133,9 +133,8 @@ Before submitting the presentation to a lender, you can validate the Presentatio
 
 <CodeSnippet functionName="pex_submissionCheck" />
 
-This method checks the presentation submission for any errors.
+This method checks the presentation submission for any errors, returns an array of `Checked` objects representing the validation checks performed on the presentation submission:
 
-The `validateSubmission()` method returns an array of `Checked` objects representing the validation checks performed on the presentation submission:
 
 ```js
 [ Checked { tag: 'root', status: 'info', message: 'ok' } ]
