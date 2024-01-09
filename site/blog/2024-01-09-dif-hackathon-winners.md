@@ -8,7 +8,7 @@ tags: [Hackathon, Web5, DIF, Decentralized Web Nodes]
 ---
 
 <head>
-  <meta property="og:title" content="Celebrating DIF Hackathon Winners!" />
+  <meta property="og:title" content="DIF Hackathon: Top 3 Winners!" />
   <meta property="og:type" content="website" />
   <meta property="og:url" content='https://developer.tbd.website/blog/2024-01-09-dif-hackathon-winners' />
   <meta name="og:description" content="Join us in celebrating the top 3 winners of the DIF Hackathon" />
@@ -17,7 +17,7 @@ tags: [Hackathon, Web5, DIF, Decentralized Web Nodes]
 <meta name="twitter:card" content="summary_large_image" />
 <meta property="twitter:domain" content="developer.tbd.website" />
 <meta name="twitter:site" content="@tbdevs" />
-<meta name="twitter:title" content="Celebrating DIF Hackathon Winners!" />
+<meta name="twitter:title" content="DIF Hackathon: Top 3 Winners!" />
 <meta
   property="twitter:url"
   content="https://developer.tbd.website/blog/2024-01-09-dif-hackathon-winners"
@@ -33,7 +33,7 @@ tags: [Hackathon, Web5, DIF, Decentralized Web Nodes]
   <link rel="apple-touch-icon" href="https://developer.tbd.website/img/tbd-fav-icon-main.png" />
 </head>
 
-![Celebrating DIF Hackathon Winners!](/img/dif-hackathon-winners.png)
+![DIF Hackathon: Top 3 Winners!](/img/dif-hackathon-winners.png)
 
 ## DIF 🤝 Web5 Hackathon
 
