@@ -464,9 +464,6 @@ importers:
       '@tailwindcss/typography':
         specifier: 0.5.9
         version: 0.5.9(tailwindcss@3.2.7)
-      '@web5/crypto':
-        specifier: ^0.2.4
-        version: 0.2.4
       autoprefixer:
         specifier: 10.4.13
         version: 10.4.13(postcss@8.4.31)
