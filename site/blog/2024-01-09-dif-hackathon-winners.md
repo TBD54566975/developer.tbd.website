@@ -12,7 +12,7 @@ tags: [Hackathon, Web5, DIF, Decentralized Web Nodes]
   <meta property="og:type" content="website" />
   <meta property="og:url" content='https://developer.tbd.website/blog/2024-01-09-dif-hackathon-winners' />
   <meta name="og:description" content="Join us in celebrating the top 3 winners of the DIF Hackathon" />
-  <meta property="og:image" content="https://developer.tbd.website/assets/images/blog-la-wallet-vcs-0b0c9029d1d0c83c1968578129b6438a.png" />
+  <meta property="og:image" content="https://developer.tbd.website/assets/images/dif-hackathon-winners-19e0e21e4911632889f68f8af88ceab8.png" />
 
 <meta name="twitter:card" content="summary_large_image" />
 <meta property="twitter:domain" content="developer.tbd.website" />
@@ -28,7 +28,7 @@ tags: [Hackathon, Web5, DIF, Decentralized Web Nodes]
 />
 <meta
   name="twitter:image"
-  content="https://developer.tbd.website/assets/images/dif-hackathon-winners-76ece74efeef5763706ef4a783b47b23.png"
+  content="https://developer.tbd.website/assets/images/dif-hackathon-winners-19e0e21e4911632889f68f8af88ceab8.png"
 />
   <link rel="apple-touch-icon" href="https://developer.tbd.website/img/tbd-fav-icon-main.png" />
 </head>
