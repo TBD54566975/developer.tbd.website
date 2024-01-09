@@ -112,4 +112,4 @@ Trust is still critical. A VC from “Bob’s Bogus Academy” might not carry t
 VCs can be securely stored and managed via identity wallets. When the need arises to share them, it's simply a matter of presenting directly from the wallet, ensuring personal data remains private.
 
 
-Now, with their newfound knowledge of VCs, Alice and Bob are ready to further explore the decentralized web, presenting their credentials with confidence. Looking to play around with verifiable credentials yourself? Take a look at our [Web5/credentials](https://www.npmjs.com/package/@web5/credentials) npm package.
+Now, with their newfound knowledge of VCs, Alice and Bob are ready to further explore the decentralized web, presenting their credentials with confidence. Looking to play around with verifiable credentials yourself? Start by following our [Issue a VC](/docs/web5/build/verifiable-credentials/vc-issuance) guide. For additional resources, check out our [Web5/credentials](https://www.npmjs.com/package/@web5/credentials) npm package.
