@@ -107,13 +107,12 @@ If you encounter errors similar to the above structure, ensure your node version
       const { Web5 } = await import('@web5/api/browser');
 
       try {
-        const { web5, did } = await Web5.connect({sync: '5s'});
+        const { web5, did } = await Web5.connect();
         setWeb5(web5);
         setMyDid(did);
         console.log(web5);
         if (web5 && did) {
           console.log('Web5 initialized');
-          // await configureProtocol(web5, did);
         }
       } catch (error) {
         console.error('Error initializing Web5:', error);
