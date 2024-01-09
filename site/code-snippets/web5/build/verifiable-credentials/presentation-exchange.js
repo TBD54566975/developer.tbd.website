@@ -73,6 +73,7 @@ export async function selectCredentials() {
 
 export async function checkPresentationDefinitionSatisfaction() {
   let isSatisfied = false;
+
   try {
     isSatisfied = PresentationExchange.satisfiesPresentationDefinition(
       [signedEmploymentVcJwt, signedNameandDobVcJwt],
@@ -95,6 +96,11 @@ export async function createPresentation() {
 }
 
 export async function submissionCheck() {
+  const presentationSubmission =
+    PresentationExchange.createPresentationFromCredentials({
+      vcJwts: [signedEmploymentVcJwt, signedNameandDobVcJwt],
+      presentationDefinition: presentationDefinition,
+    });
   const submissionCheck = PresentationExchange.validateSubmission({
     presentationSubmission,
   });
