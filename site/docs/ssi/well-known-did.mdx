@@ -1,6 +1,7 @@
 ---
 sidebar_position: 12
 ---
+import ReusableTabs from '../../src/components/ReusableTabs.jsx';
 
 # Link a DID to a Domain
 
@@ -22,15 +23,23 @@ This configuration can be created via the SSI Service.
 
 To make the claim that her DID is associated with her `origin`, Alice uses the SSI Service to issue herself a **Domain Linkage Credential**. In this request, she'll also need to include the `verificationMethodId` so that its private key can be used to sign the credential. This can done via a `PUT` request to `/v1/did-configurations`:
 
-```bash
-curl -X PUT 'localhost:8080/v1/did-configurations' -d '{
+<ReusableTabs 
+MacCommand={`curl -X PUT 'localhost:8080/v1/did-configurations' -d '{
   "expirationDate": "2051-10-05T14:48:00.000Z",
   "issuanceDate": "2023-10-22T14:48:00.000Z",
   "issuerDid": "did:key:z6MkmM43K3x5xAgzkLRW9r6HCv5c4QKfD2wjfi6tiW3CuzjZ",
   "origin": "https://example.com",
   "verificationMethodId": "did:key:z6MkmM43K3x5xAgzkLRW9r6HCv5c4QKfD2wjfi6tiW3CuzjZ#z6MkmM43K3x5xAgzkLRW9r6HCv5c4QKfD2wjfi6tiW3CuzjZ"
-}'
-```
+}'`}
+WinCommand={`curl -X PUT 'localhost:8080/v1/did-configurations' -d "{
+  "expirationDate": "2051-10-05T14:48:00.000Z",
+  "issuanceDate": "2023-10-22T14:48:00.000Z",
+  "issuerDid": "did:key:z6MkmM43K3x5xAgzkLRW9r6HCv5c4QKfD2wjfi6tiW3CuzjZ",
+  "origin": "https://example.com",
+  "verificationMethodId": "did:key:z6MkmM43K3x5xAgzkLRW9r6HCv5c4QKfD2wjfi6tiW3CuzjZ#z6MkmM43K3x5xAgzkLRW9r6HCv5c4QKfD2wjfi6tiW3CuzjZ"
+}"`}
+/>
+
 
 Upon success, the response will include two key properties:
 
@@ -70,11 +79,14 @@ After completing this, by opening the URL of the `wellKnownLocation` in a browse
 
 If a verifier wants to make sure that Alice's DID Configuration Resource is valid, they can make a `PUT` request to `/v1/did-configurations/verification` passing in Alice's `origin`:
 
-```bash
-curl -X PUT 'localhost:8080/v1/did-configurations/verification' -d '{
+<ReusableTabs
+MacCommand={`curl -X PUT 'localhost:8080/v1/did-configurations/verification' -d '{
   "origin": "https://example.com"
-}'
-```
+}'`}
+WinCommand={`curl -X PUT 'localhost:8080/v1/did-configurations/verification' -d "{
+  "origin": "https://example.com"
+}"`}
+/>
 
 To establish the validity, the SSI Service will verify the:
 
