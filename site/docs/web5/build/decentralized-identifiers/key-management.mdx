@@ -6,41 +6,9 @@ sidebar_position: 2
 
 Cryptographic keys are an integral part of DIDs and DIDs are designed to represent secure identity, which is why good key management is essential to developing your Web5 app. Key management provides the optionality to securely store your cryptographic keys and is built right into the `Web5` SDK. 
 
-## Overview
+## Quickstart
 
-Your app will need three things to be able to create, manage, and store keys securely:
-
-- A remote database or secure local storage, like a secure enclave.
-- A key manager to handle interactions with that secure storage including writing keys and performing cryptographic signing.
-- A DID method implementation that will take advantage of the key manager.
-
-This guide will explain the key concepts of key management as they pertain to your app, highlight the design of key management in your app, and give you the concrete code snippets needed to ensure the safety of your keys.
-
-### Database & Storage
-
-<!-- JS Version -->
-If you choose to initialize your app via `web5.connect()`, your DID will be stored in unsecured local storage. However, if [you initialize a DID manually](/docs/web5/build/decentralized-identifiers/how-to-create-did#create-a-did-manually), you have the option of specifying where you'd like to store your keys.
-
-<!-- JS + Kotlin -->
-Depending on the platform, runtime, and use-case you're developing for, you'll have a variety of different options for key storage. If you're developing a frontend application, you'll likely be able to take advantage of OS or hardware-level features like the Secure Enclave on iPhone or Secure Storage Service on Android. Backend developers may prefer to offload key storage to a service such as AWS' Key Management Service. Lastly, web developers will find it more difficult to store keys within the constraints they have, but have options like the Web Cryptography API available to them.
-
-### Management Layer
-
-Once you've decided on an appropriate storage solution for your cryptographic keys, you'll next need to select how you'd like for those keys to be managed. There are three main types of storage for you to select from on most platforms:
-
-- **In-Memory** storage is best for development and testing environments.
-- **Secure Enclave** storage is normally on mobile devices and other devices with specialized key storage hardware.
-- **Remote** storage is best for backend systems where sub-100ms latency is not required and key storage can be abstracted away.
-
-The `web5/crypto` package contains a variety of key manager implementations, including a basic [`InMemoryKeyManager`]() designed for development environment testing, as well as an [`AwsKeyManager`]() implementation to allow your app to interface with AWS' remote Key Management Service. Each manager is designed for a specific type of storage, and while you are free to develop your own key manager, the `Web5` SDK will be updated with support for new key managers based on feedback. 
-
-### DID Method Implementation
-
-Finally to implement key management in your app, you'll need to actually generate the keys in the form of DID private keys. The `web5/dids` package includes such implementations like the [`DidIon`]() and [`DidJwk`]() classes, which provide all-in-one convenience methods to create, register, and use DIDs.
-
-## App Startup 
-
-With a storage type, management layer, and DID method selected, you can then initialize your DID at app startup; in the example below we'll use the `DidJwk` method:
+Key management is built right into the `DidMethod` implementations provided in the `Web5` SDK, such as `DidDht`. Here is how you'll create or load a DID with a `KeyManager`:
 
 ```kotlin
 fun initKeyManagement(env: string, didUri: string){
@@ -54,22 +22,43 @@ fun initKeyManagement(env: string, didUri: string){
     }
 
     // Initialize or load a DID
-    var did: DidJwk;
+    var did: DidDht;
     if (didUri == null) {
         // Create a new DID
-        val did = DidJwk.create(keyManager)
+        val did = DidDht.create(keyManager)
     } else {
         // Load existing DID
-        val did = DidJwk(uri = "some_uri", keyManager)
+        val did = DidDht(uri = "some_uri", keyManager)
     }
 }
 ```
 
-Because the `DidJwk` class, as well as other DID method implementations in the `Web5` library, are designed with a key manager property, you'll perform any required key management operations using your DID method's class with key manager as a pass-in. DID creation requires explict pass-in of the key manager you'd like to use every time:
+The `Web5` SDK provides a variety of `KeyManager` implementations, which will allow you connect to storage - in-memory storage in the case of `InMemoryKeyManager` and AWS Key Management Service in the case of `AwsKeyManager` - and allow you to perform all the operations exposed in the `KeyManager` interface. 
 
-```kotlin
-    // Create a new DID
-    val did = DidJwk.create(keyManager)
-```
+## Advanced Topics
 
-HOwever 
+Your app will need three things to be able to create, manage, and store keys securely:
+
+- A remote database or secure local storage, like a secure enclave.
+- A key manager to handle interactions with that secure storage including writing keys and performing cryptographic signing.
+- A DID method implementation that will take advantage of the key manager.
+
+This guide will explain the key concepts of key management as they pertain to your app, highlight the design of key management in your app, and give you the concrete code snippets needed to ensure the safety of your keys.
+
+### Database & Storage
+
+Depending on the platform, runtime, and use-case you're developing for, you'll have a variety of different options for key storage. If you're developing a frontend application, you'll likely be able to take advantage of OS or hardware-level features like the Secure Enclave on iPhone or Secure Storage Service on Android. Backend developers may prefer to offload key storage to a service such as AWS' Key Management Service. Lastly, web developers will find it more difficult to store keys within the constraints they have, but have options like the Web Cryptography API available to them.
+
+### Management Layer
+
+Once you've decided on an appropriate storage solution for your cryptographic keys, you'll next need to select how you'd like for those keys to be managed. There are three main types of storage for you to select from on most platforms:
+
+- **In-Memory** storage is best for development and testing environments.
+- **Secure Enclave** storage is normally on mobile devices and other devices with specialized key storage hardware.
+- **Remote** storage is best for backend systems where sub-100ms latency is not required and key storage can be abstracted away.
+
+The `web5/crypto` package contains a variety of key manager implementations, including a basic [`InMemoryKeyManager`](https://github.com/TBD54566975/web5-kt/blob/main/crypto/src/main/kotlin/web5/sdk/crypto/InMemoryKeyManager.kt) designed for development environment testing, as well as an [`AwsKeyManager`](https://github.com/TBD54566975/web5-kt/blob/main/crypto/src/main/kotlin/web5/sdk/crypto/AwsKeyManager.kt) implementation to allow your app to interface with AWS' remote Key Management Service. Each manager is designed for a specific type of storage, and while you are free to develop your own key manager, the `Web5` SDK will be updated with support for new key managers based on feedback. 
+
+### DID Method Implementation
+
+Finally to implement key management in your app, you'll need to actually generate the keys in the form of DID private keys. The `web5/dids` package includes such implementations like the [`DidIon`](https://github.com/TBD54566975/web5-kt/blob/main/dids/src/main/kotlin/web5/sdk/dids/methods/ion/DidIon.kt) and [`DidJwk`](https://github.com/TBD54566975/web5-kt/blob/main/dids/src/main/kotlin/web5/sdk/dids/methods/jwk/DidJwk.kt) classes, which provide all-in-one convenience methods to create, register, and use DIDs.
