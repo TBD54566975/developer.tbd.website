@@ -27,6 +27,8 @@ This function will:
 
 ✅ Verify the integrity and authenticity of the issuer's signature using the public key associated with the verification method
 
+✅ Ensure that the credential has not expired
+
 If any of these steps fail, the function will throw an error with a message indicating the nature of the failure.
 
 ### Extracting VC JWTs from Presentation
@@ -167,10 +169,12 @@ The `areRequiredCredentialsPresent` property of the evaluation results gives a s
 If the status is `warn` or `error`, the details will be in the `warnings` or `error` array of the response.
 
 
-## Additional Considerations
+## Revocation Check
 
-The `VerifiableCredential.verify()` function does not perform a revocation status check to determine whether the VCs have been revoked, nor does it verify that the VCs aren't expired.
-We strongly reccommend that you verify this information before honoring the VCs as valid.
+The `VerifiableCredential.verify()` function does not perform a revocation status check to determine whether the VCs have been revoked.
+We strongly reccommend that you verify this information by referencing the VC's `credentialStatus` property before honoring the VC as valid.
+
+
+## Read VC Data
 
 Once you're confident that the VCs are valid, you can proceed to [parse the JWTs into VC objects](/docs/web5/build/verifiable-credentials/jwt-to-vc) such that you may work with the credentials' data.
-
