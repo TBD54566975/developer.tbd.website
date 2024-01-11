@@ -1,4 +1,4 @@
-// CodeSnippet.js
+// LanguageSwitchBlock.js
 import React from 'react';
 import { useLanguage } from './LanguageContext';
 
