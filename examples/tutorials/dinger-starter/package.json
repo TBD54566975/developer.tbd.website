@@ -11,7 +11,7 @@
     "test:browser": "start-server-and-test dev http://localhost:8080 test"
   },
   "dependencies": {
-    "@web5/api": "0.8.3",
+    "@web5/api": "0.8.4-rc.0",
     "crypto-browserify": "3.12.0",
     "next": "13.5.4",
     "process": "0.11.10",
