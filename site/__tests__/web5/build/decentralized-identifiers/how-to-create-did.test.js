@@ -60,7 +60,9 @@ describe('how-to-create-did', () => {
   });
 
   test('createDidKey creates a DID with did:key method', async () => {
+    // :snippet-start: createDidKey
     const createdDid = await createDidKey();
+    //:snippet-end:
     expect(createdDid).toMatch(/^did:key:/);
   });
 
