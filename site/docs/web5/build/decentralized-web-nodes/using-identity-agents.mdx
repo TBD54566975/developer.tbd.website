@@ -1,0 +1,99 @@
+---
+sidebar_position: 9
+---
+# Using Identity Agents
+
+Identity agents manage [DIDs](https://developer.tbd.website/docs/web5/learn/decentralized-identifiers), data, and communication between [DWNs](https://developer.tbd.website/docs/web5/learn/decentralized-web-nodes). 
+
+For convenience, the `Web5.connect()` function uses a default identity agent. However, Web5 also provides the ability for users to utilize their own custom agent. 
+
+This guide provides an overview of how to create an identity agent, import a DID into the agent, and connect the agent to a Web5 app.
+
+<details>
+<summary>Prerequisites</summary>
+
+**Install the following packages**
+
+```bash
+npm i @web5/dids @web5/user-agent @web5/api
+```
+
+**Import the following modules**
+```js
+import { DidIonMethod, DidKeyMethod } from '@web5/dids';
+import { Web5UserAgent } from '@web5/user-agent';
+import { Web5, getTechPreviewDwnEndpoints } from '@web5/api';
+```
+This guide focuses on utilizing `DidIonMethod` and `DidKeyMethod` for setting up an identity agent. Currently, DID methods like the `DidDhtMethod` are not supported in this context.
+</details>
+
+## Initialize the Agent
+Create an instance of `Web5UserAgent` to begin setting up the Identity Agent
+```javascript
+const agent = await Web5UserAgent.create();
+```
+
+## Authenticate with a passphrase
+For security purposes, the identity agent prompts the end user to enter a secure passphrase when it initially launches. In this example, `insecure-static-phrase` is used as a placeholder.
+```javascript
+await agent.start({ passphrase: 'insecure-static-phrase' });
+```
+
+## Generate a portable DID
+If you'd like to associate DWNs with a DID, you can do so. In the following example, we'll use the TBD-hosted DWN endpoints:
+
+```javascript
+// selects DWN endpoints that are provided by default during the Web5 tech preview period
+const serviceEndpointNodes = await getTechPreviewDwnEndpoints();
+// generates key pairs used for authorization and encryption when interfacing with DWNs
+const didOptions = await DidIonMethod.generateDwnOptions({ serviceEndpointNodes });
+// creates a new DID and its associated data
+const portableDid = await DidIonMethod.create(didOptions);
+```
+<details>
+<summary>The above code snippet is the equivalent of:</summary>
+
+```javascript
+await DidIonMethod.create({
+        services: [{
+            type: 'DecentralizedWebNode',
+            id: '#dwn',
+            serviceEndpoint: {
+                "encryptionKeys": [
+                    "#dwn-enc"
+                ],
+                "nodes": [
+                    "https://dwn.tbddev.org/dwn0",
+                    "https://dwn.tbddev.org/dwn2"
+                ],
+                "signingKeys": [
+                    "#dwn-sig"
+                ]
+            }
+        }]
+    })
+```
+</details>
+
+## Import DID
+Importing a DID gives the Identity Agent permission to manage data on the DID holder's behalf.
+
+```js
+await agent.didManager.import({
+    did: portableDid,
+    kms: "local"
+});
+```
+
+:::note
+The `kms` field stands for Key Management Service and can securely store and manage the cryptographic keys associated with a DID. If you don't specify a particular key management service, such as AWS Key Management Service or Google Cloud Key Management, Web5 will default to an in-memory key manager.
+:::
+
+## Connect to Web5
+To use a custom Identity Agent with Web5, pass the DID and the agent into `Web5.connect()`:
+```javascript
+    const { web5, did } = await Web5.connect({
+        connectedDid: portableDid.did,
+        agent,
+    });
+```
