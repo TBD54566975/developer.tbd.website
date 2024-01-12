@@ -34,7 +34,7 @@ const agent = await Web5UserAgent.create();
 ```
 
 ## Authenticate with a passphrase
-For security purposes, the identity agent prompts the end user to enter a secure passphrase when it initially launches. In this example, `insecure-static-phrase` is used as a placeholder.
+For security purposes, the identity agent prompts the end user to enter a secure passphrase when it initially launches.
 ```javascript
 await agent.start({ passphrase: 'insecure-static-phrase' });
 ```
