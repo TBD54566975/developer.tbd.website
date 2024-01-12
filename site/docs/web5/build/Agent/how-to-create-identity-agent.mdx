@@ -94,7 +94,7 @@ Now, you can take portable DID and your identity agent to connect to Web5 and re
 ```
 
 ## Interact with the Web5 API
-You can now use the web5 instance to interact with DWNs and store Verifiable Credentials. The example below demonstrates how to create a record with a simple "Hello World!" message:
+You can now use the web5 instance to interact with DWNs and store Verifiable Credentials. The example below creates and stores a "Hello World!" record" in a DWN:
 ```javascript
     const { record } = await web5.dwn.records.create({
         data: "Hello World!",
