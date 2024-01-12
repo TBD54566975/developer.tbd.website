@@ -16,7 +16,8 @@
     "test": "node extract-snippets && pnpm vitest run --config vite.config.ts --no-threads && pnpm test:browser",
     "test:watch": "node extract-snippets && pnpm vitest --config vite.config.ts --watch",
     "test:browser": "pnpm -r test:browser",
-    "test:versions": "node check-versions.js"
+    "test:versions": "node check-versions.js",
+    "shnip": "cd ./shnippet/src node cli"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "6.4.2",

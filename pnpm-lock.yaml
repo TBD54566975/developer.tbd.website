@@ -12,7 +12,7 @@ importers:
         version: 6.4.2
       '@fortawesome/react-fontawesome':
         specifier: 0.2.0
-        version: 0.2.0(@fortawesome/fontawesome-svg-core@6.4.2)(react@18.2.0)
+        version: 0.2.0(@fortawesome/fontawesome-svg-core@6.4.2)(react@17.0.2)
       '@web5/api':
         specifier: 0.8.4
         version: 0.8.4
@@ -39,13 +39,13 @@ importers:
         version: 0.11.10
       react-fontawesome:
         specifier: 1.7.1
-        version: 1.7.1(react@18.2.0)
+        version: 1.7.1(react@17.0.2)
       react-markdown:
         specifier: 8.0.7
-        version: 8.0.7(@types/react@18.2.38)(react@18.2.0)
+        version: 8.0.7(@types/react@18.2.38)(react@17.0.2)
       react-slick:
         specifier: 0.29.0
-        version: 0.29.0(react-dom@18.2.0)(react@18.2.0)
+        version: 0.29.0(react-dom@17.0.2)(react@17.0.2)
       slick-carousel:
         specifier: 1.8.1
         version: 1.8.1(jquery@3.7.1)
@@ -514,6 +514,9 @@ importers:
       process:
         specifier: 0.11.10
         version: 0.11.10
+      raw-loader:
+        specifier: ^4.0.2
+        version: 4.0.2(webpack@5.89.0)
       react:
         specifier: 17.0.2
         version: 17.0.2
@@ -3688,7 +3691,7 @@ packages:
       '@fortawesome/fontawesome-common-types': 6.4.2
     dev: false
 
-  /@fortawesome/react-fontawesome@0.2.0(@fortawesome/fontawesome-svg-core@6.4.2)(react@18.2.0):
+  /@fortawesome/react-fontawesome@0.2.0(@fortawesome/fontawesome-svg-core@6.4.2)(react@17.0.2):
     resolution: {integrity: sha512-uHg75Rb/XORTtVt7OS9WoK8uM276Ufi7gCzshVWkUJbHhh3svsUUeqXerrM96Wm7fRiDzfKRwSoahhMIkGAYHw==}
     peerDependencies:
       '@fortawesome/fontawesome-svg-core': ~1 || ~6
@@ -3696,7 +3699,7 @@ packages:
     dependencies:
       '@fortawesome/fontawesome-svg-core': 6.4.2
       prop-types: 15.8.1
-      react: 18.2.0
+      react: 17.0.2
     dev: false
 
   /@hapi/hoek@9.3.0:
@@ -16558,6 +16561,17 @@ packages:
       unpipe: 1.0.0
     dev: false
 
+  /raw-loader@4.0.2(webpack@5.89.0):
+    resolution: {integrity: sha512-ZnScIV3ag9A4wPX/ZayxL/jZH+euYb6FcUinPcgiQW0+UBtEv0O6Q3lGd3cqJ+GHH+rksEv3Pj99oxJ3u3VIKA==}
+    engines: {node: '>= 10.13.0'}
+    peerDependencies:
+      webpack: ^4.0.0 || ^5.0.0
+    dependencies:
+      loader-utils: 2.0.4
+      schema-utils: 3.3.0
+      webpack: 5.89.0
+    dev: false
+
   /rc9@2.1.1:
     resolution: {integrity: sha512-lNeOl38Ws0eNxpO3+wD1I9rkHGQyj1NU1jlzv4go2CtEnEQEUfqnIvZG7W+bC/aXdJ27n5x/yUjb6RoT9tko+Q==}
     dependencies:
@@ -16653,14 +16667,14 @@ packages:
   /react-fast-compare@3.2.2:
     resolution: {integrity: sha512-nsO+KSNgo1SbJqJEYRE9ERzo7YtYbou/OqjSQKxV7jcKox7+usiUVZOAC+XnDOABXggQTno0Y1CpVnuWEc1boQ==}
 
-  /react-fontawesome@1.7.1(react@18.2.0):
+  /react-fontawesome@1.7.1(react@17.0.2):
     resolution: {integrity: sha512-kottReWW1I9Uupub6A5YX4VK7qfpFnEjAcm5zB4Aepst7iofONT27GJYdTcRsj7q5uQu9PXBL7GsxAFKANNUVg==}
     engines: {node: '>=0.10.0'}
     peerDependencies:
       react: '>=0.12.0'
     dependencies:
       prop-types: 15.8.1
-      react: 18.2.0
+      react: 17.0.2
     dev: false
 
   /react-helmet-async@1.3.0(react-dom@17.0.2)(react@17.0.2):
@@ -16755,33 +16769,6 @@ packages:
       - supports-color
     dev: false
 
-  /react-markdown@8.0.7(@types/react@18.2.38)(react@18.2.0):
-    resolution: {integrity: sha512-bvWbzG4MtOU62XqBx3Xx+zB2raaFFsq4mYiAzfjXJMEz2sixgeAfraA3tvzULF02ZdOMUOKTBFFaZJDDrq+BJQ==}
-    peerDependencies:
-      '@types/react': '>=16'
-      react: '>=16'
-    dependencies:
-      '@types/hast': 2.3.8
-      '@types/prop-types': 15.7.11
-      '@types/react': 18.2.38
-      '@types/unist': 2.0.10
-      comma-separated-tokens: 2.0.3
-      hast-util-whitespace: 2.0.1
-      prop-types: 15.8.1
-      property-information: 6.4.0
-      react: 18.2.0
-      react-is: 18.2.0
-      remark-parse: 10.0.2
-      remark-rehype: 10.1.0
-      space-separated-tokens: 2.0.2
-      style-to-object: 0.4.4
-      unified: 10.1.2
-      unist-util-visit: 4.1.2
-      vfile: 5.3.7
-    transitivePeerDependencies:
-      - supports-color
-    dev: false
-
   /react-modal@3.16.1(react-dom@17.0.2)(react@17.0.2):
     resolution: {integrity: sha512-VStHgI3BVcGo7OXczvnJN7yT2TWHJPDXZWyI/a0ssFNhGZWsPmB8cF0z33ewDXq4VfYMO1vXgiv/g8Nj9NDyWg==}
     engines: {node: '>=8'}
@@ -16853,7 +16840,7 @@ packages:
       tiny-warning: 1.0.3
     dev: false
 
-  /react-slick@0.29.0(react-dom@18.2.0)(react@18.2.0):
+  /react-slick@0.29.0(react-dom@17.0.2)(react@17.0.2):
     resolution: {integrity: sha512-TGdOKE+ZkJHHeC4aaoH85m8RnFyWqdqRfAGkhd6dirmATXMZWAxOpTLmw2Ll/jPTQ3eEG7ercFr/sbzdeYCJXA==}
     peerDependencies:
       react: ^0.14.0 || ^15.0.1 || ^16.0.0 || ^17.0.0 || ^18.0.0
@@ -16863,8 +16850,8 @@ packages:
       enquire.js: 2.1.6
       json2mq: 0.2.0
       lodash.debounce: 4.0.8
-      react: 18.2.0
-      react-dom: 18.2.0(react@18.2.0)
+      react: 17.0.2
+      react-dom: 17.0.2(react@17.0.2)
       resize-observer-polyfill: 1.5.1
     dev: false
 
