@@ -2,11 +2,12 @@
 import React from 'react';
 import { useLanguage } from './LanguageContext';
 
-const LanguageSwitchLink = ({ text, javascriptContent, kotlinContent }) => {
+const LanguageSwitchLink = ({ text, links }) => {
   const { language } = useLanguage();
+  const href = links[language] || '#';
 
   return (
-    <a href={language === 'javascript' ? javascriptContent : kotlinContent}>{text}</a>
+    <a href={href}>{text}</a>
   );
 };
 

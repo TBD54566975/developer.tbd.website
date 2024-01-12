@@ -1,13 +1,22 @@
 // LanguageSwitchBlock.js
-import React from 'react';
+import { React, Children } from 'react';
 import { useLanguage } from './LanguageContext';
 
-const LanguageSwitchBlock = ({ javascriptContent, kotlinContent }) => {
+const LanguageSwitchBlock = ({ children }) => {
   const { language } = useLanguage();
+  const arrayChildren = Children.toArray(children);
+
+  function selectContent() {
+    arrayChildren.map((child) => {
+      if (child.props.language === language) {
+        return child;
+      }
+    });
+  }
 
   return (
     <div>
-      {language === 'javascript' ? javascriptContent : kotlinContent}
+      { selectContent() }
     </div>
   );
 };
