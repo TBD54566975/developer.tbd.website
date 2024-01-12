@@ -1,7 +1,7 @@
 {
   "scripts": {
     "preinstall": "node propagateWeb5.js && npx only-allow pnpm",
-    "start": "node extract-snippets && pnpm --filter site run start",
+    "start": "pnpm run shnip && pnpm --filter site run start",
     "start:feedback-server": "pnpm --filter feedback-server run start",
     "start:tutorial-todo-starter": "pnpm --filter todo-starter run dev",
     "start:tutorial-todo-completed": "pnpm --filter todo-completed run dev",
@@ -11,13 +11,13 @@
     "start:tutorial-shared-todo-starter": "pnpm --filter shared-todo-starter run dev",
     "start:tutorial-shared-todo-completed": "pnpm --filter shared-todo-completed run dev",
     "start:widget": "pnpm --filter web5-quickstart-widgets start",
-    "build": "node extract-snippets && pnpm --filter site run build",
+    "build": "pnpm run shnip && pnpm --filter site run build",
     "clear": "pnpm --filter site run clear",
-    "test": "node extract-snippets && pnpm vitest run --config vite.config.ts --no-threads && pnpm test:browser",
-    "test:watch": "node extract-snippets && pnpm vitest --config vite.config.ts --watch",
+    "test": "pnpm run shnip && pnpm vitest run --config vite.config.ts --no-threads && pnpm test:browser",
+    "test:watch": "pnpm run shnip && pnpm vitest --config vite.config.ts --watch",
     "test:browser": "pnpm -r test:browser",
     "test:versions": "node check-versions.js",
-    "shnip": "cd ./shnippet/src node cli"
+    "shnip": "node ./shnippet/src/cli"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "6.4.2",

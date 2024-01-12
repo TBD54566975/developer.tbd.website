@@ -38,11 +38,8 @@ class SnippetExtractor {
       const endTagStart = content.lastIndexOf('\n', endIndex);
       let snippetContent = content.substring(startTagClose + 1, endTagStart);
 
-      snippetContent = snippetContent
-        .split('\n')
-        .map((line) => line.trimStart())
-        .join('\n')
-        .trim();
+      // Remove leading whitespace from the first line of the snippet
+      snippetContent = snippetContent.replace(/^\s*/, '');
 
       if (snippetName) {
         snippets[snippetName] = snippetContent;
