@@ -26,6 +26,9 @@ importers:
       '@web5/dids':
         specifier: 0.2.3
         version: 0.2.3
+      '@web5/identity-agent':
+        specifier: ^0.2.5
+        version: 0.2.5
       font-awesome:
         specifier: 4.7.0
         version: 4.7.0
@@ -6363,6 +6366,19 @@ packages:
       ms: 2.1.3
       pkarr: 1.1.1
       z32: 1.0.1
+    transitivePeerDependencies:
+      - encoding
+      - supports-color
+    dev: false
+
+  /@web5/identity-agent@0.2.5:
+    resolution: {integrity: sha512-TuTT8EYUICP0F64nYfQeXPKSR8dvxGeRDO40XreuSOYGKSxa2jtMxH5LAhakT42GWWAtvB1yfVdTWjfLq6Y6pQ==}
+    engines: {node: '>=18.0.0'}
+    dependencies:
+      '@web5/agent': 0.2.5
+      '@web5/common': 0.2.2
+      '@web5/crypto': 0.2.2
+      '@web5/dids': 0.2.3
     transitivePeerDependencies:
       - encoding
       - supports-color
