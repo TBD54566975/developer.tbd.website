@@ -8,7 +8,7 @@ import {
 
 let agent
 describe('create identity agent', () => {
-    test('createDidOptions returns the correct structure', async () => {
+    test('createDidOptions returns an object with cryptographic keys and service endpoints', async () => {
         const serviceEndpointNodes = await getDwnEndpoints();
         const didOptions = await createDidOptions({ serviceEndpointNodes });
 
@@ -22,7 +22,7 @@ describe('create identity agent', () => {
         });
     });
 
-    test('getDwnEndpoints returns an array with at least one element starting with https://dwn.tbddev.org/', async () => {
+    test('getDwnEndpoints returns array of TBD DWN nodes/endpoints', async () => {
         const endpoints = await getDwnEndpoints();
 
         expect(Array.isArray(endpoints)).toBe(true);
