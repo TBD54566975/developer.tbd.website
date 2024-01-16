@@ -36,13 +36,13 @@ To integrate an Identity Agent into your application, create an instance of the 
 
 <CodeSnippet functionName="createIdentityAgent" />
 
-## Authenticate with a Passphrase
+## Prompt Users to Authenticate
 
 The first time an end user launches an application that uses an Identity Agent, they'll need to authenticate with a one-time passphrase for security purposes. 
 <CodeSnippet functionName="authenticateIdentityAgent" />
 
 ## Connect User DIDs to DWNs
-To enable the Identity Agent to manage user DIDs within your application, configure each DID to connect to a DWN. Below is an example using TBD-hosted DWN endpoints:
+Next, enable the Identity Agent to manage user DIDs within your application by connecting each DID to connect to a DWN. Below is an example using TBD-hosted DWN endpoints:
 
 <CodeSnippet functionName="getDwnEndpoints" />
 
@@ -79,7 +79,7 @@ Now that `didOptions` contains cryptographic key pairs and service endpoints, yo
 :::
 
 ## Connect to Web5
-To use a custom Identity Agent with Web5, pass the DID and the agent into `Web5.connect()`:
+Finally, connect the Identity Agent, your application, and the managed identities to Web5.
 
 <CodeSnippet functionName="connectIdentityToWeb5" />
 
