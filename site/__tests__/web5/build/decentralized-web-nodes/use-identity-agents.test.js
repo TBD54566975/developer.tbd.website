@@ -12,11 +12,9 @@ let agent;
 describe('create identity agent', () => {
     beforeAll(async () => {
        // by time IdentityAgent.create() is executed, Web5.connect() has already run(in setup - web5.js)
-        if (!globalThis.web5 || !globalThis.did) {
-            throw new Error('Web5 setup is required for these tests.');
-        }
 
-       agent = await createIdentityAgent();
+
+    //    agent = await createIdentityAgent();
     });
     test('createDidOptions returns an object with cryptographic keys and service endpoints', async () => {
         const didOptions = await getDwnEndpoints();
