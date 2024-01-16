@@ -1,0 +1,35 @@
+---
+sidebar_position: 4
+---
+
+# Allowlisting PFIs
+
+While tbDEX is a permissionless network where any PFI can participate, you may want to curate your own list of PFIs in which you engage with. We refer to this as **allowlisting**.
+
+Allowlisting is the process of approving or recognizing specific PFIs as trusted entities. 
+This is a recommended security measure to ensure that your application interacts only with verified and reliable PFIs within the tbDEX network.
+
+
+Here are general steps your app should follow to allowlist PFIs:
+
+## Identify Potential PFIs
+Research and identify PFIs that align with the types of transactions you'd like to offer to your customers.
+Consider factors like transaction fees, currency pairs offered, and reputation.
+
+To determine if a PFI is part of the tbDEX network, you can check their [DID document](/docs/web5/learn/did_document) for the `PFI` service type:
+
+```js
+const isPFI = pfiDid.document.service.some(service => service.type === 'PFI');
+```
+
+
+## Verify PFI Credentials
+Determine if there are certain credentials you require from a PFI, such as regulatory compliance status. 
+These may or may not be provided in the form of verifiable credentials.
+
+## Allowlist PFI
+The approach you take to maintain a list of verified PFIs is your choice. 
+This could be a database table of allowlisted PFIs, where you store details such as the PFIs' DIDs.
+
+It's recommended that you regularly review the PFIs on your network.
+Monitor your customers' satisfaction when transacting with specific PFIs, and remove any that no longer meet your standards.

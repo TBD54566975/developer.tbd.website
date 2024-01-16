@@ -1,6 +1,7 @@
 ---
 title: VC Workflow
 hide_title: true
+sidebar_position: 10
 ---
 
 # Verifiable Credentials for Fan Club Membership
@@ -118,14 +119,8 @@ Last but not least, we must cryptographically sign the VC to make it official:
 const signedVcJwt = await vc.sign({ did: fanClubIssuerDid });
 ```
 
-### VC JWT
-Signing the credential returns a VC JSON Web Token, which is a compact, URL-safe means of representing claims to be transferred between two parties. 
-JWT format is used to encode the credentials, making them both secure and easily transmissible.
+Signing the credential returns a [VC JSON Web Token](/docs/web5/build/verifiable-credentials/jwt-to-vc#what-is-a-jwt), ideal for secure transmission of the credential.
 
-Here's a truncated JWT for your reference:
-```
-eyJ0eXAiOipOSl...WndCJ9.eyJ2YyTk0MN2pDMzQhdG...UR1In0.rtlg8k9KU8_ENkrY06y...
-```
 
 ## Act 2: Presentation Exchange
 Now that Alice has her credential, she'd like to present it in order to get free merchandise. She can do this via a **presentation exchange**.
@@ -266,13 +261,12 @@ try {
 ### Parse JWT into VC
 
 The signed VC JWT is a secure representation of the credential, ideal for transmission or storage.
+
 However, the verifier will likely need to inspect or use the data within the credential.
 They can use `parseJwt()` to convert the JWT back into a `VerifiableCredential` object. 
-This object format is more convenient for accessing and manipulating the credential's data within their application.
 
 ```js title="Verifier.js"
 const parsedVC = await VerifiableCredential.parseJwt( { vcJwt: signedVcJwt });
-console.log(JSON.stringify(parsedVC));
 ```
 
 This returns:

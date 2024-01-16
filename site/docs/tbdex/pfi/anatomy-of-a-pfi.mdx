@@ -2,15 +2,15 @@
 sidebar_position: 5
 ---
 
-# Anatomy of a PFI
+# Structuring a PFI App
 
-To participate in a tbDEX network as a PFI, you’ll need to stand up a server that allows you to receive tbDEX protocol messages, process those messages, and provide an appropriate response. As a result, you’ll need these core components: 
+Every PFI on the tbDEX network is required to handle its end of the responsibilities as part of each [Message Type](/docs/tbdex/message-types). The tbDEX SDK is organized in such a way that there are three key components you'll be required to implement:
 
 * **A main server entry point** - this will leverage the tbDEX SDK to create an http server subscribed to tbDEX messaging.
 
 * **An exchange API provider** - this class is responsible for implementing the ExchangeApi protocol, which is a common interface for managing the database containing your tbDEX offer, order, quote, close, and RFQ data.
 
-* **An offering API provider** - this class is responsible for implementing the OfferingsApi protocol, which is a common interface for managing the database containing your offerings data.
+* **An offering API provider** - this class is responsible for implementing the OfferingsApi protocol, which is a common interface for managing the database containing your offerings data. When a Wallet queries your PFI for Offerings, the tbDEX SDK will use the interfaces in this class to automatically handle returning Offerings from your database to the Wallet.
 
 
 ## Main Server Entrypoint
@@ -62,7 +62,7 @@ Now your server is configured with the appropriate routing setup.
 
 ## Exchange API Provider
 
-The Exchanges API is the set of methods that deals with reading and writing any messages data, based on the [ExchangesApi](/docs/tbdex/api-reference/tbdex-js/http-server/interfaces/ExchangesApi) class. Although the interface for `ExchangesApi` only requires to be filled out with read operations, you may find it useful to couple write operations into the class as well. 
+The Exchanges API is the set of methods that deals with reading and writing any messages data, based on the [ExchangesApi](https://tbd54566975.github.io/tbdex-js/interfaces/_tbdex_http_server.ExchangesApi.html) class. Although the interface for `ExchangesApi` only requires to be filled out with read operations, you may find it useful to couple write operations into the class as well. 
 
 Using the sample code above as reference, the submission of `RFQ`, `Order`, or `Close` data will result in the triggering of the Exchange API Provider’s `write()`, while the required methods such as `getOrder()` will serve as read methods. 
 
@@ -91,7 +91,7 @@ Similarly, after writing an `Order` to your database, you’ll want to ensure yo
 
 ## Offerings API Provider
 
-The `Offerings` API is the set of methods that deals with reading and writing any offering data, based on the [OfferingsApi](/docs/tbdex/api-reference/tbdex-js/http-server/interfaces/OfferingsApi) class. Although the interface for `OfferingsApi` only requires to be filled out with read operations, you may find it useful to couple write operations into the class as well. 
+The `Offerings` API is the set of methods that deals with reading and writing any offering data, based on the [OfferingsApi](https://tbd54566975.github.io/tbdex-js/interfaces/_tbdex_http_server.OfferingsApi.html) class. Although the interface for `OfferingsApi` only requires to be filled out with read operations, you may find it useful to couple write operations into the class as well. 
 
 Although the Offerings API isn’t directly exposed in the main server entrypoint, it is still used to fetch and write offerings to your PFI's database. 
 Here's an example of how to get offerings as specified by the `OfferingsApi` interface:
@@ -139,3 +139,5 @@ async create(offering: Offering) {
       });
   }
 ```
+
+By implementing the `getOffering()` and `getOfferings()` methods, you'll allow Wallets to get a specific Offering they'd be interested in, or query all your Offerings, respectively. The convenience of the tbDEX SDK is that you aren't required to actually write an API endpoint yourself to handle interfacing with Wallets as the SDK handles it all for you.

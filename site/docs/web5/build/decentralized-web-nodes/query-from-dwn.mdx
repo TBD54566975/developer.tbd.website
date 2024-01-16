@@ -8,17 +8,27 @@ import CodeSnippet from '@site/src/components/CodeSnippet';
 
 You can use the `query` function to obtain records and protocols from a DWN. This guide shows how to do both, as well as how to sort the query results.
 
+:::tip
+Querying a DWN is analogous to querying a database, and the flow of a query is similar to an SQL select statement.
+
+A query can be read as _**select** records with a **filter** of X **from** the DWN of this DID_.
+:::
+
+
 ## Querying Protocols
 
-The following snippet queries a DWN for protocols that match a given schema:
+The following snippet queries the local DWN for protocols that match a given schema:
 
 <CodeSnippet functionName="queryProtocolsForMusic" />
 
 ## Querying Records
 
-The following snippet queries a DWN for records that were written by a specific DID, match a given schema, and are in a specific data format:
+The following snippet queries a given DWN for records that match a given schema and are in a specific data format.
+
+> Note the `from` property used here. Much like SQL, where the `FROM` command is used to specify which table to select data from, in Web5, `from` specifies which DWN to query.
 
 <CodeSnippet functionName="queryRecordsFromDid" />
+
 
 :::note
 `records.query()` does not guarantee that the data is returned unless it is under a specific threshold (50 kb). 

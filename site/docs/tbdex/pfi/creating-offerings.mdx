@@ -2,15 +2,13 @@
 sidebar_position: 6
 ---
 
-# Creating Offerings
+# Offerings
 
-Offerings describe a currency pair that can be exchanged and specify the requirements, conditions, and constraints needed to fulfill the described swap. 
+Offerings describe a currency pair that can be exchanged and specify the requirements, conditions, and constraints needed to fulfill the described swap. In other words, an Offering is a way of describing a financial product you’re offering as a PFI on a tbDEX network. Any Wallet that has your PFI's DID will be able to query your PFI for all available Offerings, as well as fetch specific Offerings. Wallets will then use that data to make an Request for Quote (RFQ) to your PFI to begin a potential transaction process.
 
-In other words, an `Offering` is a way of describing a financial product you’re offering as a PFI on a tbDEX network. 
+## Offering Data Schema
 
-## Offering Object
-
-As part of creating your offering, you’d need the following properties:
+At a top-level, the Offering data object is described by the following properties:
 
 * Currency pairings for the swap
 * Pay-in methods
@@ -72,10 +70,90 @@ To define these parameters, you’ll create a JSON object per the [Offering sche
   </tr>
 </table>
 
+### Currencies
+
+Both the `payinCurrency` and `payoutCurrency` fields are described by the [`CurrencyDetails`](https://tbd54566975.github.io/tbdex-js/types/_tbdex_protocol.CurrencyDetails.html) data type, which has the following fields:
+
+| Field        | Data Type | Description                                            |
+|--------------|-----------|--------------------------------------------------------|
+| `currencyCode` | string    | ISO 4217 currency code string. This field is required. |
+| `minSubunits`  | string    | Minimum amount of currency that the offer is valid for |
+| `maxSubunits`  | string    | Maximum amount of currency that the offer is valid for |
+
+To find more information on currency code strings to ensure your PFI uses a valid and correct value, see the [currency lists provided here](https://www.six-group.com/en/products-services/financial-information/data-standards.html).
+
+### Payment Methods
+
+Both the `payinMethods` and `payoutMethods` fields are described by the [`PaymentMethod`](https://tbd54566975.github.io/tbdex-js/types/_tbdex_protocol.PaymentMethod.html) data type, which has the following fields:
+
+| Field                    | Data Type | Description                                                                                                                                                             |
+|--------------------------|-----------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `kind`                   | string    | Type of payment method (i.e. `DEBIT_CARD`, `CREDIT_CARD`, etc.). Note that because this field is of type string, the values are not standardized. This field is required. |
+| `requiredPaymentDetails` | JSON      | A JSON schema containing the fields the Wallet must enter in order to use this payment method.                 |
+
+When structuring your `requiredPaymentDetails` object, it will look similar to the following:
+
+```json
+{
+  "requiredPaymentDetails": {
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "type": "object",
+    "properties": {
+      "property1": {
+        "type": "string",
+        "description": "Credit Card Number",
+        "property1MaxLength": 16,
+      },
+      "property2": {
+        "type": "string",
+        "description": "Card Expiration Date in MM/YY Format",
+        "patternToMatch": "^(0[1-9]|1[0-2])\\/([0-9]{2})$"
+      }
+    }
+  }
+}
+```
+Note that while `type` and `description` fields are more intuitive and standard for you to include in your `requiredPaymentDetails` schema, you have the flexibility to detail any requirements you have in this object. Each `payinMethod` or `payoutMethod` can be represented by an array of `PaymentMethods`.
+
+### Required Claims
+
+In order to comply with certain financial regulations, you may require information about the customer you are transacting with. You can obtain this information via [Verifiable Credentials](/docs/web5/learn/verifiable-credentials). 
+
+To specify the exact credentials you need, you can do so in the `requiredClaims` section of your Offering by following [the DIF Presentation Definition](https://identity.foundation/presentation-exchange/#presentation-definition). You'll specify all required forms and details of proof, optional selection rules, and define flexibility where possible when different types of input may satisfy the requirements.
+
+For a full breakdown of all the available fields and combinations, [see the DIF website](https://identity.foundation/presentation-exchange/#presentation-definition) for details. Below is a example of how you could request a Wallet provide a VC of type **SanctionsCredential**:
+
+```json
+{
+  "comment": "Note: VP, OIDC, DIDComm, or CHAPI outer wrapper would be here.",
+  "presentation_definition": {
+    "id": "6bdaec32-e511-489d-b2fd-27a051bd819b",
+    "input_descriptors": [
+      {
+        "id": "65752b5a-a454-4605-85de-7f159b22ce01",
+        "purpose": "We need to know if you are a sanctioned individual",
+        "constraints": {
+          "fields": [
+            {
+              "path": [ "$.type[*]" ],
+              "filter": {
+                "type": "string",
+                "const": "SanctionsCredential"
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}
+```
 
 ## Sample Offering
 
-```js
+When combining all the data above, you can end up with a full Offering object that looks something like the following:
+
+```json
 {
   "metadata": {
     "from": "did:ex:pfi",
@@ -121,14 +199,7 @@ To define these parameters, you’ll create a JSON object per the [Offering sche
               "minLength": 3,
               "maxLength": 3
             }
-          },
-          "required": [
-            "cardNumber",
-            "expiryDate",
-            "cardHolderName",
-            "cvv"
-          ],
-          "additionalProperties": false
+          }
         }
       }
     ],
@@ -143,10 +214,7 @@ To define these parameters, you’ll create a JSON object per the [Offering sche
               "type": "string",
               "description": "your Bitcoin wallet address"
             }
-          },
-          "required": [
-            "btcAddress"
-          ],
+          }
           "additionalProperties": false
         }
       }
@@ -176,6 +244,5 @@ To define these parameters, you’ll create a JSON object per the [Offering sche
   "signature": "eyJhbGciOiJFZERTQSIsImtpZCI6ImRpZDprZXk6ejZNa2syc1QyZUtvQWdUUTdzWjY3YTdmRDMzR21jYzZ1UXdaYmlxeWF5Rk1hYkhHI3o2TWtrMnNUMmVLb0FnVFE3c1o2N2E3ZkQzM0dtY2M2dVF3WmJpcXlheUZNYWJIRyJ9..9EBTL3VcajsQzSNOm8GElhcwvYcFGaRp24FTwmC845RCF84Md-ZB-CxdCo7kEjzsAY8OaB55XFSH_8K9vedhAw"
 }
 ```
-
 
 Once the Offering has been generated, you can store it in your database using code as shown in the [Exchange API Provider section](/docs/tbdex/pfi/anatomy-of-a-pfi#exchange-api-provider).

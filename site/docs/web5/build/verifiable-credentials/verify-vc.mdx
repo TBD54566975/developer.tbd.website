@@ -1,0 +1,180 @@
+---
+sidebar_position: 2
+---
+
+import CodeSnippet from '@site/src/components/CodeSnippet';
+
+
+# Verify VCs
+
+When an entity receives the presentation of verifiable credentials (VCs), they must verify the integrity, authenticity, and content of the VCs.
+The entity performing this verification is known as the **Verifier**.
+
+
+## Verify
+
+Upon receipt, the presentation of the VCs is encoded as [JWTs](/docs/web5/build/verifiable-credentials/jwt-to-vc#what-is-a-jwt) and can be verified via the `VerifiableCredentials.verify()` function. 
+
+This function will:
+
+✅ Parse and validate the structure of the JWT
+
+✅ Ensure the presence of `alg` and `kid` in the JWT header
+
+✅ Resolve the issuer's Decentralized Identifier (DID)
+
+✅ Ensure the presence and validity of a verification method in the issuer's DID document
+
+✅ Verify the integrity and authenticity of the issuer's signature using the public key associated with the verification method
+
+✅ Ensure that the credential has not expired
+
+If any of these steps fail, the function will throw an error with a message indicating the nature of the failure.
+
+### Extracting VC JWTs from Presentation
+
+A Presentation object includes multiple things including the presentation submission as well as the verifiable credential JWTs themselves.
+
+<details>
+<summary>Example Presentation Result</summary>
+
+```js
+{
+  "presentation": {
+    "@context": [
+      "https://www.w3.org/2018/credentials/v1",
+      "https://identity.foundation/presentation-exchange/submission/v1"
+    ],
+    "type": [
+      "VerifiablePresentation",
+      "PresentationSubmission"
+    ],
+    "presentation_submission": {
+      "id": "bPLV_jMdN5XJengbX4M-l",
+      "definition_id": "presDefIdloanAppVerification123",
+      "descriptor_map": [
+        {
+          "id": "employmentVerification",
+          "format": "jwt_vc",
+          "path": "$.verifiableCredential[0]"
+        },
+        {
+          "id": "dobVerification",
+          "format": "jwt_vc",
+          "path": "$.verifiableCredential[1]"
+        },
+        {
+          "id": "nameVerification",
+          "format": "jwt_vc",
+          "path": "$.verifiableCredential[1]"
+        }
+      ]
+    },
+    //highlight-start
+    "verifiableCredential": [
+        "/* JWT VC for EmploymentCredential */",
+        "/* JWT VC for PIICredential */",
+    ]
+    //highlight-end
+  },
+  "presentationSubmissionLocation": 1,
+  "presentationSubmission": {
+    "id": "bPLV_jMdN5XJengbX4M-l",
+    "definition_id": "presDefIdloanAppVerification123",
+    "descriptor_map": [
+      {
+        "id": "employmentVerification",
+        "format": "jwt_vc",
+        "path": "$.verifiableCredential[0]"
+      },
+      {
+        "id": "dobVerification",
+        "format": "jwt_vc",
+        "path": "$.verifiableCredential[1]"
+      },
+      {
+        "id": "nameVerification",
+        "format": "jwt_vc",
+        "path": "$.verifiableCredential[1]"
+      }
+    ]
+  }
+}
+```
+</details>
+
+Since the VC JWTs are part of the larger [Presentation JSON object](/docs/web5/build/verifiable-credentials/presentation-exchange#create-presentation), they must be extracted and verified individually.
+Below is an example of how this might be implemented:
+
+<CodeSnippet functionName="verifyCredentials" />
+
+The code snippet above shows how to extract the VC JWTs from the Presentation and verify each one, aggregating the results.
+
+The Verifier would then examine the results of the verifications to determine the errors:
+
+<CodeSnippet functionName="checkVerificationResults" />
+
+
+## Evaluate Presentation
+
+After verifying the authenticity of the VCs, the next step is to ensure that they actually satisfy the requirements outlined in the presentation definition.
+This can be done via the `PresentationExchange.evaluatePresentation()` function:
+
+<CodeSnippet functionName="evaluatePresentation" />
+
+<details>
+<summary>Example Evaluation Results</summary>
+
+```js
+{
+  "areRequiredCredentialsPresent": "info",
+  "verifiableCredential": [
+    "/* JWT VC for EmploymentCredential */",
+    "/* JWT VC for PIICredential */",
+  ],
+  "warnings": [],
+  "errors": [],
+  "value": {
+    "id": "WabEjZrPQQOQw8YUg9kIN",
+    "definition_id": "presDefIdloanAppVerification123",
+    "descriptor_map": [
+      {
+        "id": "employmentVerification",
+        "format": "jwt_vc",
+        "path": "$.verifiableCredential[0]"
+      },
+      {
+        "id": "dobVerification",
+        "format": "jwt_vc",
+        "path": "$.verifiableCredential[1]"
+      },
+      {
+        "id": "nameVerification",
+        "format": "jwt_vc",
+        "path": "$.verifiableCredential[1]"
+      }
+    ]
+  }
+}
+```
+
+</details>
+
+The `areRequiredCredentialsPresent` property of the evaluation results gives a status indication of whether the requirements were met:
+
+* **info** - all required credentials are present
+* **warn** - more credentials were presented than were required
+* **error** - all required credentials are not present
+
+If the status is `warn` or `error`, the details will be in the `warnings` or `error` array of the response.
+
+
+## Revocation Check
+
+The `VerifiableCredential.verify()` function does not perform a revocation status check to determine whether the VCs have been revoked.
+We strongly recommend that you verify this information by referencing the VC's `credentialStatus` property before honoring the VC as valid.
+
+
+## Read VC Data
+
+Once you're confident that the VCs are valid, you can proceed to [parse the JWTs into VC objects](/docs/web5/build/verifiable-credentials/jwt-to-vc) such that you may work with the credentials' data.
