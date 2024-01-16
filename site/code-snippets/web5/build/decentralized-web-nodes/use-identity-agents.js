@@ -9,17 +9,13 @@ export async function createIdentityAgent() {
 }
 
 export async function authenticateIdentityAgent(agent) {
-    const auth = await agent.start({ passphrase: 'default-passphrase' });
-    return auth;
+    await agent.start({ passphrase: 'default-passphrase' });
+    return agent.agentDid;
 }
 
 export async function getDwnEndpoints() {
 // selects DWN endpoints that are provided by default during the Web5 tech preview period
-const endpoints = await getTechPreviewDwnEndpoints();
-return endpoints;
-}
-
-export async function createDidOptions({ serviceEndpointNodes }) {
+const serviceEndpointNodes = await getTechPreviewDwnEndpoints();
 // generates key pairs used for authorization and encryption when interfacing with DWNs
 const didOptions = await DidIonMethod.generateDwnOptions({ serviceEndpointNodes });
 return didOptions;

@@ -1,41 +1,34 @@
-import { test, expect, describe, beforeAll, vi , beforeEach} from 'vitest';
+import { test, expect, describe, beforeAll } from 'vitest';
 import {
     createIdentityAgent,
     getDwnEndpoints,
     createDidOptions,
     createSocialMediaIdentity
 } from '../../../../code-snippets/web5/build/decentralized-web-nodes/use-identity-agents';
+import { IdentityAgent } from '@web5/identity-agent';
 
-let agent
+let agent;
+
 describe('create identity agent', () => {
+    beforeAll(async () => {
+       // by time IdentityAgent.create() is executed, Web5.connect() has already run(in setup - web5.js)
+        if (!globalThis.web5 || !globalThis.did) {
+            throw new Error('Web5 setup is required for these tests.');
+        }
+       // agent = await createIdentityAgent();
+    });
     test('createDidOptions returns an object with cryptographic keys and service endpoints', async () => {
-        const serviceEndpointNodes = await getDwnEndpoints();
-        const didOptions = await createDidOptions({ serviceEndpointNodes });
+        const didOptions = await getDwnEndpoints();
 
         expect(didOptions).toHaveProperty('keySet.verificationMethodKeys');
+        expect(Array.isArray(didOptions.keySet.verificationMethodKeys)).toBe(true);
         expect(didOptions).toHaveProperty('services');
         expect(Array.isArray(didOptions.services)).toBe(true);
         didOptions.services.forEach(service => {
             expect(service).toHaveProperty('id');
             expect(service).toHaveProperty('serviceEndpoint');
             expect(service).toHaveProperty('type');
+            expect(service.type).toBe('DecentralizedWebNode');
         });
     });
-
-    test('getDwnEndpoints returns array of TBD DWN nodes/endpoints', async () => {
-        const endpoints = await getDwnEndpoints();
-
-        expect(Array.isArray(endpoints)).toBe(true);
-        expect(endpoints.length).toBeGreaterThan(0);
-        const hasCorrectPrefix = endpoints.some(endpoint => endpoint.startsWith('https://dwn.tbddev.org/'));
-        expect(hasCorrectPrefix).toBe(true);
-    });
-
-    // test('createSocialMediaIdentity returns the correct structure', async () => {
-    //     const socialMediaIdentity = await createSocialMediaIdentity(agent); 
-
-    //     expect(socialMediaIdentity).toHaveProperty('did');
-    //     expect(socialMediaIdentity).toHaveProperty('name');
-    //     expect(socialMediaIdentity.did.startsWith('did')).toBe(true);
-    // });
 });

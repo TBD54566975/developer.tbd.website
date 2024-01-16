@@ -10,7 +10,7 @@ import CodeSnippet from '@site/src/components/CodeSnippet';
 
 While the `Web5.connect()` function creates a local User Agent and a **new** identity, Identity Agents allow you to connect a web app to an **existing** identity.
 
-This guide provides an overview of how to use an identity agent to create and manage multiple identities.
+This guide provides an overview of how to enable an Identity agent to manage multiple user identities on behalf of your application.
 
 <details>
 <summary>Prerequisites</summary>
@@ -32,26 +32,24 @@ import { Web5, getTechPreviewDwnEndpoints } from '@web5/api';
 </details>
 
 ## Initialize the Agent
-To begin, create an instance of `IdentityAgent`.
+To integrate an Identity Agent into your application, create an instance of the `IdentityAgent`.
 
 <CodeSnippet functionName="createIdentityAgent" />
 
-## Authenticate with a passphrase
-For security purposes, the identity agent prompts the end user to enter a secure passphrase when it initially launches.
+## Authenticate with a Passphrase
 
+The first time an end user launches an application that uses an Identity Agent, they'll need to authenticate with a one-time passphrase for security purposes. 
 <CodeSnippet functionName="authenticateIdentityAgent" />
 
-## Configure your DID
-If you'd like to associate DWNs with a DID, you can do so. In the following example, we'll use the TBD-hosted DWN endpoints:
+## Connect User DIDs to DWNs
+To enable the Identity Agent to manage user DIDs within your application, configure each DID to connect to a DWN. Below is an example using TBD-hosted DWN endpoints:
 
 <CodeSnippet functionName="getDwnEndpoints" />
 
-<CodeSnippet functionName="createDidOptions" />
 
 <details>
-<summary>Expected Output</summary>
+<summary>Expected Output of didOptions</summary>
 
-    
 ```js
 {
   keySet: { verificationMethodKeys: [ [Object], [Object] ] },
