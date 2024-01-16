@@ -21,24 +21,22 @@ const didOptions = await DidIonMethod.generateDwnOptions({ serviceEndpointNodes 
 return didOptions;
 }
 
-export async function createSocialMediaIdentity() {
+export async function createSocialMediaAndCareerIdentity() {
     const socialMediaIdentity = await agent.identityManager.create({
         name: 'SocialMedia',
         didMethod: 'ion',
         didOptions,
         kms: 'local'
     });
-    return socialMediaIdentity;
-}
 
-export async function createCareerIdentity() {
     const careerIdentity = await agent.identityManager.create({
         name: 'Career',
         didMethod: 'ion',
         didOptions,
         kms: 'local'
     });
-    return careerIdentity;
+    
+    return { socialMediaIdentity, careerIdentity };
 }
 
 export async function connectIdentityToWeb5() {

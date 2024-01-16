@@ -15,7 +15,8 @@ describe('create identity agent', () => {
         if (!globalThis.web5 || !globalThis.did) {
             throw new Error('Web5 setup is required for these tests.');
         }
-       // agent = await createIdentityAgent();
+
+       agent = await createIdentityAgent();
     });
     test('createDidOptions returns an object with cryptographic keys and service endpoints', async () => {
         const didOptions = await getDwnEndpoints();
