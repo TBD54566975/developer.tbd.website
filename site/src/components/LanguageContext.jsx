@@ -10,7 +10,7 @@ export function useLanguage() {
 
 // Provider component
 export function LanguageProvider({ children }) {
-  const [language, setLanguage] = useState('javascript'); // Default language
+  const [language, setLanguage] = useState('JavaScript'); // Default language
 
   const changeLanguage = (newLanguage) => {
     setLanguage(newLanguage);
