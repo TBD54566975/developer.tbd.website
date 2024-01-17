@@ -6,9 +6,9 @@ import CodeSnippet from '@site/src/components/CodeSnippet';
 
 # Presentation Exchange
 
-In this guide, we'll cover the process of presenting [Verifiable Credentials (VCs)](/docs/web5/learn/verifiable-credentials) to a verifier. 
+In this guide, we'll cover the process of presenting [Verifiable Credentials (VCs)](/docs/web5/learn/verifiable-credentials) to a verifier.
 This process is known as a **Presentation Exchange (PEX)** and involves selecting credentials that satisfy a Presentation Definition, creating a presentation based on that definition, and submitting the presentation to a verifier.
- PEX is typically executed by the user's Wallet application, acting on behalf of the user.
+PEX is typically executed by the user's Wallet application, acting on behalf of the user.
 
 :::note
 Before presenting VCs in a PEX, it's important to note that the VCs would have already been [created](/docs/web5/build/verifiable-credentials/vc-issuance#create-vc),
@@ -18,7 +18,7 @@ in the user's Wallet application.
 
 ## Presentation Definition
 
-The entity requesting credentials, aka the verifier, will have defined the presentation requirements using a [Presentation Definition](/docs/web5/build/verifiable-credentials/presentation-definition). 
+The entity requesting credentials, aka the verifier, will have defined the presentation requirements using a [Presentation Definition](/docs/web5/build/verifiable-credentials/presentation-definition).
 This definition specifies the criteria that the VCs need to meet.
 
 Assume a lender has an existing Presentation Definition specifying that applicants must provide VCs to prove their legal name, date of birth, and employment status:
@@ -34,7 +34,7 @@ We'll use the Presentation Definition above to present credentials that meet its
 
 ## Import PresentationExchange
 
-All methods needed to perform a PEX are in the `PresentationExchange` class. 
+All methods needed to perform a PEX are in the `PresentationExchange` class.
 You can import this class from the `@web5/credentials` package:
 
 ```js
@@ -43,8 +43,8 @@ import { PresentationExchange } from '@web5/credentials';
 
 ## Select Credentials
 
-A user may possess multiple credentials. 
-To preserve the user's privacy, when creating a Presentation, you'll want to present only the VCs that match the Presentation Definition requirements. 
+A user may possess multiple credentials.
+To preserve the user's privacy, when creating a Presentation, you'll want to present only the VCs that match the Presentation Definition requirements.
 This is done with the `selectCredentials()` method:
 
 <CodeSnippet functionName="pex_selectCredentials" />
@@ -135,11 +135,9 @@ Before submitting the presentation to a lender, you can validate the Presentatio
 
 This method checks the presentation submission for any errors, returns an array of `Checked` objects representing the validation checks performed on the presentation submission:
 
-
 ```js
 [ Checked { tag: 'root', status: 'info', message: 'ok' } ]
 ```
-
 
 Each `Checked` object contains:
 
@@ -149,6 +147,6 @@ Each `Checked` object contains:
 
 ## Verifiable Presentation
 
-Once the Presentation is error-free and has passed the validation checks, you can submit the Verifiable Presentation by providing the lender with the `presentation` JSON object:
+Once the [Presentation](/docs/glossary#verifiable-presentation) is error-free and has passed the validation checks, you can submit the Verifiable Presentation by providing the lender with the `presentation` JSON object:
 
 <CodeSnippet functionName="pex_getPresentationFromResult" />
