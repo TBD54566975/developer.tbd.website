@@ -22,7 +22,27 @@ It's well-suited for production environments where a high level of security and 
 Both implementations facilitate key generation and signature operations essential for creating and managing DIDs. Each caters to distinct security needs, and the choice between them should be based on the specific requirements of your application.
 
 ## Example
-Here's an example that uses `AwsKeyManager` for production environments, and `InMemoryKeyManager` for any other environments (dev, test, etc):
+Below is an example that uses `AwsKeyManager` for production environments, and `InMemoryKeyManager` for any other environments (dev, test, etc).
+
+<details>
+<summary>Prerequisites</summary>
+
+**Install Package**
+
+```bash
+npm i @web5/crypto
+```
+
+**Import Classes**
+
+```kotlin title="Kotlin"
+import web5.sdk.crypto.AwsKeyManager
+import web5.sdk.crypto.InMemoryKeyManager
+import web5.sdk.crypto.KeyManager
+import web5.sdk.dids.methods.dht.DidDht
+import web5.sdk.dids.methods.dht.DidDhtApi
+```
+</details>
 
 ```kotlin title="Kotlin"
 fun initKeyManagement(env: String, didUri: String?, didDhtApi: DidDhtApi): DidDht {
