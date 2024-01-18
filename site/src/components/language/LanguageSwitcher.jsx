@@ -12,7 +12,7 @@ const LanguageSwitcher = () => {
   }
 
   return (
-    <select onChange={(e) => changeLanguage(e.target.value)} defaultValue="JavaScript">
+    <select style={{ width: '20%', fontSize: '18px', color: '#000', fontWeight: 'bold', backgroundColor: '#ffec19' }} onChange={(e) => changeLanguage(e.target.value)} defaultValue="JavaScript">
         {languages.map((languageOption) => 
             <option value={languageOption} key={languageOption}>{languageOption}</option>
         )}
