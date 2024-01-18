@@ -11,7 +11,7 @@ The Web5 SDK provides a key manager by default, as well as the option for you to
 
 Here's an example that uses an external [AWS Key Management Service](https://docs.aws.amazon.com/kms/latest/developerguide/overview.html) for production environments, and Web5's `InMemoryKeyManager` for any other environments (dev, test, etc):
 
-<CodeBlock language="kotlin" title="Kotlin">
+```kotlin title="Kotlin"
 {`fun initKeyManagement(env: string, didUri: string, api: DidDhtApi? = null){
     var keyManager: KeyManager;
 \n
@@ -32,6 +32,5 @@ Here's an example that uses an external [AWS Key Management Service](https://doc
         val did = DidDht(uri = "some_uri", keyManager = keyManager, didDhtApi = api)
     }
 }`}
-</CodeBlock>
 
 The `Web5` SDK provides a variety of `KeyManager` implementations, which will allow you connect to storage - in-memory storage in the case of `InMemoryKeyManager` and AWS Key Management Service in the case of `AwsKeyManager` - and allow you to perform all the operations exposed in the `KeyManager` interface. 
