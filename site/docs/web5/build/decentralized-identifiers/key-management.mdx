@@ -5,32 +5,46 @@ sidebar_position: 2
 
 import CodeBlock  from '@theme/CodeBlock';
 
-[Decentralized Identifiers (DIDs)](/docs/web5/learn/decentralized-identifiers) are associated with public and private keys. The private key, which should be kept secret, is used to sign information or transactions, demonstrating control over the DID. Proper [key management](https://en.wikipedia.org/wiki/Key_management) ensures that private keys are securely stored and used, reducing the risk of unauthorized access or misuse.
+[Decentralized Identifiers (DIDs)](/docs/web5/learn/decentralized-identifiers) are associated with public and private keys. 
+The private key, which should be kept secret, is used to sign information or transactions, demonstrating control over the DID. 
 
-The Web5 SDK provides a key manager by default, as well as the option for you to use your own.
+Proper [key management](https://en.wikipedia.org/wiki/Key_management) ensures that private keys are securely stored and used, reducing the risk of unauthorized access or misuse.
 
-Here's an example that uses an external [AWS Key Management Service](https://docs.aws.amazon.com/kms/latest/developerguide/overview.html) for production environments, and Web5's `InMemoryKeyManager` for any other environments (dev, test, etc):
+## Supported Types
+
+The Web5 SDK offers two distinct `KeyManager` implementations:
+
+* **InMemoryKeyManager**: This implementation utilizes in-memory, ephemeral storage for managing keys. 
+It's ideal for scenarios where temporary key management is sufficient, such as in testing environments. 
+Since the keys are stored in memory, they are lost when the application is terminated.
+
+* **AwsKeyManager**: This implementation integrates with the [AWS Key Management Service(KMS)](https://docs.aws.amazon.com/kms/latest/developerguide/overview.html), providing a secure and robust solution for key management. 
+It's well-suited for production environments where a high level of security and availability are critical.
+
+Both implementations facilitate key generation and signature operations essential for creating and managing DIDs. Each caters to distinct security needs, and the choice between them should be based on the specific requirements of your application.
+
+## Example
+Here's an example that uses `AwsKeyManager` for production environments, and `InMemoryKeyManager` for any other environments (dev, test, etc):
 
 ```kotlin title="Kotlin"
-{`fun initKeyManagement(env: string, didUri: string, api: DidDhtApi? = null){
-    var keyManager: KeyManager;
-\n
-    // Determine which key manager you'd like to use based on
-    // the environment
-    when(env) {
-        "production" -> keyManager = AwsKeyManager()
-        else -> keyManager = InMemoryKeyManager()
+fun initKeyManagement(env: String, didUri: String?, didDhtApi: DidDhtApi): DidDht {
+
+   // Determine which key manager to use based on the environment
+    val keyManager: KeyManager = when(env) {
+        "production" -> AwsKeyManager()
+        else -> InMemoryKeyManager()
     }
-\n
+
     // Initialize or load a DID
-    var did: DidDht;
-    if (didUri == null) {
+    val did: DidDht = if (didUri == null) {
         // Create a new DID
-        val did = DidDht.create(keyManager)
+        DidDht.create(keyManager)
     } else {
         // Load existing DID
-        val did = DidDht(uri = "some_uri", keyManager = keyManager, didDhtApi = api)
+        DidDht(uri = didUri, keyManager = keyManager, didDhtApi = didDhtApi)
     }
-}`}
 
-The `Web5` SDK provides a variety of `KeyManager` implementations, which will allow you connect to storage - in-memory storage in the case of `InMemoryKeyManager` and AWS Key Management Service in the case of `AwsKeyManager` - and allow you to perform all the operations exposed in the `KeyManager` interface. 
+    return did
+}
+```
+
