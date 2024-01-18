@@ -9,6 +9,7 @@ const LanguageSupport = ({ languages }) => {
   const { changeLanguage } = useLanguage();
 
   useEffect(() => {
+    console.log(`Languages supported are ${languages}. Defaulting to ${languagesArray[0]}`);
     changeLanguages(languagesArray);
     changeLanguage(languagesArray[0]);
   }, [languages])
