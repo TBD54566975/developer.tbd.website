@@ -1,22 +1,22 @@
 // LanguageSwitchBlock.js
 import { useLanguage } from './LanguageContext';
-import React from 'react';
+import  React, { Children } from 'react';
 
 const LanguageSwitchBlock = ({ children }) => {
   const { language } = useLanguage();
 
-  var childComponent;
-  children.forEach((child) => {
+  const childArray = Children.toArray(children);
+  var childToRender;
 
-  if (child.props.language === language) {
-      childComponent = child;
-      return;
+  childArray.forEach( child => {
+    if (child.props.language === language) {
+      childToRender = child;
     }
   });
 
   return (
     <div>
-      {childComponent}
+      {childToRender}
     </div>
   );
 };

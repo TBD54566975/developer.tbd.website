@@ -1,12 +1,17 @@
 // LanguageSupport.js
-import React from 'react';
-import { useSupportedLanguages } from './LanguageContext';
+import React, { useEffect } from 'react';
+import { useSupportedLanguages } from './SupportedLanguagesContext';
+import { useLanguage } from './LanguageContext';
 
 const LanguageSupport = ({ languages }) => {
-  const languagesArray = languages.split(',');
+  const languagesArray = languages.split(',').map(function(language) { return language.trim()});
   const { changeLanguages } = useSupportedLanguages();
+  const { changeLanguage } = useLanguage();
 
-  changeLanguages(languagesArray);
+  useEffect(() => {
+    changeLanguages(languagesArray);
+    changeLanguage(languagesArray[0]);
+  }, [languages])
 
   return (
     <div></div>

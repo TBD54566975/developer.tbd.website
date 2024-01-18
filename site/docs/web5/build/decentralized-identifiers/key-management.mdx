@@ -2,69 +2,47 @@ import LanguageSwitchBlock from '@site/src/components/LanguageSwitchBlock';
 import LanguageSwitcher from '@site/src/components/LanguageSwitcher';
 import LanguageSwitchLink  from '@site/src/components/LanguageSwitchLink';
 import LanguageSupport  from '@site/src/components/LanguageSupport';
+import CodeBlock  from '@theme/CodeBlock';
+
 
 # Key Management
+<LanguageSupport languages="Kotlin"/>
 <LanguageSwitcher/>
-<LanguageSupport languages="JavaScript, Kotlin"/>
+
 
 
 Cryptographic keys are an integral part of DIDs and DIDs are designed to represent secure identity, which is why good key management is essential to developing your Web5 app. Key management provides the optionality to securely store your cryptographic keys and is built right into the `Web5` SDK. 
 
 ## Quickstart
-Key management is built right into the <LanguageSwitchLink text='DidMethod' links="{'kotlin': 'https://github.com/TBD54566975/web5-kt/blob/301bf54dd3c0d8b310212011e116e22c2894766c/dids/src/main/kotlin/web5/sdk/dids/DidMethod.kt', 'javascript': '#'}"/> implementations provided in the `Web5` SDK, such as `DidDht`. Here is how you'll create or load a DID with a `KeyManager`:
+Key management is built right into the <LanguageSwitchLink text='DidMethod' links='{"Kotlin": "https://github.com/TBD54566975/web5-kt/blob/301bf54dd3c0d8b310212011e116e22c2894766c/dids/src/main/kotlin/web5/sdk/dids/DidMethod.kt", "JavaScript": "#"}'/> implementations provided in the `Web5` SDK, such as `DidDht`. Here is how you'll create or load a DID with a `KeyManager`:
 
 <LanguageSwitchBlock>
-    <div language='javascript'>
-        {/* Put any text or code snippets specific to JavaScript in here */}
-    </div>
-    <div language='kotlin'>
-        {/* Put any text or code snippets specific to Kotlin in here */}
-    </div>
-</LanguageSwitchBlock>
-
-<LanguageSwitchBlock>
-{/* JS BLOCK */}
-
-    <div language='javascript'>
-
-    This is some JS text:
-
-    ```javascript
-    var thing = "stuff";
-    ```
-
-    </div>
-
-    <div language='kotlin'>
-{/* KOTLIN BLOCK */}
-    This is some Kotlin text:
-
-    <LanguageSwitcher/>
-
-    ```kotlin
-            fun initKeyManagement(env: string, didUri: string){
-                var keyManager: KeyManager;
-
-                // Determine which key manager you'd like to use based on
-                // the environment
-                when(env) {
-                    "development" -> keyManager = InMemoryKeyManager();
-                    "production" -> keyManager = AwsKeyManager()
-                }
-
-                // Initialize or load a DID
-                var did: DidDht;
-                if (didUri == null) {
-                    // Create a new DID
-                    val did = DidDht.create(keyManager)
-                } else {
-                    // Load existing DID
-                    val did = DidDht(uri = "some_uri", keyManager)
-                }
-            }
-    ```
-
-    </div>
+    <div language="Kotlin">
+        <CodeBlock language="kotlin">
+{`
+fun initKeyManagement(env: string, didUri: string){
+    var keyManager: KeyManager;
+\n
+    // Determine which key manager you'd like to use based on
+    // the environment
+    when(env) {
+        "development" -> keyManager = InMemoryKeyManager();
+        "production" -> keyManager = AwsKeyManager()
+    }
+\n
+    // Initialize or load a DID
+    var did: DidDht;
+    if (didUri == null) {
+        // Create a new DID
+        val did = DidDht.create(keyManager)
+    } else {
+        // Load existing DID
+        val did = DidDht(uri = "some_uri", keyManager)
+    }
+}
+`}
+        </CodeBlock>
+    </div> 
 </LanguageSwitchBlock>
 
 The `Web5` SDK provides a variety of `KeyManager` implementations, which will allow you connect to storage - in-memory storage in the case of `InMemoryKeyManager` and AWS Key Management Service in the case of `AwsKeyManager` - and allow you to perform all the operations exposed in the `KeyManager` interface. 
