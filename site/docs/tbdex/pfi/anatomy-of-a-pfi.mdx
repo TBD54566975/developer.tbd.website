@@ -62,7 +62,8 @@ Now your server is configured with the appropriate routing setup.
 
 ## Exchange API Provider
 
-The Exchanges API is the set of methods that deals with reading and writing any messages data, based on the [ExchangesApi](https://tbd54566975.github.io/tbdex-js/interfaces/_tbdex_http_server.ExchangesApi.html) class. Although the interface for `ExchangesApi` only requires to be filled out with read operations, you may find it useful to couple write operations into the class as well. 
+The Exchanges API is the set of methods that deals with reading and writing messages, based on the [ExchangesApi](https://tbd54566975.github.io/tbdex-js/interfaces/_tbdex_http_server.ExchangesApi.html) class. 
+Although the interface for `ExchangesApi` only requires read operations, you may find it useful to couple write operations into the class as well. 
 
 Using the sample code above as reference, the submission of `RFQ`, `Order`, or `Close` data will result in the triggering of the Exchange API Provider’s `write()`, while the required methods such as `getOrder()` will serve as read methods. 
 

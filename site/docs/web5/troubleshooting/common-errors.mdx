@@ -52,7 +52,7 @@ module.exports = nextConfig;
 When starting up and connecting to the Web5 SDK, some polyfills might be missing. To fix this, update your Web5 import:
 
 ```js
-import { Web5 } from '@web5/api';
+import { Web5 } from '@web5/api/browser';
 ```
 
 ## ProtocolAuthorizationIncorrectProtocolPath: Declared protocol path 'x' is not the same as actual protocol path 'y/x'
@@ -109,3 +109,10 @@ This error occurs when you attempt to sign a verifiable credential using the Str
 ## Error: ProtocolAuthorizationProtocolNotFound: unable to find protocol definition
 
 This error occurs when attempting to interact with a DWN that does not have the required protocol installed. To solve this, **ensure both parties have successfully [installed the protocol definition](/docs/web5/learn/protocols#installing-a-protocol)**.
+
+## Error: Wrong tag
+
+This error occurs due to a mismatch between encryption and decryption keys. To resolve:
+
+* **In a browser:** Clear the browser cache and retry.
+* **In a Node.js app:** Delete the `DATA` folder and retry.
