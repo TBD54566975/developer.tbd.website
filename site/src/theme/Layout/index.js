@@ -4,10 +4,8 @@ import GlitchWrapper from '@site/src/components/GlitchWrapper';
 import MDXContent from '@theme/MDXContent';
 import { useLocation } from '@docusaurus/router';
 import ChatSearch from '../../components/ChatGPTSearch';
-import { LanguageProvider } from '../../components/language/LanguageContext';
 
 import { SSRProvider } from '@react-aria/ssr';
-import { LanguageOptionsProvider } from '../../components/language/SupportedLanguagesContext';
 
 export default function LayoutWrapper(props) {
   const { hash } = useLocation();
@@ -24,12 +22,8 @@ export default function LayoutWrapper(props) {
     <SSRProvider>
       <GlitchWrapper>
         <ChatSearch/>        
-         <MDXContent>  
-          <LanguageProvider>
-           <LanguageOptionsProvider>      
+         <MDXContent>       
             <Layout {...props}>{props.children}</Layout>
-          </LanguageOptionsProvider>  
-         </LanguageProvider>
         </MDXContent>
        </GlitchWrapper>
     </SSRProvider>

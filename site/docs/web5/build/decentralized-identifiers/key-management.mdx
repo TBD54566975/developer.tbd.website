@@ -1,17 +1,8 @@
 ---
 title: Key Management
-hide_title: true
 ---
 
-import LanguageSwitchBlock from '@site/src/components/language/LanguageSwitchBlock';
-import LanguageSwitchLink  from '@site/src/components/language/LanguageSwitchLink';
-import LanguageSupport  from '@site/src/components/language/LanguageSupport';
-import LanguageSwitchHeader  from '@site/src/components/language/LanguageSwitchHeader';
 import CodeBlock  from '@theme/CodeBlock';
-
-<LanguageSwitchHeader text="Key Management"/>
-<LanguageSupport languages="Kotlin"/>
-
 
 [Decentralized Identifiers (DIDs)](/docs/web5/learn/decentralized-identifiers) are associated with public and private keys. The private key, which should be kept secret, is used to sign information or transactions, demonstrating control over the DID. Proper [key management](https://en.wikipedia.org/wiki/Key_management) ensures that private keys are securely stored and used, reducing the risk of unauthorized access or misuse.
 
@@ -19,11 +10,8 @@ The Web5 SDK provides a key manager by default, as well as the option for you to
 
 Here's an example that uses an external [AWS Key Management Service](https://docs.aws.amazon.com/kms/latest/developerguide/overview.html) for production environments, and Web5's `InMemoryKeyManager` for any other environments (dev, test, etc):
 
-<LanguageSwitchBlock>
-    <div language="Kotlin">
-        <CodeBlock language="kotlin">
-{`
-fun initKeyManagement(env: string, didUri: string, api: DidDhtApi? = null){
+<CodeBlock language="kotlin" title="Kotlin">
+{`fun initKeyManagement(env: string, didUri: string, api: DidDhtApi? = null){
     var keyManager: KeyManager;
 \n
     // Determine which key manager you'd like to use based on
@@ -42,10 +30,7 @@ fun initKeyManagement(env: string, didUri: string, api: DidDhtApi? = null){
         // Load existing DID
         val did = DidDht(uri = "some_uri", keyManager = keyManager, didDhtApi = api)
     }
-}
-`}
-        </CodeBlock>
-    </div> 
-</LanguageSwitchBlock>
+}`}
+</CodeBlock>
 
 The `Web5` SDK provides a variety of `KeyManager` implementations, which will allow you connect to storage - in-memory storage in the case of `InMemoryKeyManager` and AWS Key Management Service in the case of `AwsKeyManager` - and allow you to perform all the operations exposed in the `KeyManager` interface. 
