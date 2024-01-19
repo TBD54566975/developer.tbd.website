@@ -43,7 +43,9 @@ In your Identity Agent app, include the code snippet below to prompt users to au
 <CodeSnippet functionName="authenticateIdentityAgent" />
 
 ## Connect DIDs to DWNs
-Next, enable the Identity Agent to manage user DIDs by connecting each DID to a [DWN](https://developer.tbd.website/docs/web5/learn/decentralized-web-nodes/). Below is an example using TBD-hosted DWN endpoints:
+To add [DWNs](https://developer.tbd.website/docs/web5/learn/decentralized-web-nodes/) as service endpoints to the DIDs that will be managed by the Identity Agent, you can add the endpoints as `didOptions`.
+
+Below is an example using TBD-hosted DWN endpoints:
 
 <CodeSnippet functionName="getDwnEndpoints" />
 
