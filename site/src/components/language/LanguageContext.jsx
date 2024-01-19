@@ -26,14 +26,12 @@ export function LanguageProvider({ children }) {
 
   const updateUrl = (language) => {
     if (language.length > 0) {
-      console.log(`updating url path lang with ${language}`);
       history.push(`?lang=${language}`)
     }
   }
 
   const changeLanguage = (newLanguage) => {
     setLanguage(newLanguage);
-    console.log(`set language to ${newLanguage}`);
   };
 
   return (

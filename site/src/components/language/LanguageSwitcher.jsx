@@ -10,7 +10,6 @@ const LanguageSwitcher = () => {
 
   const handleLanguageChange = (e) => {
     const newLanguage = e.target.value;
-    console.log(`changing language to ${newLanguage}`);
     changeLanguage(newLanguage);
     updateUrl(newLanguage);
     currentLanguage = newLanguage;
