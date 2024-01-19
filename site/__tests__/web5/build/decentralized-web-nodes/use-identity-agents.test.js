@@ -1,21 +1,12 @@
-import { test, expect, describe, beforeAll } from 'vitest';
+import { test, expect, describe } from 'vitest';
 import {
-    createIdentityAgent,
     getDwnEndpoints,
-    createDidOptions,
-    createSocialMediaIdentity
 } from '../../../../code-snippets/web5/build/decentralized-web-nodes/use-identity-agents';
-import { IdentityAgent } from '@web5/identity-agent';
 
 let agent;
 
 describe('create identity agent', () => {
-    beforeAll(async () => {
-       // by time IdentityAgent.create() is executed, Web5.connect() has already run(in setup - web5.js)
-
-
-    //    agent = await createIdentityAgent();
-    });
+    // TO DO: add more tests for each code snippets after the team determines how to conditionally run tests for Web5.connect() vs. the Identity Agent
     test('createDidOptions returns an object with cryptographic keys and service endpoints', async () => {
         const didOptions = await getDwnEndpoints();
 
