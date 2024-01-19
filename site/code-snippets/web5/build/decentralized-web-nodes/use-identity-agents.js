@@ -16,6 +16,7 @@ export async function authenticateIdentityAgent(agent) {
 export async function getDwnEndpoints() {
 // selects DWN endpoints that are provided by default during the Web5 tech preview period
 const serviceEndpointNodes = await getTechPreviewDwnEndpoints();
+
 // generates key pairs used for authorization and encryption when interfacing with DWNs
 const didOptions = await DidIonMethod.generateDwnOptions({ serviceEndpointNodes });
 return didOptions;
