@@ -5,7 +5,7 @@ import { useSupportedLanguages } from './SupportedLanguagesContext';
 
 const LanguageSwitcher = () => {
   const { changeLanguage, updateUrl } = useLanguage();
-  var currentLanguage = useLanguage();
+  var currentLanguage = useLanguage().language;
   const { languages } = useSupportedLanguages();
 
   const handleLanguageChange = (e) => {
@@ -18,9 +18,9 @@ const LanguageSwitcher = () => {
   if (languages.length === 0) {
     return null;
   }
-
+console.log(currentLanguage);
   return (
-    <select style={{ width: 'auto', fontSize: '16px', color: '#000', fontWeight: 'bold', backgroundColor: '#ffec19', marginLeft: '15px' }} onChange={handleLanguageChange}>
+    <select style={{ width: 'auto', fontSize: '16px', color: '#000', fontWeight: 'bold', backgroundColor: '#ffec19', marginLeft: '15px' }} onChange={handleLanguageChange} value={currentLanguage}>
         {languages.map((languageOption) => 
             <option value={languageOption} key={languageOption}>{languageOption}</option>
         )}

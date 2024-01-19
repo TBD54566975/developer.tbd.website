@@ -26,7 +26,7 @@ export function LanguageProvider({ children }) {
 
   const updateUrl = (language) => {
     if (language.length > 0) {
-      history.push(`?lang=${language}`)
+      history.replace(`?lang=${language}`)
     }
   }
 
