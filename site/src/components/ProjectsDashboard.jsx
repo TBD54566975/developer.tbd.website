@@ -1,6 +1,6 @@
 import React from 'react';
 
-const sdksRepos = [
+const projects = [
   {
     name: '@web5/common',
     url: 'https://github.com/TBD54566975/web5-js/tree/main/packages/common',
@@ -26,7 +26,7 @@ const sdksRepos = [
       { type: 'fossa' },
     ],
     ossf: [{ type: 'ossf' }],
-    sast: [{ label: 'sast' }],
+    sast: [{ type: 'ghWorkflow', label: 'CodeQL', value: 'codeql.yml' }],
     unit: [{ label: 'unit' }, { type: 'codecov' }],
     acceptance: [{ label: 'e2e' }],
     release: [
@@ -62,7 +62,7 @@ const sdksRepos = [
       { type: 'fossa' },
     ],
     ossf: [{ type: 'ossf' }],
-    sast: [{ label: 'sast' }],
+    sast: [{ type: 'ghWorkflow', label: 'CodeQL', value: 'codeql.yml' }],
     unit: [{ label: 'unit' }, { type: 'codecov' }],
     acceptance: [{ label: 'e2e' }],
     release: [
@@ -98,7 +98,7 @@ const sdksRepos = [
       { type: 'fossa' },
     ],
     ossf: [{ type: 'ossf' }],
-    sast: [{ label: 'sast' }],
+    sast: [{ type: 'ghWorkflow', label: 'CodeQL', value: 'codeql.yml' }],
     unit: [{ label: 'unit' }, { type: 'codecov' }],
     acceptance: [{ label: 'e2e' }],
     release: [
@@ -134,8 +134,8 @@ const sdksRepos = [
       { type: 'fossa' },
     ],
     ossf: [{ label: 'ossf' }],
-    sast: [{ label: 'sast' }],
-    unit: [{ label: 'unit' }, { label: 'codecov' }],
+    sast: [{ type: 'ghWorkflow', label: 'CodeQL', value: 'codeql.yml' }],
+    unit: [{ label: 'unit' }, { type: 'codecov' }],
     acceptance: [{ label: 'e2e' }],
     release: [
       { type: 'ghTag' },
@@ -186,8 +186,8 @@ const sdksRepos = [
       { type: 'fossa' },
     ],
     ossf: [{ label: 'ossf' }],
-    sast: [{ label: 'sast' }],
-    unit: [{ label: 'unit' }, { label: 'codecov' }],
+    sast: [{ type: 'ghWorkflow', label: 'CodeQL', value: 'codeql.yml' }],
+    unit: [{ label: 'unit' }, { type: 'codecov' }],
     acceptance: [{ label: 'e2e' }],
     release: [
       { type: 'ghTag' },
@@ -238,8 +238,8 @@ const sdksRepos = [
       { type: 'fossa' },
     ],
     ossf: [{ label: 'ossf' }],
-    sast: [{ label: 'sast' }],
-    unit: [{ label: 'unit' }, { label: 'codecov' }],
+    sast: [{ type: 'ghWorkflow', label: 'CodeQL', value: 'codeql.yml' }],
+    unit: [{ label: 'unit' }, { type: 'codecov' }],
     acceptance: [{ label: 'e2e' }],
     release: [
       { type: 'ghTag' },
@@ -287,7 +287,7 @@ const sdksRepos = [
       { type: 'fossa' },
     ],
     ossf: [{ label: 'ossf' }],
-    sast: [{ label: 'sast' }],
+    sast: [{ type: 'ghWorkflow', label: 'CodeQL', value: 'codeql.yaml' }],
     unit: [{ label: 'unit' }, { type: 'codecov' }],
     acceptance: [{ label: 'e2e' }],
     release: [
@@ -317,9 +317,9 @@ const sdksRepos = [
 ];
 
 /**
- * Consolidates the SDKs Badges Status in a table
+ * Consolidates the Projects Badges Status in a table
  */
-function SdksDashboard() {
+function ProjectsDashboard() {
   return (
     <table className="min-w-full">
       <thead>
@@ -337,68 +337,68 @@ function SdksDashboard() {
         </tr>
       </thead>
       <tbody>
-        {sdksRepos.map((sdk) => (
-          <SdkItem key={sdk.name} {...sdk} />
+        {projects.map((p) => (
+          <ProjectItem key={p.name} {...p} />
         ))}
       </tbody>
     </table>
   );
 }
 
-function SdkItem(sdk) {
+function ProjectItem(item) {
   return (
     <tr>
       <td>
         <div className="flex flex-row items-center">
-          <LanguageIcon language={sdk.language} />
-          <a href={sdk.url} target="_blank" className="ml-2">
-            {sdk.name}
+          <LanguageIcon language={item.language} />
+          <a href={item.url} target="_blank" className="ml-2">
+            {item.name}
           </a>
         </div>
       </td>
       <td>
-        {sdk.ciStatus.map((shield, idx) => (
-          <Shield key={`ci-status-${idx}`} {...shield} {...sdk} />
+        {item.ciStatus.map((shield, idx) => (
+          <Shield key={`ci-status-${idx}`} {...shield} {...item} />
         ))}
       </td>
       <td>
-        {sdk.license.map((shield, idx) => (
-          <Shield key={`ci-status-${idx}`} {...shield} {...sdk} />
+        {item.license.map((shield, idx) => (
+          <Shield key={`ci-status-${idx}`} {...shield} {...item} />
         ))}
       </td>
       <td>
-        {sdk.scan.map((shield, idx) => (
-          <Shield key={`ci-status-${idx}`} {...shield} {...sdk} />
+        {item.scan.map((shield, idx) => (
+          <Shield key={`ci-status-${idx}`} {...shield} {...item} />
         ))}
       </td>
       <td>
-        {sdk.ossf.map((shield, idx) => (
-          <Shield key={`ci-status-${idx}`} {...shield} {...sdk} />
+        {item.ossf.map((shield, idx) => (
+          <Shield key={`ci-status-${idx}`} {...shield} {...item} />
         ))}
       </td>
       <td>
-        {sdk.sast.map((shield, idx) => (
-          <Shield key={`ci-status-${idx}`} {...shield} {...sdk} />
+        {item.sast.map((shield, idx) => (
+          <Shield key={`ci-status-${idx}`} {...shield} {...item} />
         ))}
       </td>
       <td>
-        {sdk.unit.map((shield, idx) => (
-          <Shield key={`ci-status-${idx}`} {...shield} {...sdk} />
+        {item.unit.map((shield, idx) => (
+          <Shield key={`ci-status-${idx}`} {...shield} {...item} />
         ))}
       </td>
       <td>
-        {sdk.acceptance.map((shield, idx) => (
-          <Shield key={`ci-status-${idx}`} {...shield} {...sdk} />
+        {item.acceptance.map((shield, idx) => (
+          <Shield key={`ci-status-${idx}`} {...shield} {...item} />
         ))}
       </td>
       <td>
-        {sdk.release.map((shield, idx) => (
-          <Shield key={`ci-status-${idx}`} {...shield} {...sdk} />
+        {item.release.map((shield, idx) => (
+          <Shield key={`ci-status-${idx}`} {...shield} {...item} />
         ))}
       </td>
       <td>
-        {sdk.apiDocs.map((shield, idx) => (
-          <Shield key={`ci-status-${idx}`} {...shield} {...sdk} />
+        {item.apiDocs.map((shield, idx) => (
+          <Shield key={`ci-status-${idx}`} {...shield} {...item} />
         ))}
       </td>
     </tr>
@@ -473,4 +473,4 @@ function getLanguageColor(language) {
   }
 }
 
-export default SdksDashboard;
+export default ProjectsDashboard;
