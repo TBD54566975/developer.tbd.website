@@ -47,3 +47,11 @@ export async function connectIdentityToWeb5() {
     });
     return web5;
 }
+
+export async function connectToWeb5() {
+    const { web5 } = await Web5.connect({
+        connectedDid: socialIdentity.did,
+        agent,
+    });
+    return web5;    
+}
