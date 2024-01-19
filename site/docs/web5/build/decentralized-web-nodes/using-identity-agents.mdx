@@ -7,13 +7,10 @@ import CodeSnippet from '@site/src/components/CodeSnippet';
 # Using Identity Agents
 
 Identity Agents are a specialized type of [agent](https://developer.tbd.website/docs/web5/learn/agents/) that act as personal identity managers.  Similar to how a password manager securely stores login credentials for different web apps, Identity Agents manage your [DIDs](https://developer.tbd.website/docs/web5/learn/decentralized-identifiers). 
-
-## Doesn't Web5.connect() create a DID for me?
  
-Yes, the `Web5.connect()` function generates a **new** identity and a local User Agent. However, Identity Agents allow you to connect a web app to an **existing** identity. This is useful for maintaining a cohesive online presence. 
+While the `Web5.connect()` function generates a **new** identity and a local User Agent, Identity Agents allow you to connect a web app to an **existing** identity. This is useful for maintaining a cohesive online presence. 
 
-This guide will walk you through creating an Identity Agent to manage multiple user identities and connect to a Web5 application.
-
+This guide will walk you through creating an Identity Agent as a standalone application to manage multiple user identities and connect to a separate Web5 application.
 
 
 <details>
@@ -36,13 +33,13 @@ import { Web5, getTechPreviewDwnEndpoints } from '@web5/api';
 </details>
 
 ## Initialize the Agent
-Start by creating an instance of the `IdentityAgent`.
+To create an Identity Agent, start by creating an instance of the `IdentityAgent`.
 
 <CodeSnippet functionName="createIdentityAgent" />
 
 ## Prompt Users to Authenticate
+In your Identity Agent app, include the code snippet below to prompt users to authenticate with a one-time passphrase for security purposes.
 
-The first time you launch an Identity Agent, you will be prompted to authenticate with a one-time passphrase for security purposes.
 <CodeSnippet functionName="authenticateIdentityAgent" />
 
 ## Connect DIDs to DWNs
@@ -82,7 +79,7 @@ Each identity, linked to a unique DID, represents and compartmentalizes differen
 :::
 
 ## Use your Identity in a Web5 Application
-Once your Identity Agent is set up to manage multiple identities, you can use it to help you login to Web5 application. Here's the typical workflow: 
+Once your Identity Agent is set up to manage multiple identities, you can use it to help you login to a Web5 application. Here's the typical workflow: 
 
 1. The Web5 application may display a QR code or a deep link for login purposes.
 2. Use the Identity Agent to scan the QR code or click the deep link to establish a connection between your Identity Agent and the Web5 application.
