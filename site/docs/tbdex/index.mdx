@@ -2,39 +2,50 @@
 
 ## What is tbDEX?
 
-tbDEX is a decentralized, permissionless liquidity discovery protocol that unlocks financial services by enabling individuals to directly on-ramp and off-ramp between traditional and decentralized financial systems, creating a marketplace for compliant currency exchanges where wallet applications and liquidity providers can seamlessly interact.
+tbDEX is an open source liquidity and trust protocol that unlocks frictionless commerce and financial access globally.
 
 ![illustration of tbDEX network](/img/tbdex-protocol-illustration.png)
 
-Using the tbDEX protocol, developers can build financial applications that facilitate the smooth transfer of currencies across borders. tbDEX serves as an open network protocol where anyone can seek liquidity, and [Participating Financial Institutions (PFIs)](/docs/tbdex/pfi/overview) can provide that liquidity while specifying the regulatory requirements needed to fulfill the request.
+The protocol enables participants to securely validate counterparty identity and trust, as well as desired compliance with relevant laws and regulations. 
+
+After trust establishment, tbDEX’s standard messaging protocol enables [Participating Financial Institutions (PFIs)](/docs/tbdex/pfi/overview) and counterparties to discover, negotiate, and confirm transactions. 
+
+Once transaction details are confirmed, participants execute and settle these transactions outside of the protocol with PFIs directly.
 
 tbDEX is architected on Web5 infrastructure, utilizing decentralized technologies such as:
 
 * [Decentralized Identifiers](/docs/web5/learn/decentralized-identifiers) (DIDs)
 * [Verifiable Credentials](/docs/web5/learn/verifiable-credentials) (VCs)
 
-The protocol has no opinion on anonymity as a feature or consequence of transactions. Instead, it allows willing counterparties to negotiate and establish the minimum information acceptable for an exchange.
-
 ## Why do we need tbDEX?
 
 The web connected us all, but money and payments have not kept pace. The legacy payment system is held together with proverbial duct tape, concealing fundamental problems. Final settlement of payments is slow, expensive, and never quite final. These inefficiencies result in costly account fees or outright exclusion from the system, disproportionately affecting the economically disadvantaged.
 
-Decentralized and trustless systems eliminate the need for credit checks, monthly account fees, and barriers to international money movement. Yet, legacy fiat systems are projected to stay integral to our financial systems for the foreseeable future. This is why our global financial system and the customers it serves needs a smooth method to transition between fiat and digital currencies.
+Decentralized and trustless systems eliminate barriers to  seamless online financial services such as international money movement. 
+Yet, legacy fiat systems are projected to stay integral to our financial systems for the foreseeable future. 
+This is why our global financial system and the customers it serves needs a smooth method to transition between fiat and digital currencies.
 
-That's where tbDEX comes in. It acts as a bridge between the permissionless world of digital currencies and the traditional world of fiat money. As a liquidity protocol, it enables these two distinct financial systems to communicate. Additionally, tbDEX facilitates fiat-to-fiat exchanges since it's designed to operate fluently with both digital and fiat currencies.
+Put simply, tbDEX is a messaging protocol that allows for the decentralized transfer of value. 
+This simplicity provides the opportunity to build whatever you want on top of it. 
+tbDEX provides open and unbiased access to traditional financial services to enable everyone to participate in the world of digital currencies. 
 
-tbDEX isn’t just another exchange or centralized financial institution; it’s a protocol that any member of our financial systems can join to allow for portability and interoperability across currencies, nationalities, and, most importantly, people.
+The vision for tbDEX is one where any member of our financial system can utilize the protocol to allow for portability and interoperability across currencies, nationalities, and, most importantly, people.
 
-Furthermore, tbDEX cultivates a network that encourages competition among financial institutions for customers' business, offering them a choice among multiple providers. This competitive landscape incentivizes PFIs to offer more reasonable transaction fees, as they vie to attract and retain users within the tbDEX ecosystem. 
+Furthermore, tbDEX is designed to encourage competition among financial institutions for customers' business, offering them a choice among multiple providers. 
+This competitive landscape incentivizes PFIs to offer more reasonable transaction fees, as they vie to attract and retain users within the tbDEX ecosystem.
 
-The integration of financial institutions and [wallet applications](/docs/tbdex/wallet/overview) into one protocol ensures that every wallet has access to every participating financial institution, fostering a customer-centric environment where quality of service and cost-efficiency become key differentiators. This is transformative for liquidity companies, where the challenge to integrate with all wallets, especially smaller ones, is too high. With tbDEX, liquidity providers and aggregators can adopt the protocol once and enable thousands of wallets.
+The integration into one protocol ensures that every wallet application has access to every participating financial institution, fostering a customer-centric environment where quality of service and cost-efficiency become key differentiators. 
+
+This is transformative for smaller companies where the challenge to integrate with all wallet applications is too high. 
+With tbDEX, finanicial institutions can adopt the protocol once and enable thousands of wallets.
 
 
 ## How does tbDEX work?
 
-tbDEX bridges digital and fiat currencies by providing a common protocol for the fundamental actions of liquidity exchange.
+tbDEX is a messaging service that  provides a common protocol for establishing trust and accessing liquidity.
 
-Note that tbDEX is not a payment processor, wallet/bank account, or any other core financial service provider. Instead, tbDEX focuses on enabling commerce rather than executing transactions.
+Note that tbDEX is not an exchange, payment processor, bank, custody or self-custody wallet, or financial service provider of any kind.
+Instead, tbDEX is a protocol that enables efficient communication between two willing counterparties.
 
 ### Actors
 
@@ -42,32 +53,35 @@ There are essentially three types of actors involved in a tbDEX network:
 
 ![Wallet, PFI, and VC Issuer](/img/tbdex-actors.png)
 
-* **[Wallet Apps:](/docs/tbdex/wallet/overview)** These hold identifiers and credentials, acting as an agent to facilitate exchanges on behalf of a person seeking liquidity
+* **[Wallet Applications:](/docs/tbdex/wallet/overview)** These hold identifiers and credentials, acting as an agent to facilitate exchanges on behalf of a person seeking liquidity
 * **[PFIs:](/docs/tbdex/pfi/overview)** The entities offering liquidity services on a tbDEX network
 * **[VC Issuers:](/docs/tbdex/issuer/overview)** Organizations that act as sources of verifiable credentials
 
 ### Messages
 
-Using the tbDEX protocol, PFIs and wallet holders - both identified by unique DIDs - can exchange messages to negotiate an exchange.
+Using the tbDEX protocol, PFIs and Wallet Applications can exchange messages to negotiate a proposed transaction.
 
-As part of negotiating an exchange, PFIs and wallets message each other using the following tbDEX message types:
+As part of negotiating a proposed transaction, PFIs and Wallet Applications message each other using the following tbDEX message types:
 
-* **Request for Quote (RFQ)**: a request for the PFI to provide a quote specifically for the user based on the financial exchange they are requesting, the payment methods provided, etc. The RFQ also includes the proof of required credentials.
+* **Request for Quote (RFQ)**: a request for the PFI to provide a quote specifically for the user based on the transaction they are proposing, the payment methods provided, etc. The RFQ also includes the proof of required credentials.
+
 
 * **Quote**: a formal offer from a PFI detailing exactly what the user will receive in exchange for a specific currency or asset, as per their RFQ. It also includes the total fees associated with the chosen payment methods, instructions for making the payment and receiving the funds, and an expiration time after which the terms of the quote are no longer guaranteed.
 
-* **Order**: an agreement to execute the transaction. At this time, both parties have agreed upon a settlement method for the transaction and can smoothly off-ramp from the tbDEX platform to the desired method of settlement.
+* **Order**: an agreement to execute the proposed transaction. The parties may then settle their transaction outside of tbDEX.
 
 * **Order Status**: updates on execution of the order, sent by the PFI. 
 
-* **Close**: signifies that the exchange has reached a terminal state. It can be used if the PFI is unable to provide a guaranteed quote to the RFQ, if Alice is no longer interested in the quote, if the order has failed, or if the order has completed. No messages can be added to an Exchange after a Close has been sent. 
+* **Close**: signifies that the transaction has reached a terminal state. It can be used if the PFI is unable to provide a guaranteed quote to the RFQ, if the customer is no longer interested in the quote, if the order has failed, or if the order has completed. No messages can be added to a transaction after a Close has been sent.
 
 
 ## Example Scenario
 
-Alice holds a digital wallet that securely manages her identity, including her identifiers, credentials, and authorizations for external apps and entities. Alice wants to exchange 100 units of digital currency for USD. Because Alice is off-ramping from digital currency to fiat, most PFIs are required to verify Alice’s identity in order to fulfill their regulatory and compliance obligations.
+Alice holds a digital wallet application that securely manages her identity, including her identifiers, credentials, and authorizations for external apps and entities.
+Alice wants to exchange 100 units of digital currency for USD. 
+Because Alice is off-ramping from digital currency to fiat, a PFI will likely require verification of Alice’s identity in order to fulfill their 
 
-1. **Alice** informs her wallet of her need to make the exchange.
+1. **Alice** informs her wallet of her need to make the transaction.
 
 2. **Alice's Wallet** discovers PFIs that offer this currency pairing, compares their credential requirements with the VCs Alice holds, and if necessary, applies for any missing VCs.
     <details>
@@ -96,9 +110,9 @@ Alice holds a digital wallet that securely manages her identity, including her i
 
     </details>
 
-5. **Alice** considers the reputation of the PFIs as well as the transaction fees before choosing a PFI. 
+5. **Alice** considers various factors such as the reputation of the PFIs as well as the transaction fees before choosing a PFI.
 
-6. **Alice's Wallet** creates a request for a quote (RFQ) with Alice's DID, the details of her request, and the required VC - which Alice has already obtained from another PFI in the past. 
+6. **Alice's Wallet** creates a request for a quote (RFQ) with Alice's DID, the details of her request, and the required VC - which Alice has already obtained previously. 
     <details>
     <summary>Related Guides</summary>
 
@@ -145,14 +159,12 @@ Alice holds a digital wallet that securely manages her identity, including her i
 
 ## Try tbDEX
 
-Without the need for any centralized authority, tbDEX provided a groundbreaking bridge between the traditional financial system and the emerging world of digital currencies by allowing Alice to exchange her digital currency for USD. 
-
 By leveraging decentralized technologies, tbDEX: 
 
-* Offers a permissionless and inclusive platform that allows for the direct transfer of funds across different currency systems and borders 
+* Offers a permissionless and inclusive platform that allows for the transfer of funds across different currency systems and borders 
 
-* Enforces competition among PFIs, ensuring more equitable transaction fees and services for users 
+* Promotes competition among PFIs, ensuring more equitable transaction fees and services for users 
 
-* Upholds necessary regulatory standards, requiring identity verification for transactions converting digital currency to fiat, aligning with compliance mandates. 
+* Provides tools to meet regulatory requirements, including identity verifications
 
-As a result, tbDEX stands as a pivotal innovation for seamless financial exchanges, offering a versatile solution for developers, institutions, and individuals alike. If you’re ready to build your own apps using tbDEX, check out our [SDKs](https://github.com/TBD54566975/tbdex).
+As a result, tbDEX offers a versatile solution for seamless financial transactions for developers, institutions, and individuals alike. If you’re ready to build your own applications using tbDEX, check out our [SDKs](https://github.com/TBD54566975/tbdex).

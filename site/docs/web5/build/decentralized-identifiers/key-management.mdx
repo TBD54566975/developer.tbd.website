@@ -1,0 +1,68 @@
+---
+title: Key Management
+sidebar_position: 2
+---
+
+[Decentralized Identifiers (DIDs)](/docs/web5/learn/decentralized-identifiers) are associated with public and private keys. 
+The private key, which should be kept secret, is used to sign information or transactions, demonstrating control over the DID. 
+
+Proper [key management](https://en.wikipedia.org/wiki/Key_management) ensures that private keys are securely stored and used, reducing the risk of unauthorized access or misuse.
+
+## Supported Types
+
+The Web5 SDK offers two distinct `KeyManager` implementations:
+
+* **InMemoryKeyManager**: This implementation utilizes in-memory, ephemeral storage for managing keys. 
+It's ideal for scenarios where temporary key management is sufficient, such as in testing environments. 
+Since the keys are stored in memory, they are lost when the application is terminated.
+
+* **AwsKeyManager**: This implementation integrates with the [AWS Key Management Service(KMS)](https://docs.aws.amazon.com/kms/latest/developerguide/overview.html), providing a secure and robust solution for key management. 
+It's well-suited for production environments where a high level of security and availability are critical.
+
+Both implementations facilitate key generation and signature operations essential for creating and managing DIDs. Each caters to distinct security needs, and the choice between them should be based on the specific requirements of your application.
+
+## Example
+Below is an example that uses `AwsKeyManager` for production environments, and `InMemoryKeyManager` for any other environments (dev, test, etc).
+
+<details>
+<summary>Prerequisites</summary>
+
+**Install Packages**
+
+```bash
+npm i @web5/crypto @web5/dids
+```
+
+**Import Classes**
+
+```kotlin title="Kotlin"
+import web5.sdk.crypto.AwsKeyManager
+import web5.sdk.crypto.InMemoryKeyManager
+import web5.sdk.crypto.KeyManager
+import web5.sdk.dids.methods.dht.DidDht
+import web5.sdk.dids.methods.dht.DidDhtApi
+```
+</details>
+
+```kotlin title="Kotlin"
+fun initKeyManagement(env: String, didUri: String?, didDhtApi: DidDhtApi): DidDht {
+
+   // Determine which key manager to use based on the environment
+    val keyManager: KeyManager = when(env) {
+        "production" -> AwsKeyManager()
+        else -> InMemoryKeyManager()
+    }
+
+    // Initialize or load a DID
+    val did: DidDht = if (didUri == null) {
+        // Create a new DID
+        DidDht.create(keyManager)
+    } else {
+        // Load existing DID
+        DidDht(uri = didUri, keyManager = keyManager, didDhtApi = didDhtApi)
+    }
+
+    return did
+}
+```
+
