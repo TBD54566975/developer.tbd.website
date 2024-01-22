@@ -181,7 +181,7 @@ importers:
         specifier: 0.2.4
         version: 0.2.4
       '@web5/user-agent':
-        specifier: ^0.2.5
+        specifier: 0.2.5
         version: 0.2.5
 
   examples/tutorials/shared-todo-completed:
