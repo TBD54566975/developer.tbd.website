@@ -2,8 +2,9 @@
 sidebar_position: 1
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 import CodeSnippet from '@site/src/components/CodeSnippet';
-
 
 # Issue a VC
 
@@ -14,6 +15,10 @@ This guide provides a step-by-step process for issuing a [verifiable credential 
 
 **Install Package**
 
+<Tabs>
+  <TabItem value="JavaScript" label="JavaScript" default>
+
+**Install Package**
 ```bash
 npm i @web5/credentials
 ```
@@ -24,11 +29,43 @@ npm i @web5/credentials
 import { VerifiableCredential } from "@web5/credentials";
 ```
 
+  </TabItem>
+  <TabItem value="Kotlin" label="Kotlin">
+
+
+**Configure Repositories**
+
+```kotlin
+repositories {
+  mavenCentral()
+  maven("https://jitpack.io")
+  maven("https://repo.danubetech.com/repository/maven-public/")
+  maven("https://repository.jboss.org/nexus/content/repositories/thirdparty-releases/")
+}
+
+**Configure Dependencies**
+dependencies {
+  implementation("xyz.block:web5-credentials:0.0.9-delta")
+}
+```
+
+**Import Class**
+
+```kotlin
+import xyz.block.web5.credentials.VerifiableCredential
+```
+
+  </TabItem>
+</Tabs>
+
+
+
 **Obtain DIDs**
 
 VCs are issued to and from subjects of [Decentralized Identifiers (DID)](/docs/web5/learn/decentralized-identifiers).
-* If you don't already have one, you can [create a DID](/docs/web5/build/decentralized-identifiers/how-to-create-did#create-a-did-manually).
-* Also, you'll need the DID of the entity you'll like to issue the VC to.
+
+- If you don't already have one, you can [create a DID](/docs/web5/build/decentralized-identifiers/how-to-create-did#create-a-did-manually).
+- Also, you'll need the DID of the entity you'll like to issue the VC to.
 
 </details>
 
@@ -36,18 +73,37 @@ VCs are issued to and from subjects of [Decentralized Identifiers (DID)](/docs/w
 
 Credentials are created in JSON format and contain the following properties:
 
-* **type:** Type of the credential (e.g. EmploymentCredential, EducationCredential)
-* **issuer:** DID of the entity who is issuing the credential
-* **subject:** DID of the entity that the credential is being issued to
-* **expirationDate:** (optional) The date when the credential expires (in ISO 8601 standard format)
-* **data:** JSON containing claims that are being asserted
-
+- **type:** Type of the credential (e.g. EmploymentCredential, EducationCredential)
+- **issuer:** DID of the entity who is issuing the credential
+- **subject:** DID of the entity that the credential is being issued to
+- **expirationDate:** (optional) The date when the credential expires (in ISO 8601 standard format)
+- **data:** JSON containing claims that are being asserted
 
 ## Create VC
 
 To create the VC, utilize the `VerifiableCredential.create()` method. Pass a JSON object containing the properties as shown below:
+<Tabs>
+  <TabItem value="JavaScript" label="JavaScript" default>
+    <CodeSnippet functionName="createEmploymentCredential" />
+  </TabItem>
+  <TabItem value="Kotlin" label="Kotlin">
 
-<CodeSnippet functionName="createEmploymentCredential" />
+    ```kotlin
+    data class EmploymentCredential(val position: String, val startDate: String, val employmentStatus: String )
+
+    val vc = VerifiableCredential.create(
+        type = "EmploymentCredential",
+        issuer = employer.didDocument.id.toString(),
+        subject = employee.didDocument.id.toString(),
+        data = EmploymentData(
+            position = "Software Developer",
+            startDate = "2023-04-01T12:34:56Z",
+            employmentStatus = "Contractor"
+        )
+    )
+    ```
+  </TabItem>
+</Tabs>
 
 
 This results in:
@@ -79,9 +135,18 @@ This results in:
 ## Sign VC
 
 The next step is signing the VC. This cryptographic process, performed by the issuer, ensures the integrity and authenticity of the VC:
+<Tabs>
+  <TabItem value="JavaScript" label="JavaScript" default>
+    <CodeSnippet functionName="signCredential" />
+  </TabItem>
+  <TabItem value="Kotlin" label="Kotlin">
 
-<CodeSnippet functionName="signCredential" />
-
+    ```kotlin
+    // sign in with portableDid
+    val signedVcJwt = vc.sign(employerDidObj)
+    ```
+  </TabItem>
+</Tabs>
 Signing the credential returns a [VC JWT](/docs/web5/build/verifiable-credentials/jwt-to-vc#what-is-a-jwt):
 
 ```
