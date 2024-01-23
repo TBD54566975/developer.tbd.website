@@ -40,8 +40,11 @@ repositories {
   maven("https://repo.danubetech.com/repository/maven-public/")
   maven("https://repository.jboss.org/nexus/content/repositories/thirdparty-releases/")
 }
+```
 
 **Configure Dependencies**
+
+```kotlin
 dependencies {
   implementation("xyz.block:web5-credentials:0.0.9-delta")
 }
@@ -86,20 +89,20 @@ To create the VC, utilize the `VerifiableCredential.create()` method. Pass a JSO
   </TabItem>
   <TabItem value="Kotlin" label="Kotlin">
 
-    ```kotlin
-    data class EmploymentCredential(val position: String, val startDate: String, val employmentStatus: String )
+  ```kotlin
+  data class EmploymentCredential(val position: String, val startDate: String, val employmentStatus: String )
 
-    val vc = VerifiableCredential.create(
-        type = "EmploymentCredential",
-        issuer = employer.didDocument.id.toString(),
-        subject = employee.didDocument.id.toString(),
-        data = EmploymentData(
-            position = "Software Developer",
-            startDate = "2023-04-01T12:34:56Z",
-            employmentStatus = "Contractor"
-        )
-    )
-    ```
+  val vc = VerifiableCredential.create(
+      type = "EmploymentCredential",
+      issuer = employer.didDocument.id.toString(),
+      subject = employee.didDocument.id.toString(),
+      data = EmploymentData(
+          position = "Software Developer",
+          startDate = "2023-04-01T12:34:56Z",
+          employmentStatus = "Contractor"
+      )
+  )
+  ```
   </TabItem>
 </Tabs>
 
@@ -139,10 +142,10 @@ The next step is signing the VC. This cryptographic process, performed by the is
   </TabItem>
   <TabItem value="Kotlin" label="Kotlin">
 
-    ```kotlin
-    // sign in with portableDid
-    val signedVcJwt = vc.sign(employerDidObj)
-    ```
+  ```kotlin
+  // sign in with portableDid
+  val signedVcJwt = vc.sign(employerDidObj)
+  ```
   </TabItem>
 </Tabs>
 Signing the credential returns a [VC JWT](/docs/web5/build/verifiable-credentials/jwt-to-vc#what-is-a-jwt):
