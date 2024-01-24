@@ -16,38 +16,20 @@ export const content = {
     projects: [
       {
         icon: '/img/component-icon.svg',
-        title: 'Decentralized Web Node',
-        description: TBDEXProtocol,
-        textButton: 'View Component',
-        url: 'https://github.com/TBD54566975/dwn-sdk-js#readme',
-        isExternalLink: true,
-      },
-      {
-        icon: '/img/component-icon.svg',
         title: 'Decentralized Identifiers',
         description:
           'Decentralized Identifiers are a W3C international standard for identifiers created, owned, and controlled by individuals, without reliance on centralized entities',
         textButton: 'View Component',
-        url: 'https://w3c.github.io/did-core/',
-        isExternalLink: true,
+        url: '/docs/web5/learn/decentralized-identifiers'
       },
       {
         icon: '/img/component-icon.svg',
-        title: 'Self-Sovereign Identity Service',
+        title: 'Verifiable Credentials',
         description:
-          'An in-a-box service that handles the full Verifiable Credentials lifecycle, including issuance, verification, revocation, and more',
+          'Verifiable Credentials are a W3C international standard for verifiable claims.',
         textButton: 'View Component',
-        url: 'https://github.com/TBD54566975/ssi-service#readme',
-        isExternalLink: true,
-      },
-      {
-        icon: '/img/component-icon.svg',
-        title: 'Self-Sovereign Identity SDK',
-        description: SSIService,
-        textButton: 'View Component',
-        url: 'https://github.com/TBD54566975/ssi-sdk#readme',
-        isExternalLink: true,
-      },
+        url: '/docs/web5/learn/verifiable-credentials'
+      }
     ],
   },
   actors: {
