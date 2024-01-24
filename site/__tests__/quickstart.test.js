@@ -5,6 +5,7 @@ import {
   updateTextRecord,
   deleteTextRecord,
 } from '../code-snippets/web5/quickstart';
+import { setUpWeb5 } from './setup-web5';
 
 // This is the web5 instance that will be referred to for all tests. This comes back as a result from Web5.connect() being used in the didCreate function.
 let web5;
@@ -16,9 +17,10 @@ let recordResult;
 const textInput = 'Hello, Web5!';
 const updatedTextInput = 'Hello, Web5! I am updated.';
 
-describe('/site/tests/quickstart.test.js', () => {
+describe('/site/tests/quickstart.test.js', async () => {
   // This is where we create a DID, assign the web5 and aliceDid variables, and then use the aliceDid to write a text record.
-  beforeAll(() => {
+  beforeAll(async () => {
+    await setUpWeb5();
     web5 = globalThis.web5;
     aliceDid = globalThis.did;
   });

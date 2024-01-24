@@ -1,12 +1,14 @@
 import { test, beforeAll, expect, describe } from 'vitest';
 
 import { createRecordWithTodoItem } from '../../code-snippets/blog/2023-05-23-dwas-vs-pwas';
+import { setUpWeb5 } from '../setup-web5';
 
 let web5;
 let did;
 
 describe('delete-from-dwn', () => {
   beforeAll(async () => {
+    await setUpWeb5();
     web5 = globalThis.web5;
     did = globalThis.did;
   });

@@ -7,6 +7,7 @@ import {
   uploadFile,
   createMixedRecord,
 } from '../../../../code-snippets/web5/build/decentralized-web-nodes/write-to-dwn';
+import { setUpWeb5 } from '../../../setup-web5';
 
 let web5;
 let did;
@@ -14,6 +15,7 @@ let did;
 describe('write-to-dwn', () => {
   // connect to web5 beforeAll tests and assign it to web5 variable
   beforeAll(async () => {
+    await setUpWeb5();
     web5 = globalThis.web5;
     did = globalThis.did;
   });
@@ -42,7 +44,9 @@ describe('write-to-dwn', () => {
   test('uploadFile uploads a file', async () => {
     const mockEvent = {
       currentTarget: {
-        files: [new Blob(['fake file data'], { type: 'application/octet-stream' })],
+        files: [
+          new Blob(['fake file data'], { type: 'application/octet-stream' }),
+        ],
       },
     };
 

@@ -4,13 +4,15 @@ import {
   createDidAutomatically,
   createDidDht,
   createDidIon,
-  createDidKey
+  createDidKey,
 } from '../../../../code-snippets/web5/build/decentralized-identifiers/how-to-create-did';
+import { setUpWeb5 } from '../../../setup-web5';
 
 let web5;
 
 describe('how-to-create-did', () => {
   beforeAll(async () => {
+    await setUpWeb5();
     web5 = globalThis.web5;
     did = globalThis.did;
 
@@ -27,7 +29,6 @@ describe('how-to-create-did', () => {
       };
     });
   });
-
 
   test('createDidAutomatically returns a DID', async () => {
     const did = await createDidAutomatically();
@@ -49,5 +50,4 @@ describe('how-to-create-did', () => {
     const createdDid = await createDidIon();
     expect(createdDid).toMatch(/^did:ion:/);
   });
-
 });
