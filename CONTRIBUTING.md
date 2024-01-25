@@ -63,7 +63,7 @@ test('createDidDht creates a DID with did:dht method', async () => {
 
 
 ### Generate Snippets:
-After creating your snippets, run the command pnpm run shnip. This will generate a folder called snippets and create a directory structure similar to where the file is.
+After creating your snippets, run the command `pnpm run shnip`. This will generate a folder called snippets and create a directory structure similar to where the file is.
 
 ### Naming and Importing Snippets:
 The generated file will be named as functionName.snippet.js (or the respective file extension). For example, the above snippet will be createDidDht.snippet.js.
