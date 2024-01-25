@@ -1,3 +1,5 @@
+
+//Creates a DID using the DHT method and publishes the DID Document to the DHT
 const didDht = await DidDhtMethod.create({ publish: true });
 
 //DID and its associated data which can be exported and used in different contexts/apps
@@ -14,9 +16,3 @@ const keys = JSON.stringify(didDht.keySet);
 
 //Primary form of a DID. more info: https://www.w3.org/TR/did-core/#dfn-canonicalid
 const canonicalId = didDht.canonicalId;
-
-function someTestFunc() {
-  console.log('yo');
-
-  // this does nothing
-}
