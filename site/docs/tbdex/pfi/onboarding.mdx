@@ -1,6 +1,10 @@
 ---
-sidebar_position: 4
+sidebar_position: 3
 ---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import CodeBlock from '@theme/CodeBlock';
 
 # Onboarding
 
@@ -11,9 +15,10 @@ DIDs are associated with [DID Documents](/docs/web5/learn/did_document) which de
 
 To create a DID and identify yourself as a PFI, use the [@web5/dids SDK](https://www.npmjs.com/package/@web5/dids):
 
-```js
-import { DidDhtMethod } from '@web5/dids'
-
+<Tabs>
+  <TabItem label="JavaScript" value="JavaScript">
+    <CodeBlock language="js">
+    {`import { DidDhtMethod } from '@web5/dids' \n
 const did = await DidDhtMethod.create({
   publish: true,
   services: [{
@@ -22,6 +27,23 @@ const did = await DidDhtMethod.create({
     serviceEndpoint: 'tbdex-pfi.tbddev.org'
   }]
 })
-```
+    `}
+    </CodeBlock>
+  </TabItem>
+  <TabItem label="Kotlin" value="Kotlin">
+    <CodeBlock language="kotlin">
+    {`import web5.sdk.dids.methods.dht.DidDht
+import web5.sdk.crypto.InMemoryKeyManager \n
+fun createDid(): DidDht {
+  // Ensure key management is present to store keys
+  val keyManager = InMemoryKeyManager() \n
+  // Initialize or load a DID
+  val did: DidDht = DidDht.create(keyManager)\n
+  return did
+}
+    `}
+    </CodeBlock>
+  </TabItem>
+</Tabs>
 
 Note that the value for `serviceEndpoint` should be the URL to your PFI's service entry.
