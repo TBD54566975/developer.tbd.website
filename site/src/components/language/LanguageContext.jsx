@@ -11,7 +11,7 @@ export function useLanguage() {
 
 // Provider component
 export function LanguageProvider({ children }) {
-  const [language, setLanguage] = useState('JavaScript'); // Default language
+  const [language, setLanguage] = useState('JavaScript');
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
   const history = useHistory();
@@ -26,9 +26,9 @@ export function LanguageProvider({ children }) {
 
   const updateUrl = (language) => {
     if (language.length > 0) {
-      history.replace(`?lang=${language}`)
+      history.replace(`?lang=${language}`);
     }
-  }
+  };
 
   const changeLanguage = (newLanguage) => {
     setLanguage(newLanguage);

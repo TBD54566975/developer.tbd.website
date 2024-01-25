@@ -1,0 +1,24 @@
+---
+title: Tester
+hide_title: true
+---
+
+<LanguageSwitchHeader text="Hello World" />
+<LanguageSupport languages="js, kt" />
+
+Depending on the language you're programming in, you'll want to <LanguageSwitchLink text='link to different content' links='{"Kotlin": "https://kotlinlang.org/", "JavaScript": "https://www.javascript.com/"}'/>. Sometimes, you'll use the exact same link [for both languages](https://www.google.com/);
+
+<Shnip
+  snippets={[{ functionName: 'test1VcJwt', language: 'js' }]}
+  inlineSnippets={[
+    {
+      code: `
+        fun assignVcJwt(): String {
+            val signedVcJwt = "eyJ0eXAiOiJKV1QiLCJhbGciOiJFZERTQSIsImtp..."
+            return signedVcJwt
+        }
+      `,
+      language: 'kt',
+    },
+  ]}
+/>
