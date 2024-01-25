@@ -110,7 +110,7 @@ describe('how-to-create-did', () => {
    
     // :snippet-end:
 
-    expect(createdDid).toMatch(/^did:ion:/);
+    expect(didIon.did).toMatch(/^did:ion:/);
 
   });
 });
