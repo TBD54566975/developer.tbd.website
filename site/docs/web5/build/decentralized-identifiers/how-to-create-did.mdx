@@ -4,6 +4,8 @@ sidebar_position: 1
 ---
 
 import CodeSnippet from '@site/src/components/CodeSnippet';
+import createDidDht from '!!raw-loader!@site/snippets/web5/build/decentralized-identifiers/createDidDht.snippet.js'
+import createDidIon from '!!raw-loader!@site/snippets/web5/build/decentralized-identifiers/createDidIon.snippet.js'
 
 [Decentralized Identifiers (DIDs)](/docs/web5/learn/decentralized-identifiers) are how you are identified on the decentralized web. 
 This guide covers how to use Web5 to create a DID.
@@ -42,11 +44,11 @@ import { DidIonMethod } from '@web5/dids'
 
 ### did:dht
 
-<CodeSnippet functionName="createDidDht" />
+<CodeSnippet snippet={createDidDht}  />
 
 ### did:key
 
-<CodeSnippet functionName="createDidKey" />
+<CodeSnippet snippet={createDidIon} />
 
 ### did:ion
 
