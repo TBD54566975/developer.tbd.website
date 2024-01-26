@@ -6,6 +6,7 @@ import {
   queryProtocolDescending,
   queryProtocolsFromDid,
 } from '../../../../code-snippets/api/web5-js/dwn/protocols';
+import { setUpWeb5 } from '../../../setup-web5';
 
 let web5;
 let myDid;
@@ -23,6 +24,7 @@ const protocolDefinition = {
 
 describe('protocols', () => {
   beforeAll(async () => {
+    await setUpWeb5();
     web5 = globalThis.web5;
     myDid = globalThis.did;
   });

@@ -4,6 +4,7 @@ import {
   configureProtocolAndSend,
   queryProtocol,
 } from '../../../../code-snippets/api/web5-js/dwn/protocol';
+import { setUpWeb5 } from '../../../setup-web5';
 
 let web5;
 let myDid;
@@ -21,18 +22,26 @@ const protocolDefinition = {
 
 describe('protocol', () => {
   beforeAll(async () => {
+    await setUpWeb5();
     web5 = globalThis.web5;
     myDid = globalThis.did;
   });
 
   describe('tests for /api/web5-js/dwn/protocol.js', () => {
     test('configureProtocol configures a protocol', async () => {
-      const definitionResult = await getProtocolDefinition(web5, protocolDefinition);
+      const definitionResult = await getProtocolDefinition(
+        web5,
+        protocolDefinition,
+      );
       expect(definitionResult.protocol).toBe('http://social-media.xyz');
     });
 
     test('configureProtocolAndSend sends a protocol to remote DWNs', async () => {
-      const status = await configureProtocolAndSend(web5, myDid, protocolDefinition);
+      const status = await configureProtocolAndSend(
+        web5,
+        myDid,
+        protocolDefinition,
+      );
       expect(status.code).toBe(202);
     });
 

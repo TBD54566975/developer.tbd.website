@@ -23,15 +23,15 @@ export default function LayoutWrapper(props) {
   return (
     <SSRProvider>
       <GlitchWrapper>
-        <ChatSearch/>        
-         <MDXContent>  
+        <ChatSearch />
+        <MDXContent>
           <LanguageProvider>
-           <LanguageOptionsProvider>      
-            <Layout {...props}>{props.children}</Layout>
-          </LanguageOptionsProvider>  
-         </LanguageProvider>
+            <LanguageOptionsProvider>
+              <Layout {...props}>{props.children}</Layout>
+            </LanguageOptionsProvider>
+          </LanguageProvider>
         </MDXContent>
-       </GlitchWrapper>
+      </GlitchWrapper>
     </SSRProvider>
   );
 }
