@@ -13,38 +13,47 @@ Before beginning development of your PFI’s code, you’ll need to create an id
 DIDs are associated with [DID Documents](/docs/web5/learn/did_document) which describe how to engage with your PFI.
 
 
-To create a DID and identify yourself as a PFI, use the [@web5/dids SDK](https://www.npmjs.com/package/@web5/dids):
+To create a DID and identify yourself as a PFI, use the `web5/dids` package:
 
 <Tabs>
   <TabItem label="JavaScript" value="JavaScript">
-    <CodeBlock language="js">
-    {`import { DidDhtMethod } from '@web5/dids' \n
-const did = await DidDhtMethod.create({
-  publish: true,
-  services: [{
-    type: 'PFI',
-    id: 'pfi',
-    serviceEndpoint: 'tbdex-pfi.tbddev.org'
-  }]
-})
-    `}
-    </CodeBlock>
+
+  ```js
+  import { DidDhtMethod } from '@web5/dids';
+
+  const did = await DidDhtMethod.create({
+    publish: true,
+    services: [{
+      id: 'pfi',
+      type: 'PFI',
+      serviceEndpoint: 'tbdex-pfi.tbddev.org'
+    }]
+  })
+  ```
+
   </TabItem>
   <TabItem label="Kotlin" value="Kotlin">
-    <CodeBlock language="kotlin">
-    {`// Use Aws Key Manager to ensure secure storage of keys
-val keyManager: KeyManager = AwsKeyManager() \n
-// Provide the service endpoint for other to access your PFI
-val services: Iterable<Service>? = listOf(
-    Service("pfi", "PFI", "tbdex-pfi.dbddev.org")
-)\n
-// Load service endpoints into DID options class
-val createDidDhtOptions = CreateDidDhtOptions(
-    services = services
-)\n
-// Create the DID
-DidDht.create(keyManager, options)`}
-    </CodeBlock>
+
+  ```kt
+  import web5.sdk.dids.methods.dht.CreateDidDhtOptions
+  import web5.sdk.dids.methods.dht.DidDht
+  import foundation.identity.did.Service
+  import java.net.URI
+
+  val serviceToAdd = Service.builder()
+      .id(URI("pfi"))
+      .type("PFI")
+      .serviceEndpoint("tbdex-pfi.tbddev.org")
+      .build()
+
+  val options = CreateDidDhtOptions(
+      publish = true,
+      services = listOf(serviceToAdd),
+  )
+
+  val did = DidDht.create(keyManager, options)
+  ```
+
   </TabItem>
 </Tabs>
 
