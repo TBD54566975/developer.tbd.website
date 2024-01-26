@@ -30,10 +30,6 @@ To implement and operate as a PFI, you’ll need to use the following SDKs:
 
 </Tabs>
 
-
-
-
-
 ## Install SDKs
 
 <Tabs groupId="language">
@@ -47,7 +43,7 @@ npm i @tbdex/http-server
     </CodeBlock>
     </TabItem>
     <TabItem value="Kotlin" label="Kotlin">
-    You can install the repositories using Gradle or Maven using the following additions to your `build.gradle.kts`:
+    You can install the repositories using Gradle or Maven using the following additions to your <code>build.gradle.kts</code>:
     <CodeBlock language="js">
 {`repositories {
     mavenCentral()
@@ -87,9 +83,7 @@ To send and receive tbDEX messages, import the following classes:
     </TabItem>
     <TabItem groupId="language" value="Kotlin" label="Kotlin" default>
     <CodeBlock language="kotlin">
-{`import web5.sdk.credentials
-import web5.sdk.dids
-import tbdex.sdk.httpserver
+{`import tbdex.sdk.httpserver
 import tbdex.sdk.protocol
 `}
     </CodeBlock>
