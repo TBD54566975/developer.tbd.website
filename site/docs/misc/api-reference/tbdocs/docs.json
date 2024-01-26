@@ -1,0 +1,994 @@
+{
+	"id": 0,
+	"name": "tbdocs-action",
+	"variant": "project",
+	"kind": 1,
+	"flags": {},
+	"children": [
+		{
+			"id": 10,
+			"name": "DocsReport",
+			"variant": "declaration",
+			"kind": 256,
+			"flags": {},
+			"comment": {
+				"summary": [
+					{
+						"kind": "text",
+						"text": "Object containing the result of running the docs reporter."
+					}
+				],
+				"modifierTags": [
+					"@beta"
+				]
+			},
+			"children": [
+				{
+					"id": 12,
+					"name": "errorsCount",
+					"variant": "declaration",
+					"kind": 1024,
+					"flags": {},
+					"comment": {
+						"summary": [
+							{
+								"kind": "text",
+								"text": "The number of errors found in the docs report."
+							}
+						]
+					},
+					"type": {
+						"type": "intrinsic",
+						"name": "number"
+					}
+				},
+				{
+					"id": 14,
+					"name": "messages",
+					"variant": "declaration",
+					"kind": 1024,
+					"flags": {},
+					"comment": {
+						"summary": [
+							{
+								"kind": "text",
+								"text": "The list of messages found in the docs report. See "
+							},
+							{
+								"kind": "inline-tag",
+								"tag": "@link",
+								"text": "ReportMessage",
+								"target": 17,
+								"tsLinkText": ""
+							}
+						]
+					},
+					"type": {
+						"type": "array",
+						"elementType": {
+							"type": "reference",
+							"target": 17,
+							"name": "ReportMessage",
+							"package": "tbdocs-action"
+						}
+					}
+				},
+				{
+					"id": 11,
+					"name": "reporter",
+					"variant": "declaration",
+					"kind": 1024,
+					"flags": {},
+					"comment": {
+						"summary": [
+							{
+								"kind": "text",
+								"text": "The tool used to generate the report. See "
+							},
+							{
+								"kind": "inline-tag",
+								"tag": "@link",
+								"text": "DocsReporterType",
+								"target": 9,
+								"tsLinkText": ""
+							}
+						]
+					},
+					"type": {
+						"type": "literal",
+						"value": "api-extractor"
+					}
+				},
+				{
+					"id": 13,
+					"name": "warningsCount",
+					"variant": "declaration",
+					"kind": 1024,
+					"flags": {},
+					"comment": {
+						"summary": [
+							{
+								"kind": "text",
+								"text": "The number of warnings found in the docs report."
+							}
+						]
+					},
+					"type": {
+						"type": "intrinsic",
+						"name": "number"
+					}
+				}
+			],
+			"groups": [
+				{
+					"title": "Properties",
+					"children": [
+						12,
+						14,
+						11,
+						13
+					]
+				}
+			]
+		},
+		{
+			"id": 17,
+			"name": "ReportMessage",
+			"variant": "declaration",
+			"kind": 256,
+			"flags": {},
+			"comment": {
+				"summary": [
+					{
+						"kind": "text",
+						"text": "The report message."
+					}
+				],
+				"modifierTags": [
+					"@beta"
+				]
+			},
+			"children": [
+				{
+					"id": 19,
+					"name": "category",
+					"variant": "declaration",
+					"kind": 1024,
+					"flags": {},
+					"comment": {
+						"summary": [
+							{
+								"kind": "text",
+								"text": "The category of the message."
+							}
+						]
+					},
+					"type": {
+						"type": "reference",
+						"target": 15,
+						"name": "MessageCategory",
+						"package": "tbdocs-action"
+					}
+				},
+				{
+					"id": 25,
+					"name": "context",
+					"variant": "declaration",
+					"kind": 1024,
+					"flags": {
+						"isOptional": true
+					},
+					"comment": {
+						"summary": [
+							{
+								"kind": "text",
+								"text": "The context of the issue, such as the name of the exported symbol."
+							}
+						]
+					},
+					"type": {
+						"type": "intrinsic",
+						"name": "string"
+					}
+				},
+				{
+					"id": 18,
+					"name": "level",
+					"variant": "declaration",
+					"kind": 1024,
+					"flags": {},
+					"comment": {
+						"summary": [
+							{
+								"kind": "text",
+								"text": "The level of the message. You should never ignore errors if\nyou want to keep your docs in good shape."
+							}
+						]
+					},
+					"type": {
+						"type": "reference",
+						"target": 16,
+						"name": "MessageLevel",
+						"package": "tbdocs-action"
+					}
+				},
+				{
+					"id": 20,
+					"name": "messageId",
+					"variant": "declaration",
+					"kind": 1024,
+					"flags": {},
+					"comment": {
+						"summary": [
+							{
+								"kind": "text",
+								"text": "The ID of the issue"
+							}
+						]
+					},
+					"type": {
+						"type": "intrinsic",
+						"name": "string"
+					}
+				},
+				{
+					"id": 24,
+					"name": "sourceFileColumn",
+					"variant": "declaration",
+					"kind": 1024,
+					"flags": {
+						"isOptional": true
+					},
+					"comment": {
+						"summary": [
+							{
+								"kind": "text",
+								"text": "The column number in the source file where the issue was found."
+							}
+						]
+					},
+					"type": {
+						"type": "intrinsic",
+						"name": "number"
+					}
+				},
+				{
+					"id": 23,
+					"name": "sourceFileLine",
+					"variant": "declaration",
+					"kind": 1024,
+					"flags": {
+						"isOptional": true
+					},
+					"comment": {
+						"summary": [
+							{
+								"kind": "text",
+								"text": "The line number in the source file where the issue was found."
+							}
+						]
+					},
+					"type": {
+						"type": "intrinsic",
+						"name": "number"
+					}
+				},
+				{
+					"id": 22,
+					"name": "sourceFilePath",
+					"variant": "declaration",
+					"kind": 1024,
+					"flags": {
+						"isOptional": true
+					},
+					"comment": {
+						"summary": [
+							{
+								"kind": "text",
+								"text": "The source file path where the issue was found."
+							}
+						]
+					},
+					"type": {
+						"type": "intrinsic",
+						"name": "string"
+					}
+				},
+				{
+					"id": 21,
+					"name": "text",
+					"variant": "declaration",
+					"kind": 1024,
+					"flags": {},
+					"comment": {
+						"summary": [
+							{
+								"kind": "text",
+								"text": "The prettified text of the message."
+							}
+						]
+					},
+					"type": {
+						"type": "intrinsic",
+						"name": "string"
+					}
+				}
+			],
+			"groups": [
+				{
+					"title": "Properties",
+					"children": [
+						19,
+						25,
+						18,
+						20,
+						24,
+						23,
+						22,
+						21
+					]
+				}
+			]
+		},
+		{
+			"id": 32,
+			"name": "DocsGeneratorType",
+			"variant": "declaration",
+			"kind": 2097152,
+			"flags": {
+				"isPublic": true
+			},
+			"comment": {
+				"summary": [
+					{
+						"kind": "text",
+						"text": "The name of the tool used to parse the code docs\nand generate markdown files.\n\n**Supported generators:**\n- Typescript: "
+					},
+					{
+						"kind": "code",
+						"text": "`typedoc-markdown`"
+					},
+					{
+						"kind": "text",
+						"text": "\n\n**Future to-do work:**\n- Kotlin: dokka\n- etc..."
+					}
+				]
+			},
+			"type": {
+				"type": "union",
+				"types": [
+					{
+						"type": "literal",
+						"value": "typedoc-markdown"
+					},
+					{
+						"type": "literal",
+						"value": "typedoc-html"
+					}
+				]
+			}
+		},
+		{
+			"id": 9,
+			"name": "DocsReporterType",
+			"variant": "declaration",
+			"kind": 2097152,
+			"flags": {
+				"isPublic": true
+			},
+			"comment": {
+				"summary": [
+					{
+						"kind": "text",
+						"text": "The name of the tool used to analyze the code docs\nand generate a report.\n\n**Supported reporters:**\n- Typescript: "
+					},
+					{
+						"kind": "code",
+						"text": "`api-extractor`"
+					},
+					{
+						"kind": "text",
+						"text": "\n\n**Future to-do work:**\n- Kotlin: detekt\n- etc..."
+					}
+				]
+			},
+			"type": {
+				"type": "literal",
+				"value": "api-extractor"
+			}
+		},
+		{
+			"id": 15,
+			"name": "MessageCategory",
+			"variant": "declaration",
+			"kind": 2097152,
+			"flags": {},
+			"comment": {
+				"summary": [
+					{
+						"kind": "text",
+						"text": "The category of the report message."
+					}
+				],
+				"modifierTags": [
+					"@beta"
+				]
+			},
+			"type": {
+				"type": "union",
+				"types": [
+					{
+						"type": "literal",
+						"value": "compiler"
+					},
+					{
+						"type": "literal",
+						"value": "docs"
+					},
+					{
+						"type": "literal",
+						"value": "extractor"
+					},
+					{
+						"type": "literal",
+						"value": "unknown"
+					}
+				]
+			}
+		},
+		{
+			"id": 16,
+			"name": "MessageLevel",
+			"variant": "declaration",
+			"kind": 2097152,
+			"flags": {},
+			"comment": {
+				"summary": [
+					{
+						"kind": "text",
+						"text": "The level of the report message."
+					}
+				],
+				"modifierTags": [
+					"@beta"
+				]
+			},
+			"type": {
+				"type": "union",
+				"types": [
+					{
+						"type": "literal",
+						"value": "error"
+					},
+					{
+						"type": "literal",
+						"value": "warning"
+					},
+					{
+						"type": "literal",
+						"value": "info"
+					},
+					{
+						"type": "literal",
+						"value": "verbose"
+					},
+					{
+						"type": "literal",
+						"value": "none"
+					}
+				]
+			}
+		},
+		{
+			"id": 26,
+			"name": "generateDocs",
+			"variant": "declaration",
+			"kind": 64,
+			"flags": {},
+			"signatures": [
+				{
+					"id": 27,
+					"name": "generateDocs",
+					"variant": "signature",
+					"kind": 4096,
+					"flags": {},
+					"comment": {
+						"summary": [
+							{
+								"kind": "text",
+								"text": "Generates the markdown files for the docs and open a PR to the target repo"
+							}
+						],
+						"modifierTags": [
+							"@beta"
+						]
+					},
+					"parameters": [
+						{
+							"id": 28,
+							"name": "entryPoint",
+							"variant": "param",
+							"kind": 32768,
+							"flags": {},
+							"type": {
+								"type": "reference",
+								"target": {
+									"sourceFileName": "src/interfaces.ts",
+									"qualifiedName": "EntryPoint"
+								},
+								"name": "EntryPoint",
+								"package": "tbdocs-action"
+							}
+						}
+					],
+					"type": {
+						"type": "reference",
+						"target": {
+							"sourceFileName": "../../app/node_modules/typescript/lib/lib.es5.d.ts",
+							"qualifiedName": "Promise"
+						},
+						"typeArguments": [
+							{
+								"type": "intrinsic",
+								"name": "string"
+							}
+						],
+						"name": "Promise",
+						"package": "typescript"
+					}
+				}
+			]
+		},
+		{
+			"id": 6,
+			"name": "generateReportMarkdown",
+			"variant": "declaration",
+			"kind": 64,
+			"flags": {
+				"isPublic": true
+			},
+			"signatures": [
+				{
+					"id": 7,
+					"name": "generateReportMarkdown",
+					"variant": "signature",
+					"kind": 4096,
+					"flags": {},
+					"comment": {
+						"summary": [
+							{
+								"kind": "text",
+								"text": "Formats the docs reporter results into a markdown summary and writes it to the\n.tbdocs/docs-report.md file."
+							}
+						]
+					},
+					"parameters": [
+						{
+							"id": 8,
+							"name": "entryPoints",
+							"variant": "param",
+							"kind": 32768,
+							"flags": {},
+							"type": {
+								"type": "array",
+								"elementType": {
+									"type": "reference",
+									"target": {
+										"sourceFileName": "src/interfaces.ts",
+										"qualifiedName": "EntryPoint"
+									},
+									"name": "EntryPoint",
+									"package": "tbdocs-action"
+								}
+							}
+						}
+					],
+					"type": {
+						"type": "reference",
+						"target": {
+							"sourceFileName": "../../app/node_modules/typescript/lib/lib.es5.d.ts",
+							"qualifiedName": "Promise"
+						},
+						"typeArguments": [
+							{
+								"type": "intrinsic",
+								"name": "string"
+							}
+						],
+						"name": "Promise",
+						"package": "typescript"
+					}
+				}
+			]
+		},
+		{
+			"id": 29,
+			"name": "groupDocs",
+			"variant": "declaration",
+			"kind": 64,
+			"flags": {},
+			"signatures": [
+				{
+					"id": 30,
+					"name": "groupDocs",
+					"variant": "signature",
+					"kind": 4096,
+					"flags": {},
+					"comment": {
+						"summary": [
+							{
+								"kind": "text",
+								"text": "Groups all the generated docs into a single docs folder"
+							}
+						],
+						"modifierTags": [
+							"@beta"
+						]
+					},
+					"parameters": [
+						{
+							"id": 31,
+							"name": "entryPoints",
+							"variant": "param",
+							"kind": 32768,
+							"flags": {},
+							"type": {
+								"type": "array",
+								"elementType": {
+									"type": "reference",
+									"target": {
+										"sourceFileName": "src/interfaces.ts",
+										"qualifiedName": "EntryPoint"
+									},
+									"name": "EntryPoint",
+									"package": "tbdocs-action"
+								}
+							}
+						}
+					],
+					"type": {
+						"type": "reference",
+						"target": {
+							"sourceFileName": "../../app/node_modules/typescript/lib/lib.es5.d.ts",
+							"qualifiedName": "Promise"
+						},
+						"typeArguments": [
+							{
+								"type": "intrinsic",
+								"name": "void"
+							}
+						],
+						"name": "Promise",
+						"package": "typescript"
+					}
+				}
+			]
+		},
+		{
+			"id": 33,
+			"name": "run",
+			"variant": "declaration",
+			"kind": 64,
+			"flags": {
+				"isPublic": true
+			},
+			"signatures": [
+				{
+					"id": 34,
+					"name": "run",
+					"variant": "signature",
+					"kind": 4096,
+					"flags": {
+						"isPublic": true
+					},
+					"comment": {
+						"summary": [
+							{
+								"kind": "text",
+								"text": "The main function for the action."
+							}
+						],
+						"blockTags": [
+							{
+								"tag": "@returns",
+								"content": [
+									{
+										"kind": "code",
+										"text": "`Promise<void>`"
+									},
+									{
+										"kind": "text",
+										"text": " resolves when the action is complete."
+									}
+								]
+							}
+						]
+					},
+					"type": {
+						"type": "reference",
+						"target": {
+							"sourceFileName": "../../app/node_modules/typescript/lib/lib.es5.d.ts",
+							"qualifiedName": "Promise"
+						},
+						"typeArguments": [
+							{
+								"type": "intrinsic",
+								"name": "void"
+							}
+						],
+						"name": "Promise",
+						"package": "typescript"
+					}
+				}
+			]
+		},
+		{
+			"id": 1,
+			"name": "runDocsReport",
+			"variant": "declaration",
+			"kind": 64,
+			"flags": {},
+			"signatures": [
+				{
+					"id": 2,
+					"name": "runDocsReport",
+					"variant": "signature",
+					"kind": 4096,
+					"flags": {},
+					"comment": {
+						"summary": [
+							{
+								"kind": "text",
+								"text": "Runs the docs reporter to extract any docs errors/mistakes and processes\nthe results by annotating the code files and creating a PR comment."
+							}
+						],
+						"modifierTags": [
+							"@beta"
+						]
+					},
+					"parameters": [
+						{
+							"id": 3,
+							"name": "entryPoint",
+							"variant": "param",
+							"kind": 32768,
+							"flags": {},
+							"type": {
+								"type": "reference",
+								"target": {
+									"sourceFileName": "src/interfaces.ts",
+									"qualifiedName": "EntryPoint"
+								},
+								"name": "EntryPoint",
+								"package": "tbdocs-action"
+							}
+						},
+						{
+							"id": 4,
+							"name": "changedFiles",
+							"variant": "param",
+							"kind": 32768,
+							"flags": {
+								"isOptional": true
+							},
+							"type": {
+								"type": "reference",
+								"target": {
+									"sourceFileName": "src/utils/git.ts",
+									"qualifiedName": "FilesDiffsMap"
+								},
+								"name": "FilesDiffsMap",
+								"package": "tbdocs-action"
+							}
+						},
+						{
+							"id": 5,
+							"name": "ignoreMessages",
+							"variant": "param",
+							"kind": 32768,
+							"flags": {
+								"isOptional": true
+							},
+							"type": {
+								"type": "array",
+								"elementType": {
+									"type": "intrinsic",
+									"name": "string"
+								}
+							}
+						}
+					],
+					"type": {
+						"type": "reference",
+						"target": {
+							"sourceFileName": "../../app/node_modules/typescript/lib/lib.es5.d.ts",
+							"qualifiedName": "Promise"
+						},
+						"typeArguments": [
+							{
+								"type": "reference",
+								"target": 10,
+								"name": "DocsReport",
+								"package": "tbdocs-action"
+							}
+						],
+						"name": "Promise",
+						"package": "typescript"
+					}
+				}
+			]
+		}
+	],
+	"groups": [
+		{
+			"title": "Interfaces",
+			"children": [
+				10,
+				17
+			]
+		},
+		{
+			"title": "Type Aliases",
+			"children": [
+				32,
+				9,
+				15,
+				16
+			]
+		},
+		{
+			"title": "Functions",
+			"children": [
+				26,
+				6,
+				29,
+				33,
+				1
+			]
+		}
+	],
+	"packageName": "tbdocs-action",
+	"packageVersion": "0.0.0",
+	"symbolIdMap": {
+		"0": {
+			"sourceFileName": "src/index.ts",
+			"qualifiedName": ""
+		},
+		"1": {
+			"sourceFileName": "src/docs-report/index.ts",
+			"qualifiedName": "runDocsReport"
+		},
+		"2": {
+			"sourceFileName": "src/docs-report/index.ts",
+			"qualifiedName": "runDocsReport"
+		},
+		"3": {
+			"sourceFileName": "src/docs-report/index.ts",
+			"qualifiedName": "entryPoint"
+		},
+		"4": {
+			"sourceFileName": "src/docs-report/index.ts",
+			"qualifiedName": "changedFiles"
+		},
+		"5": {
+			"sourceFileName": "src/docs-report/index.ts",
+			"qualifiedName": "ignoreMessages"
+		},
+		"6": {
+			"sourceFileName": "src/docs-report/report-markdown.ts",
+			"qualifiedName": "generateReportMarkdown"
+		},
+		"7": {
+			"sourceFileName": "src/docs-report/report-markdown.ts",
+			"qualifiedName": "generateReportMarkdown"
+		},
+		"8": {
+			"sourceFileName": "src/docs-report/report-markdown.ts",
+			"qualifiedName": "entryPoints"
+		},
+		"9": {
+			"sourceFileName": "src/docs-report/interfaces.ts",
+			"qualifiedName": "DocsReporterType"
+		},
+		"10": {
+			"sourceFileName": "src/docs-report/interfaces.ts",
+			"qualifiedName": "DocsReport"
+		},
+		"11": {
+			"sourceFileName": "src/docs-report/interfaces.ts",
+			"qualifiedName": "DocsReport.reporter"
+		},
+		"12": {
+			"sourceFileName": "src/docs-report/interfaces.ts",
+			"qualifiedName": "DocsReport.errorsCount"
+		},
+		"13": {
+			"sourceFileName": "src/docs-report/interfaces.ts",
+			"qualifiedName": "DocsReport.warningsCount"
+		},
+		"14": {
+			"sourceFileName": "src/docs-report/interfaces.ts",
+			"qualifiedName": "DocsReport.messages"
+		},
+		"15": {
+			"sourceFileName": "src/docs-report/interfaces.ts",
+			"qualifiedName": "MessageCategory"
+		},
+		"16": {
+			"sourceFileName": "src/docs-report/interfaces.ts",
+			"qualifiedName": "MessageLevel"
+		},
+		"17": {
+			"sourceFileName": "src/docs-report/interfaces.ts",
+			"qualifiedName": "ReportMessage"
+		},
+		"18": {
+			"sourceFileName": "src/docs-report/interfaces.ts",
+			"qualifiedName": "ReportMessage.level"
+		},
+		"19": {
+			"sourceFileName": "src/docs-report/interfaces.ts",
+			"qualifiedName": "ReportMessage.category"
+		},
+		"20": {
+			"sourceFileName": "src/docs-report/interfaces.ts",
+			"qualifiedName": "ReportMessage.messageId"
+		},
+		"21": {
+			"sourceFileName": "src/docs-report/interfaces.ts",
+			"qualifiedName": "ReportMessage.text"
+		},
+		"22": {
+			"sourceFileName": "src/docs-report/interfaces.ts",
+			"qualifiedName": "ReportMessage.sourceFilePath"
+		},
+		"23": {
+			"sourceFileName": "src/docs-report/interfaces.ts",
+			"qualifiedName": "ReportMessage.sourceFileLine"
+		},
+		"24": {
+			"sourceFileName": "src/docs-report/interfaces.ts",
+			"qualifiedName": "ReportMessage.sourceFileColumn"
+		},
+		"25": {
+			"sourceFileName": "src/docs-report/interfaces.ts",
+			"qualifiedName": "ReportMessage.context"
+		},
+		"26": {
+			"sourceFileName": "src/docs-generator/index.ts",
+			"qualifiedName": "generateDocs"
+		},
+		"27": {
+			"sourceFileName": "src/docs-generator/index.ts",
+			"qualifiedName": "generateDocs"
+		},
+		"28": {
+			"sourceFileName": "src/docs-generator/index.ts",
+			"qualifiedName": "entryPoint"
+		},
+		"29": {
+			"sourceFileName": "src/docs-generator/index.ts",
+			"qualifiedName": "groupDocs"
+		},
+		"30": {
+			"sourceFileName": "src/docs-generator/index.ts",
+			"qualifiedName": "groupDocs"
+		},
+		"31": {
+			"sourceFileName": "src/docs-generator/index.ts",
+			"qualifiedName": "entryPoints"
+		},
+		"32": {
+			"sourceFileName": "src/docs-generator/interfaces.ts",
+			"qualifiedName": "DocsGeneratorType"
+		},
+		"33": {
+			"sourceFileName": "src/run.ts",
+			"qualifiedName": "run"
+		},
+		"34": {
+			"sourceFileName": "src/run.ts",
+			"qualifiedName": "run"
+		}
+	}
+}
