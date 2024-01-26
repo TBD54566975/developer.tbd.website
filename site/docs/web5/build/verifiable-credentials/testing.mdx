@@ -6,20 +6,19 @@ hide_title: true
 import createDidDht from '!!raw-loader!@site/snippets/web5/build/decentralized-identifiers/createDidDht.snippet.js';
 
 <LanguageSwitchHeader text="Hello World" />
-<LanguageSupport languages="js, kt" />
+<LanguageSupport languages="JavaScript, kotlin" />
 
 Depending on the language you're programming in, you'll want to <LanguageSwitchLink text='link to different content' links='{"Kotlin": "https://kotlinlang.org/", "JavaScript": "https://www.javascript.com/"}'/>. Sometimes, you'll use the exact same link [for both languages](https://www.google.com/);
 
 <Shnip
-  snippets={[
-    { snippetContent: createDidDht, language: 'js' }, // Use 'snippetContent' to pass the actual code content
-  ]}
+  snippets={[{ snippetContent: createDidDht, language: 'JavaScript' }]}
+  // 'inlineSnippets' is how we'll hardcode
   inlineSnippets={[
     {
       code: `
             val signedVcJwt = "eyJ0eXAiOiJKV1QiLCJhbGciOiJFZERTQSIsImtp..."
       `,
-      language: 'kt',
+      language: 'kotlin',
     },
   ]}
 />
