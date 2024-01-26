@@ -171,13 +171,14 @@ import {
   queryRecordWithParentId,
 } from '../../../../code-snippets/web5/build/decentralized-web-nodes/query-from-dwn';
 import { Web5 } from '@web5/api';
+import { setUpWeb5 } from './setup-web5'
 
 let web5;
 let did;
 
 // connect to web5 beforeAll tests and assign it to web5 variable. This is how we pass the web5 instance to the code snippets:
 beforeAll(async () => {
-  const result = await Web5.connect();
+  await setUpWeb5();
   web5 = result.web5;
   did = result.did;
 });
@@ -187,6 +188,20 @@ test('queryProtocolsForMusic returns an array of protocols', async () => {
   expect(Array.isArray(protocols)).toBe(true);
 });
 ```
+
+**Note**
+
+We have a helper function for setting up identityManager as well. Here's an example:
+
+```js
+describe('create identity agent', () => {
+  test('createIdentityAgent', async () => {
+    agent = await setUpIdentityManager();
+
+    // identityManager test logic
+  });
+});
+  ```
 
 #### Running tests
 

@@ -9,19 +9,9 @@ import { setUpIdentityManager } from '../../../setup-web5';
 
 let agent;
 
-// afterEach(async () => {
-//   console.log('agent?', agent);
-//   agent.close();
-// });
-
 describe('create identity agent', () => {
   test('createIdentityAgent', async () => {
     agent = await setUpIdentityManager();
-    // NOTE TO NICK: THIS IS THE LINE THAT CALLS
-    // agent = await IdentityAgent.create();
-    //   I WANT TO ADD.
-    // Maybe it has to be added in the before all or maybe it can just be added here
-    // await createIdentityAgent();
   });
   test('createDidOptions returns an object with cryptographic keys and service endpoints', async () => {
     const didOptions = await getDwnEndpoints();
