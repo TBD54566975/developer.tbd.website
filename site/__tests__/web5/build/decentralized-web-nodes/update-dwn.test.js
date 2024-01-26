@@ -1,11 +1,13 @@
 import { test, beforeAll, expect, describe } from 'vitest';
 import { updateDwnRecord } from '../../../../code-snippets/web5/build/decentralized-web-nodes/update-dwn';
+import { setUpWeb5 } from '../../../setup-web5';
 
 let web5;
 
 describe('update-dwn-test', () => {
   // connect to web5 beforeAll tests and assign it to web5 variable
   beforeAll(async () => {
+    await setUpWeb5();
     web5 = globalThis.web5;
   });
 

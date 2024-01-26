@@ -7,11 +7,13 @@ import {
   createDidIon,
   createDidKey,
 } from '../../../../code-snippets/web5/build/decentralized-identifiers/how-to-create-did';
+import { setUpWeb5 } from '../../../setup-web5';
 
 let web5;
 
 describe('how-to-create-did', () => {
   beforeAll(async () => {
+    await setUpWeb5();
     web5 = globalThis.web5;
     did = globalThis.did;
 
