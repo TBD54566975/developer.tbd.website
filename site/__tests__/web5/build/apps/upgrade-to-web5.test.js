@@ -1,10 +1,12 @@
 import { test, expect, beforeAll, describe, vi } from 'vitest';
 import { createAliceDid } from '../../../../code-snippets/web5/build/apps/upgrade-to-web5';
+import { setUpWeb5 } from '../../../setup-web5';
 
 let web5;
 
 describe('ugprade-to-web5', () => {
   beforeAll(async () => {
+    await setUpWeb5();
     web5 = globalThis.web5;
     did = globalThis.did;
 

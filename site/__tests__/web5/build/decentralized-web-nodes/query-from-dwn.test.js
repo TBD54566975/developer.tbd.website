@@ -9,6 +9,7 @@ import {
   playlistProtocolDefinition,
   queryFromDwnByProtocolPath,
 } from '../../../../code-snippets/web5/build/decentralized-web-nodes/query-from-dwn';
+import { setUpWeb5 } from '../../../setup-web5';
 
 let web5;
 let did;
@@ -16,6 +17,7 @@ let did;
 describe('query-from-dwn', () => {
   // connect to web5 beforeAll tests and assign it to web5 variable
   beforeAll(async () => {
+    await setUpWeb5();
     web5 = globalThis.web5;
     did = globalThis.did;
   });

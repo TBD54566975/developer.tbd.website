@@ -7,6 +7,7 @@ import {
   updateRecord,
   readRecord,
 } from '../../../../code-snippets/api/web5-js/dwn/record';
+import { setUpWeb5 } from '../../../setup-web5';
 
 let web5;
 let record;
@@ -14,6 +15,7 @@ let myDid;
 
 describe('record', () => {
   beforeAll(async () => {
+    await setUpWeb5();
     web5 = globalThis.web5;
     myDid = globalThis.did;
   });
