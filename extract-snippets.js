@@ -1,71 +1,84 @@
-const fs = require("fs");
-const path = require("path");
+const fs = require('fs');
+const path = require('path');
 
-function extractFunctionBody(content, startIndex) {
-  let braceCount = 1;
-  let i = startIndex;
+function extractSnippetsFromFile(content) {
+  const snippetStartTag = ':snippet-start:';
+  const snippetEndTag = ':snippet-end:';
+  const snippets = {};
 
-  while (braceCount !== 0 && i < content.length) {
-    if (content[i] === "{") {
-      braceCount++;
-    } else if (content[i] === "}") {
-      braceCount--;
+  let startIndex = 0,
+    endIndex = 0;
+  while ((startIndex = content.indexOf(snippetStartTag, endIndex)) !== -1) {
+    const startTagClose = content.indexOf('\n', startIndex);
+    if (startTagClose === -1) {
+      console.log('Snippet start tag not followed by newline. Skipping...');
+      break;
     }
-    i++;
+
+    endIndex = content.indexOf(snippetEndTag, startTagClose);
+    if (endIndex === -1) {
+      console.log('No closing tag found for a snippet. Skipping...');
+      break;
+    }
+
+    const snippetName = content
+      .substring(startIndex + snippetStartTag.length, startTagClose)
+      .trim();
+    const endTagStart = content.lastIndexOf('\n', endIndex);
+    let snippetContent = content.substring(startTagClose + 1, endTagStart);
+
+    // Trim leading whitespace from each line
+    snippetContent = snippetContent
+      .split('\n')
+      .map((line) => line.trimStart())
+      .join('\n')
+      .trim();
+
+    if (snippetName) {
+      snippets[snippetName] = snippetContent;
+    }
+
+    // Move endIndex past the end tag to avoid including it in the next iteration
+    endIndex = content.indexOf('\n', endIndex) + 1;
   }
 
-  return content.substring(startIndex, i - 1).trim();
+  return snippets;
 }
 
-function extractFunctionsFromContent(content) {
-  // Regular expression to match exported async functions
-  const functionRegex = /export\s+async\s+function\s+(\w+)\s*\([^)]*\)\s*{/g;
-
-  const functions = {};
-
-  let match;
-  while ((match = functionRegex.exec(content)) !== null) {
-    const funcName = match[1];
-    const funcBody = extractFunctionBody(
-      content,
-      match.index + match[0].length
-    );
-
-    // Remove return statements, even those spanning multiple lines
-    const cleanedBody = funcBody.replace(/return[^;]*;/gs, "").trim();
-
-    if (cleanedBody) {
-      functions[funcName] = cleanedBody;
-    }
-  }
-
-  return functions;
-}
-
-function processDirectory(directory) {
-  const results = {};
-
+function processDirectory(directory, outputDirectory, baseDirectory) {
   const items = fs.readdirSync(directory);
   items.forEach((item) => {
     const fullPath = path.join(directory, item);
     const stat = fs.statSync(fullPath);
 
     if (stat.isDirectory()) {
-      Object.assign(results, processDirectory(fullPath));
-    } else if (stat.isFile() && path.extname(fullPath) === ".js") {
-      const content = fs.readFileSync(fullPath, "utf-8");
-      const fileFunctions = extractFunctionsFromContent(content);
-      Object.assign(results, fileFunctions);
+      processDirectory(fullPath, outputDirectory, baseDirectory);
+    } else if (stat.isFile()) {
+      const content = fs.readFileSync(fullPath, 'utf-8');
+      const fileSnippets = extractSnippetsFromFile(content);
+      const fileExtension = path.extname(fullPath);
+
+      for (const [snippetName, snippetContent] of Object.entries(
+        fileSnippets
+      )) {
+        const relativePath = path.relative(baseDirectory, directory);
+        const snippetDir = path.join(outputDirectory, relativePath);
+        if (!fs.existsSync(snippetDir)) {
+          fs.mkdirSync(snippetDir, { recursive: true });
+        }
+
+        const outputFileName = `${snippetName}.snippet${fileExtension}`;
+        const outputPath = path.join(snippetDir, outputFileName);
+        console.log(`Writing snippet: ${outputPath}`);
+        fs.writeFileSync(outputPath, snippetContent);
+      }
     }
   });
-
-  return results;
 }
 
-const rootDirectory = "./site/code-snippets";
-const allFunctions = processDirectory(rootDirectory);
-
-fs.writeFileSync(
-  "./site/src/util/code-snippets-map.json",
-  JSON.stringify(allFunctions, null, 2)
-);
+const rootDirectory = './site/__tests__';
+const outputDirectory = './site/snippets';
+if (!fs.existsSync(outputDirectory)) {
+  fs.mkdirSync(outputDirectory, { recursive: true });
+}
+processDirectory(rootDirectory, outputDirectory, rootDirectory);

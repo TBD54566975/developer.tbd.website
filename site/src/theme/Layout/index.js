@@ -21,8 +21,8 @@ export default function LayoutWrapper(props) {
   return (
     <SSRProvider>
       <GlitchWrapper>
-      <ChatSearch/>        
-        <MDXContent>          
+        <ChatSearch />
+        <MDXContent>
           <Layout {...props}>{props.children}</Layout>
         </MDXContent>
       </GlitchWrapper>
