@@ -32,16 +32,18 @@ const did = await DidDhtMethod.create({
   </TabItem>
   <TabItem label="Kotlin" value="Kotlin">
     <CodeBlock language="kotlin">
-    {`import web5.sdk.dids.methods.dht.DidDht
-import web5.sdk.crypto.InMemoryKeyManager \n
-fun createDid(): DidDht {
-  // Ensure key management is present to store keys
-  val keyManager = InMemoryKeyManager() \n
-  // Initialize or load a DID
-  val did: DidDht = DidDht.create(keyManager)\n
-  return did
-}
-    `}
+    {`// Use Aws Key Manager to ensure secure storage of keys
+    val keyManager: KeyManager = AwsKeyManager() \n
+    // Provide the service endpoint for other to access your PFI
+    val services: Iterable<Service>? = listOf(
+        Service("pfi", "PFI", "tbdex-pfi.dbddev.org")
+    )\n
+    // Load service endpoints into DID options class
+    val createDidDhtOptions = CreateDidDhtOptions(
+        services = services
+    )\n
+    // Create the DID
+    DidDht.create(keyManager, options)`}
     </CodeBlock>
   </TabItem>
 </Tabs>
