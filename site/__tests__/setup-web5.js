@@ -61,6 +61,7 @@ afterAll(async () => {
       console.log('closed');
     }
     delete globalThis.identityAgent;
-    delete globalThis.web5?.agent;
+    delete globalThis.web5;
+    delete globalThis.did;
   }
 });
