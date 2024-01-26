@@ -1,0 +1,1 @@
+const createdDid = await createDidIon();

@@ -25,11 +25,58 @@ Learn more here: https://docusaurus.io/docs
 
 It's important for the integrity of our documentation to remain in tact while adding content to our docs site. We do this by making sure that most of the code snippets we display are also testable from an execution standpoint. If you plan on editing or adding code snippets to our docs, please follow the guideline below:
 
-#### Adding Code Snippets
 
-We have a folder at `./site/code-snippets`. It reflects the same structure that we have for `./site/docs`. If you'd like to add or edit code snippets in `./site/docs/web5/build/decentralized-web-nodes/query-from-dwn.mdx`, please make sure that the code snippets location mirrors that path. For example: `./site/code-snippets/web5/build/decentralized-web-nodes/query-from-dwn.js`
+## Contributing Code Snippets to Documentation
+We appreciate your contributions to our documentation. This guide will help you add or update code snippets using a tagging system, ensuring they are synchronized with the latest test cases.
 
-You can now edit the `query-from-dwn.js` file with code snippets that you want to display in the docs.
+Setting Up Your Environment
+Configure snippet.config.json:
+Create a snippet.config.json file in your project with the following content:
+
+```json
+{
+  "rootDirectory": "./site/__tests__",
+  "outputDirectory": "./site/snippets",
+  "fileExtensions": [".js", ".ts", ".kt"],
+  "snippetTags": {
+    "start": ":snippet-start:",
+    "end": ":snippet-end:"
+  }
+}
+```
+
+This configuration specifies the directories for your tests and output snippets, the file extensions to be considered, and the tags to denote the start and end of a snippet.
+
+
+## Use Tags in Test Files:
+In your test files, use the :snippet-start: and :snippet-end: tags to denote the beginning and end of a code snippet. Name your snippet immediately after the :snippet-start: tag. For example:
+
+```js
+test('createDidDht creates a DID with did:dht method', async () => {
+  // :snippet-start: createDidDht
+  const didDht = await DidDhtMethod.create({ publish: true });
+  // ... rest of the code ...
+  // :snippet-end:
+});
+
+```
+
+
+### Generate Snippets:
+After creating your snippets, run the command `pnpm run shnip`. This will generate a folder called snippets and create a directory structure similar to where the file is.
+
+### Naming and Importing Snippets:
+The generated file will be named as functionName.snippet.js (or the respective file extension). For example, the above snippet will be createDidDht.snippet.js.
+
+To import the snippet in your documentation, use the following format:
+
+```jsx
+import CodeSnippet from '@site/src/components/CodeSnippet';
+import createDidDht from '!!raw-loader!@site/snippets/web5/build/decentralized-identifiers/createDidDht.snippet.js'
+
+<CodeSnippet snippet={createDidDht} />
+
+```
 
 #### Function convention
 

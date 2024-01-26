@@ -1,4 +1,5 @@
 import { test, expect, vi, describe, beforeAll } from 'vitest';
+import { DidDhtMethod, DidKeyMethod, DidIonMethod } from '@web5/dids';
 
 import {
   createDidAutomatically,
@@ -37,8 +38,27 @@ describe('how-to-create-did', () => {
   });
 
   test('createDidDht creates a DID with did:dht method', async () => {
-    const createdDid = await createDidDht();
-    expect(createdDid).toMatch(/^did:dht:/);
+    // :snippet-start: createDidDht
+    const didDht = await DidDhtMethod.create({ publish: true });
+
+    //DID and its associated data which can be exported and used in different contexts/apps
+    const portableDID = JSON.stringify(didDht);
+
+    //DID string
+    const did = didDht.did;
+
+    //DID Document
+    const didDocument = JSON.stringify(didDht.document);
+
+    //Cryptographic keys associated with DID
+    const keys = JSON.stringify(didDht.keySet);
+
+    //Primary form of a DID. more info: https://www.w3.org/TR/did-core/#dfn-canonicalid
+    const canonicalId = didDht.canonicalId;
+
+    // :snippet-end:
+
+    expect(didDht.did).toMatch(/^did:dht:/);
   });
 
   test('createDidKey creates a DID with did:key method', async () => {

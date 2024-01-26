@@ -1,0 +1,10 @@
+{
+    "rootDirectory": "./site/__tests__",
+    "snippetOutputDirectory": "./site/snippets",
+    "fileExtensions": [".js", ".ts"],
+    "snippetTags": {
+      "start": ":snippet-start:",
+      "end": ":snippet-end:"
+    }
+  }
+  
