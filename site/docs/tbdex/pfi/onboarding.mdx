@@ -33,17 +33,17 @@ const did = await DidDhtMethod.create({
   <TabItem label="Kotlin" value="Kotlin">
     <CodeBlock language="kotlin">
     {`// Use Aws Key Manager to ensure secure storage of keys
-    val keyManager: KeyManager = AwsKeyManager() \n
-    // Provide the service endpoint for other to access your PFI
-    val services: Iterable<Service>? = listOf(
-        Service("pfi", "PFI", "tbdex-pfi.dbddev.org")
-    )\n
-    // Load service endpoints into DID options class
-    val createDidDhtOptions = CreateDidDhtOptions(
-        services = services
-    )\n
-    // Create the DID
-    DidDht.create(keyManager, options)`}
+val keyManager: KeyManager = AwsKeyManager() \n
+// Provide the service endpoint for other to access your PFI
+val services: Iterable<Service>? = listOf(
+    Service("pfi", "PFI", "tbdex-pfi.dbddev.org")
+)\n
+// Load service endpoints into DID options class
+val createDidDhtOptions = CreateDidDhtOptions(
+    services = services
+)\n
+// Create the DID
+DidDht.create(keyManager, options)`}
     </CodeBlock>
   </TabItem>
 </Tabs>
