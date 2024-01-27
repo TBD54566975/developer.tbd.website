@@ -1,8 +1,7 @@
 import React from 'react';
 
-const projects = [
-  {
-    name: '@web5/common',
+const projects = {
+  '@web5/common': {
     url: 'https://github.com/TBD54566975/web5-js/tree/main/packages/common',
     language: 'js',
     ghOwnerRepo: 'TBD54566975/web5-js',
@@ -27,8 +26,7 @@ const projects = [
     ],
     ossf: [{ type: 'ossf' }],
     sast: [{ type: 'ghWorkflow', label: 'CodeQL', value: 'codeql.yml' }],
-    unit: [{ label: 'unit' }, { type: 'codecov' }],
-    acceptance: [{ label: 'e2e' }],
+    tests: [{ label: 'unit' }, { type: 'codecov' }, { label: 'vectors' }],
     release: [
       { type: 'ghTag' },
       { type: 'npmPkg', value: '@web5/common' },
@@ -37,8 +35,7 @@ const projects = [
     ],
     apiDocs: [{ label: 'docs ci' }, { label: 'docs publish' }],
   },
-  {
-    name: '@web5/crypto',
+  '@web5/crypto': {
     url: 'https://github.com/TBD54566975/web5-js/tree/main/packages/crypto',
     language: 'js',
     ghOwnerRepo: 'TBD54566975/web5-js',
@@ -63,8 +60,7 @@ const projects = [
     ],
     ossf: [{ type: 'ossf' }],
     sast: [{ type: 'ghWorkflow', label: 'CodeQL', value: 'codeql.yml' }],
-    unit: [{ label: 'unit' }, { type: 'codecov' }],
-    acceptance: [{ label: 'e2e' }],
+    tests: [{ label: 'unit' }, { type: 'codecov' }, { label: 'vectors' }],
     release: [
       { type: 'ghTag' },
       { type: 'npmPkg', value: '@web5/crypto' },
@@ -73,8 +69,7 @@ const projects = [
     ],
     apiDocs: [{ label: 'docs ci' }, { label: 'docs publish' }],
   },
-  {
-    name: '@web5/dids',
+  '@web5/dids': {
     url: 'https://github.com/TBD54566975/web5-js/tree/main/packages/dids',
     language: 'js',
     ghOwnerRepo: 'TBD54566975/web5-js',
@@ -99,8 +94,7 @@ const projects = [
     ],
     ossf: [{ type: 'ossf' }],
     sast: [{ type: 'ghWorkflow', label: 'CodeQL', value: 'codeql.yml' }],
-    unit: [{ label: 'unit' }, { type: 'codecov' }],
-    acceptance: [{ label: 'e2e' }],
+    tests: [{ label: 'unit' }, { type: 'codecov' }, { label: 'vectors' }],
     release: [
       { type: 'ghTag' },
       { type: 'npmPkg', value: '@web5/dids' },
@@ -109,8 +103,7 @@ const projects = [
     ],
     apiDocs: [{ label: 'docs ci' }, { label: 'docs publish' }],
   },
-  {
-    name: '@tbdex/protocol',
+  '@tbdex/protocol': {
     url: 'https://github.com/TBD54566975/tbdex-js/tree/main/packages/protocol',
     language: 'js',
     ghOwnerRepo: 'TBD54566975/tbdex-js',
@@ -133,10 +126,9 @@ const projects = [
       },
       { type: 'fossa' },
     ],
-    ossf: [{ label: 'ossf' }],
+    ossf: [{ type: 'ossf' }],
     sast: [{ type: 'ghWorkflow', label: 'CodeQL', value: 'codeql.yml' }],
-    unit: [{ label: 'unit' }, { type: 'codecov' }],
-    acceptance: [{ label: 'e2e' }],
+    tests: [{ label: 'unit' }, { type: 'codecov' }, { label: 'vectors' }],
     release: [
       { type: 'ghTag' },
       { type: 'npmPkg', value: '@tbdex/protocol' },
@@ -161,8 +153,7 @@ const projects = [
       },
     ],
   },
-  {
-    name: '@tbdex/http-client',
+  '@tbdex/http-client': {
     url: 'https://github.com/TBD54566975/tbdex-js/tree/main/packages/http-client',
     language: 'js',
     ghOwnerRepo: 'TBD54566975/tbdex-js',
@@ -185,10 +176,9 @@ const projects = [
       },
       { type: 'fossa' },
     ],
-    ossf: [{ label: 'ossf' }],
+    ossf: [{ type: 'ossf' }],
     sast: [{ type: 'ghWorkflow', label: 'CodeQL', value: 'codeql.yml' }],
-    unit: [{ label: 'unit' }, { type: 'codecov' }],
-    acceptance: [{ label: 'e2e' }],
+    tests: [{ label: 'unit' }, { type: 'codecov' }, { label: 'vectors' }],
     release: [
       { type: 'ghTag' },
       { type: 'npmPkg', value: '@tbdex/http-client' },
@@ -213,8 +203,7 @@ const projects = [
       },
     ],
   },
-  {
-    name: '@tbdex/http-server',
+  '@tbdex/http-server': {
     url: 'https://github.com/TBD54566975/tbdex-js/tree/main/packages/http-server',
     language: 'js',
     ghOwnerRepo: 'TBD54566975/tbdex-js',
@@ -237,10 +226,9 @@ const projects = [
       },
       { type: 'fossa' },
     ],
-    ossf: [{ label: 'ossf' }],
+    ossf: [{ type: 'ossf' }],
     sast: [{ type: 'ghWorkflow', label: 'CodeQL', value: 'codeql.yml' }],
-    unit: [{ label: 'unit' }, { type: 'codecov' }],
-    acceptance: [{ label: 'e2e' }],
+    tests: [{ label: 'unit' }, { type: 'codecov' }, { label: 'vectors' }],
     release: [
       { type: 'ghTag' },
       { type: 'npmPkg', value: '@tbdex/http-server' },
@@ -265,8 +253,7 @@ const projects = [
       },
     ],
   },
-  {
-    name: 'tbdex-kt',
+  'tbdex-kt': {
     url: 'https://github.com/TBD54566975/tbdex-kt',
     language: 'kt',
     ghOwnerRepo: 'TBD54566975/tbdex-kt',
@@ -286,10 +273,9 @@ const projects = [
       },
       { type: 'fossa' },
     ],
-    ossf: [{ label: 'ossf' }],
+    ossf: [{ type: 'ossf' }],
     sast: [{ type: 'ghWorkflow', label: 'CodeQL', value: 'codeql.yaml' }],
-    unit: [{ label: 'unit' }, { type: 'codecov' }],
-    acceptance: [{ label: 'e2e' }],
+    tests: [{ label: 'unit' }, { type: 'codecov' }, { label: 'vectors' }],
     release: [
       { type: 'ghTag' },
       { type: 'jitPkg' },
@@ -314,7 +300,54 @@ const projects = [
       },
     ],
   },
-];
+  'web5-kt': {
+    url: 'https://github.com/TBD54566975/web5-kt',
+    language: 'kt',
+    ghOwnerRepo: 'TBD54566975/web5-kt',
+    ciStatus: [
+      {
+        type: 'ghWorkflow',
+        label: 'ci',
+        value: 'ci.yml',
+      },
+    ],
+    license: [{ type: 'ghLicense' }, { type: 'mvnLicense' }],
+    scan: [
+      {
+        type: 'ghWorkflow',
+        label: 'scan',
+        value: 'security.yml',
+      },
+      { type: 'fossa' },
+    ],
+    ossf: [{ type: 'ossf' }],
+    sast: [{ type: 'ghWorkflow', label: 'CodeQL', value: 'codeql.yml' }],
+    tests: [{ label: 'unit' }, { type: 'codecov' }, { label: 'vectors' }],
+    release: [
+      { type: 'ghTag' },
+      { type: 'jitPkg' },
+      { label: 'spdx' },
+      { label: 'cydx' },
+    ],
+    apiDocs: [
+      {
+        type: 'ghWorkflow',
+        label: 'docs ci',
+        value: 'ci.yml',
+      },
+      {
+        type: 'ghWorkflow',
+        label: 'docs publish',
+        value: 'gh-pages-deploy.yml',
+      },
+      {
+        value: 'reference docs',
+        href: 'https://tbd54566975.github.io/web5-kt/docs/htmlMultiModule/',
+        color: 'purple',
+      },
+    ],
+  },
+};
 
 /**
  * Consolidates the Projects Badges Status in a table
@@ -330,15 +363,14 @@ function ProjectsDashboard() {
           <th>License & Security Scanning</th>
           <th>OSSF Score</th>
           <th>SAST/Lint</th>
-          <th>Unit Tests </th>
-          <th>Acceptance Tests</th>
+          <th>Tests</th>
           <th>Release </th>
           <th>API Reference Docs </th>
         </tr>
       </thead>
       <tbody>
-        {projects.map((p) => (
-          <ProjectItem key={p.name} {...p} />
+        {Object.keys(projects).map((project) => (
+          <ProjectItem key={project} name={project} {...projects[project]} />
         ))}
       </tbody>
     </table>
@@ -382,12 +414,7 @@ function ProjectItem(item) {
         ))}
       </td>
       <td>
-        {item.unit.map((shield, idx) => (
-          <Shield key={`ci-status-${idx}`} {...shield} {...item} />
-        ))}
-      </td>
-      <td>
-        {item.acceptance.map((shield, idx) => (
+        {item.tests.map((shield, idx) => (
           <Shield key={`ci-status-${idx}`} {...shield} {...item} />
         ))}
       </td>
@@ -434,7 +461,9 @@ function Shield({
     badgeSrc = `https://img.shields.io/github/v/release/${ghOwnerRepo}?logo=github&label=tag&style=flat-square&color=4c1`;
     href = `https://github.com/${ghOwnerRepo}/releases`;
   } else if (type === 'npmLicense') {
-    badgeSrc = `https://img.shields.io/npm/l/${value}.svg?style=flat-square&logo=npm&logoColor=FFFFFF&&color=F7DF1Esantize=true&label=npm`;
+    badgeSrc = `https://img.shields.io/npm/l/${value}.svg?style=flat-square&logo=npm&logoColor=FFFFFF&&color=${getLanguageColor(
+      'js',
+    )}&santize=true&label=npm`;
     href = `https://www.npmjs.com/package/${value}`;
   } else if (type === 'npmPkg') {
     badgeSrc = `https://img.shields.io/npm/v/${value}.svg?style=flat-square&logo=npm&logoColor=FFFFFF&color=F7DF1E&santize=true`;
@@ -443,7 +472,7 @@ function Shield({
     badgeSrc = `https://img.shields.io/badge/mvn-todo-indigo?style=flat-square&logo=apachemaven&logoColor=FFFFFF&santize=true`;
     href = `https://www.npmjs.com/package/${value}`;
   } else if (type === 'jitPkg') {
-    badgeSrc = `https://img.shields.io/jitpack/version/com.github.${ghOwnerRepo}?style=flat-square&logo=jitpack&color=brightgreen`;
+    badgeSrc = `https://img.shields.io/jitpack/version/com.github.${ghOwnerRepo}?style=flat-square&logo=jitpack&color=orange`;
     href = `https://jitpack.io/#${ghOwnerRepo}`;
   }
 
