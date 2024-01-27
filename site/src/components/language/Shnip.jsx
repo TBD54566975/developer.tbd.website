@@ -11,14 +11,19 @@ const Shnip = ({ snippets, inlineSnippets }) => {
       <LanguageSwitchBlock>
         {snippets.map(({ snippetContent, language }) => (
           <div key={`ref-${language}`} language={language}>
-            <CodeSnippet snippet={snippetContent} />
+            <CodeSnippet
+              snippet={snippetContent}
+              language={language.toLowerCase()}
+            />
           </div>
         ))}
 
         {inlineSnippets &&
           inlineSnippets.map(({ code, language }) => (
             <div key={`inline-${language}`} language={language}>
-              <CodeBlock language={language}>{code.trim()}</CodeBlock>
+              <CodeBlock language={language.toLowerCase()}>
+                {code.trim()}
+              </CodeBlock>
             </div>
           ))}
       </LanguageSwitchBlock>
