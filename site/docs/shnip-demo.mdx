@@ -2,8 +2,6 @@
 hide_title: true
 ---
 
-import createDidDht from '!!raw-loader!@site/snippets/web5/build/decentralized-identifiers/createDidDht.snippet.js';
-
 <LanguageSwitcher />
 
 # Hello World
@@ -13,7 +11,7 @@ import createDidDht from '!!raw-loader!@site/snippets/web5/build/decentralized-i
 Depending on the language you're programming in, you'll want to <LanguageSwitchLink text='link to different content' links='{"Kotlin": "https://kotlinlang.org/", "JavaScript": "https://www.javascript.com/"}'/>. Sometimes, you'll use the exact same link [for both languages](https://www.google.com/);
 
 <Shnip
-  snippets={[{ snippetContent: createDidDht, language: 'JavaScript' }]}
+  snippets={[{ name: 'createDidDht', language: 'JavaScript' }]}
   // 'inlineSnippets' is how we'll hardcode
   inlineSnippets={[
     {
