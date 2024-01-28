@@ -2,8 +2,9 @@
 import React from 'react';
 import { useLanguage } from './LanguageContext';
 import { useSupportedLanguages } from './SupportedLanguagesContext';
+import LanguageSupport from './LanguageSupport';
 
-const LanguageSwitcher = () => {
+const LanguageSwitcher = ({ languages: supportedLanguages }) => {
   const { changeLanguage, updateUrl } = useLanguage();
   var currentLanguage = useLanguage().language;
   const { languages } = useSupportedLanguages();
@@ -19,6 +20,8 @@ const LanguageSwitcher = () => {
     return null;
   }
   return (
+    <>
+    <LanguageSupport languages={supportedLanguages} />
     <div className="language-switch-header">
       <select className="language-switcher-select" onChange={handleLanguageChange} value={currentLanguage}>
         {languages.map((languageOption) => 
@@ -26,6 +29,7 @@ const LanguageSwitcher = () => {
         )}
       </select>
     </div>
+    </>
   );
 };
 
