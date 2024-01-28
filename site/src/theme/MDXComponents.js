@@ -14,7 +14,6 @@ import ConferenceCommunity from '@site/src/components/ConferenceCommunitySection
 import LanguageSwitchBlock from '@site/src/components/language/LanguageSwitchBlock';
 import LanguageSwitchLink from '@site/src/components/language/LanguageSwitchLink';
 import LanguageSupport from '@site/src/components/language/LanguageSupport';
-import LanguageSwitchHeader from '@site/src/components/language/LanguageSwitchHeader';
 import LanguageSwitcher from '@site/src/components/language/LanguageSwitcher';
 import LanguageTabBar from '@site/src/components/language/LanguageTabBar';
 import Shnip from '@site/src/components/language/Shnip';
@@ -35,7 +34,6 @@ const CustomMDXComponents = {
   LanguageSwitchBlock,
   LanguageSwitchLink,
   LanguageSupport,
-  LanguageSwitchHeader,
   LanguageSwitcher,
   LanguageTabBar,
   Shnip,

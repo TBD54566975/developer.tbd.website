@@ -19,11 +19,13 @@ const LanguageSwitcher = () => {
     return null;
   }
   return (
-    <select style={{ width: 'auto', fontSize: '16px', color: '#000', fontWeight: 'bold', backgroundColor: '#ffec19', marginLeft: '15px' }} onChange={handleLanguageChange} value={currentLanguage}>
+    <div className="language-switch-header">
+      <select className="language-switcher-select" onChange={handleLanguageChange} value={currentLanguage}>
         {languages.map((languageOption) => 
             <option value={languageOption} key={languageOption}>{languageOption}</option>
         )}
-    </select>
+      </select>
+    </div>
   );
 };
 
