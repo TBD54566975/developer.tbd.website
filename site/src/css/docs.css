@@ -837,3 +837,10 @@ html.plugin-docs.plugin-id-default article .theme-card p {
   margin-left: 15px;
   padding: 5px;
 }
+
+.languageTabs {
+  display: flex;
+  justify-content: flex-start;
+  cursor: pointer;
+  margin: 0;
+}

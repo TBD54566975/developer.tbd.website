@@ -11,16 +11,21 @@ export function useLanguage() {
 
 // Provider component
 export function LanguageProvider({ children }) {
-  const [language, setLanguage] = useState('JavaScript');
+  //Load language if set
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
+  let langParam = queryParams.get('lang') 
+                ? queryParams.get('lang') 
+                : localStorage.getItem('language');
+  if(!langParam) langParam = 'JavaScript';
+  const [language, setLanguage] = useState(langParam);
   const history = useHistory();
 
   // Read in the language in the url if available
   useEffect(() => {
-    const langParam = queryParams.get('lang');
-    if (langParam) {
+    if (langParam && langParam.length > 0) {
       setLanguage(langParam);
+      localStorage.setItem('language', langParam);
     }
   }, [queryParams]);
 
@@ -32,6 +37,7 @@ export function LanguageProvider({ children }) {
 
   const changeLanguage = (newLanguage) => {
     setLanguage(newLanguage);
+    localStorage.setItem('language', newLanguage);
   };
 
   return (

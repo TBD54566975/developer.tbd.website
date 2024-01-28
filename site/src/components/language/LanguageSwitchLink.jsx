@@ -1,4 +1,3 @@
-// LanguageSwitchLink.js
 import React from 'react';
 import { useLanguage } from './LanguageContext';
 

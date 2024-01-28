@@ -12,12 +12,13 @@ const LanguageTabBar = () => {
         changeLanguage(tab);
         updateUrl(tab);
         activeTab = tab;
+        localStorage.setItem('language', tab);
     }
 
   return (
-      <div style={{ display: 'flex', justifyContent: 'flex-start', cursor: 'pointer', margin: '0' }}>
+      <div className='languageTabs'>
         {languages.map(tab => (
-          <div 
+          <div
             key={tab} 
             onClick={() => setActiveTab(tab)}
             style={{ 

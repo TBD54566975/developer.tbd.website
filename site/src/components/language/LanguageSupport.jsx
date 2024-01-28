@@ -1,4 +1,3 @@
-// LanguageSupport.js
 import React, { useEffect } from 'react';
 import { useSupportedLanguages } from './SupportedLanguagesContext';
 import { useLanguage } from './LanguageContext';
