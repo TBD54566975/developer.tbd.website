@@ -1,6 +1,7 @@
 import React from 'react';
 import { useLanguage } from './LanguageContext';
 import { useSupportedLanguages } from './SupportedLanguagesContext';
+import ExecutionEnvironment from '@docusaurus/ExecutionEnvironment';
 
 const LanguageTabBar = () => {
     const { changeLanguage, updateUrl } = useLanguage();
@@ -12,7 +13,9 @@ const LanguageTabBar = () => {
         changeLanguage(tab);
         updateUrl(tab);
         activeTab = tab;
-        localStorage.setItem('language', tab);
+        if (ExecutionEnvironment.canUseDOM) {
+          localStorage.setItem('language', tab);
+        }
     }
 
   return (

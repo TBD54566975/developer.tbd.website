@@ -1,5 +1,6 @@
 import React, { createContext, useState, useContext, useEffect } from 'react';
 import { useLocation, useHistory } from '@docusaurus/router';
+import ExecutionEnvironment from '@docusaurus/ExecutionEnvironment';
 
 // Create a context
 const LanguageContext = createContext();
@@ -14,9 +15,12 @@ export function LanguageProvider({ children }) {
   //Load language if set
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
-  let langParam = queryParams.get('lang') 
+  let langParam = queryParams.get('lang');
+  if (ExecutionEnvironment.canUseDOM) {
+    langParam = langParam 
                 ? queryParams.get('lang') 
                 : localStorage.getItem('language');
+  }
   if(!langParam) langParam = 'JavaScript';
   const [language, setLanguage] = useState(langParam);
   const history = useHistory();
@@ -25,7 +29,9 @@ export function LanguageProvider({ children }) {
   useEffect(() => {
     if (langParam && langParam.length > 0) {
       setLanguage(langParam);
-      localStorage.setItem('language', langParam);
+      if (ExecutionEnvironment.canUseDOM) {
+        localStorage.setItem('language', langParam);
+      }
     }
   }, [queryParams]);
 
@@ -37,7 +43,9 @@ export function LanguageProvider({ children }) {
 
   const changeLanguage = (newLanguage) => {
     setLanguage(newLanguage);
-    localStorage.setItem('language', newLanguage);
+    if(ExecutionEnvironment.canUseDOM) {
+      localStorage.setItem('language', newLanguage);
+    }
   };
 
   return (
