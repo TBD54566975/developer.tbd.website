@@ -30,7 +30,21 @@ Depending on the language you're programming in, you'll want to <LanguageSwitchL
   inlineSnippets={[
     {
       code: `
-            val signedVcJwt = "eyJ0eXAiOiJKV1QiLCJhbGciOiJFZERTQSIsImtp..."
+data class EmploymentCredential(
+  val position: String, 
+  val startDate: String, 
+  val employmentStatus: String )
+            
+val vc = VerifiableCredential.create(
+    type = "EmploymentCredential",
+    issuer = employer.didDocument.id.toString(),
+    subject = employee.didDocument.id.toString(),
+    data = EmploymentData(
+        position = "Software Developer",
+        startDate = "2023-04-01T12:34:56Z",
+        employmentStatus = "Contractor"
+    )
+)
       `,
       language: 'Kotlin',
     },
