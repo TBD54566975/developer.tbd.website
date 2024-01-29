@@ -2,6 +2,8 @@
 sidebar_position: 8
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 import CodeSnippet from '@site/src/components/CodeSnippet';
 
 # Parse JWT into VC
@@ -15,7 +17,18 @@ JWT format is used to encode the credentials, making them both secure and easily
 
 **Example JWT**
 
-<CodeSnippet functionName="assignVcJwt" />
+<Tabs>
+  <TabItem value="JavaScript" label="JavaScript" default>
+    <CodeSnippet functionName="assignVcJwt" />
+  </TabItem>
+  <TabItem value="Kotlin" label="Kotlin">
+
+  ```kotlin
+  val signedVcJwt = "eyJ0eXAiOiJKV1QiLCJhbGciOiJFZERTQSIsImtpZCI6ImRpZDpkaHQ6a2ZkdGJjbTl6Z29jZjVtYXRmOWZ4dG5uZmZoaHp4YzdtZ2J3cjRrM3gzcXppYXVjcHA0eSMwIn0.eyJ2YyI6eyJAY29udGV4dCI6WyJodHRwczovL3d3dy53My5vcmcvMjAxOC9jcmVkZW50aWFscy92MSJdLCJ0eXBlIjpbIlZlcmlmaWFibGVDcmVkZW50aWFsIiwiRW1wbG95bWVudENyZWRlbnRpYWwiXSwiaWQiOiJ1cm46dXVpZDo4ZmQ1MjAzMC0xY2FmLTQ5NzgtYTM1ZC1kNDE3ZWI4ZTAwYjIiLCJpc3N1ZXIiOiJkaWQ6ZGh0OmtmZHRiY205emdvY2Y1bWF0ZjlmeHRubmZmaGh6eGM3bWdid3I0azN4M3F6aWF1Y3BwNHkiLCJpc3N1YW5jZURhdGUiOiIyMDIzLTEyLTIxVDE3OjAyOjAxWiIsImNyZWRlbnRpYWxTdWJqZWN0Ijp7ImlkIjoiZGlkOmRodDp5MzltNDhvem9ldGU3ejZmemFhbmdjb3M4N2ZodWgxZHppN2Y3andiamZ0N290c2toOXRvIiwicG9zaXRpb24iOiJTb2Z0d2FyZSBEZXZlbG9wZXIiLCJzdGFydERhdGUiOiIyMDIxLTA0LTAxVDEyOjM0OjU2WiIsImVtcGxveW1lbnRTdGF0dXMiOiJDb250cmFjdG9yIn0sImV4cGlyYXRpb25EYXRlIjoiMjAyMi0wOS0zMFQxMjozNDo1NloifSwiaXNzIjoiZGlkOmRodDprZmR0YmNtOXpnb2NmNW1hdGY5Znh0bm5mZmhoenhjN21nYndyNGszeDNxemlhdWNwcDR5Iiwic3ViIjoiZGlkOmRodDp5MzltNDhvem9ldGU3ejZmemFhbmdjb3M4N2ZodWgxZHppN2Y3andiamZ0N290c2toOXRvIn0.ntcgPOdXOatULWo-q6gkuhKmi5X3bzCONQY38t_rsC1hVhvvdAtmiz-ccoLIYUkjECRHIxO_UZbOKgn0EETBCA";
+  ```
+
+  </TabItem>
+</Tabs>
 
 ## Decoding JWT
 
@@ -23,25 +36,64 @@ Once a VC JWT is received, the credential verifier will likely need to inspect o
 They can use `parseJwt()` to decode the JWT and convert it back into a `VerifiableCredential` object. 
 This object format is more convenient for accessing and manipulating the credential's data within their application.
 
-<CodeSnippet functionName="parseSignedVcJwt" />
+<Tabs>
+  <TabItem value="JavaScript" label="JavaScript" default>
+    <CodeSnippet functionName="parseSignedVcJwt" />
+  </TabItem>
+  <TabItem value="Kotlin" label="Kotlin">
+
+  ```kotlin
+  val vc = VerifiableCredential.parseJwt(signedVcJwt)
+  ```
+  </TabItem>
+</Tabs>
 
 This returns the VC in JSON:
+<Tabs>
+  <TabItem value="JavaScript" label="JavaScript" default>
 
-```js
-{
-  vcDataModel: {
-    '@context': [ 'https://www.w3.org/2018/credentials/v1' ],
-    type: [ 'VerifiableCredential', 'EmploymentCredential' ],
-    id: 'urn:uuid:8fd52030-1caf-4978-a35d-d417eb8e00b2',
-    issuer: 'did:dht:kfdtbcm9zgocf5matf9fxtnnffhhzxc7mgbwr4k3x3qziaucpp4y',
-    issuanceDate: '2023-12-21T17:02:01Z',
-    credentialSubject: {
-      id: 'did:dht:y39m48ozoete7z6fzaangcos87fhuh1dzi7f7jwbjft7otskh9to',
-      position: 'Software Developer',
-      startDate: '2021-04-01T12:34:56Z',
-      employmentStatus: 'Contractor'
-    },
-    expirationDate: '2022-09-30T12:34:56Z'
+  ```js
+  {
+    vcDataModel: {
+      '@context': [ 'https://www.w3.org/2018/credentials/v1' ],
+      type: [ 'VerifiableCredential', 'EmploymentCredential' ],
+      id: 'urn:uuid:8fd52030-1caf-4978-a35d-d417eb8e00b2',
+      issuer: 'did:dht:kfdtbcm9zgocf5matf9fxtnnffhhzxc7mgbwr4k3x3qziaucpp4y',
+      issuanceDate: '2023-12-21T17:02:01Z',
+      credentialSubject: {
+        id: 'did:dht:y39m48ozoete7z6fzaangcos87fhuh1dzi7f7jwbjft7otskh9to',
+        position: 'Software Developer',
+        startDate: '2021-04-01T12:34:56Z',
+        employmentStatus: 'Contractor'
+      },
+      expirationDate: '2022-09-30T12:34:56Z'
+    }
   }
-}
-```
+  ```
+
+  </TabItem>
+  <TabItem value="Kotlin" label="Kotlin">
+
+  ```js
+ {
+    "@context": [
+      "https://www.w3.org/2018/credentials/v1"
+    ],
+    "type": [
+      "VerifiableCredential",
+      "EmploymentCredential"
+    ],
+    "id": "urn:uuid:8fd52030-1caf-4978-a35d-d417eb8e00b2",
+    "issuer": "did:dht:kfdtbcm9zgocf5matf9fxtnnffhhzxc7mgbwr4k3x3qziaucpp4y",
+    "issuanceDate": "2023-12-21T17:02:01Z",
+    "credentialSubject": {
+      "id": "did:dht:y39m48ozoete7z6fzaangcos87fhuh1dzi7f7jwbjft7otskh9to",
+      "position": "Software Developer",
+      "startDate": "2021-04-01T12:34:56Z",
+      "employmentStatus": "Contractor"
+    },
+    "expirationDate": "2022-09-30T12:34:56Z"
+  }
+  ```
+  </TabItem>
+</Tabs>
