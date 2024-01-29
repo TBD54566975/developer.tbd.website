@@ -3,6 +3,8 @@ title: VC Workflow
 hide_title: true
 sidebar_position: 10
 ---
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
 # Verifiable Credentials for Fan Club Membership
 
@@ -14,10 +16,40 @@ In this tutorial, we'll learn how to use [verifiable credentials](/docs/web5/lea
 ## Setting the Stage
 Before we start issuing and verifying credentials, let's set up our environment by installing the [@web5/credentials](https://www.npmjs.com/package/@web5/credentials) and [@web5/dids](https://www.npmjs.com/package/@web5/dids) packages:
 
+<Tabs>
+  <TabItem value="JavaScript" label="JavaScript" default>
+
 ```bash
 npm install @web5/credentials
 npm install @web5/dids
 ```
+
+  </TabItem>
+  <TabItem value="Kotlin" label="Kotlin">
+
+
+**Configure Repositories**
+
+```kotlin
+repositories {
+  mavenCentral()
+  maven("https://jitpack.io")
+  maven("https://repo.danubetech.com/repository/maven-public/")
+  maven("https://repository.jboss.org/nexus/content/repositories/thirdparty-releases/")
+}
+```
+
+**Configure Dependencies**
+
+```kotlin
+dependencies {
+  implementation("xyz.block:web5-credentials:0.0.9-delta")
+  implementation("xyz.block:web5-dids:0.0.9-delta")
+}
+```
+  </TabItem>
+</Tabs>
+
 
 ## The Cast
 There are a few characters involved in our story:
@@ -36,6 +68,9 @@ This is because verifiable credentials use DIDs to identify issuers and holders.
 
 If you need to create DIDs, you can do so with the [@web5/dids](https://www.npmjs.com/package/@web5/dids) package:
 
+<Tabs>
+  <TabItem value="JavaScript" label="JavaScript" default>
+
 ```js
 import { DidKeyMethod } from '@web5/dids';
 
@@ -43,10 +78,31 @@ const fanClubIssuerDid = await DidKeyMethod.create();
 const aliceDid = await DidKeyMethod.create();
 ```
 
+  </TabItem>
+  <TabItem value="Kotlin" label="Kotlin">
+
+
+```kotlin
+import web5.sdk.crypto.InMemoryKeyManager
+import web5.sdk.dids.methods.key.DidKey
+
+val fanClubIssuerDidObject = DidKey.create(InMemoryKeyManager())
+val fanClubIssuerDid = fanClubIssuerDidObject.resolve()
+
+val aliceDidObject = DidKey.create(InMemoryKeyManager())
+val aliceDid = aliceDidObject.resolve()
+```
+  </TabItem>
+</Tabs>
+
+
 ### Model Credential
 
 Now, let's create the **SwiftiesFanClub** credential. 
 We'll first model it with a class with some basic properties, `level` and `legit`:
+
+<Tabs>
+  <TabItem value="JavaScript" label="JavaScript" default>
 
 ```js title="Issuer.js"
 import { VerifiableCredential, PresentationExchange } from "@web5/credentials";
@@ -62,6 +118,25 @@ class SwiftiesFanClub {
 }
 ```
 
+  </TabItem>
+  <TabItem value="Kotlin" label="Kotlin">
+
+
+```kotlin title="Issuer.kt"
+import web5.sdk.credentials.VerifiableCredential
+import web5.sdk.credentials.PresentationExchange
+import web5.sdk.credentials.model.PresentationDefinitionV2
+
+data class SwiftiesFanClub(
+    // indicates the fan's dedication level
+    val level: String,
+    // indicates if the fan is a genuine Swiftie
+    val legit: Boolean
+)
+```
+  </TabItem>
+</Tabs>
+
 :::note
 Note that credentials can be customized to fit various needs and scenarios. In our example, we used `level` and `legit`, but you could add more properties like `memberSince`, `favoriteAlbum`, or any other relevant data that suits your use case.
 :::
@@ -69,6 +144,9 @@ Note that credentials can be customized to fit various needs and scenarios. In o
 ### Create Credential
 
 Next we can create the verifiable credential with an instance of the class:
+
+<Tabs>
+  <TabItem value="JavaScript" label="JavaScript" default>
 
 ```js title="Issuer.js"
 const vc = await VerifiableCredential.create({
@@ -78,6 +156,21 @@ const vc = await VerifiableCredential.create({
   data: new SwiftiesFanClub('Stan', true)
 });
 ```
+
+  </TabItem>
+  <TabItem value="Kotlin" label="Kotlin">
+
+
+```kotlin title="Issuer.kt"
+val vc = VerifiableCredential.create(
+    type = "SwiftiesFanClub",
+    issuer = fanClubIssuerDid.didDocument.id.toString(),
+    subject = aliceDid.didDocument.id.toString(),
+    data =SwiftiesFanClub(level = "Stan", legit = true)
+)
+```
+  </TabItem>
+</Tabs>
 
 ### Credential Properties
 
@@ -96,6 +189,9 @@ Let's break down the `VerifiableCredential.create()` method to understand what e
 
 `VerifiableCredential.create()` returns a VC as a JSON object:
 
+<Tabs>
+  <TabItem value="JavaScript" label="JavaScript" default>
+
 ```js
 vcDataModel: {
   '@context': [ 'https://www.w3.org/2018/credentials/v1' ],
@@ -111,13 +207,52 @@ vcDataModel: {
 }
 ```
 
+  </TabItem>
+  <TabItem value="Kotlin" label="Kotlin">
+
+
+```js
+{
+  "@context": [
+    "https://www.w3.org/2018/credentials/v1"
+  ],
+  "type": [
+    "VerifiableCredential",
+    "SwiftiesFanClub"
+  ],
+  "id": "urn:uuid:daa5ff01-9b7d-485b-9410-22a42952d46c",
+  "issuer": "did:key:z6Mkn4w6nSaWe4fjNJRvaHZwFnMm5VexvjzDeozEu2G7jC34",
+  "issuanceDate": "2023-12-14T08:20:41Z",
+  "credentialSubject": {
+    "id": "did:key:z6MkjGSeekPGE9QfczHWyW8v2ZzJU68kqSHzV7L2dmQyuyDu",
+    "level": "Stan",
+    "legit": true
+  }
+}
+```
+  </TabItem>
+</Tabs>
+
 ### Sign Credential
 
 Last but not least, we must cryptographically sign the VC to make it official:
 
+<Tabs>
+  <TabItem value="JavaScript" label="JavaScript" default>
+
 ```js title="Issuer.js"
 const signedVcJwt = await vc.sign({ did: fanClubIssuerDid });
 ```
+
+  </TabItem>
+  <TabItem value="Kotlin" label="Kotlin">
+
+
+```kotlin title="Issuer.kt"
+val signedVcJwt = vc.sign(fanClubIssuerDidObject)
+```
+  </TabItem>
+</Tabs>
 
 Signing the credential returns a [VC JSON Web Token](/docs/web5/build/verifiable-credentials/jwt-to-vc#what-is-a-jwt), ideal for secure transmission of the credential.
 
@@ -265,9 +400,23 @@ The signed VC JWT is a secure representation of the credential, ideal for transm
 However, the verifier will likely need to inspect or use the data within the credential.
 They can use `parseJwt()` to convert the JWT back into a `VerifiableCredential` object. 
 
+
+<Tabs>
+  <TabItem value="JavaScript" label="JavaScript" default>
+
 ```js title="Verifier.js"
 const parsedVC = await VerifiableCredential.parseJwt( { vcJwt: signedVcJwt });
 ```
+
+  </TabItem>
+  <TabItem value="Kotlin" label="Kotlin">
+
+
+```kotlin title="Issuer.kt"
+val parsedJwt = VerifiableCredential.parseJwt(signedVcJwt)
+```
+  </TabItem>
+</Tabs>
 
 This returns:
 
