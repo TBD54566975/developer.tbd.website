@@ -384,6 +384,9 @@ The result of the presentation:
 After receiving the credential, the verifier will want to verify it to ensure that it is valid and has not been tampered with. 
 They can do this with `VerifiableCredential.verify()`. If verification is unsuccessful, an error will be thrown:
 
+<Tabs>
+  <TabItem value="JavaScript" label="JavaScript" default>
+
 ```js title="Verifier.js"
 try {
   await VerifiableCredential.verify({ vcJwt: signedVcJwt });
@@ -392,6 +395,20 @@ try {
   console.log('\nVC Verification failed: ' + err.message + '\n');
 }
 ```
+
+  </TabItem>
+  <TabItem value="Kotlin" label="Kotlin">
+
+```kotlin title="Verifier.kt"
+try {
+  VerifiableCredential.verify(signedVcJwt)
+  println("\nVC Verification successful!\n")
+} catch (err: Exception) {
+  println("\nVC Verification failed: ${err.message}\n")
+}
+```
+  </TabItem>
+</Tabs>
 
 ### Parse JWT into VC
 
