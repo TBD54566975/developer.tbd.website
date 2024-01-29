@@ -429,13 +429,16 @@ const parsedVC = await VerifiableCredential.parseJwt( { vcJwt: signedVcJwt });
   <TabItem value="Kotlin" label="Kotlin">
 
 
-```kotlin title="Issuer.kt"
+```kotlin title="Verifier.kt"
 val parsedJwt = VerifiableCredential.parseJwt(signedVcJwt)
 ```
   </TabItem>
 </Tabs>
 
 This returns:
+
+<Tabs>
+  <TabItem value="JavaScript" label="JavaScript" default>
 
 ```js
 vcDataModel: {
@@ -451,5 +454,31 @@ vcDataModel: {
   }
 }
 ```
+
+  </TabItem>
+  <TabItem value="Kotlin" label="Kotlin">
+
+```js
+{
+  "@context": [
+    "https://www.w3.org/2018/credentials/v1"
+  ],
+  "type": [
+    "VerifiableCredential",
+    "SwiftiesFanClub"
+  ],
+  "id": "urn:uuid:daa5ff01-9b7d-485b-9410-22a42952d46c",
+  "issuer": "did:key:z6Mkn4w6nSaWe4fjNJRvaHZwFnMm5VexvjzDeozEu2G7jC34",
+  "issuanceDate": "2023-12-14T08:20:41Z",
+  "credentialSubject": {
+    "id": "did:key:z6MkjGSeekPGE9QfczHWyW8v2ZzJU68kqSHzV7L2dmQyuyDu",
+    "level": "Stan",
+    "legit": true
+  }
+}
+```
+
+  </TabItem>
+</Tabs>
 
 Given Alice's verified credential, she's all set to receive her free merch for being a proud member of the Swifties Fan Club!
