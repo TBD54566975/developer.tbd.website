@@ -53,7 +53,12 @@ class SnippetExtractor {
         snippets[snippetName] = snippetContent;
       }
 
+      // Update endIndex to the position after the end tag
       endIndex = content.indexOf('\n', endIndex) + 1;
+      if (endIndex === 0) {
+        // If no newline after end tag, break the loop
+        break;
+      }
     }
 
     return snippets;
