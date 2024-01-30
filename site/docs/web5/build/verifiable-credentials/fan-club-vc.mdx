@@ -125,7 +125,6 @@ class SwiftiesFanClub {
 ```kotlin title="Issuer.kt"
 import web5.sdk.credentials.VerifiableCredential
 import web5.sdk.credentials.PresentationExchange
-import web5.sdk.credentials.model.*
 
 data class SwiftiesFanClub(
     // indicates the fan's dedication level
@@ -277,6 +276,9 @@ A presentation exchange is the process where the holder of VCs presents them to 
 To kick off the presentation exchange, the Swag Supplier (verifier) will send a request to Alice, which includes a presentation definition, specifying what credentials or claims are needed.
 Here's how the verifier can create the presentation definition, and validate that it is properly formed:
 
+<Tabs>
+  <TabItem value="JavaScript" label="JavaScript" default>
+
 ```js title="Verifier.js"
 import { VerifiableCredential, PresentationExchange } from "@web5/credentials";
 
@@ -304,6 +306,40 @@ const presentationDefinition = {
 const definitionValidation = PresentationExchange.validateDefinition({ presentationDefinition });
 ```
 
+  </TabItem>
+  <TabItem value="Kotlin" label="Kotlin">
+
+
+```kotlin title="Verifier.kt"
+import web5.sdk.credentials.PresentationExchange
+import web5.sdk.credentials.VerifiableCredential
+import web5.sdk.credentials.model.*
+
+val presentationDefinition = PresentationDefinitionV2(
+    id = "presDefId123",
+    name = "Swifties Fan Club Presentation Definition",
+    purpose = "for proving membership in the fan club",
+    inputDescriptors = listOf(
+        InputDescriptorV2(
+            id = "legitness",
+            purpose = "are you legit or not?",
+            constraints = ConstraintsV2(
+                fields = listOf(
+                    FieldV2(
+                        path = listOf("$.vc.credentialSubject.legit")
+                    )
+                )
+            )
+        )
+    )
+)
+```
+  </TabItem>
+</Tabs>
+
+
+
+
 A successful validation would result in:
 
 ```js
@@ -316,6 +352,9 @@ Once a presentation definition is presented to Alice, she'd want to make sure th
 This can be done by passing the JWT(s) and the presentation definition to `satisfiesPresentationDefinition()` method.
 Typically this step is done by the app that Alice is using to store and present her credentials:
 
+<Tabs>
+  <TabItem value="JavaScript" label="JavaScript" default>
+
 ```js title="Wallet.js"
 // Does VC Satisfy the Presentation Definition
 try {
@@ -325,6 +364,21 @@ try {
   console.log('VC does not satisfy Presentation Definition: ' + err.message);
 }
 ```
+
+  </TabItem>
+  <TabItem value="Kotlin" label="Kotlin">
+
+
+```kotlin title="Wallet.kt"
+try {
+    PresentationExchange.satisfiesPresentationDefinition(listOf(signedVcJwt), presentationDefinition)
+    println("\nVC Satisfies Presentation Definition!\n")
+} catch (e: Exception) {
+    println("VC does not satisfy Presentation Definition: ${e.message}")
+}
+```
+  </TabItem>
+</Tabs>
 
 ### Create Presentation
 
