@@ -73,5 +73,5 @@ Learn more about what FormFree is building and watch the full live stream [here]
 
 <iframe class="aspect-video" src="https://www.youtube.com/embed/TZkK8a64E7I" title="netonomy" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
-*This post highlights key moments from our collaborative live stream with leaders and builders at FormFree. Join our weekly live streams every Friday at 12pm ET/9 am PT. We're learning how innovators and community members are advancing the Self-Sovereign Identity and Global Payments industry. Tune in next time via [Twitch](twitch.tv/tbdevs ) or in our community [Discord](discord.com/invite/tbd).*
+*This post highlights key moments from our collaborative live stream with leaders and builders at FormFree. Join our weekly live streams every Friday at 12pm ET/9 am PT. We're learning how innovators and community members are advancing the Self-Sovereign Identity and Global Payments industry. Tune in next time via [Twitch](https://twitch.tv/tbdevs ) or in our community [Discord](https://discord.com/invite/tbd).*
 
