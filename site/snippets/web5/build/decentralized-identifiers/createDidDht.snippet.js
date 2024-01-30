@@ -1,4 +1,3 @@
-
 //Creates a DID using the DHT method and publishes the DID Document to the DHT
 const didDht = await DidDhtMethod.create({ publish: true });
 

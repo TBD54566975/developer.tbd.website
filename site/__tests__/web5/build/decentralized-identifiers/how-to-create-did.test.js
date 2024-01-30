@@ -39,7 +39,6 @@ describe('how-to-create-did', () => {
 
   test('createDidDht creates a DID with did:dht method', async () => {
     // :snippet-start: createDidDht
-
     //Creates a DID using the DHT method and publishes the DID Document to the DHT
     const didDht = await DidDhtMethod.create({ publish: true });
 
