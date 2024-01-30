@@ -65,7 +65,6 @@ describe('how-to-create-did', () => {
 
   test('createDidKey creates a DID with did:key method', async () => {
     // :snippet-start: createDidKey
-
     //Creates a DID using the did:key method
     const didKey = await DidKeyMethod.create();
 
@@ -91,7 +90,6 @@ describe('how-to-create-did', () => {
 
   test('createDidIon creates a DID with did:ion method', async () => {
     // :snippet-start: createDidIon
-
     //Creates a DID using the did:ion method
     const didIon = await DidIonMethod.create();
 
