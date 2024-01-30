@@ -9,10 +9,10 @@ const Shnip = ({ snippets, inlineSnippets }) => {
     <>
       <LanguageTabBar />
       <LanguageSwitchBlock>
-        {snippets.map(({ name, language }) => (
+        {snippets.map(({ snippetContent, language }) => (
           <div key={`ref-${language}`} language={language}>
             <CodeSnippet
-              functionName={name}
+              snippet={snippetContent}
               language={language.toLowerCase()}
             />
           </div>
@@ -30,5 +30,4 @@ const Shnip = ({ snippets, inlineSnippets }) => {
     </>
   );
 };
-
 export default Shnip;
