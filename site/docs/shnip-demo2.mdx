@@ -2,6 +2,8 @@
 hide_title: true
 ---
 
+import newShnipTest from '!!raw-loader!@site/snippets/web5/build/verifiable-credentials/newShnipTest.snippet.js'
+
 <LanguageSwitcher languages="JavaScript, Kotlin"/>
 
 
@@ -10,7 +12,7 @@ hide_title: true
 Depending on the language you're programming in, you'll want to <LanguageSwitchLink text='link to different content' links='{"Kotlin": "https://kotlinlang.org/", "JavaScript": "https://www.javascript.com/"}'/>. Sometimes, you'll use the exact same link [for both languages](https://www.google.com/);
 
 <Shnip
-  snippets={[{ name: 'assignVcJwt', language: 'JavaScript' }]}
+  snippets={[{ snippetContent: newShnipTest, language: 'JavaScript' }]}
   // 'inlineSnippets' is how we'll hardcode
   inlineSnippets={[
     {
@@ -25,7 +27,7 @@ Depending on the language you're programming in, you'll want to <LanguageSwitchL
 # Adding a second one
 
 <Shnip
-  snippets={[{ name: 'createEmploymentCredential', language: 'JavaScript' }]}
+  snippets={[{ snippetContent: newShnipTest, language: 'JavaScript' }]}
   // 'inlineSnippets' is how we'll hardcode
   inlineSnippets={[
     {
