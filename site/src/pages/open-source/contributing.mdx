@@ -58,104 +58,72 @@ If you're working on tutorials or guides of any sort, we have a Code Snippet sys
 
 Here are some steps on how you'd make a Code Snippet:
 
-We have to make updates in 3 places per Code Snippet.
+1. First you'll need to create your test. Navigate to `site/__test__` this is where you'll create your test file. Your test file should be named to match the funtionality of the code.
+   Here's an example test file naming convention: `how-to-create-did.test.js`
 
-1. The code snippet itself will go in the `code-snippets` directory. We make code snippets based on the page.
+:::note
+The `.test.` naming convention. This is how Vite will know to run these tests.
+:::
 
-So if you're making a code snippet for the `api/web5-js/protocols.md` page, you'd make a file at `api/web5-js/protocols.js` and put the code snippet in there.
-If you wanted to make a code snippet specifically for the web5-js index page, you'd name it `index.js`. So the path to the code snippet would be `code-snippets/api/web5-js/index.js`.
-
-** Note: **
-Your code snippet should be within a function block. The function block is how we name the code snippet. We only display what's in the body of the function block, minus the return statement.
-
-For example:
+2. In your test files, use the `:snippet-start:` and `:snippet-end:` tags to denote the beginning and end of a code snippet. Name your snippet immediately after the `:snippet-start:` tag. For example:
 
 ```js
-function codeSnippetFunctionName() {
-  // Your code snippet goes here
-
-  const result = Web5.connect();
-
-  return result;
-}
+test('createDidDht creates a DID with did:dht method', async () => {
+  // :snippet-start: createDidDht
+  const didDht = await DidDhtMethod.create({ publish: true });
+  // ... rest of the code ...
+  // :snippet-end:
+});
 ```
 
-It's important to make your function name as specific as possible, because it will be used to reference the code snippet in the code-snippets.json file. Duplicate names will overwrite one another.
+3. After creating your snippets, run the command `pnpm run shnip`. This will generate a folder called `snippets` and create a directory structure similar to where the file is.
 
-(We should probably come up with an agreed upon naming convention)
+4. In the generated folder you'll find the generated file named as `functionName.snippet.js` (or the respective file extension). For example, the above snippet will be `createDidDht.snippet.js`.
 
-Under the hood, a script will run called `extract-code-snippets` which will add your code snippet to the `code-snippets.json` file. This file is used to reference your code snippet within the `<CodeSnippet />` component.
+To use the snippet in your documentation(`.mdx` file), you're going to use the `Shnip` component in the following format:
 
-2. The second update you'll make would be on the content page itself. Add the following snippet where you'd like the code snippet to exist:
+```mdx
+// if it's a multi language doc, you'll need to specify it like this at the top of the file;
 
-```jsx
-<CodeSnippet functionName="codeSnippetFunctionName" />
+<LanguageSwitcher languages="JavaScript, Kotlin" />
+
+<Shnip
+  snippets={[{ name: 'createDidDht', language: 'JavaScript' }]}
+  snippets={[{ name: 'kt_createDidDht', language: 'Kotlin' }]} // if you have another generated snippet in a different language
+/>
 ```
 
-The CodeSnippet component will look for the function name you provided in the `code-snippets.json` file and render the code snippet. If the name doesn't exist it will display an error instead.
+This is how you can add a generated code snippet and an inline hardcoded snippet into the doc:
 
-3. Write tests for the code snippet.
-
-Below is an example test file.
-
-The file path should match the same path as both code snippet and the actual content:
-
-`__tests__/code-snippets/api/web5-js/protocols.test.js` would be the path for the protocols example above.
-
-```js
-import { test, beforeAll, expect, describe } from 'vitest';
-import { Web5 } from '@web5/api';
-// import your functions from your codesnippet file
-import {
-  queryMusicProtocol,
-  queryProtocolDescending,
-  configureProtocolWithDefinition,
-} from '../../../code-snippets/api/web5-js/protocols';
-
-let web5;
-let record;
-let myDid;
-
-beforeAll(async () => {
-  const result = await Web5.connect();
-  web5 = result.web5;
-  myDid = result.did;
-});
-
-// example of what real tests look like for the protocols.js file
-describe('tests for /api/web5-js/dwn/protocols.js', () => {
-  test('queryMusicProtocol', async () => {
-    //this calls the function that returns the code snippet
-    const { protocols, status } = await queryMusicProtocol(web5);
-    // expect.soft() will note any failures if they occur but will continue running the test
-    expect.soft(protocols).toBeDefined();
-    expect(status.code).toBe(200);
-  });
-
-  test('configureProtocolWithDefinition', async () => {
-    const { protocol, status } = await configureProtocolWithDefinition(
-      web5,
-      myDid,
-      protocolDefinition,
-    );
-    expect(status.code).toBe(202);
-  });
-
-  test('queryProtocolDescending', async () => {
-    const { protocols, status } = await queryProtocolDescending(web5);
-    expect.soft(protocols).toBeDefined();
-    expect(status.code).toBe(200);
-  });
-});
+```mdx
+<Shnip
+  snippets={[{ name: 'assignVcJwt', language: 'JavaScript' }]}
+  inlineSnippets={[
+    {
+      code: `
+            val signedVcJwt = "eyJ0eXAiOiJKV1QiLCJhbGciOiJFZERTQSIsImtp..."
+      `,
+      language: 'Kotlin',
+    },
+  ]}
+/>
 ```
 
 ### Caveats for Code Snippets
 
-- It's crucial that the `return` lines are a single line only. It only hides the return line, but it's still there for testing purposes.
+- The code snippet function names need to be unique, these names are what is used to generate/name the snippet files.
 - These tests are only testing the code snippets. There are more thorough tests that actually test the SDK.
+
+### Running tests
+
+You can use the following scripts to run the tests:
+
+- `pnpm test` to run tests
+- `pnpm test:watch` to run tests in dev mode
 
 ## License
 
 When contributing to projects under TBD you agree to license your contributions under [Apache License 2.0](https://github.com/TBD54566975/tbd-project-template/blob/main/LICENSE).
 
 <Community />
+```
