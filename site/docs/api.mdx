@@ -2,33 +2,44 @@
 
 import ApiCard from '@site/src/components/ApiCard';
 
-
 <div>
   <div className="grid grid-cols-1 desktop:grid-cols-2 gap-4 pt-6">
     <ApiCard
-      url="/api/web5-js"
-      name="Web5 JS SDK"
-      description="A library to build decentralized apps at scale. It abstracts away much of the heavy-lifting and aims to make building Web5 apps as close to effortless as possible."
+      name="tbDEX SDK"
+      description="A messaging protocol to discover liquidity and communicate with Participating Financial Instutitions during transactions."
+      links={[
+        {"js": "https://tbd54566975.github.io/tbdex-js/index.html"},
+        {"kt": "https://tbd54566975.github.io/tbdex-kt/"}
+      ]}
     />
     <ApiCard
-      url="https://tbd54566975.github.io/tbdex-js/index.html"
-      name="tbDEX JS SDK"
-      description="A library to build financial applications that facilitate the smooth transfer of currencies across borders."
+      name="Web5 SDK"
+      description="A library for generating and resolving Decentralized Identifiers, as well as issuing, presenting and verifying Verifiable Credentials. The JS SDK also includes convenience methods for working with Decentralized Web Nodes."
+      links={[
+        {"js": "/api/web5-js"},
+        {"kt": "https://tbd54566975.github.io/web5-kt/docs/htmlMultiModule/index.html"}
+      ]}
     />
     <ApiCard
-      url="/docs/apis/ssi-service"
-      name="SSI Service API"
-      description="The Self Sovereign Identity Service facilitates all things relating to DIDs and Verifiable Credentials. "
-    />
-    <ApiCard
-      url="https://tbd54566975.github.io/dwn-sdk-js/"
-      name="DWN JS SDK"
+      name="DWN SDK"
       description="A decentralized data storage and message relay node, as defined in the DIF Decentralized Web Node specification. Users may have multiple Nodes that replicate their data between them."
+      links={[
+        {"js": "https://tbd54566975.github.io/dwn-sdk-js/"},
+      ]}
+    />  
+    <ApiCard
+      name="SSI SDK"
+      description="Provides flexible functionality based on a set of standards-based primitives for building decentralized identity applications in a modular manner."
+      links={[
+        {"go": "https://pkg.go.dev/github.com/TBD54566975/ssi-sdk"},
+      ]}
     />
     <ApiCard
-      url="https://pkg.go.dev/github.com/TBD54566975/ssi-sdk"
-      name="SSI SDK"
-      description="Provides flexible functionality based on a set of standards-based primitives for building decentralized identity applications in a modular manner: with limited dependencies between components."
-    />
+      name="SSI Service"
+      description="A web service that exposes the SSI SDK as an HTTP API. Support operations for Verifiable Credentials, Decentralized Identifiers and things Self Sovereign Identity."
+      links={[
+        {"go": "https://pkg.go.dev/github.com/tbd54566975/ssi-service"},
+      ]}
+    />  
   </div>
 </div>
