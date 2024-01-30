@@ -39,7 +39,6 @@ describe('how-to-create-did', () => {
 
   test('createDidDht creates a DID with did:dht method', async () => {
     // :snippet-start: createDidDht
-
     //Creates a DID using the DHT method and publishes the DID Document to the DHT
     const didDht = await DidDhtMethod.create({ publish: true });
 
@@ -65,7 +64,6 @@ describe('how-to-create-did', () => {
 
   test('createDidKey creates a DID with did:key method', async () => {
     // :snippet-start: createDidKey
-
     //Creates a DID using the did:key method
     const didKey = await DidKeyMethod.create();
 
@@ -91,7 +89,6 @@ describe('how-to-create-did', () => {
 
   test('createDidIon creates a DID with did:ion method', async () => {
     // :snippet-start: createDidIon
-
     //Creates a DID using the did:ion method
     const didIon = await DidIonMethod.create();
 

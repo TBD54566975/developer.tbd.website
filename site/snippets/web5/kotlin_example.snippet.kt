@@ -1,0 +1,1 @@
+val signedVcJwt = vc.sign(employerDidObj)
