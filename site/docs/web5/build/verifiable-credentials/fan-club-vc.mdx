@@ -370,6 +370,7 @@ try {
 
 
 ```kotlin title="Wallet.kt"
+// Does VC Satisfy the Presentation Definition
 try {
     PresentationExchange.satisfiesPresentationDefinition(listOf(signedVcJwt), presentationDefinition)
     println("\nVC Satisfies Presentation Definition!\n")
@@ -384,11 +385,27 @@ try {
 
 Once Alice's app is confident that her credential satisfies the presentation definition, the presentation would be created:
 
+
+<Tabs>
+  <TabItem value="JavaScript" label="JavaScript" default>
+
 ```js title="Wallet.js"
 // Create Presentation Result that contains a Verifiable Presentation and Presentation Submission
 const presentationResult = PresentationExchange.createPresentationFromCredentials({vcJwts: [signedVcJwt], presentationDefinition: presentationDefinition });
 console.log('\nPresentation Result: ' + JSON.stringify(presentationResult));
 ```
+
+  </TabItem>
+  <TabItem value="Kotlin" label="Kotlin">
+
+
+```kt title="Wallet.kt"
+// Create Presentation Result that contains a Verifiable Presentation and Presentation Submission
+val presentationResult = PresentationExchange.createPresentationFromCredentials(listOf(signedSimpleVcJwt), presentationDefinition)
+println("Presentation Result: ${presentationResult}")
+```
+  </TabItem>
+</Tabs>
 
 The result of the presentation:
 
