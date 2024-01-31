@@ -24,18 +24,61 @@ httpApi.submit('close', async (ctx, close) => {
 })
 // :snippet-end:
 
-// :snippet-start: server-start
+// :snippet-start: serverStartJs
 const server = httpApi.listen(config.port, () => {
     log.info(`Mock PFI listening on port ${config.port}`)
 })
 // :snippet-end:
 
-// :snippet-start: exchanges-api
-
+// :snippet-start: writeJs
+async write(opts: { message: MessageKindClass }) {
+    const result = await dataProvider.insert(
+        'exchange',
+    {
+        exchangeid: message.exchangeId,
+        messagekind: message.kind,
+        messageid: message.id,
+        subject,
+        message: JSON.stringify(message)
+    });
+}  
 // :snippet-end:
 
-// :snippet-start: offerings-api
+// :snippet-start: readOfferingsJs
+import { Offering } from '@tbdex/http-server'
 
+async getOffering(opts: {id: string}): Promise<Offering> {
+  const [ result ] =  await dataProvider.queryForOffering('offering', opts.id);
+
+  if (!result) {
+    return undefined
+  }
+  return Offering.factory(result.offering)
+}
+
+async getOfferings(): Promise<Offering[]> {
+  const results =  await dataProvider.getOfferings('offering');
+  const offerings: Offering[] = []
+
+  for (let result of results) {
+    const offering = Offering.factory(result.offering)
+    offerings.push(offering)
+  }
+
+  return offerings
+}
 // :snippet-end:
 
+// :snippet-start: writeOfferingsJs
+async create(offering: Offering) {
+    let result = await dataProvider.insert(
+        'offering',
+        {
+        offeringid: offering.id,
+        payoutcurrency: offering.payoutCurrency.currencyCode,
+        payincurrency: offering.payinCurrency.currencyCode,
+        offering: JSON.stringify(offering)
+    });
+}
+// :snippet-end:
 

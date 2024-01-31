@@ -34,15 +34,19 @@ tbdexServer.submit(SubmitKind.close) { call, messageKind, offering ->
 }
 // :snippet-end:
 
-// :snippet-start: server-start
+// :snippet-start: serverStartKt
 tbdexServer.start()
 // :snippet-end:
 
-// :snippet-start: exchanges-api
+// :snippet-start: writeKt
 
 // :snippet-end:
 
-// :snippet-start: offerings-api
+// :snippet-start: readOfferingsKt
+
+// :snippet-end:
+
+// :snippet-start: writeOfferingsKt
 
 // :snippet-end:
 

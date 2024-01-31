@@ -1,0 +1,10 @@
+async create(offering: Offering) {
+    let result = await dataProvider.insert(
+        'offering',
+        {
+        offeringid: offering.id,
+        payoutcurrency: offering.payoutCurrency.currencyCode,
+        payincurrency: offering.payinCurrency.currencyCode,
+        offering: JSON.stringify(offering)
+    });
+}
