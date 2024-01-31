@@ -69,7 +69,6 @@ function processDirectory(directory, outputDirectory, baseDirectory) {
 
         const outputFileName = `${snippetName}.snippet${fileExtension}`;
         const outputPath = path.join(snippetDir, outputFileName);
-        console.log(`Writing snippet: ${outputPath}`);
         fs.writeFileSync(outputPath, snippetContent);
       }
     }
