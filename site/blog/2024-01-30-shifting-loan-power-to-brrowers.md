@@ -21,7 +21,7 @@ tags:
   <meta property="og:type" content="website" />
   <meta property="og:url" content='https://developer.tbd.website/blog/2023-11-14-shifting-loan-power-to-borrowers' />
   <meta name="og:description" content="How FormFree uses Web5 to shift loan power to borrowers" />
-  <meta property="og:image" content="https://developer.tbd.website/assets/images/shifting-loan-power-to-borrowers.png" />
+  <meta property="og:image" content="https://developer.tbd.website/assets/images/shifting-loan-power-to-borrowers-f9e00439785146c1413f90475d428d9a.png" />
 
   <meta name="twitter:card" content="summary_large_image" />
   <meta property="twitter:domain" content="developer.tbd.website" />
