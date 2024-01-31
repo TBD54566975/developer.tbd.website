@@ -2,6 +2,14 @@
 sidebar_position: 5
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import CodeSnippet from '@site/src/components/CodeSnippet';
+import configJs from '!!raw-loader!@site/snippets/tbdex/pfi/configJs.snippet.js'
+import configKt from '!!raw-loader!@site/snippets/tbdex/pfi/configKt.snippet.kt'
+import serverRoutesJs from '!!raw-loader!@site/snippets/tbdex/pfi/serverRoutesJs.snippet.js'
+import serverRoutesKt from '!!raw-loader!@site/snippets/tbdex/pfi/serverRoutesKt.snippet.kt'
+
 # Structuring a PFI App
 
 Every PFI on the tbDEX network is required to handle its end of the responsibilities as part of each [Message Type](/docs/tbdex/message-types). The tbDEX SDK is organized in such a way that there are three key components you'll be required to implement:
@@ -20,35 +28,33 @@ Your main server entrypoint should fulfill the following responsibilities:
 * Accept `GET` requests for Offerings and Exchanges data
 * Handle submission requests for new `RFQ`, `Order`, and `Close` messages
 
-To begin, you’ll want to configure your server with the required exchange and offerings API providers:
-```js
-import { TbdexHttpServer } from '@tbdex/http-server'
+To begin, you’ll want to configure your server with the required exchange and offerings API providers (the details of those API providers will be in the sections below):
 
-const httpApi = new TbdexHttpServer({ exchangesApi: ExchangeApiProvider, offeringsApi: OfferingApiProvider })
-```
-
+<Tabs>
+  <TabItem label="JavaScript" value="JavaScript">
+    <CodeSnippet snippet={configJs} />
+  </TabItem>
+  <TabItem label="Kotlin" value="Kotlin">
+    <CodeSnippet snippet={configKt} />
+  </TabItem>
+</Tabs>
 
 The [message types](/docs/tbdex/message-types) that are sent from Wallets to PFIs are: `RFQ`, `Order`, and `Close`. 
 As a result, you’ll want to ensure that your PFI is programmed to accept those messages and create appropriate messages in response:
 
-
-```js
-httpApi.submit('rfq', async (ctx, rfq) => {
-  await ExchangeApiProvider.write({ message: rfq as Rfq })
-})
-
-httpApi.submit('order', async (ctx, order) => {
-  await ExchangeApiProvider.write({ message: order as Order })
-})
-
-httpApi.submit('close', async (ctx, close) => {
-  await ExchangeApiProvider.write({ message: close as Close })
-})
-```
-
+<Tabs>
+  <TabItem label="JavaScript" value="JavaScript">
+    <CodeSnippet snippet={serverRoutesJs} />
+  </TabItem>
+  <TabItem label="Kotlin" value="Kotlin">
+    <CodeSnippet snippet={serverRoutesKt} />
+  </TabItem>
+</Tabs>
 
 With your routes configured, set your server to begin listening:
 
+<Tabs>
+  <TabItem label="JavaScript" value="JavaScript">
 
 ```js
 const server = httpApi.listen(config.port, () => {
@@ -56,9 +62,23 @@ const server = httpApi.listen(config.port, () => {
 })
 ```
 
+  </TabItem>
+
+  <TabItem label="Kotlin" value="Kotlin">
+
+```kotlin
+tbdexServer.start()
+```
+
+  </TabItem>
+
+</Tabs>
 
 Now your server is configured with the appropriate routing setup.
 
+:::note
+Error handling for things like duplicate RFQs, invalid data, and non-existent Offerings is automatically handled by the tbDEX SDK behind the scenes. Your app can focus on implementing business logic rather than needing to worry about input validation.
+:::
 
 ## Exchange API Provider
 
@@ -71,8 +91,11 @@ As a PFI developer, you’ll be responsible for designing your own data storage 
 Assuming a generic `dataProvider` class serves as your PFI’s means of accessing your Exchange data, here's an example of a `write()` implementation:
 
 
+<Tabs>
+  <TabItem label="JavaScript" value="JavaScript">
+
 ```js
- async write(opts: { message: MessageKindClass }) {
+async write(opts: { message: MessageKindClass }) {
   const result = await dataProvider.insert(
         'exchange',
       {
@@ -85,6 +108,16 @@ Assuming a generic `dataProvider` class serves as your PFI’s means of accessin
 }  
 ```
 
+  </TabItem>
+
+  <TabItem label="Kotlin" value="Kotlin">
+
+```kotlin
+```
+
+  </TabItem>
+
+</Tabs>
 
 After writing an `RFQ` to the database, you can [create a Quote](/docs/tbdex/pfi/creating-quotes). 
 Similarly, after writing an `Order` to your database, you’ll want to ensure you properly [process that Order](/docs/tbdex/pfi/processing-orders).
@@ -97,36 +130,49 @@ The `Offerings` API is the set of methods that deals with reading and writing an
 Although the Offerings API isn’t directly exposed in the main server entrypoint, it is still used to fetch and write offerings to your PFI's database. 
 Here's an example of how to get offerings as specified by the `OfferingsApi` interface:
 
+<Tabs>
+  <TabItem label="JavaScript" value="JavaScript">
 
 ```js
 import { Offering } from '@tbdex/http-server'
 
 async getOffering(opts: {id: string}): Promise<Offering> {
-    const [ result ] =  await dataProvider.queryForOffering('offering', opts.id);
+  const [ result ] =  await dataProvider.queryForOffering('offering', opts.id);
 
-    if (!result) {
-      return undefined
-    }
+  if (!result) {
+    return undefined
+  }
+  return Offering.factory(result.offering)
+}
 
-    return Offering.factory(result.offering)
+async getOfferings(): Promise<Offering[]> {
+  const results =  await dataProvider.getOfferings('offering');
+  const offerings: Offering[] = []
 
+  for (let result of results) {
+    const offering = Offering.factory(result.offering)
+    offerings.push(offering)
   }
 
-  async getOfferings(): Promise<Offering[]> {
-    const results =  await dataProvider.getOfferings('offering');
-
-    const offerings: Offering[] = []
-    for (let result of results) {
-      const offering = Offering.factory(result.offering)
-      offerings.push(offering)
-    }
-
-    return offerings
-  }
+  return offerings
+}
 ```
 
+  </TabItem>
+
+  <TabItem label="Kotlin" value="Kotlin">
+
+```kotlin
+```
+
+  </TabItem>
+
+</Tabs>
 
 Additionally, you could write `Offerings` into your database:
+
+<Tabs>
+  <TabItem label="JavaScript" value="JavaScript">
 
 ```js
 async create(offering: Offering) {
@@ -140,5 +186,16 @@ async create(offering: Offering) {
       });
   }
 ```
+
+  </TabItem>
+
+  <TabItem label="Kotlin" value="Kotlin">
+
+```kotlin
+```
+
+  </TabItem>
+
+</Tabs>
 
 By implementing the `getOffering()` and `getOfferings()` methods, you'll allow Wallets to get a specific Offering they'd be interested in, or query all your Offerings, respectively. The convenience of the tbDEX SDK is that you aren't required to actually write an API endpoint yourself to handle interfacing with Wallets as the SDK handles it all for you.
