@@ -29,7 +29,7 @@ tags:
   <meta name="twitter:title" content="Shifting Loan Power to Borrowers" />
   <meta property="twitter:url" content='https://developer.tbd.website/blog/2024-01-30-shifting-loan-power-to-borrowers' /> 
   <meta name="twitter:description" content="How FormFree uses Web5 to shift loan power to borrowers" />
-  <meta name="twitter:image" content="https://developer.tbd.website/assets/images/shifting-loan-power-to-borrowers.png" />
+  <meta name="twitter:image" content="https://developer.tbd.website/assets/images/shifting-loan-power-to-borrowers-f9e00439785146c1413f90475d428d9a.png" />
 
   <link rel="apple-touch-icon" href="https://developer.tbd.website/img/tbd-fav-icon-main.png" />
 </head>
