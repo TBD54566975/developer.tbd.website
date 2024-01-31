@@ -13,10 +13,11 @@
     "start:widget": "pnpm --filter web5-quickstart-widgets start",
     "build": "pnpm run shnip && pnpm --filter site run build",
     "clear": "pnpm --filter site run clear",
-    "test": "pnpm run shnip && pnpm vitest run --config vite.config.ts --no-threads && pnpm test:browser",
+    "test": "pnpm run shnip && pnpm vitest run --config vite.config.ts --no-threads && pnpm test:browser && pnpm test:kotlin",
     "test:watch": "pnpm run shnip && pnpm vitest --config vite.config.ts --watch",
     "test:browser": "pnpm -r test:browser",
     "test:versions": "node check-versions.js",
+    "test:kotlin": "./site/testsuites/testsuite-kotlin/mvnw clean verify -f site/testsuites/testsuite-kotlin",
     "shnip": "node ./shnippet/src/cli"
   },
   "dependencies": {
