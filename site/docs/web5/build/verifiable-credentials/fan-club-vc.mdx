@@ -6,6 +6,9 @@ sidebar_position: 10
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
+
+<LanguageSwitcher languages="JavaScript, Kotlin" />
+
 # Verifiable Credentials for Fan Club Membership
 
 Alice is a long-time fan of one of the biggest pop stars in the world! 
@@ -42,8 +45,8 @@ repositories {
 
 ```kotlin
 dependencies {
-  implementation("xyz.block:web5-credentials:0.0.9-delta")
-  implementation("xyz.block:web5-dids:0.0.9-delta")
+  implementation("xyz.block:web5-credentials:0.10.0")
+  implementation("xyz.block:web5-dids:0.10.0")
 }
 ```
   </TabItem>
@@ -85,11 +88,8 @@ const aliceDid = await DidKeyMethod.create();
 import web5.sdk.crypto.InMemoryKeyManager
 import web5.sdk.dids.methods.key.DidKey
 
-val fanClubIssuerDidObject = DidKey.create(InMemoryKeyManager())
-val fanClubIssuerDid = fanClubIssuerDidObject.resolve()
-
-val aliceDidObject = DidKey.create(InMemoryKeyManager())
-val aliceDid = aliceDidObject.resolve()
+val fanClubIssuerDid = DidKey.create(InMemoryKeyManager())
+val aliceDid = DidKey.create(InMemoryKeyManager())
 ```
   </TabItem>
 </Tabs>
@@ -128,6 +128,7 @@ import web5.sdk.credentials.PresentationExchange
 data class SwiftiesFanClub(
     // indicates the fan's dedication level
     val level: String,
+
     // indicates if the fan is a genuine Swiftie
     val legit: Boolean
 )
@@ -162,8 +163,8 @@ const vc = await VerifiableCredential.create({
 ```kotlin title="Issuer.kt"
 val vc = VerifiableCredential.create(
     type = "SwiftiesFanClub",
-    issuer = fanClubIssuerDid.didDocument.id.toString(),
-    subject = aliceDid.didDocument.id.toString(),
+    issuer = fanClubIssuerDid.uri,
+    subject = aliceDid.uri,
     data = SwiftiesFanClub(level = "Stan", legit = true)
 )
 ```
@@ -247,7 +248,7 @@ const signedVcJwt = await vc.sign({ did: fanClubIssuerDid });
 
 
 ```kotlin title="Issuer.kt"
-val signedVcJwt = vc.sign(fanClubIssuerDidObject)
+val signedVcJwt = vc.sign(fanClubIssuerDid)
 ```
   </TabItem>
 </Tabs>
@@ -332,18 +333,27 @@ val presentationDefinition = PresentationDefinitionV2(
         )
     )
 )
+
+val definitionValidation = PresentationExchange.validateDefinition(presentationDefinition)
 ```
   </TabItem>
 </Tabs>
 
-
-
-
-A successful validation would result in:
+:::note
+A successful validation would result in
+<Tabs>
+  <TabItem value="JavaScript" label="JavaScript" default>
 
 ```js
 [ Checked { tag: 'root', status: 'info', message: 'ok' } ]
 ```
+
+  </TabItem>
+  <TabItem value="Kotlin" label="Kotlin">
+  This returns an undefined result, but if unsuccessful, it will throw an error. 
+    </TabItem>
+</Tabs>
+:::
 
 ### Satisfy Presentation Definition
 
