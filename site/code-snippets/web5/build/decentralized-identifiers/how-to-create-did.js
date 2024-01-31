@@ -1,5 +1,5 @@
 import { Web5 } from '@web5/api';
-import { DidDhtMethod, DidKeyMethod, DidIonMethod } from '@web5/dids';
+import { DidDhtMethod, DidKeyMethod } from '@web5/dids';
 
 export async function createDidAutomatically() {
   const { web5, did: userDid } = await Web5.connect();
@@ -50,24 +50,3 @@ export async function createDidKey() {
   return didKey.did;
 }
 
-export async function createDidIon() {
-  //Creates a DID using the did:ion method
-  const didIon = await DidIonMethod.create();
-
-  //DID and its associated data which can be exported and used in different contexts/apps
-  const portableDID = JSON.stringify(didIon);
-
-  //DID string
-  const did = didIon.did;
-
-  //DID Document
-  const didDocument = JSON.stringify(didIon.document);
-
-  //Cryptographic keys associated with DID
-  const keys = JSON.stringify(didIon.keySet);
-
-  //Primary form of a DID. more info: https://www.w3.org/TR/did-core/#dfn-canonicalid
-  const canonicalId = didIon.canonicalId;
-
-  return didIon.did;
-}
