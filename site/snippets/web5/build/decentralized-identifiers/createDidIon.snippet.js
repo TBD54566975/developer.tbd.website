@@ -1,4 +1,3 @@
-
 //Creates a DID using the did:ion method
 const didIon = await DidIonMethod.create();
 
