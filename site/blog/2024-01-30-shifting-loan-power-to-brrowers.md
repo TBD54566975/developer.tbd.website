@@ -62,7 +62,7 @@ FormFree uses the following Web5 technologies:
 
 ## Coming Soon - tbLend and Credential Selector
 
-As part of our [incubation program](https://developer.tbd.website/community/incubation-projects/), organizations such as [FormFree](https://www.formfree.com/), [Sophtron](https://sophtron.com/index), and [MX](https://www.mx.com/) are working in partnership to build Web5 protocols that will help their products evolve.
+As part of our [incubation program](/community/incubation-projects/), organizations such as [FormFree](https://www.formfree.com/), [Sophtron](https://sophtron.com/index), and [MX](https://www.mx.com/) are working in partnership to build Web5 protocols that will help their products evolve.
 
 - [tbLend](https://github.com/TBD54566975/incubation-tblend#web5service) - A Web5 protocol that connects the lender and borrower to exchange money securely.
 - [Credential Selector](https://github.com/TBD54566975/incubation-verifiable-credential-selector) - A Web5 protocol that enables developers to embed the Verifiable Credentials (VCs) into their application and allows users to select and retrieve VCs.
