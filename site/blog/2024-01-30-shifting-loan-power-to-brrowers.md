@@ -44,7 +44,6 @@ The Fair Isaac Corporation score, more fondly known as a FICO score, is a three-
 To provide a more holistic view of a person's creditworthiness, FormFree developed a new system called [Residual Income Knowledge Index™ (RIKI™)](https://www.formfree.com/news-and-insights/formfree-releases-residual-income-knowledge-index/). Instead, RIKI analyzes monthly income and spending. Integrating this method into our existing credit system provides greater opportunities for home ownership, car purchases, and other essential loans.
 
 ## "It's like Tinder for banks!"
-
 During the live stream, FormFree Software Engineer Jon West showcased a product called Passport. The demo highlighted Passport's ability to match borrowers with lenders. This feature inspired an audience member to comment, 'It's like Tinder for banks!'"
 
 Here's how it works:
@@ -71,7 +70,7 @@ As part of our [incubation program](https://developer.tbd.website/community/incu
 ## Rewatch the full episode
 Learn more about what FormFree is building and watch the full live stream [here](https://youtu.be/TZkK8a64E7I?si=2qhaIF22uGbD7lbJ).
 
-<iframe class="aspect-video" src="https://www.youtube.com/embed/TZkK8a64E7I" title="netonomy" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+<iframe class="aspect-video" src="https://www.youtube.com/embed/TZkK8a64E7I" title="formfree" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
 *This post highlights key moments from our collaborative live stream with leaders and builders at FormFree. Join our weekly live streams every Friday at 12pm ET/9 am PT. We're learning how innovators and community members are advancing the Self-Sovereign Identity and Global Payments industry. Tune in next time via [Twitch](https://twitch.tv/tbdevs ) or in our community [Discord](https://discord.com/invite/tbd).*
 
