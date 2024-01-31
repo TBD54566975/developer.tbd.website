@@ -4,6 +4,9 @@ sidebar_position: 3
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import CodeSnippet from '@site/src/components/CodeSnippet';
+import createDidJs from '!!raw-loader!@site/snippets/tbdex/pfi/pfiCreateDidJs.snippet.js'
+import createDidKt from '!!raw-loader!@site/snippets/tbdex/pfi/pfiCreateDidKt.snippet.kt'
 
 # Onboarding
 
@@ -16,43 +19,10 @@ To create a DID and identify yourself as a PFI, use the `web5/dids` package:
 
 <Tabs>
   <TabItem label="JavaScript" value="JavaScript">
-
-  ```js
-  import { DidDhtMethod } from '@web5/dids';
-
-  const did = await DidDhtMethod.create({
-    publish: true,
-    services: [{
-      id: 'pfi',
-      type: 'PFI',
-      serviceEndpoint: 'tbdex-pfi.tbddev.org'
-    }]
-  })
-  ```
-
+    <CodeSnippet snippet={createDidJs} />
   </TabItem>
   <TabItem label="Kotlin" value="Kotlin">
-
-  ```kt
-  import web5.sdk.dids.methods.dht.CreateDidDhtOptions
-  import web5.sdk.dids.methods.dht.DidDht
-  import foundation.identity.did.Service
-  import java.net.URI
-
-  val serviceToAdd = Service.builder()
-      .id(URI("pfi"))
-      .type("PFI")
-      .serviceEndpoint("tbdex-pfi.tbddev.org")
-      .build()
-
-  val options = CreateDidDhtOptions(
-      publish = true,
-      services = listOf(serviceToAdd),
-  )
-
-  val did = DidDht.create(keyManager, options)
-  ```
-
+    <CodeSnippet snippet={createDidKt} />
   </TabItem>
 </Tabs>
 

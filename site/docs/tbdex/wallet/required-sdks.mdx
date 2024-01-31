@@ -4,6 +4,12 @@ sidebar_position: 2
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import CodeSnippet from '@site/src/components/CodeSnippet';
+import installJs from '!!raw-loader!@site/snippets/tbdex/pfi/installJs.snippet.bash'
+import installKtGradle from '!!raw-loader!@site/snippets/tbdex/pfi/installKt.snippet.gradle'
+import installKtPom from '!!raw-loader!@site/snippets/tbdex/pfi/installKtPom.snippet.xml'
+import importJs from '!!raw-loader!@site/snippets/tbdex/pfi/overviewImportJs.snippet.js'
+import importKt from '!!raw-loader!@site/snippets/tbdex/pfi/overviewImportKt.snippet.kt'
 
 # Required SDKs
 
@@ -18,35 +24,14 @@ To implement and operate as a Wallet on a tbDEX network, you’ll need to use th
 To install `@web5/dids`:
 
 <Tabs groupId="language">
-  <TabItem groupId="language" value="JavaScript" label="JavaScript" default>
-  
-  To install packages:
-
-  ```bash
-  npm i @web5/dids
-  npm i @web5/credentials
-  npm i @tbdex/http-client
-  ```
-
+  <TabItem label="JavaScript" value="JavaScript">
+    <CodeSnippet snippet={installJs} />
   </TabItem>
-  <TabItem groupId="language" value="Kotlin" label="Kotlin">
-
-  You can install the repositories using Gradle or Maven using the following additions to your <code>build.gradle.kts</code>:
-
-  ```js
-  repositories {
-    mavenCentral()
-    maven("https://jitpack.io")
-    maven("https://repo.danubetech.com/repository/maven-public/")
-    maven("https://repository.jboss.org/nexus/content/repositories/thirdparty-releases/")
-  }
-  dependencies {
-    implementation("xyz.block:web5-credentials:0.0.9-delta")
-    implementation("xyz.block:web5-dids:0.0.9-delta")
-    implementation("com.github.TBD54566975:tbdex-kt:0.7.2-beta")
-  }
-  ```
-  
+  <TabItem label="Kotlin (Gradle)" value="Kotlin">
+    <CodeSnippet snippet={installKtGradle} />
+  </TabItem>
+  <TabItem label="Kotlin (Maven)" value="maven">
+    <CodeSnippet snippet={installKtPom} />
   </TabItem>
 </Tabs>
 
@@ -55,33 +40,10 @@ To install `@web5/dids`:
 To send and receive tbDEX messages, import the following classes:
 
 <Tabs groupId="language">
-  <TabItem groupId="language" value="JavaScript" label="JavaScript" default>
-
-  ```js
-  import { 
-      TbdexHttpClient,
-      Rfq,
-      Quote,
-      Order
-  } from '@tbdex/http-client';
-
-  import {
-    VerifiableCredential, 
-    PresentationExchange
-  } from "@web5/credentials";
-  ```
-
+  <TabItem label="JavaScript" value="JavaScript">
+    <CodeSnippet snippet={importJs} />
   </TabItem>
-  <TabItem groupId="language" value="Kotlin" label="Kotlin" default>
-
-  ```kt
-  import tbdex.sdk.httpclient.TbdexHttpClient
-  import tbdex.sdk.protocol.models.Rfq
-  import tbdex.sdk.protocol.models.Quote
-  import tbdex.sdk.protocol.models.Order
-  import web5.sdk.credentials.VerifiableCredential
-  import web5.sdk.credentials.PresentationExchange
-  ```
-
+  <TabItem label="Kotlin" value="Kotlin">
+    <CodeSnippet snippet={importKt} />
   </TabItem>
 </Tabs>
