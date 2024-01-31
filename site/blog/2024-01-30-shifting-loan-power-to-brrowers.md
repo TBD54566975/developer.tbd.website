@@ -57,7 +57,7 @@ Typically, borrowers endure aggressively pitched products from dozens of lending
 
 ## How FormFree Uses Web5
 FormFree uses the following Web5 technologies:
-- [Decentralized Identifiers (DID)](https://developer.tbd.website/docs/web5/learn/decentralized-identifiers) - After sign up, the application associates a user's account with a DID.
+- [Decentralized Identifiers (DID)](/docs/web5/learn/decentralized-identifiers) - After sign up, the application associates a user's account with a DID.
 - [Verifiable Credentials (VC)](https://developer.tbd.website/docs/web5/learn/verifiable-credentials) - A borrower's credit profile is secured as a Verifiable Credential enabling the borrower's information to stay anonymous and tamper-proof.
 
 ## Coming Soon - tbLend and Credential Selector
