@@ -98,7 +98,6 @@ class SnippetExtractor {
             fullPath
           )}`;
           const outputPath = path.join(snippetDir, outputFileName);
-          console.log(`Writing snippet: ${outputPath}`);
           fs.writeFileSync(outputPath, snippetContent);
         }
       }

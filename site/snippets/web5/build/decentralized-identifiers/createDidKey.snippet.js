@@ -1,4 +1,3 @@
-
 //Creates a DID using the did:key method
 const didKey = await DidKeyMethod.create();
 
