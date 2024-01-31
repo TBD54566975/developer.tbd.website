@@ -204,10 +204,26 @@
 
 .docs-wrapper #__docusaurus .api-card {
   border: 2px solid var(--color-yellow);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%; 
 }
 
 .docs-wrapper #__docusaurus .api-card p {
   font-size: 1rem;
+}
+
+.api-card-icon {
+  display: flex;
+  justify-content: start;
+  gap: 20px;
+  padding-top: 20px;
+  vertical-align: bottom;
+}
+
+.api-card-icon img {
+  width: 50px;
 }
 
 .docs-wrapper #__docusaurus h2,
