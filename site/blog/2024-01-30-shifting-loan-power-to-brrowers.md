@@ -61,7 +61,6 @@ FormFree uses the following Web5 technologies:
 - [Verifiable Credentials (VC)](/docs/web5/learn/verifiable-credentials) - A borrower's credit profile is secured as a Verifiable Credential enabling the borrower's information to stay anonymous and tamper-proof.
 
 ## Coming Soon - tbLend and Credential Selector
-
 As part of our [incubation program](/community/incubation-projects/), organizations such as [FormFree](https://www.formfree.com/), [Sophtron](https://sophtron.com/index), and [MX](https://www.mx.com/) are working in partnership to build Web5 protocols that will help their products evolve.
 
 - [tbLend](https://github.com/TBD54566975/incubation-tblend#web5service) - A Web5 protocol that connects the lender and borrower to exchange money securely.
