@@ -12,6 +12,7 @@ Before you begin, ensure that you have the following installed on your local mac
 
 - [Node.js](https://nodejs.org/) (version 18.16.0 or later)
 - [pnpm](https://pnpm.io/) (version 7.29.1 or later)
+- [Java Development Kit](https://en.wikipedia.org/wiki/Java_Development_Kit) (version 17, recommended via [SDKMan](https://sdkman.io/install), as described below)
 
 ### PNPM Installation
 
@@ -27,6 +28,41 @@ npm install -g pnpm
 3. Wait for the installation process to complete.
 
 > Note: If you already have `pnpm` installed globally, you can skip this step.
+
+### Java Development Kit
+
+This project has components written in [Kotlin](https://kotlinlang.org/), a concise
+programming language from JetBrains that runs on the Java Virtual Machine.
+
+To build the site including its testsuite, you must have
+a Java Development Kit installed on your `$PATH`.
+
+You may verify your `java` installation via the terminal by running `java -version`.
+
+If you do not have Java, we recommend installing it
+via [SDKMan](https://sdkman.io/install). This is a project which will allow you
+to easily install the Java Development Kit (JDK), runtime (JRE), and related frameworks,
+build tools, and runtimes.
+
+After you've installed SDKMan, you may install Java:
+
+#### SDKMan (cross-platform instructions)
+
+```shell
+$> sdk install java 17.0.10-oracle 
+ ...
+Do you want java 17.0.10-oracle to be set as default? (Y/n): Y
+Setting java 17.0.10-oracle as default.
+```
+
+You may test your installation:
+
+```shell
+$> java -version
+java version "17.0.10" 2024-01-16 LTS
+Java(TM) SE Runtime Environment (build 17.0.10+11-LTS-240)
+Java HotSpot(TM) 64-Bit Server VM (build 17.0.10+11-LTS-240, mixed mode, sharing)
+```
 
 ### Playwright Installation
 
@@ -79,6 +115,7 @@ The following scripts are available for running specific tasks within the monore
 - `pnpm clear`: Runs docusaurus clear
 - `pnpm build`: Runs the production build for the site so it can be hosted by a static web server. The completed build will be in the folder `site/build`.
 - `pnpm test`: Runs the testsuites for the site and all examples, including browser tests. Requires Playwright, per installation instructions above.
+- `pnpm test:kotlin`: Runs the Kotlin testsuite
 
 ## Extra Features
 
