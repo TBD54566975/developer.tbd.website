@@ -53,9 +53,6 @@ describe('how-to-create-did', () => {
     //Cryptographic keys associated with DID
     const keys = JSON.stringify(didDht.keySet);
 
-    //Primary form of a DID. more info: https://www.w3.org/TR/did-core/#dfn-canonicalid
-    const canonicalId = didDht.canonicalId;
-
     // :snippet-end:
 
     expect(didDht.did).toMatch(/^did:dht:/);
@@ -77,9 +74,6 @@ describe('how-to-create-did', () => {
 
     //Cryptographic keys associated with DID
     const keys = JSON.stringify(didKey.keySet);
-
-    //Primary form of a DID. more info: https://www.w3.org/TR/did-core/#dfn-canonicalid
-    const canonicalId = didKey.canonicalId;
 
     // :snippet-end:
 

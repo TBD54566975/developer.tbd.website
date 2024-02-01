@@ -3,33 +3,56 @@ title: Create a DID
 sidebar_position: 1
 ---
 
+<LanguageSwitcher languages="JavaScript, Kotlin"/>
+
 import CodeSnippet from '@site/src/components/CodeSnippet';
 import createDidDht from '!!raw-loader!@site/snippets/web5/build/decentralized-identifiers/createDidDht.snippet.js'
 import createDidKey from '!!raw-loader!@site/snippets/web5/build/decentralized-identifiers/createDidKey.snippet.js'
+import createDidDhtKt from '!!raw-loader!@site/snippets/web5/build/decentralized-identifiers/createDidDhtKt.snippet.kt'
+import createDidKeyKt from '!!raw-loader!@site/snippets/web5/build/decentralized-identifiers/createDidKeyKt.snippet.kt'
+import importDidsKt from '!!raw-loader!@site/snippets/web5/build/decentralized-identifiers/importDidsKt.snippet.kt'
 
-[Decentralized Identifiers (DIDs)](/docs/web5/learn/decentralized-identifiers) are how you are identified on the decentralized web. 
+
+[Decentralized Identifiers (DIDs)](/docs/web5/learn/decentralized-identifiers) are how you are identified on the decentralized web.
 This guide covers how to use Web5 to create a DID.
 
 You can create a DID using any of the [Web5-supported DID methods](/docs/web5/learn/decentralized-identifiers#methods) by using the [DID package](https://www.npmjs.com/package/@web5/dids).
 
 **Import the DID Method you'd like to use:**
 
-```js
+<Shnip
+  snippets={[
+    { snippetContent: importDidsKt, language: 'Kotlin' },
+    ]}
+    inlineSnippets={[
+      {
+        code: `
 //did:dht
 import { DidDhtMethod } from '@web5/dids'
-
 //did:key
-import { DidKeyMethod } from '@web5/dids'
-```
+import { DidKeyMethod } from '@web5/dids'`,
+        language: 'JavaScript',
+      },
+    ]}
+/>
 
 ### did:dht
 
-<CodeSnippet snippet={createDidDht}  />
+<Shnip
+  snippets={[
+    { snippetContent: createDidDht, language: 'JavaScript' },
+    { snippetContent: createDidDhtKt, language: 'Kotlin' },
+    ]}
+/>
 
 ### did:key
 
-<CodeSnippet snippet={createDidKey} />
-
+<Shnip
+  snippets={[
+    { snippetContent: createDidKey, language: 'JavaScript' },
+    { snippetContent: createDidKeyKt, language: 'Kotlin' },
+    ]}
+/>
 
 ## Example of DID properties
 
@@ -44,8 +67,8 @@ did:dht:cm1yqfjzfdtauh33nauwf3sqsijqziwrydicr8dbtho3cucb9nno
 ```
 
 ### Portable DID
-As shown above, `@web5/dids` provides methods to create a DID. 
-A Portable DID is returned, which is a DID and its associated data which can be exported and used in different contexts and apps. 
+As shown above, `@web5/dids` provides methods to create a DID.
+A Portable DID is returned, which is a DID and its associated data which can be exported and used in different contexts and apps.
 You should securely store your Portable DID in a trustworthy identity wallet or password manager.
 
 :::important

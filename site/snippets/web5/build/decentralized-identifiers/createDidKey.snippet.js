@@ -12,6 +12,3 @@ const didDocument = JSON.stringify(didKey.document);
 
 //Cryptographic keys associated with DID
 const keys = JSON.stringify(didKey.keySet);
-
-//Primary form of a DID. more info: https://www.w3.org/TR/did-core/#dfn-canonicalid
-const canonicalId = didKey.canonicalId;
