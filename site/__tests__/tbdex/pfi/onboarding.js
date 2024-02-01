@@ -1,4 +1,4 @@
-// :snippet-start: pfiCreateDidJs
+// :snippet-start: pfiOnboardingCreateDidJs
 import { DidDhtMethod } from '@web5/dids';
 
 const did = await DidDhtMethod.create({

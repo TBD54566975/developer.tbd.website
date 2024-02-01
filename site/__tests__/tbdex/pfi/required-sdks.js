@@ -1,4 +1,4 @@
-// :snippet-start: overviewImportJs
+// :snippet-start: pfiSdkImportJs
 import { 
     TbdexHttpServer, 
     Rfq, 

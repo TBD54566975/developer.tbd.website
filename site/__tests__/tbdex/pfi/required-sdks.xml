@@ -1,4 +1,5 @@
-<!-- :snippet-start: installKtPom  -->
+<!-- :snippet-start: pfiSdkInstallPom  
+-->
 <repositories>
     <repository>
         <id>jitpack.io</id>

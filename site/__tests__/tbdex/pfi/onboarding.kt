@@ -1,4 +1,4 @@
-// :snippet-start: pfiCreateDidKt
+// :snippet-start: pfiOnboardingCreateDidKt
 import web5.sdk.dids.methods.dht.CreateDidDhtOptions
 import web5.sdk.dids.methods.dht.DidDht
 import foundation.identity.did.Service

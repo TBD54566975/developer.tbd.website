@@ -1,4 +1,4 @@
-// :snippet-start: installKt
+// :snippet-start: pfiSdkInstallGradle
 repositories {
     mavenCentral()
     maven("https://jitpack.io")

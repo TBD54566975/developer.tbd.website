@@ -1,4 +1,4 @@
-// :snippet-start: overviewImportJs
+// :snippet-start: walletSdkImportJs
 import { 
     TbdexHttpClient,
     Rfq,
