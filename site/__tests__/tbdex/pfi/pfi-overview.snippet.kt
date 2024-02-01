@@ -1,4 +1,4 @@
-// :snippet-start: configKt
+// :snippet-start: pfiOverviewConfigKt
 import tbdex.sdk.httpserver.TbdexHttpServer
 import web5.sdk.crypto.AwsKeyManager
 import web5.sdk.dids.methods.dht.DidDht
@@ -15,7 +15,7 @@ val serverConfig = TbdexHttpServerConfig(
 val tbdexServer = TbdexHttpServer(serverConfig)
 // :snippet-end:
 
-// :snippet-start: serverRoutesKt
+// :snippet-start: pfiOverviewServerRoutesKt
 import tbdex.sdk.httpserver.models.SubmitKind
 
 tbdexServer.submit(SubmitKind.rfq) { call, messageKind, offering ->
@@ -34,19 +34,19 @@ tbdexServer.submit(SubmitKind.close) { call, messageKind, offering ->
 }
 // :snippet-end:
 
-// :snippet-start: serverStartKt
+// :snippet-start: pfiOverviewServerStartKt
 tbdexServer.start()
 // :snippet-end:
 
-// :snippet-start: writeKt
+// :snippet-start: pfiOverviewWriteKt
 
 // :snippet-end:
 
-// :snippet-start: readOfferingsKt
+// :snippet-start: pfiOverviewReadOfferingsKt
 
 // :snippet-end:
 
-// :snippet-start: writeOfferingsKt
+// :snippet-start: pfiOverviewWriteOfferingsKt
 
 // :snippet-end:
 
