@@ -4,7 +4,7 @@ import LanguageTabBar from '@site/src/components/language/LanguageTabBar';
 import CodeSnippet from '@site/src/components/CodeSnippet';
 import CodeBlock from '@theme/CodeBlock';
 
-const Shnip = ({ snippets, inlineSnippets }) => {
+const Shnip = ({ snippets, inlineSnippets, inlineContent }) => {
   // support line breaks for inline code snippets
 const addLineBreaks = (code, breakLines) => {
   if (!breakLines || breakLines.length === 0) {
@@ -44,8 +44,8 @@ const addLineBreaks = (code, breakLines) => {
 
         {inlineSnippets &&
           inlineSnippets.map(
-            ({ code, language, codeLanguage, title, breakLineAt }) => (
-              <div key={`inline-${language}`} language={language}>
+            ({ code, language, codeLanguage, title, breakLineAt }, index) => (
+              <div key={`inline-${language}-${index}`} language={language}>
                 <CodeBlock
                   // parse as specified language such as bash OR parse as language from tab
                   language={(codeLanguage || language).toLowerCase()}
@@ -56,6 +56,13 @@ const addLineBreaks = (code, breakLines) => {
               </div>
             ),
           )}
+
+        {inlineContent &&
+          inlineContent.map(({ content, language }, index) => (
+            <div key={`content-${language}-${index}`} language={language}>
+              {content}
+            </div>
+          ))}
       </LanguageSwitchBlock>
     </>
   );

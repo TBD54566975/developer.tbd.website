@@ -343,12 +343,21 @@ val definitionValidation = PresentationExchange.validateDefinition(presentationD
   ]}
 />
 
-For the **JavaScript SDK**, a successful validation would result in
-
-```js
-[ Checked { tag: 'root', status: 'info', message: 'ok' } ]
-```
- For the **Kotlin SDK**, this returns an undefined result, but if unsuccessful, it will throw an error. 
+A successful validation would result in:
+<Shnip
+  inlineSnippets={[
+    {
+      code: `[ Checked { tag: 'root', status: 'info', message: 'ok' } ]`,
+      language: 'JavaScript',
+    }
+  ]}
+  inlineContent={[
+    {
+      content: 'This returns an undefined result, but if unsuccessful, it will throw an error.',
+      language: 'Kotlin',
+    }
+  ]}
+/>
 
 
 ### Satisfy Presentation Definition
