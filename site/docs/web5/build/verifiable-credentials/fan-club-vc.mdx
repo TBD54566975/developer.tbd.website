@@ -19,38 +19,35 @@ In this tutorial, we'll learn how to use [verifiable credentials](/docs/web5/lea
 ## Setting the Stage
 Before we start issuing and verifying credentials, let's set up our environment by installing the [@web5/credentials](https://www.npmjs.com/package/@web5/credentials) and [@web5/dids](https://www.npmjs.com/package/@web5/dids) packages:
 
-<Tabs>
-  <TabItem value="JavaScript" label="JavaScript" default>
-
-```bash
+<Shnip
+  inlineSnippets={[
+    {
+      code: `
 npm install @web5/credentials
 npm install @web5/dids
-```
-
-  </TabItem>
-  <TabItem value="Kotlin" label="Kotlin">
-
-
-**Configure Repositories**
-
-```kotlin
+      `,
+      language: 'JavaScript',
+      codeLanguage: 'bash',
+    },
+    {
+      code: `
+// Configure repositories
 repositories {
   mavenCentral()
   maven("https://jitpack.io")
   maven("https://repo.danubetech.com/repository/maven-public/")
 }
-```
-
-**Configure Dependencies**
-
-```kotlin
+// Configure dependencies
 dependencies {
   implementation("xyz.block:web5-credentials:0.10.0")
   implementation("xyz.block:web5-dids:0.10.0")
 }
-```
-  </TabItem>
-</Tabs>
+      `,
+      language: 'Kotlin', 
+      breakLineAt:[6]
+    }
+  ]}
+/>
 
 
 ## The Cast
@@ -70,71 +67,70 @@ This is because verifiable credentials use DIDs to identify issuers and holders.
 
 If you need to create DIDs, you can do so with the [@web5/dids](https://www.npmjs.com/package/@web5/dids) package:
 
-<Tabs>
-  <TabItem value="JavaScript" label="JavaScript" default>
-
-```js
+<Shnip
+  inlineSnippets={[
+    {
+      code: `
 import { DidKeyMethod } from '@web5/dids';
-
 const fanClubIssuerDid = await DidKeyMethod.create();
 const aliceDid = await DidKeyMethod.create();
-```
-
-  </TabItem>
-  <TabItem value="Kotlin" label="Kotlin">
-
-
-```kotlin
+      `,
+      language: 'JavaScript',
+      breakLineAt: [1]
+    },
+    {
+      code: `
 import web5.sdk.crypto.InMemoryKeyManager
 import web5.sdk.dids.methods.key.DidKey
-
 val fanClubIssuerDid = DidKey.create(InMemoryKeyManager())
 val aliceDid = DidKey.create(InMemoryKeyManager())
-```
-  </TabItem>
-</Tabs>
-
+      `,
+      language: 'Kotlin', 
+      breakLineAt:[2]
+    }
+  ]}
+/>
 
 ### Model Credential
 
 Now, let's create the **SwiftiesFanClub** credential. 
 We'll first model it with a class with some basic properties, `level` and `legit`:
 
-<Tabs>
-  <TabItem value="JavaScript" label="JavaScript" default>
-
-```js title="Issuer.js"
+<Shnip
+  inlineSnippets={[
+    {
+      code: `
 import { VerifiableCredential, PresentationExchange } from "@web5/credentials";
-
 class SwiftiesFanClub {
   constructor(level, legit) {
     // indicates the fan's dedication level
     this.level = level; 
-
     // indicates if the fan is a genuine Swiftie
     this.legit = legit; 
   }
 }
-```
-
-  </TabItem>
-  <TabItem value="Kotlin" label="Kotlin">
-
-
-```kotlin title="Issuer.kt"
+      `,
+      language: 'JavaScript',
+      breakLineAt: [1, 5],
+      title: 'Issuer.js'
+    },
+    {
+      code: `
 import web5.sdk.credentials.VerifiableCredential
 import web5.sdk.credentials.PresentationExchange
-
 data class SwiftiesFanClub(
     // indicates the fan's dedication level
     val level: String,
-
     // indicates if the fan is a genuine Swiftie
     val legit: Boolean
 )
-```
-  </TabItem>
-</Tabs>
+      `,
+      language: 'Kotlin', 
+      breakLineAt:[2, 5],
+      title: 'Issuer.kt'
+    }
+  ]}
+/>
 
 :::note
 Note that credentials can be customized to fit various needs and scenarios. In our example, we used `level` and `legit`, but you could add more properties like `memberSince`, `favoriteAlbum`, or any other relevant data that suits your use case.
@@ -144,32 +140,34 @@ Note that credentials can be customized to fit various needs and scenarios. In o
 
 Next we can create the verifiable credential with an instance of the class:
 
-<Tabs>
-  <TabItem value="JavaScript" label="JavaScript" default>
-
-```js title="Issuer.js"
+<Shnip
+  inlineSnippets={[
+    {
+      code: `
 const vc = await VerifiableCredential.create({
   type: 'SwiftiesFanClub',
   issuer: fanClubIssuerDid.did,
   subject: aliceDid.did,
   data: new SwiftiesFanClub('Stan', true)
 });
-```
-
-  </TabItem>
-  <TabItem value="Kotlin" label="Kotlin">
-
-
-```kotlin title="Issuer.kt"
+      `,
+      language: 'JavaScript',
+      title: 'Issuer.js'
+    },
+    {
+      code: `
 val vc = VerifiableCredential.create(
     type = "SwiftiesFanClub",
     issuer = fanClubIssuerDid.uri,
     subject = aliceDid.uri,
     data = SwiftiesFanClub(level = "Stan", legit = true)
 )
-```
-  </TabItem>
-</Tabs>
+      `,
+      language: 'Kotlin', 
+      title: 'Issuer.kt'
+    }
+  ]}
+/>
 
 ### Credential Properties
 
@@ -188,10 +186,10 @@ Let's break down the `VerifiableCredential.create()` method to understand what e
 
 `VerifiableCredential.create()` returns a VC as a JSON object:
 
-<Tabs>
-  <TabItem value="JavaScript" label="JavaScript" default>
-
-```js
+<Shnip
+  inlineSnippets={[
+    {
+      code: `
 vcDataModel: {
   '@context': [ 'https://www.w3.org/2018/credentials/v1' ],
   type: [ 'VerifiableCredential', 'SwiftiesFanClub' ],
@@ -204,13 +202,12 @@ vcDataModel: {
     legit: true
   }
 }
-```
-
-  </TabItem>
-  <TabItem value="Kotlin" label="Kotlin">
-
-
-```json
+      `,
+      language: 'JavaScript',
+      title: 'Issuer.js'
+    },
+    {
+      code: `
 {
   "@context": [
     "https://www.w3.org/2018/credentials/v1"
@@ -228,30 +225,37 @@ vcDataModel: {
     "legit": true
   }
 }
-```
-  </TabItem>
-</Tabs>
+      `,
+      language: 'Kotlin', 
+      codeLanguage: 'json'
+    }
+  ]}
+/>
+
 
 ### Sign Credential
 
 Last but not least, we must cryptographically sign the VC to make it official:
 
-<Tabs>
-  <TabItem value="JavaScript" label="JavaScript" default>
-
-```js title="Issuer.js"
+<Shnip
+  inlineSnippets={[
+    {
+      code: `
 const signedVcJwt = await vc.sign({ did: fanClubIssuerDid });
-```
-
-  </TabItem>
-  <TabItem value="Kotlin" label="Kotlin">
-
-
-```kotlin title="Issuer.kt"
+      `,
+      language: 'JavaScript',
+      title: 'Issuer.js'
+    },
+    {
+      code: `
 val signedVcJwt = vc.sign(fanClubIssuerDid)
-```
-  </TabItem>
-</Tabs>
+      `,
+      language: 'Kotlin', 
+      title: 'Issuer.kt'
+    }
+  ]}
+/>
+
 
 Signing the credential returns a [VC JSON Web Token](/docs/web5/build/verifiable-credentials/jwt-to-vc#what-is-a-jwt), ideal for secure transmission of the credential.
 
@@ -276,12 +280,11 @@ A presentation exchange is the process where the holder of VCs presents them to 
 To kick off the presentation exchange, the Swag Supplier (verifier) will send a request to Alice, which includes a presentation definition, specifying what credentials or claims are needed.
 Here's how the verifier can create the presentation definition, and validate that it is properly formed:
 
-<Tabs>
-  <TabItem value="JavaScript" label="JavaScript" default>
-
-```js title="Verifier.js"
+<Shnip
+  inlineSnippets={[
+    {
+      code: `
 import { VerifiableCredential, PresentationExchange } from "@web5/credentials";
-
 const presentationDefinition = {
   'id'                : 'presDefId123',
   'name'              : 'Swifties Fan Club Presentation Definition',
@@ -302,19 +305,17 @@ const presentationDefinition = {
     }
   ]
 };
-
 const definitionValidation = PresentationExchange.validateDefinition({ presentationDefinition });
-```
-
-  </TabItem>
-  <TabItem value="Kotlin" label="Kotlin">
-
-
-```kotlin title="Verifier.kt"
+      `,
+      language: 'JavaScript',
+      title: 'Verifier.js',
+      breakLineAt: [1, 21]
+    },
+    {
+      code: `
 import web5.sdk.credentials.PresentationExchange
 import web5.sdk.credentials.VerifiableCredential
 import web5.sdk.credentials.model.*
-
 val presentationDefinition = PresentationDefinitionV2(
     id = "presDefId123",
     name = "Swifties Fan Club Presentation Definition",
@@ -333,27 +334,22 @@ val presentationDefinition = PresentationDefinitionV2(
         )
     )
 )
-
 val definitionValidation = PresentationExchange.validateDefinition(presentationDefinition)
-```
-  </TabItem>
-</Tabs>
+      `,
+      language: 'Kotlin', 
+      title: 'Verifier.kt',
+      breakLineAt: [3, 21]
+    }
+  ]}
+/>
 
-:::note
-A successful validation would result in
-<Tabs>
-  <TabItem value="JavaScript" label="JavaScript" default>
+For the **JavaScript SDK**, a successful validation would result in
 
 ```js
 [ Checked { tag: 'root', status: 'info', message: 'ok' } ]
 ```
+ For the **Kotlin SDK**, this returns an undefined result, but if unsuccessful, it will throw an error. 
 
-  </TabItem>
-  <TabItem value="Kotlin" label="Kotlin">
-  This returns an undefined result, but if unsuccessful, it will throw an error. 
-    </TabItem>
-</Tabs>
-:::
 
 ### Satisfy Presentation Definition
 
@@ -361,10 +357,10 @@ Once a presentation definition is presented to Alice, she'd want to make sure th
 This can be done by passing the JWT(s) and the presentation definition to `satisfiesPresentationDefinition()` method.
 Typically this step is done by the app that Alice is using to store and present her credentials:
 
-<Tabs>
-  <TabItem value="JavaScript" label="JavaScript" default>
-
-```js title="Wallet.js"
+<Shnip
+  inlineSnippets={[
+    {
+      code: `
 // Does VC Satisfy the Presentation Definition
 try {
   PresentationExchange.satisfiesPresentationDefinition({vcJwts: [signedVcJwt], presentationDefinition: presentationDefinition});
@@ -372,53 +368,59 @@ try {
 } catch (err) {
   console.log('VC does not satisfy Presentation Definition: ' + err.message);
 }
-```
-
-  </TabItem>
-  <TabItem value="Kotlin" label="Kotlin">
-
-
-```kotlin title="Wallet.kt"
+      `,
+      language: 'JavaScript',
+      title: 'Wallet.js'
+    },
+    {
+      code: `
 // Does VC Satisfy the Presentation Definition
 try {
     PresentationExchange.satisfiesPresentationDefinition(listOf(signedVcJwt), presentationDefinition)
     println("\nVC Satisfies Presentation Definition!\n")
-} catch (e: Exception) {
-    println("VC does not satisfy Presentation Definition: ${e.message}")
+} catch (err: Exception) {
+  println("VC does not satisfy Presentation Definition: " + err.message)
 }
-```
-  </TabItem>
-</Tabs>
+      `,
+      language: 'Kotlin', 
+      title: 'Issuer.kt'
+    }
+  ]}
+/>
 
 ### Create Presentation
 
 Once Alice's app is confident that her credential satisfies the presentation definition, the presentation would be created:
 
-
-<Tabs>
-  <TabItem value="JavaScript" label="JavaScript" default>
-
-```js title="Wallet.js"
+<Shnip
+  inlineSnippets={[
+    {
+      code: `
 // Create Presentation Result that contains a Verifiable Presentation and Presentation Submission
 const presentationResult = PresentationExchange.createPresentationFromCredentials({vcJwts: [signedVcJwt], presentationDefinition: presentationDefinition });
 console.log('\nPresentation Result: ' + JSON.stringify(presentationResult));
-```
-
-  </TabItem>
-  <TabItem value="Kotlin" label="Kotlin">
-
-
-```kt title="Wallet.kt"
+      `,
+      language: 'JavaScript',
+      title: 'Wallet.js'
+    },
+    {
+      code: `
 // Create Presentation Result that contains a Verifiable Presentation and Presentation Submission
 val presentationResult = PresentationExchange.createPresentationFromCredentials(listOf(signedSimpleVcJwt), presentationDefinition)
-println("Presentation Result: ${presentationResult}")
-```
-  </TabItem>
-</Tabs>
+println("Presentation Result" + presentationResult)
+      `,
+      language: 'Kotlin', 
+      title: 'Issuer.kt'
+    }
+  ]}
+/>
 
 The result of the presentation:
 
-```json
+<Shnip
+  inlineSnippets={[
+    {
+      code: `
 {
   "presentation": {
     "@context": [
@@ -457,38 +459,62 @@ The result of the presentation:
     ]
   }
 }
-```
+      `,
+      language: 'JavaScript',
+    },
+    {
+      code: `
+{
+  "id": "kMqRP0zRKaiZNlbtbEIxd",
+  "definitionId": "presDefId123",
+  "descriptorMap": [
+    {
+      "id": "legitness",
+      "format": "jwt_vc",
+      "path": "$.verifiableCredential[0]"
+    }
+  ]
+      `,
+      language: 'Kotlin',
+      codeLanguage: 'json' 
+    }
+  ]}
+/>
+
 
 ## Act 3: Verifying the Credential
 
 After receiving the credential, the verifier will want to verify it to ensure that it is valid and has not been tampered with. 
 They can do this with `VerifiableCredential.verify()`. If verification is unsuccessful, an error will be thrown:
 
-<Tabs>
-  <TabItem value="JavaScript" label="JavaScript" default>
-
-```js title="Verifier.js"
+<Shnip
+  inlineSnippets={[
+    {
+      code: `
 try {
   await VerifiableCredential.verify({ vcJwt: signedVcJwt });
-  console.log('\nVC Verification successful!\n');
+  console.log('VC Verification successful!');
 } catch (err) {
-  console.log('\nVC Verification failed: ' + err.message + '\n');
-}
-```
-
-  </TabItem>
-  <TabItem value="Kotlin" label="Kotlin">
-
-```kotlin title="Verifier.kt"
+  console.log('VC Verification failed: ' + err.message');
+      `,
+      language: 'JavaScript',
+      title: 'Verifier.js'
+    },
+    {
+      code: `
 try {
   VerifiableCredential.verify(signedVcJwt)
-  println("\nVC Verification successful!\n")
+  println("VC Verification successful!")
 } catch (err: Exception) {
-  println("\nVC Verification failed: ${err.message}\n")
+  println("VC Verification failed:" + err.message)
 }
-```
-  </TabItem>
-</Tabs>
+      `,
+      language: 'Kotlin', 
+      title: 'Verifier.kt'
+    }
+  ]}
+/>
+
 
 ### Parse JWT into VC
 
@@ -497,30 +523,32 @@ The signed VC JWT is a secure representation of the credential, ideal for transm
 However, the verifier will likely need to inspect or use the data within the credential.
 They can use `parseJwt()` to convert the JWT back into a `VerifiableCredential` object. 
 
-
-<Tabs>
-  <TabItem value="JavaScript" label="JavaScript" default>
-
-```js title="Verifier.js"
+<Shnip
+  inlineSnippets={[
+    {
+      code: `
 const parsedVC = await VerifiableCredential.parseJwt( { vcJwt: signedVcJwt });
-```
-
-  </TabItem>
-  <TabItem value="Kotlin" label="Kotlin">
-
-
-```kotlin title="Verifier.kt"
+      `,
+      language: 'JavaScript',
+      title: 'Verifier.js'
+    },
+    {
+      code: `
 val parsedJwt = VerifiableCredential.parseJwt(signedVcJwt)
-```
-  </TabItem>
-</Tabs>
+      `,
+      language: 'Kotlin', 
+      title: 'Verifier.kt'
+    }
+  ]}
+/>
+
 
 This returns:
 
-<Tabs>
-  <TabItem value="JavaScript" label="JavaScript" default>
-
-```js
+<Shnip
+  inlineSnippets={[
+    {
+      code: `
 vcDataModel: {
   '@context': [ 'https://www.w3.org/2018/credentials/v1' ],
   type: [ 'VerifiableCredential', 'SwiftiesFanClub' ],
@@ -533,12 +561,12 @@ vcDataModel: {
     legit: true
   }
 }
-```
-
-  </TabItem>
-<TabItem value="Kotlin" label="Kotlin">
-
-```json
+      `,
+      language: 'JavaScript',
+      title: 'Verifier.js'
+    },
+    {
+      code: `
 {
   "@context": [
     "https://www.w3.org/2018/credentials/v1"
@@ -556,9 +584,13 @@ vcDataModel: {
     "legit": true
   }
 }
-```
+      `,
+      language: 'Kotlin', 
+      codeLanguage: 'json',
+      title: 'Verifier.kt'
+    }
+  ]}
+/>
 
-  </TabItem>
-</Tabs>
 
 Given Alice's verified credential, she's all set to receive her free merch for being a proud member of the Swifties Fan Club!

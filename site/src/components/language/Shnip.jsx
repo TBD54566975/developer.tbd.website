@@ -6,20 +6,26 @@ import CodeBlock from '@theme/CodeBlock';
 
 const Shnip = ({ snippets, inlineSnippets }) => {
   // support line breaks for inline code snippets
-  const addLineBreaks = (code, breakLines) => {
-    if (!breakLines || breakLines.length === 0) {
-      return code;
+const addLineBreaks = (code, breakLines) => {
+  if (!breakLines || breakLines.length === 0) {
+    return code.trim();
+  }
+  let lines = code.trim().split('\n');
+  if (lines[0] === '') {
+    lines.shift();
+    breakLines = breakLines.map((line) => line - 1); 
+  }
+  breakLines.forEach((lineNumber) => {
+    let adjustedLineNumber = lineNumber - 1;
+    if (adjustedLineNumber >= 0 && adjustedLineNumber < lines.length) {
+      lines[adjustedLineNumber] += '\n';
     }
+  });
 
-    const lines = code.split('\n');
-    breakLines.forEach((lineNumber) => {
-      if (lineNumber < lines.length) {
-        lines[lineNumber] += '\n';
-      }
-    });
+  return lines.join('\n');
+};
 
-    return lines.join('\n');
-  };
+
 
   return (
     <>
