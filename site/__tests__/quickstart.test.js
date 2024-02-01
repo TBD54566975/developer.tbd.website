@@ -54,7 +54,7 @@ describe('/site/tests/quickstart.test.js', async () => {
     const deletedRecordResult = await deleteTextRecord(
       web5,
       aliceDid,
-      recordResult.id,
+      recordResult,
     );
     expect.soft(deletedRecordResult.status.code).toBe(202);
   });

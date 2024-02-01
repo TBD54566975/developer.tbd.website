@@ -32,9 +32,9 @@ A JSON document containing details about a DID, including the DID itself, repres
 
 A specific scheme for creating, resolving, updating, and deactivating DIDs and their associated documents, as outlined in a DID method specification which provides detailed instructions on these operations.
 
-### DID Method - ION
+### DID Method - DHT
 
-The `did:ion` method leverages the scalability and security of the Bitcoin blockchain by using off-chain transactions to create and update DIDs, while utilizing on-chain transactions for anchoring and providing proof of the DID's existence and integrity. The `did:ion:` method aims to provide a secure, scalable, and decentralized solution for managing digital identities that is interoperable with other decentralized identity solutions.
+The `did:dht` method is based on the Pkarr project and utilizes BitTorrent's Mainline Distributed Hash Table (DHT) to anchor DIDs and store DID Documents. This approach ensures that the identity information is maintained in a decentralized manner. This method  allows operations like creating, reading, updating, and deactivating DIDs, and includes optional features like type indexing and gateway APIs for extended functionalities.
 
 ### DID Method - Key
 
