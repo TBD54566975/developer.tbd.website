@@ -1,10 +1,10 @@
-// :snippet-start: configJs
+// :snippet-start: pfiOverviewConfigJs
 import { TbdexHttpServer } from '@tbdex/http-server'
 
 const httpApi = new TbdexHttpServer({ exchangesApi: ExchangesApiProvider, offeringsApi: OfferingsApiProvider })
 // :snippet-end:
 
-// :snippet-start: serverRoutesJs
+// :snippet-start: pfiOverviewServerRoutesJs
 import {
     Rfq,
     Order,
@@ -24,13 +24,13 @@ httpApi.submit('close', async (ctx, close) => {
 })
 // :snippet-end:
 
-// :snippet-start: serverStartJs
+// :snippet-start: pfiOverviewServerStartJs
 const server = httpApi.listen(config.port, () => {
     log.info(`Mock PFI listening on port ${config.port}`)
 })
 // :snippet-end:
 
-// :snippet-start: writeJs
+// :snippet-start: pfiOverviewWriteJs
 async write(opts: { message: MessageKindClass }) {
     const result = await dataProvider.insert(
         'exchange',
@@ -44,7 +44,7 @@ async write(opts: { message: MessageKindClass }) {
 }  
 // :snippet-end:
 
-// :snippet-start: readOfferingsJs
+// :snippet-start: pfiOverviewReadOfferingsJs
 import { Offering } from '@tbdex/http-server'
 
 async getOffering(opts: {id: string}): Promise<Offering> {
@@ -69,7 +69,7 @@ async getOfferings(): Promise<Offering[]> {
 }
 // :snippet-end:
 
-// :snippet-start: writeOfferingsJs
+// :snippet-start: pfiOverviewWriteOfferingsJs
 async create(offering: Offering) {
     let result = await dataProvider.insert(
         'offering',
