@@ -1,10 +1,9 @@
 import { test, expect, vi, describe, beforeAll } from 'vitest';
-import { DidDhtMethod, DidKeyMethod, DidIonMethod } from '@web5/dids';
+import { DidDhtMethod, DidKeyMethod } from '@web5/dids';
 
 import {
   createDidAutomatically,
   createDidDht,
-  createDidIon,
   createDidKey,
 } from '../../../../code-snippets/web5/build/decentralized-identifiers/how-to-create-did';
 import { setUpWeb5 } from '../../../setup-web5';
@@ -85,31 +84,5 @@ describe('how-to-create-did', () => {
     // :snippet-end:
 
     expect(didKey.did).toMatch(/^did:key:/);
-  });
-
-  test('createDidIon creates a DID with did:ion method', async () => {
-    // :snippet-start: createDidIon
-    //Creates a DID using the did:ion method
-    const didIon = await DidIonMethod.create();
-
-    //DID and its associated data which can be exported and used in different contexts/apps
-    const portableDID = JSON.stringify(didIon);
-
-    //DID string
-    const did = didIon.did;
-
-    //DID Document
-    const didDocument = JSON.stringify(didIon.document);
-
-    //Cryptographic keys associated with DID
-    const keys = JSON.stringify(didIon.keySet);
-
-    //Primary form of a DID. more info: https://www.w3.org/TR/did-core/#dfn-canonicalid
-    const canonicalId = didIon.canonicalId;
-   
-    // :snippet-end:
-
-    expect(didIon.did).toMatch(/^did:ion:/);
-
   });
 });

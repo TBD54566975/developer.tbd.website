@@ -58,9 +58,6 @@ The did:dht method allows operations like creating, reading, updating, and deact
 
 A [did:key](https://w3c-ccg.github.io/did-method-key/) DID is quick and easy to spin up. Since it can be created, but not updated or deleted, it is useful for single, ephemeral interactions.
 
-#### ```did:ion```
-
-[did:ion](https://identity.foundation/sidetree/spec/) is an implementation of the [sidetree](https://identity.foundation/sidetree/spec/) protocol, which logs DID actions on any decentralized anchoring system, like a blockchain or other distributed ledger. In particular, did:ion anchors actions on the Bitcoin blockchain. did:ion supports the ability to create, update, recover, and deactivate a DID.
 
 ### DID Documents
 
