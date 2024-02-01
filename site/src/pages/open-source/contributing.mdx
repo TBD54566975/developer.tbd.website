@@ -109,6 +109,69 @@ This is how you can add a generated code snippet and an inline hardcoded snippet
 />
 ```
 
+To display inline code in a language different from the tab's primary language, use `codeLanguage`. 
+If `codeLanguage` is unspecified, it defaults to `language`. 
+Example: For Bash in a JavaScript tab, set `language: 'JavaScript`', `codeLanguage: 'bash'`
+
+```js
+<Shnip
+  inlineSnippets={[
+    {
+      code: `
+npm install @web5/credentials
+npm install @web5/dids
+      `,
+      language: 'JavaScript', // The tab's context.
+      codeLanguage: 'bash', // Snippet's actual language
+    }
+  ]}
+/>
+```
+
+MDX and JSX struggle to parse line breaks.
+For controlled line breaks in inline snippets, use `breakLineAt` with line numbers in an array.
+Example: To break after lines 1 and 5, set breakLineAt: [1, 5]
+<Shnip
+  inlineSnippets={[
+    {
+      code: `
+import { VerifiableCredential, PresentationExchange } from "@web5/credentials";
+class SwiftiesFanClub {
+  constructor(level, legit) {
+    // indicates the fan's dedication level
+    this.level = level; 
+    // indicates if the fan is a genuine Swiftie
+    this.legit = legit; 
+  }
+}
+      `,
+      breakLineAt:[1, 5]
+    }
+  ]}
+/>
+
+To add titles to code snippets, use the title prop. Example: title: 'Issuer.js' adds a title to the snippet.
+<Shnip
+ snippets={[{ name: 'assignVcJwt', language: 'JavaScript', title: 'Issuer.js' }]}
+  inlineSnippets={[
+    {
+      code: `
+import { VerifiableCredential, PresentationExchange } from "@web5/credentials";
+class SwiftiesFanClub {
+  constructor(level, legit) {
+    // indicates the fan's dedication level
+    this.level = level; 
+    // indicates if the fan is a genuine Swiftie
+    this.legit = legit; 
+  }
+}
+      `,
+     title: 'Issuer.js',
+    }
+  ]}
+/>
+
+
 ### Caveats for Code Snippets
 
 - The code snippet function names need to be unique, these names are what is used to generate/name the snippet files.
