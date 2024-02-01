@@ -48,19 +48,26 @@ const addLineBreaks = (code, breakLines) => {
 
         {inlineSnippets &&
           inlineSnippets.map(
-            ({ content, code, language, codeLanguage, breakLineAt }, index) => (
+            ({ content, code, language, codeLanguage, breakLineAt, title }, index) => (
               <div key={`inline-${language}-${index}`} language={language}>
                 {content && <ReactMarkdown>{content}</ReactMarkdown>}
-                {code && (
+                {code &&
                   <CodeBlock
+                    title={title}
                     language={(codeLanguage || language).toLowerCase()}
                   >
-                    {addLineBreaks(code, breakLineAt)}
-                  </CodeBlock>
-                )}
+                  {addLineBreaks(code, breakLineAt)}
+                </CodeBlock>}
               </div>
             ),
           )}
+
+        {inlineContent &&
+          inlineContent.map(({ content, language }, index) => (
+            <div key={`content-${language}-${index}`} language={language}>
+              {content}
+            </div>
+          ))}
       </LanguageSwitchBlock>
     </>
   );
