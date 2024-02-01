@@ -131,6 +131,8 @@ npm install @web5/dids
 MDX and JSX struggle to parse line breaks.
 For controlled line breaks in inline snippets, use `breakLineAt` with line numbers in an array.
 Example: To break after lines 1 and 5, set breakLineAt: [1, 5]
+
+```js
 <Shnip
   inlineSnippets={[
     {
@@ -149,8 +151,9 @@ class SwiftiesFanClub {
     }
   ]}
 />
-
+```
 To add titles to code snippets, use the title prop. Example: title: 'Issuer.js' adds a title to the snippet.
+```
 <Shnip
  snippets={[{ name: 'assignVcJwt', language: 'JavaScript', title: 'Issuer.js' }]}
   inlineSnippets={[
@@ -170,7 +173,7 @@ class SwiftiesFanClub {
     }
   ]}
 />
-
+```
 
 ### Caveats for Code Snippets
 
