@@ -9,7 +9,7 @@ const Shnip = ({ snippets, inlineSnippets }) => {
     <>
       <LanguageTabBar />
       <LanguageSwitchBlock>
-        {snippets.map(({ snippetContent, language }) => (
+        {snippets && snippets.map(({ snippetContent, language }) => (
           <div key={`ref-${language}`} language={language}>
             <CodeSnippet
               snippet={snippetContent}
