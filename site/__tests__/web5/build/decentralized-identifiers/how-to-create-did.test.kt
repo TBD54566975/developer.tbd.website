@@ -17,13 +17,13 @@ val options = CreateDidDhtOptions(
 val didDht = DidDht.create(keyManager, options)
 
 //DID and its associated data which can be exported and used in different contexts/apps
-const portableDID = DidDht.resolve(didDht.uri)
+val portableDID = DidDht.resolve(didDht.uri)
 
 //DID string
-const did = didDht.uri
+val did = didDht.uri
 
 //DID Document
-const didDocument = portableDID.didDocument
+val didDocument = portableDID.didDocument
 :snippet-end:
 
 :snippet-start: createDidKeyKt
