@@ -18,7 +18,7 @@ import web5.sdk.dids.methods.key.DidKey
 /**
  * Tests backing the Create a DID Guide
  */
-internal class HowToCreateADIDTest {
+internal class HowToCreateDidTest {
 
   @Test
   fun `createDidKt works`() {
