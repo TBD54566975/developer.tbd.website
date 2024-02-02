@@ -5,6 +5,9 @@ sidebar_position: 10
 ---
 
 import createDidKeys from '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/web5/build/verifiable-credentials/createDidKeys.snippet.js'
+import createSwiftieFanClubClass from '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/web5/build/verifiable-credentials/createSwiftieFanClubClass.snippet.js'
+import createVerifiableCredential from '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/web5/build/verifiable-credentials/createVerifiableCredential.snippet.js'
+import signVC from '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/web5/build/verifiable-credentials/signVC.snippet.js'
 
 <LanguageSwitcher languages="JavaScript, Kotlin" />
 
@@ -91,13 +94,10 @@ import web5.sdk.dids.methods.key.DidKey
   inlineSnippets={[
     {
       code: `
-import web5.sdk.crypto.InMemoryKeyManager
-import web5.sdk.dids.methods.key.DidKey
 val fanClubIssuerDid = DidKey.create(InMemoryKeyManager())
 val aliceDid = DidKey.create(InMemoryKeyManager())
       `,
       language: 'Kotlin', 
-      breakLineAt:[2]
     }
   ]}
 />
@@ -106,29 +106,33 @@ val aliceDid = DidKey.create(InMemoryKeyManager())
 
 Now, let's create the **SwiftiesFanClub** credential. 
 We'll first model it with a class with some basic properties, `level` and `legit`:
-
 <Shnip
   inlineSnippets={[
-    {
+       {
       code: `
-import { VerifiableCredential, PresentationExchange } from "@web5/credentials";
-class SwiftiesFanClub {
-  constructor(level, legit) {
-    // indicates the fan's dedication level
-    this.level = level; 
-    // indicates if the fan is a genuine Swiftie
-    this.legit = legit; 
-  }
-}
+  import { VerifiableCredential } from '@web5/credentials';
       `,
       language: 'JavaScript',
-      breakLineAt: [1, 5],
       title: 'Issuer.js'
     },
     {
       code: `
 import web5.sdk.credentials.VerifiableCredential
 import web5.sdk.credentials.PresentationExchange
+      `,
+      language: 'Kotlin',
+      title: 'Issuer.kt' 
+    }
+  ]}
+/>
+
+<Shnip
+  snippets={[
+    { snippetContent: createSwiftieFanClubClass, language: 'JavaScript', title: 'Issuer.js'},
+    ]}
+  inlineSnippets={[
+    {
+      code: `
 data class SwiftiesFanClub(
     // indicates the fan's dedication level
     val level: String,
@@ -137,7 +141,7 @@ data class SwiftiesFanClub(
 )
       `,
       language: 'Kotlin', 
-      breakLineAt:[2, 5],
+      breakLineAt:[3],
       title: 'Issuer.kt'
     }
   ]}
@@ -152,19 +156,10 @@ Note that credentials can be customized to fit various needs and scenarios. In o
 Next we can create the verifiable credential with an instance of the class:
 
 <Shnip
+  snippets={[
+    { snippetContent: createVerifiableCredential, language: 'JavaScript', title: 'Issuer.js'},
+    ]}
   inlineSnippets={[
-    {
-      code: `
-const vc = await VerifiableCredential.create({
-  type: 'SwiftiesFanClub',
-  issuer: fanClubIssuerDid.did,
-  subject: aliceDid.did,
-  data: new SwiftiesFanClub('Stan', true)
-});
-      `,
-      language: 'JavaScript',
-      title: 'Issuer.js'
-    },
     {
       code: `
 val vc = VerifiableCredential.create(
@@ -249,14 +244,10 @@ vcDataModel: {
 Last but not least, we must cryptographically sign the VC to make it official:
 
 <Shnip
+  snippets={[
+    { snippetContent: signVC, language: 'JavaScript', title: 'Issuer.js'},
+    ]}
   inlineSnippets={[
-    {
-      code: `
-const signedVcJwt = await vc.sign({ did: fanClubIssuerDid });
-      `,
-      language: 'JavaScript',
-      title: 'Issuer.js'
-    },
     {
       code: `
 val signedVcJwt = vc.sign(fanClubIssuerDid)
