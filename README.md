@@ -14,6 +14,8 @@ Before you begin, ensure that you have the following installed on your local mac
 - [pnpm](https://pnpm.io/) (version 7.29.1 or later)
 - [Java Development Kit](https://en.wikipedia.org/wiki/Java_Development_Kit) (version 17, recommended via [SDKMan](https://sdkman.io/install), as described below)
 - [Xcode](https://developer.apple.com/xcode/) (Version 15, **optional**, needed to run Swift tests locally)
+- [Rust](https://www.rust-lang.org/tools/install) (Version 1.75.0, **optional**, needed to run Rust tests locally)
+
 
 ### PNPM Installation
 
@@ -80,6 +82,12 @@ This is required when running the tests, for instance via `pnpm test`.
 [XCode](https://developer.apple.com/xcode/) is Apple's development toolkit, and is used for both IDE and runtime for Swift examples. Install via the site link for your platform.
 
 This optional prereq is required only when running the `pnpm test:swift` command. Once Swift tests are in place, we'll add the Swift environment to the `pnpm test` lifecycle and this will be a required prereq.
+
+### Rust Installation
+
+[Rust](https://www.rust-lang.org/tools/install) is a modern typesafe, compiled, performant language. Install via the site link for your platform.
+
+This optional prereq is required only when running the `pnpm test:rust` command. Once Rust tests are in place, we'll add the Rust environment to the `pnpm test` lifecycle and this will be a required prereq.
 
 ## Running online environment
 Interested in contributing instantly? You can make your updates directly without cloning in the running CodeSandbox environment.
