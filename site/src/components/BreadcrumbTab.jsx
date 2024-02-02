@@ -8,6 +8,15 @@ const BreadcrumbTab = ({ snippetMappings }) => {
     setActiveTab(tab === activeTab ? null : tab);
   };
 
+  const getLanguage = (tabName) => {
+    var language = tabName.substring(activeTab.lastIndexOf('.') + 1);
+
+    // This is meant to compensate for the fact that gradle is not a
+    // supported language. This is a corner case that needs fixing.
+    if (language === "gradle") { language = "js"; }
+    return language;
+  };
+
   return (
     <div>
       <div className='breadcrumbTabs' style={{ display: 'flex' }}>
@@ -32,7 +41,7 @@ const BreadcrumbTab = ({ snippetMappings }) => {
         ))}
       </div>
       <div>
-        {activeTab && <CodeSnippet snippet={snippetMappings[activeTab]} />}
+        {activeTab && <CodeSnippet snippet={snippetMappings[activeTab]} language={getLanguage(activeTab)} />}
       </div>
     </div>
   );
