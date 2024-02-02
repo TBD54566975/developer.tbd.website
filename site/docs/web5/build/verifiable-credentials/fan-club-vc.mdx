@@ -8,6 +8,11 @@ import createDidKeys from '!!raw-loader!@site/snippets/testsuite-javascript/__te
 import createSwiftieFanClubClass from '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/web5/build/verifiable-credentials/createSwiftieFanClubClass.snippet.js'
 import createVerifiableCredential from '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/web5/build/verifiable-credentials/createVerifiableCredential.snippet.js'
 import signVC from '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/web5/build/verifiable-credentials/signVC.snippet.js'
+import createPresentationDefinition from '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/web5/build/verifiable-credentials/createPresentationDefinition.snippet.js'
+import satisfiesDefinition from '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/web5/build/verifiable-credentials/satisfiesDefinition.snippet.js'
+import createPresentationFromCredentials from  '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/web5/build/verifiable-credentials/createPresentationFromCredentials.snippet.js'
+import verifyVC from '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/web5/build/verifiable-credentials/verifyVC.snippet.js'
+import parseSignedVcJwt from '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/web5/build/verifiable-credentials/parseSignedVcJwt.snippet.js'
 
 <LanguageSwitcher languages="JavaScript, Kotlin" />
 
@@ -287,37 +292,29 @@ Here's how the verifier can create the presentation definition, and validate tha
     {
       code: `
 import { VerifiableCredential, PresentationExchange } from "@web5/credentials";
-const presentationDefinition = {
-  'id'                : 'presDefId123',
-  'name'              : 'Swifties Fan Club Presentation Definition',
-  'purpose'           : 'for proving membership in the fan club',
-  'input_descriptors' : [
-    {
-      'id'          : 'legitness',
-      'purpose'     : 'are you legit or not?',
-      'constraints' : {
-        'fields': [
-          {
-            'path': [
-              '$.credentialSubject.legit',
-            ]
-          }
-        ]
-      }
-    }
-  ]
-};
-const definitionValidation = PresentationExchange.validateDefinition({ presentationDefinition });
       `,
       language: 'JavaScript',
       title: 'Verifier.js',
-      breakLineAt: [1, 21]
     },
     {
       code: `
 import web5.sdk.credentials.PresentationExchange
 import web5.sdk.credentials.VerifiableCredential
 import web5.sdk.credentials.model.*
+      `,
+      language: 'Kotlin', 
+      title: 'Verifier.kt',
+    }
+  ]}
+/>
+
+<Shnip
+  snippets={[
+    { snippetContent: createPresentationDefinition, language: 'JavaScript', title: 'Verifier.js'},
+    ]}
+  inlineSnippets={[
+    {
+      code: `
 val presentationDefinition = PresentationDefinitionV2(
     id = "presDefId123",
     name = "Swifties Fan Club Presentation Definition",
@@ -340,7 +337,7 @@ val definitionValidation = PresentationExchange.validateDefinition(presentationD
       `,
       language: 'Kotlin', 
       title: 'Verifier.kt',
-      breakLineAt: [3, 21]
+      breakLineAt: [18]
     }
   ]}
 />
@@ -369,26 +366,16 @@ This can be done by passing the JWT(s) and the presentation definition to `satis
 Typically this step is done by the app that Alice is using to store and present her credentials:
 
 <Shnip
+  snippets={[
+    { snippetContent: satisfiesDefinition, language: 'JavaScript', title: 'Wallet.js'},
+    ]}
   inlineSnippets={[
     {
       code: `
 // Does VC Satisfy the Presentation Definition
 try {
-  PresentationExchange.satisfiesPresentationDefinition({vcJwts: [signedVcJwt], presentationDefinition: presentationDefinition});
-  console.log('\nVC Satisfies Presentation Definition!\n');
-} catch (err) {
-  console.log('VC does not satisfy Presentation Definition: ' + err.message);
-}
-      `,
-      language: 'JavaScript',
-      title: 'Wallet.js'
-    },
-    {
-      code: `
-// Does VC Satisfy the Presentation Definition
-try {
     PresentationExchange.satisfiesPresentationDefinition(listOf(signedVcJwt), presentationDefinition)
-    println("\nVC Satisfies Presentation Definition!\n")
+    println("VC Satisfies Presentation Definition!")
 } catch (err: Exception) {
   println("VC does not satisfy Presentation Definition: " + err.message)
 }
@@ -404,16 +391,10 @@ try {
 Once Alice's app is confident that her credential satisfies the presentation definition, the presentation would be created:
 
 <Shnip
+  snippets={[
+    { snippetContent: createPresentationFromCredentials, language: 'JavaScript', title: 'Wallet.js'},
+    ]}
   inlineSnippets={[
-    {
-      code: `
-// Create Presentation Result that contains a Verifiable Presentation and Presentation Submission
-const presentationResult = PresentationExchange.createPresentationFromCredentials({vcJwts: [signedVcJwt], presentationDefinition: presentationDefinition });
-console.log('\nPresentation Result: ' + JSON.stringify(presentationResult));
-      `,
-      language: 'JavaScript',
-      title: 'Wallet.js'
-    },
     {
       code: `
 // Create Presentation Result that contains a Verifiable Presentation and Presentation Submission
@@ -499,18 +480,10 @@ After receiving the credential, the verifier will want to verify it to ensure th
 They can do this with `VerifiableCredential.verify()`. If verification is unsuccessful, an error will be thrown:
 
 <Shnip
+    snippets={[
+    { snippetContent: verifyVC, language: 'JavaScript', title: 'Verifier.js'},
+    ]}
   inlineSnippets={[
-    {
-      code: `
-try {
-  await VerifiableCredential.verify({ vcJwt: signedVcJwt });
-  console.log('VC Verification successful!');
-} catch (err) {
-  console.log('VC Verification failed: ' + err.message');
-      `,
-      language: 'JavaScript',
-      title: 'Verifier.js'
-    },
     {
       code: `
 try {
@@ -535,14 +508,10 @@ However, the verifier will likely need to inspect or use the data within the cre
 They can use `parseJwt()` to convert the JWT back into a `VerifiableCredential` object. 
 
 <Shnip
+  snippets={[
+    { snippetContent: parseSignedVcJwt, language: 'JavaScript', title: 'Verifier.js'},
+    ]}
   inlineSnippets={[
-    {
-      code: `
-const parsedVC = await VerifiableCredential.parseJwt( { vcJwt: signedVcJwt });
-      `,
-      language: 'JavaScript',
-      title: 'Verifier.js'
-    },
     {
       code: `
 val parsedJwt = VerifiableCredential.parseJwt(signedVcJwt)
