@@ -18,6 +18,7 @@
     "test:browser": "pnpm -r test:browser",
     "test:versions": "node check-versions.js",
     "test:kotlin": "./site/testsuites/testsuite-kotlin/mvnw clean verify -f site/testsuites/testsuite-kotlin",
+    "test:swift": "swift test --package-path ./site/testsuites/testsuite-swift",
     "test:rust": "cd ./site/testsuites/testsuite-rust && cargo test",
     "shnip": "node ./shnippet/src/cli"
   },
