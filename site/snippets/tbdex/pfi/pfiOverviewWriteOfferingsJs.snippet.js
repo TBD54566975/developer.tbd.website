@@ -1,4 +1,4 @@
-async create(offering: Offering) {
+async function create(offering) {
     let result = await dataProvider.insert(
         'offering',
         {

@@ -1,6 +1,6 @@
 import { Offering } from '@tbdex/http-server'
 
-async getOffering(opts: {id: string}): Promise<Offering> {
+async function getOffering(opts) {
   const [ result ] =  await dataProvider.queryForOffering('offering', opts.id);
 
   if (!result) {
@@ -9,9 +9,10 @@ async getOffering(opts: {id: string}): Promise<Offering> {
   return Offering.factory(result.offering)
 }
 
-async getOfferings(): Promise<Offering[]> {
+
+async function getOfferings() {
   const results =  await dataProvider.getOfferings('offering');
-  const offerings: Offering[] = []
+  const offerings = []
 
   for (let result of results) {
     const offering = Offering.factory(result.offering)

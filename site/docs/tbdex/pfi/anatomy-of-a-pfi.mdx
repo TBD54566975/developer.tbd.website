@@ -1,22 +1,25 @@
 ---
 title: Structuring a PFI App
 sidebar_position: 5
+hide_title: true
 ---
 
-<LanguageSwitcher languages="JavaScript, Kotlin"/>
-
-import configJs from '!!raw-loader!@site/snippets/tbdex/pfi/pfiOverviewConfigJs.snippet.js'
-import configKt from '!!raw-loader!@site/snippets/tbdex/pfi/pfiOverviewConfigKt.snippet.kt'
+import pfiOverviewConfigJs from '!!raw-loader!@site/snippets/tbdex/pfi/pfiOverviewConfigJs.snippet.js'
+import pfiOverviewConfigKt from '!!raw-loader!@site/snippets/tbdex/pfi/pfiOverviewConfigKt.snippet.kt'
 import serverRoutesJs from '!!raw-loader!@site/snippets/tbdex/pfi/pfiOverviewServerRoutesJs.snippet.js'
 import serverRoutesKt from '!!raw-loader!@site/snippets/tbdex/pfi/pfiOverviewServerRoutesKt.snippet.kt'
 import serverStartJs from '!!raw-loader!@site/snippets/tbdex/pfi/pfiOverviewServerStartJs.snippet.js'
 import serverStartKt from '!!raw-loader!@site/snippets/tbdex/pfi/pfiOverviewServerStartKt.snippet.kt'
-import writeJs from '!!raw-loader!@site/snippets/tbdex/pfi/pfiOverviewWriteJs.snippet.js'
-import writeKt from '!!raw-loader!@site/snippets/tbdex/pfi/pfiOverviewWriteKt.snippet.kt'
+import pfiOverviewWriteJs from '!!raw-loader!@site/snippets/tbdex/pfi/pfiOverviewWriteJs.snippet.js'
+import pfiOverviewWriteKt from '!!raw-loader!@site/snippets/tbdex/pfi/pfiOverviewWriteKt.snippet.kt'
 import readOfferingsJs from '!!raw-loader!@site/snippets/tbdex/pfi/pfiOverviewReadOfferingsJs.snippet.js'
 import readOfferingsKt from '!!raw-loader!@site/snippets/tbdex/pfi/pfiOverviewReadOfferingsKt.snippet.kt'
 import writeOfferingsJs from '!!raw-loader!@site/snippets/tbdex/pfi/pfiOverviewWriteOfferingsJs.snippet.js'
 import writeOfferingsKt from '!!raw-loader!@site/snippets/tbdex/pfi/pfiOverviewWriteOfferingsKt.snippet.kt'
+
+<LanguageSwitcher languages="JavaScript, Kotlin"/>
+
+# Structuring a PFI App
 
 Every PFI on the tbDEX network is required to handle its end of the responsibilities as part of each [Message Type](/docs/tbdex/message-types). The tbDEX SDK is organized in such a way that there are three key components you'll be required to implement:
 
@@ -38,8 +41,8 @@ To begin, you’ll want to configure your server with the required exchange and 
 
 <Shnip snippets={
   [
-    { snippetContent: configJs, language: 'JavaScript'},
-    { snippetContent: configKt, language: 'Kotlin'}
+    { snippetContent: pfiOverviewConfigJs, language: 'JavaScript'},
+    { snippetContent: pfiOverviewConfigKt, language: 'Kotlin'}
   ]} />
 
 The [message types](/docs/tbdex/message-types) that are sent from Wallets to PFIs are: `RFQ`, `Order`, and `Close`. 
@@ -77,8 +80,8 @@ Assuming a generic `dataProvider` class serves as your PFI’s means of accessin
 
 <Shnip snippets={
   [
-    { snippetContent: writeJs, language: 'JavaScript'},
-    { snippetContent: writeKt, language: 'Kotlin'}
+    { snippetContent: pfiOverviewWriteJs, language: 'JavaScript'},
+    { snippetContent: pfiOverviewWriteKt, language: 'Kotlin'}
   ]} />
 
 After writing an `RFQ` to the database, you can [create a Quote](/docs/tbdex/pfi/creating-quotes). 
