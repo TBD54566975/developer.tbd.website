@@ -12,6 +12,10 @@ Before you begin, ensure that you have the following installed on your local mac
 
 - [Node.js](https://nodejs.org/) (version 18.16.0 or later)
 - [pnpm](https://pnpm.io/) (version 7.29.1 or later)
+- [Java Development Kit](https://en.wikipedia.org/wiki/Java_Development_Kit) (version 17, recommended via [SDKMan](https://sdkman.io/install), as described below)
+- [Xcode](https://developer.apple.com/xcode/) (Version 15, **optional**, needed to run Swift tests locally)
+- [Rust](https://www.rust-lang.org/tools/install) (Version 1.75.0, **optional**, needed to run Rust tests locally)
+
 
 ### PNPM Installation
 
@@ -28,6 +32,41 @@ npm install -g pnpm
 
 > Note: If you already have `pnpm` installed globally, you can skip this step.
 
+### Java Development Kit
+
+This project has components written in [Kotlin](https://kotlinlang.org/), a concise
+programming language from JetBrains that runs on the Java Virtual Machine.
+
+To build the site including its testsuite, you must have
+a Java Development Kit installed on your `$PATH`.
+
+You may verify your `java` installation via the terminal by running `java -version`.
+
+If you do not have Java, we recommend installing it
+via [SDKMan](https://sdkman.io/install). This is a project which will allow you
+to easily install the Java Development Kit (JDK), runtime (JRE), and related frameworks,
+build tools, and runtimes.
+
+After you've installed SDKMan, you may install Java:
+
+#### SDKMan (cross-platform instructions)
+
+```shell
+$> sdk install java 17.0.10-oracle 
+ ...
+Do you want java 17.0.10-oracle to be set as default? (Y/n): Y
+Setting java 17.0.10-oracle as default.
+```
+
+You may test your installation:
+
+```shell
+$> java -version
+java version "17.0.10" 2024-01-16 LTS
+Java(TM) SE Runtime Environment (build 17.0.10+11-LTS-240)
+Java HotSpot(TM) 64-Bit Server VM (build 17.0.10+11-LTS-240, mixed mode, sharing)
+```
+
 ### Playwright Installation
 
 [Playwright](https://playwright.dev/) is the test harness we use for browser-based examples. It can be installed:
@@ -38,11 +77,22 @@ pnpm playwright install --with-deps
 
 This is required when running the tests, for instance via `pnpm test`.
 
+### XCode Installation
+
+[XCode](https://developer.apple.com/xcode/) is Apple's development toolkit, and is used for both IDE and runtime for Swift examples. Install via the site link for your platform.
+
+This optional prereq is required only when running the `pnpm test:swift` command. Once Swift tests are in place, we'll add the Swift environment to the `pnpm test` lifecycle and this will be a required prereq.
+
+### Rust Installation
+
+[Rust](https://www.rust-lang.org/tools/install) is a modern typesafe, compiled, performant language. Install via the site link for your platform.
+
+This optional prereq is required only when running the `pnpm test:rust` command. Once Rust tests are in place, we'll add the Rust environment to the `pnpm test` lifecycle and this will be a required prereq.
+
 ## Running online environment
 Interested in contributing instantly? You can make your updates directly without cloning in the running CodeSandbox environment.
 
 [![Button to edit in CodeSandbox environment](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/github/TBD54566975/developer.tbd.website/main)
-
 
 ## Getting Started
 
@@ -78,7 +128,9 @@ The following scripts are available for running specific tasks within the monore
 - `pnpm start:widget`: Runs the completed web5 widget
 - `pnpm clear`: Runs docusaurus clear
 - `pnpm build`: Runs the production build for the site so it can be hosted by a static web server. The completed build will be in the folder `site/build`.
-- `pnpm test`: Runs the testsuites for the site and all examples, including browser tests. Requires Playwright, per installation instructions above.
+- `pnpm test`: Runs the testsuites for the site and all examples, including browser tests. Requires Playwright and Java Development Kit, per installation instructions above.
+- `pnpm test:kotlin`: Runs the Kotlin testsuite only
+- `pnpm test:swift`: Runs the Swift testsuite. Not included in the `pnpm test` lifecycle yet, only runs directly through this script.
 
 ## Extra Features
 

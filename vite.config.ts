@@ -21,6 +21,8 @@ export default defineConfig({
     //   enabled: true,
     //   headless: true,
     // },
-    setupFiles: ['./site/__tests__/setup-web5.js'],
+    setupFiles: [
+      './site/testsuites/testsuite-javascript/__tests__/setup-web5.js',
+    ],
   },
 });
