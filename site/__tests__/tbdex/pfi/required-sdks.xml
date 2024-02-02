@@ -1,5 +1,4 @@
-<!-- :snippet-start: pfiSdkInstallPom  
--->
+// :snippet-start: pfiSdkInstallPom  
 <repositories>
     <repository>
         <id>jitpack.io</id>
@@ -52,4 +51,4 @@
         <version>0.7.2-beta</version>
     </dependency>
 </dependencies>
-<!-- :snippet-end: -->
+// :snippet-end:

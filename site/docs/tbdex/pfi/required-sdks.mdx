@@ -7,8 +7,8 @@ import TabItem from '@theme/TabItem';
 import CodeSnippet from '@site/src/components/CodeSnippet';
 import BreadcrumbTab from '@site/src/components/BreadcrumbTab';
 import installJs from '!!raw-loader!@site/snippets/tbdex/pfi/pfiSdkInstallJs.snippet.bash'
-import installKtGradle from '!!raw-loader!@site/snippets/tbdex/pfi/pfiSdkInstallGradle.snippet.gradle'
-import installKtPom from '!!raw-loader!@site/snippets/tbdex/pfi/pfiSdkInstallPom.snippet.xml'
+import pfiSdkInstallGradle from '!!raw-loader!@site/snippets/tbdex/pfi/pfiSdkInstallGradle.snippet.gradle'
+import pfiSdkInstallPom from '!!raw-loader!@site/snippets/tbdex/pfi/pfiSdkInstallPom.snippet.xml'
 import importJs from '!!raw-loader!@site/snippets/tbdex/pfi/pfiSdkImportJs.snippet.js'
 import importKt from '!!raw-loader!@site/snippets/tbdex/pfi/pfiSdkImportKt.snippet.kt'
 
@@ -32,8 +32,8 @@ To implement and operate as a PFI, you’ll need to use the following SDKs:
   <TabItem label="Kotlin" value="Kotlin">
     <BreadcrumbTab
       snippetMappings={{
-        'Gradle': installKtGradle,
-        'Maven': installKtPom
+        'Gradle': pfiSdkInstallGradle,
+        'Maven': pfiSdkInstallPom
       }}
     />
   </TabItem>
