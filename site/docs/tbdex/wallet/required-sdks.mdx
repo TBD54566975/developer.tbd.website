@@ -5,6 +5,7 @@ sidebar_position: 2
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import CodeSnippet from '@site/src/components/CodeSnippet';
+import BreadcrumbTab from '@site/src/components/BreadcrumbTab';
 import walletSdkInstallJs from '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/tbdex/wallet/walletSdkInstallJs.snippet.bash'
 import walletSdkInstallGradle from '!!raw-loader!@site/snippets/testsuite-kotlin/src/test/kotlin/docs/tbdex/wallet/walletSdkInstallGradle.snippet.gradle'
 import walletSdkInstallPom from '!!raw-loader!@site/snippets/testsuite-kotlin/src/test/kotlin/docs/tbdex/wallet/walletSdkInstallPom.snippet.xml'
@@ -25,13 +26,21 @@ To implement and operate as a Wallet on a tbDEX network, you’ll need to use th
 
 <Tabs groupId="language">
   <TabItem label="JavaScript" value="JavaScript">
-    <CodeSnippet snippet={walletSdkInstallJs} />
+    <CodeSnippet snippet={walletSdkInstallJs} language="bash"/>
   </TabItem>
-  <TabItem label="Kotlin (Gradle)" value="Kotlin">
-    <CodeSnippet snippet={walletSdkInstallGradle} />
-  </TabItem>
-  <TabItem label="Kotlin (Maven)" value="maven">
-    <CodeSnippet snippet={walletSdkInstallPom} />
+  <TabItem label="Kotlin" value="Kotlin">
+    <BreadcrumbTab
+      snippetMappings={{
+        'Gradle': {
+          "snippet": walletSdkInstallGradle,
+          "language": "js"
+        },
+        'Maven': {
+          "snippet": walletSdkInstallPom,
+          "language": "xml"
+        }
+      }}
+    />
   </TabItem>
 </Tabs>
 
