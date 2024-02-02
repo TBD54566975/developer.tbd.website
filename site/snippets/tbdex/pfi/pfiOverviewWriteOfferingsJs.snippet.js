@@ -1,5 +1,5 @@
-async function create(offering) {
-    let result = await dataProvider.insert(
+async create(offering) {
+    await dataProvider.insert(
         'offering',
         {
         offeringid: offering.id,
