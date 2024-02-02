@@ -211,26 +211,26 @@ const offeringsApiProvider = {
 // :snippet-start: pfiOverviewConfigJs
 import { TbdexHttpServer } from '@tbdex/http-server'
 
-const httpApi = new TbdexHttpServer({ exchangesApi: exchangesApiProvider, offeringsApi: offeringsApiProvider })
+const tbDexServer = new TbdexHttpServer({ exchangesApi: exchangesApiProvider, offeringsApi: offeringsApiProvider })
 // :snippet-end:
 
 // :snippet-start: pfiOverviewServerRoutesJs
 
-httpApi.submit('rfq', async (ctx, rfq) => {
+tbDexServer.submit('rfq', async (ctx, rfq) => {
     await exchangesApiProvider.write({ message: rfq})
 })
 
-httpApi.submit('order', async (ctx, order) => {
+tbDexServer.submit('order', async (ctx, order) => {
     await exchangesApiProvider.write({ message: order })
 })
 
-httpApi.submit('close', async (ctx, close) => {
+tbDexServer.submit('close', async (ctx, close) => {
     await exchangesApiProvider.write({ message: close })
 })
 // :snippet-end:
 
 // :snippet-start: pfiOverviewServerStartJs
-const server = httpApi.listen(8080, () => {
+const server = tbDexServer.listen(8080, () => {
     console.log.info(`PFI listening on port ${8080}`)
 })
 // :snippet-end:
