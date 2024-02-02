@@ -12,30 +12,30 @@ val serverConfig = TbdexHttpServerConfig(
     exchangesApi = OfferingsApiProvider()
   )
 
-val tbdexServer = TbdexHttpServer(serverConfig)
+val httpApi = TbdexHttpServer(serverConfig)
 // :snippet-end:
 
 // :snippet-start: pfiOverviewServerRoutesKt
 import tbdex.sdk.httpserver.models.SubmitKind
 
-tbdexServer.submit(SubmitKind.rfq) { call, messageKind, offering ->
+httpApi.submit(SubmitKind.rfq) { call, messageKind, offering ->
     ExchangesApiProvider.write(offering)
     call.respond(HttpStatusCode.Accepted)
 }
 
-tbdexServer.submit(SubmitKind.order) { call, messageKind, offering ->
+httpApi.submit(SubmitKind.order) { call, messageKind, offering ->
     ExchangesApiProvider.write(offering)
     call.respond(HttpStatusCode.Accepted)
 }
 
-tbdexServer.submit(SubmitKind.close) { call, messageKind, offering ->
+httpApi.submit(SubmitKind.close) { call, messageKind, offering ->
     ExchangesApiProvider.write(offering)
     call.respond(HttpStatusCode.Accepted)
 }
 // :snippet-end:
 
 // :snippet-start: pfiOverviewServerStartKt
-tbdexServer.start()
+httpApi.start()
 // :snippet-end:
 
 // :snippet-start: pfiOverviewWriteKt

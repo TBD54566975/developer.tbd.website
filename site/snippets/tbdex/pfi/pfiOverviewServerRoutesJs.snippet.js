@@ -5,13 +5,13 @@ import {
 } from '@tbdex/http-server'
 
 httpApi.submit('rfq', async (ctx, rfq) => {
-    await ExchangesApiProvider.write({ message: rfq as Rfq })
+    await ExchangesApiProvider.write({ message: rfq})
 })
 
 httpApi.submit('order', async (ctx, order) => {
-    await ExchangesApiProvider.write({ message: order as Order })
+    await ExchangesApiProvider.write({ message: order })
 })
 
 httpApi.submit('close', async (ctx, close) => {
-    await ExchangesApiProvider.write({ message: close as Close })
+    await ExchangesApiProvider.write({ message: close })
 })

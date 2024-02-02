@@ -11,4 +11,4 @@ val serverConfig = TbdexHttpServerConfig(
     exchangesApi = OfferingsApiProvider()
   )
 
-val tbdexServer = TbdexHttpServer(serverConfig)
+val httpApi = TbdexHttpServer(serverConfig)
