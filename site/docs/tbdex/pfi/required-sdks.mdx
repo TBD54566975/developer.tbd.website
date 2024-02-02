@@ -6,7 +6,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import CodeSnippet from '@site/src/components/CodeSnippet';
 import BreadcrumbTab from '@site/src/components/BreadcrumbTab';
-import installJs from '!!raw-loader!@site/snippets/tbdex/pfi/pfiSdkInstallJs.snippet.bash'
+import pfiSdkInstallJs from '!!raw-loader!@site/snippets/tbdex/pfi/pfiSdkInstallJs.snippet.bash'
 import pfiSdkInstallGradle from '!!raw-loader!@site/snippets/tbdex/pfi/pfiSdkInstallGradle.snippet.gradle'
 import pfiSdkInstallPom from '!!raw-loader!@site/snippets/tbdex/pfi/pfiSdkInstallPom.snippet.xml'
 import importJs from '!!raw-loader!@site/snippets/tbdex/pfi/pfiSdkImportJs.snippet.js'
@@ -27,7 +27,7 @@ To implement and operate as a PFI, you’ll need to use the following SDKs:
 
 <Tabs groupId="language">
   <TabItem label="JavaScript" value="JavaScript">
-    <CodeSnippet snippet={installJs} />
+    <CodeSnippet snippet={pfiSdkInstallJs} />
   </TabItem>
   <TabItem label="Kotlin" value="Kotlin">
     <BreadcrumbTab

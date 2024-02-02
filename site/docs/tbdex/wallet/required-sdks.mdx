@@ -5,11 +5,12 @@ sidebar_position: 2
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import CodeSnippet from '@site/src/components/CodeSnippet';
-import installJs from '!!raw-loader!@site/snippets/tbdex/wallet/walletSdkInstallJs.snippet.bash'
+import walletSdkInstallJs from '!!raw-loader!@site/snippets/tbdex/wallet/walletSdkInstallJs.snippet.bash'
 import walletSdkInstallGradle from '!!raw-loader!@site/snippets/tbdex/wallet/walletSdkInstallGradle.snippet.gradle'
 import walletSdkInstallPom from '!!raw-loader!@site/snippets/tbdex/wallet/walletSdkInstallPom.snippet.xml'
 import importJs from '!!raw-loader!@site/snippets/tbdex/wallet/walletSdkImportJs.snippet.js'
 import importKt from '!!raw-loader!@site/snippets/tbdex/wallet/walletSdkImportKt.snippet.kt'
+
 
 # Required SDKs
 
@@ -21,17 +22,16 @@ To implement and operate as a Wallet on a tbDEX network, you’ll need to use th
 * [**tbdex/client**](https://www.npmjs.com/package/@tbdex/http-client) - Enables your application to send tbDEX messages to PFIs.
 
 ## Install SDKs
-To install `@web5/dids`:
 
 <Tabs groupId="language">
   <TabItem label="JavaScript" value="JavaScript">
-    <CodeSnippet snippet={installJs} />
+    <CodeSnippet snippet={walletSdkInstallJs} />
   </TabItem>
   <TabItem label="Kotlin (Gradle)" value="Kotlin">
-    <CodeSnippet snippet={installKtGradle} />
+    <CodeSnippet snippet={walletSdkInstallGradle} />
   </TabItem>
   <TabItem label="Kotlin (Maven)" value="maven">
-    <CodeSnippet snippet={installKtPom} />
+    <CodeSnippet snippet={walletSdkInstallPom} />
   </TabItem>
 </Tabs>
 
