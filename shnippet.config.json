@@ -1,5 +1,5 @@
 {
-    "rootDirectory": "./site/__tests__",
+    "rootDirectory": "./site/testsuites",
     "outputDirectory": "./site/snippets",
     "fileExtensions": [".js", ".ts", ".kt", ".bash", ".gradle", ".xml"],
     "snippetTags": {
