@@ -1,5 +1,4 @@
-<!-- :snippet-start: walletSdkInstallPom   
--->
+// :snippet-start: walletSdkInstallPom   
 <repositories>
     <repository>
         <id>jitpack.io</id>
