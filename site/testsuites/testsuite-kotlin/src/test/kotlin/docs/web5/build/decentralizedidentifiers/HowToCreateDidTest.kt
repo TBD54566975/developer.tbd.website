@@ -1,9 +1,8 @@
 package website.tbd.developer.site.docs.web5.build.decentralizedidentifiers;
 
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Assertions.*
 
-:snippet-start: importDidsKt
 // key manager
 import web5.sdk.crypto.InMemoryKeyManager
 
@@ -13,7 +12,6 @@ import web5.sdk.dids.methods.dht.CreateDidDhtOptions
 
 //did:key
 import web5.sdk.dids.methods.key.DidKey
-:snippet-end:
 
 /**
  * Tests backing the Create a DID Guide
@@ -21,7 +19,7 @@ import web5.sdk.dids.methods.key.DidKey
 internal class HowToCreateDidTest {
 
   @Test
-  fun `createDidKt works`() {
+  fun `able to create DidDht`() {
 
     // :snippet-start: createDidDhtKt
     val keyManager = InMemoryKeyManager()
@@ -38,7 +36,15 @@ internal class HowToCreateDidTest {
     val didDocument = portableDID.didDocument
     // :snippet-end:
 
-    // :snippet-start: createDidKeyKt
+    assertNotNull(did, "DID should not be null")
+    assertTrue(did.startsWith("did:"), "DID should start with 'did:'")
+    assertNotNull(didDocument, "DID Document should not be null")
+  }
+
+  @Test
+  fun `able to create DidKey`() {
+
+      // :snippet-start: createDidKeyKt
     // Creates a DID using the did:key method
     val keyManager = InMemoryKeyManager()
     val didKey = DidKey.create(keyManager);
@@ -53,8 +59,31 @@ internal class HowToCreateDidTest {
     val didDocument = portableDID.didDocument
     // :snippet-end:
 
-    // Make sure the contents of the VC are as expected
-    assertEquals("1","1")
+    assertNotNull(did, "DID should not be null")
+    assertTrue(did.startsWith("did:"), "DID should start with 'did:'")
+    assertNotNull(didDocument, "DID Document should not be null")
+
+  }
+
+  @Test
+  fun `imports for creating Did`() {
+    val requiredImports =
+        """
+        // :snippet-start: createDidImportsKt
+        // key manager
+        import web5.sdk.crypto.InMemoryKeyManager
+
+        //did:dht
+        import web5.sdk.dids.methods.dht.DidDht
+        import web5.sdk.dids.methods.dht.CreateDidDhtOptions
+
+        //did:key
+        import web5.sdk.dids.methods.key.DidKey
+
+        // :snippet-end:
+        """
+
+        assertNotNull(requiredImports, "Required should not be null")
   }
 
 }

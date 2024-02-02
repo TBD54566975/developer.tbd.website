@@ -10,6 +10,8 @@ import CodeSnippet from '@site/src/components/CodeSnippet';
 
 import createDidDht from '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/web5/build/decentralized-identifiers/createDidDht.snippet.js'
 import createDidKey from '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/web5/build/decentralized-identifiers/createDidKey.snippet.js'
+import requiredDidImports from '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/web5/build/decentralized-identifiers/requiredDidImports.snippet.js'
+
 
 import createDidDhtKt from '!!raw-loader!@site/snippets/testsuite-kotlin/src/test/kotlin/docs/web5/build/decentralizedidentifiers/createDidDhtKt.snippet.kt'
 import createDidKeyKt from '!!raw-loader!@site/snippets/testsuite-kotlin/src/test/kotlin/docs/web5/build/decentralizedidentifiers/createDidKeyKt.snippet.kt'
@@ -24,18 +26,9 @@ You can create a DID using any of the [Web5-supported DID methods](/docs/web5/le
 
 <Shnip
   snippets={[
+    { snippetContent: requiredDidImports, language: 'JavaScript' },
     { snippetContent: importDidsKt, language: 'Kotlin' },
-    ]}
-    inlineSnippets={[
-      {
-        code: `
-//did:dht
-import { DidDhtMethod } from '@web5/dids'
-//did:key
-import { DidKeyMethod } from '@web5/dids'`,
-        language: 'JavaScript',
-      },
-    ]}
+  ]}
 />
 
 ### did:dht

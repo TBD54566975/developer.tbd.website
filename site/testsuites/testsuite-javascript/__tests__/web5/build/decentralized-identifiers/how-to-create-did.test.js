@@ -30,6 +30,19 @@ describe('how-to-create-did', () => {
     });
   });
 
+  test('show required imports to create did', async () => {
+    const requiredImports = `
+      // :snippet-start: requiredDidImports
+      //did:dht
+      import { DidDhtMethod } from '@web5/dids'
+
+      //did:key
+      import { DidKeyMethod } from '@web5/dids'
+      // :snippet-end:
+    `
+    expect(requiredImports).toBeDefined();
+  });
+
   test('createDidAutomatically returns a DID', async () => {
     const did = await createDidAutomatically();
     expect(did).toBeDefined();
