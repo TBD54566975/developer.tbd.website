@@ -154,9 +154,7 @@ const exchangesApiProvider = {
 
   // :snippet-start: pfiOverviewWriteJs
   async write({ message }) {
-      await dataProvider.insert(
-          'exchange',
-          {
+      await dataProvider.insert('exchange', {
               exchangeid: message.exchangeId,
               messagekind: message.kind,
               messageid: message.id,
@@ -196,9 +194,7 @@ const offeringsApiProvider = {
 
   // :snippet-start: pfiOverviewWriteOfferingsJs
   async create(offering) {
-      await dataProvider.insert(
-          'offering',
-          {
+      await dataProvider.insert('offering', {
           offeringid: offering.id,
           payoutcurrency: offering.payoutCurrency.currencyCode,
           payincurrency: offering.payinCurrency.currencyCode,
@@ -215,7 +211,6 @@ const tbDexServer = new TbdexHttpServer({ exchangesApi: exchangesApiProvider, of
 // :snippet-end:
 
 // :snippet-start: pfiOverviewServerRoutesJs
-
 tbDexServer.submit('rfq', async (ctx, rfq) => {
     await exchangesApiProvider.write({ message: rfq})
 })
