@@ -69,7 +69,7 @@ internal class HowToCreateDidTest {
   fun `imports for creating Did`() {
     val requiredImports =
         """
-        // :snippet-start: createDidImportsKt
+        // :snippet-start: requiredDidImportsKt
         // key manager
         import web5.sdk.crypto.InMemoryKeyManager
 
