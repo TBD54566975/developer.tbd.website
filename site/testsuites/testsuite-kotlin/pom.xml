@@ -19,7 +19,13 @@
         <version.kotlin>1.9.22</version.kotlin>
         <version.kotlin.compiler.incremental>true</version.kotlin.compiler.incremental>
         <version.junit-jupiter>5.10.1</version.junit-jupiter>
-        <!-- This needs to be uniformly updated as part of the single dependency script from Nick -->
+
+        <!-- TBD Dependencies -->
+        <!--
+        These need to be uniformly updated as part of the
+        single dependency script from Nick
+        -->
+        <version.tbdex>0.8.0-beta</version.tbdex>
         <version.web5>0.10.0</version.web5>
     </properties>
 
@@ -47,6 +53,23 @@
                 <groupId>org.jetbrains.kotlin</groupId>
                 <artifactId>kotlin-stdlib</artifactId>
                 <version>${version.kotlin}</version>
+            </dependency>
+
+            <!-- TBD Dependencies -->
+            <dependency>
+              <groupId>xyz.block</groupId>
+              <artifactId>tbdex-httpclient</artifactId>
+              <version>${version.tbdex}</version>
+            </dependency>
+            <dependency>
+              <groupId>xyz.block</groupId>
+              <artifactId>tbdex-httpserver</artifactId>
+              <version>${version.tbdex}</version>
+            </dependency>
+            <dependency>
+              <groupId>xyz.block</groupId>
+              <artifactId>tbdex-protocol</artifactId>
+              <version>${version.tbdex}</version>
             </dependency>
             <dependency>
                 <groupId>xyz.block</groupId>
@@ -98,6 +121,20 @@
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-engine</artifactId>
+        </dependency>
+
+        <!-- TBD Dependencies -->
+        <dependency>
+          <groupId>xyz.block</groupId>
+          <artifactId>tbdex-httpclient</artifactId>
+        </dependency>
+        <dependency>
+          <groupId>xyz.block</groupId>
+          <artifactId>tbdex-httpserver</artifactId>
+        </dependency>
+        <dependency>
+          <groupId>xyz.block</groupId>
+          <artifactId>tbdex-protocol</artifactId>
         </dependency>
         <dependency>
             <groupId>xyz.block</groupId>
