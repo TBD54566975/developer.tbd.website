@@ -3,8 +3,6 @@ import { DidDhtMethod, DidKeyMethod } from '@web5/dids';
 
 import {
   createDidAutomatically,
-  createDidDht,
-  createDidKey,
 } from '../../../../../../code-snippets/web5/build/decentralized-identifiers/how-to-create-did';
 import { setUpWeb5 } from '../../../setup-web5';
 
@@ -29,6 +27,7 @@ describe('how-to-create-did', () => {
       };
     });
   });
+  
 
   test('show required imports to create did', async () => {
     const requiredImports = `
@@ -40,7 +39,6 @@ describe('how-to-create-did', () => {
       import { DidKeyMethod } from '@web5/dids'
       // :snippet-end:
     `
-    expect(requiredImports).toBeDefined();
   });
 
   test('createDidAutomatically returns a DID', async () => {
@@ -55,7 +53,7 @@ describe('how-to-create-did', () => {
     const didDht = await DidDhtMethod.create({ publish: true });
 
     //DID and its associated data which can be exported and used in different contexts/apps
-    const portableDID = JSON.stringify(didDht);
+    const portableDid = JSON.stringify(didDht);
 
     //DID string
     const did = didDht.did;
@@ -77,7 +75,7 @@ describe('how-to-create-did', () => {
     const didKey = await DidKeyMethod.create();
 
     //DID and its associated data which can be exported and used in different contexts/apps
-    const portableDID = JSON.stringify(didKey);
+    const portableDid = JSON.stringify(didKey);
 
     //DID string
     const did = didKey.did;
