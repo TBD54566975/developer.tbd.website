@@ -3,8 +3,6 @@ import { DidDhtMethod, DidKeyMethod } from '@web5/dids';
 
 import {
   createDidAutomatically,
-  createDidDht,
-  createDidKey,
 } from '../../../../../../code-snippets/web5/build/decentralized-identifiers/how-to-create-did';
 import { setUpWeb5 } from '../../../setup-web5';
 
@@ -29,6 +27,19 @@ describe('how-to-create-did', () => {
       };
     });
   });
+  
+
+  test('show required imports to create did', async () => {
+    const requiredImports = `
+      // :snippet-start: requiredDidImports
+      //did:dht
+      import { DidDhtMethod } from '@web5/dids'
+
+      //did:key
+      import { DidKeyMethod } from '@web5/dids'
+      // :snippet-end:
+    `
+  });
 
   test('createDidAutomatically returns a DID', async () => {
     const did = await createDidAutomatically();
@@ -42,7 +53,7 @@ describe('how-to-create-did', () => {
     const didDht = await DidDhtMethod.create({ publish: true });
 
     //DID and its associated data which can be exported and used in different contexts/apps
-    const portableDID = JSON.stringify(didDht);
+    const portableDid = JSON.stringify(didDht);
 
     //DID string
     const did = didDht.did;
@@ -52,9 +63,6 @@ describe('how-to-create-did', () => {
 
     //Cryptographic keys associated with DID
     const keys = JSON.stringify(didDht.keySet);
-
-    //Primary form of a DID. more info: https://www.w3.org/TR/did-core/#dfn-canonicalid
-    const canonicalId = didDht.canonicalId;
 
     // :snippet-end:
 
@@ -67,7 +75,7 @@ describe('how-to-create-did', () => {
     const didKey = await DidKeyMethod.create();
 
     //DID and its associated data which can be exported and used in different contexts/apps
-    const portableDID = JSON.stringify(didKey);
+    const portableDid = JSON.stringify(didKey);
 
     //DID string
     const did = didKey.did;
@@ -77,9 +85,6 @@ describe('how-to-create-did', () => {
 
     //Cryptographic keys associated with DID
     const keys = JSON.stringify(didKey.keySet);
-
-    //Primary form of a DID. more info: https://www.w3.org/TR/did-core/#dfn-canonicalid
-    const canonicalId = didKey.canonicalId;
 
     // :snippet-end:
 
