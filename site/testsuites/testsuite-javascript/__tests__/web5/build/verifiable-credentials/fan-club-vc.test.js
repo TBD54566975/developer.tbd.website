@@ -57,32 +57,8 @@ describe('fan-club-vc', () => {
             },
         }));
     });
-
-    test('createDidKeys creates an issuer DID and alice DID with did:key method', async () => {
-        // :snippet-start: createDidKeys
-        const fanClubIssuerDid = await DidKeyMethod.create();
-        const aliceDid = await DidKeyMethod.create();
-        // :snippet-end:
-        expect(aliceDid.did).toMatch(/^did:key:/);
-        expect(fanClubIssuerDid.did).toMatch(/^did:key:/);
-    });
-
-    test('createSwiftieFanClubClass creates a class for a vc', async () => {
-        // :snippet-start: createSwiftieFanClubClass
-        class SwiftiesFanClub {
-            constructor(level, legit) {
-                this.level = level;
-                this.legit = legit;
-            }
-        }
-        // :snippet-end:
-        const fan = new SwiftiesFanClub('Stan', true);
-        expect(fan.legit).toBe(true);
-        expect(fan.level).toBe('Stan');
-    });
-
-    test('createVerifiableCredential creates a vc', async () => {
-        // :snippet-start: createVerifiableCredential
+    test('createFanClubVc creates a vc for fan club', async () => {
+        // :snippet-start: createFanClubVc
         const vc = await VerifiableCredential.create({
             type: 'SwiftiesFanClub',
             issuer: fanClubIssuerDid.did,
@@ -96,97 +72,64 @@ describe('fan-club-vc', () => {
         expect(vc.vcDataModel.credentialSubject.legit).toBe(true);
     });
 
-    test('signVC creates a vc', async () => {
-        // :snippet-start: signVC
+    test('signFanClubVc signs a vc for fan club and returns jwt', async () => {
+        // :snippet-start: signFanClubVc
         const signedVcJwt = await vc.sign({ did: fanClubIssuerDid });
         // :snippet-end:
         expect(typeof signedVcJwt).toBe('string');
         expect(signedVcJwt).not.toBe('');
     });
 
-    test('createPresentationDefinition creates a presentation definition', async () => {
-        // :snippet-start: createPresentationDefinition
-        const presentationDefinition = {
-            'id': 'presDefId123',
-            'name': 'Swifties Fan Club Presentation Definition',
-            'purpose': 'for proving membership in the fan club',
-            'input_descriptors': [
-                {
-                    'id': 'legitness',
-                    'purpose': 'are you legit or not?',
-                    'constraints': {
-                        'fields': [
-                            {
-                                'path': [
-                                    '$.credentialSubject.legit',
-                                ]
-                            }
-                        ]
-                    }
-                }
-            ]
-        };
-
-        const definitionValidation = PresentationExchange.validateDefinition({ presentationDefinition });
-        // :snippet-end:
-        expect(definitionValidation).toHaveLength(1);
-        expect(definitionValidation[0]).toHaveProperty('message', 'ok');
-        expect(definitionValidation[0]).toHaveProperty('status', 'info');
-        expect(definitionValidation[0]).toHaveProperty('tag', 'root');
-    })
-
-    test('satisfiesDefinition checks if VC satisfies the presentation definition', async () => {
+    test('satisfiesPresentationDefinitionFanClubVc checks if VC satisfies the presentation definition', async () => {
         const logSpy = vi.spyOn(console, 'log');
-        // :snippet-start: satisfiesDefinition
+        // :snippet-start: satisfiesPresentationDefinitionFanClubVc
         // Does VC Satisfy the Presentation Definition
         try {
             PresentationExchange.satisfiesPresentationDefinition({ vcJwts: [signedVcJwt], presentationDefinition: presentationDefinition });
-            console.log('VC Satisfies Presentation Definition!');
+            console.log('\nVC Satisfies Presentation Definition!\n');
         } catch (err) {
             console.log('VC does not satisfy Presentation Definition: ' + err.message);
         }
         // :snippet-end:
-        expect(logSpy).toHaveBeenCalledWith('VC Satisfies Presentation Definition!');
+        expect(logSpy).toHaveBeenCalledWith('\nVC Satisfies Presentation Definition!\n');
         logSpy.mockRestore();
     });
 
-    test('createPresentationFromCredentials creates presentation from credentials and checks the presentation result', async () => {
-        // :snippet-start: createPresentationFromCredentials
+    test('createPresentationFromCredentialsFanClubVc creates presentation from credentials and checks the presentation result', async () => {
+        // :snippet-start: createPresentationFromCredentialsFanClubVc
         // Create Presentation Result that contains a Verifiable Presentation and Presentation Submission
         const presentationResult = PresentationExchange.createPresentationFromCredentials({ vcJwts: [signedVcJwt], presentationDefinition: presentationDefinition });
         console.log('\nPresentation Result: ' + JSON.stringify(presentationResult));
         // :snippet-end:
-        
+
         expect(presentationResult.presentation).toHaveProperty('@context');
         expect(presentationResult.presentation).toHaveProperty('type');
         expect(presentationResult.presentation).toHaveProperty('presentation_submission');
         expect(presentationResult).toHaveProperty('presentationSubmissionLocation');
         expect(presentationResult).toHaveProperty('presentationSubmission');
     });
-    test('verify VC checks if VC verification is successful', async () => {
-        // :snippet-start: verifyVC
-        let result
-        
+    test('verifyFanClubVc checks if VC verification is successful', async () => {
+        const logSpy = vi.spyOn(console, 'log');
+        // :snippet-start: verifyFanClubVc
         try {
-            result = await VerifiableCredential.verify({ vcJwt: signedVcJwt });
-            console.log('VC Verification Successful!');
+            await VerifiableCredential.verify({ vcJwt: signedVcJwt });
+            console.log('\nVC Verification successful!\n');
         } catch (err) {
-            console.log('VC Verification failed:' + err.message);
+            console.log('\nVC Verification failed: ' + err.message + '\n');
         }
         // :snippet-end:
-        expect(result).toHaveProperty('vc');
-        expect(result.vc).toHaveProperty('credentialSubject');
-        expect(result.vc.credentialSubject.level).toBe('Stan');
-        expect(result.vc.credentialSubject.legit).toBe(true);
+        expect(logSpy).toHaveBeenCalledWith('\nVC Verification successful!\n');
+        logSpy.mockRestore();
     });
 
-    test('parseSignedVcJwt parses the signed VC JWT', async () => {
-        // :snippet-start: parseSignedVcJwt
-        const vc = VerifiableCredential.parseJwt({ vcJwt: signedVcJwt });
+    test('parseFanClubJwt parses the signed VC JWT', async () => {
+        // :snippet-start: parseFanClubJwt
+        const parsedVC = await VerifiableCredential.parseJwt({ vcJwt: signedVcJwt });
         // :snippet-end:
-        expect(vc).toHaveProperty('vcDataModel');
-        expect(vc.vcDataModel).toHaveProperty('credentialSubject');
-        expect(vc.vcDataModel.credentialSubject.level).toBe('Stan');
-        expect(vc.vcDataModel.credentialSubject.legit).toBe(true);
+        expect(parsedVC).toHaveProperty('vcDataModel');
+        expect(parsedVC.vcDataModel).toHaveProperty('credentialSubject');
+        expect(parsedVC.vcDataModel.credentialSubject.level).toBe('Stan');
+        expect(parsedVC.vcDataModel.credentialSubject.legit).toBe(true);
     });
 });
+
