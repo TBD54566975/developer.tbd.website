@@ -73,8 +73,11 @@ After installing the packages, import them into your project as shown below:
     {
       code: `
 import { DidKeyMethod } from '@web5/dids';
+const fanClubIssuerDid = await DidKeyMethod.create();
+const aliceDid = await DidIonMethod.create();
       `,
-      language: 'JavaScript',
+      language: 'JavaScript', 
+      breakLineAt:[1]
     },
     {
       code: `
