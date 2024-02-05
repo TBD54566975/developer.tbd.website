@@ -8,6 +8,8 @@ import CodeSnippet from '@site/src/components/CodeSnippet';
 
 # Issue a VC
 
+<LanguageSwitcher languages="JavaScript, Kotlin" />
+
 This guide provides a step-by-step process for issuing a [verifiable credential (VC)](/docs/web5/learn/verifiable-credentials), covering everything from installing the SDK to signing the credential.
 
 <details>
@@ -38,7 +40,6 @@ repositories {
   mavenCentral()
   maven("https://jitpack.io")
   maven("https://repo.danubetech.com/repository/maven-public/")
-  maven("https://repository.jboss.org/nexus/content/repositories/thirdparty-releases/")
 }
 ```
 
@@ -46,7 +47,7 @@ repositories {
 
 ```kotlin
 dependencies {
-  implementation("xyz.block:web5-credentials:0.0.9-delta")
+  implementation("xyz.block:web5-credentials:0.10.0")
 }
 ```
 
@@ -96,6 +97,7 @@ To create the VC, utilize the `VerifiableCredential.create()` method. Pass a JSO
       type = "EmploymentCredential",
       issuer = employer.didDocument.id.toString(),
       subject = employee.didDocument.id.toString(),
+      expirationDate = Date.from(Instant.parse("2023-09-30T12:34:56Z"))
       data = EmploymentData(
           position = "Software Developer",
           startDate = "2021-04-01T12:34:56Z",
