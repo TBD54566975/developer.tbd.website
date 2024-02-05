@@ -10,12 +10,14 @@ import getLoanAppPresentationDefinition from '!!raw-loader!@site/snippets/testsu
 import satisfiesPresentationDefinitionForPex from '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/web5/build/verifiable-credentials/satisfiesPresentationDefinitionForPex.snippet.js'
 import selectCredentialsForPex from '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/web5/build/verifiable-credentials/selectCredentialsForPex.snippet.js'
 import createPresentationFromCredentialsForPex from '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/web5/build/verifiable-credentials/createPresentationFromCredentialsForPex.snippet.js'
+import validVerifiablePresentationForPex from '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/web5/build/verifiable-credentials/validVerifiablePresentationForPex.snippet.js'
 
 import requiredImportsForPexKt from '!!raw-loader!@site/snippets/testsuite-kotlin/src/test/kotlin/docs/web5/build/verifiablecredentials/requiredImportsForPexKt.snippet.kt'
 import getLoanAppPresentationDefinitionKt from '!!raw-loader!@site/snippets/testsuite-kotlin/src/test/kotlin/docs/web5/build/verifiablecredentials/getLoanAppPresentationDefinitionKt.snippet.kt'
 import satisfiesPresentationDefinitionForPexKt from '!!raw-loader!@site/snippets/testsuite-kotlin/src/test/kotlin/docs/web5/build/verifiablecredentials/satisfiesPresentationDefinitionForPexKt.snippet.kt'
 import selectCredentialsForPexKt from '!!raw-loader!@site/snippets/testsuite-kotlin/src/test/kotlin/docs/web5/build/verifiablecredentials/selectCredentialsForPexKt.snippet.kt'
 import createPresentationFromCredentialsForPexKt from '!!raw-loader!@site/snippets/testsuite-kotlin/src/test/kotlin/docs/web5/build/verifiablecredentials/createPresentationFromCredentialsForPexKt.snippet.kt'
+import validVerifiablePresentationForPexKt from '!!raw-loader!@site/snippets/testsuite-kotlin/src/test/kotlin/docs/web5/build/verifiablecredentials/validVerifiablePresentationForPexKt.snippet.kt'
 
 
 # Presentation Exchange
@@ -215,6 +217,12 @@ Each `Checked` object contains:
 
 ## Verifiable Presentation
 
-Once the [Presentation](/docs/glossary#verifiable-presentation) is error-free and has passed the validation checks, you can submit the Verifiable Presentation by providing the lender with the `presentation` JSON object:
 
-<CodeSnippet functionName="pex_getPresentationFromResult" />
+
+<Shnip
+   snippets={[
+    { content: 'Once the [Presentation](/docs/glossary#verifiable-presentation) is error-free and has passed the validation checks, you can submit the Verifiable Presentation by providing the lender with the `presentation` JSON object:', snippetContent: validVerifiablePresentationForPex, language: 'JavaScript'},
+    { content: 'After successfully creating the [Presentation](/docs/glossary#verifiable-presentation) using `VerifiablePresentation.create()`, and ensuring it is error-free and has passed all validation checks, you can submit the Verifiable Presentation by providing the lender with the `mappedPresentationSubmission` object:', snippetContent: validVerifiablePresentationForPexKt, language: 'Kotlin'},
+    ]}
+/>
+

@@ -202,10 +202,18 @@ describe('Presentation Exchange Process', () => {
     expect.soft(validationResult[0]).toHaveProperty('message', 'ok');
   });
 
-  test('presentationResult.presentation is a valid VP', async () => {
-    const pr = await pex_createPresentationFromCredentials(credentials, pd);
-    const presentation = await pex_getPresentationFromResult(pr);
+  test('validVerifiablePresentationForPex creates a valid VP', async () => {
+    const selectedCredentials = credentials
+    const presentationResult = PresentationExchange.createPresentationFromCredentials({
+      vcJwts: selectedCredentials,
+      presentationDefinition: presentationDefinition
+    });
+    // :snippet-start: validVerifiablePresentationForPex
+    const presentation = presentationResult.presentation;
+    // :snippet-end:
+
     expect(presentation).toBeDefined();
     expect(presentation.type).contains('VerifiablePresentation');
   });
+
 });

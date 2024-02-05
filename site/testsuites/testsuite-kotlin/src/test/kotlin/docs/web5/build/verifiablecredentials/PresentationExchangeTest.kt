@@ -6,6 +6,7 @@ import web5.sdk.crypto.InMemoryKeyManager
 import web5.sdk.credentials.PresentationExchange
 import web5.sdk.credentials.VerifiableCredential
 import web5.sdk.credentials.VerifiablePresentation
+import web5.sdk.credentials.model.PresentationSubmission
 import web5.sdk.credentials.model.ConstraintsV2
 import web5.sdk.credentials.model.FieldV2
 import web5.sdk.credentials.model.InputDescriptorV2
@@ -156,4 +157,28 @@ internal class PresentationExchangeTest {
     assertNotNull(vp, "Verifiable Presentation should not be null")
     assertEquals(holderDid, vp.holder, "Holder DID should match")
   }
+
+    @Test
+    fun `validVerifiablePresentationForPexKt creates a valid VP`() {
+        val holderDid = "did:key:zQ3shXrAnbgfytQYQjifUm2EcBBbRAeAeGfgC4TZrjw4X71iZ"
+        val selectedCredentials = allCredentials
+        val presentationResult = PresentationExchange.createPresentationFromCredentials(
+            vcJwts = selectedCredentials,
+            presentationDefinition = presentationDefinition
+        )
+        val vp = VerifiablePresentation.create(
+            vcJwts = selectedCredentials,
+            holder = holderDid,
+            additionalData = mapOf("presentation_submission" to presentationResult)
+        )
+        // :snippet-start: validVerifiablePresentationForPexKt
+        val vpDataModelMap = vp.vpDataModel.toMap()
+        val mappedPresentationSubmission = vpDataModelMap["presentation_submission"] as? PresentationSubmission
+        // :snippet-end:
+
+        assertNotNull(mappedPresentationSubmission, "Mapped Presentation Submission should not be null")
+        assertEquals(presentationResult.definitionId, mappedPresentationSubmission?.definitionId, "Definition ID should match")
+    }
 }
+
+

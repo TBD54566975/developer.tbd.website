@@ -27,15 +27,18 @@ const Shnip = ({ snippets, inlineSnippets }) => {
       <LanguageTabBar />
       <LanguageSwitchBlock>
         {snippets &&
-          snippets.map(({ snippetContent, language, title }) => (
-            <div key={`ref-${language}`} language={language}>
-              <CodeSnippet
-                snippet={snippetContent}
-                language={language.toLowerCase()}
-                title={title}
-              />
-            </div>
-          ))}
+          snippets.map(
+            ({ snippetContent, language, title, content }, index) => (
+              <div key={`snippet-${language}-${index}`} language={language}>
+                {content && <ReactMarkdown>{content}</ReactMarkdown>}
+                <CodeSnippet
+                  snippet={snippetContent}
+                  language={language.toLowerCase()}
+                  title={title}
+                />
+              </div>
+            ),
+          )}
 
         {inlineSnippets &&
           inlineSnippets.map(
