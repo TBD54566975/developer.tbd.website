@@ -57,34 +57,15 @@ describe('fan-club-vc', () => {
             },
         }));
     });
-    test('ceateDids imports dids package and creates dids', async () => {
-        const ceateDids = `
-      // :snippet-start: createDids
-      import { DidKeyMethod } from '@web5/dids';
-
-      const fanClubIssuerDid = await DidKeyMethod.create();
-      const aliceDid = await DidIonMethod.create();
-      // :snippet-end:
-    `
+    test('createDids creates an issuer DID and alice DID with did:key method', async () => {
+        // :snippet-start: createDids
+        const fanClubIssuerDid = await DidKeyMethod.create();
+        const aliceDid = await DidKeyMethod.create();
+        // :snippet-end:
+        expect(aliceDid.did).toMatch(/^did:key:/);
+        expect(fanClubIssuerDid.did).toMatch(/^did:key:/);
     });
 
-    test('createClassCredential imports credentials package and creates class for credential', async () => {
-        const createClassCredential = `
-      // :snippet-start: createClassCredential
-      import { VerifiableCredential } from '@web5/credentials';
-
-        class SwiftiesFanClub {
-            constructor(level, legit) {
-                // indicates the fan's dedication level
-                this.level = level;
-
-                // indicates if the fan is a genuine Swiftie
-                this.legit = legit;
-            }
-        }
-      // :snippet-end:
-    `
-    });
     test('createFanClubVc creates a vc for fan club', async () => {
         // :snippet-start: createFanClubVc
         const vc = await VerifiableCredential.create({
@@ -109,34 +90,34 @@ describe('fan-club-vc', () => {
     });
 
     test('createAndValidatePresentation creates and validates presentation definition', async () => {
-        const createAndValidatePresentation = `
-    // :snippet-start: createAndValidatePresentation
-    import { VerifiableCredential, PresentationExchange } from "@web5/credentials";
-    
-    const presentationDefinition = {
-        'id': 'presDefId123',
-        'name': 'Swifties Fan Club Presentation Definition',
-        'purpose': 'for proving membership in the fan club',
-        'input_descriptors': [
-            {
-                'id': 'legitness',
-                'purpose': 'are you legit or not?',
-                'constraints': {
-                    'fields': [
-                        {
-                            'path': [
-                                '$.credentialSubject.legit',
-                            ]
-                        }
-                    ]
+        // :snippet-start: createAndValidatePresentation
+        const presentationDefinition = {
+            'id': 'presDefId123',
+            'name': 'Swifties Fan Club Presentation Definition',
+            'purpose': 'for proving membership in the fan club',
+            'input_descriptors': [
+                {
+                    'id': 'legitness',
+                    'purpose': 'are you legit or not?',
+                    'constraints': {
+                        'fields': [
+                            {
+                                'path': [
+                                    '$.credentialSubject.legit',
+                                ]
+                            }
+                        ]
+                    }
                 }
-            }
-        ]
-    };
-    
-    const definitionValidation = PresentationExchange.validateDefinition({ presentationDefinition });
-    // :snippet-end:
-    `
+            ]
+        };
+        
+        const definitionValidation = PresentationExchange.validateDefinition({ presentationDefinition });
+        // :snippet-end:
+
+        expect(Array.isArray(definitionValidation)).toBe(true);
+        expect.soft(definitionValidation[0]).toHaveProperty('status', 'info');
+        expect.soft(definitionValidation[0]).toHaveProperty('message', 'ok');
     });
 
     test('satisfiesPresentationDefinitionFanClubVc checks if VC satisfies the presentation definition', async () => {

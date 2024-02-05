@@ -55,16 +55,12 @@ internal class FanClubVcTest {
 
   @Test
   fun `createDidsKt imports dids package and creates dids`() {
-    val createDidsKt =
-        """
-        // :snippet-start: createDidsKt
-        import web5.sdk.crypto.InMemoryKeyManager
-        import web5.sdk.dids.methods.key.DidKey
-
-        val fanClubIssuerDid = DidKey.create(InMemoryKeyManager())
-        val aliceDid = DidKey.create(InMemoryKeyManager())
-        // :snippet-end:
-        """
+    // :snippet-start: createDidsKt
+    val fanClubIssuerDid = DidKey.create(InMemoryKeyManager())
+    val aliceDid = DidKey.create(InMemoryKeyManager())
+    // :snippet-end:
+    assertTrue(fanClubIssuerDid.uri.startsWith("did:key:"), "fanClubIssuerDid should start with 'did:key:'")
+    assertTrue(aliceDid.uri.startsWith("did:key:"), "aliceDid should start with 'did:key:'")
   }
 
 @Test
@@ -113,14 +109,7 @@ internal class FanClubVcTest {
 
   @Test
   fun `createAndValidatePresentationKt creates and validates presentation definitionl`() {
-    val createAndValidatePresentationKt =
-        """
-        // :snippet-start: createAndValidatePresentationKt
-        import web5.sdk.credentials.PresentationExchange
-        import web5.sdk.credentials.VerifiableCredential
-        import web5.sdk.credentials.VerifiablePresentation
-        import web5.sdk.credentials.model.*
-
+    // :snippet-start: createAndValidatePresentationKt
         val presentationDefinition = PresentationDefinitionV2(
             id = "presDefId123",
             name = "Swifties Fan Club Presentation Definition",
@@ -142,7 +131,7 @@ internal class FanClubVcTest {
         
         val definitionValidation = PresentationExchange.validateDefinition(presentationDefinition)
         // :snippet-end:
-        """
+        assertDoesNotThrow {PresentationExchange.validateDefinition(presentationDefinition)}
   }
 
   @Test 

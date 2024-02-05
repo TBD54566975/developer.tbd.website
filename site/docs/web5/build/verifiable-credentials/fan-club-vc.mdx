@@ -11,7 +11,6 @@ import createPresentationFromCredentialsFanClubVc from  '!!raw-loader!@site/snip
 import verifyFanClubVc from '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/web5/build/verifiable-credentials/verifyFanClubVc.snippet.js'
 import parseFanClubJwt from '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/web5/build/verifiable-credentials/parseFanClubJwt.snippet.js'
 import createDids from '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/web5/build/verifiable-credentials/createDids.snippet.js'
-import createClassCredential from '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/web5/build/verifiable-credentials/createClassCredential.snippet.js'
 import createAndValidatePresentation from '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/web5/build/verifiable-credentials/createAndValidatePresentation.snippet.js'
 
 import createFanClubVcKt from '!!raw-loader!@site/snippets/testsuite-kotlin/src/test/kotlin/docs/web5/build/verifiablecredentials/createFanClubVcKt.snippet.kt'
@@ -21,7 +20,6 @@ import createPresentationFromCredentialsFanClubVcKt from '!!raw-loader!@site/sni
 import verifyFanClubVcKt from '!!raw-loader!@site/snippets/testsuite-kotlin/src/test/kotlin/docs/web5/build/verifiablecredentials/verifyFanClubVcKt.snippet.kt'
 import parseFanClubJwtKt from '!!raw-loader!@site/snippets/testsuite-kotlin/src/test/kotlin/docs/web5/build/verifiablecredentials/parseFanClubJwtKt.snippet.kt'
 import createDidsKt from '!!raw-loader!@site/snippets/testsuite-kotlin/src/test/kotlin/docs/web5/build/verifiablecredentials/createDidsKt.snippet.kt'
-import createClassCredentialKt from '!!raw-loader!@site/snippets/testsuite-kotlin/src/test/kotlin/docs/web5/build/verifiablecredentials/createClassCredentialKt.snippet.kt'
 import createAndValidatePresentationKt from '!!raw-loader!@site/snippets/testsuite-kotlin/src/test/kotlin/docs/web5/build/verifiablecredentials/createAndValidatePresentationKt.snippet.kt'
 
 <LanguageSwitcher languages="JavaScript, Kotlin" />
@@ -66,6 +64,28 @@ dependencies {
   ]}
 />
 
+### Import packages
+
+After installing the packages, import them into your project as shown below:
+
+<Shnip
+  inlineSnippets={[
+    {
+      code: `
+import { DidKeyMethod } from '@web5/dids';
+      `,
+      language: 'JavaScript',
+    },
+    {
+      code: `
+import web5.sdk.crypto.InMemoryKeyManager
+import web5.sdk.dids.methods.key.DidKey
+      `,
+      language: 'Kotlin', 
+    }
+  ]}
+/>
+
 ## The Cast
 There are a few characters involved in our story:
 
@@ -76,7 +96,7 @@ There are a few characters involved in our story:
 ## Act 1: Issuing the Credential
 
 In this section, we'll walk through all of the steps required to create and issue a verifiable credential.
-
+ 
 ### Create DIDs
 As a prerequisite, both the Fan Club and Alice need [decentralized identitifiers](/docs/web5/learn/decentralized-identifiers).
 This is because verifiable credentials use DIDs to identify issuers and holders.
@@ -96,9 +116,38 @@ Now, let's create the **SwiftiesFanClub** credential.
 We'll first model it with a class with some basic properties, `level` and `legit`:
 
 <Shnip
-  snippets={[
-    { snippetContent: createClassCredential, language: 'JavaScript', title: 'Issuer.js'},
-    { snippetContent: createClassCredentialKt, language: 'Kotlin', title: 'Issuer.js'},
+  inlineSnippets={[
+    {
+      code: `
+import { VerifiableCredential } from '@web5/credentials';
+  class SwiftiesFanClub {
+      constructor(level, legit) {
+          // indicates the fan's dedication level
+          this.level = level;
+          // indicates if the fan is a genuine Swiftie
+          this.legit = legit;
+      }
+  }
+      `,
+      language: 'JavaScript',
+      title: 'Issuer.js',
+      breakLineAt: [1, 5]
+    },
+    {
+      code: `
+import web5.sdk.credentials.VerifiableCredential
+import web5.sdk.credentials.PresentationExchange
+data class SwiftiesFanClub(
+    // indicates the fan's dedication level
+    val level: String,
+    // indicates if the fan is a genuine Swiftie
+    val legit: Boolean
+)
+      `,
+      language: 'Kotlin', 
+      title: 'Issuer.kt',
+      breakLineAt: [2, 5]
+    }
   ]}
 />
 
@@ -213,6 +262,28 @@ A presentation exchange is the process where the holder of VCs presents them to 
 ### Create Presentation Definition
 
 To kick off the presentation exchange, the Swag Supplier (verifier) will send a request to Alice, which includes a presentation definition, specifying what credentials or claims are needed.
+
+
+To create and validate this presentation definition, the verifier first needs to import packages from the <LanguageSwitchLink text='@web5/credentials' links='{"JavaScript": "https://www.npmjs.com/package/@web5/credentials", "Kotlin": "https://mvnrepository.com/artifact/xyz.block/web5-credentials"}'/> library.
+
+<Shnip
+  inlineSnippets={[
+    {
+      code: `import { VerifiableCredential, PresentationExchange } from "@web5/credentials";`,
+      language: 'JavaScript',
+    },
+    {
+      code:`        
+import web5.sdk.credentials.PresentationExchange
+import web5.sdk.credentials.VerifiableCredential
+import web5.sdk.credentials.VerifiablePresentation
+import web5.sdk.credentials.model.*
+        `,
+      language: 'Kotlin',
+    }
+  ]}
+/>
+
 Here's how the verifier can create the presentation definition, and validate that it is properly formed:
 
 <Shnip
