@@ -3,6 +3,7 @@ import LanguageSwitchBlock from '@site/src/components/language/LanguageSwitchBlo
 import LanguageTabBar from '@site/src/components/language/LanguageTabBar';
 import CodeSnippet from '@site/src/components/CodeSnippet';
 import CodeBlock from '@theme/CodeBlock';
+import ReactMarkdown from 'react-markdown';
 
 const Shnip = ({ snippets, inlineSnippets }) => {
   // support line breaks for inline code snippets
@@ -38,13 +39,10 @@ const Shnip = ({ snippets, inlineSnippets }) => {
 
         {inlineSnippets &&
           inlineSnippets.map(
-            ({ code, language, codeLanguage, title, breakLineAt }) => (
-              <div key={`inline-${language}`} language={language}>
-                <CodeBlock
-                  // parse as specified language such as bash OR parse as language from tab
-                  language={(codeLanguage || language).toLowerCase()}
-                  title={title}
-                >
+            ({ content, code, language, codeLanguage, breakLineAt }, index) => (
+              <div key={`inline-${language}-${index}`} language={language}>
+                {content && <ReactMarkdown>{content}</ReactMarkdown>}
+                <CodeBlock language={(codeLanguage || language).toLowerCase()}>
                   {addLineBreaks(code, breakLineAt)}
                 </CodeBlock>
               </div>
