@@ -136,14 +136,14 @@ internal class PresentationExchangeTest {
         presentationDefinition = presentationDefinition
     )
     
-    val vp = VerifiablePresentation.create(
+    val verifiablePresentation = VerifiablePresentation.create(
         vcJwts = selectedCredentials,
         holder = holderDid,
         additionalData = mapOf("presentation_submission" to presentationResult)
     )
     // :snippet-end:
-    assertNotNull(vp, "Verifiable Presentation should not be null")
-    assertEquals(holderDid, vp.holder, "Holder DID should match")
+    assertNotNull(verifiablePresentation, "Verifiable Presentation should not be null")
+    assertEquals(holderDid, verifiablePresentation.holder, "Holder DID should match")
   }
 
     @Test
@@ -154,14 +154,14 @@ internal class PresentationExchangeTest {
             vcJwts = selectedCredentials,
             presentationDefinition = presentationDefinition
         )
-        val vp = VerifiablePresentation.create(
+        val verifiablePresentation = VerifiablePresentation.create(
             vcJwts = selectedCredentials,
             holder = holderDid,
             additionalData = mapOf("presentation_submission" to presentationResult)
         )
         // :snippet-start: validVerifiablePresentationForPexKt
-        val vpDataModelMap = vp.vpDataModel.toMap()
-        val mappedPresentationSubmission = vpDataModelMap["presentation_submission"] as? PresentationSubmission
+        val verifiablePresentationDataModelMap = verifiablePresentation.vpDataModel.toMap()
+        val mappedPresentationSubmission = verifiablePresentationDataModelMap["presentation_submission"] as? PresentationSubmission
         // :snippet-end:
 
         assertNotNull(mappedPresentationSubmission, "Mapped Presentation Submission should not be null")
