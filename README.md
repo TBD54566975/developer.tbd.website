@@ -4,9 +4,22 @@
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FTBD54566975%2Fdeveloper.tbd.website.svg?type=shield&issueType=license)](https://app.fossa.com/projects/git%2Bgithub.com%2FTBD54566975%2Fdeveloper.tbd.website?ref=badge_shield&issueType=license)
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FTBD54566975%2Fdeveloper.tbd.website.svg?type=shield&issueType=security)](https://app.fossa.com/projects/git%2Bgithub.com%2FTBD54566975%2Fdeveloper.tbd.website?ref=badge_shield&issueType=security)
 
-## Prerequisites
+This is the source for `developer.tbd.website` 
+and its supporting services and testsuites. It 
+is structured as a monorepo powered by 
+[pnpm](https://pnpm.io/) that includes a 
+documentation site, tutorials and examples. 
+This layout allows you to conveniently 
+manage multiple projects within a single repository.
 
-This is a monorepo powered by [pnpm](https://pnpm.io/) that includes a documentation site, tutorials and examples. This repository allows you to conveniently manage multiple projects within a single repository.
+The site is implemented in 
+[Docusaurus](https://docusaurus.io/docs), a static 
+site generator based on 
+[React](https://react.dev/) with the purpose 
+of helping you build quality documentation 
+sites for your products quickly.
+
+## Prerequisites
 
 Before you begin, ensure that you have the following installed on your local machine:
 
@@ -16,6 +29,27 @@ Before you begin, ensure that you have the following installed on your local mac
 - [Xcode](https://developer.apple.com/xcode/) (Version 15, **optional**, needed to run Swift tests locally)
 - [Rust](https://www.rust-lang.org/tools/install) (Version 1.75.0, **optional**, needed to run Rust tests locally)
 
+### Node Installation
+
+We recommend installing Node via the `nvm` 
+[Node Version Manager](https://github.com/nvm-sh/nvm).
+Once installed on your system, you can get Node:
+
+```shell
+$> nvm install v18.16.0
+...
+$> nvm use v18.16.0
+Now using node v18.16.0 (npm v9.5.1)
+```
+
+You should now see both `node` and `npm` available from your `$PATH`:
+
+```
+$> node --version
+v18.16.0
+$> npm --version
+9.5.1
+```
 
 ### PNPM Installation
 
@@ -69,10 +103,12 @@ Java HotSpot(TM) 64-Bit Server VM (build 17.0.10+11-LTS-240, mixed mode, sharing
 
 ### Playwright Installation
 
-[Playwright](https://playwright.dev/) is the test harness we use for browser-based examples. It can be installed:
+[Playwright](https://playwright.dev/) is the 
+test harness we use for browser-based examples. 
+It can be installed from the root of this repo:
 
 ```shell
-pnpm playwright install --with-deps
+developer.tbd.website $> pnpm playwright install --with-deps
 ```
 
 This is required when running the tests, for instance via `pnpm test`.
@@ -81,12 +117,26 @@ This is required when running the tests, for instance via `pnpm test`.
 
 [XCode](https://developer.apple.com/xcode/) is Apple's development toolkit, and is used for both IDE and runtime for Swift examples. Install via the site link for your platform.
 
+You can test your installation:
+
+```
+$> swift --version
+swift-driver version: 1.87.3 Apple Swift version 5.9.2 (swiftlang-5.9.2.2.56 clang-1500.1.0.2.5)
+Target: arm64-apple-macosx14.0
+```
+
 This optional prereq is required only when running the `pnpm test:swift` command. Once Swift tests are in place, we'll add the Swift environment to the `pnpm test` lifecycle and this will be a required prereq.
 
 ### Rust Installation
 
 [Rust](https://www.rust-lang.org/tools/install) is a modern typesafe, compiled, performant language. Install via the site link for your platform.
 
+You may test your installation:
+
+```
+$> rustc --version
+rustc 1.75.0 (82e1608df 2023-12-21)
+```
 This optional prereq is required only when running the `pnpm test:rust` command. Once Rust tests are in place, we'll add the Rust environment to the `pnpm test` lifecycle and this will be a required prereq.
 
 ## Running online environment
@@ -98,25 +148,31 @@ Interested in contributing instantly? You can make your updates directly without
 
 To get started with the monorepo and run the available scripts, follow these instructions:
 
-1. Clone the repository:
+1. Fork the repository into your namespace 
+using the
+["Fork" button on GitHub](https://github.com/TBD54566975/developer.tbd.website).
+
+2. Clone into your local workspace. Replace 
+`$yourUsernameOrOrg` with your GitHub username 
+or org.
 
 ```shell
-git clone https://github.com/TBD54566975/developer.tbd.website.git
+$> git clone https://github.com/$yourUsernameOrOrg/developer.tbd.website.git
 ```
 
-2. Navigate to the project directory:
+3. Navigate to the project directory:
 
 ```shell
-cd developer.tbd.website
+$> cd developer.tbd.website
 ```
 
-3. Install project dependencies using `pnpm`:
+4. Install project dependencies using `pnpm`:
 
 ```shell
-pnpm install
+$> pnpm install
 ```
 
-4. Once the installation is complete, you are ready to run the available scripts.
+5. Once the installation is complete, you are ready to run the available scripts.
 
 ## Scripts
 
@@ -130,6 +186,7 @@ The following scripts are available for running specific tasks within the monore
 - `pnpm build`: Runs the production build for the site so it can be hosted by a static web server. The completed build will be in the folder `site/build`.
 - `pnpm test`: Runs the testsuites for the site and all examples, including browser tests. Requires Playwright and Java Development Kit, per installation instructions above.
 - `pnpm test:kotlin`: Runs the Kotlin testsuite only
+- `pnpm test:rust`: Runs the Rust testsuite. Not included in the `pnpm test` lifecycle yet, only runs directly through this script.
 - `pnpm test:swift`: Runs the Swift testsuite. Not included in the `pnpm test` lifecycle yet, only runs directly through this script.
 
 ## Extra Features

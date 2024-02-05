@@ -9,22 +9,9 @@ There are many ways to be an open source contributor, and we're here to help you
 
 This guide is for you.
 
-## Development Prerequisites
-
-| Requirement | Tested Version | Installation Instructions                                    |
-| ----------- | -------------- | ------------------------------------------------------------ |
-| Node        | 16.14^         | [nodejs](https://nodejs.dev/en/learn/how-to-install-nodejs/) |
-
-### Docusaurus
-
-Docusaurus is a static site generator with the purpose of helping you build quality documentation sites for your products quickly.
-
-Learn more here: https://docusaurus.io/docs
-
 #### Contributing Content
 
 It's important for the integrity of our documentation to remain in tact while adding content to our docs site. We do this by making sure that most of the code snippets we display are also testable from an execution standpoint. If you plan on editing or adding code snippets to our docs, please follow the guideline below:
-
 
 ## Contributing Code Snippets to Documentation
 We appreciate your contributions to our documentation. This guide will help you add or update code snippets using a tagging system, ensuring they are synchronized with the latest test cases.
@@ -35,7 +22,7 @@ Create a snippet.config.json file in your project with the following content:
 
 ```json
 {
-  "rootDirectory": "./site/__tests__",
+  "rootDirectory": "./site/testsuites",
   "outputDirectory": "./site/snippets",
   "fileExtensions": [".js", ".ts", ".kt"],
   "snippetTags": {
@@ -46,7 +33,6 @@ Create a snippet.config.json file in your project with the following content:
 ```
 
 This configuration specifies the directories for your tests and output snippets, the file extensions to be considered, and the tags to denote the start and end of a snippet.
-
 
 ## Use Tags in Test Files:
 In your test files, use the :snippet-start: and :snippet-end: tags to denote the beginning and end of a code snippet. Name your snippet immediately after the :snippet-start: tag. For example:
@@ -63,10 +49,13 @@ test('createDidDht creates a DID with did:dht method', async () => {
 
 
 ### Generate Snippets:
-After creating your snippets, run the command `pnpm run shnip`. This will generate a folder called snippets and create a directory structure similar to where the file is.
+After creating your snippets, run the command `pnpm shnip`. This will generate a folder called snippets and create a directory structure similar to where the file is.
 
 ### Naming and Importing Snippets:
-The generated file will be named as functionName.snippet.js (or the respective file extension). For example, the above snippet will be createDidDht.snippet.js.
+The generated file will be named as 
+`functionName.snippet.js` (or the respective 
+file extension). For example, the above snippet 
+will be `createDidDht.snippet.js`.
 
 To import the snippet in your documentation, use the following format:
 
@@ -99,7 +88,7 @@ export async function queryRecordWithParentId(web5) {
 Requirements:
 
 - Must export function
-- Must pass web5 object (web5 gets instatiated when the tests run)
+- Must pass web5 object (web5 gets instantiated when the tests run)
 
 **Note**
 
@@ -153,9 +142,9 @@ export async function queryProtocolsForMusic(web5) {
 
 We use the same folder convention that we do for the `/code-snippets` directory. It should mirror how the docs are currently laid out.
 
-We will have a `__tests__` directory per project within the monorepo, to it should look like this:
+We will have a `testsuites/$langName` directory per language within the monorepo, to it should look like this:
 
-`./site/**tests**/web5/build/decentralized-web-nodes/query-from.dwn.test.js`
+`./site/testsuites/$langName/web5/build/decentralized-web-nodes/query-from.dwn.test.js`
 
 \*\*Note the `.test.` naming convention. This is how Vite will know to run these tests.
 
