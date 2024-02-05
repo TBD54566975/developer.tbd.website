@@ -12,22 +12,21 @@ import pfiSdkInstallPom from '!!raw-loader!@site/snippets/testsuite-kotlin/src/t
 import importJs from '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/tbdex/pfi/pfiSdkImportJs.snippet.js'
 import importKt from '!!raw-loader!@site/snippets/testsuite-kotlin/src/test/kotlin/docs/tbdex/pfi/pfiSdkImportKt.snippet.kt'
 
-
 # Required SDKs
 
 To implement and operate as a PFI, you’ll need to use the following SDKs:
 
-* **web5/dids** - To work with Decentralized Identifiers (DID), including creating an identity, and performing any other required cryptographic functions, you’ll need this package.
+* **web5/dids** - To work with [Decentralized Identifiers (DID)](/docs/web5/learn/decentralized-identifiers), including creating an identity, and performing any other required cryptographic functions, you’ll need this package.
 
-* **web5/credentials** - Enable verification of your customer information, including information such as customer’s identity or whether a customer is on a sanctions list. Verifiable Credentials provide a decentralized and trustworthy way of verifying a customer.
+* **web5/credentials** - Enable verification of your customer information, including information such as customer’s identity or whether a customer is on a sanctions list. [Verifiable Credentials (VC)](/docs/web5/learn/verifiable-credentials) provide a decentralized and trustworthy way of verifying a customer.
 
 * **tbdex/server** - Enable convenience methods for setting up routing and networking to facilitate your PFI.
 
 ## Install SDKs
 
 <Tabs groupId="language">
-  <TabItem label="JavaScript" value="JavaScript" language="bash">
-    <CodeSnippet snippet={pfiSdkInstallJs} />
+  <TabItem label="JavaScript" value="JavaScript">
+    <CodeSnippet snippet={pfiSdkInstallJs} language="bash"/>
   </TabItem>
   <TabItem label="Kotlin" value="Kotlin">
     <BreadcrumbTab
