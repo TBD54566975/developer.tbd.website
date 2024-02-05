@@ -1,21 +1,21 @@
-package website.tbd.developer.site.docs.tbdex.pfi
-
-import web5.sdk.crypto.InMemoryKeyManager
+import de.fxlae.typeid.TypeId
+import tbdex.sdk.httpserver.models.*
+import java.util.NoSuchElementException
+import tbdex.sdk.protocol.models.*
+import tbdex.sdk.httpserver.TbdexHttpServer
+import tbdex.sdk.httpserver.TbdexHttpServerConfig
+import web5.sdk.crypto.AwsKeyManager
 import web5.sdk.dids.methods.dht.DidDht
-
-import tbdex.sdk.protocol.models.Rfq
-import tbdex.sdk.protocol.models.Quote
-import tbdex.sdk.protocol.models.Order
-import tbdex.sdk.protocol.models.OrderStatus
-import tbdex.sdk.protocol.models.Close
 import tbdex.sdk.httpserver.models.SubmitKind
+import io.ktor.http.*
+import io.ktor.server.application.*
+import io.ktor.server.engine.*
+import io.ktor.server.netty.*
+import io.ktor.server.response.*
+import io.ktor.server.routing.*
 
-import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
-import com.fasterxml.jackson.module.kotlin.readValue
-
-class PfiStructureTest {
-
-    val offeringString = """
+class MockDataProvider {
+    private val offeringString = """
         {
           "metadata": {
             "from": "did:ex:pfi",
@@ -37,7 +37,7 @@ class PfiStructureTest {
               {
                 "kind": "DEBIT_CARD",
                 "requiredPaymentDetails": {
-                  "$schema": "http://json-schema.org/draft-07/schema",
+                  "schema": "http://json-schema.org/draft-07/schema",
                   "type": "object",
                   "properties": {
                     "cardNumber": {
@@ -69,7 +69,7 @@ class PfiStructureTest {
               {
                 "kind": "BTC_ADDRESS",
                 "requiredPaymentDetails": {
-                  "$schema": "http://json-schema.org/draft-07/schema",
+                  "schema": "http://json-schema.org/draft-07/schema",
                   "type": "object",
                   "properties": {
                     "btcAddress": {
@@ -107,65 +107,61 @@ class PfiStructureTest {
         }
     """.trimIndent()
 
-    // Parse the JSON string into a dynamic object
-    val objectMapper = jacksonObjectMapper()
-    val jsonObject: Map<String, Any> = objectMapper.readValue(offeringString)
-
     fun insert(collectionName: String, data: Any) {
-        
+
     }
 
     fun get(collectionName: String, id: String): Any? {
-        return offeringString
+        return offeringString;
     }
 
     fun query(collectionName: String, searchParam: String): List<Any> {
-        return listOf(offeringString)
+        return listOf(offeringString);
     }
 }
 
+private val dataProvider = MockDataProvider()
+
 class ExchangesApiProvider : ExchangesApi {
-    override fun getExchange(id: String): List<Message> {
-        return listOf(Message("Exchange with ID $id"))
+
+    private val fakeExchangesApi = FakeExchangesApi()
+
+    override fun getClose(exchangeId: String?): Close? {
+        return fakeExchangesApi.getClose(exchangeId)
     }
 
-    override fun getExchanges(filter: GetExchangesFilter?): List<List<Message>> {
-        // Mock implementation for getExchanges
-        return listOf(
-            listOf(Message("Exchange 1"), Message("Exchange 2")),
-            listOf(Message("Exchange 3"))
-        )
+    override fun getExchange(id: List<String>?): List<MessageKind>? {
+        return fakeExchangesApi.getExchange(id)
     }
 
-    override fun getRfq(exchangeId: String): Rfq {
-        return Rfq("RFQ for exchange $exchangeId")
+    override fun getExchanges(filter: GetExchangesFilter?): List<List<Message>>? {
+        return fakeExchangesApi.getExchanges(filter) ?: emptyList()
     }
 
-    override fun getQuote(exchangeId: String): Quote {
-        return Quote("Quote for exchange $exchangeId")
+    override fun getOrder(exchangeId: String?): Order? {
+        return fakeExchangesApi.getOrder(exchangeId)
     }
 
-    override fun getOrder(exchangeId: String): Order {
-        return Order("Order for exchange $exchangeId")
+    override fun getOrderStatuses(exchangeId: String?): List<OrderStatus>? {
+        return fakeExchangesApi.getOrderStatuses(exchangeId)
     }
 
-    override fun getOrderStatuses(exchangeId: String): List<OrderStatus> {
-        // Mock implementation for getOrderStatuses
-        return listOf(OrderStatus("Status 1"), OrderStatus("Status 2"))
+    override fun getQuote(exchangeId: String?): Quote? {
+        return fakeExchangesApi.getQuote(exchangeId)
     }
 
-    override fun getClose(exchangeId: String): Close {
-        return Close("Close information for exchange $exchangeId")
+    override fun getRfq(exchangeId: String?): Rfq? {
+        return fakeExchangesApi.getRfq(exchangeId)
     }
 
     // :snippet-start: pfiOverviewWriteKt
-    suspend fun write(message: Message) {
+    fun write(message: Message) {
         val data = mapOf(
-            "exchangeid" to message.exchangeId,
-            "messagekind" to message.kind,
-            "messageid" to message.id,
-            "subject" to message.subject,
-            "message" to objectMapper.writeValueAsString(message)
+            "exchangeid" to message.metadata.exchangeId,
+            "messagekind" to message.metadata.kind,
+            "messageid" to message.metadata.id,
+            "subject" to message.metadata.from,
+            "message" to message.data
         )
         dataProvider.insert("exchange", data)
     }
@@ -174,9 +170,13 @@ class ExchangesApiProvider : ExchangesApi {
 
 // :snippet-start: pfiOverviewReadOfferingsKt
 class OfferingsApiProvider : OfferingsApi {
-    override fun getOffering(id: String): Offering {
-        val result = dataProvider.get("offering", opts.id).firstOrNull()
-        return if (result != null) Offering.factory(result["offering"] as JsonObject) else null
+    override fun getOffering(id: String?): Offering? {
+        val result = dataProvider.get("offering", id ?: "")
+        return if (result != null) {
+            Offering.parse(result as String)
+        } else {
+            null
+        }
     }
 
     override fun getOfferings(filter: GetOfferingsFilter?): List<Offering> {
@@ -184,23 +184,22 @@ class OfferingsApiProvider : OfferingsApi {
         val offerings = mutableListOf<Offering>()
 
         for (result in results) {
-            val offering = Offering.factory(result["offering"] as JsonObject)
+            val offering = Offering.parse(result as String)
             offerings.add(offering)
         }
 
         return offerings
     }
-    // :snippet-end:
+// :snippet-end:
 
     // :snippet-start: pfiOverviewWriteOfferingsKt
     suspend fun create(offering: Offering) {
         dataProvider.insert(
             "offering",
             mapOf(
-                "offeringid" to offering.id,
-                "payoutcurrency" to offering.payoutCurrency.currencyCode,
-                "payincurrency" to offering.payinCurrency.currencyCode,
-                "offering" to objectMapper.writeValueAsString(offering)
+                "offeringid" to offering.metadata.id,
+                "payoutcurrency" to offering.data.payoutCurrency.currencyCode,
+                "payincurrency" to offering.data.payinCurrency.currencyCode
             )
         )
     }
@@ -208,38 +207,41 @@ class OfferingsApiProvider : OfferingsApi {
 
 }
 
-class PfiServer {
-  val did = DidDht.create(InMemoryKeyManager())
+fun complete() {
+    // :snippet-start: pfiOverviewConfigKt
+    val exchangesApiProvider = ExchangesApiProvider()
+    val offeringsApiProvider = OfferingsApiProvider()
 
-  // :snippet-start: pfiOverviewConfigKt
-  val serverConfig = TbdexHttpServerConfig(
-      port = 8080,
-      pfiDid = did.uri,
-      offeringsApi = ExchangesApiProvider(),
-      exchangesApi = OfferingsApiProvider()
+    val serverConfig = TbdexHttpServerConfig(
+        port = 8080,
+        pfiDid = DidDht.create(AwsKeyManager()).uri,
+        exchangesApi = exchangesApiProvider,
+        offeringsApi = offeringsApiProvider
     )
 
-  val httpApi = TbdexHttpServer(serverConfig)
-  // :snippet-end:
+    val httpApi = TbdexHttpServer(serverConfig)
+// :snippet-end:
 
-  // :snippet-start: pfiOverviewServerRoutesKt
-  httpApi.submit(SubmitKind.rfq) { call, message, offering ->
-      ExchangesApiProvider.write(message)
-      call.respond(HttpStatusCode.Accepted)
-  }
+// :snippet-start: pfiOverviewServerRoutesKt
 
-  httpApi.submit(SubmitKind.order) { call, message, offering ->
-      ExchangesApiProvider.write(message)
-      call.respond(HttpStatusCode.Accepted)
-  }
+    httpApi.submit(SubmitKind.rfq) { call, message, offering ->
+        exchangesApiProvider.write(message)
+        call.respond(HttpStatusCode.Accepted)
+    }
 
-  httpApi.submit(SubmitKind.close) { call, message, offering ->
-      ExchangesApiProvider.write(message)
-      call.respond(HttpStatusCode.Accepted)
-  }
-  // :snippet-end:
+    httpApi.submit(SubmitKind.order) { call, message, offering ->
+        exchangesApiProvider.write(message)
+        call.respond(HttpStatusCode.Accepted)
+    }
 
-  // :snippet-start: pfiOverviewServerStartKt
-  httpApi.start()
-  // :snippet-end:
+    httpApi.submit(SubmitKind.close) { call, message, offering ->
+        exchangesApiProvider.write(message)
+        call.respond(HttpStatusCode.Accepted)
+    }
+    // :snippet-end:
+
+    // :snippet-start: pfiOverviewServerStartKt
+    httpApi.start()
+    // :snippet-end:
 }
+
