@@ -11,6 +11,7 @@ import web5.sdk.credentials.PresentationExchange
 import web5.sdk.credentials.model.*
 import web5.sdk.crypto.InMemoryKeyManager
 import web5.sdk.dids.methods.key.DidKey
+import web5.sdk.credentials.VerifiablePresentation
 
 /**
  * Tests backing the VC Fan Club Workflow
@@ -117,6 +118,7 @@ internal class FanClubVcTest {
         // :snippet-start: createAndValidatePresentationKt
         import web5.sdk.credentials.PresentationExchange
         import web5.sdk.credentials.VerifiableCredential
+        import web5.sdk.credentials.VerifiablePresentation
         import web5.sdk.credentials.model.*
 
         val presentationDefinition = PresentationDefinitionV2(
@@ -167,9 +169,16 @@ internal class FanClubVcTest {
     // :snippet-start: createPresentationFromCredentialsFanClubVcKt
     // Create Presentation Result that contains a Verifiable Presentation and Presentation Submission
     val presentationResult = PresentationExchange.createPresentationFromCredentials(listOf(signedVcJwt), presentationDefinition)
-    println("Presentation Result" + presentationResult)
+    
+    val vp = VerifiablePresentation.create(
+        vcJwts = listOf(signedVcJwt),
+        holder = aliceDid.uri,
+        additionalData = mapOf("presentation_submission" to presentationResult)
+    )
+    println("Presentation Result and Verifiable Presentation" + vp)
     // :snippet-end:
    assertEquals("presDefId123", presentationResult.definitionId)
+   assertEquals("VerifiablePresentation", vp.vpDataModel.type)  
   }
 
   @Test 

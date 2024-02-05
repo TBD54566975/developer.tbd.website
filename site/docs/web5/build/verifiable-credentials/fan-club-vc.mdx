@@ -313,15 +313,29 @@ The result of the presentation:
     {
       code: `
 {
-  "id": "kMqRP0zRKaiZNlbtbEIxd",
-  "definitionId": "presDefId123",
-  "descriptorMap": [
-    {
-      "id": "legitness",
-      "format": "jwt_vc",
-      "path": "$.verifiableCredential[0]"
-    }
-  ]
+  "@context": [
+    "https://www.w3.org/2018/credentials/v1"
+  ],
+  "type": [
+    "VerifiablePresentation"
+  ],
+  "id": "urn:uuid:956875ff-18da-42fe-86ba-c228fa83affa",
+  "presentation_submission": {
+    "id": "kMqRP0zRKaiZNlbtbEIxd",
+    "definitionId": "presDefId123",
+    "descriptorMap": [
+      {
+        "id": "legitness",
+        "format": "jwt_vc",
+        "path": "$.verifiableCredential[0]"
+      }
+    ]
+  },
+  "verifiableCredential": [
+    "eyJ0eXAiOipOSl...WndCJ9.eyJ2YyTk0MN2pDMzQhdG...UR1In0.rtlg8k9KU8_ENkrY06y..."
+   ],
+  "holder": "did:key:z6MkjGSeekPGE9QfczHWyW8v2ZzJU68kqSHzV7L2dmQyuyDu"
+}
       `,
       language: 'Kotlin',
       codeLanguage: 'json' 
