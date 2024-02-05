@@ -3,6 +3,7 @@ import LanguageSwitchBlock from '@site/src/components/language/LanguageSwitchBlo
 import LanguageTabBar from '@site/src/components/language/LanguageTabBar';
 import CodeSnippet from '@site/src/components/CodeSnippet';
 import CodeBlock from '@theme/CodeBlock';
+import ReactMarkdown from 'react-markdown';
 
 const Shnip = ({ snippets, inlineSnippets, inlineContent }) => {
   // support line breaks for inline code snippets
@@ -32,37 +33,34 @@ const addLineBreaks = (code, breakLines) => {
       <LanguageTabBar />
       <LanguageSwitchBlock>
         {snippets &&
-          snippets.map(({ snippetContent, language, title }) => (
-            <div key={`ref-${language}`} language={language}>
-              <CodeSnippet
-                snippet={snippetContent}
-                language={language.toLowerCase()}
-                title={title}
-              />
-            </div>
-          ))}
-
-        {inlineSnippets &&
-          inlineSnippets.map(
-            ({ code, language, codeLanguage, title, breakLineAt }, index) => (
-              <div key={`inline-${language}-${index}`} language={language}>
-                <CodeBlock
-                  // parse as specified language such as bash OR parse as language from tab
-                  language={(codeLanguage || language).toLowerCase()}
+          snippets.map(
+            ({ snippetContent, language, title, content }, index) => (
+              <div key={`snippet-${language}-${index}`} language={language}>
+                {content && <ReactMarkdown>{content}</ReactMarkdown>}
+                <CodeSnippet
+                  snippet={snippetContent}
+                  language={language.toLowerCase()}
                   title={title}
-                >
-                  {addLineBreaks(code, breakLineAt)}
-                </CodeBlock>
+                />
               </div>
             ),
           )}
 
-        {inlineContent &&
-          inlineContent.map(({ content, language }, index) => (
-            <div key={`content-${language}-${index}`} language={language}>
-              {content}
-            </div>
-          ))}
+        {inlineSnippets &&
+          inlineSnippets.map(
+            ({ content, code, language, codeLanguage, breakLineAt }, index) => (
+              <div key={`inline-${language}-${index}`} language={language}>
+                {content && <ReactMarkdown>{content}</ReactMarkdown>}
+                {code && (
+                  <CodeBlock
+                    language={(codeLanguage || language).toLowerCase()}
+                  >
+                    {addLineBreaks(code, breakLineAt)}
+                  </CodeBlock>
+                )}
+              </div>
+            ),
+          )}
       </LanguageSwitchBlock>
     </>
   );
