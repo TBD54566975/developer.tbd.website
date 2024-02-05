@@ -10,7 +10,6 @@ import pfiSdkInstallJs from '!!raw-loader!@site/snippets/testsuite-javascript/__
 import pfiSdkInstallGradle from '!!raw-loader!@site/snippets/testsuite-kotlin/src/test/kotlin/docs/tbdex/pfi/pfiSdkInstallGradle.snippet.gradle'
 import pfiSdkInstallPom from '!!raw-loader!@site/snippets/testsuite-kotlin/src/test/kotlin/docs/tbdex/pfi/pfiSdkInstallPom.snippet.xml'
 import importJs from '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/tbdex/pfi/pfiSdkImportJs.snippet.js'
-import importKt from '!!raw-loader!@site/snippets/testsuite-kotlin/src/test/kotlin/docs/tbdex/pfi/pfiSdkImportKt.snippet.kt'
 
 # Required SDKs
 
@@ -53,6 +52,14 @@ To send and receive tbDEX messages, import the following classes:
     <CodeSnippet snippet={importJs} />
   </TabItem>
   <TabItem label="Kotlin" value="Kotlin">
-    <CodeSnippet snippet={importKt} />
+
+  ```kotlin
+    import tbdex.sdk.httpserver.TbdexHttpServer
+    import tbdex.sdk.protocol.models.Rfq
+    import tbdex.sdk.protocol.models.Quote
+    import tbdex.sdk.protocol.models.Order
+    import tbdex.sdk.protocol.models.OrderStatus
+    import tbdex.sdk.protocol.models.Close
+  ```
   </TabItem>
 </Tabs>

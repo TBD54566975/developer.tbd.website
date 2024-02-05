@@ -10,7 +10,6 @@ import walletSdkInstallJs from '!!raw-loader!@site/snippets/testsuite-javascript
 import walletSdkInstallGradle from '!!raw-loader!@site/snippets/testsuite-kotlin/src/test/kotlin/docs/tbdex/wallet/walletSdkInstallGradle.snippet.gradle'
 import walletSdkInstallPom from '!!raw-loader!@site/snippets/testsuite-kotlin/src/test/kotlin/docs/tbdex/wallet/walletSdkInstallPom.snippet.xml'
 import importJs from '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/tbdex/wallet/walletSdkImportJs.snippet.js'
-import importKt from '!!raw-loader!@site/snippets/testsuite-kotlin/src/test/kotlin/docs/tbdex/wallet/walletSdkImportKt.snippet.kt'
 
 
 # Required SDKs
@@ -53,6 +52,14 @@ To send and receive tbDEX messages, import the following classes:
     <CodeSnippet snippet={importJs} />
   </TabItem>
   <TabItem label="Kotlin" value="Kotlin">
-    <CodeSnippet snippet={importKt} />
+
+  ```kotlin
+  import tbdex.sdk.httpclient.TbdexHttpClient
+  import tbdex.sdk.protocol.models.Rfq
+  import tbdex.sdk.protocol.models.Quote
+  import tbdex.sdk.protocol.models.Order
+  import web5.sdk.credentials.VerifiableCredential
+  import web5.sdk.credentials.PresentationExchange
+  ```
   </TabItem>
 </Tabs>

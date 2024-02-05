@@ -5,8 +5,9 @@ sidebar_position: 3
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import CodeSnippet from '@site/src/components/CodeSnippet';
-import createDidJs from '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/tbdex/pfi/pfiOnboardingCreateDidJs.snippet.js'
-import createDidKt from '!!raw-loader!@site/snippets/testsuite-kotlin/src/test/kotlin/docs/tbdex/pfi/pfiOnboardingCreateDidKt.snippet.kt'
+import pfiOnboardingCreateDidJs from '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/tbdex/pfi/pfiOnboardingCreateDidJs.snippet.js';
+import pfiOnboardingCreateDidKt from '!!raw-loader!@site/snippets/testsuite-kotlin/src/test/kotlin/docs/tbdex/pfi/pfiOnboardingCreateDidKt.snippet.kt';
+import pfiOnboardingImportsKt from '!!raw-loader!@site/snippets/testsuite-kotlin/src/test/kotlin/docs/tbdex/pfi/pfiOnboardingImportsKt.snippet.kt';
 
 # Onboarding
 
@@ -17,16 +18,32 @@ DIDs are associated with [DID Documents](/docs/web5/learn/did_document) which de
 
 To create a DID and identify yourself as a PFI, use the `web5/dids` package:
 
+### Import Classes
+
 <Tabs>
   <TabItem label="JavaScript" value="JavaScript">
-    <CodeSnippet snippet={createDidJs} />
+
+  ```js
+  import { DidDhtMethod } from '@web5/dids';
+  ```
   </TabItem>
   <TabItem label="Kotlin" value="Kotlin">
-    <CodeSnippet snippet={createDidKt} />
+    <CodeSnippet snippet={pfiOnboardingImportsKt} />
+  </TabItem>
+</Tabs>
+
+### Create DID with Service Endpoint
+
+<Tabs>
+  <TabItem label="JavaScript" value="JavaScript">
+    <CodeSnippet snippet={pfiOnboardingCreateDidJs} />
+  </TabItem>
+  <TabItem label="Kotlin" value="Kotlin">
+    <CodeSnippet snippet={pfiOnboardingCreateDidKt} />
   </TabItem>
 </Tabs>
 
 :::note Notes
 * The value for `serviceEndpoint` should be the URL to your PFI's service entry.
-* `keyManager` is an object representing your [Key Management Service](/docs/web5/build/decentralized-identifiers/key-management)
+* `InMemoryKeyManager` should only be used in non-production environmets. See [Key Management Service](/docs/web5/build/decentralized-identifiers/key-management) for more details.
 :::
