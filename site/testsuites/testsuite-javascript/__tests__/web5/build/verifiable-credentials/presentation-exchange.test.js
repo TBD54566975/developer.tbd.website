@@ -3,7 +3,6 @@ import { test, describe, expect } from 'vitest';
 import {
   pex_createPresentationFromCredentials,
   pex_getLoanAppPresentationDefinition,
-  pex_getPresentationFromResult,
   pex_submissionCheck,
 } from '../../../../../../code-snippets/web5/build/verifiable-credentials/presentation-exchange';
 import { PresentationExchange } from '@web5/credentials';
