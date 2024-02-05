@@ -1,11 +1,19 @@
-import java.util.NoSuchElementException
+package website.tbd.developer.site.docs.tbdex.pfi
+
+import web5.sdk.crypto.InMemoryKeyManager
+import web5.sdk.dids.methods.dht.DidDht
+
 import tbdex.sdk.protocol.models.Rfq
 import tbdex.sdk.protocol.models.Quote
 import tbdex.sdk.protocol.models.Order
 import tbdex.sdk.protocol.models.OrderStatus
 import tbdex.sdk.protocol.models.Close
+import tbdex.sdk.httpserver.models.SubmitKind
 
-class MockDataProvider {
+import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
+import com.fasterxml.jackson.module.kotlin.readValue
+
+class PfiStructureTest {
 
     val offeringString = """
         {
@@ -101,19 +109,18 @@ class MockDataProvider {
 
     // Parse the JSON string into a dynamic object
     val objectMapper = jacksonObjectMapper()
-    val jsonObject: Map<String, Any> = objectMapper.readValue(jsonString)
-
+    val jsonObject: Map<String, Any> = objectMapper.readValue(offeringString)
 
     fun insert(collectionName: String, data: Any) {
         
     }
 
     fun get(collectionName: String, id: String): Any? {
-        return offeringString;
+        return offeringString
     }
 
     fun query(collectionName: String, searchParam: String): List<Any> {
-        return listOf(offeringString);
+        return listOf(offeringString)
     }
 }
 
@@ -166,8 +173,6 @@ class ExchangesApiProvider : ExchangesApi {
 }
 
 // :snippet-start: pfiOverviewReadOfferingsKt
-import tbdex.sdk.protocol.models.Offering
-
 class OfferingsApiProvider : OfferingsApi {
     override fun getOffering(id: String): Offering {
         val result = dataProvider.get("offering", opts.id).firstOrNull()
@@ -185,7 +190,7 @@ class OfferingsApiProvider : OfferingsApi {
 
         return offerings
     }
-// :snippet-end:
+    // :snippet-end:
 
     // :snippet-start: pfiOverviewWriteOfferingsKt
     suspend fun create(offering: Offering) {
@@ -203,44 +208,38 @@ class OfferingsApiProvider : OfferingsApi {
 
 }
 
-// :snippet-start: pfiOverviewConfigKt
-import tbdex.sdk.httpserver.TbdexHttpServer
-import web5.sdk.crypto.AwsKeyManager
-import web5.sdk.dids.methods.dht.DidDht
+class PfiServer {
+  val did = DidDht.create(InMemoryKeyManager())
 
-val serverConfig = TbdexHttpServerConfig(
-    port = 8080,
-    pfiDid = DidDht.create(AwsKeyManager()).uri,
-    offeringsApi = ExchangesApiProvider(),
-    exchangesApi = OfferingsApiProvider()
-  )
+  // :snippet-start: pfiOverviewConfigKt
+  val serverConfig = TbdexHttpServerConfig(
+      port = 8080,
+      pfiDid = did.uri,
+      offeringsApi = ExchangesApiProvider(),
+      exchangesApi = OfferingsApiProvider()
+    )
 
-val httpApi = TbdexHttpServer(serverConfig)
-// :snippet-end:
+  val httpApi = TbdexHttpServer(serverConfig)
+  // :snippet-end:
 
-// :snippet-start: pfiOverviewServerRoutesKt
-import tbdex.sdk.httpserver.models.SubmitKind
+  // :snippet-start: pfiOverviewServerRoutesKt
+  httpApi.submit(SubmitKind.rfq) { call, message, offering ->
+      ExchangesApiProvider.write(message)
+      call.respond(HttpStatusCode.Accepted)
+  }
 
-httpApi.submit(SubmitKind.rfq) { call, message, offering ->
-    ExchangesApiProvider.write(message)
-    call.respond(HttpStatusCode.Accepted)
+  httpApi.submit(SubmitKind.order) { call, message, offering ->
+      ExchangesApiProvider.write(message)
+      call.respond(HttpStatusCode.Accepted)
+  }
+
+  httpApi.submit(SubmitKind.close) { call, message, offering ->
+      ExchangesApiProvider.write(message)
+      call.respond(HttpStatusCode.Accepted)
+  }
+  // :snippet-end:
+
+  // :snippet-start: pfiOverviewServerStartKt
+  httpApi.start()
+  // :snippet-end:
 }
-
-httpApi.submit(SubmitKind.order) { call, message, offering ->
-    ExchangesApiProvider.write(message)
-    call.respond(HttpStatusCode.Accepted)
-}
-
-httpApi.submit(SubmitKind.close) { call, message, offering ->
-    ExchangesApiProvider.write(message)
-    call.respond(HttpStatusCode.Accepted)
-}
-// :snippet-end:
-
-// :snippet-start: pfiOverviewServerStartKt
-httpApi.start()
-// :snippet-end:
-
-
-
-
