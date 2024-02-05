@@ -57,6 +57,34 @@ describe('fan-club-vc', () => {
             },
         }));
     });
+    test('import dids package and create dids', async () => {
+        const importAndCreateDids = `
+      // :snippet-start: importAndCreateDids
+      import { DidKeyMethod } from '@web5/dids';
+
+      const fanClubIssuerDid = await DidKeyMethod.create();
+      const aliceDid = await DidIonMethod.create();
+      // :snippet-end:
+    `
+    });
+
+    test('import credentials package and create class for credential', async () => {
+        const importAndCreateClassCredential = `
+      // :snippet-start: importAndCreateClassCredential
+      import { VerifiableCredential } from '@web5/credentials';
+
+        class SwiftiesFanClub {
+            constructor(level, legit) {
+                // indicates the fan's dedication level
+                this.level = level;
+
+                // indicates if the fan is a genuine Swiftie
+                this.legit = legit;
+            }
+        }
+      // :snippet-end:
+    `
+    });
     test('createFanClubVc creates a vc for fan club', async () => {
         // :snippet-start: createFanClubVc
         const vc = await VerifiableCredential.create({

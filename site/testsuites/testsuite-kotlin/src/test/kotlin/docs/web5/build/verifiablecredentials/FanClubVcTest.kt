@@ -53,6 +53,39 @@ internal class FanClubVcTest {
     )
 
   @Test
+  fun `import dids package and create dids`() {
+    val importAndCreateDidsKt =
+        """
+        // :snippet-start: importAndCreateDidsKt
+        import web5.sdk.crypto.InMemoryKeyManager
+        import web5.sdk.dids.methods.key.DidKey
+
+        val fanClubIssuerDid = DidKey.create(InMemoryKeyManager())
+        val aliceDid = DidKey.create(InMemoryKeyManager())
+        // :snippet-end:
+        """
+  }
+
+@Test
+  fun `import credentials package and create class for credential`() {
+    val importAndCreateClassCredentialKt =
+        """
+        // :snippet-start: importAndCreateClassCredentialKt
+        import web5.sdk.credentials.VerifiableCredential
+        import web5.sdk.credentials.PresentationExchange
+
+        data class SwiftiesFanClub(
+            // indicates the fan's dedication level
+            val level: String,
+
+            // indicates if the fan is a genuine Swiftie
+            val legit: Boolean
+        )
+        // :snippet-end:
+        """
+  }
+
+  @Test
   fun `createFanClubVcKt creates a vc for fan club`() {
     // :snippet-start: createFanClubVcKt
     val vc = VerifiableCredential.create(

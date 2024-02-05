@@ -10,6 +10,9 @@ import satisfiesPresentationDefinitionFanClubVc from '!!raw-loader!@site/snippet
 import createPresentationFromCredentialsFanClubVc from  '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/web5/build/verifiable-credentials/createPresentationFromCredentialsFanClubVc.snippet.js'
 import verifyFanClubVc from '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/web5/build/verifiable-credentials/verifyFanClubVc.snippet.js'
 import parseFanClubJwt from '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/web5/build/verifiable-credentials/parseFanClubJwt.snippet.js'
+import importAndCreateDids from '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/web5/build/verifiable-credentials/importAndCreateDids.snippet.js'
+import importAndCreateClassCredential from '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/web5/build/verifiable-credentials/importAndCreateClassCredential.snippet.js'
+
 
 import createFanClubVcKt from '!!raw-loader!@site/snippets/testsuite-kotlin/src/test/kotlin/docs/web5/build/verifiablecredentials/createFanClubVcKt.snippet.kt'
 import signFanClubVcKt from '!!raw-loader!@site/snippets/testsuite-kotlin/src/test/kotlin/docs/web5/build/verifiablecredentials/signFanClubVcKt.snippet.kt'
@@ -17,6 +20,8 @@ import satisfiesPresentationDefinitionFanClubVcKt from '!!raw-loader!@site/snipp
 import createPresentationFromCredentialsFanClubVcKt from '!!raw-loader!@site/snippets/testsuite-kotlin/src/test/kotlin/docs/web5/build/verifiablecredentials/createPresentationFromCredentialsFanClubVcKt.snippet.kt'
 import verifyFanClubVcKt from '!!raw-loader!@site/snippets/testsuite-kotlin/src/test/kotlin/docs/web5/build/verifiablecredentials/verifyFanClubVcKt.snippet.kt'
 import parseFanClubJwtKt from '!!raw-loader!@site/snippets/testsuite-kotlin/src/test/kotlin/docs/web5/build/verifiablecredentials/parseFanClubJwtKt.snippet.kt'
+import importAndCreateDidsKt from '!!raw-loader!@site/snippets/testsuite-kotlin/src/test/kotlin/docs/web5/build/verifiablecredentials/importAndCreateDidsKt.snippet.kt'
+import importAndCreateClassCredentialKt from '!!raw-loader!@site/snippets/testsuite-kotlin/src/test/kotlin/docs/web5/build/verifiablecredentials/importAndCreateClassCredentialKt.snippet.kt'
 
 <LanguageSwitcher languages="JavaScript, Kotlin" />
 
@@ -78,27 +83,10 @@ This is because verifiable credentials use DIDs to identify issuers and holders.
 If you need to create DIDs, you can do so with the [@web5/dids](https://www.npmjs.com/package/@web5/dids) package:
 
 <Shnip
-  inlineSnippets={[
-        {
-      code: `
-import { DidKeyMethod } from '@web5/dids';
-const fanClubIssuerDid = await DidKeyMethod.create();
-const aliceDid = await DidIonMethod.create();
-      `,
-      language: 'JavaScript', 
-      breakLineAt:[1]
-    },
-    {
-      code: `
-import web5.sdk.crypto.InMemoryKeyManager
-import web5.sdk.dids.methods.key.DidKey
-val fanClubIssuerDid = DidKey.create(InMemoryKeyManager())
-val aliceDid = DidKey.create(InMemoryKeyManager())
-      `,
-      language: 'Kotlin', 
-      breakLineAt:[2]
-    }
-  ]}
+   snippets={[
+    { snippetContent: importAndCreateDids, language: 'JavaScript'},
+      { snippetContent: importAndCreateDidsKt, language: 'Kotlin'},
+    ]}
 />
 
 ### Model Credential
@@ -107,38 +95,9 @@ Now, let's create the **SwiftiesFanClub** credential.
 We'll first model it with a class with some basic properties, `level` and `legit`:
 
 <Shnip
-  inlineSnippets={[
-    {
-      code: `
-import { VerifiableCredential, PresentationExchange } from "@web5/credentials";
-class SwiftiesFanClub {
-  constructor(level, legit) {
-    // indicates the fan's dedication level
-    this.level = level; 
-    // indicates if the fan is a genuine Swiftie
-    this.legit = legit; 
-  }
-}
-      `,
-      language: 'JavaScript', 
-      breakLineAt:[1, 5],
-      title: 'Issuer.js'
-    },
-    {
-      code: `
-import web5.sdk.credentials.VerifiableCredential
-import web5.sdk.credentials.PresentationExchange
-data class SwiftiesFanClub(
-    // indicates the fan's dedication level
-    val level: String,
-    // indicates if the fan is a genuine Swiftie
-    val legit: Boolean
-)
-      `,
-      language: 'Kotlin', 
-      breakLineAt:[2, 5],
-      title: 'Issuer.kt'
-    }
+  snippets={[
+    { snippetContent: importAndCreateClassCredential, language: 'JavaScript', title: 'Issuer.js'},
+    { snippetContent: importAndCreateClassCredentialKt, language: 'Kotlin', title: 'Issuer.js'},
   ]}
 />
 
