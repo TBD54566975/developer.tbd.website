@@ -53,18 +53,6 @@ internal class PresentationExchangeTest {
 )
 
   @Test
-  fun `requiredImportsForPexKt shows required imports for PEX`() {
-    val requiredImportsForPexKt =
-        """
-        // :snippet-start: requiredImportsForPexKt
-        import web5.sdk.credentials.PresentationExchange
-        import web5.sdk.credentials.VerifiablePresentation
-        import web5.sdk.credentials.model.*
-        // :snippet-end:
-        """
-  }
-
-  @Test
   fun `getLoanAppPresentationDefinitionKt `() {
     // :snippet-start: getLoanAppPresentationDefinitionKt
     val presentationDefinition = PresentationDefinitionV2(

@@ -5,14 +5,12 @@ sidebar_position: 3
 
 
 import CodeSnippet from '@site/src/components/CodeSnippet';
-import requiredImportsForPex from '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/web5/build/verifiable-credentials/requiredImportsForPex.snippet.js'
 import getLoanAppPresentationDefinition from '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/web5/build/verifiable-credentials/getLoanAppPresentationDefinition.snippet.js'
 import satisfiesPresentationDefinitionForPex from '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/web5/build/verifiable-credentials/satisfiesPresentationDefinitionForPex.snippet.js'
 import selectCredentialsForPex from '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/web5/build/verifiable-credentials/selectCredentialsForPex.snippet.js'
 import createPresentationFromCredentialsForPex from '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/web5/build/verifiable-credentials/createPresentationFromCredentialsForPex.snippet.js'
 import validVerifiablePresentationForPex from '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/web5/build/verifiable-credentials/validVerifiablePresentationForPex.snippet.js'
 
-import requiredImportsForPexKt from '!!raw-loader!@site/snippets/testsuite-kotlin/src/test/kotlin/docs/web5/build/verifiablecredentials/requiredImportsForPexKt.snippet.kt'
 import getLoanAppPresentationDefinitionKt from '!!raw-loader!@site/snippets/testsuite-kotlin/src/test/kotlin/docs/web5/build/verifiablecredentials/getLoanAppPresentationDefinitionKt.snippet.kt'
 import satisfiesPresentationDefinitionForPexKt from '!!raw-loader!@site/snippets/testsuite-kotlin/src/test/kotlin/docs/web5/build/verifiablecredentials/satisfiesPresentationDefinitionForPexKt.snippet.kt'
 import selectCredentialsForPexKt from '!!raw-loader!@site/snippets/testsuite-kotlin/src/test/kotlin/docs/web5/build/verifiablecredentials/selectCredentialsForPexKt.snippet.kt'
@@ -62,6 +60,25 @@ You can import this class from the `@web5/credentials` package:
     { snippetContent: requiredImportsForPex, language: 'JavaScript'},
     { snippetContent: requiredImportsForPexKt, language: 'Kotlin'}
     ]}
+/>
+
+<Shnip
+  inlineSnippets={[
+    {
+      code: `
+      import { PresentationExchange } from '@web5/credentials';
+      `,
+      language: 'JavaScript',
+    },
+    {
+      code: `
+        import web5.sdk.credentials.PresentationExchange
+        import web5.sdk.credentials.VerifiablePresentation
+        import web5.sdk.credentials.model.*
+      `,
+      language: 'Kotlin', 
+    }
+  ]}
 />
 
 ## Select Credentials

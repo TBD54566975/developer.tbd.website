@@ -72,14 +72,7 @@ describe('Presentation Exchange Process', () => {
       }
     ]
   };
-  test('requiredImportsForPex shows required imports for PEX', async () => {
-    const requiredImportsForPex = `
-      // :snippet-start: requiredImportsForPex
-      import { PresentationExchange } from '@web5/credentials';
-      // :snippet-end:
-    `
-  });
-
+  
   test('getLoanAppPresentationDefinition returns a presentation definition', async () => {
     // :snippet-start: getLoanAppPresentationDefinition
     const presentationDefinition = {
