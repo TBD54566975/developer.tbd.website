@@ -54,11 +54,8 @@ afterAll(async () => {
     ];
 
     for (const db of dbs) {
-      console.log('clearing db');
       await db.clear();
-      console.log('closing db');
       await db.close();
-      console.log('closed');
     }
     delete globalThis.identityAgent;
     delete globalThis.web5;
