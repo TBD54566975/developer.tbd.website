@@ -1,3 +1,15 @@
+import { 
+  TbdexHttpServer, 
+  Offering,
+  Rfq, 
+  Quote, 
+  Order, 
+  OrderStatus, 
+  Close, 
+  CallbackError, 
+  ErrorDetail 
+} from '@tbdex/http-server'
+
 let sampleOffering = {
   "metadata": {
     "from": "did:ex:pfi",
@@ -166,7 +178,6 @@ const exchangesApiProvider = {
 };
 
 // :snippet-start: pfiOverviewReadOfferingsJs
-import { Offering } from '@tbdex/http-server'
 const offeringsApiProvider = {
   getOffering: (opts) => {
       dataProvider.get('offering', opts.id).then(([result]) => {
@@ -205,9 +216,10 @@ const offeringsApiProvider = {
 };  
 
 // :snippet-start: pfiOverviewConfigJs
-import { TbdexHttpServer } from '@tbdex/http-server'
-
-const tbDexServer = new TbdexHttpServer({ exchangesApi: exchangesApiProvider, offeringsApi: offeringsApiProvider })
+const tbDexServer = new TbdexHttpServer({ 
+  exchangesApi: exchangesApiProvider, 
+  offeringsApi: offeringsApiProvider 
+})
 // :snippet-end:
 
 // :snippet-start: pfiOverviewServerRoutesJs
