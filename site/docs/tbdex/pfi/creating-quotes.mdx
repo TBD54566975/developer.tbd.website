@@ -1,8 +1,12 @@
 ---
+title: Creating Quotes
 sidebar_position: 7
 ---
 
-# Creating Quotes
+import pfiQuotesWriteJs from '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/tbdex/pfi/pfiQuotesWriteJs.snippet.js'
+import pfiQuotesWriteKt from '!!raw-loader!@site/snippets/testsuite-kotlin/src/test/kotlin/docs/tbdex/pfi/pfiQuotesWriteKt.snippet.kt'
+
+<LanguageSwitcher languages="JavaScript, Kotlin"/>
 
 When you receive an `RFQ` message, you’ll want to do the following:
 
@@ -20,33 +24,11 @@ RFQs contain a required `offeringId` field that you pass to your Offerings API p
 
 Building on the example from the [Exchange API Provider section](/docs/tbdex/pfi/anatomy-of-a-pfi#exchange-api-provider), your code might look like this:
 
-
-```js
-import { Quote } from '@tbdex/http-server'
-
-async write(opts: { message: MessageKindClass }) {
-   const { message } = opts
-   const subject = aliceMessageKinds.has(message.kind) ? message.from : message.to
-
-   const result = await dataProvider.insert(
-       'exchange',
-     {
-       exchangeid: message.exchangeId,
-       messagekind: message.kind,
-       messageid: message.id,
-       subject,
-       message: JSON.stringify(message)
-     });
-
-//highlight-start
-   if (message.kind == 'rfq') {
-     const offering = await offeringApiProvider.getOffering(message.offeringId)
-   }
-//highlight-end
-}
-```
-
-
+<Shnip snippets={
+  [
+    { snippetContent: pfiQuotesWriteJs, language: 'JavaScript'},
+    { snippetContent: pfiQuotesWriteKt, language: 'Kotlin'}
+  ]} />
 
 ## Verifying the Required Claims
 
@@ -54,52 +36,30 @@ After receiving an `RFQ` and finding the matching `Offering`, you’ll want to v
 
 The `RFQ` class offers the [verifyOfferingRequirements](https://tbd54566975.github.io/tbdex-js/classes/_tbdex_http_server.Rfq.html#verifyOfferingRequirements) method to do so, which checks that the claim or credential provided in the `RFQ` satisfies the presentation definition that was specified on the `Offering`. 
 
-```js
- function processRfq(rfq, offering) {
-     try {
-      await rfq.verifyOfferingRequirements(offering)
-    } catch(e) {
-      console.log(`Failed to verify offering requirements: ${e.rfq}`)
-    }
-}
-```
+<Shnip snippets={
+  [
+    { snippetContent: pfiQuotesProcesss, language: 'JavaScript'},
+    { snippetContent: pfiQuotesProcessKt, language: 'Kotlin'}
+  ]} />
 
 ## Creating and Sending a Quote
 
 Before creating a `Quote` in response to the received `RFQ`, you may want to review the [protocol definition for Quotes](https://github.com/TBD54566975/tbdex/tree/main/specs/protocol#quote). 
 With that in mind, you can then create your quote using the `Quote.create()` method as shown below:
 
-```js
-const quote = Quote.create(
-        {
-          metadata: {
-            from: config.did.id,
-            to: message.from,
-            exchangeId: message.exchangeId
-          },
-          data: {
-            expiresAt: new Date(2024, 4, 1).toISOString(),
-            payin: {
-              currencyCode: 'BTC',
-              amountSubunits: '1000'
-            },
-            payout: {
-              currencyCode: 'KES',
-              amountSubunits: '123456789'
-            }
-          }
-        }
-      )
-```
+<Shnip snippets={
+  [
+    { snippetContent: pfiQuotesSendJs, language: 'JavaScript'},
+    { snippetContent: pfiQuotesSendKt, language: 'Kotlin'}
+  ]} />
 
 With the `Quote` created, you’ll then sign it for authorization purposes and write it to your own database:
 
-
-```js
-await quote.sign(config.did.privateKey, config.did.kid)
-this.write({ message: quote as Quote})
-```
-
+<Shnip snippets={
+  [
+    { snippetContent: pfiQuotesSignJs, language: 'JavaScript'},
+    { snippetContent: pfiQuotesSignKt, language: 'Kotlin'}
+  ]} />
 
 :::note
 Wallet Applicationss are not addressable, and therefore are not pushed updates about Quotes. 
