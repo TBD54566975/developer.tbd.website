@@ -53,10 +53,10 @@ internal class FanClubVcTest {
     )
 
   @Test
-  fun `import dids package and create dids`() {
-    val importAndCreateDidsKt =
+  fun `createDidsKt imports dids package and creates dids`() {
+    val createDidsKt =
         """
-        // :snippet-start: importAndCreateDidsKt
+        // :snippet-start: createDidsKt
         import web5.sdk.crypto.InMemoryKeyManager
         import web5.sdk.dids.methods.key.DidKey
 
@@ -67,10 +67,10 @@ internal class FanClubVcTest {
   }
 
 @Test
-  fun `import credentials package and create class for credential`() {
-    val importAndCreateClassCredentialKt =
+  fun `createClassCredentialKt imports credentials package and creates class for credential`() {
+    val createClassCredentialKt =
         """
-        // :snippet-start: importAndCreateClassCredentialKt
+        // :snippet-start: createClassCredentialKt
         import web5.sdk.credentials.VerifiableCredential
         import web5.sdk.credentials.PresentationExchange
 
@@ -108,6 +108,39 @@ internal class FanClubVcTest {
     // :snippet-end:
 
     assertTrue(signedVcJwt is String, "signedVcJwt should be a String")
+  }
+
+  @Test
+  fun `createAndValidatePresentationKt creates and validates presentation definitionl`() {
+    val createAndValidatePresentationKt =
+        """
+        // :snippet-start: createAndValidatePresentationKt
+        import web5.sdk.credentials.PresentationExchange
+        import web5.sdk.credentials.VerifiableCredential
+        import web5.sdk.credentials.model.*
+
+        val presentationDefinition = PresentationDefinitionV2(
+            id = "presDefId123",
+            name = "Swifties Fan Club Presentation Definition",
+            purpose = "for proving membership in the fan club",
+            inputDescriptors = listOf(
+                InputDescriptorV2(
+                    id = "legitness",
+                    purpose = "are you legit or not?",
+                    constraints = ConstraintsV2(
+                        fields = listOf(
+                            FieldV2(
+                                path = listOf("$.vc.credentialSubject.legit")
+                            )
+                        )
+                    )
+                )
+            )
+        )
+        
+        val definitionValidation = PresentationExchange.validateDefinition(presentationDefinition)
+        // :snippet-end:
+        """
   }
 
   @Test 

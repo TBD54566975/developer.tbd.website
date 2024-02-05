@@ -57,9 +57,9 @@ describe('fan-club-vc', () => {
             },
         }));
     });
-    test('import dids package and create dids', async () => {
-        const importAndCreateDids = `
-      // :snippet-start: importAndCreateDids
+    test('ceateDids imports dids package and creates dids', async () => {
+        const ceateDids = `
+      // :snippet-start: createDids
       import { DidKeyMethod } from '@web5/dids';
 
       const fanClubIssuerDid = await DidKeyMethod.create();
@@ -68,9 +68,9 @@ describe('fan-club-vc', () => {
     `
     });
 
-    test('import credentials package and create class for credential', async () => {
-        const importAndCreateClassCredential = `
-      // :snippet-start: importAndCreateClassCredential
+    test('createClassCredential imports credentials package and creates class for credential', async () => {
+        const createClassCredential = `
+      // :snippet-start: createClassCredential
       import { VerifiableCredential } from '@web5/credentials';
 
         class SwiftiesFanClub {
@@ -106,6 +106,37 @@ describe('fan-club-vc', () => {
         // :snippet-end:
         expect(typeof signedVcJwt).toBe('string');
         expect(signedVcJwt).not.toBe('');
+    });
+
+    test('createAndValidatePresentation creates and validates presentation definition', async () => {
+        const createAndValidatePresentation = `
+    // :snippet-start: createAndValidatePresentation
+    import { VerifiableCredential, PresentationExchange } from "@web5/credentials";
+    
+    const presentationDefinition = {
+        'id': 'presDefId123',
+        'name': 'Swifties Fan Club Presentation Definition',
+        'purpose': 'for proving membership in the fan club',
+        'input_descriptors': [
+            {
+                'id': 'legitness',
+                'purpose': 'are you legit or not?',
+                'constraints': {
+                    'fields': [
+                        {
+                            'path': [
+                                '$.credentialSubject.legit',
+                            ]
+                        }
+                    ]
+                }
+            }
+        ]
+    };
+    
+    const definitionValidation = PresentationExchange.validateDefinition({ presentationDefinition });
+    // :snippet-end:
+    `
     });
 
     test('satisfiesPresentationDefinitionFanClubVc checks if VC satisfies the presentation definition', async () => {

@@ -10,9 +10,9 @@ import satisfiesPresentationDefinitionFanClubVc from '!!raw-loader!@site/snippet
 import createPresentationFromCredentialsFanClubVc from  '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/web5/build/verifiable-credentials/createPresentationFromCredentialsFanClubVc.snippet.js'
 import verifyFanClubVc from '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/web5/build/verifiable-credentials/verifyFanClubVc.snippet.js'
 import parseFanClubJwt from '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/web5/build/verifiable-credentials/parseFanClubJwt.snippet.js'
-import importAndCreateDids from '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/web5/build/verifiable-credentials/importAndCreateDids.snippet.js'
-import importAndCreateClassCredential from '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/web5/build/verifiable-credentials/importAndCreateClassCredential.snippet.js'
-
+import createDids from '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/web5/build/verifiable-credentials/createDids.snippet.js'
+import createClassCredential from '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/web5/build/verifiable-credentials/createClassCredential.snippet.js'
+import createAndValidatePresentation from '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/web5/build/verifiable-credentials/createAndValidatePresentation.snippet.js'
 
 import createFanClubVcKt from '!!raw-loader!@site/snippets/testsuite-kotlin/src/test/kotlin/docs/web5/build/verifiablecredentials/createFanClubVcKt.snippet.kt'
 import signFanClubVcKt from '!!raw-loader!@site/snippets/testsuite-kotlin/src/test/kotlin/docs/web5/build/verifiablecredentials/signFanClubVcKt.snippet.kt'
@@ -20,8 +20,9 @@ import satisfiesPresentationDefinitionFanClubVcKt from '!!raw-loader!@site/snipp
 import createPresentationFromCredentialsFanClubVcKt from '!!raw-loader!@site/snippets/testsuite-kotlin/src/test/kotlin/docs/web5/build/verifiablecredentials/createPresentationFromCredentialsFanClubVcKt.snippet.kt'
 import verifyFanClubVcKt from '!!raw-loader!@site/snippets/testsuite-kotlin/src/test/kotlin/docs/web5/build/verifiablecredentials/verifyFanClubVcKt.snippet.kt'
 import parseFanClubJwtKt from '!!raw-loader!@site/snippets/testsuite-kotlin/src/test/kotlin/docs/web5/build/verifiablecredentials/parseFanClubJwtKt.snippet.kt'
-import importAndCreateDidsKt from '!!raw-loader!@site/snippets/testsuite-kotlin/src/test/kotlin/docs/web5/build/verifiablecredentials/importAndCreateDidsKt.snippet.kt'
-import importAndCreateClassCredentialKt from '!!raw-loader!@site/snippets/testsuite-kotlin/src/test/kotlin/docs/web5/build/verifiablecredentials/importAndCreateClassCredentialKt.snippet.kt'
+import createDidsKt from '!!raw-loader!@site/snippets/testsuite-kotlin/src/test/kotlin/docs/web5/build/verifiablecredentials/createDidsKt.snippet.kt'
+import createClassCredentialKt from '!!raw-loader!@site/snippets/testsuite-kotlin/src/test/kotlin/docs/web5/build/verifiablecredentials/createClassCredentialKt.snippet.kt'
+import createAndValidatePresentationKt from '!!raw-loader!@site/snippets/testsuite-kotlin/src/test/kotlin/docs/web5/build/verifiablecredentials/createAndValidatePresentationKt.snippet.kt'
 
 <LanguageSwitcher languages="JavaScript, Kotlin" />
 
@@ -84,8 +85,8 @@ If you need to create DIDs, you can do so with the [@web5/dids](https://www.npmj
 
 <Shnip
    snippets={[
-    { snippetContent: importAndCreateDids, language: 'JavaScript'},
-      { snippetContent: importAndCreateDidsKt, language: 'Kotlin'},
+    { snippetContent: createDids, language: 'JavaScript'},
+    { snippetContent: createDidsKt, language: 'Kotlin'},
     ]}
 />
 
@@ -96,8 +97,8 @@ We'll first model it with a class with some basic properties, `level` and `legit
 
 <Shnip
   snippets={[
-    { snippetContent: importAndCreateClassCredential, language: 'JavaScript', title: 'Issuer.js'},
-    { snippetContent: importAndCreateClassCredentialKt, language: 'Kotlin', title: 'Issuer.js'},
+    { snippetContent: createClassCredential, language: 'JavaScript', title: 'Issuer.js'},
+    { snippetContent: createClassCredentialKt, language: 'Kotlin', title: 'Issuer.js'},
   ]}
 />
 
@@ -215,65 +216,9 @@ To kick off the presentation exchange, the Swag Supplier (verifier) will send a 
 Here's how the verifier can create the presentation definition, and validate that it is properly formed:
 
 <Shnip
-  inlineSnippets={[
-        {
-      code: `
-import { VerifiableCredential, PresentationExchange } from "@web5/credentials";
-const presentationDefinition = {
-    'id': 'presDefId123',
-    'name': 'Swifties Fan Club Presentation Definition',
-    'purpose': 'for proving membership in the fan club',
-    'input_descriptors': [
-        {
-            'id': 'legitness',
-            'purpose': 'are you legit or not?',
-            'constraints': {
-                'fields': [
-                    {
-                        'path': [
-                            '$.credentialSubject.legit',
-                        ]
-                    }
-                ]
-            }
-        }
-    ]
-};
-const definitionValidation = PresentationExchange.validateDefinition({ presentationDefinition });
-      `,
-      language: 'JavaScript', 
-      title: 'Verifier.js',
-      breakLineAt: [1, 21]
-    },
-    {
-      code: `
-import web5.sdk.credentials.PresentationExchange
-import web5.sdk.credentials.VerifiableCredential
-import web5.sdk.credentials.model.*
-val presentationDefinition = PresentationDefinitionV2(
-    id = "presDefId123",
-    name = "Swifties Fan Club Presentation Definition",
-    purpose = "for proving membership in the fan club",
-    inputDescriptors = listOf(
-        InputDescriptorV2(
-            id = "legitness",
-            purpose = "are you legit or not?",
-            constraints = ConstraintsV2(
-                fields = listOf(
-                    FieldV2(
-                        path = listOf("$.vc.credentialSubject.legit")
-                    )
-                )
-            )
-        )
-    )
-)
-val definitionValidation = PresentationExchange.validateDefinition(presentationDefinition)
-      `,
-      language: 'Kotlin', 
-      title: 'Verifier.kt',
-      breakLineAt: [3, 21]
-    }
+  snippets={[
+      { snippetContent: createAndValidatePresentation, language: 'JavaScript', title: 'Verifier.js'},
+      { snippetContent: createAndValidatePresentationKt, language: 'Kotlin', title: 'Verifier.kt'}
   ]}
 />
 
