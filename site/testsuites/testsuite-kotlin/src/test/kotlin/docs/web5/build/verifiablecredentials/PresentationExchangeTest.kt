@@ -124,7 +124,7 @@ internal class PresentationExchangeTest {
   fun `satisfiesPresentationDefinitionForPexKt checks if VCs satisfy PD`() {
     val selectedCredentials = allCredentials
     assertDoesNotThrow {
-    // :snippet-start: satisfiesPresentationDefinitionForPex
+    // :snippet-start: satisfiesPresentationDefinitionForPexKt
     try {
         PresentationExchange.satisfiesPresentationDefinition(
             vcJwts = selectedCredentials,
