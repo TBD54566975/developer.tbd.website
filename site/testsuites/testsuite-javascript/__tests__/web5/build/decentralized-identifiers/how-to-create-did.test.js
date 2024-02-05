@@ -1,5 +1,5 @@
 import { test, expect, vi, describe, beforeAll } from 'vitest';
-import { DidDhtMethod, DidKeyMethod } from '@web5/dids';
+import { DidDht, DidKey, DidJwk } from '@web5/dids';
 
 import {
   createDidAutomatically,
@@ -27,16 +27,20 @@ describe('how-to-create-did', () => {
       };
     });
   });
-  
+
 
   test('show required imports to create did', async () => {
     const requiredImports = `
       // :snippet-start: requiredDidImports
       //did:dht
-      import { DidDhtMethod } from '@web5/dids'
+      import { DidDht } from '@web5/dids'
 
       //did:key
-      import { DidKeyMethod } from '@web5/dids'
+      import { DidKey } from '@web5/dids'
+
+      //did:jwk
+      import { DidJwk } from '@web5/dids'
+
       // :snippet-end:
     `
   });
@@ -49,45 +53,67 @@ describe('how-to-create-did', () => {
 
   test('createDidDht creates a DID with did:dht method', async () => {
     // :snippet-start: createDidDht
-    //Creates a DID using the DHT method and publishes the DID Document to the DHT
-    const didDht = await DidDhtMethod.create({ publish: true });
+    // Creates a DID using the DHT method and publishes the DID Document to the DHT
+    const didDht = await DidDht.create({ publish: true });
 
-    //DID and its associated data which can be exported and used in different contexts/apps
+    // DID and its associated data which can be exported and used in different contexts/apps
     const portableDid = JSON.stringify(didDht);
 
-    //DID string
-    const did = didDht.did;
+    // DID string
+    const did = didDht.uri;
 
-    //DID Document
+    // DID Document
     const didDocument = JSON.stringify(didDht.document);
 
-    //Cryptographic keys associated with DID
-    const keys = JSON.stringify(didDht.keySet);
+    // Cryptographic keys associated with DID
+   const keys = await DidDht.toKeys({ did: didDht });
 
     // :snippet-end:
 
-    expect(didDht.did).toMatch(/^did:dht:/);
+    expect(did).toMatch(/^did:dht:/);
   });
 
   test('createDidKey creates a DID with did:key method', async () => {
     // :snippet-start: createDidKey
-    //Creates a DID using the did:key method
-    const didKey = await DidKeyMethod.create();
+    // Creates a DID using the did:key method
+    const didKey = await DidKey.create();
 
-    //DID and its associated data which can be exported and used in different contexts/apps
+    // DID and its associated data which can be exported and used in different contexts/apps
     const portableDid = JSON.stringify(didKey);
 
-    //DID string
-    const did = didKey.did;
+    // DID string
+    const did = didKey.uri;
 
-    //DID Document
+    // DID Document
     const didDocument = JSON.stringify(didKey.document);
 
-    //Cryptographic keys associated with DID
-    const keys = JSON.stringify(didKey.keySet);
+    // Cryptographic keys associated with DID
+    const keys = await DidKey.toKeys({ did: didKey });
+
 
     // :snippet-end:
 
-    expect(didKey.did).toMatch(/^did:key:/);
+    expect(did).toMatch(/^did:key:/);
+  });
+
+  test('createDidJwk creates a DID with did:jwk method', async () => {
+    // :snippet-start: createDidJwk
+    //Creates a DID using the did:jwk method
+    const didJwk = await DidJwk.create();
+
+    //DID and its associated data which can be exported and used in different contexts/apps
+    const portableDid = JSON.stringify(didJwk);
+
+    //DID string
+    const did = didJwk.uri;
+
+    //DID Document
+    const didDocument = JSON.stringify(didJwk.document);
+
+    //Cryptographic keys associated with DID
+    const keys = await DidJwk.toKeys({ did: didJwk });
+    // :snippet-end:
+
+    expect(did).toMatch(/^did:jwk:/);
   });
 });

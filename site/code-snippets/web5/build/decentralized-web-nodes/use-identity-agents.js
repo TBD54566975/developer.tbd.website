@@ -36,7 +36,7 @@ export async function createSocialMediaAndCareerIdentity() {
         didOptions,
         kms: 'local'
     });
-    
+
     return { socialMediaIdentity, careerIdentity };
 }
 
@@ -53,5 +53,5 @@ export async function connectToWeb5() {
         connectedDid: socialIdentity.did,
         agent,
     });
-    return web5;    
+    return web5;
 }

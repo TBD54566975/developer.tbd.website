@@ -24,8 +24,8 @@ importers:
         specifier: 0.4.1
         version: 0.4.1
       '@web5/dids':
-        specifier: 0.2.3
-        version: 0.2.3
+        specifier: 0.3.0
+        version: 0.3.0
       '@web5/identity-agent':
         specifier: 0.2.5
         version: 0.2.5
@@ -2183,6 +2183,14 @@ packages:
     engines: {node: '>=10.0.0'}
     dev: false
 
+  /@dnsquery/dns-packet@6.1.1:
+    resolution: {integrity: sha512-WXTuFvL3G+74SchFAtz3FgIYVOe196ycvGsMgvSH/8Goptb1qpIQtIuM4SOK9G9lhMWYpHxnXyy544ZhluFOew==}
+    engines: {node: '>=6'}
+    dependencies:
+      '@leichtgewicht/ip-codec': 2.0.4
+      utf8-codec: 1.0.0
+    dev: false
+
   /@docsearch/css@3.5.2:
     resolution: {integrity: sha512-SPiDHaWKQZpwR2siD0KQUwlStvIAnEyK6tAE2h2Wuoq8ue9skzhlyVQ1ddzOxX6khULnAALDiR/isSF3bnuciA==}
     dev: false
@@ -4071,6 +4079,10 @@ packages:
 
   /@noble/ciphers@0.4.0:
     resolution: {integrity: sha512-xaUaUUDWbHIFSxaQ/pIe+33VG2mfJp6N/KxKLmZr5biWdNznCAmfu24QRhX10BbVAuqOahAoyp0S4M9md6GPDw==}
+    dev: false
+
+  /@noble/ciphers@0.4.1:
+    resolution: {integrity: sha512-QCOA9cgf3Rc33owG0AYBB9wszz+Ul2kramWN8tXG44Gyciud/tbkEqvxRF/IpqQaBpRBNi9f4jdNxqB2CQCIXg==}
     dev: false
 
   /@noble/curves@1.1.0:
@@ -6378,6 +6390,15 @@ packages:
       readable-stream: 4.4.2
     dev: false
 
+  /@web5/common@0.2.3:
+    resolution: {integrity: sha512-WTbIS6l5inrQTS5cwOoQP5KEuUHZqOWCKCDAA62qGUn4QyySolog9Gt2HCNUEClIzzk/d5DHcpBgLCadHoJ6rQ==}
+    engines: {node: '>=18.0.0'}
+    dependencies:
+      level: 8.0.0
+      multiformats: 11.0.2
+      readable-stream: 4.4.2
+    dev: false
+
   /@web5/credentials@0.4.1:
     resolution: {integrity: sha512-GMbS/N9AqAURjH6+Mvo49AJJxe9uli5mU+dzXtGgFJhiwD4FfqRPxdO1C3R0Tj2aCY3OAQVcCKQgmLRm2hHZlw==}
     engines: {node: '>=18.0.0'}
@@ -6409,6 +6430,16 @@ packages:
       '@noble/curves': 1.2.0
       '@noble/hashes': 1.3.2
       '@web5/common': 0.2.2
+    dev: false
+
+  /@web5/crypto@0.4.0:
+    resolution: {integrity: sha512-GIKn2CizQKeATvHQqmC4ky26b3q2pJOd2GjIYsOSw/3Y3QIEm3holDGqu9FHs6kacmr6u0Pv5ELvccs58+cKEg==}
+    engines: {node: '>=18.0.0'}
+    dependencies:
+      '@noble/ciphers': 0.4.1
+      '@noble/curves': 1.3.0
+      '@noble/hashes': 1.3.3
+      '@web5/common': 0.2.3
     dev: false
 
   /@web5/dids@0.2.3:
@@ -6447,6 +6478,19 @@ packages:
     transitivePeerDependencies:
       - encoding
       - supports-color
+    dev: false
+
+  /@web5/dids@0.3.0:
+    resolution: {integrity: sha512-Y6I/mNkSyjtRxvgTH72DJqcMiCA1ywMVJys09ro//kD0NiFU3NYBulurrFTp/Z4yV4t6KKOq7hj1WopWMagTbQ==}
+    engines: {node: '>=18.0.0'}
+    dependencies:
+      '@decentralized-identity/ion-sdk': 1.0.1
+      '@dnsquery/dns-packet': 6.1.1
+      '@web5/common': 0.2.3
+      '@web5/crypto': 0.4.0
+      bencode: 4.0.0
+      level: 8.0.0
+      ms: 2.1.3
     dev: false
 
   /@web5/identity-agent@0.2.5:
@@ -20052,6 +20096,10 @@ packages:
   /userhome@1.0.0:
     resolution: {integrity: sha512-ayFKY3H+Pwfy4W98yPdtH1VqH4psDeyW8lYYFzfecR9d6hqLpqhecktvYR3SEEXt7vG0S1JEpciI3g94pMErig==}
     engines: {node: '>= 0.8.0'}
+    dev: false
+
+  /utf8-codec@1.0.0:
+    resolution: {integrity: sha512-S/QSLezp3qvG4ld5PUfXiH7mCFxLKjSVZRFkB3DOjgwHuJPFDkInAXc/anf7BAbHt/D38ozDzL+QMZ6/7gsI6w==}
     dev: false
 
   /util-deprecate@1.0.2:

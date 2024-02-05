@@ -1,20 +1,20 @@
 import { test, expect, describe } from 'vitest';
-import { DidDhtMethod } from '@web5/dids';
+import { DidDht } from '@web5/dids';
 import {
   createEmploymentCredential,
   signCredential,
 } from '../../../../../../code-snippets/web5/build/verifiable-credentials/vc-issuance';
 
-const issuer = await DidDhtMethod.create();
-const subject = await DidDhtMethod.create();
+const issuer = await DidDht.create();
+const subject = await DidDht.create();
 
 describe('issue a credential', () => {
   test('VerifiableCredential.create() creates a VC', async () => {
     const vc = await createEmploymentCredential(issuer, subject);
     expect(vc).toBeDefined();
     expect.soft(vc).toHaveProperty('type', 'EmploymentCredential');
-    expect.soft(vc).toHaveProperty('issuer', issuer.did);
-    expect.soft(vc).toHaveProperty('subject', subject.did);
+    expect.soft(vc).toHaveProperty('issuer', issuer.uri);
+    expect.soft(vc).toHaveProperty('subject', subject.uri);
     expect.soft(vc.vcDataModel).toHaveProperty('id');
     expect
       .soft(vc.vcDataModel)
