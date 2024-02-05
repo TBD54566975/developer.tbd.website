@@ -85,12 +85,12 @@ To use the snippet in your documentation(`.mdx` file), you're going to use the `
 ```js
 import createDidDht from '!!raw-loader!@site/snippets/web5/build/decentralized-identifiers/createDidDht.snippet.js';
 // if it's a multi language doc, you'll need to specify it with the LanguageSwitcher component
-<LanguageSwitcher languages="JavaScript, Kotlin" />;
+<LanguageSwitcher languages="JavaScript, Kotlin" />
 
 <Shnip
   snippets={[{ name: 'createDidDht', language: 'JavaScript' }]}
   snippets={[{ name: 'kt_createDidDht', language: 'Kotlin' }]} // if you have another generated snippet in a different language
-/>;
+/>
 ```
 
 This is how you can add a generated code snippet and an inline hardcoded snippet into the doc:

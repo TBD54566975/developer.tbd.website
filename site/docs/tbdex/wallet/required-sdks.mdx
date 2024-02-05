@@ -2,39 +2,64 @@
 sidebar_position: 2
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import CodeSnippet from '@site/src/components/CodeSnippet';
+import BreadcrumbTab from '@site/src/components/BreadcrumbTab';
+import walletSdkInstallJs from '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/tbdex/wallet/walletSdkInstallJs.snippet.bash'
+import walletSdkInstallGradle from '!!raw-loader!@site/snippets/testsuite-kotlin/src/test/kotlin/docs/tbdex/wallet/walletSdkInstallGradle.snippet.gradle'
+import walletSdkInstallPom from '!!raw-loader!@site/snippets/testsuite-kotlin/src/test/kotlin/docs/tbdex/wallet/walletSdkInstallPom.snippet.xml'
+import importJs from '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/tbdex/wallet/walletSdkImportJs.snippet.js'
+
+
 # Required SDKs
 
 To implement and operate as a Wallet on a tbDEX network, you’ll need to use the following SDKs:
 
 
-* [**web5/dids**](https://www.npmjs.com/package/@web5/dids) - Enables the creation of [Decentralized Identifiers (DID)](/docs/web5/learn/decentralized-identifiers) for your customers and perform any other required cryptographic functions, you can use the DIDs package.
-* [**web5/credentials**](https://www.npmjs.com/package/@web5/credentials) - Enable the presentation of [Verifiable Credentials (VC)](/docs/web5/learn/verifiable-credentials) to PFIs on your customers' behalf. You may also want to verify that the PFIs you wish to engage with have certain credentials.
-* [**tbdex/client**](https://www.npmjs.com/package/@tbdex/http-client) - Enables your application to send tbDEX messages to PFIs.
+* **web5/dids** - Enables the creation of [Decentralized Identifiers (DID)](/docs/web5/learn/decentralized-identifiers) for your customers and perform any other required cryptographic functions, you can use the DIDs package.
+* **web5/credentials** - Enable the presentation of [Verifiable Credentials (VC)](/docs/web5/learn/verifiable-credentials) to PFIs on your customers' behalf. You may also want to verify that the PFIs you wish to engage with have certain credentials.
+* **tbdex/client** - Enables your application to send tbDEX messages to PFIs.
 
 ## Install SDKs
-To install `@web5/dids`:
 
-```bash
-npm i @web5/dids
-```
-
-To install `@web5/credentials`:
-
-```bash
-npm i @web5/credentials
-```
-
-To install `@tbdex/http-client`:
-
-```bash
-npm i @tbdex/http-client
-```
+<Tabs groupId="language">
+  <TabItem label="JavaScript" value="JavaScript">
+    <CodeSnippet snippet={walletSdkInstallJs} language="bash"/>
+  </TabItem>
+  <TabItem label="Kotlin" value="Kotlin">
+    <BreadcrumbTab
+      snippetMappings={{
+        'Gradle': {
+          "snippet": walletSdkInstallGradle,
+          "language": "js"
+        },
+        'Maven': {
+          "snippet": walletSdkInstallPom,
+          "language": "xml"
+        }
+      }}
+    />
+  </TabItem>
+</Tabs>
 
 ## Import Classes
 
 To send and receive tbDEX messages, import the following classes:
 
-```js
-import { TbdexHttpClient, Rfq, Quote, Order} from '@tbdex/http-client';
-import { VerifiableCredential, PresentationExchange } from "@web5/credentials";
-```
+<Tabs groupId="language">
+  <TabItem label="JavaScript" value="JavaScript">
+    <CodeSnippet snippet={importJs} />
+  </TabItem>
+  <TabItem label="Kotlin" value="Kotlin">
+
+  ```kotlin
+  import tbdex.sdk.httpclient.TbdexHttpClient
+  import tbdex.sdk.protocol.models.Rfq
+  import tbdex.sdk.protocol.models.Quote
+  import tbdex.sdk.protocol.models.Order
+  import web5.sdk.credentials.VerifiableCredential
+  import web5.sdk.credentials.PresentationExchange
+  ```
+  </TabItem>
+</Tabs>

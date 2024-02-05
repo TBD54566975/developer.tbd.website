@@ -1,6 +1,13 @@
 ---
-sidebar_position: 4
+sidebar_position: 3
 ---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import CodeSnippet from '@site/src/components/CodeSnippet';
+import pfiOnboardingCreateDidJs from '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/tbdex/pfi/pfiOnboardingCreateDidJs.snippet.js';
+import pfiOnboardingCreateDidKt from '!!raw-loader!@site/snippets/testsuite-kotlin/src/test/kotlin/docs/tbdex/pfi/pfiOnboardingCreateDidKt.snippet.kt';
+import pfiOnboardingImportsKt from '!!raw-loader!@site/snippets/testsuite-kotlin/src/test/kotlin/docs/tbdex/pfi/pfiOnboardingImportsKt.snippet.kt';
 
 # Onboarding
 
@@ -9,19 +16,34 @@ Before beginning development of your PFI’s code, you’ll need to create an id
 DIDs are associated with [DID Documents](/docs/web5/learn/did_document) which describe how to engage with your PFI.
 
 
-To create a DID and identify yourself as a PFI, use the [@web5/dids SDK](https://www.npmjs.com/package/@web5/dids):
+To create a DID and identify yourself as a PFI, use the `web5/dids` package:
 
-```js
-import { DidDhtMethod } from '@web5/dids'
+### Import Classes
 
-const did = await DidDhtMethod.create({
-  publish: true,
-  services: [{
-    type: 'PFI',
-    id: 'pfi',
-    serviceEndpoint: 'tbdex-pfi.tbddev.org'
-  }]
-})
-```
+<Tabs>
+  <TabItem label="JavaScript" value="JavaScript">
 
-Note that the value for `serviceEndpoint` should be the URL to your PFI's service entry.
+  ```js
+  import { DidDhtMethod } from '@web5/dids';
+  ```
+  </TabItem>
+  <TabItem label="Kotlin" value="Kotlin">
+    <CodeSnippet snippet={pfiOnboardingImportsKt} />
+  </TabItem>
+</Tabs>
+
+### Create DID with Service Endpoint
+
+<Tabs>
+  <TabItem label="JavaScript" value="JavaScript">
+    <CodeSnippet snippet={pfiOnboardingCreateDidJs} />
+  </TabItem>
+  <TabItem label="Kotlin" value="Kotlin">
+    <CodeSnippet snippet={pfiOnboardingCreateDidKt} />
+  </TabItem>
+</Tabs>
+
+:::note Notes
+* The value for `serviceEndpoint` should be the URL to your PFI's service entry.
+* `InMemoryKeyManager` should only be used in non-production environmets. See [Key Management Service](/docs/web5/build/decentralized-identifiers/key-management) for more details.
+:::
