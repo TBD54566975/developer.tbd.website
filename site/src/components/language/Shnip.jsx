@@ -61,13 +61,6 @@ const addLineBreaks = (code, breakLines) => {
               </div>
             ),
           )}
-
-        {inlineContent &&
-          inlineContent.map(({ content, language }, index) => (
-            <div key={`content-${language}-${index}`} language={language}>
-              {content}
-            </div>
-          ))}
       </LanguageSwitchBlock>
     </>
   );
