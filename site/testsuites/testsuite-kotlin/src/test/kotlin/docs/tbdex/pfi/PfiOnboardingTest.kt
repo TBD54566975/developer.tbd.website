@@ -14,7 +14,7 @@ import java.net.URI
 /**
  * Tests for PFI Onboarding guide
  */
-class PFIOnboarding {
+class PfiOnboardingTest {
 
   @Test
   fun `create PFI DID`() {
@@ -33,7 +33,7 @@ class PFIOnboarding {
 
     val did = DidDht.create(InMemoryKeyManager(), options)
     // :snippet-end:
-    
+
     assertEquals("PFI", did.didDocument?.services?.get(0)?.type, "DID should start with 'did:key'")
   }
 }
