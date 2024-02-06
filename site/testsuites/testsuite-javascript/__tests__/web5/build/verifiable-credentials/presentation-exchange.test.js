@@ -183,15 +183,17 @@ describe('Presentation Exchange Process', () => {
     }
   );
 
-  test('validateSubmission() checks if the presentation submission is valid', async () => {
-    const pr = await pex_createPresentationFromCredentials(credentials, pd);
-    const validationResult = await pex_submissionCheck(pr);
-    expect(validationResult).toBeDefined();
-    expect(validationResult).toBeInstanceOf(Array);
-    expect(validationResult.length).toBe(1);
-    expect.soft(validationResult[0]).toHaveProperty('tag', 'root');
-    expect.soft(validationResult[0]).toHaveProperty('status', 'info');
-    expect.soft(validationResult[0]).toHaveProperty('message', 'ok');
+  test('validPresentationSubmissionForPex check if the presention submission is valid', async () => {
+    const presentationResult = await pex_createPresentationFromCredentials(credentials, pd);
+    // snippet-start: validPresentationSubmissionForPex
+    const submissionCheck = PresentationExchange.validateSubmission({
+      presentationSubmission: presentationResult.presentationSubmission
+    });
+    // snippet-end:
+    expect(submissionCheck.length).toBe(1);
+    expect.soft(submissionCheck[0]).toHaveProperty('tag', 'root');
+    expect.soft(submissionCheck[0]).toHaveProperty('status', 'info');
+    expect.soft(submissionCheck[0]).toHaveProperty('message', 'ok');
   });
 
   test('validVerifiablePresentationForPex creates a valid VP', async () => {

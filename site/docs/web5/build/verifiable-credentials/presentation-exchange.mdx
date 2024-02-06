@@ -5,7 +5,6 @@ sidebar_position: 3
 ---
 
 
-import CodeSnippet from '@site/src/components/CodeSnippet';
 import getLoanAppPresentationDefinition from '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/web5/build/verifiable-credentials/getLoanAppPresentationDefinition.snippet.js'
 import satisfiesPresentationDefinitionForPex from '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/web5/build/verifiable-credentials/satisfiesPresentationDefinitionForPex.snippet.js'
 import selectCredentialsForPex from '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/web5/build/verifiable-credentials/selectCredentialsForPex.snippet.js'
@@ -62,15 +61,15 @@ You can import this class from the `@web5/credentials` package:
   inlineSnippets={[
     {
       code: `
-      import { PresentationExchange } from '@web5/credentials';
+import { PresentationExchange } from '@web5/credentials';
       `,
       language: 'JavaScript',
     },
     {
       code: `
-        import web5.sdk.credentials.PresentationExchange
-        import web5.sdk.credentials.VerifiablePresentation
-        import web5.sdk.credentials.model.*
+import web5.sdk.credentials.PresentationExchange
+import web5.sdk.credentials.VerifiablePresentation
+import web5.sdk.credentials.model.*
       `,
       language: 'Kotlin', 
     }
@@ -211,7 +210,22 @@ Once you've confirmed that the VCs successfully satisfy the Presentation Definit
 
 Before submitting the presentation to a lender, you can validate the Presentation via the `validateSubmission()` method:
 
-<CodeSnippet functionName="pex_submissionCheck" />
+<Shnip
+inlineSnippets={[
+    {
+      code: `
+const submissionCheck = PresentationExchange.validateSubmission({
+  presentationSubmission: presentationResult.presentationSubmission
+});
+      `,
+      language: 'JavaScript',
+    },
+    {
+      content: 'This functionality is soon to be implemented in the Kotlin SDK.' ,
+      language: 'Kotlin', 
+    }
+  ]}
+/>
 
 This method checks the presentation submission for any errors, returns an array of `Checked` objects representing the validation checks performed on the presentation submission:
 

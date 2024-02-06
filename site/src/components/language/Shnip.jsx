@@ -45,9 +45,9 @@ const Shnip = ({ snippets, inlineSnippets }) => {
             ({ content, code, language, codeLanguage, breakLineAt }, index) => (
               <div key={`inline-${language}-${index}`} language={language}>
                 {content && <ReactMarkdown>{content}</ReactMarkdown>}
-                <CodeBlock language={(codeLanguage || language).toLowerCase()}>
+                {code && <CodeBlock language={(codeLanguage || language).toLowerCase()}>
                   {addLineBreaks(code, breakLineAt)}
-                </CodeBlock>
+                </CodeBlock>}
               </div>
             ),
           )}
