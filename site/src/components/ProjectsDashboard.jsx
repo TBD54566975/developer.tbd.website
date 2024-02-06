@@ -461,18 +461,16 @@ function Shield({
     badgeSrc = `https://img.shields.io/github/v/release/${ghOwnerRepo}?logo=github&label=tag&style=flat-square&color=4c1`;
     href = `https://github.com/${ghOwnerRepo}/releases`;
   } else if (type === 'npmLicense') {
-    badgeSrc = `https://img.shields.io/npm/l/${value}.svg?style=flat-square&logo=npm&logoColor=FFFFFF&&color=${getLanguageColor(
-      'js',
-    )}&santize=true&label=npm`;
+    badgeSrc = `https://img.shields.io/npm/l/${value}.svg?style=flat-square&logo=npm&logoColor=FFFFFF&&color=green&santize=true&label=npm`;
     href = `https://www.npmjs.com/package/${value}`;
   } else if (type === 'npmPkg') {
-    badgeSrc = `https://img.shields.io/npm/v/${value}.svg?style=flat-square&logo=npm&logoColor=FFFFFF&color=F7DF1E&santize=true`;
+    badgeSrc = `https://img.shields.io/npm/v/${value}.svg?style=flat-square&logo=npm&logoColor=FFFFFF&color=green&santize=true`;
     href = `https://www.npmjs.com/package/${value}`;
   } else if (type === 'mvnLicense') {
     badgeSrc = `https://img.shields.io/badge/mvn-todo-indigo?style=flat-square&logo=apachemaven&logoColor=FFFFFF&santize=true`;
     href = `https://www.npmjs.com/package/${value}`;
   } else if (type === 'jitPkg') {
-    badgeSrc = `https://img.shields.io/jitpack/version/com.github.${ghOwnerRepo}?style=flat-square&logo=jitpack&color=orange`;
+    badgeSrc = `https://img.shields.io/jitpack/version/com.github.${ghOwnerRepo}?style=flat-square&logo=jitpack&color=green`;
     href = `https://jitpack.io/#${ghOwnerRepo}`;
   }
 
@@ -487,19 +485,7 @@ function Shield({
 }
 
 function LanguageIcon({ language }) {
-  const languageColor = getLanguageColor(language);
-  return <Shield label={''} value={language} color={languageColor} />;
-}
-
-function getLanguageColor(language) {
-  switch (language) {
-    case 'js':
-      return 'F7DF1E';
-    case 'kt':
-      return '7F52FF';
-    default:
-      return 'black';
-  }
+  return <Shield label={''} value={language} color="blue" />;
 }
 
 export default ProjectsDashboard;
