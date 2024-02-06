@@ -32,7 +32,7 @@
         Will eventually go bye-bye once the
         underlying dep trees are fixed up
         -->
-        <version.com.fasterxml.jackson.core>2.9.8</version.com.fasterxml.jackson.core>
+        <version.com.fasterxml.jackson.core>2.12.6</version.com.fasterxml.jackson.core>
     </properties>
 
     <dependencyManagement>
