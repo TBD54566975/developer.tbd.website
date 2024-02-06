@@ -15,6 +15,10 @@ import io.ktor.server.engine.*
 import io.ktor.server.netty.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
+import web5.sdk.crypto.InMemoryKeyManager
+import web5.sdk.dids.Did
+import web5.sdk.dids.methods.jwk.DidJwk
+import java.time.OffsetDateTime
 
 
 //---------------------------------------------------------------------------//
@@ -115,54 +119,55 @@ class MockDataProvider {
           "signature": "eyJhbGciOiJFZERTQSIsImtpZCI6ImRpZDprZXk6ejZNa2syc1QyZUtvQWdUUTdzWjY3YTdmRDMzR21jYzZ1UXdaYmlxeWF5Rk1hYkhHI3o2TWtrMnNUMmVLb0FnVFE3c1o2N2E3ZkQzM0dtY2M2dVF3WmJpcXlheUZNYWJIRyJ9..9EBTL3VcajsQzSNOm8GElhcwvYcFGaRp24FTwmC845RCF84Md-ZB-CxdCo7kEjzsAY8OaB55XFSH_8K9vedhAw"
         }
     """.trimIndent()
-  
+
     fun insert(collectionName: String, data: Any) {
-  
+
     }
-  
+
     fun get(collectionName: String, id: String): Any? {
         return offeringString;
     }
-  
+
     fun query(collectionName: String, searchParam: String): List<Any> {
         return listOf(offeringString);
     }
-  }
-  
-  private val dataProvider = MockDataProvider()
-  
-  class ExchangesApiProvider : ExchangesApi {
-  
+}
+
+private val dataProvider = MockDataProvider()
+
+class ExchangesApiProvider : ExchangesApi {
+
     private val fakeExchangesApi = FakeExchangesApi()
-  
+
     override fun getClose(exchangeId: String?): Close? {
         return fakeExchangesApi.getClose(exchangeId)
     }
-  
+
     override fun getExchange(id: List<String>?): List<MessageKind>? {
         return fakeExchangesApi.getExchange(id)
     }
-  
+
     override fun getExchanges(filter: GetExchangesFilter?): List<List<Message>>? {
         return fakeExchangesApi.getExchanges(filter) ?: emptyList()
     }
-  
+
     override fun getOrder(exchangeId: String?): Order? {
         return fakeExchangesApi.getOrder(exchangeId)
     }
-  
+
     override fun getOrderStatuses(exchangeId: String?): List<OrderStatus>? {
         return fakeExchangesApi.getOrderStatuses(exchangeId)
     }
-  
+
     override fun getQuote(exchangeId: String?): Quote? {
         return fakeExchangesApi.getQuote(exchangeId)
     }
-  
+
     override fun getRfq(exchangeId: String?): Rfq? {
         return fakeExchangesApi.getRfq(exchangeId)
     }
-  
+
+
     fun write(message: Message) {
         val data = mapOf(
             "exchangeid" to message.metadata.exchangeId,
@@ -173,8 +178,10 @@ class MockDataProvider {
         )
         dataProvider.insert("exchange", data)
     }
-  }
-  class OfferingsApiProvider : OfferingsApi {
+
+}
+
+class OfferingsApiProvider : OfferingsApi {
     override fun getOffering(id: String?): Offering? {
         val result = dataProvider.get("offering", id ?: "")
         return if (result != null) {
@@ -183,19 +190,20 @@ class MockDataProvider {
             null
         }
     }
-  
+
     override fun getOfferings(filter: GetOfferingsFilter?): List<Offering> {
         val results = dataProvider.query("offering", "*")
         val offerings = mutableListOf<Offering>()
-  
+
         for (result in results) {
             val offering = Offering.parse(result as String)
             offerings.add(offering)
         }
-  
+
         return offerings
-      }
-  
+    }
+
+
     suspend fun create(offering: Offering) {
         dataProvider.insert(
             "offering",
@@ -206,60 +214,62 @@ class MockDataProvider {
             )
         )
     }
-  
-  }
 
+
+}
 //---------------------------------------------------------------------------//
 //---------------------------------------------------------------------------//
+
+data class Config(
+    val did: Did
+)
 
 suspend fun createQuoteFromRfq(message: Message) {
+    val offeringsApiProvider = OfferingsApiProvider()
+    val exchangesApiProvider = ExchangesApiProvider()
+    val sampleDid = DidJwk.create(InMemoryKeyManager())
+    val config = Config(sampleDid)
+
     // :snippet-start: pfiQuotesWriteKt
     val data = mapOf(
-        "exchangeid" to message.exchangeId,
-        "messagekind" to message.kind,
-        "messageid" to message.id,
-        "subject" to message.subject,
-        "message" to objectMapper.writeValueAsString(message)
+        "exchangeid" to message.metadata.exchangeId,
+        "messagekind" to message.metadata.kind,
+        "messageid" to message.metadata.id,
+        "subject" to message.metadata.from,
+        "message" to message.data
     )
     dataProvider.insert("exchange", data)
-
-    //highlight-start
-    if (message.kind == 'rfq') {
-        val offering = await OfferingsApiProvider.getOffering(message.offeringId)
-    }
-    //highlight-end
+    val offering = offeringsApiProvider.getOffering(message.metadata.id.toString())
     // :snippet-end:
 
     // :snippet-start: pfiQuotesProcessKt
-    try {
-        rfq.verifyOfferingRequirements(offering)
-    } catch (e: Exception) {
-        println("Failed to verify offering requirements: ${e.message}")
+    if (offering is Offering && message is Rfq) {
+        try {
+            val rfq = message as Rfq
+            rfq.verifyOfferingRequirements(offering)
+        } catch (e: Exception) {
+            println("Failed to verify offering requirements: ${e.message}")
+        }
     }
     // :snippet-end:
 
     // :snippet-start: pfiQuotesSendKt
-    val metadata = MessageMetadata(
-        kind = MessageKind.quote,
-        to = message.to,
-        from = message.from,
-        exchangeId = message.exchangeId
-    )
-
     val quoteData = QuoteData(
-        expiresAt = OffsetDateTime.now().plusDays(10), // Example expiration time
+        expiresAt = OffsetDateTime.now().plusDays(10),
         payin = QuoteDetails("BTC", "1000"),
         payout = QuoteDetails("KES", "123456789")
     )
 
     val quote = Quote.create(
-        metadata = metadata,
+        to = message.metadata.to,
+        from = message.metadata.from,
+        exchangeId = message.metadata.exchangeId,
         quoteData = quoteData
     )
     // :snippet-end:
 
     // :snippet-start: pfiQuotesSignKt
-    quote.sign(config.did.privateKey, config.did.kid)
-    this.write(quote)
+    quote.sign(config.did)
+    exchangesApiProvider.write(quote)
     // :snippet-end:
 }
