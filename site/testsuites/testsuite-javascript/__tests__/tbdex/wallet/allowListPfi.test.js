@@ -1,4 +1,4 @@
-import { test, expect, vi, describe, beforeAll } from 'vitest';
+import { test, expect, describe, beforeAll } from 'vitest';
 import { DidDhtMethod } from '@web5/dids';
 
 let pfiDid;
@@ -6,7 +6,7 @@ let pfiDid;
 describe('allowlist PFIs', () => {
   beforeAll(async () => {
     pfiDid = await DidDhtMethod.create({
-        publish: true,
+        publish: false,
         services: [{
             id: 'pfi',
             type: 'PFI',

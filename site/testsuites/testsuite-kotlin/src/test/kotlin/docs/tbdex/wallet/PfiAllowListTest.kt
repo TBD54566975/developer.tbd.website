@@ -24,7 +24,7 @@ class PfiAllowListTest {
             .build()
 
         val options = CreateDidDhtOptions(
-            publish = true,
+            publish = false,
             services = listOf(serviceToAdd),
         )
 
