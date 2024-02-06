@@ -112,3 +112,16 @@ export default defineConfig({
 ```
 
 If you run into any errors, check out our [troubleshooting guide](./common-errors) for a possible solution.
+
+## Uncaught ReferenceError: require is not defined
+With the latest Nuxt releases, there seems to be a transpiling error when trying to deploy Nuxt with `npm run build`. If you get an error like `Uncaught ReferenceError: require is not defined`, you can fix it by adding the following to your `nuxt.config.js` file:
+
+```js title="nuxt.config.js"
+export defineConfig({
+  vite: {
+    build: {
+      commonjsOptions: { transformMixedEsModules: true }
+    }
+  }
+});
+```
