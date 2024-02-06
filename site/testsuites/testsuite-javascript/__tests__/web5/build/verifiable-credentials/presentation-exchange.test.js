@@ -185,11 +185,11 @@ describe('Presentation Exchange Process', () => {
 
   test('validPresentationSubmissionForPex check if the presention submission is valid', async () => {
     const presentationResult = await pex_createPresentationFromCredentials(credentials, pd);
-    // snippet-start: validPresentationSubmissionForPex
+    // :snippet-start: validPresentationSubmissionForPex
     const submissionCheck = PresentationExchange.validateSubmission({
       presentationSubmission: presentationResult.presentationSubmission
     });
-    // snippet-end:
+    // :snippet-end:
     expect(submissionCheck.length).toBe(1);
     expect.soft(submissionCheck[0]).toHaveProperty('tag', 'root');
     expect.soft(submissionCheck[0]).toHaveProperty('status', 'info');

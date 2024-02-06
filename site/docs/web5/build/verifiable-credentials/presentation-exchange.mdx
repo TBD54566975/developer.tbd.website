@@ -10,6 +10,8 @@ import satisfiesPresentationDefinitionForPex from '!!raw-loader!@site/snippets/t
 import selectCredentialsForPex from '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/web5/build/verifiable-credentials/selectCredentialsForPex.snippet.js'
 import createPresentationFromCredentialsForPex from '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/web5/build/verifiable-credentials/createPresentationFromCredentialsForPex.snippet.js'
 import validVerifiablePresentationForPex from '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/web5/build/verifiable-credentials/validVerifiablePresentationForPex.snippet.js'
+import validPresentationSubmissionForPex from '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/web5/build/verifiable-credentials/validPresentationSubmissionForPex.snippet.js'
+
 
 import getLoanAppPresentationDefinitionKt from '!!raw-loader!@site/snippets/testsuite-kotlin/src/test/kotlin/docs/web5/build/verifiablecredentials/getLoanAppPresentationDefinitionKt.snippet.kt'
 import satisfiesPresentationDefinitionForPexKt from '!!raw-loader!@site/snippets/testsuite-kotlin/src/test/kotlin/docs/web5/build/verifiablecredentials/satisfiesPresentationDefinitionForPexKt.snippet.kt'
@@ -211,15 +213,10 @@ Once you've confirmed that the VCs successfully satisfy the Presentation Definit
 Before submitting the presentation to a lender, you can validate the Presentation via the `validateSubmission()` method:
 
 <Shnip
+snippets={[
+    { snippetContent: validPresentationSubmissionForPex, language: 'JavaScript'},
+    ]}
 inlineSnippets={[
-    {
-      code: `
-const submissionCheck = PresentationExchange.validateSubmission({
-  presentationSubmission: presentationResult.presentationSubmission
-});
-      `,
-      language: 'JavaScript',
-    },
     {
       content: 'This functionality is soon to be implemented in the Kotlin SDK.' ,
       language: 'Kotlin', 
