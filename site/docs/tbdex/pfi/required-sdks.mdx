@@ -1,48 +1,65 @@
 ---
-sidebar_position: 3
+sidebar_position: 2
 ---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import CodeSnippet from '@site/src/components/CodeSnippet';
+import BreadcrumbTab from '@site/src/components/BreadcrumbTab';
+import pfiSdkInstallJs from '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/tbdex/pfi/pfiSdkInstallJs.snippet.bash'
+import pfiSdkInstallGradle from '!!raw-loader!@site/snippets/testsuite-kotlin/src/test/kotlin/docs/tbdex/pfi/pfiSdkInstallGradle.snippet.gradle'
+import pfiSdkInstallPom from '!!raw-loader!@site/snippets/testsuite-kotlin/src/test/kotlin/docs/tbdex/pfi/pfiSdkInstallPom.snippet.xml'
+import importJs from '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/tbdex/pfi/pfiSdkImportJs.snippet.js'
 
 # Required SDKs
 
 To implement and operate as a PFI, you’ll need to use the following SDKs:
 
+* **web5/dids** - To work with [Decentralized Identifiers (DID)](/docs/web5/learn/decentralized-identifiers), including creating an identity, and performing any other required cryptographic functions, you’ll need this package.
 
-* [**web5/dids**](https://www.npmjs.com/package/@web5/dids) - To work with [Decentralized Identifiers (DID)](/docs/web5/learn/decentralized-identifiers), including creating an identity, and performing any other required cryptographic functions, you’ll need this package.
-* [**web5/credentials**](https://www.npmjs.com/package/@web5/credentials) - Enable verification of your customer information, including information such as customer’s identity or whether a customer is on a sanctions list. Verifiable Credentials provide a decentralized and trustworthy way of verifying a customer.
-* [**tbdex/server**](https://www.npmjs.com/package/@tbdex/http-server) - Enable convenience methods for setting up routing and networking to facilitate your PFI.
+* **web5/credentials** - Enable verification of your customer information, including information such as customer’s identity or whether a customer is on a sanctions list. [Verifiable Credentials (VC)](/docs/web5/learn/verifiable-credentials) provide a decentralized and trustworthy way of verifying a customer.
+
+* **tbdex/server** - Enable convenience methods for setting up routing and networking to facilitate your PFI.
 
 ## Install SDKs
-To install `@web5/dids`:
 
-```bash
-npm i @web5/dids
-```
-
-To install `@web5/credentials`:
-
-```bash
-npm i @web5/credentials
-```
-
-To install `@tbdex/http-server`:
-
-```bash
-npm i @tbdex/http-server
-```
+<Tabs groupId="language">
+  <TabItem label="JavaScript" value="JavaScript">
+    <CodeSnippet snippet={pfiSdkInstallJs} language="bash"/>
+  </TabItem>
+  <TabItem label="Kotlin" value="Kotlin">
+    <BreadcrumbTab
+      snippetMappings={{
+        'Gradle': {
+          "snippet": pfiSdkInstallGradle,
+          "language": "js"
+        },
+        'Maven': {
+          "snippet": pfiSdkInstallPom,
+          "language": "xml"
+        }
+      }}
+    />
+  </TabItem>
+</Tabs>
 
 ## Import Classes
 
 To send and receive tbDEX messages, import the following classes:
 
-```js
-import { 
-    TbdexHttpServer, 
-    Rfq, 
-    Quote, 
-    Order, 
-    OrderStatus, 
-    Close, 
-    CallbackError, 
-    ErrorDetail 
-} from '@tbdex/http-server'
-```
+<Tabs groupId="language">
+  <TabItem label="JavaScript" value="JavaScript">
+    <CodeSnippet snippet={importJs} />
+  </TabItem>
+  <TabItem label="Kotlin" value="Kotlin">
+
+  ```kotlin
+    import tbdex.sdk.httpserver.TbdexHttpServer
+    import tbdex.sdk.protocol.models.Rfq
+    import tbdex.sdk.protocol.models.Quote
+    import tbdex.sdk.protocol.models.Order
+    import tbdex.sdk.protocol.models.OrderStatus
+    import tbdex.sdk.protocol.models.Close
+  ```
+  </TabItem>
+</Tabs>
