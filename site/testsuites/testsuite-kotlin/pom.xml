@@ -209,11 +209,14 @@
             <name>jboss</name>
             <url>https://repository.jboss.org/nexus/content/repositories/thirdparty-releases/</url>
         </repository>
-      <repository>
-        <id>sonatype-oss-snapshots</id>
-        <name>sonatype-oss-snapshots</name>
-        <url>https://s01.oss.sonatype.org/content/repositories/snapshots/</url>
-        <snapshots />
-      </repository>
+        <!--
+        More ALR Dark Arts, remove this once we are no longer relying on tbdex-kt:SNAPSHOTs
+        -->
+        <repository>
+            <id>sonatype-oss-snapshots</id>
+            <name>sonatype-oss-snapshots</name>
+            <url>https://s01.oss.sonatype.org/content/repositories/snapshots/</url>
+            <snapshots />
+        </repository>
     </repositories>
 </project>
