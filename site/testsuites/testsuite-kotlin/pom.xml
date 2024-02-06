@@ -32,7 +32,7 @@
         Will eventually go bye-bye once the
         underlying dep trees are fixed up
         -->
-        <version.com.fasterxml.jackson.core>2.9.8</version.com.fasterxml.jackson.core>
+        <version.com.fasterxml.jackson.core>2.12.6</version.com.fasterxml.jackson.core>
     </properties>
 
     <dependencyManagement>
@@ -93,16 +93,6 @@
               <groupId>com.fasterxml.jackson.core</groupId>
               <artifactId>jackson-databind</artifactId>
               <version>${version.com.fasterxml.jackson.core}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.fasterxml.jackson.core</groupId>
-                <artifactId>jackson-core</artifactId>
-                 <version>2.12.1</version>
-            </dependency>
-            <dependency>
-                <groupId>com.fasterxml.jackson.core</groupId>
-                <artifactId>jackson-databind</artifactId>
-                <version>2.12.1</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
