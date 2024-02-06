@@ -6,11 +6,7 @@ import web5.sdk.crypto.InMemoryKeyManager
 import web5.sdk.credentials.PresentationExchange
 import web5.sdk.credentials.VerifiableCredential
 import web5.sdk.credentials.VerifiablePresentation
-import web5.sdk.credentials.model.PresentationSubmission
-import web5.sdk.credentials.model.ConstraintsV2
-import web5.sdk.credentials.model.FieldV2
-import web5.sdk.credentials.model.InputDescriptorV2
-import web5.sdk.credentials.model.PresentationDefinitionV2
+import web5.sdk.credentials.model.*
 
 /**
  * Tests backing the Presentation Exchange Guide
