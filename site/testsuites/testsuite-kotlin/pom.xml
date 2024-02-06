@@ -25,7 +25,7 @@
         These need to be uniformly updated as part of the
         single dependency script from Nick
         -->
-        <version.tbdex>0.9.0-SNAPSHOT</version.tbdex>
+        <version.tbdex>0.9.0-beta</version.tbdex>
 
         <!-- ALR Dark Arts to Make tbDEX and Web5 Play Nice -->
         <!--
