@@ -19,12 +19,25 @@
         <version.kotlin>1.9.22</version.kotlin>
         <version.kotlin.compiler.incremental>true</version.kotlin.compiler.incremental>
         <version.junit-jupiter>5.10.1</version.junit-jupiter>
-        <!-- This needs to be uniformly updated as part of the single dependency script from Nick -->
-        <version.web5>0.10.0</version.web5>
+
+        <!-- TBD Dependencies -->
+        <!--
+        These need to be uniformly updated as part of the
+        single dependency script from Nick
+        -->
+        <version.tbdex>0.9.0-SNAPSHOT</version.tbdex>
+
+        <!-- ALR Dark Arts to Make tbDEX and Web5 Play Nice -->
+        <!--
+        Will eventually go bye-bye once the
+        underlying dep trees are fixed up
+        -->
+        <version.com.fasterxml.jackson.core>2.9.8</version.com.fasterxml.jackson.core>
     </properties>
 
     <dependencyManagement>
         <dependencies>
+            <!-- External Dependencies -->
             <dependency>
                 <groupId>org.assertj</groupId>
                 <artifactId>assertj-core</artifactId>
@@ -48,36 +61,38 @@
                 <artifactId>kotlin-stdlib</artifactId>
                 <version>${version.kotlin}</version>
             </dependency>
+
+            <!-- TBD Dependencies -->
             <dependency>
-                <groupId>xyz.block</groupId>
-                <artifactId>web5</artifactId>
-                <version>${version.web5}</version>
+              <groupId>xyz.block</groupId>
+              <artifactId>tbdex-httpclient</artifactId>
+              <version>${version.tbdex}</version>
             </dependency>
             <dependency>
-                <groupId>xyz.block</groupId>
-                <artifactId>web5-common</artifactId>
-                <version>${version.web5}</version>
+              <groupId>xyz.block</groupId>
+              <artifactId>tbdex-httpserver</artifactId>
+              <version>${version.tbdex}</version>
             </dependency>
             <dependency>
-                <groupId>xyz.block</groupId>
-                <artifactId>web5-credentials</artifactId>
-                <version>${version.web5}</version>
+              <groupId>xyz.block</groupId>
+              <artifactId>tbdex-protocol</artifactId>
+              <version>${version.tbdex}</version>
+            </dependency>
+
+            <!-- ALR Dark Arts to Make tbDEX and Web5 Play Nice -->
+            <!--
+            Will eventually go bye-bye once the
+            underlying dep trees are fixed up
+            -->
+            <dependency>
+              <groupId>com.fasterxml.jackson.core</groupId>
+              <artifactId>jackson-core</artifactId>
+              <version>${version.com.fasterxml.jackson.core}</version>
             </dependency>
             <dependency>
-                <groupId>xyz.block</groupId>
-                <artifactId>web5-crypto</artifactId>
-                <version>${version.web5}</version>
-            </dependency>
-            <dependency>
-                <groupId>xyz.block</groupId>
-                <artifactId>web5-dids</artifactId>
-                <version>${version.web5}</version>
-            </dependency>
-            <dependency>
-                <groupId>xyz.block</groupId>
-                <artifactId>web5-testing</artifactId>
-                <version>${version.web5}</version>
-                <scope>test</scope>
+              <groupId>com.fasterxml.jackson.core</groupId>
+              <artifactId>jackson-databind</artifactId>
+              <version>${version.com.fasterxml.jackson.core}</version>
             </dependency>
             <dependency>
                 <groupId>com.fasterxml.jackson.core</groupId>
@@ -109,29 +124,19 @@
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-engine</artifactId>
         </dependency>
+
+        <!-- TBD Dependencies -->
         <dependency>
-            <groupId>xyz.block</groupId>
-            <artifactId>web5</artifactId>
+          <groupId>xyz.block</groupId>
+          <artifactId>tbdex-httpclient</artifactId>
         </dependency>
         <dependency>
-            <groupId>xyz.block</groupId>
-            <artifactId>web5-common</artifactId>
+          <groupId>xyz.block</groupId>
+          <artifactId>tbdex-httpserver</artifactId>
         </dependency>
         <dependency>
-            <groupId>xyz.block</groupId>
-            <artifactId>web5-credentials</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>xyz.block</groupId>
-            <artifactId>web5-crypto</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>xyz.block</groupId>
-            <artifactId>web5-dids</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>xyz.block</groupId>
-            <artifactId>web5-testing</artifactId>
+          <groupId>xyz.block</groupId>
+          <artifactId>tbdex-protocol</artifactId>
         </dependency>
     </dependencies>
 
@@ -213,6 +218,15 @@
             <id>jboss</id>
             <name>jboss</name>
             <url>https://repository.jboss.org/nexus/content/repositories/thirdparty-releases/</url>
+        </repository>
+        <!--
+        More ALR Dark Arts, remove this once we are no longer relying on tbdex-kt:SNAPSHOTs
+        -->
+        <repository>
+            <id>sonatype-oss-snapshots</id>
+            <name>sonatype-oss-snapshots</name>
+            <url>https://s01.oss.sonatype.org/content/repositories/snapshots/</url>
+            <snapshots />
         </repository>
     </repositories>
 </project>
