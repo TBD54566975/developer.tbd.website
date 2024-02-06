@@ -30,7 +30,7 @@ class PfiAllowListTest {
 
         val pfiDid = DidDht.create(InMemoryKeyManager(), options)
     
-    // :snippet-start: isPFIKt
+        // :snippet-start: isPFIKt
         val isPFI = pfiDid.didDocument?.services?.any { it.type == "PFI" } ?: false
         // :snippet-end:
 
