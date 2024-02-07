@@ -4,6 +4,26 @@ hide_title: true
 sidebar_position: 10
 ---
 
+import createFanClubVc from '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/web5/build/verifiable-credentials/createFanClubVc.snippet.js'
+import signFanClubVc from '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/web5/build/verifiable-credentials/signFanClubVc.snippet.js'
+import satisfiesPresentationDefinitionFanClubVc from '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/web5/build/verifiable-credentials/satisfiesPresentationDefinitionFanClubVc.snippet.js'
+import createPresentationFromCredentialsFanClubVc from  '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/web5/build/verifiable-credentials/createPresentationFromCredentialsFanClubVc.snippet.js'
+import verifyFanClubVc from '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/web5/build/verifiable-credentials/verifyFanClubVc.snippet.js'
+import parseFanClubJwt from '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/web5/build/verifiable-credentials/parseFanClubJwt.snippet.js'
+import createDids from '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/web5/build/verifiable-credentials/createDids.snippet.js'
+import createAndValidatePresentation from '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/web5/build/verifiable-credentials/createAndValidatePresentation.snippet.js'
+
+import createFanClubVcKt from '!!raw-loader!@site/snippets/testsuite-kotlin/src/test/kotlin/docs/web5/build/verifiablecredentials/createFanClubVcKt.snippet.kt'
+import signFanClubVcKt from '!!raw-loader!@site/snippets/testsuite-kotlin/src/test/kotlin/docs/web5/build/verifiablecredentials/signFanClubVcKt.snippet.kt'
+import satisfiesPresentationDefinitionFanClubVcKt from '!!raw-loader!@site/snippets/testsuite-kotlin/src/test/kotlin/docs/web5/build/verifiablecredentials/satisfiesPresentationDefinitionFanClubVcKt.snippet.kt'
+import createPresentationFromCredentialsFanClubVcKt from '!!raw-loader!@site/snippets/testsuite-kotlin/src/test/kotlin/docs/web5/build/verifiablecredentials/createPresentationFromCredentialsFanClubVcKt.snippet.kt'
+import verifyFanClubVcKt from '!!raw-loader!@site/snippets/testsuite-kotlin/src/test/kotlin/docs/web5/build/verifiablecredentials/verifyFanClubVcKt.snippet.kt'
+import parseFanClubJwtKt from '!!raw-loader!@site/snippets/testsuite-kotlin/src/test/kotlin/docs/web5/build/verifiablecredentials/parseFanClubJwtKt.snippet.kt'
+import createDidsKt from '!!raw-loader!@site/snippets/testsuite-kotlin/src/test/kotlin/docs/web5/build/verifiablecredentials/createDidsKt.snippet.kt'
+import createAndValidatePresentationKt from '!!raw-loader!@site/snippets/testsuite-kotlin/src/test/kotlin/docs/web5/build/verifiablecredentials/createAndValidatePresentationKt.snippet.kt'
+
+<LanguageSwitcher languages="JavaScript, Kotlin" />
+
 # Verifiable Credentials for Fan Club Membership
 
 Alice is a long-time fan of one of the biggest pop stars in the world! 
@@ -12,12 +32,64 @@ In this tutorial, we'll learn how to use [verifiable credentials](/docs/web5/lea
 ![Fan Club Membership](/img/vc-fanclub.png)
 
 ## Setting the Stage
-Before we start issuing and verifying credentials, let's set up our environment by installing the [@web5/credentials](https://www.npmjs.com/package/@web5/credentials) and [@web5/dids](https://www.npmjs.com/package/@web5/dids) packages:
+Before we start issuing and verifying credentials, let's set up our environment by installing the <LanguageSwitchLink text='@web5/credentials' links='{"JavaScript": "https://www.npmjs.com/package/@web5/credentials", "Kotlin": "https://mvnrepository.com/artifact/xyz.block/web5-credentials"}'/> and <LanguageSwitchLink text='@web5/dids' links='{"JavaScript": "https://www.npmjs.com/package/@web5/dids", "Kotlin": "https://mvnrepository.com/artifact/xyz.block/web5-dids"}'/> packages:
 
-```bash
+<Shnip
+  inlineSnippets={[
+    {
+      code: `
 npm install @web5/credentials
 npm install @web5/dids
-```
+      `,
+      language: 'JavaScript',
+      codeLanguage: 'bash',
+    },
+    {
+      code: `
+// Configure repositories
+repositories {
+  mavenCentral()
+  maven("https://jitpack.io")
+  maven("https://repo.danubetech.com/repository/maven-public/")
+}
+// Configure dependencies
+dependencies {
+  implementation("xyz.block:web5-credentials:0.10.0")
+  implementation("xyz.block:web5-dids:0.10.0")
+}
+      `,
+      language: 'Kotlin', 
+      breakLineAt:[6]
+    }
+  ]}
+/>
+
+### Import packages
+
+After installing the packages, we'll import them into our project as shown below:
+
+<Shnip
+  inlineSnippets={[
+    {
+      code: `
+import { DidKeyMethod } from '@web5/dids';
+import { VerifiableCredential, PresentationExchange } from '@web5/credentials';
+      `,
+      language: 'JavaScript', 
+      title: 'Issuer.js'
+    },
+    {
+      code: `
+import web5.sdk.crypto.InMemoryKeyManager
+import web5.sdk.dids.methods.key.DidKey
+import web5.sdk.credentials.VerifiableCredential
+import web5.sdk.credentials.PresentationExchange
+      `,
+      language: 'Kotlin', 
+      title: 'Issuer.kt'
+    }
+  ]}
+/>
 
 ## The Cast
 There are a few characters involved in our story:
@@ -29,38 +101,57 @@ There are a few characters involved in our story:
 ## Act 1: Issuing the Credential
 
 In this section, we'll walk through all of the steps required to create and issue a verifiable credential.
-
+ 
 ### Create DIDs
 As a prerequisite, both the Fan Club and Alice need [decentralized identitifiers](/docs/web5/learn/decentralized-identifiers).
 This is because verifiable credentials use DIDs to identify issuers and holders.
 
-If you need to create DIDs, you can do so with the [@web5/dids](https://www.npmjs.com/package/@web5/dids) package:
+If you need to create DIDs, you can do so with the <LanguageSwitchLink text='@web5/credentials' links='{"JavaScript": "https://www.npmjs.com/package/@web5/dids", "Kotlin": "https://mvnrepository.com/artifact/xyz.block/web5-dids"}'/> package:
 
-```js
-import { DidKeyMethod } from '@web5/dids';
-
-const fanClubIssuerDid = await DidKeyMethod.create();
-const aliceDid = await DidKeyMethod.create();
-```
+<Shnip
+   snippets={[
+    { snippetContent: createDids, language: 'JavaScript', title: 'Issuer.js'},
+    { snippetContent: createDidsKt, language: 'Kotlin', title: 'Issuer.kt'},
+    ]}
+/>
 
 ### Model Credential
 
 Now, let's create the **SwiftiesFanClub** credential. 
 We'll first model it with a class with some basic properties, `level` and `legit`:
 
-```js title="Issuer.js"
-import { VerifiableCredential, PresentationExchange } from "@web5/credentials";
-
+<Shnip
+  inlineSnippets={[
+    {
+      code: `
 class SwiftiesFanClub {
-  constructor(level, legit) {
-    // indicates the fan's dedication level
-    this.level = level; 
-
-    // indicates if the fan is a genuine Swiftie
-    this.legit = legit; 
-  }
+    constructor(level, legit) {
+        // indicates the fan's dedication level
+        this.level = level;
+        // indicates if the fan is a genuine Swiftie
+        this.legit = legit;
+    }
 }
-```
+      `,
+      language: 'JavaScript',
+      title: 'Issuer.js',
+      breakLineAt: [4]
+    },
+    {
+      code: `
+data class SwiftiesFanClub(
+    // indicates the fan's dedication level
+    val level: String,
+    // indicates if the fan is a genuine Swiftie
+    val legit: Boolean
+)
+      `,
+      language: 'Kotlin', 
+      title: 'Issuer.kt',
+      breakLineAt: [3]
+    }
+  ]}
+/>
 
 :::note
 Note that credentials can be customized to fit various needs and scenarios. In our example, we used `level` and `legit`, but you could add more properties like `memberSince`, `favoriteAlbum`, or any other relevant data that suits your use case.
@@ -70,14 +161,14 @@ Note that credentials can be customized to fit various needs and scenarios. In o
 
 Next we can create the verifiable credential with an instance of the class:
 
-```js title="Issuer.js"
-const vc = await VerifiableCredential.create({
-  type: 'SwiftiesFanClub',
-  issuer: fanClubIssuerDid.did,
-  subject: aliceDid.did,
-  data: new SwiftiesFanClub('Stan', true)
-});
-```
+<Shnip
+  snippets={[
+    { snippetContent: createFanClubVc, language: 'JavaScript', title: 'Issuer.js'},
+    { snippetContent: createFanClubVcKt, language: 'Kotlin', title: 'Issuer.kt'},
+    ]}
+/>
+
+
 
 ### Credential Properties
 
@@ -96,7 +187,10 @@ Let's break down the `VerifiableCredential.create()` method to understand what e
 
 `VerifiableCredential.create()` returns a VC as a JSON object:
 
-```js
+<Shnip
+  inlineSnippets={[
+    {
+      code: `
 vcDataModel: {
   '@context': [ 'https://www.w3.org/2018/credentials/v1' ],
   type: [ 'VerifiableCredential', 'SwiftiesFanClub' ],
@@ -109,15 +203,47 @@ vcDataModel: {
     legit: true
   }
 }
-```
+      `,
+      language: 'JavaScript',
+    },
+    {
+      code: `
+{
+  "@context": [
+    "https://www.w3.org/2018/credentials/v1"
+  ],
+  "type": [
+    "VerifiableCredential",
+    "SwiftiesFanClub"
+  ],
+  "id": "urn:uuid:daa5ff01-9b7d-485b-9410-22a42952d46c",
+  "issuer": "did:key:z6Mkn4w6nSaWe4fjNJRvaHZwFnMm5VexvjzDeozEu2G7jC34",
+  "issuanceDate": "2023-12-14T08:20:41Z",
+  "credentialSubject": {
+    "id": "did:key:z6MkjGSeekPGE9QfczHWyW8v2ZzJU68kqSHzV7L2dmQyuyDu",
+    "level": "Stan",
+    "legit": true
+  }
+}
+      `,
+      language: 'Kotlin', 
+      codeLanguage: 'json'
+    }
+  ]}
+/>
+
 
 ### Sign Credential
 
 Last but not least, we must cryptographically sign the VC to make it official:
 
-```js title="Issuer.js"
-const signedVcJwt = await vc.sign({ did: fanClubIssuerDid });
-```
+<Shnip
+  snippets={[
+    { snippetContent: signFanClubVc, language: 'JavaScript', title: 'Issuer.js'},
+    { snippetContent: signFanClubVcKt, language: 'Kotlin', title: 'Issuer.kt'},
+    ]}
+/>
+
 
 Signing the credential returns a [VC JSON Web Token](/docs/web5/build/verifiable-credentials/jwt-to-vc#what-is-a-jwt), ideal for secure transmission of the credential.
 
@@ -140,40 +266,54 @@ A presentation exchange is the process where the holder of VCs presents them to 
 ### Create Presentation Definition
 
 To kick off the presentation exchange, the Swag Supplier (verifier) will send a request to Alice, which includes a presentation definition, specifying what credentials or claims are needed.
+
+
+To create and validate this presentation definition, the verifier first needs to import packages from the <LanguageSwitchLink text='@web5/credentials' links='{"JavaScript": "https://www.npmjs.com/package/@web5/credentials", "Kotlin": "https://mvnrepository.com/artifact/xyz.block/web5-credentials"}'/> library.
+
+<Shnip
+  inlineSnippets={[
+    {
+      code: `import { VerifiableCredential, PresentationExchange } from "@web5/credentials";`,
+      language: 'JavaScript',
+      title: 'Verifier.js'
+    },
+    {
+      code:`        
+import web5.sdk.credentials.PresentationExchange
+import web5.sdk.credentials.VerifiableCredential
+import web5.sdk.credentials.VerifiablePresentation
+import web5.sdk.credentials.model.*
+        `,
+      language: 'Kotlin',
+      title: 'Verifier.kt'
+    }
+  ]}
+/>
+
 Here's how the verifier can create the presentation definition, and validate that it is properly formed:
 
-```js title="Verifier.js"
-import { VerifiableCredential, PresentationExchange } from "@web5/credentials";
+<Shnip
+  snippets={[
+      { snippetContent: createAndValidatePresentation, language: 'JavaScript', title: 'Verifier.js'},
+      { snippetContent: createAndValidatePresentationKt, language: 'Kotlin', title: 'Verifier.kt'}
+  ]}
+/>
 
-const presentationDefinition = {
-  'id'                : 'presDefId123',
-  'name'              : 'Swifties Fan Club Presentation Definition',
-  'purpose'           : 'for proving membership in the fan club',
-  'input_descriptors' : [
+
+<Shnip
+  inlineSnippets={[
     {
-      'id'          : 'legitness',
-      'purpose'     : 'are you legit or not?',
-      'constraints' : {
-        'fields': [
-          {
-            'path': [
-              '$.credentialSubject.legit',
-            ]
-          }
-        ]
-      }
+      code: `[ Checked { tag: 'root', status: 'info', message: 'ok' } ]`,
+      content: 'A successful validation would result in:',
+      language: 'JavaScript',
+    },
+    {
+      content: 'If the validation is unsuccessful, `validateDefinition()` will throw an error.',
+      language: 'Kotlin',
     }
-  ]
-};
+  ]}
+/>
 
-const definitionValidation = PresentationExchange.validateDefinition({ presentationDefinition });
-```
-
-A successful validation would result in:
-
-```js
-[ Checked { tag: 'root', status: 'info', message: 'ok' } ]
-```
 
 ### Satisfy Presentation Definition
 
@@ -181,29 +321,30 @@ Once a presentation definition is presented to Alice, she'd want to make sure th
 This can be done by passing the JWT(s) and the presentation definition to `satisfiesPresentationDefinition()` method.
 Typically this step is done by the app that Alice is using to store and present her credentials:
 
-```js title="Wallet.js"
-// Does VC Satisfy the Presentation Definition
-try {
-  PresentationExchange.satisfiesPresentationDefinition({vcJwts: [signedVcJwt], presentationDefinition: presentationDefinition});
-  console.log('\nVC Satisfies Presentation Definition!\n');
-} catch (err) {
-  console.log('VC does not satisfy Presentation Definition: ' + err.message);
-}
-```
+<Shnip
+  snippets={[
+    { snippetContent: satisfiesPresentationDefinitionFanClubVc, language: 'JavaScript', title: 'Wallet.js'},
+    { snippetContent: satisfiesPresentationDefinitionFanClubVcKt, language: 'Kotlin', title: 'Wallet.kt' },
+    ]}
+/>
 
 ### Create Presentation
 
 Once Alice's app is confident that her credential satisfies the presentation definition, the presentation would be created:
 
-```js title="Wallet.js"
-// Create Presentation Result that contains a Verifiable Presentation and Presentation Submission
-const presentationResult = PresentationExchange.createPresentationFromCredentials({vcJwts: [signedVcJwt], presentationDefinition: presentationDefinition });
-console.log('\nPresentation Result: ' + JSON.stringify(presentationResult));
-```
+<Shnip
+  snippets={[
+    { snippetContent: createPresentationFromCredentialsFanClubVc, language: 'JavaScript', title: 'Wallet.js'},
+    { snippetContent: createPresentationFromCredentialsFanClubVcKt, language: 'Kotlin', title: 'Wallet.kt'},
+    ]}
+/>
 
 The result of the presentation:
 
-```json
+<Shnip
+  inlineSnippets={[
+    {
+      code: `
 {
   "presentation": {
     "@context": [
@@ -242,21 +383,55 @@ The result of the presentation:
     ]
   }
 }
-```
+      `,
+      language: 'JavaScript',
+    },
+    {
+      code: `
+{
+  "@context": [
+    "https://www.w3.org/2018/credentials/v1"
+  ],
+  "type": [
+    "VerifiablePresentation"
+  ],
+  "id": "urn:uuid:956875ff-18da-42fe-86ba-c228fa83affa",
+  "presentation_submission": {
+    "id": "kMqRP0zRKaiZNlbtbEIxd",
+    "definitionId": "presDefId123",
+    "descriptorMap": [
+      {
+        "id": "legitness",
+        "format": "jwt_vc",
+        "path": "$.verifiableCredential[0]"
+      }
+    ]
+  },
+  "verifiableCredential": [
+    "eyJ0eXAiOipOSl...WndCJ9.eyJ2YyTk0MN2pDMzQhdG...UR1In0.rtlg8k9KU8_ENkrY06y..."
+   ],
+  "holder": "did:key:z6MkjGSeekPGE9QfczHWyW8v2ZzJU68kqSHzV7L2dmQyuyDu"
+}
+      `,
+      language: 'Kotlin',
+      codeLanguage: 'json' 
+    }
+  ]}
+/>
+
 
 ## Act 3: Verifying the Credential
 
 After receiving the credential, the verifier will want to verify it to ensure that it is valid and has not been tampered with. 
 They can do this with `VerifiableCredential.verify()`. If verification is unsuccessful, an error will be thrown:
 
-```js title="Verifier.js"
-try {
-  await VerifiableCredential.verify({ vcJwt: signedVcJwt });
-  console.log('\nVC Verification successful!\n');
-} catch (err) {
-  console.log('\nVC Verification failed: ' + err.message + '\n');
-}
-```
+<Shnip
+    snippets={[
+    { snippetContent: verifyFanClubVc, language: 'JavaScript', title: 'Verifier.js'},
+    { snippetContent: verifyFanClubVcKt, language: 'Kotlin', title: 'Verifier.kt' },
+    ]}
+/>
+
 
 ### Parse JWT into VC
 
@@ -265,13 +440,20 @@ The signed VC JWT is a secure representation of the credential, ideal for transm
 However, the verifier will likely need to inspect or use the data within the credential.
 They can use `parseJwt()` to convert the JWT back into a `VerifiableCredential` object. 
 
-```js title="Verifier.js"
-const parsedVC = await VerifiableCredential.parseJwt( { vcJwt: signedVcJwt });
-```
+<Shnip
+  snippets={[
+    { snippetContent: parseFanClubJwt, language: 'JavaScript', title: 'Verifier.js'},
+    { snippetContent: parseFanClubJwtKt, language: 'Kotlin', title: 'Verifier.kt' },
+    ]}
+/>
+
 
 This returns:
 
-```js
+<Shnip
+  inlineSnippets={[
+    {
+      code: `
 vcDataModel: {
   '@context': [ 'https://www.w3.org/2018/credentials/v1' ],
   type: [ 'VerifiableCredential', 'SwiftiesFanClub' ],
@@ -284,6 +466,36 @@ vcDataModel: {
     legit: true
   }
 }
-```
+      `,
+      language: 'JavaScript',
+      title: 'Verifier.js'
+    },
+    {
+      code: `
+{
+  "@context": [
+    "https://www.w3.org/2018/credentials/v1"
+  ],
+  "type": [
+    "VerifiableCredential",
+    "SwiftiesFanClub"
+  ],
+  "id": "urn:uuid:daa5ff01-9b7d-485b-9410-22a42952d46c",
+  "issuer": "did:key:z6Mkn4w6nSaWe4fjNJRvaHZwFnMm5VexvjzDeozEu2G7jC34",
+  "issuanceDate": "2023-12-14T08:20:41Z",
+  "credentialSubject": {
+    "id": "did:key:z6MkjGSeekPGE9QfczHWyW8v2ZzJU68kqSHzV7L2dmQyuyDu",
+    "level": "Stan",
+    "legit": true
+  }
+}
+      `,
+      language: 'Kotlin', 
+      codeLanguage: 'json',
+      title: 'Verifier.kt'
+    }
+  ]}
+/>
+
 
 Given Alice's verified credential, she's all set to receive her free merch for being a proud member of the Swifties Fan Club!
