@@ -1,15 +1,22 @@
 ---
 sidebar_position: 3
+hide_title: true
+title: Presentation Definition
 ---
 
-import CodeSnippet from '@site/src/components/CodeSnippet';
+import validatePresentationDefinition from '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/web5/build/verifiable-credentials/validatePresentationDefinition.snippet.js'
 
+
+import validatePresentationDefinitionKt from '!!raw-loader!@site/snippets/testsuite-kotlin/src/test/kotlin/docs/web5/build/verifiablecredentials/validatePresentationDefinitionKt.snippet.kt'
+
+
+<LanguageSwitcher languages="JavaScript, Kotlin" />
 
 # Presentation Definition
 
 If you accept verifiable credentials, you'll want to define what sort of information is necessary to meet the requirements. This specification of expected claims is a **Presentation Definition** (PD).
 
-For example, assume an Employer accepts verifiable credentials as part of a job application. The presentation definition would specify exactly what the Employer will look for in those credentials. This could include things like proof of a degree, past employment history, and maybe a specific certification. 
+For example, assume an Employer accepts verifiable credentials as part of a job application. The presentation definition would specify exactly what the Employer will look for in those credentials. This could include things like proof of a degree, past employment history, and maybe a specific certification.
 
 They're essentially saying, "To consider your application, we need to see these specific pieces of information."
 
@@ -45,12 +52,7 @@ To represent these requirements, the employer creates the PD.
     {
       "name": "Employment and Academic/Certification Requirement",
       "purpose": "Verify the applicant's employment history, and at least one of academic qualification or professional certification",
-      "rule": "pick",
       "min": 2,
-      "from_nested": [
-        {"rule": "pick", "min": 1, "from": "A"},
-        {"rule": "pick", "min": 1, "from": "B"}
-      ]
     }
   ],
   "input_descriptors": [
@@ -58,7 +60,6 @@ To represent these requirements, the employer creates the PD.
       "id": "employmentHistoryVerification",
       "name": "Employment History",
       "purpose": "Verify the applicant's previous employment experiences",
-      "group": ["A"],
       "constraints": {
         "fields": [
           {
@@ -70,12 +71,11 @@ To represent these requirements, the employer creates the PD.
           }
         ]
       }
-    },    
+    },
     {
       "id": "degreeVerification",
       "name": "Degree",
       "purpose": "Confirm the applicant's academic qualification",
-      "group": ["B"],
       "constraints": {
         "fields": [
           {
@@ -92,7 +92,6 @@ To represent these requirements, the employer creates the PD.
       "id": "CEH_CertificationVerification",
       "name": "Certified Ethical Hacker Certification",
       "purpose": "Confirm the applicant holds a Certified Ethical Hacker certification",
-      "group": ["B"],
       "constraints": {
         "fields": [
           {
@@ -169,19 +168,19 @@ The `input_selectors` property is an array of required claims and specifications
 ```js
 {
   "input_descriptors": [
-    
+
   ]
 }
 ```
 
-In this first input descriptor, the Employer provides an `id` for this descriptor. 
+In this first input descriptor, the Employer provides an `id` for this descriptor.
 
 ```js
 {
   "input_descriptors": [
     {
       "id": "employmentHistoryVerification",
-    }    
+    }
   ]
 }
 ```
@@ -198,7 +197,7 @@ The `name` and `purpose` should be human-readable as they may be shown to the us
       "name": "Employment History",
       "purpose": "Verify the applicant's previous employment experiences",
       //highlight-end
-    }   
+    }
   ]
 }
 ```
@@ -216,7 +215,7 @@ The `name` and `purpose` should be human-readable as they may be shown to the us
       "purpose": "Verify the applicant's previous employment experiences",
       //highlight-next-line
       "group": ["A"],
-    }    
+    }
   ]
 }
 ```
@@ -242,7 +241,7 @@ The `constraints` object contains the exact test that the VC will need to pass i
 
       }
       //highlight-end
-    },    
+    },
   ]
 }
 ```
@@ -265,7 +264,7 @@ Under `constraints` is an array of `fields` objects, each object representing a 
         ]
         //highlight-end
       }
-    },    
+    },
   ]
 }
 ```
@@ -293,7 +292,7 @@ The `path` key specifies the location within the VC where the data is expected t
           }
         ]
       }
-    },    
+    },
   ]
 }
 ```
@@ -325,7 +324,7 @@ In this case, the Employer expects the applicant to submit a VC whose type inclu
           }
         ]
       }
-    },    
+    },
   ]
 }
 ```
@@ -425,7 +424,7 @@ For the issuer, the Employer only accepts VCs from the top trusted source who is
         "const": "did:example:123456789abcdefghi"
       }
     }
-//highlight-end   
+//highlight-end
 ```
 
 #### submission_requirements
@@ -449,7 +448,7 @@ The `name` and `purpose` provide human-readable info about the requirements.
 
 #### rule
 
-The `rule` is a required property of `submission_requirements` and must be "all" or "pick" to indicate if all input descriptors in the Presentation Definition must be satisfied, or if the applicant is allowed to pick a subset to satisfy. 
+The `rule` is a required property of `submission_requirements` and must be "all" or "pick" to indicate if all input descriptors in the Presentation Definition must be satisfied, or if the applicant is allowed to pick a subset to satisfy.
 
 In the Employer's case, there are three input selectors, but only two of them must be satisfied, so the PD uses the "pick" rule.
 
@@ -488,7 +487,7 @@ In the case of the employment application, the applicant must present at least o
 
 #### from and from_nested
 
-Within `submission_requirements`, the PD is required to specify how rules apply to each group that exists within the PD. 
+Within `submission_requirements`, the PD is required to specify how rules apply to each group that exists within the PD.
 
 If there's only one group within the PD, then use `from` to indicate that the rule applies to that group. This reads as "pick a minimum of 2 input descriptors to satisfy from group C".
 
@@ -532,14 +531,31 @@ Once the PD is created, you can validate it to ensure there are no errors in its
 
 1. import `PresentationExchange`
 
-```js
-import { PresentationExchange } from "@web5/credentials";
-```
+<Shnip
+  inlineSnippets={[
+    {
+      code: `import { PresentationExchange } from '@web5/credentials';`,
+      language: 'JavaScript',
+    },
+    {
+      code: `
+import web5.sdk.credentials.PresentationExchange
+import web5.sdk.credentials.model.*
+      `,
+      language: 'Kotlin',
+    }
+  ]}
+/>
 
 2. call `validateDefinition()`
 >This assumes the [presentation definition](/docs/web5/build/verifiable-credentials/presentation-definition#example-presentation-definition) is assigned to variable `pd`
 
-<CodeSnippet functionName="validatePresentationDefinition" />
+<Shnip
+  snippets={[
+    { snippetContent: validatePresentationDefinition, language: 'JavaScript' },
+    { snippetContent: validatePresentationDefinitionKt, language: 'Kotlin' },
+    ]}
+/>
 
 If there are errors with the PD, the `status` will be `error`, and the `message` will indicate what's wrong:
 

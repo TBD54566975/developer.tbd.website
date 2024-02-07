@@ -1,5 +1,5 @@
 import { test, expect, describe } from 'vitest';
-import { validatePresentationDefinition } from '../../../../../../code-snippets/web5/build/verifiable-credentials/presentation-definition';
+import { PresentationExchange } from '@web5/credentials';
 
 const pd = {
   id: 'PD_JobApplication_123456',
@@ -84,8 +84,13 @@ const pd = {
 
 describe('VC presentation definitions', () => {
   test('validate presentation definition', async () => {
-    const valResult = await validatePresentationDefinition(pd);
-    expect(Array.isArray(valResult)).toBe(true);
+    // :snippet-start: validatePresentationDefinition
+    const validation = PresentationExchange.validateDefinition({
+      presentationDefinition: pd,
+    });
+    // :snippet-end:
+
+    expect(Array.isArray(validation)).toBe(true);
     expect.soft(valResult[0]).toHaveProperty('status', 'info');
     expect.soft(valResult[0]).toHaveProperty('message', 'ok');
   });
