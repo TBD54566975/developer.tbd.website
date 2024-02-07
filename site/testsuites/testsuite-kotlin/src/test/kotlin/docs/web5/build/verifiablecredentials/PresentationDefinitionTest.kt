@@ -15,7 +15,7 @@ import com.fasterxml.jackson.module.kotlin.registerKotlinModule
  */
 internal class PresentationDefinitionTest {
 
-val ObjectMapper = ObjectMapper()
+val objectMapper = ObjectMapper()
 val pd = PresentationDefinitionV2(
         id = "PD_JobApplication_123456",
         name = "Credentials Verification for Ethical Hacker Job Application",
@@ -101,3 +101,4 @@ val pd = PresentationDefinitionV2(
     // :snippet-end:
     }
   }
+}

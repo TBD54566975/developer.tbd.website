@@ -91,7 +91,7 @@ describe('VC presentation definitions', () => {
     // :snippet-end:
 
     expect(Array.isArray(validation)).toBe(true);
-    expect.soft(valResult[0]).toHaveProperty('status', 'info');
-    expect.soft(valResult[0]).toHaveProperty('message', 'ok');
+    expect.soft(validation[0]).toHaveProperty('status', 'info');
+    expect.soft(validation[0]).toHaveProperty('message', 'ok');
   });
 });
