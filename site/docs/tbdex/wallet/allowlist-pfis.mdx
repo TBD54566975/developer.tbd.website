@@ -1,6 +1,13 @@
 ---
+title: Allowlisting PFIs
+hide_title: true
 sidebar_position: 4
 ---
+
+import isPFIJs from '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/tbdex/wallet/isPFIJs.snippet.js'
+import isPFIKt from '!!raw-loader!@site/snippets/testsuite-kotlin/src/test/kotlin/docs/tbdex/wallet/isPFIKt.snippet.kt'
+
+<LanguageSwitcher languages="JavaScript, Kotlin" />
 
 # Allowlisting PFIs
 
@@ -18,9 +25,12 @@ Consider factors like transaction fees, currency pairs offered, and reputation.
 
 To determine if a PFI is part of the tbDEX network, you can check their [DID document](/docs/web5/learn/did_document) for the `PFI` service type:
 
-```js
-const isPFI = pfiDid.document.service.some(service => service.type === 'PFI');
-```
+<Shnip
+  snippets={[
+    { snippetContent: isPFIJs, language: 'JavaScript' },
+    { snippetContent: isPFIKt, language: 'Kotlin' },
+  ]}
+/>
 
 
 ## Verify PFI Credentials
