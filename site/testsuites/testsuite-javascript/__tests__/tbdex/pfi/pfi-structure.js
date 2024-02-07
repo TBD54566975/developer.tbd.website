@@ -8,7 +8,11 @@ import {
   Close, 
   CallbackError, 
   ErrorDetail 
-} from '@tbdex/http-server'
+} from '@tbdex/http-server';
+
+import { DidDhtMethod } from '@web5/dids';
+
+var pfiDid;
 
 let sampleOffering = {
   "metadata": {
@@ -118,51 +122,51 @@ class DataProvider {
   
 const dataProvider = new DataProvider();
 
-const exchangesApiProvider = {
-  getExchanges: (opts) => {
+class ExchangesApiProvider {
+  getExchanges(opts) {
     // Mock data for getExchanges
     const mockData = [
       [{ message: 'Mock data for getExchanges' }],
       [{ message: 'Another mock data for getExchanges' }]
     ];
     return Promise.resolve(mockData);
-  },
+  }
 
-  getExchange: (opts) => {
+  getExchange(opts) {
     // Mock data for getExchange
     const mockData = [{ message: 'Mock data for getExchange' }];
     return Promise.resolve(mockData);
-  },
+  }
 
-  getRfq: (opts) => {
+  getRfq(opts) {
     // Mock data for getRfq
     const mockData = { id: opts.exchangeId, type: 'Rfq' };
     return Promise.resolve(mockData);
-  },
+  }
 
-  getQuote: (opts) => {
+  getQuote(opts) {
     // Mock data for getQuote
     const mockData = { id: opts.exchangeId, type: 'Quote' };
     return Promise.resolve(mockData);
-  },
+  }
 
-  getOrder: (opts) => {
+  getOrder(opts) {
     // Mock data for getOrder
     const mockData = { id: opts.exchangeId, type: 'Order' };
     return Promise.resolve(mockData);
-  },
+  }
 
-  getOrderStatuses: (opts) => {
+  getOrderStatuses(opts) {
     // Mock data for getOrderStatuses
     const mockData = [{ status: 'Pending' }, { status: 'Completed' }];
     return Promise.resolve(mockData);
-  },
+  }
 
-  getClose: (opts) => {
+  getClose(opts) {
     // Mock data for getClose
     const mockData = { id: opts.exchangeId, type: 'Close' };
     return Promise.resolve(mockData);
-  },
+  }
 
   // :snippet-start: pfiOverviewWriteJs
   async write({ message }) {
@@ -178,28 +182,34 @@ const exchangesApiProvider = {
 };
 
 // :snippet-start: pfiOverviewReadOfferingsJs
-const offeringsApiProvider = {
-  getOffering: (opts) => {
+class OfferingsApiProvider {
+  getOffering(opts) {
       dataProvider.get('offering', opts.id).then(([result]) => {
           if (!result) {
               return undefined
           }
-          return Offering.factory(result.offering)
+          return Offering.create({
+            metadata: { from: this.pfiDid },
+            data: result.offering
+          })
       });
-  },
+  }
 
-  getOfferings: (opts) => {
+  getOfferings(opts) {
     dataProvider.query('offering', "*").then((results) => {
         const offerings = []
   
         for (let result of results) {
-            const offering = Offering.factory(result.offering)
+            const offering = Offering.create({
+              metadata: { from: this.pfiDid },
+              data: result.offering
+            })
             offerings.push(offering)
         }
     
         return offerings
     });
-  },
+  }
 
   // :snippet-end:
 
@@ -216,9 +226,14 @@ const offeringsApiProvider = {
 };  
 
 // :snippet-start: pfiOverviewConfigJs
+var exchangesApiProvider = ExchangesApiProvider();
+var offeringsApiProvider = OfferingsApiProvider();
+this.pfiDid = await DidDhtMethod.create({ publish: true});
+
 const tbDexServer = new TbdexHttpServer({ 
   exchangesApi: exchangesApiProvider, 
-  offeringsApi: offeringsApiProvider 
+  offeringsApi: offeringsApiProvider,
+  pfiDid: pfiDid.did 
 })
 // :snippet-end:
 
@@ -238,6 +253,6 @@ tbDexServer.submit('close', async (ctx, close) => {
 
 // :snippet-start: pfiOverviewServerStartJs
 const server = tbDexServer.listen(8080, () => {
-    console.log.info(`PFI listening on port ${8080}`)
+    console.log(`PFI listening on port ${8080}`)
 })
 // :snippet-end:
