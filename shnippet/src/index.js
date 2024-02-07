@@ -1,9 +1,12 @@
-const fs = require('fs');
-const path = require('path');
+const fs = require("fs");
+const path = require("path");
 
 class SnippetExtractor {
   constructor(config) {
-    this.config = config;
+    this.config = {
+      outputDirectoryStructure: "organized",
+      ...config,
+    };
   }
 
   extractSnippetsFromFile(content) {
@@ -17,15 +20,15 @@ class SnippetExtractor {
         endIndex
       )) !== -1
     ) {
-      const startTagClose = content.indexOf('\n', startIndex);
+      const startTagClose = content.indexOf("\n", startIndex);
       if (startTagClose === -1) {
-        console.log('Snippet start tag not followed by newline. Skipping...');
+        console.log("Snippet start tag not followed by newline. Skipping...");
         break;
       }
 
       endIndex = content.indexOf(this.config.snippetTags.end, startTagClose);
       if (endIndex === -1) {
-        console.log('No closing tag found for a snippet. Skipping...');
+        console.log("No closing tag found for a snippet. Skipping...");
         break;
       }
 
@@ -35,11 +38,11 @@ class SnippetExtractor {
           startTagClose
         )
         .trim();
-      const endTagStart = content.lastIndexOf('\n', endIndex);
+      const endTagStart = content.lastIndexOf("\n", endIndex);
       let snippetContent = content.substring(startTagClose + 1, endTagStart);
 
       // Normalize indentation
-      const lines = snippetContent.split('\n');
+      const lines = snippetContent.split("\n");
       const minIndent = lines.reduce((min, line) => {
         const currentIndent = line.match(/^\s*/)[0].length;
         return line.trim() ? Math.min(min, currentIndent) : min;
@@ -47,18 +50,14 @@ class SnippetExtractor {
 
       snippetContent = lines
         .map((line) => line.substring(minIndent))
-        .join('\n');
+        .join("\n");
 
       if (snippetName) {
         snippets[snippetName] = snippetContent;
       }
 
       // Update endIndex to the position after the end tag
-      endIndex = content.indexOf('\n', endIndex) + 1;
-      if (endIndex === 0) {
-        // If no newline after end tag, break the loop
-        break;
-      }
+      endIndex = content.indexOf("\n", endIndex) + 1;
     }
 
     return snippets;
@@ -76,32 +75,45 @@ class SnippetExtractor {
         stat.isFile() &&
         this.config.fileExtensions.includes(path.extname(fullPath))
       ) {
-        const content = fs.readFileSync(fullPath, 'utf-8');
+        const content = fs.readFileSync(fullPath, "utf-8");
         const fileSnippets = this.extractSnippetsFromFile(content);
 
         for (const [snippetName, snippetContent] of Object.entries(
           fileSnippets
         )) {
-          const relativePath = path.relative(
-            this.config.rootDirectory,
-            directory
+          const language = this.getLanguageFromExtension(
+            path.extname(fullPath)
           );
-          const snippetDir = path.join(
-            this.config.outputDirectory,
-            relativePath
-          );
+          const snippetDir =
+            this.config.outputDirectoryStructure === "byLanguage"
+              ? path.join(this.config.outputDirectory, language)
+              : this.config.outputDirectory;
+
           if (!fs.existsSync(snippetDir)) {
             fs.mkdirSync(snippetDir, { recursive: true });
           }
 
-          const outputFileName = `${snippetName}.snippet${path.extname(
-            fullPath
-          )}`;
+          const outputFileName = `${snippetName}.snippet.js`;
           const outputPath = path.join(snippetDir, outputFileName);
-          fs.writeFileSync(outputPath, snippetContent);
+          fs.writeFileSync(
+            outputPath,
+            `export default ${JSON.stringify(snippetContent)};`
+          );
         }
       }
     });
+  }
+
+  getLanguageFromExtension(extension) {
+    const extensionToLanguageMap = {
+      ".js": "js",
+      ".ts": "ts",
+      ".kt": "kt",
+      ".swift": "swift",
+      // Add other mappings as needed
+    };
+
+    return extensionToLanguageMap[extension] || "other";
   }
 
   extractSnippets() {

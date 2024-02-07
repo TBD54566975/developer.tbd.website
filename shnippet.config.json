@@ -1,10 +1,10 @@
 {
-    "rootDirectory": "./site/testsuites",
-    "outputDirectory": "./site/snippets",
-    "fileExtensions": [".js", ".ts", ".kt"],
-    "snippetTags": {
-      "start": ":snippet-start:",
-      "end": ":snippet-end:"
-    }
-  }
-  
+  "rootDirectory": "./site/testsuites",
+  "outputDirectory": "./site/snippets",
+  "fileExtensions": [".js", ".ts", ".kt"],
+  "snippetTags": {
+    "start": ":snippet-start:",
+    "end": ":snippet-end:"
+  },
+  "outputDirectoryStructure": "byLanguage"
+}
