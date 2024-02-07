@@ -1,6 +1,4 @@
-import de.fxlae.typeid.TypeId
 import tbdex.sdk.httpserver.models.*
-import java.util.NoSuchElementException
 import tbdex.sdk.protocol.models.*
 import tbdex.sdk.httpserver.TbdexHttpServer
 import tbdex.sdk.httpserver.TbdexHttpServerConfig
@@ -126,31 +124,31 @@ class ExchangesApiProvider : ExchangesApi {
 
     private val fakeExchangesApi = FakeExchangesApi()
 
-    override fun getClose(exchangeId: String?): Close? {
+    override fun getClose(exchangeId: String): Close {
         return fakeExchangesApi.getClose(exchangeId)
     }
 
-    override fun getExchange(id: List<String>?): List<MessageKind>? {
+    override fun getExchange(id: String): List<Message> {
         return fakeExchangesApi.getExchange(id)
     }
 
-    override fun getExchanges(filter: GetExchangesFilter?): List<List<Message>>? {
+    override fun getExchanges(filter: GetExchangesFilter? = null): List<List<Message>> {
         return fakeExchangesApi.getExchanges(filter) ?: emptyList()
     }
 
-    override fun getOrder(exchangeId: String?): Order? {
+    override fun getOrder(exchangeId: String): Order {
         return fakeExchangesApi.getOrder(exchangeId)
     }
 
-    override fun getOrderStatuses(exchangeId: String?): List<OrderStatus>? {
+    override fun getOrderStatuses(exchangeId: String): List<OrderStatus> {
         return fakeExchangesApi.getOrderStatuses(exchangeId)
     }
 
-    override fun getQuote(exchangeId: String?): Quote? {
+    override fun getQuote(exchangeId: String): Quote {
         return fakeExchangesApi.getQuote(exchangeId)
     }
 
-    override fun getRfq(exchangeId: String?): Rfq? {
+    override fun getRfq(exchangeId: String): Rfq {
         return fakeExchangesApi.getRfq(exchangeId)
     }
 
@@ -170,13 +168,10 @@ class ExchangesApiProvider : ExchangesApi {
 
 // :snippet-start: pfiOverviewReadOfferingsKt
 class OfferingsApiProvider : OfferingsApi {
-    override fun getOffering(id: String?): Offering? {
+
+    override fun getOffering(id: String): Offering {
         val result = dataProvider.get("offering", id ?: "")
-        return if (result != null) {
-            Offering.parse(result as String)
-        } else {
-            null
-        }
+        return Offering.parse(result as String)
     }
 
     override fun getOfferings(filter: GetOfferingsFilter?): List<Offering> {
