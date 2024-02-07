@@ -132,7 +132,7 @@ class ExchangesApiProvider : ExchangesApi {
         return fakeExchangesApi.getExchange(id)
     }
 
-    override fun getExchanges(filter: GetExchangesFilter? = null): List<List<Message>> {
+    override fun getExchanges(filter: GetExchangesFilter?): List<List<Message>> {
         return fakeExchangesApi.getExchanges(filter) ?: emptyList()
     }
 
