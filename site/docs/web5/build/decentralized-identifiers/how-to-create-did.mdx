@@ -5,17 +5,6 @@ sidebar_position: 1
 
 <LanguageSwitcher languages="JavaScript, Kotlin"/>
 
-import CodeSnippet from '@site/src/components/CodeSnippet';
-
-
-import createDidDht from '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/web5/build/decentralized-identifiers/createDidDht.snippet.js'
-import createDidKey from '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/web5/build/decentralized-identifiers/createDidKey.snippet.js'
-import requiredDidImports from '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/web5/build/decentralized-identifiers/requiredDidImports.snippet.js'
-
-
-import createDidDhtKt from '!!raw-loader!@site/snippets/testsuite-kotlin/src/test/kotlin/docs/web5/build/decentralizedidentifiers/createDidDhtKt.snippet.kt'
-import createDidKeyKt from '!!raw-loader!@site/snippets/testsuite-kotlin/src/test/kotlin/docs/web5/build/decentralizedidentifiers/createDidKeyKt.snippet.kt'
-import requiredDidImportsKt from '!!raw-loader!@site/snippets/testsuite-kotlin/src/test/kotlin/docs/web5/build/decentralizedidentifiers/requiredDidImportsKt.snippet.kt'
 
 [Decentralized Identifiers (DIDs)](/docs/web5/learn/decentralized-identifiers) are how you are identified on the decentralized web.
 This guide covers how to use Web5 to create a DID.
@@ -24,19 +13,12 @@ You can create a DID using any of the [Web5-supported DID methods](/docs/web5/le
 
 **Import the DID Method you'd like to use:**
 
-<Shnip
-  snippets={[
-    { snippetContent: requiredDidImports, language: 'JavaScript' },
-    { snippetContent: requiredDidImportsKt, language: 'Kotlin' },
-  ]}
-/>
-
 ### did:dht
 
 <Shnip
   snippets={[
-    { snippetContent: createDidDht, language: 'JavaScript' },
-    { snippetContent: createDidDhtKt, language: 'Kotlin' },
+    { snippetName: 'createDidDht', language: 'JavaScript' },
+    { snippetName: 'createDidDht', language: 'Kotlin' },
     ]}
 />
 
@@ -44,8 +26,8 @@ You can create a DID using any of the [Web5-supported DID methods](/docs/web5/le
 
 <Shnip
   snippets={[
-    { snippetContent: createDidKey, language: 'JavaScript' },
-    { snippetContent: createDidKeyKt, language: 'Kotlin' },
+    { snippetName: 'createDidKey', language: 'JavaScript' },
+    { snippetName: 'createDidKey', language: 'Kotlin' },
     ]}
 />
 
