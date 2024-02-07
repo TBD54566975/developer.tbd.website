@@ -7,6 +7,7 @@ const CodeSnippet = ({
   importString,
   snippet,
   language = 'javascript',
+  title
 }) => {
   let finalSnippet;
 
@@ -27,7 +28,7 @@ const CodeSnippet = ({
     finalSnippet = snippet;
   }
 
-  return <CodeBlock language={language}>{finalSnippet}</CodeBlock>;
+  return <CodeBlock title={title} language={language}>{finalSnippet}</CodeBlock>;
 };
 
 export default CodeSnippet;
