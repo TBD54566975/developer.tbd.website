@@ -109,8 +109,12 @@ internal class FanClubVcTest {
                 )
             )
         )
-        
-        val definitionValidation = PresentationExchange.validateDefinition(presentationDefinition)
+        try {
+            PresentationExchange.validateDefinition(presentationDefinition)
+            println("Presentation Definition is valid!")
+        } catch (err: Exception) {
+            println("Presentation Definition is not valid: " + err.message)
+        }
         // :snippet-end:
         assertDoesNotThrow {PresentationExchange.validateDefinition(presentationDefinition)}
   }
