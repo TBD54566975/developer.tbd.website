@@ -139,34 +139,33 @@ class ExchangesApiProvider : ExchangesApi {
 
     private val fakeExchangesApi = FakeExchangesApi()
 
-    override fun getClose(exchangeId: String?): Close? {
-        return fakeExchangesApi.getClose(exchangeId)
-    }
+    override fun getClose(exchangeId: String): Close {
+      return fakeExchangesApi.getClose(exchangeId)
+  }
 
-    override fun getExchange(id: List<String>?): List<MessageKind>? {
-        return fakeExchangesApi.getExchange(id)
-    }
+  override fun getExchange(id: String): List<Message> {
+      return fakeExchangesApi.getExchange(id)
+  }
 
-    override fun getExchanges(filter: GetExchangesFilter?): List<List<Message>>? {
-        return fakeExchangesApi.getExchanges(filter) ?: emptyList()
-    }
+  override fun getExchanges(filter: GetExchangesFilter?): List<List<Message>> {
+      return fakeExchangesApi.getExchanges(filter) ?: emptyList()
+  }
 
-    override fun getOrder(exchangeId: String?): Order? {
-        return fakeExchangesApi.getOrder(exchangeId)
-    }
+  override fun getOrder(exchangeId: String): Order {
+      return fakeExchangesApi.getOrder(exchangeId)
+  }
 
-    override fun getOrderStatuses(exchangeId: String?): List<OrderStatus>? {
-        return fakeExchangesApi.getOrderStatuses(exchangeId)
-    }
+  override fun getOrderStatuses(exchangeId: String): List<OrderStatus> {
+      return fakeExchangesApi.getOrderStatuses(exchangeId)
+  }
 
-    override fun getQuote(exchangeId: String?): Quote? {
-        return fakeExchangesApi.getQuote(exchangeId)
-    }
+  override fun getQuote(exchangeId: String): Quote {
+      return fakeExchangesApi.getQuote(exchangeId)
+  }
 
-    override fun getRfq(exchangeId: String?): Rfq? {
-        return fakeExchangesApi.getRfq(exchangeId)
-    }
-
+  override fun getRfq(exchangeId: String): Rfq {
+      return fakeExchangesApi.getRfq(exchangeId)
+  }
 
     fun write(message: Message) {
         val data = mapOf(
@@ -178,44 +177,25 @@ class ExchangesApiProvider : ExchangesApi {
         )
         dataProvider.insert("exchange", data)
     }
-
 }
 
 class OfferingsApiProvider : OfferingsApi {
-    override fun getOffering(id: String?): Offering? {
-        val result = dataProvider.get("offering", id ?: "")
-        return if (result != null) {
-            Offering.parse(result as String)
-        } else {
-            null
-        }
-    }
+  override fun getOffering(id: String): Offering {
+    val result = dataProvider.get("offering", id ?: "")
+    return Offering.parse(result as String)
+  }
 
-    override fun getOfferings(filter: GetOfferingsFilter?): List<Offering> {
-        val results = dataProvider.query("offering", "*")
-        val offerings = mutableListOf<Offering>()
+  override fun getOfferings(filter: GetOfferingsFilter?): List<Offering> {
+      val results = dataProvider.query("offering", "*")
+      val offerings = mutableListOf<Offering>()
 
-        for (result in results) {
-            val offering = Offering.parse(result as String)
-            offerings.add(offering)
-        }
+      for (result in results) {
+          val offering = Offering.parse(result as String)
+          offerings.add(offering)
+      }
 
-        return offerings
-    }
-
-
-    suspend fun create(offering: Offering) {
-        dataProvider.insert(
-            "offering",
-            mapOf(
-                "offeringid" to offering.metadata.id,
-                "payoutcurrency" to offering.data.payoutCurrency.currencyCode,
-                "payincurrency" to offering.data.payinCurrency.currencyCode
-            )
-        )
-    }
-
-
+      return offerings
+  }
 }
 //---------------------------------------------------------------------------//
 //---------------------------------------------------------------------------//
