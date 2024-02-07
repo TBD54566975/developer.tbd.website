@@ -87,7 +87,10 @@ await rfq.sign(customer); // Customer's PortableDid
 Use `TbdexHttpClient` to send the RFQ to the PFI. With an optional `replyTo` property containing a valid URI where new messages from the PFI will be sent:
 
 ```js
-const rfqResponse = await TbdexHttpClient.sendMessage({ message: rfq, replyTo: 'https://tbdex.io/callback' });
+const rfqResponse = await TbdexHttpClient.sendMessage({
+    message: rfq,
+    replyTo: 'https://tbdex.io/callback'
+});
 ```
 
 The response contains a `status`, where success would be `202`:
