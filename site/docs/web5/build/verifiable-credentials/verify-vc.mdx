@@ -1,9 +1,18 @@
 ---
+title: Verify VCs
+hide_title: true
 sidebar_position: 2
 ---
 
-import CodeSnippet from '@site/src/components/CodeSnippet';
+import verifyVcs from '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/web5/build/verifiable-credentials/verifyVcs.snippet.js'
+import errorsFound from '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/web5/build/verifiable-credentials/errorsFound.snippet.js'
+import evaluatePresentation from '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/web5/build/verifiable-credentials/evaluatePresentation.snippet.js'
 
+import verifyVcsKt from '!!raw-loader!@site/snippets/testsuite-kotlin/src/test/kotlin/docs/web5/build/verifiablecredentials/verifyVcsKt.snippet.kt'
+import errorsFoundKt from '!!raw-loader!@site/snippets/testsuite-kotlin/src/test/kotlin/docs/web5/build/verifiablecredentials/errorsFoundKt.snippet.kt'
+
+
+<LanguageSwitcher languages="JavaScript, Kotlin" />
 
 # Verify VCs
 
@@ -38,7 +47,13 @@ A Presentation object includes multiple things including the presentation submis
 <details>
 <summary>Example Presentation Result</summary>
 
-```js
+
+<Shnip
+    inlineSnippets={[
+    {
+      language: 'JavaScript',
+      content: 'The JavaScript SDK returns a Presentation Result:',
+      code: `
 {
   "presentation": {
     "@context": [
@@ -100,27 +115,101 @@ A Presentation object includes multiple things including the presentation submis
     ]
   }
 }
-```
+      `
+    },
+    {
+      content: 'The Kotlin SDK returns a Verifiable Presentation:',
+      language: 'Kotlin',
+      codeLanguage: 'json',
+      code: `
+{
+  "@context": [
+    "https://www.w3.org/2018/credentials/v1"
+  ],
+  "type": [
+    "VerifiablePresentation"
+  ],
+  "id": "urn:uuid:8b993a35-b4d7-4788-b9a5-88fdc5c36fec",
+  "presentation_submission": {
+    "id": "d9fda7f3-9e6e-41e4-8b1b-06b7b4aa8451",
+    "definitionId": "presDefIdloanAppVerification123",
+    "descriptorMap": [
+      {
+        "id": "employmentVerification",
+        "format": "jwt_vc",
+        "path": "$.verifiableCredential[0]"
+      },
+      {
+        "id": "dobVerification",
+        "format": "jwt_vc",
+        "path": "$.verifiableCredential[1]"
+      },
+      {
+        "id": "nameVerification",
+        "format": "jwt_vc",
+        "path": "$.verifiableCredential[1]"
+      }
+    ]
+  },
+    //highlight-start
+    "verifiableCredential": [
+        "/* JWT VC for EmploymentCredential */",
+        "/* JWT VC for PIICredential */",
+    ]
+    //highlight-end
+  "holder": "/* Subject's DID */."
+}
+      `
+    }
+  ]}
+/>
+
 </details>
 
 Since the VC JWTs are part of the larger [Presentation JSON object](/docs/web5/build/verifiable-credentials/presentation-exchange#create-presentation), they must be extracted and verified individually.
 Below is an example of how this might be implemented:
 
-<CodeSnippet functionName="verifyCredentials" />
+<Shnip
+  snippets={[
+    { snippetContent: verifyVcs, language: 'JavaScript'},
+    { snippetContent: verifyVcsKt, language: 'Kotlin'}
+    ]}
+/>
+
 
 The code snippet above shows how to extract the VC JWTs from the Presentation and verify each one, aggregating the results.
 
 The Verifier would then examine the results of the verifications to determine the errors:
 
-<CodeSnippet functionName="checkVerificationResults" />
-
+<Shnip
+  snippets={[
+    { snippetContent: errorsFound, language: 'JavaScript'},
+    { snippetContent: errorsFoundKt, language: 'Kotlin'}
+    ]}
+/>
 
 ## Evaluate Presentation
+
+:::note
+The information in this section is only applicable to the JavaScript SDK.
+:::
 
 After verifying the authenticity of the VCs, the next step is to ensure that they actually satisfy the requirements outlined in the presentation definition.
 This can be done via the `PresentationExchange.evaluatePresentation()` function:
 
-<CodeSnippet functionName="evaluatePresentation" />
+<Shnip
+  snippets={[
+    { snippetContent: evaluatePresentation, language: 'JavaScript'},
+  ]}
+    inlineSnippets={[
+    {
+      content: 'This functionality does not exist in the Kotlin SDK.',
+      language: 'Kotlin',
+    }
+  ]}
+/>
+
+
 
 <details>
 <summary>Example Evaluation Results</summary>
