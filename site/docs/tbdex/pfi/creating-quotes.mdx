@@ -1,12 +1,21 @@
 ---
 title: Creating Quotes
+hide_title: true
 sidebar_position: 7
 ---
 
 import pfiQuotesWriteJs from '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/tbdex/pfi/pfiQuotesWriteJs.snippet.js'
 import pfiQuotesWriteKt from '!!raw-loader!@site/snippets/testsuite-kotlin/src/test/kotlin/docs/tbdex/pfi/pfiQuotesWriteKt.snippet.kt'
+import pfiQuotesProcessJs from '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/tbdex/pfi/pfiQuotesProcessJs.snippet.js'
+import pfiQuotesProcessKt from '!!raw-loader!@site/snippets/testsuite-kotlin/src/test/kotlin/docs/tbdex/pfi/pfiQuotesProcessKt.snippet.kt'
+import pfiQuotesSendJs from '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/tbdex/pfi/pfiQuotesSendJs.snippet.js'
+import pfiQuotesSendKt from '!!raw-loader!@site/snippets/testsuite-kotlin/src/test/kotlin/docs/tbdex/pfi/pfiQuotesSendKt.snippet.kt'
+import pfiQuotesSignJs from '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/tbdex/pfi/pfiQuotesSignJs.snippet.js'
+import pfiQuotesSignKt from '!!raw-loader!@site/snippets/testsuite-kotlin/src/test/kotlin/docs/tbdex/pfi/pfiQuotesSignKt.snippet.kt'
 
 <LanguageSwitcher languages="JavaScript, Kotlin"/>
+
+# Creating Quotes
 
 When you receive an `RFQ` message, you’ll want to do the following:
 
@@ -38,7 +47,7 @@ The `RFQ` class offers the [verifyOfferingRequirements](https://tbd54566975.gith
 
 <Shnip snippets={
   [
-    { snippetContent: pfiQuotesProcesss, language: 'JavaScript'},
+    { snippetContent: pfiQuotesProcessJs, language: 'JavaScript'},
     { snippetContent: pfiQuotesProcessKt, language: 'Kotlin'}
   ]} />
 

@@ -254,7 +254,7 @@ async function createQuoteFromRfq(message) {
     }
     // :snippet-end:
 
-    // :snippet-start: pfiQuotesSendKt
+    // :snippet-start: pfiQuotesSendJs
     const quote = Quote.create(
         {
           metadata: {
@@ -277,7 +277,7 @@ async function createQuoteFromRfq(message) {
     );
     // :snippet-end:
 
-    // :snippet-start: pfiQuotesSignKt
+    // :snippet-start: pfiQuotesSignJs
     await quote.sign(config.did.privateKey, config.did.kid)
     this.write(quote)
     // :snippet-end:
