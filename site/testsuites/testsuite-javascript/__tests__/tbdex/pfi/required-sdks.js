@@ -1,6 +1,7 @@
 // :snippet-start: pfiSdkImportJs
 import { 
     TbdexHttpServer, 
+    Offering,
     Rfq, 
     Quote, 
     Order, 

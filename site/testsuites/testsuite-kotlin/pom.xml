@@ -27,6 +27,9 @@
         -->
         <version.tbdex>0.9.0-beta</version.tbdex>
 
+        <!-- Test Dependencies -->
+        <version.ktor>2.3.7</version.ktor>
+
         <!-- ALR Dark Arts to Make tbDEX and Web5 Play Nice -->
         <!--
         Will eventually go bye-bye once the
@@ -79,6 +82,14 @@
               <version>${version.tbdex}</version>
             </dependency>
 
+            <!-- Test Dependencies -->
+            <dependency>
+              <groupId>io.ktor</groupId>
+              <artifactId>ktor-server-netty-jvm</artifactId>
+              <version>${version.ktor}</version>
+              <scope>test</scope>
+            </dependency>
+
             <!-- ALR Dark Arts to Make tbDEX and Web5 Play Nice -->
             <!--
             Will eventually go bye-bye once the
@@ -127,6 +138,12 @@
         <dependency>
           <groupId>xyz.block</groupId>
           <artifactId>tbdex-protocol</artifactId>
+        </dependency>
+
+        <!-- Test Dependencies -->
+        <dependency>
+          <groupId>io.ktor</groupId>
+          <artifactId>ktor-server-netty-jvm</artifactId>
         </dependency>
     </dependencies>
 
