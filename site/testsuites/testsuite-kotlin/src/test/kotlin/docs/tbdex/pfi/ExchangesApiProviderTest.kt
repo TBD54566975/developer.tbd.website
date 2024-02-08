@@ -1,4 +1,4 @@
-package package website.tbd.developer.site.docs.tbdex
+package website.tbd.developer.site.docs.tbdex
 
 import tbdex.sdk.httpserver.models.*
 import tbdex.sdk.protocol.models.*
