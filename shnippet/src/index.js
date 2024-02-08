@@ -99,7 +99,6 @@ class SnippetExtractor {
         outputPath,
         `export default ${JSON.stringify(snippetContent)};`
       );
-      console.log(`Snippet written to: ${outputPath}`);
     }
   }
 
