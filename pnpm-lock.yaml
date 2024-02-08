@@ -1,9 +1,5 @@
 lockfileVersion: '6.0'
 
-settings:
-  autoInstallPeers: true
-  excludeLinksFromLockfile: false
-
 importers:
 
   .:
@@ -449,6 +445,12 @@ importers:
       rollup:
         specifier: 2.61.1
         version: 2.61.1
+
+  shnippet:
+    dependencies:
+      rimraf:
+        specifier: ^5.0.5
+        version: 5.0.5
 
   site:
     dependencies:
@@ -21175,3 +21177,7 @@ packages:
   /zwitch@1.0.5:
     resolution: {integrity: sha512-V50KMwwzqJV0NpZIZFwfOD5/lyny3WlSzRiXgA0G7VUnRlqttta1L6UQIHzd6EuBY/cHGfwTIck7w1yH6Q5zUw==}
     dev: false
+
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false

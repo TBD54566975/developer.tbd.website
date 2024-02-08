@@ -4,7 +4,7 @@ const path = require("path");
 class SnippetExtractor {
   constructor(config) {
     this.config = {
-      outputDirectoryStructure: "organized",
+      outputDirectoryStructure: "organized", // Default to "organized" if not specified
       ...config,
     };
   }
@@ -56,21 +56,20 @@ class SnippetExtractor {
         snippets[snippetName] = snippetContent;
       }
 
-      // Update endIndex to the position after the end tag
       endIndex = content.indexOf("\n", endIndex) + 1;
     }
 
     return snippets;
   }
 
-  processDirectory(directory) {
+  processDirectory(directory, relativePath = "") {
     const items = fs.readdirSync(directory);
     items.forEach((item) => {
       const fullPath = path.join(directory, item);
       const stat = fs.statSync(fullPath);
 
       if (stat.isDirectory()) {
-        this.processDirectory(fullPath);
+        this.processDirectory(fullPath, path.join(relativePath, item));
       } else if (
         stat.isFile() &&
         this.config.fileExtensions.includes(path.extname(fullPath))
@@ -81,27 +80,61 @@ class SnippetExtractor {
         for (const [snippetName, snippetContent] of Object.entries(
           fileSnippets
         )) {
-          const language = this.getLanguageFromExtension(
-            path.extname(fullPath)
-          );
-          const snippetDir =
-            this.config.outputDirectoryStructure === "byLanguage"
-              ? path.join(this.config.outputDirectory, language)
-              : this.config.outputDirectory;
-
-          if (!fs.existsSync(snippetDir)) {
-            fs.mkdirSync(snippetDir, { recursive: true });
-          }
-
-          const outputFileName = `${snippetName}.snippet.js`;
-          const outputPath = path.join(snippetDir, outputFileName);
-          fs.writeFileSync(
-            outputPath,
-            `export default ${JSON.stringify(snippetContent)};`
+          this.writeSnippetToFile(
+            snippetName,
+            snippetContent,
+            fullPath,
+            relativePath
           );
         }
       }
     });
+  }
+
+  writeSnippetToFile(snippetName, snippetContent, fullPath, relativePath) {
+    const language = this.getLanguageFromExtension(path.extname(fullPath));
+    let outputPath;
+
+    switch (this.config.outputDirectoryStructure) {
+      case "flat":
+        outputPath = path.join(
+          this.config.outputDirectory,
+          `${snippetName}.snippet.js`
+        );
+        break;
+      case "match":
+        outputPath = path.join(
+          this.config.outputDirectory,
+          relativePath,
+          `${snippetName}.snippet.js`
+        );
+        break;
+      case "byLanguage":
+        outputPath = path.join(
+          this.config.outputDirectory,
+          language,
+          `${snippetName}.snippet.js`
+        );
+        break;
+      case "organized":
+      default:
+        // Organized could mean organized by language or another criteria you define
+        outputPath = path.join(
+          this.config.outputDirectory,
+          language,
+          `${snippetName}.snippet.js`
+        );
+        break;
+    }
+
+    if (!fs.existsSync(path.dirname(outputPath))) {
+      fs.mkdirSync(path.dirname(outputPath), { recursive: true });
+    }
+
+    fs.writeFileSync(
+      outputPath,
+      `export default ${JSON.stringify(snippetContent)};`
+    );
   }
 
   getLanguageFromExtension(extension) {
