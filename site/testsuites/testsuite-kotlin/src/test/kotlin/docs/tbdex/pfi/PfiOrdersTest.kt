@@ -1,18 +1,14 @@
 package website.tbd.developer.site.docs.tbdex.pfi
 
+import de.fxlae.typeid.TypeId
 import foundation.identity.did.Service
 import tbdex.sdk.httpserver.models.*
 import tbdex.sdk.protocol.models.*
-import tbdex.sdk.httpserver.TbdexHttpServer
-import tbdex.sdk.httpserver.TbdexHttpServerConfig
 import web5.sdk.dids.methods.dht.DidDht
-import tbdex.sdk.httpserver.models.SubmitKind
 import web5.sdk.crypto.InMemoryKeyManager
 import web5.sdk.dids.methods.dht.CreateDidDhtOptions
 import website.tbd.developer.site.docs.tbdex.*
 import java.net.URI
-import web5.sdk.crypto.InMemoryKeyManager
-import web5.sdk.dids.methods.dht.CreateDidDhtOptions
 
 class PfiOrdersTest {
     fun main() {
@@ -34,9 +30,15 @@ class PfiOrdersTest {
         val pfiDid = DidDht.create(InMemoryKeyManager(), pfiOptions)
         val senderDid = DidDht.create(InMemoryKeyManager(), senderOptions)
         val exchangesApiProvider = ExchangesApiProviderTest()
-    
+
+        val message = Order.create(
+            to = pfiDid.toString(),
+            from = senderDid.toString(),
+            exchangeId = TypeId.generate(MessageKind.rfq.name)
+        )
+
         // :snippet-start: pfiOrdersStatusKt
-        if (message.kind == 'order') {
+        if (message.metadata.kind == MessageKind.order ) {
             val orderStatus = OrderStatus.create(
                 to = pfiDid.toString(),
                 from = message.metadata.from,
