@@ -1,7 +1,7 @@
 {
   "rootDirectory": "./site/testsuites",
   "outputDirectory": "./site/snippets",
-  "fileExtensions": [".js", ".ts", ".kt"],
+  "fileExtensions": [".js", ".ts", ".kt", ".gradle", ".xml", ".bash"],
   "snippetTags": {
     "start": ":snippet-start:",
     "end": ":snippet-end:"

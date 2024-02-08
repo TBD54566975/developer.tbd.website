@@ -152,6 +152,7 @@ class SnippetExtractor {
       ".ts": "typescript",
       ".kt": "kt",
       ".swift": "swift",
+      ".gradle": "gradle",
     };
 
     return extensionToLanguageMap[extension] || "other";

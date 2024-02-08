@@ -20,7 +20,7 @@
     "test:kotlin": "./site/testsuites/testsuite-kotlin/mvnw clean verify -f site/testsuites/testsuite-kotlin",
     "test:swift": "swift test --package-path ./site/testsuites/testsuite-swift",
     "test:rust": "cd ./site/testsuites/testsuite-rust && cargo test",
-    "shnip": "node ./shnippet/src/cli"
+    "shnip": "node ./shnippet/src/cli --structure match && node ./shnippet/src/cli --structure byLanguage"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "6.4.2",
