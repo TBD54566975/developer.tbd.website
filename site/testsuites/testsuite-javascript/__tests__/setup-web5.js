@@ -19,11 +19,7 @@ export const setUpWeb5 = async () => {
       }
     : undefined;
 
-  console.info('Setting up Web5 >>>', { dwnOptions });
-
   const { web5, did } = await Web5.connect(dwnOptions);
-
-  console.info('Web5 setup complete!');
 
   globalThis.web5 = web5;
   globalThis.did = did;
