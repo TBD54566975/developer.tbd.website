@@ -402,22 +402,10 @@ import web5.sdk.credentials.model.*
     ]}
 />
 
-If there are errors with the PD, the `status` will be `error`, and the `message` will indicate what's wrong:
+If there are errors with the PD, an error will be thrown:
 
-```js
-[
-  Checked {
-    tag: 'root.presentation_definition',
-    status: 'error',
-    message: 'input descriptor group should match the from in submission requirements.'
-  }
-]
 ```
-
-If there are no errors with the PD, the `status` will be `info`, and `message` will be `ok`:
-
-```js
-[ Checked { tag: 'root', status: 'info', message: 'ok' } ]
+This is not a valid PresentationDefinition
 ```
 
 ## Example Credentials

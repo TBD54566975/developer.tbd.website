@@ -1,11 +1,10 @@
-import { test, expect, describe } from 'vitest';
+import { test, expect, describe, vi } from 'vitest';
 import { PresentationExchange } from '@web5/credentials';
 
 const pd = {
   id: 'PD_JobApplication_123456',
   name: 'Credentials Verification for Ethical Hacker Job Application',
-  purpose:
-    "To verify the applicant's employment history, and either their academic degree or Certified Ethical Hacker certification",
+  purpose: "To verify the applicant's employment history, and either their academic degree or Certified Ethical Hacker certification",
   input_descriptors: [
     {
       id: 'employmentHistoryVerification',
@@ -65,16 +64,19 @@ const pd = {
   ],
 };
 
-describe('VC presentation definitions', () => {
+describe('Presentation Definition Validation', () => {
   test('validate presentation definition', async () => {
+    const consoleSpy = vi.spyOn(console, 'log');
+
     // :snippet-start: validatePresentationDefinition
-    const validation = PresentationExchange.validateDefinition({
-      presentationDefinition: pd,
-    });
+    try {
+      PresentationExchange.validateDefinition({ presentationDefinition: pd });
+    } catch (e) {
+      console.log(e);
+    }
     // :snippet-end:
 
-    expect(Array.isArray(validation)).toBe(true);
-    expect.soft(validation[0]).toHaveProperty('status', 'info');
-    expect.soft(validation[0]).toHaveProperty('message', 'ok');
+    expect(consoleSpy).not.toHaveBeenCalled();
+    consoleSpy.mockRestore();
   });
 });

@@ -82,9 +82,8 @@ val pd = PresentationDefinitionV2(
     // :snippet-start: validatePresentationDefinitionKt
     try {
         PresentationExchange.validateDefinition(pd)
-        println("Presentation Definition is valid!")
     } catch (err: Exception) {
-        println("Presentation Definition is not valid: " + err.message)
+        println(err.message)
     }
     // :snippet-end:
     }
