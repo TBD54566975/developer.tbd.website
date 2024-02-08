@@ -15,6 +15,8 @@ import io.ktor.server.response.*
 import io.ktor.server.routing.*
 import website.tbd.developer.site.docs.tbdex.*
 import java.net.URI
+import web5.sdk.crypto.InMemoryKeyManager
+import web5.sdk.dids.methods.dht.CreateDidDhtOptions
 
 class PfiStructureTest {
     fun main() {
@@ -38,7 +40,7 @@ class PfiStructureTest {
     
         val serverConfig = TbdexHttpServerConfig(
             port = 8080,
-            pfiDid = pfiDid,
+            pfiDid = pfiDid.uri,
             exchangesApi = exchangesApiProvider,
             offeringsApi = offeringsApiProvider
         )
