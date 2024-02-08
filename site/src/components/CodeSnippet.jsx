@@ -49,7 +49,7 @@ const CodeSnippet = ({
         );
       }
     }
-  }, [snippetName, language]); // Dependencies for the new system
+  }, [snippetName, language]);
 
   let finalSnippet;
 
