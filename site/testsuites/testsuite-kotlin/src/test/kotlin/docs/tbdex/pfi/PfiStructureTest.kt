@@ -13,6 +13,8 @@ import io.ktor.server.engine.*
 import io.ktor.server.netty.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
+import web5.sdk.crypto.InMemoryKeyManager
+import web5.sdk.dids.methods.dht.CreateDidDhtOptions
 import website.tbd.developer.site.docs.tbdex.*
 import java.net.URI
 
