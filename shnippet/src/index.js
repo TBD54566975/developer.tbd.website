@@ -4,7 +4,7 @@ const path = require("path");
 class SnippetExtractor {
   constructor(config) {
     this.config = {
-      outputDirectoryStructure: "organized", // Default to "organized" if not specified
+      outputDirectoryStructure: "organized",
       ...config,
     };
   }
@@ -38,33 +38,39 @@ class SnippetExtractor {
           startTagClose
         )
         .trim();
-      const endTagStart = content.lastIndexOf("\n", endIndex);
-      let snippetContent = content.substring(startTagClose + 1, endTagStart);
+      let snippetContent = content
+        .substring(startTagClose + 1, endIndex)
+        .trim();
 
       // Normalize indentation
-      const lines = snippetContent.split("\n");
-      const minIndent = lines.reduce((min, line) => {
-        const currentIndent = line.match(/^\s*/)[0].length;
-        return line.trim() ? Math.min(min, currentIndent) : min;
-      }, Infinity);
-
-      snippetContent = lines
-        .map((line) => line.substring(minIndent))
-        .join("\n");
+      snippetContent = this.normalizeIndentation(snippetContent);
 
       if (snippetName) {
         snippets[snippetName] = snippetContent;
       }
 
-      endIndex = content.indexOf("\n", endIndex) + 1;
+      endIndex += this.config.snippetTags.end.length; // Ensure we move past the end tag
     }
 
     return snippets;
   }
 
+  normalizeIndentation(snippetContent) {
+    const lines = snippetContent.split("\n");
+    const minIndent = lines.reduce((min, line) => {
+      if (line.trim()) {
+        const leadingSpaces = line.match(/^(\s*)/)[1].length;
+        return Math.min(min, leadingSpaces);
+      }
+      return min;
+    }, Infinity);
+
+    return lines.map((line) => line.substring(minIndent)).join("\n");
+  }
+
   processDirectory(directory, relativePath = "") {
     const items = fs.readdirSync(directory);
-    items.forEach((item) => {
+    for (const item of items) {
       const fullPath = path.join(directory, item);
       const stat = fs.statSync(fullPath);
 
@@ -72,57 +78,64 @@ class SnippetExtractor {
         this.processDirectory(fullPath, path.join(relativePath, item));
       } else if (
         stat.isFile() &&
-        this.config.fileExtensions.includes(path.extname(fullPath))
+        this.config.fileExtensions.includes(path.extname(item))
       ) {
         const content = fs.readFileSync(fullPath, "utf-8");
         const fileSnippets = this.extractSnippetsFromFile(content);
-
-        for (const [snippetName, snippetContent] of Object.entries(
-          fileSnippets
-        )) {
-          this.writeSnippetToFile(
-            snippetName,
-            snippetContent,
-            fullPath,
-            relativePath
-          );
-        }
+        this.writeSnippetsToFile(fileSnippets, fullPath, relativePath);
       }
-    });
+    }
   }
 
-  writeSnippetToFile(snippetName, snippetContent, fullPath, relativePath) {
-    const language = this.getLanguageFromExtension(path.extname(fullPath));
+  writeSnippetsToFile(snippets, fullPath, relativePath) {
+    for (const [snippetName, snippetContent] of Object.entries(snippets)) {
+      // Determine output path based on configuration
+      const outputPath = this.determineOutputPath(
+        snippetName,
+        fullPath,
+        relativePath
+      );
+      fs.writeFileSync(
+        outputPath,
+        `export default ${JSON.stringify(snippetContent)};`
+      );
+      console.log(`Snippet written to: ${outputPath}`);
+    }
+  }
+
+  determineOutputPath(snippetName, fullPath, relativePath) {
+    const extension = path.extname(fullPath);
+    const language = this.getLanguageFromExtension(extension);
     let outputPath;
 
     switch (this.config.outputDirectoryStructure) {
       case "flat":
         outputPath = path.join(
           this.config.outputDirectory,
-          `${snippetName}.snippet.js`
+          `${snippetName}.snippet${extension}`
         );
         break;
       case "match":
         outputPath = path.join(
           this.config.outputDirectory,
           relativePath,
-          `${snippetName}.snippet.js`
+          `${snippetName}.snippet${extension}`
         );
         break;
       case "byLanguage":
         outputPath = path.join(
           this.config.outputDirectory,
           language,
-          `${snippetName}.snippet.js`
+          `${snippetName}.snippet${extension}`
         );
         break;
       case "organized":
       default:
-        // Organized could mean organized by language or another criteria you define
         outputPath = path.join(
           this.config.outputDirectory,
           language,
-          `${snippetName}.snippet.js`
+          snippetName,
+          `index${extension}`
         );
         break;
     }
@@ -131,19 +144,15 @@ class SnippetExtractor {
       fs.mkdirSync(path.dirname(outputPath), { recursive: true });
     }
 
-    fs.writeFileSync(
-      outputPath,
-      `export default ${JSON.stringify(snippetContent)};`
-    );
+    return outputPath;
   }
 
   getLanguageFromExtension(extension) {
     const extensionToLanguageMap = {
       ".js": "js",
-      ".ts": "ts",
+      ".ts": "typescript",
       ".kt": "kt",
       ".swift": "swift",
-      // Add other mappings as needed
     };
 
     return extensionToLanguageMap[extension] || "other";
