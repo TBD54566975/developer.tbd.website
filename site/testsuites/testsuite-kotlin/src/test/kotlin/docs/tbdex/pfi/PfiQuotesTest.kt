@@ -11,12 +11,6 @@ import tbdex.sdk.httpserver.TbdexHttpServerConfig
 import web5.sdk.crypto.AwsKeyManager
 import web5.sdk.dids.methods.dht.DidDht
 import tbdex.sdk.httpserver.models.SubmitKind
-import io.ktor.http.*
-import io.ktor.server.application.*
-import io.ktor.server.engine.*
-import io.ktor.server.netty.*
-import io.ktor.server.response.*
-import io.ktor.server.routing.*
 import web5.sdk.crypto.InMemoryKeyManager
 import web5.sdk.dids.Did
 import web5.sdk.dids.methods.jwk.DidJwk
