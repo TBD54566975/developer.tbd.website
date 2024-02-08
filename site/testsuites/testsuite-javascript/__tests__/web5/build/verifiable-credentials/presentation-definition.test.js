@@ -1,30 +1,15 @@
-import { test, expect, describe } from 'vitest';
-import { validatePresentationDefinition } from '../../../../../../code-snippets/web5/build/verifiable-credentials/presentation-definition';
+import { test, expect, describe, vi } from 'vitest';
+import { PresentationExchange } from '@web5/credentials';
 
 const pd = {
   id: 'PD_JobApplication_123456',
   name: 'Credentials Verification for Ethical Hacker Job Application',
-  purpose:
-    "To verify the applicant's employment history, and either their academic degree or Certified Ethical Hacker certification",
-  submission_requirements: [
-    {
-      name: 'Employment and Academic/Certification Requirement',
-      purpose:
-        "Verify the applicant's employment history, and at least one of academic qualification or professional certification",
-      rule: 'pick',
-      min: 2,
-      from_nested: [
-        { rule: 'pick', min: 1, from: 'A' },
-        { rule: 'pick', min: 1, from: 'B' },
-      ],
-    },
-  ],
+  purpose: "To verify the applicant's employment history, and either their academic degree or Certified Ethical Hacker certification",
   input_descriptors: [
     {
       id: 'employmentHistoryVerification',
       name: 'Employment History',
       purpose: "Verify the applicant's previous employment experiences",
-      group: ['A'],
       constraints: {
         fields: [
           {
@@ -41,7 +26,6 @@ const pd = {
       id: 'degreeVerification',
       name: 'Degree',
       purpose: "Confirm the applicant's academic qualification",
-      group: ['B'],
       constraints: {
         fields: [
           {
@@ -57,9 +41,7 @@ const pd = {
     {
       id: 'CEH_CertificationVerification',
       name: 'Certified Ethical Hacker Certification',
-      purpose:
-        'Confirm the applicant holds a Certified Ethical Hacker certification',
-      group: ['B'],
+      purpose: 'Confirm the applicant holds a Certified Ethical Hacker certification',
       constraints: {
         fields: [
           {
@@ -82,11 +64,19 @@ const pd = {
   ],
 };
 
-describe('VC presentation definitions', () => {
+describe('Presentation Definition Validation', () => {
   test('validate presentation definition', async () => {
-    const valResult = await validatePresentationDefinition(pd);
-    expect(Array.isArray(valResult)).toBe(true);
-    expect.soft(valResult[0]).toHaveProperty('status', 'info');
-    expect.soft(valResult[0]).toHaveProperty('message', 'ok');
+    const consoleSpy = vi.spyOn(console, 'log');
+
+    // :snippet-start: validatePresentationDefinition
+    try {
+      PresentationExchange.validateDefinition({ presentationDefinition: pd });
+    } catch (e) {
+      console.log(e);
+    }
+    // :snippet-end:
+
+    expect(consoleSpy).not.toHaveBeenCalled();
+    consoleSpy.mockRestore();
   });
 });

@@ -40,6 +40,9 @@ The `did:dht` method is based on the Pkarr project and utilizes BitTorrent's Mai
 
 The `did:key` method is a simple, lightweight way to create a DID. It is based on a public key, and it is self-contained, meaning it does not rely on any external blockchain or registry. This makes `did:key` a convenient method for use cases that don't require the complexity and additional features provided by other DID methods.
 
+### DID Method - Jwk
+The `did:jwk` method, similar to the `did:key` method, is designed for simplicity and self-containment in creating a DID. It involves encoding a JSON Web Key (JWK) using base64url. This method appeals to those seeking a straightforward approach.
+
 ### DID Method - Web
 
 The `did:web` method is a type of Decentralized Identifier (DID) method that enables the creation of DIDs using a web domain name as the unique identifier, allowing for DIDs to be created and managed using existing web infrastructure and technologies, without requiring a specific blockchain or distributed ledger. The method utilizes HTTP(S) URLs to resolve DIDs and provides a flexible and decentralized way to manage digital identities on the web. However, the security and privacy of the `did:web:` method may depend on the web domain provider and the associated security measures in place.
