@@ -153,6 +153,8 @@ class SnippetExtractor {
       ".kt": "kt",
       ".swift": "swift",
       ".gradle": "gradle",
+      ".bash": "bash",
+      ".xml": "xml",
     };
 
     return extensionToLanguageMap[extension] || "other";
