@@ -2,8 +2,11 @@ package website.tbd.developer.site.docs.tbdex
 
 import tbdex.sdk.httpserver.models.*
 import tbdex.sdk.protocol.models.*
+import website.tbd.developer.site.docs.tbdex.MockDataProviderTest
 
 class OfferingsApiProviderTest : OfferingsApi {
+
+    private val dataProvider = MockDataProviderTest()
 
     // :snippet-start: pfiOverviewReadOfferingsKt
     override fun getOffering(id: String): Offering {

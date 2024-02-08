@@ -17,7 +17,7 @@ import website.tbd.developer.site.docs.tbdex.*
 
 
 fun main() {
-    val dataProvider = MockDataProvider()
+    val dataProvider = MockDataProviderTest()
 
     // :snippet-start: pfiOverviewConfigKt
     val exchangesApiProvider = ExchangesApiProviderTest()

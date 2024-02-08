@@ -2,10 +2,12 @@ package website.tbd.developer.site.docs.tbdex
 
 import tbdex.sdk.httpserver.models.*
 import tbdex.sdk.protocol.models.*
+import website.tbd.developer.site.docs.tbdex.MockDataProviderTest
 
 class ExchangesApiProviderTest : ExchangesApi {
 
     private val fakeExchangesApi = FakeExchangesApi()
+    private val dataProvider = MockDataProviderTest()
 
     override fun getClose(exchangeId: String): Close {
         return fakeExchangesApi.getClose(exchangeId)
