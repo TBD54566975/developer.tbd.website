@@ -20,7 +20,6 @@ function findConfigFile() {
 function clearOutputDirectory(outputDirectory) {
   if (fs.existsSync(outputDirectory)) {
     rimraf.sync(outputDirectory);
-    console.log(`Cleared: ${outputDirectory}`);
   } else {
     console.log(`Output directory does not exist: ${outputDirectory}`);
   }
