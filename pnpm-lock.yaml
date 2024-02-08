@@ -71,6 +71,9 @@ importers:
       playwright:
         specifier: 1.39.0
         version: 1.39.0
+      rimraf:
+        specifier: 5.0.5
+        version: 5.0.5
       start-server-and-test:
         specifier: 2.0.2
         version: 2.0.2
@@ -17588,7 +17591,6 @@ packages:
     hasBin: true
     dependencies:
       glob: 10.3.10
-    dev: false
 
   /ripemd160@2.0.2:
     resolution: {integrity: sha512-ii4iagi25WusVoiC4B4lq7pbXfAp3D9v5CwfkY33vffw2+pkDjY1D8GaN7spsxvCSx8dkPqOZCEZyfxcmJG2IA==}
