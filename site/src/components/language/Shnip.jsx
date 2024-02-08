@@ -30,7 +30,7 @@ const Shnip = ({ snippets, inlineSnippets }) => {
           snippets.map(
             ({ snippetContent, language, title, content }, index) => (
               <div key={`snippet-${language}-${index}`} language={language}>
-                {content && <ReactMarkdown>{content}</ReactMarkdown>}
+                {content && <div style={{ paddingTop: '20px' }}><ReactMarkdown>{content}</ReactMarkdown></div>}
                 <CodeSnippet
                   snippet={snippetContent}
                   language={language.toLowerCase()}
@@ -44,7 +44,7 @@ const Shnip = ({ snippets, inlineSnippets }) => {
           inlineSnippets.map(
             ({ content, code, language, codeLanguage, breakLineAt, title }, index) => (
               <div key={`inline-${language}-${index}`} language={language}>
-                {content && <ReactMarkdown>{content}</ReactMarkdown>}
+                {content && <div style={{ paddingTop: '20px' }}><ReactMarkdown>{content}</ReactMarkdown></div>}
                 {code && <CodeBlock
                   language={(codeLanguage || language).toLowerCase()}
                   title={title}
