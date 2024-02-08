@@ -1,6 +1,23 @@
 ---
+title: Structuring a PFI App
+hide_title: true
 sidebar_position: 5
 ---
+
+import pfiOverviewConfigJs from '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/tbdex/pfi/pfiOverviewConfigJs.snippet.js'
+import pfiOverviewConfigKt from '!!raw-loader!@site/snippets/testsuite-kotlin/src/test/kotlin/docs/tbdex/pfi/pfiOverviewConfigKt.snippet.kt'
+import serverRoutesJs from '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/tbdex/pfi/pfiOverviewServerRoutesJs.snippet.js'
+import serverRoutesKt from '!!raw-loader!@site/snippets/testsuite-kotlin/src/test/kotlin/docs/tbdex/pfi/pfiOverviewServerRoutesKt.snippet.kt'
+import serverStartJs from '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/tbdex/pfi/pfiOverviewServerStartJs.snippet.js'
+import serverStartKt from '!!raw-loader!@site/snippets/testsuite-kotlin/src/test/kotlin/docs/tbdex/pfi/pfiOverviewServerStartKt.snippet.kt'
+import pfiOverviewWriteJs from '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/tbdex/pfi/pfiOverviewWriteJs.snippet.js'
+import pfiOverviewWriteKt from '!!raw-loader!@site/snippets/testsuite-kotlin/src/test/kotlin/docs/tbdex/pfi/pfiOverviewWriteKt.snippet.kt'
+import readOfferingsJs from '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/tbdex/pfi/pfiOverviewReadOfferingsJs.snippet.js'
+import readOfferingsKt from '!!raw-loader!@site/snippets/testsuite-kotlin/src/test/kotlin/docs/tbdex/pfi/pfiOverviewReadOfferingsKt.snippet.kt'
+import writeOfferingsJs from '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/tbdex/pfi/pfiOverviewWriteOfferingsJs.snippet.js'
+import writeOfferingsKt from '!!raw-loader!@site/snippets/testsuite-kotlin/src/test/kotlin/docs/tbdex/pfi/pfiOverviewWriteOfferingsKt.snippet.kt'
+
+<LanguageSwitcher languages="JavaScript, Kotlin"/>
 
 # Structuring a PFI App
 
@@ -20,45 +37,36 @@ Your main server entrypoint should fulfill the following responsibilities:
 * Accept `GET` requests for Offerings and Exchanges data
 * Handle submission requests for new `RFQ`, `Order`, and `Close` messages
 
-To begin, you’ll want to configure your server with the required exchange and offerings API providers:
-```js
-import { TbdexHttpServer } from '@tbdex/http-server'
+To begin, you’ll want to configure your server with the required exchange and offerings API providers (the details of those API providers will be in the sections below):
 
-const httpApi = new TbdexHttpServer({ exchangesApi: ExchangeApiProvider, offeringsApi: OfferingApiProvider })
-```
-
+<Shnip snippets={
+  [
+    { snippetContent: pfiOverviewConfigJs, language: 'JavaScript'},
+    { snippetContent: pfiOverviewConfigKt, language: 'Kotlin'}
+  ]} />
 
 The [message types](/docs/tbdex/message-types) that are sent from Wallets to PFIs are: `RFQ`, `Order`, and `Close`. 
 As a result, you’ll want to ensure that your PFI is programmed to accept those messages and create appropriate messages in response:
 
-
-```js
-httpApi.submit('rfq', async (ctx, rfq) => {
-  await ExchangeApiProvider.write({ message: rfq as Rfq })
-})
-
-httpApi.submit('order', async (ctx, order) => {
-  await ExchangeApiProvider.write({ message: order as Order })
-})
-
-httpApi.submit('close', async (ctx, close) => {
-  await ExchangeApiProvider.write({ message: close as Close })
-})
-```
-
+<Shnip snippets={
+  [
+    { snippetContent: serverRoutesJs, language: 'JavaScript'},
+    { snippetContent: serverRoutesKt, language: 'Kotlin'}
+  ]} />
 
 With your routes configured, set your server to begin listening:
 
-
-```js
-const server = httpApi.listen(config.port, () => {
-  log.info(`Mock PFI listening on port ${config.port}`)
-})
-```
-
+<Shnip snippets={
+  [
+    { snippetContent: serverStartJs, language: 'JavaScript'},
+    { snippetContent: serverStartKt, language: 'Kotlin'}
+  ]} />
 
 Now your server is configured with the appropriate routing setup.
 
+:::note
+Error handling for things like duplicate RFQs, invalid data, and non-existent Offerings is automatically handled by the tbDEX SDK behind the scenes. Your app can focus on implementing business logic rather than needing to worry about input validation.
+:::
 
 ## Exchange API Provider
 
@@ -70,21 +78,11 @@ Using the sample code above as reference, the submission of `RFQ`, `Order`, or `
 As a PFI developer, you’ll be responsible for designing your own data storage and provider to access your data. 
 Assuming a generic `dataProvider` class serves as your PFI’s means of accessing your Exchange data, here's an example of a `write()` implementation:
 
-
-```js
- async write(opts: { message: MessageKindClass }) {
-  const result = await dataProvider.insert(
-        'exchange',
-      {
-        exchangeid: message.exchangeId,
-        messagekind: message.kind,
-        messageid: message.id,
-        subject,
-        message: JSON.stringify(message)
-      });
-}  
-```
-
+<Shnip snippets={
+  [
+    { snippetContent: pfiOverviewWriteJs, language: 'JavaScript'},
+    { snippetContent: pfiOverviewWriteKt, language: 'Kotlin'}
+  ]} />
 
 After writing an `RFQ` to the database, you can [create a Quote](/docs/tbdex/pfi/creating-quotes). 
 Similarly, after writing an `Order` to your database, you’ll want to ensure you properly [process that Order](/docs/tbdex/pfi/processing-orders).
@@ -97,48 +95,18 @@ The `Offerings` API is the set of methods that deals with reading and writing an
 Although the Offerings API isn’t directly exposed in the main server entrypoint, it is still used to fetch and write offerings to your PFI's database. 
 Here's an example of how to get offerings as specified by the `OfferingsApi` interface:
 
-
-```js
-import { Offering } from '@tbdex/http-server'
-
-async getOffering(opts: {id: string}): Promise<Offering> {
-    const [ result ] =  await dataProvider.queryForOffering('offering', opts.id);
-
-    if (!result) {
-      return undefined
-    }
-
-    return Offering.factory(result.offering)
-
-  }
-
-  async getOfferings(): Promise<Offering[]> {
-    const results =  await dataProvider.getOfferings('offering');
-
-    const offerings: Offering[] = []
-    for (let result of results) {
-      const offering = Offering.factory(result.offering)
-      offerings.push(offering)
-    }
-
-    return offerings
-  }
-```
-
+<Shnip snippets={
+  [
+    { snippetContent: readOfferingsJs, language: 'JavaScript'},
+    { snippetContent: readOfferingsKt, language: 'Kotlin'}
+  ]} />
 
 Additionally, you could write `Offerings` into your database:
 
-```js
-async create(offering: Offering) {
-    let result = await dataProvider.insert(
-        'offering',
-      {
-        offeringid: offering.id,
-        payoutcurrency: offering.payoutCurrency.currencyCode,
-        payincurrency: offering.payinCurrency.currencyCode,
-        offering: JSON.stringify(offering)
-      });
-  }
-```
+<Shnip snippets={
+  [
+    { snippetContent: writeOfferingsJs, language: 'JavaScript'},
+    { snippetContent: writeOfferingsKt, language: 'Kotlin'}
+  ]} />
 
 By implementing the `getOffering()` and `getOfferings()` methods, you'll allow Wallets to get a specific Offering they'd be interested in, or query all your Offerings, respectively. The convenience of the tbDEX SDK is that you aren't required to actually write an API endpoint yourself to handle interfacing with Wallets as the SDK handles it all for you.
