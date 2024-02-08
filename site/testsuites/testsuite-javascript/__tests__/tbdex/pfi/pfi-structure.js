@@ -225,10 +225,18 @@ class OfferingsApiProvider {
     // :snippet-end:
 };  
 
+this.pfiDid = await DidDhtMethod.create({
+  publish: false,
+  services: [{
+      id: 'pfi',
+      type: 'PFI',
+      serviceEndpoint: 'tbdex-pfi.tbddev.org'
+  }]
+})
+
 // :snippet-start: pfiOverviewConfigJs
 var exchangesApiProvider = ExchangesApiProvider();
 var offeringsApiProvider = OfferingsApiProvider();
-this.pfiDid = await DidDhtMethod.create({ publish: true});
 
 const tbDexServer = new TbdexHttpServer({ 
   exchangesApi: exchangesApiProvider, 
