@@ -239,7 +239,6 @@ async function createQuoteFromRfq(message) {
     //highlight-end
     // :snippet-end:
 
-    // :snippet-start: pfiQuotesProcessJs
     const rfqOptions = {
         data: message.data(), 
         metadata: message.metadata()
@@ -247,6 +246,7 @@ async function createQuoteFromRfq(message) {
 
     const rfq = Rfq.create(rfqOptions)
 
+    // :snippet-start: pfiQuotesProcessJs
     try {
         await rfq.verifyOfferingRequirements(offering)
     } catch(e) {
@@ -278,7 +278,7 @@ async function createQuoteFromRfq(message) {
     // :snippet-end:
 
     // :snippet-start: pfiQuotesSignJs
-    await quote.sign(config.did.privateKey, config.did.kid)
+    await quote.sign(pfiDid)
     this.write(quote)
     // :snippet-end:
 

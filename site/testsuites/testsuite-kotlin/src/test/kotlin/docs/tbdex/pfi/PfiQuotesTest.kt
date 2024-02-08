@@ -26,6 +26,7 @@ class PfiQuotesTest {
     val dataProvider = MockDataProviderTest()
 
     // :snippet-start: pfiQuotesWriteKt
+   // Write the message to your exchanges database
     val data = mapOf(
         "exchangeid" to message.metadata.exchangeId,
         "messagekind" to message.metadata.kind,
