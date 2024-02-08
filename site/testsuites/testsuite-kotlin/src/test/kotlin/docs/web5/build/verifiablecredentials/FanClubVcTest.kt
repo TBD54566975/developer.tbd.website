@@ -111,7 +111,6 @@ internal class FanClubVcTest {
         )
         try {
             PresentationExchange.validateDefinition(presentationDefinition)
-            println("Presentation Definition is valid!")
         } catch (err: Exception) {
             println("Presentation Definition is not valid: " + err.message)
         }
@@ -128,13 +127,12 @@ internal class FanClubVcTest {
     // Does VC Satisfy the Presentation Definition
     try {
         PresentationExchange.satisfiesPresentationDefinition(listOf(signedVcJwt), presentationDefinition)
-        println("VC Satisfies Presentation Definition!")
     } catch (err: Exception) {
         println("VC does not satisfy Presentation Definition: " + err.message)
     }
     // :snippet-end:
 
-    assertTrue(outContent.toString().contains("VC Satisfies Presentation Definition!"))
+    assertFalse(outContent.toString().contains("VC does not satisfy Presentation Definition:"))
     System.setOut(System.out)
   }
 
@@ -149,7 +147,6 @@ internal class FanClubVcTest {
         holder = aliceDid.uri,
         additionalData = mapOf("presentation_submission" to presentationResult)
     )
-    println("Presentation Result and Verifiable Presentation" + vp)
     // :snippet-end:
    assertEquals("presDefId123", presentationResult.definitionId)
    assertEquals("VerifiablePresentation", vp.vpDataModel.type)  
@@ -163,12 +160,11 @@ internal class FanClubVcTest {
     // :snippet-start: verifyFanClubVcKt
     try {
         VerifiableCredential.verify(signedVcJwt)
-        println("VC Verification successful!")
     } catch (err: Exception) {
         println("VC Verification failed:" + err.message)
     }
     // :snippet-end:
-    assertTrue(outContent.toString().contains("VC Verification successful!"))
+    assertFalse(outContent.toString().contains("VC Verification failed:"))
     System.setOut(System.out)
   }
 
