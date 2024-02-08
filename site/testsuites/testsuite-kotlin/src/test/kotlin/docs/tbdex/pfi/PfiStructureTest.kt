@@ -17,8 +17,7 @@ import web5.sdk.crypto.InMemoryKeyManager
 import web5.sdk.dids.methods.dht.CreateDidDhtOptions
 import website.tbd.developer.site.docs.tbdex.*
 import java.net.URI
-import web5.sdk.crypto.InMemoryKeyManager
-import web5.sdk.dids.methods.dht.CreateDidDhtOptions
+
 
 class PfiStructureTest {
     fun main() {
