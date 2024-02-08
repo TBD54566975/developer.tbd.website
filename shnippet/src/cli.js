@@ -46,7 +46,6 @@ function main() {
     const structureValue = args[structureFlagIndex + 1];
     const validStructures = ["flat", "match", "organized", "byLanguage"];
     if (validStructures.includes(structureValue)) {
-      console.log(`Setting output directory structure to '${structureValue}'`);
       config.outputDirectoryStructure = structureValue;
     } else {
       console.error(
