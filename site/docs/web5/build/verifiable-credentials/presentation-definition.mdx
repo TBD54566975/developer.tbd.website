@@ -5,18 +5,18 @@ title: Presentation Definition
 ---
 
 import validatePresentationDefinition from '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/web5/build/verifiable-credentials/validatePresentationDefinition.snippet.js'
-
-
 import validatePresentationDefinitionKt from '!!raw-loader!@site/snippets/testsuite-kotlin/src/test/kotlin/docs/web5/build/verifiablecredentials/validatePresentationDefinitionKt.snippet.kt'
-
 
 <LanguageSwitcher languages="JavaScript, Kotlin" />
 
 # Presentation Definition
 
-If you accept verifiable credentials, you'll want to define what sort of information is necessary to meet the requirements. This specification of expected claims is a **Presentation Definition** (PD).
+If you accept verifiable credentials, you'll want to define what sort of information is necessary to meet the requirements. 
+This specification of expected claims is a **Presentation Definition** (PD).
 
-For example, assume an Employer accepts verifiable credentials as part of a job application. The presentation definition would specify exactly what the Employer will look for in those credentials. This could include things like proof of a degree, past employment history, and maybe a specific certification.
+For example, assume an Employer accepts verifiable credentials as part of a job application. 
+The presentation definition would specify exactly what the Employer will look for in those credentials. 
+This could include things like proof of a degree, past employment history, and maybe a specific certification.
 
 They're essentially saying, "To consider your application, we need to see these specific pieces of information."
 
@@ -24,18 +24,10 @@ They're essentially saying, "To consider your application, we need to see these 
 
 An employer decides that an applicant must provide proof of:
 
-<p style={{ border: '1px solid yellow', padding: '10px' }}>employment history (at least one VC)</p>
+* employment history
+* degree in a field related to Engineering, Computer Science, or Security
+* Certified Ethical Hacker certification issued by a specific trusted organization
 
-**AND** one of the following:
-
-<p style={{ border: '1px solid yellow', padding: '10px' }}>
-degree in a field related to Engineering, Computer Science, or Security
-<br />
-
-**OR**
-
-Certified Ethical Hacker certification issued by a specific trusted organization
-</p>
 
 ### Example Presentation Definition
 To represent these requirements, the employer creates the PD.
@@ -48,13 +40,6 @@ To represent these requirements, the employer creates the PD.
   "id": "PD_JobApplication_123456",
   "name": "Credentials Verification for Ethical Hacker Job Application",
   "purpose": "To verify the applicant's employment history, and either their academic degree or Certified Ethical Hacker certification",
-  "submission_requirements": [
-    {
-      "name": "Employment and Academic/Certification Requirement",
-      "purpose": "Verify the applicant's employment history, and at least one of academic qualification or professional certification",
-      "min": 2,
-    }
-  ],
   "input_descriptors": [
     {
       "id": "employmentHistoryVerification",
@@ -127,7 +112,6 @@ The following are the top-level properties of a PD:
 * [purpose](#name-and-purpose):  An optional description outlining why the information requested by the PD is needed
 * [format](https://identity.foundation/presentation-exchange/spec/v1.0.0/#claim-format-designations):  The optional technical format requirements for the data to be submitted. *Example: { "jwt_vc": {"alg": ["ES256K", "ES384"]} }*
 * [input_descriptors](#input_selectors):  This is the most important property of the PD. It details the exact data requirements
-* [submission_requirements](#submission_requirements):  An optional feature that specifies which combinations of input descriptors are necessary to meet the requirements
 
 :::info
 For more in-depth information on the schema and options, refer to the [Presentation Definition spec](https://identity.foundation/presentation-exchange/spec/v1.0.0/#json-schema-2).
@@ -202,29 +186,6 @@ The `name` and `purpose` should be human-readable as they may be shown to the us
 }
 ```
 
-#### group
-
-`group` is an optional property that allows you to create relationships with other input selectors and to specify rules about groups of credentials (more on this under [submission_requirements](#submission_requirements)). In this case, the employment history is the only input descriptor in group "A".
-
-```js
-{
-  "input_descriptors": [
-    {
-      "id": "employmentHistoryVerification",
-      "name": "Employment History",
-      "purpose": "Verify the applicant's previous employment experiences",
-      //highlight-next-line
-      "group": ["A"],
-    }
-  ]
-}
-```
-
-:::note
-Group names must be a single character, or you'll receive the following error:
-> input descriptor group should match the from in submission requirements
-:::
-
 #### constraints
 The `constraints` object contains the exact test that the VC will need to pass in order to meet the requirement.
 
@@ -235,7 +196,6 @@ The `constraints` object contains the exact test that the VC will need to pass i
       "id": "employmentHistoryVerification",
       "name": "Employment History",
       "purpose": "Verify the applicant's previous employment experiences",
-      "group": ["A"],
       //highlight-start
       "constraints": {
 
@@ -256,7 +216,6 @@ Under `constraints` is an array of `fields` objects, each object representing a 
       "id": "employmentHistoryVerification",
       "name": "Employment History",
       "purpose": "Verify the applicant's previous employment experiences",
-      "group": ["A"],
       "constraints": {
         //highlight-start
         "fields": [
@@ -270,7 +229,8 @@ Under `constraints` is an array of `fields` objects, each object representing a 
 ```
 
 #### path
-The `path` key specifies the location within the VC where the data is expected to be found. Here, `$.type[*]` indicates that the Employer will verify the   'type' attribute of the submitted VCs to see if any of its values match the `filter`.
+The `path` key specifies the location within the VC where the data is expected to be found. 
+Here, `$.type[*]` indicates that the Employer will verify the `type` attribute of the submitted VCs to see if any of its values match the `filter`.
 
 ```js
 {
@@ -279,7 +239,6 @@ The `path` key specifies the location within the VC where the data is expected t
       "id": "employmentHistoryVerification",
       "name": "Employment History",
       "purpose": "Verify the applicant's previous employment experiences",
-      "group": ["A"],
       "constraints": {
         "fields": [
           {
@@ -299,7 +258,8 @@ The `path` key specifies the location within the VC where the data is expected t
 
 #### filter
 
-The `filter` provides the specific conditions that the data in the specified path must satisfy. Here, it's saying that the expected data `type` of the field is a string, and the `pattern` property indicates that the value should match the provided regular expression.
+The `filter` provides the specific conditions that the data in the specified path must satisfy. 
+Here, it's saying that the expected data `type` of the field is a string, and the `pattern` property indicates that the value should match the provided regular expression.
 
 In this case, the Employer expects the applicant to submit a VC whose type includes the word "Employment".
 
@@ -310,7 +270,6 @@ In this case, the Employer expects the applicant to submit a VC whose type inclu
       "id": "employmentHistoryVerification",
       "name": "Employment History",
       "purpose": "Verify the applicant's previous employment experiences",
-      "group": ["A"],
       "constraints": {
         "fields": [
           {
@@ -334,7 +293,7 @@ The `filter` property offers a lot of flexibility. Refer to the [Presentation De
 :::
 
 
-The next input descriptor is a part of group "B", and describes that if a degree VC is provided, it must be a degree with one of the following terms in the title: Engineering, Computer, Cyber, or Security.
+The next input descriptor describes that if a degree VC is provided, it must be a degree with one of the following terms in the title: Engineering, Computer, Cyber, or Security.
 
 If someone has a degree in Biology, for example, that won't satisfy this requirement.
 
@@ -343,8 +302,6 @@ If someone has a degree in Biology, for example, that won't satisfy this require
       "id": "degreeVerification",
       "name": "Degree",
       "purpose": "Confirm the applicant's academic qualification",
-      //highlight-next-line
-      "group": ["B"],
       "constraints": {
         "fields": [
           {
@@ -361,26 +318,12 @@ If someone has a degree in Biology, for example, that won't satisfy this require
     },
 ```
 
-This Employer realizes that not every qualified candidate has a relevant degree, if one at all, so would like to give an alternative requirement that can be met: a Ethical Hacking certification from a specific reputable institution.
-
-Because a degree or a certification will satisfy the requirement, the Employer places this input descriptor in the same group as the one for the degree.
-
-```js
-    {
-      "id": "CEH_CertificationVerification",
-      "name": "Certified Ethical Hacker Certification",
-      "purpose": "Confirm the applicant holds a Certified Ethical Hacker certification",
-      //highlight-next-line
-      "group": ["B"],
-      "constraints": {
-
-      }
-    }
-```
+This Employer also requires a Ethical Hacking certification from a specific reputable institution.
 
 For this credential, there's two fields that the Employer wants to add constraints for: the name of the certification, and the organization that issued the credential.
 
-Notice the `filter` for the certification's name uses `pattern` so that it checks the name with a regular expression. This gives flexibility in case the certification is for "Advanced Certified Ethical Hacker" or "Certified Ethical Hacker II", etc.
+Notice the `filter` for the certification's name uses `pattern` so that it checks the name with a regular expression. 
+This gives flexibility in case the certification is for "Advanced Certified Ethical Hacker" or "Certified Ethical Hacker II", etc.
 
 But the `filter` for the issuer uses `const` to indicate that the issuer's DID must match this value exactly.
 
@@ -389,7 +332,6 @@ But the `filter` for the issuer uses `const` to indicate that the issuer's DID m
       "id": "CEH_CertificationVerification",
       "name": "Certified Ethical Hacker Certification",
       "purpose": "Confirm the applicant holds a Certified Ethical Hacker certification",
-      "group": ["B"],
       //highlight-start
       "constraints": {
         "fields": [
@@ -413,7 +355,8 @@ But the `filter` for the issuer uses `const` to indicate that the issuer's DID m
     }
 ```
 
-For the issuer, the Employer only accepts VCs from the top trusted source who issues these certifications, so they enter the organization's DID as a constraint. If an applicant provides a Ethical Hacker Certification that was issued by anyone other than this organization, that VC will not meet the requirements.
+For the issuer, the Employer only accepts VCs from the top trusted source who issues these certifications, so they enter the organization's DID as a constraint. 
+If an applicant provides a Ethical Hacker Certification that was issued by anyone other than this organization, that VC will not meet the requirements.
 
 ```js
 //highlight-start
@@ -427,109 +370,11 @@ For the issuer, the Employer only accepts VCs from the top trusted source who is
 //highlight-end
 ```
 
-#### submission_requirements
-
-The `submission_requirements` section defines the rules for any groups that may have been defined in the PD. If this section is added to a PD, then every input descriptor must belong to a group, and every submission requirement must be met.
-
-The Employer has two groups: "A" for the employment history VCs and "B" for the degree or certification requirement. The PD needs to indicate that at least one employment history VC is required and either the degree or certification VC is required.
-
-#### name and purpose
-
-The `name` and `purpose` provide human-readable info about the requirements.
-
-```js
-  "submission_requirements": [
-    {
-      "name": "Employment and Academic/Certification Requirement",
-      "purpose": "Verify the applicant's employment history, and at least one of academic qualification or professional certification",
-    }
-  ]
-```
-
-#### rule
-
-The `rule` is a required property of `submission_requirements` and must be "all" or "pick" to indicate if all input descriptors in the Presentation Definition must be satisfied, or if the applicant is allowed to pick a subset to satisfy.
-
-In the Employer's case, there are three input selectors, but only two of them must be satisfied, so the PD uses the "pick" rule.
-
-```js
-  "submission_requirements": [
-    {
-      "name": "Employment and Academic/Certification Requirement",
-      "purpose": "Verify the applicant's employment history, and at least one of academic qualification or professional certification",
-      //highlight-next-line
-      "rule": "pick",
-    }
-  ]
-```
-
-#### count, min, max
-
-If the PD uses the "pick" rule, it can further specify the number of requirements that must be met by using `count`, `min`, and/or `max`.
-
-* **count** specifies the **exact** number of input selectors that must be satisfied
-* **min** specifies the **minimum** mumber of input selectors that must be satisfied
-* **max** specifies the **maximum** number of input selectors that must be satisfied
-
-In the case of the employment application, the applicant must present at least one VC for employment history and at least one academic VC (degree or certification). We don't know how many employment history VCs they will present, so it's best not to specify a `count` of the exact number of VCs required. Instead, a `min` of 2 (at least one employment and one academic) is best.
-
-```js
-  "submission_requirements": [
-    {
-      "name": "Employment and Academic/Certification Requirement",
-      "purpose": "Verify the applicant's employment history, and at least one of academic qualification or professional certification",
-      "rule": "pick",
-      //highlight-next-line
-      "min": 2,
-    }
-  ]
-```
-
-#### from and from_nested
-
-Within `submission_requirements`, the PD is required to specify how rules apply to each group that exists within the PD.
-
-If there's only one group within the PD, then use `from` to indicate that the rule applies to that group. This reads as "pick a minimum of 2 input descriptors to satisfy from group C".
-
-```js
-  "submission_requirements": [
-    {
-      "rule": "pick",
-      "min": 2,
-      //highlight-next-line
-      "from": "C"
-    }
-  ]
-```
-
-However, if there are multiple groups, like in the case of the employment application PD, use `from_nested` to specify submission requirements for each group.
-
-The Employer wants the VCs to satisfy the input selectors from group "A" - the employment history; and at least one of the selectors from group "B" - the academic qualifications.
-
-So, for both groups "A" and "B", the PD specifies the `rule` as "pick" and the `min` as 1.
-
-```js
-  "submission_requirements": [
-    {
-      "name": "Employment and Academic/Certification Requirement",
-      "purpose": "Verify the applicant's employment history, and at least one of academic qualification or professional certification",
-      "rule": "pick",
-      "min": 2,
-      //highlight-start
-      "from_nested": [
-        {"rule": "pick", "min": 1, "from": "A"},
-        {"rule": "pick", "min": 1, "from": "B"}
-      ]
-      //highlight-end
-    }
-  ]
-```
-
 ## Validate the Presentation Definition
 
 Once the PD is created, you can validate it to ensure there are no errors in its design.
 
-1. import `PresentationExchange`
+1. import classes needed for a Presentation Exchange
 
 <Shnip
   inlineSnippets={[

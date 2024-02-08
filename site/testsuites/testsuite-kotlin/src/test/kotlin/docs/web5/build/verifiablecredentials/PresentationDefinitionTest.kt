@@ -11,7 +11,7 @@ import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.module.kotlin.registerKotlinModule
 
 /**
- * Tests backing the Create a DID Guide
+ * Tests backing the Presentation Definition Guide
  */
 internal class PresentationDefinitionTest {
 
@@ -20,18 +20,6 @@ val pd = PresentationDefinitionV2(
         id = "PD_JobApplication_123456",
         name = "Credentials Verification for Ethical Hacker Job Application",
         purpose = "To verify the applicant's employment history, and either their academic degree or Certified Ethical Hacker certification",
-        submissionRequirements = listOf(
-            SubmissionRequirement(
-                name = "Employment and Academic/Certification Requirement",
-                purpose = "Verify the applicant's employment history, and at least one of academic qualification or professional certification",
-                rule = Rules.Pick,
-                min = 2,
-                fromNested = listOf(
-                    SubmissionRequirement(rule = Rules.Pick, min = 1, from = "A"),
-                    SubmissionRequirement(rule = Rules.Pick, min = 1, from = "B")
-                )
-            )
-        ),
         inputDescriptors = listOf(
             InputDescriptorV2(
                 id = "employmentHistoryVerification",
