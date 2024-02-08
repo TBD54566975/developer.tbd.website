@@ -28,14 +28,23 @@ const Shnip = ({ snippets, inlineSnippets }) => {
       <LanguageSwitchBlock>
         {snippets &&
           snippets.map(
-            ({
-              snippetContent,
-              language,
-              title,
-              functionName,
-              snippetName,
-            }) => (
-              <div key={`ref-${language}`} language={language}>
+            (
+              {
+                snippetContent,
+                language,
+                title,
+                functionName,
+                snippetName,
+                content,
+              },
+              index,
+            ) => (
+              <div key={`snippet-${language}-${index}`} language={language}>
+                {content && (
+                  <div style={{ paddingTop: '20px' }}>
+                    <ReactMarkdown>{content}</ReactMarkdown>
+                  </div>
+                )}
                 <CodeSnippet
                   snippet={snippetContent}
                   language={language.toLowerCase()}
@@ -54,7 +63,11 @@ const Shnip = ({ snippets, inlineSnippets }) => {
               index,
             ) => (
               <div key={`inline-${language}-${index}`} language={language}>
-                {content && <ReactMarkdown>{content}</ReactMarkdown>}
+                {content && (
+                  <div style={{ paddingTop: '20px' }}>
+                    <ReactMarkdown>{content}</ReactMarkdown>
+                  </div>
+                )}
                 {code && (
                   <CodeBlock
                     language={(codeLanguage || language).toLowerCase()}
@@ -70,4 +83,5 @@ const Shnip = ({ snippets, inlineSnippets }) => {
     </>
   );
 };
+
 export default Shnip;
