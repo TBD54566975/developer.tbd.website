@@ -48,7 +48,7 @@ if (message.metadat.kind == 'order') {
 // :snippet-start: pfiCloseOrderJs
 const closeMessage = Close.create({
     metadata: { 
-        from: pfiDid.uri, 
+        from: pfiDid.did, 
         to: message.metadata.from, 
         exchangeId: message.metadata.exchangeId
     },
