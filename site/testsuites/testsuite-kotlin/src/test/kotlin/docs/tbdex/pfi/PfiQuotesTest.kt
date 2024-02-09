@@ -13,7 +13,6 @@ import web5.sdk.dids.methods.dht.DidDht
 import tbdex.sdk.httpserver.models.SubmitKind
 import web5.sdk.crypto.InMemoryKeyManager
 import web5.sdk.dids.Did
-import web5.sdk.dids.methods.jwk.DidJwk
 import java.time.OffsetDateTime
 import website.tbd.developer.site.docs.tbdex.*
 
@@ -22,8 +21,20 @@ class PfiQuotesTest {
   suspend fun createQuoteFromRfq(message: Message) {
     val offeringsApiProvider = OfferingsApiProviderTest()
     val exchangesApiProvider = ExchangesApiProviderTest()
-    val pfiDid = DidJwk.create(InMemoryKeyManager())
     val dataProvider = MockDataProviderTest()
+
+    val serviceToAdd = Service.builder()
+        .id(URI("pfi"))
+        .type("PFI")
+        .serviceEndpoint("tbdex-pfi.tbddev.org")
+        .build()
+
+    val options = CreateDidDhtOptions(
+        publish = true,
+        services = listOf(serviceToAdd),
+    )
+
+    val pfiDid = DidDht.create(InMemoryKeyManager(), options)
 
     // :snippet-start: pfiQuotesWriteKt
    // Write the message to your exchanges database
@@ -61,7 +72,7 @@ class PfiQuotesTest {
 
     val quote = Quote.create(
         to = message.metadata.from,
-        from = message.metadata.to,
+        from = pfiDid.uri,
         exchangeId = message.metadata.exchangeId,
         quoteData = quoteData
     )

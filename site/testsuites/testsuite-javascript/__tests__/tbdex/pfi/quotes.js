@@ -227,6 +227,7 @@ async function createQuoteFromRfq(message) {
           serviceEndpoint: 'tbdex-pfi.tbddev.org'
       }]
   })
+
   // :snippet-start: pfiQuotesWriteJs
   // Write the message to your exchanges database
   await dataProvider.insert('exchange', {
@@ -263,7 +264,7 @@ async function createQuoteFromRfq(message) {
   const quote = Quote.create(
       {
         metadata: {
-          from: message.metadata.to,
+          from: pfiDid.did,
           to: message.metadata.from,
           exchangeId: message.exchangeId
         },
@@ -284,7 +285,7 @@ async function createQuoteFromRfq(message) {
 
   // :snippet-start: pfiQuotesSignJs
   await quote.sign(pfiDid)
-  this.write(quote)
+  exchangesApiProvider.write(quote)
   // :snippet-end:
 
 }
