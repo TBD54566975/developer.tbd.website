@@ -4,13 +4,7 @@ import {
     Offering
 } from '@tbdex/http-server';
 
-const config = {
-    did: {
-        privateKey: "",
-        kid: "",
-        id: ""
-    }
-}
+import { DidDhtMethod } from '@web5/dids';
 
 //---------------------------------------------------------------------------//
 // TODO: Refactor this into a common file similar to setup-web5.js. This is  //
@@ -224,62 +218,73 @@ const offeringsApiProvider = {
 //---------------------------------------------------------------------------//
 
 async function createQuoteFromRfq(message) {
-    // :snippet-start: pfiQuotesWriteJs
-    // Write the message to your exchanges database
-    await dataProvider.insert('exchange', {
-        exchangeid: message.exchangeId,
-        messagekind: message.kind,
-        messageid: message.id,
-        subject: message.subject,
-        message: JSON.stringify(message)
-    });
 
-    //highlight-start
-    const offering = await offeringsApiProvider.getOffering(message.offeringId)
-    //highlight-end
-    // :snippet-end:
+  const pfiDid = await DidDhtMethod.create({
+      publish: true,
+      services: [{
+          id: 'pfi',
+          type: 'PFI',
+          serviceEndpoint: 'tbdex-pfi.tbddev.org'
+      }]
+  })
+  // :snippet-start: pfiQuotesWriteJs
+  // Write the message to your exchanges database
+  await dataProvider.insert('exchange', {
+      exchangeid: message.exchangeId,
+      messagekind: message.kind,
+      messageid: message.id,
+      subject: message.subject,
+      message: JSON.stringify(message)
+  });
 
-    const rfqOptions = {
-        data: message.data(), 
-        metadata: message.metadata()
-    };
+  //highlight-start
+  const offering = await offeringsApiProvider.getOffering(message.offeringId)
+  //highlight-end
+  // :snippet-end:
 
-    const rfq = Rfq.create(rfqOptions)
+  const rfqOptions = {
+      data: message.data(), 
+      metadata: message.metadata()
+  };
 
-    // :snippet-start: pfiQuotesProcessJs
-    try {
-        await rfq.verifyOfferingRequirements(offering)
-    } catch(e) {
-        console.log(`Failed to verify offering requirements: ${e.rfq}`)
-    }
-    // :snippet-end:
+  const rfq = Rfq.create(rfqOptions)
 
-    // :snippet-start: pfiQuotesSendJs
-    const quote = Quote.create(
-        {
-          metadata: {
-            from: config.did.id,
-            to: message.from,
-            exchangeId: message.exchangeId
+  // :snippet-start: pfiQuotesProcessJs
+  try {
+      await rfq.verifyOfferingRequirements(offering)
+  } catch(e) {
+      console.log(`Failed to verify offering requirements: ${e.rfq}`)
+  }
+  // :snippet-end:
+
+  // :snippet-start: pfiQuotesSendJs
+  var quoteExpiration = new Date()
+  quoteExpiration.setDate(quoteExpiration.getDate() + 10)
+  const quote = Quote.create(
+      {
+        metadata: {
+          from: message.metadata.to,
+          to: message.metadata.from,
+          exchangeId: message.exchangeId
+        },
+        data: {
+          expiresAt: quoteExpiration.toLocaleDateString('en-us'),
+          payin: {
+            currencyCode: 'BTC',
+            amountSubunits: '1000'
           },
-          data: {
-            expiresAt: new Date(2024, 4, 1).toISOString(),
-            payin: {
-              currencyCode: 'BTC',
-              amountSubunits: '1000'
-            },
-            payout: {
-              currencyCode: 'KES',
-              amountSubunits: '123456789'
-            }
+          payout: {
+            currencyCode: 'KES',
+            amountSubunits: '123456789'
           }
         }
-    );
-    // :snippet-end:
+      }
+  );
+  // :snippet-end:
 
-    // :snippet-start: pfiQuotesSignJs
-    await quote.sign(pfiDid)
-    this.write(quote)
-    // :snippet-end:
+  // :snippet-start: pfiQuotesSignJs
+  await quote.sign(pfiDid)
+  this.write(quote)
+  // :snippet-end:
 
 }

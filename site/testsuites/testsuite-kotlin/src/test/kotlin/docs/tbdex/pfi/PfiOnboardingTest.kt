@@ -31,7 +31,7 @@ class PfiOnboardingTest {
         services = listOf(serviceToAdd),
     )
 
-    val did = DidDht.create(InMemoryKeyManager(), options)
+    val pfiDid = DidDht.create(InMemoryKeyManager(), options)
     // :snippet-end:
 
     assertEquals("PFI", did.didDocument?.services?.get(0)?.type, "DID should start with 'did:key'")
