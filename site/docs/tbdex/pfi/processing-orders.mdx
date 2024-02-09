@@ -17,7 +17,7 @@ This guide covers how to use tbDEX to communicate about progress on Orders you r
 
 ## Provide an Initial OrderStatus
 
-Upon storing the `Order` message, you will want to create an initial [OrderStatus](https://github.com/TBD54566975/tbdex/tree/main/specs/protocol#orderstatus) to update the Wallet on the status of their `Order`:
+Upon storing the `Order` message, you will want to create an initial <LanguageSwitchLink text="OrderStatus" links='{"JavaScript": "https://tbd54566975.github.io/tbdex-js/classes/_tbdex_http_client.OrderStatus.html", "Kotlin": "https://tbd54566975.github.io/tbdex-kt/protocol/tbdex.sdk.protocol.models/-order-status/index.html"}'/>  to update the Wallet on the status of their `Order`:
 
 
 <Shnip snippets={
@@ -32,7 +32,7 @@ Since the Wallet application isn't addressable, you’ll write the `OrderStatus`
 
 ## Process the Order
 
-The [Order message](https://github.com/TBD54566975/tbdex/tree/main/specs/protocol#order) will contain the information you initially stored in an `Offering` object that will specify the pay-in, pay-out, and rate of conversion needed. 
+The <LanguageSwitchLink text="Order message" links='{"JavaScript": "https://tbd54566975.github.io/tbdex-js/classes/_tbdex_http_client.Order.html", "Kotlin": "https://tbd54566975.github.io/tbdex-kt/protocol/tbdex.sdk.protocol.models/-order/index.html"}'/> will contain the information you initially stored in an `Offering` object that will specify the pay-in, pay-out, and rate of conversion needed. 
 
 Using that information, you’ll be able to use your logic of choice to actually fulfill that order for your customer. 
 
