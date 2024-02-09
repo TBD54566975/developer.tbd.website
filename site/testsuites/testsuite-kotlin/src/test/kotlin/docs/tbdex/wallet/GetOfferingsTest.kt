@@ -1,15 +1,15 @@
 
 package website.tbd.developer.site.docs.tbdex.wallet
 
-import foundation.identity.did.Service
+import okhttp3.mockwebserver.MockResponse
+import okhttp3.mockwebserver.MockWebServer
 import tbdex.sdk.httpclient.TbdexHttpClient
 import tbdex.sdk.protocol.models.Offering
-import web5.sdk.crypto.InMemoryKeyManager
-import web5.sdk.dids.methods.dht.CreateDidDhtOptions
-import web5.sdk.dids.methods.dht.DidDht
-import java.net.URI
+import tbdex.sdk.protocol.serialization.Json
+import java.net.HttpURLConnection
+import docs.tbdex.TestData
 
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*
 import org.junit.jupiter.api.Assertions.*
 
 /**
@@ -17,23 +17,26 @@ import org.junit.jupiter.api.Assertions.*
  */
 class GetOfferingsTest {
 
-    /*
-    TODO: set PFI DID to one that has offerings.
-    waiting on the Mock PFI to be updated to include offerings.
-    */
-    val serviceToAdd = Service.builder()
-    .id(URI("pfi"))
-    .type("PFI")
-    .serviceEndpoint("http://localhost:9000")
-    .build()
+    private lateinit var server: MockWebServer
+    private val pfi = TestData.PFI_DID
+    private val pfiDid = pfi.uri
 
-    val options = CreateDidDhtOptions(
-        publish = true,
-        services = listOf(serviceToAdd),
-    )
+    @BeforeEach
+    fun setup() {
+        server = MockWebServer()
+        server.start(9000) // pfiDid resolves to http://localhost:9000
 
-    val pfi = DidDht.create(InMemoryKeyManager(), options)
-    val pfiDid = pfi.uri
+        val offering = TestData.getOffering(pfiDid, TestData.getPresentationDefinition())
+        offering.sign(pfi)
+        val mockOfferings = listOf(offering)
+        val mockResponseString = Json.jsonMapper.writeValueAsString(mapOf("data" to mockOfferings))
+        server.enqueue(MockResponse().setBody(mockResponseString).setResponseCode(HttpURLConnection.HTTP_OK))
+    }
+
+    @AfterEach
+    fun tearDown() {
+        server.shutdown()
+    }
 
     @Test
     fun `get all offerings`() {
@@ -41,36 +44,35 @@ class GetOfferingsTest {
         val offerings =  TbdexHttpClient.getOfferings(pfiDid)
         // :snippet-end:
 
-        //TODO: add tests once the mock PFI is updated to include offerings.
+        assertNotEquals(0, offerings.size, "No offerings found from PFI")
     }
 
     @Test
     fun `find matching offerings`() {
+        val pfiDids = arrayOf(pfiDid)
+        
+        // :snippet-start: walletFindMatchingOfferingsKt
+        val payinCurrencyCode = "USD"; // Desired payin currency code
+        val payoutCurrencyCode = "KES"; // Desired payout currency code
 
-    val pfiDids = arrayOf(pfiDid)
-    
-    // :snippet-start: walletFindMatchingOfferingsKt
-    val payinCurrencyCode = "USD"; // Desired payin currency code
-    val payoutCurrencyCode = "KES"; // Desired payout currency code
+        val matchedOfferings = ArrayList<Offering>() // Array to store the matched offerings
 
-    val matchedOfferings = ArrayList<Offering>() // Array to store the matched offerings
+        // Loop through the all PFIs in your network
+        for (pfiDid in pfiDids) {
 
-    // Loop through the all PFIs in your network
-    for (pfiDid in pfiDids) {
+            // Makes a request to the PFI to get their offerings
+            val offerings = TbdexHttpClient.getOfferings(pfiDid)
 
-        // Makes a request to the PFI to get their offerings
-        val offerings = TbdexHttpClient.getOfferings(pfiDid)
+            // Filter offerings based on the currency pair
+            val filteredOfferings = offerings.filter { offering ->
+                offering.data.payinCurrency.currencyCode == payinCurrencyCode &&
+                        offering.data.payoutCurrency.currencyCode == payoutCurrencyCode
+            }
 
-        // Filter offerings based on the currency pair
-        val filteredOfferings = offerings.filter { offering ->
-            offering.data.payinCurrency.currencyCode == payinCurrencyCode &&
-                    offering.data.payoutCurrency.currencyCode == payoutCurrencyCode
+            matchedOfferings.addAll(filteredOfferings)
         }
+        // :snippet-end:
 
-        matchedOfferings.addAll(filteredOfferings)
-    }
-    // :snippet-end:
-
-        //TODO: add tests once the mock PFI is updated to include offerings.
+        assertNotEquals(0, matchedOfferings.size, "No matching offerings found")
     }
 }
