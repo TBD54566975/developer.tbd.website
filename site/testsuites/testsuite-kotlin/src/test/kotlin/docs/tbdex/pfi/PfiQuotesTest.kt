@@ -60,8 +60,8 @@ class PfiQuotesTest {
     )
 
     val quote = Quote.create(
-        to = message.metadata.to,
-        from = message.metadata.from,
+        to = message.metadata.from,
+        from = message.metadata.to,
         exchangeId = message.metadata.exchangeId,
         quoteData = quoteData
     )
