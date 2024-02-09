@@ -4,14 +4,16 @@ sidebar_position: 9
 hide_title: true
 ---
 
-import pfiOrdersJs from '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/tbdex/pfi/pfiOrdersStatusJs.snippet.js'
-import pfiOrdersKt from '!!raw-loader!@site/snippets/testsuite-kotlin/src/test/kotlin/docs/tbdex/pfi/pfiOrdersStatusKt.snippet.kt'
+import pfiOrdersStatusJs from '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/tbdex/pfi/pfiOrdersStatusJs.snippet.js'
+import pfiOrdersStatusKt from '!!raw-loader!@site/snippets/testsuite-kotlin/src/test/kotlin/docs/tbdex/pfi/pfiOrdersStatusKt.snippet.kt'
+import pfiCloseOrderJs from '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/tbdex/pfi/pfiCloseOrderJs.snippet.js'
+import pfiCloseOrderKt from '!!raw-loader!@site/snippets/testsuite-kotlin/src/test/kotlin/docs/tbdex/pfi/pfiCloseOrderKt.snippet.kt'
 
 <LanguageSwitcher languages="JavaScript, Kotlin"/>
 
 # Processing Orders
 
-As described in the [Offerings API Provider](/docs/tbdex/pfi/anatomy-of-a-pfi#offerings-api-provider) guide, you should process the orders you receive. This guide outlines how that is done.
+This guide covers how to use tbDEX to communicate about progress on Orders you receive.
 
 ## Provide an Initial OrderStatus
 
@@ -20,8 +22,8 @@ Upon storing the `Order` message, you will want to create an initial [OrderStatu
 
 <Shnip snippets={
   [
-    { snippetContent: pfiOrdersJs, language: 'JavaScript'},
-    { snippetContent: pfiOrdersKt, language: 'Kotlin'}
+    { snippetContent: pfiOrdersStatusJs, language: 'JavaScript'},
+    { snippetContent: pfiOrdersStatusKt, language: 'Kotlin'}
   ]} />
 
 
@@ -34,33 +36,22 @@ The [Order message](https://github.com/TBD54566975/tbdex/tree/main/specs/protoco
 
 Using that information, you’ll be able to use your logic of choice to actually fulfill that order for your customer. 
 
-Note that tbDEX is a messaging protocol that facilitates communication to enable transactions but does not actually provide the APIs to fulfill them. 
-That responsibility lies with each PFI. 
+:::note
+tbDEX is a messaging protocol that facilitates communication to enable transactions but does not actually provide the APIs to fulfill them. 
+That responsibility lies with the transacting parties. 
+:::
 
 As you deem appropriate for your customers, you can provide them with multiple `OrderStatus` messages using the same code as in the section above.
 
 
 ## Close the Order
 
-When the `Order` has reached a terminal state (e.g. order fulfilled, order rejected, wallet canceled, etc), you can write the `Close` message to your database. Here's an example of a `Close` message:
+When the `Order` has reached a terminal state (e.g. order fulfilled, order rejected, etc), you can create a `Close` message, which will be the final message of the thread. 
 
-
-```js
-{
-  "metadata": {
-    "from": "did:key:z6MkvUm6mZxpDsqvyPnpkeWS4fmXD2jJA3TDKq4fDkmR5BD7",
-    "to": "did:ex:pfi",
-    "exchangeId": "rfq_01ha83pkgnfxfv41gpa44ckkpz",
-    "kind": "close",
-    "id": "close_03ha83trerk6t9tkg7q42s48j",
-    "createdAt": "2023-09-13T20:28:40.345Z"
-  },
-  "data": {
-    "reason": "Rejecting Quote"
-  },
-  "signature": "eyJhbGciOiJFZERTQSIsImtpZCI6ImRpZDprZXk6ejZNa3ZVbTZtWnhwRHNxdnlQbnBrZVdTNGZtWEQyakpBM1RES3E0ZkRrbVI1QkQ3I3o2TWt2VW02bVp4cERzcXZ5UG5wa2VXUzRmbVhEMmpKQTNUREtxNGZEa21SNUJENyJ9..tWyGAiuUXFuVvq318Kdz-EJJgCPCWEMO9xVMZD9amjdwPS0p12fkaLwu1PSLxHoXPKSyIbPQnGGZayI_v7tPCA"
-}
-```
-
+<Shnip snippets={
+  [
+    { snippetContent: pfiCloseOrderJs, language: 'JavaScript'},
+    { snippetContent: pfiCloseOrderKt, language: 'Kotlin'}
+  ]} />
 
 After writing the `Close` message to your database, the Wallet will be able to know that their transaction has closed via polling.

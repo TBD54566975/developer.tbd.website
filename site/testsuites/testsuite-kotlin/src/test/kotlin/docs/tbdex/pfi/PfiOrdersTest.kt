@@ -50,6 +50,17 @@ class PfiOrdersTest {
             exchangesApiProvider.write(orderStatus)
         }
         // :snippet-end:
+
+        // :snippet-start: pfiCloseOrderKt
+        val closeMessage = Close.create(
+            to = message.metadata.from,
+            from = pfiDid.uri,
+            exchangeId = message.metadata.exchangeId,
+            closeData = CloseData(reason = "COMPLETED")
+        )
+        closeMessage.sign(pfiDid)
+        exchangesApiProvider.write(closeMessage)
+        // :snippet-end:
     }
 }
 

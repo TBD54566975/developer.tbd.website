@@ -1,4 +1,4 @@
-import { Order, OrderStatus } from '@tbdex/http-server'
+import { Order, OrderStatus, Close } from '@tbdex/http-server'
 import { DidDhtMethod } from '@web5/dids';
 
 var pfiDid = await DidDhtMethod.create({
@@ -31,19 +31,29 @@ var message = Order.create({
 
 // :snippet-start: pfiOrdersStatusJs
 if (message.metadat.kind == 'order') {
-    const orderStatus = OrderStatus.create(
-    {
+    const orderStatus = OrderStatus.create({
         metadata: {
             from: config.did.id,
             to: message.metadata.from,
             exchangeId: message.metadata.exchangeId
         },
-        data: {
-        orderStatus: 'PROCESSING'
-        }
+        data: { orderStatus: 'PROCESSING' }
     })
     
     await orderStatus.sign(config.did.privateKey, config.did.kid)
     dataProvider.write(orderStatus)
 }
+// :snippet-end:
+
+// :snippet-start: pfiCloseOrderJs
+const closeMessage = Close.create({
+    metadata: { 
+        from: pfiDid.uri, 
+        to: message.metadata.from, 
+        exchangeId: message.metadata.exchangeId
+    },
+    data: { reason: 'COMPLETED' }
+})
+await closeMessage.sign(pfiDid)
+dataProvider.write(closeMessage)
 // :snippet-end:
