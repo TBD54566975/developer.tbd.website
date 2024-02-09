@@ -2,7 +2,7 @@ import { Order, OrderStatus, Close } from '@tbdex/http-server'
 import { DidDhtMethod } from '@web5/dids';
 
 var pfiDid = await DidDhtMethod.create({
-    publish: false,
+    publish: true,
     services: [{
         id: 'pfi',
         type: 'PFI',
@@ -10,11 +10,7 @@ var pfiDid = await DidDhtMethod.create({
     }]
 })
 
-var senderDid = await DidDhtMethod.create({ publish: false })
-
-var config = {
-    did: pfiDid    
-}
+var senderDid = await DidDhtMethod.create({ publish: true })
 
 var dataProvider = {
     write: (args) => {
@@ -24,23 +20,23 @@ var dataProvider = {
 
 var message = Order.create({
     metadata: {
-        from: senderDid,
-        to: pfiDid
+        from: senderDid.did,
+        to: pfiDid.did
     }
 })
 
-// :snippet-start: pfiOrdersStatusJs
-if (message.metadat.kind == 'order') {
+// :snippet-start: pfiOrderStatusJs
+if (message.metadata.kind == 'order') {
     const orderStatus = OrderStatus.create({
         metadata: {
-            from: config.did.id,
+            from: pfiDid.did,
             to: message.metadata.from,
             exchangeId: message.metadata.exchangeId
         },
         data: { orderStatus: 'PROCESSING' }
     })
     
-    await orderStatus.sign(config.did.privateKey, config.did.kid)
+    await orderStatus.sign(pfiDid)
     dataProvider.write(orderStatus)
 }
 // :snippet-end:
@@ -54,6 +50,6 @@ const closeMessage = Close.create({
     },
     data: { reason: 'COMPLETED' }
 })
-await closeMessage.sign(pfiDid)
+await closeMessage.sign(pfiDid.did)
 dataProvider.write(closeMessage)
 // :snippet-end:

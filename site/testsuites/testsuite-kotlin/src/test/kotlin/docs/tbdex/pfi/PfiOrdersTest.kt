@@ -22,27 +22,27 @@ class PfiOrdersTest {
             .build()
 
         val pfiOptions = CreateDidDhtOptions(
-            publish = false,
+            publish = true,
             services = listOf(serviceToAdd),
         )
-        val senderOptions = CreateDidDhtOptions(publish = false)
+        val senderOptions = CreateDidDhtOptions(publish = true)
 
         val pfiDid = DidDht.create(InMemoryKeyManager(), pfiOptions)
         val senderDid = DidDht.create(InMemoryKeyManager(), senderOptions)
         val exchangesApiProvider = ExchangesApiProviderTest()
 
-        val message = Order.create(
-            to = pfiDid.toString(),
-            from = senderDid.toString(),
+        val orderMessage = Order.create(
+            to = pfiDid.uri,
+            from = senderDid.uri,
             exchangeId = TypeId.generate(MessageKind.rfq.name)
         )
 
-        // :snippet-start: pfiOrdersStatusKt
-        if (message.metadata.kind == MessageKind.order ) {
+        // :snippet-start: pfiOrderStatusKt
+        if (orderMessage.metadata.kind == MessageKind.order ) {
             val orderStatus = OrderStatus.create(
-                to = pfiDid.toString(),
-                from = message.metadata.from,
-                exchangeId = message.metadata.exchangeId,
+                to = pfiDid.uri,
+                from = orderMessage.metadata.from,
+                exchangeId = orderMessage.metadata.exchangeId,
                 orderStatusData = OrderStatusData("PROCESSING")
             )
 
@@ -53,9 +53,9 @@ class PfiOrdersTest {
 
         // :snippet-start: pfiCloseOrderKt
         val closeMessage = Close.create(
-            to = message.metadata.from,
+            to = orderMessage.metadata.from,
             from = pfiDid.uri,
-            exchangeId = message.metadata.exchangeId,
+            exchangeId = orderMessage.metadata.exchangeId,
             closeData = CloseData(reason = "COMPLETED")
         )
         closeMessage.sign(pfiDid)
