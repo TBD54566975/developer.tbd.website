@@ -15,6 +15,9 @@ import web5.sdk.crypto.InMemoryKeyManager
 import web5.sdk.dids.Did
 import java.time.OffsetDateTime
 import website.tbd.developer.site.docs.tbdex.*
+import foundation.identity.did.Service
+import java.net.URI
+import web5.sdk.dids.methods.dht.CreateDidDhtOptions
 
 class PfiQuotesTest {
   
