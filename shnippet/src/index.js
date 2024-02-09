@@ -4,7 +4,7 @@ const path = require("path");
 class SnippetExtractor {
   constructor(config) {
     this.config = {
-      outputDirectoryStructure: "organized",
+      outputDirectoryStructure: "byLanguage",
       ...config,
     };
   }
@@ -125,7 +125,7 @@ class SnippetExtractor {
         outputPath = path.join(
           this.config.outputDirectory,
           language,
-          `${snippetName}.snippet${extension}`
+          `${snippetName}.snippet.js`
         );
         break;
       case "organized":
