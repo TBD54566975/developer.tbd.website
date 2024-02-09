@@ -224,7 +224,7 @@ async function createQuoteFromRfq(message) {
       services: [{
           id: 'pfi',
           type: 'PFI',
-          serviceEndpoint: 'tbdex-pfi.tbddev.org'
+          serviceEndpoint: 'https://example.com/service'
       }]
   })
 
