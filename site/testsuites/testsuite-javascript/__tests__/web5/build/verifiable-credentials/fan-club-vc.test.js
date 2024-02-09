@@ -4,13 +4,9 @@ import { VerifiableCredential, PresentationExchange } from '@web5/credentials';
 import { setUpWeb5 } from '../../../setup-web5';
 
 describe('fan-club-vc', () => {
-    let web5, did, fanClubIssuerDid, aliceDid, SwiftiesFanClub, vc, signedVcJwt, presentationDefinition;
+    let fanClubIssuerDid, aliceDid, SwiftiesFanClub, vc, signedVcJwt, presentationDefinition;
 
     beforeAll(async () => {
-        await setUpWeb5();
-        web5 = globalThis.web5;
-        did = globalThis.did;
-
         fanClubIssuerDid = await DidKeyMethod.create();
         aliceDid = await DidKeyMethod.create();
 
@@ -126,12 +122,11 @@ describe('fan-club-vc', () => {
         // Does VC Satisfy the Presentation Definition
         try {
             PresentationExchange.satisfiesPresentationDefinition({ vcJwts: [signedVcJwt], presentationDefinition: presentationDefinition });
-            console.log('\nVC Satisfies Presentation Definition!\n');
         } catch (err) {
             console.log('VC does not satisfy Presentation Definition: ' + err.message);
         }
         // :snippet-end:
-        expect(logSpy).toHaveBeenCalledWith('\nVC Satisfies Presentation Definition!\n');
+        expect(logSpy).not.toHaveBeenCalled();
         logSpy.mockRestore();
     });
 
@@ -139,7 +134,6 @@ describe('fan-club-vc', () => {
         // :snippet-start: createPresentationFromCredentialsFanClubVc
         // Create Presentation Result that contains a Verifiable Presentation and Presentation Submission
         const presentationResult = PresentationExchange.createPresentationFromCredentials({ vcJwts: [signedVcJwt], presentationDefinition: presentationDefinition });
-        console.log('\nPresentation Result: ' + JSON.stringify(presentationResult));
         // :snippet-end:
 
         expect(presentationResult.presentation).toHaveProperty('@context');
@@ -153,12 +147,11 @@ describe('fan-club-vc', () => {
         // :snippet-start: verifyFanClubVc
         try {
             await VerifiableCredential.verify({ vcJwt: signedVcJwt });
-            console.log('\nVC Verification successful!\n');
         } catch (err) {
             console.log('\nVC Verification failed: ' + err.message + '\n');
         }
         // :snippet-end:
-        expect(logSpy).toHaveBeenCalledWith('\nVC Verification successful!\n');
+        expect(logSpy).not.toHaveBeenCalled();
         logSpy.mockRestore();
     });
 
