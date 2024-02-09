@@ -18,7 +18,7 @@ var dataProvider = {
     }
 }
 
-var message = Order.create({
+var orderMessage = Order.create({
     metadata: {
         from: senderDid.did,
         to: pfiDid.did
@@ -26,12 +26,12 @@ var message = Order.create({
 })
 
 // :snippet-start: pfiOrderStatusJs
-if (message.metadata.kind == 'order') {
+if (orderMessage.metadata.kind == 'order') {
     const orderStatus = OrderStatus.create({
         metadata: {
             from: pfiDid.did,
-            to: message.metadata.from,
-            exchangeId: message.metadata.exchangeId
+            to: orderMessage.metadata.from,
+            exchangeId: orderMessage.metadata.exchangeId
         },
         data: { orderStatus: 'PROCESSING' }
     })
@@ -45,8 +45,8 @@ if (message.metadata.kind == 'order') {
 const closeMessage = Close.create({
     metadata: { 
         from: pfiDid.did, 
-        to: message.metadata.from, 
-        exchangeId: message.metadata.exchangeId
+        to: orderMessage.metadata.from, 
+        exchangeId: orderMessage.metadata.exchangeId
     },
     data: { reason: 'COMPLETED' }
 })
