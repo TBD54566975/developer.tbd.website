@@ -37,6 +37,7 @@
     "font-awesome": "4.7.0",
     "googleapis": "128.0.0",
     "node-fetch": "3.3.2",
+    "msw": "2.1.7",
     "process": "0.11.10",
     "react-fontawesome": "1.7.1",
     "react-markdown": "8.0.7",
