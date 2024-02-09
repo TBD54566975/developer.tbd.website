@@ -72,7 +72,7 @@ object TestData {
                 payoutCurrency = CurrencyDetails("KES"),
                 payinMethods = listOf(
                     PaymentMethod(
-                        kind = "BTC_ADDRESS",
+                        kind = "BANK_ACCOUNT",
                         requiredPaymentDetails = requiredPaymentDetailsSchema()
                     )
                 ),
@@ -95,7 +95,7 @@ object TestData {
         rfqData = RfqData(
             offeringId = offeringId,
             payinAmount = "10.00",
-            payinMethod = SelectedPaymentMethod("BTC_ADDRESS", mapOf("address" to "123456")),
+            payinMethod = SelectedPaymentMethod("BANK_ACCOUNT", mapOf("address" to "123456")),
             payoutMethod = SelectedPaymentMethod(
                 "MOMO", mapOf(
                     "phoneNumber" to "+254712345678",
@@ -110,8 +110,8 @@ object TestData {
         ALICE_DID.uri, PFI_DID.uri, TypeId.generate(MessageKind.rfq.name),
         QuoteData(
             expiresAt = OffsetDateTime.now().plusDays(1),
-            payin = QuoteDetails("AUD", "10.00", "0.01"),
-            payout = QuoteDetails("BTC", "0.12", "0.02"),
+            payin = QuoteDetails("USD", "10.00", "0.01"),
+            payout = QuoteDetails("KES", "0.12", "0.02"),
         )
     )
 
@@ -137,7 +137,7 @@ object TestData {
 
     fun getOrderStatusWithInvalidDid(): OrderStatus {
         val os = OrderStatus.create(
-            "alice", "pfi", TypeId.generate(MessageKind.rfq.name), OrderStatusData("PENDING")
+            ALICE, PFI, TypeId.generate(MessageKind.rfq.name), OrderStatusData("PENDING")
         )
 
         os.sign(ALICE_DID)
