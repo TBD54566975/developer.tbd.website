@@ -1,6 +1,16 @@
 ---
+title: Get Offerings
+hide_title: true
 sidebar_position: 5
 ---
+
+import walletGetOfferingsJS from '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/tbdex/wallet/walletGetOfferingsJS.snippet.js'
+import walletGetOfferingsKt from '!!raw-loader!@site/snippets/testsuite-kotlin/src/test/kotlin/docs/tbdex/wallet/walletGetOfferingsKt.snippet.kt'
+import walletFindMatchingOfferingsJS from '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/tbdex/wallet/walletFindMatchingOfferingsJS.snippet.js'
+import walletFindMatchingOfferingsKt from '!!raw-loader!@site/snippets/testsuite-kotlin/src/test/kotlin/docs/tbdex/wallet/walletFindMatchingOfferingsKt.snippet.kt'
+
+
+<LanguageSwitcher languages="JavaScript, Kotlin" />
 
 # Get Offerings
 
@@ -12,14 +22,17 @@ In other words, an Offering is a way of describing a financial product that a PF
 
 ## Get Offerings from PFI
 
-```js
-const { data: offerings } = await TbdexHttpClient.getOfferings({ pfiDid: pfiDid });
-```
+<Shnip
+  snippets={[
+    { snippetContent: walletGetOfferingsJS, language: 'JavaScript' },
+    { snippetContent: walletGetOfferingsKt, language: 'Kotlin' },
+  ]}
+/>
 
 
 ## Find Matching Offerings
 
-Let's say your customer is looking to exchange USD for GBP.
+Let's say your customer is looking to exchange USD for KES.
 As a wallet application, you would loop through your list of PFIs and make a request to each to obtain their list of Offerings and determine if any offer this currency pair.
 You'd then provide a list of the matching Offerings to Alice, showing her the options available.
 
@@ -27,26 +40,11 @@ Let's walk through how this is done.
 
 Given you have a list of PFIs on your network, you can check their Offerings for any matches:
 
-```js
-const pfiDids = [/* array of PFI DIDs */];
-const payinCurrencyCode = 'USD'; // Desired payin currency code
-const payoutCurrencyCode = 'GBP'; // Desired payout currency code
-
-// Array to store the matched offerings
-const matchedOfferings = [];
-
-for (const pfiDid of pfiDids) {
-  //Makes a request to the PFI to get their offerings
-  const { data: offerings } = await TbdexHttpClient.getOfferings({ pfiDid: pfiDid });
-
-  // Filter offerings based on the currency pair
-  const filteredOfferings = offerings.filter(offering =>
-    offering.data.payinCurrency.currencyCode === payinCurrencyCode &&
-    offering.data.payoutCurrency.currencyCode === payoutCurrencyCode
-  );
-
-  matchedOfferings.push(...filteredOfferings);
-}
-```
+<Shnip
+  snippets={[
+    { snippetContent: walletFindMatchingOfferingsJS, language: 'JavaScript' },
+    { snippetContent: walletFindMatchingOfferingsKt, language: 'Kotlin' },
+  ]}
+/>
 
 Now, you'd present the `matchedOfferings` to Alice.
