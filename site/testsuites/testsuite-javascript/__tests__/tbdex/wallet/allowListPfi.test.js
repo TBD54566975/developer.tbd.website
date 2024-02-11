@@ -10,7 +10,7 @@ describe('allowlist PFIs', () => {
         services: [{
             id: 'pfi',
             type: 'PFI',
-            serviceEndpoint: 'tbdex-pfi.tbddev.org'
+            serviceEndpoint: 'https://example.com/'
         }]
     })
   });
