@@ -5,11 +5,11 @@ The output of this credential is hard-coded in the guide.
 If you change any of the data below, please regenerate the
 output and paste it in the guide.
 */
-export async function createEmploymentCredential(employer, employee) {
+export async function createEmploymentCredential(employerDid, employeeDid) {
 const vc = await VerifiableCredential.create({
     type: 'EmploymentCredential',
-    issuer: employer.uri,
-    subject: employee.uri,
+    issuer: employerDid.uri,
+    subject: employeeDid.uri,
     expirationDate: '2023-09-30T12:34:56Z',
     data: {
         "position": "Software Developer",
