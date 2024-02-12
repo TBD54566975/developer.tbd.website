@@ -145,7 +145,6 @@ internal class VerifyVcTest {
         // :snippet-start: verifyVpKt
         try {
             VerifiablePresentation.verify(vpJwt)
-            println("VP Verification successful!")
         } catch (e: Exception) {
             println("VP Verification failed: ${e.message}")
         }
