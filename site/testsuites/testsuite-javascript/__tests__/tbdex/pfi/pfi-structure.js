@@ -226,11 +226,11 @@ class OfferingsApiProvider {
 };  
 
 this.pfiDid = await DidDhtMethod.create({
-  publish: false,
+  publish: true,
   services: [{
       id: 'pfi',
       type: 'PFI',
-      serviceEndpoint: 'tbdex-pfi.tbddev.org'
+      serviceEndpoint: 'https://example.com/'
   }]
 })
 

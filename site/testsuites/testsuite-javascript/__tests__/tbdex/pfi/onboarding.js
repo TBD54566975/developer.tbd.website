@@ -6,7 +6,7 @@ const pfiDid = await DidDhtMethod.create({
     services: [{
         id: 'pfi',
         type: 'PFI',
-        serviceEndpoint: 'tbdex-pfi.tbddev.org'
+        serviceEndpoint: 'https://example.com/'
     }]
 })
 // :snippet-end:
