@@ -151,7 +151,5 @@ internal class VerifyVcTest {
         }
         // :snippet-end:
     }
-
   }
-
 }
