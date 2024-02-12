@@ -25,17 +25,11 @@
         These need to be uniformly updated as part of the
         single dependency script from Nick
         -->
-        <version.tbdex>0.9.0-beta</version.tbdex>
+        <version.tbdex>0.10.0-beta</version.tbdex>
 
         <!-- Test Dependencies -->
         <version.ktor>2.3.7</version.ktor>
 
-        <!-- ALR Dark Arts to Make tbDEX and Web5 Play Nice -->
-        <!--
-        Will eventually go bye-bye once the
-        underlying dep trees are fixed up
-        -->
-        <version.com.fasterxml.jackson.core>2.12.6</version.com.fasterxml.jackson.core>
     </properties>
 
     <dependencyManagement>
@@ -68,17 +62,7 @@
             <!-- TBD Dependencies -->
             <dependency>
               <groupId>xyz.block</groupId>
-              <artifactId>tbdex-httpclient</artifactId>
-              <version>${version.tbdex}</version>
-            </dependency>
-            <dependency>
-              <groupId>xyz.block</groupId>
-              <artifactId>tbdex-httpserver</artifactId>
-              <version>${version.tbdex}</version>
-            </dependency>
-            <dependency>
-              <groupId>xyz.block</groupId>
-              <artifactId>tbdex-protocol</artifactId>
+              <artifactId>tbdex</artifactId>
               <version>${version.tbdex}</version>
             </dependency>
 
@@ -90,21 +74,6 @@
               <scope>test</scope>
             </dependency>
 
-            <!-- ALR Dark Arts to Make tbDEX and Web5 Play Nice -->
-            <!--
-            Will eventually go bye-bye once the
-            underlying dep trees are fixed up
-            -->
-            <dependency>
-              <groupId>com.fasterxml.jackson.core</groupId>
-              <artifactId>jackson-core</artifactId>
-              <version>${version.com.fasterxml.jackson.core}</version>
-            </dependency>
-            <dependency>
-              <groupId>com.fasterxml.jackson.core</groupId>
-              <artifactId>jackson-databind</artifactId>
-              <version>${version.com.fasterxml.jackson.core}</version>
-            </dependency>
         </dependencies>
     </dependencyManagement>
 
@@ -129,21 +98,18 @@
         <!-- TBD Dependencies -->
         <dependency>
           <groupId>xyz.block</groupId>
-          <artifactId>tbdex-httpclient</artifactId>
-        </dependency>
-        <dependency>
-          <groupId>xyz.block</groupId>
-          <artifactId>tbdex-httpserver</artifactId>
-        </dependency>
-        <dependency>
-          <groupId>xyz.block</groupId>
-          <artifactId>tbdex-protocol</artifactId>
+          <artifactId>tbdex</artifactId>
         </dependency>
 
         <!-- Test Dependencies -->
         <dependency>
           <groupId>io.ktor</groupId>
           <artifactId>ktor-server-netty-jvm</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.squareup.okhttp3</groupId>
+            <artifactId>mockwebserver</artifactId>
+            <version>4.11.0</version>
         </dependency>
     </dependencies>
 

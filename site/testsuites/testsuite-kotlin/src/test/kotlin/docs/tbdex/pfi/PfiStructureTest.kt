@@ -25,7 +25,7 @@ class PfiStructureTest {
         val serviceToAdd = Service.builder()
             .id(URI("pfi"))
             .type("PFI")
-            .serviceEndpoint("tbdex-pfi.tbddev.org")
+            .serviceEndpoint("https://example.com/")
             .build()
 
         val options = CreateDidDhtOptions(
