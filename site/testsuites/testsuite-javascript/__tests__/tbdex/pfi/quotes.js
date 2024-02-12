@@ -1,18 +1,16 @@
-import { 
-  TbdexHttpServer, 
-  Offering,
-  Rfq, 
-  Quote, 
-  Order, 
-  OrderStatus, 
-  Close, 
-  CallbackError, 
-  ErrorDetail 
+import {
+    Rfq,
+    Quote,
+    Offering
 } from '@tbdex/http-server';
 
 import { DidDhtMethod } from '@web5/dids';
 
-var pfiDid;
+//---------------------------------------------------------------------------//
+// TODO: Refactor this into a common file similar to setup-web5.js. This is  //
+// being used in the pfi structure page as well, but with KT tests blocking  //
+// I will create a separate PR for doing this setup.                         //
+//---------------------------------------------------------------------------//
 
 let sampleOffering = {
   "metadata": {
@@ -119,56 +117,56 @@ class DataProvider {
       return [sampleOffering];
   }
 }
-  
+
 const dataProvider = new DataProvider();
 
-class ExchangesApiProvider {
-  getExchanges(opts) {
+const exchangesApiProvider = {
+  getExchanges: (opts) => {
     // Mock data for getExchanges
     const mockData = [
       [{ message: 'Mock data for getExchanges' }],
       [{ message: 'Another mock data for getExchanges' }]
     ];
     return Promise.resolve(mockData);
-  }
+  },
 
-  getExchange(opts) {
+  getExchange: (opts) => {
     // Mock data for getExchange
     const mockData = [{ message: 'Mock data for getExchange' }];
     return Promise.resolve(mockData);
-  }
+  },
 
-  getRfq(opts) {
+  getRfq: (opts) => {
     // Mock data for getRfq
     const mockData = { id: opts.exchangeId, type: 'Rfq' };
     return Promise.resolve(mockData);
-  }
+  },
 
-  getQuote(opts) {
+  getQuote: (opts) => {
     // Mock data for getQuote
     const mockData = { id: opts.exchangeId, type: 'Quote' };
     return Promise.resolve(mockData);
-  }
+  },
 
-  getOrder(opts) {
+  getOrder: (opts) => {
     // Mock data for getOrder
     const mockData = { id: opts.exchangeId, type: 'Order' };
     return Promise.resolve(mockData);
-  }
+  },
 
-  getOrderStatuses(opts) {
+  getOrderStatuses: (opts) => {
     // Mock data for getOrderStatuses
     const mockData = [{ status: 'Pending' }, { status: 'Completed' }];
     return Promise.resolve(mockData);
-  }
+  },
 
-  getClose(opts) {
+  getClose: (opts) => {
     // Mock data for getClose
     const mockData = { id: opts.exchangeId, type: 'Close' };
     return Promise.resolve(mockData);
-  }
+  },
 
-  // :snippet-start: pfiOverviewWriteJs
+
   async write({ message }) {
       await dataProvider.insert('exchange', {
               exchangeid: message.exchangeId,
@@ -178,42 +176,33 @@ class ExchangesApiProvider {
               message: JSON.stringify(message)
           });
   }  
-  // :snippet-end:
+
 };
 
-// :snippet-start: pfiOverviewReadOfferingsJs
-class OfferingsApiProvider {
-  getOffering(opts) {
+const offeringsApiProvider = {
+  getOffering: (opts) => {
       dataProvider.get('offering', opts.id).then(([result]) => {
           if (!result) {
               return undefined
           }
-          return Offering.create({
-            metadata: { from: this.pfiDid },
-            data: result.offering
-          })
+          return Offering.factory(result.offering)
       });
-  }
+  },
 
-  getOfferings(opts) {
+  getOfferings: (opts) => {
     dataProvider.query('offering', "*").then((results) => {
         const offerings = []
-  
+
         for (let result of results) {
-            const offering = Offering.create({
-              metadata: { from: this.pfiDid },
-              data: result.offering
-            })
+            const offering = Offering.factory(result.offering)
             offerings.push(offering)
         }
-    
+
         return offerings
     });
-  }
+  },
 
-  // :snippet-end:
 
-  // :snippet-start: pfiOverviewWriteOfferingsJs
   async create(offering) {
       await dataProvider.insert('offering', {
           offeringid: offering.id,
@@ -222,45 +211,81 @@ class OfferingsApiProvider {
           offering: JSON.stringify(offering)
       });
   }
-    // :snippet-end:
+  
 };  
 
-this.pfiDid = await DidDhtMethod.create({
-  publish: true,
-  services: [{
-      id: 'pfi',
-      type: 'PFI',
-      serviceEndpoint: 'https://example.com/'
-  }]
-})
+//---------------------------------------------------------------------------//
+//---------------------------------------------------------------------------//
 
-// :snippet-start: pfiOverviewConfigJs
-var exchangesApiProvider = ExchangesApiProvider();
-var offeringsApiProvider = OfferingsApiProvider();
+async function createQuoteFromRfq(message) {
 
-const tbDexServer = new TbdexHttpServer({ 
-  exchangesApi: exchangesApiProvider, 
-  offeringsApi: offeringsApiProvider,
-  pfiDid: pfiDid.did 
-})
-// :snippet-end:
+  const pfiDid = await DidDhtMethod.create({
+      publish: true,
+      services: [{
+          id: 'pfi',
+          type: 'PFI',
+          serviceEndpoint: 'https://example.com/service'
+      }]
+  })
 
-// :snippet-start: pfiOverviewServerRoutesJs
-tbDexServer.submit('rfq', async (ctx, rfq) => {
-    await exchangesApiProvider.write({ message: rfq})
-})
+  // :snippet-start: pfiQuotesWriteJs
+  // Write the message to your exchanges database
+  await dataProvider.insert('exchange', {
+      exchangeid: message.exchangeId,
+      messagekind: message.kind,
+      messageid: message.id,
+      subject: message.subject,
+      message: JSON.stringify(message)
+  });
 
-tbDexServer.submit('order', async (ctx, order) => {
-    await exchangesApiProvider.write({ message: order })
-})
+  //highlight-start
+  const offering = await offeringsApiProvider.getOffering(message.offeringId)
+  //highlight-end
+  // :snippet-end:
 
-tbDexServer.submit('close', async (ctx, close) => {
-    await exchangesApiProvider.write({ message: close })
-})
-// :snippet-end:
+  const rfqOptions = {
+      data: message.data(), 
+      metadata: message.metadata()
+  };
 
-// :snippet-start: pfiOverviewServerStartJs
-const server = tbDexServer.listen(8080, () => {
-    console.log(`PFI listening on port ${8080}`)
-})
-// :snippet-end:
+  const rfq = Rfq.create(rfqOptions)
+
+  // :snippet-start: pfiQuotesProcessJs
+  try {
+      await rfq.verifyOfferingRequirements(offering)
+  } catch(e) {
+      console.log(`Failed to verify offering requirements: ${e.rfq}`)
+  }
+  // :snippet-end:
+
+  // :snippet-start: pfiQuotesSendJs
+  var quoteExpiration = new Date()
+  quoteExpiration.setDate(quoteExpiration.getDate() + 10)
+  const quote = Quote.create(
+      {
+        metadata: {
+          from: pfiDid.did,
+          to: message.metadata.from,
+          exchangeId: message.exchangeId
+        },
+        data: {
+          expiresAt: quoteExpiration.toLocaleDateString('en-us'),
+          payin: {
+            currencyCode: 'BTC',
+            amountSubunits: '1000'
+          },
+          payout: {
+            currencyCode: 'KES',
+            amountSubunits: '123456789'
+          }
+        }
+      }
+  );
+  // :snippet-end:
+
+  // :snippet-start: pfiQuotesSignJs
+  await quote.sign(pfiDid)
+  exchangesApiProvider.write(quote)
+  // :snippet-end:
+
+}

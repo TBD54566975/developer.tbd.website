@@ -6,11 +6,11 @@ let pfiDid;
 describe('allowlist PFIs', () => {
   beforeAll(async () => {
     pfiDid = await DidDhtMethod.create({
-        publish: false,
+        publish: true,
         services: [{
             id: 'pfi',
             type: 'PFI',
-            serviceEndpoint: 'tbdex-pfi.tbddev.org'
+            serviceEndpoint: 'https://example.com/'
         }]
     })
   });
