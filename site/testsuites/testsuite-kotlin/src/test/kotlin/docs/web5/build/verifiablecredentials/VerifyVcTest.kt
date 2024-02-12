@@ -135,11 +135,7 @@ internal class VerifyVcTest {
 
    @Test
   fun `verifyVpKt signs and verifies a verifiable presenation `() {
-    // :snippet-start: signVpKt
     val vpJwt = verifiablePresentation.sign(holderDid)
-    // :snippet-end:
-
-    assertTrue(vpJwt is String, "vpJwt should be a String")
 
     assertDoesNotThrow {
         // :snippet-start: verifyVpKt

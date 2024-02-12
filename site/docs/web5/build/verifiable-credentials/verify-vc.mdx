@@ -1,5 +1,5 @@
 ---
-title: Verify VCs and VPs
+title: Verify Credentials
 hide_title: true
 sidebar_position: 2
 ---
@@ -15,7 +15,7 @@ import verifyVpKt from '!!raw-loader!@site/snippets/testsuite-kotlin/src/test/ko
 
 <LanguageSwitcher languages="JavaScript, Kotlin" />
 
-# Verify VCs and VPs
+# Verify Credentials
 
 When an entity, receives the presentation of verifiable credentials (VCs) or verifiable presentations (VPs), they must verify the integrity, authenticity, and content of the credentials.
 The entity performing this verification is known as the **Verifier**.
@@ -196,30 +196,7 @@ The Verifier would then examine the results of the verifications to determine th
 The information in this section is only applicable to the Kotlin SDK.
 :::
 
-### Sign VP with DID
-
-The first step is to encode a Verifiable Presentation into a JWT by signing it with the holder's DID. The **holder**, who signs and presents the VP, 
-could be the subject of the credentials or an entity authorized to represent the subject.
-
-<Shnip
-  inlineSnippets={[
-    {
-      content: 'This functionality does not exist in the Javascript SDK.',
-      language: 'JavaScript',
-    }
-  ]}
-  snippets={[
-    { snippetContent: signVpKt, language: 'Kotlin'},
-  ]}
-/>
-
-### Verify VP
-After the Verifiable Presentation is encoded as a JWT, the VP can be verified via the `VerifiablePresentation.verify()` function.
-
-This function will:
-
-- **Credential Verification:** Confirms that each VC inside the VP is valid and legitimate.
-- **Presentation Authenticity:** Confirms the VP is unaltered from its original form and validates the legitimacy of both the issuer and the presenter.
+Upon receipt, a Verifiable Presentation is encoded as a [JWT](/docs/web5/build/verifiable-credentials/jwt-to-vc#what-is-a-jwt) and can be verified via the `VerifiableCredentials.verify()` function. 
 
 <Shnip
   inlineSnippets={[
