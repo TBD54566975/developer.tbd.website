@@ -1,5 +1,5 @@
 ---
-title: Verify VCs
+title: Verify VCs and VPs
 hide_title: true
 sidebar_position: 2
 ---
@@ -10,17 +10,19 @@ import evaluatePresentation from '!!raw-loader!@site/snippets/testsuite-javascri
 
 import verifyVcsKt from '!!raw-loader!@site/snippets/testsuite-kotlin/src/test/kotlin/docs/web5/build/verifiablecredentials/verifyVcsKt.snippet.kt'
 import errorsFoundKt from '!!raw-loader!@site/snippets/testsuite-kotlin/src/test/kotlin/docs/web5/build/verifiablecredentials/errorsFoundKt.snippet.kt'
-
+import signVpKt from '!!raw-loader!@site/snippets/testsuite-kotlin/src/test/kotlin/docs/web5/build/verifiablecredentials/signVpKt.snippet.kt'
+import verifyVpKt from '!!raw-loader!@site/snippets/testsuite-kotlin/src/test/kotlin/docs/web5/build/verifiablecredentials/verifyVpKt.snippet.kt'
 
 <LanguageSwitcher languages="JavaScript, Kotlin" />
 
-# Verify VCs
+# Verify VCs and VPs
 
-When an entity receives the presentation of verifiable credentials (VCs), they must verify the integrity, authenticity, and content of the VCs.
+When an entity, receives the presentation of verifiable credentials (VCs) or verifiable presentations (VPs), they must verify the integrity, authenticity, and content of the credentials.
 The entity performing this verification is known as the **Verifier**.
 
+A verifiable credential (VC) is a digital proof related to an entity, known as the **Subject**. In contrast, a verifiable presentation (VP) is a collection of one or more VCs bundled together for presentation.
 
-## Verify
+## Verify Verifiable Credentials
 
 Upon receipt, the presentation of the VCs is encoded as [JWTs](/docs/web5/build/verifiable-credentials/jwt-to-vc#what-is-a-jwt) and can be verified via the `VerifiableCredentials.verify()` function. 
 
@@ -186,6 +188,56 @@ The Verifier would then examine the results of the verifications to determine th
     { snippetContent: errorsFound, language: 'JavaScript'},
     { snippetContent: errorsFoundKt, language: 'Kotlin'}
     ]}
+/>
+
+## Verify Verifiable Presentations
+
+:::note
+The information in this section is only applicable to the Kotlin SDK.
+:::
+
+Aggregating one or more VCs into a VP provides the following benefits:
+- **Convenience:** Instead of presenting several VCs individually, a VP enables an entity to present all relevant credentials packaged together.
+- **Privacy:** Rather than sharing the entire credential, entities can selectively share specific information from each credential to protect personal data.
+- **Contextual Relevance:** VPs include metadata that explain the purpose and relevance of each credential to verifiers.
+- **Adaptability:** An entity can customize a VP for different situations to demonstrate various aspects of their background in one presentation. 
+For example, in a job application, a VP can highlight an applicant's educational qualifications, work experience, and skills.
+
+### Sign VP with DID
+
+The first step is to encode a Verifiable Presentation into a JWT by signing it with the holder's DID. The **holder**, who signs and presents the VP, 
+could be the subject of the credentials or an entity authorized to represent the subject.
+
+<Shnip
+  inlineSnippets={[
+    {
+      content: 'This functionality does not exist in the Javascript SDK.',
+      language: 'JavaScript',
+    }
+  ]}
+  snippets={[
+    { snippetContent: signVpKt, language: 'Kotlin'},
+  ]}
+/>
+
+### Verify VP
+After the Verifiable Presentation is encoded as a JWT, the VP can be verified via the `VerifiablePresentation.verify()` function.
+
+This function will:
+
+- **Credential Verification:** Confirms that each VC inside the VP is valid and legitimate.
+- **Presentation Authenticity:** Confirms the VP is unaltered from its original form and validates the legitimacy of both the issuer and the presenter.
+
+<Shnip
+  inlineSnippets={[
+    {
+      content: 'This functionality does not exist in the Javascript SDK.',
+      language: 'JavaScript',
+    }
+  ]}
+  snippets={[
+    { snippetContent: verifyVpKt, language: 'Kotlin'},
+  ]}
 />
 
 ## Evaluate Presentation

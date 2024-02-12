@@ -6,9 +6,10 @@ import org.junit.jupiter.api.Assertions.*
 
 import web5.sdk.credentials.VerifiableCredential
 import web5.sdk.credentials.model.*
-
 import web5.sdk.credentials.VerifiablePresentation
 import web5.sdk.credentials.PresentationExchange
+import web5.sdk.crypto.InMemoryKeyManager
+import web5.sdk.dids.methods.key.DidKey
 
 /**
  * Tests backing the Verify VC Guide
@@ -41,6 +42,8 @@ data class VerificationResult(
     val isValid: Boolean,
     val error: String?
 )
+
+val holderDid = DidKey.create(InMemoryKeyManager())
 
 val presentationDefinition = PresentationDefinitionV2(
     id = "presDefIdloanAppVerification123",
@@ -81,7 +84,7 @@ val presentationResult = PresentationExchange.createPresentationFromCredentials(
 
 val verifiablePresentation = VerifiablePresentation.create(
     vcJwts = listOf(vcJwt1, vcJwt2),
-    holder = "did:ion:EiBYBnt0m0y73V07U9-rdKtU-FgebRUhUT4ULAsJBgzvSg:eyJkZWx0YSI6eyJwYXRjaGVzIjpbeyJhY3Rpb24iOiJyZXBsYWNlIiwiZG9jdW1lbnQiOnsicHVibGljS2V5cyI6W3siaWQiOiJkd24tc2lnIiwicHVibGljS2V5SndrIjp7ImNydiI6IkVkMjU1MTkiLCJrdHkiOiJPS1AiLCJ4IjoiUURGQXRJWTNyUXFBZFRaek9LOU5aZncyYlZXM2pJUGdtVWN6bXZpUWExdyJ9LCJwdXJwb3NlcyI6WyJhdXRoZW50aWNhdGlvbiIsImFzc2VydGlvbk1ldGhvZCJdLCJ0eXBlIjoiSnNvbldlYktleTIwMjAifV0sInNlcnZpY2VzIjpbXX19XSwidXBkYXRlQ29tbWl0bWVudCI6IkVpQXNCQnktWHpyZ25KbGdVWnIydmhZdlRheW9xbDMwSkxxbU1CY2ZCdlFkcmcifSwic3VmZml4RGF0YSI6eyJkZWx0YUhhc2giOiJFaUNjTHpmZVBDLWtBWXMyZ25kX05DeUc3U0ZPV3didGVtWXV3TklXcDczSUhBIiwicmVjb3ZlcnlDb21taXRtZW50IjoiRWlBT18wNmNpaS1YQVg2SWZvcnRqQW01SVZEc2dCR2J4N0ZFR3piWGFpQzJ6USJ9fQ",
+    holder = holderDid.uri,
     additionalData = mapOf("presentation_submission" to presentationResult)
 )
 
@@ -128,6 +131,27 @@ internal class VerifyVcTest {
         assertTrue(result.isValid, "Verification result should be valid")
         assertNull(result.error, "Verification result error should be null")
     }
+  }
+
+   @Test
+  fun `verifyVpKt signs and verifies a verifiable presenation `() {
+    // :snippet-start: signVpKt
+    val vpJwt = verifiablePresentation.sign(holderDid)
+    // :snippet-end:
+
+    assertTrue(vpJwt is String, "vpJwt should be a String")
+
+    assertDoesNotThrow {
+        // :snippet-start: verifyVpKt
+        try {
+            VerifiablePresentation.verify(vpJwt)
+        println("VP Verification successful!")
+        } catch (e: Exception) {
+            println("VP Verification failed: ${e.message}")
+        }
+        // :snippet-end:
+    }
+
   }
 
 }
