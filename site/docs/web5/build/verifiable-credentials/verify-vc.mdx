@@ -1,5 +1,5 @@
 ---
-title: Verify Credentials
+title: Verify VCs and VPs
 hide_title: true
 sidebar_position: 2
 ---
@@ -15,7 +15,7 @@ import verifyVpKt from '!!raw-loader!@site/snippets/testsuite-kotlin/src/test/ko
 
 <LanguageSwitcher languages="JavaScript, Kotlin" />
 
-# Verify Credentials
+# Verify VCs and VPs
 
 When an entity, receives the presentation of verifiable credentials (VCs) or verifiable presentations (VPs), they must verify the integrity, authenticity, and content of the credentials.
 The entity performing this verification is known as the **Verifier**.
@@ -195,13 +195,6 @@ The Verifier would then examine the results of the verifications to determine th
 :::note
 The information in this section is only applicable to the Kotlin SDK.
 :::
-
-Aggregating one or more VCs into a VP provides the following benefits:
-- **Convenience:** Instead of presenting several VCs individually, a VP enables an entity to present all relevant credentials packaged together.
-- **Privacy:** Rather than sharing the entire credential, entities can selectively share specific information from each credential to protect personal data.
-- **Contextual Relevance:** VPs include metadata that explain the purpose and relevance of each credential to verifiers.
-- **Adaptability:** An entity can customize a VP for different situations to demonstrate various aspects of their background in one presentation. 
-For example, in a job application, a VP can highlight an applicant's educational qualifications, work experience, and skills.
 
 ### Sign VP with DID
 
