@@ -1,6 +1,6 @@
 import { MockDataProvider } from './utils/mockdataprovider'
-import { Close, Message, Offering, Order, OrderStatus, Quote, Rfq } from '@tbdex/protocol'
-import { TbdexHttpClient, DevTools } from '@tbdex/http-client';
+import { Offering } from '@tbdex/protocol'
+import { DevTools } from '@tbdex/http-client';
 
 export class OfferingsApiProvider {
 
@@ -65,7 +65,7 @@ export class OfferingsApiProvider {
     // Other methods
     //---------------------------------------------------------------------------//
   
-    async create(offering) {
+    async createOffering(offering) {
         await this.dataProvider.insert('offering', {
             offeringid: offering.id,
             payoutcurrency: offering.payoutCurrency.currencyCode,

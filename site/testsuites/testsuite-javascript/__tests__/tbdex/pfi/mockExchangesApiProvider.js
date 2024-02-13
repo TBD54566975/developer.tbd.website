@@ -1,7 +1,5 @@
-import { Request, Response } from 'express'
-import { Close, Message, Offering, Order, OrderStatus, Quote, Rfq } from '@tbdex/protocol'
-import { ErrorDetail } from '@tbdex/http-client'
-import { TbdexHttpClient, DevTools } from '@tbdex/http-client';
+import { Close, OrderStatus, Quote } from '@tbdex/protocol'
+import { DevTools } from '@tbdex/http-client';
 import { MockDataProvider } from './utils/mockdataprovider'
 
 export class ExchangesApiProvider {
@@ -64,27 +62,34 @@ export class ExchangesApiProvider {
         })
     }
 
-    setQuote(exchangeId, messageOptions) {
+    setQuote(exchangeId, metadata) {
         this.dataProvider.setupGet("quote", exchangeId, () => {
-            return DevTools.createRfq(messageOptions)
+            let quoteData = DevTools.createQuoteData()
+            return Quote.create({
+                metadata: metadata,
+                data: quoteData
+            })
         })
     }
 
     setOrder(exchangeId, messageOptions) {
         this.dataProvider.setupGet("order", exchangeId, () => {
-            return DevTools.createRfq(messageOptions)
+            return DevTools.createOrder(messageOptions)
         })
     }
 
-    setOrderStatuses(exchangeId, messageOptions) {
+    setOrderStatus(exchangeId, status,  metadata) {
         this.dataProvider.setupGet("orderstatus", exchangeId, () => {
-            return DevTools.createRfq(messageOptions)
+            return OrderStatus.create({
+                data: { orderStatus: status },
+                metadata: metadata
+            })
         })
     }
 
-    setClose(exchangeId, messageOptions) {
+    setClose(exchangeId, data) {
         this.dataProvider.setupGet("close", exchangeId, () => {
-            return DevTools.createRfq(messageOptions)
+            return Close.create(data)
         })
     }
 
