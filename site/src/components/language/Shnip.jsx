@@ -48,7 +48,7 @@ const Shnip = ({ snippets, inlineSnippets }) => {
                 {!nestedSnippets &&
                   <CodeSnippet
                     snippet={snippetContent}
-                    language={codeLanguage || language.toLowerCase()}
+                    language={(codeLanguage || language).toLowerCase()}
                     title={title}
                   />
                 }
