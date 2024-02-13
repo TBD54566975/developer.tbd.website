@@ -34,16 +34,8 @@ const Shnip = ({ snippets, inlineSnippets }) => {
                 {content && <div style={{ paddingTop: '20px' }}><ReactMarkdown>{content}</ReactMarkdown></div>}
 
                 {/* Render Breadcrumbs if there are nestedSnippets */}
-                {nestedSnippets &&
-                  <BreadcrumbTab snippetMappings={
-                      nestedSnippets.reduce((acc, current) => {
-                        const key = Object.keys(current)[0]; // Get the key of the current object ('Gradle', 'Maven')
-                        acc[key] = current[key]; // Assign the value of the current object to the accumulated object
-                        return acc;
-                      }, {})
-                    }
-                  />
-                }
+                {nestedSnippets && <BreadcrumbTab snippetMappings={nestedSnippets} /> }
+
                 {/* Render the CodeSnippet component if there are no nestedSnippets */}
                 {!nestedSnippets &&
                   <CodeSnippet
