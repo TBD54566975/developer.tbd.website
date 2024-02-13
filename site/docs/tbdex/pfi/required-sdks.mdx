@@ -25,25 +25,28 @@ To implement and operate as a PFI, you’ll need to use the following SDKs:
 
 ## Install SDKs
 
-<Tabs groupId="language">
-  <TabItem label="JavaScript" value="JavaScript">
-    <CodeSnippet snippet={pfiSdkInstallJs} language="bash"/>
-  </TabItem>
-  <TabItem label="Kotlin" value="Kotlin">
-    <BreadcrumbTab
-      snippetMappings={{
-        'Gradle': {
-          "snippet": pfiSdkInstallGradle,
-          "language": "js"
+<Shnip snippets={
+  [
+    { snippetContent: pfiSdkInstallJs, language: 'JavaScript', codeLanguage: 'bash'},
+    {
+      language: 'Kotlin',
+      nestedSnippets: [
+        {
+          'Gradle': {
+            "snippet": pfiSdkInstallGradle,
+            "language": 'js'
+          }
         },
-        'Maven': {
-          "snippet": pfiSdkInstallPom,
-          "language": "xml"
+        {
+          'Maven': {
+            "snippet": pfiSdkInstallPom,
+            "language": 'xml'
+          }
         }
-      }}
-    />
-  </TabItem>
-</Tabs>
+      ]
+    }
+  ]
+} />
 
 ## Import Classes
 
