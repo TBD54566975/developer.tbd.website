@@ -45,6 +45,8 @@ class SnippetExtractor {
       // Normalize indentation
       snippetContent = this.normalizeIndentation(snippetContent);
 
+      snippetContent = snippetContent.replace(/\/\/\s*$/, "").trim();
+
       if (snippetName) {
         snippets[snippetName] = snippetContent;
       }
@@ -89,16 +91,42 @@ class SnippetExtractor {
 
   writeSnippetsToFile(snippets, fullPath, relativePath) {
     for (const [snippetName, snippetContent] of Object.entries(snippets)) {
-      // Determine output path based on configuration
-      const outputPath = this.determineOutputPath(
-        snippetName,
-        fullPath,
-        relativePath
-      );
-      fs.writeFileSync(
-        outputPath,
-        `export default ${JSON.stringify(snippetContent)};`
-      );
+      let outputPath;
+
+      switch (this.config.outputDirectoryStructure) {
+        case "match":
+          // For "match", save the snippet in its original form without converting to a JS module
+          outputPath = path.join(
+            this.config.outputDirectory,
+            relativePath,
+            `${snippetName}.snippet${path.extname(fullPath)}`
+          );
+          if (!fs.existsSync(path.dirname(outputPath))) {
+            fs.mkdirSync(path.dirname(outputPath), { recursive: true });
+          }
+          fs.writeFileSync(outputPath, snippetContent);
+          break;
+        case "flat":
+        case "byLanguage":
+        case "organized":
+        default:
+          // Handle other cases as before
+          outputPath = this.determineOutputPath(
+            snippetName,
+            fullPath,
+            relativePath
+          );
+          // Ensure the output directory exists
+          if (!fs.existsSync(path.dirname(outputPath))) {
+            fs.mkdirSync(path.dirname(outputPath), { recursive: true });
+          }
+          // For configurations other than "match", wrap the content in a JS module
+          fs.writeFileSync(
+            outputPath,
+            `export default ${JSON.stringify(snippetContent)};`
+          );
+          break;
+      }
     }
   }
 
