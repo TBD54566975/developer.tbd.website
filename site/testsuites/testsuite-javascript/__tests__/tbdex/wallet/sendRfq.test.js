@@ -1,43 +1,40 @@
-import { vi, test, expect, describe, beforeAll, afterAll } from 'vitest';
-import { TbdexHttpClient, DevTools } from '@tbdex/http-client';
+import { test, expect, describe, beforeAll, afterAll } from 'vitest';
+import { TbdexHttpClient, DevTools, Rfq } from '@tbdex/http-client';
 import { DidDhtMethod, DidKeyMethod } from '@web5/dids';
 import { setupServer } from 'msw/node'
-import { HttpResponse, http } from 'msw'
+import { http, HttpResponse } from 'msw'
 
 let pfi;
-let pfiDid; //The URI of the PFI's DID
-let customer;
+let customerDid;
 let server;
 let selectedOffering;
 
-describe('Send RFQ to PFI', () => {
+describe('Send RFQ', () => {
 
   beforeAll(async () => {
-    customer = await DidKeyMethod.create({ publish: true })
+    customerDid = await DidKeyMethod.create({ publish: true })
 
     pfi = await DidDhtMethod.create({
         publish  : true,
         services : [{
           type            : 'PFI',
           id              : 'pfi',
-          serviceEndpoint : 'https://localhost:9000'
+          serviceEndpoint : 'http://localhost:9000'
         }]
     })
-    pfiDid = pfi.did  
+
+    selectedOffering = DevTools.createOffering({
+      from: pfi.did
+    });  
+    await selectedOffering.sign(pfi)
 
     // Mock the response from the PFI
-    selectedOffering = DevTools.createOffering({
-      from: pfiDid
-    });  
-    await mockOffering.sign(pfi)
-
     server = setupServer(
-      http.get(`https://localhost:9000/offerings?id:${mockOffering.id}`, () => {
-        return HttpResponse.json(
-          { data: [mockOffering] }, 
-          { status: 200 }
-        )
-      }),
+      http.post(new RegExp('http://localhost:9000/exchanges/(.+)/rfq'), () => {
+        return HttpResponse.json({ 
+          status: 202 
+        })
+      })
     )
     server.listen({onUnhandledRequest: 'bypass'})
   });
@@ -46,8 +43,41 @@ describe('Send RFQ to PFI', () => {
     server.resetHandlers()
     server.close()
   }); 
+
+  test('skeleton RFQ: properties', async () => {
+    try{
+      // :snippet-start: skeletonRfqMessageJS
+      const rfq = Rfq.create({
+        metadata: {},
+        data: {},
+      });
+      // :snippet-end:
+
+    } catch (e) {
+      //no assertions needed; this is just showing how to structure a RFQ
+    }
+  });
+
+  test('skeleton RFQ: metadata', async () => {
+    try{
+      // :snippet-start: rfqMetadataJS
+      const rfq = Rfq.create({
+        //highlight-start
+        metadata: {
+          from: customerDid.did, // Customer DID
+          to: selectedOffering.metadata.from    // PFI's DID
+        },
+        //highlight-end
+        data: {}
+      });
+      // :snippet-end:
+
+    } catch (e) {
+      //no assertions needed; this is just showing how to structure a RFQ
+    }
+  });
   
-  test('send RFQ message to PFI', async () => {
+  test('create signed RFQ message and send to PFI', async () => {
 
     const BTC_ADDRESS = 'bc1q52csjdqa6cq5d2ntkkyz8wk7qh2qevy04dyyfd'
     const selectedCredentials = []
@@ -55,12 +85,13 @@ describe('Send RFQ to PFI', () => {
     // :snippet-start: createRfqMessageJS
     const rfq = Rfq.create({
       metadata: {
-        from: customer.did, // Customer DID
+        from: customerDid.did, // Customer DID
         to: selectedOffering.metadata.from // PFI's DID
       },
+      //highlight-start
       data: {
         offeringId: selectedOffering.metadata.id,   // The ID of the selected offering
-        payinSubunits: '0.012',  // The amount of the payin currency
+        payinAmount: '0.012',  // The amount of the payin currency
         payinMethod: {
           kind: 'BTC_WALLET_ADDRESS',   // The method of payment
           paymentDetails: {
@@ -78,20 +109,25 @@ describe('Send RFQ to PFI', () => {
         },
         claims: selectedCredentials  // Array of signed VCs required by the PFI
       }
+      //highlight-end
     });
     // :snippet-end:
 
     // :snippet-start: signRfqMessageJS
-    await rfq.sign(customer); 
+    await rfq.sign(customerDid); 
     // :snippet-end:
-    expect(rfq).toHaveProperty('signature');
 
-    // :snippet-start: sendRfqMessageJS
-    const rfqResponse = await TbdexHttpClient.sendMessage({
-      message: rfq,
-      replyTo: 'https://example.com/callback'
-    });
-    // :snippet-end:
-    expect(rfqResponse).toHaveProperty('status', '202');
+    try{
+      // :snippet-start: sendRfqMessageJS
+      await TbdexHttpClient.sendMessage({
+        message: rfq,
+        replyTo: 'https://example.com/callback'
+      });
+      // :snippet-end:
+    }
+    catch (e) {
+      expect.fail("Failed to send RFQ message to PFI.")
+     }
+    expect(rfq.signature).toBeDefined();
   });
 });
