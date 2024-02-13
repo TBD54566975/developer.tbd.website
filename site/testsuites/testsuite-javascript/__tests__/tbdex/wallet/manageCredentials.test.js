@@ -16,6 +16,42 @@ describe('Get and Validate Offerings from PFI with Custom Presentation Definitio
   let vcJwtSanctions =
     'eyJraWQiOiJkaWQ6ZGh0Onc4bThxNXFja21vZXRzaWlrajR3ZXFhYWRjeGtjNjFkNjh6cnk3aHBpZmdveXE4dG1zb28jMCIsInR5cCI6IkpXVCIsImFsZyI6IkVkRFNBIn0.eyJpc3MiOiJkaWQ6ZGh0Onc4bThxNXFja21vZXRzaWlrajR3ZXFhYWRjeGtjNjFkNjh6cnk3aHBpZmdveXE4dG1zb28iLCJzdWIiOiJkaWQ6ZGh0OmtkMzVlNmN4M3pueXp1ajR3ejF1ZmRjeGs4ODlzYXVrYXRhYWc3YmNrM2NwY2I3cGM4NW8iLCJpYXQiOjE3MDc0OTEzODcsInZjIjp7IkBjb250ZXh0IjpbImh0dHBzOi8vd3d3LnczLm9yZy8yMDE4L2NyZWRlbnRpYWxzL3YxIl0sInR5cGUiOlsiVmVyaWZpYWJsZUNyZWRlbnRpYWwiLCJTYW5jdGlvbnNDcmVkZW50aWFsIl0sImlkIjoidXJuOnV1aWQ6MGU4YWJhMWYtMmMwZS00MDhlLWIxOWMtZjY0NzZiYTU3NDVhIiwiaXNzdWVyIjoiZGlkOmRodDp3OG04cTVxY2ttb2V0c2lpa2o0d2VxYWFkY3hrYzYxZDY4enJ5N2hwaWZnb3lxOHRtc29vIiwiaXNzdWFuY2VEYXRlIjoiMjAyNC0wMi0wOVQxNTowOTo0N1oiLCJjcmVkZW50aWFsU3ViamVjdCI6eyJpZCI6ImRpZDpkaHQ6a2QzNWU2Y3gzem55enVqNHd6MXVmZGN4azg4OXNhdWthdGFhZzdiY2szY3BjYjdwYzg1byIsInN0YXR1cyI6ImFwcHJvdmVkIn19fQ.Wc-qV2L3Z5WJYvUYirznpDsyk1Ntcw0kt_bhuXZDqNVXAn-d9Wta67eta-yu7V1C1T74yv6pQaqjgf2rDLxCAg';
 
+  const customPresentationDefinition = {
+    id: 'custom-pd-id',
+    input_descriptors: [
+      {
+        id: 'sanctionsVerification',
+        purpose: 'Confirm the individual is not sanctioned',
+        constraints: {
+          fields: [
+            {
+              path: ['$.vc.credentialSubject.status'],
+              filter: {
+                type: 'string',
+                pattern: 'approved',
+              },
+            },
+          ],
+        },
+      },
+      {
+        id: 'residenceVerification',
+        purpose: "Confirm the individual's residence address",
+        constraints: {
+          fields: [
+            {
+              path: ['$.vc.credentialSubject.address'],
+              filter: {
+                type: 'string',
+                pattern: '10 Orchard st',
+              },
+            },
+          ],
+        },
+      },
+    ],
+  };
+
   beforeAll(async () => {
     // Create a PFI DID
     pfi = await DidDhtMethod.create({
@@ -30,7 +66,7 @@ describe('Get and Validate Offerings from PFI with Custom Presentation Definitio
     });
     pfiDid = pfi.did;
 
-    // Mock an offering
+    // Mock an offering using customPresentationDefinition
     const defaultOfferingData = DevTools.createOfferingData();
     mockOffering = DevTools.createOffering({
       from: pfiDid,
@@ -44,6 +80,7 @@ describe('Get and Validate Offerings from PFI with Custom Presentation Definitio
           ...defaultOfferingData.payoutCurrency,
           currencyCode: 'KES',
         },
+        requiredClaims: customPresentationDefinition,
       },
     });
     await mockOffering.sign(pfi);
@@ -66,12 +103,27 @@ describe('Get and Validate Offerings from PFI with Custom Presentation Definitio
     server.close();
   });
 
-  test('find matching offerings with credential validation', async () => {
-    // :snippet-start: findMatchingOfferingsJS
+  test('requiredClaims from offering data are correctly assigned to presentationDefinition', async () => {
+    const offerings = await TbdexHttpClient.getOfferings({ pfiDid: pfiDid });
+    const offering = offerings[0];
 
-    // Your network of PFI
+    // :snippet-start: retrievePresentationDefinitionFromOfferingsRequiredClaimsJS
+    const presentationDefinition = offering.data.requiredClaims;
+    // :snippet-end:
+
+    expect(presentationDefinition).toBeDefined();
+    expect(presentationDefinition).toHaveProperty(
+      'id',
+      customPresentationDefinition.id,
+    );
+    expect(presentationDefinition).toHaveProperty('input_descriptors');
+    expect(Array.isArray(presentationDefinition.input_descriptors)).toBe(true);
+  });
+
+  test('find matching offerings with credential validation', async () => {
     const pfiDids = [pfiDid];
 
+    // :snippet-start: findMatchingOfferingsWithCredentialValidationJS
     const payinCurrencyCode = 'USD'; // Desired payin currency code
     const payoutCurrencyCode = 'KES'; // Desired payout currency code
 
@@ -94,10 +146,12 @@ describe('Get and Validate Offerings from PFI with Custom Presentation Definitio
 
           try {
             // Validate customer's VCs against the offering's presentation definition
+            //highlight-start
             PresentationExchange.satisfiesPresentationDefinition({
               vcJwts: credentials,
               presentationDefinition: presentationDefinition,
             });
+            //highlight-end
 
             // Add offerings that match the customer's needs and qualifications
             matchedOfferings.push(offering);
@@ -108,53 +162,11 @@ describe('Get and Validate Offerings from PFI with Custom Presentation Definitio
       }
     }
     // :snippet-end:
-
-    // Assuming mockOffering is the only offering that matches the criteria
     expect(matchedOfferings.length).toBeGreaterThan(0);
   });
 
   test('selects credentials based on presentation definition', () => {
-    // Assuming `credentials` is an array of JWTs representing the Verifiable Credentials
     const credentials = [vcJwtResidence, vcJwtSanctions];
-
-    // Translating the custom presentation definition to a JavaScript object
-    const customPresentationDefinition = {
-      id: 'custom-pd-id',
-      input_descriptors: [
-        // Use input_descriptors instead of inputDescriptors
-        {
-          id: 'sanctionsVerification',
-          purpose: 'Confirm the individual is not sanctioned',
-          constraints: {
-            fields: [
-              {
-                path: ['$.vc.credentialSubject.status'],
-                filter: {
-                  type: 'string',
-                  pattern: 'approved',
-                },
-              },
-            ],
-          },
-        },
-        {
-          id: 'residenceVerification',
-          purpose: "Confirm the individual's residence address",
-          constraints: {
-            fields: [
-              {
-                path: ['$.vc.credentialSubject.address'],
-                filter: {
-                  type: 'string',
-                  pattern: '10 Orchard st',
-                },
-              },
-            ],
-          },
-        },
-      ],
-    };
-
     // :snippet-start: getSelectedCredentialsJS
     // Select the credentials to be used for the exchange
     const selectedCredentials = PresentationExchange.selectCredentials({
