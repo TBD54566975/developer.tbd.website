@@ -4,6 +4,7 @@ import LanguageTabBar from '@site/src/components/language/LanguageTabBar';
 import CodeSnippet from '@site/src/components/CodeSnippet';
 import CodeBlock from '@theme/CodeBlock';
 import ReactMarkdown from 'react-markdown';
+import BreadcrumbTab from '@site/src/components/BreadcrumbTab';
 
 const Shnip = ({ snippets, inlineSnippets }) => {
   // support line breaks for inline code snippets
@@ -36,6 +37,8 @@ const Shnip = ({ snippets, inlineSnippets }) => {
                 functionName,
                 snippetName,
                 content,
+                nestedSnippets,
+                codeLanguage,
               },
               index,
             ) => (
@@ -45,13 +48,28 @@ const Shnip = ({ snippets, inlineSnippets }) => {
                     <ReactMarkdown>{content}</ReactMarkdown>
                   </div>
                 )}
-                <CodeSnippet
-                  snippet={snippetContent}
-                  language={language.toLowerCase()}
-                  title={title}
-                  functionName={functionName}
-                  snippetName={snippetName}
-                />
+
+                {/* Render Breadcrumbs if there are nestedSnippets */}
+                {nestedSnippets && (
+                  <BreadcrumbTab snippetMappings={nestedSnippets} />
+                )}
+
+                {/* Render the CodeSnippet component depending on nestedSnippets presence */}
+                {!nestedSnippets ? (
+                  <CodeSnippet
+                    snippet={snippetContent}
+                    language={language.toLowerCase()}
+                    title={title}
+                    functionName={functionName}
+                    snippetName={snippetName}
+                  />
+                ) : (
+                  <CodeSnippet
+                    snippet={snippetContent}
+                    language={(codeLanguage || language).toLowerCase()}
+                    title={title}
+                  />
+                )}
               </div>
             ),
           )}
