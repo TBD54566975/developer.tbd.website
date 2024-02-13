@@ -83,6 +83,12 @@ Use `TbdexHttpClient` to send the RFQ to the PFI, with an optional `replyTo` pro
   ]}
 />
 
+:::tip
+If `replyTo` is provided, the PFI will send all new messages of the exchange to the supplied URI. 
+This URI is scoped to each exchange, allowing you to specify a different URI per exchange if desired. 
+
+If `replyTo` is _not_ present, you will have to poll the PFI to receive new messages within the exchange.
+:::
 
 If no error is thrown, the RFQ has been successfully sent to the PFI and an **exchange** has been created.
 This exchange serves as a thread of messages between your application and the PFI regarding this transaction.
