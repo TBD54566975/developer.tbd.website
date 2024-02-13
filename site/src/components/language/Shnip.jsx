@@ -31,7 +31,7 @@ const Shnip = ({ snippets, inlineSnippets }) => {
           snippets.map(
             ({ snippetContent, language, title, content, nestedSnippets, codeLanguage }, index) => (
               <div key={`snippet-${language}-${index}`} language={language}>
-                {content && <div style={{ paddingTop: '29px' }}><ReactMarkdown>{content}</ReactMarkdown></div>}
+                {content && <div style={{ paddingTop: '20px' }}><ReactMarkdown>{content}</ReactMarkdown></div>}
 
                 {/* Render Breadcrumbs if there are nestedSnippets */}
                 {nestedSnippets &&
