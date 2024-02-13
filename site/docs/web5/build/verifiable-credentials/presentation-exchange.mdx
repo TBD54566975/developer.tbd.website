@@ -113,8 +113,14 @@ Once you've confirmed that the VCs successfully satisfy the Presentation Definit
 
 <Shnip
    snippets={[
-    { snippetContent: createPresentationFromCredentialsForPex, language: 'JavaScript'},
-    { snippetContent: createPresentationFromCredentialsForPexKt, language: 'Kotlin'},
+    { 
+      snippetContent: createPresentationFromCredentialsForPex, 
+      language: 'JavaScript'
+    },
+    { 
+      content: 'Bundle your VCs into one presentation by converting your presentation result into a [Verifiable Presentation](/docs/glossary#verifiable-presentation) with the `VerifiablePresentation.create()` method. In this case, the holder is the entity presenting the VP to the lender.',
+      snippetContent: createPresentationFromCredentialsForPexKt, 
+      language: 'Kotlin'},
     ]}
 />
 
@@ -226,18 +232,21 @@ snippets={[
 The information regarding `Checked` objects is only applicable to the JavaScript SDK.
 :::
 
-This method checks the presentation submission for any errors, returns an array of `Checked` objects representing the validation checks performed on the presentation submission:
 
 <Shnip
   inlineSnippets={[
     {
+      content: 'This method checks the presentation submission for any errors, returns an array of `Checked` objects representing the validation checks performed on the presentation submission:',
       code: `
 [ Checked { tag: 'root', status: 'info', message: 'ok' } ]
       `,
       language: 'JavaScript',
     },
     {
-      content: "If unsuccessful, it will throw an error. ",
+      content: "If unsuccessful, an error will be thrown. Here is an example:",
+      code:`
+PresentationSubmission id must not be empty
+      `,
       language: 'Kotlin', 
     }
   ]}
@@ -260,7 +269,7 @@ Each `Checked` object contains:
       snippetContent: 
       validVerifiablePresentationForPex, language: 'JavaScript'},
     { 
-      content: 'After creating and validating the [Presentation](/docs/glossary#verifiable-presentation) with `VerifiablePresentation.create()`, you can submit a signed [Verifiable Presentation](/docs/glossary#verifiable-presentation) encoded as a JWT, so the lender can [verify](/docs/web5/build/verifiable-credentials/verify-vc#verify-verifiable-presentations) it. To submit a signed Verifiable Presentation, the Holder signs it with their DID:', 
+      content: 'After creating and validating the [Presentation](/docs/glossary#verifiable-presentation), you can submit a signed [Verifiable Presentation](/docs/glossary#verifiable-presentation) encoded as a JWT, so the lender can [verify](/docs/web5/build/verifiable-credentials/verify-vc#verify-verifiable-presentations) it. To submit a signed Verifiable Presentation, the Holder signs it with their DID:', 
       snippetContent: signVpForPexKt, 
       language: 'Kotlin'},
     ]}
