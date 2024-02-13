@@ -48,7 +48,7 @@ const Shnip = ({ snippets, inlineSnippets }) => {
                 {!nestedSnippets &&
                   <CodeSnippet
                     snippet={snippetContent}
-                    language={codeLanguage.toLowerCase() || language.toLowerCase()}
+                    language={codeLanguage || language.toLowerCase()}
                     title={title}
                   />
                 }
@@ -62,7 +62,7 @@ const Shnip = ({ snippets, inlineSnippets }) => {
               <div key={`inline-${language}-${index}`} language={language}>
                 {content && <div style={{ paddingTop: '20px' }}><ReactMarkdown>{content}</ReactMarkdown></div>}
                 {code && <CodeBlock
-                  language={(codeLanguage.toLowerCase() || language).toLowerCase()}
+                  language={(codeLanguage || language).toLowerCase()}
                   title={title}
                 >
                   {addLineBreaks(code, breakLineAt)}
