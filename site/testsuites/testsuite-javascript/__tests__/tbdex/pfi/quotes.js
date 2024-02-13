@@ -1,8 +1,8 @@
 import { Rfq, Quote } from '@tbdex/http-server';
 import { DevTools } from '@tbdex/http-client';
 import { DidDhtMethod } from '@web5/dids';
-import { OfferingsApiProvider } from './mockOfferingsApiProvider'
-import { ExchangesApiProvider } from './mockExchangesApiProvider'
+import { OfferingsApiProvider } from './offeringsApiProvider'
+import { ExchangesApiProvider } from './exchangesApiProvider'
 import { MockDataProvider } from '../utils/mockDataProvider'
 
 async function createQuoteFromRfq(message) {

@@ -1,8 +1,7 @@
 import { TbdexHttpServer } from '@tbdex/http-server';
 import { DidDhtMethod } from '@web5/dids';
-import { OfferingsApiProvider } from './mockOfferingsApiProvider'
-import { ExchangesApiProvider } from './mockExchangesApiProvider'
-
+import { OfferingsApiProvider } from './offeringsApiProvider'
+import { ExchangesApiProvider } from './exchangesApiProvider'
 var pfiDid = await DidDhtMethod.create({
   publish: true,
   services: [{

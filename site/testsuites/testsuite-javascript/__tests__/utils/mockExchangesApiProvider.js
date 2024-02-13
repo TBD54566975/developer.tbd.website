@@ -1,8 +1,8 @@
 import { Close, OrderStatus, Quote } from '@tbdex/protocol'
 import { DevTools } from '@tbdex/http-client';
-import { MockDataProvider } from './utils/mockdataprovider'
+import { MockDataProvider } from './mockDataProvider'
 
-export class ExchangesApiProvider {
+export class MockExchangesApiProvider {
 
     constructor() {
         this.dataProvider = MockDataProvider()
@@ -97,22 +97,5 @@ export class ExchangesApiProvider {
         this.dataProvider.insert("exchange", "", () => {
             return
         })
-    }
-
-    //---------------------------------------------------------------------------//
-    // Other methods
-    //---------------------------------------------------------------------------//
-    
-    // :snippet-start: pfiOverviewWriteJs
-    async write(message) {
-        await this.dataProvider.insert('exchange', {
-                exchangeid: message.exchangeId,
-                messagekind: message.kind,
-                messageid: message.id,
-                subject: message.subject,
-                message: JSON.stringify(message)
-            });
     }  
-    // :snippet-end:
-  
-  };
+};

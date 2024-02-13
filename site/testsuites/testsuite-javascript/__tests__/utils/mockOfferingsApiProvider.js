@@ -1,8 +1,8 @@
-import { MockDataProvider } from './utils/mockdataprovider'
+import { MockDataProvider } from './mockDataProvider'
 import { Offering } from '@tbdex/protocol'
 import { DevTools } from '@tbdex/http-client';
 
-export class OfferingsApiProvider {
+export class MockOfferingsApiProvider {
 
     constructor() {
         this.dataProvider = MockDataProvider()
@@ -12,7 +12,6 @@ export class OfferingsApiProvider {
     // Implementation of interface
     //---------------------------------------------------------------------------//
 
-    // :snippet-start: pfiOverviewReadOfferingsJs
     async getOffering(id) {
         this.dataProvider.get('offering', id).then(([result]) => {
             if (!result) {
@@ -40,7 +39,6 @@ export class OfferingsApiProvider {
             return offerings
         });
     }
-    // :snippet-end:
 
     //---------------------------------------------------------------------------//
     // Setup Methods
@@ -59,19 +57,5 @@ export class OfferingsApiProvider {
                 offerings.push(DevTools.createOffering(offering))
             });
         })
-    }
-
-    //---------------------------------------------------------------------------//
-    // Other methods
-    //---------------------------------------------------------------------------//
-  
-    async createOffering(offering) {
-        await this.dataProvider.insert('offering', {
-            offeringid: offering.id,
-            payoutcurrency: offering.payoutCurrency.currencyCode,
-            payincurrency: offering.payinCurrency.currencyCode,
-            offering: JSON.stringify(offering)
-        });
-    }
-    
+    }    
   };  
