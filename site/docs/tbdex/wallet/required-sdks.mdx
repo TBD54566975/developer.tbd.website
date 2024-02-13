@@ -1,5 +1,7 @@
 ---
 sidebar_position: 2
+title: Required SDKs
+hide_title: true
 ---
 
 import Tabs from '@theme/Tabs';
@@ -11,10 +13,9 @@ import walletSdkInstallGradle from '!!raw-loader!@site/snippets/testsuite-kotlin
 import walletSdkInstallPom from '!!raw-loader!@site/snippets/testsuite-kotlin/src/test/kotlin/docs/tbdex/wallet/walletSdkInstallPom.snippet.xml'
 import importJs from '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/tbdex/wallet/walletSdkImportJs.snippet.js'
 
+<LanguageSwitcher languages="JavaScript, Kotlin" />
 
 # Required SDKs
-
-<LanguageSwitcher languages="JavaScript, Kotlin" />
 
 To implement and operate as a Wallet on a tbDEX network, you’ll need to use the following SDKs:
 
@@ -27,43 +28,47 @@ To implement and operate as a Wallet on a tbDEX network, you’ll need to use th
 
 ## Install SDKs
 
-<Tabs groupId="language">
-  <TabItem label="JavaScript" value="JavaScript">
-    <CodeSnippet snippet={walletSdkInstallJs} language="bash"/>
-  </TabItem>
-  <TabItem label="Kotlin" value="Kotlin">
-    <BreadcrumbTab
-      snippetMappings={{
-        'Gradle': {
-          "snippet": walletSdkInstallGradle,
-          "language": "js"
+<Shnip snippets={
+  [
+    { snippetContent: walletSdkInstallJs, language: 'JavaScript', codeLanguage: 'bash'},
+    {
+      language: 'Kotlin',
+      nestedSnippets: [
+        {
+          'Gradle': {
+            "snippet": walletSdkInstallGradle,
+            "language": 'js'
+          }
         },
-        'Maven': {
-          "snippet": walletSdkInstallPom,
-          "language": "xml"
+        {
+          'Maven': {
+            "snippet": walletSdkInstallPom,
+            "language": 'xml'
+          }
         }
-      }}
-    />
-  </TabItem>
-</Tabs>
+      ]
+    }
+  ]
+} />
 
 ## Import Classes
 
 To send and receive tbDEX messages, import the following classes:
 
-<Tabs groupId="language">
-  <TabItem label="JavaScript" value="JavaScript">
-    <CodeSnippet snippet={importJs} />
-  </TabItem>
-  <TabItem label="Kotlin" value="Kotlin">
-
-  ```kotlin
+<Shnip snippets={[
+    { snippetContent: importJs, language: 'JavaScript'},
+  ]}
+  inlineSnippets={[
+    {
+      code: `
   import tbdex.sdk.httpclient.TbdexHttpClient
   import tbdex.sdk.protocol.models.Rfq
   import tbdex.sdk.protocol.models.Quote
   import tbdex.sdk.protocol.models.Order
   import web5.sdk.credentials.VerifiableCredential
   import web5.sdk.credentials.PresentationExchange
-  ```
-  </TabItem>
-</Tabs>
+      `,
+      language: 'Kotlin',
+    },
+  ]}
+  />
