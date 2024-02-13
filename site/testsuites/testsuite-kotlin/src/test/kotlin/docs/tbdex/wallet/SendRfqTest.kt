@@ -123,7 +123,7 @@ class SendRfqTest {
             // :snippet-end:
 
         }catch(e: TbdexResponseException){
-            fail("Failed to send RFQ message to PFI.")
+            fail("Failed to send RFQ message to PFI: $e")
         }
         assertNotNull(rfq.signature, "RFQ is not signed")
     }

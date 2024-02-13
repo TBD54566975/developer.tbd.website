@@ -126,7 +126,7 @@ describe('Send RFQ', () => {
       // :snippet-end:
     }
     catch (e) {
-      expect.fail("Failed to send RFQ message to PFI.")
+      expect.fail(`Failed to send RFQ message to PFI: ${e.message}`)
      }
     expect(rfq.signature).toBeDefined();
   });
