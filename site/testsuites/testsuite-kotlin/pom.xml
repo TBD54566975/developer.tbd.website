@@ -197,6 +197,7 @@
             <id>tbd-danubetech-temp</id>
             <name>tbd-danubetech-temp</name>
             <url>https://blockxyz.jfrog.io/ui/native/danubetech-temp/</url>
+            <checksumPolicy>warn</checksumPolicy>
         </repository>
         <!--
         More ALR Dark Arts, remove this once we are no longer relying on tbdex-kt:SNAPSHOTs
