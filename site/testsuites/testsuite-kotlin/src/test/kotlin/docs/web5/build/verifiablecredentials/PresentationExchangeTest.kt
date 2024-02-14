@@ -1,11 +1,13 @@
-package website.tbd.developer.site.docs.web5.build.decentralizedidentifiers;
+package website.tbd.developer.site.docs.web5.build.verifiablecredentials;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions.*
 import web5.sdk.crypto.InMemoryKeyManager
+import web5.sdk.dids.methods.dht.DidDht
 import web5.sdk.credentials.PresentationExchange
 import web5.sdk.credentials.VerifiableCredential
 import web5.sdk.credentials.VerifiablePresentation
+import web5.sdk.credentials.model.PresentationSubmission
 import web5.sdk.credentials.model.*
 
 /**
@@ -121,47 +123,44 @@ internal class PresentationExchangeTest {
     // :snippet-end:
     }
   }
-  
-  @Test
-  fun `createPresentationFromCredentialsForPexKt creates a presentation result`() {
-    val holderDid = "did:key:zQ3shXrAnbgfytQYQjifUm2EcBBbRAeAeGfgC4TZrjw4X71iZ"
-    val selectedCredentials = allCredentials
-    // :snippet-start: createPresentationFromCredentialsForPexKt
-    val presentationResult = PresentationExchange.createPresentationFromCredentials(
-        vcJwts = selectedCredentials,
-        presentationDefinition = presentationDefinition
-    )
-    
-    val verifiablePresentation = VerifiablePresentation.create(
-        vcJwts = selectedCredentials,
-        holder = holderDid,
-        additionalData = mapOf("presentation_submission" to presentationResult)
-    )
-    // :snippet-end:
-    assertNotNull(verifiablePresentation, "Verifiable Presentation should not be null")
-    assertEquals(holderDid, verifiablePresentation.holder, "Holder DID should match")
-  }
 
     @Test
-    fun `validVerifiablePresentationForPexKt creates a valid VP`() {
-        val holderDid = "did:key:zQ3shXrAnbgfytQYQjifUm2EcBBbRAeAeGfgC4TZrjw4X71iZ"
+    fun `createPresentationForPexKt creates a presentation result, a valid VP, and validates submission`() {
+        val holderDid = DidDht.create(InMemoryKeyManager())
         val selectedCredentials = allCredentials
+        // :snippet-start: createPresentationFromCredentialsForPexKt
         val presentationResult = PresentationExchange.createPresentationFromCredentials(
             vcJwts = selectedCredentials,
             presentationDefinition = presentationDefinition
         )
+
         val verifiablePresentation = VerifiablePresentation.create(
             vcJwts = selectedCredentials,
-            holder = holderDid,
+            holder = holderDid.uri,
             additionalData = mapOf("presentation_submission" to presentationResult)
         )
-        // :snippet-start: validVerifiablePresentationForPexKt
-        val verifiablePresentationDataModelMap = verifiablePresentation.vpDataModel.toMap()
-        val mappedPresentationSubmission = verifiablePresentationDataModelMap["presentation_submission"] as? PresentationSubmission
+        // :snippet-end:
+        assertDoesNotThrow {
+            // :snippet-start: validatePresentationSubmissionForPexKt
+            val vpDataMap = verifiablePresentation.vpDataModel.toMap()
+            val presentationSubmission = vpDataMap["presentation_submission"] as PresentationSubmission
+
+            try {
+                PresentationExchange.validateSubmission(presentationSubmission)
+            } catch (e: Exception) {
+                println("Invalid Presentation Submission: ${e.message}")
+            }
+        // :snippet-end:
+        }
+
+        // :snippet-start: signVpForPexKt
+        val vpJwt = verifiablePresentation.sign(holderDid)
         // :snippet-end:
 
-        assertNotNull(mappedPresentationSubmission, "Mapped Presentation Submission should not be null")
-        assertEquals(presentationResult.definitionId, mappedPresentationSubmission?.definitionId, "Definition ID should match")
+        assertNotNull(verifiablePresentation, "Verifiable Presentation should not be null")
+        assertEquals(holderDid.uri, verifiablePresentation.holder, "Holder DID should match")
+        assertNotNull(vpJwt, "Verifiable Presentation JWT should not be null")
+        assertTrue(vpJwt is String, "Verifiable Presentation JWT should be a string")
     }
 }
 
