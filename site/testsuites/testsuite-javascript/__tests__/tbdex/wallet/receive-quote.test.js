@@ -7,6 +7,7 @@ import { http, HttpResponse } from 'msw'
 let pfi;
 let customerDid;
 let rfq;
+let quote;
 let server;
 
 
@@ -31,7 +32,7 @@ describe('Wallet: Receive Quote', () => {
     await rfq.sign(customerDid);
 
 
-    const mockQuote = Quote.create({
+    quote = Quote.create({
       metadata: {
         exchangeId : rfq.metadata.exchangeId,
         from: pfi.did,
@@ -39,13 +40,13 @@ describe('Wallet: Receive Quote', () => {
       },
       data: DevTools.createQuoteData()
     })
-    await mockQuote.sign(pfi);
+    await quote.sign(pfi);
 
     // Mock the response from the PFI
     server = setupServer(
       http.get(new RegExp('http://localhost:9000/exchanges/(.+)'), () => {
         return HttpResponse.json(
-          {data: [mockQuote]},
+          {data: [quote]},
           {status: 200})
       }),
       http.post(new RegExp('http://localhost:9000/exchanges/(.+)/close'), () => {
@@ -86,16 +87,6 @@ describe('Wallet: Receive Quote', () => {
   });
 
   test('cancel exchange', async () => {
-    let quote = Quote.create({
-      metadata: {
-        exchangeId : Message.generateId('rfq'),
-        from: pfi.did,
-        to: customerDid.did
-      },
-      data: DevTools.createQuoteData()
-    })
-    await quote.sign(pfi);
-
     // :snippet-start: cancelExchangeJS
     const close = Close.create({
       metadata: {
