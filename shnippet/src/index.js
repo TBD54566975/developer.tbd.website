@@ -70,6 +70,16 @@ class SnippetExtractor {
     return lines.map((line) => line.substring(minIndent)).join("\n");
   }
 
+  shouldExcludeFile(content) {
+    // Check if the file content includes any of the strings in the exclude array
+    for (const excludeString of this.config.exclude) {
+      if (content.includes(excludeString)) {
+        return true; // Exclude this file
+      }
+    }
+    return false; // Do not exclude this file
+  }
+
   processDirectory(directory, relativePath = "") {
     const items = fs.readdirSync(directory);
     for (const item of items) {
@@ -83,6 +93,18 @@ class SnippetExtractor {
         this.config.fileExtensions.includes(path.extname(item))
       ) {
         const content = fs.readFileSync(fullPath, "utf-8");
+
+        if (
+          this.config.outputDirectoryStructure === "match" &&
+          this.shouldExcludeFile(content)
+        ) {
+          console.log(
+            `Excluding file due to matching exclude pattern in "match" case: ${fullPath}`
+          );
+          continue;
+        }
+
+        // Proceed with extracting and writing snippets if not excluded
         const fileSnippets = this.extractSnippetsFromFile(content);
         this.writeSnippetsToFile(fileSnippets, fullPath, relativePath);
       }
