@@ -15,15 +15,16 @@ import web5.sdk.crypto.InMemoryKeyManager
 import web5.sdk.dids.Did
 import java.time.OffsetDateTime
 import website.tbd.developer.site.docs.tbdex.*
+import website.tbd.developer.site.docs.utils.*
 import foundation.identity.did.Service
 import java.net.URI
 import web5.sdk.dids.methods.dht.CreateDidDhtOptions
 
 class PfiQuotesTest {
   
-  suspend fun createQuoteFromRfq(message: Message) {
-    val offeringsApiProvider = OfferingsApiProviderTest()
-    val exchangesApiProvider = ExchangesApiProviderTest()
+  suspend fun createQuoteFromRfq() {
+    val offeringsApiProvider = OfferingsApiProvider()
+    val exchangesApiProvider = ExchangesApiProvider()
     val dataProvider = MockDataProviderTest()
 
     val serviceToAdd = Service.builder()
@@ -38,6 +39,13 @@ class PfiQuotesTest {
     )
 
     val pfiDid = DidDht.create(InMemoryKeyManager(), options)
+
+    val message: Message = TestData.getRfq(
+        to = pfiDid.uri
+    )
+
+    dataProvider.setupInsert()
+    offeringsApiProvider.setOffering(message.metadata.id.toString(), pfiDid.uri)
 
     // :snippet-start: pfiQuotesWriteKt
    // Write the message to your exchanges database
@@ -80,6 +88,8 @@ class PfiQuotesTest {
         quoteData = quoteData
     )
     // :snippet-end:
+
+    exchangesApiProvider.setWrite()
 
     // :snippet-start: pfiQuotesSignKt
     quote.sign(pfiDid)

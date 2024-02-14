@@ -36,8 +36,8 @@ class PfiStructureTest {
         val pfiDid = DidDht.create(InMemoryKeyManager(), options)
     
         // :snippet-start: pfiOverviewConfigKt
-        val exchangesApiProvider = ExchangesApiProviderTest()
-        val offeringsApiProvider = OfferingsApiProviderTest()
+        val exchangesApiProvider = ExchangesApiProvider()
+        val offeringsApiProvider = OfferingsApiProvider()
     
         val serverConfig = TbdexHttpServerConfig(
             port = 8080,
@@ -49,6 +49,10 @@ class PfiStructureTest {
         val tbDexServer = TbdexHttpServer(serverConfig)
       // :snippet-end:
     
+        exchangesApiProvider.setWrite()
+        exchangesApiProvider.setWrite()
+        exchangesApiProvider.setWrite()
+
       // :snippet-start: pfiOverviewServerRoutesKt
         tbDexServer.submit(SubmitKind.rfq) { call, message, offering ->
             exchangesApiProvider.write(message)
