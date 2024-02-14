@@ -4,7 +4,8 @@ hide_title: true
 sidebar_position: 1
 ---
 
-<LanguageSwitcher languages="JavaScript, Kotlin"/>
+import requiredDidImportsKt from '!!raw-loader!@site/snippets/testsuite-kotlin/src/test/kotlin/docs/web5/build/decentralizedidentifiers/requiredDidImportsKt.snippet.kt'
+import requiredDidImports from '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/web5/build/decentralized-identifiers/requiredDidImports.snippet.js'
 
 
 <LanguageSwitcher languages="JavaScript, Kotlin"/>
@@ -18,12 +19,18 @@ You can create a DID using any of the [Web5-supported DID methods](/docs/web5/le
 
 **Import the DID Method you'd like to use:**
 
+<Snnip snippets={[
+    { snippetContent: requiredDidImports, language: 'JavaScript' },
+    { snippetContent: requiredDidImportsKt, language: 'Kotlin' },
+  ]}
+/>
+
 ### did:dht
 
 <Shnip
   snippets={[
-    { snippetName: 'createDidDht', language: 'JavaScript' },
-    { snippetName: 'createDidDht', language: 'Kotlin' },
+    { snippetContent: requiredDidImports, language: 'JavaScript' },
+    { snippetContent: requiredDidImportsKt, language: 'Kotlin' },
     ]}
 />
 
