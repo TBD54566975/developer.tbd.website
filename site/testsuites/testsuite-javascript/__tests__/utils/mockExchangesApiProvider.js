@@ -94,7 +94,7 @@ export class MockExchangesApiProvider {
     }
 
     setWrite() {
-        this.dataProvider.insert("exchange", "", () => {
+        this.dataProvider.setupInsert("exchange", "", () => {
             return
         })
     }  
