@@ -25,10 +25,13 @@ describe('Get and Validate Offerings from PFI with Custom Presentation Definitio
         constraints: {
           fields: [
             {
-              path: ['$.vc.credentialSubject.status'],
+              path: [
+                '$.vc.credentialSubject.status',
+                '$.credentialSubject.status',
+              ],
               filter: {
                 type: 'string',
-                pattern: 'approved',
+                const: 'approved',
               },
             },
           ],
@@ -40,10 +43,13 @@ describe('Get and Validate Offerings from PFI with Custom Presentation Definitio
         constraints: {
           fields: [
             {
-              path: ['$.vc.credentialSubject.address'],
+              path: [
+                '$.vc.credentialSubject.address',
+                '$.credentialSubject.address',
+              ],
               filter: {
                 type: 'string',
-                pattern: '10 Orchard st',
+                const: '10 Orchard st',
               },
             },
           ],
