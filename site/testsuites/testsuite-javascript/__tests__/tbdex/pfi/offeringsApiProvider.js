@@ -1,7 +1,13 @@
 import { MockOfferingsApiProvider } from '../../utils/mockOfferingsApiProvider'
+import { MockDataProvider } from '../../utils/mockDataProvider'
 import { Offering } from '@tbdex/protocol'
 
 export default class OfferingsApiProvider extends MockOfferingsApiProvider {
+
+    constructor(pfiDid) {
+        this.dataProvider = MockDataProvider()
+        this.pfiDid = pfiDid
+    }
   
     // :snippet-start: pfiOverviewReadOfferingsJs
     async getOffering(id) {
@@ -32,13 +38,4 @@ export default class OfferingsApiProvider extends MockOfferingsApiProvider {
         });
     }
     // :snippet-end:
-
-    async createOffering(offering) {
-        await this.dataProvider.insert('offering', {
-            offeringid: offering.id,
-            payoutcurrency: offering.payoutCurrency.currencyCode,
-            payincurrency: offering.payinCurrency.currencyCode,
-            offering: JSON.stringify(offering)
-        });
-    }
 }
