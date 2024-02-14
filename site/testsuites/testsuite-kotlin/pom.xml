@@ -192,6 +192,27 @@
             <name>jboss</name>
             <url>https://repository.jboss.org/nexus/content/repositories/thirdparty-releases/</url>
         </repository>
+        <!-- 
+        Address Danubetech being down 
+        https://github.com/TBD54566975/developer.tbd.website/issues/1242
+
+        Remove when we have TBD repo dependencies proxied in a more permanent 
+        Artifactory repo, or when we no longer have a danubetech dependency in the
+        supply chain
+        -->
+        <repository>
+            <id>tbd-danubetech-temp</id>
+            <name>tbd-danubetech-temp</name>
+            <releases>
+              <enabled>true</enabled>
+              <checksumPolicy>ignore</checksumPolicy>
+            </releases>
+            <snapshots>
+              <enabled>false</enabled>
+              <checksumPolicy>warn</checksumPolicy>
+            </snapshots>
+            <url>https://blockxyz.jfrog.io/artifactory/danubetech-temp/</url>
+        </repository>
         <!--
         More ALR Dark Arts, remove this once we are no longer relying on tbdex-kt:SNAPSHOTs
         -->
