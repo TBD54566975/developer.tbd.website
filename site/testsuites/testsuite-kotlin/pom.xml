@@ -204,7 +204,7 @@
               <enabled>false</enabled>
               <checksumPolicy>warn</checksumPolicy>
             </snapshots>
-            <url>https://blockxyz.jfrog.io/ui/native/danubetech-temp/</url>
+            <url>https://blockxyz.jfrog.io/artifactory/danubetech-temp/</url>
         </repository>
         <!--
         More ALR Dark Arts, remove this once we are no longer relying on tbdex-kt:SNAPSHOTs
