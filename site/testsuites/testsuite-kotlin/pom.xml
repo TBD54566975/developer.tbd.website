@@ -192,7 +192,14 @@
             <name>jboss</name>
             <url>https://repository.jboss.org/nexus/content/repositories/thirdparty-releases/</url>
         </repository>
-        <!-- Address Danubetech being down -->
+        <!-- 
+        Address Danubetech being down 
+        https://github.com/TBD54566975/developer.tbd.website/issues/1242
+
+        Remove when we have TBD repo dependencies proxied in a more permanent 
+        Artifactory repo, or when we no longer have a danubetech dependency in the
+        supply chain
+        -->
         <repository>
             <id>tbd-danubetech-temp</id>
             <name>tbd-danubetech-temp</name>
