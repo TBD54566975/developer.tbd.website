@@ -23,6 +23,15 @@ const CodeSnippet = ({
   const [error, setError] = useState('');
 
   useEffect(() => {
+    // PLEASE LEAVE THE BELOW CODE HERE, WILL BE LOOKING INTO THIS IN THE FUTURE - Nick
+    // const cache = {};
+
+    // function importAll(r) {
+    //   r.keys().forEach((key) => (cache[key] = r(key)));
+    // }
+
+    // importAll(require.context('../../snippets', true, /\.js$/));
+
     if (snippetName) {
       setError('');
 

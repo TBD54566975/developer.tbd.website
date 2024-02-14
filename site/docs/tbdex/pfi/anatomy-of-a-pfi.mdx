@@ -14,8 +14,6 @@ import pfiOverviewWriteJs from '!!raw-loader!@site/snippets/testsuite-javascript
 import pfiOverviewWriteKt from '!!raw-loader!@site/snippets/testsuite-kotlin/src/test/kotlin/docs/tbdex/pfi/pfiOverviewWriteKt.snippet.kt'
 import readOfferingsJs from '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/tbdex/pfi/pfiOverviewReadOfferingsJs.snippet.js'
 import readOfferingsKt from '!!raw-loader!@site/snippets/testsuite-kotlin/src/test/kotlin/docs/tbdex/pfi/pfiOverviewReadOfferingsKt.snippet.kt'
-import writeOfferingsJs from '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/tbdex/pfi/pfiOverviewWriteOfferingsJs.snippet.js'
-import writeOfferingsKt from '!!raw-loader!@site/snippets/testsuite-kotlin/src/test/kotlin/docs/tbdex/pfi/pfiOverviewWriteOfferingsKt.snippet.kt'
 
 <LanguageSwitcher languages="JavaScript, Kotlin"/>
 
@@ -105,8 +103,8 @@ Additionally, you could write `Offerings` into your database:
 
 <Shnip snippets={
   [
-    { snippetContent: writeOfferingsJs, language: 'JavaScript'},
-    { snippetContent: writeOfferingsKt, language: 'Kotlin'}
+    { snippetName: 'pfiOverviewWriteOfferingsJs', language: 'JavaScript'},
+    { snippetName: 'pfiOverviewWriteOfferingsKt', language: 'Kotlin'}
   ]} />
 
 By implementing the `getOffering()` and `getOfferings()` methods, you'll allow Wallets to get a specific Offering they'd be interested in, or query all your Offerings, respectively. The convenience of the tbDEX SDK is that you aren't required to actually write an API endpoint yourself to handle interfacing with Wallets as the SDK handles it all for you.
