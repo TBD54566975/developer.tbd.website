@@ -1,15 +1,15 @@
 ---
 sidebar_position: 2
+title: Required SDKs
+hide_title: true
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-import CodeSnippet from '@site/src/components/CodeSnippet';
-import BreadcrumbTab from '@site/src/components/BreadcrumbTab';
 import pfiSdkInstallJs from '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/tbdex/pfi/pfiSdkInstallJs.snippet.bash'
 import pfiSdkInstallGradle from '!!raw-loader!@site/snippets/testsuite-kotlin/src/test/kotlin/docs/tbdex/pfi/pfiSdkInstallGradle.snippet.gradle'
 import pfiSdkInstallPom from '!!raw-loader!@site/snippets/testsuite-kotlin/src/test/kotlin/docs/tbdex/pfi/pfiSdkInstallPom.snippet.xml'
 import importJs from '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/tbdex/pfi/pfiSdkImportJs.snippet.js'
+
+<LanguageSwitcher languages="JavaScript, Kotlin" />
 
 # Required SDKs
 
@@ -23,37 +23,33 @@ To implement and operate as a PFI, you’ll need to use the following SDKs:
 
 ## Install SDKs
 
-<Tabs groupId="language">
-  <TabItem label="JavaScript" value="JavaScript">
-    <CodeSnippet snippet={pfiSdkInstallJs} language="bash"/>
-  </TabItem>
-  <TabItem label="Kotlin" value="Kotlin">
-    <BreadcrumbTab
-      snippetMappings={{
-        'Gradle': {
-          "snippet": pfiSdkInstallGradle,
-          "language": "js"
-        },
-        'Maven': {
-          "snippet": pfiSdkInstallPom,
-          "language": "xml"
-        }
-      }}
-    />
-  </TabItem>
-</Tabs>
+<Shnip snippets={[
+  { snippetContent: pfiSdkInstallJs, language: 'JavaScript', codeLanguage: 'bash'},
+  {
+    language: 'Kotlin',
+    nestedSnippets: {
+      'Gradle': {
+        "snippet": pfiSdkInstallGradle,
+        "language": 'js'
+      },
+      'Maven': {
+        "snippet": pfiSdkInstallPom,
+        "language": 'xml'
+      }
+    }
+  }
+]} />
 
 ## Import Classes
 
 To send and receive tbDEX messages, import the following classes:
 
-<Tabs groupId="language">
-  <TabItem label="JavaScript" value="JavaScript">
-    <CodeSnippet snippet={importJs} />
-  </TabItem>
-  <TabItem label="Kotlin" value="Kotlin">
-
-  ```kotlin
+<Shnip snippets={[
+    { snippetContent: importJs, language: 'JavaScript'},
+  ]}
+  inlineSnippets={[
+    {
+      code: `
     import tbdex.sdk.httpserver.TbdexHttpServer
     import tbdex.sdk.httpserver.models.SubmitKind
     import tbdex.sdk.protocol.models.Rfq
@@ -61,6 +57,8 @@ To send and receive tbDEX messages, import the following classes:
     import tbdex.sdk.protocol.models.Order
     import tbdex.sdk.protocol.models.OrderStatus
     import tbdex.sdk.protocol.models.Close
-  ```
-  </TabItem>
-</Tabs>
+      `,
+      language: 'Kotlin',
+    },
+  ]}
+  />
