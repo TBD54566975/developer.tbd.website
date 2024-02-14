@@ -4,16 +4,6 @@ hide_title: true
 sidebar_position: 5
 ---
 
-import pfiOverviewConfigJs from '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/tbdex/pfi/pfiOverviewConfigJs.snippet.js'
-import pfiOverviewConfigKt from '!!raw-loader!@site/snippets/testsuite-kotlin/src/test/kotlin/docs/tbdex/pfi/pfiOverviewConfigKt.snippet.kt'
-import serverRoutesJs from '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/tbdex/pfi/pfiOverviewServerRoutesJs.snippet.js'
-import serverRoutesKt from '!!raw-loader!@site/snippets/testsuite-kotlin/src/test/kotlin/docs/tbdex/pfi/pfiOverviewServerRoutesKt.snippet.kt'
-import serverStartJs from '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/tbdex/pfi/pfiOverviewServerStartJs.snippet.js'
-import serverStartKt from '!!raw-loader!@site/snippets/testsuite-kotlin/src/test/kotlin/docs/tbdex/pfi/pfiOverviewServerStartKt.snippet.kt'
-import pfiOverviewWriteJs from '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/tbdex/pfi/pfiOverviewWriteJs.snippet.js'
-import pfiOverviewWriteKt from '!!raw-loader!@site/snippets/testsuite-kotlin/src/test/kotlin/docs/tbdex/pfi/pfiOverviewWriteKt.snippet.kt'
-import readOfferingsJs from '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/tbdex/pfi/pfiOverviewReadOfferingsJs.snippet.js'
-import readOfferingsKt from '!!raw-loader!@site/snippets/testsuite-kotlin/src/test/kotlin/docs/tbdex/pfi/pfiOverviewReadOfferingsKt.snippet.kt'
 
 <LanguageSwitcher languages="JavaScript, Kotlin"/>
 
@@ -39,8 +29,8 @@ To begin, you’ll want to configure your server with the required exchange and 
 
 <Shnip snippets={
   [
-    { snippetContent: pfiOverviewConfigJs, language: 'JavaScript'},
-    { snippetContent: pfiOverviewConfigKt, language: 'Kotlin'}
+    { snippetName: 'pfiOverviewConfigJs', language: 'JavaScript'},
+    { snippetName: 'pfiOverviewConfigKt', language: 'Kotlin'}
   ]} />
 
 The [message types](/docs/tbdex/message-types) that are sent from Wallets to PFIs are: `RFQ`, `Order`, and `Close`. 
@@ -48,16 +38,16 @@ As a result, you’ll want to ensure that your PFI is programmed to accept those
 
 <Shnip snippets={
   [
-    { snippetContent: serverRoutesJs, language: 'JavaScript'},
-    { snippetContent: serverRoutesKt, language: 'Kotlin'}
+    { snippetName: 'pfiOverviewServerRoutesJs', language: 'JavaScript'},
+    { snippetName: 'pfiOverviewServerRoutesKt', language: 'Kotlin'}
   ]} />
 
 With your routes configured, set your server to begin listening:
 
 <Shnip snippets={
   [
-    { snippetContent: serverStartJs, language: 'JavaScript'},
-    { snippetContent: serverStartKt, language: 'Kotlin'}
+    { snippetName: 'pfiOverviewServerStartJs', language: 'JavaScript'},
+    { snippetName: 'pfiOverviewServerStartKt', language: 'Kotlin'}
   ]} />
 
 Now your server is configured with the appropriate routing setup.
@@ -78,8 +68,8 @@ Assuming a generic `dataProvider` class serves as your PFI’s means of accessin
 
 <Shnip snippets={
   [
-    { snippetContent: pfiOverviewWriteJs, language: 'JavaScript'},
-    { snippetContent: pfiOverviewWriteKt, language: 'Kotlin'}
+    { snippetName: 'pfiOverviewWriteJs', language: 'JavaScript'},
+    { snippetName: 'pfiOverviewWriteKt', language: 'Kotlin'}
   ]} />
 
 After writing an `RFQ` to the database, you can [create a Quote](/docs/tbdex/pfi/creating-quotes). 
@@ -95,8 +85,8 @@ Here's an example of how to get offerings as specified by the `OfferingsApi` int
 
 <Shnip snippets={
   [
-    { snippetContent: readOfferingsJs, language: 'JavaScript'},
-    { snippetContent: readOfferingsKt, language: 'Kotlin'}
+    { snippetName: 'pfiOverviewWriteJs', language: 'JavaScript'},
+    { snippetName: 'pfiOverviewReadOfferingsKt', language: 'Kotlin'}
   ]} />
 
 Additionally, you could write `Offerings` into your database:
