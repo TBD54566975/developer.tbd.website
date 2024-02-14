@@ -127,7 +127,10 @@ class GetMatchedOfferingsTest {
         val selectedOffering = mockOfferings.get(0)
         // :snippet-start: getSelectedCredentialsKt
         // Select the credentials to be used for the exchange
-        val selectedCredentials = PresentationExchange.selectCredentials(credentials, selectedOffering.data.requiredClaims!!)
+        val selectedCredentials = PresentationExchange.selectCredentials(
+            credentials, 
+            selectedOffering.data.requiredClaims!!
+        )
         // :snippet-end:
 
         assertEquals(2, selectedCredentials.size)
