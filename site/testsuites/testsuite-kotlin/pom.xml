@@ -196,7 +196,6 @@
         <repository>
             <id>tbd-danubetech-temp</id>
             <name>tbd-danubetech-temp</name>
-            <repository>
             <releases>
               <enabled>true</enabled>
               <checksumPolicy>ignore</checksumPolicy>
