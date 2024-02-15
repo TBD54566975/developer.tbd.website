@@ -76,7 +76,7 @@ const CodeSnippet = ({
     finalSnippet = newSnippetContent;
   } else if (!snippetName && !snippet) {
     // No valid snippet found
-    return <p>Error: Code snippet not found.</p>;
+    return null;
   }
 
   return (
