@@ -9,10 +9,11 @@ class SnippetExtractor {
     };
   }
 
-  extractSnippetsFromFile(content) {
+  extractSnippetsFromFile(content, filePath) {
     const snippets = {};
     let startIndex = 0,
       endIndex = 0;
+    const fileExtension = path.extname(filePath);
 
     while (
       (startIndex = content.indexOf(
@@ -42,10 +43,8 @@ class SnippetExtractor {
         .substring(startTagClose + 1, endIndex)
         .trim();
 
-      // Normalize indentation
-      snippetContent = this.normalizeIndentation(snippetContent);
-
-      snippetContent = snippetContent.replace(/\/\/\s*$/, "").trim();
+      // Normalize indentation and remove trailing comment characters
+      snippetContent = this.normalizeIndentation(snippetContent, fileExtension);
 
       if (snippetName) {
         snippets[snippetName] = snippetContent;
@@ -57,21 +56,21 @@ class SnippetExtractor {
     return snippets;
   }
 
-  normalizeIndentation(snippetContent) {
+  normalizeIndentation(snippetContent, fileExtension) {
     const lines = snippetContent.split("\n");
+
+    // Determine the comment character based on the file extension
+    const commentChar = fileExtension === ".bash" ? "#" : "//";
 
     return lines
       .map((line) => {
-        // Check if the line has at least 4 spaces of indentation to remove
-        if (line.startsWith("    ")) {
-          // 4 spaces
-          return line.substring(4); // Remove the first 4 spaces
-        }
-        return line; // Return the line unchanged if it doesn't start with 4 spaces
+        // Remove 4 spaces of indentation if present
+        const newLine = line.startsWith("    ") ? line.substring(4) : line;
+        // Remove trailing comment characters
+        return newLine.replace(new RegExp(`\\s*${commentChar}\\s*$`), "");
       })
       .join("\n");
   }
-
   shouldExcludeFile(content) {
     // Check if the file content includes any of the strings in the exclude array
     for (const excludeString of this.config.exclude) {
@@ -90,25 +89,14 @@ class SnippetExtractor {
 
       if (stat.isDirectory()) {
         this.processDirectory(fullPath, path.join(relativePath, item));
-      } else if (
-        stat.isFile() &&
-        this.config.fileExtensions.includes(path.extname(item))
-      ) {
+      } else if (this.config.fileExtensions.includes(path.extname(item))) {
         const content = fs.readFileSync(fullPath, "utf-8");
 
-        if (
-          this.config.outputDirectoryStructure === "match" &&
-          this.shouldExcludeFile(content)
-        ) {
-          console.log(
-            `Excluding file due to matching exclude pattern in "match" case: ${fullPath}`
-          );
-          continue;
+        // Make sure to pass fullPath as the second argument to extractSnippetsFromFile
+        if (!this.shouldExcludeFile(content)) {
+          const fileSnippets = this.extractSnippetsFromFile(content, fullPath); // Corrected
+          this.writeSnippetsToFile(fileSnippets, fullPath, relativePath);
         }
-
-        // Proceed with extracting and writing snippets if not excluded
-        const fileSnippets = this.extractSnippetsFromFile(content);
-        this.writeSnippetsToFile(fileSnippets, fullPath, relativePath);
       }
     }
   }
