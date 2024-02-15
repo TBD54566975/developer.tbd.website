@@ -1,6 +1,16 @@
 ---
+title: Receiving Quotes
+hide_title: true
 sidebar_position: 8
 ---
+
+import pollforQuoteJS from '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/tbdex/wallet/pollforQuoteJS.snippet.js'
+import cancelExchangeJS from '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/tbdex/wallet/cancelExchangeJS.snippet.js'
+import pollforQuoteKt from '!!raw-loader!@site/snippets/testsuite-kotlin/src/test/kotlin/docs/tbdex/wallet/pollforQuoteKt.snippet.kt'
+import cancelExchangeKt from '!!raw-loader!@site/snippets/testsuite-kotlin/src/test/kotlin/docs/tbdex/wallet/cancelExchangeKt.snippet.kt'
+
+
+<LanguageSwitcher languages="JavaScript, Kotlin" />
 
 # Receiving Quotes
 
@@ -11,26 +21,12 @@ This message will be written to the exchange.
 
 To get the Quote message, your application will poll the exchange until the Quote message is written:
 
-```js
-let quote;
-
-//Wait for Quote message to appear in the exchange
-while (!quote) {
-  const exchanges = await TbdexHttpClient.getExchanges({
-    pfiDid: rfq.metadata.to,
-    did: customer,
-    filter: { id: rfq.exchangeId }
-  });
-
-  const [ exchange ] = exchanges.data;
-  quote = exchange.find(msg => msg instanceof Quote);
-
-  if (!quote) {
-    // Wait 2 seconds before making another request
-    await new Promise(resolve => setTimeout(resolve, 2000));
-  }
-}
-```
+<Shnip
+  snippets={[
+    { snippetContent: pollforQuoteJS, language: 'JavaScript' },
+    { snippetContent: pollforQuoteKt, language: 'Kotlin' },
+  ]}
+/>
 
 ## Quote Object
 
@@ -71,21 +67,12 @@ In this case, you can send a **Close** message to the PFI which will end the exc
 
 To terminate the exchange, create a `Close` message, sign it with the customer's [Portable DID](/docs/web5/build/decentralized-identifiers/how-to-create-did#portable-did), and send the message.
 
-```js
-const close = Close.create({
-  metadata: {
-    from: customer.did,
-    to: quote.metadata.from,
-    exchangeId: quote.exchangeId
-  },
-  data: {
-    reason: 'Canceled by customer'
-  }
-});
-
-await close.sign(customer); // Customer's PortableDid
-await TbdexHttpClient.sendMessage({ message: close });
-```
+<Shnip
+  snippets={[
+    { snippetContent: cancelExchangeJS, language: 'JavaScript' },
+    { snippetContent: cancelExchangeKt, language: 'Kotlin' },
+  ]}
+/>
 
 At this point, the exchange has been closed, and your customer is free to start a new exchange with this PFI or any other.
 
