@@ -94,7 +94,7 @@ class SnippetExtractor {
 
         // Make sure to pass fullPath as the second argument to extractSnippetsFromFile
         if (!this.shouldExcludeFile(content)) {
-          const fileSnippets = this.extractSnippetsFromFile(content, fullPath); // Corrected
+          const fileSnippets = this.extractSnippetsFromFile(content, fullPath);
           this.writeSnippetsToFile(fileSnippets, fullPath, relativePath);
         }
       }
