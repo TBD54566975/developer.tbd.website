@@ -18,22 +18,22 @@
     <dependency>
         <groupId>xyz.block</groupId>
         <artifactId>web5-crypto</artifactId>
-        <version>0.0.9-delta</version>
+        <version>0.0.11</version>
     </dependency>
     <dependency>
         <groupId>xyz.block</groupId>
         <artifactId>web5-dids</artifactId>
-        <version>0.0.9-delta</version>
+        <version>0.0.11</version>
     </dependency>
     <dependency>
         <groupId>xyz.block</groupId>
         <artifactId>web5-common</artifactId>
-        <version>0.0.9-delta</version>
+        <version>0.0.11</version>
     </dependency>
     <dependency>
         <groupId>xyz.block</groupId>
         <artifactId>web5-credentials</artifactId>
-        <version>0.0.9-delta</version>
+        <version>0.0.11</version>
     </dependency>
     <dependency>
         <groupId>decentralized-identity</groupId>
@@ -48,7 +48,7 @@
     <dependency>
         <groupId>com.github.TBD54566975</groupId>
         <artifactId>tbdex-kt</artifactId>
-        <version>0.7.2-beta</version>
+        <version>0.10.0-beta</version>
     </dependency>
 </dependencies>
 // :snippet-end:

@@ -1,0 +1,30 @@
+// Kotlin Maven dependencies
+// :snippet-start: createADidDependencyMaven
+<repositories>
+    <repository>
+        <id>jitpack.io</id>
+        <url>https://jitpack.io</url>
+    </repository>
+    <repository>
+        <id>mavenCentral</id>
+        <url>https://repo1.maven.org/maven2/</url>
+    </repository>
+    <repository>
+        <id>danubetech-maven-public</id>
+        <url>https://repo.danubetech.com/repository/maven-public/</url>
+    </repository>
+</repositories>
+
+<dependencies>
+    <dependency>
+        <groupId>xyz.block</groupId>
+        <artifactId>web5-dids</artifactId>
+        <version>0.10.0</version>
+    </dependency>
+    <dependency>
+        <groupId>decentralized-identity</groupId>
+        <artifactId>did-common-java</artifactId>
+        <version>1.11.0</version>
+    </dependency>
+</dependencies>
+// :snippet-end:
