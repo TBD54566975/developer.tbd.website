@@ -3,7 +3,7 @@ import { DidDhtMethod } from '@web5/dids';
 
 let pfiDid;
 
-describe('allowlist PFIs', () => {
+describe('Wallet: Allowlist PFIs', () => {
   beforeAll(async () => {
     pfiDid = await DidDhtMethod.create({
         publish: true,

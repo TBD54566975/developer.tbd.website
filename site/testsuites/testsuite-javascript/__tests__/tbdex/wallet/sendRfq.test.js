@@ -9,7 +9,7 @@ let customerDid;
 let server;
 let selectedOffering;
 
-describe('Send RFQ', () => {
+describe('Wallet: Send RFQ', () => {
 
   beforeAll(async () => {
     customerDid = await DidKeyMethod.create({ publish: true })
