@@ -7,7 +7,7 @@ import tbdex.sdk.httpclient.TbdexHttpClient
 import tbdex.sdk.protocol.models.Offering
 import tbdex.sdk.protocol.serialization.Json
 import java.net.HttpURLConnection
-import website.tbd.developer.site.docs.utils.*
+import website.tbd.developer.site.docs.utils.TestData
 
 import org.junit.jupiter.api.*
 import org.junit.jupiter.api.Assertions.*

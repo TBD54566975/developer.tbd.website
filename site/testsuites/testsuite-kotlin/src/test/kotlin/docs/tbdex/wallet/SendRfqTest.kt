@@ -14,7 +14,7 @@ import tbdex.sdk.protocol.models.Rfq
 import tbdex.sdk.protocol.models.RfqData
 import tbdex.sdk.protocol.models.SelectedPaymentMethod
 import java.net.HttpURLConnection
-import website.tbd.developer.site.docs.utils.*
+import website.tbd.developer.site.docs.utils.TestData
 
 /**
  * Tests for Wallet: Sending RFQs guide
