@@ -15,7 +15,7 @@ internal class HowToCreateDidTest {
   @Test
   fun `create DidDht`() {
 
-    // :snippet-start: createDidDht
+    // :snippet-start: createDidDhtKt
     //Creates a DID using the DHT method and publishes the DID Document to the DHT
     val didDht = DidDht.create(InMemoryKeyManager(), CreateDidDhtOptions(publish = true))
 
@@ -37,7 +37,7 @@ internal class HowToCreateDidTest {
 
   @Test
   fun `create DidKey`() {
-    // :snippet-start: createDidKey
+    // :snippet-start: createDidKeyKt
     // Creates a DID using the did:key method
     val didKey = DidKey.create(InMemoryKeyManager());
 
