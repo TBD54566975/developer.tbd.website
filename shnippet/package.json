@@ -1,21 +1,23 @@
 {
-    "name": "shnip",
-    "version": "1.0.0",
-    "description": "A snippet extraction tool for various programming languages.",
-    "main": "index.js",
-    "bin": {
-      "shnip": "./src/cli.js"
-    },
-    "scripts": {
-      "test": "echo \"Error: no test specified\" && exit 1"
-    },
-    "keywords": [
-      "snippet",
-      "extractor",
-      "code",
-      "tool"
-    ],
-    "author": "Nick DeJesus",
-    "license": "MIT"
+  "name": "shnip",
+  "version": "1.0.0",
+  "description": "A snippet extraction tool for various programming languages.",
+  "main": "index.js",
+  "bin": {
+    "shnip": "./src/cli.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "snippet",
+    "extractor",
+    "code",
+    "tool"
+  ],
+  "author": "Nick DeJesus",
+  "license": "MIT",
+  "dependencies": {
+    "rimraf": "5.0.5"
   }
-  
+}
