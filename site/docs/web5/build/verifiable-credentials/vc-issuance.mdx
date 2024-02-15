@@ -1,10 +1,22 @@
 ---
+title: Issue a VC
+hide_title: true
 sidebar_position: 1
 ---
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-import CodeSnippet from '@site/src/components/CodeSnippet';
+
+import createEmploymentCredential from '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/web5/build/verifiable-credentials/createEmploymentCredential.snippet.js'
+import signEmploymentCredential from '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/web5/build/verifiable-credentials/signEmploymentCredential.snippet.js'
+import vcSdkInstallJs from '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/web5/build/verifiable-credentials/vcSdkInstallJs.snippet.bash'
+
+import createEmploymentCredentialKt from '!!raw-loader!@site/snippets/testsuite-kotlin/src/test/kotlin/docs/web5/build/verifiablecredentials/createEmploymentCredentialKt.snippet.kt'
+import signEmploymentCredentialKt from '!!raw-loader!@site/snippets/testsuite-kotlin/src/test/kotlin/docs/web5/build/verifiablecredentials/signEmploymentCredentialKt.snippet.kt'
+import vcSdkInstallGradle from '!!raw-loader!@site/snippets/testsuite-kotlin/src/test/kotlin/docs/web5/build/verifiablecredentials/vcSdkInstallGradle.snippet.gradle'
+import vcSdkInstallPom from '!!raw-loader!@site/snippets/testsuite-kotlin/src/test/kotlin/docs/web5/build/verifiablecredentials/vcSdkInstallPom.snippet.xml'
+
+<LanguageSwitcher languages="JavaScript, Kotlin" />
 
 # Issue a VC
 
@@ -13,53 +25,45 @@ This guide provides a step-by-step process for issuing a [verifiable credential 
 <details>
 <summary>Prerequisites</summary>
 
-<Tabs>
-  <TabItem value="JavaScript" label="JavaScript" default>
+**Install Packages**
 
-**Install Package**
-```bash
-npm i @web5/credentials
-```
+<Shnip
+   snippets={[
+    { snippetContent: vcSdkInstallJs, language: 'JavaScript', codeLanguage: 'bash'},
+    {
+      language: 'Kotlin',
+      nestedSnippets:{
+          'Gradle': {
+            "snippet": vcSdkInstallGradle,
+            "language": 'kotlin'
+          },
+          'Maven': {
+            "snippet": vcSdkInstallPom,
+            "language": 'xml'
+          }
+        }
+    }
+    ]}
+/>
 
-**Import Class**
+**Install Classes**
 
-```js
+<Shnip
+  inlineSnippets={[
+    {
+      code: `
 import { VerifiableCredential } from "@web5/credentials";
-```
-
-  </TabItem>
-  <TabItem value="Kotlin" label="Kotlin">
-
-
-**Configure Repositories**
-
-```kotlin
-repositories {
-  mavenCentral()
-  maven("https://jitpack.io")
-  maven("https://repo.danubetech.com/repository/maven-public/")
-  maven("https://repository.jboss.org/nexus/content/repositories/thirdparty-releases/")
-}
-```
-
-**Configure Dependencies**
-
-```kotlin
-dependencies {
-  implementation("xyz.block:web5-credentials:0.0.11")
-}
-```
-
-**Import Class**
-
-```kotlin
+      `,
+      language: 'JavaScript',
+    },
+    {
+      code: `
 import xyz.block.web5.credentials.VerifiableCredential
-```
-
-  </TabItem>
-</Tabs>
-
-
+      `,
+      language: 'Kotlin',
+    }
+  ]}
+/>
 
 **Obtain DIDs**
 
@@ -83,65 +87,22 @@ Credentials are created in JSON format and contain the following properties:
 ## Create VC
 
 To create the VC, utilize the `VerifiableCredential.create()` method. Pass a JSON object containing the properties as shown below:
-<Tabs>
-  <TabItem value="JavaScript" label="JavaScript" default>
-    <CodeSnippet functionName="createEmploymentCredential" />
-  </TabItem>
-  <TabItem value="Kotlin" label="Kotlin">
 
-  ```kotlin
-  data class EmploymentCredential(val position: String, val startDate: String, val employmentStatus: String )
-
-  val vc = VerifiableCredential.create(
-      type = "EmploymentCredential",
-      issuer = employer.didDocument.id.toString(),
-      subject = employee.didDocument.id.toString(),
-      expirationDate = Date.from(Instant.parse("2023-09-30T12:34:56Z"))
-      data = EmploymentData(
-          position = "Software Developer",
-          startDate = "2021-04-01T12:34:56Z",
-          employmentStatus = "Contractor"
-      )
-  )
-  ```
-  </TabItem>
-</Tabs>
-
+<Shnip
+   snippets={[
+    { snippetContent: createEmploymentCredential, language: 'JavaScript'},
+    { snippetContent: createEmploymentCredentialKt, language: 'Kotlin'}
+    ]}
+/>
 
 This results in:
 
-<Tabs>
-  <TabItem value="JavaScript" label="JavaScript" default>
-
-  ```js
-  {
-    "vcDataModel": {
-      "@context": [
-        "https://www.w3.org/2018/credentials/v1"
-      ],
-      "type": [
-        "VerifiableCredential",
-        "EmploymentCredential"
-      ],
-      "id": "urn:uuid:84953246-a77f-4c5a-a336-69a55bd92989",
-      "issuer": "did:dht:fhzeks5bkferfztk6m63xjkg7a4hbf7snk444g8f1h1xapt391ty",
-      "issuanceDate": "2023-03-31T06:08:49Z",
-      "credentialSubject": {
-        "id": "did:dht:usnoybts46xnei6brftkixe5qsbypxcye4th397bs4tyouqouyho",
-        "position": "Software Developer",
-        "startDate": "2023-04-01T12:34:56Z",
-        "employmentStatus": "Contractor"
-      },
-      "expirationDate": "2023-09-30T12:34:56Z"
-    }
-  }
-  ```
-
-  </TabItem>
-  <TabItem value="Kotlin" label="Kotlin">
-
-  ```kotlin
-  {
+<Shnip
+  inlineSnippets={[
+    {
+      code: `
+{
+  "vcDataModel": {
     "@context": [
       "https://www.w3.org/2018/credentials/v1"
     ],
@@ -149,35 +110,59 @@ This results in:
       "VerifiableCredential",
       "EmploymentCredential"
     ],
-    "id": "urn:uuid:8fd52030-1caf-4978-a35d-d417eb8e00b2",
-    "issuer": "did:dht:kfdtbcm9zgocf5matf9fxtnnffhhzxc7mgbwr4k3x3qziaucpp4y",
-    "issuanceDate": "2023-12-21T17:02:01Z",
+    "id": "urn:uuid:84953246-a77f-4c5a-a336-69a55bd92989",
+    "issuer": "did:dht:fhzeks5bkferfztk6m63xjkg7a4hbf7snk444g8f1h1xapt391ty",
+    "issuanceDate": "2023-03-31T06:08:49Z",
     "credentialSubject": {
-      "id": "did:dht:y39m48ozoete7z6fzaangcos87fhuh1dzi7f7jwbjft7otskh9to",
+      "id": "did:dht:usnoybts46xnei6brftkixe5qsbypxcye4th397bs4tyouqouyho",
       "position": "Software Developer",
-      "startDate": "2021-04-01T12:34:56Z",
+      "startDate": "2023-04-01T12:34:56Z",
       "employmentStatus": "Contractor"
-    }
+    },
+    "expirationDate": "2023-09-30T12:34:56Z"
   }
-  ```
-  </TabItem>
-</Tabs>
+}
+      `,
+      language: 'JavaScript',
+    },
+    {
+      code:`
+{
+  "@context": [
+    "https://www.w3.org/2018/credentials/v1"
+  ],
+  "type": [
+    "VerifiableCredential",
+    "EmploymentCredential"
+  ],
+  "id": "urn:uuid:84953246-a77f-4c5a-a336-69a55bd92989",
+  "issuer": "did:dht:fhzeks5bkferfztk6m63xjkg7a4hbf7snk444g8f1h1xapt391ty",
+  "issuanceDate": "2023-03-31T06:08:49Z",
+  "expirationDate":"2023-09-30T12:34:56Z",
+  "credentialSubject": {
+    "id": "did:dht:usnoybts46xnei6brftkixe5qsbypxcye4th397bs4tyouqouyho",
+    "position": "Software Developer",
+    "startDate": "2023-04-01T12:34:56Z",
+    "employmentStatus": "Contractor"
+  }
+}
+      `,
+      language: 'Kotlin', 
+      codeLanguage: 'JavaScript'
+    }
+  ]}
+/>
 
 ## Sign VC
 
 The next step is signing the VC. This cryptographic process, performed by the issuer, ensures the integrity and authenticity of the VC:
-<Tabs>
-  <TabItem value="JavaScript" label="JavaScript" default>
-    <CodeSnippet functionName="signCredential" />
-  </TabItem>
-  <TabItem value="Kotlin" label="Kotlin">
 
-  ```kotlin
-  // sign with PortableDid
-  val signedVcJwt = vc.sign(employerDidObj)
-  ```
-  </TabItem>
-</Tabs>
+<Shnip
+   snippets={[
+    { snippetContent: signEmploymentCredential, language: 'JavaScript'},
+    { snippetContent: signEmploymentCredentialKt, language: 'Kotlin'}
+    ]}
+/>
 
 Signing the credential returns a [VC JWT](/docs/web5/build/verifiable-credentials/jwt-to-vc#what-is-a-jwt):
 
