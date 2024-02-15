@@ -9,7 +9,7 @@ let pfiDid; //The URI of the PFI's DID
 let server;
 let mockOffering;
 
-describe('Get Offerings from PFI', () => {
+describe('Wallet: Get Offerings from PFI', () => {
 
   beforeAll(async () => {
     pfi = await DidDhtMethod.create({
