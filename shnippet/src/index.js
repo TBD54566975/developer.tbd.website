@@ -9,10 +9,11 @@ class SnippetExtractor {
     };
   }
 
-  extractSnippetsFromFile(content) {
+  extractSnippetsFromFile(content, filePath) {
     const snippets = {};
     let startIndex = 0,
       endIndex = 0;
+    const fileExtension = path.extname(filePath);
 
     while (
       (startIndex = content.indexOf(
@@ -42,10 +43,8 @@ class SnippetExtractor {
         .substring(startTagClose + 1, endIndex)
         .trim();
 
-      // Normalize indentation
-      snippetContent = this.normalizeIndentation(snippetContent);
-
-      snippetContent = snippetContent.replace(/\/\/\s*$/, "").trim();
+      // Normalize indentation and handle bash comments if applicable
+      snippetContent = this.normalizeIndentation(snippetContent, fileExtension);
 
       if (snippetName) {
         snippets[snippetName] = snippetContent;
@@ -57,23 +56,26 @@ class SnippetExtractor {
     return snippets;
   }
 
-  normalizeIndentation(snippetContent) {
+  normalizeIndentation(snippetContent, fileExtension) {
     const lines = snippetContent.split("\n");
 
-    return lines
-      .map((line) => {
-        // Check if the line has at least 4 spaces of indentation to remove
-        if (line.startsWith("    ")) {
-          // 4 spaces
-          return line.substring(4); // Remove the first 4 spaces
-        }
-        return line; // Return the line unchanged if it doesn't start with 4 spaces
-      })
-      .join("\n");
+    if (fileExtension === ".bash") {
+      // Remove leading '#' for bash scripts
+      return lines.map((line) => line.replace(/^#\s*/, "")).join("\n");
+    } else {
+      // For other file types, remove 4 spaces of indentation if present
+      return lines
+        .map((line) => {
+          if (line.startsWith("    ")) {
+            return line.substring(4);
+          }
+          return line;
+        })
+        .join("\n");
+    }
   }
 
   shouldExcludeFile(content) {
-    // Check if the file content includes any of the strings in the exclude array
     for (const excludeString of this.config.exclude) {
       if (content.includes(excludeString)) {
         return true; // Exclude this file
@@ -96,19 +98,10 @@ class SnippetExtractor {
       ) {
         const content = fs.readFileSync(fullPath, "utf-8");
 
-        if (
-          this.config.outputDirectoryStructure === "match" &&
-          this.shouldExcludeFile(content)
-        ) {
-          console.log(
-            `Excluding file due to matching exclude pattern in "match" case: ${fullPath}`
-          );
-          continue;
+        if (!this.shouldExcludeFile(content)) {
+          const fileSnippets = this.extractSnippetsFromFile(content, fullPath);
+          this.writeSnippetsToFile(fileSnippets, fullPath, relativePath);
         }
-
-        // Proceed with extracting and writing snippets if not excluded
-        const fileSnippets = this.extractSnippetsFromFile(content);
-        this.writeSnippetsToFile(fileSnippets, fullPath, relativePath);
       }
     }
   }
@@ -119,38 +112,31 @@ class SnippetExtractor {
 
       switch (this.config.outputDirectoryStructure) {
         case "match":
-          // For "match", save the snippet in its original form without converting to a JS module
           outputPath = path.join(
             this.config.outputDirectory,
             relativePath,
             `${snippetName}.snippet${path.extname(fullPath)}`
           );
-          if (!fs.existsSync(path.dirname(outputPath))) {
-            fs.mkdirSync(path.dirname(outputPath), { recursive: true });
-          }
-          fs.writeFileSync(outputPath, snippetContent);
           break;
         case "flat":
         case "byLanguage":
         case "organized":
         default:
-          // Handle other cases as before
           outputPath = this.determineOutputPath(
             snippetName,
             fullPath,
             relativePath
           );
-          // Ensure the output directory exists
-          if (!fs.existsSync(path.dirname(outputPath))) {
-            fs.mkdirSync(path.dirname(outputPath), { recursive: true });
-          }
-          // For configurations other than "match", wrap the content in a JS module
-          fs.writeFileSync(
-            outputPath,
-            `export default ${JSON.stringify(snippetContent)};`
-          );
           break;
       }
+
+      if (!fs.existsSync(path.dirname(outputPath))) {
+        fs.mkdirSync(path.dirname(outputPath), { recursive: true });
+      }
+      fs.writeFileSync(
+        outputPath,
+        `export default ${JSON.stringify(snippetContent)};`
+      );
     }
   }
 
@@ -189,10 +175,6 @@ class SnippetExtractor {
           `index${extension}`
         );
         break;
-    }
-
-    if (!fs.existsSync(path.dirname(outputPath))) {
-      fs.mkdirSync(path.dirname(outputPath), { recursive: true });
     }
 
     return outputPath;
