@@ -59,15 +59,17 @@ class SnippetExtractor {
 
   normalizeIndentation(snippetContent) {
     const lines = snippetContent.split("\n");
-    const minIndent = lines.reduce((min, line) => {
-      if (line.trim()) {
-        const leadingSpaces = line.match(/^(\s*)/)[1].length;
-        return Math.min(min, leadingSpaces);
-      }
-      return min;
-    }, Infinity);
 
-    return lines.map((line) => line.substring(minIndent)).join("\n");
+    return lines
+      .map((line) => {
+        // Check if the line has at least 4 spaces of indentation to remove
+        if (line.startsWith("    ")) {
+          // 4 spaces
+          return line.substring(4); // Remove the first 4 spaces
+        }
+        return line; // Return the line unchanged if it doesn't start with 4 spaces
+      })
+      .join("\n");
   }
 
   shouldExcludeFile(content) {
