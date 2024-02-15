@@ -46,6 +46,9 @@ class SnippetExtractor {
       // Normalize indentation and handle bash comments if applicable
       snippetContent = this.normalizeIndentation(snippetContent, fileExtension);
 
+      // Ensure no trailing '//' is left at the end of any snippet
+      snippetContent = snippetContent.replace(/\/\/\s*$/, "").trim();
+
       if (snippetName) {
         snippets[snippetName] = snippetContent;
       }
@@ -63,11 +66,11 @@ class SnippetExtractor {
       // Remove leading '#' for bash scripts
       return lines.map((line) => line.replace(/^#\s*/, "")).join("\n");
     } else {
-      // For other file types, remove 4 spaces of indentation if present
+      // For other file types, adjust indentation as needed
       return lines
         .map((line) => {
           if (line.startsWith("    ")) {
-            return line.substring(4);
+            return line.substring(4); // Remove the first 4 spaces
           }
           return line;
         })
@@ -92,10 +95,7 @@ class SnippetExtractor {
 
       if (stat.isDirectory()) {
         this.processDirectory(fullPath, path.join(relativePath, item));
-      } else if (
-        stat.isFile() &&
-        this.config.fileExtensions.includes(path.extname(item))
-      ) {
+      } else if (this.config.fileExtensions.includes(path.extname(item))) {
         const content = fs.readFileSync(fullPath, "utf-8");
 
         if (!this.shouldExcludeFile(content)) {
@@ -117,6 +117,7 @@ class SnippetExtractor {
             relativePath,
             `${snippetName}.snippet${path.extname(fullPath)}`
           );
+          fs.writeFileSync(outputPath, snippetContent);
           break;
         case "flat":
         case "byLanguage":
@@ -127,16 +128,16 @@ class SnippetExtractor {
             fullPath,
             relativePath
           );
+          fs.writeFileSync(
+            outputPath,
+            `export default ${JSON.stringify(snippetContent)};`
+          );
           break;
       }
 
       if (!fs.existsSync(path.dirname(outputPath))) {
         fs.mkdirSync(path.dirname(outputPath), { recursive: true });
       }
-      fs.writeFileSync(
-        outputPath,
-        `export default ${JSON.stringify(snippetContent)};`
-      );
     }
   }
 
