@@ -8,6 +8,8 @@ import PackageJson from '@site/src/components/PackageJson';
 
 Setting up the Web5 SDK in a Vue or NuxtJS project.
 
+If the suggested steps here don't work, please [open an issue](https://github.com/TBD54566975/developer.tbd.website/issues) or post your questions in the `#web5` channel on [TBD Discord](https://discord.com/invite/TBD).
+
 ## Create your project
 You can add Web5 to an existing Nuxt or Vue project, or create a new one with the Vue CLI:
 
@@ -113,7 +115,7 @@ export default defineConfig({
 
 If you run into any errors, check out our [troubleshooting guide](./common-errors) for a possible solution.
 
-## Uncaught ReferenceError: require is not defined
+## Uncaught ReferenceError: xxxx is not defined
 With the latest Nuxt releases, there seems to be a transpiling error when trying to deploy Nuxt with `npm run build`. If you get an error like `Uncaught ReferenceError: require is not defined`, you can fix it by adding the following to your `nuxt.config.js` file:
 
 ```js title="nuxt.config.js"
@@ -125,3 +127,5 @@ export defineConfig({
   }
 });
 ```
+
+If the error isn't fixed, then try downgrading your Vue / Nuxt version to lower than you currently have it.
