@@ -1,9 +1,7 @@
 import { test, expect, vi, describe, beforeAll } from 'vitest';
 import { DidDhtMethod, DidKeyMethod } from '@web5/dids';
 
-import {
-  createDidAutomatically,
-} from '../../../../../../code-snippets/web5/build/decentralized-identifiers/how-to-create-did';
+import { createDidAutomatically } from '../../../../../../code-snippets/web5/build/decentralized-identifiers/how-to-create-did';
 import { setUpWeb5 } from '../../../setup-web5';
 
 let web5;
@@ -27,18 +25,16 @@ describe('how-to-create-did', () => {
       };
     });
   });
-  
 
   test('show required imports to create did', async () => {
     const requiredImports = `
-      // :snippet-start: requiredDidImports
-      //did:dht
-      import { DidDhtMethod } from '@web5/dids'
-
-      //did:key
-      import { DidKeyMethod } from '@web5/dids'
+   // :snippet-start: requiredDidImports
+// did:dht
+import { DidDhtMethod } from '@web5/dids'
+// did:key
+import { DidKeyMethod } from '@web5/dids'
       // :snippet-end:
-    `
+    `;
   });
 
   test('createDidAutomatically returns a DID', async () => {
