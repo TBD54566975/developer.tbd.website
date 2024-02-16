@@ -54,42 +54,42 @@ We've highlighted some repositories with new open issues to help you get started
 
 ## Contributing Code Snippets
 
-If you're working on tutorials or guides of any sort, we have a Code Snippet system that allows us to update the code in one place but also allows it to be runnable and tested.
+Our Code Snippet system allows for updates in one place while ensuring code is runnable and tested, enhancing our tutorials and guides.
 
-Here are some steps on how you'd make a Code Snippet:
+### Steps to Create a Code Snippet
 
-1. First you'll need to create your test. Navigate to `site/__test__` this is where you'll create your test file. Your test file should be named to match the funtionality of the code.
-   Here's an example test file naming convention: `how-to-create-did.test.js`
+1. **Create Your Test**: Navigate to `site/__test__` and create a test file named to match the functionality of the code, e.g., `how-to-create-did.test.js`.
 
-:::note
-The `.test.` naming convention. This is how Vite will know to run these tests.
-:::
+   :::note
+   Use the `.test.` naming convention for Vite to recognize and run these tests.
+   :::
 
-2. In your test files, use the `:snippet-start:` and `:snippet-end:` tags to denote the beginning and end of a code snippet. Name your snippet immediately after the `:snippet-start:` tag. For example:
+2. **Tag Your Snippets**: In your test files, use `:snippet-start:` and `:snippet-end:` tags to mark the beginning and end of a code snippet. Immediately name your snippet after the `:snippet-start:` tag.
 
-```js
-test('createDidDht creates a DID with did:dht method', async () => {
-  // :snippet-start: createDidDht
-  const didDht = await DidDhtMethod.create({ publish: true });
-  // ... rest of the code ...
-  // :snippet-end:
-});
-```
+   ```js
+   test('createDidDht creates a DID with did:dht method', async () => {
+     // :snippet-start: createDidDht
+     const didDht = await DidDhtMethod.create({ publish: true });
+     // ... rest of the code ...
+     // :snippet-end:
+   });
+
 
 3. After creating your snippets, run the command `pnpm run shnip`. This will generate a folder called `snippets` and create a directory structure similar to where the file is.
 
 4. In the generated folder you'll find the generated file named as `functionName.snippet.js` (or the respective file extension). For example, the above snippet will be `createDidDht.snippet.js`.
 
-To use the snippet in your documentation(`.mdx` file), you're going to use the `Shnip` component, and import the code snippet from `!!raw-loader!` in the following format:
+To use the snippet in your documentation(`.mdx` file), you're going to use the `Shnip` component. The Shnip component will dynamically import your snippets for you. Here's an example on how to use it:
 
-```js
-import createDidDht from '!!raw-loader!@site/snippets/web5/build/decentralized-identifiers/createDidDht.snippet.js';
+
 // if it's a multi language doc, you'll need to specify it with the LanguageSwitcher component
 <LanguageSwitcher languages="JavaScript, Kotlin" />
 
 <Shnip
-  snippets={[{ name: 'createDidDht', language: 'JavaScript' }]}
-  snippets={[{ name: 'kt_createDidDht', language: 'Kotlin' }]} // if you have another generated snippet in a different language
+  snippets={[
+    { snippetName: 'createDidKey', language: 'JavaScript' },
+    { snippetName: 'kt_createDidKey', language: 'Kotlin' },
+  ]}
 />
 ```
 
@@ -174,6 +174,18 @@ class SwiftiesFanClub {
   ]}
 />
 ```
+
+## Directory Structure Configurations
+
+- match: Mimics the test file's directory structure.
+- byLanguage: Organizes snippets into language-specific directories.
+- organized: A structure that organizes by language and function name. For example: `/snippets/js/createDidDht` and `/snippets/kt/createDidDht`
+- flat: Places all snippets directly within the snippets folder.
+
+## CLI
+- Clear Command: `pnpm shnip clear`
+- Structure Flag: `pnpm shnip --structure byLanguage`
+
 
 ### Caveats for Code Snippets
 
