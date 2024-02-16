@@ -4,18 +4,20 @@ hide_title: true
 sidebar_position: 1
 ---
 
-import CodeSnippet from '@site/src/components/CodeSnippet';
-import createDidDht from '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/web5/build/decentralized-identifiers/createDidDht.snippet.js'
-import createDidKey from '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/web5/build/decentralized-identifiers/createDidKey.snippet.js'
+import createDidDht from '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/web5/build/decentralized-identifiers/createDidDht.snippet.js';
+import createDidKey from '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/web5/build/decentralized-identifiers/createDidKey.snippet.js';
 import createDidJwk from '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/web5/build/decentralized-identifiers/createDidJwk.snippet.js'
-import requiredDidImports from '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/web5/build/decentralized-identifiers/requiredDidImports.snippet.js'
-import createDidDhtKt from '!!raw-loader!@site/snippets/testsuite-kotlin/src/test/kotlin/docs/web5/build/decentralizedidentifiers/createDidDhtKt.snippet.kt'
-import createDidKeyKt from '!!raw-loader!@site/snippets/testsuite-kotlin/src/test/kotlin/docs/web5/build/decentralizedidentifiers/createDidKeyKt.snippet.kt'
+import requiredDidImports from '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/web5/build/decentralized-identifiers/requiredDidImports.snippet.js';
+import createDidDhtKt from '!!raw-loader!@site/snippets/testsuite-kotlin/src/test/kotlin/docs/web5/build/decentralizedidentifiers/createDidDhtKt.snippet.kt';
+import createDidKeyKt from '!!raw-loader!@site/snippets/testsuite-kotlin/src/test/kotlin/docs/web5/build/decentralizedidentifiers/createDidKeyKt.snippet.kt';
 import createDidJwkKt from '!!raw-loader!@site/snippets/testsuite-kotlin/src/test/kotlin/docs/web5/build/decentralizedidentifiers/createDidJwkKt.snippet.kt'
 
-import requiredDidImportsKt from '!!raw-loader!@site/snippets/testsuite-kotlin/src/test/kotlin/docs/web5/build/decentralizedidentifiers/requiredDidImportsKt.snippet.kt'
+import requiredDidImportsKt from '!!raw-loader!@site/snippets/testsuite-kotlin/src/test/kotlin/docs/web5/build/decentralizedidentifiers/requiredDidImportsKt.snippet.kt';
+import createADidDependencyGradle from '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/web5/build/decentralized-identifiers/createADidDependencyGradle.snippet.gradle';
+import createADidDependencyMaven from '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/web5/build/decentralized-identifiers/createADidDependencyMaven.snippet.xml';
+import createADidDependency from '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/web5/build/decentralized-identifiers/createADidDependency.snippet.bash';
 
-<LanguageSwitcher languages="JavaScript, Kotlin"/>
+<LanguageSwitcher languages="JavaScript, Kotlin" />
 
 # Create a DID
 
@@ -24,7 +26,34 @@ This guide covers how to use Web5 to create a DID.
 
 You can create a DID using any of the [Web5-supported DID methods](/docs/web5/learn/decentralized-identifiers#methods) by using the [DID package](https://www.npmjs.com/package/@web5/dids).
 
-**Import the DID Method you'd like to use:**
+## Install
+
+<Shnip
+  inlineSnippets={[
+    {
+      code: `npm install @web5/dids`,
+      language: "JavaScript",
+      codeLanguage: 'bash'
+    }
+  ]}
+  snippets={[
+    {
+      language: 'Kotlin',
+      nestedSnippets: {
+        Gradle: {
+          snippet: createADidDependencyGradle,
+          language: 'js',
+        },
+        Maven: {
+          snippet: createADidDependencyMaven,
+          language: 'xml',
+        },
+      },
+    }
+  ]}
+/>
+
+## Import
 
 <Shnip
   snippets={[
@@ -33,13 +62,16 @@ You can create a DID using any of the [Web5-supported DID methods](/docs/web5/le
   ]}
 />
 
+## Create DID
+The following DID methods are supported:
+
 ### did:dht
 
 <Shnip
   snippets={[
     { snippetContent: createDidDht, language: 'JavaScript' },
     { snippetContent: createDidDhtKt, language: 'Kotlin' },
-    ]}
+  ]}
 />
 
 ### did:key
@@ -73,6 +105,7 @@ did:dht:cm1yqfjzfdtauh33nauwf3sqsijqziwrydicr8dbtho3cucb9nno
 ```
 
 ### Portable DID
+
 As shown above, `@web5/dids` provides methods to create a DID.
 A Portable DID is returned, which is a DID and its associated data which can be exported and used in different contexts and apps.
 You should securely store your Portable DID in a trustworthy identity wallet or password manager.
@@ -80,7 +113,6 @@ You should securely store your Portable DID in a trustworthy identity wallet or 
 :::important
 In the example below, the `d` property of the private key component is masked. That's because this is the critical, sensitive part that must be kept secret. It allows the holder to perform private key operations, like signing data. Do not share your private key!
 :::
-
 
 ```json
 {
@@ -97,26 +129,16 @@ In the example below, the `d` property of the private key component is masked. T
           "crv": "Ed25519",
           "kty": "OKP",
           "ext": "true",
-          "key_ops": [
-            "verify"
-          ],
+          "key_ops": ["verify"],
           "x": "YuQHFTco44nzORYnQubOtVLr1oQA6sIcYY8hlk2B-IU",
           "kid": "0"
         }
       }
     ],
-    "authentication": [
-      "#0"
-    ],
-    "assertionMethod": [
-      "#0"
-    ],
-    "capabilityInvocation": [
-      "#0"
-    ],
-    "capabilityDelegation": [
-      "#0"
-    ]
+    "authentication": ["#0"],
+    "assertionMethod": ["#0"],
+    "capabilityInvocation": ["#0"],
+    "capabilityDelegation": ["#0"]
   },
   "keySet": {
     "verificationMethodKeys": [
@@ -127,9 +149,7 @@ In the example below, the `d` property of the private key component is masked. T
           "crv": "Ed25519",
           "kty": "OKP",
           "ext": "true",
-          "key_ops": [
-            "sign"
-          ],
+          "key_ops": ["sign"],
           "x": "YuQHFTco44nzORYnQubOtVLr1oQA6sIcYY8hlk2B-IU",
           "kid": "0"
         },
@@ -138,9 +158,7 @@ In the example below, the `d` property of the private key component is masked. T
           "crv": "Ed25519",
           "kty": "OKP",
           "ext": "true",
-          "key_ops": [
-            "verify"
-          ],
+          "key_ops": ["verify"],
           "x": "YuQHFTco44nzORYnQubOtVLr1oQA6sIcYY8hlk2B-IU",
           "kid": "0"
         },
@@ -157,6 +175,7 @@ In the example below, the `d` property of the private key component is masked. T
 ```
 
 ### DID Document
+
 The [DID Document](/docs/web5/learn/did_document) is a self-contained representation of the DID and provides metadata and cryptographic material associated with the DID
 
 ```json
@@ -172,31 +191,21 @@ The [DID Document](/docs/web5/learn/did_document) is a self-contained representa
         "crv": "Ed25519",
         "kty": "OKP",
         "ext": "true",
-        "key_ops": [
-          "verify"
-        ],
+        "key_ops": ["verify"],
         "x": "YuQHFTco44nzORYnQubOtVLr1oQA6sIcYY8hlk2B-IU",
         "kid": "0"
       }
     }
   ],
-  "authentication": [
-    "#0"
-  ],
-  "assertionMethod": [
-    "#0"
-  ],
-  "capabilityInvocation": [
-    "#0"
-  ],
-  "capabilityDelegation": [
-    "#0"
-  ]
+  "authentication": ["#0"],
+  "assertionMethod": ["#0"],
+  "capabilityInvocation": ["#0"],
+  "capabilityDelegation": ["#0"]
 }
 ```
 
-
 ### Cryptographic Keys
+
 A DID has an associated set of keys that can be used for verification and authentication.
 The keyset contains a DID subject's public and private keys (for signing, recovery, and updates).
 
@@ -214,9 +223,7 @@ In the example below, the `d` property of the private key component is masked. T
         "crv": "Ed25519",
         "kty": "OKP",
         "ext": "true",
-        "key_ops": [
-          "sign"
-        ],
+        "key_ops": ["sign"],
         "x": "YuQHFTco44nzORYnQubOtVLr1oQA6sIcYY8hlk2B-IU",
         "kid": "0"
       },
@@ -225,9 +232,7 @@ In the example below, the `d` property of the private key component is masked. T
         "crv": "Ed25519",
         "kty": "OKP",
         "ext": "true",
-        "key_ops": [
-          "verify"
-        ],
+        "key_ops": ["verify"],
         "x": "YuQHFTco44nzORYnQubOtVLr1oQA6sIcYY8hlk2B-IU",
         "kid": "0"
       },

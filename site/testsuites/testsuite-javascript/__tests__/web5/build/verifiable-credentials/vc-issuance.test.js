@@ -1,20 +1,37 @@
 import { test, expect, describe } from 'vitest';
 import { DidDht } from '@web5/dids';
+import { VerifiableCredential } from '@web5/credentials';
 import {
-  createEmploymentCredential,
   signCredential,
 } from '../../../../../../code-snippets/web5/build/verifiable-credentials/vc-issuance';
 
-const issuer = await DidDht.create();
-const subject = await DidDht.create();
+const employer = await DidDht.create();
+const employee = await DidDht.create();
 
 describe('issue a credential', () => {
-  test('VerifiableCredential.create() creates a VC', async () => {
-    const vc = await createEmploymentCredential(issuer, subject);
+  test('createEmploymentCredential creates a VC and signEmploymentCredential returns a jwt', async () => {
+    // :snippet-start: createEmploymentCredential
+    const vc = await VerifiableCredential.create({
+      type: 'EmploymentCredential',
+      issuer: employer.did,
+      subject: employee.did,
+      expirationDate: '2023-09-30T12:34:56Z',
+      data: {
+        "position": "Software Developer",
+        "startDate": "2023-04-01T12:34:56Z",
+        "employmentStatus": "Contractor"
+      }
+    });
+    // :snippet-end:
+
+    // :snippet-start: signEmploymentCredential
+    const vc_jwt_employment = await vc.sign({ did: employer });
+    // :snippet-end:
+
     expect(vc).toBeDefined();
     expect.soft(vc).toHaveProperty('type', 'EmploymentCredential');
-    expect.soft(vc).toHaveProperty('issuer', issuer.uri);
-    expect.soft(vc).toHaveProperty('subject', subject.uri);
+    expect.soft(vc).toHaveProperty('issuer', employer.uri);
+    expect.soft(vc).toHaveProperty('subject', employee.uri);
     expect.soft(vc.vcDataModel).toHaveProperty('id');
     expect
       .soft(vc.vcDataModel)
@@ -29,12 +46,8 @@ describe('issue a credential', () => {
     expect
       .soft(vc.vcDataModel.credentialSubject)
       .toHaveProperty('employmentStatus', 'Contractor');
-  });
 
-  test('VerifiableCredential.sign() signs a VC', async () => {
-    const vc = await createEmploymentCredential(issuer, subject);
-    const vc_jwt = await signCredential(vc, issuer);
-    expect(vc_jwt).toBeDefined();
-    expect(vc_jwt).toMatch(/^[a-zA-Z0-9-_]+\.[a-zA-Z0-9-_]+\.[a-zA-Z0-9-_]+$/);
+    expect(vc_jwt_employment).toBeDefined();
+    expect(vc_jwt_employment).toMatch(/^[a-zA-Z0-9-_]+\.[a-zA-Z0-9-_]+\.[a-zA-Z0-9-_]+$/);
   });
 });

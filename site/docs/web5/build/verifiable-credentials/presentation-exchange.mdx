@@ -17,7 +17,8 @@ import getLoanAppPresentationDefinitionKt from '!!raw-loader!@site/snippets/test
 import satisfiesPresentationDefinitionForPexKt from '!!raw-loader!@site/snippets/testsuite-kotlin/src/test/kotlin/docs/web5/build/verifiablecredentials/satisfiesPresentationDefinitionForPexKt.snippet.kt'
 import selectCredentialsForPexKt from '!!raw-loader!@site/snippets/testsuite-kotlin/src/test/kotlin/docs/web5/build/verifiablecredentials/selectCredentialsForPexKt.snippet.kt'
 import createPresentationFromCredentialsForPexKt from '!!raw-loader!@site/snippets/testsuite-kotlin/src/test/kotlin/docs/web5/build/verifiablecredentials/createPresentationFromCredentialsForPexKt.snippet.kt'
-import validVerifiablePresentationForPexKt from '!!raw-loader!@site/snippets/testsuite-kotlin/src/test/kotlin/docs/web5/build/verifiablecredentials/validVerifiablePresentationForPexKt.snippet.kt'
+import validatePresentationSubmissionForPexKt from '!!raw-loader!@site/snippets/testsuite-kotlin/src/test/kotlin/docs/web5/build/verifiablecredentials/validatePresentationSubmissionForPexKt.snippet.kt'
+import signVpForPexKt from '!!raw-loader!@site/snippets/testsuite-kotlin/src/test/kotlin/docs/web5/build/verifiablecredentials/signVpForPexKt.snippet.kt'
 
 <LanguageSwitcher languages="JavaScript, Kotlin" />
 
@@ -62,17 +63,14 @@ You can import this class from the `@web5/credentials` package:
 <Shnip
   inlineSnippets={[
     {
-      code: `
-import { PresentationExchange } from '@web5/credentials';
-      `,
+      code: `import { PresentationExchange } from '@web5/credentials';`,
       language: 'JavaScript',
     },
     {
-      code: `
-import web5.sdk.credentials.PresentationExchange
+      code: `import web5.sdk.credentials.PresentationExchange
 import web5.sdk.credentials.VerifiablePresentation
-import web5.sdk.credentials.model.*
-      `,
+import web5.sdk.credentials.model.PresentationSubmission
+import web5.sdk.credentials.model.*`,
       language: 'Kotlin', 
     }
   ]}
@@ -110,8 +108,13 @@ Once you've confirmed that the VCs successfully satisfy the Presentation Definit
 
 <Shnip
    snippets={[
-    { snippetContent: createPresentationFromCredentialsForPex, language: 'JavaScript'},
-    { snippetContent: createPresentationFromCredentialsForPexKt, language: 'Kotlin'},
+    { 
+      snippetContent: createPresentationFromCredentialsForPex, 
+      language: 'JavaScript'
+    },
+    { 
+      snippetContent: createPresentationFromCredentialsForPexKt, 
+      language: 'Kotlin'},
     ]}
 />
 
@@ -215,20 +218,34 @@ Before submitting the presentation to a lender, you can validate the Presentatio
 <Shnip
 snippets={[
     { snippetContent: validPresentationSubmissionForPex, language: 'JavaScript'},
+    { snippetContent: validatePresentationSubmissionForPexKt, language: 'Kotlin'}
     ]}
-inlineSnippets={[
+/>
+
+:::note
+The information regarding `Checked` objects is only applicable to the JavaScript SDK.
+:::
+
+
+<Shnip
+  inlineSnippets={[
     {
-      content: 'This functionality is soon to be implemented in the Kotlin SDK.' ,
+      content: 'This method checks the presentation submission for any errors, returns an array of `Checked` objects representing the validation checks performed on the presentation submission:',
+      code: `
+[ Checked { tag: 'root', status: 'info', message: 'ok' } ]
+      `,
+      language: 'JavaScript',
+    },
+    {
+      content: "If unsuccessful, an error will be thrown. Here is an example:",
+      code:`
+PresentationSubmission id must not be empty
+      `,
       language: 'Kotlin', 
     }
   ]}
 />
 
-This method checks the presentation submission for any errors, returns an array of `Checked` objects representing the validation checks performed on the presentation submission:
-
-```js
-[ Checked { tag: 'root', status: 'info', message: 'ok' } ]
-```
 
 Each `Checked` object contains:
 
@@ -236,14 +253,18 @@ Each `Checked` object contains:
 - **status**: the result of the check, which is `info` for successful checks or `error` for failed checks
 - **message**: shows `ok` if successful, and if unsuccessful this is where you'll find error messages
 
+
 ## Verifiable Presentation
-
-
 
 <Shnip
    snippets={[
-    { content: 'Once the [Presentation](/docs/glossary#verifiable-presentation) is error-free and has passed the validation checks, you can submit the Verifiable Presentation by providing the lender with the `presentation` JSON object:', snippetContent: validVerifiablePresentationForPex, language: 'JavaScript'},
-    { content: 'After successfully creating the [Presentation](/docs/glossary#verifiable-presentation) using `VerifiablePresentation.create()`, and ensuring it is error-free and has passed all validation checks, you can submit the Verifiable Presentation by providing the lender with the `mappedPresentationSubmission` object:', snippetContent: validVerifiablePresentationForPexKt, language: 'Kotlin'},
+    { 
+      content: 'Once the [Presentation](/docs/glossary#verifiable-presentation) is error-free and has passed the validation checks, you can submit the Verifiable Presentation by providing the lender with the `presentation` JSON object:',
+      snippetContent: 
+      validVerifiablePresentationForPex, language: 'JavaScript'},
+    { 
+      content: 'Once the [Presentation](/docs/glossary#verifiable-presentation) is error-free and has passed the validation checks, you can submit the Verifiable Presentation as a signed and encoded JWT to the lender for [verification](/docs/web5/build/verifiable-credentials/verify-vc#verify-verifiable-presentations).', 
+      snippetContent: signVpForPexKt, 
+      language: 'Kotlin'},
     ]}
 />
-

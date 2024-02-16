@@ -84,19 +84,19 @@ internal class HowToCreateDidTest {
     val requiredImports =
         """
         // :snippet-start: requiredDidImportsKt
-        //did:dht
-        import web5.sdk.dids.methods.dht.DidDht
-        import web5.sdk.dids.methods.dht.CreateDidDhtOptions
+//did:dht
+import web5.sdk.dids.methods.dht.DidDht
+import web5.sdk.dids.methods.dht.CreateDidDhtOptions
 
-        //did:key
-        import web5.sdk.dids.methods.key.DidKey
+//did:key
+import web5.sdk.dids.methods.key.DidKey
 
         //did:jwk
         import web5.sdk.dids.methods.jwk.DidJwk
 
-        // key manager
-        import web5.sdk.crypto.InMemoryKeyManager
-        // :snippet-end:
+// key manager
+import web5.sdk.crypto.InMemoryKeyManager
+      // :snippet-end:
         """
   }
 

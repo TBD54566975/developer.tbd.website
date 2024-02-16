@@ -1,4 +1,4 @@
-// :snippet-start: pfiSdkInstallGradle
+// :snippet-start: vcSdkInstallGradle
 repositories {
     mavenCentral()
     maven("https://jitpack.io")
@@ -6,7 +6,5 @@ repositories {
 }
 dependencies {
     implementation("xyz.block:web5-credentials:0.0.11")
-    implementation("xyz.block:web5-dids:0.0.11")
-    implementation("com.github.TBD54566975:tbdex-kt:0.10.0-beta")
 }
 // :snippet-end:

@@ -4,6 +4,7 @@ import LanguageTabBar from '@site/src/components/language/LanguageTabBar';
 import CodeSnippet from '@site/src/components/CodeSnippet';
 import CodeBlock from '@theme/CodeBlock';
 import ReactMarkdown from 'react-markdown';
+import BreadcrumbTab from '@site/src/components/BreadcrumbTab';
 
 const Shnip = ({ snippets, inlineSnippets }) => {
   // support line breaks for inline code snippets
@@ -28,29 +29,71 @@ const Shnip = ({ snippets, inlineSnippets }) => {
       <LanguageSwitchBlock>
         {snippets &&
           snippets.map(
-            ({ snippetContent, language, title, content }, index) => (
+            (
+              {
+                snippetContent,
+                language,
+                title,
+                functionName,
+                snippetName,
+                content,
+                nestedSnippets,
+                codeLanguage,
+              },
+              index,
+            ) => (
               <div key={`snippet-${language}-${index}`} language={language}>
-                {content && <div style={{ paddingTop: '20px' }}><ReactMarkdown>{content}</ReactMarkdown></div>}
-                <CodeSnippet
-                  snippet={snippetContent}
-                  language={language.toLowerCase()}
-                  title={title}
-                />
+                {content && (
+                  <div style={{ paddingTop: '20px' }}>
+                    <ReactMarkdown>{content}</ReactMarkdown>
+                  </div>
+                )}
+
+                {/* Render Breadcrumbs if there are nestedSnippets */}
+                {nestedSnippets && (
+                  <BreadcrumbTab snippetMappings={nestedSnippets} />
+                )}
+
+                {/* Render the CodeSnippet component depending on nestedSnippets presence */}
+                {!nestedSnippets ? (
+                  <CodeSnippet
+                    snippet={snippetContent}
+                    language={language.toLowerCase()}
+                    title={title}
+                    functionName={functionName}
+                    snippetName={snippetName}
+                  />
+                ) : (
+                  <CodeSnippet
+                    snippet={snippetContent}
+                    language={(codeLanguage || language).toLowerCase()}
+                    title={title}
+                  />
+                )}
               </div>
             ),
           )}
 
         {inlineSnippets &&
           inlineSnippets.map(
-            ({ content, code, language, codeLanguage, breakLineAt, title }, index) => (
+            (
+              { content, code, language, codeLanguage, breakLineAt, title },
+              index,
+            ) => (
               <div key={`inline-${language}-${index}`} language={language}>
-                {content && <div style={{ paddingTop: '20px' }}><ReactMarkdown>{content}</ReactMarkdown></div>}
-                {code && <CodeBlock
-                  language={(codeLanguage || language).toLowerCase()}
-                  title={title}
-                >
-                  {addLineBreaks(code, breakLineAt)}
-                </CodeBlock>}
+                {content && (
+                  <div style={{ paddingTop: '20px' }}>
+                    <ReactMarkdown>{content}</ReactMarkdown>
+                  </div>
+                )}
+                {code && (
+                  <CodeBlock
+                    language={(codeLanguage || language).toLowerCase()}
+                    title={title}
+                  >
+                    {addLineBreaks(code, breakLineAt)}
+                  </CodeBlock>
+                )}
               </div>
             ),
           )}
@@ -58,4 +101,5 @@ const Shnip = ({ snippets, inlineSnippets }) => {
     </>
   );
 };
+
 export default Shnip;

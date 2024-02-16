@@ -1,13 +1,14 @@
 ---
 sidebar_position: 3
+title: Onboarding
+hide_title: true
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-import CodeSnippet from '@site/src/components/CodeSnippet';
 import pfiOnboardingCreateDidJs from '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/tbdex/pfi/pfiOnboardingCreateDidJs.snippet.js';
 import pfiOnboardingCreateDidKt from '!!raw-loader!@site/snippets/testsuite-kotlin/src/test/kotlin/docs/tbdex/pfi/pfiOnboardingCreateDidKt.snippet.kt';
 import pfiOnboardingImportsKt from '!!raw-loader!@site/snippets/testsuite-kotlin/src/test/kotlin/docs/tbdex/pfi/pfiOnboardingImportsKt.snippet.kt';
+
+<LanguageSwitcher languages="JavaScript, Kotlin" />
 
 # Onboarding
 
@@ -20,28 +21,23 @@ To create a DID and identify yourself as a PFI, use the `web5/dids` package:
 
 ### Import Classes
 
-<Tabs>
-  <TabItem label="JavaScript" value="JavaScript">
-
-  ```js
-  import { DidDhtMethod } from '@web5/dids';
-  ```
-  </TabItem>
-  <TabItem label="Kotlin" value="Kotlin">
-    <CodeSnippet snippet={pfiOnboardingImportsKt} />
-  </TabItem>
-</Tabs>
+<Shnip snippets={
+  [
+    { snippetContent: pfiOnboardingImportsKt, language: 'Kotlin'}
+  ]} inlineSnippets={[
+    {
+      code: `import { DidDhtMethod } from '@web5/dids';`,
+      language: "JavaScript",
+      codeLanguage: 'js'
+    }
+  ]} />
 
 ### Create DID with Service Endpoint
 
-<Tabs>
-  <TabItem label="JavaScript" value="JavaScript">
-    <CodeSnippet snippet={pfiOnboardingCreateDidJs} />
-  </TabItem>
-  <TabItem label="Kotlin" value="Kotlin">
-    <CodeSnippet snippet={pfiOnboardingCreateDidKt} />
-  </TabItem>
-</Tabs>
+<Shnip snippets={[
+    { snippetContent: pfiOnboardingCreateDidJs, language: 'JavaScript'},
+    { snippetContent: pfiOnboardingCreateDidKt, language: 'Kotlin'}
+  ]} />
 
 :::note Notes
 * The value for `serviceEndpoint` should be the URL to your PFI's service entry.
