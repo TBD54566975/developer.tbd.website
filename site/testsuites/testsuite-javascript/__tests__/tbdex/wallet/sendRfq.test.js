@@ -12,15 +12,21 @@ let selectedOffering;
 describe('Wallet: Send RFQ', () => {
 
   beforeAll(async () => {
-    customerDid = await DidKey.create({ publish: true })
+    customerDid = await DidKey.create({ 
+      options: {
+        publish: true 
+      }
+    })
 
     pfi = await DidDht.create({
+      options:{
         publish  : true,
         services : [{
           type            : 'PFI',
           id              : 'pfi',
           serviceEndpoint : 'http://localhost:9000'
         }]
+      }
     })
 
     selectedOffering = DevTools.createOffering({

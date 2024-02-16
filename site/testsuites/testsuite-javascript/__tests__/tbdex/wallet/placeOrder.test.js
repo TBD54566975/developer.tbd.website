@@ -14,15 +14,21 @@ let closeReason = 'Transaction complete';
 describe('Wallet: Place Order', () => {
 
   beforeAll(async () => {
-    customerDid = await DidKey.create({ publish: true })
+    customerDid = await DidKey.create({ 
+      options: {
+        publish: true 
+      }
+    })
 
     pfi = await DidDht.create({
+      options:{
         publish  : true,
         services : [{
           type            : 'PFI',
           id              : 'pfi',
           serviceEndpoint : 'http://localhost:9000'
         }]
+      }
     })
 
     order = DevTools.createOrder({

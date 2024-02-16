@@ -6,12 +6,14 @@ let pfiDid;
 describe('Wallet: Allowlist PFIs', () => {
   beforeAll(async () => {
     pfiDid = await DidDht.create({
+      options:{
         publish: true,
         services: [{
             id: 'pfi',
             type: 'PFI',
             serviceEndpoint: 'https://example.com/'
         }]
+      }
     })
   });
 

@@ -1,5 +1,5 @@
 import { test, expect, describe, beforeAll, afterAll } from 'vitest';
-import { TbdexHttpClient, DevTools, Quote, Close, Message } from '@tbdex/http-client';
+import { TbdexHttpClient, DevTools, Quote, Close, Message, Rfq } from '@tbdex/http-client';
 import { DidDht, DidKey } from '@web5/dids';
 import { setupServer } from 'msw/node'
 import { http, HttpResponse } from 'msw'
@@ -14,22 +14,32 @@ let server;
 describe('Wallet: Receive Quote', () => {
 
   beforeAll(async () => {
-    customerDid = await DidKey.create({ publish: true })
+    const customerBearerDid = await DidKey.create({ 
+      options: {
+        publish: true 
+      }
+    })
+    customerDid = await customerBearerDid.export();
 
-    pfi = await DidDht.create({
+    const pfiBearerDid = await DidDht.create({
+      options:{
         publish  : true,
         services : [{
           type            : 'PFI',
           id              : 'pfi',
           serviceEndpoint : 'http://localhost:9000'
         }]
+      }
     })
+    pfi = await pfiBearerDid.export();
 
-    rfq = await DevTools.createRfq({
-      sender: customerDid,
-      receiver: pfi
+    rfq = await Rfq.create({
+      metadata: {
+        from: customerDid,
+        to: pfi
+      },
+      data: await DevTools.createRfqData()
     });
-    console.log("therfq", rfq)
     await rfq.sign(customerDid);
 
 

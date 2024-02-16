@@ -13,12 +13,14 @@ describe('Wallet: Get Offerings from PFI', () => {
 
   beforeAll(async () => {
     pfi = await DidDht.create({
-      publish: true,
-      services: [{
-          id: 'pfi',
-          type: 'PFI',
-          serviceEndpoint: 'http://localhost:9000'
-      }]
+      options:{
+        publish: true,
+        services: [{
+            id: 'pfi',
+            type: 'PFI',
+            serviceEndpoint: 'http://localhost:9000'
+        }]
+      }
     })
     pfiDid = pfi.uri;
 
