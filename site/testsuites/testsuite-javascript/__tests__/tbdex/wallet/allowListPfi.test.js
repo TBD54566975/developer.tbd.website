@@ -1,11 +1,11 @@
 import { test, expect, describe, beforeAll } from 'vitest';
-import { DidDhtMethod } from '@web5/dids';
+import { DidDht } from '@web5/dids';
 
 let pfiDid;
 
 describe('Wallet: Allowlist PFIs', () => {
   beforeAll(async () => {
-    pfiDid = await DidDhtMethod.create({
+    pfiDid = await DidDht.create({
         publish: true,
         services: [{
             id: 'pfi',
@@ -14,7 +14,7 @@ describe('Wallet: Allowlist PFIs', () => {
         }]
     })
   });
-  
+
   test('PFI DID has PFI service', async () => {
     // :snippet-start: isPFIJs
     const isPFI = pfiDid.document.service.some(service => service.type === 'PFI');

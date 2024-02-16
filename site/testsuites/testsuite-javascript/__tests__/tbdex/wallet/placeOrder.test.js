@@ -1,6 +1,6 @@
 import { test, expect, describe, beforeAll, afterAll } from 'vitest';
 import { TbdexHttpClient, DevTools, Quote, Order, OrderStatus, Close, Message } from '@tbdex/http-client';
-import { DidDhtMethod, DidKeyMethod } from '@web5/dids';
+import { DidDht, DidKey } from '@web5/dids';
 import { setupServer } from 'msw/node'
 import { http, HttpResponse } from 'msw'
 
@@ -14,9 +14,9 @@ let closeReason = 'Transaction complete';
 describe('Wallet: Place Order', () => {
 
   beforeAll(async () => {
-    customerDid = await DidKeyMethod.create({ publish: true })
+    customerDid = await DidKey.create({ publish: true })
 
-    pfi = await DidDhtMethod.create({
+    pfi = await DidDht.create({
         publish  : true,
         services : [{
           type            : 'PFI',
@@ -33,8 +33,8 @@ describe('Wallet: Place Order', () => {
 
     const orderStatus = OrderStatus.create({
       metadata: {
-        from: pfi.did,
-        to: customerDid.did,
+        from: pfi.uri,
+        to: customerDid.uri,
         exchangeId: order.exchangeId
       },
       data: {
@@ -45,8 +45,8 @@ describe('Wallet: Place Order', () => {
 
     const close = Close.create({
       metadata: {
-        from: pfi.did,
-        to: customerDid.did,
+        from: pfi.uri,
+        to: customerDid.uri,
         exchangeId: order.exchangeId
       },
       data: { reason: closeReason}
@@ -71,14 +71,14 @@ describe('Wallet: Place Order', () => {
   afterAll(() => {
     server.resetHandlers()
     server.close()
-  }); 
+  });
 
   test('send Order message', async () => {
       const quote = Quote.create({
         metadata: {
           exchangeId : Message.generateId('rfq'),
-          from: pfi.did,
-          to: customerDid.did
+          from: pfi.uri,
+          to: customerDid.uri
         },
         data: DevTools.createQuoteData()
       })
@@ -86,7 +86,7 @@ describe('Wallet: Place Order', () => {
       // :snippet-start: createOrderJS
       const order = Order.create({
         metadata: {
-          from: customerDid.did,         // Customer's DID
+          from: customerDid.uri,         // Customer's DID
           to: quote.metadata.from,       // PFI's DID
           exchangeId: quote.exchangeId  // Exchange ID from the Quote
         }
@@ -117,7 +117,7 @@ describe('Wallet: Place Order', () => {
         pfiDid: order.metadata.to,
         exchangeId: order.exchangeId
       });
-    
+
       for (const message of exchange) {
         if (message instanceof OrderStatus) {
           //a status update to display to your customer
@@ -138,6 +138,3 @@ describe('Wallet: Place Order', () => {
     expect(reasonForClose).toBe(closeReason);
   });
 });
-
-
-

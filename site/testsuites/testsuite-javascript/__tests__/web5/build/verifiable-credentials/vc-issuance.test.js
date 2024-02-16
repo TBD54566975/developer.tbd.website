@@ -13,8 +13,8 @@ describe('issue a credential', () => {
     // :snippet-start: createEmploymentCredential
     const vc = await VerifiableCredential.create({
       type: 'EmploymentCredential',
-      issuer: employer.did,
-      subject: employee.did,
+      issuer: employer.uri,
+      subject: employee.uri,
       expirationDate: '2023-09-30T12:34:56Z',
       data: {
         "position": "Software Developer",

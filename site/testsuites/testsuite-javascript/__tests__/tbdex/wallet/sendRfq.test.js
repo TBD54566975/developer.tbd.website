@@ -1,6 +1,6 @@
 import { test, expect, describe, beforeAll, afterAll } from 'vitest';
 import { TbdexHttpClient, DevTools, Rfq } from '@tbdex/http-client';
-import { DidDhtMethod, DidKeyMethod } from '@web5/dids';
+import { DidDht, DidKey } from '@web5/dids';
 import { setupServer } from 'msw/node'
 import { http, HttpResponse } from 'msw'
 
@@ -12,9 +12,9 @@ let selectedOffering;
 describe('Wallet: Send RFQ', () => {
 
   beforeAll(async () => {
-    customerDid = await DidKeyMethod.create({ publish: true })
+    customerDid = await DidKey.create({ publish: true })
 
-    pfi = await DidDhtMethod.create({
+    pfi = await DidDht.create({
         publish  : true,
         services : [{
           type            : 'PFI',
@@ -24,15 +24,15 @@ describe('Wallet: Send RFQ', () => {
     })
 
     selectedOffering = DevTools.createOffering({
-      from: pfi.did
-    });  
+      from: pfi.uri
+    });
     await selectedOffering.sign(pfi)
 
     // Mock the response from the PFI
     server = setupServer(
       http.post(new RegExp('http://localhost:9000/exchanges/(.+)/rfq'), () => {
-        return HttpResponse.json({ 
-          status: 202 
+        return HttpResponse.json({
+          status: 202
         })
       })
     )
@@ -42,7 +42,7 @@ describe('Wallet: Send RFQ', () => {
   afterAll(() => {
     server.resetHandlers()
     server.close()
-  }); 
+  });
 
   test('skeleton RFQ: properties', async () => {
     try{
@@ -64,7 +64,7 @@ describe('Wallet: Send RFQ', () => {
       const rfq = Rfq.create({
         //highlight-start
         metadata: {
-          from: customerDid.did, // Customer DID
+          from: customerDid.uri, // Customer DID
           to: selectedOffering.metadata.from    // PFI's DID
         },
         //highlight-end
@@ -76,7 +76,7 @@ describe('Wallet: Send RFQ', () => {
       //no assertions needed; this is just showing how to structure a RFQ
     }
   });
-  
+
   test('create signed RFQ message and send to PFI', async () => {
 
     const BTC_ADDRESS = 'bc1q52csjdqa6cq5d2ntkkyz8wk7qh2qevy04dyyfd'
@@ -85,7 +85,7 @@ describe('Wallet: Send RFQ', () => {
     // :snippet-start: createRfqMessageJS
     const rfq = Rfq.create({
       metadata: {
-        from: customerDid.did, // Customer DID
+        from: customerDid.uri, // Customer DID
         to: selectedOffering.metadata.from // PFI's DID
       },
       //highlight-start
@@ -114,7 +114,7 @@ describe('Wallet: Send RFQ', () => {
     // :snippet-end:
 
     // :snippet-start: signRfqMessageJS
-    await rfq.sign(customerDid); 
+    await rfq.sign(customerDid);
     // :snippet-end:
 
     try{

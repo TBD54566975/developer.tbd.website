@@ -1,6 +1,6 @@
 import { IdentityAgent } from '@web5/identity-agent';
 import { getTechPreviewDwnEndpoints } from '@web5/api';
-import { DidIonMethod } from '@web5/dids';
+import { DidIon } from '@web5/dids';
 
 
 export async function createIdentityAgent() {
@@ -18,7 +18,27 @@ export async function getDwnEndpoints() {
 const serviceEndpointNodes = await getTechPreviewDwnEndpoints();
 
 // generates key pairs used for authorization and encryption when interfacing with DWNs
-const didOptions = await DidIonMethod.generateDwnOptions({ serviceEndpointNodes });
+const didOptions = {
+    keySet: {
+        verificationMethodKeys: [
+            {
+                id: '#key-1',
+                type: 'Ed25519VerificationKey2018',
+            },
+            {
+                id: '#key-2',
+                type: 'Ed25519VerificationKey2018',
+            },
+        ],
+    },
+        services: [
+            {
+                id              : '#dwn',
+                type            : 'DecentralizedWebNode',
+                serviceEndpoint : serviceEndpointNodes,
+            }
+        ]
+    }
 return didOptions;
 }
 

@@ -54,16 +54,13 @@ import { DidKey } from '@web5/dids'
     const didDht = await DidDht.create({ publish: true });
 
     // DID and its associated data which can be exported and used in different contexts/apps
-    const portableDid = JSON.stringify(didDht);
+    const portableDid = didDht.export()
 
     // DID string
     const did = didDht.uri;
 
     // DID Document
     const didDocument = JSON.stringify(didDht.document);
-
-    // Cryptographic keys associated with DID
-   const keys = await DidDht.toKeys({ did: didDht });
 
     // :snippet-end:
 
@@ -76,17 +73,13 @@ import { DidKey } from '@web5/dids'
     const didKey = await DidKey.create();
 
     // DID and its associated data which can be exported and used in different contexts/apps
-    const portableDid = JSON.stringify(didKey);
+        const portableDid = didKey.export()
 
     // DID string
     const did = didKey.uri;
 
     // DID Document
     const didDocument = JSON.stringify(didKey.document);
-
-    // Cryptographic keys associated with DID
-    const keys = await DidKey.toKeys({ did: didKey });
-
 
     // :snippet-end:
 
@@ -99,7 +92,7 @@ import { DidKey } from '@web5/dids'
     const didJwk = await DidJwk.create();
 
     //DID and its associated data which can be exported and used in different contexts/apps
-    const portableDid = JSON.stringify(didJwk);
+    const portableDid = didJwk.export()
 
     //DID string
     const did = didJwk.uri;
@@ -107,8 +100,6 @@ import { DidKey } from '@web5/dids'
     //DID Document
     const didDocument = JSON.stringify(didJwk.document);
 
-    //Cryptographic keys associated with DID
-    const keys = await DidJwk.toKeys({ did: didJwk });
     // :snippet-end:
 
     expect(did).toMatch(/^did:jwk:/);

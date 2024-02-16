@@ -1,6 +1,6 @@
 import { test, expect, describe, beforeAll, afterAll } from 'vitest';
 import { TbdexHttpClient, DevTools, Quote, Close, Message } from '@tbdex/http-client';
-import { DidDhtMethod, DidKeyMethod } from '@web5/dids';
+import { DidDht, DidKey } from '@web5/dids';
 import { setupServer } from 'msw/node'
 import { http, HttpResponse } from 'msw'
 
@@ -14,9 +14,9 @@ let server;
 describe('Wallet: Receive Quote', () => {
 
   beforeAll(async () => {
-    customerDid = await DidKeyMethod.create({ publish: true })
+    customerDid = await DidKey.create({ publish: true })
 
-    pfi = await DidDhtMethod.create({
+    pfi = await DidDht.create({
         publish  : true,
         services : [{
           type            : 'PFI',
@@ -29,14 +29,15 @@ describe('Wallet: Receive Quote', () => {
       sender: customerDid,
       receiver: pfi
     });
+    console.log("therfq", rfq)
     await rfq.sign(customerDid);
 
 
     quote = Quote.create({
       metadata: {
         exchangeId : rfq.metadata.exchangeId,
-        from: pfi.did,
-        to: customerDid.did
+        from: pfi.uri,
+        to: customerDid.uri
       },
       data: DevTools.createQuoteData()
     })
@@ -60,7 +61,7 @@ describe('Wallet: Receive Quote', () => {
   afterAll(() => {
     server.resetHandlers()
     server.close()
-  }); 
+  });
 
   test('poll for quote message', async () => {
     // :snippet-start: pollforQuoteJS
@@ -73,9 +74,9 @@ describe('Wallet: Receive Quote', () => {
         pfiDid: rfq.metadata.to,
         exchangeId: rfq.exchangeId
       });
-    
+
       quote = exchange.find(msg => msg instanceof Quote);
-    
+
       if (!quote) {
         // Wait 2 seconds before making another request
         await new Promise(resolve => setTimeout(resolve, 2000));
@@ -90,14 +91,14 @@ describe('Wallet: Receive Quote', () => {
     // :snippet-start: cancelExchangeJS
     const close = Close.create({
       metadata: {
-        from: customerDid.did,
+        from: customerDid.uri,
         to: quote.metadata.from,
         exchangeId: quote.exchangeId
       },
       data: { reason: 'Canceled by customer'}
     });
-    
-    await close.sign(customerDid); 
+
+    await close.sign(customerDid);
     await TbdexHttpClient.sendMessage({ message: close });
     // :snippet-end:
 
