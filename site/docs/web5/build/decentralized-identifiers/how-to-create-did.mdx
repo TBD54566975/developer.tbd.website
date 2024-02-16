@@ -4,7 +4,6 @@ hide_title: true
 sidebar_position: 1
 ---
 
-import CodeSnippet from '@site/src/components/CodeSnippet';
 import createDidDht from '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/web5/build/decentralized-identifiers/createDidDht.snippet.js';
 import createDidKey from '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/web5/build/decentralized-identifiers/createDidKey.snippet.js';
 import requiredDidImports from '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/web5/build/decentralized-identifiers/requiredDidImports.snippet.js';
@@ -24,15 +23,17 @@ This guide covers how to use Web5 to create a DID.
 
 You can create a DID using any of the [Web5-supported DID methods](/docs/web5/learn/decentralized-identifiers#methods) by using the [DID package](https://www.npmjs.com/package/@web5/dids).
 
-**Install the neccesary dependency:**
+## Install
 
-<Shnip
-  snippets={[
+<Shnip  
+  inlineSnippets={[
     {
-      snippetContent: createADidDependency,
-      language: 'JavaScript',
-      codeLanguage: 'bash',
-    },
+      code: `npm install @web5/dids`,
+      language: "JavaScript",
+      codeLanguage: 'bash'
+    }
+  ]}
+  snippets={[
     {
       language: 'Kotlin',
       nestedSnippets: {
@@ -45,11 +46,11 @@ You can create a DID using any of the [Web5-supported DID methods](/docs/web5/le
           language: 'xml',
         },
       },
-    },
-  ]}
+    }
+  ]} 
 />
 
-**Import the DID Method you'd like to use:**
+## Import
 
 <Shnip
   snippets={[
@@ -57,6 +58,9 @@ You can create a DID using any of the [Web5-supported DID methods](/docs/web5/le
     { snippetContent: requiredDidImportsKt, language: 'Kotlin' },
   ]}
 />
+
+## Create DID
+The following DID methods are supported:
 
 ### did:dht
 
