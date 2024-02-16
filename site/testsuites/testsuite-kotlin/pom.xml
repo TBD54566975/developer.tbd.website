@@ -185,40 +185,15 @@
 
     <repositories>
         <repository>
-            <id>jitpack</id>
-            <name>jitpack</name>
-            <url>https://jitpack.io</url>
-        </repository>
-        <repository>
-            <id>danubetech</id>
-            <name>danubetech</name>
-            <url>https://repo.danubetech.com/repository/maven-public/</url>
-        </repository>
-        <repository>
-            <id>jboss</id>
-            <name>jboss</name>
-            <url>https://repository.jboss.org/nexus/content/repositories/thirdparty-releases/</url>
-        </repository>
-        <!-- 
-        Address Danubetech being down 
-        https://github.com/TBD54566975/developer.tbd.website/issues/1242
-
-        Remove when we have TBD repo dependencies proxied in a more permanent 
-        Artifactory repo, or when we no longer have a danubetech dependency in the
-        supply chain
-        -->
-        <repository>
-            <id>tbd-danubetech-temp</id>
-            <name>tbd-danubetech-temp</name>
+            <id>tbd-oss-thirdparty</id>
+            <name>tbd-oss-thirdparty</name>
             <releases>
               <enabled>true</enabled>
-              <checksumPolicy>ignore</checksumPolicy>
             </releases>
             <snapshots>
               <enabled>false</enabled>
-              <checksumPolicy>warn</checksumPolicy>
             </snapshots>
-            <url>https://blockxyz.jfrog.io/artifactory/danubetech-temp/</url>
+            <url>https://blockxyz.jfrog.io/artifactory/tbd-oss-thirdparty-maven2/</url>
         </repository>
         <!--
         More ALR Dark Arts, remove this once we are no longer relying on tbdex-kt:SNAPSHOTs
