@@ -1,6 +1,6 @@
 import { test, expect, describe, beforeAll, afterAll } from 'vitest';
 import { TbdexHttpClient, DevTools, Rfq } from '@tbdex/http-client';
-import { DidDht, DidKey } from '@web5/dids';
+import { DidDht } from '@web5/dids';
 import { setupServer } from 'msw/node'
 import { http, HttpResponse } from 'msw'
 
@@ -12,7 +12,7 @@ let selectedOffering;
 describe('Wallet: Send RFQ', () => {
 
   beforeAll(async () => {
-    customerDid = await DidKey.create({ 
+    customerDid = await DidDht.create({ 
       options: {
         publish: true 
       }

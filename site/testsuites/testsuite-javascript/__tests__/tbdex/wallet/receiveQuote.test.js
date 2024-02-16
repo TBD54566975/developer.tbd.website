@@ -1,6 +1,6 @@
 import { test, expect, describe, beforeAll, afterAll } from 'vitest';
 import { TbdexHttpClient, DevTools, Quote, Close, Message, Rfq } from '@tbdex/http-client';
-import { DidDht, DidKey } from '@web5/dids';
+import { DidDht } from '@web5/dids';
 import { setupServer } from 'msw/node'
 import { http, HttpResponse } from 'msw'
 
@@ -14,7 +14,7 @@ let server;
 describe('Wallet: Receive Quote', () => {
 
   beforeAll(async () => {
-    customerDid = await DidKey.create({ 
+    customerDid = await DidDht.create({ 
       options: {
         publish: true 
       }
@@ -108,7 +108,6 @@ describe('Wallet: Receive Quote', () => {
     });
 
     await close.sign(customerDid);
-    console.log(close)
     await TbdexHttpClient.sendMessage({ message: close });
     // :snippet-end:
 
