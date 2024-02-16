@@ -72,13 +72,15 @@ class SnippetExtractor {
       .join("\n");
   }
   shouldExcludeFile(content) {
-    // Check if the file content includes any of the strings in the exclude array
-    for (const excludeString of this.config.exclude) {
-      if (content.includes(excludeString)) {
-        return true; // Exclude this file
+    // Check if the file content includes any of the strings in the exclude array (only for match)
+    if (this.config.outputDirectoryStructure == "match") {
+      for (const excludeString of this.config.exclude) {
+        if (content.includes(excludeString)) {
+          return true; // Exclude this file
+        }
       }
+      return false; // Do not exclude this file
     }
-    return false; // Do not exclude this file
   }
 
   processDirectory(directory, relativePath = "") {
