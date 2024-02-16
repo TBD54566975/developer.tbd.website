@@ -14,14 +14,13 @@ let server;
 describe('Wallet: Receive Quote', () => {
 
   beforeAll(async () => {
-    const customerBearerDid = await DidKey.create({ 
+    customerDid = await DidKey.create({ 
       options: {
         publish: true 
       }
     })
-    customerDid = await customerBearerDid.export();
 
-    const pfiBearerDid = await DidDht.create({
+    pfi = await DidDht.create({
       options:{
         publish  : true,
         services : [{
@@ -31,12 +30,11 @@ describe('Wallet: Receive Quote', () => {
         }]
       }
     })
-    pfi = await pfiBearerDid.export();
 
     rfq = await Rfq.create({
       metadata: {
-        from: customerDid,
-        to: pfi
+        from: customerDid.uri,
+        to: pfi.uri
       },
       data: await DevTools.createRfqData()
     });
@@ -77,6 +75,7 @@ describe('Wallet: Receive Quote', () => {
     // :snippet-start: pollforQuoteJS
     let quote;
 
+    console.log(rfq.metadata.to)
     //Wait for Quote message to appear in the exchange
     while (!quote) {
       const exchange = await TbdexHttpClient.getExchange({
@@ -109,6 +108,7 @@ describe('Wallet: Receive Quote', () => {
     });
 
     await close.sign(customerDid);
+    console.log(close)
     await TbdexHttpClient.sendMessage({ message: close });
     // :snippet-end:
 
