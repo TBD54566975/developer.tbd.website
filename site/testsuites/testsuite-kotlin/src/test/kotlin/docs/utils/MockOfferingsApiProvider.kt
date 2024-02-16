@@ -7,7 +7,7 @@ import website.tbd.developer.site.docs.utils.TestData
 
 open class MockOfferingsApiProvider: OfferingsApi {
 
-    private val dataProvider = MockDataProvider()
+    val dataProvider = MockDataProvider()
 
     //---------------------------------------------------------------------------//
     // Implementation of interface
@@ -36,13 +36,13 @@ open class MockOfferingsApiProvider: OfferingsApi {
 
     fun setOffering(id: String, pfiDid: String) {
         dataProvider.setupGet("offering", id) {
-            return TestData.getOffering(pfiDid, TestData.getPresentationDefinition())
+            TestData.getOffering(pfiDid, TestData.getPresentationDefinition())
         }
     }
 
     fun setOfferings(offeringDids: List<String>) {
         dataProvider.setupGet("offering", "*") {
-            return offeringData.map { did -> TestData.getOffering(did, TestData.getPresentationDefinition()) }
+            offeringDids.map { did -> TestData.getOffering(did, TestData.getPresentationDefinition()) }
         }
     }
 }

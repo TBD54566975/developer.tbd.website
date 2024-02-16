@@ -1,50 +1,49 @@
-package website.tbd.developer.site.docs.tbdex
+package website.tbd.developer.site.docs.utils
 
 class MockDataProvider {
-  private val responses: MutableMap<String, (Array<out Any?>) -> Any> = mutableMapOf()
+    val responses: MutableMap<String, (Array<out Any?>) -> Any?> = mutableMapOf()
 
-  // Setup can handle an arbitrary number of parameters
-  fun setup(methodName: String, vararg args: Any?) {
-      // The last argument is expected to be the response
-      val response = args.last() as (Array<out Any?>) -> Any
-      val paramsKey = args.dropLast(1).joinToString(prefix = "[", postfix = "]") { it.toString() } // Serialize parameters for key
-      val key = "$methodName:$paramsKey"
+    // Setup can handle an arbitrary number of parameters
+    fun <T> setup(methodName: String, vararg args: Any?, response: (Array<out Any?>) -> T) {
+        val paramsKey = args.joinToString(prefix = "[", postfix = "]") { it.toString() } // Serialize parameters for key
+        val key = "$methodName:$paramsKey"
 
-      responses[key] = response
-  }
+        responses[key] = response as (Array<out Any?>) -> Any?
+    }
 
-  // Convenience setup methods
-  fun setupInsert(vararg args: Any?) {
-      setup("insert", *args)
-  }
+    // Convenience setup methods
+    fun setupInsert(vararg args: Any?, response: (Array<out Any?>) -> Any?) {
+        setup("insert", *args, response = response)
+    }
 
-  fun setupGet(vararg args: Any?) {
-      setup("get", *args)
-  }
+    fun setupGet(vararg args: Any?, response: (Array<out Any?>) -> Any?) {
+        setup("get", *args, response = response)
+    }
 
-  fun setupQuery(vararg args: Any?) {
-      setup("query", *args)
-  }
+    fun setupQuery(vararg args: Any?, response: (Array<out Any?>) -> List<Any?>) {
+        setup("query", *args, response = response)
+    }
 
-  // Method to find and return the response for the given method and parameters
-  suspend fun execute(methodName: String, vararg params: Any?): Any? {
-      val paramsKey = params.joinToString(prefix = "[", postfix = "]") { it.toString() }
-      val key = "$methodName:$paramsKey"
+    // Method to find and return the response for the given method and parameters
+    @Suppress("UNCHECKED_CAST")
+    fun execute(methodName: String, vararg params: Any?): Any? {
+        val paramsKey = params.joinToString(prefix = "[", postfix = "]") { it.toString() }
+        val key = "$methodName:$paramsKey"
 
-      return responses[key]?.invoke(params) ?: throw Error("No response found for method $methodName with the given parameters.")
-  }
+        return responses[key]?.invoke(params)
+            ?: throw Error("No response found for method $methodName with the given parameters.")
+    }
 
-  // Mock methods
-  suspend fun insert(vararg params: Any?): Any? {
-      // input shouldn't matter for insert, we'll always return okay unless we want to throw an error
-      return execute("insert", "")
-  }
+    // Mock methods
+    fun insert(collection: String, data: Any): Any? {
+        return execute("insert", collection, "")
+    }
 
-  suspend fun get(vararg params: Any?): Any? {
-      return execute("get", *params)
-  }
+    fun get(collection: String, id: String): Any? {
+        return execute("get", collection, id)
+    }
 
-  suspend fun query(vararg params: Any?): Any? {
-      return execute("query", *params)
-  }
+    fun query(collection: String, query: String): List<Any?> {
+        return execute("query", collection, query) as List<Any?>
+    }
 }

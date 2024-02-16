@@ -7,7 +7,7 @@ import tbdex.sdk.protocol.models.*
 import web5.sdk.dids.methods.dht.DidDht
 import web5.sdk.crypto.InMemoryKeyManager
 import web5.sdk.dids.methods.dht.CreateDidDhtOptions
-import website.tbd.developer.site.docs.tbdex.*
+import website.tbd.developer.site.docs.tbdex.pfi.*
 import website.tbd.developer.site.docs.utils.*
 import java.net.URI
 

@@ -1,42 +1,49 @@
 package website.tbd.developer.site.docs.utils
 
-import website.tbd.developer.site.docs.utils.MockDataProvider
+import website.tbd.developer.site.docs.utils.*
 import tbdex.sdk.httpserver.models.*
 import tbdex.sdk.protocol.models.*
+import de.fxlae.typeid.TypeId
 
-open class MockExchangesApiProviderTest: ExchangesApi {
-    private val dataProvider = MockDataProvider()
+open class MockExchangesApiProvider: ExchangesApi {
+    val dataProvider = MockDataProvider()
 
     //---------------------------------------------------------------------------//
     // Implementation of interface
     //---------------------------------------------------------------------------//
 
     override fun getExchanges(filter: GetExchangesFilter?): List<List<Message>> {
-        return dataProvider.query("exchanges", filter)
+        val messages = mutableListOf<List<Message>>()
+        val exchangeIds = filter?.exchangeIds ?: listOf<String>()
+        for (exchange in exchangeIds) {
+            val exchange = dataProvider.query("exchanges", exchange) as List<Message> ?: listOf<Message>()
+            messages.toMutableList().apply { set(0, exchange) }
+        }
+        return messages
     }
 
     override fun getExchange(id: String): List<Message> {
-        return dataProvider.get("exchanges", id)
+        return dataProvider.get("exchanges", id) as? List<Message> ?: emptyList()
     }
 
     override fun getRfq(exchangeId: String): Rfq {
-        return dataProvider.get("rfq", exchangeId)
+        return dataProvider.get("rfq", exchangeId) as Rfq ?: TestData.getRfq()
     }
 
     override fun getQuote(exchangeId: String): Quote {
-        return dataProvider.get("quote", exchangeId)
+        return dataProvider.get("quote", exchangeId) as? Quote ?: TestData.getQuote()
     }
 
     override fun getOrder(exchangeId: String): Order {
-        return dataProvider.get("order", exchangeId)
+        return dataProvider.get("order", exchangeId) as? Order ?: TestData.getOrder()
     }
 
     override fun getOrderStatuses(exchangeId: String): List<OrderStatus> {
-        return dataProvider.get("orderstatus", exchangeId)
+        return dataProvider.query("orderstatus", exchangeId) as? List<OrderStatus> ?: listOf(TestData.getOrderStatus())
     }
 
-    override fun getClose(exchangeId: String): Close { {
-        return dataProvider.get("close", exchangeId)
+    override fun getClose(exchangeId: String): Close {
+        return dataProvider.get("close", exchangeId) as? Close ?: TestData.getClose()
     }
 
     //---------------------------------------------------------------------------//
@@ -44,11 +51,11 @@ open class MockExchangesApiProviderTest: ExchangesApi {
     //---------------------------------------------------------------------------//
 
     fun setExchanges(filter: GetExchangesFilter?) {
-        dataProvider.setupQuery("exchanges", filter) { return arrayOf() }
+        dataProvider.setupQuery("exchanges", filter) { listOf(listOf<Message>()) }
     }
 
     fun setExchange(id: String) {
-        dataProvider.setupGet("exchanges", id) { return arrayOf() }
+        dataProvider.setupGet("exchanges", id) { listOf<Message>() }
     }
 
     fun setRfq(
@@ -58,7 +65,7 @@ open class MockExchangesApiProviderTest: ExchangesApi {
         offeringId: TypeId = TypeId.generate(ResourceKind.offering.name),
         claims: List<String> = emptyList()) {
         dataProvider.setupGet("rfq", exchangeId) {
-            return TestData.getRfq(
+            TestData.getRfq(
                 to = to, 
                 from = from, 
                 offeringId = offeringId,
@@ -71,7 +78,7 @@ open class MockExchangesApiProviderTest: ExchangesApi {
         to: String,
         from: String) {
         dataProvider.setupGet("quote", exchangeId) {
-            return TestData.getQuote(
+            TestData.getQuote(
                 to = to, 
                 from = from)
         }
@@ -82,7 +89,7 @@ open class MockExchangesApiProviderTest: ExchangesApi {
         to: String,
         from: String) {
         dataProvider.setupGet("order", exchangeId) {
-            return TestData.getOrder(
+            TestData.getOrder(
                 to = to, 
                 from = from)
         }
@@ -95,7 +102,7 @@ open class MockExchangesApiProviderTest: ExchangesApi {
         orderStatus: String
     ) {
         dataProvider.setupGet("orderstatus", exchangeId) {
-            return TestData.getOrderStatus(
+            TestData.getOrderStatus(
                 to = to, 
                 from = from,
                 orderStatus = orderStatus)
@@ -109,7 +116,7 @@ open class MockExchangesApiProviderTest: ExchangesApi {
         closeData: String
     ) {
         dataProvider.setupGet("close", exchangeId) {
-            return TestData.getClose(
+            TestData.getClose(
                 to = to, 
                 from = from,
                 closeData = closeData)
@@ -117,6 +124,6 @@ open class MockExchangesApiProviderTest: ExchangesApi {
     }
 
     fun setWrite() {
-        dataProvider.setupInsert("exchange", "") { return arrayOf() }
+        dataProvider.setupInsert("exchange", "") { listOf<Any?>() }
     }
 }
