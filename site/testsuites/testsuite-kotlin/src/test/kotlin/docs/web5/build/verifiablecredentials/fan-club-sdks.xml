@@ -1,10 +1,6 @@
 // :snippet-start: fanClubSdkInstallPom   
 <repositories>
     <repository>
-        <id>jitpack.io</id>
-        <url>https://jitpack.io</url>
-    </repository>
-    <repository>
         <id>mavenCentral</id>
         <url>https://repo1.maven.org/maven2/</url>
     </repository>
