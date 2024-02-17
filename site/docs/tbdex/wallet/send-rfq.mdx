@@ -83,7 +83,9 @@ Use `TbdexHttpClient` to send the RFQ to the PFI, with an optional `replyTo` pro
   ]}
 />
 
-:::tip
+:::tip Callback
+Callbacks are implemented via the `replyTo` property on the RFQ message, and is a fully qualified URI which could either be a DID or URL.
+
 If `replyTo` is provided, the PFI will send all new messages of the exchange to the supplied URI. 
 This URI is scoped to each exchange, allowing you to specify a different URI per exchange if desired. 
 
