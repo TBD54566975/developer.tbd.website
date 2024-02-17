@@ -75,7 +75,6 @@ describe('Wallet: Receive Quote', () => {
     // :snippet-start: pollforQuoteJS
     let quote;
 
-    console.log(rfq.metadata.to)
     //Wait for Quote message to appear in the exchange
     while (!quote) {
       const exchange = await TbdexHttpClient.getExchange({
