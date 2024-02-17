@@ -26,9 +26,8 @@ Upon storing the `Order` message, you will want to create an initial <LanguageSw
     { snippetContent: pfiOrdersStatusKt, language: 'Kotlin'}
   ]} />
 
-
-Since the Wallet application isn't addressable, you’ll write the `OrderStatus` to your database and the Wallet will poll for `OrderStatus` data.
-
+If the Wallet Application supplied a `replyTo` address, you'll send the `OrderStatus` message there.
+You can also write the `OrderStatus` to your database and the Wallet will poll for `OrderStatus` data.
 
 ## Process the Order
 

@@ -2,7 +2,6 @@
 // :snippet-start: createADidDependencyGradle
 repositories {
     mavenCentral()
-    maven("https://jitpack.io")
     maven("https://repo.danubetech.com/repository/maven-public/")
 }
 dependencies {
