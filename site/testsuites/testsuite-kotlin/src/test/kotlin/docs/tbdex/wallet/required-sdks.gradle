@@ -1,12 +1,11 @@
 // :snippet-start: walletSdkInstallGradle
 repositories {
-    mavenCentral()
-    maven("https://jitpack.io")
-    maven("https://repo.danubetech.com/repository/maven-public/")
+        mavenCentral()
+        maven("https://repo.danubetech.com/repository/maven-public/")
 }
 dependencies {
-    implementation("xyz.block:web5-credentials:0.0.9-delta")
-    implementation("xyz.block:web5-dids:0.0.9-delta")
-    implementation("com.github.TBD54566975:tbdex-kt:0.7.2-beta")
+        implementation("xyz.block:web5-credentials:0.0.9-delta")
+        implementation("xyz.block:web5-dids:0.0.9-delta")
+        implementation("xyz.block:tbdex:0.10.0-beta")
 }
 // :snippet-end:

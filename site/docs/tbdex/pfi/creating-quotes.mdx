@@ -71,6 +71,6 @@ With the `Quote` created, you’ll then sign it for authorization purposes and w
   ]} />
 
 :::note
-Wallet Applications are not addressable, and therefore are not pushed updates about Quotes. 
-Therefore the Wallet Application will need to poll the PFI to get the Quote.
+If the Wallet Application supplied a `replyTo` address with their RFQ, you'll send the Quote to that address.
+If not, the Wallet Application will poll your PFI awaiting the Quote message to appear within the exchange.
 :::
