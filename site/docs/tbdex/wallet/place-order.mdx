@@ -4,7 +4,6 @@ hide_title: true
 sidebar_position: 9
 ---
 
-
 import createOrderJS from '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/tbdex/wallet/createOrderJS.snippet.js'
 import signOrderJS from '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/tbdex/wallet/signOrderJS.snippet.js'
 import sendOrderJS from '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/tbdex/wallet/sendOrderJS.snippet.js'
@@ -60,10 +59,12 @@ This is done using the `TbdexHttpClient.sendMessage` method:
 
 
 ## Listen for Order Status Updates
-As the PFI is processing the Order, they'll write `OrderStatus` messages to the exchange to keep you posted on the Order's status.
+As the PFI is processing the Order, they'll provide `OrderStatus` messages. 
 Your application would likely want to show these status updates to your customer to keep them informed of progress.
 
-Your application can poll the exchange to continuously check for `OrderStatus` messages until a `Close` message has been written to the exchange:
+If you provided a [callback URI](/docs/tbdex/wallet/send-rfq#send-rfq-to-pfi) when sending the RFQ, the PFI will send the `OrderStatus` messages there.
+
+Otherwise, the PFI will write the `OrderStatus` messages to the exchange to keep you posted on the Order's status, and your application can poll the exchange to continuously check for `OrderStatus` messages until a `Close` message has been written to the exchange:
 
 <Shnip
   snippets={[

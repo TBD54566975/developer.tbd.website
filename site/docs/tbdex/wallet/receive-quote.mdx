@@ -19,7 +19,7 @@ This message will be written to the exchange.
 
 ## Polling for Quote
 
-To get the Quote message, your application will poll the exchange until the Quote message is written:
+If you did not provide a [callback URI](/docs/tbdex/wallet/send-rfq#send-rfq-to-pfi) when sending a RFQ, your application will need to poll the exchange until the Quote message is written:
 
 <Shnip
   snippets={[
@@ -75,5 +75,3 @@ To terminate the exchange, create a `Close` message, sign it with the customer's
 />
 
 At this point, the exchange has been closed, and your customer is free to start a new exchange with this PFI or any other.
-
-
