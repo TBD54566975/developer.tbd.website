@@ -21,24 +21,15 @@ const serviceEndpointNodes = await getTechPreviewDwnEndpoints();
 const didOptions = {
     keySet: {
         verificationMethodKeys: [
-            {
-                id: '#key-1',
-                type: 'Ed25519VerificationKey2018',
-            },
-            {
-                id: '#key-2',
-                type: 'Ed25519VerificationKey2018',
-            },
-        ],
-    },
-        services: [
-            {
-                id              : '#dwn',
-                type            : 'DecentralizedWebNode',
-                serviceEndpoint : serviceEndpointNodes,
-            }
-        ]
-    }
+            {id: '#key-1', type: 'Ed25519VerificationKey2018'},
+            {id: '#key-2', type: 'Ed25519VerificationKey2018'},
+    ]},
+    services: [{
+        id              : '#dwn',
+        type            : 'DecentralizedWebNode',
+        serviceEndpoint : serviceEndpointNodes,
+    }]
+}
 return didOptions;
 }
 
