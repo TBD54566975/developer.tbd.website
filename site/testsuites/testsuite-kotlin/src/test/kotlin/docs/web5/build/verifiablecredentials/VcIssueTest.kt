@@ -20,7 +20,11 @@ internal class VcIssuanceTest {
         val employeeDid = DidDht.create(InMemoryKeyManager())
 
         // :snippet-start: createEmploymentCredentialKt
-        data class EmploymentCredential(val position: String, val startDate: String, val employmentStatus: String )
+        data class EmploymentCredential(
+            val position: String, 
+            val startDate: String, 
+            val employmentStatus: String
+        )
 
         val vc = VerifiableCredential.create(
             type = "EmploymentCredential",
