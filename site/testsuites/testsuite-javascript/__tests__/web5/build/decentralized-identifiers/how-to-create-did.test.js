@@ -1,6 +1,5 @@
 import { test, expect, vi, describe, beforeAll } from 'vitest';
-import { DidDht, DidKey, DidJwk } from '@web5/dids';
-
+import { DidDht, DidJwk } from '@web5/dids';
 import { createDidAutomatically } from '../../../../../../code-snippets/web5/build/decentralized-identifiers/how-to-create-did';
 import { setUpWeb5 } from '../../../setup-web5';
 
@@ -65,25 +64,6 @@ import { DidKey } from '@web5/dids'
     // :snippet-end:
 
     expect(did).toMatch(/^did:dht:/);
-  });
-
-  test('createDidKey creates a DID with did:key method', async () => {
-    // :snippet-start: createDidKey
-    // Creates a DID using the did:key method
-    const didKey = await DidKey.create();
-
-    // DID and its associated data which can be exported and used in different contexts/apps
-        const portableDid = didKey.export()
-
-    // DID string
-    const did = didKey.uri;
-
-    // DID Document
-    const didDocument = JSON.stringify(didKey.document);
-
-    // :snippet-end:
-
-    expect(did).toMatch(/^did:key:/);
   });
 
   test('createDidJwk creates a DID with did:jwk method', async () => {

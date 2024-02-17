@@ -21,7 +21,7 @@ return vc;
 }
 
 export async function signCredential(vc, employer) {
-//sign with PortableDid
+//sign with BearerDid
 const vc_jwt_employment = await vc.sign({ did: employer });
 return vc_jwt_employment;
 }
