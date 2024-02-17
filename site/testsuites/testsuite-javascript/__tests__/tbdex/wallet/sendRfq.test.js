@@ -12,10 +12,8 @@ let selectedOffering;
 describe('Wallet: Send RFQ', () => {
 
   beforeAll(async () => {
-    customerDid = await DidDht.create({ 
-      options: {
-        publish: true 
-      }
+    customerDid = await DidDht.create({
+      options: { publish: true }
     })
 
     pfi = await DidDht.create({

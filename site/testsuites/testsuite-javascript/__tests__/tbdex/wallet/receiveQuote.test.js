@@ -14,10 +14,8 @@ let server;
 describe('Wallet: Receive Quote', () => {
 
   beforeAll(async () => {
-    customerDid = await DidDht.create({ 
-      options: {
-        publish: true 
-      }
+    customerDid = await DidDht.create({
+      options: { publish: true }
     })
 
     pfi = await DidDht.create({
