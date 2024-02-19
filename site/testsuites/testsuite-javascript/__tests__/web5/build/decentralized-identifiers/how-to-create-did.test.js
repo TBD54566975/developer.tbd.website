@@ -31,11 +31,9 @@ describe('how-to-create-did', () => {
    // :snippet-start: requiredDidImports
 // did:dht
 import { DidDht } from '@web5/dids'
-// did:key
-import { DidKey } from '@web5/dids'
 
-      //did:jwk
-      import { DidJwk } from '@web5/dids'
+//did:jwk
+import { DidJwk } from '@web5/dids'
 
       // :snippet-end:
     `;

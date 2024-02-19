@@ -67,11 +67,8 @@ internal class HowToCreateDidTest {
 import web5.sdk.dids.methods.dht.DidDht
 import web5.sdk.dids.methods.dht.CreateDidDhtOptions
 
-//did:key
-import web5.sdk.dids.methods.key.DidKey
-
-        //did:jwk
-        import web5.sdk.dids.methods.jwk.DidJwk
+//did:jwk
+import web5.sdk.dids.methods.jwk.DidJwk
 
 // key manager
 import web5.sdk.crypto.InMemoryKeyManager
