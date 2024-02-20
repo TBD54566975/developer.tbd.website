@@ -4,7 +4,7 @@ import { DidDht } from '@web5/dids';
 import { setupServer } from 'msw/node'
 import { http, HttpResponse } from 'msw'
 
-let pfi;
+let pfiDid;
 let customerDid;
 let rfq;
 let quote;
@@ -18,7 +18,7 @@ describe('Wallet: Receive Quote', () => {
       options: { publish: true }
     })
 
-    pfi = await DidDht.create({
+    pfiDid = await DidDht.create({
       options:{
         publish  : true,
         services : [{
@@ -32,7 +32,7 @@ describe('Wallet: Receive Quote', () => {
     rfq = await Rfq.create({
       metadata: {
         from: customerDid.uri,
-        to: pfi.uri
+        to: pfiDid.uri
       },
       data: await DevTools.createRfqData()
     });
@@ -42,12 +42,12 @@ describe('Wallet: Receive Quote', () => {
     quote = Quote.create({
       metadata: {
         exchangeId : rfq.metadata.exchangeId,
-        from: pfi.uri,
+        from: pfiDid.uri,
         to: customerDid.uri
       },
       data: DevTools.createQuoteData()
     })
-    await quote.sign(pfi);
+    await quote.sign(pfiDid);
 
     // Mock the response from the PFI
     server = setupServer(

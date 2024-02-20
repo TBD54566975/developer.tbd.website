@@ -4,7 +4,7 @@ import { DidDht } from '@web5/dids';
 import { setupServer } from 'msw/node'
 import { http, HttpResponse } from 'msw'
 
-let pfi;
+let pfiDid;
 let customerDid;
 let server;
 let selectedOffering;
@@ -16,7 +16,7 @@ describe('Wallet: Send RFQ', () => {
       options: { publish: true }
     })
 
-    pfi = await DidDht.create({
+    pfiDid = await DidDht.create({
       options:{
         publish  : true,
         services : [{
@@ -28,9 +28,9 @@ describe('Wallet: Send RFQ', () => {
     })
 
     selectedOffering = DevTools.createOffering({
-      from: pfi.uri
+      from: pfiDid.uri
     });
-    await selectedOffering.sign(pfi)
+    await selectedOffering.sign(pfiDid)
 
     // Mock the response from the PFI
     server = setupServer(

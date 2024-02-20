@@ -4,7 +4,7 @@ import { DidDht } from '@web5/dids';
 import { setupServer } from 'msw/node'
 import { http, HttpResponse } from 'msw'
 
-let pfi;
+let pfiDid;
 let customerDid;
 let server;
 let order;
@@ -18,7 +18,7 @@ describe('Wallet: Place Order', () => {
       options: { publish: true }
     })
 
-    pfi = await DidDht.create({
+    pfiDid = await DidDht.create({
       options:{
         publish  : true,
         services : [{
@@ -30,14 +30,14 @@ describe('Wallet: Place Order', () => {
     })
 
     order = DevTools.createOrder({
-      receiver: pfi,
+      receiver: pfiDid,
       sender: customerDid
     });
     await order.sign(customerDid);
 
     const orderStatus = OrderStatus.create({
       metadata: {
-        from: pfi.uri,
+        from: pfiDid.uri,
         to: customerDid.uri,
         exchangeId: order.exchangeId
       },
@@ -45,17 +45,17 @@ describe('Wallet: Place Order', () => {
         orderStatus: orderStatusMsg
       }
     });
-    await orderStatus.sign(pfi);
+    await orderStatus.sign(pfiDid);
 
     const close = Close.create({
       metadata: {
-        from: pfi.uri,
+        from: pfiDid.uri,
         to: customerDid.uri,
         exchangeId: order.exchangeId
       },
       data: { reason: closeReason}
     });
-    await close.sign(pfi);
+    await close.sign(pfiDid);
 
     // Mock the response from the PFI
     server = setupServer(
@@ -81,7 +81,7 @@ describe('Wallet: Place Order', () => {
       const quote = Quote.create({
         metadata: {
           exchangeId : Message.generateId('rfq'),
-          from: pfi.uri,
+          from: pfiDid.uri,
           to: customerDid.uri
         },
         data: DevTools.createQuoteData()
