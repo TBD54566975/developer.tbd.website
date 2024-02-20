@@ -1,5 +1,6 @@
 import { Order, OrderStatus, Close } from '@tbdex/http-server'
 import { DidDhtMethod } from '@web5/dids';
+import { MockDataProvider } from '../utils/mockDataProvider'
 
 var pfiDid = await DidDhtMethod.create({
     publish: true,
@@ -11,12 +12,7 @@ var pfiDid = await DidDhtMethod.create({
 })
 
 var senderDid = await DidDhtMethod.create({ publish: true })
-
-var dataProvider = {
-    write: (args) => {
-        // do nothing
-    }
-}
+var dataProvider = MockDataProvider();
 
 var orderMessage = Order.create({
     metadata: {
