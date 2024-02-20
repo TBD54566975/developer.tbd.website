@@ -1,6 +1,6 @@
 import { vi, test, expect, describe, beforeAll, afterAll } from 'vitest';
 import { TbdexHttpClient, DevTools } from '@tbdex/http-client';
-import { DidDhtMethod } from '@web5/dids';
+import { DidDht } from '@web5/dids';
 import { setupServer } from 'msw/node'
 import { HttpResponse, http } from 'msw'
 
@@ -12,15 +12,17 @@ let mockOffering;
 describe('Wallet: Get Offerings from PFI', () => {
 
   beforeAll(async () => {
-    pfi = await DidDhtMethod.create({
-      publish: true,
-      services: [{
-          id: 'pfi',
-          type: 'PFI',
-          serviceEndpoint: 'http://localhost:9000'
-      }]
+    pfi = await DidDht.create({
+      options:{
+        publish: true,
+        services: [{
+            id: 'pfi',
+            type: 'PFI',
+            serviceEndpoint: 'http://localhost:9000'
+        }]
+      }
     })
-    pfiDid = pfi.did;
+    pfiDid = pfi.uri;
 
     // Mock the response from the PFI
     const defaultOfferingData = DevTools.createOfferingData()
@@ -37,7 +39,7 @@ describe('Wallet: Get Offerings from PFI', () => {
               currencyCode: 'KES'
           }
         }
-    });  
+    });
     await mockOffering.sign(pfi)
 
     server = setupServer(
@@ -53,8 +55,8 @@ describe('Wallet: Get Offerings from PFI', () => {
   afterAll(() => {
     server.resetHandlers()
     server.close()
-  }); 
-  
+  });
+
   test('get all offerings', async () => {
     // :snippet-start: walletGetOfferingsJS
     const offerings  = await TbdexHttpClient.getOfferings({ pfiDid: pfiDid });

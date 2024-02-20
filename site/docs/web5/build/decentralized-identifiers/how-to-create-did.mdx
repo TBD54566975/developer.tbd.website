@@ -5,10 +5,10 @@ sidebar_position: 1
 ---
 
 import createDidDht from '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/web5/build/decentralized-identifiers/createDidDht.snippet.js';
-import createDidKey from '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/web5/build/decentralized-identifiers/createDidKey.snippet.js';
+import createDidJwk from '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/web5/build/decentralized-identifiers/createDidJwk.snippet.js'
 import requiredDidImports from '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/web5/build/decentralized-identifiers/requiredDidImports.snippet.js';
 import createDidDhtKt from '!!raw-loader!@site/snippets/testsuite-kotlin/src/test/kotlin/docs/web5/build/decentralizedidentifiers/createDidDhtKt.snippet.kt';
-import createDidKeyKt from '!!raw-loader!@site/snippets/testsuite-kotlin/src/test/kotlin/docs/web5/build/decentralizedidentifiers/createDidKeyKt.snippet.kt';
+import createDidJwkKt from '!!raw-loader!@site/snippets/testsuite-kotlin/src/test/kotlin/docs/web5/build/decentralizedidentifiers/createDidJwkKt.snippet.kt'
 import requiredDidImportsKt from '!!raw-loader!@site/snippets/testsuite-kotlin/src/test/kotlin/docs/web5/build/decentralizedidentifiers/requiredDidImportsKt.snippet.kt';
 import createADidDependencyGradle from '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/web5/build/decentralized-identifiers/createADidDependencyGradle.snippet.gradle';
 import createADidDependencyMaven from '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/web5/build/decentralized-identifiers/createADidDependencyMaven.snippet.xml';
@@ -25,7 +25,7 @@ You can create a DID using any of the [Web5-supported DID methods](/docs/web5/le
 
 ## Install
 
-<Shnip  
+<Shnip
   inlineSnippets={[
     {
       code: `npm install @web5/dids`,
@@ -47,7 +47,7 @@ You can create a DID using any of the [Web5-supported DID methods](/docs/web5/le
         },
       },
     }
-  ]} 
+  ]}
 />
 
 ## Import
@@ -71,13 +71,14 @@ The following DID methods are supported:
   ]}
 />
 
-### did:key
+
+### did:jwk
 
 <Shnip
   snippets={[
-    { snippetContent: createDidKey, language: 'JavaScript' },
-    { snippetContent: createDidKeyKt, language: 'Kotlin' },
-  ]}
+    { snippetContent: createDidJwk, language: 'JavaScript' },
+    { snippetContent: createDidJwkKt, language: 'Kotlin' },
+    ]}
 />
 
 ## Example of DID properties
