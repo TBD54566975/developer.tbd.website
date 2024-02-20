@@ -19,11 +19,6 @@ const serviceEndpointNodes = await getTechPreviewDwnEndpoints();
 
 // generates key pairs used for authorization and encryption when interfacing with DWNs
 const didOptions = {
-    keySet: {
-        verificationMethodKeys: [
-            {id: '#key-1', type: 'Ed25519VerificationKey2018'},
-            {id: '#key-2', type: 'Ed25519VerificationKey2018'},
-    ]},
     services: [{
         id              : '#dwn',
         type            : 'DecentralizedWebNode',
