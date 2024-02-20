@@ -1,6 +1,6 @@
 ---
 title: Make Records Public
-sidebar_position: 2
+sidebar_position: 3
 ---
 
 import CodeSnippet from '@site/src/components/CodeSnippet';

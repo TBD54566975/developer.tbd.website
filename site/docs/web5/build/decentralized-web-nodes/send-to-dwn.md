@@ -1,6 +1,6 @@
 ---
 title: Send DWN Records
-sidebar_position: 7
+sidebar_position: 8
 ---
 
 import CodeSnippet from '@site/src/components/CodeSnippet';
@@ -38,7 +38,7 @@ The same is true for the [protocols.configure()](/api/web5-js/dwn/protocols#conf
 
 ## Send to User's Remote DWNs
 
-By default, Web5 will automatically [sync](/docs/web5/learn/sync) records and protocols between a user's local and remote DWNs. There is no special action required to accomplish this. 
+By default, Web5 will automatically [sync](/docs/web5/learn/sync) records and protocols between a user's local and remote DWNs. There is no special action required to accomplish this.
 
 However, sync happens on a predefined [interval](/docs/web5/learn/sync#sync-intervals). If you want a record or protocol immediately sent to the user's remote DWNs, then you can call `send()`. This will only send that particular record or protocol to the remote DWNs and is not a full sync of the DWNs.
 
