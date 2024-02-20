@@ -20,11 +20,11 @@ export class MockDataProvider {
     }
 
     setupGet(...args) {
-        this.setup("insert", args);
+        this.setup("get", args);
     }
 
     setupQuery(...args) {
-        this.setup("insert", args);
+        this.setup("query", args);
     }
 
     // Method to find and return the response for the given method and parameters
@@ -44,7 +44,7 @@ export class MockDataProvider {
     async insert(...params) {
         // input shouldn't matter for insert, we'll always return okay
         // unless we want to throw an error
-        return this.execute('insert', "");
+        return;
     }
 
     async get(...params) {
