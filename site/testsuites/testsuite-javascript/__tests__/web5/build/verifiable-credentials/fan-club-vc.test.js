@@ -1,5 +1,5 @@
 import { test, expect, vi, describe, beforeAll } from 'vitest';
-import { DidKeyMethod } from '@web5/dids';
+import { DidKey } from '@web5/dids';
 import { VerifiableCredential, PresentationExchange } from '@web5/credentials';
 import { setUpWeb5 } from '../../../setup-web5';
 
@@ -7,8 +7,8 @@ describe('fan-club-vc', () => {
     let fanClubIssuerDid, aliceDid, SwiftiesFanClub, vc, signedVcJwt, presentationDefinition;
 
     beforeAll(async () => {
-        fanClubIssuerDid = await DidKeyMethod.create();
-        aliceDid = await DidKeyMethod.create();
+        fanClubIssuerDid = await DidKey.create();
+        aliceDid = await DidKey.create();
 
         SwiftiesFanClub = class {
             constructor(level, legit) {
@@ -19,8 +19,8 @@ describe('fan-club-vc', () => {
 
         vc = await VerifiableCredential.create({
             type: 'SwiftiesFanClub',
-            issuer: fanClubIssuerDid.did,
-            subject: aliceDid.did,
+            issuer: fanClubIssuerDid.uri,
+            subject: aliceDid.uri,
             data: new SwiftiesFanClub('Stan', true)
         });
 
@@ -55,19 +55,19 @@ describe('fan-club-vc', () => {
     });
     test('createDids creates an issuer DID and alice DID with did:key method', async () => {
         // :snippet-start: createDids
-        const fanClubIssuerDid = await DidKeyMethod.create();
-        const aliceDid = await DidKeyMethod.create();
+        const fanClubIssuerDid = await DidKey.create();
+        const aliceDid = await DidKey.create();
         // :snippet-end:
-        expect(aliceDid.did).toMatch(/^did:key:/);
-        expect(fanClubIssuerDid.did).toMatch(/^did:key:/);
+        expect(aliceDid.uri).toMatch(/^did:key:/);
+        expect(fanClubIssuerDid.uri).toMatch(/^did:key:/);
     });
 
     test('createFanClubVc creates a vc for fan club', async () => {
         // :snippet-start: createFanClubVc
         const vc = await VerifiableCredential.create({
             type: 'SwiftiesFanClub',
-            issuer: fanClubIssuerDid.did,
-            subject: aliceDid.did,
+            issuer: fanClubIssuerDid.uri,
+            subject: aliceDid.uri,
             data: new SwiftiesFanClub('Stan', true)
         });
         // :snippet-end:
