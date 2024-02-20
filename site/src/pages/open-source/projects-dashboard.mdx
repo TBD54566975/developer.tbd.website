@@ -10,3 +10,59 @@ import ProjectsDashboard from '../../components/ProjectsDashboard';
 Our Health Dashboard below is the cornerstone for monitoring the health and quality of our open-source projects. It provides a clear, comprehensive view of our CI/CD processes, security checks, and release tags, underlining our promise of high-quality and transparent software development.
 
 <ProjectsDashboard />
+
+## Release Pipeline Stages
+
+### Release Requirements
+
+1. **Branch strategy**: Pushes to main are assumed to be working code always.
+
+   - If we find the push has caused a failed build we should immediately triage it and possibly revert the commit.
+
+2. **Release Trigger**: Every SDK package should have a release pipeline trigger that publishes to the registry (NPM, maven, crates etc.)
+
+3. **Release Preview**: The release pipeline should be able to publish a release preview to the registry
+
+   - This is useful for Release Candidates (RCs)
+   - and, also useful for E2E tests running against main branch which holds next unreleased changes.
+
+4. **Versioning**: packages should follow SemVer convention (v0.0.0 - major, minor, patch)
+
+   - While packages are under version v0, it's not necessary to follow the major, minor, patch strictly.
+   - Minor bumps could mean breaking changes
+   - Patch bumps could mean new features or just patches
+   - But generally, before major v1, we are relaxed on SemVer
+   - _From v1, SemVer Major, Minor, Patch must be strictly followed._
+
+5. **Git Tags**: each package (multiple packages for monorepos) must have a git tag to make it easy to see the exact source code of the published release.
+
+   - GitHub releases are optional but highly encouraged since they are a great way of representing release notes, link to artifacts and are commonly used across the board by many OSS projects.
+
+6. **API Docs**: each package should have its APIs Reference docs published upon release publishing
+
+7. **Release Checklist Template**: steps needed to ensure our developers portal is reflecting stable versions and working guides
+
+   - For non significant and small daily modifications, engs have total autonomy to cut releases from GitHub Automations
+   - Checklist Templates are useful for orchestrating with DevRel significant changes and intent to broadcast announcements, reflect developers portal updates etc.
+   - This process is pretty much what we are doing with the @web5/api releases.
+
+8. **Changelogs PR Automation**: there are tools that can help automate the creation of Changelogs PRs which brings in standardization and consistency across the board, also an opportunity for sanity check the next release.
+   - The release trigger becomes simply merging the **Changelogs PR** into `main`
+   - In the OSS JS Ecosystem, [Changesets](https://github.com/changesets/changesets) is widely used and we already adopted it in `tbdex-js`
+   - For other languages, [release-please](https://github.com/googleapis/release-please) seems like a good option.
+   - This is a great opportunity to standardize our release process, generate proper ChangeLogs (https://keepachangelog.com/en/1.1.0/ or https://www.conventionalcommits.org/en/v1.0.0/), and make it easier for developers (DX).
+   - Since this is an improvement to the Release Process, it's not a mandatory requirement and it's up to Projects DRIs to decide if they want to adopt it on their repos or not
+
+### Release Requirements Status per Project
+
+| Project Repo                                              | Release Trigger | Rel.Preview Trigger | Git Tags | API Docs | Checklist Template | Changelogs PR Automation |
+| --------------------------------------------------------- | --------------- | ------------------- | -------- | -------- | ------------------ | ------------------------ |
+| [web5-js](https://github.com/TBD54566975/web5-js)         | ✅              | ✅                  | 🟨       | ✅       | ✅                 | 🟨                       |
+| [tbdex-js](https://github.com/TBD54566975/tbdex-js)       | ✅              | ✅                  | ✅       | ✅       |                    | ✅                       |
+| [web5-kt](https://github.com/TBD54566975/web5-kt)         | ✅              | ✅                  | ✅       | ✅       |                    |                          |
+| [tbdex-kt](https://github.com/TBD54566975/tbdex-kt)       | ✅              | ✅                  | ✅       | ✅       |                    |                          |
+| [web5-swift](https://github.com/TBD54566975/web5-swift)   |                 |                     |          |          |                    |                          |
+| [tbdex-swift](https://github.com/TBD54566975/tbdex-swift) |                 |                     |          |          |                    |                          |
+| [web5-dart](https://github.com/TBD54566975/web5-dart)     |                 |                     |          |          |                    |                          |
+
+- web5-js: Only `@web5/api` package is generating git tags. [PR #416](https://github.com/TBD54566975/web5-js/pull/416) installs Changesets which fixes this.
