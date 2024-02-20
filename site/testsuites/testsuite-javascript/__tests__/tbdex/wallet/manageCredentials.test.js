@@ -1,6 +1,6 @@
 import { test, expect, describe, beforeAll, afterAll } from 'vitest';
 import { TbdexHttpClient, DevTools } from '@tbdex/http-client';
-import { DidDhtMethod } from '@web5/dids';
+import { DidDht } from '@web5/dids';
 import { setupServer } from 'msw/node';
 import { HttpResponse, http } from 'msw';
 import { PresentationExchange } from '@web5/credentials';
@@ -60,17 +60,19 @@ describe('Wallet: Manage Credentials', () => {
 
   beforeAll(async () => {
     // Create a PFI DID
-    pfi = await DidDhtMethod.create({
-      publish: true,
-      services: [
-        {
-          id: 'pfi',
-          type: 'PFI',
-          serviceEndpoint: 'http://localhost:9000',
-        },
-      ],
+    pfi = await DidDht.create({
+      options:{
+        publish: true,
+        services: [
+          {
+            id: 'pfi',
+            type: 'PFI',
+            serviceEndpoint: 'http://localhost:9000',
+          },
+        ]
+      }
     });
-    pfiDid = pfi.did;
+    pfiDid = pfi.uri;
 
     // Mock an offering using customPresentationDefinition
     const defaultOfferingData = DevTools.createOfferingData();
