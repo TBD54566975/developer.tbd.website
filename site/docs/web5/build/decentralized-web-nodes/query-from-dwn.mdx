@@ -1,5 +1,5 @@
 ---
-sidebar_position: 2
+sidebar_position: 4
 ---
 
 import CodeSnippet from '@site/src/components/CodeSnippet';
@@ -31,7 +31,7 @@ The following snippet queries a given DWN for records that match a given schema 
 
 
 :::note
-`records.query()` does not guarantee that the data is returned unless it is under a specific threshold (50 kb). 
+`records.query()` does not guarantee that the data is returned unless it is under a specific threshold (50 kb).
 To guarantee record data, call [records.read()](/api/web5-js/dwn/records#readrequest).
 :::
 
@@ -39,7 +39,7 @@ To guarantee record data, call [records.read()](/api/web5-js/dwn/records#readreq
 Here are the properties you can use to filter your record query, along with explanations and examples for each.
 
 | Property            | Value                                                |   Example   |
-| -----------         | ----------                                           | ----------- |  
+| -----------         | ----------                                           | ----------- |
 | **`recipient`**     | Recipient DID of message                             | "did:example:alice"  |
 | **`protocol`**      | The URI of the protocol bucket in which to query     | "example.com" |
 | **`protocolPath`**  | Records under a protocol path across all context IDs | "example" |
@@ -74,7 +74,7 @@ And assuming `playlist` and `video` records have been created using this protoco
 Query results can be sorted via the `dateSort` field. Valid values for `dateSort` are:
 
 | Value                     | Sorts Results By | Order       |
-| -----------               | -----------      | ----------- |  
+| -----------               | -----------      | ----------- |
 | **createdAscending**      | `dateCreated`    | ascending   |
 | **createdDescending**     | `dateCreated`    | descending  |
 | **publshedAscending**     | `datePublished`  | ascending   |
@@ -91,4 +91,3 @@ This code snippet queries for records with a plain text data format, and returns
 This code snippet queries for protocols with a certain URL, and returns them in descending order by the date they were created.
 
 <CodeSnippet functionName="queryProtocolsWithFilterDescending" />
-

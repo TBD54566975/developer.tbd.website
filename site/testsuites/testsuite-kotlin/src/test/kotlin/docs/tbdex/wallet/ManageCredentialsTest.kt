@@ -6,7 +6,7 @@ import tbdex.sdk.httpclient.TbdexHttpClient
 import tbdex.sdk.protocol.models.Offering
 import tbdex.sdk.protocol.serialization.Json
 import java.net.HttpURLConnection
-import docs.tbdex.TestData
+import website.tbd.developer.site.docs.utils.*
 import web5.sdk.credentials.PresentationExchange
 import web5.sdk.credentials.model.ConstraintsV2
 import web5.sdk.credentials.model.FieldV2

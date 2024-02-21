@@ -4,9 +4,6 @@ hide_title: true
 sidebar_position: 1
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-
 import createEmploymentCredential from '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/web5/build/verifiable-credentials/createEmploymentCredential.snippet.js'
 import signEmploymentCredential from '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/web5/build/verifiable-credentials/signEmploymentCredential.snippet.js'
 import vcSdkInstallJs from '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/web5/build/verifiable-credentials/vcSdkInstallJs.snippet.bash'
@@ -51,15 +48,11 @@ This guide provides a step-by-step process for issuing a [verifiable credential 
 <Shnip
   inlineSnippets={[
     {
-      code: `
-import { VerifiableCredential } from "@web5/credentials";
-      `,
+      code: `import { VerifiableCredential } from "@web5/credentials";`,
       language: 'JavaScript',
     },
     {
-      code: `
-import xyz.block.web5.credentials.VerifiableCredential
-      `,
+      code: `import xyz.block.web5.credentials.VerifiableCredential`,
       language: 'Kotlin',
     }
   ]}

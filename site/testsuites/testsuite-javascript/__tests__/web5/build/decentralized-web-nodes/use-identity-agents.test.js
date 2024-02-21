@@ -13,11 +13,9 @@ describe('create identity agent', () => {
   test('createIdentityAgent', async () => {
     agent = await setUpIdentityManager();
   });
-  test('createDidOptions returns an object with cryptographic keys and service endpoints', async () => {
+  test('createDidOptions returns an object with service endpoints', async () => {
     const didOptions = await getDwnEndpoints();
 
-    expect(didOptions).toHaveProperty('keySet.verificationMethodKeys');
-    expect(Array.isArray(didOptions.keySet.verificationMethodKeys)).toBe(true);
     expect(didOptions).toHaveProperty('services');
     expect(Array.isArray(didOptions.services)).toBe(true);
     didOptions.services.forEach((service) => {

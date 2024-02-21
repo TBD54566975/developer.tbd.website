@@ -1,11 +1,11 @@
-import { vi, test, expect, describe, beforeAll, afterAll } from 'vitest';
+import { test, expect, describe, beforeAll, afterAll } from 'vitest';
 import { TbdexHttpClient, DevTools } from '@tbdex/http-client';
-import { DidDhtMethod } from '@web5/dids';
+import { DidDht } from '@web5/dids';
 import { setupServer } from 'msw/node';
 import { HttpResponse, http } from 'msw';
 import { PresentationExchange } from '@web5/credentials';
 
-describe('Get and Validate Offerings from PFI with Custom Presentation Definition', () => {
+describe('Wallet: Manage Credentials', () => {
   let pfi;
   let pfiDid; // The URI of the PFI's DID
   let server;
@@ -60,17 +60,19 @@ describe('Get and Validate Offerings from PFI with Custom Presentation Definitio
 
   beforeAll(async () => {
     // Create a PFI DID
-    pfi = await DidDhtMethod.create({
-      publish: true,
-      services: [
-        {
-          id: 'pfi',
-          type: 'PFI',
-          serviceEndpoint: 'http://localhost:9000',
-        },
-      ],
+    pfi = await DidDht.create({
+      options:{
+        publish: true,
+        services: [
+          {
+            id: 'pfi',
+            type: 'PFI',
+            serviceEndpoint: 'http://localhost:9000',
+          },
+        ]
+      }
     });
-    pfiDid = pfi.did;
+    pfiDid = pfi.uri;
 
     // Mock an offering using customPresentationDefinition
     const defaultOfferingData = DevTools.createOfferingData();
@@ -95,9 +97,7 @@ describe('Get and Validate Offerings from PFI with Custom Presentation Definitio
       http.get('http://localhost:9000/offerings', () => {
         return HttpResponse.json(
           { data: [mockOffering] },
-          {
-            status: 200,
-          },
+          { status: 200 },
         );
       }),
     );

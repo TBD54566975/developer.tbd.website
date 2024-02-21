@@ -1,6 +1,21 @@
 ---
+title: Placing Orders
+hide_title: true
 sidebar_position: 9
 ---
+
+import createOrderJS from '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/tbdex/wallet/createOrderJS.snippet.js'
+import signOrderJS from '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/tbdex/wallet/signOrderJS.snippet.js'
+import sendOrderJS from '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/tbdex/wallet/sendOrderJS.snippet.js'
+import listenForOrderStatusJS from '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/tbdex/wallet/listenForOrderStatusJS.snippet.js'
+import getCloseReasonJS from '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/tbdex/wallet/getCloseReasonJS.snippet.js'
+import createOrderKt from '!!raw-loader!@site/snippets/testsuite-kotlin/src/test/kotlin/docs/tbdex/wallet/createOrderKt.snippet.kt'
+import signOrderKt from '!!raw-loader!@site/snippets/testsuite-kotlin/src/test/kotlin/docs/tbdex/wallet/signOrderKt.snippet.kt'
+import sendOrderKt from '!!raw-loader!@site/snippets/testsuite-kotlin/src/test/kotlin/docs/tbdex/wallet/sendOrderKt.snippet.kt'
+import listenForOrderStatusKt from '!!raw-loader!@site/snippets/testsuite-kotlin/src/test/kotlin/docs/tbdex/wallet/listenForOrderStatusKt.snippet.kt'
+import getCloseReasonKt from '!!raw-loader!@site/snippets/testsuite-kotlin/src/test/kotlin/docs/tbdex/wallet/getCloseReasonKt.snippet.kt'
+
+<LanguageSwitcher languages="JavaScript, Kotlin" />
 
 # Placing Orders
 
@@ -13,69 +28,50 @@ If the customer chooses to place the order, your application will create an Orde
 To place an Order in response to a Quote, the first step is to create the `Order` object. 
 This instantiates a new Order, including metadata such as the customer's DID, the PFI's DID, and the exchange ID obtained from the Quote.
 
-```js
-const order = Order.create({
-  metadata: {
-    from: customer.did,           // Customer's DID
-    to: quote.metadata.from,      // PFI's DID
-    exchangeId: quote.exchangeId  // Exchange ID from the Quote
-  }
-});
-```
+<Shnip
+  snippets={[
+    { snippetContent: createOrderJS, language: 'JavaScript' },
+    { snippetContent: createOrderKt, language: 'Kotlin' },
+  ]}
+/>
 
 ## Sign Order
 
 Then sign the Order with the customer's [Portable DID](/docs/web5/build/decentralized-identifiers/how-to-create-did#portable-did):
 
-```js
-await order.sign(customer);    // Customer's PortableDid
-```
+<Shnip
+  snippets={[
+    { snippetContent: signOrderJS, language: 'JavaScript' },
+    { snippetContent: signOrderKt, language: 'Kotlin' },
+  ]}
+/>
 
 ## Send Order
-After creating and signing the Order, it needs to be sent to the PFI. This is done using the `TbdexHttpClient.sendMessage` method:
+After creating and signing the Order, it needs to be sent to the PFI. 
+This is done using the `TbdexHttpClient.sendMessage` method:
 
-```js
-const orderResponse = await TbdexHttpClient.sendMessage({ message: order });
-```
+<Shnip
+  snippets={[
+    { snippetContent: sendOrderJS, language: 'JavaScript' },
+    { snippetContent: sendOrderKt, language: 'Kotlin' },
+  ]}
+/>
 
-The response contains a `status`, where success would be `202`:
-
-```js
-{
-  "status": 202,
-  "headers": {}
-}
-```
 
 ## Listen for Order Status Updates
-As the PFI is processing the Order, they'll write `OrderStatus` messages to the exchange to keep you posted on the Order's status.
+As the PFI is processing the Order, they'll provide `OrderStatus` messages. 
 Your application would likely want to show these status updates to your customer to keep them informed of progress.
 
-Your application can poll the exchange to continuously check for `OrderStatus` messages until a `Close` message has been written to the exchange:
+If you provided a [callback URI](/docs/tbdex/wallet/send-rfq#send-rfq-to-pfi) when sending the RFQ, the PFI will send the `OrderStatus` messages there.
 
-```js
-let closeMessage;
-while (!closeMessage) {
+Otherwise, the PFI will write the `OrderStatus` messages to the exchange to keep you posted on the Order's status, and your application can poll the exchange to continuously check for `OrderStatus` messages until a `Close` message has been written to the exchange:
 
-  const exchanges = await TbdexHttpClient.getExchanges({
-    did: customer,
-    pfiDid: order.metadata.to,
-    filter: { id: order.exchangeId }
-  })
-  const [ exchange ] = exchanges.data;
-
-  for (const message of exchange) {
-    if (message instanceof OrderStatus) {
-      //a status update to display to your customer
-      const orderStatus = message.data.orderStatus;
-    }
-    else if (message instanceof Close){
-      //final message of exchange has been written
-      closeMessage = message;
-    }
-  }
-}
-```
+<Shnip
+  snippets={[
+    { snippetContent: listenForOrderStatusJS, language: 'JavaScript' },
+    { snippetContent: listenForOrderStatusKt, language: 'Kotlin' },
+  ]}
+/>
 
 ## Receive Close Message
 
@@ -94,14 +90,19 @@ Once a `Close` message is written, the exchange is ended and no additional messa
     "createdAt": "2023-12-20T02:16:59.939Z"
   },
   "data": {
-    "reason": "Order fulfilled"
-  },
-  "signature": " /* PFI's cryptographic signature */ "
+    "reason": "Order fulfilled",
+    "_signature": " /* PFI's cryptographic signature */ ",
+    "validNext": Set(0) {},
+    "kind": "close"
+  }
 }
 ```
 
 When the PFI closes the Order, it's important to check the `reason` on the Close message and report that to your customer, as it could be because the transaction was completed successfully or it could be that the Order has failed.
 
-```js
-const reasonForClose = closeMessage.data.reason;
-```
+<Shnip
+  snippets={[
+    { snippetContent: getCloseReasonJS, language: 'JavaScript' },
+    { snippetContent: getCloseReasonKt, language: 'Kotlin' },
+  ]}
+/>
