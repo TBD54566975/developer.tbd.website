@@ -5,11 +5,7 @@ import { MockDataProvider } from './mockDataProvider'
 export class MockExchangesApiProvider {
 
     constructor() {
-<<<<<<< HEAD
         this.dataProvider = new MockDataProvider()
-=======
-        this.dataProvider = MockDataProvider()
->>>>>>> main
     }
 
     //---------------------------------------------------------------------------//
