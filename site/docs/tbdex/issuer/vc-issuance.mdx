@@ -3,11 +3,19 @@ title: Credential Issuance
 hide_title: true
 ---
 
+import LanguageSwitchBlock from '@site/src/components/language/LanguageSwitchBlock';
 import sanctionsCredentialClass from '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/tbdex/issuer/sanctionsCredentialClass.snippet.js';
 import checkSanctionsEndpoint from '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/tbdex/issuer/checkSanctionsEndpoint.snippet.js';
 import checkSacntionsListsFunction from '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/tbdex/issuer/checkSacntionsListsFunction.snippet.js';
 import createVerifiableCredentialWithSanctionsListResult from '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/tbdex/issuer/createVerifiableCredentialWithSanctionsListResult.snippet.js';
 import signCreatedSanctionsCredential from '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/tbdex/issuer/signCreatedSanctionsCredential.snippet.js';
+
+import sanctionsCredentialClassKt from '!!raw-loader!@site/snippets/testsuite-kotlin/src/test/kotlin/docs/tbdex/issuer/sanctionsCredentialClassKt.snippet.kt';
+import checkSanctionsEndpointKt from '!!raw-loader!@site/snippets/testsuite-kotlin/src/test/kotlin/docs/tbdex/issuer/checkSanctionsEndpointKt.snippet.kt';
+import checkSacntionsListsFunctionKt from '!!raw-loader!@site/snippets/testsuite-kotlin/src/test/kotlin/docs/tbdex/issuer/checkSacntionsListsFunctionKt.snippet.kt';
+import createVerifiableCredentialWithSanctionsListResultKt from '!!raw-loader!@site/snippets/testsuite-kotlin/src/test/kotlin/docs/tbdex/issuer/createVerifiableCredentialWithSanctionsListResultKt.snippet.kt';
+import signCreatedSanctionsCredentialKt from '!!raw-loader!@site/snippets/testsuite-kotlin/src/test/kotlin/docs/tbdex/issuer/signCreatedSanctionsCredentialKt.snippet.kt';
+import checkSacntionsListsFunctionAndSanctionsListResultClassKt from '!!raw-loader!@site/snippets/testsuite-kotlin/src/test/kotlin/docs/tbdex/issuer/checkSacntionsListsFunctionAndSanctionsListResultClassKt.snippet.kt';
 
 <LanguageSwitcher languages="JavaScript, Kotlin" />
 
@@ -19,34 +27,88 @@ Common examples of credentials that are necessary in financial transactions are 
 
 Although credential issuance is not a concept that is exclusive to tbDEX, it's a key element in enabling compliant transactions.
 
-In this guide, we'll cover the basic steps to set up your own Credential Issuance service
-
 ## Overview
 
 A Credential Issuance app operates as an API service, exposing endpoints for third parties to request credentials.
 
 If you already have an Issuance app up and running, check out the guide on [how to issue credentials with Web5](/docs/web5/build/verifiable-credentials/vc-issuance/).
 
-If you need to create a Credential Issuance app from scratch, continue on with this guide where we'll cover how to:
+If you need to create a Credential Issuance app from scratch, continue on with this guide:
 
-- Create a web server using [Express](https://expressjs.com/) that will serve as an API endpoint.
+<LanguageSwitchBlock>
+  <div language="Kotlin">
+    <p>
+- Create a web server using <a href="https://www.jetbrains.com/help/idea/ktor.html#run_ktor_app">Ktor</a> that will serve as an API endpoint.
+    </p>
+  </div>
+
+  <div language="JavaScript">
+    <p>
+- Create a web server using <a href="https://expressjs.com/">Express</a> that will serve as an API endpoint.
+    </p>
+  </div>
+</LanguageSwitchBlock>
+
 - Design the credential you'd like to offer.
 - Implement an issuance path where you'll accept a request for issuance, perform any necessary checks, and issue the credential.
 - Return the credential to the requester.
 
 ## Environment Setup
 
-### Install Express
+<LanguageSwitchBlock>
+  <div language="Kotlin">
+    <p>
+    <h3> Setup Ktor Project </h3>
 
-We'll use Express to set up the VC issuance service. Follow these instructions to [install Express](https://expressjs.com/en/starter/installing.html).
+This example demonstrates how to use Ktor to set up the VC issuance service. Follow these instructions to <a href="https://www.jetbrains.com/help/idea/ktor.html#new_ktor_project">create a new Ktor project</a>.
+
+</p>
+
+  </div>
+
+  <div language="JavaScript">
+    <p>
+<h3> Install Express </h3>
+
+This example demonstrates how to use Express to set up the VC issuance service. Follow these instructions to <a href="https://expressjs.com/en/starter/installing.html">install Express</a>.
+
+</p>
+
+  </div>
+</LanguageSwitchBlock>
 
 ### Install Credentials Package
 
 You'll also need to install `@web5/credentials` to create and issue credentials:
 
-```bash
-npm i @web5/credentials
-```
+<Shnip
+  inlineSnippets={[
+    {
+      code: `
+npm install @web5/credentials
+      `,
+      language: 'JavaScript',
+      codeLanguage: 'bash',
+    },
+    {
+      code: `
+// Configure repositories
+repositories {
+  mavenCentral()
+  maven("https://jitpack.io")
+  maven("https://repo.danubetech.com/repository/maven-public/")
+}
+// Configure dependencies
+dependencies {
+  implementation("xyz.block:web5-credentials:0.0.11")
+}
+      `,
+      language: 'Kotlin',
+      breakLineAt: [5],
+      title: 'build.gradle.kts',
+    },
+  ]}
+/>
 
 ### Create a DID
 
@@ -55,7 +117,58 @@ If you don't already have one, you'll need to [create a DID](/docs/web5/build/de
 
 ### Create API Service
 
-1. Ensure you have a file, such as `main.js`, to act as your API's entry point, which was created during the Express setup.
+<LanguageSwitchBlock>
+  <div language="Kotlin">
+    <p>
+1. Ensure you have a file, such as <code>Application.kt</code>, to act as your API's entry point, which was created during the Ktor setup.
+
+2. Within the file, import the necessary libraries:
+
+```kt title=Application.kt
+import com.nimbusds.jwt.JWTParser
+import io.ktor.server.application.*
+import io.ktor.server.response.*
+import io.ktor.server.request.*
+import io.ktor.server.routing.*
+import io.ktor.http.*
+import io.ktor.server.engine.*
+import io.ktor.server.netty.*
+import web5.sdk.credentials.VerifiableCredential
+import java.security.SignatureException
+import com.nimbusds.jwt.JWTClaimsSet
+import web5.sdk.dids.Did
+```
+
+3. To start your API service, add the following:
+
+```kt title=Application.kt
+fun main() {
+    embeddedServer(Netty, port = 8082) { // this can be any port you want to listen on
+        configureRouting()
+    }.start(wait = true)
+}
+```
+
+4. next, in the same file define your API routes:
+
+```kt title=Application.kt
+// Define additional routes as needed, for example:
+fun Application.configureRouting() {
+        routing {
+            get("/check-sanctions") {
+             // implement the API route here
+            }
+        }
+}
+```
+
+   </p>
+
+   </div>
+
+<div language="JavaScript">
+<p>
+1. Ensure you have a file, such as <code>main.js</code>, to act as your API's entry point, which was created during the Express setup.
 
 2. Within the file, import the following:
 
@@ -75,12 +188,12 @@ const server = api.listen(config.port, () => {
 });
 ```
 
-4. Next, create an `api.js` file, this file will define the core API routes and logic for issuing credentials:
+4. Next, create an <code>api.js</code> file. This file will define the core API routes and logic for issuing credentials:
 
 ```js title=api.js
 import express from 'express';
 import { VerifiableCredential, Jwt } from '@web5/credentials';
-// in the next step we'll cover designing this class
+// The next step will cover designing this class
 import SanctionsCredential from './sanctionsCredential.js';
 
 const app = express();
@@ -90,12 +203,17 @@ app.use(express.json());
 
 // Define additional routes as needed, for example:
 app.get('/check-sanctions', async (req, res) => {
-  // we'll implement the API route here
+  // implement the API route here
 });
 
-// Export the app so it can be imported in your `main.js` file
+// Export the app so it can be imported in your <code>main.js</code> file
 export { app as api };
 ```
+
+</p>
+
+  </div>
+</LanguageSwitchBlock>
 
 With this basic structure, you can now design a credential and implement your issuance path.
 
@@ -116,6 +234,11 @@ Let's design a VC that attests that a person isn't on a Sanctions list. You coul
       language: 'JavaScript',
       title: 'sanctionsCredential.js',
     },
+    {
+      snippetContent: sanctionsCredentialClassKt,
+      language: 'Kotlin',
+      title: 'Application.kt',
+    },
   ]}
 />
 
@@ -129,7 +252,7 @@ This is the code you'll execute when a user requests to be issued a VC.
 
 In this code, you'll want to perform any checks required to issue them a credential which will later be verified by an interested third party.
 
-In the example below, we'll assume the user has provided a JWT that contains their identity information (e.g. name, DOB, etc), and your application checks applicable sanctions lists to determine if this user is on them:
+In the example below, assume the user has provided a JWT that contains their identity information (e.g. name, DOB, etc), and your application checks applicable sanctions lists to determine if this user is on them:
 
 <Shnip
   snippets={[
@@ -138,10 +261,27 @@ In the example below, we'll assume the user has provided a JWT that contains the
       language: 'JavaScript',
       title: 'api.js',
     },
+    {
+      snippetContent: checkSanctionsEndpointKt,
+      language: 'Kotlin',
+      title: 'Application.kt',
+    },
   ]}
 />
 
-In order to run this code, lets create a super simple `checkSanctionsLists()` function, you can place this at the top of your `api.js` file:
+<LanguageSwitchBlock>
+  <div language="Kotlin">
+    <p>
+In order to run this code, create a <code>checkSanctionsLists()</code> function and a <code>sanctionsListResult</code> class in your <code>Application.kt</code> file:   
+   </p>
+  </div>
+
+  <div language="JavaScript">
+    <p>
+In order to run this code, create a <code>checkSanctionsLists()</code> function in your <code>api.js</code> file:    
+    </p>
+  </div>
+</LanguageSwitchBlock>
 
 <Shnip
   snippets={[
@@ -150,10 +290,15 @@ In order to run this code, lets create a super simple `checkSanctionsLists()` fu
       language: 'JavaScript',
       title: 'api.js',
     },
+    {
+      snippetContent: checkSacntionsListsFunctionAndSanctionsListResultClassKt,
+      language: 'Kotlin',
+      title: 'Application.kt',
+    },
   ]}
 />
 
-Now back in your `"/check-sanctions"` endpoint, we're going to handle the results of the sanction check and create a Verifiable Credential:
+The `/check-sanctions` endpoint should handle the results of the sanction check and create a Verifiable Credential:
 
 <Shnip
   snippets={[
@@ -162,30 +307,65 @@ Now back in your `"/check-sanctions"` endpoint, we're going to handle the result
       language: 'JavaScript',
       title: 'api.js',
     },
+    {
+      snippetContent: createVerifiableCredentialWithSanctionsListResultKt,
+      language: 'Kotlin',
+      title: 'Application.kt',
+    },
   ]}
 />
 
 The `sanctions_credential` object that's returned will be a raw VC that looks like this:
+
+<LanguageSwitchBlock>
+  <div language="JavaScript">
+    <p>
 
 ```json
 vcDataModel: {
   "@context": [ "https://www.w3.org/2018/credentials/v1" ],
   type: [ "VerifiableCredential", "SanctionsCredential" ],
   id: "urn:uuid:daa5ff01-9b7d-485b-9410-22a42952d46c",
-  issuer: "did:key:z6Mkn4w6nSaWe4fjNJRvaHZwFnMm5VexvjzDeozEu2G7jC34",
+  issuer: "did:dht:yqun8fjakb7afu3rau9rhgdo4ahru9d68488e5mu5ihbaiwqjh3y",
   issuanceDate: "2023-12-14T08:20:41Z",
   credentialSubject: {
     id: "did:key:z6MkjGSeekPGE9QfczHWyW8v2ZzJU68kqSHzV7L2dmQyuyDu",
-    listsCleared: "FBI's Most Wanted, USA Watchlist, EU Watchlist"
+    listsCleared: "FBI's Most Wanted", "USA Watchlist", "EU Watchlist"
   }
 }
 ```
+
+   </p>
+
+   </div>
+
+<div language="Kotlin">
+<p>
+
+```json
+{
+  "@context": [ "https://www.w3.org/2018/credentials/v1" ],
+  type: [ "VerifiableCredential", "SanctionsCredential" ],
+  id: "urn:uuid:daa5ff01-9b7d-485b-9410-22a42952d46c",
+  issuer: "did:dht:yqun8fjakb7afu3rau9rhgdo4ahru9d68488e5mu5ihbaiwqjh3y",
+  issuanceDate: "2023-12-14T08:20:41Z",
+  credentialSubject: {
+    id: "did:key:z6MkjGSeekPGE9QfczHWyW8v2ZzJU68kqSHzV7L2dmQyuyDu",
+    listsCleared: "FBI's Most Wanted", "USA Watchlist", "EU Watchlist"
+  }
+}
+```
+
+</p>
+
+  </div>
+</LanguageSwitchBlock>
 
 To complete the issuance, you must sign the credential.
 Signing will return a [VC JSON Web Token](/docs/web5/build/verifiable-credentials/jwt-to-vc#what-is-a-jwt), which is ideal for secure transmission of the credential:
 
 :::note
-The entire PortableDid is used to sign Verifiable Credentials. Please refer to our [Create A DID](/docs/web5/build/decentralized-identifiers/how-to-create-did) Guide for steps on how to create one.
+The BearerDid is used to sign Verifiable Credentials that you issue. Refer to the [Create A DID](/docs/web5/build/decentralized-identifiers/how-to-create-did) guide for steps on how to create one.
 :::
 
 <Shnip
@@ -195,16 +375,42 @@ The entire PortableDid is used to sign Verifiable Credentials. Please refer to o
       language: 'JavaScript',
       title: 'api.js',
     },
+    {
+      snippetContent: signCreatedSanctionsCredentialKt,
+      language: 'Kotlin',
+      title: 'Application.kt',
+    },
   ]}
 />
 
-## Run Issuance Service
+## Test Issuance Service
 
-1. Start the service by opening a terminal window and running the following command:
+1. Start the service by opening a terminal window and running the following commands:
+
+<LanguageSwitchBlock>
+  <div language="JavaScript">
+    <p>
 
 ```bash
 node main.js
 ```
+
+   </p>
+
+   </div>
+
+<div language="Kotlin">
+<p>
+
+```bash
+./gradlew clean build
+./gradlew run
+```
+
+</p>
+
+  </div>
+</LanguageSwitchBlock>
 
 2. In a new terminal window send a test request. Below is an example command using `curl` that includes a JWT for authorization:
 

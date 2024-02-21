@@ -16,71 +16,55 @@ export default SanctionsCredential;
 // :snippet-end:
 
 const issuerDid = {
-  did: 'did:key:z6MkgUZ55uLZGb4qcCLfZaJwCTXUxhxFJtKwkTaimigbaSqs',
+  uri: 'did:dht:8u5rwqx1x1d6hqfqnq3s4c8e7hhk35a366qa3htm8f1kjwc45nxo',
   document: {
-    'id': 'did:key:z6MkgUZ55uLZGb4qcCLfZaJwCTXUxhxFJtKwkTaimigbaSqs',
-    'verificationMethod': [
+    id: 'did:dht:8u5rwqx1x1d6hqfqnq3s4c8e7hhk35a366qa3htm8f1kjwc45nxo',
+    verificationMethod: [
       {
-        id: 'did:key:z6MkgUZ55uLZGb4qcCLfZaJwCTXUxhxFJtKwkTaimigbaSqs#z6MkgUZ55uLZGb4qcCLfZaJwCTXUxhxFJtKwkTaimigbaSqs',
-        type: 'JsonWebKey2020',
-        controller: 'did:key:z6MkgUZ55uLZGb4qcCLfZaJwCTXUxhxFJtKwkTaimigbaSqs',
+        id: 'did:dht:8u5rwqx1x1d6hqfqnq3s4c8e7hhk35a366qa3htm8f1kjwc45nxo#0',
+        type: 'JsonWebKey',
+        controller:
+          'did:dht:8u5rwqx1x1d6hqfqnq3s4c8e7hhk35a366qa3htm8f1kjwc45nxo',
         publicKeyJwk: {
-          alg: 'EdDSA',
           crv: 'Ed25519',
           kty: 'OKP',
-          x: 'Hgw0rAhANmxjM6YLzhwN87hHM7PM0HUsMAUulE2W634',
+          x: 'PPZKOfJ8h-44rhOzbTDo7zis7xn3nYzyKzlkpNGa2J8',
+          kid: 'qHIYl85x9349zKy10e4B2p9W7sIYs348st2nQXzPQY0',
+          alg: 'EdDSA',
         },
       },
     ],
-    'authentication': [
-      'did:key:z6MkgUZ55uLZGb4qcCLfZaJwCTXUxhxFJtKwkTaimigbaSqs#z6MkgUZ55uLZGb4qcCLfZaJwCTXUxhxFJtKwkTaimigbaSqs',
+    authentication: [
+      'did:dht:8u5rwqx1x1d6hqfqnq3s4c8e7hhk35a366qa3htm8f1kjwc45nxo#0',
     ],
-    'assertionMethod': [
-      'did:key:z6MkgUZ55uLZGb4qcCLfZaJwCTXUxhxFJtKwkTaimigbaSqs#z6MkgUZ55uLZGb4qcCLfZaJwCTXUxhxFJtKwkTaimigbaSqs',
+    assertionMethod: [
+      'did:dht:8u5rwqx1x1d6hqfqnq3s4c8e7hhk35a366qa3htm8f1kjwc45nxo#0',
     ],
-    'capabilityInvocation': [
-      'did:key:z6MkgUZ55uLZGb4qcCLfZaJwCTXUxhxFJtKwkTaimigbaSqs#z6MkgUZ55uLZGb4qcCLfZaJwCTXUxhxFJtKwkTaimigbaSqs',
+    capabilityDelegation: [
+      'did:dht:8u5rwqx1x1d6hqfqnq3s4c8e7hhk35a366qa3htm8f1kjwc45nxo#0',
     ],
-    'capabilityDelegation': [
-      'did:key:z6MkgUZ55uLZGb4qcCLfZaJwCTXUxhxFJtKwkTaimigbaSqs#z6MkgUZ55uLZGb4qcCLfZaJwCTXUxhxFJtKwkTaimigbaSqs',
-    ],
-    '@context': [
-      'https://www.w3.org/ns/did/v1',
-      'https://w3id.org/security/suites/jws-2020/v1',
+    capabilityInvocation: [
+      'did:dht:8u5rwqx1x1d6hqfqnq3s4c8e7hhk35a366qa3htm8f1kjwc45nxo#0',
     ],
   },
-  keySet: {
-    verificationMethodKeys: [
-      {
-        publicKeyJwk: {
-          alg: 'EdDSA',
-          crv: 'Ed25519',
-          kty: 'OKP',
-          ext: 'true',
-          key_ops: ['verify'],
-          x: 'Hgw0rAhANmxjM6YLzhwN87hHM7PM0HUsMAUulE2W634',
-        },
-        privateKeyJwk: {
-          d: 'xEv-wUYjDOi-SahxPCoKyuh8aqTiV6CtEgUfHg3ys2Y',
-          alg: 'EdDSA',
-          crv: 'Ed25519',
-          kty: 'OKP',
-          ext: 'true',
-          key_ops: ['sign'],
-          x: 'Hgw0rAhANmxjM6YLzhwN87hHM7PM0HUsMAUulE2W634',
-        },
-        relationships: ['authentication'],
-      },
-    ],
+  metadata: {
+    published: true,
+    versionId: '1708465567',
+  },
+  keyManager: {
+    _algorithmInstances: {},
+    _keyStore: {
+      store: {},
+    },
   },
 };
 
-const signerDid = 'did:key:z6MkwcJi3yUN42EgSvrcGFQrC4JcZdzyVZHP9Wf1qQednVTP';
+const signerDid =
+  'did:dht:aq5ek9jbf8kota7ufcbgnnc4ikkfpd8b1u9on1b1n7k7wdcapbgo';
 
 // :snippet-start: checkSacntionsListsFunction
 function checkSanctionsList(payload) {
-  // this is where you would add all the functionality to
-  // actually perform these sanction checks
+  // This is where you would add the functionality to perform the actual sanction checks
   return {
     isSanctioned: false,
     listsCleared: ["FBI's Most Wanted, USA Watchlist", 'EU Watchlist'],
@@ -135,7 +119,7 @@ app.get('/check-sanctions', async (req, res) => {
     //highlight-start
     const sanctions_credential = await VerifiableCredential.create({
       type: 'SanctionsCredential',
-      issuer: issuerDid.did,
+      issuer: issuerDid.uri,
       subject: signer,
       data: new SanctionsCredential(sanctionsListResult),
     });
@@ -179,13 +163,13 @@ describe('Direct method functionality tests', () => {
 
     const createdCredential = await VerifiableCredential.create({
       type: 'SanctionsCredential',
-      issuer: issuerDid.did,
+      issuer: issuerDid.uri,
       subject: signerDid,
       data: new SanctionsCredential(sanctionsListResult),
     });
 
     expect(createdCredential).toHaveProperty('type');
-    expect(createdCredential).toHaveProperty('issuer', issuerDid.did);
+    expect(createdCredential).toHaveProperty('issuer', issuerDid.uri);
   });
 
   test('.sign() method signs the credential and includes expected fields', async () => {
@@ -194,7 +178,7 @@ describe('Direct method functionality tests', () => {
     };
     const sanctionsCredential = await VerifiableCredential.create({
       type: 'SanctionsCredential',
-      issuer: issuerDid.did,
+      issuer: issuerDid.uri,
       subject: signerDid,
       data: new SanctionsCredential(sanctionsListResult),
     });
