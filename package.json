@@ -43,7 +43,8 @@
     "react-fontawesome": "1.7.1",
     "react-markdown": "8.0.7",
     "react-slick": "0.29.0",
-    "slick-carousel": "1.8.1"
+    "slick-carousel": "1.8.1",
+    "express": "4.18.2"
   },
   "devDependencies": {
     "@vitest/browser": "0.33.0",

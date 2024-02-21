@@ -111,6 +111,13 @@
             <artifactId>mockwebserver</artifactId>
             <version>4.11.0</version>
         </dependency>
+
+        <dependency>
+            <groupId>io.ktor</groupId>
+            <artifactId>ktor-server-test-host</artifactId>
+            <version>${version.ktor}</version>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
 
     <build>
