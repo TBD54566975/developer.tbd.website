@@ -10,16 +10,19 @@ export class OfferingsApiProvider extends MockOfferingsApiProvider {
   
     // :snippet-start: pfiOverviewReadOfferingsJs
     async getOffering(id) {
-        this.dataProvider.get('offering', id).then(([result]) => {
+        return this.dataProvider.get('offering', id).then((result) => {
             return Offering.create({
-                metadata: { from: this.pfiDid },
-                data: result.offering
+                metadata: { 
+                    id: id,
+                    from: this.pfiDid.did 
+                },
+                data: result
             });
         });
     }
   
     async getOfferings() {
-        this.dataProvider.query('offering', "*").then((results) => {
+        return this.dataProvider.query('offering', "*").then((results) => {
             const offerings = [];
       
             for (let result of results) {

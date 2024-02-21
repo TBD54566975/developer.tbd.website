@@ -7,6 +7,7 @@ import { MockDataProvider } from '../../utils/mockDataProvider'
 import { test, expect, describe, beforeAll } from 'vitest';
 
 let pfiDid;
+let senderDid;
 let message;
 let dataProvider = new MockDataProvider();
 let offeringsApiProvider;
@@ -25,7 +26,7 @@ describe('PFI: Quotes', () => {
         }]
     });
 
-    let senderDid = await DidDhtMethod.create({ publish: true });
+    senderDid = await DidDhtMethod.create({ publish: true });
     
     offeringsApiProvider = new OfferingsApiProvider(pfiDid);
     exchangesApiProvider = new ExchangesApiProvider();
@@ -36,13 +37,15 @@ describe('PFI: Quotes', () => {
       sender: senderDid,
       receiver: pfiDid
     });
+    message.offeringId = "someOffering"
 
     let mockOfferingData = DevTools.createOfferingData();
     mockOffering = DevTools.createOffering({
       from: pfiDid.did,
       offeringData: mockOfferingData
     })
-    offeringsApiProvider.setOffering(message.offeringId, mockOffering);
+
+    offeringsApiProvider.setOffering(message.offeringId, mockOfferingData);
 
     dataProvider.setupInsert("exchange", "", () => { return });
   });
@@ -59,18 +62,28 @@ describe('PFI: Quotes', () => {
     });
   
     //highlight-start
-    const offering = await offeringsApiProvider.getOffering(message.offeringId);
+    let offering = await offeringsApiProvider.getOffering(message.offeringId);
     //highlight-end
     // :snippet-end:
 
-    expect(offering).toEqual(mockOffering);
+    expect(offering.data).toEqual(mockOffering.data);
+    mockOffering = offering
   
     const rfqOptions = {
-      data: message.data(), 
-      metadata: message.metadata()
+      sender: senderDid,
+      receiver: pfiDid
     };
   
-    const rfq = Rfq.create(rfqOptions);
+    const rfqData = await DevTools.createRfqData(rfqOptions);
+    rfqData.offeringId = offering.id;
+
+    const rfq = Rfq.create({
+      metadata: {
+        from: pfiDid.did,
+        to: senderDid.did
+      },
+      data: rfqData
+    })
   
     // :snippet-start: pfiQuotesProcessJs
     try {
