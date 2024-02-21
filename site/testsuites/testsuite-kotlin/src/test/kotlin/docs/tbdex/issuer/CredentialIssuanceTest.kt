@@ -26,7 +26,7 @@ import io.ktor.http.*
 // :snippet-start: sanctionsCredentialClassKt
 data class SanctionsCredential(val listsCleared: List<String>)
 // :snippet-end:
-// :snippet-start: checkSacntionsListsFunctionAndSanctionsListResultClassKt
+// :snippet-start: checkSanctionsListsFunctionAndSanctionsListResultClassKt
 fun checkSanctionsList(): SanctionsListResult {
     // Implement sanctions list check logic
     return SanctionsListResult(
