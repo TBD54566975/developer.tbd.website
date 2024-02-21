@@ -1,54 +1,20 @@
 // :snippet-start: pfiSdkInstallPom  
 <repositories>
-    <repository>
-        <id>jitpack.io</id>
-        <url>https://jitpack.io</url>
-    </repository>
-    <repository>
-        <id>mavenCentral</id>
-        <url>https://repo1.maven.org/maven2/</url>
-    </repository>
-    <repository>
-        <id>danubetech-maven-public</id>
-        <url>https://repo.danubetech.com/repository/maven-public/</url>
-    </repository>
+        <repository>
+            <id>mavenCentral</id>
+            <url>https://repo1.maven.org/maven2/</url>
+        </repository>
+        <repository>
+            <id>danubetech-maven-public</id>
+            <url>https://repo.danubetech.com/repository/maven-public/</url>
+        </repository>
 </repositories>
 
 <dependencies>
-    <dependency>
-        <groupId>xyz.block</groupId>
-        <artifactId>web5-crypto</artifactId>
-        <version>0.0.11</version>
-    </dependency>
-    <dependency>
-        <groupId>xyz.block</groupId>
-        <artifactId>web5-dids</artifactId>
-        <version>0.0.11</version>
-    </dependency>
-    <dependency>
-        <groupId>xyz.block</groupId>
-        <artifactId>web5-common</artifactId>
-        <version>0.0.11</version>
-    </dependency>
-    <dependency>
-        <groupId>xyz.block</groupId>
-        <artifactId>web5-credentials</artifactId>
-        <version>0.0.11</version>
-    </dependency>
-    <dependency>
-        <groupId>decentralized-identity</groupId>
-        <artifactId>did-common-java</artifactId>
-        <version>1.11.0</version>
-    </dependency>
-    <dependency>
-        <groupId>decentralized-identity</groupId>
-        <artifactId>did-common-java</artifactId>
-        <version>1.11.0</version>
-    </dependency>
-    <dependency>
-        <groupId>com.github.TBD54566975</groupId>
-        <artifactId>tbdex-kt</artifactId>
-        <version>0.10.0-beta</version>
-    </dependency>
+        <dependency>
+            <groupId>xyz.block</groupId>
+            <artifactId>tbdex</artifactId>
+            <version>0.10.0-beta</version>
+        </dependency>
 </dependencies>
 // :snippet-end:

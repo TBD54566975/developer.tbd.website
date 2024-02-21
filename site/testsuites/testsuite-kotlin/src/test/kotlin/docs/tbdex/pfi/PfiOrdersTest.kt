@@ -7,14 +7,15 @@ import tbdex.sdk.protocol.models.*
 import web5.sdk.dids.methods.dht.DidDht
 import web5.sdk.crypto.InMemoryKeyManager
 import web5.sdk.dids.methods.dht.CreateDidDhtOptions
-import website.tbd.developer.site.docs.tbdex.*
+import website.tbd.developer.site.docs.tbdex.pfi.*
+import website.tbd.developer.site.docs.utils.*
 import java.net.URI
 
 class PfiOrdersTest {
     fun main() {
 
         // Set up DIDs
-        val dataProvider = MockDataProviderTest()
+        val dataProvider = MockDataProvider()
         val serviceToAdd = Service.builder()
             .id(URI("pfi"))
             .type("PFI")
@@ -29,13 +30,13 @@ class PfiOrdersTest {
 
         val pfiDid = DidDht.create(InMemoryKeyManager(), pfiOptions)
         val senderDid = DidDht.create(InMemoryKeyManager(), senderOptions)
-        val exchangesApiProvider = ExchangesApiProviderTest()
+        val exchangesApiProvider = ExchangesApiProvider()
 
-        val orderMessage = Order.create(
+        val orderMessage = TestData.getOrder(
             to = pfiDid.uri,
-            from = senderDid.uri,
-            exchangeId = TypeId.generate(MessageKind.rfq.name)
-        )
+            from = senderDid.uri)
+
+        exchangesApiProvider.setWrite()
 
         // :snippet-start: pfiOrderStatusKt
         if (orderMessage.metadata.kind == MessageKind.order ) {
@@ -50,6 +51,8 @@ class PfiOrdersTest {
             exchangesApiProvider.write(orderStatus)
         }
         // :snippet-end:
+
+        exchangesApiProvider.setWrite()
 
         // :snippet-start: pfiCloseOrderKt
         val closeMessage = Close.create(

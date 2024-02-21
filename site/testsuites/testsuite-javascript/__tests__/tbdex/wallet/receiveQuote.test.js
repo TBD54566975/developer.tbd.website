@@ -1,10 +1,10 @@
 import { test, expect, describe, beforeAll, afterAll } from 'vitest';
-import { TbdexHttpClient, DevTools, Quote, Close, Message } from '@tbdex/http-client';
-import { DidDhtMethod, DidKeyMethod } from '@web5/dids';
+import { TbdexHttpClient, DevTools, Quote, Close, Message, Rfq } from '@tbdex/http-client';
+import { DidDht } from '@web5/dids';
 import { setupServer } from 'msw/node'
 import { http, HttpResponse } from 'msw'
 
-let pfi;
+let pfiDid;
 let customerDid;
 let rfq;
 let quote;
@@ -14,20 +14,27 @@ let server;
 describe('Wallet: Receive Quote', () => {
 
   beforeAll(async () => {
-    customerDid = await DidKeyMethod.create({ publish: true })
+    customerDid = await DidDht.create({
+      options: { publish: true }
+    })
 
-    pfi = await DidDhtMethod.create({
+    pfiDid = await DidDht.create({
+      options:{
         publish  : true,
         services : [{
           type            : 'PFI',
           id              : 'pfi',
           serviceEndpoint : 'http://localhost:9000'
         }]
+      }
     })
 
-    rfq = await DevTools.createRfq({
-      sender: customerDid,
-      receiver: pfi
+    rfq = await Rfq.create({
+      metadata: {
+        from: customerDid.uri,
+        to: pfiDid.uri
+      },
+      data: await DevTools.createRfqData()
     });
     await rfq.sign(customerDid);
 
@@ -35,12 +42,12 @@ describe('Wallet: Receive Quote', () => {
     quote = Quote.create({
       metadata: {
         exchangeId : rfq.metadata.exchangeId,
-        from: pfi.did,
-        to: customerDid.did
+        from: pfiDid.uri,
+        to: customerDid.uri
       },
       data: DevTools.createQuoteData()
     })
-    await quote.sign(pfi);
+    await quote.sign(pfiDid);
 
     // Mock the response from the PFI
     server = setupServer(
@@ -60,7 +67,7 @@ describe('Wallet: Receive Quote', () => {
   afterAll(() => {
     server.resetHandlers()
     server.close()
-  }); 
+  });
 
   test('poll for quote message', async () => {
     // :snippet-start: pollforQuoteJS
@@ -73,9 +80,9 @@ describe('Wallet: Receive Quote', () => {
         pfiDid: rfq.metadata.to,
         exchangeId: rfq.exchangeId
       });
-    
+
       quote = exchange.find(msg => msg instanceof Quote);
-    
+
       if (!quote) {
         // Wait 2 seconds before making another request
         await new Promise(resolve => setTimeout(resolve, 2000));
@@ -90,14 +97,14 @@ describe('Wallet: Receive Quote', () => {
     // :snippet-start: cancelExchangeJS
     const close = Close.create({
       metadata: {
-        from: customerDid.did,
+        from: customerDid.uri,
         to: quote.metadata.from,
         exchangeId: quote.exchangeId
       },
       data: { reason: 'Canceled by customer'}
     });
-    
-    await close.sign(customerDid); 
+
+    await close.sign(customerDid);
     await TbdexHttpClient.sendMessage({ message: close });
     // :snippet-end:
 

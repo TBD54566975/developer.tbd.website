@@ -1,4 +1,4 @@
-package docs.tbdex
+package website.tbd.developer.site.docs.utils
 
 import com.danubetech.verifiablecredentials.CredentialSubject
 import de.fxlae.typeid.TypeId
@@ -62,7 +62,9 @@ object TestData {
         return VerifiableCredential.create("test type", ALICE_DID.uri, ALICE_DID.uri, vc)
     }
 
-    fun getOffering(from: String = PFI_DID.uri, requiredClaims: PresentationDefinitionV2 = getPresentationDefinition()) =
+    fun getOffering(
+        from: String = PFI_DID.uri, 
+        requiredClaims: PresentationDefinitionV2 = getPresentationDefinition()) =
         Offering.create(
             from = from,
             OfferingData(
@@ -87,6 +89,8 @@ object TestData {
         )
 
     fun getRfq(
+        to: String = PFI_DID.uri,
+        from: String = ALICE_DID.uri,
         offeringId: TypeId = TypeId.generate(ResourceKind.offering.name),
         claims: List<String> = emptyList()
     ) = Rfq.create(
@@ -106,7 +110,9 @@ object TestData {
         )
     )
 
-    fun getQuote() = Quote.create(
+    fun getQuote(
+        to: String = ALICE_DID.uri,
+        from: String = PFI_DID.uri) = Quote.create(
         ALICE_DID.uri, PFI_DID.uri, TypeId.generate(MessageKind.rfq.name),
         QuoteData(
             expiresAt = OffsetDateTime.now().plusDays(1),
@@ -115,24 +121,34 @@ object TestData {
         )
     )
 
-    fun getClose() = Close.create(
+    fun getClose(
+        to: String = ALICE_DID.uri,
+        from: String = PFI_DID.uri,
+        closeData: String = "test reason"
+    ) = Close.create(
         to = ALICE_DID.uri,
         from = PFI_DID.uri,
         exchangeId = TypeId.generate(MessageKind.rfq.name),
-        closeData = CloseData("test reason")
+        closeData = CloseData(closeData)
     )
 
-    fun getOrder() = Order.create(
+    fun getOrder(
+        to: String = PFI_DID.uri,
+        from: String = ALICE_DID.uri) = Order.create(
         to = PFI_DID.uri,
         from = ALICE_DID.uri,
         exchangeId = TypeId.generate(MessageKind.rfq.name)
     )
 
-    fun getOrderStatus() = OrderStatus.create(
+    fun getOrderStatus(
+        to: String = ALICE_DID.uri,
+        from: String = PFI_DID.uri,
+        orderStatus: String = "PENDING"
+    ) = OrderStatus.create(
         to = ALICE_DID.uri,
         from = PFI_DID.uri,
         exchangeId = TypeId.generate(MessageKind.rfq.name),
-        orderStatusData = OrderStatusData("PENDING")
+        orderStatusData = OrderStatusData(orderStatus)
     )
 
     fun getOrderStatusWithInvalidDid(): OrderStatus {

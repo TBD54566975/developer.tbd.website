@@ -4,14 +4,10 @@ title: Required SDKs
 hide_title: true
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-import CodeSnippet from '@site/src/components/CodeSnippet';
-import BreadcrumbTab from '@site/src/components/BreadcrumbTab';
 import walletSdkInstallJs from '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/tbdex/wallet/walletSdkInstallJs.snippet.bash'
 import walletSdkInstallGradle from '!!raw-loader!@site/snippets/testsuite-kotlin/src/test/kotlin/docs/tbdex/wallet/walletSdkInstallGradle.snippet.gradle'
 import walletSdkInstallPom from '!!raw-loader!@site/snippets/testsuite-kotlin/src/test/kotlin/docs/tbdex/wallet/walletSdkInstallPom.snippet.xml'
-import importJs from '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/tbdex/wallet/walletSdkImportJs.snippet.js'
+import walletSdkImportJs from '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/tbdex/wallet/walletSdkImportJs.snippet.js'
 
 <LanguageSwitcher languages="JavaScript, Kotlin" />
 
@@ -52,18 +48,16 @@ To implement and operate as a Wallet on a tbDEX network, you’ll need to use th
 To send and receive tbDEX messages, import the following classes:
 
 <Shnip snippets={[
-    { snippetContent: importJs, language: 'JavaScript'},
+    { snippetContent: walletSdkImportJs, language: 'JavaScript'},
   ]}
   inlineSnippets={[
     {
-      code: `
-  import tbdex.sdk.httpclient.TbdexHttpClient
+      code: `  import tbdex.sdk.httpclient.TbdexHttpClient
   import tbdex.sdk.protocol.models.Rfq
   import tbdex.sdk.protocol.models.Quote
   import tbdex.sdk.protocol.models.Order
   import web5.sdk.credentials.VerifiableCredential
-  import web5.sdk.credentials.PresentationExchange
-      `,
+  import web5.sdk.credentials.PresentationExchange`,
       language: 'Kotlin',
     },
   ]}

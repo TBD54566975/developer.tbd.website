@@ -113,6 +113,8 @@ developer.tbd.website $> pnpm playwright install --with-deps
 
 This is required when running the tests, for instance via `pnpm test`.
 
+Note: At time of this writing, Playwright is [not supported on Fedora systems](https://github.com/microsoft/playwright/issues/29559).
+
 ### XCode Installation
 
 [XCode](https://developer.apple.com/xcode/) is Apple's development toolkit, and is used for both IDE and runtime for Swift examples. Install via the site link for your platform.
