@@ -10,8 +10,6 @@ import checkSanctionsListsFunction from '!!raw-loader!@site/snippets/testsuite-j
 
 import sanctionsCredentialClassKt from '!!raw-loader!@site/snippets/testsuite-kotlin/src/test/kotlin/docs/tbdex/issuer/sanctionsCredentialClassKt.snippet.kt';
 import checkSanctionsEndpointKt from '!!raw-loader!@site/snippets/testsuite-kotlin/src/test/kotlin/docs/tbdex/issuer/checkSanctionsEndpointKt.snippet.kt';
-import createVerifiableCredentialWithSanctionsListResultKt from '!!raw-loader!@site/snippets/testsuite-kotlin/src/test/kotlin/docs/tbdex/issuer/createVerifiableCredentialWithSanctionsListResultKt.snippet.kt';
-import signCreatedSanctionsCredentialKt from '!!raw-loader!@site/snippets/testsuite-kotlin/src/test/kotlin/docs/tbdex/issuer/signCreatedSanctionsCredentialKt.snippet.kt';
 import checkSanctionsListsFunctionAndSanctionsListResultClassKt from '!!raw-loader!@site/snippets/testsuite-kotlin/src/test/kotlin/docs/tbdex/issuer/checkSanctionsListsFunctionAndSanctionsListResultClassKt.snippet.kt';
 
 <LanguageSwitcher languages="JavaScript, Kotlin" />
@@ -263,7 +261,7 @@ If all checks pass, you'll issue them a credential.
 :::tip Signing credentials
 Signing will return a [VC JSON Web Token](/docs/web5/build/verifiable-credentials/jwt-to-vc#what-is-a-jwt), which is ideal for secure transmission of the credential.
 
-A BearerDid is used to sign Verifiable Credentials that you issue. 
+A BearerDid is used to sign Verifiable Credentials that you issue.
 Refer to the [Create A DID](/docs/web5/build/decentralized-identifiers/how-to-create-did) guide for steps on how to create one.
 :::
 
@@ -295,7 +293,6 @@ In order to run this code, create a <code>checkSanctionsLists()</code> function 
     },
   ]}
 />
-
 
 The `sanctions_credential` object that's returned will be a raw VC that looks like this:
 
@@ -342,7 +339,6 @@ vcDataModel: {
 
   </div>
 </LanguageSwitchBlock>
-
 
 ## Test Issuance Service
 
