@@ -7,8 +7,6 @@ import LanguageSwitchBlock from '@site/src/components/language/LanguageSwitchBlo
 import sanctionsCredentialClass from '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/tbdex/issuer/sanctionsCredentialClass.snippet.js';
 import checkSanctionsEndpoint from '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/tbdex/issuer/checkSanctionsEndpoint.snippet.js';
 import checkSanctionsListsFunction from '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/tbdex/issuer/checkSanctionsListsFunction.snippet.js';
-import createVerifiableCredentialWithSanctionsListResult from '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/tbdex/issuer/createVerifiableCredentialWithSanctionsListResult.snippet.js';
-import signCreatedSanctionsCredential from '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/tbdex/issuer/signCreatedSanctionsCredential.snippet.js';
 
 import sanctionsCredentialClassKt from '!!raw-loader!@site/snippets/testsuite-kotlin/src/test/kotlin/docs/tbdex/issuer/sanctionsCredentialClassKt.snippet.kt';
 import checkSanctionsEndpointKt from '!!raw-loader!@site/snippets/testsuite-kotlin/src/test/kotlin/docs/tbdex/issuer/checkSanctionsEndpointKt.snippet.kt';
@@ -83,15 +81,12 @@ You'll also need to install `@web5/credentials` to create and issue credentials:
 <Shnip
   inlineSnippets={[
     {
-      code: `
-npm install @web5/credentials
-      `,
+      code: `npm install @web5/credentials`,
       language: 'JavaScript',
       codeLanguage: 'bash',
     },
     {
-      code: `
-// Configure repositories
+      code: `// Configure repositories
 repositories {
   mavenCentral()
   maven("https://jitpack.io")
@@ -100,8 +95,7 @@ repositories {
 // Configure dependencies
 dependencies {
   implementation("xyz.block:web5-credentials:0.0.11")
-}
-      `,
+}`,
       language: 'Kotlin',
       breakLineAt: [5],
       title: 'build.gradle.kts',
@@ -142,16 +136,15 @@ import web5.sdk.dids.Did
 
 ```kt title=Application.kt
 fun main() {
-    embeddedServer(Netty, port = 8082) { // this can be any port you want to listen on
-        configureRouting()
-    }.start(wait = true)
+  embeddedServer(Netty, port = 8082) { // this can be any port you want to listen on
+      configureRouting()
+  }.start(wait = true)
 }
 ```
 
 4. next, in the same file define your API routes:
 
 ```kt title=Application.kt
-// Define additional routes as needed, for example:
 fun Application.configureRouting() {
         routing {
             get("/check-sanctions") {
@@ -196,11 +189,8 @@ import { VerifiableCredential, Jwt } from '@web5/credentials';
 import SanctionsCredential from './sanctionsCredential.js';
 
 const app = express();
-
-// Middleware to parse JSON bodies
 app.use(express.json());
 
-// Define additional routes as needed, for example:
 app.get('/check-sanctions', async (req, res) => {
   // implement the API route here
 });
@@ -247,11 +237,13 @@ You have wide flexibility with what you can store in the credential model class,
 ## Implement Issuance
 
 With your web server structure in place and credential designed, you're now ready to build out your issuance codepath.
-This is the code you'll execute when a user requests to be issued a VC.
+Within the `/check-sanctions` route, you'll add code to handle when a user requests to be issued a VC.
 
 In this code, you'll want to perform any checks required to issue them a credential which will later be verified by an interested third party.
 
-In the example below, assume the user has provided a JWT that contains their identity information (e.g. name, DOB, etc), and your application checks applicable sanctions lists to determine if this user is on them:
+In the example below, assume the user has provided a JWT that contains their identity information (e.g. name, DOB, etc), and your application checks applicable sanctions lists to determine if this user is on them.
+
+If all checks pass, you'll issue them a credential.
 
 <Shnip
   snippets={[
@@ -267,6 +259,13 @@ In the example below, assume the user has provided a JWT that contains their ide
     },
   ]}
 />
+
+:::tip Signing credentials
+Signing will return a [VC JSON Web Token](/docs/web5/build/verifiable-credentials/jwt-to-vc#what-is-a-jwt), which is ideal for secure transmission of the credential.
+
+A BearerDid is used to sign Verifiable Credentials that you issue. 
+Refer to the [Create A DID](/docs/web5/build/decentralized-identifiers/how-to-create-did) guide for steps on how to create one.
+:::
 
 <LanguageSwitchBlock>
   <div language="Kotlin">
@@ -297,22 +296,6 @@ In order to run this code, create a <code>checkSanctionsLists()</code> function 
   ]}
 />
 
-The `/check-sanctions` endpoint should handle the results of the sanction check and create a Verifiable Credential:
-
-<Shnip
-  snippets={[
-    {
-      snippetContent: createVerifiableCredentialWithSanctionsListResult,
-      language: 'JavaScript',
-      title: 'api.js',
-    },
-    {
-      snippetContent: createVerifiableCredentialWithSanctionsListResultKt,
-      language: 'Kotlin',
-      title: 'Application.kt',
-    },
-  ]}
-/>
 
 The `sanctions_credential` object that's returned will be a raw VC that looks like this:
 
@@ -360,27 +343,6 @@ vcDataModel: {
   </div>
 </LanguageSwitchBlock>
 
-To complete the issuance, you must sign the credential.
-Signing will return a [VC JSON Web Token](/docs/web5/build/verifiable-credentials/jwt-to-vc#what-is-a-jwt), which is ideal for secure transmission of the credential:
-
-:::note
-The BearerDid is used to sign Verifiable Credentials that you issue. Refer to the [Create A DID](/docs/web5/build/decentralized-identifiers/how-to-create-did) guide for steps on how to create one.
-:::
-
-<Shnip
-  snippets={[
-    {
-      snippetContent: signCreatedSanctionsCredential,
-      language: 'JavaScript',
-      title: 'api.js',
-    },
-    {
-      snippetContent: signCreatedSanctionsCredentialKt,
-      language: 'Kotlin',
-      title: 'Application.kt',
-    },
-  ]}
-/>
 
 ## Test Issuance Service
 
