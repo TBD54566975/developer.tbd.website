@@ -4,7 +4,7 @@ import { DidDht } from '@web5/dids';
 import { OfferingsApiProvider } from './offeringsApiProvider'
 import { ExchangesApiProvider } from './exchangesApiProvider'
 import { MockDataProvider } from '../../utils/mockDataProvider'
-import { test, expect, describe, beforeAll } from 'vitest';
+import { vi, test, expect, describe, beforeAll } from 'vitest';
 
 let pfiDid;
 let senderDid;
@@ -50,8 +50,8 @@ describe('PFI: Quotes', () => {
     dataProvider.setupInsert("exchange", "", () => { return });
   });
   
-  test('PFI verifies offering requirements and should not throw an error', async () => {
-    // :snippet-start: pfiWriteRfqGetOfferingJs
+  test('PFI creates offering', async () => {
+    // :snippet-start: pfiCreateOfferingJs
     // Write the message to your exchanges database
     await dataProvider.insert('exchange', {
       exchangeid: message.exchangeId,
@@ -62,72 +62,77 @@ describe('PFI: Quotes', () => {
     });
   
     //highlight-start
-    let offering = await offeringsApiProvider.getOffering(message.offeringId);
+    const offering = await offeringsApiProvider.getOffering(message.offeringId);
     //highlight-end
     // :snippet-end:
 
     expect(offering.data).toEqual(mockOffering.data);
-    mockOffering = offering
-  
-    const rfqOptions = {
-      sender: senderDid,
-      receiver: pfiDid
-    };
-  
-    const rfqData = await DevTools.createRfqData(rfqOptions);
-    rfqData.offeringId = offering.id;
+  })
+
+  test('PFI verifies required claims', async () => {
+    const offering = DevTools.createOffering({
+      from: pfiDid.did
+    });
 
     const rfq = Rfq.create({
       metadata: {
         from: pfiDid.did,
         to: senderDid.did
       },
-      data: rfqData
-    })
-    expect(async () => {
-      // :snippet-start: pfiRfqVerifyOfferingRequirementsJs
-      try {
-        await rfq.verifyOfferingRequirements(offering);
-      } catch(e) {
-        console.log(`Failed to verify offering requirements: ${e.rfq}`);
-      }
-      // :snippet-end:
-    }).not.toThrow();
-  })
+      data: await DevTools.createRfqData({
+        sender: senderDid
+      })
+    });
+    //change RFQ to have the same offering id
+    rfq.data.offeringId = offering.id;
+
+    const consoleSpy = vi.spyOn(console, 'log');
+
+    // :snippet-start: pfiRfqVerifyOfferingRequirementsJs
+    try {
+      await rfq.verifyOfferingRequirements(offering);
+    } catch(e) {
+      console.log(`Failed to verify offering requirements: ${e.message}`);
+    }
+    // :snippet-end:
+
+    expect(consoleSpy).not.toHaveBeenCalled();
+    consoleSpy.mockRestore();
+  });
 
   test('PFI creates and signs quote', async () => {
     // :snippet-start: pfiCreateQuoteJs
+    // Set the Quote's expiration date for 10 days from now
     var quoteExpiration = new Date();
     quoteExpiration.setDate(quoteExpiration.getDate() + 10);
-    const quote = Quote.create(
-        {
-          metadata: {
-            from: pfiDid.uri,
-            to: message.from,
-            exchangeId: message.exchangeId
-          },
-          data: {
-            expiresAt: quoteExpiration.toLocaleDateString('en-us'),
-            payin: {
-              currencyCode: 'BTC',
-              amount: '0.01',
-              fee: '0.0001',
-              paymentInstruction : {
-                link: 'tbdex.io/example',
-                instruction: 'Detailed payment instructions'
-              }
-            },
-            payout: {
-              currencyCode: 'USD',
-              amount: '1000.00',
-              paymentInstruction : {
-                link: 'tbdex.io/example',
-                instruction: 'Detailed payout instructions'
-              }
-            }
+
+    const quote = Quote.create({
+      metadata: {
+        from: pfiDid.uri,
+        to: message.from,
+        exchangeId: message.exchangeId
+      },
+      data: {
+        expiresAt: quoteExpiration.toLocaleDateString('en-us'),
+        payin: {
+          currencyCode: 'BTC',
+          amount: '0.01',
+          fee: '0.0001',
+          paymentInstruction : {
+            link: 'https://example.com',
+            instruction: 'Detailed payment instructions'
+          }
+        },
+        payout: {
+          currencyCode: 'USD',
+          amount: '1000.00',
+          paymentInstruction : {
+            link: 'https://example.com',
+            instruction: 'Detailed payout instructions'
           }
         }
-    );
+      }
+    });
     // :snippet-end:
   
     exchangesApiProvider.setWrite();
