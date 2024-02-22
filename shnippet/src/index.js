@@ -1,10 +1,10 @@
-const fs = require("fs");
-const path = require("path");
+const fs = require('fs');
+const path = require('path');
 
 class SnippetExtractor {
   constructor(config) {
     this.config = {
-      outputDirectoryStructure: "byLanguage",
+      outputDirectoryStructure: 'byLanguage',
       ...config,
     };
 
@@ -18,7 +18,7 @@ class SnippetExtractor {
       endIndex = 0;
 
     while ((startIndex = content.indexOf(prependStartTag, startIndex)) !== -1) {
-      const endOfStartTag = content.indexOf("\n", startIndex);
+      const endOfStartTag = content.indexOf('\n', startIndex);
       const snippetNamesLine = content
         .substring(startIndex + prependStartTag.length, endOfStartTag)
         .trim();
@@ -26,7 +26,7 @@ class SnippetExtractor {
 
       endIndex = content.indexOf(prependEndTag, endOfStartTag);
       if (endIndex === -1) {
-        console.log("No matching :prepend-end: found for :prepend-start:");
+        console.log('No matching :prepend-end: found for :prepend-start:');
         break;
       }
 
@@ -55,15 +55,15 @@ class SnippetExtractor {
         endIndex
       )) !== -1
     ) {
-      const startTagClose = content.indexOf("\n", startIndex);
+      const startTagClose = content.indexOf('\n', startIndex);
       if (startTagClose === -1) {
-        console.log("Snippet start tag not followed by newline. Skipping...");
+        console.log('Snippet start tag not followed by newline. Skipping...');
         break;
       }
 
       endIndex = content.indexOf(this.config.snippetTags.end, startTagClose);
       if (endIndex === -1) {
-        console.log("No closing tag found for a snippet. Skipping...");
+        console.log('No closing tag found for a snippet. Skipping...');
         break;
       }
 
@@ -82,11 +82,11 @@ class SnippetExtractor {
 
       if (this.prependBlocks[snippetName]) {
         const importsToPrepend = this.prependBlocks[snippetName]
-          .map((block) => block.trimEnd().replace(/\/\/\s*$/, ""))
-          .join("");
+          .map((block) => block.trimEnd().replace(/\/\/\s*$/, ''))
+          .join('');
 
         const finalImports =
-          importsToPrepend.length > 0 ? `${importsToPrepend}\n` : "";
+          importsToPrepend.length > 0 ? `${importsToPrepend}\n` : '';
 
         snippetContent = `${finalImports}${snippetContent}`;
       }
@@ -102,23 +102,23 @@ class SnippetExtractor {
   }
 
   normalizeIndentation(snippetContent, fileExtension) {
-    const lines = snippetContent.split("\n");
+    const lines = snippetContent.split('\n');
 
     // Determine the comment character based on the file extension
-    const commentChar = fileExtension === ".bash" ? "#" : "//";
+    const commentChar = fileExtension === '.bash' ? '#' : '//';
 
     return lines
       .map((line) => {
         // Remove 4 spaces of indentation if present
-        const newLine = line.startsWith("    ") ? line.substring(4) : line;
+        const newLine = line.startsWith('    ') ? line.substring(4) : line;
         // Remove trailing comment characters
-        return newLine.replace(new RegExp(`\\s*${commentChar}\\s*$`), "");
+        return newLine.replace(new RegExp(`\\s*${commentChar}\\s*$`), '');
       })
-      .join("\n");
+      .join('\n');
   }
   shouldExcludeFile(content) {
     // Check if the file content includes any of the strings in the exclude array (only for match)
-    if (this.config.outputDirectoryStructure == "match") {
+    if (this.config.outputDirectoryStructure == 'match') {
       for (const excludeString of this.config.exclude) {
         if (content.includes(excludeString)) {
           return true; // Exclude this file
@@ -128,7 +128,7 @@ class SnippetExtractor {
     }
   }
 
-  processDirectory(directory, relativePath = "") {
+  processDirectory(directory, relativePath = '') {
     const items = fs.readdirSync(directory);
     for (const item of items) {
       const fullPath = path.join(directory, item);
@@ -137,7 +137,7 @@ class SnippetExtractor {
       if (stat.isDirectory()) {
         this.processDirectory(fullPath, path.join(relativePath, item));
       } else if (this.config.fileExtensions.includes(path.extname(item))) {
-        const content = fs.readFileSync(fullPath, "utf-8");
+        const content = fs.readFileSync(fullPath, 'utf-8');
 
         this.prependBlocks = {};
 
@@ -157,7 +157,7 @@ class SnippetExtractor {
       let outputPath;
 
       switch (this.config.outputDirectoryStructure) {
-        case "match":
+        case 'match':
           // For "match", save the snippet in its original form without converting to a JS module
           outputPath = path.join(
             this.config.outputDirectory,
@@ -169,9 +169,9 @@ class SnippetExtractor {
           }
           fs.writeFileSync(outputPath, snippetContent);
           break;
-        case "flat":
-        case "byLanguage":
-        case "organized":
+        case 'flat':
+        case 'byLanguage':
+        case 'organized':
         default:
           // Handle other cases as before
           outputPath = this.determineOutputPath(
@@ -199,27 +199,27 @@ class SnippetExtractor {
     let outputPath;
 
     switch (this.config.outputDirectoryStructure) {
-      case "flat":
+      case 'flat':
         outputPath = path.join(
           this.config.outputDirectory,
           `${snippetName}.snippet${extension}`
         );
         break;
-      case "match":
+      case 'match':
         outputPath = path.join(
           this.config.outputDirectory,
           relativePath,
           `${snippetName}.snippet${extension}`
         );
         break;
-      case "byLanguage":
+      case 'byLanguage':
         outputPath = path.join(
           this.config.outputDirectory,
           language,
           `${snippetName}.snippet.js`
         );
         break;
-      case "organized":
+      case 'organized':
       default:
         outputPath = path.join(
           this.config.outputDirectory,
@@ -239,16 +239,16 @@ class SnippetExtractor {
 
   getLanguageFromExtension(extension) {
     const extensionToLanguageMap = {
-      ".js": "js",
-      ".ts": "typescript",
-      ".kt": "kt",
-      ".swift": "swift",
-      ".gradle": "gradle",
-      ".bash": "bash",
-      ".xml": "xml",
+      '.js': 'js',
+      '.ts': 'typescript',
+      '.kt': 'kt',
+      '.swift': 'swift',
+      '.gradle': 'gradle',
+      '.bash': 'bash',
+      '.xml': 'xml',
     };
 
-    return extensionToLanguageMap[extension] || "other";
+    return extensionToLanguageMap[extension] || 'other';
   }
 
   extractSnippets() {
