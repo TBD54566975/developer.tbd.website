@@ -4,12 +4,6 @@ hide_title: true
 sidebar_position: 8
 ---
 
-import pollforQuoteJS from '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/tbdex/wallet/pollforQuoteJS.snippet.js'
-import cancelExchangeJS from '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/tbdex/wallet/cancelExchangeJS.snippet.js'
-import pollforQuoteKt from '!!raw-loader!@site/snippets/testsuite-kotlin/src/test/kotlin/docs/tbdex/wallet/pollforQuoteKt.snippet.kt'
-import cancelExchangeKt from '!!raw-loader!@site/snippets/testsuite-kotlin/src/test/kotlin/docs/tbdex/wallet/cancelExchangeKt.snippet.kt'
-
-
 <LanguageSwitcher languages="JavaScript, Kotlin" />
 
 # Receiving Quotes
@@ -23,8 +17,8 @@ If you did not provide a [callback URI](/docs/tbdex/wallet/send-rfq#send-rfq-to-
 
 <Shnip
   snippets={[
-    { snippetContent: pollforQuoteJS, language: 'JavaScript' },
-    { snippetContent: pollforQuoteKt, language: 'Kotlin' },
+    { snippetName: 'pollforQuoteJS', language: 'JavaScript' },
+    { snippetName: 'pollforQuoteKt', language: 'Kotlin' },
   ]}
 />
 
@@ -69,8 +63,8 @@ To terminate the exchange, create a `Close` message, sign it with the customer's
 
 <Shnip
   snippets={[
-    { snippetContent: cancelExchangeJS, language: 'JavaScript' },
-    { snippetContent: cancelExchangeKt, language: 'Kotlin' },
+    { snippetName: 'cancelExchangeJS', language: 'JavaScript' },
+    { snippetName: 'cancelExchangeKt', language: 'Kotlin' },
   ]}
 />
 

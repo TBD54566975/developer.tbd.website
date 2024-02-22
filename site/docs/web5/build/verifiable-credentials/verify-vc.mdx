@@ -4,14 +4,6 @@ hide_title: true
 sidebar_position: 2
 ---
 
-import verifyVcs from '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/web5/build/verifiable-credentials/verifyVcs.snippet.js'
-import errorsFound from '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/web5/build/verifiable-credentials/errorsFound.snippet.js'
-import evaluatePresentation from '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/web5/build/verifiable-credentials/evaluatePresentation.snippet.js'
-
-import verifyVcsKt from '!!raw-loader!@site/snippets/testsuite-kotlin/src/test/kotlin/docs/web5/build/verifiablecredentials/verifyVcsKt.snippet.kt'
-import errorsFoundKt from '!!raw-loader!@site/snippets/testsuite-kotlin/src/test/kotlin/docs/web5/build/verifiablecredentials/errorsFoundKt.snippet.kt'
-import verifyVpKt from '!!raw-loader!@site/snippets/testsuite-kotlin/src/test/kotlin/docs/web5/build/verifiablecredentials/verifyVpKt.snippet.kt'
-
 <LanguageSwitcher languages="JavaScript, Kotlin" />
 
 # Verify Credentials
@@ -172,8 +164,8 @@ Below is an example of how this might be implemented:
 
 <Shnip
   snippets={[
-    { snippetContent: verifyVcs, language: 'JavaScript'},
-    { snippetContent: verifyVcsKt, language: 'Kotlin'}
+    { snippetName: 'verifyVcs', language: 'JavaScript'},
+    { snippetName: 'verifyVcsKt', language: 'Kotlin'}
     ]}
 />
 
@@ -184,8 +176,8 @@ The Verifier would then examine the results of the verifications to determine th
 
 <Shnip
   snippets={[
-    { snippetContent: errorsFound, language: 'JavaScript'},
-    { snippetContent: errorsFoundKt, language: 'Kotlin'}
+    { snippetName: 'errorsFound', language: 'JavaScript'},
+    { snippetName: 'errorsFoundKt', language: 'Kotlin'}
     ]}
 />
 
@@ -205,7 +197,7 @@ Upon receipt, a Verifiable Presentation is encoded as a [JWT](/docs/web5/build/v
     }
   ]}
   snippets={[
-    { snippetContent: verifyVpKt, language: 'Kotlin'},
+    { snippetName: 'verifyVpKt', language: 'Kotlin'},
   ]}
 />
 
@@ -220,7 +212,7 @@ This can be done via the `PresentationExchange.evaluatePresentation()` function:
 
 <Shnip
   snippets={[
-    { snippetContent: evaluatePresentation, language: 'JavaScript'},
+    { snippetName: 'evaluatePresentation', language: 'JavaScript'},
   ]}
     inlineSnippets={[
     {

@@ -4,12 +4,6 @@ hide_title: true
 sidebar_position: 1
 ---
 
-import createEmploymentCredential from '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/web5/build/verifiable-credentials/createEmploymentCredential.snippet.js'
-import signEmploymentCredential from '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/web5/build/verifiable-credentials/signEmploymentCredential.snippet.js'
-import vcSdkInstallJs from '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/web5/build/verifiable-credentials/vcSdkInstallJs.snippet.bash'
-
-import createEmploymentCredentialKt from '!!raw-loader!@site/snippets/testsuite-kotlin/src/test/kotlin/docs/web5/build/verifiablecredentials/createEmploymentCredentialKt.snippet.kt'
-import signEmploymentCredentialKt from '!!raw-loader!@site/snippets/testsuite-kotlin/src/test/kotlin/docs/web5/build/verifiablecredentials/signEmploymentCredentialKt.snippet.kt'
 import vcSdkInstallGradle from '!!raw-loader!@site/snippets/testsuite-kotlin/src/test/kotlin/docs/web5/build/verifiablecredentials/vcSdkInstallGradle.snippet.gradle'
 import vcSdkInstallPom from '!!raw-loader!@site/snippets/testsuite-kotlin/src/test/kotlin/docs/web5/build/verifiablecredentials/vcSdkInstallPom.snippet.xml'
 
@@ -26,7 +20,7 @@ This guide provides a step-by-step process for issuing a [verifiable credential 
 
 <Shnip
    snippets={[
-    { snippetContent: vcSdkInstallJs, language: 'JavaScript', codeLanguage: 'bash'},
+    { snippetName: 'vcSdkInstallJs', language: 'JavaScript', codeLanguage: 'bash'},
     {
       language: 'Kotlin',
       nestedSnippets:{
@@ -83,8 +77,8 @@ To create the VC, utilize the `VerifiableCredential.create()` method. Pass a JSO
 
 <Shnip
    snippets={[
-    { snippetContent: createEmploymentCredential, language: 'JavaScript'},
-    { snippetContent: createEmploymentCredentialKt, language: 'Kotlin'}
+    { snippetName: 'createEmploymentCredential', language: 'JavaScript'},
+    { snippetName: 'createEmploymentCredentialKt', language: 'Kotlin'}
     ]}
 />
 
@@ -152,8 +146,8 @@ The next step is signing the VC. This cryptographic process, performed by the is
 
 <Shnip
    snippets={[
-    { snippetContent: signEmploymentCredential, language: 'JavaScript'},
-    { snippetContent: signEmploymentCredentialKt, language: 'Kotlin'}
+    { snippetName: 'signEmploymentCredential', language: 'JavaScript'},
+    { snippetName: 'signEmploymentCredentialKt', language: 'Kotlin'}
     ]}
 />
 
