@@ -142,7 +142,7 @@ describe('PFI: Quotes', () => {
     exchangesApiProvider.write(quote);
     // :snippet-end:
     const signature = await quote.verifySignature();
-    expect(signature).not.toBeNull();
+    expect(signature).toBeDefined();
   })
 
 })
