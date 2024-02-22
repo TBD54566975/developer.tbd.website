@@ -7,6 +7,40 @@ class SnippetExtractor {
       outputDirectoryStructure: "byLanguage",
       ...config,
     };
+
+    this.prependBlocks = {};
+  }
+
+  gatherImports(content) {
+    const prependStartTag = this.config.snippetTags.prependStart;
+    const prependEndTag = this.config.snippetTags.prependEnd;
+    let startIndex = 0,
+      endIndex = 0;
+
+    while ((startIndex = content.indexOf(prependStartTag, startIndex)) !== -1) {
+      const endOfStartTag = content.indexOf("\n", startIndex);
+      const snippetNamesLine = content
+        .substring(startIndex + prependStartTag.length, endOfStartTag)
+        .trim();
+      const snippetNames = snippetNamesLine.split(/\s+/); // Assuming space-separated names
+
+      endIndex = content.indexOf(prependEndTag, endOfStartTag);
+      if (endIndex === -1) {
+        console.log("No matching :prepend-end: found for :prepend-start:");
+        break;
+      }
+
+      const importBlock = content.substring(endOfStartTag + 1, endIndex).trim();
+
+      snippetNames.forEach((name) => {
+        if (!this.prependBlocks[name]) {
+          this.prependBlocks[name] = [];
+        }
+        this.prependBlocks[name].push(importBlock);
+      });
+
+      startIndex = endIndex + prependEndTag.length;
+    }
   }
 
   extractSnippetsFromFile(content, filePath) {
@@ -45,6 +79,15 @@ class SnippetExtractor {
 
       // Normalize indentation and remove trailing comment characters
       snippetContent = this.normalizeIndentation(snippetContent, fileExtension);
+
+      if (this.prependBlocks[snippetName]) {
+        const importsToPrepend = this.prependBlocks[snippetName]
+          .map((block) => block.trimEnd())
+          .join("\n")
+          .replace(/\/\/\s*$/, ""); // Remove trailing // if present
+
+        snippetContent = `${importsToPrepend}\n${snippetContent}`;
+      }
 
       if (snippetName) {
         snippets[snippetName] = snippetContent;
@@ -94,7 +137,11 @@ class SnippetExtractor {
       } else if (this.config.fileExtensions.includes(path.extname(item))) {
         const content = fs.readFileSync(fullPath, "utf-8");
 
-        // Make sure to pass fullPath as the second argument to extractSnippetsFromFile
+        this.prependBlocks = {};
+
+        // Gather imports/prepends for the current file
+        this.gatherImports(content, fullPath);
+
         if (!this.shouldExcludeFile(content)) {
           const fileSnippets = this.extractSnippetsFromFile(content, fullPath);
           this.writeSnippetsToFile(fileSnippets, fullPath, relativePath);
