@@ -57,7 +57,7 @@ class PfiQuotesTest {
         dataProvider.setupInsert("exchange", "") { arrayOf<Any>() }
         offeringsApiProvider.setOffering(message.metadata.id.toString(), pfiDid.uri)
 
-        // :snippet-start: pfiQuotesWriteKt
+        // :snippet-start: pfiWriteRfqGetOfferingKt
         // Write the message to your exchanges database
         val data = mapOf(
             "exchangeid" to message.metadata.exchangeId,
@@ -73,7 +73,7 @@ class PfiQuotesTest {
         //highlight-end
         // :snippet-end:
 
-        // :snippet-start: pfiQuotesProcessKt
+        // :snippet-start: pfiRfqVerifyOfferingRequirementsKt
         if (offering is Offering && message is Rfq) {
             try {
                 val rfq = message as Rfq
@@ -87,7 +87,7 @@ class PfiQuotesTest {
 
     @Test
     fun `PFI creates and signs quote`() {
-        // :snippet-start: pfiQuotesSendKt
+        // :snippet-start: pfiCreateQuoteKt
         val quoteData = QuoteData(
             expiresAt = OffsetDateTime.now().plusDays(10),
             payin = QuoteDetails(currencyCode = "BTC", amount = "1000.0"),
@@ -104,7 +104,7 @@ class PfiQuotesTest {
 
         exchangesApiProvider.setWrite()
 
-        // :snippet-start: pfiQuotesSignKt
+        // :snippet-start: pfiSignQuoteKt
         quote.sign(pfiDid)
         exchangesApiProvider.write(quote)
         // :snippet-end:
