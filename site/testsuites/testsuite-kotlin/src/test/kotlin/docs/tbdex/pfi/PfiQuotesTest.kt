@@ -57,7 +57,7 @@ class PfiQuotesTest {
         dataProvider.setupInsert("exchange", "") { arrayOf<Any>() }
         offeringsApiProvider.setOffering(message.metadata.id.toString(), pfiDid.uri)
 
-        // :snippet-start: pfiWriteRfqGetOfferingKt
+        // :snippet-start: pfiCreateOfferingKt
         // Write the message to your exchanges database
         val data = mapOf(
             "exchangeid" to message.metadata.exchangeId,
