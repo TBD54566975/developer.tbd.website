@@ -4,9 +4,6 @@ hide_title: true
 sidebar_position: 4
 ---
 
-import isPFIJs from '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/tbdex/wallet/isPFIJs.snippet.js'
-import isPFIKt from '!!raw-loader!@site/snippets/testsuite-kotlin/src/test/kotlin/docs/tbdex/wallet/isPFIKt.snippet.kt'
-
 <LanguageSwitcher languages="JavaScript, Kotlin" />
 
 # Allowlisting PFIs
@@ -27,8 +24,8 @@ To determine if a PFI is part of the tbDEX network, you can check their [DID doc
 
 <Shnip
   snippets={[
-    { snippetContent: isPFIJs, language: 'JavaScript' },
-    { snippetContent: isPFIKt, language: 'Kotlin' },
+    { snippetName: 'isPFIJs', language: 'JavaScript' },
+    { snippetName: 'isPFIKt', language: 'Kotlin' },
   ]}
 />
 
