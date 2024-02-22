@@ -34,21 +34,21 @@ class PfiStructureTest {
         )
 
         val pfiDid = DidDht.create(InMemoryKeyManager(), options)
-    
+
         // :snippet-start: pfiOverviewConfigKt
         val exchangesApiProvider = ExchangesApiProvider()
         val offeringsApiProvider = OfferingsApiProvider()
-    
+
         val serverConfig = TbdexHttpServerConfig(
             port = 8080,
             pfiDid = pfiDid.uri,
             exchangesApi = exchangesApiProvider,
             offeringsApi = offeringsApiProvider
         )
-    
+
         val tbDexServer = TbdexHttpServer(serverConfig)
       // :snippet-end:
-    
+
         exchangesApiProvider.setWrite()
         exchangesApiProvider.setWrite()
         exchangesApiProvider.setWrite()
@@ -58,18 +58,18 @@ class PfiStructureTest {
             exchangesApiProvider.write(message)
             call.respond(HttpStatusCode.Accepted)
         }
-    
+
         tbDexServer.submit(SubmitKind.order) { call, message, offering ->
             exchangesApiProvider.write(message)
             call.respond(HttpStatusCode.Accepted)
         }
-    
+
         tbDexServer.submit(SubmitKind.close) { call, message, offering ->
             exchangesApiProvider.write(message)
             call.respond(HttpStatusCode.Accepted)
         }
         // :snippet-end:
-    
+
         // :snippet-start: pfiOverviewServerStartKt
         tbDexServer.start()
         // :snippet-end:
@@ -96,7 +96,7 @@ class OfferingsApiProvider: MockOfferingsApiProvider() {
     // :snippet-start: pfiOverviewReadOfferingsKt
     override fun getOffering(id: String): Offering {
         val result = dataProvider.get("offering", id ?: "")
-        return Offering.parse(result as String)
+        return result as Offering
     }
 
     override fun getOfferings(filter: GetOfferingsFilter?): List<Offering> {
