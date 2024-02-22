@@ -51,7 +51,7 @@ describe('PFI: Quotes', () => {
   });
   
   test('PFI verifies offering requirements and should not throw an error', async () => {
-    // :snippet-start: pfiVerifyOfferingRequirementsJs
+    // :snippet-start: pfiWriteRfqGetOfferingJs
     // Write the message to your exchanges database
     await dataProvider.insert('exchange', {
       exchangeid: message.exchangeId,
@@ -84,18 +84,19 @@ describe('PFI: Quotes', () => {
       },
       data: rfqData
     })
-  
-    // :snippet-start: pfiQuotesProcessJs
-    try {
-      await rfq.verifyOfferingRequirements(offering);
-    } catch(e) {
-      console.log(`Failed to verify offering requirements: ${e.rfq}`);
-    }
-    // :snippet-end:
+    expect(async () => {
+      // :snippet-start: pfiRfqVerifyOfferingRequirementsJs
+      try {
+        await rfq.verifyOfferingRequirements(offering);
+      } catch(e) {
+        console.log(`Failed to verify offering requirements: ${e.rfq}`);
+      }
+      // :snippet-end:
+    }).not.toThrow();
   })
 
   test('PFI creates and signs quote', async () => {
-    // :snippet-start: pfiQuoteCreateJs
+    // :snippet-start: pfiCreateQuoteJs
     var quoteExpiration = new Date();
     quoteExpiration.setDate(quoteExpiration.getDate() + 10);
     const quote = Quote.create(
@@ -131,7 +132,7 @@ describe('PFI: Quotes', () => {
   
     exchangesApiProvider.setWrite();
   
-    // :snippet-start: pfiQuotesSignJs
+    // :snippet-start: pfiSignQuoteJs
     await quote.sign(pfiDid);
     exchangesApiProvider.write(quote);
     // :snippet-end:
