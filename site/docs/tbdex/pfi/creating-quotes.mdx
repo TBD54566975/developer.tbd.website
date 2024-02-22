@@ -4,15 +4,6 @@ hide_title: true
 sidebar_position: 7
 ---
 
-import pfiCreateOfferingJs from '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/tbdex/pfi/pfiCreateOfferingJs.snippet.js'
-import pfiQuotesWriteKt from '!!raw-loader!@site/snippets/testsuite-kotlin/src/test/kotlin/docs/tbdex/pfi/pfiQuotesWriteKt.snippet.kt'
-import pfiRfqVerifyOfferingRequirementsJs from '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/tbdex/pfi/pfiRfqVerifyOfferingRequirementsJs.snippet.js'
-import pfiQuotesProcessKt from '!!raw-loader!@site/snippets/testsuite-kotlin/src/test/kotlin/docs/tbdex/pfi/pfiQuotesProcessKt.snippet.kt'
-import pfiCreateQuoteJs from '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/tbdex/pfi/pfiCreateQuoteJs.snippet.js'
-import pfiQuotesSendKt from '!!raw-loader!@site/snippets/testsuite-kotlin/src/test/kotlin/docs/tbdex/pfi/pfiQuotesSendKt.snippet.kt'
-import pfiSignQuoteJs from '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/tbdex/pfi/pfiSignQuoteJs.snippet.js'
-import pfiQuotesSignKt from '!!raw-loader!@site/snippets/testsuite-kotlin/src/test/kotlin/docs/tbdex/pfi/pfiQuotesSignKt.snippet.kt'
-
 <LanguageSwitcher languages="JavaScript, Kotlin"/>
 
 # Creating Quotes
@@ -35,8 +26,8 @@ Building on the example from the [Exchange API Provider section](/docs/tbdex/pfi
 
 <Shnip snippets={
   [
-    { snippetContent: pfiCreateOfferingJs, language: 'JavaScript'},
-    { snippetContent: pfiQuotesWriteKt, language: 'Kotlin'}
+    { snippetName: 'pfiCreateOfferingJs', language: 'JavaScript'},
+    { snippetName: 'pfiQuotesWriteKt', language: 'Kotlin'}
   ]} />
 
 ## Verifying the Required Claims
@@ -47,8 +38,8 @@ The `RFQ` class offers the [verifyOfferingRequirements](https://tbd54566975.gith
 
 <Shnip snippets={
   [
-    { snippetContent: pfiRfqVerifyOfferingRequirementsJs, language: 'JavaScript'},
-    { snippetContent: pfiQuotesProcessKt, language: 'Kotlin'}
+    { snippetName: 'pfiRfqVerifyOfferingRequirementsJs', language: 'JavaScript'},
+    { snippetName: 'pfiQuotesProcessKt', language: 'Kotlin'}
   ]} />
 
 ## Creating and Sending a Quote
@@ -58,16 +49,16 @@ With that in mind, you can then create your quote using the `Quote.create()` met
 
 <Shnip snippets={
   [
-    { snippetContent: pfiCreateQuoteJs, language: 'JavaScript'},
-    { snippetContent: pfiQuotesSendKt, language: 'Kotlin'}
+    { snippetName: 'pfiCreateQuoteJs', language: 'JavaScript'},
+    { snippetName: 'pfiQuotesSendKt', language: 'Kotlin'}
   ]} />
 
 With the `Quote` created, you’ll then sign it for authorization purposes and write it to your own database:
 
 <Shnip snippets={
   [
-    { snippetContent: pfiSignQuoteJs, language: 'JavaScript'},
-    { snippetContent: pfiQuotesSignKt, language: 'Kotlin'}
+    { snippetName: 'pfiSignQuoteJs', language: 'JavaScript'},
+    { snippetName: 'pfiQuotesSignKt', language: 'Kotlin'}
   ]} />
 
 :::note
