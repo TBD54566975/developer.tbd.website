@@ -1,6 +1,6 @@
 import { Rfq, Quote } from '@tbdex/http-server';
 import { DevTools } from '@tbdex/http-client';
-import { DidDhtMethod } from '@web5/dids';
+import { DidDht } from '@web5/dids';
 import { OfferingsApiProvider } from './offeringsApiProvider'
 import { ExchangesApiProvider } from './exchangesApiProvider'
 import { MockDataProvider } from '../../utils/mockDataProvider'
@@ -17,7 +17,7 @@ let mockOffering;
 describe('PFI: Quotes', () => {
   beforeAll(async () => {
     // Set up providers and DID
-    pfiDid = await DidDhtMethod.create({
+    pfiDid = await DidDht.create({
         publish: true,
         services: [{
             id: 'pfi',
@@ -26,7 +26,7 @@ describe('PFI: Quotes', () => {
         }]
     });
 
-    senderDid = await DidDhtMethod.create({ publish: true });
+    senderDid = await DidDht.create({ publish: true });
     
     offeringsApiProvider = new OfferingsApiProvider(pfiDid);
     exchangesApiProvider = new ExchangesApiProvider();
@@ -51,7 +51,7 @@ describe('PFI: Quotes', () => {
   });
   
   test('PFI verifies offering requirements and should not throw an error', async () => {
-    // :snippet-start: pfiQuotesWriteJs
+    // :snippet-start: pfiVerifyOfferingRequirementsJs
     // Write the message to your exchanges database
     await dataProvider.insert('exchange', {
       exchangeid: message.exchangeId,
@@ -95,18 +95,36 @@ describe('PFI: Quotes', () => {
   })
 
   test('PFI creates and signs quote', async () => {
-    // :snippet-start: pfiQuotesSendJs
+    // :snippet-start: pfiQuoteCreateJs
     var quoteExpiration = new Date();
     quoteExpiration.setDate(quoteExpiration.getDate() + 10);
-    const quoteData = DevTools.createQuoteData();
     const quote = Quote.create(
         {
           metadata: {
-            from: pfiDid.did,
+            from: pfiDid.uri,
             to: message.from,
             exchangeId: message.exchangeId
           },
-          data: quoteData
+          data: {
+            expiresAt: quoteExpiration.toLocaleDateString('en-us'),
+            payin: {
+              currencyCode: 'BTC',
+              amount: '0.01',
+              fee: '0.0001',
+              paymentInstruction : {
+                link: 'tbdex.io/example',
+                instruction: 'Detailed payment instructions'
+              }
+            },
+            payout: {
+              currencyCode: 'USD',
+              amount: '1000.00',
+              paymentInstruction : {
+                link: 'tbdex.io/example',
+                instruction: 'Detailed payout instructions'
+              }
+            }
+          }
         }
     );
     // :snippet-end:
