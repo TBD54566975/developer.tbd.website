@@ -69,7 +69,7 @@ class PfiQuotesTest {
 
         dataProvider.insert("exchange", data)
         //highlight-start
-        val offering = offeringsApiProvider.getOffering(message.metadata.id)
+        val offering = offeringsApiProvider.getOffering(message.metadata.id.toString())
         //highlight-end
         // :snippet-end:
 

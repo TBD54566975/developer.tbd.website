@@ -4,6 +4,7 @@ import tbdex.sdk.httpserver.models.*
 import tbdex.sdk.protocol.models.*
 import website.tbd.developer.site.docs.utils.MockDataProvider
 import website.tbd.developer.site.docs.utils.TestData
+import de.fxlae.typeid.TypeId
 
 open class MockOfferingsApiProvider: OfferingsApi {
 
@@ -13,8 +14,8 @@ open class MockOfferingsApiProvider: OfferingsApi {
     // Implementation of interface
     //---------------------------------------------------------------------------//
 
-    override fun getOffering(id: TypeId): Offering {
-        val result = dataProvider.get("offering", id.toString() ?: "")
+    override fun getOffering(id: String): Offering {
+        val result = dataProvider.get("offering", id ?: "")
         return Offering.parse(result as String)
     }
 
