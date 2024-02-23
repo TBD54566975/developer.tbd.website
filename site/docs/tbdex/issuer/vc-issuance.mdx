@@ -3,15 +3,6 @@ title: Credential Issuance
 hide_title: true
 ---
 
-import LanguageSwitchBlock from '@site/src/components/language/LanguageSwitchBlock';
-import sanctionsCredentialClass from '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/tbdex/issuer/sanctionsCredentialClass.snippet.js';
-import checkSanctionsEndpoint from '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/tbdex/issuer/checkSanctionsEndpoint.snippet.js';
-import checkSanctionsListsFunction from '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/tbdex/issuer/checkSanctionsListsFunction.snippet.js';
-
-import sanctionsCredentialClassKt from '!!raw-loader!@site/snippets/testsuite-kotlin/src/test/kotlin/docs/tbdex/issuer/sanctionsCredentialClassKt.snippet.kt';
-import checkSanctionsEndpointKt from '!!raw-loader!@site/snippets/testsuite-kotlin/src/test/kotlin/docs/tbdex/issuer/checkSanctionsEndpointKt.snippet.kt';
-import checkSanctionsListsFunctionAndSanctionsListResultClassKt from '!!raw-loader!@site/snippets/testsuite-kotlin/src/test/kotlin/docs/tbdex/issuer/checkSanctionsListsFunctionAndSanctionsListResultClassKt.snippet.kt';
-
 <LanguageSwitcher languages="JavaScript, Kotlin" />
 
 # Credential Issuance
@@ -217,12 +208,12 @@ Let's design a VC that attests that a person isn't on a Sanctions list. You coul
 <Shnip
   snippets={[
     {
-      snippetContent: sanctionsCredentialClass,
+      snippetName: 'sanctionsCredentialClass',
       language: 'JavaScript',
       title: 'sanctionsCredential.js',
     },
     {
-      snippetContent: sanctionsCredentialClassKt,
+      snippetName: 'sanctionsCredentialClassKt',
       language: 'Kotlin',
       title: 'Application.kt',
     },
@@ -246,12 +237,12 @@ If all checks pass, you'll issue them a credential.
 <Shnip
   snippets={[
     {
-      snippetContent: checkSanctionsEndpoint,
+      snippetName: 'checkSanctionsEndpoint',
       language: 'JavaScript',
       title: 'api.js',
     },
     {
-      snippetContent: checkSanctionsEndpointKt,
+      snippetName: 'checkSanctionsEndpointKt',
       language: 'Kotlin',
       title: 'Application.kt',
     },
@@ -282,12 +273,12 @@ In order to run this code, create a <code>checkSanctionsLists()</code> function 
 <Shnip
   snippets={[
     {
-      snippetContent: checkSanctionsListsFunction,
+      snippetName: 'checkSanctionsListsFunction',
       language: 'JavaScript',
       title: 'api.js',
     },
     {
-      snippetContent: checkSanctionsListsFunctionAndSanctionsListResultClassKt,
+      snippetName: 'checkSanctionsListsFunctionAndSanctionsListResultClassKt',
       language: 'Kotlin',
       title: 'Application.kt',
     },

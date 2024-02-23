@@ -4,10 +4,6 @@ title: Onboarding
 hide_title: true
 ---
 
-import pfiOnboardingCreateDidJs from '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/tbdex/pfi/pfiOnboardingCreateDidJs.snippet.js';
-import pfiOnboardingCreateDidKt from '!!raw-loader!@site/snippets/testsuite-kotlin/src/test/kotlin/docs/tbdex/pfi/pfiOnboardingCreateDidKt.snippet.kt';
-import pfiOnboardingImportsKt from '!!raw-loader!@site/snippets/testsuite-kotlin/src/test/kotlin/docs/tbdex/pfi/pfiOnboardingImportsKt.snippet.kt';
-
 <LanguageSwitcher languages="JavaScript, Kotlin" />
 
 # Onboarding
@@ -23,7 +19,7 @@ To create a DID and identify yourself as a PFI, use the `web5/dids` package:
 
 <Shnip snippets={
   [
-    { snippetContent: pfiOnboardingImportsKt, language: 'Kotlin'}
+    { snippetName: 'pfiOnboardingImportsKt', language: 'Kotlin'}
   ]} inlineSnippets={[
     {
       code: `import { DidDhtMethod } from '@web5/dids';`,
@@ -35,8 +31,8 @@ To create a DID and identify yourself as a PFI, use the `web5/dids` package:
 ### Create DID with Service Endpoint
 
 <Shnip snippets={[
-    { snippetContent: pfiOnboardingCreateDidJs, language: 'JavaScript'},
-    { snippetContent: pfiOnboardingCreateDidKt, language: 'Kotlin'}
+    { snippetName: 'pfiOnboardingCreateDidJs', language: 'JavaScript'},
+    { snippetName: 'pfiOnboardingCreateDidKt', language: 'Kotlin'}
   ]} />
 
 :::note Notes

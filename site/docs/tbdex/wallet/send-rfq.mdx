@@ -4,17 +4,6 @@ hide_title: true
 sidebar_position: 7
 ---
 
-import skeletonRfqMessageJS from '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/tbdex/wallet/skeletonRfqMessageJS.snippet.js'
-import rfqMetadataJS from '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/tbdex/wallet/rfqMetadataJS.snippet.js'
-import createRfqMessageJS from '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/tbdex/wallet/createRfqMessageJS.snippet.js'
-import signRfqMessageJS from '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/tbdex/wallet/signRfqMessageJS.snippet.js'
-import sendRfqMessageJS from '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/tbdex/wallet/sendRfqMessageJS.snippet.js'
-import skeletonRfqMessageKt from '!!raw-loader!@site/snippets/testsuite-kotlin/src/test/kotlin/docs/tbdex/wallet/skeletonRfqMessageKt.snippet.kt'
-import rfqMetadataKt from '!!raw-loader!@site/snippets/testsuite-kotlin/src/test/kotlin/docs/tbdex/wallet/rfqMetadataKt.snippet.kt'
-import createRfqMessageKt from '!!raw-loader!@site/snippets/testsuite-kotlin/src/test/kotlin/docs/tbdex/wallet/createRfqMessageKt.snippet.kt'
-import signRfqMessageKt from '!!raw-loader!@site/snippets/testsuite-kotlin/src/test/kotlin/docs/tbdex/wallet/signRfqMessageKt.snippet.kt'
-import sendRfqMessageKt from '!!raw-loader!@site/snippets/testsuite-kotlin/src/test/kotlin/docs/tbdex/wallet/sendRfqMessageKt.snippet.kt'
-
 <LanguageSwitcher languages="JavaScript, Kotlin" />
 
 # Sending RFQs
@@ -30,8 +19,8 @@ To create the message, call `Rfq.create()` passing metadata and data:
 
 <Shnip
   snippets={[
-    { snippetContent: skeletonRfqMessageJS, language: 'JavaScript' },
-    { snippetContent: skeletonRfqMessageKt, language: 'Kotlin' },
+    { snippetName: 'skeletonRfqMessageJS', language: 'JavaScript' },
+    { snippetName: 'skeletonRfqMessageKt', language: 'Kotlin' },
   ]}
 />
 
@@ -40,8 +29,8 @@ The metadata properties identify the DIDs of the sender (your customer) and the 
 
 <Shnip
   snippets={[
-    { snippetContent: rfqMetadataJS, language: 'JavaScript' },
-    { snippetContent: rfqMetadataKt, language: 'Kotlin' },
+    { snippetName: 'rfqMetadataJS', language: 'JavaScript' },
+    { snippetName: 'rfqMetadataKt', language: 'Kotlin' },
   ]}
 />
 
@@ -56,8 +45,8 @@ The data properties contain the specifics of the transaction, such as the id of 
 
 <Shnip
   snippets={[
-    { snippetContent: createRfqMessageJS, language: 'JavaScript' },
-    { snippetContent: createRfqMessageKt, language: 'Kotlin' },
+    { snippetName: 'createRfqMessageJS', language: 'JavaScript' },
+    { snippetName: 'createRfqMessageKt', language: 'Kotlin' },
   ]}
 />
 
@@ -67,8 +56,8 @@ Signing the RFQ ensures its authenticity. You can do so with the customer's [Por
 
 <Shnip
   snippets={[
-    { snippetContent: signRfqMessageJS, language: 'JavaScript' },
-    { snippetContent: signRfqMessageKt, language: 'Kotlin' },
+    { snippetName: 'signRfqMessageJS', language: 'JavaScript' },
+    { snippetName: 'signRfqMessageKt', language: 'Kotlin' },
   ]}
 />
 
@@ -78,8 +67,8 @@ Use `TbdexHttpClient` to send the RFQ to the PFI, with an optional `replyTo` pro
 
 <Shnip
   snippets={[
-    { snippetContent: sendRfqMessageJS, language: 'JavaScript' },
-    { snippetContent: sendRfqMessageKt, language: 'Kotlin' },
+    { snippetName: 'sendRfqMessageJS', language: 'JavaScript' },
+    { snippetName: 'sendRfqMessageKt', language: 'Kotlin' },
   ]}
 />
 

@@ -4,11 +4,6 @@ hide_title: true
 sidebar_position: 1
 ---
 
-import createDidDht from '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/web5/build/decentralized-identifiers/createDidDht.snippet.js';
-import createDidJwk from '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/web5/build/decentralized-identifiers/createDidJwk.snippet.js'
-import requiredDidImports from '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/web5/build/decentralized-identifiers/requiredDidImports.snippet.js';
-import createDidDhtKt from '!!raw-loader!@site/snippets/testsuite-kotlin/src/test/kotlin/docs/web5/build/decentralizedidentifiers/createDidDhtKt.snippet.kt';
-import createDidJwkKt from '!!raw-loader!@site/snippets/testsuite-kotlin/src/test/kotlin/docs/web5/build/decentralizedidentifiers/createDidJwkKt.snippet.kt'
 import requiredDidImportsKt from '!!raw-loader!@site/snippets/testsuite-kotlin/src/test/kotlin/docs/web5/build/decentralizedidentifiers/requiredDidImportsKt.snippet.kt';
 import createADidDependencyGradle from '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/web5/build/decentralized-identifiers/createADidDependencyGradle.snippet.gradle';
 import createADidDependencyMaven from '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/web5/build/decentralized-identifiers/createADidDependencyMaven.snippet.xml';
@@ -54,8 +49,8 @@ You can create a DID using any of the [Web5-supported DID methods](/docs/web5/le
 
 <Shnip
   snippets={[
-    { snippetContent: requiredDidImports, language: 'JavaScript' },
-    { snippetContent: requiredDidImportsKt, language: 'Kotlin' },
+    { snippetName: 'requiredDidImports', language: 'JavaScript' },
+    { snippetName: 'requiredDidImportsKt', language: 'Kotlin' },
   ]}
 />
 
@@ -66,8 +61,8 @@ The following DID methods are supported:
 
 <Shnip
   snippets={[
-    { snippetContent: createDidDht, language: 'JavaScript' },
-    { snippetContent: createDidDhtKt, language: 'Kotlin' },
+    { snippetName: 'createDidDht', language: 'JavaScript' },
+    { snippetName: 'createDidDhtKt', language: 'Kotlin' },
   ]}
 />
 
@@ -76,8 +71,8 @@ The following DID methods are supported:
 
 <Shnip
   snippets={[
-    { snippetContent: createDidJwk, language: 'JavaScript' },
-    { snippetContent: createDidJwkKt, language: 'Kotlin' },
+    { snippetName: 'createDidJwk', language: 'JavaScript' },
+    { snippetName: 'createDidJwkKt', language: 'Kotlin' },
     ]}
 />
 

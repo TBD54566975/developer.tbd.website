@@ -108,14 +108,18 @@ class CredentialIssuanceTest {
         routing {
             get("/check-sanctions") {
                 try {
-            /***********************************************
-            * Accepts a JWT in the Authorization header 
-            * and parse to get the signer DID
-            ************************************************/
+
+                    /***********************************************
+                    * Accepts a JWT in the Authorization header 
+                    * and parse to get the signer DID
+                    ************************************************/
                     val authHeader = call.request.header("Authorization")
 
                     if (authHeader == null || !authHeader.startsWith("Bearer ")) {
-                        call.respond(HttpStatusCode.Unauthorized, "Authorization header required")
+                        call.respond(
+                            HttpStatusCode.Unauthorized, 
+                            "Authorization header required"
+                        )
                         return@get
                     }
 
@@ -134,9 +138,10 @@ class CredentialIssuanceTest {
                     }
 
                     signerDid?.let { did ->
-            /***********************************************
-            * Perform the sanctions check and get the result
-            ************************************************/
+
+                        /***********************************************
+                        * Perform the sanctions check and get the result
+                        ************************************************/
                         val sanctionsListResult = checkSanctionsList()
 
                         if (sanctionsListResult.isSanctioned) {
@@ -146,9 +151,10 @@ class CredentialIssuanceTest {
                             )
                             return@get
                         }
-            /***********************************************
-            * Create credential
-            ************************************************/  
+
+                        /***********************************************
+                        * Create credential
+                        ************************************************/  
                         val sanctionsCredential = VerifiableCredential.create(
                             type = "SanctionsCredential",
                             issuer = issuerDid.uri.toString(),
@@ -156,9 +162,9 @@ class CredentialIssuanceTest {
                             data = SanctionsCredential(sanctionsListResult.listsCleared)
                         )
 
-            /***********************************************
-            * To secure the VC, you must sign it
-            ************************************************/  
+                        /***********************************************
+                        * To secure the VC, you must sign it
+                        ************************************************/  
                         val credentialToken = sanctionsCredential.sign(issuerDid)
 
                         call.respond(
@@ -173,9 +179,8 @@ class CredentialIssuanceTest {
                     }
 
                 } catch (e: Exception) {
-                    println("An unexpected error occurred: ${e.message}")
-                    call.respond(
-                        // Generic error handling
+                    // Generic error handling
+                    call.respond(                        
                         HttpStatusCode.InternalServerError, 
                         "An unexpected error occurred: ${e.message}"
                     )
