@@ -103,35 +103,63 @@ internal class PresentationExchangeTest {
   fun `getLoanAppPresentationDefinitionKt `() {
     // :snippet-start: getLoanAppPresentationDefinitionKt
     val presentationDefinition = PresentationDefinitionV2(
-        id = "presDefIdloanAppVerification123",
-        name = "Loan Application Employment Verification",
-        purpose = "To verify applicant’s employment, date of birth, and name",
-        inputDescriptors = listOf(
-            // Employment Verification
-            InputDescriptorV2(
-                id = "employmentVerification",
-                purpose = "Confirm current employment status",
-                constraints = ConstraintsV2(
-                    fields = listOf(FieldV2(path = listOf("$.vc.credentialSubject.employmentStatus")))
-                )
-            ),
-            // Date of Birth Verification
-            InputDescriptorV2(
-                id = "dobVerification",
-                purpose = "Confirm the applicant’s date of birth",
-                constraints = ConstraintsV2(
-                    fields = listOf(FieldV2(path = listOf("$.vc.credentialSubject.dateOfBirth")))
-                )
-            ),
-            // Name Verification
-            InputDescriptorV2(
-                id = "nameVerification",
-                purpose = "Confirm the applicant’s legal name",
-                constraints = ConstraintsV2(
-                    fields = listOf(FieldV2(path = listOf("$.vc.credentialSubject.name")))
-                )
-            )
+      id = "presDefIdloanAppVerification123",
+      name = "Loan Application Employment Verification",
+      purpose = "To verify applicant’s employment, date of birth, and name",
+      inputDescriptors = listOf(
+        InputDescriptorV2(
+          id = "employmentVerification",
+          purpose = "Confirm current employment status",
+          constraints = ConstraintsV2(
+            fields = listOf(FieldV2(
+              path = listOf("$.vc.credentialSubject.employmentStatus"),
+              filterJson = ObjectMapper().readTree(
+                """
+                    {
+                        "type": "string",
+                        "pattern": "employed"
+                    }
+                    """
+              )
+            ))
+          )
+        ),
+        // Date of Birth Verification
+        InputDescriptorV2(
+          id = "dobVerification",
+          purpose = "Confirm the applicant's date of birth",
+          constraints = ConstraintsV2(
+            fields = listOf(FieldV2(
+              path = listOf("$.vc.credentialSubject.dateOfBirth"),
+              filterJson = ObjectMapper().readTree(
+                """
+                    {
+                        "type": "string",
+                        "format": "date"
+                    }
+                    """
+              )
+            ))
+          )
+        ),
+        // Name Verification
+        InputDescriptorV2(
+          id = "nameVerification",
+          purpose = "Confirm the applicant’s legal name",
+          constraints = ConstraintsV2(
+            fields = listOf(FieldV2(
+              path = listOf("$.vc.credentialSubject.name"),
+              filterJson = ObjectMapper().readTree(
+                """
+                    {
+                        "type": "string"
+                    }
+                    """
+              )
+            ))
+          )
         )
+      )
     )
     // :snippet-end:
 
