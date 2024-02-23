@@ -18,12 +18,14 @@ describe('PFI: Quotes', () => {
   beforeAll(async () => {
     // Set up providers and DID
     pfiDid = await DidDht.create({
+      options:{
         publish: true,
         services: [{
             id: 'pfi',
             type: 'PFI',
-            serviceEndpoint: 'https://example.com/service'
+            serviceEndpoint: 'https://example.com/'
         }]
+      }
     });
 
     senderDid = await DidDht.create({
