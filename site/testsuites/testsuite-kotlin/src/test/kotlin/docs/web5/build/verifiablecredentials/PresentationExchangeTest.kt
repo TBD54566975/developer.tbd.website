@@ -115,11 +115,11 @@ internal class PresentationExchangeTest {
               path = listOf("$.vc.credentialSubject.employmentStatus"),
               filterJson = ObjectMapper().readTree(
                 """
-                    {
-                        "type": "string",
-                        "pattern": "employed"
-                    }
-                    """
+                  {
+                      "type": "string",
+                      "pattern": "employed"
+                  }
+                 """
               )
             ))
           )
@@ -133,11 +133,11 @@ internal class PresentationExchangeTest {
               path = listOf("$.vc.credentialSubject.dateOfBirth"),
               filterJson = ObjectMapper().readTree(
                 """
-                    {
-                        "type": "string",
-                        "format": "date"
-                    }
-                    """
+                  {
+                      "type": "string",
+                      "format": "date"
+                  }
+                 """
               )
             ))
           )
@@ -151,10 +151,10 @@ internal class PresentationExchangeTest {
               path = listOf("$.vc.credentialSubject.name"),
               filterJson = ObjectMapper().readTree(
                 """
-                    {
-                        "type": "string"
-                    }
-                    """
+                  {
+                      "type": "string"
+                  }
+                 """
               )
             ))
           )
