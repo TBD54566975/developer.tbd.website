@@ -26,7 +26,9 @@ describe('PFI: Quotes', () => {
         }]
     });
 
-    senderDid = await DidDht.create({ publish: true });
+    senderDid = await DidDht.create({
+      options: { publish: true }
+    })
     
     offeringsApiProvider = new OfferingsApiProvider(pfiDid);
     exchangesApiProvider = new ExchangesApiProvider();
