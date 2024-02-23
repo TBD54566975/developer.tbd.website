@@ -12,7 +12,7 @@
     "serve": "docusaurus serve",
     "write-translations": "docusaurus write-translations",
     "write-heading-ids": "docusaurus write-heading-ids",
-    "shnip": "node ../shnippet/src/cli"
+    "shnip": "pnpm shnip clear && pnpm shnip"
   },
   "dependencies": {
     "@docusaurus/core": "2.4.1",
