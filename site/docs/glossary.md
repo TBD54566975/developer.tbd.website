@@ -4,7 +4,7 @@
 
 An agent is software that acts on behalf of a user to manage identity, public or private data, and interactions with other apps in a decentralized network. Agents hold a user's [DIDs](#decentralized-identifier-did), private keys, and a [DWN](#decentralized-web-node-dwn), and are permissioned to use the private keys of DIDs to act on a user's behalf to sign and store messages within a DWN.
 
-[<< More on Agents >>](/docs/web5/learn/agents)
+[\<\< More on Agents \>\>](/docs/web5/learn/agents)
 
 ## Centralized Authority
 
@@ -14,19 +14,19 @@ A single entity or organization that has control over the network and its operat
 
 A Decentralized Identifier (DID) is a globally unique identifier that enables verifiable, decentralized digital identity, without the need for centralized intermediaries. DIDs are typically implemented using decentralized and distributed ledger technologies, such as blockchain, and provide a way to verify and authenticate digital identities, while ensuring privacy and control over personal data.
 
-[<< More on DIDs >>](/docs/web5/learn/decentralized-identifiers/)
+[\<\< More on DIDs \>\>](/docs/web5/learn/decentralized-identifiers/)
 
 ## Decentralized Web Node (DWN)
 
 A Decentralized Web Node is a personal data store in a decentralized network that stores and shares information, serves as a communication channel, and executes transactions in a distributed manner, without relying on a centralized server, thereby enhancing security, privacy, and resilience of the network.
 
-[<< More on DWNs >>](/docs/web5/learn/decentralized-web-nodes)
+[\<\< More on DWNs \>\>](/docs/web5/learn/decentralized-web-nodes)
 
 ## DID Document
 
 A JSON document containing details about a DID, including the DID itself, represented by an `id` field, as well as other data related to the verification and authentication methods of the DID.
 
-[<< More on DID Documents >>](/docs/web5/learn/did_document)
+[\<\< More on DID Documents \>\>](/docs/web5/learn/did_document)
 
 ## DID Method
 
@@ -67,4 +67,4 @@ SSI refers to a concept where individuals have full control and ownership over t
 
 A Verifiable Presentation is a standard data container that serves as an authenticated wrapper around a set of credentials to be verified. They impose no constraints on who can construct them or what may be presented, allowing you to present multiple VCs issued to different DIDs.
 
-[<< More on Verifiable Presentation >>](/docs/web5/build/verifiable-credentials/presentation-exchange/#verifiable-presentation)
+[\<\< More on Verifiable Presentation \>\>](/docs/web5/build/verifiable-credentials/presentation-exchange/#verifiable-presentation)
