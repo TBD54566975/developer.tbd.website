@@ -13,8 +13,8 @@ open class MockOfferingsApiProvider: OfferingsApi {
     // Implementation of interface
     //---------------------------------------------------------------------------//
 
-    override fun getOffering(id: String): Offering {
-        val result = dataProvider.get("offering", id ?: "")
+    override fun getOffering(id: TypeId): Offering {
+        val result = dataProvider.get("offering", id.toString() ?: "")
         return Offering.parse(result as String)
     }
 
@@ -34,8 +34,8 @@ open class MockOfferingsApiProvider: OfferingsApi {
     // Setup Methods
     //---------------------------------------------------------------------------//
 
-    fun setOffering(id: String, pfiDid: String) {
-        dataProvider.setupGet("offering", id) {
+    fun setOffering(id: TypeId, pfiDid: String) {
+        dataProvider.setupGet("offering", id.toString()) {
             TestData.getOffering(pfiDid, TestData.getPresentationDefinition())
         }
     }

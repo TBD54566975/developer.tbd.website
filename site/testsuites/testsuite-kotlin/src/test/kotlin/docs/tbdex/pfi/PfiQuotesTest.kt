@@ -1,4 +1,4 @@
-package website.tbd.developer.site.docs.tbdex
+package website.tbd.developer.site.docs.tbdex.pfi
 
 import tbdex.sdk.protocol.models.Rfq
 import tbdex.sdk.protocol.models.Quote
@@ -55,7 +55,7 @@ class PfiQuotesTest {
     @Test
     fun `PFI verifies offering requirements and should not throw an error`() {
         dataProvider.setupInsert("exchange", "") { arrayOf<Any>() }
-        offeringsApiProvider.setOffering(message.metadata.id.toString(), pfiDid.uri)
+        offeringsApiProvider.setOffering(message.metadata.id, pfiDid.uri)
 
         // :snippet-start: pfiCreateOfferingKt
         // Write the message to your exchanges database
@@ -69,7 +69,7 @@ class PfiQuotesTest {
 
         dataProvider.insert("exchange", data)
         //highlight-start
-        val offering = offeringsApiProvider.getOffering(message.metadata.id.toString())
+        val offering = offeringsApiProvider.getOffering(message.metadata.id)
         //highlight-end
         // :snippet-end:
 
