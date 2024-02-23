@@ -4,7 +4,7 @@ sidebar_position: 6
 
 # Offerings
 
-Offerings describe a currency pair that can be exchanged and specify the requirements, conditions, and constraints needed to fulfill the described transaction. 
+Offerings describe a currency pair that can be exchanged and specify the requirements, conditions, and constraints needed to fulfill the described transaction.
 In other words, an Offering is a way of describing a financial product you’re offering as a PFI on a tbDEX network. Any Wallet that has your PFI's DID will be able to query your PFI for all available Offerings, as well as fetch specific Offerings. Wallets will then use that data to make an Request for Quote (RFQ) to your PFI to begin a potential transaction process.
 
 ## Offering Data Schema
@@ -22,52 +22,40 @@ To define these parameters, you’ll create a JSON object per the [Offering sche
 
 <table>
   <tr>
-   <td><strong>Offering Trait</strong>
+   <td>
+     <strong>Offering Trait</strong>
    </td>
-   <td><strong>tbDEX Field</strong>
+   <td>
+     <strong>tbDEX Field</strong>
    </td>
-   <td><strong>Data Type</strong>
-   </td>
-  </tr>
-  <tr>
-   <td>Currency Pairing for swap
-   </td>
-   <td>payinCurrency and payoutCurrency
-   </td>
-   <td>CurrencyDetails
+   <td>
+     <strong>Data Type</strong>
    </td>
   </tr>
   <tr>
-   <td>Pay-in Method
-   </td>
-   <td>payinMethods
-   </td>
-   <td>PaymentMethod[]
-   </td>
+   <td>Currency Pairing for swap</td>
+   <td>payinCurrency and payoutCurrency</td>
+   <td>CurrencyDetails</td>
   </tr>
   <tr>
-   <td>Pay-out Method
-   </td>
-   <td>payoutMethods
-   </td>
-   <td>PaymentMethods[]
-   </td>
+   <td>Pay-in Method</td>
+   <td>payinMethods</td>
+   <td>PaymentMethod[]</td>
   </tr>
   <tr>
-   <td>Pay-out Conversion
-   </td>
-   <td>payoutUnitsPerPayinUnit
-   </td>
-   <td>string
-   </td>
+   <td>Pay-out Method</td>
+   <td>payoutMethods</td>
+   <td>PaymentMethods[]</td>
   </tr>
   <tr>
-   <td>Required Credentials
-   </td>
-   <td>requiredClaims
-   </td>
-   <td>PresentationDefinitionV2
-   </td>
+   <td>Pay-out Conversion</td>
+   <td>payoutUnitsPerPayinUnit</td>
+   <td>string</td>
+  </tr>
+  <tr>
+   <td>Required Credentials</td>
+   <td>requiredClaims</td>
+   <td>PresentationDefinitionV2</td>
   </tr>
 </table>
 
@@ -118,13 +106,13 @@ Note that while `type` and `description` fields are more intuitive and standard 
 
 ### Required Claims
 
-In order to comply with certain financial regulations, you may require information about the customer you are transacting with. 
-You can obtain this information via [Verifiable Credentials](/docs/web5/learn/verifiable-credentials). 
+In order to comply with certain financial regulations, you may require information about the customer you are transacting with.
+You can obtain this information via [Verifiable Credentials](/docs/web5/learn/verifiable-credentials).
 
-To specify the exact credentials you need, you can do so in the `requiredClaims` section of your Offering by following [creating a Presentation Definition](/docs/web5/build/verifiable-credentials/presentation-definition/). 
+To specify the exact credentials you need, you can do so in the `requiredClaims` section of your Offering by following [creating a Presentation Definition](/docs/web5/build/verifiable-credentials/presentation-definition/).
 You'll specify all required forms and details of proof, optional selection rules, and define flexibility where possible when different types of input may satisfy the requirements.
 
-For a full breakdown of all the available fields and combinations, [see the DIF website](https://identity.foundation/presentation-exchange/#presentation-definition) for details. 
+For a full breakdown of all the available fields and combinations, [see the DIF website](https://identity.foundation/presentation-exchange/#presentation-definition) for details.
 Below is a example of how you could request a Wallet provide a VC of type **SanctionsCredential**:
 
 ```json

@@ -51,6 +51,9 @@ $> npm --version
 9.5.1
 ```
 
+Note: if you already have `node` `v18.16.0` installed, you can switch to use it using `nvm use`; this will automatically 
+set your `node` version to the one defined in `.nvmrc` in the root of this repo.
+
 ### PNPM Installation
 
 To install `pnpm` globally on your local machine, follow these steps:
