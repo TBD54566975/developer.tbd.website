@@ -4,10 +4,8 @@ title: Required SDKs
 hide_title: true
 ---
 
-import walletSdkInstallJs from '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/tbdex/wallet/walletSdkInstallJs.snippet.bash'
 import walletSdkInstallGradle from '!!raw-loader!@site/snippets/testsuite-kotlin/src/test/kotlin/docs/tbdex/wallet/walletSdkInstallGradle.snippet.gradle'
 import walletSdkInstallPom from '!!raw-loader!@site/snippets/testsuite-kotlin/src/test/kotlin/docs/tbdex/wallet/walletSdkInstallPom.snippet.xml'
-import walletSdkImportJs from '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/tbdex/wallet/walletSdkImportJs.snippet.js'
 
 <LanguageSwitcher languages="JavaScript, Kotlin" />
 
@@ -24,11 +22,8 @@ To implement and operate as a Wallet on a tbDEX network, you’ll need to use th
 
 ## Install SDKs
 
-<Shnip snippets={
-  [
-    { snippetContent: walletSdkInstallJs, language: 'JavaScript', codeLanguage: 'bash'},
-    {
-      language: 'Kotlin',
+<Shnip snippets={[
+    { 
       nestedSnippets:{
           'Gradle': {
             "snippet": walletSdkInstallGradle,
@@ -38,17 +33,27 @@ To implement and operate as a Wallet on a tbDEX network, you’ll need to use th
             "snippet": walletSdkInstallPom,
             "language": 'xml'
           }
-        }
+        },
+        language: 'Kotlin'
     }
-  ]
-} />
+  ]}
+  inlineSnippets={[
+  {
+code: `npm i @web5/dids 
+npm i @web5/credentials 
+npm i @tbdex/http-client`,
+language: 'JavaScript',
+codeLanguage: 'bash'
+  },
+  ]}
+/>
 
 ## Import Classes
 
 To send and receive tbDEX messages, import the following classes:
 
 <Shnip snippets={[
-    { snippetContent: walletSdkImportJs, language: 'JavaScript'},
+    { snippetName: 'walletSdkImportJs', language: 'JavaScript'},
   ]}
   inlineSnippets={[
     {
