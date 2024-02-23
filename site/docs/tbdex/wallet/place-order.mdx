@@ -4,17 +4,6 @@ hide_title: true
 sidebar_position: 9
 ---
 
-import createOrderJS from '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/tbdex/wallet/createOrderJS.snippet.js'
-import signOrderJS from '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/tbdex/wallet/signOrderJS.snippet.js'
-import sendOrderJS from '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/tbdex/wallet/sendOrderJS.snippet.js'
-import listenForOrderStatusJS from '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/tbdex/wallet/listenForOrderStatusJS.snippet.js'
-import getCloseReasonJS from '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/tbdex/wallet/getCloseReasonJS.snippet.js'
-import createOrderKt from '!!raw-loader!@site/snippets/testsuite-kotlin/src/test/kotlin/docs/tbdex/wallet/createOrderKt.snippet.kt'
-import signOrderKt from '!!raw-loader!@site/snippets/testsuite-kotlin/src/test/kotlin/docs/tbdex/wallet/signOrderKt.snippet.kt'
-import sendOrderKt from '!!raw-loader!@site/snippets/testsuite-kotlin/src/test/kotlin/docs/tbdex/wallet/sendOrderKt.snippet.kt'
-import listenForOrderStatusKt from '!!raw-loader!@site/snippets/testsuite-kotlin/src/test/kotlin/docs/tbdex/wallet/listenForOrderStatusKt.snippet.kt'
-import getCloseReasonKt from '!!raw-loader!@site/snippets/testsuite-kotlin/src/test/kotlin/docs/tbdex/wallet/getCloseReasonKt.snippet.kt'
-
 <LanguageSwitcher languages="JavaScript, Kotlin" />
 
 # Placing Orders
@@ -23,15 +12,14 @@ Once the PFI writes a [Quote](/docs/tbdex/wallet/receive-quote) message to the e
 
 If the customer chooses to place the order, your application will create an Order object, send it to the PFI, listen for status updates, and wait until the order is closed.
 
-
 ## Create Order Object
 To place an Order in response to a Quote, the first step is to create the `Order` object. 
 This instantiates a new Order, including metadata such as the customer's DID, the PFI's DID, and the exchange ID obtained from the Quote.
 
 <Shnip
   snippets={[
-    { snippetContent: createOrderJS, language: 'JavaScript' },
-    { snippetContent: createOrderKt, language: 'Kotlin' },
+    { snippetName: 'createOrderJS', language: 'JavaScript' },
+    { snippetName: 'createOrderKt', language: 'Kotlin' },
   ]}
 />
 
@@ -41,8 +29,8 @@ Then sign the Order with the customer's [Portable DID](/docs/web5/build/decentra
 
 <Shnip
   snippets={[
-    { snippetContent: signOrderJS, language: 'JavaScript' },
-    { snippetContent: signOrderKt, language: 'Kotlin' },
+    { snippetName: 'signOrderJS', language: 'JavaScript' },
+    { snippetName: 'signOrderKt', language: 'Kotlin' },
   ]}
 />
 
@@ -52,8 +40,8 @@ This is done using the `TbdexHttpClient.sendMessage` method:
 
 <Shnip
   snippets={[
-    { snippetContent: sendOrderJS, language: 'JavaScript' },
-    { snippetContent: sendOrderKt, language: 'Kotlin' },
+    { snippetName: 'sendOrderJS', language: 'JavaScript' },
+    { snippetName: 'sendOrderKt', language: 'Kotlin' },
   ]}
 />
 
@@ -68,8 +56,8 @@ Otherwise, the PFI will write the `OrderStatus` messages to the exchange to keep
 
 <Shnip
   snippets={[
-    { snippetContent: listenForOrderStatusJS, language: 'JavaScript' },
-    { snippetContent: listenForOrderStatusKt, language: 'Kotlin' },
+    { snippetName: 'listenForOrderStatusJS', language: 'JavaScript' },
+    { snippetName: 'listenForOrderStatusKt', language: 'Kotlin' },
   ]}
 />
 
@@ -102,7 +90,7 @@ When the PFI closes the Order, it's important to check the `reason` on the Close
 
 <Shnip
   snippets={[
-    { snippetContent: getCloseReasonJS, language: 'JavaScript' },
-    { snippetContent: getCloseReasonKt, language: 'Kotlin' },
+    { snippetName: 'getCloseReasonJS', language: 'JavaScript' },
+    { snippetName: 'getCloseReasonKt', language: 'Kotlin' },
   ]}
 />
