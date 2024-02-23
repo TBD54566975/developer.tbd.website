@@ -8,8 +8,8 @@ import tbdex.sdk.httpserver.models.*
 class OfferingsApiProvider: MockOfferingsApiProvider() {
 
     // :snippet-start: pfiOverviewReadOfferingsKt
-    override fun getOffering(id: String): Offering {
-        val result = dataProvider.get("offering", id ?: "")
+    override fun getOffering(id: TypeId): Offering {
+        val result = dataProvider.get("offering", id.toString() ?: "")
         return result as Offering
     }
 
