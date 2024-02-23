@@ -7,7 +7,7 @@ const ChatSearch = () => {
   const [data, setData] = useState('.. and press ENTER to ask a question on web5, how to write code and more.');
   const [query, setQuery] = useState('');
   const [placeholder, setPlaceholder] = useState("Type your question here.");
-  let eventSource = null; 
+  let eventSource = null;
 
   const placeholders = [
     "how do I add web5 to my nodejs app?",
@@ -20,7 +20,7 @@ const ChatSearch = () => {
   // Effect for setting isOpen on URL hash
   useEffect(() => {
     function checkHash() {
-      setIsOpen(window.location.hash === '#search');
+      setIsOpen(window.location.hash === '#ask');
     }
 
     // Check the hash on component mount
@@ -54,7 +54,7 @@ const ChatSearch = () => {
         // replace event.data instances of |CR| with \n
         let d = event.data.replaceAll("|CR|", "\n");
         setData((prevData) => prevData == "Asking... 🚀"? d : prevData + d);
-        
+
       };
 
       // The error event is fired when there is an error with the connection
@@ -64,8 +64,8 @@ const ChatSearch = () => {
       };
 
       // Cleanup on unmount: close the connection
-      return () => eventSource && eventSource.close();    
-    }    
+      return () => eventSource && eventSource.close();
+    }
 
 
     const placeholderInterval = setInterval(() => {
@@ -92,7 +92,7 @@ const ChatSearch = () => {
     }
   }
 
-  
+
   function CodeBlock(props) {
     return (
       <pre style={{backgroundColor: "#f0f0f0", padding: "1em", border: "1px solid #ccc", color: '#333'}}>
@@ -103,18 +103,18 @@ const ChatSearch = () => {
     );
   }
 
-  return (    
+  return (
     <div>
       <div className={`fixed width right-0 top-0 h-screen bg-primary-yellow text-primary-black transition-transform duration-200 ease-in-out transform ${isOpen ? 'translate-x-0' : 'translate-x-full'} z-[9999999] overflow-y-auto w-full md:w-1/2 lg:w-1/3`}>
         <div className="p-4">
           <div className="flex justify-end my-4">
             <button onClick={handleClose} className="w-[fit-content] px-[1.375rem] mb-2 mr-2 button-text border-solid pt-[12px] pb-[14px] border-2 hover:translate-x-[4px] hover:translate-y-[4px] bg-primary-yellow dark:bg-transparent text-primary-black shadow-button-sh border-primary-black hover:shadow-button-sh-hv  dark:shadow-button-sh-cyan dark:border-accent-cyan dark:hover:shadow-button-sh-hv-cyan dark:text-accent-cyan">Close</button>
           </div>
-        
+
           <label htmlFor="chatgpt-search" className='text-2xl font-bold'>Ask Me Anything: </label>
           <textarea id="chatgpt-search" onKeyDown={handleKeyDown} onKeyUp={handleKeyUp} placeholder={placeholder} className="w-full px-4 py-2 my-4 rounded bg-white" rows={1}/>
           <ReactMarkdown
-                className="search-widget" 
+                className="search-widget"
                 children={padNewlines(data)}
                 components={{
                 code({node, inline, className, children, ...props}) {

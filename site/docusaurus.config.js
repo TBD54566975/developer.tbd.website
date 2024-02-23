@@ -2,8 +2,8 @@
 // Note: type annotations allow type checking and IDEs autocompletion
 
 require('dotenv').config();
-const lightCodeTheme = require('prism-react-renderer/themes/github');
-const darkCodeTheme = require('prism-react-renderer/themes/dracula');
+const lightCodeTheme = require('prism-react-renderer').themes.github;
+const darkCodeTheme = require('prism-react-renderer').themes.dracula;
 const WEB5_VERSION = require('../package.json').dependencies['@web5/api'];
 
 const algoliaApiKey = process.env.DOC_SEARCH_API_KEY;
@@ -187,7 +187,7 @@ let config = {
             position: 'left',
           },
           {
-            to: '#search',
+            to: '#ask',
             label: 'Ask 🤖',
           },
           // {
