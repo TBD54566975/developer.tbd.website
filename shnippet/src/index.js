@@ -82,11 +82,13 @@ class SnippetExtractor {
 
       if (this.prependBlocks[snippetName]) {
         const importsToPrepend = this.prependBlocks[snippetName]
-          .map((block) => block.trimEnd())
-          .join("\n")
-          .replace(/\/\/\s*$/, ""); // Remove trailing // if present
+          .map((block) => block.trimEnd().replace(/\/\/\s*$/, ""))
+          .join("");
 
-        snippetContent = `${importsToPrepend}\n${snippetContent}`;
+        const finalImports =
+          importsToPrepend.length > 0 ? `${importsToPrepend}\n` : "";
+
+        snippetContent = `${finalImports}${snippetContent}`;
       }
 
       if (snippetName) {
