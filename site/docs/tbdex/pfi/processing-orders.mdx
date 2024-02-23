@@ -4,11 +4,6 @@ sidebar_position: 9
 hide_title: true
 ---
 
-import pfiOrdersStatusJs from '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/tbdex/pfi/pfiOrderStatusJs.snippet.js'
-import pfiOrdersStatusKt from '!!raw-loader!@site/snippets/testsuite-kotlin/src/test/kotlin/docs/tbdex/pfi/pfiOrderStatusKt.snippet.kt'
-import pfiCloseOrderJs from '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/tbdex/pfi/pfiCloseOrderJs.snippet.js'
-import pfiCloseOrderKt from '!!raw-loader!@site/snippets/testsuite-kotlin/src/test/kotlin/docs/tbdex/pfi/pfiCloseOrderKt.snippet.kt'
-
 <LanguageSwitcher languages="JavaScript, Kotlin"/>
 
 # Processing Orders
@@ -22,8 +17,8 @@ Upon storing the `Order` message, you will want to create an initial <LanguageSw
 
 <Shnip snippets={
   [
-    { snippetContent: pfiOrdersStatusJs, language: 'JavaScript'},
-    { snippetContent: pfiOrdersStatusKt, language: 'Kotlin'}
+    { snippetName: 'pfiOrderStatusJs', language: 'JavaScript'},
+    { snippetName: 'pfiOrderStatusKt', language: 'Kotlin'}
   ]} />
 
 If the Wallet Application supplied a `replyTo` address, you'll send the `OrderStatus` message there.
@@ -49,8 +44,8 @@ When the `Order` has reached a terminal state (e.g. order fulfilled, order rejec
 
 <Shnip snippets={
   [
-    { snippetContent: pfiCloseOrderJs, language: 'JavaScript'},
-    { snippetContent: pfiCloseOrderKt, language: 'Kotlin'}
+    { snippetName: 'pfiCloseOrderJs', language: 'JavaScript'},
+    { snippetName: 'pfiCloseOrderKt', language: 'Kotlin'}
   ]} />
 
 After writing the `Close` message to your database, the Wallet will be able to know that their transaction has closed via polling or callback.
