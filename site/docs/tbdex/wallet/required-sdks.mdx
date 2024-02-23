@@ -22,11 +22,8 @@ To implement and operate as a Wallet on a tbDEX network, you’ll need to use th
 
 ## Install SDKs
 
-<Shnip snippets={
-  [
-    { snippetName: 'walletSdkInstallJs', language: 'JavaScript', codeLanguage: 'bash'},
-    {
-      language: 'Kotlin',
+<Shnip snippets={[
+    { 
       nestedSnippets:{
           'Gradle': {
             "snippet": walletSdkInstallGradle,
@@ -36,10 +33,20 @@ To implement and operate as a Wallet on a tbDEX network, you’ll need to use th
             "snippet": walletSdkInstallPom,
             "language": 'xml'
           }
-        }
+        },
+        language: 'Kotlin'
     }
-  ]
-} />
+  ]}
+  inlineSnippets={[
+  {
+code: `npm i @web5/dids 
+npm i @web5/credentials 
+npm i @tbdex/http-client`,
+language: 'JavaScript',
+codeLanguage: 'bash'
+  },
+  ]}
+/>
 
 ## Import Classes
 
