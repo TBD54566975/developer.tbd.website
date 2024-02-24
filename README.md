@@ -111,6 +111,8 @@ It can be installed from the root of this repo:
 developer.tbd.website $> pnpm playwright install --with-deps
 ```
 
+Note: Running `pnpm i` is first required before running the playwright install command above.
+
 This is required when running the tests, for instance via `pnpm test`.
 
 Note: At time of this writing, Playwright is [not supported on Fedora systems](https://github.com/microsoft/playwright/issues/29559).
