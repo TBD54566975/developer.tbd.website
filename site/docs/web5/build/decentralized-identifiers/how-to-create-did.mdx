@@ -9,7 +9,7 @@ import createADidDependencyGradle from '!!raw-loader!@site/snippets/testsuite-ja
 import createADidDependencyMaven from '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/web5/build/decentralized-identifiers/createADidDependencyMaven.snippet.xml';
 import createADidDependency from '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/web5/build/decentralized-identifiers/createADidDependency.snippet.bash';
 
-<LanguageSwitcher languages="JavaScript, Kotlin" />
+<LanguageSwitcher languages="JavaScript, Kotlin, Java" />
 
 # Create a DID
 
@@ -34,7 +34,20 @@ You can create a DID using any of the [Web5-supported DID methods](/docs/web5/le
       nestedSnippets: {
         Gradle: {
           snippet: createADidDependencyGradle,
-          language: 'js',
+          language: 'kt',
+        },
+        Maven: {
+          snippet: createADidDependencyMaven,
+          language: 'xml',
+        },
+      },
+    },
+    {
+      language: 'Java',
+      nestedSnippets: {
+        Gradle: {
+          snippet: createADidDependencyGradle,
+          language: 'kt',
         },
         Maven: {
           snippet: createADidDependencyMaven,
@@ -63,6 +76,7 @@ The following DID methods are supported:
   snippets={[
     { snippetName: 'createDidDht', language: 'JavaScript' },
     { snippetName: 'createDidDhtKt', language: 'Kotlin' },
+    { snippetName: 'createDidDhtJava', language: 'Java' },
   ]}
 />
 
@@ -73,6 +87,7 @@ The following DID methods are supported:
   snippets={[
     { snippetName: 'createDidJwk', language: 'JavaScript' },
     { snippetName: 'createDidJwkKt', language: 'Kotlin' },
+    { snippetName: 'createDidJwkJava', language: 'Java' },
     ]}
 />
 

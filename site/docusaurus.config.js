@@ -256,7 +256,8 @@ let config = {
             },
           ],
         },
-        additionalLanguages: ['kotlin', 'swift', 'dart', 'rust'],
+        // Must add Scala here to work around a Redoc bug: https://github.com/facebook/docusaurus/issues/7209
+        additionalLanguages: ['kotlin', 'swift', 'dart', 'rust', 'java', 'scala'],
       },
     }),
 };

@@ -5,6 +5,7 @@ import codeSnippets from '../../src/util/code-snippets-map.json'; // Import for 
 // Define the language map for the new system
 const languageExtensionMap = {
   javascript: 'js',
+  java: 'java',
   kotlin: 'kt',
   swift: 'swift',
   dart: 'dart',
