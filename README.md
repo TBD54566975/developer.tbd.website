@@ -51,6 +51,9 @@ $> npm --version
 9.5.1
 ```
 
+Note: if you already have `node` `v18.16.0` installed, you can switch to use it using `nvm use`; this will automatically 
+set your `node` version to the one defined in `.nvmrc` in the root of this repo.
+
 ### PNPM Installation
 
 To install `pnpm` globally on your local machine, follow these steps:
@@ -110,6 +113,8 @@ It can be installed from the root of this repo:
 ```shell
 developer.tbd.website $> pnpm playwright install --with-deps
 ```
+
+Note: Running `pnpm i` is first required before running the playwright install command above.
 
 This is required when running the tests, for instance via `pnpm test`.
 
@@ -187,7 +192,9 @@ The following scripts are available for running specific tasks within the monore
 - `pnpm clear`: Runs docusaurus clear
 - `pnpm build`: Runs the production build for the site so it can be hosted by a static web server. The completed build will be in the folder `site/build`.
 - `pnpm test`: Runs the testsuites for the site and all examples, including browser tests. Requires Playwright and Java Development Kit, per installation instructions above.
-- `pnpm test:kotlin`: Runs the Kotlin testsuite only
+- `pnpm test:js`: Runs the JavaScript testsuite only.
+- `pnpm test:js myFile.test.js`: Runs the tests within `myFile.test.js` only.
+- `pnpm test:kotlin`: Runs the Kotlin testsuite only.
 - `pnpm test:rust`: Runs the Rust testsuite. Not included in the `pnpm test` lifecycle yet, only runs directly through this script.
 - `pnpm test:swift`: Runs the Swift testsuite. Not included in the `pnpm test` lifecycle yet, only runs directly through this script.
 

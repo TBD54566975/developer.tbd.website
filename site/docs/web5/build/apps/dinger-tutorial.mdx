@@ -48,7 +48,8 @@ pnpm start:tutorial-dinger-starter
 
 [![Play in CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/TBD54566975/developer.tbd.website/tree/main/examples/tutorials/dinger-starter)
 
-<details><summary>Finished Dinger App</summary>
+<details>
+<summary>Finished Dinger App</summary>
 <p>
 
 If you’d like to skip ahead and see the finished version of this tutorial, you can check out the running app on CodeSandbox.
@@ -151,7 +152,7 @@ And replace it with the following code snippet:
     });
 ```
 ### 🧩 Breaking it down
-- **web5.dwn.protocols.configure():** This function installs the protocol. The protocol needs to be installed because it ensures that both the sender's and recipient's applications (or Decentralized Web Nodes - DWNs) are aligned in terms of communication standards and data formats. 
+- **web5.dwn.protocols.configure():** This function installs the protocol. The protocol needs to be installed because it ensures that both the sender's and recipient's applications (or Decentralized Web Nodes - DWNs) are aligned in terms of communication standards and data formats.
 
 ## Level 5: Query the protocol
 ### 📝 Task
@@ -189,17 +190,17 @@ const { protocols: localProtocol, status: localProtocolStatus } = await queryFor
 console.log({ localProtocol, localProtocolStatus });
 
 if (localProtocolStatus.code !== 200 || localProtocol.length === 0) {
-    
+
   const { protocol, status } = await installProtocolLocally(web5, protocolDefinition);
   console.log("Protocol installed locally", protocol, status);
   const { status: configureRemoteStatus } = await protocol.send(did);
   console.log("Did the protocol install on the remote DWN?", configureRemoteStatus);
-    
+
 } else {
   console.log("Protocol already installed");
 }
 ```
-- **configureProtocol()**: This function is responsible for configuring the protocol in both the local and remote DWNs. It first checks if the protocol is already installed locally. If not, it installs the protocol locally and then attempts to install it on the remote DWN associated with the user's DID. 
+- **configureProtocol()**: This function is responsible for configuring the protocol in both the local and remote DWNs. It first checks if the protocol is already installed locally. If not, it installs the protocol locally and then attempts to install it on the remote DWN associated with the user's DID.
 
 ### 📘 Learn more
 - Learn more about [protocols](https://developer.tbd.website/docs/web5/learn/protocols/).
@@ -391,7 +392,8 @@ Time to test the Dinger app by simulating a conversation between two users by us
 
 After following these steps, you should see a conversation taking place between the two browser sessions!
 
-<details><summary>Not receiving any messages?</summary>
+<details>
+<summary>Not receiving any messages?</summary>
 <a href="https://developer.tbd.website/docs/web5/learn/sync/">Sync</a> intervals occur every two minutes. If you're eager to see immediate updates for testing purposes, you can adjust the sync settings. Update the line:
 
 ```javascript title="src/pages/index.js"

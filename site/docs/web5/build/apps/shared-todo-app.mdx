@@ -50,7 +50,8 @@ pnpm start:tutorial-shared-todo-starter
 
 [![Play in CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/TBD54566975/developer.tbd.website/tree/main/examples/tutorials/shared-todo-starter)
 
-<details><summary>Finished Shared Todo App</summary>
+<details>
+<summary>Finished Shared Todo App</summary>
 <p>
 
 If you’d like to skip ahead and see the finished version of this tutorial, you can check out the running app on CodeSandbox.
@@ -571,7 +572,7 @@ async function toggleTodoComplete(todoItem) {
     const { record } = await web5.dwn.records.read({
         message: {
             filter: {
-                recordId: toggledTodo.id                
+                recordId: toggledTodo.id
             }
         }
     });

@@ -47,15 +47,22 @@
     "express": "4.18.2"
   },
   "devDependencies": {
-    "@vitest/browser": "0.33.0",
-    "@vitest/coverage-istanbul": "0.33.0",
+    "@vitest/browser": "0.34.1",
+    "@vitest/coverage-istanbul": "0.34.1",
     "fake-indexeddb": "4.0.2",
     "glob": "10.3.10",
     "husky": "8.0.3",
     "playwright": "1.39.0",
-    "start-server-and-test": "2.0.2",
-    "vitest": "0.33.0",
+    "start-server-and-test": "2.0.3",
+    "vitest": "0.34.1",
     "webdriverio": "8.13.13",
     "rimraf": "5.0.5"
+  },
+  "pnpm": {
+    "overrides": {
+      "vite": "5.1.4",
+      "nuxt" : "3.10.3",
+      "postcss": "8.4.31"
+    }
   }
 }
