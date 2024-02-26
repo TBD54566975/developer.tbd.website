@@ -5,9 +5,6 @@ sidebar_position: 1
 ---
 
 import requiredDidImportsKt from '!!raw-loader!@site/snippets/testsuite-kotlin/src/test/kotlin/docs/web5/build/decentralizedidentifiers/requiredDidImportsKt.snippet.kt';
-import createADidDependencyGradle from '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/web5/build/decentralized-identifiers/createADidDependencyGradle.snippet.gradle';
-import createADidDependencyMaven from '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/web5/build/decentralized-identifiers/createADidDependencyMaven.snippet.xml';
-import createADidDependency from '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/web5/build/decentralized-identifiers/createADidDependency.snippet.bash';
 
 <LanguageSwitcher languages="JavaScript, Kotlin" />
 
@@ -23,7 +20,7 @@ You can create a DID using any of the [Web5-supported DID methods](/docs/web5/le
 <Shnip
   inlineSnippets={[
     {
-      code: `npm install @web5/dids`,
+      snippetName: 'createADidDependency',
       language: "JavaScript",
       codeLanguage: 'bash'
     }
@@ -33,11 +30,11 @@ You can create a DID using any of the [Web5-supported DID methods](/docs/web5/le
       language: 'Kotlin',
       nestedSnippets: {
         Gradle: {
-          snippet: createADidDependencyGradle,
-          language: 'js',
+          snippetName: 'createADidDependencyGradle',
+          language: 'gradle',
         },
         Maven: {
-          snippet: createADidDependencyMaven,
+          snippetName: 'createADidDependencyMaven',
           language: 'xml',
         },
       },
