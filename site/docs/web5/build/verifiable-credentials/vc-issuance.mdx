@@ -4,6 +4,7 @@ hide_title: true
 sidebar_position: 1
 ---
 
+import vcSdkInstallJs from '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/web5/build/verifiable-credentials/vcSdkInstallJs.snippet.bash'
 import vcSdkInstallGradle from '!!raw-loader!@site/snippets/testsuite-kotlin/src/test/kotlin/docs/web5/build/verifiablecredentials/vcSdkInstallGradle.snippet.gradle'
 import vcSdkInstallPom from '!!raw-loader!@site/snippets/testsuite-kotlin/src/test/kotlin/docs/web5/build/verifiablecredentials/vcSdkInstallPom.snippet.xml'
 
@@ -20,7 +21,7 @@ This guide provides a step-by-step process for issuing a [verifiable credential 
 
 <Shnip
    snippets={[
-    { snippetName: 'vcSdkInstallJs', language: 'JavaScript', codeLanguage: 'bash'},
+    { snippetContent: vcSdkInstallJs, language: 'JavaScript', codeLanguage: 'bash'},
     {
       language: 'Kotlin',
       nestedSnippets:{
