@@ -22,7 +22,7 @@ import web5.sdk.dids.methods.dht.CreateDidDhtOptions
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.*
 
-class PfiQuotesTest {
+class CreatingQuotesTest {
 
     private lateinit var offeringsApiProvider: OfferingsApiProvider
     private lateinit var exchangesApiProvider: ExchangesApiProvider
@@ -39,7 +39,7 @@ class PfiQuotesTest {
         val serviceToAdd = Service.builder()
             .id(URI("pfi"))
             .type("PFI")
-            .serviceEndpoint("tbdex-pfi.tbddev.org")
+            .serviceEndpoint("https://example.com/")
             .build()
 
         val options = CreateDidDhtOptions(
@@ -88,17 +88,22 @@ class PfiQuotesTest {
     @Test
     fun `PFI creates and signs quote`() {
         // :snippet-start: pfiCreateQuoteKt
-        val quoteData = QuoteData(
-            expiresAt = OffsetDateTime.now().plusDays(10),
-            payin = QuoteDetails(currencyCode = "BTC", amount = "1000.0"),
-            payout = QuoteDetails(currencyCode = "KES", amount = "123456789.0")
-        )
-
         val quote = Quote.create(
             to = message.metadata.from,
             from = pfiDid.uri,
             exchangeId = message.metadata.exchangeId,
-            quoteData = quoteData
+            quoteData = QuoteData(
+                //import java.time.OffsetDateTime
+                expiresAt = OffsetDateTime.now().plusDays(10),
+                payin = QuoteDetails(
+                    currencyCode = "BTC", 
+                    amount = "1000.0"
+                ),
+                payout = QuoteDetails(
+                    currencyCode = "KES", 
+                    amount = "123456789.0"
+                )
+            )
         )
         // :snippet-end:
 
@@ -109,7 +114,6 @@ class PfiQuotesTest {
         exchangesApiProvider.write(quote)
         // :snippet-end:
 
-        val signature = quote.verify()
-        assertNotNull(signature)
+        assertNotNull(quote.verify(), "Quote signature is invalid")
     }
 }
