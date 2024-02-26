@@ -11,6 +11,30 @@ class SnippetExtractor {
     this.prependBlocks = {};
   }
 
+  gatherSnippetNames(content) {
+    const snippetStartTag = this.config.snippetTags.start;
+    const snippetEndTag = this.config.snippetTags.end;
+    let startIndex = 0,
+      endIndex = 0;
+
+    this.currentFileSnippetNames = [];
+
+    while ((startIndex = content.indexOf(snippetStartTag, startIndex)) !== -1) {
+      endIndex = content.indexOf(snippetEndTag, startIndex);
+      if (endIndex === -1) break;
+
+      const snippetNameLine = content
+        .substring(
+          startIndex + snippetStartTag.length,
+          content.indexOf('\n', startIndex)
+        )
+        .trim();
+      this.currentFileSnippetNames.push(snippetNameLine);
+
+      startIndex = endIndex + snippetEndTag.length;
+    }
+  }
+
   gatherImports(content) {
     const prependStartTag = this.config.snippetTags.prependStart;
     const prependEndTag = this.config.snippetTags.prependEnd;
@@ -80,6 +104,8 @@ class SnippetExtractor {
       // Normalize indentation and remove trailing comment characters
       snippetContent = this.normalizeIndentation(snippetContent, fileExtension);
 
+      const prependBlockNames = Object.keys(this.prependBlocks);
+
       if (this.prependBlocks[snippetName]) {
         const importsToPrepend = this.prependBlocks[snippetName]
           .map((block) => block.trimEnd().replace(/\/\/\s*$/, ''))
@@ -87,8 +113,15 @@ class SnippetExtractor {
 
         const finalImports =
           importsToPrepend.length > 0 ? `${importsToPrepend}\n` : '';
-
         snippetContent = `${finalImports}${snippetContent}`;
+      } else {
+        prependBlockNames.forEach((name) => {
+          if (!this.currentFileSnippetNames.includes(name)) {
+            throw new Error(
+              `Prepend block reference '${name}' does not match any snippet name in file: ${filePath}`
+            );
+          }
+        });
       }
 
       if (snippetName) {
@@ -141,6 +174,7 @@ class SnippetExtractor {
 
         this.prependBlocks = {};
 
+        this.gatherSnippetNames(content);
         // Gather imports/prepends for the current file
         this.gatherImports(content, fullPath);
 
