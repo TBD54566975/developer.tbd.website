@@ -65,6 +65,7 @@ const Shnip = ({ snippets, inlineSnippets }) => {
                   />
                 ) : (
                   <CodeSnippet
+                    snippetName={snippetContent}
                     snippet={snippetContent}
                     language={(codeLanguage || language).toLowerCase()}
                     title={title}

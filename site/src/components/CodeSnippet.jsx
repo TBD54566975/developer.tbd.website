@@ -10,6 +10,8 @@ const languageExtensionMap = {
   bash: 'bash',
   dart: 'dart',
   go: 'go',
+  gradle: 'gradle',
+  xml: 'xml',
 };
 
 const CodeSnippet = ({
