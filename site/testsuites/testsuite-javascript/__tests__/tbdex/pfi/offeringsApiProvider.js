@@ -1,40 +1,39 @@
 import { MockOfferingsApiProvider } from '../../utils/mockOfferingsApiProvider'
-import { MockDataProvider } from '../../utils/mockDataProvider'
 import { Offering } from '@tbdex/protocol'
 
-export default class OfferingsApiProvider extends MockOfferingsApiProvider {
+export class OfferingsApiProvider extends MockOfferingsApiProvider {
 
     constructor(pfiDid) {
-        this.dataProvider = MockDataProvider()
-        this.pfiDid = pfiDid
+        super();
+        this.pfiDid = pfiDid;
     }
   
     // :snippet-start: pfiOverviewReadOfferingsJs
     async getOffering(id) {
-        this.dataProvider.get('offering', id).then(([result]) => {
-            if (!result) {
-                return undefined
-            }
+        return this.dataProvider.get('offering', id).then((result) => {
             return Offering.create({
-                metadata: { from: this.pfiDid },
-                data: result.offering
-            })
+                metadata: { 
+                    id: id,
+                    from: this.pfiDid.did 
+                },
+                data: result
+            });
         });
     }
   
-    getOfferings() {
-        this.dataProvider.query('offering', "*").then((results) => {
-            const offerings = []
+    async getOfferings() {
+        return this.dataProvider.query('offering', "*").then((results) => {
+            const offerings = [];
       
             for (let result of results) {
                 const offering = Offering.create({
                   metadata: { from: this.pfiDid },
                   data: result.offering
                 })
-                offerings.push(offering)
+                offerings.push(offering);
             }
         
-            return offerings
+            return offerings;
         });
     }
     // :snippet-end:

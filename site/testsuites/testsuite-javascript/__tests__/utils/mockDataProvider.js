@@ -5,13 +5,16 @@ export class MockDataProvider {
 
     // Setup can handle an arbitrary number of parametrs
     setup(methodName, ...args) {
-        // The last argument is expected to be the response
-        const response = args.pop();
-        const paramsKey = JSON.stringify(args); // Serialize parameters for key
+        // Separate the last argument as response
+        const response = args.pop(); // Destructure the last argument as response
+        const params = args;
+    
+        // Serialize parameters for key
+        const paramsKey = params.join('');
         const key = `${methodName}:${paramsKey}`;
-
+    
         this.responses.set(key, response);
-    }
+    }  
 
     // Convenience setup methods
 
@@ -19,17 +22,17 @@ export class MockDataProvider {
         this.setup("insert", args);
     }
 
-    setupGet(...args) {
-        this.setup("insert", args);
+    setupGet(collection, id, response) {
+        this.setup("get", collection, id, response);
     }
 
-    setupQuery(...args) {
-        this.setup("insert", args);
+    setupQuery(collection, query, response) {
+        this.setup("query", collection, query, response);
     }
 
     // Method to find and return the response for the given method and parameters
     async execute(methodName, ...params) {
-        const paramsKey = JSON.stringify(params);
+        const paramsKey = params.join('');
         const key = `${methodName}:${paramsKey}`;
 
         if (this.responses.has(key)) {
@@ -44,14 +47,14 @@ export class MockDataProvider {
     async insert(...params) {
         // input shouldn't matter for insert, we'll always return okay
         // unless we want to throw an error
-        return this.execute('insert', "");
+        return;
     }
 
-    async get(...params) {
-        return this.execute('get', ...params);
+    async get(collection, id) {
+        return this.execute('get', collection, id);
     }
 
-    async query(...params) {
-        return this.execute('query', ...params);
+    async query(collection, query) {
+        return this.execute('query', collection, query);
     }
 }
