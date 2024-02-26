@@ -1,39 +1,54 @@
 package website.tbd.developer.site.docs.web5.build.decentralizedidentifiers;
 
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.Assertions.*
+import org.junit.jupiter.api.Assertions.assertTrue
+import org.junit.jupiter.api.Test
 // :snippet-start: importKeyManagementKt
+import foundation.identity.did.DIDDocument
 import web5.sdk.crypto.AwsKeyManager
 import web5.sdk.crypto.InMemoryKeyManager
-import web5.sdk.crypto.KeyManager
+import web5.sdk.dids.Did
 import web5.sdk.dids.methods.dht.DidDht
 import web5.sdk.dids.methods.dht.DidDhtApi
 // :snippet-end:
 
-internal class KeyManagementTest {
+class KeyManagementTest {
+    
     @Test
     fun `initialize key management`() {
         // :snippet-start: initializeKeyManagementKt
-        fun initKeyManagement(env: String?, didUri: String?, didDhtApi: DidDhtApi?): DidDht {
-        // Determine which key manager to use based on the environment
-        val keyManager: KeyManager = when(env) {
-            "production" -> AwsKeyManager()
-            else -> InMemoryKeyManager()
-        }
+        fun initKeyManagement(
+            env: String,
+            didUri: String? = null,
+            didDocument: DIDDocument? = null,
+            didDhtApi: DidDhtApi? = null
+        ): Did {
+            val keyManager = when (env) {
+                "production" -> AwsKeyManager()
+                else -> InMemoryKeyManager()
+            }
 
-        // Initialize or load a DID
-        val did: DidDht = if (didUri == null) {
-            // Create a new DID
-            DidDht.create(keyManager)
-        } else {
+            // Create new DID
+            if (didUri == null) {
+                return DidDht.create(keyManager)
+            }
+
+            // For loading an existing DID, didDhtApi must be provided
+            if (didDhtApi == null) {
+                throw IllegalArgumentException(
+                    "didDhtApi must be provided when loading an existing DID.")
+            }
+
             // Load existing DID
-            DidDht(uri = didUri, keyManager = keyManager, didDhtApi = didDhtApi)
+            return DidDht(
+                uri = didUri,
+                keyManager = keyManager,
+                didDocument = didDocument,
+                didDhtApi = didDhtApi
+            )
         }
-        return did
-    }
         // :snippet-end:
-
-        val testKeyManagement = initKeyManagement("production", "did:dht:abc123", null)
-        assertNotNull(testKeyManagement, "Key manager should not be null")
+        val returnedDid = initKeyManagement("dev")
+        assertTrue(returnedDid.keyManager is InMemoryKeyManager,
+            "DID should have been created with InMemoryKeyManager")
     }
 }

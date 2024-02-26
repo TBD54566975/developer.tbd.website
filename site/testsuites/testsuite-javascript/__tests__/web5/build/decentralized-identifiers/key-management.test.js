@@ -1,4 +1,4 @@
-import { test, expect, vi, describe, beforeAll } from 'vitest';
+import { test, expect, describe } from 'vitest';
 // :snippet-start: importKeyManagementJs
 import { DidDht } from '@web5/dids';
 import { LocalKeyManager } from "@web5/crypto";
@@ -30,9 +30,10 @@ describe('key-management', () => {
     }
     // :snippet-end:
 
+    
     test('initialize key management', async () => {
-        const myResult = await initKeyManagement("", "did:dht:11ez3qq7gnzsq1gnzgt4d7pjsmmtwxjqaojzts8ee7nixdourcpy");
-        expect(myResult).toBeDefined();
+        const returnedDid = await initKeyManagement("dev");
+        expect(returnedDid.keyManager).toBeInstanceOf(LocalKeyManager);
     });
 
 });
