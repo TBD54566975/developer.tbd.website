@@ -5,7 +5,7 @@ import { DevTools } from '@tbdex/http-client';
 export class MockOfferingsApiProvider {
 
     constructor() {
-        this.dataProvider = MockDataProvider()
+        this.dataProvider = new MockDataProvider()
     }
 
     //---------------------------------------------------------------------------//
@@ -14,9 +14,6 @@ export class MockOfferingsApiProvider {
 
     async getOffering(id) {
         this.dataProvider.get('offering', id).then(([result]) => {
-            if (!result) {
-                return undefined
-            }
             return Offering.create({
                 metadata: { from: this.pfiDid },
                 data: result.offering
@@ -44,14 +41,14 @@ export class MockOfferingsApiProvider {
     // Setup Methods
     //---------------------------------------------------------------------------//
   
-    setOffering(id, offeringData) {
-        this.dataProvider.setupGet("offering", id, () => {
-            return DevTools.createOffering(offeringData)
+    setOffering(id, offering) {
+        this.dataProvider.setupGet('offering', id, () => {
+            return offering
         })
     }
 
     setOfferings(offeringData) {
-        this.dataProvider.setupGet("offering", "*", () => {
+        this.dataProvider.setupGet('offering', "*", () => {
             const offerings = []
             offeringData.forEach(offering => {
                 offerings.push(DevTools.createOffering(offering))
