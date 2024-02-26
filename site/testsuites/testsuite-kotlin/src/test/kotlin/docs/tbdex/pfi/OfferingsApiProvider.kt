@@ -27,12 +27,4 @@ class OfferingsApiProvider: MockOfferingsApiProvider() {
         return offerings
     }
     // :snippet-end:
-
-    // override fun setOffering(id: TypeId, pfiDid: String) {
-    //     super.setOffering(id, pfiDid)
-    // }
-
-    // override fun setOfferings(offeringDids: List<String>) {
-    //     super.setOfferings(offeringDids)
-    // }
 }
