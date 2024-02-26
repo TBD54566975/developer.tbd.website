@@ -7,6 +7,8 @@ const languageExtensionMap = {
   javascript: 'js',
   kotlin: 'kt',
   swift: 'swift',
+  bash: 'bash',
+  gradle: 'gradle',
   dart: 'dart',
   go: 'go',
 };
