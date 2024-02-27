@@ -7,7 +7,7 @@ import { AwsKeyManager } from "@web5/crypto-aws-kms";
 
 describe('key-management', () => {
     // :snippet-start: initializeKeyManagementJs
-    async function initKeyManagement(env, didUri, didDhtApi) {
+    async function initKeyManagement(env, portableDid) {
         // Determine which key manager to use based on the environment
         let keyManager;
         if (env === "production") {
@@ -18,12 +18,12 @@ describe('key-management', () => {
 
         // Initialize or load a DID
         let did;
-        if (didUri == null) {
+        if (portableDid == null) {
             // Create a new DID
             did = await DidDht.create(keyManager);
         } else {
             // Load existing DID
-            did = await DidDht.import({portableDid: didUri, keyManager});
+            did = await DidDht.import({portableDid, keyManager});
         }
 
         return did;
