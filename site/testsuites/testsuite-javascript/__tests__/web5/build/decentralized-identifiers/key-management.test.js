@@ -23,14 +23,14 @@ describe('key-management', () => {
             did = await DidDht.create(keyManager);
         } else {
             // Load existing DID
-            did = await new DidDht(didUri, keyManager, didDhtApi);
+            did = await DidDht.import({portableDid: didUri, keyManager});
         }
 
         return did;
     }
     // :snippet-end:
 
-    
+
     test('initialize key management', async () => {
         const returnedDid = await initKeyManagement("dev");
         expect(returnedDid.keyManager).toBeInstanceOf(LocalKeyManager);
