@@ -57,7 +57,7 @@ describe('PFI: Orders', () => {
             await orderStatus.verifySignature();
             await orderStatus.verify();
         } catch(e) {
-            assert.fail("Failed to verify offering requirements");
+            assert.fail(`Failed to verify offering requirements: : ${e.message}`);
         }
     });
 
@@ -79,8 +79,7 @@ describe('PFI: Orders', () => {
             await closeMessage.verifySignature();
             await closeMessage.verify();
         } catch(e) {
-            console.log(`Failed to verify offering requirements: ${e.message}`);
-            assert.fail("Failed to verify offering requirements");
+            assert.fail(`Failed to verify offering requirements: ${e.message}`);
         }
     });
 });
