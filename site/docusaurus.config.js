@@ -256,7 +256,7 @@ let config = {
             },
           ],
         },
-        additionalLanguages: ['kotlin', 'swift', 'dart', 'rust'],
+        additionalLanguages: ['kotlin', 'swift', 'dart', 'rust', 'bash', 'gradle'],
       },
     }),
 };

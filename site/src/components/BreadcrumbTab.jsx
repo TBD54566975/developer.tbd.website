@@ -32,7 +32,13 @@ const BreadcrumbTab = ({ snippetMappings }) => {
         ))}
       </div>
       <div>
-        {activeTab && <CodeSnippet snippet={snippetMappings[activeTab].snippet} language={snippetMappings[activeTab].language} />}
+        {activeTab && (
+          <CodeSnippet
+            snippet={snippetMappings[activeTab].snippet}
+            snippetName={snippetMappings[activeTab].snippetName}
+            language={snippetMappings[activeTab].language}
+          />
+        )}
       </div>
     </div>
   );

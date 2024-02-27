@@ -7,8 +7,11 @@ const languageExtensionMap = {
   javascript: 'js',
   kotlin: 'kt',
   swift: 'swift',
+  bash: 'bash',
   dart: 'dart',
   go: 'go',
+  gradle: 'gradle',
+  xml: 'xml',
 };
 
 const CodeSnippet = ({
