@@ -4,9 +4,6 @@ title: Required SDKs
 hide_title: true
 ---
 
-import pfiSdkInstallJs from '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/tbdex/pfi/pfiSdkInstallJs.snippet.bash'
-import pfiSdkInstallGradle from '!!raw-loader!@site/snippets/testsuite-kotlin/src/test/kotlin/docs/tbdex/pfi/pfiSdkInstallGradle.snippet.gradle'
-import pfiSdkInstallPom from '!!raw-loader!@site/snippets/testsuite-kotlin/src/test/kotlin/docs/tbdex/pfi/pfiSdkInstallPom.snippet.xml'
 import importJs from '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/tbdex/pfi/pfiSdkImportJs.snippet.js'
 
 <LanguageSwitcher languages="JavaScript, Kotlin" />
@@ -24,16 +21,16 @@ To implement and operate as a PFI, you’ll need to use the following SDKs:
 ## Install SDKs
 
 <Shnip snippets={[
-  { snippetContent: pfiSdkInstallJs, language: 'JavaScript', codeLanguage: 'bash'},
+  { snippetName: 'pfiSdkInstallJs', language: 'JavaScript', codeLanguage: 'bash'},
   {
     language: 'Kotlin',
     nestedSnippets: {
       'Gradle': {
-        "snippet": pfiSdkInstallGradle,
+        "snippetName": 'pfiSdkInstallGradle',
         "language": 'js'
       },
       'Maven': {
-        "snippet": pfiSdkInstallPom,
+        "snippetName": 'pfiSdkInstallPom',
         "language": 'xml'
       }
     }
