@@ -4,8 +4,6 @@ title: Required SDKs
 hide_title: true
 ---
 
-import importJs from '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/tbdex/pfi/pfiSdkImportJs.snippet.js';
-
 <LanguageSwitcher languages="JavaScript, Kotlin" />
 
 # Required SDKs
@@ -48,7 +46,7 @@ To implement and operate as a PFI, you’ll need to use the following SDKs:
 To send and receive tbDEX messages, import the following classes:
 
 <Shnip
-  snippets={[{ snippetContent: importJs, language: 'JavaScript' }]}
+  snippets={[{ snippetName: 'pfiSdkImportJs', language: 'JavaScript' }]}
   inlineSnippets={[
     {
       code: `      import tbdex.sdk.httpserver.TbdexHttpServer
