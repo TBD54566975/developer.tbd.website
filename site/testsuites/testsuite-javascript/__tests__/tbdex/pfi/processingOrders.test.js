@@ -10,7 +10,7 @@ let orderMessage;
 
 describe('PFI: Orders', () => {
     beforeAll(async () => {
-      // Set up providers and DID
+        // Set up providers and DID
         pfiDid = await DidDht.create({
             options:{
                 publish: true,
@@ -23,9 +23,7 @@ describe('PFI: Orders', () => {
         });
 
         senderDid = await DidDht.create({
-            options: {
-                publish: true 
-            }
+            options: { publish: true }
         });
 
         dataProvider = new MockDataProvider();
@@ -53,6 +51,8 @@ describe('PFI: Orders', () => {
         dataProvider.insert(orderStatus)
         // :snippet-end:
 
+        expect.soft(orderStatus.data.orderStatus).toBe('PROCESSING');
+
         try {
             await orderStatus.verifySignature();
             await orderStatus.verify();
@@ -71,9 +71,12 @@ describe('PFI: Orders', () => {
             },
             data: { reason: 'COMPLETED' }
         })
+        
         await closeMessage.sign(pfiDid)
         dataProvider.insert(closeMessage)
         // :snippet-end:
+
+        expect.soft(closeMessage.data.reason).toBe('COMPLETED');
 
         try {
             await closeMessage.verifySignature();
