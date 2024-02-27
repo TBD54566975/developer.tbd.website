@@ -57,7 +57,6 @@ describe('PFI: Orders', () => {
             await orderStatus.verifySignature();
             await orderStatus.verify();
         } catch(e) {
-            console.log(`Failed to verify offering requirements: ${e.message}`);
             assert.fail("Failed to verify offering requirements");
         }
     });
