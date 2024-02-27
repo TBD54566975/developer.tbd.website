@@ -45,7 +45,7 @@ describe('PFI: Quotes', () => {
 
     let mockOfferingData = DevTools.createOfferingData();
     mockOffering = DevTools.createOffering({
-      from: pfiDid.did,
+      from: pfiDid.uri,
       offeringData: mockOfferingData
     })
 
@@ -80,8 +80,8 @@ describe('PFI: Quotes', () => {
 
     const rfq = Rfq.create({
       metadata: {
-        from: pfiDid.did,
-        to: senderDid.did
+        from: pfiDid.uri,
+        to: senderDid.uri
       },
       data: await DevTools.createRfqData({
         sender: senderDid
