@@ -23,14 +23,19 @@ If you need to create a Credential Issuance app from scratch, continue on with t
 
 <LanguageSwitchBlock>
   <div language="Kotlin">
-    * Create a web server using <a href="https://www.jetbrains.com/help/idea/ktor.html#run_ktor_app">Ktor</a> that will serve as an API endpoint.
+    * Create a web server using{' '}
+    <a href="https://www.jetbrains.com/help/idea/ktor.html#run_ktor_app">
+      Ktor
+    </a>{' '}
+    that will serve as an API endpoint.
   </div>
   <div language="JavaScript">
-    * Create a web server using <a href="https://expressjs.com/">Express</a> that will serve as an API endpoint.
+    * Create a web server using <a href="https://expressjs.com/">Express</a>{' '}
+    that will serve as an API endpoint.
   </div>
 </LanguageSwitchBlock>
-* Design the credential you'd like to offer.
-* Implement an issuance path where you'll accept a request for issuance, perform any necessary checks, and issue the credential.
+* Design the credential you'd like to offer. * Implement an issuance path where you'll
+accept a request for issuance, perform any necessary checks, and issue the credential.
 * Return the credential to the requester.
 
 ## Environment Setup
@@ -62,26 +67,24 @@ This example demonstrates how to use Express to set up the VC issuance service. 
 You'll also need to install `@web5/credentials` to create and issue credentials:
 
 <Shnip
-  inlineSnippets={[
+  snippets={[
     {
-      code: `npm install @web5/credentials`,
+      snippetName: 'credentialIssuanceJsPackage',
       language: 'JavaScript',
       codeLanguage: 'bash',
     },
     {
-      code: `// Configure repositories
-repositories {
-  mavenCentral()
-  maven("https://jitpack.io")
-  maven("https://repo.danubetech.com/repository/maven-public/")
-}
-// Configure dependencies
-dependencies {
-  implementation("xyz.block:web5-credentials:0.0.11")
-}`,
       language: 'Kotlin',
-      breakLineAt: [5],
-      title: 'build.gradle.kts',
+      nestedSnippets: {
+        Gradle: {
+          snippetName: 'credentialIssuanceGradlePackage',
+          language: 'gradle',
+        },
+        Maven: {
+          snippetName: 'credentialIssuanceMavenPackage',
+          language: 'xml',
+        },
+      },
     },
   ]}
 />
