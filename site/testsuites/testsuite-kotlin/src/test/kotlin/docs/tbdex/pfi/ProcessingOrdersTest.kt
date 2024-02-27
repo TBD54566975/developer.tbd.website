@@ -17,7 +17,7 @@ import java.net.URI
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.*
 
-class PfiOrdersTest {
+class ProcessingOrdersTest {
 
     private lateinit var dataProvider: MockDataProvider
     private lateinit var pfiDid: DidDht
@@ -67,6 +67,7 @@ class PfiOrdersTest {
         // :snippet-end:
 
         assertNotNull(orderStatus.verify(), "OrderStatus signature is invalid")
+        assertEquals(orderStatus.data.orderStatus, "PROCESSING", "OrderStatus was not correctly set")
     }
 
     

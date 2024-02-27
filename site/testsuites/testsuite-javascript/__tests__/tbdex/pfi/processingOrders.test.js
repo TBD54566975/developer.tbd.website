@@ -1,7 +1,7 @@
 import { Order, OrderStatus, Close } from '@tbdex/http-server'
 import { DidDht } from '@web5/dids';
 import { MockDataProvider } from '../../utils/mockDataProvider'
-import { vi, test, expect, describe, beforeAll } from 'vitest';
+import { vi, test, expect, describe, beforeAll, assert } from 'vitest';
 
 let pfiDid;
 let senderDid;
@@ -39,8 +39,6 @@ describe('PFI: Orders', () => {
     });
 
     test('PFI Creates OrderStatus', async () => {
-        const consoleSpy = vi.spyOn(console, 'log');
-
         // :snippet-start: pfiOrderStatusJs
         const orderStatus = OrderStatus.create({
             metadata: {
@@ -60,14 +58,11 @@ describe('PFI: Orders', () => {
             await orderStatus.verify();
         } catch(e) {
             console.log(`Failed to verify offering requirements: ${e.message}`);
+            assert.fail("Failed to verify offering requirements");
         }
-        expect(consoleSpy).not.toHaveBeenCalled();
-        consoleSpy.mockRestore();
     });
 
     test('PFI Creates Close', async () => {
-        const consoleSpy = vi.spyOn(console, 'log');
-
         // :snippet-start: pfiCloseOrderJs
         const closeMessage = Close.create({
             metadata: { 
@@ -86,8 +81,7 @@ describe('PFI: Orders', () => {
             await closeMessage.verify();
         } catch(e) {
             console.log(`Failed to verify offering requirements: ${e.message}`);
+            assert.fail("Failed to verify offering requirements");
         }
-        expect(consoleSpy).not.toHaveBeenCalled();
-        consoleSpy.mockRestore();
     });
 });
