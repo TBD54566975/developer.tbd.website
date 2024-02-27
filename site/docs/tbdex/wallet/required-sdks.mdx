@@ -4,9 +4,6 @@ title: Required SDKs
 hide_title: true
 ---
 
-import walletSdkInstallGradle from '!!raw-loader!@site/snippets/testsuite-kotlin/src/test/kotlin/docs/tbdex/wallet/walletSdkInstallGradle.snippet.gradle'
-import walletSdkInstallPom from '!!raw-loader!@site/snippets/testsuite-kotlin/src/test/kotlin/docs/tbdex/wallet/walletSdkInstallPom.snippet.xml'
-
 <LanguageSwitcher languages="JavaScript, Kotlin" />
 
 # Required SDKs
@@ -26,11 +23,11 @@ To implement and operate as a Wallet on a tbDEX network, you’ll need to use th
     { 
       nestedSnippets:{
           'Gradle': {
-            "snippet": walletSdkInstallGradle,
-            "language": 'js'
+            "snippetName": 'walletSdkInstallGradle',
+            "language": 'gradle'
           },
           'Maven': {
-            "snippet": walletSdkInstallPom,
+            "snippetName": 'walletSdkInstallPom',
             "language": 'xml'
           }
         },
