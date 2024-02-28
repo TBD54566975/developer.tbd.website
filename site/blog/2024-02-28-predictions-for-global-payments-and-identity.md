@@ -65,7 +65,7 @@ After a few months of working here, I'm playing a part in making this vision pos
 
 ### 1. The Rise of International Payment Apps
 
-TBD's Software Development Kit (SDK) will empower developers and financial institutions to build applications that support frictionless international money transfers. While this feature benefits personal remittances (sending money globally to family and friends), it's equally beneficial for business entities. Examples of entities limited by the challenge of cross-border payments include:
+tbDEX will empower developers and financial institutions to build applications that enable frictionless international money transfers. While this feature benefits personal remittances (sending money globally to family and friends), it's equally beneficial for business entities. Examples of entities limited by the challenge of cross-border payments include:
 
 * Remote work payrolls - Paying remote employees in multiple countries can get complicated because companies have to navigate each country's financial system.
 * Charities - For global charitable organizations, accepting donations can mean high transaction fees and delayed access to funds.
