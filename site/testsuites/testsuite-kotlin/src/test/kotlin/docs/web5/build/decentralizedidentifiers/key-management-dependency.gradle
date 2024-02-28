@@ -1,0 +1,12 @@
+// :snippet-start: keyManagementDependencyGradle
+// Configure repositories
+repositories {
+  mavenCentral()
+  maven("https://repo.danubetech.com/repository/maven-public/")
+}
+// Configure dependencies
+dependencies {
+  implementation("xyz.block:web5-crypto:0.12.0")
+  implementation("xyz.block:web5-dids:0.12.0")
+}
+// :snippet-end:
