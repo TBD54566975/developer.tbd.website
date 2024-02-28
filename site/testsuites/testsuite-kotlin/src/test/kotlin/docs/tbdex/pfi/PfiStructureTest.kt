@@ -1,23 +1,11 @@
 package website.tbd.developer.site.docs.tbdex.pfi
 
-import foundation.identity.did.Service
-import tbdex.sdk.httpserver.models.*
-import tbdex.sdk.protocol.models.*
 import tbdex.sdk.httpserver.TbdexHttpServer
 import tbdex.sdk.httpserver.TbdexHttpServerConfig
 import website.tbd.developer.site.docs.utils.*
-import web5.sdk.dids.methods.dht.DidDht
 import tbdex.sdk.httpserver.models.SubmitKind
 import io.ktor.http.*
-import io.ktor.server.application.*
-import io.ktor.server.engine.*
-import io.ktor.server.netty.*
 import io.ktor.server.response.*
-import io.ktor.server.routing.*
-import web5.sdk.crypto.InMemoryKeyManager
-import web5.sdk.dids.methods.dht.CreateDidDhtOptions
-import java.net.URI
-import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.*
 
 class PfiStructureTest {
@@ -63,7 +51,7 @@ class PfiStructureTest {
         // :snippet-end:
 
         // :snippet-start: pfiOverviewServerStartKt
-        tbDexServer.start()
+        //tbDexServer.start()
         // :snippet-end:
     }
 }
