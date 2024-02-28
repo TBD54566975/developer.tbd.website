@@ -53,5 +53,17 @@ class PfiStructureTest {
         // :snippet-start: pfiOverviewServerStartKt
         //tbDexServer.start()
         // :snippet-end:
+
+      /**
+       * ALR suggested TODOs:
+       *
+       * 1) Check with upstream teams if they're expecting that
+       *    tbDexServer.start() is a blocking operation. This is why
+       *    the test is hanging above at tbDexServer.start() and why it's uncommented now
+       * 2) If so, then the test code here using it needs to fire up the
+       *    server in another thread. I can show you how to do this.
+       * 3) Then make an HTTP client to issue calls into the server
+       *    and put your test assertions in there to ensure that the responses are as expected
+       */
     }
 }
