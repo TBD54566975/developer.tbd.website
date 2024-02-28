@@ -1,4 +1,4 @@
-package website.tbd.developer.site.docs.tbdex
+package website.tbd.developer.site.docs.tbdex.pfi
 
 import tbdex.sdk.protocol.models.Rfq
 import tbdex.sdk.protocol.models.Quote
@@ -19,18 +19,27 @@ import website.tbd.developer.site.docs.utils.*
 import foundation.identity.did.Service
 import java.net.URI
 import web5.sdk.dids.methods.dht.CreateDidDhtOptions
+import org.junit.jupiter.api.Assertions.*
+import org.junit.jupiter.api.*
 
-class PfiQuotesTest {
-  
-    fun createQuoteFromRfq() {
-        val offeringsApiProvider = OfferingsApiProvider()
-        val exchangesApiProvider = ExchangesApiProvider()
-        val dataProvider = MockDataProvider()
+class CreatingQuotesTest {
+
+    private lateinit var offeringsApiProvider: OfferingsApiProvider
+    private lateinit var exchangesApiProvider: ExchangesApiProvider
+    private lateinit var dataProvider: MockDataProvider
+    private lateinit var pfiDid: DidDht
+    private lateinit var message: Message
+
+    @BeforeEach
+    fun setup() {
+        offeringsApiProvider = OfferingsApiProvider()
+        exchangesApiProvider = ExchangesApiProvider()
+        dataProvider = MockDataProvider()
 
         val serviceToAdd = Service.builder()
             .id(URI("pfi"))
             .type("PFI")
-            .serviceEndpoint("tbdex-pfi.tbddev.org")
+            .serviceEndpoint("https://example.com/")
             .build()
 
         val options = CreateDidDhtOptions(
@@ -38,17 +47,18 @@ class PfiQuotesTest {
             services = listOf(serviceToAdd),
         )
 
-        val pfiDid = DidDht.create(InMemoryKeyManager(), options)
+        pfiDid = DidDht.create(InMemoryKeyManager(), options)
 
-        val message: Message = TestData.getRfq(
-            to = pfiDid.uri
-        )
+        message = TestData.getRfq(to = pfiDid.uri)
+    }
 
+    @Test
+    fun `PFI verifies offering requirements and should not throw an error`() {
         dataProvider.setupInsert("exchange", "") { arrayOf<Any>() }
-        offeringsApiProvider.setOffering(message.metadata.id.toString(), pfiDid.uri)
+        offeringsApiProvider.setOffering(message.metadata.id, pfiDid.uri)
 
-        // :snippet-start: pfiQuotesWriteKt
-    // Write the message to your exchanges database
+        // :snippet-start: pfiCreateOfferingKt
+        // Write the message to your exchanges database
         val data = mapOf(
             "exchangeid" to message.metadata.exchangeId,
             "messagekind" to message.metadata.kind,
@@ -63,7 +73,7 @@ class PfiQuotesTest {
         //highlight-end
         // :snippet-end:
 
-        // :snippet-start: pfiQuotesProcessKt
+        // :snippet-start: pfiRfqVerifyOfferingRequirementsKt
         if (offering is Offering && message is Rfq) {
             try {
                 val rfq = message as Rfq
@@ -73,27 +83,37 @@ class PfiQuotesTest {
             }
         }
         // :snippet-end:
+    }
 
-        // :snippet-start: pfiQuotesSendKt
-        val quoteData = QuoteData(
-            expiresAt = OffsetDateTime.now().plusDays(10),
-            payin = QuoteDetails("BTC", "1000"),
-            payout = QuoteDetails("KES", "123456789")
-        )
-
+    @Test
+    fun `PFI creates and signs quote`() {
+        // :snippet-start: pfiCreateQuoteKt
         val quote = Quote.create(
             to = message.metadata.from,
             from = pfiDid.uri,
             exchangeId = message.metadata.exchangeId,
-            quoteData = quoteData
+            quoteData = QuoteData(
+                //import java.time.OffsetDateTime
+                expiresAt = OffsetDateTime.now().plusDays(10),
+                payin = QuoteDetails(
+                    currencyCode = "BTC", 
+                    amount = "1000.0"
+                ),
+                payout = QuoteDetails(
+                    currencyCode = "KES", 
+                    amount = "123456789.0"
+                )
+            )
         )
         // :snippet-end:
 
         exchangesApiProvider.setWrite()
 
-        // :snippet-start: pfiQuotesSignKt
+        // :snippet-start: pfiSignQuoteKt
         quote.sign(pfiDid)
         exchangesApiProvider.write(quote)
         // :snippet-end:
+
+        assertNotNull(quote.verify(), "Quote signature is invalid")
     }
 }

@@ -4,49 +4,49 @@ title: Required SDKs
 hide_title: true
 ---
 
-import pfiSdkInstallJs from '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/tbdex/pfi/pfiSdkInstallJs.snippet.bash'
-import pfiSdkInstallGradle from '!!raw-loader!@site/snippets/testsuite-kotlin/src/test/kotlin/docs/tbdex/pfi/pfiSdkInstallGradle.snippet.gradle'
-import pfiSdkInstallPom from '!!raw-loader!@site/snippets/testsuite-kotlin/src/test/kotlin/docs/tbdex/pfi/pfiSdkInstallPom.snippet.xml'
-import importJs from '!!raw-loader!@site/snippets/testsuite-javascript/__tests__/tbdex/pfi/pfiSdkImportJs.snippet.js'
-
 <LanguageSwitcher languages="JavaScript, Kotlin" />
 
 # Required SDKs
 
 To implement and operate as a PFI, you’ll need to use the following SDKs:
 
-* **web5/dids** - To work with [Decentralized Identifiers (DID)](/docs/web5/learn/decentralized-identifiers), including creating an identity, and performing any other required cryptographic functions, you’ll need this package. Check out [Key Management Service](/docs/web5/build/decentralized-identifiers/key-management) for DIDs in production environments.
+- **web5/dids** - To work with [Decentralized Identifiers (DID)](/docs/web5/learn/decentralized-identifiers), including creating an identity, and performing any other required cryptographic functions, you’ll need this package. Check out [Key Management Service](/docs/web5/build/decentralized-identifiers/key-management) for DIDs in production environments.
 
-* **web5/credentials** - Enable verification of your customer information, including information such as customer’s identity or whether a customer is on a sanctions list. [Verifiable Credentials (VC)](/docs/web5/learn/verifiable-credentials) provide a decentralized and trustworthy way of verifying a customer.
+- **web5/credentials** - Enable verification of your customer information, including information such as customer’s identity or whether a customer is on a sanctions list. [Verifiable Credentials (VC)](/docs/web5/learn/verifiable-credentials) provide a decentralized and trustworthy way of verifying a customer.
 
-* **tbdex/server** - Enable convenience methods for setting up routing and networking to facilitate your PFI.
+- **tbdex/server** - Enable convenience methods for setting up routing and networking to facilitate your PFI.
 
 ## Install SDKs
 
-<Shnip snippets={[
-  { snippetContent: pfiSdkInstallJs, language: 'JavaScript', codeLanguage: 'bash'},
-  {
-    language: 'Kotlin',
-    nestedSnippets: {
-      'Gradle': {
-        "snippet": pfiSdkInstallGradle,
-        "language": 'js'
+<Shnip
+  snippets={[
+    {
+      snippetName: 'pfiSdkInstallJs',
+      language: 'JavaScript',
+      codeLanguage: 'bash',
+    },
+    {
+      language: 'Kotlin',
+      nestedSnippets: {
+        Gradle: {
+          snippetName: 'pfiSdkInstallGradle',
+          language: 'gradle',
+        },
+        Maven: {
+          snippetName: 'pfiSdkInstallPom',
+          language: 'xml',
+        },
       },
-      'Maven': {
-        "snippet": pfiSdkInstallPom,
-        "language": 'xml'
-      }
-    }
-  }
-]} />
+    },
+  ]}
+/>
 
 ## Import Classes
 
 To send and receive tbDEX messages, import the following classes:
 
-<Shnip snippets={[
-    { snippetContent: importJs, language: 'JavaScript'},
-  ]}
+<Shnip
+  snippets={[{ snippetName: 'pfiSdkImportJs', language: 'JavaScript' }]}
   inlineSnippets={[
     {
       code: `      import tbdex.sdk.httpserver.TbdexHttpServer
@@ -59,4 +59,4 @@ To send and receive tbDEX messages, import the following classes:
       language: 'Kotlin',
     },
   ]}
-  />
+/>
