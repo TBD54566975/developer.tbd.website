@@ -113,7 +113,7 @@ _tbDex will onboard some PFIs_ – **Diane Huxley, Software Engineer**
 
 ## Keep up with TBD
 
-_"The best way to predict the future is to create it" - Peter Druker_
+As the saying goes, "The best way to predict the future is to create it" - Peter Druker
 
 At TBD, we're envisioning the future we aspire to create. Follow our journey across various platforms to witness which of our predictions become a reality:
 
@@ -122,5 +122,3 @@ At TBD, we're envisioning the future we aspire to create. Follow our journey acr
 * [Developer Blog](https://developer.tbd.website/blog)
 * [YouTube](https://www.youtube.com/@TBD54566975)
 * [Weekly Live Stream](https://www.twitch.tv/tbdevs)
-
-TBD is an open source community. Join us as we pave the way for innovation and progress in global payments and identity solutions.
