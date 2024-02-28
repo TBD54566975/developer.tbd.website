@@ -17,43 +17,35 @@ import io.ktor.server.routing.*
 import web5.sdk.crypto.InMemoryKeyManager
 import web5.sdk.dids.methods.dht.CreateDidDhtOptions
 import java.net.URI
-
+import org.junit.jupiter.api.Assertions.*
+import org.junit.jupiter.api.*
 
 class PfiStructureTest {
-    fun main() {
-        val dataProvider = MockDataProvider()
-        val serviceToAdd = Service.builder()
-            .id(URI("pfi"))
-            .type("PFI")
-            .serviceEndpoint("https://example.com/")
-            .build()
 
-        val options = CreateDidDhtOptions(
-            publish = false,
-            services = listOf(serviceToAdd),
-        )
+    private val pfiDid = TestData.PFI_DID
+    private lateinit var tbDexServer: TbdexHttpServer
+    private lateinit var exchangesApiProvider: ExchangesApiProvider
+    private lateinit var offeringsApiProvider: OfferingsApiProvider
 
-        val pfiDid = DidDht.create(InMemoryKeyManager(), options)
-
+    @Test
+    fun `PFI initializes server`() {
         // :snippet-start: pfiOverviewConfigKt
-        val exchangesApiProvider = ExchangesApiProvider()
-        val offeringsApiProvider = OfferingsApiProvider()
+        exchangesApiProvider = ExchangesApiProvider()
+        offeringsApiProvider = OfferingsApiProvider()
 
-        val serverConfig = TbdexHttpServerConfig(
+        tbDexServer = TbdexHttpServer(TbdexHttpServerConfig(
             port = 8080,
             pfiDid = pfiDid.uri,
             exchangesApi = exchangesApiProvider,
             offeringsApi = offeringsApiProvider
-        )
-
-        val tbDexServer = TbdexHttpServer(serverConfig)
-      // :snippet-end:
+        ))
+        // :snippet-end:
 
         exchangesApiProvider.setWrite()
         exchangesApiProvider.setWrite()
         exchangesApiProvider.setWrite()
 
-      // :snippet-start: pfiOverviewServerRoutesKt
+        // :snippet-start: pfiOverviewServerRoutesKt
         tbDexServer.submit(SubmitKind.rfq) { call, message, offering ->
             exchangesApiProvider.write(message)
             call.respond(HttpStatusCode.Accepted)
