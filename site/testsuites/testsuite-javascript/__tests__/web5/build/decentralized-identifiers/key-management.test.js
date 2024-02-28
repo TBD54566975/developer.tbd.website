@@ -17,16 +17,13 @@ describe('key-management', () => {
         }
 
         // Initialize or load a DID
-        let did;
         if (portableDid == null) {
             // Create a new DID
-            did = await DidDht.create(keyManager);
+            return await DidDht.create(keyManager);
         } else {
             // Load existing DID
-            did = await DidDht.import({portableDid, keyManager});
+            return await DidDht.import({portableDid, keyManager});
         }
-
-        return did;
     }
     // :snippet-end:
 
