@@ -71,7 +71,7 @@ TBD's Software Development Kit (SDK) will empower developers and financial insti
 * Charities - For global charitable organizations, accepting donations can mean high transaction fees and delayed access to funds.
 * Open Source Maintainers - Technologists often maintain essential software that high-earning, well-known companies use for free. Platforms like GitHub Sponsors and Open Collective provided ways for maintainers to receive financial recognition for their contributions. However, due to limitations in cross-border payments, some people in certain countries can't receive money.
 
-Our SDK is not directly aimed at solving these specific challenges nor is it guaranteed to do so. However, I hope it will create a positive ripple effect, lowering barriers for entities such as small companies, charities, and open source maintainers.
+Our SDK is not directly aimed at solving these organizations' specific challenges nor is it guaranteed to do so. However, I hope it will create a positive ripple effect, lowering barriers for entities such as small companies, charities, and open source maintainers.
 
 
 ### 2. Cryptographic Verification to Establish Trust
