@@ -36,7 +36,7 @@ tags:
 
 ![Our Top 9 Predictions for Global Payments and Identity in 2024](/img/tbd-predicts.png)
 
-## The Prediction to Innovation Pipeline*
+## The Prediction to Innovation Pipeline
 
 The road to success starts with a clear vision. For me, regardless of the season, it’s never too late to set goals and put them into motion. Just as individuals set personal goals, corporations eagerly anticipate the future, often capturing their excitement into listicle blog posts titled "Top X Trends for [insert year here]." While these articles seem like fun speculation, they have the potential to catalyze action.
 
