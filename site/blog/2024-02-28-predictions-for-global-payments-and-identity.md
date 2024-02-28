@@ -113,7 +113,7 @@ _tbDex will onboard some PFIs_ – **Diane Huxley, Software Engineer**
 
 ## Keep up with TBD
 
-As the saying goes, "The best way to predict the future is to create it" - Peter Druker
+As the saying goes, "The best way to predict the future is to create it" - Peter Druker.
 
 At TBD, we're envisioning the future we aspire to create. Follow our journey across various platforms to witness which of our predictions become a reality:
 
