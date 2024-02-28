@@ -40,23 +40,22 @@ Below is an example that uses `AwsKeyManager` for production environments, and `
       code: `npm i @web5/crypto @web5/dids @web5/crypto-aws-kms`,
       language: 'JavaScript',
       codeLanguage: 'bash',
-    },
+    }
+  ]}
+  snippets={[
     {
-      code: `// Configure repositories
-repositories {
-  mavenCentral()
-  maven("https://jitpack.io")
-  maven("https://repo.danubetech.com/repository/maven-public/")
-}
-// Configure dependencies
-dependencies {
-    implementation("xyz.block:web5-crypto:0.10.0")
-    implementation("xyz.block:web5-dids:0.10.0")
-}`,
-      language: 'Kotlin',
-      breakLineAt: [5],
-      title: 'build.gradle.kts',
-    },
+      nestedSnippets:{
+          'Gradle': {
+            "snippetName": 'keyManagementDependencyGradle',
+            "language": 'gradle'
+          },
+          'Maven': {
+            "snippetName": 'keyManagementDependencyPom',
+            "language": 'xml'
+          }
+        },
+        language: 'Kotlin'
+    }
   ]}
 />
 
