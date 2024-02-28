@@ -53,7 +53,7 @@ Inspired by these predictions across various industries and recognizing TBD's ro
 
 Before I share predictions, let me give you an overview of TBD’s initiatives and explain how we fit into the Global Payments and Identity industries.
 
-At TBD, we aim to make the decentralized financial world accessible to everyone. Initially, this goal didn't resonate deeply with me. But as I reflected, I recognized the importance of financial inclusivity in my own life. As an immigrant, I've witnessed my parents face challenges accessing traditional financial services.
+At TBD, we aim to make the financial world accessible to everyone. Initially, this goal didn't resonate deeply with me. But as I reflected, I recognized the importance of financial inclusivity in my own life. As an immigrant, I've witnessed my parents face challenges accessing traditional financial services.
 
 After a few months of working here, I'm playing a part in making this vision possible by writing code, hosting live streams, and blogging. From my viewpoint, here's how I see our projects making an impact:
 
