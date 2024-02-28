@@ -85,7 +85,7 @@ So far, I've been sharing my personal perspective. I decided to reach out to my 
 
 ### 3. Borderless Transactions
 
-_In 2024, we’ll see at least one major report published showing that more of the world’s wealth has moved into borderless currencies compared with 2023. -_ **Kirah Sapong, Software Engineer**
+_In 2024, we’ll see at least one major report published showing that more of the world’s wealth has moved into borderless currencies compared with 2023._ - **Kirah Sapong, Software Engineer**
 
 ### 4. The Hidden DID
 
