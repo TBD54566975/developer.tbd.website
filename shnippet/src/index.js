@@ -1,12 +1,70 @@
-const fs = require("fs");
-const path = require("path");
+const fs = require('fs');
+const path = require('path');
 
 class SnippetExtractor {
   constructor(config) {
     this.config = {
-      outputDirectoryStructure: "byLanguage",
+      outputDirectoryStructure: 'byLanguage',
       ...config,
     };
+
+    this.prependBlocks = {};
+  }
+
+  gatherSnippetNames(content) {
+    const snippetStartTag = this.config.snippetTags.start;
+    const snippetEndTag = this.config.snippetTags.end;
+    let startIndex = 0,
+      endIndex = 0;
+
+    this.currentFileSnippetNames = [];
+
+    while ((startIndex = content.indexOf(snippetStartTag, startIndex)) !== -1) {
+      endIndex = content.indexOf(snippetEndTag, startIndex);
+      if (endIndex === -1) break;
+
+      const snippetNameLine = content
+        .substring(
+          startIndex + snippetStartTag.length,
+          content.indexOf('\n', startIndex)
+        )
+        .trim();
+      this.currentFileSnippetNames.push(snippetNameLine);
+
+      startIndex = endIndex + snippetEndTag.length;
+    }
+  }
+
+  gatherImports(content) {
+    const prependStartTag = this.config.snippetTags.prependStart;
+    const prependEndTag = this.config.snippetTags.prependEnd;
+    let startIndex = 0,
+      endIndex = 0;
+
+    while ((startIndex = content.indexOf(prependStartTag, startIndex)) !== -1) {
+      const endOfStartTag = content.indexOf('\n', startIndex);
+      const snippetNamesLine = content
+        .substring(startIndex + prependStartTag.length, endOfStartTag)
+        .trim();
+      const snippetNames = snippetNamesLine.split(/\s+/); // Assuming space-separated names
+
+      endIndex = content.indexOf(prependEndTag, endOfStartTag);
+      if (endIndex === -1) {
+        console.log('No matching :prepend-end: found for :prepend-start:');
+        break;
+      }
+
+      const importBlock = content.substring(endOfStartTag + 1, endIndex).trim();
+
+      snippetNames.forEach((name) => {
+        if (!this.prependBlocks[name]) {
+          this.prependBlocks[name] = [];
+        }
+        this.prependBlocks[name].push(importBlock);
+      });
+
+      startIndex = endIndex + prependEndTag.length;
+    }
   }
 
   extractSnippetsFromFile(content, filePath) {
@@ -21,15 +79,15 @@ class SnippetExtractor {
         endIndex
       )) !== -1
     ) {
-      const startTagClose = content.indexOf("\n", startIndex);
+      const startTagClose = content.indexOf('\n', startIndex);
       if (startTagClose === -1) {
-        console.log("Snippet start tag not followed by newline. Skipping...");
+        console.log('Snippet start tag not followed by newline. Skipping...');
         break;
       }
 
       endIndex = content.indexOf(this.config.snippetTags.end, startTagClose);
       if (endIndex === -1) {
-        console.log("No closing tag found for a snippet. Skipping...");
+        console.log('No closing tag found for a snippet. Skipping...');
         break;
       }
 
@@ -46,6 +104,26 @@ class SnippetExtractor {
       // Normalize indentation and remove trailing comment characters
       snippetContent = this.normalizeIndentation(snippetContent, fileExtension);
 
+      const prependBlockNames = Object.keys(this.prependBlocks);
+
+      if (this.prependBlocks[snippetName]) {
+        const importsToPrepend = this.prependBlocks[snippetName]
+          .map((block) => block.trimEnd().replace(/\/\/\s*$/, ''))
+          .join('');
+
+        const finalImports =
+          importsToPrepend.length > 0 ? `${importsToPrepend}\n` : '';
+        snippetContent = `${finalImports}${snippetContent}`;
+      } else {
+        prependBlockNames.forEach((name) => {
+          if (!this.currentFileSnippetNames.includes(name)) {
+            throw new Error(
+              `Prepend block reference '${name}' does not match any snippet name in file: ${filePath}`
+            );
+          }
+        });
+      }
+
       if (snippetName) {
         snippets[snippetName] = snippetContent;
       }
@@ -57,23 +135,23 @@ class SnippetExtractor {
   }
 
   normalizeIndentation(snippetContent, fileExtension) {
-    const lines = snippetContent.split("\n");
+    const lines = snippetContent.split('\n');
 
     // Determine the comment character based on the file extension
-    const commentChar = fileExtension === ".bash" ? "#" : "//";
+    const commentChar = fileExtension === '.bash' ? '#' : '//';
 
     return lines
       .map((line) => {
         // Remove 4 spaces of indentation if present
-        const newLine = line.startsWith("    ") ? line.substring(4) : line;
+        const newLine = line.startsWith('    ') ? line.substring(4) : line;
         // Remove trailing comment characters
-        return newLine.replace(new RegExp(`\\s*${commentChar}\\s*$`), "");
+        return newLine.replace(new RegExp(`\\s*${commentChar}\\s*$`), '');
       })
-      .join("\n");
+      .join('\n');
   }
   shouldExcludeFile(content) {
     // Check if the file content includes any of the strings in the exclude array (only for match)
-    if (this.config.outputDirectoryStructure == "match") {
+    if (this.config.outputDirectoryStructure == 'match') {
       for (const excludeString of this.config.exclude) {
         if (content.includes(excludeString)) {
           return true; // Exclude this file
@@ -83,7 +161,7 @@ class SnippetExtractor {
     }
   }
 
-  processDirectory(directory, relativePath = "") {
+  processDirectory(directory, relativePath = '') {
     const items = fs.readdirSync(directory);
     for (const item of items) {
       const fullPath = path.join(directory, item);
@@ -92,9 +170,14 @@ class SnippetExtractor {
       if (stat.isDirectory()) {
         this.processDirectory(fullPath, path.join(relativePath, item));
       } else if (this.config.fileExtensions.includes(path.extname(item))) {
-        const content = fs.readFileSync(fullPath, "utf-8");
+        const content = fs.readFileSync(fullPath, 'utf-8');
 
-        // Make sure to pass fullPath as the second argument to extractSnippetsFromFile
+        this.prependBlocks = {};
+
+        this.gatherSnippetNames(content);
+        // Gather imports/prepends for the current file
+        this.gatherImports(content, fullPath);
+
         if (!this.shouldExcludeFile(content)) {
           const fileSnippets = this.extractSnippetsFromFile(content, fullPath);
           this.writeSnippetsToFile(fileSnippets, fullPath, relativePath);
@@ -108,7 +191,7 @@ class SnippetExtractor {
       let outputPath;
 
       switch (this.config.outputDirectoryStructure) {
-        case "match":
+        case 'match':
           // For "match", save the snippet in its original form without converting to a JS module
           outputPath = path.join(
             this.config.outputDirectory,
@@ -120,9 +203,9 @@ class SnippetExtractor {
           }
           fs.writeFileSync(outputPath, snippetContent);
           break;
-        case "flat":
-        case "byLanguage":
-        case "organized":
+        case 'flat':
+        case 'byLanguage':
+        case 'organized':
         default:
           // Handle other cases as before
           outputPath = this.determineOutputPath(
@@ -150,27 +233,27 @@ class SnippetExtractor {
     let outputPath;
 
     switch (this.config.outputDirectoryStructure) {
-      case "flat":
+      case 'flat':
         outputPath = path.join(
           this.config.outputDirectory,
           `${snippetName}.snippet${extension}`
         );
         break;
-      case "match":
+      case 'match':
         outputPath = path.join(
           this.config.outputDirectory,
           relativePath,
           `${snippetName}.snippet${extension}`
         );
         break;
-      case "byLanguage":
+      case 'byLanguage':
         outputPath = path.join(
           this.config.outputDirectory,
           language,
           `${snippetName}.snippet.js`
         );
         break;
-      case "organized":
+      case 'organized':
       default:
         outputPath = path.join(
           this.config.outputDirectory,
@@ -190,16 +273,16 @@ class SnippetExtractor {
 
   getLanguageFromExtension(extension) {
     const extensionToLanguageMap = {
-      ".js": "js",
-      ".ts": "typescript",
-      ".kt": "kt",
-      ".swift": "swift",
-      ".gradle": "gradle",
-      ".bash": "bash",
-      ".xml": "xml",
+      '.js': 'js',
+      '.ts': 'typescript',
+      '.kt': 'kt',
+      '.swift': 'swift',
+      '.gradle': 'gradle',
+      '.bash': 'bash',
+      '.xml': 'xml',
     };
 
-    return extensionToLanguageMap[extension] || "other";
+    return extensionToLanguageMap[extension] || 'other';
   }
 
   extractSnippets() {
