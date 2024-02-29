@@ -16,7 +16,6 @@ describe('PFI: Structure', () => {
     beforeAll(async () => {
         pfiDid = await DidDht.create({
             options:{
-                publish: true,
                 services: [{
                     id: 'pfi',
                     type: 'PFI',
@@ -25,9 +24,7 @@ describe('PFI: Structure', () => {
             }
           })
 
-        customerDid = await DidDht.create({
-            options: { publish: true }
-        });
+        customerDid = await DidDht.create();
     });
 
     test('PFI initializes server', async () => {
@@ -39,7 +36,7 @@ describe('PFI: Structure', () => {
             tbDexServer = new TbdexHttpServer({ 
                 exchangesApi: exchangesApiProvider, 
                 offeringsApi: offeringsApiProvider,
-                pfiDid: pfiDid.did 
+                pfiDid: pfiDid.uri 
             })
             // :snippet-end:
 
@@ -114,6 +111,7 @@ describe('PFI: Structure', () => {
                     if (res.statusCode < 200 && res.statusCode <= 400) {
                         assert.fail("Failed to start server");
                     }
+                    resolve();
                 });
 
                 // Handle request errors
