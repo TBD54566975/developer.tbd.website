@@ -1,4 +1,5 @@
 ---
+unlisted: true
 slug: predictions-for-global-payments-and-identity
 title: 'Our Top 9 Predictions for Global Payments and Identity in 2024'
 description: TBD employees predict global payments and cryptographic trust on the horizon
