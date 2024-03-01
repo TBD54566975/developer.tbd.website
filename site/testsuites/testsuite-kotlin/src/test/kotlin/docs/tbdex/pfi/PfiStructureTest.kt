@@ -77,7 +77,7 @@ class PfiStructureTest {
         Thread.sleep(1000)
 
         // Test calls against the server
-        val url = URI.create( "http://localhost:8080/").toURL()
+        val url = URI.create("http://localhost:8080/").toURL()
         val connection = url.openConnection() as HttpURLConnection
         connection.requestMethod = "GET"
         connection.disconnect()
