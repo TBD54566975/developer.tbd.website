@@ -110,10 +110,7 @@ describe('PFI: Structure', () => {
             await new Promise((resolve, reject) => {
                 // Send the HTTP request
                 const req = http.request(options, (res) => {
-                    // Check if the response status code indicates success (2xx range)
-                    if (res.statusCode >= 200 && res.statusCode >= 400) {
-                        assert.fail("Failed to start server");
-                    }
+                    expect(res.statusCode).toBe(200);
                     resolve();
                 });
 
