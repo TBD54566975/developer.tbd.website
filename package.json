@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "preinstall": "node propagateWeb5.js && npx only-allow pnpm",
+    "preinstall": "node propagateSdkVersions.js && npx only-allow pnpm",
     "start": "pnpm run shnip && pnpm --filter site run start",
     "start:feedback-server": "pnpm --filter feedback-server run start",
     "start:tutorial-todo-starter": "pnpm --filter todo-starter run dev",
@@ -46,7 +46,8 @@
     "react-markdown": "8.0.7",
     "react-slick": "0.29.0",
     "slick-carousel": "1.8.1",
-    "express": "4.18.2"
+    "express": "4.18.2",
+    "xml2js": "0.6.2"
   },
   "devDependencies": {
     "@vitest/browser": "0.34.1",
@@ -63,7 +64,7 @@
   "pnpm": {
     "overrides": {
       "vite": "5.1.4",
-      "nuxt" : "3.10.3",
+      "nuxt": "3.10.3",
       "postcss": "8.4.31"
     }
   }
