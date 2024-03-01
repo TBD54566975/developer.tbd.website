@@ -28,7 +28,7 @@ export class OfferingsApiProvider extends MockOfferingsApiProvider {
             for (let result of results) {
                 const offering = Offering.create({
                   metadata: { from: this.pfiDid },
-                  data: result.offering
+                  data: result.data
                 })
                 offerings.push(offering);
             }

@@ -1,5 +1,5 @@
 import { TbdexHttpServer } from '@tbdex/http-server';
-import { TbdexHttpClient } from '@tbdex/http-client';
+import { TbdexHttpClient, DevTools } from '@tbdex/http-client';
 import { DidDht } from '@web5/dids';
 import { OfferingsApiProvider } from './offeringsApiProvider'
 import { ExchangesApiProvider } from './exchangesApiProvider'
@@ -31,7 +31,7 @@ describe('PFI: Structure', () => {
         try {
             // :snippet-start: pfiOverviewConfigJs
             exchangesApiProvider = new ExchangesApiProvider();
-            offeringsApiProvider = new OfferingsApiProvider();
+            offeringsApiProvider = new OfferingsApiProvider(pfiDid);
 
             tbDexServer = new TbdexHttpServer({ 
                 exchangesApi: exchangesApiProvider, 
@@ -97,13 +97,15 @@ describe('PFI: Structure', () => {
             const options = {
                 hostname: 'localhost',
                 port: 8080,
-                path: '/exchanges',
+                path: '/offerings',
                 method: 'GET',
                 headers: {
                     'Authorization': `Bearer: ${requestToken}`
                 }
               };
             
+            offeringsApiProvider.setOfferings([DevTools.createOffering()]);
+
             await new Promise((resolve, reject) => {
                 // Send the HTTP request
                 const req = http.request(options, (res) => {
