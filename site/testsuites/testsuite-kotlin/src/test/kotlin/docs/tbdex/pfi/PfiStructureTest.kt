@@ -46,7 +46,7 @@ class PfiStructureTest {
     }
 
     @Test
-    fun `PFI server has routes`() {
+    fun `PFI initializes routes`() {
         // :snippet-start: pfiOverviewServerRoutesKt
         tbDexServer.submit(SubmitKind.rfq) { call, message, offering ->
             exchangesApiProvider.write(message)
@@ -63,6 +63,13 @@ class PfiStructureTest {
             call.respond(HttpStatusCode.Accepted)
         }
         // :snippet-end:
+
+        /*
+         * TODO: Add assertions here. GH Issue: #1297 
+         * https://github.com/TBD54566975/developer.tbd.website/issues/1297
+         * Assert that there are 3 callbacks registered
+         * Assert that the 3 are rfq, order, and close
+         */
     }
 
     @Test
