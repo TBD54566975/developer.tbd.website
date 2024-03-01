@@ -3,14 +3,16 @@ package website.tbd.developer.site.docs.tbdex.pfi
 import tbdex.sdk.httpserver.TbdexHttpServer
 import tbdex.sdk.httpserver.TbdexHttpServerConfig
 import java.net.HttpURLConnection
-import java.net.URL
+import java.net.URI
 import kotlin.concurrent.thread
 import website.tbd.developer.site.docs.utils.*
 import tbdex.sdk.httpserver.models.SubmitKind
 import io.ktor.http.*
 import io.ktor.server.response.*
 import org.junit.jupiter.api.*
+import org.junit.jupiter.api.Assertions.*
 
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class PfiStructureTest {
 
     private val pfiDid = TestData.PFI_DID
@@ -18,8 +20,8 @@ class PfiStructureTest {
     private lateinit var exchangesApiProvider: ExchangesApiProvider
     private lateinit var offeringsApiProvider: OfferingsApiProvider
 
-    @Test
-    fun `PFI initializes server`() {
+    @BeforeAll
+    fun setup(): Unit {
         // :snippet-start: pfiOverviewConfigKt
         exchangesApiProvider = ExchangesApiProvider()
         offeringsApiProvider = OfferingsApiProvider()
@@ -31,11 +33,20 @@ class PfiStructureTest {
             offeringsApi = offeringsApiProvider
         ))
         // :snippet-end:
+    }
+    
+    @AfterAll
+    fun tearDown(): Unit {
+        tbDexServer.stop()
+    }
+    
+    @Test
+    fun `PFI server is initialized`() {
+        assertNotNull(tbDexServer, "Server should not be null")
+    }
 
-        exchangesApiProvider.setWrite()
-        exchangesApiProvider.setWrite()
-        exchangesApiProvider.setWrite()
-
+    @Test
+    fun `PFI server has routes`() {
         // :snippet-start: pfiOverviewServerRoutesKt
         tbDexServer.submit(SubmitKind.rfq) { call, message, offering ->
             exchangesApiProvider.write(message)
@@ -52,7 +63,10 @@ class PfiStructureTest {
             call.respond(HttpStatusCode.Accepted)
         }
         // :snippet-end:
+    }
 
+    @Test
+    fun `PFI server is started`() {
         thread {
             // :snippet-start: pfiOverviewServerStartKt
             tbDexServer.start()
@@ -63,15 +77,11 @@ class PfiStructureTest {
         Thread.sleep(1000)
 
         // Test calls against the server
-        val url = URL("http://localhost:8080/")
+        val url = URI.create( "http://localhost:8080/").toURL()
         val connection = url.openConnection() as HttpURLConnection
         connection.requestMethod = "GET"
-
-        val responseCode = connection.responseCode
-        if (responseCode != HttpURLConnection.HTTP_OK) {
-            fail("http response failed")
-        }
-
         connection.disconnect()
+
+        assertEquals(connection.responseCode, HttpURLConnection.HTTP_OK, "Server should be running")
     }
 }

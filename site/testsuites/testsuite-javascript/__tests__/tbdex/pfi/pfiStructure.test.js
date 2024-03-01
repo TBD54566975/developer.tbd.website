@@ -3,7 +3,7 @@ import { TbdexHttpClient, DevTools } from '@tbdex/http-client';
 import { DidDht } from '@web5/dids';
 import { OfferingsApiProvider } from './offeringsApiProvider'
 import { ExchangesApiProvider } from './exchangesApiProvider'
-import { vi, test, expect, describe, beforeAll, assert } from 'vitest';
+import { test, expect, describe, beforeAll, assert } from 'vitest';
 import http from 'http';
 
 let pfiDid;
@@ -40,7 +40,10 @@ describe('PFI: Structure', () => {
             })
             // :snippet-end:
 
-            assert(tbDexServer != null, "Failed to initialize server")
+            expect(tbDexServer).toBeDefined()
+            expect.soft(tbDexServer.exchangesApi).toBe(exchangesApiProvider)
+            expect.soft(tbDexServer.offeringsApi).toBe(offeringsApiProvider)
+            expect.soft(tbDexServer.pfiDid).toBe(pfiDid.uri)
         } catch(e) {
             assert.fail(`Failed to initialize server: ${e.message}`);
         }
@@ -48,11 +51,6 @@ describe('PFI: Structure', () => {
 
     test('PFI initializes routes', async () => {
         try {
-            // Queue up 3 "ok" responses for the writes
-            exchangesApiProvider.setWrite("")
-            exchangesApiProvider.setWrite("")
-            exchangesApiProvider.setWrite("")
-
             // :snippet-start: pfiOverviewServerRoutesJs
             tbDexServer.onSubmitRfq(async (ctx, rfq) => {
                 await exchangesApiProvider.write({ message: rfq})
@@ -67,7 +65,10 @@ describe('PFI: Structure', () => {
             })
             // :snippet-end:
 
-            assert(tbDexServer.callbacks != null, "Did not correctly set callbacks")
+            expect.soft(Object.keys(tbDexServer.callbacks).length).toBe(3)
+            expect.soft(tbDexServer.callbacks.rfq).toBeDefined()
+            expect.soft(tbDexServer.callbacks.order).toBeDefined()
+            expect.soft(tbDexServer.callbacks.close).toBeDefined()
         } catch(e) {
             assert.fail(`Failed to set up submit routes: ${e.message}`);
         }
@@ -76,9 +77,7 @@ describe('PFI: Structure', () => {
     test('PFI starts server', async () => {
         try {
             // :snippet-start: pfiOverviewServerStartJs
-            const server = tbDexServer.listen(8080, () => {
-                console.log(`PFI listening on port 8080`)
-            })
+            const server = tbDexServer.listen(8080, () => {})
             // :snippet-end:
 
             // Wait for the server to start listening
@@ -92,7 +91,9 @@ describe('PFI: Structure', () => {
                 });
             });
 
-            const requestToken = await TbdexHttpClient.generateRequestToken({ requesterDid: customerDid, pfiDid: pfiDid });
+            const requestToken = await TbdexHttpClient.generateRequestToken({ 
+                requesterDid: customerDid, pfiDid: pfiDid 
+            });
 
             const options = {
                 hostname: 'localhost',
@@ -110,7 +111,7 @@ describe('PFI: Structure', () => {
                 // Send the HTTP request
                 const req = http.request(options, (res) => {
                     // Check if the response status code indicates success (2xx range)
-                    if (res.statusCode > 200 && res.statusCode >= 400) {
+                    if (res.statusCode >= 200 && res.statusCode >= 400) {
                         assert.fail("Failed to start server");
                     }
                     resolve();
@@ -124,7 +125,6 @@ describe('PFI: Structure', () => {
                 // End the request
                 req.end();
             });
-
         } catch(e) {
             assert.fail(`Failed to start server: ${e.message}`);
         }
