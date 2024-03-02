@@ -18,7 +18,7 @@ tags:
   <meta property="og:type" content="website" />
   <meta property="og:url" content='https://developer.tbd.website/blog/future-of-personal-ai' />
   <meta name="og:description" content="An LLM chatbot, built with Web5, to safeguard your privacy" />
-  <meta property="og:image" content="https://developer.tbd.website/assets/images/tbd-predicts-0c3c3d7a89d1b0bf9ee0b42916212806.png" />
+  <meta property="og:image" content="https://developer.tbd.website/assets/images/ai-bestie-27f1af9a8f8632e00c34c9ca071383c7.png" />
 
   <meta name="twitter:card" content="summary_large_image" />
   <meta property="twitter:domain" content="developer.tbd.website" />
@@ -26,7 +26,7 @@ tags:
   <meta name="twitter:title" content="The Future of Personal AI" />
   <meta property="twitter:url" content='https://developer.tbd.website/blog/future-of-personal-ai' /> 
   <meta name="twitter:description" content="An LLM chatbot, built with Web5, to safeguard your privacy" />
-  <meta name="twitter:image" content="https://developer.tbd.website/assets/images/tbd-predicts-0c3c3d7a89d1b0bf9ee0b42916212806.png" />
+  <meta name="twitter:image" content="https://developer.tbd.website/assets/images/ai-bestie-27f1af9a8f8632e00c34c9ca071383c7.png" />
 
   <link rel="apple-touch-icon" href="https://developer.tbd.website/img/tbd-fav-icon-main.png" />
 </head>
