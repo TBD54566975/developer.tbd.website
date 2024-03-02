@@ -16,7 +16,7 @@ tags:
 <head>
   <meta property="og:title" content="The Future of Personal AI" />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content='https://developer.tbd.website/blog/2024-03-01-future-of-personal-ai' />
+  <meta property="og:url" content='https://developer.tbd.website/blog/future-of-personal-ai' />
   <meta name="og:description" content="An LLM chatbot, built with Web5, to safeguard your privacy" />
   <meta property="og:image" content="https://developer.tbd.website/assets/images/tbd-predicts-0c3c3d7a89d1b0bf9ee0b42916212806.png" />
 
@@ -24,7 +24,7 @@ tags:
   <meta property="twitter:domain" content="developer.tbd.website" />
   <meta name="twitter:site" content="@tbdevs" />
   <meta name="twitter:title" content="The Future of Personal AI" />
-  <meta property="twitter:url" content='https://developer.tbd.website/blog/2024-03-01-future-of-personal-ai' /> 
+  <meta property="twitter:url" content='https://developer.tbd.website/blog/future-of-personal-ai' /> 
   <meta name="twitter:description" content="An LLM chatbot, built with Web5, to safeguard your privacy" />
   <meta name="twitter:image" content="https://developer.tbd.website/assets/images/tbd-predicts-0c3c3d7a89d1b0bf9ee0b42916212806.png" />
 
