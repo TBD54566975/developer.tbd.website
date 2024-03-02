@@ -33,7 +33,7 @@ tags:
 
 ![Web5 Meets Generative AI](/img/web5-meets-generative-ai.png)
 
-"What can you actually build with Web5?" This is one of the most common questions I've heard as I enter my two-month mark at TBD. It's one thing to discuss the theoretical aspects of Web5, with its focus on decentralization and user empowerment, but it's another to see tangible, innovative applications come to life. This is why builders, visionaries, and project maintainers at TBD are excited to showcase [Netonomy](https://www.netonomy.io/), a [Web5](https://developer.tbd.website/docs/web5/) project built by [Anthony Dimatteo](https://github.com/demattosanthony).
+"What can you actually build with Web5?" This is one of the most common questions I've heard as I enter my two-month mark at TBD. It's one thing to discuss the theoretical aspects of Web5, with its focus on decentralization and user empowerment, but it's another to see tangible, innovative applications come to life. This is why builders, visionaries, and project maintainers at TBD are excited to showcase [Netonomy](https://www.netonomy.io/), a [Web5](https://developer.tbd.website/docs/web5/) project built by [Anthony DeMattos](https://github.com/demattosanthony).
 
 <!--truncate-->
 
