@@ -10,6 +10,15 @@
       }
     },
     {
+      "identity" : "dns",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Bouke/DNS.git",
+      "state" : {
+        "revision" : "78bbd1589890a90b202d11d5f9e1297050cf0eb2",
+        "version" : "1.2.0"
+      }
+    },
+    {
       "identity" : "mocker",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/WeTransfer/Mocker.git",
@@ -37,12 +46,30 @@
       }
     },
     {
+      "identity" : "swift-typeid",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Frizlab/swift-typeid.git",
+      "state" : {
+        "revision" : "7f4ef8d41c5bf0f381742d2d91df413c4d659faa",
+        "version" : "0.3.0"
+      }
+    },
+    {
+      "identity" : "tbdex-swift",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/TBD54566975/tbdex-swift.git",
+      "state" : {
+        "branch" : "main",
+        "revision" : "1b137c679d1d78fa1d7eba25a5378439d59a0b9b"
+      }
+    },
+    {
       "identity" : "web5-swift",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/TBD54566975/web5-swift",
       "state" : {
-        "revision" : "24a8cf3724044590809cfd697685f412f90ad2d4",
-        "version" : "0.0.3"
+        "revision" : "34411b0729ae443448a9283cf001116d20c0581f",
+        "version" : "0.0.4"
       }
     }
   ],

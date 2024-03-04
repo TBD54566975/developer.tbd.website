@@ -1,6 +1,7 @@
 import XCTest
 @testable import DevSiteTestSuite
 import Mocker
+@testable import Web5
 
 final class ExampleTests: XCTestCase {
     func testExample() throws {
@@ -39,13 +40,22 @@ final class ExampleTests: XCTestCase {
 
         // Perform the network request.
         session.dataTask(with: url) { data, response, error in
-            print(response)
             XCTAssertNil(error)
             XCTAssertEqual(data, expectedData)
             expectation.fulfill()
         }.resume()
 
         waitForExpectations(timeout: 5, handler: nil)
+    }
+
+    func test_createDIDExample() throws {
+        let didJWK = try DIDJWK.create(keyManager: InMemoryKeyManager())
+        let portableDID = try didJWK.export()
+
+        XCTAssertEqual(portableDID.uri, didJWK.uri, "URI should match")
+        XCTAssertEqual(portableDID.document, didJWK.document, "Document should match")
+        XCTAssertEqual(portableDID.privateKeys.count, 1, "There should be exactly one private key")
+        XCTAssertNil(portableDID.metadata, "Metadata should be nil")
     }
 
 }
