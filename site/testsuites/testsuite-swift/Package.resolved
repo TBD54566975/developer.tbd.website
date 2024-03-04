@@ -60,16 +60,16 @@
       "location" : "https://github.com/TBD54566975/tbdex-swift.git",
       "state" : {
         "branch" : "main",
-        "revision" : "4f743986ca3344f1594283a10bf06d387ca99864"
+        "revision" : "1b137c679d1d78fa1d7eba25a5378439d59a0b9b"
       }
     },
     {
       "identity" : "web5-swift",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/TBD54566975/web5-swift.git",
+      "location" : "https://github.com/TBD54566975/web5-swift",
       "state" : {
-        "branch" : "main",
-        "revision" : "14f22e6fff4a279ad1182e6275bdae155e68b9fd"
+        "revision" : "34411b0729ae443448a9283cf001116d20c0581f",
+        "version" : "0.0.4"
       }
     }
   ],
