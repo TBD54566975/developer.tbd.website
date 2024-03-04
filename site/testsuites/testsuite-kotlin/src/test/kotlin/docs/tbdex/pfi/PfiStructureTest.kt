@@ -34,12 +34,12 @@ class PfiStructureTest {
         ))
         // :snippet-end:
     }
-
+    
     @AfterAll
     fun tearDown(): Unit {
         tbDexServer.stop()
     }
-
+    
     @Test
     fun `PFI server is initialized`() {
         assertNotNull(tbDexServer, "Server should not be null")
@@ -48,24 +48,24 @@ class PfiStructureTest {
     @Test
     fun `PFI initializes routes`() {
         // :snippet-start: pfiOverviewServerRoutesKt
-        tbDexServer.submit(SubmitKind.rfq) { call, message, offering, replyTo ->
+        tbDexServer.submit(SubmitKind.rfq) { call, message, offering ->
             exchangesApiProvider.write(message)
             call.respond(HttpStatusCode.Accepted)
         }
 
-        tbDexServer.submit(SubmitKind.order) { call, message, offering, replyTo ->
+        tbDexServer.submit(SubmitKind.order) { call, message, offering ->
             exchangesApiProvider.write(message)
             call.respond(HttpStatusCode.Accepted)
         }
 
-        tbDexServer.submit(SubmitKind.close) { call, message, offering, replyTo ->
+        tbDexServer.submit(SubmitKind.close) { call, message, offering ->
             exchangesApiProvider.write(message)
             call.respond(HttpStatusCode.Accepted)
         }
         // :snippet-end:
 
         /*
-         * TODO: Add assertions here. GH Issue: #1297
+         * TODO: Add assertions here. GH Issue: #1297 
          * https://github.com/TBD54566975/developer.tbd.website/issues/1297
          * Assert that there are 3 callbacks registered
          * Assert that the 3 are rfq, order, and close
