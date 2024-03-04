@@ -16,7 +16,7 @@ export class MockOfferingsApiProvider {
         this.dataProvider.get('offering', id).then(([result]) => {
             return Offering.create({
                 metadata: { from: this.pfiDid },
-                data: result.offering
+                data: result.data
             })
         });
     }
@@ -28,7 +28,7 @@ export class MockOfferingsApiProvider {
             for (let result of results) {
                 const offering = Offering.create({
                   metadata: { from: this.pfiDid },
-                  data: result.offering
+                  data: result.data
                 })
                 offerings.push(offering)
             }
@@ -48,11 +48,13 @@ export class MockOfferingsApiProvider {
     }
 
     setOfferings(offeringData) {
-        this.dataProvider.setupGet('offering', "*", () => {
+        this.dataProvider.setupQuery('offering', "*", () => {
             const offerings = []
             offeringData.forEach(offering => {
                 offerings.push(DevTools.createOffering(offering))
             });
+
+            return offerings;
         })
     }    
   };  
