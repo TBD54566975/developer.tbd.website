@@ -89,12 +89,4 @@ Here's an example of how to get offerings as specified by the `OfferingsApi` int
     { snippetName: 'pfiOverviewReadOfferingsKt', language: 'Kotlin'}
   ]} />
 
-Additionally, you could write `Offerings` into your database:
-
-<Shnip snippets={
-  [
-    { snippetName: 'pfiOverviewWriteOfferingsJs', language: 'JavaScript'},
-    { snippetName: 'pfiOverviewWriteOfferingsKt', language: 'Kotlin'}
-  ]} />
-
 By implementing the `getOffering()` and `getOfferings()` methods, you'll allow Wallets to get a specific Offering they'd be interested in, or query all your Offerings, respectively. The convenience of the tbDEX SDK is that you aren't required to actually write an API endpoint yourself to handle interfacing with Wallets as the SDK handles it all for you.

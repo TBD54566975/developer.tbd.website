@@ -1,59 +1,53 @@
 package website.tbd.developer.site.docs.tbdex.pfi
 
-import foundation.identity.did.Service
-import tbdex.sdk.httpserver.models.*
-import tbdex.sdk.protocol.models.*
 import tbdex.sdk.httpserver.TbdexHttpServer
 import tbdex.sdk.httpserver.TbdexHttpServerConfig
+import java.net.HttpURLConnection
+import java.net.URI
+import kotlin.concurrent.thread
 import website.tbd.developer.site.docs.utils.*
-import web5.sdk.dids.methods.dht.DidDht
 import tbdex.sdk.httpserver.models.SubmitKind
 import io.ktor.http.*
-import io.ktor.server.application.*
-import io.ktor.server.engine.*
-import io.ktor.server.netty.*
 import io.ktor.server.response.*
-import io.ktor.server.routing.*
-import web5.sdk.crypto.InMemoryKeyManager
-import web5.sdk.dids.methods.dht.CreateDidDhtOptions
-import java.net.URI
+import org.junit.jupiter.api.*
+import org.junit.jupiter.api.Assertions.*
 
-
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class PfiStructureTest {
-    fun main() {
-        val dataProvider = MockDataProvider()
-        val serviceToAdd = Service.builder()
-            .id(URI("pfi"))
-            .type("PFI")
-            .serviceEndpoint("https://example.com/")
-            .build()
 
-        val options = CreateDidDhtOptions(
-            publish = false,
-            services = listOf(serviceToAdd),
-        )
+    private val pfiDid = TestData.PFI_DID
+    private lateinit var tbDexServer: TbdexHttpServer
+    private lateinit var exchangesApiProvider: ExchangesApiProvider
+    private lateinit var offeringsApiProvider: OfferingsApiProvider
 
-        val pfiDid = DidDht.create(InMemoryKeyManager(), options)
-
+    @BeforeAll
+    fun setup(): Unit {
         // :snippet-start: pfiOverviewConfigKt
-        val exchangesApiProvider = ExchangesApiProvider()
-        val offeringsApiProvider = OfferingsApiProvider()
+        exchangesApiProvider = ExchangesApiProvider()
+        offeringsApiProvider = OfferingsApiProvider()
 
-        val serverConfig = TbdexHttpServerConfig(
+        tbDexServer = TbdexHttpServer(TbdexHttpServerConfig(
             port = 8080,
             pfiDid = pfiDid.uri,
             exchangesApi = exchangesApiProvider,
             offeringsApi = offeringsApiProvider
-        )
+        ))
+        // :snippet-end:
+    }
+    
+    @AfterAll
+    fun tearDown(): Unit {
+        tbDexServer.stop()
+    }
+    
+    @Test
+    fun `PFI server is initialized`() {
+        assertNotNull(tbDexServer, "Server should not be null")
+    }
 
-        val tbDexServer = TbdexHttpServer(serverConfig)
-      // :snippet-end:
-
-        exchangesApiProvider.setWrite()
-        exchangesApiProvider.setWrite()
-        exchangesApiProvider.setWrite()
-
-      // :snippet-start: pfiOverviewServerRoutesKt
+    @Test
+    fun `PFI initializes routes`() {
+        // :snippet-start: pfiOverviewServerRoutesKt
         tbDexServer.submit(SubmitKind.rfq) { call, message, offering ->
             exchangesApiProvider.write(message)
             call.respond(HttpStatusCode.Accepted)
@@ -70,8 +64,31 @@ class PfiStructureTest {
         }
         // :snippet-end:
 
-        // :snippet-start: pfiOverviewServerStartKt
-        tbDexServer.start()
-        // :snippet-end:
+        /*
+         * TODO: Add assertions here. GH Issue: #1297 
+         * https://github.com/TBD54566975/developer.tbd.website/issues/1297
+         * Assert that there are 3 callbacks registered
+         * Assert that the 3 are rfq, order, and close
+         */
+    }
+
+    @Test
+    fun `PFI server is started`() {
+        thread {
+            // :snippet-start: pfiOverviewServerStartKt
+            tbDexServer.start()
+            // :snippet-end:
+        }
+
+        // Delay to ensure the server has started
+        Thread.sleep(1000)
+
+        // Test calls against the server
+        val url = URI.create("http://localhost:8080/").toURL()
+        val connection = url.openConnection() as HttpURLConnection
+        connection.requestMethod = "GET"
+        connection.disconnect()
+
+        assertEquals(connection.responseCode, HttpURLConnection.HTTP_OK, "Server should be running")
     }
 }

@@ -66,10 +66,53 @@
               <version>${version.tbdex}</version>
             </dependency>
 
+            <!--
+
+            Hack: align versions misaligned between Web5 and tbDEX
+            Remove when aligned upstream and Dev Site is upgraded to new tbDEX
+
+            -->
+            <dependency>
+              <groupId>io.ktor</groupId>
+              <artifactId>ktor-client-okhttp-jvm</artifactId>
+              <version>${version.ktor}</version>
+            </dependency>
+            <dependency>
+              <groupId>io.ktor</groupId>
+              <artifactId>ktor-client-content-negotiation-jvm</artifactId>
+              <version>${version.ktor}</version>
+            </dependency>
+            <dependency>
+              <groupId>io.ktor</groupId>
+              <artifactId>ktor-serialization-jackson-jvm</artifactId>
+              <version>${version.ktor}</version>
+            </dependency>
+            <dependency>
+              <groupId>io.ktor</groupId>
+              <artifactId>ktor-serialization-kotlinx-json-jvm</artifactId>
+              <version>${version.ktor}</version>
+            </dependency>
+            <dependency>
+              <groupId>io.ktor</groupId>
+              <artifactId>ktor-serialization-kotlinx-jvm</artifactId>
+              <version>${version.ktor}</version>
+            </dependency>
+            <dependency>
+              <groupId>io.ktor</groupId>
+              <artifactId>ktor-client-logging-jvm</artifactId>
+              <version>${version.ktor}</version>
+            </dependency>
+
             <!-- Test Dependencies -->
             <dependency>
               <groupId>io.ktor</groupId>
               <artifactId>ktor-server-netty-jvm</artifactId>
+              <version>${version.ktor}</version>
+              <scope>test</scope>
+            </dependency>
+            <dependency>
+              <groupId>io.ktor</groupId>
+              <artifactId>ktor-server-content-negotiation-jvm</artifactId>
               <version>${version.ktor}</version>
               <scope>test</scope>
             </dependency>
@@ -117,6 +160,10 @@
             <artifactId>ktor-server-test-host</artifactId>
             <version>${version.ktor}</version>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+          <groupId>io.ktor</groupId>
+          <artifactId>ktor-server-content-negotiation-jvm</artifactId>
         </dependency>
     </dependencies>
 
