@@ -4,6 +4,7 @@ import tbdex.sdk.httpserver.models.*
 import tbdex.sdk.protocol.models.*
 import website.tbd.developer.site.docs.utils.MockDataProvider
 import website.tbd.developer.site.docs.utils.TestData
+import de.fxlae.typeid.TypeId
 
 open class MockOfferingsApiProvider: OfferingsApi {
 
@@ -34,8 +35,8 @@ open class MockOfferingsApiProvider: OfferingsApi {
     // Setup Methods
     //---------------------------------------------------------------------------//
 
-    fun setOffering(id: String, pfiDid: String) {
-        dataProvider.setupGet("offering", id) {
+    fun setOffering(id: TypeId, pfiDid: String) {
+        dataProvider.setupGet("offering", id.toString()) {
             TestData.getOffering(pfiDid, TestData.getPresentationDefinition())
         }
     }

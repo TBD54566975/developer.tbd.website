@@ -1,4 +1,4 @@
-// :snippet-start: fanClubSdkInstallPom   
+// :snippet-start: keyManagementDependencyPom
 <repositories>
         <repository>
             <id>mavenCentral</id>
@@ -13,13 +13,13 @@
 <dependencies>
         <dependency>
             <groupId>xyz.block</groupId>
-            <artifactId>web5-credentials</artifactId>
-            <version>0.0.11</version>
+            <artifactId>web5-crypto</artifactId>
+            <version>0.12.0</version>
         </dependency>
         <dependency>
             <groupId>xyz.block</groupId>
             <artifactId>web5-dids</artifactId>
-            <version>0.0.11</version>
+            <version>0.12.0</version>
         </dependency>
 </dependencies>
 // :snippet-end:

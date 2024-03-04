@@ -4,9 +4,6 @@ hide_title: true
 sidebar_position: 1
 ---
 
-import vcSdkInstallGradle from '!!raw-loader!@site/snippets/testsuite-kotlin/src/test/kotlin/docs/web5/build/verifiablecredentials/vcSdkInstallGradle.snippet.gradle'
-import vcSdkInstallPom from '!!raw-loader!@site/snippets/testsuite-kotlin/src/test/kotlin/docs/web5/build/verifiablecredentials/vcSdkInstallPom.snippet.xml'
-
 <LanguageSwitcher languages="JavaScript, Kotlin" />
 
 # Issue a VC
@@ -25,11 +22,11 @@ This guide provides a step-by-step process for issuing a [verifiable credential 
       language: 'Kotlin',
       nestedSnippets:{
           'Gradle': {
-            "snippet": vcSdkInstallGradle,
-            "language": 'kotlin'
+            "snippetName": 'vcSdkInstallGradle',
+            "language": 'gradle'
           },
           'Maven': {
-            "snippet": vcSdkInstallPom,
+            "snippetName": 'vcSdkInstallPom',
             "language": 'xml'
           }
         }

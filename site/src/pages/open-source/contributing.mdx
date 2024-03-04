@@ -73,7 +73,7 @@ Our Code Snippet system allows for updates in one place while ensuring code is r
      // ... rest of the code ...
      // :snippet-end:
    });
-
+   ```
 
 3. After creating your snippets, run the command `pnpm run shnip`. This will generate a folder called `snippets` and create a directory structure similar to where the file is.
 
@@ -81,8 +81,8 @@ Our Code Snippet system allows for updates in one place while ensuring code is r
 
 To use the snippet in your documentation(`.mdx` file), you're going to use the `Shnip` component. The Shnip component will dynamically import your snippets for you. Here's an example on how to use it:
 
-
 // if it's a multi language doc, you'll need to specify it with the LanguageSwitcher component
+
 <LanguageSwitcher languages="JavaScript, Kotlin" />
 
 <Shnip
@@ -109,8 +109,8 @@ This is how you can add a generated code snippet and an inline hardcoded snippet
 />
 ```
 
-To display inline code in a language different from the tab's primary language, use `codeLanguage`. 
-If `codeLanguage` is unspecified, it defaults to `language`. 
+To display inline code in a language different from the tab's primary language, use `codeLanguage`.
+If `codeLanguage` is unspecified, it defaults to `language`.
 Example: For Bash in a JavaScript tab, set `language: 'JavaScript`', `codeLanguage: 'bash'`
 
 ```js
@@ -123,7 +123,7 @@ npm install @web5/dids
       `,
       language: 'JavaScript', // The tab's context.
       codeLanguage: 'bash', // Snippet's actual language
-    }
+    },
   ]}
 />
 ```
@@ -147,12 +147,14 @@ class SwiftiesFanClub {
   }
 }
       `,
-      breakLineAt:[1, 5]
-    }
+      breakLineAt: [1, 5],
+    },
   ]}
 />
 ```
+
 To add titles to code snippets, use the title prop. Example: title: 'Issuer.js' adds a title to the snippet.
+
 ```
 <Shnip
  snippets={[{ name: 'assignVcJwt', language: 'JavaScript', title: 'Issuer.js' }]}
@@ -163,9 +165,9 @@ import { VerifiableCredential, PresentationExchange } from "@web5/credentials";
 class SwiftiesFanClub {
   constructor(level, legit) {
     // indicates the fan's dedication level
-    this.level = level; 
+    this.level = level;
     // indicates if the fan is a genuine Swiftie
-    this.legit = legit; 
+    this.legit = legit;
   }
 }
       `,
@@ -175,6 +177,10 @@ class SwiftiesFanClub {
 />
 ```
 
+## Using Prepend tags
+
+To enhance our documentation with executable code snippets that remain synchronized with the latest test cases, we've introduced prepend tags. These tags allow you to specify setup code, such as import statements, that should be automatically included at the beginning of designated snippets. This ensures that our documentation reflects accurate and executable code examples.
+
 ## Directory Structure Configurations
 
 - match: Mimics the test file's directory structure.
@@ -182,10 +188,49 @@ class SwiftiesFanClub {
 - organized: A structure that organizes by language and function name. For example: `/snippets/js/createDidDht` and `/snippets/kt/createDidDht`
 - flat: Places all snippets directly within the snippets folder.
 
+### Usage
+
+Prepend tags are used to mark blocks of code that should be prepended to one or more snippets. Here's how to use them:
+
+1. Marking Prepend Blocks: In your test files, use the :prepend-start: and :prepend-end: tags to denote the beginning and end of a code block that should be prepended. Immediately after the :prepend-start: tag, specify the names of the snippets that should include this block, separated by spaces.
+
+```js
+// :prepend-start: snippetName1 snippetName2
+import { SomeLibrary } from 'some-library';
+// Additional setup code...
+// :prepend-end:
+```
+
+2. Associating with Snippets: Ensure that the snippet names provided after the :prepend-start: tag match exactly with the names used in your :snippet-start: tags. This association is case-sensitive and must be precise to ensure the correct prepend blocks are included.
+
+### Generating Snippets with Prepend Blocks
+
+After marking your prepend blocks and associating them with snippets, run the pnpm shnip command. This process will automatically prepend the specified blocks to the snippets and generate the output in the configured snippets directory.
+
+## Example
+
+```js
+// :prepend-start: createDidDht
+import { DidDhtMethod } from '@web5/dids';
+// :prepend-end:
+
+// :snippet-start: createDidDht
+const didDht = await DidDhtMethod.create({ publish: true });
+// :snippet-end:
+```
+
+The generated snippet will include the import statement at the top, ensuring the snippet is executable and reflects the necessary setup:
+
+```js
+import { DidDhtMethod } from '@web5/dids';
+
+const didDht = await DidDhtMethod.create({ publish: true });
+```
+
 ## CLI
+
 - Clear Command: `pnpm shnip clear`
 - Structure Flag: `pnpm shnip --structure byLanguage`
-
 
 ### Caveats for Code Snippets
 

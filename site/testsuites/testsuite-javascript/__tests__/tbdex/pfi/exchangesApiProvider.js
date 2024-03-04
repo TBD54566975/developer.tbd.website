@@ -1,14 +1,14 @@
 import { MockExchangesApiProvider } from '../../utils/mockExchangesApiProvider'
 
-export default class ExchangesApiProvider extends MockExchangesApiProvider {
+export class ExchangesApiProvider extends MockExchangesApiProvider {
 
     // :snippet-start: pfiOverviewWriteJs
     async write(message) {
         await this.dataProvider.insert('exchange', {
-                exchangeid: message.metadata.exchangeId,
-                messagekind: message.metadata.kind,
-                messageid: message.metadata.id,
-                subject: message.metadata.subject,
+                exchangeid: message.exchangeId,
+                messagekind: message.kind,
+                messageid: message.id,
+                subject: message.subject,
                 message: JSON.stringify(message)
             });
     }  
