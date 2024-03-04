@@ -1,38 +1,39 @@
 [
   {
-    "login": "koko_codes",
-    "avatar_url": "https://avatars.githubusercontent.com/u/58889001?v=4",
+    "login": "vokrox",
+    "avatar_url": "https://avatars.githubusercontent.com/u/7928540?s=48&v=4",
     "contributions": ["Community Champion Award"],
-    "description": "Thank you for being so helpful with the Web5 hackathon - helping others with their submissions and being a great source of information."
+    "description": "This month you've been super active from attending live streams to consuming content. Thank you for participating! (P.S.) your funny comments during our live streams are awesome!"
   },
   {
-    "login": "Sqquidi",
-    "avatar_url": "https://avatars.githubusercontent.com/u/96080203?v=4",
+    "login": "facutherock.eth",
+    "avatar_url": "https://avatars.githubusercontent.com/u/3358683?s=48&v=4",
     "contributions": ["Community Champion Award"],
-    "description": "Thank you for asking such great questions! 🤗"
+    "description": "Thank you for exploring and taking the time to ask great questions! 🤗"
   },
   {
-    "login": "chrissiku",
-    "avatar_url": "https://avatars.githubusercontent.com/u/101924220?v=4",
-    "contributions": ["Community Champion Award"],
-    "description": "Second month in a row, you're a great addition to the communtiy we can't thank you enough.🎉"
+    "login": "0xjevan",
+    "avatar_url": "https://avatars.githubusercontent.com/u/58369673?v=4",
+    "contributions": ["New Contributor Award"],
+    "description": "You've been learning and exploring the SDKs this month and we love to see it! We can't wait to see if you have any projects in store 👀! We're thrilled you're here! 🥳"
   },
   {
-    "login": "FaultySwitch",
-    "avatar_url": "https://avatars.githubusercontent.com/u/68306565?v=4",
-    "contributions": ["Community Hero Award"],
-    "description": "Thank you for being so active in discord, you've asked great questions and supported your fellow community members 🔥"
+    "login": "enmand",
+    "avatar_url": "https://avatars.githubusercontent.com/u/432487?v=4",
+    "contributions": ["Content Creator Award"],
+    "description": "Your Rust implementation work is super impressive!!🔥 Thank you for being apart of the community!"
   },
   {
-    "login": "sandiaa",
-    "avatar_url": "https://avatars.githubusercontent.com/u/19302075?v=4",
-    "contributions": ["Community Hero Award"],
-    "description": "Community is truly about sharing knowledge and helping the next person! Thank you for being active in Discord by asking questions and answering questions 🥳"
+    "login": "André",
+    "avatar_url": "https://avatars.githubusercontent.com/u/4354556?s=48&v=4",
+    "contributions": ["Rising Star Award"],
+    "description": "You never miss a live stream or a Discord community event and you always come with thoughtful and engaging questions. We're so happy you're here! 🥳"
   },
   {
-    "login": "Mcnoble",
-    "avatar_url": "https://avatars.githubusercontent.com/u/40045755?v=4",
-    "contributions": ["Community Champion Award"],
-    "description": "Winner for a second month and well deserved! Every time I logged on you were there helping someone, thank you for always taking the time. We're so happy you're here! 🥳"
+    "login": "grahnj",
+    "avatar_url": "https://avatars.githubusercontent.com/u/11844218?v=4",
+    "contributions": ["New Contributor Award"],
+    "description": "Thank you for taking the time to tackle one of our open issues and open up a PR in our web5-go repo. We hope to see more PRs from you in the future. 💖"
   }
 ]
+
