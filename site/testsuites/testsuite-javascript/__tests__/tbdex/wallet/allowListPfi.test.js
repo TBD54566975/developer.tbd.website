@@ -1,11 +1,13 @@
 import { test, expect, describe, beforeAll } from 'vitest';
-import { DidDht } from '@web5/dids';
+// :prepend-start: isPFIJs
+import { DidResolver, DidDht, DidJwk } from '@web5/dids';
+// :prepend-end:
 
 let pfiDid;
 
 describe('Wallet: Allowlist PFIs', () => {
   beforeAll(async () => {
-    pfiDid = await DidDht.create({
+    const bearerDid = await DidDht.create({
       options:{
         publish: true,
         services: [{
@@ -15,11 +17,14 @@ describe('Wallet: Allowlist PFIs', () => {
         }]
       }
     })
+    pfiDid = bearerDid.uri;
   });
 
   test('PFI DID has PFI service', async () => {
     // :snippet-start: isPFIJs
-    const isPFI = pfiDid.document.service.some(service => service.type === 'PFI');
+    const resolver = new DidResolver({ didResolvers: [DidDht, DidJwk] });
+    const resolvedDid = await resolver.resolve(pfiDid);
+    const isPFI = resolvedDid.didDocument.service.some(service => service.type === 'PFI');
     // :snippet-end:
     expect(isPFI).toBe(true)
   });
