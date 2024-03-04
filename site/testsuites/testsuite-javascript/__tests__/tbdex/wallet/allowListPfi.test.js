@@ -23,10 +23,8 @@ describe('Wallet: Allowlist PFIs', () => {
   test('PFI DID has PFI service', async () => {
     // :snippet-start: isPFIJs
     const resolver = new DidResolver({ didResolvers: [DidDht, DidJwk] });
-
-    const isPFI = (await resolver.resolve(pfiDid)).didDocument.service.some(service => 
-      service.type === 'PFI'
-    );
+    const resolvedDid = await resolver.resolve(pfiDid);
+    const isPFI = resolvedDid.didDocument.service.some(service => service.type === 'PFI');
     // :snippet-end:
     expect(isPFI).toBe(true)
   });
