@@ -1,0 +1,77 @@
+{
+  "pins" : [
+    {
+      "identity" : "anycodable",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/flight-school/anycodable.git",
+      "state" : {
+        "revision" : "862808b2070cd908cb04f9aafe7de83d35f81b05",
+        "version" : "0.6.7"
+      }
+    },
+    {
+      "identity" : "dns",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Bouke/DNS.git",
+      "state" : {
+        "revision" : "78bbd1589890a90b202d11d5f9e1297050cf0eb2",
+        "version" : "1.2.0"
+      }
+    },
+    {
+      "identity" : "mocker",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/WeTransfer/Mocker.git",
+      "state" : {
+        "revision" : "95fa785c751f6bc40c49e112d433c3acf8417a97",
+        "version" : "3.0.2"
+      }
+    },
+    {
+      "identity" : "secp256k1.swift",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/GigaBitcoin/secp256k1.swift.git",
+      "state" : {
+        "revision" : "347b84ed2aad2305a7233f2a48d76f41e52062a1",
+        "version" : "0.16.0"
+      }
+    },
+    {
+      "identity" : "swift-extras-base64",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/swift-extras/swift-extras-base64.git",
+      "state" : {
+        "revision" : "97237cf1bc1feebaeb0febec91c1e1b9e4d839b3",
+        "version" : "0.7.0"
+      }
+    },
+    {
+      "identity" : "swift-typeid",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Frizlab/swift-typeid.git",
+      "state" : {
+        "revision" : "7f4ef8d41c5bf0f381742d2d91df413c4d659faa",
+        "version" : "0.3.0"
+      }
+    },
+    {
+      "identity" : "tbdex-swift",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/TBD54566975/tbdex-swift.git",
+      "state" : {
+        "branch" : "main",
+        "revision" : "1b137c679d1d78fa1d7eba25a5378439d59a0b9b"
+      }
+    },
+    {
+      "identity" : "web5-swift",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/TBD54566975/web5-swift",
+      "state" : {
+        "revision" : "34411b0729ae443448a9283cf001116d20c0581f",
+        "version" : "0.0.4"
+      }
+    }
+  ],
+  "version" : 2
+}
