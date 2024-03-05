@@ -6,7 +6,7 @@ sidebar_position: 1
 
 import requiredDidImportsKt from '!!raw-loader!@site/snippets/testsuite-kotlin/src/test/kotlin/docs/web5/build/decentralizedidentifiers/requiredDidImportsKt.snippet.kt';
 
-<LanguageSwitcher languages="JavaScript, Kotlin" />
+<LanguageSwitcher languages="JavaScript, Kotlin, Swift" />
 
 # Create a DID
 
@@ -36,7 +36,11 @@ You can create a DID using any of the [Web5-supported DID methods](/docs/web5/le
           language: 'xml',
         },
       },
-    }
+    },
+    {
+      snippetName: 'web5DependencySwift',
+      language: "Swift",
+    },
   ]}
 />
 
@@ -46,28 +50,37 @@ You can create a DID using any of the [Web5-supported DID methods](/docs/web5/le
   snippets={[
     { snippetName: 'requiredDidImports', language: 'JavaScript' },
     { snippetName: 'requiredDidImportsKt', language: 'Kotlin' },
+    { snippetName: 'web5ImportSwift', language: 'Swift' },
   ]}
 />
 
 ## Create DID
 The following DID methods are supported:
 
-### did:dht
+### did\:dht
 
 <Shnip
   snippets={[
     { snippetName: 'createDidDht', language: 'JavaScript' },
     { snippetName: 'createDidDhtKt', language: 'Kotlin' },
   ]}
+  inlineSnippets={[
+    {
+      code: `did:dht is currently not available in Swift.`,
+      language: 'Swift',
+      codeLanguage: 'text',
+    },
+  ]}
 />
 
 
-### did:jwk
+### did\:jwk
 
 <Shnip
   snippets={[
     { snippetName: 'createDidJwk', language: 'JavaScript' },
     { snippetName: 'createDidJwkKt', language: 'Kotlin' },
+    { snippetName: 'createDidJWKSwift', language: 'Swift' },
     ]}
 />
 
