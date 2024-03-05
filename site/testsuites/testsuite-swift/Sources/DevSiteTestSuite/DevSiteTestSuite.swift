@@ -7,8 +7,3 @@ import Web5
 // :snippet-start: tbDEXImportSwift
 import tbDEX
 // :snippet-end:
-
-func main() throws {
-    let didJWK = try DIDJWK.create(keyManager: InMemoryKeyManager())
-    print(didJWK.uri)
-}
