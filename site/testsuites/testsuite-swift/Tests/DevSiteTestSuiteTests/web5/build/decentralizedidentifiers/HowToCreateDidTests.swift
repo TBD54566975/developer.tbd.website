@@ -19,8 +19,8 @@ final class HowToCreateDidTests: XCTestCase {
     let didDocument = didJWK.document
         // :snippet-end:
 
-        XCTAssertEqual(portableDID.uri, didJWK.uri, "URI should match")
-        XCTAssertEqual(portableDID.document, didJWK.document, "Document should match")
+        XCTAssertEqual(portableDID.uri, did, "URI should match")
+        XCTAssertEqual(portableDID.document, didDocument, "Document should match")
         XCTAssertEqual(portableDID.privateKeys.count, 1, "There should be exactly one private key")
         XCTAssertNil(portableDID.metadata, "Metadata should be nil")
     }
