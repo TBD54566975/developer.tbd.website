@@ -98,7 +98,7 @@ class CreatingQuotesTest {
                     currencyCode = "BTC", 
                     amount = "1000.0",
                     paymentInstruction = PaymentInstruction(
-                        link = "https://example.pfi.io/instructions",
+                        link = "'https://example.com/paymentInstructions",
                         instruction = "Detailed payout instructions"
                     )
                 ),
