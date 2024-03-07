@@ -106,7 +106,7 @@ class CreatingQuotesTest {
                     currencyCode = "KES", 
                     amount = "123456789.0",
                     paymentInstruction = PaymentInstruction(
-                        link = "https://example.pfi.io/instructions",
+                        link = "'https://example.com/paymentInstructions",
                         instruction = "Detailed payout instructions"
                     )
                 )
