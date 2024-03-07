@@ -8,5 +8,8 @@
   "@web5/crypto-aws-kms": "0.2.0",
   "@web5/dids": "0.4.1",
   "@web5/identity-agent": "0.2.5",
-  "tbdex-maven": "0.10.0-beta"
+  "maven-tbdex": "0.10.0-yo",
+  "maven-web5-credentials": "0.0.11-test",
+  "maven-web5-dids": "0.0.11-hello",
+  "maven-web5-crypto": "0.0.1-yer"
 }
