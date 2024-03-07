@@ -11,6 +11,13 @@ export class ExchangesApiProvider extends MockExchangesApiProvider {
                 subject: message.subject,
                 message: JSON.stringify(message)
             });
+
+        if (message.replyTo != null) {
+            await this.dataProvider.insert('callbacks', {
+                exchangeId: message.exchangeId,
+                uri: message.replyTo
+            });
+        }
     }  
     // :snippet-end:
 

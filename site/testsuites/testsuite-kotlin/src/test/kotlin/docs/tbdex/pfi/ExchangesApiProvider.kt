@@ -16,6 +16,13 @@ class ExchangesApiProvider: MockExchangesApiProvider() {
             "message" to message.data
         )
         dataProvider.insert("exchange", data)
+
+        if (message.replyTo != null) {
+            dataProvider.insert("callbacks", mapOf(
+                "exchangeid" to message.metadata.exchangeId,
+                "uri" to message.replyTo
+            ))
+        }
     }
     // :snippet-end:
 }
