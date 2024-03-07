@@ -3,8 +3,8 @@ import {
   connectWithDWNEndpoint,
   connectWithAgentAndConnectedDid,
   connectWithSyncConfig,
-} from '../../../../../code-snippets/api/web5-js';
-import { setUpWeb5 } from '../../setup-web5';
+} from '../../../../../../code-snippets/api/web5-js';
+import { setUpWeb5 } from '../../../setup-web5';
 
 // Mock needed to not conflict with globalThis.web5
 vi.mock('@web5/api', () => {

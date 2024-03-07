@@ -51,11 +51,11 @@ The code snippet above has two critical components you need to understand:
 
 **Creating or connecting with a DWN**
 
-Unlike in a traditional web app, where storage is remote, your Decentralized Web App (DWA) can store data on a locally reproduced DWN. Although DWNs are publicly addressable, you’ll simply need to connect to your DWN once using the [connect](/api/web5-js#connectoptions) method, then you can repeatedly query its data.
+Unlike in a traditional web app, where storage is remote, your Decentralized Web App (DWA) can store data on a locally reproduced DWN. Although DWNs are publicly addressable, you’ll simply need to connect to your DWN once using the [connect](https://tbd54566975.github.io/web5-js/modules/_web5_api.html#md:web5connectoptions) method, then you can repeatedly query its data.
 
 **Reading from the DWN**
 
-DWNs are one monolithic data store, so you don’t need to call specific endpoints on them. Instead, once you’ve connected to a DWN with your instance of `web5`, you can make calls into the data store using the [query](/api/web5-js/dwn/records#queryrequest) method and specify the type of data you’re looking to retrieve based on a semantic type. Getting your data is very straightforward this way, and doesn’t require you to remember the correct API endpoint to call or develop lots of API endpoints.
+DWNs are one monolithic data store, so you don’t need to call specific endpoints on them. Instead, once you’ve connected to a DWN with your instance of `web5`, you can make calls into the data store using the [query](https://tbd54566975.github.io/web5-js/classes/_web5_api.DwnApi.html#records) method and specify the type of data you’re looking to retrieve based on a semantic type. Getting your data is very straightforward this way, and doesn’t require you to remember the correct API endpoint to call or develop lots of API endpoints.
 
 
 ## Migrating Your App

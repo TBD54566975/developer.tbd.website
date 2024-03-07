@@ -13,7 +13,7 @@ In this guide, we’ll discuss what sync means in the context of DWNs and Web5, 
 
 In the context of DWNs and Web5, sync is the ability to synchronize all data across a user's multiple DWNs. 
 
-When an application calls [Web5.connect()](/api/web5-js#connectoptions), by default, a DWN is created that runs in browser memory and is considered a local DWN. 
+When an application calls [Web5.connect()](https://tbd54566975.github.io/web5-js/classes/_web5_api.Web5.html#connect), by default, a DWN is created that runs in browser memory and is considered a local DWN. 
 
 In addition, during Web5’s tech preview period, the SDK automatically defines two additional DWNs that are hosted by TBD and are remotely accessible (e.g., dwn.tbddev.org/dwn0, dwn.tbddev.org/dwn1).
 
@@ -50,4 +50,4 @@ Although sync is designed to be automatic, seamless, and work in the background,
 
 ![Alice and Bob messaging via DWNs](/img/alice-bob-dwn.png)
 
-There could also be scenarios where waiting for sync could lead to race conditions. You can [configure sync intervals](/api/web5-js#configure-sync-interval-when-connecting-to-web5), or force a sync between a user’s DWNs by calling [record.send()](/api/web5-js/dwn/record#senddid).
+There could also be scenarios where waiting for sync could lead to race conditions. You can [configure sync intervals](/docs/web5/build/decentralized-web-nodes/web5-connect#configure-sync-interval-when-connecting-to-web5), or force a sync between a user’s DWNs by calling [record.send()](https://tbd54566975.github.io/web5-js/classes/_web5_api.DwnApi.html#records).

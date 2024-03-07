@@ -30,7 +30,7 @@ function DocsIndex() {
         />
         <HeroCard
           heroText="Web5 API Reference"
-          buttonUrl="/api/web5-js"
+          buttonUrl="https://tbd54566975.github.io/web5-js/modules/_web5_api.html"
           buttonText="API Docs 📖"
           bodyText="API documentation for the Web5 JS SDK"
           themeColor="cyan"
