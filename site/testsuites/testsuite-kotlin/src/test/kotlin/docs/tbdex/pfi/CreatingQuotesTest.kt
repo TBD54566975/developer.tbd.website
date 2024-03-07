@@ -93,15 +93,22 @@ class CreatingQuotesTest {
             from = pfiDid.uri,
             exchangeId = message.metadata.exchangeId,
             quoteData = QuoteData(
-                //import java.time.OffsetDateTime
                 expiresAt = OffsetDateTime.now().plusDays(10),
                 payin = QuoteDetails(
                     currencyCode = "BTC", 
-                    amount = "1000.0"
+                    amount = "1000.0",
+                    paymentInstruction = PaymentInstruction(
+                        link = "https://example.pfi.io/instructions",
+                        instruction = "Detailed payout instructions"
+                    )
                 ),
                 payout = QuoteDetails(
                     currencyCode = "KES", 
-                    amount = "123456789.0"
+                    amount = "123456789.0",
+                    paymentInstruction = PaymentInstruction(
+                        link = "https://example.pfi.io/instructions",
+                        instruction = "Detailed payout instructions"
+                    )
                 )
             )
         )

@@ -123,7 +123,7 @@ describe('PFI: Quotes', () => {
           amount: '0.01',
           fee: '0.0001',
           paymentInstruction : {
-            link: 'https://example.com',
+            link: 'https://example.pfi.io/instructions',
             instruction: 'Detailed payment instructions'
           }
         },
@@ -131,7 +131,7 @@ describe('PFI: Quotes', () => {
           currencyCode: 'USD',
           amount: '1000.00',
           paymentInstruction : {
-            link: 'https://example.com',
+            link: 'https://example.pfi.io/instructions',
             instruction: 'Detailed payout instructions'
           }
         }
