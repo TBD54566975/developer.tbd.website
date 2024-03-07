@@ -55,48 +55,64 @@ const updatePackageJsonDependencies = (dirPath, sdkVersions) => {
   });
 };
 
-// Function to update a single pom.xml file based on sdkVersions
-async function updatePomXmlVersion(filePath, sdkVersions) {
+const updatePomXmlVersion = async (filePath, sdkVersions) => {
   try {
     const pomContent = fs.readFileSync(filePath, 'utf8');
     const parsedPomContent = await parseString(pomContent, {
-      explicitArray: false,
+      explicitArray: true,
+      preserveChildrenOrder: true,
       mergeAttrs: true,
     });
+
     let updated = false;
 
-    // Check if dependencies exist and update their versions
-    if (
-      parsedPomContent.project.dependencies &&
-      parsedPomContent.project.dependencies.dependency
-    ) {
-      let dependencies = parsedPomContent.project.dependencies.dependency;
-      dependencies = Array.isArray(dependencies)
-        ? dependencies
-        : [dependencies]; // Ensure it's an array
-
+    // Function to update versions in a list of dependencies
+    const updateDependencies = (dependencies) => {
       dependencies.forEach((dependency) => {
-        const sdkVersionKey = `maven-${dependency.artifactId}`;
+        const artifactId = dependency.artifactId[0];
+        const sdkVersionKey = `maven-${artifactId}`;
+
         if (sdkVersions[sdkVersionKey]) {
-          dependency.version = sdkVersions[sdkVersionKey];
+          dependency.version[0] = sdkVersions[sdkVersionKey];
           updated = true;
           console.log(
-            `Updated ${dependency.artifactId} version to: ${sdkVersions[sdkVersionKey]} in ${filePath}`
+            `Updated ${artifactId} version to: ${sdkVersions[sdkVersionKey]} in ${filePath}`
           );
         }
       });
+    };
 
-      if (updated) {
-        parsedPomContent.project.dependencies.dependency = dependencies; // Reassign updated dependencies
-        const updatedPomContent = builder.buildObject(parsedPomContent);
-        fs.writeFileSync(filePath, updatedPomContent);
-        console.log(`Successfully updated dependencies in ${filePath}`);
-      }
+    // Update direct dependencies
+    if (
+      parsedPomContent.project.dependencies &&
+      parsedPomContent.project.dependencies[0].dependency
+    ) {
+      updateDependencies(parsedPomContent.project.dependencies[0].dependency);
+    }
+
+    // Update managed dependencies
+    if (
+      parsedPomContent.project.dependencyManagement &&
+      parsedPomContent.project.dependencyManagement[0].dependencies[0]
+        .dependency
+    ) {
+      updateDependencies(
+        parsedPomContent.project.dependencyManagement[0].dependencies[0]
+          .dependency
+      );
+    }
+
+    if (updated) {
+      const updatedPomContent = builder.buildObject(parsedPomContent);
+      fs.writeFileSync(filePath, updatedPomContent);
+      console.log(`Successfully updated dependencies in ${filePath}`);
+    } else {
+      console.log(`No dependencies were updated in ${filePath}`);
     }
   } catch (error) {
     console.error(`Failed to update ${filePath}:`, error);
   }
-}
+};
 
 // Function to recursively find and update pom.xml files, excluding node_modules
 async function findAndUpdatePomFiles(dirPath, sdkVersions) {
@@ -116,6 +132,8 @@ async function findAndUpdatePomFiles(dirPath, sdkVersions) {
 // Main function to initiate the version propagation process
 async function propagateVersions() {
   const sdkVersions = getSdkVersions();
+
+  console.log('getsdk versions', getSdkVersions());
   if (sdkVersions) {
     for (const dirPath of directoriesToUpdate) {
       updatePackageJsonDependencies(dirPath, sdkVersions);
