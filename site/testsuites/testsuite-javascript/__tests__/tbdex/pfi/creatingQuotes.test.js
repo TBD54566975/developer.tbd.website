@@ -123,7 +123,7 @@ describe('PFI: Quotes', () => {
           amount: '0.01',
           fee: '0.0001',
           paymentInstruction : {
-            link: ''https://example.com/paymentInstructions',
+            link: 'https://example.com/paymentInstructions',
             instruction: 'Detailed payment instructions'
           }
         },

@@ -98,7 +98,7 @@ class CreatingQuotesTest {
                     currencyCode = "BTC", 
                     amount = "1000.0",
                     paymentInstruction = PaymentInstruction(
-                        link = "'https://example.com/paymentInstructions",
+                        link = "https://example.com/paymentInstructions",
                         instruction = "Detailed payout instructions"
                     )
                 ),
@@ -106,7 +106,7 @@ class CreatingQuotesTest {
                     currencyCode = "KES", 
                     amount = "123456789.0",
                     paymentInstruction = PaymentInstruction(
-                        link = "'https://example.com/paymentInstructions",
+                        link = "https://example.com/paymentInstructions",
                         instruction = "Detailed payout instructions"
                     )
                 )
