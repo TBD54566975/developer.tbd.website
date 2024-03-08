@@ -4,7 +4,7 @@ title: Required SDKs
 hide_title: true
 ---
 
-<LanguageSwitcher languages="JavaScript, Kotlin" />
+<LanguageSwitcher languages="JavaScript, Kotlin, Swift" />
 
 # Required SDKs
 
@@ -20,6 +20,8 @@ To implement and operate as a Wallet on a tbDEX network, you’ll need to use th
 ## Install SDKs
 
 <Shnip snippets={[
+    { snippetName: 'walletSdkInstallJs', language: 'JavaScript', codeLanguage: 'bash',},
+    { snippetName: 'walletSdkInstallSwift', language: 'Swift'},
     { 
       nestedSnippets:{
           'Gradle': {
@@ -34,15 +36,6 @@ To implement and operate as a Wallet on a tbDEX network, you’ll need to use th
         language: 'Kotlin'
     }
   ]}
-  inlineSnippets={[
-  {
-code: `npm i @web5/dids 
-npm i @web5/credentials 
-npm i @tbdex/http-client`,
-language: 'JavaScript',
-codeLanguage: 'bash'
-  },
-  ]}
 />
 
 ## Import Classes
@@ -51,16 +44,7 @@ To send and receive tbDEX messages, import the following classes:
 
 <Shnip snippets={[
     { snippetName: 'walletSdkImportJs', language: 'JavaScript'},
-  ]}
-  inlineSnippets={[
-    {
-      code: `  import tbdex.sdk.httpclient.TbdexHttpClient
-  import tbdex.sdk.protocol.models.Rfq
-  import tbdex.sdk.protocol.models.Quote
-  import tbdex.sdk.protocol.models.Order
-  import web5.sdk.credentials.VerifiableCredential
-  import web5.sdk.credentials.PresentationExchange`,
-      language: 'Kotlin',
-    },
+    { snippetName: 'walletSdkImportSwift', language: 'Swift'},
+    { snippetName: 'walletSdkImportsKt', language: 'Kotlin'},
   ]}
   />
