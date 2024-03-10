@@ -66,10 +66,10 @@
     {
       "identity" : "web5-swift",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/TBD54566975/web5-swift",
+      "location" : "https://github.com/TBD54566975/web5-swift.git",
       "state" : {
-        "revision" : "34411b0729ae443448a9283cf001116d20c0581f",
-        "version" : "0.0.4"
+        "branch" : "main",
+        "revision" : "6c8cf4190af292266cd61a4fab0708feaa6185b4"
       }
     }
   ],
