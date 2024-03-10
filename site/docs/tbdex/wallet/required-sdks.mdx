@@ -19,9 +19,9 @@ To implement and operate as a Wallet on a tbDEX network, you’ll need to use th
 
 ## Install SDKs
 
-<Shnip snippets={[
+<Shnip 
+  snippets={[
     { snippetName: 'walletSdkInstallJs', language: 'JavaScript', codeLanguage: 'bash',},
-    { snippetName: 'walletSdkInstallSwift', language: 'Swift'},
     { 
       nestedSnippets:{
           'Gradle': {
@@ -35,6 +35,15 @@ To implement and operate as a Wallet on a tbDEX network, you’ll need to use th
         },
         language: 'Kotlin'
     }
+  ]}
+  inlineSnippets={[
+    {
+      code: `dependencies: [
+    .package(url: "https://github.com/TBD54566975/web5-swift", exact: "0.0.4"),
+    .package(url: "https://github.com/TBD54566975/tbdex-swift.git", branch: "main"),
+]`,
+      language: 'Swift',
+    },
   ]}
 />
 
