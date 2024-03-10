@@ -11,10 +11,11 @@ function DocsIndex() {
         <meta property="og:title" />
       </Head>
       <h1>
-      Give your customers control of their identity, data, and finances.
+        Give your customers control of their identity, data, and finances.
       </h1>
       <p className="mb-8">
-        Our toolkits bring decentralized identity, messaging, and data storage to your applications. It lets developers focus on creating delightful user experiences, while returning ownership to individuals.
+        Our toolkits bring decentralized identity, messaging, and data storage to your applications. 
+        They let developers focus on creating delightful user experiences, while returning ownership to individuals.
       </p>
       <div className="grid grid-cols-1 desktop:grid-cols-2 gap-4">
         <HeroCard
