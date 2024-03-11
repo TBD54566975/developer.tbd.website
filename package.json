@@ -13,7 +13,7 @@
     "start:widget": "pnpm --filter web5-quickstart-widgets start",
     "build": "pnpm run shnip && pnpm --filter site run build",
     "clear": "pnpm --filter site run clear",
-    "test": "pnpm test:js && pnpm test:kotlin && pnpm test:swift && pnpm test:browser",
+    "test": "pnpm run shnip && pnpm test:js && pnpm test:kotlin && pnpm test:swift && pnpm test:browser",
     "test:apps": "pnpm --filter feedback-server test run",
     "test:browser": "pnpm -r test:browser",
     "test:js": "pnpm vitest run --config vite.config.ts --no-threads",
