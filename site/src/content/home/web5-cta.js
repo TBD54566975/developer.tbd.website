@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import HeroCard from '../../components/HeroCard';
 import Button from '../../components/Button';
 import Divider from '../../components/Divider';
 

@@ -10,20 +10,20 @@ import CodeSnippet from '@site/src/components/CodeSnippet';
 
 With Web5, records can be:
 * [written to a user's local DWN](#write-to-local-dwn)
-<!--//blocked by https://github.com/TBD54566975/dwn-sdk-js/issues/550 -->
-<!--* [written to a recipient's local DWN](#write-to-recipients-local-dwn)-->
 * [sent to a user's remote DWNs](#send-to-users-remote-dwns)
 * [sent to another user's DWNs](#send-to-recipients-dwns)
+<!--//blocked by https://github.com/TBD54566975/dwn-sdk-js/issues/550 -->
+<!--* [written to a recipient's local DWN](#write-to-recipients-local-dwn)-->
 
 This guide shows how to use Web5 to handle each scenario.
 
 ## Write to Local DWN
 
-The [records.create()](/api/web5-js/dwn/records#createrequest) function creates a record and also writes it to the user's local DWN. You do _not_ need to call the `send()` function to write a record to a local DWN.
+The [records.create()](https://tbd54566975.github.io/web5-js/classes/_web5_api.DwnApi.html#records) function creates a record and also writes it to the user's local DWN. You do _not_ need to call the `send()` function to write a record to a local DWN.
 
 <CodeSnippet functionName="createLocalRecord" />
 
-The same is true for the [protocols.configure()](/api/web5-js/dwn/protocols#configurerequest) function. It creates the protocol object and installs it on the user's local DWN. You do _not_ need to call the `send()` method to install a protocol on a local DWN.
+The same is true for the [protocols.configure()](https://tbd54566975.github.io/web5-js/classes/_web5_api.DwnApi.html#protocols) function. It creates the protocol object and installs it on the user's local DWN. You do _not_ need to call the `send()` method to install a protocol on a local DWN.
 
 <CodeSnippet functionName="createLocalProtocol" />
 

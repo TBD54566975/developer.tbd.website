@@ -15,7 +15,37 @@ on:
         default: 'Just because.'
 
 jobs:
-  test:
+  test-js:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '18'
+
+      - name: Install pnpm
+        run: npm install -g pnpm
+
+      - name: Install pnpm dependencies
+        run: pnpm install
+
+      - name: Start dwn-server container
+        run: docker-compose up -d dwn-server
+  
+      - name: Wait for dwn-server to be ready
+        run: until curl -sf http://localhost:3000/health; do echo -n .; sleep .1; done
+
+      - name: Run JS Tests
+        run: |
+          pnpm test:js
+        env:
+          VITE_APP_TEST_DWN_URL: http://localhost:3000
+  
+  test-kotlin:
     runs-on: ubuntu-latest
 
     steps:
@@ -32,6 +62,91 @@ jobs:
         with:
           distribution: 'temurin'
           java-version: '17'
+          cache: 'maven'
+
+      - name: Install pnpm
+        run: npm install -g pnpm
+  
+      - name: Install pnpm dependencies
+        run: pnpm install
+
+      - name: Run Kotlin Tests
+        run: |
+          pnpm test:kotlin
+
+  test-swift:
+    runs-on: macOS-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '18'
+
+      - name: Cache Swift dependencies
+        uses: actions/cache@v2
+        with:
+          path: ~/.swiftpm
+          key: ${{ runner.os }}-swift-${{ hashFiles('**/Package.resolved') }}
+          restore-keys: |
+            ${{ runner.os }}-swift-
+
+      - name: Setup Swift
+        uses: swift-actions/setup-swift@v1
+        with: 
+          swift-version: "5.9.2"
+      - name: Get Swift version
+        run: swift --version # Log the Swift version in use
+
+      - name: Install pnpm
+        run: npm install -g pnpm
+  
+      - name: Install pnpm dependencies
+        run: pnpm install
+
+      - name: Run Swift Tests
+        run: |
+          pnpm test:swift
+
+  test-browser:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '18'
+
+      - name: Install pnpm
+        run: npm install -g pnpm
+  
+      - name: Install dependencies
+        run: pnpm install
+  
+      - name: Install Playwright browsers
+        run: pnpm playwright install --with-deps
+
+      - name: Run Browser Tests
+        run: |
+          pnpm test:browser
+  
+  test-apps:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '18'
 
       - name: Install pnpm
         run: npm install -g pnpm
@@ -39,25 +154,17 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
-      - name: Install Playwright browsers
-        run: pnpm playwright install --with-deps
-
       - name: Start dwn-server container
         run: docker-compose up -d dwn-server
-
+  
       - name: Wait for dwn-server to be ready
         run: until curl -sf http://localhost:3000/health; do echo -n .; sleep .1; done
-
-      - name: Run tests
-        run: pnpm test
-        env:
-          VITE_APP_TEST_DWN_URL: http://localhost:3000
 
       - name: Run apps tests
         run: pnpm --filter feedback-server test run
 
   deploy:
-    needs: test
+    needs: [test-js, test-kotlin, test-swift, test-browser, test-apps]
     # Deploy the preview branch to Netlify only if it's a PR
     if: github.event_name == 'pull_request'
     runs-on: ubuntu-latest

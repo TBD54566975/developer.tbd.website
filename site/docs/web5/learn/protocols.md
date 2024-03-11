@@ -125,7 +125,7 @@ const protocolDefinition = {
 
 The value for `protocol` is a URI that serves as the key of the protocol being configured. If two or more applications use the same protocol, identified by the URI, users can enjoy common experiences across these apps in a more interoperable way. Ideally, the protocol URI should lead to a JSON Schema document that validates the configurations, however, this URI is not resolved nor are its contents validated by Web5.
 
-The `published` attribute indicates whether the protocol should be public. Published protocols are accessible by anyone who [queries](/api/web5-js/dwn/protocols#queryrequest) for them.
+The `published` attribute indicates whether the protocol should be public. Published protocols are accessible by anyone who [queries](https://tbd54566975.github.io/web5-js/classes/_web5_api.DwnApi.html#protocols) for them.
 
 ```json
 {

@@ -7,7 +7,7 @@ export function Footer() {
   const footer = {
     logoSrc: '/img/tbd-logo-square.svg',
     copyrightSignSrc: '/img/copyright-image.svg',
-    year: 2023,
+    year: new Date().getFullYear(),
     links: [
       {
         text: 'Legal',
