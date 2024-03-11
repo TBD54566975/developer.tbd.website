@@ -66,7 +66,11 @@ Using the sample code above as reference, the submission of `RFQ`, `Order`, or `
 As a PFI developer, you’ll be responsible for designing your own data storage and provider to access your data. After writing an `RFQ` to the database, you can [create a Quote](/docs/tbdex/pfi/creating-quotes). 
 Similarly, after writing an `Order` to your database, you’ll want to ensure you properly [process that Order](/docs/tbdex/pfi/processing-orders).
 
-When you recieve an RFQ and an exchange between your PFI and a Wallet is initiated, there is an optional `replyTo` parameter that allows for Wallets to subscribe to callbacks for exchange data. If you receive a `replyTo` parameter, which is a fully qualified URI (URL or DID), then as the PFI you are responsible for sending any and all new messages back to the endpoint provided. The URI should be scoped only to that exchange, allowing the caller to to specify a different URI per exchange if they wish. If the `replyTo` parameter is not present, the caller will have to poll your endpoints to get new exchange messages.
+<LanguageSwitchBlock>
+  <div language="JavaScript">
+    When you recieve an RFQ and an exchange between your PFI and a Wallet is initiated, there is an optional `replyTo` parameter that allows for Wallets to subscribe to callbacks for exchange data. If you receive a `replyTo` parameter, which is a fully qualified URI (URL or DID), then as the PFI you are responsible for sending any and all new messages back to the endpoint provided. The URI should be scoped only to that exchange, allowing the caller to to specify a different URI per exchange if they wish. If the `replyTo` parameter is not present, the caller will have to poll your endpoints to get new exchange messages.
+  </div>
+</LanguageSwitchBlock>
 
 Assuming a generic `dataProvider` class serves as your PFI’s means of accessing your Exchange data, here's an example of a `write()` implementation:
 
