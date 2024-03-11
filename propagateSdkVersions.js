@@ -133,7 +133,6 @@ async function findAndUpdatePomFiles(dirPath, sdkVersions) {
 async function propagateVersions() {
   const sdkVersions = getSdkVersions();
 
-  console.log('getsdk versions', getSdkVersions());
   if (sdkVersions) {
     for (const dirPath of directoriesToUpdate) {
       updatePackageJsonDependencies(dirPath, sdkVersions);
