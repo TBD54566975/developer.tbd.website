@@ -191,7 +191,8 @@ The following scripts are available for running specific tasks within the monore
 - `pnpm start:widget`: Runs the completed web5 widget
 - `pnpm clear`: Runs docusaurus clear
 - `pnpm build`: Runs the production build for the site so it can be hosted by a static web server. The completed build will be in the folder `site/build`.
-- `pnpm test`: Runs the testsuites for the site and all examples, including browser tests. Requires Playwright and Java Development Kit, per installation instructions above.
+- `pnpm test`: Runs the testsuites for the site and all examples in JS, Kotlin, Swift, including browser tests. Requires Playwright, Java Development Kit, and Swift, per installation instructions above.
+- `pnpm test:apps`: Runs the Applications testsuite only.
 - `pnpm test:js`: Runs the JavaScript testsuite only.
 - `pnpm test:js myFile.test.js`: Runs the tests within `myFile.test.js` only.
 - `pnpm test:kotlin`: Runs the Kotlin testsuite only.
