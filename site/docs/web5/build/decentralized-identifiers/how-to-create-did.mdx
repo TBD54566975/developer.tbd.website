@@ -36,10 +36,14 @@ You can create a DID using any of the [Web5-supported DID methods](/docs/web5/le
           language: 'xml',
         },
       },
-    },
+    }
+  ]}
+  inlineSnippets={[
     {
-      snippetName: 'web5DependencySwift',
-      language: "Swift",
+      code: `dependencies: [
+    .package(url: "https://github.com/TBD54566975/web5-swift", exact: "0.0.4"),
+]`,
+      language: 'Swift',
     },
   ]}
 />
@@ -66,7 +70,7 @@ The following DID methods are supported:
   ]}
   inlineSnippets={[
     {
-      code: `did:dht is currently not available in Swift.`,
+      code: `Creating a DID of method DHT is not currently available in Swift.`,
       language: 'Swift',
       codeLanguage: 'text',
     },
