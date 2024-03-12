@@ -4,7 +4,7 @@ hide_title: true
 sidebar_position: 7
 ---
 
-<LanguageSwitcher languages="JavaScript, Kotlin" />
+<LanguageSwitcher languages="JavaScript, Kotlin, Swift" />
 
 # Sending RFQs
 
@@ -15,12 +15,13 @@ The Offering provided an estimate, but the Quote will provide a formal offer bas
 An RFQ is a structured tbDEX message that specifies the details of the transaction your customer wishes to make.
 It includes information about the Offering, payment methods, and any required [verifiable credentials (VCs)](/docs/tbdex/wallet/managing-credentials).
 
-To create the message, call `Rfq.create()` passing metadata and data:
+To create the message, construct an RFQ passing metadata and data:
 
 <Shnip
   snippets={[
     { snippetName: 'skeletonRfqMessageJS', language: 'JavaScript' },
     { snippetName: 'skeletonRfqMessageKt', language: 'Kotlin' },
+    { snippetName: 'skeletonRfqMessageSwift', language: 'Swift' }
   ]}
 />
 
@@ -31,6 +32,7 @@ The metadata properties identify the DIDs of the sender (your customer) and the 
   snippets={[
     { snippetName: 'rfqMetadataJS', language: 'JavaScript' },
     { snippetName: 'rfqMetadataKt', language: 'Kotlin' },
+    { snippetName: 'rfqMetadataSwift', language: 'Swift' },
   ]}
 />
 
@@ -47,6 +49,7 @@ The data properties contain the specifics of the transaction, such as the id of 
   snippets={[
     { snippetName: 'createRfqMessageJS', language: 'JavaScript' },
     { snippetName: 'createRfqMessageKt', language: 'Kotlin' },
+    { snippetName: 'createRfqMessageSwift', language: 'Swift' },
   ]}
 />
 
@@ -58,6 +61,7 @@ Signing the RFQ ensures its authenticity. You can do so with the customer's [Por
   snippets={[
     { snippetName: 'signRfqMessageJS', language: 'JavaScript' },
     { snippetName: 'signRfqMessageKt', language: 'Kotlin' },
+    { snippetName: 'signRfqMessageSwift', language: 'Swift' }
   ]}
 />
 
@@ -69,6 +73,7 @@ Use `TbdexHttpClient` to send the RFQ to the PFI, with an optional `replyTo` pro
   snippets={[
     { snippetName: 'sendRfqMessageJS', language: 'JavaScript' },
     { snippetName: 'sendRfqMessageKt', language: 'Kotlin' },
+    { snippetName: 'sendRfqMessageSwift', language: 'Swift' }
   ]}
 />
 
