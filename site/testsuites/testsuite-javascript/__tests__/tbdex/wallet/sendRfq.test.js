@@ -68,8 +68,8 @@ describe('Wallet: Send RFQ', () => {
       const rfq = Rfq.create({
         //highlight-start
         metadata: {
-          from: customerDid.uri, // Customer DID
-          to: selectedOffering.metadata.from    // PFI's DID
+          to: selectedOffering.metadata.from,  // PFI's DID
+          from: customerDid.uri // Customer's DID
         },
         //highlight-end
         data: {}
@@ -89,8 +89,8 @@ describe('Wallet: Send RFQ', () => {
     // :snippet-start: createRfqMessageJS
     const rfq = Rfq.create({
       metadata: {
+        to: selectedOffering.metadata.from, // PFI's DID
         from: customerDid.uri, // Customer DID
-        to: selectedOffering.metadata.from // PFI's DID
       },
       //highlight-start
       data: {
