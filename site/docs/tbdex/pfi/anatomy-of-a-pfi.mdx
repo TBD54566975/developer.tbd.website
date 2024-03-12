@@ -68,7 +68,7 @@ Similarly, after writing an `Order` to your database, you’ll want to ensure yo
 
 <LanguageSwitchBlock>
   <div language="JavaScript">
-    When you recieve an RFQ and an exchange between your PFI and a Wallet is initiated, there is an optional `replyTo` parameter that allows for Wallets to subscribe to callbacks for exchange data. If you receive a `replyTo` parameter, which is a fully qualified URI (URL or DID), then as the PFI you are responsible for sending any and all new messages back to the endpoint provided. The URI should be scoped only to that exchange, allowing the caller to to specify a different URI per exchange if they wish. If the `replyTo` parameter is not present, the caller will have to poll your endpoints to get new exchange messages.
+When sending an `RFQ` message, the Wallet may also provide [an optional `replyTo` property](/docs/tbdex/wallet/send-rfq#send-rfq-to-pfi) that allows for Wallets to subscribe to callbacks for subsequent messages. If you receive a `replyTo` property, which is a fully qualified URI (URL or DID), then as the PFI you are responsible for sending all new messages back to the endpoint provided. The URI should be scoped only to that exchange, allowing the caller to to specify a different URI per exchange if they wish. If the `replyTo` property is not present, the caller will poll the exchange to get new messages.
   </div>
 </LanguageSwitchBlock>
 
