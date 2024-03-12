@@ -1,5 +1,4 @@
 import React from 'react';
-import Link from '@docusaurus/Link';
 import Button from './Button';
 
 function HeroCard({
@@ -20,7 +19,7 @@ function HeroCard({
     >
       {imgSrc && (
         <img
-          className={`px-2 absolute bottom-8 right-4 hidden md:block ${imgClass}`}
+          className={`px-2 absolute bottom-8 right-4 hidden desktop-xl:block ${imgClass}`}
           src={imgSrc}
         />
       )}
