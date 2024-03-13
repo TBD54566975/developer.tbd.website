@@ -25,7 +25,7 @@
         These need to be uniformly updated as part of the
         single dependency script from Nick
         -->
-        <version.tbdex>0.10.0-beta</version.tbdex>
+        <version.tbdex>0.11.0-beta</version.tbdex>
 
         <!-- Test Dependencies -->
         <version.ktor>2.3.7</version.ktor>
