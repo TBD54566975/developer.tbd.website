@@ -55,7 +55,7 @@ class CreatingQuotesTest {
     @Test
     fun `PFI verifies offering requirements and should not throw an error`() {
         dataProvider.setupInsert("exchange", "") { arrayOf<Any>() }
-        offeringsApiProvider.setOffering(message.metadata.id, pfiDid.uri)
+        offeringsApiProvider.setOffering(message.metadata.id.toString(), pfiDid.uri)
 
         // :snippet-start: pfiCreateOfferingKt
         // Write the message to your exchanges database

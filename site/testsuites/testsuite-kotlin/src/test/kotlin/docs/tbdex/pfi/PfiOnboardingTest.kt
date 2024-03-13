@@ -34,6 +34,6 @@ class PfiOnboardingTest {
     val pfiDid = DidDht.create(InMemoryKeyManager(), options)
     // :snippet-end:
 
-    assertEquals("PFI", pfiDid.didDocument?.services?.get(0)?.type, "DID should start with 'did:dht'")
+    assertEquals("PFI", pfiDid.didDocument?.service?.get(0)?.type, "DID should start with 'did:dht'")
   }
 }

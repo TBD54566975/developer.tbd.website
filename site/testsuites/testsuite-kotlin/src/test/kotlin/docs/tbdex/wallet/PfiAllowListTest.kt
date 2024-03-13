@@ -27,7 +27,7 @@ class PfiAllowListTest {
         val isPFI = DidResolvers
         .resolve(pfiDid)
         .didDocument
-        ?.services
+        ?.service
         ?.any { it.type == "PFI" }
         ?: false
         // :snippet-end:

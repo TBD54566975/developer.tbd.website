@@ -54,7 +54,7 @@ class PlaceOrderTest {
 
         try {
             // :snippet-start: sendOrderKt
-            TbdexHttpClient.sendMessage(order)
+            TbdexHttpClient.submitOrder(order)
             // :snippet-end:
         } catch (e: TbdexResponseException) {
             Assertions.fail("Failed to send Order message to PFI: $e")

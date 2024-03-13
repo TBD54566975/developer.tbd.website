@@ -105,7 +105,7 @@ internal class VerifyVcTest {
     vcJwtArray.forEach { vcJwt ->
         try {
             //highlight-start
-            val verificationResult = VerifiableCredential.verify(vcJwt) 
+            val verificationResult = VerifiableCredential.verify(vcJwt)
             //highlight-end
             verificationResults.add(VerificationResult(vcJwt, verificationResult, true, null))
         } catch (e: Exception) {
@@ -114,7 +114,7 @@ internal class VerifyVcTest {
         }
     }
     // :snippet-end:
-    
+
     // :snippet-start: errorsFoundKt
     if (errorsFound) {
         verificationResults.forEach { result ->
