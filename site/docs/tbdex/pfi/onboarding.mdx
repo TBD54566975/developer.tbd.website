@@ -24,6 +24,9 @@ To create a DID and identify yourself as a PFI, use the `web5/dids` package:
   ]} />
 
 ### Create DID with Service Endpoint
+For a DID to be recognized as a PFI, it is important to include a service endpoint in the DID document. The value for `serviceEndpoint` should be the URL to your PFI's service entry.
+
+If you also have an existing key management system to secure your secrets e.g [AWS KMS](https://aws.amazon.com/kms/), [Google Cloud KMS](https://cloud.google.com/security/products/security-key-management) etc, creating a DID provides a `keyManager` interface that you can pass it through.
 
 <Shnip snippets={[
     { snippetName: 'pfiOnboardingCreateDidJs', language: 'JavaScript'},
@@ -31,6 +34,5 @@ To create a DID and identify yourself as a PFI, use the `web5/dids` package:
   ]} />
 
 :::note Notes
-* The value for `serviceEndpoint` should be the URL to your PFI's service entry.
-* `InMemoryKeyManager` should only be used in non-production environments. See [Key Management Service](/docs/web5/build/decentralized-identifiers/key-management) for more details.
+* `LocalKeyManager` or `InMemoryKeyManager` should only be used in non-production environments. See [Key Management Service](/docs/web5/build/decentralized-identifiers/key-management) for more details.
 :::

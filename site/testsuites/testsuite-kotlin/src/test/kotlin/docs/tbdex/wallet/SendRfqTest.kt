@@ -50,8 +50,8 @@ class SendRfqTest {
         val skeleton = """
         // :snippet-start: skeletonRfqMessageKt
         val rfq = Rfq.create(
-            from,  //metadata
             to,    //metadata
+            from,  //metadata
             rfqData = RfqData() //data
         )
         // :snippet-end:
@@ -67,8 +67,8 @@ class SendRfqTest {
         val rfq = Rfq.create(
             //metadata
             //highlight-start
-            from = customerDid.uri,  // Customer DID
             to = selectedOffering.metadata.from,    // PFI's DID
+            from = customerDid.uri,  // Customer DID
             //highlight-end
             //data
             rfqData = RfqData()
@@ -86,8 +86,8 @@ class SendRfqTest {
 
         // :snippet-start: createRfqMessageKt
         val rfq = Rfq.create(
-            from = customerDid.uri,  // Customer DID
             to = selectedOffering.metadata.from,  // PFI's DID
+            from = customerDid.uri,  // Customer DID
             //highlight-start
             rfqData = RfqData(
                 offeringId = selectedOffering.metadata.id, // The ID of the selected offering
