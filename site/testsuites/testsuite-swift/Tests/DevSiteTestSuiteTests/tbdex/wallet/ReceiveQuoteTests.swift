@@ -129,7 +129,7 @@ final class ReceiveQuotes: XCTestCase {
         // Wait for Quote message to appear in the exchange
         while quote == nil {
             let exchanges = try await tbDEXHttpClient.getExchanges(
-                pfiDIDURI: pfiDidUri,
+               pfiDIDURI: rfq?.metadata.to ?? "",
                 requesterDID: customerDid
             )
 
