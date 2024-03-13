@@ -72,7 +72,7 @@ Similarly, after writing an `Order` to your database, you’ll want to ensure yo
 
 When sending an `RFQ` message, the Wallet may also provide [an optional `replyTo` property](/docs/tbdex/wallet/send-rfq#send-rfq-to-pfi) that allows for them to subscribe to subsequent messages. 
 If you receive a `replyTo` property, which is a fully qualified URI (URL or DID), then as the PFI you are responsible for sending all new messages back to the endpoint provided. 
-The URI should be scoped only to that exchange, allowing the caller to to specify a different URI per exchange if they wish. 
+The callback URI should be scoped only to that exchange, allowing the caller to to specify a different URI per exchange if they wish. 
 If the `replyTo` property is not present, the caller will poll the exchange to get new messages.
 
 
@@ -97,7 +97,7 @@ Here's an example of how to get offerings as specified by the `OfferingsApi` int
 
 <Shnip snippets={
   [
-    { snippetName: 'pfiOverviewWriteJs', language: 'JavaScript'},
+    { snippetName: 'pfiOverviewReadOfferingsJs', language: 'JavaScript'},
     { snippetName: 'pfiOverviewReadOfferingsKt', language: 'Kotlin'}
   ]} />
 

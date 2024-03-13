@@ -3,7 +3,7 @@ import { MockExchangesApiProvider } from '../../utils/mockExchangesApiProvider'
 export class ExchangesApiProvider extends MockExchangesApiProvider {
 
     // :snippet-start: pfiOverviewWriteJs
-    async write(message) {
+    async write(message, replyTo) {
         await this.dataProvider.insert('exchange', {
                 exchangeid: message.exchangeId,
                 messagekind: message.kind,
@@ -12,10 +12,10 @@ export class ExchangesApiProvider extends MockExchangesApiProvider {
                 message: JSON.stringify(message)
             });
 
-        if (message.replyTo != null) {
+        if (replyTo != null) {
             await this.dataProvider.insert('callbacks', {
                 exchangeId: message.exchangeId,
-                uri: message.replyTo
+                uri: replyTo
             });
         }
     }  
