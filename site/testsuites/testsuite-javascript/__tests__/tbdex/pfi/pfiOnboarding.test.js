@@ -6,19 +6,19 @@ import { test, expect, describe, beforeAll } from 'vitest';
 
 describe('PFI: Onboarding', () => {
     test('Create DID for a PFI', async () => {
-        // :snippet-start: pfiOnboardingCreateDidJs
         const keyManager = new LocalKeyManager();
-    const pfiDid = await DidDht.create({
-        options:{
-            publish: true,
-            services: [{
-                id: 'pfi',
-                type: 'PFI',
-                serviceEndpoint: 'https://example.com/'
-            }]
-        },
-        keyManager
-    })
+        // :snippet-start: pfiOnboardingCreateDidJs
+        const pfiDid = await DidDht.create({
+            options:{
+                publish: true,
+                services: [{
+                    id: 'pfi',
+                    type: 'PFI',
+                    serviceEndpoint: 'https://example.com/'
+                }]
+            },
+            keyManager
+        })
 
         // :snippet-end:
         expect(pfiDid.document).toHaveProperty('service');
