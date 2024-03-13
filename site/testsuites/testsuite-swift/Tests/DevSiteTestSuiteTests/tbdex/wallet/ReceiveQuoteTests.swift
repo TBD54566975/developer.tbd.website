@@ -4,8 +4,8 @@ import Web5
 @testable import tbDEX
 
 final class ReceiveQuotes: XCTestCase {
-    var customerDid: BearerDID?
-    let pfiDid: String = "did:dht:4ykjcjdq7udyjq5iy1qbcy98xnd4dkzuizm14ih4rn6953b8ohoo"
+    var customerBearerDid: BearerDID?
+    let pfiDidUri: String = "did:dht:4ykjcjdq7udyjq5iy1qbcy98xnd4dkzuizm14ih4rn6953b8ohoo"
     var selectedOffering: Offering?
     var rfq: RFQ?
     var initialQuote: Quote?
@@ -14,13 +14,13 @@ final class ReceiveQuotes: XCTestCase {
     override func setUp() {
         super.setUp()
         do {
-            customerDid = try DIDJWK.create(keyManager: InMemoryKeyManager())
+            customerBearerDid = try DIDJWK.create(keyManager: InMemoryKeyManager())
         } catch {
             XCTFail("Failed to create customerDid: \(error)")
         }
 
         selectedOffering = Offering(
-            from: pfiDid,
+            from: pfiDidUri,
             data: .init(
                 description: "test offering",
                 payoutUnitsPerPayinUnit: "1",
@@ -36,7 +36,7 @@ final class ReceiveQuotes: XCTestCase {
         let selectedCredentials: [String] = []
         rfq = RFQ(
             to: (selectedOffering?.metadata.from)!,
-            from: customerDid!.uri,
+            from: customerBearerDid!.uri,
             data: .init(
                 offeringId: selectedOffering!.metadata.id.rawValue,
                 payinAmount: "0.012",
@@ -72,10 +72,10 @@ final class ReceiveQuotes: XCTestCase {
             {
                 "metadata": {
                 "exchangeId": "exchange_123",
-                "to": "\(pfiDid)",
+                "to": "\(pfiDidUri)",
                 "kind": "quote",
                 "id": "quote_01hrwc4v55es59t20dhf7dea60",
-                "from": "\(customerDid!.uri)",
+                "from": "\(customerBearerDid!.uri)",
                 "createdAt": "2023-12-19T05:12:16.331Z",
                 },
                 "data": {
@@ -119,7 +119,7 @@ final class ReceiveQuotes: XCTestCase {
     }
 
     func testPollForQuotes() async throws {
-        guard let customerDidUnwrapped = customerDid else {
+        guard let customerDid = customerBearerDid else {
             XCTFail("Customer DID not found")
             return
         }
@@ -129,8 +129,8 @@ final class ReceiveQuotes: XCTestCase {
         // Wait for Quote message to appear in the exchange
         while quote == nil {
             let exchanges = try await tbDEXHttpClient.getExchanges(
-                pfiDIDURI: pfiDid,
-                requesterDID: customerDidUnwrapped
+                pfiDIDURI: pfiDidUri,
+                requesterDID: customerDid
             )
 
             for exchange in exchanges {
@@ -156,14 +156,14 @@ final class ReceiveQuotes: XCTestCase {
     }
 
     func testCloseExchange() async throws {
-        guard let customerDidUnwrapped = customerDid else {
+        guard let customerDid = customerBearerDid else {
             XCTFail("Customer DID not found")
             return
         }
 
         let quote = Quote(
-            from: pfiDid,
-            to: customerDidUnwrapped.uri,
+            from: pfiDidUri,
+            to: customerDid.uri,
             exchangeID: "exchange_123",
             data: QuoteData(
                 expiresAt: Date().addingTimeInterval(60),
@@ -187,12 +187,12 @@ final class ReceiveQuotes: XCTestCase {
         // :snippet-start: cancelExchangeSwift
         let closeMessage: Close = {
             var message = Close(
-                from: customerDidUnwrapped.uri,
+                from: customerDid.uri,
                 to: quote.metadata.from,
                 exchangeID: quote.metadata.exchangeID,
                 data: CloseData(reason: "Canceled by customer")
             )
-            try! message.sign(did: customerDidUnwrapped)
+            try! message.sign(did: customerDid)
             return message
         }()
        try! await tbDEXHttpClient.sendMessage(message: closeMessage)
