@@ -52,16 +52,16 @@ describe('PFI: Structure', () => {
     test('PFI initializes routes', async () => {
         try {
             // :snippet-start: pfiOverviewServerRoutesJs
-            tbDexServer.onSubmitRfq(async (ctx, rfq) => {
-                await exchangesApiProvider.write({ message: rfq})
+            tbDexServer.onSubmitRfq(async (ctx, rfq, opts) => {
+                await exchangesApiProvider.write({ message: rfq, replyTo: opts.replyTo })
             })
 
-            tbDexServer.onSubmitOrder(async (ctx, order) => {
-                await exchangesApiProvider.write({ message: order })
+            tbDexServer.onSubmitOrder(async (ctx, order, opts) => {
+                await exchangesApiProvider.write({ message: order, replyTo: opts.replyTo })
             })
 
-            tbDexServer.onSubmitClose(async (ctx, close) => {
-                await exchangesApiProvider.write({ message: close })
+            tbDexServer.onSubmitClose(async (ctx, close, opts) => {
+                await exchangesApiProvider.write({ message: close, replyTo: opts.replyTo })
             })
             // :snippet-end:
 
