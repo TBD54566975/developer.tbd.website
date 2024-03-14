@@ -1,6 +1,7 @@
 import XCTest
 import Mocker
 import Web5
+import TypeID
 @testable import tbDEX
 
 final class ReceiveQuotes: XCTestCase {
@@ -34,13 +35,20 @@ final class ReceiveQuotes: XCTestCase {
 
         let BTC_ADDRESS = "bc1q52csjdqa6cq5d2ntkkyz8wk7qh2qevy04dyyfd"
         let selectedCredentials: [String] = []
+        let offeringId: TypeID
+
+        if let rawValue = selectedOffering?.metadata.id.rawValue, let id = TypeID(rawValue: rawValue) {
+            offeringId = id
+        } else {
+            offeringId = TypeID(rawValue: "default")!
+        }
+
         rfq = RFQ(
             to: (selectedOffering?.metadata.from)!,
             from: customerBearerDid!.uri,
             data: .init(
-                offeringId: selectedOffering!.metadata.id.rawValue,
+                offeringId: offeringId,
                 payinAmount: "0.012",
-                claims: selectedCredentials,
                 payinMethod: SelectedPaymentMethod(
                     kind: "BTC_WALLET_ADDRESS",
                     paymentDetails: [
@@ -55,7 +63,8 @@ final class ReceiveQuotes: XCTestCase {
                         "expiryDate": "05/25",
                         "cardHolderName": "Alice Doe"
                     ]
-                )
+                ),
+                claims: selectedCredentials
             )
         )
         mockGetExchange()
@@ -63,12 +72,12 @@ final class ReceiveQuotes: XCTestCase {
     }
 
     func mockGetExchange() {
-        let url = URL(string: "http://localhost:9000/exchanges")!
+        let exchangeIdFromRFQ = rfq?.metadata.exchangeID ?? ""
+        let url = URL(string: "http://localhost:9000/exchanges/\(exchangeIdFromRFQ)")!
 
         let jsonString = """
         {
         "data": [
-            [
             {
                 "metadata": {
                 "exchangeId": "exchange_123",
@@ -96,7 +105,6 @@ final class ReceiveQuotes: XCTestCase {
                 },
                 "signature": "eyJraWQiOiJkaWQ6andrOmV5SnJhV1FpT2lKQ2FtVlZWWEEzUmpOTWEyOWFTV1ZaTW1GSldWWTBlRWhOYjFkUFZXaEpZMnQzVEdsblYyeFZieTFSSWl3aVlXeG5Jam9pUldSRVUwRWlMQ0pqY25ZaU9pSkZaREkxTlRFNUlpd2llQ0k2SW1Oc1ZsWTJNVlJGY2sxeVdsTk9NVVV6TTJoWFZYRjVaRVV4U1ZOV1VWbExPVk5FVUVnNWRrRkdhV3NpTENKcmRIa2lPaUpQUzFBaWZRIzAiLCJhbGciOiJFZERTQSJ9..WRwJUKc_H5jtY_1zT2shQh7xih7UIYv5KOcorf7JkxKiLCmyyjStd0rThUsAmDPqoAe38oB0FwENvjZfswxzAQ"
             }
-            ]
         ]
         }
         """
@@ -126,21 +134,17 @@ final class ReceiveQuotes: XCTestCase {
         // :snippet-start: pollForQuoteSwift
         var quote: Quote? = nil
 
-        // Wait for Quote message to appear in the exchange
+        //Wait for Quote message to appear in the exchange
         while quote == nil {
-            let exchanges = try await tbDEXHttpClient.getExchanges(
-               pfiDIDURI: rfq?.metadata.to ?? "",
-                requesterDID: customerDid
+            let messages = try await tbDEXHttpClient.getExchange(
+                pfiDIDURI: rfq?.metadata.to ?? "",
+                requesterDID: customerDid,
+                exchangeId: rfq?.metadata.exchangeID ?? ""
             )
 
-            for exchange in exchanges {
-                for anyMessage in exchange {
-                    if case .quote(let quoteMessage) = anyMessage {
-                        quote = quoteMessage
-                        break
-                    }
-                }
-                if quote != nil {
+            for message in messages {
+                if case .quote(let quoteMessage) = message {
+                    quote = quoteMessage
                     break
                 }
             }
@@ -152,7 +156,7 @@ final class ReceiveQuotes: XCTestCase {
         }
         // :snippet-end:
         XCTAssertNotNil(quote, "No quote found")
-        XCTAssertEqual(quote?.metadata.exchangeID, exchangeID, "The exchangeID of the found quote does not match 'exchange_123'")
+        XCTAssertEqual(quote?.metadata.exchangeID, exchangeID, "The exchangeID of the found quote does not match")
     }
 
     func testCloseExchange() async throws {
@@ -192,7 +196,7 @@ final class ReceiveQuotes: XCTestCase {
         )
         try! closeMessage.sign(did: customerDid)
         try! await tbDEXHttpClient.sendMessage(message: closeMessage)
-       // :snippet-end:
+        // :snippet-end:
 
         XCTAssertNotNil(closeMessage, "No closeMessage found")
         XCTAssertEqual(closeMessage.metadata.exchangeID, exchangeID, "The exchangeID of the found quote does not match")
