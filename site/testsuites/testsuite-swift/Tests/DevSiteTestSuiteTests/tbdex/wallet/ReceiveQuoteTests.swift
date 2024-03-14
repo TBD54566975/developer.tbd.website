@@ -199,6 +199,6 @@ final class ReceiveQuotes: XCTestCase {
        // :snippet-end:
 
         XCTAssertNotNil(closeMessage, "No closeMessage found")
-        XCTAssertEqual(closeMessage.metadata.exchangeID, exchangeID, "The exchangeID of the found quote does not match 'exchange_123'")
+        XCTAssertEqual(closeMessage.metadata.exchangeID, exchangeID, "The exchangeID of the found quote does not match")
     }
 }
