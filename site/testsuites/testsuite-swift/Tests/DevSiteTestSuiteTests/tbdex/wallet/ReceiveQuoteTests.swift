@@ -20,18 +20,7 @@ final class ReceiveQuotes: XCTestCase {
             XCTFail("Failed to create customerDid: \(error)")
         }
 
-        selectedOffering = Offering(
-            from: pfiDid,
-            data: .init(
-                description: "test offering",
-                payoutUnitsPerPayinUnit: "1",
-                payinCurrency: .init(currencyCode: "AUD"),
-                payoutCurrency: .init(currencyCode: "BTC"),
-                payinMethods: [],
-                payoutMethods: [],
-                requiredClaims: [:]
-            )
-        )
+       selectedOffering = MockData.selectedOffering
 
         let BTC_ADDRESS = "bc1q52csjdqa6cq5d2ntkkyz8wk7qh2qevy04dyyfd"
         let selectedCredentials: [String] = []
