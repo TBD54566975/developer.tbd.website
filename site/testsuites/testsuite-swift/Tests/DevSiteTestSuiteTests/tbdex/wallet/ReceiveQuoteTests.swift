@@ -170,7 +170,6 @@ final class ReceiveQuotes: XCTestCase {
                 payin: QuoteDetails(
                     currencyCode: "USD",
                     amount: "1.00",
-                    fee: nil,
                     paymentInstruction: PaymentInstruction(
                         link: "https://example.com/pay",
                         instruction: "Pay here"
@@ -179,23 +178,20 @@ final class ReceiveQuotes: XCTestCase {
                 payout: QuoteDetails(
                     currencyCode: "AUD",
                     amount: "2.00",
-                    fee: "0.50",
-                    paymentInstruction: nil
+                    fee: "0.50"
                 )
             )
         )
+
         // :snippet-start: cancelExchangeSwift
-        let closeMessage: Close = {
-            var message = Close(
-                from: customerDid.uri,
-                to: quote.metadata.from,
-                exchangeID: quote.metadata.exchangeID,
-                data: CloseData(reason: "Canceled by customer")
-            )
-            try! message.sign(did: customerDid)
-            return message
-        }()
-       try! await tbDEXHttpClient.sendMessage(message: closeMessage)
+        var closeMessage = Close(
+            from: customerDid.uri,
+            to: quote.metadata.from,
+            exchangeID: quote.metadata.exchangeID,
+            data: CloseData(reason: "Canceled by customer")
+        )
+        try! closeMessage.sign(did: customerDid)
+        try! await tbDEXHttpClient.sendMessage(message: closeMessage)
        // :snippet-end:
 
         XCTAssertNotNil(closeMessage, "No closeMessage found")
