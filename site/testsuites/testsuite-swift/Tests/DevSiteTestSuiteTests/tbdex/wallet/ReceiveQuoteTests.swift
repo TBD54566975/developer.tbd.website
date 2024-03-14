@@ -7,10 +7,11 @@ import TypeID
 final class ReceiveQuotes: XCTestCase {
     var customerBearerDid: BearerDID?
     let pfiDid: String = "did:dht:4ykjcjdq7udyjq5iy1qbcy98xnd4dkzuizm14ih4rn6953b8ohoo"
+    let exchangeID = "exchange_123"
+    
     var selectedOffering: Offering?
     var rfq: RFQ?
     var initialQuote: Quote?
-    let exchangeID = "exchange_123"
 
     override func setUp() {
         super.setUp()
@@ -20,42 +21,8 @@ final class ReceiveQuotes: XCTestCase {
             XCTFail("Failed to create customerDid: \(error)")
         }
 
-       selectedOffering = MockData.selectedOffering
-
-        let BTC_ADDRESS = "bc1q52csjdqa6cq5d2ntkkyz8wk7qh2qevy04dyyfd"
-        let selectedCredentials: [String] = []
-        let offeringId: TypeID
-
-        if let rawValue = selectedOffering?.metadata.id.rawValue, let id = TypeID(rawValue: rawValue) {
-            offeringId = id
-        } else {
-            offeringId = TypeID(rawValue: "default")!
-        }
-
-        rfq = RFQ(
-            to: (selectedOffering?.metadata.from)!,
-            from: customerBearerDid!.uri,
-            data: .init(
-                offeringId: offeringId,
-                payinAmount: "0.012",
-                payinMethod: SelectedPaymentMethod(
-                    kind: "BTC_WALLET_ADDRESS",
-                    paymentDetails: [
-                        "btc_address": BTC_ADDRESS
-                    ]
-                ),
-                payoutMethod: SelectedPaymentMethod(
-                    kind: "DEBIT_CARD",
-                    paymentDetails: [
-                        "cvv": "123",
-                        "cardNumber": "1234567890123456789",
-                        "expiryDate": "05/25",
-                        "cardHolderName": "Alice Doe"
-                    ]
-                ),
-                claims: selectedCredentials
-            )
-        )
+        selectedOffering = MockData.selectedOffering
+        rfq = MockData.rfq
         mockGetExchange()
         mockSendCloseMessage()
     }
@@ -64,44 +31,7 @@ final class ReceiveQuotes: XCTestCase {
         let exchangeIdFromRFQ = rfq?.metadata.exchangeID ?? ""
         let url = URL(string: "http://localhost:9000/exchanges/\(exchangeIdFromRFQ)")!
 
-        let jsonString = """
-        {
-        "data": [
-            {
-                "metadata": {
-                "exchangeId": "exchange_123",
-                "to": "\(pfiDid)",
-                "kind": "quote",
-                "id": "quote_01hrwc4v55es59t20dhf7dea60",
-                "from": "\(customerBearerDid!.uri)",
-                "createdAt": "2023-12-19T05:12:16.331Z",
-                },
-                "data": {
-                "expiresAt": "2024-12-19T05:12:16.331Z",
-                "payin": {
-                    "paymentInstruction": {
-                    "instruction": "test instruction",
-                    "link": "https://tbdex.io/example"
-                    },
-                    "currencyCode": "USD",
-                    "amount": "1.00"
-                },
-                "payout": {
-                    "amount": "2.00",
-                    "currencyCode": "AUD",
-                    "fee": "0.50"
-                }
-                },
-                "signature": "eyJraWQiOiJkaWQ6andrOmV5SnJhV1FpT2lKQ2FtVlZWWEEzUmpOTWEyOWFTV1ZaTW1GSldWWTBlRWhOYjFkUFZXaEpZMnQzVEdsblYyeFZieTFSSWl3aVlXeG5Jam9pUldSRVUwRWlMQ0pqY25ZaU9pSkZaREkxTlRFNUlpd2llQ0k2SW1Oc1ZsWTJNVlJGY2sxeVdsTk9NVVV6TTJoWFZYRjVaRVV4U1ZOV1VWbExPVk5FVUVnNWRrRkdhV3NpTENKcmRIa2lPaUpQUzFBaWZRIzAiLCJhbGciOiJFZERTQSJ9..WRwJUKc_H5jtY_1zT2shQh7xih7UIYv5KOcorf7JkxKiLCmyyjStd0rThUsAmDPqoAe38oB0FwENvjZfswxzAQ"
-            }
-        ]
-        }
-        """
-        guard let jsonData = jsonString.data(using: .utf8) else {
-            XCTFail("Failed to convert jsonString to Data")
-            return
-        }
-        Mocker.register(Mock(url: url, contentType: .json, statusCode: 200, data: [.get: jsonData]))
+        Mocker.register(Mock(url: url, contentType: .json, statusCode: 200, data: [.get: MockData.mockExchangeData]))
     }
 
     func mockSendCloseMessage() {
@@ -132,7 +62,7 @@ final class ReceiveQuotes: XCTestCase {
         // :snippet-start: pollForQuoteSwift
         var quote: Quote? = nil
 
-        //Wait for Quote message to appear in the exchange
+        // Wait for Quote message to appear in the exchange
         while quote == nil {
             let messages = try await tbDEXHttpClient.getExchange(
                 pfiDIDURI: pfiDidUri,
@@ -163,27 +93,7 @@ final class ReceiveQuotes: XCTestCase {
             return
         }
 
-        let quote = Quote(
-            from: pfiDid,
-            to: customerDid.uri,
-            exchangeID: "exchange_123",
-            data: QuoteData(
-                expiresAt: Date().addingTimeInterval(60),
-                payin: QuoteDetails(
-                    currencyCode: "USD",
-                    amount: "1.00",
-                    paymentInstruction: PaymentInstruction(
-                        link: "https://example.com/pay",
-                        instruction: "Pay here"
-                    )
-                ),
-                payout: QuoteDetails(
-                    currencyCode: "AUD",
-                    amount: "2.00",
-                    fee: "0.50"
-                )
-            )
-        )
+        let quote = MockData.mockQuote
 
         // :snippet-start: cancelExchangeSwift
         var closeMessage = Close(
