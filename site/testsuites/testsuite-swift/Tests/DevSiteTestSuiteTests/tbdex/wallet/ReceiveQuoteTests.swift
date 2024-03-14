@@ -6,7 +6,7 @@ import TypeID
 
 final class ReceiveQuotes: XCTestCase {
     var customerBearerDid: BearerDID?
-    let pfiDidUri: String = "did:dht:4ykjcjdq7udyjq5iy1qbcy98xnd4dkzuizm14ih4rn6953b8ohoo"
+    let pfiDid: String = "did:dht:4ykjcjdq7udyjq5iy1qbcy98xnd4dkzuizm14ih4rn6953b8ohoo"
     var selectedOffering: Offering?
     var rfq: RFQ?
     var initialQuote: Quote?
@@ -21,7 +21,7 @@ final class ReceiveQuotes: XCTestCase {
         }
 
         selectedOffering = Offering(
-            from: pfiDidUri,
+            from: pfiDid,
             data: .init(
                 description: "test offering",
                 payoutUnitsPerPayinUnit: "1",
@@ -81,7 +81,7 @@ final class ReceiveQuotes: XCTestCase {
             {
                 "metadata": {
                 "exchangeId": "exchange_123",
-                "to": "\(pfiDidUri)",
+                "to": "\(pfiDid)",
                 "kind": "quote",
                 "id": "quote_01hrwc4v55es59t20dhf7dea60",
                 "from": "\(customerBearerDid!.uri)",
@@ -131,15 +131,24 @@ final class ReceiveQuotes: XCTestCase {
             XCTFail("Customer DID not found")
             return
         }
+        guard let exchangeId = rfq?.metadata.exchangeID else {
+            XCTFail("Exchange ID not found")
+            return
+        }
+        guard let pfiDidUri = rfq?.metadata.to else {
+            XCTFail("PFI Did URI not found")
+            return
+        }
+
         // :snippet-start: pollForQuoteSwift
         var quote: Quote? = nil
 
         //Wait for Quote message to appear in the exchange
         while quote == nil {
             let messages = try await tbDEXHttpClient.getExchange(
-                pfiDIDURI: rfq?.metadata.to ?? "",
+                pfiDIDURI: pfiDidUri,
                 requesterDID: customerDid,
-                exchangeId: rfq?.metadata.exchangeID ?? ""
+                exchangeId: exchangeId
             )
 
             for message in messages {
@@ -166,7 +175,7 @@ final class ReceiveQuotes: XCTestCase {
         }
 
         let quote = Quote(
-            from: pfiDidUri,
+            from: pfiDid,
             to: customerDid.uri,
             exchangeID: "exchange_123",
             data: QuoteData(
