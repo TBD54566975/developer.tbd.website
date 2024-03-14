@@ -101,7 +101,7 @@ final class ReceiveQuotes: XCTestCase {
         }
         """
         guard let jsonData = jsonString.data(using: .utf8) else {
-            print("Failed to convert jsonString to Data")
+            XCTFail("Failed to convert jsonString to Data")
             return
         }
         Mocker.register(Mock(url: url, contentType: .json, statusCode: 200, data: [.get: jsonData]))
