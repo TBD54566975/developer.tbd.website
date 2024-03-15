@@ -35,8 +35,8 @@ open class MockOfferingsApiProvider: OfferingsApi {
     // Setup Methods
     //---------------------------------------------------------------------------//
 
-    fun setOffering(id: TypeId, pfiDid: String) {
-        dataProvider.setupGet("offering", id.toString()) {
+    fun setOffering(id: String, pfiDid: String) {
+        dataProvider.setupGet("offering", id) {
             TestData.getOffering(pfiDid, TestData.getPresentationDefinition())
         }
     }
