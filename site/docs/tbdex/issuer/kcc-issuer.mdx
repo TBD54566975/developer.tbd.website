@@ -3,29 +3,28 @@ title: Issuer Flow
 hide_title: true
 ---
 
-<LanguageSwitcher languages="JavaScript, Kotlin, Swift" />
+<LanguageSwitcher languages="JavaScript, Kotlin" />
 
 # Known Customer Credential
 
-Known Customer Credentials (KCCs) are [Verifiable Credentials](https://developer.tbd.website/docs/web5/learn/verifiable-credentials) designed to streamline the [Know Your Customer(KYC)](/docs/glossary) process for tbDEX protocol users. KCCs help in gaining access to PFIs providing regulated financial services. For a comprehensive exploration of the practical applications and compliance considerations of KCCs, refer to our [KCC Guide](https://docs.google.com/document/d/1vwcqzXOpVrCUv7U7g3A4jJs99Lj18gAVy4FaA3COEb8/edit). This resource provides detailed examples and insights into how KCCs align with certain regulatory requirements, offering valuable context for those overseeing the implementation and management of KCCs.
-
-:::danger
-IMPORTANT: This guide is intended for educational purposes only and does not constitute legal advice. Compliance programs may have varying requirements. Consult your legal and/or compliance advisors to ensure that the KCC is consistent with your legal and compliance obligations.
+Known Customer Credentials (KCCs) are [Verifiable Credentials](/docs/web5/learn/verifiable-credentials) designed to streamline the Know Your Customer(KYC) process for tbDEX protocol users. KCCs help in gaining access to PFIs providing regulated financial services. For a comprehensive exploration of the practical applications and compliance considerations of KCCs, refer to our [KCC Compliance Guide](/). This resource provides detailed examples and insights into how KCCs align with certain regulatory requirements, offering valuable context for those overseeing the implementation and management of KCCs.
+:::danger Important
+This guide is intended for educational purposes only and does not constitute legal advice. Compliance programs may have varying requirements. Consult your legal and/or compliance advisors to ensure that the KCC is consistent with your legal and compliance obligations.
 :::
 
 In this guide, we'll cover:
 
-- Performing [Identity Verification (IDV)](https://csrc.nist.gov/glossary/term/identity_verification#:~:text=1%20under%20Verification-,The%20process%20of%20confirming%20or%20denying%20that%20a%20claimed%20identity,with%20the%20identity%20being%20claimed) as a necessary step **before** issuing a Known Customer Credential (KCC), following [Self Issued OpenID Provider V2 (SIOPv2)](https://openid.github.io/SIOPv2/openid-connect-self-issued-v2-wg-draft.html) and [OpenID for Verifiable Presentation's (OID4VP)](https://openid.net/specs/openid-4-verifiable-presentations-1_0.html) set of specifications.
+- Performing Identity Verification (IDV) as a necessary step **before** issuing a Known Customer Credential (KCC), following [Self Issued OpenID Provider V2 (SIOPv2)](https://openid.github.io/SIOPv2/openid-connect-self-issued-v2-wg-draft.html) and [OpenID for Verifiable Presentation's (OID4VP)](https://openid.net/specs/openid-4-verifiable-presentations-1_0.html) set of specifications.
 - Designing a KCC, detailing the required properties.
 - Issuing a KCC, following successful IDV.
 
 :::info
-For a detailed guide on Known Customer Credentials for Wallets, please refer to our [Wallet's Known Customer Credential Guide](https://hackmd.io/SQwE3SnrRkmeipGGtznJTw)
+For a detailed guide on managing Known Customer Credentials as a Wallet application, please refer to the [Known Customer Credential Guide for Wallet Apps](/)
 :::
 
 ## Environment Setup
 
-If you haven't already, please follow our [Credential Issuance Server Setup Guide](https://hackmd.io/4cW3D9BVQGCEuf1CEg47jA?both#Credential-Issuance-Enviornment-Setup-Guide) for detailed instructions on the dependencies and packages needed to set up your server.
+If you haven't already, please follow the [Credential Issuance Server Setup Guide](/) for detailed instructions on the dependencies and packages needed to set up your server.
 
 ## IDV Process
 
@@ -81,15 +80,15 @@ This approach is used when you need to authenticate the user and also want to re
   ]}
 />
 
-The SIOPv2 Authorization request contains information about you, the issuer, along with a [Presentation Definition](/docs/web5/build/verifiable-credentials/presentation-definition).
+The SIOPv2 Authorization request contains information about you, the Issuer, along with a [Presentation Definition](/docs/web5/build/verifiable-credentials/presentation-definition).
 
 - **`client_id`**: Issuer's DID, establishing the issuer/requestor's identity.
-- **`response_type`**: Lets the wallet know the desired format, with `id_token` being required identity token and `vp_token` for _optional_ verifiable presentation token. The inclusion of `vp_token` means a presentation definition is required within the request.
-- **`response_uri`**: Indicates the callback url for the wallet, ensuring direct communication between the wallet and the issuer.
+- **`response_type`**: Lets the Wallet know the desired format, with `id_token` being required identity token and `vp_token` for _optional_ verifiable presentation token. The inclusion of `vp_token` means a presentation definition is required within the request.
+- **`response_uri`**: Indicates the callback url for the Wallet, ensuring direct communication between the Wallet and the Issuer.
 - **`nonce`**: A unique identifier tying together the request and its response.
 
 :::note
-`vp_token` is a [Verifiable Presentation](/docs/glossary#verifiable-presentation) that contains certified and authenticated claims about the customer. In this guide we'll cover an example `vp_token` to learn more refer to [openID's specs](https://openid.net/specs/openid-4-verifiable-presentations-1_0.html#section-6.1-2.2).
+`vp_token` is a [Verifiable Presentation](/docs/glossary#verifiable-presentation) that contains certified and authenticated claims about the customer. In this guide, we'll cover an example `vp_token`. To learn more refer to [OpenID's specs](https://openid.net/specs/openid-4-verifiable-presentations-1_0.html#section-6.1-2.2).
 :::
 
 2. Encode the SIOPv2 Authorization Request and respond:
@@ -112,7 +111,7 @@ The SIOPv2 Authorization request contains information about you, the issuer, alo
 3. The Wallet will then respond with a POST SIOPv2 Authorization Response. This response will be [JSON Web Tokens (JWTs)](https://jwt.io/). Here's an example response where `vp_token` and `id_token` is in the Authorization Response:
 
 ```javascript
-// Wallet id_token JWT response
+// Wallet.js id_token JWT response
 
 eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
   .eyJpc3MiOiJkaWQ6ZGh0OmN1c3RvbWVyRGlkIiwic3ViIjoiZGlkOmRodDpjdXN0b21lckRpZCIsImF1ZCI6Imlzc3VlckRpZC51cmkiLCJub25jZSI6Im4tMFM2X1d6QTJNaiIsImV4cCI6MTYxODg4NDQ3MywiaWF0IjoxNjE4ODgwODczfQGUuY29tL2NyZWRlbnRpYWxzLzE4NzIiLCJ0eXBlIjpbIlZlcmlmaWFibGVDcmVkZW50aWFsIiwiSURDYXJkQ3JlZGVudGlhbCJdLCJpc3N1ZXIiOnsiaWQiOiJkaWQ6ZXhhbXBsZTppc3N1ZXIifSwiaXNzdWFuY2VEYXRlIjoiMjAxMC0wMS0wMVQxOToyMzoyNFoiLCJjcmVkZW50aWFsU3ViamVjdCI6eyJnaXZlbl9uYW1lIjoiRnJlZHJpayIsImZhbWlseV9uYW1
@@ -120,17 +119,17 @@ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
 ```
 
 ```javascript
-// Wallet vp_token JWT response
+// Wallet.js vp_token JWT response
 
 eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
   .eyJAY29udGV4dCI6WyJodHRwczovL3d3dy53My5vcmcvMjAxOC9jcmVkZW50aWFscy92MSJdLCJ0eXBlIjpbIlZlcmlmaWFibGVQcmVzZW50YXRpb24iXSwidmVyaWZpYWJsZUNyZWRlbnRpYWwiOlt7IkBjb250ZXh0IjpbImh0dHBzOi8vd3d3LnczLm9yZy8yMDE4L2NyZWRlbnRpYWxzL3YxIiwiaHR0cHM6Ly93d3cudzMub3JnLzIwMTgvY3JlZGVudGlhbHMvZXhhbXBsZXMvdjEiXSwiaWQiOiJodHRwczovL2V4YW1wbGUuY29tL2NyZWRlbnRpYWxzLzE4NzIiLCJ0eXBlIjpbIlZlcmlmaWFibGVDcmVkZW50aWFsIiwiSURDYXJkQ3JlZGVudGlhbCJdLCJpc3N1ZXIiOnsiaWQiOiJkaWQ6ZXhhbXBsZTppc3N1ZXIifSwiaXNzdWFuY2VEYXRlIjoiMjAxMC0wMS0wMVQxOToyMzoyNFoiLCJjcmVkZW50aWFsU3ViamVjdCI6eyJnaXZlbl9uYW1lIjoiRnJlZHJpayIsImZhbWlseV9uYW1lIjoiU3RyJm9tYmVyZyIs
   .ImJpcnRoZGF0ZSI6IjE5NDktMDEtMjIifX1dLCJob2xkZXIiOiJkaWQ6ZXhhbXBsZTpob2xkZXIiLCJwcm9vZiI6eyJ0eXBlIjoiRWQyNTUxOVNpZ25hdHVyZTIwMTgiLCJjcmVhdGVkIjoiMjAyMS0wMy0xOVQxNTozMDoxNVoiLCJjaGFsbGVuZ2UiOiJuLTBTNl9XekEyTWoiLCJkb21haW4iOiJodHRwczovL2NsaWVudC5leGFtcGxlLm9yZy9jYiIsImp3cyI6ImV5SmhiR2NpT2lKSVV6STFOaUo5LkhvbGRlcl9GT1JfU0lHTkFUVVJFIiwicHJvb2ZQdXJwb3NlIjoiYXV0aGVudGljYXRpb24iLCJ2ZXJpZmljYXRpb25NZXRob2QiOiJkaWQ6ZXhhbXBsZTpob2xkZXIja2V5LTEifX0;
 ```
 
-When decoded here is the Human-Readable JSON of `id_token` and `vp_token`:
+When decoded, here is the JSON of `id_token` and `vp_token`:
 
 ```javascript
-// Wallet
+// Wallet.js
 
 {
   "id_token": {
@@ -203,7 +202,7 @@ When the Wallet's response solely contains `id_token`, your response must includ
 :::info
 **Dynamic Metadata Retrieval by Wallets**
 
-Wallets use the `credential_issuer` from the Credential Offer to dynamically construct URLs for fetching issuer and authorization server metadata. These URLs, formed by appending `/.well-known/openid-credential-issuer` and` /.well-known/oauth-authorization-server` to the `credential_issuer`, allow wallets to access up-to-date information on issuer capabilities and OAuth 2.0 endpoints. The next steps will cover how to properly configure these endpoints.
+Wallets use the `credential_issuer` from the Credential Offer to dynamically construct URLs for fetching Issuer and Authorization Server Metadata. These URLs, formed by appending `/.well-known/openid-credential-issuer` and` /.well-known/oauth-authorization-server` to the `credential_issuer`, allow wallets to access up-to-date information on issuer capabilities and OAuth 2.0 endpoints. The next steps will cover how to properly configure these endpoints.
 :::
 
 5. Configure the `/.well-known/openid-credential-issuer` endpoint that will return the Issuer's Metadata:
@@ -224,7 +223,7 @@ Wallets use the `credential_issuer` from the Credential Offer to dynamically con
 />
 
 - `credential_issuer`: The base URL address of the Issuer's service. It is used by the Wallet to retrieve the Issuer's metadata and the Issuer's Authorization Server Metadata.
-- `credential_endpoint`: The endpoint the wallet will use to submit requests to issue credentials. After obtaining an access token, the wallet sends a credential request to this endpoint.
+- `credential_endpoint`: The endpoint the Wallet will use to submit requests to issue credentials. After obtaining an access token, the Wallet sends a credential request to this endpoint.
 - `credential_configurations_supported`: Defines the format `jwt_vc_json` and the credential.
 
 6. Configure the `/.well-known/oauth-authorization-server` endpoint that will return the Issuer's Authorization Server Metadata:
@@ -244,7 +243,7 @@ Wallets use the `credential_issuer` from the Credential Offer to dynamically con
   ]}
 />
 
-- `issuer`: The base URL of the issuer's service.
+- `issuer`: The base URL of the Issuer's service.
 - `token_endpoint`: The endpoint where Wallet's can exchange the `pre_authorization_code` receieved in the `credential_offer` for an access token.
 
 7. Set up the `/token` endpoint to process incoming requests from the Wallet containing the `pre_authorization_code`. This code, originally provided in the `credential_offer` object, is used to validate the Wallet's request:
@@ -266,7 +265,7 @@ Wallets use the `credential_issuer` from the Credential Offer to dynamically con
 
 ## Design Known Customer Credential
 
-When creating a Verifiable Credential you can design a model class to represent the specific type of credential you'd like to issue.
+When creating a Verifiable Credential, you can design a model class to represent the specific type of credential you'd like to issue.
 
 1. Define a `KccCredential` class with the required fields for the credential:
 
@@ -292,9 +291,9 @@ When creating a Verifiable Credential you can design a model class to represent 
 
 ## Issue Known Customer Credential
 
-Issuing a Known Customer Credential to a customer's Wallet confirms the successful completion of the Identity Verification Process. To create and securely sign this credential we will utilize the [web5/credentials](https://www.npmjs.com/package/@web5/credentials) package.
+Issuing a Known Customer Credential to a customer's Wallet confirms the successful completion of the Identity Verification Process. To create and securely sign this credential, we will utilize the [web5/credentials](https://www.npmjs.com/package/@web5/credentials) package.
 
-1. Once the customer accepts your Credential Offer, the Wallet will then send a request for credentials to the endpoint specified in the `credential_endpoint` field of the issuer's metadata. Here is an example of the Wallet's request:
+1. Once the customer accepts your Credential Offer, the Wallet will then send a request for credentials to the endpoint specified in the `credential_endpoint` field of the Issuer's metadata. Here is an example of the Wallet's request:
 
 ```json
 POST /credentials HTTP/1.1
@@ -313,9 +312,9 @@ Content-Type: application/json
 
 The `proof` section contains various claims, for a detailed look at each field please refer to the [OpenID specs](https://openid.net/specs/openid-4-verifiable-credential-issuance-1_0.html#section-7.2.1.1-2.1.1).
 
-- `czZCaGRSa3F0MzpnWDFmQmF0M2JW`: Is the `access_token` that the Wallet recieved from the `/token` endpoint.
+- `czZCaGRSa3F0MzpnWDFmQmF0M2JW`: The `access_token` that the Wallet recieved from the `/token` endpoint.
 
-:::danger
+:::danger Important
 Before issuing a Known Customer Credential, it's important to complete all necessary steps of your Know Your Customer (KYC) program. This may include further screenings on the user's DID/information, such as Sanctions Checks, Politically Exposed Persons (PEP) screenings, and Negative News Screenings, which aren't covered in this guide. Consult with your legal and compliance advisors to ensure that this process is consistent with your specific legal and compliance obligations.  
 :::
 

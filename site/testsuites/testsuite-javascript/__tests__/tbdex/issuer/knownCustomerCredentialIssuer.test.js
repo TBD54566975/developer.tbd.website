@@ -36,7 +36,7 @@ app.get('/idv/siopv2/initiate', async (req, res) => {
     response_mode: 'direct_post', // Delivery method of the SIOP response
     nonce: 'n-0S6_WzA2Mj', // Unique string to link the request and response
     client_metadata: {
-      // Descriptive metadata about the requesting party (issuer)
+      // Descriptive metadata about the requesting party (Issuer)
       subject_syntax_types_supported: 'did:dht did:jwk',
       client_name: 'Issuance Service Name',
       client_uri: 'https://issuer.example.com',
@@ -97,7 +97,7 @@ app.get('/idv/siopv2/initiate', async (req, res) => {
     response_mode: 'direct_post', // Delivery method of the SIOP response
     nonce: 'n-0S6_WzA2Mj', // Unique string to link the request and response
     client_metadata: {
-      // Descriptive metadata about the requesting party (issuer)
+      // Descriptive metadata about the requesting party (Issuer)
       subject_syntax_types_supported: 'did:dht did:jwk',
       client_name: 'Issuance Service Name',
       client_uri: 'https://issuer.example.com',
@@ -165,10 +165,10 @@ import { VerifiableCredential, Jwt } from '@web5/credentials';
 const preAuthCodeToDidMap = new Map();
 
 app.post('/siopv2/response', async (req, res) => {
-  const walletResponse = req.body; // The SIOPv2 Authorization Response from the wallet
+  const walletResponse = req.body; // The SIOPv2 Authorization Response from the Wallet
 
   /************************************************************
-   * Extract and verify the ID Token from the wallet's response
+   * Extract and verify the ID Token from the Wallet's response
    *************************************************************/
   try {
     const compactIdToken = walletResponse.id_token;
@@ -184,7 +184,7 @@ app.post('/siopv2/response', async (req, res) => {
     // Perform additional checks (e.g., nonce, audience, expiration)
 
     /************************************************************
-     * Extract and verify the VP Token from the wallet's response
+     * Extract and verify the VP Token from the Wallet's response
      *************************************************************/
     let credentialOffer;
     if (walletResponse.vp_token) {
@@ -246,7 +246,7 @@ app.get('/.well-known/openid-credential-issuer', (req, res) => {
     credential_issuer: 'https://issuer.example.com',
     credential_endpoint: 'https://issuer.example.com/credentials',
     credential_configurations_supported: {
-      // type of credentials issuer supports & what credential will look like
+      // type of credentials Issuer supports and what credential will look like
       KnownCustomerCredential: {
         format: 'jwt_vc_json',
         scope: 'CustomerIdentity',
