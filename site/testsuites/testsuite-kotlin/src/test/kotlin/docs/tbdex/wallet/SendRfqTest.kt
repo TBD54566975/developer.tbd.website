@@ -117,8 +117,8 @@ class SendRfqTest {
 
         try{
             // :snippet-start: sendRfqMessageKt
-            TbdexHttpClient.sendMessage(
-                rfq, 
+            TbdexHttpClient.createExchange(
+                rfq,
                 "https://example.com/callback"
             )
             // :snippet-end:

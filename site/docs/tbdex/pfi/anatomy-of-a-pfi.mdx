@@ -64,6 +64,20 @@ Although the interface for `ExchangesApi` only requires read operations, you may
 Using the sample code above as reference, the submission of `RFQ`, `Order`, or `Close` data will result in the triggering of the Exchange API Provider’s `write()`, while the required methods such as `getOrder()` will serve as read methods. 
 
 As a PFI developer, you’ll be responsible for designing your own data storage and provider to access your data. 
+
+For example, after writing an `RFQ` to the database, you can [create a Quote](/docs/tbdex/pfi/creating-quotes). 
+Similarly, after writing an `Order` to your database, you’ll want to ensure you properly [process that Order](/docs/tbdex/pfi/processing-orders).
+
+### Callbacks
+
+When sending an `RFQ` message, the Wallet may also provide [an optional `replyTo` property](/docs/tbdex/wallet/send-rfq#send-rfq-to-pfi) that allows for them to subscribe to subsequent messages. 
+If you receive a `replyTo` property, which is a fully qualified URI (URL or DID), then as the PFI you are responsible for sending all new messages back to the endpoint provided. 
+The callback URI should be scoped only to that exchange, allowing the caller to to specify a different URI per exchange if they wish. 
+If the `replyTo` property is not present, the caller will poll the exchange to get new messages.
+
+
+### Writing Messages
+
 Assuming a generic `dataProvider` class serves as your PFI’s means of accessing your Exchange data, here's an example of a `write()` implementation:
 
 <Shnip snippets={
@@ -72,20 +86,18 @@ Assuming a generic `dataProvider` class serves as your PFI’s means of accessin
     { snippetName: 'pfiOverviewWriteKt', language: 'Kotlin'}
   ]} />
 
-After writing an `RFQ` to the database, you can [create a Quote](/docs/tbdex/pfi/creating-quotes). 
-Similarly, after writing an `Order` to your database, you’ll want to ensure you properly [process that Order](/docs/tbdex/pfi/processing-orders).
-
 
 ## Offerings API Provider
 
-The `Offerings` API is the set of methods that deals with reading and writing any offering data, based on the [OfferingsApi](https://tbd54566975.github.io/tbdex-js/interfaces/_tbdex_http_server.OfferingsApi.html) class. Although the interface for `OfferingsApi` only requires to be filled out with read operations, you may find it useful to couple write operations into the class as well. 
+The `Offerings` API is the set of methods that deals with reading and writing any offering data, based on the [OfferingsApi](https://tbd54566975.github.io/tbdex-js/interfaces/_tbdex_http_server.OfferingsApi.html) class. 
+Although the interface for `OfferingsApi` only requires to be filled out with read operations, you may find it useful to write operations into the class as well. 
 
 Although the Offerings API isn’t directly exposed in the main server entrypoint, it is still used to fetch and write offerings to your PFI's database. 
 Here's an example of how to get offerings as specified by the `OfferingsApi` interface:
 
 <Shnip snippets={
   [
-    { snippetName: 'pfiOverviewWriteJs', language: 'JavaScript'},
+    { snippetName: 'pfiOverviewReadOfferingsJs', language: 'JavaScript'},
     { snippetName: 'pfiOverviewReadOfferingsKt', language: 'Kotlin'}
   ]} />
 
