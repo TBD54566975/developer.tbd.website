@@ -1,92 +1,85 @@
 import XCTest
 import Mocker
 import Web5
-import tbDEX
+import TypeID
+@testable import tbDEX
 @testable import DevSiteTestSuite
-
-
 
 final class WalletPlacingOrdersTests: XCTestCase {
 
-    private var customerDid
-    private var pfiDid
-    private var order
-    private var orderStatus
-    private var close
-    private var closeReason: String = "Transaction complete"
-    private var orderStatusMessage: String = "Processing"
-    private var exchangeId: String = "testExchange"
+    var customerBearerDid: BearerDID?
+    var pfiBearerDid: BearerDID?
+    var orderStatus: OrderStatus?
+    var close: Close?
+    let closeReason: String = "Transaction complete"
+    let orderStatusMessage: String = "Processing"
+    let exchangeId: String = "testExchange"
 
-     override func setUp() {
+    override func setUp() {
         super.setUp()
         
         // Setup DIDs
-         do {
-            customerDid = try DIDJWK.create(keyManager: InMemoryKeyManager())
-            pfiDid = try DIDJWK.create(keyManager: InMemoryKeyManager())
+        do {
+            customerBearerDid = try DIDJWK.create(keyManager: InMemoryKeyManager())
+            pfiBearerDid = try DIDJWK.create(keyManager: InMemoryKeyManager())
         } catch {
             XCTFail("Failed to create dids: \(error)")
         }
 
-        // Create Order
-        order = TestData.createOrder(from: customerDid.uri, to: pfiDid.uri, exchangeId: exchangeId)
-        await order.sign(customerDid)
-
         // Create OrderStatus
         orderStatus = TestData.createOrderStatus(
-            from: customerDid.uri, 
-            to: pfiDid.uri, 
+            from: customerBearerDid!.uri, 
+            to: pfiBearerDid!.uri, 
             exchangeId: exchangeId, 
             status: orderStatusMessage)
-        orderStatus.sign(customerDid)
+        try! orderStatus!.sign(did: customerBearerDid!)
 
         // Create Close
         close = TestData.createClose(
-            from: customerDid.uri, 
-            to: pfiDid.uri,
+            from: customerBearerDid!.uri, 
+            to: pfiBearerDid!.uri,
             exchangeId: exchangeId,
             reason: closeReason)
-        close.sign(customerDid)
-
+        try! close!.sign(did: customerBearerDid!)
     }
 
     func testSendOrderMessage() async throws {
-        let quote = TestData.createQuote(from: pfiDid.uri, to: customerDid.uri)
+        guard let pfiDid = pfiBearerDid, let customerDid = customerBearerDid else {
+            XCTFail("Failed to unwrap DIDs")
+            return
+        }
 
         // :snippet-start: createOrderSwift
-        let order = Order(from: customerDid, to: pfiDid, exchangeID: "", data: .init())
+        var order = Order(from: customerDid.uri, to: pfiDid.uri, exchangeID: exchangeId, data: .init())
         // :snippet-end:
 
-        // :snippet-start: signOrderSwift
-        await order.sign(customerDid)
+        // :snippet-start: sendOrderSwift
+        try! order.sign(did: customerDid)
+        try! await tbDEXHttpClient.sendMessage(message: order)
         // :snippet-end:
-
-        do {
-            // :snippet-start: sendOrderSwift
-            await TbdexHttpClient.sendMessage(order)
-            // :snippet-end:
-        } catch(e) {
-            XCTAssert(false, e)
-        }
     }
 
     func testStatusUpdate() async throws {
+        var orderStatusUpdate: String?
+        var closeMessage: String?
+
+        guard let pfiDid = pfiBearerDid, let customerDid = customerBearerDid else {
+            XCTFail("Failed to unwrap DIDs")
+            return
+        }
+
         // :snippet-start: listenForOrderStatusSwift
-        var orderStatusUpdate
-        var closeMessage
+        while (closeMessage == nil) {
+            let messages = try await tbDEXHttpClient.getExchange(
+                pfiDIDURI: pfiDid.uri, 
+                requesterDID: customerDid.uri,
+                exchangeId: exchangeId)
 
-        while (!closeMessage) {
-            let exchange = await TbdexHttpClient.getExchange(pfiDid.uri, customerDid.uri)
-
-            for exchange in exchanges {
-                if (exchange.exchangeID == order.exchangeID) {
-                    for message in exchange.messages {
-                        if message.kind == "OrderStatus" {
-                            orderStatusUpdate = message.data.orderStatus
-                        } else if message.kind == "Close" {
-                            closeMessage = message
-                        }
-                    }
+            for message in messages {
+                if message.kind == "OrderStatus" {
+                    orderStatusUpdate = message.data.orderStatus
+                } else if message.kind == "Close" {
+                    closeMessage = message
                 }
             }
         }
@@ -95,8 +88,11 @@ final class WalletPlacingOrdersTests: XCTestCase {
         XCTAssert(orderStatusUpdate == orderStatusMessage, "OrderStatus message is incorrect")
 
         // :snippet-start: getCloseReasonSwift
-        let reasonForClose = closeMessage.data.reason
-        // :snippet-end:
+        var reasonForClose: String
+        if let closeData = closeMessage?.data as? String {
+            reasonForClose = closeData
+        }
+        // :snippet-end
 
         XCTAssert(reasonForClose == closeReason, "Close reason is not correct")
     }
