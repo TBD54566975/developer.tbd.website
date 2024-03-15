@@ -1,5 +1,5 @@
 import Web5
-import tbDex
+import tbDEX
 
 final class TestData {
     func createOrder(

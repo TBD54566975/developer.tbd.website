@@ -1,9 +1,7 @@
 import XCTest
 import Mocker
-// :prepend-start: isPFISwift
 import Web5
-import tbDex
-// :prepend-end:
+import tbDEX
 @testable import DevSiteTestSuite
 
 
@@ -23,8 +21,12 @@ final class WalletPlacingOrdersTests: XCTestCase {
         super.setUp()
         
         // Setup DIDs
-        customerDid = try DIDJWK.create(keyManager: InMemoryKeyManager())
-        pfiDid = try DIDJWK.create(keyManager: InMemoryKeyManager())
+         do {
+            customerDid = try DIDJWK.create(keyManager: InMemoryKeyManager())
+            pfiDid = try DIDJWK.create(keyManager: InMemoryKeyManager())
+        } catch {
+            XCTFail("Failed to create dids: \(error)")
+        }
 
         // Create Order
         order = TestData.createOrder(from: customerDid.uri, to: pfiDid.uri, exchangeId: exchangeId)
@@ -46,7 +48,6 @@ final class WalletPlacingOrdersTests: XCTestCase {
             reason: closeReason)
         close.sign(customerDid)
 
-        // Set up mock PFI server
     }
 
     func testSendOrderMessage() async throws {
