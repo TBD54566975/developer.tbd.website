@@ -14,7 +14,7 @@ function ExploreCard({ text, icon, url, imgClass }) {
       onMouseLeave={() => setIsHovered(false)} // Set isHovered to false on mouse leave
     >
       {icon && text && (
-        <img className={`m-auto h-1/2 p-4 tbd-yellow-illustration ${imgClass}`} alt={text} src={icon} />
+        <img className={`m-auto h-1/2 p-4 bounce ${imgClass}`} alt={text} src={icon} />
       )}
       <div className="flex justify-between px-4 py-6 bg-[#282828] w-full">
         <h3>{text}</h3>

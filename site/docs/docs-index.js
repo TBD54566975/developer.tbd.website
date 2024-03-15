@@ -11,30 +11,31 @@ function DocsIndex() {
         <meta property="og:title" />
       </Head>
       <h1>
-        Build Web5 apps that put you in control of your data and identity.
+        Give your customers control of their identity, data, and finances.
       </h1>
       <p className="mb-8">
-        <a href="/blog/what-is-web5">Web5</a> brings decentralized identity and
-        data storage to your applications. It lets developers focus on creating
-        delightful user experiences, while returning ownership of data and
-        identity to individuals.
+        Our toolkits bring decentralized identity, messaging, and data storage to your applications. 
+        They let developers focus on creating delightful user experiences, while returning ownership to individuals.
       </p>
       <div className="grid grid-cols-1 desktop:grid-cols-2 gap-4">
         <HeroCard
-          heroText="Web5 in 5️ Minutes"
+          heroText="Web5"
           buttonUrl="/docs/web5/quickstart"
           buttonText="Quickstart 🚀"
-          bodyText="An interactive guide to get started with Web5"
+          bodyText="An interactive guide to create an app with decentralized identity and storage"
+          imgSrc="/img/did-vc.svg"
+          imgClass="w-32 flip"
           themeColor="purple"
-          primary
         />
         <HeroCard
-          heroText="Web5 API Reference"
-          buttonUrl="https://tbd54566975.github.io/web5-js/modules/_web5_api.html"
-          buttonText="API Docs 📖"
-          bodyText="API documentation for the Web5 JS SDK"
+          heroText="tbDEX"
+          buttonUrl="/docs/tbdex/"
+          buttonText="Playbooks 📖"
+          bodyText="Guides on integrating your app with the tbDEX SDK to seek or provide liquidity"
+          imgSrc="/img/money-msg-blue-purple.svg"
+          imgClass="w-36 flip"
           themeColor="cyan"
-          primary
+        
         />
       </div>
 
@@ -42,7 +43,7 @@ function DocsIndex() {
 
       <h2 className="mb-4">Learn More</h2>
       <p className="mb-8">
-        Get to know the components of Web5 and try it out in minutes.
+        Learn more about the components that enable decentralized applications.
       </p>
 
       <div className="grid grid-cols-1 desktop:grid-cols-2 gap-4">
@@ -50,34 +51,36 @@ function DocsIndex() {
           heroText="Decentralized Identifiers"
           buttonUrl="/docs/web5/learn/decentralized-identifiers"
           buttonText="Learn"
-          imgSrc="/img/data-icon.svg"
-          bodyText="Take a journey with Alice and Bob to learn all about DIDs"
+          imgSrc="/img/id-blue-purple.svg"
+          imgClass="w-32 beat-fade"
+          bodyText="Learn how digital IDs work across the web"
           themeColor="cyan"
         />
         <HeroCard
-          heroText="Decentralized Web Nodes"
-          buttonUrl="/docs/web5/learn/decentralized-web-nodes"
+          heroText="Verifiable Credentials"
+          buttonUrl="/docs/web5/learn/verifiable-credentials"
           buttonText="Learn"
-          imgSrc="/img/docs-page-icon.svg"
-          imgClass="w-32"
-          bodyText="Learn how DWNs act as personal data stores"
+          imgSrc="/img/credential-yellow.svg"
+          imgClass="w-32 beat-fade"
+          bodyText="Learn how digital credentials can be used to prove claims online"
           themeColor="purple"
         />
         <HeroCard
-          heroText="Protocols"
-          buttonUrl="/docs/web5/learn/protocols"
+          heroText="Wallet App Example"
+          buttonUrl="https://github.com/TBD54566975/tbDEX-Example-iOS"
           buttonText="Learn"
-          imgSrc="/img/lock-key.png"
-          bodyText="Learn how to define data schemas and permissions"
+          imgSrc="/img/wallet-blue-yellow.svg"
+          imgClass="w-32 beat-fade"
+          bodyText="Explore an example iOS wallet app that uses tbDEX to find liquidity"
           themeColor="purple"
         />
         <HeroCard
-          heroText="Build a Chat App"
-          buttonUrl="/docs/web5/build/apps/dinger-tutorial"
-          buttonText="Build"
-          imgSrc="/img/message-icon-purple.png"
-          imgClass="w-36"
-          bodyText="Learn how to build a decentralized chat app"
+          heroText="Financial Institution Example"
+          buttonUrl="https://github.com/TBD54566975/tbdex-pfi-exemplar"
+          buttonText="Learn"
+          imgSrc="/img/bank-purple-yellow.svg"
+          imgClass="w-36 beat-fade"
+          bodyText="Explore an example liquidity provider that uses tbDEX to reach new markets"
           themeColor="cyan"
         />
       </div>
@@ -85,28 +88,28 @@ function DocsIndex() {
       <div className="padding-top--xl" />
 
       <h2 className="mb-4">Explore</h2>
-      <p className="mb-8">Dive into Web5 sample apps, videos, and more.</p>
+      <p className="mb-8">Dive into sample apps, videos, and more.</p>
       <div className="grid grid-cols-1 tablet:grid-cols-2 desktop-lg:grid-cols-4 gap-4">
         <ExploreCard
           text="Sample Apps"
-          icon="/img/docs-app.svg"
-          url="https://github.com/TBD54566975/developer.tbd.website/tree/main/examples"
+          icon="/img/mobile-phone-yellow-blue.svg"
+          url="https://github.com/TBD54566975/developer.tbd.website/tree/main/examples/tutorials"
         />
         <ExploreCard
           text="Videos"
-          icon="/img/docs-conference-speaker.svg"
-          url="https://www.youtube.com/@TBD54566975"
+          icon="/img/tv-yellow-blue.svg"
+          url="https://www.youtube.com/@TBD54566975/videos"
         />
         <ExploreCard
           text="Blog Posts"
-          icon="/img/docs-blog-icon.svg"
+          icon="/img/blog-yellow-blue.svg"
           imgClass="w-24"
           url="/blog"
         />
 
         <ExploreCard
           text="Discussions"
-          icon="/img/docs-listen-music.svg"
+          icon="/img/microphone-yellow-blue.svg"
           url="https://soundcloud.com/user-625850228/sets/the-blockchain-discussion"
         />
       </div>

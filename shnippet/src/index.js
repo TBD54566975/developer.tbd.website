@@ -69,86 +69,78 @@ class SnippetExtractor {
 
   extractSnippetsFromFile(content, filePath) {
     const snippets = {};
-    let startIndex = 0,
-      endIndex = 0;
+    let startIndex = 0, endIndex = 0;
     const fileExtension = path.extname(filePath);
-
-    while (
-      (startIndex = content.indexOf(
-        this.config.snippetTags.start,
-        endIndex
-      )) !== -1
-    ) {
+  
+    while ((startIndex = content.indexOf(this.config.snippetTags.start, endIndex)) !== -1) {
       const startTagClose = content.indexOf('\n', startIndex);
       if (startTagClose === -1) {
         console.log('Snippet start tag not followed by newline. Skipping...');
         break;
       }
-
+  
       endIndex = content.indexOf(this.config.snippetTags.end, startTagClose);
       if (endIndex === -1) {
         console.log('No closing tag found for a snippet. Skipping...');
         break;
       }
-
-      const snippetName = content
-        .substring(
-          startIndex + this.config.snippetTags.start.length,
-          startTagClose
-        )
-        .trim();
-      let snippetContent = content
-        .substring(startTagClose + 1, endIndex)
-        .trim();
-
-      // Normalize indentation and remove trailing comment characters
+  
+      const snippetName = content.substring(startIndex + this.config.snippetTags.start.length, startTagClose).trim();
+      // Avoid trimming here to preserve original snippet indentation
+      let snippetContent = content.substring(startTagClose + 1, endIndex);
+  
+      // Normalize indentation and remove trailing comment characters here
       snippetContent = this.normalizeIndentation(snippetContent, fileExtension);
-
-      const prependBlockNames = Object.keys(this.prependBlocks);
-
+  
       if (this.prependBlocks[snippetName]) {
-        const importsToPrepend = this.prependBlocks[snippetName]
-          .map((block) => block.trimEnd().replace(/\/\/\s*$/, ''))
-          .join('');
-
-        const finalImports =
-          importsToPrepend.length > 0 ? `${importsToPrepend}\n` : '';
+        const importsToPrepend = this.prependBlocks[snippetName].map(block => block.trimEnd().replace(/\/\/\s*$/, '')).join('\n');
+  
+        const finalImports = importsToPrepend.length > 0 ? `${importsToPrepend}\n` : '';
         snippetContent = `${finalImports}${snippetContent}`;
-      } else {
-        prependBlockNames.forEach((name) => {
-          if (!this.currentFileSnippetNames.includes(name)) {
-            throw new Error(
-              `Prepend block reference '${name}' does not match any snippet name in file: ${filePath}`
-            );
-          }
-        });
       }
-
+  
       if (snippetName) {
         snippets[snippetName] = snippetContent;
       }
-
+  
       endIndex += this.config.snippetTags.end.length; // Ensure we move past the end tag
     }
-
+  
     return snippets;
   }
+  
 
   normalizeIndentation(snippetContent, fileExtension) {
+    // Split the snippet into lines.
     const lines = snippetContent.split('\n');
+  
+    // Determine the minimum indentation from the first line of the snippet.
+    const firstLine = lines[0];
+    const firstLineIndentation = firstLine.match(/^(\s*)/)[0].length;
+  
+    // Normalize the indentation of each line based on the first line's indentation.
+    const normalizedLines = lines.map(line => {
+      // Check if the current line's indentation is at least as much as the first line's indentation.
+      const currentIndentation = line.match(/^(\s*)/)[0].length;
 
-    // Determine the comment character based on the file extension
+      if (currentIndentation >= firstLineIndentation) {
+        // Remove the same amount of indentation as the first line from the current line.
+        return line.substring(firstLineIndentation);
+      }
+      return line; // If the line is less indented than the first line, return it as is.
+    });
+  
+    // Determine the comment character based on the file extension.
     const commentChar = fileExtension === '.bash' ? '#' : '//';
-
-    return lines
-      .map((line) => {
-        // Remove 4 spaces of indentation if present
-        const newLine = line.startsWith('    ') ? line.substring(4) : line;
-        // Remove trailing comment characters
-        return newLine.replace(new RegExp(`\\s*${commentChar}\\s*$`), '');
-      })
-      .join('\n');
+  
+    // Remove trailing comment characters, if any, from each line.
+    return normalizedLines.map(line => line.replace(new RegExp(`\\s*${commentChar}\\s*$`), '')).join('\n');
   }
+  
+  
+  
+  
+
   shouldExcludeFile(content) {
     // Check if the file content includes any of the strings in the exclude array (only for match)
     if (this.config.outputDirectoryStructure == 'match') {

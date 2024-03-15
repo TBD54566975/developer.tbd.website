@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Assertions.*
 import web5.sdk.dids.methods.dht.CreateDidDhtOptions
 import web5.sdk.dids.methods.dht.DidDht
 import web5.sdk.crypto.InMemoryKeyManager
-import foundation.identity.did.Service
+import web5.sdk.dids.didcore.Service
 import java.net.URI
 // :snippet-end:
 
@@ -18,12 +18,12 @@ class PfiOnboardingTest {
 
   @Test
   fun `create PFI DID`() {
-
+    val keyManager = InMemoryKeyManager()
     // :snippet-start: pfiOnboardingCreateDidKt
-    val serviceToAdd = Service.builder()
-        .id(URI("pfi"))
+    val serviceToAdd = Service.Builder()
+        .id("pfi")
         .type("PFI")
-        .serviceEndpoint("https://example.com/")
+        .serviceEndpoint(listOf("https://example.com/"))
         .build()
 
     val options = CreateDidDhtOptions(
@@ -31,9 +31,9 @@ class PfiOnboardingTest {
         services = listOf(serviceToAdd),
     )
 
-    val pfiDid = DidDht.create(InMemoryKeyManager(), options)
+    val pfiDid = DidDht.create(keyManager, options)
     // :snippet-end:
 
-    assertEquals("PFI", pfiDid.didDocument?.services?.get(0)?.type, "DID should start with 'did:key'")
+    assertEquals("PFI", pfiDid.didDocument?.service?.get(0)?.type, "DID should start with 'did:dht'")
   }
 }

@@ -20,7 +20,7 @@ function tbdexCTA() {
           buttonText="Talk money to me"
           bodyText="An open source messaging service that enables wallet applications to communicate with financial instutitions to discover and obtain liquidity."
           themeColor="cyan"
-          imgSrc="/img/tbdex-icon.svg"
+          imgSrc="/img/money-msg-blue-purple.svg"
           primary
         />
         <HeroCard
@@ -29,7 +29,8 @@ function tbdexCTA() {
           buttonText="Prove Yourself"
           bodyText="An open source library for creating and resolving Decentralized Identifiers, as well as issuing, presenting and verifying Verifiable Credentials."
           themeColor="cyan"
-          imgSrc="/img/id-colored.svg"
+          imgSrc="/img/id-blue-purple.svg"
+          imgClass="w-28"
           primary
         />
       </div>
