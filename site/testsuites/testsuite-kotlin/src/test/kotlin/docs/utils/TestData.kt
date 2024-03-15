@@ -2,7 +2,7 @@ package website.tbd.developer.site.docs.utils
 
 import com.danubetech.verifiablecredentials.CredentialSubject
 import de.fxlae.typeid.TypeId
-import foundation.identity.did.Service
+import web5.sdk.dids.didcore.Service
 import tbdex.sdk.protocol.models.*
 import tbdex.sdk.protocol.serialization.Json
 import web5.sdk.credentials.VcDataModel
@@ -25,10 +25,10 @@ object TestData {
     private val aliceKeyManager = InMemoryKeyManager()
     val ALICE_DID: Did = DidDht.create(aliceKeyManager)
 
-    val serviceToAdd = Service.builder()
-        .id(URI("pfi"))
+    val serviceToAdd = Service.Builder()
+        .id("pfi")
         .type("PFI")
-        .serviceEndpoint("http://localhost:9000")
+        .serviceEndpoint(listOf("http://localhost:9000"))
         .build()
 
     val options = CreateDidDhtOptions(
@@ -63,7 +63,7 @@ object TestData {
     }
 
     fun getOffering(
-        from: String = PFI_DID.uri, 
+        from: String = PFI_DID.uri,
         requiredClaims: PresentationDefinitionV2 = getPresentationDefinition()) =
         Offering.create(
             from = from,
@@ -97,7 +97,7 @@ object TestData {
         to = PFI_DID.uri,
         from = ALICE_DID.uri,
         rfqData = RfqData(
-            offeringId = offeringId,
+            offeringId = offeringId.toString(),
             payinAmount = "10.00",
             payinMethod = SelectedPaymentMethod("BANK_ACCOUNT", mapOf("address" to "123456")),
             payoutMethod = SelectedPaymentMethod(
@@ -113,7 +113,7 @@ object TestData {
     fun getQuote(
         to: String = ALICE_DID.uri,
         from: String = PFI_DID.uri) = Quote.create(
-        ALICE_DID.uri, PFI_DID.uri, TypeId.generate(MessageKind.rfq.name),
+        ALICE_DID.uri, PFI_DID.uri, TypeId.generate(MessageKind.rfq.name).toString(),
         QuoteData(
             expiresAt = OffsetDateTime.now().plusDays(1),
             payin = QuoteDetails("USD", "10.00", "0.01"),
@@ -128,7 +128,7 @@ object TestData {
     ) = Close.create(
         to = ALICE_DID.uri,
         from = PFI_DID.uri,
-        exchangeId = TypeId.generate(MessageKind.rfq.name),
+        exchangeId = TypeId.generate(MessageKind.rfq.name).toString(),
         closeData = CloseData(closeData)
     )
 
@@ -137,7 +137,7 @@ object TestData {
         from: String = ALICE_DID.uri) = Order.create(
         to = PFI_DID.uri,
         from = ALICE_DID.uri,
-        exchangeId = TypeId.generate(MessageKind.rfq.name)
+        exchangeId = TypeId.generate(MessageKind.rfq.name).toString()
     )
 
     fun getOrderStatus(
@@ -147,13 +147,13 @@ object TestData {
     ) = OrderStatus.create(
         to = ALICE_DID.uri,
         from = PFI_DID.uri,
-        exchangeId = TypeId.generate(MessageKind.rfq.name),
+        exchangeId = TypeId.generate(MessageKind.rfq.name).toString(),
         orderStatusData = OrderStatusData(orderStatus)
     )
 
     fun getOrderStatusWithInvalidDid(): OrderStatus {
         val os = OrderStatus.create(
-            ALICE, PFI, TypeId.generate(MessageKind.rfq.name), OrderStatusData("PENDING")
+            ALICE, PFI, TypeId.generate(MessageKind.rfq.name).toString(), OrderStatusData("PENDING")
         )
 
         os.sign(ALICE_DID)

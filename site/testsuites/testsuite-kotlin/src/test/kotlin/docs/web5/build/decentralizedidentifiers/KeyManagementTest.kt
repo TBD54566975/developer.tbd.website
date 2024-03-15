@@ -3,7 +3,7 @@ package website.tbd.developer.site.docs.web5.build.decentralizedidentifiers;
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
 // :snippet-start: importKeyManagementKt
-import foundation.identity.did.DIDDocument
+import web5.sdk.dids.didcore.DIDDocument
 import web5.sdk.crypto.AwsKeyManager
 import web5.sdk.crypto.InMemoryKeyManager
 import web5.sdk.dids.Did
@@ -12,7 +12,7 @@ import web5.sdk.dids.methods.dht.DidDhtApi
 // :snippet-end:
 
 class KeyManagementTest {
-    
+
     @Test
     fun `initialize key management`() {
         // :snippet-start: initializeKeyManagementKt

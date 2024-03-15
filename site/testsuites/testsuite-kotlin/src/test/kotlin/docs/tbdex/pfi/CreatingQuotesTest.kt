@@ -16,7 +16,7 @@ import web5.sdk.dids.Did
 import java.time.OffsetDateTime
 import website.tbd.developer.site.docs.tbdex.pfi.*
 import website.tbd.developer.site.docs.utils.*
-import foundation.identity.did.Service
+import web5.sdk.dids.didcore.Service
 import java.net.URI
 import web5.sdk.dids.methods.dht.CreateDidDhtOptions
 import org.junit.jupiter.api.Assertions.*
@@ -36,10 +36,10 @@ class CreatingQuotesTest {
         exchangesApiProvider = ExchangesApiProvider()
         dataProvider = MockDataProvider()
 
-        val serviceToAdd = Service.builder()
-            .id(URI("pfi"))
+        val serviceToAdd = Service.Builder()
+            .id("pfi")
             .type("PFI")
-            .serviceEndpoint("https://example.com/")
+            .serviceEndpoint(listOf("https://example.com/"))
             .build()
 
         val options = CreateDidDhtOptions(
@@ -55,7 +55,7 @@ class CreatingQuotesTest {
     @Test
     fun `PFI verifies offering requirements and should not throw an error`() {
         dataProvider.setupInsert("exchange", "") { arrayOf<Any>() }
-        offeringsApiProvider.setOffering(message.metadata.id, pfiDid.uri)
+        offeringsApiProvider.setOffering(message.metadata.id.toString(), pfiDid.uri)
 
         // :snippet-start: pfiCreateOfferingKt
         // Write the message to your exchanges database
@@ -95,7 +95,7 @@ class CreatingQuotesTest {
             quoteData = QuoteData(
                 expiresAt = OffsetDateTime.now().plusDays(10),
                 payin = QuoteDetails(
-                    currencyCode = "BTC", 
+                    currencyCode = "BTC",
                     amount = "1000.0",
                     paymentInstruction = PaymentInstruction(
                         link = "https://example.com/paymentInstructions",
@@ -103,7 +103,7 @@ class CreatingQuotesTest {
                     )
                 ),
                 payout = QuoteDetails(
-                    currencyCode = "KES", 
+                    currencyCode = "KES",
                     amount = "123456789.0",
                     paymentInstruction = PaymentInstruction(
                         link = "https://example.com/paymentInstructions",
