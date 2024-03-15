@@ -92,8 +92,11 @@ final class ReceiveQuotes: XCTestCase {
             XCTFail("Customer DID not found")
             return
         }
-
-        let quote = MockData.mockQuote
+        
+        guard let quote = MockData.mockQuote else {
+            XCTFail("Quote not found")
+            return
+        }
 
         // :snippet-start: cancelExchangeSwift
         var closeMessage = Close(
