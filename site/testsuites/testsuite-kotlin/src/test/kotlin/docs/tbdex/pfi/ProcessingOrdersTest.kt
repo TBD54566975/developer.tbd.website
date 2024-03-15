@@ -1,7 +1,7 @@
 package website.tbd.developer.site.docs.tbdex.pfi
 
 import de.fxlae.typeid.TypeId
-import foundation.identity.did.Service
+import web5.sdk.dids.didcore.Service
 import tbdex.sdk.httpserver.models.*
 import tbdex.sdk.protocol.models.Order
 import tbdex.sdk.protocol.models.OrderStatus
@@ -56,7 +56,7 @@ class ProcessingOrdersTest {
         assertNotNull(orderStatus.verify(), "OrderStatus signature is invalid")
     }
 
-    
+
     @Test
     fun `PFI creates Close and verifies it`() {
         exchangesApiProvider.setWrite()
@@ -77,4 +77,3 @@ class ProcessingOrdersTest {
         assertNotNull(closeMessage.verify(), "Close signature is invalid")
     }
 }
-
