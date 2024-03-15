@@ -90,9 +90,9 @@ class ReceiveQuoteTest {
             exchangeId = quote.metadata.exchangeId,
             closeData = CloseData(reason = "Canceled by customer")
         )
-        
+
         close.sign(customerDid)
-        TbdexHttpClient.sendMessage(close)
+        TbdexHttpClient.submitClose(close)
         // :snippet-end:
 
         assertEquals(close.metadata.exchangeId, quote.metadata.exchangeId)
