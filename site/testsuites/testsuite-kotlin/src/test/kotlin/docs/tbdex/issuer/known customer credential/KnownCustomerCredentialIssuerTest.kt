@@ -44,6 +44,12 @@ class KnownCustomerCredentialIssuerTest {
     // :snippet-start: KnownCustomerCredentialsClassKT
     class KccCredential(val country: String)
     // :snippet-end:
+
+    /* 
+    Have to add tests separately because the big snippets are
+    contained within the ktor app and the objects within
+    are outside of the function's scope to be tested 
+    */
  
     @Test
     fun `create() creates credential & sign() creates JWT`() {
@@ -63,6 +69,28 @@ class KnownCustomerCredentialIssuerTest {
         val credentialToken = knownCustomerCredential.sign(issuerBearerDid)
 
         assertTrue(credentialToken.isNotEmpty(), "The signed credential should not be an empty string.")
+    }
+
+    @Test
+    fun `JwtUtil sign() works with a valid payload and bearer DID`() {
+        val issuerBearerDid = generateTestDid()
+        val customerBearerDid = generateTestDid()
+
+        val accessTokenPayload = JWTClaimsSet.Builder()
+            .subject(customerBearerDid.uri.toString()) 
+            .issuer(issuerBearerDid.uri.toString()) 
+            .issueTime(Date(System.currentTimeMillis())) 
+            .expirationTime(Date(System.currentTimeMillis() + 86400 * 1000)) 
+            .build()
+
+        try {
+            val accessToken = JwtUtil.sign(issuerBearerDid, null, accessTokenPayload)
+
+            assertNotNull(accessToken, "Access token should not be null")
+            assertTrue(accessToken.isNotEmpty(), "Access token should not be empty")
+        } catch (e: Exception) {
+            fail("Signing should not throw an exception")
+        }
     }
 
     @Test
@@ -440,7 +468,7 @@ class KnownCustomerCredentialIssuerTest {
 
         // :snippet-start:accessTokenEndpointIssuerKT
             val accessTokenToCNonceMap = ConcurrentHashMap<String, String>()
-            
+
             post("/token") {
                 val requestBody = call.receive<Parameters>()
                 val grantType = requestBody["grant_type"]
