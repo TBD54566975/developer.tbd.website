@@ -6,9 +6,12 @@ hide_title: true
 
 <LanguageSwitcher languages="JavaScript, Kotlin" />
 
-# Known Customer Credential
+# Issuing a Known Customer Credential
 
-Known Customer Credentials (KCCs) are [Verifiable Credentials](/docs/web5/learn/verifiable-credentials) designed to streamline the Know Your Customer(KYC) process for tbDEX protocol users. KCCs help in gaining access to PFIs providing regulated financial services. For a comprehensive exploration of the practical applications and compliance considerations of KCCs, refer to our [KCC Compliance Guide](/). This resource provides detailed examples and insights into how KCCs align with certain regulatory requirements, offering valuable context for those overseeing the implementation and management of KCCs.
+Known Customer Credentials (KCCs) are [Verifiable Credentials](/docs/web5/learn/verifiable-credentials) designed to streamline the Know Your Customer (KYC) process for tbDEX protocol users. KCCs help in gaining access to PFIs providing regulated financial services. 
+
+For a comprehensive exploration of the practical applications and compliance considerations of KCCs, refer to our [KCC Compliance Guide](/) which provides detailed examples and insights into how KCCs align with certain regulatory requirements, offering valuable context for those overseeing the implementation and management of KCCs.
+
 :::danger Important
 This guide is intended for educational purposes only and does not constitute legal advice. Compliance programs may have varying requirements. Consult your legal and/or compliance advisors to ensure that the KCC is consistent with your legal and compliance obligations.
 :::
@@ -296,7 +299,7 @@ Issuing a Known Customer Credential to a customer's Wallet confirms the successf
 
 1. Once the customer accepts your Credential Offer, the Wallet will then send a request for credentials to the endpoint specified in the `credential_endpoint` field of the Issuer's metadata. Here is an example of the Wallet's request:
 
-```json
+```bash
 POST /credentials HTTP/1.1
 Host: issuer.example.com
 Authorization: Bearer czZCaGRSa3F0MzpnWDFmQmF0M2JW // access_token
@@ -345,4 +348,5 @@ Before issuing a Known Customer Credential, it's important to complete all neces
 Signing will return a VC [JSON Web Token](https://jwt.io/), which is ideal for secure transmission of the credential.
 :::
 
-With that, you've successfully gone through the Identity Verification flow, and issued a Known Customer Credential. Please note that this example is a foundational implementation. For a production environment, it's crucial to enhance this basic setup with comprehensive error handling, and security measures.
+With that, you've successfully gone through the Identity Verification flow, and issued a Known Customer Credential. Please note that this example is a foundational implementation. 
+For a production environment, it's crucial to enhance this basic setup with comprehensive error handling, and security measures.
