@@ -5,7 +5,7 @@ import TypeID
 
 public struct MockData {
     public static let pfiDid: String = "did:dht:4ykjcjdq7udyjq5iy1qbcy98xnd4dkzuizm14ih4rn6953b8ohoo"
-    public static let exchangeID = "exchange_123"
+    public static var exchangeID: String = "exchange_123"
     public static let customerBearerDid: BearerDID? = try? DIDJWK.create(keyManager: InMemoryKeyManager())
     public static let BTC_ADDRESS = "bc1q52csjdqa6cq5d2ntkkyz8wk7qh2qevy04dyyfd"
 
@@ -29,7 +29,7 @@ public struct MockData {
 
         let offeringId: TypeID = TypeID(rawValue: selectedOffering.metadata.id.rawValue) ?? TypeID(rawValue: "default")!
 
-        return RFQ(
+        let mock_rfq = RFQ(
             to: selectedOffering.metadata.from,
             from: customerBearerDid.uri,
             data: .init(
@@ -53,6 +53,9 @@ public struct MockData {
                 claims: []
             )
         )
+
+        exchangeID = mock_rfq.metadata.exchangeID
+        return mock_rfq
     }
 
     public static var mockQuote: Quote? {

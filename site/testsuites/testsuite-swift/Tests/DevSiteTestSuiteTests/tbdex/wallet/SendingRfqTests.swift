@@ -63,13 +63,7 @@ final class SendingRfqTests: XCTestCase {
     func testCreateAndSendRfq() async throws {
         let BTC_ADDRESS = "bc1q52csjdqa6cq5d2ntkkyz8wk7qh2qevy04dyyfd"
         let selectedCredentials: [String] = []
-        let offeringId: TypeID
-        if let rawValue = selectedOffering?.metadata.id.rawValue, let id = TypeID(rawValue: rawValue) {
-            offeringId = id
-        } else {
-          offeringId = TypeID(rawValue: "default")!
-        }
-
+        
         do {
             // :snippet-start: createRfqMessageSwift
             var rfq = RFQ(
@@ -77,7 +71,7 @@ final class SendingRfqTests: XCTestCase {
                 from: customerDid!.uri,    // Customer's DID
                 //highlight-start
                 data: .init(
-                    offeringId: offeringId,   // The ID of the selected offering
+                    offeringId: selectedOffering!.metadata.id,   // The ID of the selected offering
                     payinAmount: "0.012",  // The amount of the payin currency
                     payinMethod: SelectedPaymentMethod(
                         kind: "BTC_WALLET_ADDRESS",   // The method of payment

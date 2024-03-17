@@ -5,72 +5,49 @@ import TypeID
 @testable import tbDEX
 
 final class ReceiveQuotes: XCTestCase {
-    var customerBearerDid: BearerDID?
+    var customerDid: BearerDID?
     let pfiDid: String = "did:dht:4ykjcjdq7udyjq5iy1qbcy98xnd4dkzuizm14ih4rn6953b8ohoo"
-    let exchangeID = "exchange_123"
-    
-    var selectedOffering: Offering?
+    var exchangeID: String?
     var rfq: RFQ?
     var initialQuote: Quote?
 
     override func setUp() {
         super.setUp()
         do {
-            customerBearerDid = try DIDJWK.create(keyManager: InMemoryKeyManager())
+            customerDid = try DIDJWK.create(keyManager: InMemoryKeyManager())
         } catch {
             XCTFail("Failed to create customerDid: \(error)")
         }
 
-        selectedOffering = MockData.selectedOffering
         rfq = MockData.rfq
-        mockGetExchange()
-        mockSendCloseMessage()
+        exchangeID = rfq?.metadata.exchangeID        
     }
 
     func mockGetExchange() {
-        let exchangeIdFromRFQ = rfq?.metadata.exchangeID ?? ""
-        let url = URL(string: "http://localhost:9000/exchanges/\(exchangeIdFromRFQ)")!
-
+        let url = URL(string: "http://localhost:9000/exchanges/\(exchangeID!)")!
         Mocker.register(Mock(url: url, contentType: .json, statusCode: 200, data: [.get: MockData.mockExchangeData]))
     }
 
     func mockSendCloseMessage() {
-        let closeEndpoint = "http://localhost:9000/exchanges/\(exchangeID)/close"
-        guard let closeURL = URL(string: closeEndpoint) else {
-            XCTFail("Failed to create URL for closing exchange")
-            return
-        }
-
-        let mockCloseResponse = Mock(url: closeURL, contentType: .json, statusCode: 200, data: [.post: Data()])
-        mockCloseResponse.register()
+        let closeEndpoint = "http://localhost:9000/exchanges/\(exchangeID!)/close"
+        let url = URL(string: closeEndpoint)!
+        Mocker.register(Mock(url: url, contentType: .json, statusCode: 200, data: [.post: Data()]))
     }
 
     func testPollForQuotes() async throws {
-        guard let customerDid = customerBearerDid else {
-            XCTFail("Customer DID not found")
-            return
-        }
-        guard let exchangeId = rfq?.metadata.exchangeID else {
-            XCTFail("Exchange ID not found")
-            return
-        }
-        guard let pfiDidUri = rfq?.metadata.to else {
-            XCTFail("PFI Did URI not found")
-            return
-        }
-
+        mockGetExchange()
         // :snippet-start: pollForQuoteSwift
         var quote: Quote? = nil
 
         // Wait for Quote message to appear in the exchange
         while quote == nil {
-            let messages = try await tbDEXHttpClient.getExchange(
-                pfiDIDURI: pfiDidUri,
-                requesterDID: customerDid,
-                exchangeId: exchangeId
+            let exchange = try! await tbDEXHttpClient.getExchange(
+                pfiDIDURI: (rfq?.metadata.to)!,
+                requesterDID: customerDid!,
+                exchangeId: (rfq?.metadata.exchangeID)!
             )
 
-            for message in messages {
+            for message in exchange {
                 if case .quote(let quoteMessage) = message {
                     quote = quoteMessage
                     break
@@ -88,24 +65,17 @@ final class ReceiveQuotes: XCTestCase {
     }
 
     func testCloseExchange() async throws {
-        guard let customerDid = customerBearerDid else {
-            XCTFail("Customer DID not found")
-            return
-        }
-        
-        guard let quote = MockData.mockQuote else {
-            XCTFail("Quote not found")
-            return
-        }
+        let quote = MockData.mockQuote
+        mockSendCloseMessage()
 
         // :snippet-start: cancelExchangeSwift
         var closeMessage = Close(
-            from: customerDid.uri,
-            to: quote.metadata.from,
-            exchangeID: quote.metadata.exchangeID,
+            from: customerDid!.uri,
+            to: quote!.metadata.from,
+            exchangeID: quote!.metadata.exchangeID,
             data: CloseData(reason: "Canceled by customer")
         )
-        try! closeMessage.sign(did: customerDid)
+        try! closeMessage.sign(did: customerDid!)
         try! await tbDEXHttpClient.sendMessage(message: closeMessage)
         // :snippet-end:
 
