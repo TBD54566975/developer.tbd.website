@@ -19,7 +19,7 @@ Alice and Bob decide to get Decentralized Identifiers (DIDs) so that others can 
 
 A [DID](https://www.w3.org/TR/did-core/) is an address representing who you are on the decentralized web. It can point to a person, organization, thing, data model, or abstract entity. It's through your DID that others can send messages and data, and be granted access to information you wish to share.
 
-A DID is a "type of identifier that enables verifiable, decentralized digital identity" ([DID Core Spec](https://www.w3.org/TR/did-core/)). It is created and managed independently of any centralized authority or organization. The basic idea behind a DID is to give individuals and organizations control over their own identity information and to allow them to share that information selectively and securely with others as needed. This means that they can choose when and how to share their identity information, and with whom.
+A DID is a "type of identifier that enables verifiable, decentralized digital identity" ([DID Core Spec](https://www.w3.org/TR/did-core/)). It is [created](/docs/web5/build/decentralized-identifiers/how-to-create-did/) and managed independently of any centralized authority or organization. The basic idea behind a DID is to give individuals and organizations control over their own identity information and to allow them to share that information selectively and securely with others as needed. This means that they can choose when and how to share their identity information, and with whom.
 
 DIDs are typically represented as a unique resource identifier (URI) and are designed to be used for identity verification, authentication, and authorization.
 
@@ -54,9 +54,9 @@ The [did:dht](https://did-dht.com/) method, based on the Pkarr project, utilizes
 The did:dht method allows operations like creating, reading, updating, and deactivating DIDs, and includes optional features like type indexing and gateway APIs for extended functionalities.
 
 
-#### ```did:key```
+#### ```did:jwk```
 
-A [did:key](https://w3c-ccg.github.io/did-method-key/) DID is quick and easy to spin up. Since it can be created, but not updated or deleted, it is useful for single, ephemeral interactions.
+A [did:jwk](https://github.com/quartzjer/did-jwk/blob/main/spec.md) DID is designed for simplicity and self-containment in creating a DID. It involves encoding a JSON Web Key (JWK) using base64url. This method appeals to those seeking a straightforward approach.
 
 
 ### DID Documents
@@ -121,6 +121,6 @@ Alice and Bob (controller group) have a baby. They decide to get their baby a DI
 
 ### DID Key Management
 
-Your DIDs are secured with public-private key pairs. You should not let anyone have your private key, because the key material used to secure your DID is how you prove ownership of your DID. You should find a secure way to store your private key, such as through a secured keystore.
+Your DIDs are secured with public-private key pairs. You should not let anyone have your private key, because the key material used to secure your DID is how you prove ownership of your DID. You should find a secure way to store your private key, such as through a [Key Management Service](/docs/web5/build/decentralized-identifiers/key-management).
 
-Alice and Bob have successfully created their DIDs, while learning all about the different methods. They each have their DID documents and are ready to join in on the decentralized fun. Take a look at the next steps section to learn more.
+Alice and Bob have successfully created their DIDs, while learning all about the different methods. They each have their DID documents and are ready to join in on the decentralized fun. Take a look at the [Create a DID](/docs/web5/build/decentralized-identifiers/how-to-create-did) guide to create your very own.
