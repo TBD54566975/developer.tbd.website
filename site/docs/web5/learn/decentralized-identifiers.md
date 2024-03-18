@@ -56,7 +56,7 @@ The did:dht method allows operations like creating, reading, updating, and deact
 
 #### ```did:jwk```
 
-A [did:jwk](https://github.com/quartzjer/did-jwk/blob/main/spec.md) DID is designed for simplicity and self-containment in creating a DID. It involves encoding a JSON Web Key (JWK) using base64url. This method appeals to those seeking a straightforward approach.
+A [did:jwk](https://github.com/quartzjer/did-jwk/blob/main/spec.md) DID is designed for simplicity and self-containment when creating a DID. It involves encoding a JSON Web Key (JWK) using base64url. This method appeals to those seeking a straightforward approach.
 
 
 ### DID Documents
