@@ -42,7 +42,7 @@ Mike Brock, Head of TBD, sat down with Human Rights Foundation Chairman, Garry K
 
 Angie Jones, TBD's Head of Developer Relations, spoke with human rights activist Meron Estefanos, who shared her story of using bitcoin to send money to Eritrean refugees in East Africa.
 
-<iframe class="aspect-video" src="https://www.youtube.com/embed/eDNr_Pi6sL" title="Human Rights Foundation" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+<iframe class="aspect-video" src="https://www.youtube.com/embed/eDNr_Pi6sLo?si=zO0neJbr0lz9gzft" title="Human Rights Foundation" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
 Unfortunately, powerful stories such as these are not widely shared. TBD is committed to making the decentralized financial world accessible to everyone!
 
