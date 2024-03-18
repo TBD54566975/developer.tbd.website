@@ -1,6 +1,7 @@
 import XCTest
 import Mocker
 import Web5
+import TypeID
 @testable import tbDEX
 
 
@@ -62,6 +63,7 @@ final class SendingRfqTests: XCTestCase {
     func testCreateAndSendRfq() async throws {
         let BTC_ADDRESS = "bc1q52csjdqa6cq5d2ntkkyz8wk7qh2qevy04dyyfd"
         let selectedCredentials: [String] = []
+        
         do {
             // :snippet-start: createRfqMessageSwift
             var rfq = RFQ(
@@ -69,9 +71,8 @@ final class SendingRfqTests: XCTestCase {
                 from: customerDid!.uri,    // Customer's DID
                 //highlight-start
                 data: .init(
-                    offeringId: selectedOffering!.metadata.id.rawValue,   // The ID of the selected offering
+                    offeringId: selectedOffering!.metadata.id,   // The ID of the selected offering
                     payinAmount: "0.012",  // The amount of the payin currency
-                    claims: selectedCredentials,  // Array of signed VCs required by the PFI
                     payinMethod: SelectedPaymentMethod(
                         kind: "BTC_WALLET_ADDRESS",   // The method of payment
                         paymentDetails: [
@@ -86,7 +87,8 @@ final class SendingRfqTests: XCTestCase {
                             "expiryDate": "05/25",
                             "cardHolderName": "Alice Doe"
                         ]
-                    )
+                    ),
+                    claims: selectedCredentials // Array of signed VCs required by the PFI
                 )
                 //highlight-end
             )
