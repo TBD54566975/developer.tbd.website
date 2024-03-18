@@ -76,8 +76,8 @@ describe('Wallet: Receive Quote', () => {
     //Wait for Quote message to appear in the exchange
     while (!quote) {
       const exchange = await TbdexHttpClient.getExchange({
-        did: customerDid,
         pfiDid: rfq.metadata.to,
+        did: customerDid,
         exchangeId: rfq.exchangeId
       });
 
