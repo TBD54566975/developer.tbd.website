@@ -64,9 +64,9 @@ class ReceiveQuoteTest {
         //Wait for Quote message to appear in the exchange
         while (quote == null) {
             val exchange = TbdexHttpClient.getExchange(
-                requesterDid = customerDid,
                 pfiDid = rfq.metadata.to,
-                exchangeId = rfq.metadata.exchangeId.toString()
+                requesterDid = customerDid,
+                exchangeId = rfq.metadata.exchangeId
             )
 
             quote = exchange.find { it is Quote } as Quote?
