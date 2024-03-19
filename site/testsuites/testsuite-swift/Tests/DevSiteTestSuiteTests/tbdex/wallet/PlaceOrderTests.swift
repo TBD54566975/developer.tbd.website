@@ -6,21 +6,16 @@ final class PlaceOrderTests: XCTestCase {
 
     var customerDid: BearerDID?
     let pfiDid: String = "did:dht:4ykjcjdq7udyjq5iy1qbcy98xnd4dkzuizm14ih4rn6953b8ohoo"
-    var close: Close?
     var quote: Quote?
+    var close: Close?
     let closeReason: String = "Transaction complete"
     let exchangeId: String = "testExchange"
 
     override func setUp() {
         super.setUp()
         
-        // Setup DIDs
-        do {
-            customerDid = try DIDJWK.create(keyManager: InMemoryKeyManager())
-        } catch {
-            XCTFail("Failed to create dids: \(error)")
-        }
-
+        customerDid = try! DIDJWK.create(keyManager: InMemoryKeyManager())
+        
         quote = MockData.createQuote(
             from: pfiDid, 
             to: customerDid!.uri, 
@@ -54,7 +49,8 @@ final class PlaceOrderTests: XCTestCase {
             from: pfiDid,
             to: customerDid!.uri,  
             exchangeId: exchangeId, 
-            closeReason: closeReason)
+            closeReason: closeReason
+        )
 
         // :snippet-start: listenForOrderStatusSwift
         var orderStatusUpdate: String?
