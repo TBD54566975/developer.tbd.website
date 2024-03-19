@@ -80,8 +80,8 @@ class PlaceOrderTest {
 
         while (closeMessage == null) {
             val exchange = TbdexHttpClient.getExchange(
-                requesterDid = customerDid,
                 pfiDid = order.metadata.to,
+                requesterDid = customerDid,
                 exchangeId = order.metadata.exchangeId.toString()
             )
 
