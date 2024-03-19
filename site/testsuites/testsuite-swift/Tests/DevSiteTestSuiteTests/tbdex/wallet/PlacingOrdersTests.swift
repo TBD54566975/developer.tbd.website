@@ -26,7 +26,7 @@ final class WalletPlacingOrdersTests: XCTestCase {
         }
 
         // Create OrderStatus
-        orderStatus = TestData.createOrderStatus(
+        orderStatus = MockData.createOrderStatus(
             from: customerBearerDid!.uri, 
             to: pfiBearerDid, 
             exchangeId: exchangeId, 
@@ -34,7 +34,7 @@ final class WalletPlacingOrdersTests: XCTestCase {
         try! orderStatus!.sign(did: customerBearerDid!)
 
         // Create Close
-        close = TestData.createClose(
+        close = MockData.createClose(
             from: customerBearerDid!.uri, 
             to: pfiBearerDid,
             exchangeId: exchangeId,
@@ -53,10 +53,13 @@ final class WalletPlacingOrdersTests: XCTestCase {
         var order = Order(from: customerDid.uri, to: pfiDid, exchangeID: exchangeId, data: .init())
         // :snippet-end:
 
-        TestData.mockSendOrderMessage(exchangeId: exchangeId)
+        MockData.mockSendOrderMessage(exchangeId: exchangeId)
+
+        // :snippet-start: signOrderSwift
+        try! order.sign(did: customerDid)
+        // :snippet-end:
 
         // :snippet-start: sendOrderSwift
-        try! order.sign(did: customerDid)
         try! await tbDEXHttpClient.sendMessage(message: order)
         // :snippet-end:
     }
@@ -71,14 +74,14 @@ final class WalletPlacingOrdersTests: XCTestCase {
         }
 
         let pfiDid: String = pfiBearerDid
-        TestData.mockGetExchangeWithClose(
-            to: customerBearerDid!.uri, 
-            from: pfiBearerDid, 
+        MockData.mockGetExchangeWithClose(
+            from: pfiBearerDid,
+            to: customerBearerDid!.uri,  
             exchangeId: exchangeId, 
             closeReason: closeReason)
 
         // :snippet-start: listenForOrderStatusSwift
-        while (closeMessage == nil) {
+        while closeMessage == nil {
             let messages = try await tbDEXHttpClient.getExchange(
                 pfiDIDURI: pfiDid, 
                 requesterDID: customerDid,
