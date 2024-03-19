@@ -81,46 +81,28 @@ final class TestData {
         )
     }
 
-    static func mockGetExchange(to: String, from: String, exchangeId: String) {
+    static func mockGetExchangeWithClose(to: String, from: String, exchangeId: String, closeReason: String) {
         let url = URL(string: "http://localhost:9000/exchanges/\(exchangeId)")!
+        let close = TestData.createClose(from: from, to: to, exchangeId: exchangeId, reason: closeReason)
+        var exchange: [Close] = [Close]()
+        exchange.append(close)
+        let exchangeJson: [String: [Close]] = ["data": exchange]
 
-        let jsonString = """
-        {
-        "data": [
-            {
-                "metadata": {
-                "exchangeId": "exchange_123",
-                "to": "\(to)",
-                "kind": "quote",
-                "id": "quote_01hrwc4v55es59t20dhf7dea60",
-                "from": "\(from)",
-                "createdAt": "2023-12-19T05:12:16.331Z",
-                },
-                "data": {
-                "expiresAt": "2024-12-19T05:12:16.331Z",
-                "payin": {
-                    "paymentInstruction": {
-                    "instruction": "test instruction",
-                    "link": "https://tbdex.io/example"
-                    },
-                    "currencyCode": "USD",
-                    "amount": "1.00"
-                },
-                "payout": {
-                    "amount": "2.00",
-                    "currencyCode": "AUD",
-                    "fee": "0.50"
-                }
-                },
-                "signature": "eyJraWQiOiJkaWQ6andrOmV5SnJhV1FpT2lKQ2FtVlZWWEEzUmpOTWEyOWFTV1ZaTW1GSldWWTBlRWhOYjFkUFZXaEpZMnQzVEdsblYyeFZieTFSSWl3aVlXeG5Jam9pUldSRVUwRWlMQ0pqY25ZaU9pSkZaREkxTlRFNUlpd2llQ0k2SW1Oc1ZsWTJNVlJGY2sxeVdsTk9NVVV6TTJoWFZYRjVaRVV4U1ZOV1VWbExPVk5FVUVnNWRrRkdhV3NpTENKcmRIa2lPaUpQUzFBaWZRIzAiLCJhbGciOiJFZERTQSJ9..WRwJUKc_H5jtY_1zT2shQh7xih7UIYv5KOcorf7JkxKiLCmyyjStd0rThUsAmDPqoAe38oB0FwENvjZfswxzAQ"
-            }
-        ]
-        }
-        """
-        guard let jsonData = jsonString.data(using: .utf8) else {
-            XCTFail("Failed to convert jsonString to Data")
+        let encoder = tbDEXJSONEncoder()
+        encoder.outputFormatting = .prettyPrinted
+        let jData = try! encoder.encode(exchangeJson)
+
+        Mocker.register(Mock(url: url, contentType: .json, statusCode: 200, data: [.get: jData]))
+    }
+
+    static func mockSendOrderMessage(exchangeId: String) {
+        let orderEndpoint = "http://localhost:9000/exchanges/\(exchangeId)/order"
+        guard let orderURL = URL(string: orderEndpoint) else {
+            XCTFail("Failed to create URL for closing exchange")
             return
         }
-        Mocker.register(Mock(url: url, contentType: .json, statusCode: 200, data: [.get: jsonData]))
+
+        let mockOrderResponse = Mock(url: orderURL, contentType: .json, statusCode: 200, data: [.post: Data()])
+        mockOrderResponse.register()
     }
 }

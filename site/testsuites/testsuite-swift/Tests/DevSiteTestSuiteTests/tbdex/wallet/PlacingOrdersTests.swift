@@ -8,7 +8,7 @@ import TypeID
 final class WalletPlacingOrdersTests: XCTestCase {
 
     var customerBearerDid: BearerDID?
-    var pfiBearerDid: BearerDID?
+    let pfiBearerDid: String = "did:dht:4ykjcjdq7udyjq5iy1qbcy98xnd4dkzuizm14ih4rn6953b8ohoo"
     var orderStatus: OrderStatus?
     var close: Close?
     let closeReason: String = "Transaction complete"
@@ -21,7 +21,6 @@ final class WalletPlacingOrdersTests: XCTestCase {
         // Setup DIDs
         do {
             customerBearerDid = try DIDJWK.create(keyManager: InMemoryKeyManager())
-            pfiBearerDid = try DIDJWK.create(keyManager: InMemoryKeyManager())
         } catch {
             XCTFail("Failed to create dids: \(error)")
         }
@@ -29,7 +28,7 @@ final class WalletPlacingOrdersTests: XCTestCase {
         // Create OrderStatus
         orderStatus = TestData.createOrderStatus(
             from: customerBearerDid!.uri, 
-            to: pfiBearerDid!.uri, 
+            to: pfiBearerDid, 
             exchangeId: exchangeId, 
             status: orderStatusMessage)
         try! orderStatus!.sign(did: customerBearerDid!)
@@ -37,21 +36,24 @@ final class WalletPlacingOrdersTests: XCTestCase {
         // Create Close
         close = TestData.createClose(
             from: customerBearerDid!.uri, 
-            to: pfiBearerDid!.uri,
+            to: pfiBearerDid,
             exchangeId: exchangeId,
             reason: closeReason)
         try! close!.sign(did: customerBearerDid!)
     }
 
     func testSendOrderMessage() async throws {
-        guard let pfiDid = pfiBearerDid, let customerDid = customerBearerDid else {
+        guard let customerDid = customerBearerDid else {
             XCTFail("Failed to unwrap DIDs")
             return
         }
+        let pfiDid: String = pfiBearerDid
 
         // :snippet-start: createOrderSwift
-        var order = Order(from: customerDid.uri, to: pfiDid.uri, exchangeID: exchangeId, data: .init())
+        var order = Order(from: customerDid.uri, to: pfiDid, exchangeID: exchangeId, data: .init())
         // :snippet-end:
+
+        TestData.mockSendOrderMessage(exchangeId: exchangeId)
 
         // :snippet-start: sendOrderSwift
         try! order.sign(did: customerDid)
@@ -61,37 +63,44 @@ final class WalletPlacingOrdersTests: XCTestCase {
 
     func testStatusUpdate() async throws {
         var orderStatusUpdate: String?
-        var closeMessage: String?
+        var closeMessage: Close?
 
-        guard let pfiDid = pfiBearerDid, let customerDid = customerBearerDid else {
+        guard let customerDid = customerBearerDid else {
             XCTFail("Failed to unwrap DIDs")
             return
         }
 
+        let pfiDid: String = pfiBearerDid
+        TestData.mockGetExchangeWithClose(
+            to: customerBearerDid!.uri, 
+            from: pfiBearerDid, 
+            exchangeId: exchangeId, 
+            closeReason: closeReason)
+
         // :snippet-start: listenForOrderStatusSwift
         while (closeMessage == nil) {
             let messages = try await tbDEXHttpClient.getExchange(
-                pfiDIDURI: pfiDid.uri, 
-                requesterDID: customerDid.uri,
+                pfiDIDURI: pfiDid, 
+                requesterDID: customerDid,
                 exchangeId: exchangeId)
-
             for message in messages {
-                if message.kind == "OrderStatus" {
-                    orderStatusUpdate = message.data.orderStatus
-                } else if message.kind == "Close" {
-                    closeMessage = message
+                guard case let .orderStatus(orderStatus) = message else {
+                    guard case let .close(close) = message else {
+                        // neither OrderStatus nor Close
+                        continue
+                    }
+                    // final message of exchange has been written
+                    closeMessage = close
+                    break
                 }
+                //a status update to display to your customer
+                orderStatusUpdate = orderStatus.data.orderStatus
             }
         }
         // :snippet-end:
 
-        XCTAssert(orderStatusUpdate == orderStatusMessage, "OrderStatus message is incorrect")
-
         // :snippet-start: getCloseReasonSwift
-        var reasonForClose: String
-        if let closeData = closeMessage?.data as? String {
-            reasonForClose = closeData
-        }
+        let reasonForClose = closeMessage!.data.reason
         // :snippet-end
 
         XCTAssert(reasonForClose == closeReason, "Close reason is not correct")
