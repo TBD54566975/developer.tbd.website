@@ -65,9 +65,6 @@ final class WalletPlacingOrdersTests: XCTestCase {
     }
 
     func testStatusUpdate() async throws {
-        var orderStatusUpdate: String?
-        var closeMessage: Close?
-
         guard let customerDid = customerBearerDid else {
             XCTFail("Failed to unwrap DIDs")
             return
@@ -81,12 +78,15 @@ final class WalletPlacingOrdersTests: XCTestCase {
             closeReason: closeReason)
 
         // :snippet-start: listenForOrderStatusSwift
+        var orderStatusUpdate: String?
+        var closeMessage: Close?
+
         while closeMessage == nil {
-            let messages = try await tbDEXHttpClient.getExchange(
-                pfiDIDURI: pfiDid, 
-                requesterDID: customerDid,
-                exchangeId: exchangeId)
-            for message in messages {
+            let exchange = try await tbDEXHttpClient.getExchange(
+                pfiDIDURI: pfiDid,             // PFI's DID
+                requesterDID: customerDid,     // Customer's DID
+                exchangeId: exchangeId)        // Exchange ID from the Quote
+            for message in exchange {
                 guard case let .orderStatus(orderStatus) = message else {
                     guard case let .close(close) = message else {
                         // neither OrderStatus nor Close
