@@ -1,0 +1,168 @@
+---
+sidebar_position: 2
+title: Server Setup
+hide_title: true
+---
+
+<LanguageSwitcher languages="JavaScript, Kotlin" />
+
+# Credential Issuance Server Setup
+
+<LanguageSwitchBlock>
+  <div language="Kotlin">
+    <p>
+    <h2> Setup Ktor Project </h2>
+
+This example demonstrates how to use Ktor to set up the VC issuance service. Follow these instructions to <a href="https://www.jetbrains.com/help/idea/ktor.html#new_ktor_project">create a new Ktor project</a>.
+
+</p>
+
+  </div>
+
+  <div language="JavaScript">
+    <p>
+<h2> Install Express </h2>
+
+This example demonstrates how to use Express to set up the VC issuance service. Follow these instructions to <a href="https://expressjs.com/en/starter/installing.html">install Express</a>.
+
+</p>
+
+  </div>
+</LanguageSwitchBlock>
+
+### Install Credentials Package
+
+You'll also need to install `@web5/credentials` to create and issue credentials:
+
+<Shnip
+  snippets={[
+    {
+      snippetName: 'credentialIssuanceJsPackage',
+      language: 'JavaScript',
+      codeLanguage: 'bash',
+    },
+    {
+      language: 'Kotlin',
+      nestedSnippets: {
+        Gradle: {
+          snippetName: 'credentialIssuanceGradlePackage',
+          language: 'gradle',
+        },
+        Maven: {
+          snippetName: 'credentialIssuanceMavenPackage',
+          language: 'xml',
+        },
+      },
+    },
+  ]}
+/>
+
+### Create a DID
+
+Additionally, to issue credentials, you need a [Decentralized Identifier (DID)](/docs/web5/learn/decentralized-identifiers) which will serve as your Issuer's identity.
+If you don't already have one, you'll need to [create a DID](/docs/web5/build/decentralized-identifiers/how-to-create-did).
+
+### Create API Service
+
+<LanguageSwitchBlock>
+  <div language="Kotlin">
+    <p>
+1. Ensure you have a file, such as <code>Application.kt</code>, to act as your API's entry point, which was created during the Ktor setup.
+
+2. Within the file, import the necessary libraries:
+
+```kt title=Application.kt
+import com.nimbusds.jwt.JWTParser
+import io.ktor.server.application.*
+import io.ktor.server.response.*
+import io.ktor.server.request.*
+import io.ktor.server.routing.*
+import io.ktor.http.*
+import io.ktor.server.engine.*
+import io.ktor.server.netty.*
+import web5.sdk.credentials.VerifiableCredential
+import java.security.SignatureException
+import com.nimbusds.jwt.JWTClaimsSet
+import web5.sdk.dids.Did
+```
+
+3. To start your API service, add the following:
+
+```kt title=Application.kt
+fun main() {
+  embeddedServer(Netty, port = 8082) { // this can be any port you want to listen on
+      configureRouting()
+  }.start(wait = true)
+}
+```
+
+4. next, in the same file define your API routes:
+
+```kt title=Application.kt
+fun Application.configureRouting() {
+        routing {
+            get("/example-route") {
+             // implement the API route here
+            },
+            get("/next-example-route") {
+             // implement the API route here
+            }
+        }
+}
+```
+
+   </p>
+
+   </div>
+
+<div language="JavaScript">
+<p>
+1. Ensure you have a file, such as <code>main.js</code>, to act as your API's entry point, which was created during the Express setup.
+
+2. Within the file, import the following:
+
+```js title=main.js
+import { api } from './api.js';
+```
+
+3. To start your Express API service, add the following:
+
+```js title=main.js
+const config = {
+  port: 3000, // this can be any port you want to listen on
+};
+
+const server = api.listen(config.port, () => {
+  log.info(`Server listening on port ${config.port}`);
+});
+```
+
+4. Next, create an <code>api.js</code> file. This file will define the core API routes and logic for issuing credentials:
+
+```js title=api.js
+import express from 'express';
+import { VerifiableCredential, Jwt } from '@web5/credentials';
+
+const app = express();
+app.use(express.json());
+
+app.get('/example-route', async (req, res) => {
+  // implement the API route here
+});
+
+// Export the app so it can be imported in your <code>main.js</code> file
+export { app as api };
+```
+
+</p>
+
+  </div>
+</LanguageSwitchBlock>
+
+## Next Steps
+
+Now that you have your server environment set up, depending on your use case, you can proceed with one of the following guides:
+
+- [Credential Issuance Guide](/docs/tbdex/issuer/vc-issuance)
+
+- [Known Customer Credential Guide](/)
