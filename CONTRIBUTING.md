@@ -9,6 +9,35 @@ There are many ways to be an open source contributor, and we're here to help you
 
 This guide is for you.
 
+
+#### Managing Dependencies
+
+We are centralizing our depencies to a single json object at the root level named `sdk-versions.json`.
+
+```json
+{
+  "js": {
+    "@tbdex/http-client": "0.26.0",
+    "@tbdex/http-server": "0.26.0",
+    "@tbdex/protocol": "0.26.0",
+    "@web5/api": "0.8.4",
+    "@web5/credentials": "0.4.2",
+    "@web5/crypto": "0.4.0",
+    "@web5/crypto-aws-kms": "0.2.0",
+    "@web5/dids": "0.4.1",
+    "@web5/identity-agent": "0.2.5"
+  },
+  "maven": {
+    "tbdex": "0.10.0",
+    "web5-credentials": "0.0.11",
+    "web5-dids": "0.0.11",
+    "web5-crypto": "0.0.1"
+  }
+}
+```
+
+Whenever you'd like to update a dependency for a specific language, you update that version in the respective language attribute. When you run `pnpm install` these versions will be propagated throughout the repo in the right places.
+
 #### Contributing Content
 
 It's important for the integrity of our documentation to remain in tact while adding content to our docs site. We do this by making sure that most of the code snippets we display are also testable from an execution standpoint. If you plan on editing or adding code snippets to our docs, please follow the guideline below:
