@@ -48,7 +48,7 @@
       <dependency>
         <groupId>xyz.block</groupId>
         <artifactId>tbdex</artifactId>
-        <version>0.10.0-yessier</version>
+        <version>0.10.0</version>
       </dependency>
       <dependency>
         <groupId>io.ktor</groupId>
@@ -95,17 +95,17 @@
       <dependency>
         <groupId>xyz.block</groupId>
         <artifactId>web5-credentials</artifactId>
-        <version>0.0.11-test</version>
+        <version>0.0.11</version>
       </dependency>
       <dependency>
         <groupId>xyz.block</groupId>
         <artifactId>web5-dids</artifactId>
-        <version>0.0.11-more-test</version>
+        <version>0.0.11</version>
       </dependency>
       <dependency>
         <groupId>xyz.block</groupId>
         <artifactId>web5-crypto</artifactId>
-        <version>0.0.1-hello</version>
+        <version>0.0.1</version>
       </dependency>
     </dependencies>
   </dependencyManagement>
