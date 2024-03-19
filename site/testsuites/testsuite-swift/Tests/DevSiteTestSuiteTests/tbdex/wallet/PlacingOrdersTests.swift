@@ -8,7 +8,7 @@ import TypeID
 final class WalletPlacingOrdersTests: XCTestCase {
 
     var customerBearerDid: BearerDID?
-    let pfiBearerDid: String = "did:dht:4ykjcjdq7udyjq5iy1qbcy98xnd4dkzuizm14ih4rn6953b8ohoo"
+    let pfiDid: String = "did:dht:4ykjcjdq7udyjq5iy1qbcy98xnd4dkzuizm14ih4rn6953b8ohoo"
     var orderStatus: OrderStatus?
     var close: Close?
     let closeReason: String = "Transaction complete"
@@ -28,7 +28,7 @@ final class WalletPlacingOrdersTests: XCTestCase {
         // Create OrderStatus
         orderStatus = MockData.createOrderStatus(
             from: customerBearerDid!.uri, 
-            to: pfiBearerDid, 
+            to: pfiDid, 
             exchangeId: exchangeId, 
             status: orderStatusMessage)
         try! orderStatus!.sign(did: customerBearerDid!)
@@ -36,7 +36,7 @@ final class WalletPlacingOrdersTests: XCTestCase {
         // Create Close
         close = MockData.createClose(
             from: customerBearerDid!.uri, 
-            to: pfiBearerDid,
+            to: pfiDid,
             exchangeId: exchangeId,
             reason: closeReason)
         try! close!.sign(did: customerBearerDid!)
@@ -47,7 +47,6 @@ final class WalletPlacingOrdersTests: XCTestCase {
             XCTFail("Failed to unwrap DIDs")
             return
         }
-        let pfiDid: String = pfiBearerDid
 
         // :snippet-start: createOrderSwift
         var order = Order(from: customerDid.uri, to: pfiDid, exchangeID: exchangeId, data: .init())
@@ -70,12 +69,14 @@ final class WalletPlacingOrdersTests: XCTestCase {
             return
         }
 
-        let pfiDid: String = pfiBearerDid
+        let pfiDid: String = pfiDid
         MockData.mockGetExchangeWithClose(
-            from: pfiBearerDid,
+            from: pfiDid,
             to: customerBearerDid!.uri,  
             exchangeId: exchangeId, 
             closeReason: closeReason)
+
+        let quote = MockData.createQuote(from: pfiDid, to: customerBearerDid!.uri, exchangeId: exchangeId)
 
         // :snippet-start: listenForOrderStatusSwift
         var orderStatusUpdate: String?
@@ -83,9 +84,9 @@ final class WalletPlacingOrdersTests: XCTestCase {
 
         while closeMessage == nil {
             let exchange = try await tbDEXHttpClient.getExchange(
-                pfiDIDURI: pfiDid,             // PFI's DID
-                requesterDID: customerDid,     // Customer's DID
-                exchangeId: exchangeId)        // Exchange ID from the Quote
+                pfiDIDURI: quote.metadata.from,   // PFI's DID
+                requesterDID: customerDid,        // Customer's DID
+                exchangeId: quote.metadata.exchangeID)           // Exchange ID from the Quote
             for message in exchange {
                 guard case let .orderStatus(orderStatus) = message else {
                     guard case let .close(close) = message else {
