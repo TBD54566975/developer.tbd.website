@@ -203,14 +203,16 @@ app.post('/siopv2/response', async (req, res) => {
        * Construct Credential Offer without URL since VP Token is present
        *************************************************************************/
       credentialOffer = {
-        credential_issuer:
-          'https://issuer.example.com/credentials/.well-known/openid-credential-issuer', // this a set value: .well-known/openid-credential-issuer
-        credential_configuration_ids: [
-          'knownCustomerCredential-basic',
-          'knownCustomerCredential-extended',
-        ],
-        grants: {
-          'urn:ietf:params:oauth:grant-type:pre-authorized_code': preAuthCode,
+        credential_offer: {
+          credential_issuer:
+            'https://issuer.example.com/credentials/.well-known/openid-credential-issuer',
+          credential_configuration_ids: [
+            'knownCustomerCredential-basic',
+            'knownCustomerCredential-extended',
+          ],
+          grants: {
+            'urn:ietf:params:oauth:grant-type:pre-authorized_code': preAuthCode,
+          },
         },
       };
     } else {
@@ -218,16 +220,18 @@ app.post('/siopv2/response', async (req, res) => {
        * If VP token is not present, include URL for IDV form
        *************************************************************************/
       credentialOffer = {
-        url: 'https://issuer.example.com/idv/form', // IDV Request form
-        credential_issuer: 'https://issuer.example.com',
-        credential_configuration_ids: [
-          'knownCustomerCredential-basic',
-          'knownCustomerCredential-extended',
-        ],
-        grants: {
-          'urn:ietf:params:oauth:grant-type:pre-authorized_code':
-            generateUniquePreAuthCode(),
+        credential_offer: {
+          credential_issuer: 'https://issuer.example.com',
+          credential_configuration_ids: [
+            'knownCustomerCredential-basic',
+            'knownCustomerCredential-extended',
+          ],
+          grants: {
+            'urn:ietf:params:oauth:grant-type:pre-authorized_code':
+              generateUniquePreAuthCode(),
+          },
         },
+        url: 'https://issuer.example.com/idv/form',
       };
     }
     res.json(credentialOffer);

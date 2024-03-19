@@ -8,7 +8,7 @@ hide_title: true
 
 # Issuing a Known Customer Credential
 
-Known Customer Credentials (KCCs) are [Verifiable Credentials](/docs/web5/learn/verifiable-credentials) designed to streamline the Know Your Customer (KYC) process for tbDEX protocol users. KCCs help in gaining access to PFIs providing regulated financial services. 
+Known Customer Credentials (KCCs) are [Verifiable Credentials](/docs/web5/learn/verifiable-credentials) designed to streamline the Know Your Customer (KYC) process for tbDEX protocol users. KCCs help in gaining access to PFIs providing regulated financial services.
 
 For a comprehensive exploration of the practical applications and compliance considerations of KCCs, refer to our [KCC Compliance Guide](/) which provides detailed examples and insights into how KCCs align with certain regulatory requirements, offering valuable context for those overseeing the implementation and management of KCCs.
 
@@ -18,7 +18,7 @@ This guide is intended for educational purposes only and does not constitute leg
 
 In this guide, we'll cover:
 
-- Performing Identity Verification (IDV) as a necessary step **before** issuing a Known Customer Credential (KCC), following [Self Issued OpenID Provider V2 (SIOPv2)](https://openid.github.io/SIOPv2/openid-connect-self-issued-v2-wg-draft.html) and [OpenID for Verifiable Presentation's (OID4VP)](https://openid.net/specs/openid-4-verifiable-presentations-1_0.html) set of specifications.
+- Performing Identity Verification (IDV) as a necessary step **before** issuing a Known Customer Credential (KCC), by implementing an API conformant with [Self Issued OpenID Provider V2 (SIOPv2)](https://openid.github.io/SIOPv2/openid-connect-self-issued-v2-wg-draft.html) and [OpenID for Verifiable Presentation's (OID4VP)](https://openid.net/specs/openid-4-verifiable-presentations-1_0.html).
 - Designing a KCC, detailing the required properties.
 - Issuing a KCC, following successful IDV.
 
@@ -40,11 +40,11 @@ The IDV flow begins when the customer's agent (e.g. Wallet application) sends an
 
 ### Handling Incoming Requests
 
-1. Implement an endpoint to handle incoming GET requests from the Wallet. When a request is received, you'll need to construct the [Self Issued OpenID Provider V2 (SIOPv2)](https://openid.github.io/SIOPv2/openid-connect-self-issued-v2-wg-draft.html) Authorization Request.
+1. Implement an endpoint to handle incoming GET requests from the Wallet. When a request is received, you'll need to construct the [SIOPv2 Authorization Request](https://openid.github.io/SIOPv2/openid-connect-self-issued-v2-wg-draft.html#section-9).
 
 ### Approach 1: Requesting only [`id_token`](https://openid.github.io/SIOPv2/openid-connect-self-issued-v2-wg-draft.html#name-self-issued-id-token)
 
-This approach is used when the goal is solely to authenticate the user without requesting any additional Verifiable Credentials:
+This approach is used when a Verifiable Presentation is **not** an accepted form of IDV:
 
 <Shnip
   snippets={[
@@ -62,12 +62,12 @@ This approach is used when the goal is solely to authenticate the user without r
 />
 
 :::note
-`id_token` is a Self Issued Identity Token, that authenticates the customer to the Issuer by sharing the customer's Decentralized Identifier. This guide will cover an example `id_token` to learn more refer to [openID's specs](https://openid.github.io/SIOPv2/openid-connect-self-issued-v2-wg-draft.html#name-self-issued-id-token).
+`id_token` is a Self Issued Identity Token, that authenticates the customer to the Issuer by sharing the customer's Decentralized Identifier. This guide will cover an example `id_token` to learn more refer to [OpenID's specs](https://openid.github.io/SIOPv2/openid-connect-self-issued-v2-wg-draft.html#name-self-issued-id-token).
 :::
 
 ### Approach 2: Requesting both `id_token` and [`vp_token`](https://openid.net/specs/openid-4-verifiable-presentations-1_0.html#section-6.1-2.2)
 
-This approach is used when you need to authenticate the user and also want to request specific Verifiable Credentials:
+This approach is used when a Verifiable Presentation **is** an accepted form of IDV:
 
 <Shnip
   snippets={[
@@ -112,69 +112,65 @@ The SIOPv2 Authorization request contains information about you, the Issuer, alo
   ]}
 />
 
-3. The Wallet will then respond with a POST SIOPv2 Authorization Response. This response will be [JSON Web Tokens (JWTs)](https://jwt.io/). Here's an example response where `vp_token` and `id_token` is in the Authorization Response:
+3. The Wallet will then respond with an HTTP POST [SIOPv2 Authorization Response](https://openid.github.io/SIOPv2/openid-connect-self-issued-v2-wg-draft.html#section-10). The HTTP request body must include an `id_token` and optionally a `vp_token`, both of which must be [JSON Web Tokens (JWTs)](https://datatracker.ietf.org/doc/html/rfc7519). Here is an example HTTP POST request body (which includes the optional `vp_token`):
 
 ```javascript
-// Wallet.js id_token JWT response
-
-eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
-  .eyJpc3MiOiJkaWQ6ZGh0OmN1c3RvbWVyRGlkIiwic3ViIjoiZGlkOmRodDpjdXN0b21lckRpZCIsImF1ZCI6Imlzc3VlckRpZC51cmkiLCJub25jZSI6Im4tMFM2X1d6QTJNaiIsImV4cCI6MTYxODg4NDQ3MywiaWF0IjoxNjE4ODgwODczfQGUuY29tL2NyZWRlbnRpYWxzLzE4NzIiLCJ0eXBlIjpbIlZlcmlmaWFibGVDcmVkZW50aWFsIiwiSURDYXJkQ3JlZGVudGlhbCJdLCJpc3N1ZXIiOnsiaWQiOiJkaWQ6ZXhhbXBsZTppc3N1ZXIifSwiaXNzdWFuY2VEYXRlIjoiMjAxMC0wMS0wMVQxOToyMzoyNFoiLCJjcmVkZW50aWFsU3ViamVjdCI6eyJnaXZlbl9uYW1lIjoiRnJlZHJpayIsImZhbWlseV9uYW1
-  .Imlzc3VlckRpZC51cmkiLCJub25jZSI6Im4tMFM2X1d6QTJNaiIsImV4cCI6MTYxODg4NDQ3MywiaWF0IjoxNjE4ODgwODcz;
-```
-
-```javascript
-// Wallet.js vp_token JWT response
-
-eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
-  .eyJAY29udGV4dCI6WyJodHRwczovL3d3dy53My5vcmcvMjAxOC9jcmVkZW50aWFscy92MSJdLCJ0eXBlIjpbIlZlcmlmaWFibGVQcmVzZW50YXRpb24iXSwidmVyaWZpYWJsZUNyZWRlbnRpYWwiOlt7IkBjb250ZXh0IjpbImh0dHBzOi8vd3d3LnczLm9yZy8yMDE4L2NyZWRlbnRpYWxzL3YxIiwiaHR0cHM6Ly93d3cudzMub3JnLzIwMTgvY3JlZGVudGlhbHMvZXhhbXBsZXMvdjEiXSwiaWQiOiJodHRwczovL2V4YW1wbGUuY29tL2NyZWRlbnRpYWxzLzE4NzIiLCJ0eXBlIjpbIlZlcmlmaWFibGVDcmVkZW50aWFsIiwiSURDYXJkQ3JlZGVudGlhbCJdLCJpc3N1ZXIiOnsiaWQiOiJkaWQ6ZXhhbXBsZTppc3N1ZXIifSwiaXNzdWFuY2VEYXRlIjoiMjAxMC0wMS0wMVQxOToyMzoyNFoiLCJjcmVkZW50aWFsU3ViamVjdCI6eyJnaXZlbl9uYW1lIjoiRnJlZHJpayIsImZhbWlseV9uYW1lIjoiU3RyJm9tYmVyZyIs
-  .ImJpcnRoZGF0ZSI6IjE5NDktMDEtMjIifX1dLCJob2xkZXIiOiJkaWQ6ZXhhbXBsZTpob2xkZXIiLCJwcm9vZiI6eyJ0eXBlIjoiRWQyNTUxOVNpZ25hdHVyZTIwMTgiLCJjcmVhdGVkIjoiMjAyMS0wMy0xOVQxNTozMDoxNVoiLCJjaGFsbGVuZ2UiOiJuLTBTNl9XekEyTWoiLCJkb21haW4iOiJodHRwczovL2NsaWVudC5leGFtcGxlLm9yZy9jYiIsImp3cyI6ImV5SmhiR2NpT2lKSVV6STFOaUo5LkhvbGRlcl9GT1JfU0lHTkFUVVJFIiwicHJvb2ZQdXJwb3NlIjoiYXV0aGVudGljYXRpb24iLCJ2ZXJpZmljYXRpb25NZXRob2QiOiJkaWQ6ZXhhbXBsZTpob2xkZXIja2V5LTEifX0;
-```
-
-When decoded, here is the JSON of `id_token` and `vp_token`:
-
-```javascript
-// Wallet.js
+// Wallet.js example HTTP POST request body
 
 {
-  "id_token": {
-    "iss": "did:dht:customerDid",
-    "sub": "did:dht:customerDid", // Customer's DID string
-    "aud": "did:dht:issuerDid", // Issuer's DID string
-    "nonce": "n-0S6_WzA2Mj", // Unique string from the Issuer's Auth request
-    "exp": 1618884473, // Expiration time
-    "iat": 1618880873 // issued at time
-  },
-  "vp_token": {
-    "@context": [
-      "https://www.w3.org/2018/credentials/v1",
-      "https://identity.foundation/presentation-exchange/submission/v1"
-    ],
-    "type": ["VerifiablePresentation", "PresentationSubmission"],
-    "presentation_submission": {
-      "id": "epzZXstAcVNt5MRrcyG91",
-      "definition_id": "IDCardCredentials",
-      "descriptor_map": [
-        {
-          "id": "IDCardCredential",
-          "format": "jwt_vc",
-          "path": "$.verifiableCredential[0]"
-        },
-        {
-          "id": "nationalIdentifierVerification",
-          "format": "jwt_vc",
-          "path": "$.verifiableCredential[1]"
-        }
-      ]
-    },
-    "verifiableCredential": [
-      "eyJhbGciOiJFZERTQSIsInR5cCI6IkpXVCIsImtpZCI6ImRpZDprZXk6ejZNa2VyNDlDbnVnN2hzdkhEZ3Y0NHl2cGR2dE1oNHlMaURYeFM2N2huclVodHQyI3o2TWtlcjQ5Q251Zzdoc3ZIRGd2NDR5dnBkdnRNaDR5TGlEWHhTNjdobnJVaHR0MiJ9.eyJpc3MiOiJkaWQ6a2V5Ono2TWtlcjQ5Q251Zzdoc3ZIRGd2NDR5dnBkdnRNaDR5TGlEWHhTNjdobnJVaHR0MiIsInZjIjp7IkBjb250ZXh0IjpbImh0dHBzOi8vd3d3LnczLm9yZy8yMDE4L2NyZWRlbnRpYWxzL3YxIl0sInR5cGUiOlsiVmVyaWZpYWJsZUNyZWRlbnRpYWwiLCJFbXBsb3ltZW50Q3JlZGVudGlhbCJdLCJpZCI6InVybjp1dWlkOjcyNDhiOTkyLTkwOTYtNDk2NS1hMGVjLTc3ZDhhODNhMWRmYiIsImlzc3VlciI6ImRpZDprZXk6ejZNa2VyNDlDbnVnN2hzdkhEZ3Y0NHl2cGR2dE1oNHlMaURYeFM2N2huclVodHQyIiwiaXNzdWFuY2VEYXRlIjoiMjAyMy0xMi0yMVQyMDoxMToyNVoiLCJjcmVkZW50aWFsU3ViamVjdCI6eyJpZCI6ImRpZDppb246RWlEMTR4UmY0cTJNWlh1ZWY2X2ZXYnBGbVlTUG94dGFxTkp1SmdEMG96Wl84UTpleUprWld4MFlTSTZleUp3WVhSamFHVnpJanBiZXlKaFkzUnBiMjRpT2lKeVpYQnNZV05sSWl3aVpHOWpkVzFsYm5RaU9uc2ljSFZpYkdsalMyVjVjeUk2VzNzaWFXUWlPaUprZDI0dGMybG5JaXdpY0hWaWJHbGpTMlY1U25kcklqcDdJbU55ZGlJNklrVmtNalUxTVRraUxDSnJkSGtpT2lKUFMxQWlMQ0o0SWpvaWVubGFNbVYzTlhKeVVXdFVjbUV3WlZsVk16WlBTblJzTURCbFJWZHhhalZhV0dkNmNEZFpSVTVKUVNKOUxDSndkWEp3YjNObGN5STZXeUpoZFhSb1pXNTBhV05oZEdsdmJpSmRMQ0owZVhCbElqb2lTbk52YmxkbFlrdGxlVEl3TWpBaWZTeDdJbWxrSWpvaVpIZHVMV1Z1WXlJc0luQjFZbXhwWTB0bGVVcDNheUk2ZXlKamNuWWlPaUp6WldOd01qVTJhekVpTENKcmRIa2lPaUpGUXlJc0luZ2lPaUpQZDJZMFQyMUViamxKWm5SNFdYWnBkRTFHWm1jMVVXeDVMVVV6VWs1b1dsUkdPVlpFTWtnNVQzVjNJaXdpZVNJNkltUnZjVmxtV2s1c1NtRlRNVll4U201bU9HdEZObEF6VkRsd2QzaDNla3hFVTJWc1ZqTlRUa2s1U2xFaWZTd2ljSFZ5Y0c5elpYTWlPbHNpYTJWNVFXZHlaV1Z0Wlc1MElsMHNJblI1Y0dVaU9pSktjMjl1VjJWaVMyVjVNakF5TUNKOVhTd2ljMlZ5ZG1salpYTWlPbHQ3SW1sa0lqb2laSGR1SWl3aWMyVnlkbWxqWlVWdVpIQnZhVzUwSWpwN0ltVnVZM0o1Y0hScGIyNUxaWGx6SWpwYklpTmtkMjR0Wlc1aklsMHNJbTV2WkdWeklqcGJJbWgwZEhCek9pOHZaSGR1TG5SaVpHUmxkaTV2Y21jdlpIZHVOaUlzSW1oMGRIQnpPaTh2WkhkdUxuUmlaR1JsZGk1dmNtY3ZaSGR1TUNKZExDSnphV2R1YVc1blMyVjVjeUk2V3lJalpIZHVMWE5wWnlKZGZTd2lkSGx3WlNJNklrUmxZMlZ1ZEhKaGJHbDZaV1JYWldKT2IyUmxJbjFkZlgxZExDSjFjR1JoZEdWRGIyMXRhWFJ0Wlc1MElqb2lSV2xEWm05bVFUQkpVbU5uY2tWdVVHZHdRbU5RV1ZsV2VFWlliR0pTYjJRd2RVNWZRVkJwTkVrNUxVRmZRU0o5TENKemRXWm1hWGhFWVhSaElqcDdJbVJsYkhSaFNHRnphQ0k2SWtWcFFtd3pWWG80VldGT2REZGxlREJKYjJJMFJFNXNhbFJGVmpaelQwTmtjbFJ3TWxvNE5FTkJPVFJPUWtFaUxDSnlaV052ZG1WeWVVTnZiVzFwZEcxbGJuUWlPaUpGYVVOWk9WRldZbWRKYkUxemRraEZYMVJtTld4a1MxQjBkR3d3WVV4blNrdHNSbmt6Vms0d2QzQTJhVFpSSW4xOSIsImVtcGxveW1lbnRTdGF0dXMiOiJlbXBsb3llZCJ9fX0.Sazc8Ndhs-NKjxvtVMKeC9dxjEkI26fVsp2kFNWM-SYLtxMzKvl5ffeWd81ysHgPmBBSk2ar4dMqGgUsyM4gAQ",
-      "eyJhbGciOiJFZERTQSIsInR5cCI6IkpXVCIsImtpZCI6ImRpZDprZXk6ejZNa2pwUzRHVUFoYmdCSmg2azJnZTZvWTQ0UUxyRXA3NXJadHNqYVRLb3JSRGR0I3o2TWtqcFM0R1VBaGJnQkpoNmsyZ2U2b1k0NFFMckVwNzVyWnRzamFUS29yUkRkdCJ9.eyJpc3MiOiJkaWQ6a2V5Ono2TWtqcFM0R1VBaGJnQkpoNmsyZ2U2b1k0NFFMckVwNzVyWnRzamFUS29yUkRkdCIsInZjIjp7IkBjb250ZXh0IjpbImh0dHBzOi8vd3d3LnczLm9yZy8yMDE4L2NyZWRlbnRpYWxzL3YxIl0sInR5cGUiOlsiVmVyaWZpYWJsZUNyZWRlbnRpYWwiLCJOYW1lQW5kRG9iQ3JlZGVudGlhbCJdLCJpZCI6InVybjp1dWlkOjliZjM2YzY5LTI0ODAtNDllZC1iMTYyLTRlZDEwOWE3MTc3NyIsImlzc3VlciI6ImRpZDprZXk6ejZNa2pwUzRHVUFoYmdCSmg2azJnZTZvWTQ0UUxyRXA3NXJadHNqYVRLb3JSRGR0IiwiaXNzdWFuY2VEYXRlIjoiMjAyMy0xMi0yMVQyMDowNjowMVoiLCJjcmVkZW50aWFsU3ViamVjdCI6eyJpZCI6ImRpZDppb246RWlDS2o2M0FyZlBGcEpsb2lTd3gxQUhxVWtpWlNoSDZGdnZoSzRaTl9fZDFtQTpleUprWld4MFlTSTZleUp3WVhSamFHVnpJanBiZXlKaFkzUnBiMjRpT2lKeVpYQnNZV05sSWl3aVpHOWpkVzFsYm5RaU9uc2ljSFZpYkdsalMyVjVjeUk2VzNzaWFXUWlPaUprZDI0dGMybG5JaXdpY0hWaWJHbGpTMlY1U25kcklqcDdJbU55ZGlJNklrVmtNalUxTVRraUxDSnJkSGtpT2lKUFMxQWlMQ0o0SWpvaWNscFdXbTVJVkVrNWFEWkJUVmxVV0dwT01HcFhTVkYwTTI5ak4xTnJTeTF4Y2kxcVVuSTBUalEzUlNKOUxDSndkWEp3YjNObGN5STZXeUpoZFhSb1pXNTBhV05oZEdsdmJpSmRMQ0owZVhCbElqb2lTbk52YmxkbFlrdGxlVEl3TWpBaWZTeDdJbWxrSWpvaVpIZHVMV1Z1WXlJc0luQjFZbXhwWTB0bGVVcDNheUk2ZXlKamNuWWlPaUp6WldOd01qVTJhekVpTENKcmRIa2lPaUpGUXlJc0luZ2lPaUpaVDFwRE5WSmlUMHQ1T0dadVVUWTJVWEZPUkc5aldFMXZPVXhUZEdNNVYyOWthMHd0ZFZCZlExQnZJaXdpZVNJNklsWnZZM0UxVERodFozQlhXVTFrYjFwS1JrWlJUa1ZDT0hsR0xXTndkRWQzZFdkcFRWVm5hR2t6Y21jaWZTd2ljSFZ5Y0c5elpYTWlPbHNpYTJWNVFXZHlaV1Z0Wlc1MElsMHNJblI1Y0dVaU9pSktjMjl1VjJWaVMyVjVNakF5TUNKOVhTd2ljMlZ5ZG1salpYTWlPbHQ3SW1sa0lqb2laSGR1SWl3aWMyVnlkbWxqWlVWdVpIQnZhVzUwSWpwN0ltVnVZM0o1Y0hScGIyNUxaWGx6SWpwYklpTmtkMjR0Wlc1aklsMHNJbTV2WkdWeklqcGJJbWgwZEhCek9pOHZaSGR1TG5SaVpHUmxkaTV2Y21jdlpIZHVOaUlzSW1oMGRIQnpPaTh2WkhkdUxuUmlaR1JsZGk1dmNtY3ZaSGR1TUNKZExDSnphV2R1YVc1blMyVjVjeUk2V3lJalpIZHVMWE5wWnlKZGZTd2lkSGx3WlNJNklrUmxZMlZ1ZEhKaGJHbDZaV1JYWldKT2IyUmxJbjFkZlgxZExDSjFjR1JoZEdWRGIyMXRhWFJ0Wlc1MElqb2lSV2xCTXpSMlMzb3llVmswZVV4dGRDMUdabkJuYWpWbGFFRm1ZWFI1YzFOa2MwNVNWbVpMYkhwUWRqTjVkeUo5TENKemRXWm1hWGhFWVhSaElqcDdJbVJsYkhSaFNHRnphQ0k2SWtWcFF6ZGZjMXBzTW1wMVVXNUdhRVJIV1RSb2NFVTRiMlF4YVU5MWRuZG1PVFJ5TVVkbk9HMWFWbVJCVmxFaUxDSnlaV052ZG1WeWVVTnZiVzFwZEcxbGJuUWlPaUpGYVVKdU5sTnJiSEpWYzNKdVFuaFJPVXBqVXkxTlNVaGtWelYwTXpRM1MxWjNaMXBwVEZwMFQwcDRRVkYzSW4xOSIsIm5hbWUiOiJhbGljZSBib2IiLCJkYXRlT2ZCaXJ0aCI6IjEwLTAxLTE5OTAifX19.mNCDv_JntH-wZpYONKNL58UbOWaYXCYJO_HPI_WVlSgwzo6dhYmV_9qtpFKd_exFb-aaEYPeSE43twWlrJeSBg"
-    ]
-  }
+    "id_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJkaWQ6ZGh0OmN1c3RvbWVyRGlkIiwic3ViIjoiZGlkOmRodDpjdXN0b21lckRpZCIsImF1ZCI6Imlzc3VlckRpZC51cmkiLCJub25jZSI6Im4tMFM2X1d6QTJNaiIsImV4cCI6MTYxODg4NDQ3MywiaWF0IjoxNjE4ODgwODczfQGUuY29tL2NyZWRlbnRpYWxzLzE4NzIiLCJ0eXBlIjpbIlZlcmlmaWFibGVDcmVkZW50aWFsIiwiSURDYXJkQ3JlZGVudGlhbCJdLCJpc3N1ZXIiOnsiaWQiOiJkaWQ6ZXhhbXBsZTppc3N1ZXIifSwiaXNzdWFuY2VEYXRlIjoiMjAxMC0wMS0wMVQxOToyMzoyNFoiLCJjcmVkZW50aWFsU3ViamVjdCI6eyJnaXZlbl9uYW1lIjoiRnJlZHJpayIsImZhbWlseV9uYW1.Imlzc3VlckRpZC51cmkiLCJub25jZSI6Im4tMFM2X1d6QTJNaiIsImV4cCI6MTYxODg4NDQ3MywiaWF0IjoxNjE4ODgwODcz",
+    "vp_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJAY29udGV4dCI6WyJodHRwczovL3d3dy53My5vcmcvMjAxOC9jcmVkZW50aWFscy92MSJdLCJ0eXBlIjpbIlZlcmlmaWFibGVQcmVzZW50YXRpb24iXSwidmVyaWZpYWJsZUNyZWRlbnRpYWwiOlt7IkBjb250ZXh0IjpbImh0dHBzOi8vd3d3LnczLm9yZy8yMDE4L2NyZWRlbnRpYWxzL3YxIiwiaHR0cHM6Ly93d3cudzMub3JnLzIwMTgvY3JlZGVudGlhbHMvZXhhbXBsZXMvdjEiXSwiaWQiOiJodHRwczovL2V4YW1wbGUuY29tL2NyZWRlbnRpYWxzLzE4NzIiLCJ0eXBlIjpbIlZlcmlmaWFibGVDcmVkZW50aWFsIiwiSURDYXJkQ3JlZGVudGlhbCJdLCJpc3N1ZXIiOnsiaWQiOiJkaWQ6ZXhhbXBsZTppc3N1ZXIifSwiaXNzdWFuY2VEYXRlIjoiMjAxMC0wMS0wMVQxOToyMzoyNFoiLCJjcmVkZW50aWFsU3ViamVjdCI6eyJnaXZlbl9uYW1lIjoiRnJlZHJpayIsImZhbWlseV9uYW1lIjoiU3RyJm9tYmVyZyIs.ImJpcnRoZGF0ZSI6IjE5NDktMDEtMjIifX1dLCJob2xkZXIiOiJkaWQ6ZXhhbXBsZTpob2xkZXIiLCJwcm9vZiI6eyJ0eXBlIjoiRWQyNTUxOVNpZ25hdHVyZTIwMTgiLCJjcmVhdGVkIjoiMjAyMS0wMy0xOVQxNTozMDoxNVoiLCJjaGFsbGVuZ2UiOiJuLTBTNl9XekEyTWoiLCJkb21haW4iOiJodHRwczovL2NsaWVudC5leGFtcGxlLm9yZy9jYiIsImp3cyI6ImV5SmhiR2NpT2lKSVV6STFOaUo5LkhvbGRlcl9GT1JfU0lHTkFUVVJFIiwicHJvb2ZQdXJwb3NlIjoiYXV0aGVudGljYXRpb24iLCJ2ZXJpZmljYXRpb25NZXRob2QiOiJkaWQ6ZXhhbXBsZTpob2xkZXIja2V5LTEifX0"
 }
 ```
 
-4. Implement a `/siopv2/response` endpoint to process and verify the Wallet's response. If the Wallet's response includes a [Verifiable Presentation](/docs/glossary#verifiable-presentation) (`vp_token`), you, as the Issuer, will respond with a `credential_offer`. If the Wallet's response only includes an `id_token`, the `credential_offer` will also include a URL directing to an Identity Verification form:
+The decoded [JWT Claims](https://datatracker.ietf.org/doc/html/rfc7519#section-4) for the `id_token` and `vp_token` are as follows:
+
+```javascript
+// Wallet.js id_token decoded JWT claims
+
+{
+  "iss": "did:dht:customerDid",
+  "sub": "did:dht:customerDid", // Customer's DID string
+  "aud": "did:dht:issuerDid", // Issuer's DID string
+  "nonce": "n-0S6_WzA2Mj", // Unique string from the Issuer's Auth request
+  "exp": 1618884473, // Expiration time
+  "iat": 1618880873 // issued at time
+}
+```
+
+```javascript
+// Wallet.js vp_token decoded JWT claims
+
+{
+  "@context": [
+    "https://www.w3.org/2018/credentials/v1",
+    "https://identity.foundation/presentation-exchange/submission/v1"
+  ],
+  "type": ["VerifiablePresentation", "PresentationSubmission"],
+  "presentation_submission": {
+    "id": "epzZXstAcVNt5MRrcyG91",
+    "definition_id": "IDCardCredentials",
+    "descriptor_map": [
+      {
+        "id": "IDCardCredential",
+        "format": "jwt_vc",
+        "path": "$.verifiableCredential[0]"
+      },
+      {
+        "id": "nationalIdentifierVerification",
+        "format": "jwt_vc",
+        "path": "$.verifiableCredential[1]"
+      }
+    ]
+  },
+  "verifiableCredential": [
+    "eyJhbGciOiJFZERTQSIsInR5cCI6IkpXVCIsImtpZCI6ImRpZDprZXk6ejZNa2VyNDlDbnVnN2hzdkhEZ3Y0NHl2cGR2dE1oNHlMaURYeFM2N2huclVodHQyI3o2TWtlcjQ5Q251Zzdoc3ZIRGd2NDR5dnBkdnRNaDR5TGlEWHhTNjdobnJVaHR0MiJ9.eyJpc3MiOiJkaWQ6a2V5Ono2TWtlcjQ5Q251Zzdoc3ZIRGd2NDR5dnBkdnRNaDR5TGlEWHhTNjdobnJVaHR0MiIsInZjIjp7IkBjb250ZXh0IjpbImh0dHBzOi8vd3d3LnczLm9yZy8yMDE4L2NyZWRlbnRpYWxzL3YxIl0sInR5cGUiOlsiVmVyaWZpYWJsZUNyZWRlbnRpYWwiLCJFbXBsb3ltZW50Q3JlZGVudGlhbCJdLCJpZCI6InVybjp1dWlkOjcyNDhiOTkyLTkwOTYtNDk2NS1hMGVjLTc3ZDhhODNhMWRmYiIsImlzc3VlciI6ImRpZDprZXk6ejZNa2VyNDlDbnVnN2hzdkhEZ3Y0NHl2cGR2dE1oNHlMaURYeFM2N2huclVodHQyIiwiaXNzdWFuY2VEYXRlIjoiMjAyMy0xMi0yMVQyMDoxMToyNVoiLCJjcmVkZW50aWFsU3ViamVjdCI6eyJpZCI6ImRpZDppb246RWlEMTR4UmY0cTJNWlh1ZWY2X2ZXYnBGbVlTUG94dGFxTkp1SmdEMG96Wl84UTpleUprWld4MFlTSTZleUp3WVhSamFHVnpJanBiZXlKaFkzUnBiMjRpT2lKeVpYQnNZV05sSWl3aVpHOWpkVzFsYm5RaU9uc2ljSFZpYkdsalMyVjVjeUk2VzNzaWFXUWlPaUprZDI0dGMybG5JaXdpY0hWaWJHbGpTMlY1U25kcklqcDdJbU55ZGlJNklrVmtNalUxTVRraUxDSnJkSGtpT2lKUFMxQWlMQ0o0SWpvaWVubGFNbVYzTlhKeVVXdFVjbUV3WlZsVk16WlBTblJzTURCbFJWZHhhalZhV0dkNmNEZFpSVTVKUVNKOUxDSndkWEp3YjNObGN5STZXeUpoZFhSb1pXNTBhV05oZEdsdmJpSmRMQ0owZVhCbElqb2lTbk52YmxkbFlrdGxlVEl3TWpBaWZTeDdJbWxrSWpvaVpIZHVMV1Z1WXlJc0luQjFZbXhwWTB0bGVVcDNheUk2ZXlKamNuWWlPaUp6WldOd01qVTJhekVpTENKcmRIa2lPaUpGUXlJc0luZ2lPaUpQZDJZMFQyMUViamxKWm5SNFdYWnBkRTFHWm1jMVVXeDVMVVV6VWs1b1dsUkdPVlpFTWtnNVQzVjNJaXdpZVNJNkltUnZjVmxtV2s1c1NtRlRNVll4U201bU9HdEZObEF6VkRsd2QzaDNla3hFVTJWc1ZqTlRUa2s1U2xFaWZTd2ljSFZ5Y0c5elpYTWlPbHNpYTJWNVFXZHlaV1Z0Wlc1MElsMHNJblI1Y0dVaU9pSktjMjl1VjJWaVMyVjVNakF5TUNKOVhTd2ljMlZ5ZG1salpYTWlPbHQ3SW1sa0lqb2laSGR1SWl3aWMyVnlkbWxqWlVWdVpIQnZhVzUwSWpwN0ltVnVZM0o1Y0hScGIyNUxaWGx6SWpwYklpTmtkMjR0Wlc1aklsMHNJbTV2WkdWeklqcGJJbWgwZEhCek9pOHZaSGR1TG5SaVpHUmxkaTV2Y21jdlpIZHVOaUlzSW1oMGRIQnpPaTh2WkhkdUxuUmlaR1JsZGk1dmNtY3ZaSGR1TUNKZExDSnphV2R1YVc1blMyVjVjeUk2V3lJalpIZHVMWE5wWnlKZGZTd2lkSGx3WlNJNklrUmxZMlZ1ZEhKaGJHbDZaV1JYWldKT2IyUmxJbjFkZlgxZExDSjFjR1JoZEdWRGIyMXRhWFJ0Wlc1MElqb2lSV2xEWm05bVFUQkpVbU5uY2tWdVVHZHdRbU5RV1ZsV2VFWlliR0pTYjJRd2RVNWZRVkJwTkVrNUxVRmZRU0o5TENKemRXWm1hWGhFWVhSaElqcDdJbVJsYkhSaFNHRnphQ0k2SWtWcFFtd3pWWG80VldGT2REZGxlREJKYjJJMFJFNXNhbFJGVmpaelQwTmtjbFJ3TWxvNE5FTkJPVFJPUWtFaUxDSnlaV052ZG1WeWVVTnZiVzFwZEcxbGJuUWlPaUpGYVVOWk9WRldZbWRKYkUxemRraEZYMVJtTld4a1MxQjBkR3d3WVV4blNrdHNSbmt6Vms0d2QzQTJhVFpSSW4xOSIsImVtcGxveW1lbnRTdGF0dXMiOiJlbXBsb3llZCJ9fX0.Sazc8Ndhs-NKjxvtVMKeC9dxjEkI26fVsp2kFNWM-SYLtxMzKvl5ffeWd81ysHgPmBBSk2ar4dMqGgUsyM4gAQ",
+    "eyJhbGciOiJFZERTQSIsInR5cCI6IkpXVCIsImtpZCI6ImRpZDprZXk6ejZNa2pwUzRHVUFoYmdCSmg2azJnZTZvWTQ0UUxyRXA3NXJadHNqYVRLb3JSRGR0I3o2TWtqcFM0R1VBaGJnQkpoNmsyZ2U2b1k0NFFMckVwNzVyWnRzamFUS29yUkRkdCJ9.eyJpc3MiOiJkaWQ6a2V5Ono2TWtqcFM0R1VBaGJnQkpoNmsyZ2U2b1k0NFFMckVwNzVyWnRzamFUS29yUkRkdCIsInZjIjp7IkBjb250ZXh0IjpbImh0dHBzOi8vd3d3LnczLm9yZy8yMDE4L2NyZWRlbnRpYWxzL3YxIl0sInR5cGUiOlsiVmVyaWZpYWJsZUNyZWRlbnRpYWwiLCJOYW1lQW5kRG9iQ3JlZGVudGlhbCJdLCJpZCI6InVybjp1dWlkOjliZjM2YzY5LTI0ODAtNDllZC1iMTYyLTRlZDEwOWE3MTc3NyIsImlzc3VlciI6ImRpZDprZXk6ejZNa2pwUzRHVUFoYmdCSmg2azJnZTZvWTQ0UUxyRXA3NXJadHNqYVRLb3JSRGR0IiwiaXNzdWFuY2VEYXRlIjoiMjAyMy0xMi0yMVQyMDowNjowMVoiLCJjcmVkZW50aWFsU3ViamVjdCI6eyJpZCI6ImRpZDppb246RWlDS2o2M0FyZlBGcEpsb2lTd3gxQUhxVWtpWlNoSDZGdnZoSzRaTl9fZDFtQTpleUprWld4MFlTSTZleUp3WVhSamFHVnpJanBiZXlKaFkzUnBiMjRpT2lKeVpYQnNZV05sSWl3aVpHOWpkVzFsYm5RaU9uc2ljSFZpYkdsalMyVjVjeUk2VzNzaWFXUWlPaUprZDI0dGMybG5JaXdpY0hWaWJHbGpTMlY1U25kcklqcDdJbU55ZGlJNklrVmtNalUxTVRraUxDSnJkSGtpT2lKUFMxQWlMQ0o0SWpvaWNscFdXbTVJVkVrNWFEWkJUVmxVV0dwT01HcFhTVkYwTTI5ak4xTnJTeTF4Y2kxcVVuSTBUalEzUlNKOUxDSndkWEp3YjNObGN5STZXeUpoZFhSb1pXNTBhV05oZEdsdmJpSmRMQ0owZVhCbElqb2lTbk52YmxkbFlrdGxlVEl3TWpBaWZTeDdJbWxrSWpvaVpIZHVMV1Z1WXlJc0luQjFZbXhwWTB0bGVVcDNheUk2ZXlKamNuWWlPaUp6WldOd01qVTJhekVpTENKcmRIa2lPaUpGUXlJc0luZ2lPaUpaVDFwRE5WSmlUMHQ1T0dadVVUWTJVWEZPUkc5aldFMXZPVXhUZEdNNVYyOWthMHd0ZFZCZlExQnZJaXdpZVNJNklsWnZZM0UxVERodFozQlhXVTFrYjFwS1JrWlJUa1ZDT0hsR0xXTndkRWQzZFdkcFRWVm5hR2t6Y21jaWZTd2ljSFZ5Y0c5elpYTWlPbHNpYTJWNVFXZHlaV1Z0Wlc1MElsMHNJblI1Y0dVaU9pSktjMjl1VjJWaVMyVjVNakF5TUNKOVhTd2ljMlZ5ZG1salpYTWlPbHQ3SW1sa0lqb2laSGR1SWl3aWMyVnlkbWxqWlVWdVpIQnZhVzUwSWpwN0ltVnVZM0o1Y0hScGIyNUxaWGx6SWpwYklpTmtkMjR0Wlc1aklsMHNJbTV2WkdWeklqcGJJbWgwZEhCek9pOHZaSGR1TG5SaVpHUmxkaTV2Y21jdlpIZHVOaUlzSW1oMGRIQnpPaTh2WkhkdUxuUmlaR1JsZGk1dmNtY3ZaSGR1TUNKZExDSnphV2R1YVc1blMyVjVjeUk2V3lJalpIZHVMWE5wWnlKZGZTd2lkSGx3WlNJNklrUmxZMlZ1ZEhKaGJHbDZaV1JYWldKT2IyUmxJbjFkZlgxZExDSjFjR1JoZEdWRGIyMXRhWFJ0Wlc1MElqb2lSV2xCTXpSMlMzb3llVmswZVV4dGRDMUdabkJuYWpWbGFFRm1ZWFI1YzFOa2MwNVNWbVpMYkhwUWRqTjVkeUo5TENKemRXWm1hWGhFWVhSaElqcDdJbVJsYkhSaFNHRnphQ0k2SWtWcFF6ZGZjMXBzTW1wMVVXNUdhRVJIV1RSb2NFVTRiMlF4YVU5MWRuZG1PVFJ5TVVkbk9HMWFWbVJCVmxFaUxDSnlaV052ZG1WeWVVTnZiVzFwZEcxbGJuUWlPaUpGYVVKdU5sTnJiSEpWYzNKdVFuaFJPVXBqVXkxTlNVaGtWelYwTXpRM1MxWjNaMXBwVEZwMFQwcDRRVkYzSW4xOSIsIm5hbWUiOiJhbGljZSBib2IiLCJkYXRlT2ZCaXJ0aCI6IjEwLTAxLTE5OTAifX19.mNCDv_JntH-wZpYONKNL58UbOWaYXCYJO_HPI_WVlSgwzo6dhYmV_9qtpFKd_exFb-aaEYPeSE43twWlrJeSBg"
+  ]
+}
+```
+
+4. Implement a `/siopv2/response` endpoint to process and verify the Wallet's response. The HTTP response body must always include a `credential_offer`. If the Wallet's response does not include a `vp_token`, as a valid form of IDV, then the HTTP response body must also include a URL directing the Wallet to an Identity Verification form:
 
 <Shnip
   snippets={[
@@ -192,7 +188,7 @@ When decoded, here is the JSON of `id_token` and `vp_token`:
 />
 
 :::info
-When the Wallet's response solely contains `id_token`, your response must include a **`url`** (IDV Request Form). This will point to a webpage for the customer to input their information (e.g.; name, identification number, date of birth, etc).  
+The IDV Request Form points to a webpage for the customer to input their Personal Identifiable Information(PII) (e.g.; name, identification number, date of birth, etc).  
 :::
 
 #### Credential Offer Details:
@@ -200,13 +196,13 @@ When the Wallet's response solely contains `id_token`, your response must includ
 - **`credential_issuer`**: The base URL address of the Issuer's service. It is used by the Wallet to retrieve the Issuer's metadata and the Issuer's Authorization Server Metadata.
 - **`credential_configuration_ids`**: Unique strings that identify the credential you are offering. The Wallet can use these to request metadata.
 - **`grants`**: Contains grant types you will accept for this credential offer.
-- **`urn:ietf:params:oauth:grant-type:pre-authorized_code`**: Grant type that allows the Wallet to follow a Pre-Authorized code flow skipping any PII steps because they've already completed it.
+- **`urn:ietf:params:oauth:grant-type:pre-authorized_code`**: Grant type required for the [OID4VCI](https://openid.net/specs/openid-4-verifiable-credential-issuance-1_0.html#appendix-B.1) Pre-Authorization flow.
 - **`pre-authorized_code`**: The code representing the Credential Issuer's authorization for the Wallet to obtain an access token.
 
 :::info
 **Dynamic Metadata Retrieval by Wallets**
 
-Wallets use the `credential_issuer` from the Credential Offer to dynamically construct URLs for fetching Issuer and Authorization Server Metadata. These URLs, formed by appending `/.well-known/openid-credential-issuer` and` /.well-known/oauth-authorization-server` to the `credential_issuer`, allow wallets to access up-to-date information on issuer capabilities and OAuth 2.0 endpoints. The next steps will cover how to properly configure these endpoints.
+Wallets use the `credential_issuer` from the Credential Offer to dynamically construct URLs for fetching Issuer and Authorization Server Metadata. These URLs, formed by appending `/.well-known/openid-credential-issuer` and `/.well-known/oauth-authorization-server` to the `credential_issuer`, allow wallets to access up-to-date information on issuer capabilities and OAuth 2.0 endpoints. The next steps will cover how to properly configure these endpoints.
 :::
 
 5. Configure the `/.well-known/openid-credential-issuer` endpoint that will return the Issuer's Metadata:
@@ -302,19 +298,17 @@ Issuing a Known Customer Credential to a customer's Wallet confirms the successf
 ```bash
 POST /credentials HTTP/1.1
 Host: issuer.example.com
-Authorization: Bearer czZCaGRSa3F0MzpnWDFmQmF0M2JW // access_token
+Authorization: Bearer eyJhbGciOiJFZERTQSIsImtpZCI6ImRpZDpqd2s6ZXlKcmRIa2lPaUpQUzFBaUxDSmpjbllpT2lKRlpESTFOVEU1SWl3aWVDSTZJblIwY0VRNWF6SnNSSGQxV2tobmQyVllVbDluVUd4U2RHWk9hMEZUZVhZek1HVlhSSGx5VUU5Uk1VVWlmUSMwIn0.eyJleHAiOjE3MTA5NDkzODAsImlhdCI6MTcxMDg2Mjk1NywiaXNzIjoiZGlkOmp3azpleUpyZEhraU9pSlBTMUFpTENKamNuWWlPaUpGWkRJMU5URTVJaXdpZUNJNkluUjBjRVE1YXpKc1JIZDFXa2huZDJWWVVsOW5VR3hTZEdaT2EwRlRlWFl6TUdWWFJIbHlVRTlSTVVVaWZRIiwic3ViIjoiZGlkOmp3azpleUpyZEhraU9pSlBTMUFpTENKamNuWWlPaUpGWkRJMU5URTVJaXdpZUNJNklqWnRMVTU0T0dad1IxbFRPRmhXTjFneFVWY3hhbEp1V0c0dFRXUnFVakkzWm1KS1lUaEZWa3RuYTJNaWZRIn0.5_CFzPpvvbxubtXyz7jsmwqaA3SPcebk9OvSWGnORMMfIgh6iWYj5DjXgTst3Mz7ZLjK0AaCF628hwis5hL3AA
 Content-Type: application/json
-
 {
    "proof": {
       "proof_type": "jwt",
-      "jwt": "eyJ0eXAiOiJvcGVu...ZoipdP-jvh1WlA"
+      "jwt": "eyJhbGciOiJFZERTQSIsImtpZCI6ImRpZDpqd2s6ZXlKcmRIa2lPaUpQUzFBaUxDSmpjbllpT2lKRlpESTFOVEU1SWl3aWVDSTZJalp0TFU1NE9HWndSMWxUT0ZoV04xZ3hVVmN4YWxKdVdHNHRUV1JxVWpJM1ptSktZVGhGVmt0bmEyTWlmUSMwIiwidHlwIjoib3BlbmlkNHZjaS1wcm9vZitqd3QifQ.eyJhdWQiOiJkaWQ6andrOmV5SnJkSGtpT2lKUFMxQWlMQ0pqY25ZaU9pSkZaREkxTlRFNUlpd2llQ0k2SW5SMGNFUTVhekpzUkhkMVdraG5kMlZZVWw5blVHeFNkR1pPYTBGVGVYWXpNR1ZYUkhseVVFOVJNVVVpZlEiLCJpYXQiOjE3MTA4NjMxOTEsIm5vbmNlIjoidFppZ25zbkZicCJ9.MqxVdgX2tJMDJhNYuniYE7bjLyybRgRcPlDCY2ZN9FU2acLC5kU_wAZq-IF8vfIRXfmhbiFoBbfoPUZNBgdDAw"
    }
 }
-
 ```
 
-The `proof` section contains various claims, for a detailed look at each field please refer to the [OpenID specs](https://openid.net/specs/openid-4-verifiable-credential-issuance-1_0.html#section-7.2.1.1-2.1.1).
+The `proof` JWT contains various claims, most notably a `nonce` to prevent replay attacks. For a detailed look at each field please refer to the [OpenID spec](https://openid.net/specs/openid-4-verifiable-credential-issuance-1_0.html#section-7.2.1.1-2.1.1).
 
 - `czZCaGRSa3F0MzpnWDFmQmF0M2JW`: The `access_token` that the Wallet recieved from the `/token` endpoint.
 
@@ -348,5 +342,5 @@ Before issuing a Known Customer Credential, it's important to complete all neces
 Signing will return a VC [JSON Web Token](https://jwt.io/), which is ideal for secure transmission of the credential.
 :::
 
-With that, you've successfully gone through the Identity Verification flow, and issued a Known Customer Credential. Please note that this example is a foundational implementation. 
+With that, you've successfully gone through the Identity Verification flow, and issued a Known Customer Credential. Please note that this example is a foundational implementation.
 For a production environment, it's crucial to enhance this basic setup with comprehensive error handling, and security measures.

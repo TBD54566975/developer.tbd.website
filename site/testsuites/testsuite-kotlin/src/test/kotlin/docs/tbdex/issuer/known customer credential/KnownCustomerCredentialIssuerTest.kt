@@ -351,37 +351,32 @@ class KnownCustomerCredentialIssuerTest {
                         * Construct Credential Offer without URL since VP Token is present
                         ************************************************************************/
                         buildJsonObject {
-                            put(
-                                "credential_issuer", 
-                                "https://issuer.example.com/credentials/.well-known/openid-credential-issuer"
-                            )
-                            putJsonArray("credential_configuration_ids") {
-                                add("knownCustomerCredential-basic")
-                                add("knownCustomerCredential-extended")
-                            }
-                            putJsonObject("grants") {
-                                put(
-                                    "urn:ietf:params:oauth:grant-type:pre-authorized_code", 
-                                    preAuthCode
-                                )
+                            putJsonObject("credential_offer") {
+                                put("credential_issuer", "https://issuer.example.com/credentials/.well-known/openid-credential-issuer")
+                                putJsonArray("credential_configuration_ids") {
+                                    add("knownCustomerCredential-basic")
+                                    add("knownCustomerCredential-extended")
+                                }
+                                putJsonObject("grants") {
+                                    put("urn:ietf:params:oauth:grant-type:pre-authorized_code", preAuthCode)
+                                }
                             }
                         }
                     } else {
                         /************************************************************************
                         * If VP token is not present, include URL for IDV form
-                        ************************************************************************/
+                                        ************************************************************************/
                         buildJsonObject {
-                            put("url", "https://issuer.example.com/idv/form")
-                            put("credential_issuer", "https://issuer.example.com")
-                            putJsonArray("credential_configuration_ids") {
-                                add("knownCustomerCredential-basic")
-                                add("knownCustomerCredential-extended")
-                            }
-                            putJsonObject("grants") {
-                                put(
-                                    "urn:ietf:params:oauth:grant-type:pre-authorized_code", 
-                                    generateUniquePreAuthCode()
-                                )
+                            put("url", "https://issuer.example.com/idv/form") 
+                            putJsonObject("credential_offer") { 
+                                put("credential_issuer", "https://issuer.example.com")
+                                putJsonArray("credential_configuration_ids") {
+                                    add("knownCustomerCredential-basic")
+                                    add("knownCustomerCredential-extended")
+                                }
+                                putJsonObject("grants") {
+                                    put("urn:ietf:params:oauth:grant-type:pre-authorized_code", generateUniquePreAuthCode())
+                                }
                             }
                         }
                     }
