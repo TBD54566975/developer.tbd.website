@@ -47,7 +47,6 @@ const updatePackageJsonDependencies = async (dirPath, sdkVersions) => {
         }
         if (updated) {
           await fs.promises.writeFile(fullPath, JSON.stringify(packageJson, null, 2));
-          console.log(`Updated ${fullPath}`);
         }
       } catch (error) {
         console.error(`Error updating ${fullPath}:`, error);
@@ -70,7 +69,6 @@ const updatePomXmlVersion = async (filePath, sdkVersions) => {
         if (sdkVersions.maven[artifactId]) {
           dependency.version = [sdkVersions.maven[artifactId]];
           updated = true;
-          console.log(`Updated ${artifactId} version to: ${sdkVersions.maven[artifactId]} in ${filePath}`);
         }
       });
     };
@@ -86,7 +84,6 @@ const updatePomXmlVersion = async (filePath, sdkVersions) => {
     if (updated) {
       const updatedPomContent = builder.buildObject(parsedPomContent);
       await fs.promises.writeFile(filePath, updatedPomContent);
-      console.log(`Successfully updated dependencies in ${filePath}`);
     } else {
       console.log(`No dependencies were updated in ${filePath}`);
     }
