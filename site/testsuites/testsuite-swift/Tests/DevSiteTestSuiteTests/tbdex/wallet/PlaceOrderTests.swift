@@ -1,7 +1,5 @@
 import XCTest
-import Mocker
 import Web5
-import TypeID
 import tbDEX
 
 final class PlaceOrderTests: XCTestCase {
