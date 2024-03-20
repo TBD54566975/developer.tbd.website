@@ -31,12 +31,12 @@ final class GetOfferingsTests: XCTestCase {
     }
 
     func testGetAllOfferings() async throws {
+        var allOfferings = [Offering]()
          // :snippet-start: walletFindMatchingOfferingsSwift
         let payinCurrencyCode = "USD" // Desired payin currency code
         let payoutCurrencyCode = "KES" // Desired payout currency code
 
         var matchedOfferings = [Offering]() // Array to store the matched offerings
-        var allOfferings = [Offering]()
 
         let pfiDids = [pfiDid]
         // Loop through the all PFIs in your network
