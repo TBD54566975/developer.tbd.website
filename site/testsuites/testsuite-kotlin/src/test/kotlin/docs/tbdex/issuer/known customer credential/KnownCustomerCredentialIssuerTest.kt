@@ -111,6 +111,10 @@ class KnownCustomerCredentialIssuerTest {
     return true
     }
 
+    private fun checkIDVStatus(customersDidUri: String): Boolean {
+    return true
+    }
+
     private fun generateUniquePreAuthCode(): String {
     return UUID.randomUUID().toString()
     }
@@ -311,7 +315,7 @@ class KnownCustomerCredentialIssuerTest {
             post("/siopv2/response") {
                 val walletResponse = call.receive<JsonObject>() // The SIOPv2 Authorization Response from the Wallet
 
-                /************************************************************************
+                    /************************************************************************
                     * Extract and verify the ID Token from the Wallet's response
                     ************************************************************************/
                 try {
@@ -332,56 +336,50 @@ class KnownCustomerCredentialIssuerTest {
                     }
                     // Perform additional checks (e.g., nonce, audience, expiration)
 
-                    /************************************************************************
-                    * Extract and verify the VP Token from the Wallet's response
-                    ************************************************************************/
-                    val credentialOffer = if (walletResponse.containsKey("vp_token")) {
-                        val compactVpToken = walletResponse["vp_token"]?.jsonPrimitive?.content
-                        val vpTokenVerificationResult = VerifiableCredential.verify(
-                            compactVpToken ?: ""
-                        )
+                    val preAuthCode = generateUniquePreAuthCode()
+                    preAuthCodeToDidMap[preAuthCode] = customersDidUri // needed for subsequent '/token' endpoint
 
-                        /************************************************************************
-                        * Generate a unique Pre-Authorization Code and map it to the Customer's DID
-                        ************************************************************************/
-                        val preAuthCode = generateUniquePreAuthCode()
-                        preAuthCodeToDidMap[preAuthCode] = customersDidUri
+                    /********************************************************************
+                    * Define the initial structure for the Identity Verification Request
+                    ********************************************************************/
 
-                        /************************************************************************
-                        * Construct Credential Offer without URL since VP Token is present
-                        ************************************************************************/
-                        buildJsonObject {
-                            putJsonObject("credential_offer") {
-                                put("credential_issuer", "https://issuer.example.com/credentials/.well-known/openid-credential-issuer")
-                                putJsonArray("credential_configuration_ids") {
-                                    add("knownCustomerCredential-basic")
-                                    add("knownCustomerCredential-extended")
-                                }
-                                putJsonObject("grants") {
-                                    put("urn:ietf:params:oauth:grant-type:pre-authorized_code", preAuthCode)
-                                }
+                    var idvRequest = buildJsonObject {
+                        putJsonObject("credential_offer") {
+                            put("credential_issuer", "https://issuer.example.com")
+                            putJsonArray("credential_configuration_ids") {
+                                add("knownCustomerCredential-basic")
+                                add("knownCustomerCredential-extended")
                             }
-                        }
-                    } else {
-                        /************************************************************************
-                        * If VP token is not present, include URL for IDV form
-                                        ************************************************************************/
-                        buildJsonObject {
-                            put("url", "https://issuer.example.com/idv/form") 
-                            putJsonObject("credential_offer") { 
-                                put("credential_issuer", "https://issuer.example.com")
-                                putJsonArray("credential_configuration_ids") {
-                                    add("knownCustomerCredential-basic")
-                                    add("knownCustomerCredential-extended")
-                                }
-                                putJsonObject("grants") {
-                                    put("urn:ietf:params:oauth:grant-type:pre-authorized_code", generateUniquePreAuthCode())
-                                }
+                            putJsonObject("grants") {
+                                put(
+                                    "urn:ietf:params:oauth:grant-type:pre-authorized_code", 
+                                    preAuthCode
+                                )
                             }
                         }
                     }
 
-                    call.respond(HttpStatusCode.OK, credentialOffer)
+                    var isVPValidIDV = false
+                    if (walletResponse.containsKey("vp_token")) {
+                        val compactVpToken = walletResponse["vp_token"]?.jsonPrimitive?.content
+                        val vpTokenVerificationResult = VerifiableCredential.verify(
+                            compactVpToken ?: ""
+                        )
+            
+                        isVPValidIDV = true
+                    }
+
+                    /********************************************************************
+                    * If vp_token is not present include `url` for IDV form
+                    ********************************************************************/
+
+                    if (!isVPValidIDV) {
+                        idvRequest = idvRequest.toMutableMap().apply {
+                            put("url", JsonPrimitive("https://issuer.example.com/idv/form"))
+                        }.let { buildJsonObject { it.forEach { key, value -> put(key, value) } } }
+                    }
+
+                    call.respond(HttpStatusCode.OK, idvRequest)
                 } catch (error: Exception) {
                     /************************************************************************
                     * Handle verification errors
@@ -480,6 +478,13 @@ class KnownCustomerCredentialIssuerTest {
                     return@post
                 }
 
+                    // Check the status of the IDV
+                val idvCompleted = checkIDVStatus(customersDidUri)
+                if (!idvCompleted) {
+                    call.respond(HttpStatusCode.BadRequest, mapOf("error" to "authorization_pending"))
+                    return@post
+                }
+
                     /*******************************************
                     Create the payload for the access token
                     ********************************************/
@@ -497,6 +502,8 @@ class KnownCustomerCredentialIssuerTest {
                     val accessToken = JwtUtil.sign(issuerBearerDid, null, accessTokenPayload)
                     val cNonce = generateCNonce()
                     accessTokenToCNonceMap[accessToken] = cNonce
+
+                    preAuthCodeToDidMap.remove(code)
 
                     call.respond(mapOf(
                         "access_token" to accessToken,
@@ -556,21 +563,22 @@ class KnownCustomerCredentialIssuerTest {
                     proof["proof_type"]?.jsonPrimitive?.content != "jwt" || 
                     proofJwt.isNullOrEmpty()
                     ) {
-                        call.respond(HttpStatusCode.BadRequest, "Invalid proof provided")
+                        call.respond(HttpStatusCode.BadRequest, mapOf("errors" to listOf("Invalid proof provided")))
                         return@post
                     }
 
                     VerifiableCredential.verify(proofJwt)
                     val claimsSet: JWTClaimsSet = JWTParser.parse(proofJwt).jwtClaimsSet
                     val customersDidUri = claimsSet.subject ?: ""
+                    val nonceInProof = claimsSet.getStringClaim("nonce")
 
                     /***********************************************
                     * Validate the signed c_nonce
                     ************************************************/
-                    if (!validateSignedCNonce(
-                        proofJwt, claimsSet.getStringClaim("nonce"), customersDidUri
-                    ))  {
-                        call.respond(HttpStatusCode.Unauthorized, "Invalid proof")
+                    if (storedCNonce == nonceInProof) {
+                        accessTokenToCNonceMap.remove(accessToken) 
+                    } else {
+                        call.respond(HttpStatusCode.Unauthorized, mapOf("errors" to listOf("Invalid nonce in proof")))
                         return@post
                     }
 

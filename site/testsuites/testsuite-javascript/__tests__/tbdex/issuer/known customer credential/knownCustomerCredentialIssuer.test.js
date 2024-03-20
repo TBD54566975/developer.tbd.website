@@ -183,57 +183,47 @@ app.post('/siopv2/response', async (req, res) => {
     const customersDidUri = idTokenVerificationResult.payload.sub;
     // Perform additional checks (e.g., nonce, audience, expiration)
 
-    /************************************************************
-     * Extract and verify the VP Token from the Wallet's response
-     *************************************************************/
-    let credentialOffer;
+    const preAuthCode = generateUniquePreAuthCode();
+    preAuthCodeToDidMap.set(preAuthCode, customersDidUri); // needed for subsequent '/token' endpoint
+
+    /********************************************************************
+     * Define the initial structure for the Identity Verification Request
+     ********************************************************************/
+
+    let idvRequest = {
+      credential_offer: {
+        credential_issuer: 'https://issuer.example.com',
+        credential_configuration_ids: [
+          'knownCustomerCredential-basic',
+          'knownCustomerCredential-extended',
+        ],
+        grants: {
+          'urn:ietf:params:oauth:grant-type:pre-authorized_code': preAuthCode,
+        },
+      },
+    };
+
+    let isVPValidIDV = false;
     if (walletResponse.vp_token) {
       const compactVpToken = walletResponse.vp_token;
       const vpTokenVerificationResult = await Jwt.verify({
         jwt: compactVpToken,
       });
 
-      /**************************************************************************
-       * Generate a unique Pre-Authorization Code and map it to the Customer's DID
-       ***************************************************************************/
-      const preAuthCode = generateUniquePreAuthCode();
-      preAuthCodeToDidMap.set(preAuthCode, customersDidUri);
+      isVPValidIDV = true;
+    }
 
-      /************************************************************************
-       * Construct Credential Offer without URL since VP Token is present
-       *************************************************************************/
-      credentialOffer = {
-        credential_offer: {
-          credential_issuer:
-            'https://issuer.example.com/credentials/.well-known/openid-credential-issuer',
-          credential_configuration_ids: [
-            'knownCustomerCredential-basic',
-            'knownCustomerCredential-extended',
-          ],
-          grants: {
-            'urn:ietf:params:oauth:grant-type:pre-authorized_code': preAuthCode,
-          },
-        },
-      };
-    } else {
-      /************************************************************************
-       * If VP token is not present, include URL for IDV form
-       *************************************************************************/
-      credentialOffer = {
-        credential_offer: {
-          credential_issuer: 'https://issuer.example.com',
-          credential_configuration_ids: [
-            'knownCustomerCredential-basic',
-            'knownCustomerCredential-extended',
-          ],
-          grants: {
-            'urn:ietf:params:oauth:grant-type:pre-authorized_code':
-              generateUniquePreAuthCode(),
-          },
-        },
+    /********************************************************************
+     * If vp_token is not present include `url` for IDV form
+     ********************************************************************/
+
+    if (!isVPValidIDV) {
+      idvRequest = {
+        ...idvRequest,
         url: 'https://issuer.example.com/idv/form',
       };
     }
+
     res.json(credentialOffer);
   } catch (error) {
     // Handle verification errors
@@ -317,18 +307,24 @@ app.post('/token', async (req, res) => {
     return res.status(400).json({ error: 'invalid_grant' });
   }
 
-  /*******************************************
-     Create the payload for the access token
-    ********************************************/
+  // Check the status of the IDV
+  const idvCompleted = checkIDVStatus(customersDidUri);
+  if (idvCompleted) {
+    return res.status(400).json({ error: 'authorization_pending' });
+  }
+
+  /********************************************
+   * Create the payload for the access token
+   ********************************************/
   const accessTokenPayload = {
     sub: customersDidUri, // Customer's DID string
     iss: issuersBearerDid.uri, // Issuer's DID string
     iat: Math.floor(Date.now() / 1000), // Issued at
     exp: Math.floor(Date.now() / 1000) + 86400, // Expiration time
   };
-  /*******************************************
-     sign accessToken and generate a c_nonce
-    ********************************************/
+  /********************************************
+   * sign accessToken and generate a c_nonce
+   ********************************************/
   try {
     const accessToken = await Jwt.sign({
       signerDid: issuerBearerDid,
@@ -337,6 +333,8 @@ app.post('/token', async (req, res) => {
 
     const cNonce = generateCNonce();
     accessTokenToCNonceMap.set(accessToken, cNonce);
+
+    preAuthCodeToDidMap.delete(code);
 
     res.json({
       access_token: accessToken,
@@ -391,9 +389,9 @@ app.post('/credentials', async (req, res) => {
         .json({ errors: ['Invalid or expired access token'] });
     }
 
-    /********************************************************
-     * Extract and validate the JWT from the proof object
-     *********************************************************/
+    /**************************************************************
+     * Extract and validate the JWT and nonce from the proof object
+     **************************************************************/
     const { proof } = req.body;
     if (!proof || proof.proof_type !== 'jwt' || !proof.jwt) {
       return res.status(400).json({ errors: ['Invalid proof provided'] });
@@ -404,16 +402,13 @@ app.post('/credentials', async (req, res) => {
     try {
       const verificationResult = await Jwt.verify({ jwt: proof.jwt });
       customersDidUri = verificationResult.payload.iss; // Customer's DID string
-      payload = verificationResult.payload;
+      if (storedCNonce === payload.nonce) {
+        accessTokenToCNonceMap.delete(accessToken);
+      } else {
+        return res.status(401).json({ errors: ['Invalid nonce in proof'] });
+      }
     } catch (error) {
       return res.status(401).json({ errors: ['Invalid JWT in proof'] });
-    }
-
-    /***********************************************
-     * Validate the signed c_nonce
-     ************************************************/
-    if (!validateSignedCNonce(proof.jwt, payload.nonce, customersDidUri)) {
-      return res.status(401).json({ errors: ['Invalid proof'] });
     }
 
     /***********************************************
