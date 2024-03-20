@@ -55,7 +55,6 @@ const updatePackageJsonDependencies = async (dirPath, sdkVersions) => {
   }
 };
 
-// Update Maven pom.xml versions
 const updatePomXmlVersion = async (filePath, sdkVersions) => {
   try {
     const pomContent = await fs.promises.readFile(filePath, 'utf8');
@@ -82,8 +81,16 @@ const updatePomXmlVersion = async (filePath, sdkVersions) => {
     }
 
     if (updated) {
-      const updatedPomContent = builder.buildObject(parsedPomContent);
+      let updatedPomContent = builder.buildObject(parsedPomContent);
+
+      // Correctly handle namespace attributes without introducing duplicates
+      updatedPomContent = updatedPomContent.replace('<project>', '<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">');
+
+      // Remove any duplicate namespace declarations that might have been added
+      updatedPomContent = updatedPomContent.replace(/<xmlns>.*<\/xmlns>\s*<xmlns:xsi>.*<\/xmlns:xsi>\s*<xsi:schemaLocation>.*<\/xsi:schemaLocation>/, '');
+
       await fs.promises.writeFile(filePath, updatedPomContent);
+      console.log(`Successfully updated dependencies in ${filePath}`);
     } else {
       console.log(`No dependencies were updated in ${filePath}`);
     }
@@ -91,6 +98,8 @@ const updatePomXmlVersion = async (filePath, sdkVersions) => {
     console.error(`Failed to update ${filePath}:`, error);
   }
 };
+
+
 
 // Function to recursively find and update pom.xml files, excluding node_modules
 async function findAndUpdatePomFiles(dirPath, sdkVersions) {
