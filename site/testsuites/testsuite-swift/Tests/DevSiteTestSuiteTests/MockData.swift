@@ -1,7 +1,9 @@
-import Foundation
 import Web5
-import TypeID
 @testable import tbDEX
+import Foundation
+import XCTest
+import Mocker
+import TypeID
 
 public struct MockData {
     public static let pfiDid: String = "did:dht:4ykjcjdq7udyjq5iy1qbcy98xnd4dkzuizm14ih4rn6953b8ohoo"
@@ -86,39 +88,125 @@ public struct MockData {
         )
     }
 
-    public static let mockExchangeJsonString = """
-    {
-        "data": [
-            {
-                "metadata": {
-                    "exchangeId": "\(exchangeID)",
-                    "to": "\(pfiDid)",
-                    "kind": "quote",
-                    "id": "quote_01hrwc4v55es59t20dhf7dea60",
-                    "from": "\(customerBearerDid?.uri ?? "")",
-                    "createdAt": "2023-12-19T05:12:16.331Z"
-                },
-                "data": {
-                    "expiresAt": "2024-12-19T05:12:16.331Z",
-                    "payin": {
-                        "paymentInstruction": {
-                            "instruction": "test instruction",
-                            "link": "https://tbdex.io/example"
-                        },
-                        "currencyCode": "USD",
-                        "amount": "1.00"
-                    },
-                    "payout": {
-                        "amount": "2.00",
-                        "currencyCode": "AUD",
-                        "fee": "0.50"
-                    }
-                },
-                "signature": "..."
-            }
-        ]
+    public static func createOrder(
+            from: String = customerBearerDid!.uri,
+            to: String = pfiDid,
+            exchangeId: String = exchangeID
+        ) -> Order {
+            Order(
+                from: from,
+                to: to,
+                exchangeID: exchangeId,
+                data: .init()
+            )
     }
-    """
 
-    public static let mockExchangeData = mockExchangeJsonString.data(using: .utf8)!
+    public static func createOrderStatus(
+        from: String = customerBearerDid!.uri,
+        to: String = pfiDid,
+        exchangeId: String = exchangeID,
+        status: String = ""
+    ) -> OrderStatus {
+        OrderStatus(
+            from: from,
+            to: to,
+            exchangeID: exchangeId,
+            data: .init(
+                orderStatus: status
+            )
+        )
+    }
+
+    public static func createClose(
+        from: String = customerBearerDid!.uri,
+        to: String = pfiDid,
+        exchangeId: String = exchangeID,
+        reason: String = ""
+    ) -> Close {
+        Close(
+            from: from,
+            to: to,
+            exchangeID: exchangeId,
+            data: .init(
+                reason: reason
+            )
+        )
+    }
+
+    public static func createQuote(
+        from: String = customerBearerDid!.uri,
+        to: String = pfiDid,
+        exchangeId: String = exchangeID
+    ) -> Quote {
+        let now = Date()
+        let expiresAt = now.addingTimeInterval(60)
+
+        return Quote(
+            from: from,
+            to: to,
+            exchangeID: exchangeId,
+            data: .init(
+                expiresAt: expiresAt,
+                payin: .init(
+                    currencyCode: "USD",
+                    amount: "1.00",
+                    paymentInstruction: .init(
+                        link: "https://example.com",
+                        instruction: "test instruction"
+                    )
+                ),
+                payout: .init(
+                    currencyCode: "AUD",
+                    amount: "2.00",
+                    fee: "0.50"
+                )
+            )
+        )
+    }
+
+    public static func mockGetExchangeWithClose(
+        from: String = customerBearerDid!.uri,
+        to: String = pfiDid,
+        exchangeId: String = exchangeID, 
+        closeReason: String = "") {
+        let url = URL(string: "http://localhost:9000/exchanges/\(exchangeId)")!
+        let close = MockData.createClose(from: from, to: to, exchangeId: exchangeId, reason: closeReason)
+        var exchange: [Close] = [Close]()
+        exchange.append(close)
+        let exchangeJson: [String: [Close]] = ["data": exchange]
+
+        MockData.setupMockGetCall(url: url, data: exchangeJson)
+    }
+
+    public static func mockSendOrderMessage(exchangeId: String) {
+        let orderEndpoint = "http://localhost:9000/exchanges/\(exchangeId)/order"
+        guard let orderURL = URL(string: orderEndpoint) else {
+            XCTFail("Failed to create URL for closing exchange")
+            return
+        }
+
+        let mockOrderResponse = Mock(url: orderURL, contentType: .json, statusCode: 200, data: [.post: Data()])
+        mockOrderResponse.register()
+    }
+
+    public static func mockExchangeWithQuote(
+        to: String = pfiDid, 
+        from: String = customerBearerDid!.uri, 
+        exchangeId: String = exchangeID) {
+        let url = URL(string: "http://localhost:9000/exchanges/\(exchangeId)")!
+        let quote = MockData.createQuote(from: from, to: to, exchangeId: exchangeId)
+        var exchange: [Quote] = [Quote]()
+        exchange.append(quote)
+        let exchangeJson: [String: [Quote]] = ["data": exchange]
+
+        MockData.setupMockGetCall(url: url, data: exchangeJson)
+    }
+
+    private static func setupMockGetCall(url: URL, data: Encodable) {
+        let encoder = tbDEXJSONEncoder()
+        encoder.outputFormatting = .prettyPrinted
+        let jsonData = try! encoder.encode(data)
+
+        Mocker.register(Mock(url: url, contentType: .json, statusCode: 200, data: [.get: jsonData]))
+    }
 }

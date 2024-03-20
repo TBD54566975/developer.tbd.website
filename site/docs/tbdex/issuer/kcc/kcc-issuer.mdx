@@ -18,9 +18,9 @@ This guide is intended for educational purposes only and does not constitute leg
 
 In this guide, we'll cover:
 
-- Performing Identity Verification (IDV) as a necessary step **before** issuing a Known Customer Credential (KCC), by implementing an API conformant with [Self Issued OpenID Provider V2 (SIOPv2)](https://openid.github.io/SIOPv2/openid-connect-self-issued-v2-wg-draft.html) and [OpenID for Verifiable Presentation's (OID4VP)](https://openid.net/specs/openid-4-verifiable-presentations-1_0.html).
+- Performing Identity Verification (IDV) as a necessary step **before** issuing a Known Customer Credential (KCC), by implementing an HTTP API conformant with [Self Issued OpenID Provider V2 (SIOPv2)](https://openid.github.io/SIOPv2/openid-connect-self-issued-v2-wg-draft.html) and [OpenID for Verifiable Presentation's (OID4VP)](https://openid.net/specs/openid-4-verifiable-presentations-1_0.html).
 - Designing a KCC, detailing the required properties.
-- Issuing a KCC, conformant with [OID4VCI](https://openid.net/specs/openid-4-verifiable-credential-issuance-1_0.html), following successful IDV.
+- Issuing a KCC, conformant with [OpenID for Verifiable Credential Issuance (OID4VCI)](https://openid.net/specs/openid-4-verifiable-credential-issuance-1_0.html), following successful IDV.
 
 :::info
 For a detailed guide on managing Known Customer Credentials as a Wallet application, please refer to the [Known Customer Credential Guide for Wallet Apps](/)
@@ -189,12 +189,12 @@ The decoded [JWT Claims](https://datatracker.ietf.org/doc/html/rfc7519#section-4
       {
         "id": "IDCardCredential",
         "format": "jwt_vc",
-        "path": "$.verifiableCredential[0]"
+        "path": "$.vp.verifiableCredential[0]"
       },
       {
         "id": "nationalIdentifierVerification",
         "format": "jwt_vc",
-        "path": "$.verifiableCredential[1]"
+        "path": "$.vp.verifiableCredential[1]"
       }
     ]
   },
@@ -223,7 +223,7 @@ The decoded [JWT Claims](https://datatracker.ietf.org/doc/html/rfc7519#section-4
 />
 
 :::info
-The IDV Request Form points to a webpage for the customer to input their Personal Identifiable Information(PII) (e.g.; name, identification number, date of birth, etc).  
+The IDV Request Form points to a webpage for the customer to input their Personal Identifiable Information (PII) (e.g.; name, identification number, date of birth, etc).  
 :::
 
 #### Credential Offer Details:
@@ -259,7 +259,7 @@ Wallets use the `credential_issuer` from the Credential Offer to dynamically con
 
 - `credential_issuer`: The base URL address of the Issuer's service. It is used by the Wallet to retrieve the Issuer's metadata and the Issuer's Authorization Server Metadata.
 - `credential_endpoint`: The endpoint the Wallet will use to submit requests to issue credentials. After obtaining an access token, the Wallet sends a credential request to this endpoint.
-- `credential_configurations_supported`: Defines the format `jwt_vc_json` and the credential.
+- `credential_configurations_supported`: Defines the format `jwt_vc_json`, and the credential, including informative display markup.
 
 6. Configure the `/.well-known/oauth-authorization-server` endpoint that will return the Issuer's Authorization Server Metadata:
 
@@ -297,6 +297,13 @@ Wallets use the `credential_issuer` from the Credential Offer to dynamically con
     },
   ]}
 />
+
+:::info
+
+**`authorization_pending` error response in the case IDV is incomplete**
+
+The Issuer must check if the IDV Process is completed prior to issuing an access token, and in the event IDV is incomplete must return an `authorization_pending` error response to the Wallet whereafter the Wallet will repeat the call to `/token` until IDV is completed.
+:::
 
 ## Design Known Customer Credential
 
@@ -345,7 +352,7 @@ Content-Type: application/json
 
 The `proof` JWT contains various claims, most notably a `nonce` to prevent replay attacks. For a detailed look at each field please refer to the [OpenID spec](https://openid.net/specs/openid-4-verifiable-credential-issuance-1_0.html#section-7.2.1.1-2.1.1).
 
-- `czZCaGRSa3F0MzpnWDFmQmF0M2JW`: The `access_token` that the Wallet recieved from the `/token` endpoint.
+- `Authorization: Bearer {jwt}`: The `access_token` that the Wallet recieved from the `/token` endpoint.
 
 :::danger Important
 Before issuing a Known Customer Credential, it's important to complete all necessary steps of your Know Your Customer (KYC) program. This may include further screenings on the user's DID/information, such as Sanctions Checks, Politically Exposed Persons (PEP) screenings, and Negative News Screenings, which aren't covered in this guide. Consult with your legal and compliance advisors to ensure that this process is consistent with your specific legal and compliance obligations.  
@@ -376,6 +383,56 @@ Before issuing a Known Customer Credential, it's important to complete all neces
 :::info
 Signing will return a VC [JSON Web Token](https://jwt.io/), which is ideal for secure transmission of the credential.
 :::
+
+To convert the signed VC JWT into a `VerifiableCredential` object you can use the [`parseJwt()` method](/docs/web5/build/verifiable-credentials/jwt-to-vc#decoding-jwt). Here is what your decoded **Known Customer Credential** would look like:
+
+<LanguageSwitchBlock>
+  <div language="JavaScript">
+    <p>
+
+```json
+{
+  "vcDataModel": {
+    "@context": ["https://www.w3.org/2018/credentials/v1"],
+    "type": ["VerifiableCredential", "KnownCustomerCredential"],
+    "id": "urn:uuid:12345678-1234-5678-1234-567812345678",
+    "issuer": "did:dht:z6Mkn4w6nSaWe4fjNJRvaHZwFnMm5VexvjzDeozEu2G7jC34",
+    "issuanceDate": "2024-01-01T19:23:24Z",
+    "credentialSubject": {
+      "id": "did:dht:z6MkjGSeekPGE9QfczHWyW8v2ZzJU68kqSHzV7L2dmQyuyDu",
+      "country": "US"
+    },
+    "expirationDate": "2026-05-19T08:02:04Z"
+  }
+}
+```
+
+   </p>
+
+   </div>
+
+<div language="Kotlin">
+<p>
+
+```json
+{
+  "@context": ["https://www.w3.org/2018/credentials/v1"],
+  "type": ["VerifiableCredential", "KnownCustomerCredential"],
+  "id": "urn:uuid:12345678-1234-5678-1234-567812345678",
+  "issuer": "did:dht:z6Mkn4w6nSaWe4fjNJRvaHZwFnMm5VexvjzDeozEu2G7jC34",
+  "issuanceDate": "2024-01-01T19:23:24Z",
+  "credentialSubject": {
+    "id": "did:dht:z6MkjGSeekPGE9QfczHWyW8v2ZzJU68kqSHzV7L2dmQyuyDu",
+    "country": "US"
+  },
+  "expirationDate": "2026-05-19T08:02:04Z"
+}
+```
+
+</p>
+
+  </div>
+</LanguageSwitchBlock>
 
 With that, you've successfully gone through the Identity Verification flow, and issued a Known Customer Credential. Please note that this example is a foundational implementation.
 For a production environment, it's crucial to enhance this basic setup with comprehensive error handling, and security measures.
