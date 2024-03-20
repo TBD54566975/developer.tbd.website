@@ -33,6 +33,7 @@ public struct MockData {
 
         let mock_rfq = RFQ(
             to: pfiDid,
+            protocol: "1.0",
             from: customerBearerDid.uri,
             data: .init(
                 offeringId: offeringId,
