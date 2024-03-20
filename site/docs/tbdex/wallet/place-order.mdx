@@ -4,7 +4,7 @@ hide_title: true
 sidebar_position: 9
 ---
 
-<LanguageSwitcher languages="JavaScript, Kotlin" />
+<LanguageSwitcher languages="JavaScript, Kotlin, Swift" />
 
 # Placing Orders
 
@@ -20,6 +20,7 @@ This instantiates a new Order, including metadata such as the customer's DID, th
   snippets={[
     { snippetName: 'createOrderJS', language: 'JavaScript' },
     { snippetName: 'createOrderKt', language: 'Kotlin' },
+    { snippetName: 'createOrderSwift', language: 'Swift' },
   ]}
 />
 
@@ -31,6 +32,7 @@ Then sign the Order with the customer's [Portable DID](/docs/web5/build/decentra
   snippets={[
     { snippetName: 'signOrderJS', language: 'JavaScript' },
     { snippetName: 'signOrderKt', language: 'Kotlin' },
+    { snippetName: 'signOrderSwift', language: 'Swift' }
   ]}
 />
 
@@ -41,6 +43,7 @@ After creating and signing the Order, it needs to be sent to the PFI via the fol
   snippets={[
     { snippetName: 'sendOrderJS', language: 'JavaScript' },
     { snippetName: 'sendOrderKt', language: 'Kotlin' },
+    { snippetName: 'sendOrderSwift', language: 'Swift' }
   ]}
 />
 
@@ -57,6 +60,7 @@ Otherwise, the PFI will write the `OrderStatus` messages to the exchange to keep
   snippets={[
     { snippetName: 'listenForOrderStatusJS', language: 'JavaScript' },
     { snippetName: 'listenForOrderStatusKt', language: 'Kotlin' },
+    { snippetName: 'listenForOrderStatusSwift', language: 'Swift' }
   ]}
 />
 
@@ -91,5 +95,6 @@ When the PFI closes the Order, it's important to check the `reason` on the Close
   snippets={[
     { snippetName: 'getCloseReasonJS', language: 'JavaScript' },
     { snippetName: 'getCloseReasonKt', language: 'Kotlin' },
+    { snippetName: 'getCloseReasonSwift', language: 'Swift' }
   ]}
 />
