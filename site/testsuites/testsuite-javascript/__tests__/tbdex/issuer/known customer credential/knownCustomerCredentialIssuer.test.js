@@ -354,7 +354,7 @@ app.post('/token', async (req, res) => {
 // :snippet-start: KnownCustomerCredentialsClass
 class KccCredential {
   constructor(country) {
-    this.country = country;
+    this.country = country; // where IDV was performed
   }
 }
 

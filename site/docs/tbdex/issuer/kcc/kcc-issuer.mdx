@@ -355,7 +355,7 @@ To convert the signed VC JWT into a `VerifiableCredential` object you can use th
   <div language="JavaScript">
     <p>
 
-```json
+```javascript
 {
   "vcDataModel": {
     "@context": ["https://www.w3.org/2018/credentials/v1"],
@@ -363,11 +363,11 @@ To convert the signed VC JWT into a `VerifiableCredential` object you can use th
     "id": "urn:uuid:12345678-1234-5678-1234-567812345678",
     "issuer": "did:dht:z6Mkn4w6nSaWe4fjNJRvaHZwFnMm5VexvjzDeozEu2G7jC34",
     "issuanceDate": "2024-01-01T19:23:24Z",
+    "expirationDate": "2026-05-19T08:02:04Z"
     "credentialSubject": {
       "id": "did:dht:z6MkjGSeekPGE9QfczHWyW8v2ZzJU68kqSHzV7L2dmQyuyDu",
       "country": "US"
-    },
-    "expirationDate": "2026-05-19T08:02:04Z"
+    }
   }
 }
 ```
@@ -379,18 +379,18 @@ To convert the signed VC JWT into a `VerifiableCredential` object you can use th
 <div language="Kotlin">
 <p>
 
-```json
+```javascript
 {
   "@context": ["https://www.w3.org/2018/credentials/v1"],
   "type": ["VerifiableCredential", "KnownCustomerCredential"],
   "id": "urn:uuid:12345678-1234-5678-1234-567812345678",
   "issuer": "did:dht:z6Mkn4w6nSaWe4fjNJRvaHZwFnMm5VexvjzDeozEu2G7jC34",
   "issuanceDate": "2024-01-01T19:23:24Z",
+  "expirationDate": "2026-05-19T08:02:04Z"
   "credentialSubject": {
     "id": "did:dht:z6MkjGSeekPGE9QfczHWyW8v2ZzJU68kqSHzV7L2dmQyuyDu",
     "country": "US"
-  },
-  "expirationDate": "2026-05-19T08:02:04Z"
+  }
 }
 ```
 
