@@ -4,6 +4,10 @@ title: Verify Credentials
 hide_title: true
 ---
 
+:::warning
+This project is not actively being maintained. If you are interested in adopting it, please [open an issue](https://github.com/TBD54566975/ssi-service).
+:::
+
 # Verify a Credential
 
 There are numerous factors to determine a credential's validity. Verifiers will ultimately define their own unique criteria for determining validity from a range of possibilities:
