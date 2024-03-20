@@ -23,11 +23,6 @@ final class ReceiveQuotes: XCTestCase {
         exchangeID = rfq?.metadata.exchangeID        
     }
 
-    func mockGetExchange() {
-        let url = URL(string: "http://localhost:9000/exchanges/\(exchangeID!)")!
-        Mocker.register(Mock(url: url, contentType: .json, statusCode: 200, data: [.get: MockData.mockExchangeData]))
-    }
-
     func mockSendCloseMessage() {
         let closeEndpoint = "http://localhost:9000/exchanges/\(exchangeID!)/close"
         let url = URL(string: closeEndpoint)!
@@ -35,7 +30,7 @@ final class ReceiveQuotes: XCTestCase {
     }
 
     func testPollForQuotes() async throws {
-        mockGetExchange()
+        MockData.mockExchangeWithQuote()
         // :snippet-start: pollForQuoteSwift
         var quote: Quote? = nil
 
@@ -48,10 +43,12 @@ final class ReceiveQuotes: XCTestCase {
             )
 
             for message in exchange {
-                if case .quote(let quoteMessage) = message {
-                    quote = quoteMessage
-                    break
+                guard case let .quote(quoteMessage) = message else {
+                    continue
                 }
+
+                quote = quoteMessage
+                break
             }
 
             if quote == nil {
