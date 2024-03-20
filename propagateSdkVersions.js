@@ -90,6 +90,7 @@ const updatePomXmlVersion = async (filePath, sdkVersions) => {
       updatedPomContent = updatedPomContent.replace(/<xmlns>.*<\/xmlns>\s*<xmlns:xsi>.*<\/xmlns:xsi>\s*<xsi:schemaLocation>.*<\/xsi:schemaLocation>/, '');
 
       await fs.promises.writeFile(filePath, updatedPomContent);
+      console.log(`Successfully updated dependencies in ${filePath}`);
     } else {
       console.log(`No dependencies were updated in ${filePath}`);
     }
