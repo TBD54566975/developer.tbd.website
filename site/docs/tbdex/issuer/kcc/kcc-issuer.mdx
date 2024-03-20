@@ -34,7 +34,42 @@ If you haven't already, please follow the [Credential Issuance Server Setup Guid
 
 Identity Verification (IDV) is a critical component of typical Know Your Customer (KYC) requirements, where certain types of Personally Identifying Information (PII) are collected and verified from an individual. IDV is a crucial step before a Known Customer Credential (KCC) can be issued.
 
-[**IDV Flow diagram**]
+```mermaid
+%%{
+  init: {
+    'theme': 'base',
+    'themeVariables': {
+        'background': '#000',
+        'primaryColor': '#333',
+        'primaryTextColor': '#fff',
+        'secondaryColor': '#9a1aff',
+        'tertiaryColor': '#000',
+        'fontFamily': 'IBM Plex Mono',
+        'primaryBorderColor': '#ffec19',
+        'actorTextColor': '#24f2ff',
+        'actorBorder': '#ffec19',
+        'actorBkg': '#000',
+        'sequenceNumberColor': '#f00',
+        'loopTextColor': '#24f2ff'
+    }
+  }
+}%%
+
+sequenceDiagram
+autonumber
+participant W as Webview
+participant D as Mobile Wallet
+participant P as PFI
+D->>+P: GET did:ex:pfi?service=IDV
+P->>P: Construct SIOPv2 Authorization Request
+P-->>-D: SIOPv2 Authorization Request
+D->>D: Construct SIOPv2 Authorization Response
+D->>+P: SIOPv2 Authorization Response
+P->>P: Construct IDV Request
+P-->>-D: IDV Request
+D->>D: Verify IDV Request
+D->>W: Load URL in IDV Request
+```
 
 The IDV flow begins when the customer's agent (e.g. Wallet application) sends an HTTP request to the Issuer's [IDV service endpoint](https://hackmd.io/4cW3D9BVQGCEuf1CEg47jA?both#Issuers-Identity) specified in the Issuer's [Decentralized Identifier (DID) Document](/docs/glossary#did-document).
 
