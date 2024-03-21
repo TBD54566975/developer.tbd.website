@@ -1,6 +1,11 @@
 ---
 sidebar_position: 12
+title: Link a DID to a Domain
 ---
+
+:::warning
+This project is not actively being maintained. If you are interested in adopting it, please [open an issue](https://github.com/TBD54566975/ssi-service).
+:::
 
 # Link a DID to a Domain
 

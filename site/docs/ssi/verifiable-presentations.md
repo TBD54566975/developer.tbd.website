@@ -3,6 +3,12 @@ sidebar_position: 9
 title: Verifiable Presentations
 ---
 
+:::warning
+This project is not actively being maintained. If you are interested in adopting it, please [open an issue](https://github.com/TBD54566975/ssi-service).
+:::
+
+# Verifiable Presentations
+
 In order to use Verifiable Credentials (VC), the holder must **_present_** them, which means to share them with another party. Sharing consists of creating a package of credential(s) and transmitting the package to another party.
 
 ## What is a Verifiable Presentation?
