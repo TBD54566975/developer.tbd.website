@@ -322,7 +322,7 @@ const projects = {
     ],
     ossf: [{ type: 'ossf' }],
     sast: [{ type: 'ghWorkflow', label: 'CodeQL', value: 'codeql.yml' }],
-    tests: [{ label: 'unit' }, { type: 'codecov' }, { label: 'vectors' }],
+    tests: [{ type: 'unit' }, { type: 'codecov' }, { label: 'vectors' }],
     release: [
       { type: 'ghTag' },
       { type: 'jitPkg' },
