@@ -33,7 +33,7 @@ const projects = {
       { label: 'spdx' },
       { label: 'cydx' },
     ],
-    apiDocs: [{ label: 'docs ci' }, { label: 'docs publish' }],
+    apiDocs: [],
   },
   '@web5/crypto': {
     url: 'https://github.com/TBD54566975/web5-js/tree/main/packages/crypto',
@@ -67,7 +67,23 @@ const projects = {
       { label: 'spdx' },
       { label: 'cydx' },
     ],
-    apiDocs: [{ label: 'docs ci' }, { label: 'docs publish' }],
+    apiDocs: [
+      {
+        type: 'ghWorkflow',
+        label: 'docs ci',
+        value: 'docs-ci.yml',
+      },
+      {
+        type: 'ghWorkflow',
+        label: 'docs publish',
+        value: 'docs-publish.yml',
+      },
+      {
+        value: 'reference docs',
+        href: 'https://tbd54566975.github.io/web5-js/modules/_web5_crypto.html',
+        color: 'purple',
+      },
+    ],
   },
   '@web5/dids': {
     url: 'https://github.com/TBD54566975/web5-js/tree/main/packages/dids',
@@ -101,7 +117,23 @@ const projects = {
       { label: 'spdx' },
       { label: 'cydx' },
     ],
-    apiDocs: [{ label: 'docs ci' }, { label: 'docs publish' }],
+    apiDocs: [
+      {
+        type: 'ghWorkflow',
+        label: 'docs ci',
+        value: 'docs-ci.yml',
+      },
+      {
+        type: 'ghWorkflow',
+        label: 'docs publish',
+        value: 'docs-publish.yml',
+      },
+      {
+        value: 'reference docs',
+        href: 'https://tbd54566975.github.io/web5-js/modules/_web5_dids.html',
+        color: 'purple',
+      },
+    ],
   },
   '@tbdex/protocol': {
     url: 'https://github.com/TBD54566975/tbdex-js/tree/main/packages/protocol',
