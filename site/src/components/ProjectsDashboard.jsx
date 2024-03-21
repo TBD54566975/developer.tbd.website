@@ -472,6 +472,9 @@ function Shield({
   } else if (type === 'jitPkg') {
     badgeSrc = `https://img.shields.io/jitpack/version/com.github.${ghOwnerRepo}?style=flat-square&logo=jitpack&color=4c1`;
     href = `https://jitpack.io/#${ghOwnerRepo}`;
+  } else if (type == 'unit') {
+    badgeSrc = `https://img.shields.io/codecov/c/gh/${ghOwnerRepo}/main?label=BuildKite&style=flat-square&token=YI87CKF1LI`;
+    href = `https://buildkite.com/organizations/tbd-oss/analytics/suites/${ghOwnerRepo}?branch=main`
   }
 
   const img = <img className="m-0.5" src={badgeSrc} />;
