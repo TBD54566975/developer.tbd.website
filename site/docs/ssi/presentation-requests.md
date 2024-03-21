@@ -3,6 +3,12 @@ sidebar_position: 11
 title: Presentation Requests
 ---
 
+:::warning
+This project is not actively being maintained. If you are interested in adopting it, please [open an issue](https://github.com/TBD54566975/ssi-service).
+:::
+
+# Presentation Requests
+
 A [Presentation Request](https://identity.foundation/presentation-exchange/spec/v2.0.0/#presentation-request) is essentially a message that a Verifier sends to a Holder, asking for certain credentials or information. Think of it like a checklist, formally known as a [Presentation Definition](https://identity.foundation/presentation-exchange/spec/v2.0.0/#presentation-definition), which outlines what the Verifier needs to know. It specifies the "claims" or credentials that the Holder needs to provide, offering them various options to meet these criteria. In some scenarios, this request may also be digitally signed for added security and might include special features to prevent replay attacks.
 
 To illustrate, imagine Alice wants to rent a car from Acme Car Rentals. Alice, acting as the Holder, has a driver's license in a digital wallet. Acme, being the Verifier, sends a Presentation Request to Alice's wallet to check if she has a valid driver's license. This is essentially Acme's way of asking Alice's wallet to show her driver's license VC for verification.

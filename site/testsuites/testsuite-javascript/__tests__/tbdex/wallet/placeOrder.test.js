@@ -117,19 +117,20 @@ describe('Wallet: Place Order', () => {
 
     while (!closeMessage) {
       const exchange = await TbdexHttpClient.getExchange({
-        did: customerDid,
         pfiDid: order.metadata.to,
+        did: customerDid,
         exchangeId: order.exchangeId
       });
 
       for (const message of exchange) {
         if (message instanceof OrderStatus) {
-          //a status update to display to your customer
+          // a status update to display to your customer
           orderStatusUpdate = message.data.orderStatus;
         }
         else if (message instanceof Close){
-          //final message of exchange has been written
+          // final message of exchange has been written
           closeMessage = message;
+          break;
         }
       }
     }
