@@ -4,6 +4,10 @@ title: Revoke Credentials
 hide_title: true
 ---
 
+:::warning
+This project is not actively being maintained. If you are interested in adopting it, please [open an issue](https://github.com/TBD54566975/ssi-service).
+:::
+
 # Revoke a Credential
 
 When forming a request to [create a credential](/docs/apis/ssi-service#tag/Credentials/paths/~1v1~1credentials/put), there are a number of possible request values, two of which are `revocable` and `suspendable`. These options are exposed to give issuers the ability to specify [status for credentials](credential-status) they create in the service.

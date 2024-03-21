@@ -3,6 +3,12 @@ sidebar_position: 6
 title: Credential Status
 ---
 
+:::warning
+This project is not actively being maintained. If you are interested in adopting it, please [open an issue](https://github.com/TBD54566975/ssi-service).
+:::
+
+# Credential Status
+
 Though VCs are designed to give the holder a large degree of freedom in using their data, credential issuers are able to retain some control over the data they attest to after [issuance](credential-issuance-service). One of the mechanisms by which they retain this control is through the usage of credential status.
 
 Credential status can be implemented through any valid JSON-LD type, to specify any status such as whether a credential is `suspended` or `revoked`. The most prominently used type is the [Status List](https://w3c.github.io/vc-status-list-2021/).

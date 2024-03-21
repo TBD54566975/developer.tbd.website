@@ -1,6 +1,11 @@
 ---
 sidebar_position: 2
+title: SSI Console
 ---
+
+:::warning
+This project is not actively being maintained. If you are interested in adopting it, please [open an issue](https://github.com/TBD54566975/ssi-service).
+:::
 
 # SSI Console
 

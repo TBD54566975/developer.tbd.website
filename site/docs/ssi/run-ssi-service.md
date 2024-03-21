@@ -4,6 +4,10 @@ title: Run SSI Service
 hide_title: true
 ---
 
+:::warning
+This project is not actively being maintained. If you are interested in adopting it, please [open an issue](https://github.com/TBD54566975/ssi-service).
+:::
+
 # Self Sovereign Identity (SSI) Service API
 
 **A web service that exposes the SSI SDK as an HTTP API.**
