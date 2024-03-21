@@ -309,7 +309,7 @@ app.post('/token', async (req, res) => {
 
   // Check the status of the IDV
   const idvCompleted = checkIDVStatus(customersDidUri);
-  if (idvCompleted) {
+  if (!idvCompleted) {
     return res.status(400).json({ error: 'authorization_pending' });
   }
 
