@@ -1,7 +1,7 @@
-name: Security Scanning
+name: Security and License Scans
 
 on:
-  pull_request_target:
+  pull_request: #todo: _target:
     branches:
       - main
 
@@ -17,22 +17,6 @@ on:
   workflow_dispatch:
 
 jobs:
-  fossa:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-        with:
-          ref: ${{ github.head_ref }}
-
-      - name: Run FOSSA Scan
-        uses: fossas/fossa-action@main
-        with:
-          api-key: ${{ secrets.FOSSA_API_KEY }}
-
-      - name: Run FOSSA Test
-        uses: fossas/fossa-action@main
-        with:
-          api-key: ${{ secrets.FOSSA_API_KEY }}
-          run-tests: true
+  security-license-scan:
+    uses: TBD54566975/open-source-programs/.github/workflows/security.yml@leordev/reusable-workflows
+    secrets: inherit
