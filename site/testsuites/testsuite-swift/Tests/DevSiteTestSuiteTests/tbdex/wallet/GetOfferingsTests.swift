@@ -5,13 +5,13 @@ import tbDEX
 
 final class GetOfferingsTests: XCTestCase {
     
-    let pfiDid = "did:dht:t4zqbg8fcsrxzpnn5kbkjte5rbm5q519sc39wxzej99ea9fq5uxy"
+    let pfiDid = "did:dht:ac7uj566xgmhypniw1cb96dyhod51inwp98o8ugyb9ygikig6coy"
     let mockURL = URL(string: "https://localhost:9000/offerings")!
     
     override func setUp() {
         super.setUp()
 
-        let ignoredURL = URL(string: "https://diddht.tbddev.org/t4zqbg8fcsrxzpnn5kbkjte5rbm5q519sc39wxzej99ea9fq5uxy")!
+        let ignoredURL = URL(string: "https://diddht.tbddev.org/ac7uj566xgmhypniw1cb96dyhod51inwp98o8ugyb9ygikig6coy")!
         Mocker.ignore(ignoredURL)
 
         let mockOffering = MockData.offeringJson
@@ -35,7 +35,7 @@ final class GetOfferingsTests: XCTestCase {
         
         // :snippet-start: walletFindMatchingOfferingsSwift
         let payinCurrencyCode = "USD" // Desired payin currency code
-        let payoutCurrencyCode = "BTC" // Desired payout currency code
+        let payoutCurrencyCode = "KES" // Desired payout currency code
 
         var matchedOfferings = [Offering]() // Array to store the matched offerings
 
