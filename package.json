@@ -1,6 +1,7 @@
 {
   "scripts": {
-    "preinstall": "node propagateWeb5.js && npx only-allow pnpm",
+    "preinstall": "npx only-allow pnpm",
+    "postinstall": "node propagateSdkVersions.js",
     "start": "pnpm run shnip && pnpm --filter site run start",
     "start:feedback-server": "pnpm --filter feedback-server run start",
     "start:tutorial-todo-starter": "pnpm --filter todo-starter run dev",
@@ -48,7 +49,8 @@
     "react-fontawesome": "1.7.1",
     "react-markdown": "8.0.7",
     "react-slick": "0.29.0",
-    "slick-carousel": "1.8.1"
+    "slick-carousel": "1.8.1",
+    "xml2js": "0.6.2"
   },
   "devDependencies": {
     "@vitest/browser": "0.34.1",
