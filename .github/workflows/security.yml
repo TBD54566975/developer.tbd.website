@@ -1,7 +1,7 @@
 name: Security and License Scans
 
 on:
-  pull_request: #todo: _target:
+  pull_request_target:
     branches:
       - main
 
@@ -18,5 +18,5 @@ on:
 
 jobs:
   security-license-scan:
-    uses: TBD54566975/open-source-programs/.github/workflows/security.yml@leordev/reusable-workflows
+    uses: TBD54566975/open-source-programs/.github/workflows/security.yml@main
     secrets: inherit
