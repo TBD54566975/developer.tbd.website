@@ -71,7 +71,6 @@ class PfiStructureTest {
          * Assert that the 3 are rfq, order, and close
          */
         // check that tbDex.callbacks 
-        val expectedCallbacks = setOf(SubmitKind.rfq, SubmitKind.order, SubmitKind.close)
         val actualCallbacks = tbDexServer.callbacks
         assertTrue(actualCallbacks.contains(SubmitKind.rfq), "Callbacks should contain rfq")
         assertTrue(actualCallbacks.contains(SubmitKind.order), "Callbacks should contain order")
