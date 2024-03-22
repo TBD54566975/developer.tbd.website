@@ -26,7 +26,7 @@ const projects = {
     ],
     ossf: [{ type: 'ossf' }],
     sast: [{ type: 'ghWorkflow', label: 'CodeQL', value: 'codeql.yml' }],
-    tests: [{ type: 'unit' }, { type: 'codecov' }, { label: 'vectors' }],
+    tests: [{ type: 'unit' }, { type: 'codecov' }, { type: 'vectors' }],
     release: [
       { type: 'ghTag' },
       { type: 'npmPkg', value: '@web5/common' },
@@ -60,7 +60,7 @@ const projects = {
     ],
     ossf: [{ type: 'ossf' }],
     sast: [{ type: 'ghWorkflow', label: 'CodeQL', value: 'codeql.yml' }],
-    tests: [{ type: 'unit' }, { type: 'codecov' }, { label: 'vectors' }],
+    tests: [{ type: 'unit' }, { type: 'codecov' }, { type: 'vectors' }],
     release: [
       { type: 'ghTag' },
       { type: 'npmPkg', value: '@web5/crypto' },
@@ -110,7 +110,7 @@ const projects = {
     ],
     ossf: [{ type: 'ossf' }],
     sast: [{ type: 'ghWorkflow', label: 'CodeQL', value: 'codeql.yml' }],
-    tests: [{ type: 'unit' }, { type: 'codecov' }, { label: 'vectors' }],
+    tests: [{ type: 'unit' }, { type: 'codecov' }, { type: 'vectors' }],
     release: [
       { type: 'ghTag' },
       { type: 'npmPkg', value: '@web5/dids' },
@@ -160,7 +160,7 @@ const projects = {
     ],
     ossf: [{ type: 'ossf' }],
     sast: [{ type: 'ghWorkflow', label: 'CodeQL', value: 'codeql.yml' }],
-    tests: [{ type: 'unit' }, { type: 'codecov' }, { label: 'vectors' }],
+    tests: [{ type: 'unit' }, { type: 'codecov' }, { type: 'vectors' }],
     release: [
       { type: 'ghTag' },
       { type: 'npmPkg', value: '@tbdex/protocol' },
@@ -210,7 +210,7 @@ const projects = {
     ],
     ossf: [{ type: 'ossf' }],
     sast: [{ type: 'ghWorkflow', label: 'CodeQL', value: 'codeql.yml' }],
-    tests: [{ type: 'unit' }, { type: 'codecov' }, { label: 'vectors' }],
+    tests: [{ type: 'unit' }, { type: 'codecov' }, { type: 'vectors' }],
     release: [
       { type: 'ghTag' },
       { type: 'npmPkg', value: '@tbdex/http-client' },
@@ -260,7 +260,7 @@ const projects = {
     ],
     ossf: [{ type: 'ossf' }],
     sast: [{ type: 'ghWorkflow', label: 'CodeQL', value: 'codeql.yml' }],
-    tests: [{ type: 'unit' }, { type: 'codecov' }, { label: 'vectors' }],
+    tests: [{ type: 'unit' }, { type: 'codecov' }, { type: 'vectors' }],
     release: [
       { type: 'ghTag' },
       { type: 'npmPkg', value: '@tbdex/http-server' },
@@ -307,7 +307,7 @@ const projects = {
     ],
     ossf: [{ type: 'ossf' }],
     sast: [{ type: 'ghWorkflow', label: 'CodeQL', value: 'codeql.yaml' }],
-    tests: [{ type: 'unit' }, { type: 'codecov' }, { label: 'vectors' }],
+    tests: [{ type: 'unit' }, { type: 'codecov' }, { type: 'vectors' }],
     release: [
       { type: 'ghTag' },
       { type: 'jitPkg' },
@@ -354,7 +354,7 @@ const projects = {
     ],
     ossf: [{ type: 'ossf' }],
     sast: [{ type: 'ghWorkflow', label: 'CodeQL', value: 'codeql.yml' }],
-    tests: [{ type: 'unit' }, { type: 'codecov' }, { label: 'vectors' }],
+    tests: [{ type: 'unit' }, { type: 'codecov' }, { type: 'vectors' }],
     release: [
       { type: 'ghTag' },
       { type: 'jitPkg' },
@@ -507,6 +507,9 @@ function Shield({
   } else if (type == 'unit') {
     badgeSrc = `https://img.shields.io/codecov/c/gh/${ghOwnerRepo}/main?label=BuildKite&style=flat-square&token=YI87CKF1LI`;
     href = `https://buildkite.com/organizations/tbd-oss/analytics/suites/${ghOwnerRepo}?branch=main`
+  } else if (type == 'vector') {
+    badgeSrc = `https://tbd54566975.github.io/sdk-report-runner/${ghOwnerRepo}.svg`
+    href = "https://tbd54566975.github.io/sdk-report-runner/"
   }
 
   const img = <img className="m-0.5" src={badgeSrc} />;
