@@ -2,7 +2,7 @@ import XCTest
 import Mocker
 import Web5
 import TypeID
-@testable import tbDEX
+import tbDEX
 
 final class ManagingCredentialsTest: XCTestCase {
     let pfiDid: String = MockData.pfiDid
@@ -41,11 +41,12 @@ final class ManagingCredentialsTest: XCTestCase {
             }
             for offering in filteredOfferings {
                 // Extract the presentation definition from the offering
-                let presentationDefinition: PresentationDefinitionV2 = offering.data.requiredClaims
-
                 do {
                     // Validate customer's VCs against the offering's presentation definition
-                    try PresentationExchange.satisfiesPresentationDefinition(vcJWTs: credentials, presentationDefinition: presentationDefinition)
+                    try PresentationExchange.satisfiesPresentationDefinition(
+                            vcJWTs: credentials,
+                            presentationDefinition: offering.data.requiredClaims
+                        )
 
                     // Add offerings that match the customer's needs and qualifications
                     matchedOfferings.append(offering)
@@ -57,20 +58,23 @@ final class ManagingCredentialsTest: XCTestCase {
             }
         }
         // :snippet-end:
-        XCTAssertNotEqual(0, matchedOfferings.count)
+        XCTAssertNotEqual(matchedOfferings.count, 0)
 
     }
 
     func testSelectCredentialFromRequiredClaims() {
         let offering = MockData.selectedOffering
-        // :snippet-start: getSelectedCredentialsSwift
         let credentials = [vcJwtResidence, vcJwtSanctions]
-        let presentationDefinition = offering.data.requiredClaims
-        let selectedCredentials = PresentationExchange.selectCredentials(vcJWTs: credentials, presentationDefinition: presentationDefinition)
+        // :snippet-start: getSelectedCredentialsSwift
+        let selectedCredentials = PresentationExchange.selectCredentials(
+            vcJWTs: credentials,
+            presentationDefinition: offering.data.requiredClaims
+        )
         // :snippet-end:
 
         XCTAssertEqual(selectedCredentials.count, 2)
-        XCTAssertTrue(selectedCredentials.contains(vcJwtResidence) && selectedCredentials.contains(vcJwtSanctions))
+        XCTAssertTrue(selectedCredentials.contains(vcJwtResidence))
+        XCTAssertTrue(selectedCredentials.contains(vcJwtSanctions))
 
     }
 
