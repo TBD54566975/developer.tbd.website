@@ -3,6 +3,7 @@ import Layout from '@theme-original/Layout';
 import GlitchWrapper from '@site/src/components/GlitchWrapper';
 import MDXContent from '@theme/MDXContent';
 import { useLocation } from '@docusaurus/router';
+import useBrokenLinks from '@docusaurus/useBrokenLinks';
 import ChatSearch from '../../components/ChatGPTSearch';
 import { LanguageProvider } from '../../components/language/LanguageContext';
 
@@ -11,6 +12,13 @@ import { LanguageOptionsProvider } from '../../components/language/SupportedLang
 
 export default function LayoutWrapper(props) {
   const { hash } = useLocation();
+  useBrokenLinks().collectAnchor("ask");
+  useBrokenLinks().collectAnchor("tag/Manifests");
+  useBrokenLinks().collectAnchor("tag/PresentationRequests");
+  useBrokenLinks().collectAnchor("tag/Presentations/paths/~1v1~1presentations~1definitions/put");
+  useBrokenLinks().collectAnchor("tag/Credentials/paths/~1v1~1credentials/put");
+  useBrokenLinks().collectAnchor("offering-object");
+
   useEffect(() => {
     if (hash) {
       function scrollToAnchor() {
