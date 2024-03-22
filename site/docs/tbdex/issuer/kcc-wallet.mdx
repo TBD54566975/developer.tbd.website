@@ -1,0 +1,441 @@
+---
+sidebar_position: 2
+title: KCC Wallet Flow
+hide_title: true
+---
+
+<LanguageSwitcher languages="JavaScript, Kotlin" />
+
+# Requesting a Known Customer Credential
+
+Known Customer Credentials (KCCs) are [Verifiable Credentials](/docs/web5/learn/verifiable-credentials) designed to streamline the [Know Your Customer (KYC)](/) process for tbDEX protocol users. KCCs help in gaining access to PFIs providing regulated financial services.
+
+For a comprehensive exploration of the practical applications and compliance considerations of KCCs, refer to our [KCC Compliance Guide](/). It provides detailed examples and insights into how KCCs align with certain regulatory requirements. This offers valuable context for those overseeing the implementation and management of KCCs.
+
+In this guide, we'll cover:
+
+- **Identity Verification (IDV)**: How your Wallet App initiates and supports the IDV process conformant with [Self Issued OpenID Provider V2 (SIOPv2)](https://openid.net/specs/openid-connect-self-issued-v2-1_0.html) and [OpenID for Verifiable Presentations (OID4VP)](https://openid.net/specs/openid-4-verifiable-presentations-1_0.html), ensuring users can securely verify their identity.
+- **Credential Request**: The steps needed for your Wallet App to request a KCC **post** successful IDV, on a users behalf.
+- **Credential Management**: How the Wallet utilizes existing credentials for KCC requests and secure storage of the KCC itself.
+
+:::info
+For a detailed guide on Known Customer Credentials for **Issuers**, please refer to our [Issuer's Known Customer Credential Guide](/)
+:::
+
+## Environment Setup
+
+### Install Dependencies
+
+Your Wallet will require libraries for [handling HTTP request](https://www.npmjs.com/package/node-fetch), [managing credentials](https://www.npmjs.com/package/@web5/credentials) and [processing JSON Web Tokens(JWTs)](https://www.npmjs.com/package/@web5/credentials), which you can include in your project by installing the following dependencies:
+
+```bash
+npm install @web5/credentials @web5/dids node-fetch
+```
+
+### Framework Flexibility
+
+The core logic provided in the code snippets of this guide is designed to be adaptable across different development environments. The code examples primarily cater to a Node.js environment however, the concepts shown can be applied within various frameworks or platforms, including web applications, server-side applications, and mobile applications. Depending on your development context, you'll need to adjust aspects like HTTP request handling, and secure storage to align with the practices and libraries of your chosen framework or platform.
+
+## IDV Process
+
+IDV is a critical component of typical KYC requirements, where certain types of Personally Identifiable Information (PII) are collected and verified from an individual. IDV is a crucial step before a KCC can be issued.
+
+[**Wallet's IDV Flow diagram**]
+
+The IDV flow begins when your app, as the customer's agent, sends an HTTP request to the Issuer's IDV service endpoint specified in the Issuer's [Decentralized Identifier (DID)](/docs/web5/learn/decentralized-identifiers) Document.
+
+1. Resolve the Issuer's DID to get the IDV service Endpoint that can be found in the Issuer's [DID Document](/docs/web5/learn/decentralized-identifiers#did-documents):
+
+<Shnip
+  snippets={[
+    {
+      snippetName: 'knownCustomerCredentialResolveIssuerDidJS',
+      language: 'JavaScript',
+      title: 'wallet.js',
+    },
+    {
+      snippetName: '',
+      language: 'Kotlin',
+      title: 'Application.kt',
+    },
+  ]}
+/>
+
+2. Send an HTTP request to the IDV Service Endpoint:
+
+<Shnip
+  snippets={[
+    {
+      snippetName: 'knownCustomerCredentialSendRequestToIdvServiceEndpointJS',
+      language: 'JavaScript',
+      title: 'wallet.js',
+    },
+    {
+      snippetName: '',
+      language: 'Kotlin',
+      title: 'Application.kt',
+    },
+  ]}
+/>
+
+The Issuer will then respond with a URI encoded [SIOPv2 Authorization Request](https://openid.github.io/SIOPv2/openid-connect-self-issued-v2-wg-draft.html#section-9).
+This request contains information about the Issuer along with a [Presentation Definition](https://developer.tbd.website/docs/web5/build/verifiable-credentials/presentation-definition). Some of the key information included is:
+
+- **`client_id`**: Issuer's DID, establishing the Issuer/requestor's identity.
+- **`response_type`**: Lets the Wallet know the desired format, with `id_token` being required identity token and `vp_token` for _optional_ verifiable presentation token. The inclusion of `vp_token` means a presentation definition is required within the request.
+- **`response_uri`**: Indicates the callback url for the Wallet, ensuring direct communication between the Wallet and the Issuer.
+- **`nonce`**: A unique identifier tying together the request and its response.
+
+Here's a JSON example where `id_token` and `vp_token` are both requested:
+
+<details close>
+<summary>SIOPv2 Authorization Request</summary>
+
+```javascript
+// Issuer.js
+
+siopRequest = {
+  client_id: issuerDidUri, // Issuer's Decentralized Identifier
+  scope: 'openid', // Standard OpenID Connect scope
+  response_type: 'id_token vp_token', // Expected response formats: ID Token and optionally, Verifiable Presentation Token
+  response_uri: 'https://issuer.example.com/siopv2/response', // Endpoint for SIOP response delivery
+  response_mode: 'direct_post', // Delivery method of the SIOP response
+  nonce: 'n-0S6_WzA2Mj', // Unique string to link the request and response
+  client_metadata: {
+    // Descriptive metadata about the requesting party (Issuer)
+    subject_syntax_types_supported: 'did:dht did:jwk',
+    client_name: 'Issuance Service Name',
+    client_uri: 'https://issuer.example.com',
+    logo_uri: 'https://issuer.example.com/logo.png',
+    tos_uri: 'https://issuer.example.com/tos',
+    policy_uri: 'https://issuer.example.com/privacy',
+  },
+  presentation_definition: {
+    id: 'IDCardCredentials',
+    input_descriptors: [
+      {
+        id: 'IDCardCredential',
+        schema: {
+          uri: [
+            'https://www.w3.org/2018/credentials#VerifiableCredential',
+            'https://www.w3.org/2018/credentials/examples/v1#IDCardCredential',
+          ],
+          name: 'ID Card Credential',
+          purpose: 'We need to verify your identity.',
+        },
+        constraints: {
+          fields: [
+            {
+              path: ['$.vc.credentialSubject.given_name'],
+              purpose: 'The given name on your ID card.',
+            },
+            {
+              path: ['$.vc.credentialSubject.family_name'],
+              purpose: 'The family name on your ID card.',
+            },
+            {
+              path: ['$.vc.credentialSubject.birthdate'],
+              purpose: 'Your birth date.',
+            },
+            {
+              path: ['$.vc.credentialSubject.national_identifier'],
+              purpose: 'Your national identifier.',
+            },
+          ],
+        },
+      },
+    ],
+  },
+};
+```
+
+</details>
+
+:::info
+
+- `id_token` is a Self Issued Identity Token, that authenticates the customer to the Issuer by sharing the customer's Decentralized Identifier.
+- `vp_token` is a Verifiable Presentation that contains certified and authenticated claims about the customer. In this guide, we'll cover an example `vp_token` and `id_token`.
+
+To learn more refer to OpenID's specs on [Issued Identity Token](https://openid.github.io/SIOPv2/openid-connect-self-issued-v2-wg-draft.html#name-self-issued-id-token) and [Verifiable Presentation Token](https://openid.net/specs/openid-4-verifiable-presentations-1_0.html#section-6.1-2.2).
+:::
+
+3. Decode the Issuer's SIOPv2 Authorization Request and create a [SIOPv2 Authorization Response](https://openid.github.io/SIOPv2/openid-connect-self-issued-v2-wg-draft.html#section-10) with `id_token` and `vp_token`:
+
+<Shnip
+  snippets={[
+    {
+      snippetName: 'knownCustomerCredentialhandleSiopRequestWalletJS',
+      language: 'JavaScript',
+      title: 'wallet.js',
+    },
+    {
+      snippetName: '',
+      language: 'Kotlin',
+      title: 'Application.kt',
+    },
+  ]}
+/>
+
+:::info
+If the User's Verifiable Credentials do not satisfy the Authorization Request's Presentation Definition then only the `id_token` will be sent to the Issuer's `response_uri`. If the credentials **do** satisfy then a [Verifiable Presentation](https://developer.tbd.website/docs/glossary/#verifiable-presentation) (`vp_token`) will also be sent.  
+:::
+
+If `vp_token` wasn't in the SIOPv2 Response, then the Issuer will respond with a `credential_offer` and a `url` that points to a webpage for the customer to input their PII (e.g.; name, identification number, date of birth, etc). After successful completion of this form, the Wallet can proceed with the next steps, [processing the Credential Offer](https://hackmd.io/SQwE3SnrRkmeipGGtznJTw?both#Processing-the-Credential-Offer).
+
+[**GIF of PII info being filled out?**]
+
+## Processing the Credential Offer
+
+After successful completion of the Identity Verification - whether via form or the necessary VCs - your Wallet application will then begin processing the `credential_offer` from the Issuer. Here's an example of a `credential_offer`:
+
+```javascript
+// Issuer.js
+
+{
+  "credential_issuer": "https://issuer.example.com",
+  "credential_configuration_ids": [
+    "knownCustomerCredential-basic",
+    "knownCustomerCredential-extended"
+  ],
+  "grants": {
+    "urn:ietf:params:oauth:grant-type:pre-authorized_code": "abc123xyz"
+  }
+}
+```
+
+The `credential_offer` object contains vital information about the Issuer:
+
+- **`credential_issuer`**: The base URL address of the Issuer's service. It is used by the Wallet to retrieve the Issuer's metadata and the Issuer's Authorization Server Metadata.
+- **`credential_configuration_ids`**: Unique strings that identify the credential you are offering. The Wallet can use these to request metadata.
+- **`grants`**: Contains grant types the Issuer will accept for this credential offer.
+- **`urn:ietf:params:oauth:grant-type:pre-authorized_code`**: Grant type required for the [OpenID for Verifiable Credential Issuance (OID4VCI)](https://openid.net/specs/openid-4-verifiable-credential-issuance-1_0.html#appendix-B.1) Pre-Authorization flow.
+- **`pre-authorized_code`**: The code representing the Credential Issuer's authorization for the Wallet to obtain an access token.
+
+1. Extract and store the `credential_issuer` URL and `pre_authorized_code` from the credential offer:
+
+<Shnip
+  snippets={[
+    {
+      snippetName: 'knownCustomerCredentialHandleIssuerResponseWalletJS',
+      language: 'JavaScript',
+      title: 'wallet.js',
+    },
+    {
+      snippetName: '',
+      language: 'Kotlin',
+      title: 'Application.kt',
+    },
+  ]}
+/>
+
+:::info
+The `credential_issuer` URL is crucial for the next steps, as it will be used to construct the URLs for fetching the Issuer's Metadata and the Issuer's Authorization Server Metadata.
+:::
+
+2. Fetch the Issuer's Metadata from the `credential_issuers` URL
+
+To construct the URL to fetch the Issuer's metadata, the Wallet needs to append `/.well-known/openid-credential-issuer` to the `credential_issuer` URL provided in the `credential_offer`:
+
+<Shnip
+  snippets={[
+    {
+      snippetName: 'knownCustomerCredentialFetchIssuerMetadataWalletJS',
+      language: 'JavaScript',
+      title: 'wallet.js',
+    },
+    {
+      snippetName: '',
+      language: 'Kotlin',
+      title: 'Application.kt',
+    },
+  ]}
+/>
+
+The Issuer's Metadata includes information about the Issuer's capabilities, credential endpoint, supported credential configurations, and more. Some of the key information included is:
+
+- `credential_issuer`: The base URL address of the Issuer's service. It is used by the Wallet to retrieve the Issuer's metadata and the Issuer's Authorization Server Metadata.
+- `credential_endpoint`: The endpoint the Wallet will use to submit requests to issue credentials. After obtaining an access token, the Wallet sends a credential request to this endpoint.
+- `credential_configurations_supported`: Defines the format `jwt_vc_json`, and the credential, including informative display markup.
+
+Here is an example of an Issuer's Metadata:
+
+<details close>
+<summary>Issuer's Metadata</summary>
+
+```javascript
+// Issuer.js
+
+{
+  "credential_issuer": "https://issuer.example.com",
+  "credential_endpoint": "https://issuer.example.com/credentials",
+  "credential_configurations_supported": {
+    "KnownCustomerCredential": {
+      "format": "jwt_vc_json",
+      "scope": "CustomerIdentity",
+      "cryptographic_binding_methods_supported": ["did:example"],
+      "credential_signing_alg_values_supported": ["ES256"],
+      "credential_definition": {
+        "type": ["VerifiableCredential", "KnownCustomerCredential"],
+        "credentialSubject": {
+          "country": {
+            "display": [
+              {
+                "name": "Country",
+                "locale": "en-US"
+              }
+            ]
+          }
+        }
+      },
+      "proof_types_supported": {
+        "jwt": {
+          "proof_signing_alg_values_supported": ["ES256"]
+        }
+      },
+      "display": [
+        {
+          "name": "Known Customer Credential",
+          "locale": "en-US",
+          "logo": {
+            "url": "https://issuer.example.com/public/logo.png",
+            "alt_text": "Issuer Logo"
+          },
+          "background_color": "#FFFFFF",
+          "text_color": "#000000"
+        }
+      ]
+    }
+  }
+}
+
+```
+
+</details>
+
+3. Fetch the Authorization Server's Metadata
+
+Before the Wallet can request a KCC from the Issuer. In the same `handleIssuerResponse()` the Wallet needs to also fetch the Issuer's Authorization Server Metadata. Similarly, by appending `/.well-known/oauth-authorization-server` to the `credential_issuer` URL:
+
+<Shnip
+  snippets={[
+    {
+      snippetName: 'knownCustomerCredentialFetchAuthServerMetadataWalletJS',
+      language: 'JavaScript',
+      title: 'wallet.js',
+    },
+    {
+      snippetName: '',
+      language: 'Kotlin',
+      title: 'Application.kt',
+    },
+  ]}
+/>
+
+The Server Authorization Metadata can look like this:
+
+<details open>
+<summary>Server Authorization Metadata</summary>
+
+```javascript
+// Issuer.js
+
+{
+   "issuer": "https://issuer.example.com", // URL of the Credential Issuer
+   "token_endpoint": "https://issuer.example.com/token", // URL for the Access Token Request
+};
+```
+
+</details>
+
+- `issuer`: The base URL of the Issuer's service.
+- `token_endpoint`: The endpoint where the Wallet can exchange the `pre_authorization_code` receieved in the `credential_offer` for an access token.
+
+4. Fetch the Access Token from the Issuer's `/token` endpoint:
+
+<Shnip
+  snippets={[
+    {
+      snippetName: 'knownCustomerCredentialFetchAccessTokenWalletJS',
+      language: 'JavaScript',
+      title: 'wallet.js',
+    },
+    {
+      snippetName: '',
+      language: 'Kotlin',
+      title: 'Application.kt',
+    },
+  ]}
+/>
+
+:::info
+If the IDV process is incomplete, the Issuer will return an `authorization_pending` error. In this case, the Wallet should wait for a short period before attempting another request to the Issuer's `/token` endpoint. This will allow time for the IDV process to be completed. The Wallet should continue these periodic attempts until an `access_token` is successfully received, indicating that the IDV process has concluded and authorization has been granted.
+:::
+
+Here's an example Access Token Response from the Issuer:
+
+<details open>
+<summary>Access Token Response</summary>
+```javascript
+// Issuer.js
+
+{
+"access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXhhbXBsZTpPcTJ4T0J4NVVjIiwiaXNzIjoiZGlkOmV4YW1wbGU6SXNzdWVyRGlkIiwiaWF0IjoxNjE1MjM5MDIyLCJleHAiOjE2MTUzMjU0MjIsImNfbm9uY2UiOiJzYW1wbGVjbm9uY2UifQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c",
+"token_type": "bearer",
+"expires_in": 86400,
+"c_nonce": "adQssw5c",
+"c_nonce_expires_in": 86400
+}
+
+````
+</details>
+## Request Known Customer Credential
+
+After receiving the `access_token` from the Issuer, the Wallet can now send a KCC request to the `credential_endpoint` that was in the Issuer's Metadata.
+
+1. Sign and Send an HTTP POST request to the Issuer's credential endpoint:
+
+<Shnip
+  snippets={[
+    {
+      snippetName: 'knownCustomerCredentialRequestCredentialWalletJS',
+      language: 'JavaScript',
+      title: 'wallet.js',
+    },
+    {
+      snippetName: '',
+      language: 'Kotlin',
+      title: 'Application.kt',
+    },
+  ]}
+/>
+
+:::info
+To learn more about the **fields** within the `payload` and `header`, please refer to [OpenID's specs](https://openid.net/specs/openid-4-verifiable-credential-issuance-1_0.html#section-7.2.1.1-2.1.1).
+
+The Known Customer Credential will be a signed VC [JSON Web Token](https://jwt.io/) for secure transmission.
+:::
+
+To convert the signed VC JWT into a `VerifiableCredential` object you can use the [`parseJwt()` method](/docs/web5/build/verifiable-credentials/jwt-to-vc#decoding-jwt). Here is what a decoded **Known Customer Credential** would look like:
+
+```javascript
+{
+  "vcDataModel": {
+    "@context": ["https://www.w3.org/2018/credentials/v1"],
+    "type": ["VerifiableCredential", "KnownCustomerCredential"],
+    "id": "urn:uuid:12345678-1234-5678-1234-567812345678",
+    "issuer": "did:dht:z6Mkn4w6nSaWe4fjNJRvaHZwFnMm5VexvjzDeozEu2G7jC34", // Issuer's DID
+    "issuanceDate": "2024-01-01T19:23:24Z",
+    "expirationDate": "2026-05-19T08:02:04Z"
+    "credentialSubject": {
+      "id": "did:dht:z6MkjGSeekPGE9QfczHWyW8v2ZzJU68kqSHzV7L2dmQyuyDu", // User's DID
+      "country_of_residence": "US"
+    }
+  }
+}
+````
+
+To the user an example KCC may look like this:
+
+[**KCC IMAGE**]
+
+With that, you've successfully gone through the Identity Verification flow, requested a Known Customer Credential on behalf of the user, and securely stored the user's Known Customer Credential. Please note that this example is a foundational implementation. For a production environment, it's crucial to enhance this basic setup with comprehensive error handling, secure storage and security measures.
