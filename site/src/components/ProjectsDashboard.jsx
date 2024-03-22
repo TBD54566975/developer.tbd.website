@@ -507,7 +507,7 @@ function Shield({
   } else if (type == 'unit') {
     badgeSrc = `https://img.shields.io/codecov/c/gh/${ghOwnerRepo}/main?label=BuildKite&style=flat-square&token=YI87CKF1LI`;
     href = `https://buildkite.com/organizations/tbd-oss/analytics/suites/${ghOwnerRepo}?branch=main`
-  } else if (type == 'vector') {
+  } else if (type == 'vectors') {
     badgeSrc = `https://tbd54566975.github.io/sdk-report-runner/${ghOwnerRepo}.svg`
     href = "https://tbd54566975.github.io/sdk-report-runner/"
   }
