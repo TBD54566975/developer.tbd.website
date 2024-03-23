@@ -28,9 +28,6 @@ final class PlaceOrderTests: XCTestCase {
     }
 
     func testSendOrderMessage() async throws {
-        let url = URL(string: "https://localhost:9000/exchanges/\(exchangeId)")!
-        Mocker.register(Mock(url: url, contentType: .json, statusCode: 200, data: [.put: Data()]))
-        
         // :snippet-start: createOrderSwift
         var order = Order(
             from: customerDid!.uri, // Customer's DID
@@ -42,10 +39,11 @@ final class PlaceOrderTests: XCTestCase {
         )
         // :snippet-end:
 
-
         // :snippet-start: signOrderSwift
         try! order.sign(did: customerDid!)
         // :snippet-end:
+
+        MockData.mockSendOrderMessage(exchangeId: exchangeId)
 
         // :snippet-start: sendOrderSwift
         try! await tbDEXHttpClient.submitOrder(order: order)

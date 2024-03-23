@@ -191,10 +191,8 @@ public struct MockData {
     }
 
     public static func mockSendOrderMessage(exchangeId: String) {
-        let orderEndpoint = "https://localhost:9000/exchanges"
-        let orderURL = URL(string: orderEndpoint)
-        let mockOrderResponse = Mock(url: orderURL!, contentType: .json, statusCode: 200, data: [.post: Data()])
-        mockOrderResponse.register()
+        let url = URL(string: "https://localhost:9000/exchanges/\(exchangeId)")!
+        Mocker.register(Mock(url: url, contentType: .json, statusCode: 200, data: [.put: Data()]))
     }
 
     public static func mockExchangeWithQuote(
