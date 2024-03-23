@@ -29,10 +29,10 @@ public struct MockData {
             return nil
         }
 
-        let offeringId: TypeID = TypeID(rawValue: "offering_01hsc1j5g7fg7ayew2ys7wmsb7") ?? TypeID(rawValue: "default")!
+        let offeringId: TypeID = TypeID(rawValue: selectedOffering.metadata.id.rawValue) ?? TypeID(rawValue: "default")!
 
         let mock_rfq = RFQ(
-            to: pfiDid,
+            to: selectedOffering.metadata.from,
             from: customerBearerDid.uri,
             data: .init(
                 offeringId: offeringId,
