@@ -6,13 +6,17 @@ import TypeID
 
 final class ReceiveQuotes: XCTestCase {
     var customerDid: BearerDID?
-    let pfiDid: String = "did:dht:4ykjcjdq7udyjq5iy1qbcy98xnd4dkzuizm14ih4rn6953b8ohoo"
+    let pfiDid: String = "did:dht:ac7uj566xgmhypniw1cb96dyhod51inwp98o8ugyb9ygikig6coy"
     var exchangeID: String?
     var rfq: RFQ?
     var initialQuote: Quote?
 
     override func setUp() {
         super.setUp()
+        
+        let ignoredURL = URL(string: "https://diddht.tbddev.org/ac7uj566xgmhypniw1cb96dyhod51inwp98o8ugyb9ygikig6coy")!
+        Mocker.ignore(ignoredURL)
+        
         do {
             customerDid = try DIDJWK.create(keyManager: InMemoryKeyManager())
         } catch {
@@ -24,13 +28,14 @@ final class ReceiveQuotes: XCTestCase {
     }
 
     func mockSendCloseMessage() {
-        let closeEndpoint = "http://localhost:9000/exchanges/\(exchangeID!)/close"
+        let closeEndpoint = "https://localhost:9000/exchanges/\(exchangeID!)"
         let url = URL(string: closeEndpoint)!
-        Mocker.register(Mock(url: url, contentType: .json, statusCode: 200, data: [.post: Data()]))
+        Mocker.register(Mock(url: url, contentType: .json, statusCode: 200, data: [.put: Data()]))
     }
 
     func testPollForQuotes() async throws {
         MockData.mockExchangeWithQuote()
+        
         // :snippet-start: pollForQuoteSwift
         var quote: Quote? = nil
 
@@ -70,10 +75,12 @@ final class ReceiveQuotes: XCTestCase {
             from: customerDid!.uri,
             to: quote!.metadata.from,
             exchangeID: quote!.metadata.exchangeID,
-            data: CloseData(reason: "Canceled by customer")
+            data: CloseData(reason: "Canceled by customer"),
+            externalID: nil,
+            protocol: "1.0"
         )
         try! closeMessage.sign(did: customerDid!)
-        try! await tbDEXHttpClient.sendMessage(message: closeMessage)
+        try! await tbDEXHttpClient.submitClose(close: closeMessage)
         // :snippet-end:
 
         XCTAssertNotNil(closeMessage, "No closeMessage found")

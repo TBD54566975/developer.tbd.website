@@ -7,7 +7,7 @@ import TypeID
 
 final class SendingRfqTests: XCTestCase {
     var customerDid: BearerDID?
-    let pfiDid: String = "did:dht:4ykjcjdq7udyjq5iy1qbcy98xnd4dkzuizm14ih4rn6953b8ohoo"
+    let pfiDid: String = "did:dht:ac7uj566xgmhypniw1cb96dyhod51inwp98o8ugyb9ygikig6coy"
     var selectedOffering = MockData.selectedOffering
 
     override func setUp() {
@@ -56,7 +56,7 @@ final class SendingRfqTests: XCTestCase {
                 to: selectedOffering.metadata.from,  // PFI's DID
                 from: customerDid!.uri,    // Customer's DID
                 //highlight-start
-                data: .init(
+                data: RFQData(
                     offeringId: selectedOffering.metadata.id,   // The ID of the selected offering
                     payinAmount: "0.012",  // The amount of the payin currency
                     payinMethod: SelectedPaymentMethod(
@@ -75,7 +75,9 @@ final class SendingRfqTests: XCTestCase {
                         ]
                     ),
                     claims: selectedCredentials // Array of signed VCs required by the PFI
-                )
+                ),
+                externalID: nil,
+                protocol: "1.0"
                 //highlight-end
             )
             // :snippet-end:
@@ -87,12 +89,12 @@ final class SendingRfqTests: XCTestCase {
             XCTAssertNotNil(rfq.signature)
 
             // Setup Mock PFI (minimal) response
-            let url = URL(string: "http://localhost:9000/exchanges/" + rfq.metadata.exchangeID + "/rfq")!
+            let url = URL(string: "https://localhost:9000/exchanges")!
             let mock = Mock(url: url, contentType: .json, statusCode: 200, data: [.post: Data()])
             mock.register()
 
             // :snippet-start: sendRfqMessageSwift
-            try await tbDEXHttpClient.sendMessage(message: rfq)
+            try await tbDEXHttpClient.createExchange(rfq: rfq)
             // :snippet-end:
 
         } catch {
