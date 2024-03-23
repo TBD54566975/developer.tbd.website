@@ -9,7 +9,7 @@ final class SendingRfqTests: XCTestCase {
     var customerDid: BearerDID?
     let pfiDid: String = "did:dht:4ykjcjdq7udyjq5iy1qbcy98xnd4dkzuizm14ih4rn6953b8ohoo"
     var selectedOffering = MockData.selectedOffering
-    
+
     override func setUp() {
         super.setUp()
         do {
