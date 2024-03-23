@@ -13,9 +13,7 @@ final class ReceiveQuotes: XCTestCase {
 
     override func setUp() {
         super.setUp()
-        
-        let ignoredURL = URL(string: "https://diddht.tbddev.org/ac7uj566xgmhypniw1cb96dyhod51inwp98o8ugyb9ygikig6coy")!
-        Mocker.ignore(ignoredURL)
+        MockData.allowDidResolution(didUri: pfiDid)
         
         do {
             customerDid = try DIDJWK.create(keyManager: InMemoryKeyManager())
@@ -35,7 +33,7 @@ final class ReceiveQuotes: XCTestCase {
 
     func testPollForQuotes() async throws {
         MockData.mockExchangeWithQuote()
-        
+
         // :snippet-start: pollForQuoteSwift
         var quote: Quote? = nil
 

@@ -14,9 +14,7 @@ final class PlaceOrderTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
-        
-        let ignoredURL = URL(string: "https://diddht.tbddev.org/ac7uj566xgmhypniw1cb96dyhod51inwp98o8ugyb9ygikig6coy")!
-        Mocker.ignore(ignoredURL)
+        MockData.allowDidResolution(didUri: pfiDid)
         
         customerDid = try! DIDJWK.create(keyManager: InMemoryKeyManager())
         

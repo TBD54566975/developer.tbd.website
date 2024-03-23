@@ -208,6 +208,13 @@ public struct MockData {
         MockData.setupMockGetCall(url: url, data: exchangeJson)
     }
 
+    //Force Mock to ignore the request so that resolve endpoint is called for real
+    public static func allowDidResolution(didUri: String) {
+        let id = didUri.components(separatedBy: ":").last
+        let ignoredURL = URL(string: "https://diddht.tbddev.org/" + id!)!
+        Mocker.ignore(ignoredURL)
+    }
+
     private static func setupMockGetCall(url: URL, data: Encodable) {
         let encoder = tbDEXJSONEncoder()
         encoder.outputFormatting = .prettyPrinted
