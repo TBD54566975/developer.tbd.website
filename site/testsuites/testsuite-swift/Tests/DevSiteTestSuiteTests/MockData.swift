@@ -6,7 +6,7 @@ import Mocker
 import TypeID
 
 public struct MockData {
-    public static let pfiDid: String = "did:dht:4ykjcjdq7udyjq5iy1qbcy98xnd4dkzuizm14ih4rn6953b8ohoo"
+    public static let pfiDid: String = "did:dht:ac7uj566xgmhypniw1cb96dyhod51inwp98o8ugyb9ygikig6coy"
     public static var exchangeID: String = "exchange_123"
     public static let customerBearerDid: BearerDID? = try? DIDJWK.create(keyManager: InMemoryKeyManager())
     public static let BTC_ADDRESS = "bc1q52csjdqa6cq5d2ntkkyz8wk7qh2qevy04dyyfd"
@@ -53,7 +53,9 @@ public struct MockData {
                     ]
                 ),
                 claims: []
-            )
+            ),
+            externalID: nil,
+            protocol: "1.0"
         )
 
         exchangeID = mock_rfq.metadata.exchangeID
@@ -84,7 +86,9 @@ public struct MockData {
                     amount: "2.00",
                     fee: "0.50"
                 )
-            )
+            ),
+            externalID: nil,
+            protocol: "1.0"
         )
     }
 
@@ -97,7 +101,9 @@ public struct MockData {
                 from: from,
                 to: to,
                 exchangeID: exchangeId,
-                data: .init()
+                data: .init(),
+                externalID: nil,
+                protocol: "1.0"
             )
     }
 
@@ -113,7 +119,9 @@ public struct MockData {
             exchangeID: exchangeId,
             data: .init(
                 orderStatus: status
-            )
+            ),
+            externalID: nil,
+            protocol: "1.0"
         )
     }
 
@@ -129,7 +137,9 @@ public struct MockData {
             exchangeID: exchangeId,
             data: .init(
                 reason: reason
-            )
+            ),
+            externalID: nil,
+            protocol: "1.0"
         )
     }
 
@@ -160,7 +170,9 @@ public struct MockData {
                     amount: "2.00",
                     fee: "0.50"
                 )
-            )
+            ),
+            externalID: nil,
+            protocol: "1.0"
         )
     }
 
@@ -169,7 +181,7 @@ public struct MockData {
         to: String = pfiDid,
         exchangeId: String = exchangeID, 
         closeReason: String = "") {
-        let url = URL(string: "http://localhost:9000/exchanges/\(exchangeId)")!
+        let url = URL(string: "https://localhost:9000/exchanges/\(exchangeId)")!
         let close = MockData.createClose(from: from, to: to, exchangeId: exchangeId, reason: closeReason)
         var exchange: [Close] = [Close]()
         exchange.append(close)
@@ -179,27 +191,28 @@ public struct MockData {
     }
 
     public static func mockSendOrderMessage(exchangeId: String) {
-        let orderEndpoint = "http://localhost:9000/exchanges/\(exchangeId)/order"
-        guard let orderURL = URL(string: orderEndpoint) else {
-            XCTFail("Failed to create URL for closing exchange")
-            return
-        }
-
-        let mockOrderResponse = Mock(url: orderURL, contentType: .json, statusCode: 200, data: [.post: Data()])
-        mockOrderResponse.register()
+        let url = URL(string: "https://localhost:9000/exchanges/\(exchangeId)")!
+        Mocker.register(Mock(url: url, contentType: .json, statusCode: 200, data: [.put: Data()]))
     }
 
     public static func mockExchangeWithQuote(
         to: String = pfiDid, 
         from: String = customerBearerDid!.uri, 
         exchangeId: String = exchangeID) {
-        let url = URL(string: "http://localhost:9000/exchanges/\(exchangeId)")!
+        let url = URL(string: "https://localhost:9000/exchanges/\(exchangeId)")!
         let quote = MockData.createQuote(from: from, to: to, exchangeId: exchangeId)
         var exchange: [Quote] = [Quote]()
         exchange.append(quote)
         let exchangeJson: [String: [Quote]] = ["data": exchange]
 
         MockData.setupMockGetCall(url: url, data: exchangeJson)
+    }
+
+    //Force Mock to ignore the request so that resolve endpoint is called for real
+    public static func allowDidResolution(didUri: String) {
+        let id = didUri.components(separatedBy: ":").last
+        let ignoredURL = URL(string: "https://diddht.tbddev.org/" + id!)!
+        Mocker.ignore(ignoredURL)
     }
 
     private static func setupMockGetCall(url: URL, data: Encodable) {

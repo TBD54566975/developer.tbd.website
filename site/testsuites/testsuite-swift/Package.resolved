@@ -123,7 +123,7 @@
       "location" : "https://github.com/TBD54566975/tbdex-swift.git",
       "state" : {
         "branch" : "main",
-        "revision" : "5495d5cc17beacda7bc358696bb79653a11140df"
+        "revision" : "e0a018dd8552aee4f5446e1a5b30ed5f58ce3c75"
       }
     },
     {
@@ -132,7 +132,7 @@
       "location" : "https://github.com/TBD54566975/web5-swift.git",
       "state" : {
         "branch" : "main",
-        "revision" : "bcf5bfb55a98c61c03af50a2f0d31f677f4b6f8e"
+        "revision" : "1d819dd6fcc19acda2c3afc8759767489f648282"
       }
     }
   ],

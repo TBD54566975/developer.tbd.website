@@ -11,9 +11,7 @@ final class GetOfferingsTests: XCTestCase {
     
     override func setUp() {
         super.setUp()
-
-        let ignoredURL = URL(string: "https://diddht.tbddev.org/ac7uj566xgmhypniw1cb96dyhod51inwp98o8ugyb9ygikig6coy")!
-        Mocker.ignore(ignoredURL)
+        MockData.allowDidResolution(didUri: pfiDid)
 
         let mockOffering = offeringJson
         let mock = Mock(url: mockURL, contentType: .json, statusCode: 200, data: [.get: Data(mockOffering.utf8)])
