@@ -8,6 +8,7 @@ export default function Home() {
   const Web5CTA = content.web5cta;
   const TbdexCTA = content.tbdexCTA;
   const Heading = content.heading;
+
   return (
     <Layout>
       <Head title={content.meta.title}>
