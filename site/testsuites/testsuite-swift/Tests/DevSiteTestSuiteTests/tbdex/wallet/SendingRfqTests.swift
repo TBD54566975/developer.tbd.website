@@ -8,7 +8,7 @@ import TypeID
 final class SendingRfqTests: XCTestCase {
     var customerDid: BearerDID?
     let pfiDid: String = "did:dht:4ykjcjdq7udyjq5iy1qbcy98xnd4dkzuizm14ih4rn6953b8ohoo"
-    var selectedOffering: Offering?
+    var selectedOffering = MockData.selectedOffering
 
     override func setUp() {
         super.setUp()
@@ -17,19 +17,6 @@ final class SendingRfqTests: XCTestCase {
         } catch {
             XCTFail("Failed to create customerDid: \(error)")
         }
-
-        selectedOffering = Offering(
-            from: pfiDid,
-            data: .init(
-                description: "test offering",
-                payoutUnitsPerPayinUnit: "1",
-                payinCurrency: .init(currencyCode: "AUD"),
-                payoutCurrency: .init(currencyCode: "BTC"),
-                payinMethods: [],
-                payoutMethods: [],
-                requiredClaims: [:]
-            )
-        )
     }
     
     //no assertions needed; this is just showing how to structure a RFQ
@@ -63,15 +50,14 @@ final class SendingRfqTests: XCTestCase {
     func testCreateAndSendRfq() async throws {
         let BTC_ADDRESS = "bc1q52csjdqa6cq5d2ntkkyz8wk7qh2qevy04dyyfd"
         let selectedCredentials: [String] = []
-        
         do {
             // :snippet-start: createRfqMessageSwift
             var rfq = RFQ(
-                to: (selectedOffering?.metadata.from)!,  // PFI's DID
+                to: selectedOffering.metadata.from,  // PFI's DID
                 from: customerDid!.uri,    // Customer's DID
                 //highlight-start
                 data: .init(
-                    offeringId: selectedOffering!.metadata.id,   // The ID of the selected offering
+                    offeringId: selectedOffering.metadata.id,   // The ID of the selected offering
                     payinAmount: "0.012",  // The amount of the payin currency
                     payinMethod: SelectedPaymentMethod(
                         kind: "BTC_WALLET_ADDRESS",   // The method of payment

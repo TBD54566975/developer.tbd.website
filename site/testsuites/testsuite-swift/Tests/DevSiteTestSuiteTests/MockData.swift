@@ -11,18 +11,18 @@ public struct MockData {
     public static let customerBearerDid: BearerDID? = try? DIDJWK.create(keyManager: InMemoryKeyManager())
     public static let BTC_ADDRESS = "bc1q52csjdqa6cq5d2ntkkyz8wk7qh2qevy04dyyfd"
 
-    public static let selectedOffering = Offering(
-        from: pfiDid,
-        data: .init(
-            description: "test offering",
-            payoutUnitsPerPayinUnit: "1",
-            payinCurrency: .init(currencyCode: "AUD"),
-            payoutCurrency: .init(currencyCode: "BTC"),
-            payinMethods: [],
-            payoutMethods: [],
-            requiredClaims: [:]
-        )
-    )
+    public static let selectedOfferingJson = "{\"metadata\":{\"from\":\"\(pfiDid)\",\"kind\":\"offering\",\"id\":\"offering_01hsc1j5g7fg7ayew2ys7wmsb7\",\"createdAt\":\"2024-03-19T19:03:42.855Z\",\"protocol\":\"1.0\"},\"data\":{\"description\":\"test offering\",\"payoutUnitsPerPayinUnit\":\"1\",\"payinCurrency\":{\"currencyCode\":\"AUD\"},\"payoutCurrency\":{\"currencyCode\":\"BTC\"},\"payinMethods\":[],\"payoutMethods\":[],\"requiredClaims\":{}} }"
+   
+    public static var selectedOffering: Offering {
+        let jsonData = selectedOfferingJson.data(using: .utf8)!
+        let decoder = tbDEXJSONDecoder()
+        do {
+            let offering = try decoder.decode(Offering.self, from: jsonData)
+            return offering
+        } catch {
+            fatalError("Failed to decode the selected offering: \(error)")
+        }
+    }
 
     public static var rfq: RFQ? {
         guard let customerBearerDid = customerBearerDid else {
