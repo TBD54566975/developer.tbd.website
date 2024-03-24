@@ -55,32 +55,24 @@ const updatePackageJsonDependencies = async (dirPath, sdkVersions) => {
   }
 };
 
-const updatePomXmlVersion = async (filePath, sdkVersions) => {
+const updatePomXmlProperties = async (filePath, sdkVersions) => {
   try {
     const pomContent = await fs.promises.readFile(filePath, 'utf8');
-    const parsedPomContent = await parseString(pomContent, { explicitArray: true, mergeAttrs: true });
+    const parsedPomContent = await parseString(pomContent, { explicitArray: false, mergeAttrs: true });
 
     let updated = false;
 
-    const updateDependencies = (dependencies) => {
-      dependencies.forEach((dependency) => {
-        const artifactId = dependency.artifactId;
-        if (sdkVersions.maven[artifactId]) {
-          dependency.version = [sdkVersions.maven[artifactId]];
-          updated = true;
-        }
-      });
-    };
-
-    if (parsedPomContent.project.dependencies && parsedPomContent.project.dependencies[0].dependency) {
-      updateDependencies(parsedPomContent.project.dependencies[0].dependency);
-    }
-
-    if (parsedPomContent.project.dependencyManagement && parsedPomContent.project.dependencyManagement[0].dependencies[0].dependency) {
-      updateDependencies(parsedPomContent.project.dependencyManagement[0].dependencies[0].dependency);
-    }
+    // Update versions in <properties>
+    Object.keys(sdkVersions.maven).forEach(sdk => {
+      const propertyKey = `version.${sdk}`;
+      if (parsedPomContent.project.properties && parsedPomContent.project.properties.hasOwnProperty(propertyKey)) {
+        parsedPomContent.project.properties[propertyKey] = sdkVersions.maven[sdk];
+        updated = true;
+      }
+    });
 
     if (updated) {
+      const builder = new xml2js.Builder();
       let updatedPomContent = builder.buildObject(parsedPomContent);
 
       // Correctly handle namespace attributes without introducing duplicates
@@ -90,31 +82,36 @@ const updatePomXmlVersion = async (filePath, sdkVersions) => {
       updatedPomContent = updatedPomContent.replace(/<xmlns>.*<\/xmlns>\s*<xmlns:xsi>.*<\/xmlns:xsi>\s*<xsi:schemaLocation>.*<\/xsi:schemaLocation>/, '');
 
       await fs.promises.writeFile(filePath, updatedPomContent);
-      console.log(`Successfully updated dependencies in ${filePath}`);
+      console.log(`Successfully updated properties in ${filePath}`);
     } else {
-      console.log(`No dependencies were updated in ${filePath}`);
+      console.log(`No properties were updated in ${filePath}`);
     }
   } catch (error) {
-    console.error(`Failed to update ${filePath}:`, error);
+    console.error(`Failed to update properties in ${filePath}:`, error);
   }
 };
 
 
 
+
+
 // Function to recursively find and update pom.xml files, excluding node_modules
-async function findAndUpdatePomFiles(dirPath, sdkVersions) {
+async function findAndUpdatePomProperties(dirPath, sdkVersions) {
   const entries = await fs.promises.readdir(dirPath, { withFileTypes: true });
   for (let dirent of entries) {
     if (dirent.name === 'node_modules') continue; // Skip node_modules directory
 
     const fullPath = path.join(dirPath, dirent.name);
     if (dirent.isDirectory()) {
-      await findAndUpdatePomFiles(fullPath, sdkVersions); // Recursive call for directories
+      await findAndUpdatePomProperties(fullPath, sdkVersions); // Recursive call for directories
     } else if (dirent.name === 'pom.xml') {
-      await updatePomXmlVersion(fullPath, sdkVersions); // Directly update pom.xml files
+      await updatePomXmlProperties(fullPath, sdkVersions); // Directly update properties in pom.xml files
     }
   }
 }
+
+// Make sure to update the propagateVersions function or any initial call to use findAndUpdatePomProperties
+
 
 // Main function to initiate the version propagation process
 async function propagateVersions() {
@@ -123,7 +120,7 @@ async function propagateVersions() {
 
     for (const dirPath of directoriesToUpdate) {
       await updatePackageJsonDependencies(dirPath, sdkVersions);
-      await findAndUpdatePomFiles(dirPath, sdkVersions);
+      await findAndUpdatePomProperties(dirPath, sdkVersions);
     }
   } catch (error) {
     console.error('Failed to propagate versions:', error);
