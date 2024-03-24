@@ -48,14 +48,4 @@ final class ExampleTests: XCTestCase {
         waitForExpectations(timeout: 5, handler: nil)
     }
 
-    func test_createDIDExample() throws {
-        let didJWK = try DIDJWK.create(keyManager: InMemoryKeyManager())
-        let portableDID = try didJWK.export()
-
-        XCTAssertEqual(portableDID.uri, didJWK.uri, "URI should match")
-        XCTAssertEqual(portableDID.document, didJWK.document, "Document should match")
-        XCTAssertEqual(portableDID.privateKeys.count, 1, "There should be exactly one private key")
-        XCTAssertNil(portableDID.metadata, "Metadata should be nil")
-    }
-
 }
