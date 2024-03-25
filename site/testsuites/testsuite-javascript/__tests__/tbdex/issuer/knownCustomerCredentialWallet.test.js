@@ -110,7 +110,7 @@ describe('Presentation Exchange Process', () => {
     expect(vp.presentation.type).toContain('VerifiablePresentation');
   });
 
-  test('Jwt.sign() works with a bearer DID & valid payload ', async () => {
+  test('Jwt.sign() works with a bearer DID & valid payload', async () => {
     const accessTokenPayload = {
       sub: customerBearerDid.uri,
       iss: issuerBearerDid.uri,
@@ -159,7 +159,7 @@ async function sendRequestToIdvServiceEndpoint(idvServiceEndpoint) {
       throw new Error('Network response was not ok');
     }
     const encodedSiopRequest = await response.text();
-    handleSiopRequest(encodedSiopRequest);
+    handleSiopRequest(encodedSiopRequest); // function shown in next step
   } catch (error) {
     throw new Error(
       `There was a problem with the fetch operation: ${error.message}`,
@@ -244,7 +244,7 @@ async function handleSiopRequest(encodedSiopRequest) {
   })
     .then((response) => response.json())
     .then((data) => {
-      handleIssuerResponse(data);
+      handleIssuerResponse(data); // function shown in next step
     })
     .catch((error) => {
       throw new Error(`Error sending SIOP response: ${error.message}`);
@@ -277,7 +277,7 @@ function handleIssuerResponse(issuerResponse) {
     // Direct the user to this URL to complete their Identity Verification
     openIdvForm(issuerResponse.url);
   } else {
-    fetchIssuerMetadata();
+    fetchIssuerMetadata(); // function shown in next step
   }
 }
 // :snippet-end:
@@ -295,7 +295,7 @@ function fetchIssuerMetadata() {
        * Store the credential endpoint for future use
        **********************************************/
       walletStorage.credentialEndpoint = issuerMetadata.credential_endpoint;
-      fetchAuthServerMetadata();
+      fetchAuthServerMetadata(); // function shown in next step
     })
     .catch((error) => {
       console.error(`Error in fetching issuer metadata: ${error.message}`);
@@ -319,7 +319,7 @@ function fetchAuthServerMetadata() {
       fetchAccessToken(
         walletStorage.preAuthorizedCode,
         walletStorage.tokenEndpoint,
-      );
+      ); // function shown in next step
     })
     .catch((error) => {
       console.error(
@@ -367,6 +367,14 @@ function fetchAccessToken(preAuthorizationCode, tokenEndpoint) {
       } else if (data.access_token) {
         walletStorage.accessToken = data.access_token;
         walletStorage.cNonce = data.c_nonce;
+        if (walletStorage.credentialEndpoint) {
+          requestKnownCustomerCredential(
+            walletStorage.credentialEndpoint,
+            walletStorage.accessToken,
+          ); // function shown in next step
+        } else {
+          console.error('Credential endpoint is missing in walletStorage.');
+        }
       } else {
         throw new Error('Access token not found in the response');
       }
@@ -436,5 +444,4 @@ function requestKnownCustomerCredential(credentialEndpoint, accessToken) {
       throw new Error(`Error signing JWT: ${error.message}`);
     });
 }
-
 // :snippet-end:

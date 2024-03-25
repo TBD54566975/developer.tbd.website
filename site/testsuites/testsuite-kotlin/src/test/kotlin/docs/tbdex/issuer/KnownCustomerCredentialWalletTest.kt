@@ -1,6 +1,6 @@
 package website.tbd.developer.site.docs.tbdex
 
-import com.nimbusds.jwt.JWTClaimsSet
+
 import org.junit.jupiter.api.Assertions.*
 import com.nimbusds.jwt.JWTParser
 import io.ktor.server.routing.*
@@ -14,25 +14,31 @@ import io.ktor.http.*
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertDoesNotThrow
 import web5.sdk.dids.Did
-import web5.sdk.credentials.VerifiablePresentation
 import java.net.URL
 import java.net.HttpURLConnection
 
-
+// :prepend-start: knownCustomerCredentialhandleSiopRequestWalletKT
 import web5.sdk.credentials.PresentationExchange
 import web5.sdk.credentials.util.JwtUtil
+import web5.sdk.credentials.VerifiablePresentation
+import web5.sdk.credentials.model.PresentationDefinitionV2
+import com.nimbusds.jwt.JWTClaimsSet
+// :prepend-end:
+
 import web5.sdk.crypto.InMemoryKeyManager
 import web5.sdk.dids.methods.dht.CreateDidDhtOptions
+
+// :prepend-start: knownCustomerCredentialResolveIssuerDidKT
 import web5.sdk.dids.methods.dht.DidDht
 import web5.sdk.dids.methods.jwk.DidJwk
-
 import web5.sdk.dids.DidResolvers
+// :prepend-end:
+
 import java.security.SignatureException
 import io.ktor.server.routing.*
 import io.ktor.server.application.*
 import io.ktor.server.response.*
 import io.ktor.server.request.*
-
 import io.ktor.client.statement.*
 import kotlinx.serialization.json.jsonPrimitive
 
@@ -60,7 +66,7 @@ import java.io.OutputStreamWriter
 
 import web5.sdk.credentials.model.FieldV2
 import web5.sdk.credentials.model.ConstraintsV2
-import web5.sdk.credentials.model.PresentationDefinitionV2
+
 import web5.sdk.credentials.model.InputDescriptorV2
 import web5.sdk.credentials.model.PresentationSubmission
 import com.fasterxml.jackson.databind.ObjectMapper
@@ -129,40 +135,72 @@ class KnownCustomerCredentialWalletTest {
     )
 
     @Test
-    fun `selectCredentialsForPexKt selects VCs that match presentation defintion`() {
+    fun `presentation exchange selects(), satisfies() and creates() VP`() {
         val selectedCredentials = PresentationExchange.selectCredentials(
             vcJwts = userVcJwts,
             presentationDefinition = presentationDefinition
         )
+        val presentationResult = PresentationExchange.createPresentationFromCredentials(
+            vcJwts = selectedCredentials,
+            presentationDefinition = presentationDefinition
+        )
+
+        val vp = VerifiablePresentation.create(
+            vcJwts = selectedCredentials,
+            holder = userBearerDid.uri,
+            additionalData = mapOf("presentation_submission" to presentationResult)
+        )
+
         assertNotNull(selectedCredentials, "Selected credentials should not be null")
         assertTrue(selectedCredentials is List<*>, "Selected credentials should be a list")
         assertEquals(2, selectedCredentials.size, "Selected credentials should contain 2 items")
+        assertNotNull(vp, "Verifiable Presentation should not be null")
+        assertEquals(userBearerDid.uri, vp.holder, "Holder DID should match")
+    }
+
+    @Test
+    fun `JwtUtil sign() works with a valid payload and bearer DID`() {
+        val idTokenPayload = JWTClaimsSet.Builder()
+            .subject(userBearerDid.uri.toString()) 
+            .issuer(issuerDidUri) 
+            .issueTime(Date(System.currentTimeMillis())) 
+            .expirationTime(Date(System.currentTimeMillis() + 86400 * 1000)) 
+            .build()
+
+        try {
+            val idToken = JwtUtil.sign(userBearerDid, null, idTokenPayload)
+
+            assertNotNull(idToken, "idtoken should not be null")
+            assertTrue(idToken.isNotEmpty(), "idtoken should not be empty")
+        } catch (e: Exception) {
+            fail("Signing should not throw an exception")
+        }
     }
 
     // :snippet-start: knownCustomerCredentialResolveIssuerDidKT
-    // private suspend fun resolveIssuerDid(issuerDidUri: String): String {
-    //     return coroutineScope {
-    //         val result = async {
-    //             try {
-    //                 val resolvedDid = DidResolvers.resolve(issuerDidUri)
-    //                 val didDocument = resolvedDid.didDocument
+    private suspend fun resolveIssuerDid(issuerDidUri: String): String {
+        try {
+            val resolvedDid = DidResolvers.resolve(issuerDidUri)
+            val didDocument = resolvedDid.didDocument ?: throw Exception(
+                "DID Document is null"
+            )
 
-    //                 val idvService = didDocument.services?.find{ service ->
-    //                    service.type === "IDV"
-    //                 }
-                    
-    //                 idvService?.serviceEndpoint ?: throw Exception("IDV service not found in DID Document")
-    //             } catch (error: Exception) {
-    //                 throw Exception("Error resolving DID: ${error.message}")
-    //             }
-    //         }
-    //         result.await()
-    //     }
-    // }
+            val idvService = didDocument.service?.find { service ->
+                service.type == "IDV"
+            } ?: throw Exception("IDV service not found in DID Document")
+
+            return idvService.serviceEndpoint.firstOrNull() ?: throw Exception(
+                "Service endpoint not found in IDV service"
+            )
+        } catch (error: Exception) {
+            throw Exception("Error resolving DID: ${error.message}")
+        }
+    }
     // :snippet-end:
 
     // :snippet-start: knownCustomerCredentialSendRequestToIdvServiceEndpointKT
-    private suspend fun sendRequestToIdvServiceEndpoint(idvServiceEndpoint: String) = coroutineScope {
+    private suspend fun sendRequestToIdvServiceEndpoint(idvServiceEndpoint: String) 
+    = coroutineScope {
         val client = HttpClient() 
 
         try {
@@ -173,7 +211,7 @@ class KnownCustomerCredentialWalletTest {
             }
             
             val encodedSiopRequest = response.bodyAsText()
-            handleSiopRequest(encodedSiopRequest)
+            handleSiopRequest(encodedSiopRequest) // function shown in next step
         } catch (error: Exception) {
             throw Exception("There was a problem with the fetch operation: ${error.message}")
         } finally {
@@ -192,7 +230,9 @@ class KnownCustomerCredentialWalletTest {
             key to URLDecoder.decode(value, "UTF-8")
         }
 
-        val clientId = params["client_id"] ?: throw Exception("Client ID missing in SIOP request")
+        val clientId = params["client_id"] ?: throw Exception(
+            "Client ID missing in SIOP request"
+        )
         val nonce = params["nonce"] ?: throw Exception("Nonce missing in SIOP request")
 
         /*******************************************************
@@ -220,7 +260,9 @@ class KnownCustomerCredentialWalletTest {
             *******************************************************/
             val presentationDefinitionJson = params["presentation_definition"]
             ?: throw Exception("Presentation definition missing in SIOP request")
-            val presentationDefinition = Json.decodeFromString<PresentationDefinitionV2>(presentationDefinitionJson.toString())
+            val presentationDefinition = Json.decodeFromString<PresentationDefinitionV2>(
+                presentationDefinitionJson.toString()
+            )
 
             /*******************************************************
             * Select Credentials based on the Presentation Definition
@@ -276,8 +318,12 @@ class KnownCustomerCredentialWalletTest {
             vpToken?.let { put("vp_token", it) }
         }
 
-        val responseUri = params["response_uri"] ?: throw Exception("Response URI missing in SIOP request")
-        postSiopResponse(responseUri, responsePayload.toString())
+        val responseUri = params["response_uri"] ?: throw Exception(
+            "Response URI missing in SIOP request"
+        )
+        postSiopResponse(
+            responseUri, 
+            responsePayload.toString()) // function shown in next step
     }
     // :snippet-end:
 
@@ -317,7 +363,7 @@ class KnownCustomerCredentialWalletTest {
                 val response = connection.inputStream.bufferedReader().use { it.readText() }
                 val responseData = Json.decodeFromString<IssuerResponse>(response)
 
-                handleIssuerResponse(responseData)
+                handleIssuerResponse(responseData) // function shown in next step
             } else {
                 throw Exception("Failed to send SIOP response. HTTP error code: ${connection.responseCode}")
             }
@@ -340,7 +386,9 @@ class KnownCustomerCredentialWalletTest {
     private suspend fun handleIssuerResponse(issuerResponse: IssuerResponse) {
         issuerResponse.credential_offer?.let { credentialOffer ->
             val credentialIssuer = credentialOffer.credential_issuer
-            val preAuthorizedCode = credentialOffer.grants["urn:ietf:params:oauth:grant-type:pre-authorized_code"]?.jsonPrimitive?.content
+            val preAuthorizedCode = credentialOffer.grants[
+                "urn:ietf:params:oauth:grant-type:pre-authorized_code"
+            ]?.jsonPrimitive?.content
 
 
             /***********************************************************************
@@ -352,7 +400,7 @@ class KnownCustomerCredentialWalletTest {
             // Direct the user to this URL to complete their Identity Verification
             issuerResponse.url?.let { url ->
                 openIdvForm(url)
-            } ?: fetchIssuerMetadata()
+            } ?: fetchIssuerMetadata() // function shown in next step
         }
     }
     // :snippet-end:
@@ -375,10 +423,12 @@ class KnownCustomerCredentialWalletTest {
             /**********************************************
             * Store the credential endpoint for future use
             **********************************************/
-            WalletStorage.credentialEndpoint = issuerMetadata["credential_endpoint"]?.jsonPrimitive?.content
+            WalletStorage.credentialEndpoint = issuerMetadata[
+                "credential_endpoint"
+            ]?.jsonPrimitive?.content
                 ?: throw Exception("credential_endpoint is missing in issuer metadata")
     
-            fetchAuthServerMetadata()
+            fetchAuthServerMetadata() // function shown in next step
         } catch (e: Exception) {
             println("Error in fetching issuer metadata: ${e.message}")
         } finally {
@@ -404,7 +454,9 @@ class KnownCustomerCredentialWalletTest {
             *****************************************************/    
                 WalletStorage.tokenEndpoint = tokenEndpoint
 
-                fetchAccessToken(WalletStorage.preAuthorizedCode, WalletStorage.tokenEndpoint)
+                fetchAccessToken(
+                    WalletStorage.preAuthorizedCode, 
+                    WalletStorage.tokenEndpoint) // function shown in next step
             } else {
                 println("Token endpoint not found in the authorization server's metadata.")
             }
@@ -427,7 +479,9 @@ class KnownCustomerCredentialWalletTest {
         }
 
         try {
-            val httpResponse: HttpResponse = client.post(tokenEndpoint ?: throw IllegalArgumentException("tokenEndpoint cannot be null")) {
+            val httpResponse: HttpResponse = client.post(tokenEndpoint ?: 
+            throw IllegalArgumentException("tokenEndpoint cannot be null")
+            ) {
                 contentType(ContentType.Application.Json)
                 setBody(requestBody.toString())
             }
@@ -456,7 +510,9 @@ class KnownCustomerCredentialWalletTest {
                 WalletStorage.cNonce = json["c_nonce"]?.jsonPrimitive?.content
                 WalletStorage.credentialEndpoint?.let { credentialEndpoint ->
                     WalletStorage.accessToken?.let { accessToken ->
-                        requestKnownCustomerCredential(credentialEndpoint, accessToken)
+                        requestKnownCustomerCredential(
+                            credentialEndpoint, 
+                            accessToken) // function shown in next step
                     }
                 }
 
@@ -517,7 +573,9 @@ class KnownCustomerCredentialWalletTest {
                 }
 
                 if (!response.status.isSuccess()) {
-                    throw Exception("Network response was not ok: ${response.status.description}")
+                    throw Exception(
+                        "Network response was not ok: ${response.status.description}"
+                    )
                 }
 
                 val responseData = Json.parseToJsonElement(response.bodyAsText()).jsonObject
