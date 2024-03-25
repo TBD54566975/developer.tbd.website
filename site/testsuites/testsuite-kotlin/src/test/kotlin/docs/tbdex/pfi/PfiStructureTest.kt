@@ -70,6 +70,12 @@ class PfiStructureTest {
          * Assert that there are 3 callbacks registered
          * Assert that the 3 are rfq, order, and close
          */
+        // check that tbDex.callbacks 
+        val actualCallbacks = tbDexServer.callbacks
+        assertTrue(actualCallbacks.contains(SubmitKind.rfq), "Callbacks should contain rfq")
+        assertTrue(actualCallbacks.contains(SubmitKind.order), "Callbacks should contain order")
+        assertTrue(actualCallbacks.contains(SubmitKind.close), "Callbacks should contain close")
+        assertEquals(tbDexServer.callbacks.size, 3, "There should be 3 routes")
     }
 
     @Test
