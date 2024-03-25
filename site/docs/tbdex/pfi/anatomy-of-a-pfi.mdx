@@ -25,6 +25,40 @@ Your main server entrypoint should fulfill the following responsibilities:
 * Accept `GET` requests for Offerings and Exchanges data
 * Handle submission requests for new `RFQ`, `Order`, and `Close` messages
 
+Here is a list of the reequired routes you'll need to implement:
+
+<table border="1">
+  <thead>
+    <tr>
+      <th>Method</th>
+      <th>Endpoint</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>POST</td>
+      <td>/exchanges</td>
+      <td>Used to send an RFQ aka create an exchange.</td>
+    </tr>
+    <tr>
+      <td>PUT</td>
+      <td>/exchanges/:id</td>
+      <td>Used to add additional messages to a pre-existing exchange e.g. order or close</td>
+    </tr>
+    <tr>
+      <td>GET</td>
+      <td>/exchanges</td>
+      <td>Used to get exchanges</td>
+    </tr>
+    <tr>
+      <td>GET</td>
+      <td> /exchanges/:id</td>
+      <td> Used to get a single exchange</td>
+    </tr>
+  </tbody>
+</table>
+
 To begin, you’ll want to configure your server with the required exchange and offerings API providers (the details of those API providers will be in the sections below):
 
 <Shnip snippets={
