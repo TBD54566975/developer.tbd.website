@@ -34,6 +34,7 @@ import web5.sdk.dids.methods.jwk.DidJwk
 import web5.sdk.dids.DidResolvers
 // :prepend-end:
 
+import kotlinx.coroutines.delay
 import java.security.SignatureException
 import io.ktor.server.routing.*
 import io.ktor.server.application.*
@@ -469,7 +470,7 @@ class KnownCustomerCredentialWalletTest {
     // :snippet-end:
 
     // :snippet-start: knownCustomerCredentialFetchAccessTokenWalletKT
-    private suspend fun fetchAccessToken(preAuthorizationCode: String?, tokenEndpoint: String?) {
+    private suspend fun fetchAccessToken(preAuthorizationCode: String?, tokenEndpoint: String?, retryDelay: Long = 10000L) {
         val client = HttpClient()
 
         val requestBody = buildJsonObject {
@@ -499,6 +500,9 @@ class KnownCustomerCredentialWalletTest {
             json["error"]?.jsonPrimitive?.content?.let { error ->
                 if (error == "authorization_pending") {
                     displayNotification("Hang tight, we're still waiting for IDV to complete.")
+                    delay(retryDelay)
+
+                    return fetchAccessToken(preAuthorizationCode, tokenEndpoint, retryDelay)
                 } else {
                     throw Exception("Error from server: $error")
                 }

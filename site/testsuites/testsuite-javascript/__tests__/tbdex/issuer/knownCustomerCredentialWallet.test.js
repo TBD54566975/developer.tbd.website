@@ -330,7 +330,11 @@ function fetchAuthServerMetadata() {
 // :snippet-end:
 
 // :snippet-start: knownCustomerCredentialFetchAccessTokenWalletJS
-function fetchAccessToken(preAuthorizationCode, tokenEndpoint) {
+function fetchAccessToken(
+  preAuthorizationCode,
+  tokenEndpoint,
+  retryDelay = 10000,
+) {
   const requestBody = {
     grant_type: 'urn:ietf:params:oauth:grant-type:pre-authorized_code',
     code: preAuthorizationCode,
@@ -361,6 +365,10 @@ function fetchAccessToken(preAuthorizationCode, tokenEndpoint) {
         displayNotification(
           "Hang tight, we're still waiting for IDV to complete.",
         );
+
+        setTimeout(() => {
+          fetchAccessToken(preAuthorizationCode, tokenEndpoint, retryDelay);
+        }, retryDelay);
         /*************************************************
          * Store the access token & c_nonce for future use
          **************************************************/
