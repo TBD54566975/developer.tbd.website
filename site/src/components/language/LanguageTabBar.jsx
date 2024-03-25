@@ -8,7 +8,7 @@ const LanguageTabBar = () => {
     var currentLanguage = useLanguage().language;
     const { languages } = useSupportedLanguages();
     var activeTab = currentLanguage;
-  
+
     const setActiveTab = (tab) => {
         changeLanguage(tab);
         updateUrl(tab);
@@ -18,14 +18,18 @@ const LanguageTabBar = () => {
         }
     }
 
+    if (!languages.includes(currentLanguage)) {
+      setActiveTab(languages[0]);
+    }
+
   return (
       <div className='languageTabs'>
         {languages.map(tab => (
           <div
-            key={tab} 
+            key={tab}
             onClick={() => setActiveTab(tab)}
-            style={{ 
-              padding: '20px', 
+            style={{
+              padding: '20px',
               borderBottom: activeTab === tab ? '2px solid yellow' : 'none',
               borderRadius: '10px 10px 0 0',
               background: activeTab === tab ? '#282828' : 'none'
