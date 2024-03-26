@@ -47,6 +47,50 @@ To implement and operate as a Wallet on a tbDEX network, you’ll need to use th
   ]}
 />
 
+<LanguageSwitchBlock>
+  <div language="Kotlin">
+    <details>
+      <summary>Android Setup</summary>
+
+      In order to have a smooth Android development experience, we've found the following to be helpful. Firstly, be sure to exclude `META-INF/DEPENDENCIES` as follows in your `build.gradle.kts` file:
+
+      ```kotlin
+      android {
+          packagingOptions {
+              exclude("META-INF/DEPENDENCIES")
+          }
+      }
+      ```
+
+      Additionally, you'll want to modify your `dependencies` object to look like the following:
+
+      ```kotlin
+
+      dependencies {
+
+        implementation("xyz.block:tbdex-httpclient:0.11.0-beta") {
+            exclude(group = "com.google.protobuf", module = "protobuf-java")
+            exclude(group = "org.bouncycastle", module = "bcprov-jdk18on")
+            exclude(group = "com.github.stephenc.jcip", module = "jcip-annotations")
+            exclude(group = "com.google.crypto.tink", module="tink")
+        }
+
+        implementation("xyz.block:tbdex-protocol:0.11.0-beta") {
+            exclude(group = "com.google.protobuf", module = "protobuf-java")
+            exclude(group = "org.bouncycastle", module = "bcprov-jdk18on")
+            exclude(group = "com.github.stephenc.jcip", module = "jcip-annotations")
+            exclude(group = "com.google.crypto.tink", module="tink")
+
+        }
+
+      }
+      ```
+
+      Specifically, note the exclusion of a number of dependencies so that your app uses the versions of these libraries that are shipped with Android.
+    </details>
+  </div>
+</LanguageSwitchBlock>
+
 ## Import Classes
 
 To send and receive tbDEX messages, import the following classes:
@@ -57,43 +101,3 @@ To send and receive tbDEX messages, import the following classes:
     { snippetName: 'walletSdkImportsKt', language: 'Kotlin'},
   ]}
   />
-
-<details>
-<summary>Android Setup</summary>
-
-In order to have a smooth Android development experience, we've found the following to be helpful. Firstly, be sure to exclude `META-INF/DEPENDENCIES` as follows in your `build.gradle.kts` file:
-
-```kotlin
-android {
-    packagingOptions {
-        exclude("META-INF/DEPENDENCIES")
-    }
-}
-```
-
-Additionally, you'll want to modify your `dependencies` object to look like the following:
-
-```kotlin
-
-dependencies {
-  
-  implementation("xyz.block:tbdex-httpclient:0.11.0-beta") {
-      exclude(group = "com.google.protobuf", module = "protobuf-java")
-      exclude(group = "org.bouncycastle", module = "bcprov-jdk18on")
-      exclude(group = "com.github.stephenc.jcip", module = "jcip-annotations")
-      exclude(group = "com.google.crypto.tink", module="tink")
-  }
-
-  implementation("xyz.block:tbdex-protocol:0.11.0-beta") {
-      exclude(group = "com.google.protobuf", module = "protobuf-java")
-      exclude(group = "org.bouncycastle", module = "bcprov-jdk18on")
-      exclude(group = "com.github.stephenc.jcip", module = "jcip-annotations")
-      exclude(group = "com.google.crypto.tink", module="tink")
-  
-  }
-
-}
-```
-
-Specifically, note the exclusion of a number of dependencies so that your app uses the versions of these libraries that are shipped with Android.
-</details>
