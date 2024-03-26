@@ -111,7 +111,7 @@ function Dependencies({ language, dependencies, display = 'install' }) {
     case 'javascript':
       return <PackageJson sdkVersions={SDK_VERSIONS} dependencies={dependencies} />;
     default:
-      return null; // Or any other default behavior you prefer
+      return null; 
   }
 
 }
