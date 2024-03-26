@@ -22,7 +22,7 @@ describe('Wallet: Send RFQ', () => {
         services : [{
           type            : 'PFI',
           id              : 'pfi',
-          serviceEndpoint : 'http://localhost:9000'
+          serviceEndpoint : 'https://localhost:9000'
         }]
       }
     })
@@ -34,7 +34,7 @@ describe('Wallet: Send RFQ', () => {
 
     // Mock the response from the PFI
     server = setupServer(
-      http.post(new RegExp('http://localhost:9000/exchanges/(.+)/rfq'), () => {
+      http.post(new RegExp('https://localhost:9000/exchanges/(.+)/rfq'), () => {
         return HttpResponse.json({
           status: 202
         })
@@ -69,7 +69,8 @@ describe('Wallet: Send RFQ', () => {
         //highlight-start
         metadata: {
           to: selectedOffering.metadata.from,  // PFI's DID
-          from: customerDid.uri // Customer's DID
+          from: customerDid.uri, // Customer's DID
+          protocol: '1.0'
         },
         //highlight-end
         data: {}
@@ -91,6 +92,7 @@ describe('Wallet: Send RFQ', () => {
       metadata: {
         to: selectedOffering.metadata.from, // PFI's DID
         from: customerDid.uri, // Customer DID
+        protocol: '1.0'
       },
       //highlight-start
       data: {
@@ -123,10 +125,10 @@ describe('Wallet: Send RFQ', () => {
 
     try{
       // :snippet-start: sendRfqMessageJS
-      await TbdexHttpClient.sendMessage({
-        message: rfq,
-        replyTo: 'https://example.com/callback'
-      });
+      await TbdexHttpClient.createExchange(
+        rfq,
+        { replyTo: 'https://example.com/callback' }
+      );
       // :snippet-end:
     }
     catch (e) {
