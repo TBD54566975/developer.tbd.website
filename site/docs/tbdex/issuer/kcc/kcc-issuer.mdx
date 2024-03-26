@@ -23,12 +23,12 @@ In this guide, we'll cover:
 - Issuing a KCC conformant with [OpenID for Verifiable Credential Issuance (OID4VCI)](https://openid.net/specs/openid-4-verifiable-credential-issuance-1_0.html) following successful IDV.
 
 :::info
-For a detailed guide on managing Known Customer Credentials as a Wallet application, please refer to the [Known Customer Credential Guide for Wallet Apps](/docs/tbdex/issuer/kcc/kcc-wallet)
+For a detailed guide on managing Known Customer Credentials as a Wallet application, please refer to the [Known Customer Credential Guide for Wallet Apps](/)
 :::
 
 ## Environment Setup
 
-If you haven't already, please follow the [Credential Issuance Server Setup Guide](/docs/tbdex/issuer/vc-serverSetup) for detailed instructions on the dependencies and packages needed to set up your server.
+If you haven't already, please follow the [Credential Issuance Server Setup Guide](/) for detailed instructions on the dependencies and packages needed to set up your server.
 
 ## IDV Process
 
@@ -59,23 +59,23 @@ sequenceDiagram
 autonumber
 participant W as Webview
 participant D as Mobile Wallet
-participant P as PFI
-D->>+P: GET did:ex:pfi?service=IDV
-P->>P: Construct SIOPv2 Authorization Request
-P-->>-D: SIOPv2 Authorization Request
+participant I as Issuer
+D->>+I: GET did:ex:issuer?service=IDV
+I->>I: Construct SIOPv2 Authorization Request
+I-->>-D: SIOPv2 Authorization Request
 D->>D: Construct SIOPv2 Authorization Response
-D->>+P: SIOPv2 Authorization Response
-P->>P: Construct IDV Request
-P-->>-D: IDV Request
+D->>+I: SIOPv2 Authorization Response
+I->>I: Construct IDV Request
+I-->>-D: IDV Request
 D->>D: Verify IDV Request
 D->>W: Load URL in IDV Request
 ```
 
 The IDV flow begins when the customer's agent (e.g. Wallet application) sends an HTTP request to the Issuer's [IDV service endpoint](https://hackmd.io/4cW3D9BVQGCEuf1CEg47jA?both#Issuers-Identity) specified in the Issuer's [Decentralized Identifier (DID) Document](/docs/glossary#did-document).
 
-### Handling Incoming Requests
+### 1. Handling Incoming Requests
 
-1. Implement an endpoint to handle incoming GET requests from the Wallet. When a request is received, you'll need to construct the [SIOPv2 Authorization Request](https://openid.github.io/SIOPv2/openid-connect-self-issued-v2-wg-draft.html#section-9).
+Implement an endpoint to handle incoming GET requests from the Wallet. When a request is received, you'll need to construct the [SIOPv2 Authorization Request](https://openid.github.io/SIOPv2/openid-connect-self-issued-v2-wg-draft.html#section-9).
 
 ### Approach 1: Requesting only [`id_token`](https://openid.github.io/SIOPv2/openid-connect-self-issued-v2-wg-draft.html#name-self-issued-id-token)
 
@@ -130,7 +130,7 @@ The SIOPv2 Authorization request contains information about you, the Issuer, alo
 `vp_token` is a [Verifiable Presentation](/docs/glossary#verifiable-presentation) that contains certified and authenticated claims about the customer. In this guide, we'll cover an example `vp_token`. To learn more refer to [OpenID's specs](https://openid.net/specs/openid-4-verifiable-presentations-1_0.html#section-6.1-2.2).
 :::
 
-2. Encode the SIOPv2 Authorization Request and respond:
+### 2. Encode the SIOPv2 Authorization Request and respond:
 
 <Shnip
   snippets={[
@@ -147,7 +147,9 @@ The SIOPv2 Authorization request contains information about you, the Issuer, alo
   ]}
 />
 
-3. The Wallet will then respond with an HTTP POST [SIOPv2 Authorization Response](https://openid.github.io/SIOPv2/openid-connect-self-issued-v2-wg-draft.html#section-10). The HTTP request body must include an `id_token` and optionally a `vp_token`, both of which must be [JSON Web Tokens (JWTs)](https://datatracker.ietf.org/doc/html/rfc7519). Here is an example HTTP POST request body (which includes the optional `vp_token`):
+### 3. Wallet's SIOPv2 Authorization Response
+
+The Wallet will then respond with an HTTP POST [SIOPv2 Authorization Response](https://openid.github.io/SIOPv2/openid-connect-self-issued-v2-wg-draft.html#section-10). The HTTP request body must include an `id_token` and optionally a `vp_token`, both of which must be [JSON Web Tokens (JWTs)](https://datatracker.ietf.org/doc/html/rfc7519). Here is an example HTTP POST request body (which includes the optional `vp_token`):
 
 ```javascript
 // Wallet.js example HTTP POST request body
@@ -205,7 +207,9 @@ The decoded [JWT Claims](https://datatracker.ietf.org/doc/html/rfc7519#section-4
 }
 ```
 
-4. Implement a `/siopv2/response` endpoint to process and verify the Wallet's response. The HTTP response body must always include a `credential_offer`. If the Wallet's response does not include a `vp_token`, as a valid form of IDV, then the HTTP response body must also include a URL directing the Wallet to an Identity Verification form:
+### 4. Handle SIOPv2 Response
+
+Implement a `/siopv2/response` endpoint to process and verify the Wallet's response. The HTTP response body must always include a `credential_offer`. If the Wallet's response **does not** include a `vp_token`, as a valid form of IDV, then the HTTP response body must also include a URL directing the Wallet to an Identity Verification form:
 
 <Shnip
   snippets={[
@@ -240,7 +244,9 @@ The IDV Request Form points to a webpage for the customer to input their Persona
 Wallets use the `credential_issuer` from the Credential Offer to dynamically construct URLs for fetching Issuer and Authorization Server Metadata. These URLs, formed by appending `/.well-known/openid-credential-issuer` and `/.well-known/oauth-authorization-server` to the `credential_issuer`, allow wallets to access up-to-date information on issuer capabilities and OAuth 2.0 endpoints. The next steps will cover how to properly configure these endpoints.
 :::
 
-5. Configure the `/.well-known/openid-credential-issuer` endpoint that will return your Issuer Metadata:
+### 5. Create Issuer's Metadata Endpoint
+
+Configure the `/.well-known/openid-credential-issuer` endpoint that will return your Issuer Metadata:
 
 <Shnip
   snippets={[
@@ -261,7 +267,9 @@ Wallets use the `credential_issuer` from the Credential Offer to dynamically con
 - `credential_endpoint`: The endpoint the Wallet will use to submit requests to issue credentials. After obtaining an access token, the Wallet sends a credential request to this endpoint.
 - `credential_configurations_supported`: Defines the format `jwt_vc_json`, and the credential, including informative display markup.
 
-6. Configure the `/.well-known/oauth-authorization-server` endpoint that will return your Issuer Authorization Server Metadata:
+### 6. Create Issuer's Authorization Server Metadata Endpoint
+
+Configure the `/.well-known/oauth-authorization-server` endpoint that will return your Issuer Authorization Server Metadata:
 
 <Shnip
   snippets={[
@@ -281,7 +289,9 @@ Wallets use the `credential_issuer` from the Credential Offer to dynamically con
 - `issuer`: The base URL of the Issuer's service.
 - `token_endpoint`: The endpoint where the Wallet can exchange the `pre_authorization_code` receieved in the `credential_offer` for an access token.
 
-7. Set up the `/token` endpoint to process incoming requests from the Wallet containing the `pre_authorization_code`. This code, originally provided in the `credential_offer` object, is used to validate the Wallet's request:
+### 7. Create Access Token Endpoint
+
+Set up the `/token` endpoint to process incoming requests from the Wallet containing the `pre_authorization_code`. This code, originally provided in the `credential_offer` object, is used to validate the Wallet's request:
 
 <Shnip
   snippets={[
@@ -309,7 +319,7 @@ The Issuer must check if the IDV Process is completed prior to issuing an access
 
 When creating a Verifiable Credential, you can design a model class to represent the specific type of credential you'd like to issue.
 
-1. Define a `KccCredential` class with the required fields for the credential:
+Define a `KccCredential` class with **required** and **optional** fields for a Known Customer Credential:
 
 <Shnip
   snippets={[
@@ -325,10 +335,17 @@ When creating a Verifiable Credential, you can design a model class to represent
     },
   ]}
 />
+- `country_of_residence`: Is a `ISO-3166` 2-letter country code representing the
+customer’s verified country of residence (ex: US)
+
+- `tier`: The tier your customer falls into,
+  assuming you perform tier-based KYC.
+
+- `evidence`: Is an Array of objects, where each object contains `kind` (String) and `checks` (array of Strings). `kind` states the **type** of evidence and `checks` details the specific proofs or checks used during IDV.
 
 :::info
 
-- You'll need to assign `issuer`, `subject`, and `expirationDate` properties during the creation process. `issuanceDate` is managed and generated by the `Web5` SDK. You'll see how this works in the upcoming section.  
+- You'll need to assign `issuer`, `subject`, `type`, and `expirationDate` properties during the creation process. `issuanceDate` is managed and generated by the `Web5` SDK. You'll see how this works in the upcoming section.  
   :::
 
 ## Issue Known Customer Credential
@@ -398,10 +415,21 @@ To convert the signed VC JWT into a `VerifiableCredential` object you can use th
     "id": "urn:uuid:12345678-1234-5678-1234-567812345678",
     "issuer": "did:dht:z6Mkn4w6nSaWe4fjNJRvaHZwFnMm5VexvjzDeozEu2G7jC34",
     "issuanceDate": "2024-01-01T19:23:24Z",
-    "expirationDate": "2026-05-19T08:02:04Z"
+    "expirationDate": "2026-05-19T08:02:04Z",
+    "evidence": [
+      {
+      kind: "document_verification",
+      checks: ["passport", "utility_bill"]
+      },
+      {
+        kind: "sanction_screening",
+        checks: ["PEP"]
+      }
+    ],
     "credentialSubject": {
       "id": "did:dht:z6MkjGSeekPGE9QfczHWyW8v2ZzJU68kqSHzV7L2dmQyuyDu",
-      "country": "US"
+      "country_of_residence": "US",
+      "tier": "Gold"
     }
   }
 }
@@ -421,10 +449,21 @@ To convert the signed VC JWT into a `VerifiableCredential` object you can use th
   "id": "urn:uuid:12345678-1234-5678-1234-567812345678",
   "issuer": "did:dht:z6Mkn4w6nSaWe4fjNJRvaHZwFnMm5VexvjzDeozEu2G7jC34",
   "issuanceDate": "2024-01-01T19:23:24Z",
-  "expirationDate": "2026-05-19T08:02:04Z"
+  "expirationDate": "2026-05-19T08:02:04Z",
+  "evidence": [
+    {
+    kind: "document_verification",
+    checks: ["passport", "utility_bill"]
+    },
+    {
+      kind: "sanction_screening",
+      checks: ["PEP"]
+    }
+  ],
   "credentialSubject": {
     "id": "did:dht:z6MkjGSeekPGE9QfczHWyW8v2ZzJU68kqSHzV7L2dmQyuyDu",
-    "country": "US"
+    "country_of_residence": "US",
+    "tier": "Gold"
   }
 }
 ```

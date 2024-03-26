@@ -42,7 +42,8 @@ import io.ktor.http.HttpStatusCode
 class KnownCustomerCredentialIssuerTest {
 
     // :snippet-start: KnownCustomerCredentialsClassKT
-    class KccCredential(val country: String)
+    data class KccCredential(val country_of_residence: String, val tier: String?)
+    data class Evidence(val kind: String, val checks: List<String>)
     // :snippet-end:
 
     /* 
@@ -62,8 +63,8 @@ class KnownCustomerCredentialIssuerTest {
             type = "KnownCustomerCredential",
             issuer = issuerBearerDid.uri.toString(),
             subject = customerBearerDid.uri.toString(),
-            expirationDate = expirationDate ,
-            data = KccCredential("US")
+            expirationDate = expirationDate,
+            data = KccCredential("US" , "Gold")
         )
 
         val credentialToken = knownCustomerCredential.sign(issuerBearerDid)
@@ -585,14 +586,26 @@ class KnownCustomerCredentialIssuerTest {
                     /***********************************************
                     * Create and sign the credential
                     ************************************************/
+                    val evidence = listOf(
+                        Evidence(
+                            kind = "document_verification",
+                            checks = listOf("passport", "utility_bill")
+                        ),
+                        Evidence(
+                            kind = "sanction_screening",
+                            checks = listOf("PEP")
+                        )
+                    )
                     val dateFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'")
                     val expirationDate: Date = dateFormat.parse("2026-05-19T08:02:04Z")
+
                     val knownCustomerCredential = VerifiableCredential.create(
                         type = "KnownCustomerCredential",
                         issuer = issuerBearerDid.uri, // Issuer's DID string
                         subject = customersDidUri, // Customer's DID string from the verified JWT
                         expirationDate = expirationDate,
-                        data = KccCredential("US")
+                        // evidence = evidence,
+                        data = KccCredential(country_of_residence = "US", tier = "Gold")
                     )
 
                     val credentialToken = knownCustomerCredential.sign(

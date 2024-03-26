@@ -353,8 +353,12 @@ app.post('/token', async (req, res) => {
 
 // :snippet-start: KnownCustomerCredentialsClass
 class KccCredential {
-  constructor(country) {
-    this.country = country; // where IDV was performed
+  constructor(country, tier, evidence) {
+    this.data = {
+      country_of_residence: country,
+      tier: tier, // optional
+    };
+    this.evidence = evidence; // optional
   }
 }
 
@@ -414,18 +418,32 @@ app.post('/credentials', async (req, res) => {
     /***********************************************
      * Create and sign the credential
      ************************************************/
+    const kccCredentialInstance = new KccCredential('US', 'Gold', [
+      {
+        kind: 'document_verification',
+        checks: ['passport', 'utility_bill'],
+      },
+      {
+        kind: 'sanction_screening',
+        checks: ['PEP'],
+      },
+    ]);
+
     const known_customer_credential = await VerifiableCredential.create({
       type: 'KnownCustomerCredential',
       issuer: issuerBearerDid.uri, // Issuer's DID string
       subject: customersDidUri, // Customer's DID string from the verified JWT
       expirationDate: '2026-05-19T08:02:04Z',
-      data: new KccCredential('US'),
+      data: {
+        country_of_residence: kccCredentialInstance.data.country_of_residence,
+        tier: kccCredentialInstance.data.tier, // optional
+      },
+      evidence: kccCredentialInstance.evidence, // optional
     });
 
     const credential_token = await known_customer_credential.sign({
       did: issuerBearerDid, // Signing with the issuer's bearer DID
     });
-
     /***********************************************
      * Respond with the signed credential
      ************************************************/
