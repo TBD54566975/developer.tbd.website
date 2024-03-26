@@ -52,16 +52,12 @@ function Dependencies({ language, dependencies, display = 'command' }) {
     }
   }
 
-  let Dependency;
-
   switch (language) {
     case 'javascript':
-      Dependency = <PackageJson sdkVersions={SDK_VERSIONS} dependencies={dependencies} />;
-      break;
+      return <PackageJson sdkVersions={SDK_VERSIONS} dependencies={dependencies} />;
     default:
-  }
-
-  return Dependency;
+      return null;
+  
 }
 
 export default Dependencies;
