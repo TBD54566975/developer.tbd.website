@@ -58,6 +58,21 @@ ${dependenciesBlock}
   return <CodeBlock language="xml">{mavenString}</CodeBlock>;
 }
 
+function SwiftDependencies({ dependencies, sdkVersions }) {
+  const swiftImports = dependencies.map((dep, index) => {
+    const packageInfo = sdkVersions.swift[dep];
+    if (!packageInfo) {
+      console.error(`Package "${dep}" not found in sdkVersions.swift`);
+      return null;
+    }
+    const { url, branch } = packageInfo;
+    return `    .package(url: "${url}", branch: "${branch}")`;
+  }).filter(Boolean).join(',\n');
+
+  const swiftDependenciesString = `dependencies: [\n${swiftImports}\n]`;
+
+  return <CodeBlock language="swift">{swiftDependenciesString}</CodeBlock>;
+}
 // Function to render npm install commands
 function InstallCommands({ dependencies }) {
   const commandString = dependencies.map(dep => `npm install ${dep}`).join('\r\n');
@@ -96,17 +111,22 @@ function Dependencies({ language, dependencies, display = 'install' }) {
 
   const { SDK_VERSIONS } = customFields;
 
-  if (display === 'install') {
-    if (language === 'javascript') {
-      return <InstallCommands dependencies={dependencies} />;
-    } if (language === 'gradle') {
-      return <JvmDependencies language='gradle' dependencies={dependencies} sdks={SDK_VERSIONS.jvm} />;
-    }
-    if(language === 'maven') {
-      return <JvmDependencies language='maven' dependencies={dependencies} sdks={SDK_VERSIONS.jvm} />
-    }
+  switch (display) {
+    case 'install':
+      switch (language) {
+        case 'javascript':
+          return <InstallCommands dependencies={dependencies} />;
+        case 'gradle':
+        case 'maven':
+          return <JvmDependencies language={language} dependencies={dependencies} sdks={SDK_VERSIONS.jvm} />;
+        case 'swift':
+          return <SwiftDependencies sdkVersions={SDK_VERSIONS} dependencies={dependencies} />;
+        default:
+          return null; // Handle unsupported languages
+      }
+    default:
   }
-
+  
   switch (language) {
     case 'javascript':
       return <PackageJson sdkVersions={SDK_VERSIONS} dependencies={dependencies} />;
