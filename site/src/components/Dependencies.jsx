@@ -73,6 +73,13 @@ function SwiftDependencies({ dependencies, sdkVersions }) {
 
   return <CodeBlock language="swift">{swiftDependenciesString}</CodeBlock>;
 }
+
+
+
+
+
+
+
 // Function to render npm install commands
 function InstallCommands({ dependencies }) {
   const commandString = dependencies.map(dep => `npm install ${dep}`).join('\r\n');
