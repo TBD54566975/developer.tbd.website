@@ -79,7 +79,7 @@ Implement an endpoint to handle incoming GET requests from the Wallet. When a re
 
 ### Approach 1: Requesting only [`id_token`](https://openid.github.io/SIOPv2/openid-connect-self-issued-v2-wg-draft.html#name-self-issued-id-token)
 
-This approach is used when a Verifiable Presentation is **not** an accepted form of IDV:
+When a Verifiable Presentation is **not** an accepted form of IDV, you can respond to the customer's Wallet application by requesting only an `id_token` from them:
 
 <Shnip
   snippets={[
@@ -102,7 +102,7 @@ This approach is used when a Verifiable Presentation is **not** an accepted form
 
 ### Approach 2: Requesting both `id_token` and [`vp_token`](https://openid.net/specs/openid-4-verifiable-presentations-1_0.html#section-6.1-2.2)
 
-This approach is used when a Verifiable Presentation **is** an accepted form of IDV:
+When a Verifiable Presentation is an accepted form of IDV, you can respond to the customer's Wallet application by requesting an `id_token` and a `vp_token` from them:
 
 <Shnip
   snippets={[
@@ -119,7 +119,7 @@ This approach is used when a Verifiable Presentation **is** an accepted form of 
   ]}
 />
 
-The SIOPv2 Authorization request contains information about you, the Issuer, along with a [Presentation Definition](/docs/web5/build/verifiable-credentials/presentation-definition).
+The SOIPv2 Authorization request above that you as the issuer send to your customer contains the following key information about you as well as a [Presentation Definition](/docs/web5/build/verifiable-credentials/presentation-definition).
 
 - **`client_id`**: Issuer's DID, establishing the issuer/requestor's identity.
 - **`response_type`**: Lets the Wallet know the desired format, with `id_token` being required identity token and `vp_token` for _optional_ verifiable presentation token. The inclusion of `vp_token` means a presentation definition is required within the request.
