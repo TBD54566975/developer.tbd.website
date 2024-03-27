@@ -11,8 +11,8 @@ public struct MockData {
     public static let customerBearerDid: BearerDID? = try? DIDJWK.create(keyManager: InMemoryKeyManager())
     public static let BTC_ADDRESS = "bc1q52csjdqa6cq5d2ntkkyz8wk7qh2qevy04dyyfd"
 
-    public static let selectedOfferingJson = "{\"metadata\":{\"from\":\"\(pfiDid)\",\"kind\":\"offering\",\"id\":\"offering_01hsc1j5g7fg7ayew2ys7wmsb7\",\"createdAt\":\"2024-03-19T19:03:42.855Z\",\"protocol\":\"1.0\"},\"data\":{\"description\":\"test offering\",\"payoutUnitsPerPayinUnit\":\"1\",\"payinCurrency\":{\"currencyCode\":\"AUD\"},\"payoutCurrency\":{\"currencyCode\":\"BTC\"},\"payinMethods\":[],\"payoutMethods\":[],\"requiredClaims\":{}} }"
-   
+    public static let selectedOfferingJson = "{\"metadata\":{\"from\":\"\(pfiDid)\",\"kind\":\"offering\",\"id\":\"offering_01hsc1j5g7fg7ayew2ys7wmsb7\",\"createdAt\":\"2024-03-19T19:03:42.855Z\",\"protocol\":\"1.0\"},\"data\":{\"description\":\"test offering\",\"payoutUnitsPerPayinUnit\":\"1\",\"payinCurrency\":{\"currencyCode\":\"AUD\"},\"payoutCurrency\":{\"currencyCode\":\"BTC\"},\"payinMethods\":[],\"payoutMethods\":[],\"requiredClaims\":{\"id\":\"7ce4004c-3c38-4853-968b-e411bafcd945\",\"input_descriptors\":[{\"id\":\"bbdb9b7c-5754-4f46-b63b-590bada959e0\",\"constraints\":{\"fields\":[{\"path\":[\"$.type\"],\"filter\":{\"type\":\"string\",\"const\":\"YoloCredential\"}}]}}]}}}"
+
     public static var selectedOffering: Offering {
         let jsonData = selectedOfferingJson.data(using: .utf8)!
         let decoder = tbDEXJSONDecoder()
@@ -179,7 +179,7 @@ public struct MockData {
     public static func mockGetExchangeWithClose(
         from: String = customerBearerDid!.uri,
         to: String = pfiDid,
-        exchangeId: String = exchangeID, 
+        exchangeId: String = exchangeID,
         closeReason: String = "") {
         let url = URL(string: "https://localhost:9000/exchanges/\(exchangeId)")!
         let close = MockData.createClose(from: from, to: to, exchangeId: exchangeId, reason: closeReason)
@@ -196,8 +196,8 @@ public struct MockData {
     }
 
     public static func mockExchangeWithQuote(
-        to: String = pfiDid, 
-        from: String = customerBearerDid!.uri, 
+        to: String = pfiDid,
+        from: String = customerBearerDid!.uri,
         exchangeId: String = exchangeID) {
         let url = URL(string: "https://localhost:9000/exchanges/\(exchangeId)")!
         let quote = MockData.createQuote(from: from, to: to, exchangeId: exchangeId)
