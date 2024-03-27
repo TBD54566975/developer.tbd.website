@@ -65,8 +65,8 @@ const updatePomXmlVersion = async (filePath, sdkVersions) => {
     const updateDependencies = (dependencies) => {
       dependencies.forEach((dependency) => {
         const artifactId = dependency.artifactId;
-        if (sdkVersions.maven[artifactId]) {
-          dependency.version = [sdkVersions.maven[artifactId]];
+        if (sdkVersions.jvm[artifactId]) {
+          dependency.version = [sdkVersions.jvm[artifactId]];
           updated = true;
         }
       });
