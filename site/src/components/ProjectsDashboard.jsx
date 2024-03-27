@@ -22,7 +22,8 @@ const projects = {
         label: 'scan',
         value: 'security.yml',
       },
-      { type: 'fossa' },
+      { type: 'fossa-license' },
+      { type: 'fossa-security' },
     ],
     ossf: [{ type: 'ossf' }],
     sast: [{ type: 'ghWorkflow', label: 'CodeQL', value: 'codeql.yml' }],
@@ -56,7 +57,8 @@ const projects = {
         label: 'scan',
         value: 'security.yml',
       },
-      { type: 'fossa' },
+      { type: 'fossa-license' },
+      { type: 'fossa-security' },
     ],
     ossf: [{ type: 'ossf' }],
     sast: [{ type: 'ghWorkflow', label: 'CodeQL', value: 'codeql.yml' }],
@@ -106,7 +108,8 @@ const projects = {
         label: 'scan',
         value: 'security.yml',
       },
-      { type: 'fossa' },
+      { type: 'fossa-license' },
+      { type: 'fossa-security' },
     ],
     ossf: [{ type: 'ossf' }],
     sast: [{ type: 'ghWorkflow', label: 'CodeQL', value: 'codeql.yml' }],
@@ -156,7 +159,8 @@ const projects = {
         label: 'scan',
         value: 'security.yml',
       },
-      { type: 'fossa' },
+      { type: 'fossa-license' },
+      { type: 'fossa-security' },
     ],
     ossf: [{ type: 'ossf' }],
     sast: [{ type: 'ghWorkflow', label: 'CodeQL', value: 'codeql.yml' }],
@@ -206,7 +210,8 @@ const projects = {
         label: 'scan',
         value: 'security.yml',
       },
-      { type: 'fossa' },
+      { type: 'fossa-license' },
+      { type: 'fossa-security' },
     ],
     ossf: [{ type: 'ossf' }],
     sast: [{ type: 'ghWorkflow', label: 'CodeQL', value: 'codeql.yml' }],
@@ -256,7 +261,8 @@ const projects = {
         label: 'scan',
         value: 'security.yml',
       },
-      { type: 'fossa' },
+      { type: 'fossa-license' },
+      { type: 'fossa-security' },
     ],
     ossf: [{ type: 'ossf' }],
     sast: [{ type: 'ghWorkflow', label: 'CodeQL', value: 'codeql.yml' }],
@@ -303,7 +309,8 @@ const projects = {
         label: 'scan',
         value: 'security.yaml',
       },
-      { type: 'fossa' },
+      { type: 'fossa-license' },
+      { type: 'fossa-security' },
     ],
     ossf: [{ type: 'ossf' }],
     sast: [{ type: 'ghWorkflow', label: 'CodeQL', value: 'codeql.yaml' }],
@@ -350,7 +357,8 @@ const projects = {
         label: 'scan',
         value: 'security.yml',
       },
-      { type: 'fossa' },
+      { type: 'fossa-license' },
+      { type: 'fossa-security' },
     ],
     ossf: [{ type: 'ossf' }],
     sast: [{ type: 'ghWorkflow', label: 'CodeQL', value: 'codeql.yml' }],
@@ -479,10 +487,14 @@ function Shield({
   } else if (type === 'ghLicense') {
     badgeSrc = `https://img.shields.io/github/license/${ghOwnerRepo}?style=flat-square&logo=github&color=4c1&label=gh`;
     href = `https://github.com/${ghOwnerRepo}/blob/main/LICENSE`;
-  } else if (type === 'fossa') {
+  } else if (type === 'fossa-license') {
     const fossaRepoPath = ghOwnerRepo.replace('/', '%2F');
-    badgeSrc = `https://app.fossa.com/api/projects/custom%2B588%2Fgithub.com%2F${fossaRepoPath}.svg?type=small`;
-    href = `https://app.fossa.com/projects/custom%2B588%2Fgithub.com%2F${fossaRepoPath}?ref=badge_small`;
+    badgeSrc = `https://app.fossa.com/api/projects/custom%2B588%2Fgithub.com%2FTBD54566975%2F${fossaRepoPath}.svg?type=shield&issueType=license`;
+    href = `https://app.fossa.com/projects/custom%2B588%2Fgithub.com%2FTBD54566975%2F${fossaRepoPath}?ref=badge_shield&issueType=license`;
+  } else if (type === 'fossa-security') {
+    const fossaRepoPath = ghOwnerRepo.replace('/', '%2F');
+    badgeSrc = `https://app.fossa.com/api/projects/custom%2B588%2Fgithub.com%2FTBD54566975%2F${fossaRepoPath}.svg?type=shield&issueType=security`;
+    href = `https://app.fossa.com/projects/custom%2B588%2Fgithub.com%2FTBD54566975%2F${fossaRepoPath}?ref=badge_shield&issueType=security`;
   } else if (type === 'ossf') {
     badgeSrc = `https://img.shields.io/ossf-scorecard/github.com/${ghOwnerRepo}?label=ossf&style=flat-square`;
     href = `https://securityscorecards.dev/viewer/?uri=github.com/${ghOwnerRepo}`;
