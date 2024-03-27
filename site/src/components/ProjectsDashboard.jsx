@@ -317,7 +317,7 @@ const projects = {
     tests: [{ type: 'unit' }, { type: 'codecov' }, { type: 'vectors' }],
     release: [
       { type: 'ghTag' },
-      { type: 'jitPkg' },
+      { type: 'mavenCentral', value: 'tbdex' },
       { label: 'spdx' },
       { label: 'cydx' },
     ],
@@ -365,7 +365,7 @@ const projects = {
     tests: [{ type: 'unit' }, { type: 'codecov' }, { type: 'vectors' }],
     release: [
       { type: 'ghTag' },
-      { type: 'jitPkg' },
+      { type: 'mavenCentral', value: 'web5' },
       { label: 'spdx' },
       { label: 'cydx' },
     ],
@@ -511,9 +511,9 @@ function Shield({
   } else if (type === 'mvnLicense') {
     badgeSrc = `https://img.shields.io/badge/mvn-todo-indigo?style=flat-square&logo=apachemaven&logoColor=FFFFFF&santize=true`;
     href = `https://www.npmjs.com/package/${value}`;
-  } else if (type === 'jitPkg') {
-    badgeSrc = `https://img.shields.io/jitpack/version/com.github.TBD54566975/${repo}?style=flat-square&logo=jitpack&color=4c1`;
-    href = `https://jitpack.io/#TBD54566975/${repo}`;
+  } else if (type === 'mavenCentral') {
+    badgeSrc = `https://img.shields.io/maven-central/v/xyz-block/${value}`
+    href = `https://central.sonatype.com/artifact/xyz.block/${value}`;
   } else if (type == 'unit') {
     badgeSrc = `https://img.shields.io/codecov/c/gh/TBD54566975/${repo}/main?label=BuildKite&style=flat-square&token=YI87CKF1LI`;
     href = `https://buildkite.com/organizations/tbd-oss/analytics/suites/TBD54566975/${repo}?branch=main`
