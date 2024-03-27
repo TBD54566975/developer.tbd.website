@@ -174,7 +174,7 @@ const projects = {
     sast: [{ type: 'ghWorkflow', label: 'CodeQL', value: 'codeql.yml' }],
     tests: [{ type: 'unit' }, { type: 'codecov' }, { type: 'vectors' }],
     release: [
-      { type: 'ghTag', value: '@tbdex/protocol-*' },
+      { type: 'ghTag', value: '@tbdex/protocol@*' },
       { type: 'npmPkg' },
       { label: 'spdx' },
       { label: 'cydx' },
@@ -227,7 +227,7 @@ const projects = {
     sast: [{ type: 'ghWorkflow', label: 'CodeQL', value: 'codeql.yml' }],
     tests: [{ type: 'unit' }, { type: 'codecov' }, { type: 'vectors' }],
     release: [
-      { type: 'ghTag', value: '@tbdex/http-client' },
+      { type: 'ghTag', value: '@tbdex/http-client@*' },
       { type: 'npmPkg' },
       { label: 'spdx' },
       { label: 'cydx' },
@@ -280,7 +280,7 @@ const projects = {
     sast: [{ type: 'ghWorkflow', label: 'CodeQL', value: 'codeql.yml' }],
     tests: [{ type: 'unit' }, { type: 'codecov' }, { type: 'vectors' }],
     release: [
-      { type: 'ghTag', value: '@tbdex/http-filter' },
+      { type: 'ghTag', value: '@tbdex/http-server@*' },
       { type: 'npmPkg' },
       { label: 'spdx' },
       { label: 'cydx' },
