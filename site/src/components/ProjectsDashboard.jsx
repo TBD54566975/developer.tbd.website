@@ -90,7 +90,7 @@ const projects = {
   '@web5/dids': {
     url: 'https://github.com/TBD54566975/web5-js/tree/main/packages/dids',
     language: 'js',
-    repo: 'TBD54566975/web5-js',
+    repo: 'web5-js',
     ciStatus: [
       {
         type: 'ghWorkflow',
@@ -141,7 +141,7 @@ const projects = {
   '@tbdex/protocol': {
     url: 'https://github.com/TBD54566975/tbdex-js/tree/main/packages/protocol',
     language: 'js',
-    repo: 'TBD54566975/tbdex-js',
+    repo: 'tbdex-js',
     ciStatus: [
       {
         type: 'ghWorkflow',
@@ -192,7 +192,7 @@ const projects = {
   '@tbdex/http-client': {
     url: 'https://github.com/TBD54566975/tbdex-js/tree/main/packages/http-client',
     language: 'js',
-    repo: 'TBD54566975/tbdex-js',
+    repo: 'tbdex-js',
     ciStatus: [
       {
         type: 'ghWorkflow',
@@ -243,7 +243,7 @@ const projects = {
   '@tbdex/http-server': {
     url: 'https://github.com/TBD54566975/tbdex-js/tree/main/packages/http-server',
     language: 'js',
-    repo: 'TBD54566975/tbdex-js',
+    repo: 'tbdex-js',
     ciStatus: [
       {
         type: 'ghWorkflow',
@@ -294,7 +294,7 @@ const projects = {
   'tbdex-kt': {
     url: 'https://github.com/TBD54566975/tbdex-kt',
     language: 'kt',
-    repo: 'TBD54566975/tbdex-kt',
+    repo: 'tbdex-kt',
     ciStatus: [
       {
         type: 'ghWorkflow',
@@ -342,7 +342,7 @@ const projects = {
   'web5-kt': {
     url: 'https://github.com/TBD54566975/web5-kt',
     language: 'kt',
-    repo: 'TBD54566975/web5-kt',
+    repo: 'web5-kt',
     ciStatus: [
       {
         type: 'ghWorkflow',
