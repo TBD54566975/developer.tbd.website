@@ -90,14 +90,14 @@ function JvmDependencies({ dependencies, sdks, language }) {
 }
 
 // Main Dependencies component
-function Dependencies({ language, dependencies, display = 'command' }) {
+function Dependencies({ language, dependencies, display = 'install' }) {
   const {
     siteConfig: { customFields },
   } = useDocusaurusContext();
 
   const { SDK_VERSIONS } = customFields;
 
-  if (display === 'command') {
+  if (display === 'install') {
     if (language === 'javascript') {
       return <InstallCommands dependencies={dependencies} />;
     } if (language === 'gradle') {
