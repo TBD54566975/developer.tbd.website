@@ -5,7 +5,6 @@ import CodeBlock from '@theme/CodeBlock';
 
 
 function GradleDependencies({ dependencies, sdks }) {
-  console.log('dependencies', dependencies)
   const repositoriesBlock = `repositories {
     mavenCentral()
     maven("https://repo.danubetech.com/repository/maven-public/")
