@@ -60,7 +60,22 @@ You'll also need to install `@web5/credentials` to create and issue credentials:
 ### Create a DID
 
 Additionally, to issue credentials, you need a [Decentralized Identifier (DID)](/docs/web5/learn/decentralized-identifiers) which will serve as your Issuer's identity.
-If you don't already have one, you'll need to [create a DID](/docs/web5/build/decentralized-identifiers/how-to-create-did).
+If you don't already have one, you'll need to [create a DID](/docs/web5/build/decentralized-identifiers/how-to-create-did) with an IDV (Identity Verification) service endpoint:
+
+<Shnip
+  snippets={[
+    {
+      snippetName: 'createADidWithServiceEndpointJS',
+      language: 'JavaScript',
+      title: 'did.js',
+    },
+    {
+      snippetName: 'createADidWithAServiceEndpointKT',
+      language: 'Kotlin',
+      title: 'Application.kt',
+    },
+  ]}
+/>
 
 ### Create API Service
 
@@ -165,4 +180,4 @@ Now that you have your server environment set up, depending on your use case, yo
 
 - [Credential Issuance Guide](/docs/tbdex/issuer/vc-issuance)
 
-- [Known Customer Credential Guide](/docs/tbdex/issuer/kcc/kcc-issuer/)
+- [Known Customer Credential Guide](/docs/tbdex/issuer/kcc/kcc-issuer)
