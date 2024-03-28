@@ -58,11 +58,25 @@ ${dependenciesBlock}
   return <CodeBlock language="xml">{mavenString}</CodeBlock>;
 }
 
-function SwiftDependencies({ dependencies }) {
-  const swiftImports = dependencies.map(dep => `import ${dep}`).join('\n');
+function SwiftDependencies({ dependencies, sdkVersions }) {
+  const swiftImports = dependencies.map((dep, index) => {
+    const packageInfo = sdkVersions.swift[dep];
+    if (!packageInfo) {
+      console.error(`Package "${dep}" not found in sdkVersions.swift`);
+      return null;
+    }
+    const { url, branch } = packageInfo;
+    return `    .package(url: "${url}", branch: "${branch}")`;
+  }).filter(Boolean).join(',\n');
 
-  return <CodeBlock language="swift">{swiftImports}</CodeBlock>;
+  const swiftDependenciesString = `dependencies: [\n${swiftImports}\n]`;
+
+  return <CodeBlock language="swift">{swiftDependenciesString}</CodeBlock>;
 }
+
+
+
+
 
 
 
@@ -113,15 +127,13 @@ function Dependencies({ language, dependencies, display = 'install' }) {
         case 'maven':
           return <JvmDependencies language={language} dependencies={dependencies} sdks={SDK_VERSIONS.jvm} />;
         case 'swift':
-          return <SwiftDependencies dependencies={dependencies} />;
+          return <SwiftDependencies sdkVersions={SDK_VERSIONS} dependencies={dependencies} />;
         default:
           return null; // Handle unsupported languages
       }
     default:
-      return null; // Handle unsupported displays
   }
   
-
   switch (language) {
     case 'javascript':
       return <PackageJson sdkVersions={SDK_VERSIONS} dependencies={dependencies} />;
