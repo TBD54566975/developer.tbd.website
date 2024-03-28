@@ -3,6 +3,10 @@ sidebar_position: 10
 title: Credential Manifests
 ---
 
+:::warning
+This project is not actively being maintained. If you are interested in adopting it, please [open an issue](https://github.com/TBD54566975/ssi-service).
+:::
+
 # Credential Manifests
 
 ## What is a Credential Manifest?

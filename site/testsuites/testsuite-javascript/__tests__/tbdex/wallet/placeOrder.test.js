@@ -24,15 +24,18 @@ describe('Wallet: Place Order', () => {
         services : [{
           type            : 'PFI',
           id              : 'pfi',
-          serviceEndpoint : 'http://localhost:9000'
+          serviceEndpoint : 'https://localhost:9000'
         }]
       }
     })
 
-    order = DevTools.createOrder({
-      receiver: pfiDid,
-      sender: customerDid
-    });
+    order = Order.create({
+      metadata: {
+        from       : customerDid.uri,
+        to         : pfiDid.uri,
+        exchangeId : Message.generateId('rfq')
+      }
+    })
     await order.sign(customerDid);
 
     const orderStatus = OrderStatus.create({
@@ -53,16 +56,16 @@ describe('Wallet: Place Order', () => {
         to: customerDid.uri,
         exchangeId: order.exchangeId
       },
-      data: { reason: closeReason}
+      data: { reason: closeReason }
     });
     await close.sign(pfiDid);
 
     // Mock the response from the PFI
     server = setupServer(
-      http.post(new RegExp('http://localhost:9000/exchanges/(.+)/order'), () => {
+      http.post(new RegExp('https://localhost:9000/exchanges/(.+)/order'), () => {
         return HttpResponse.json({ status: 202 })
       }),
-      http.get(new RegExp('http://localhost:9000/exchanges/(.+)'), () => {
+      http.get(new RegExp('https://localhost:9000/exchanges/(.+)'), () => {
         return HttpResponse.json(
           {data: [orderStatus, close]},
           { status: 202 },
@@ -82,7 +85,8 @@ describe('Wallet: Place Order', () => {
         metadata: {
           exchangeId : Message.generateId('rfq'),
           from: pfiDid.uri,
-          to: customerDid.uri
+          to: customerDid.uri,
+          protocol: "1.0"
         },
         data: DevTools.createQuoteData()
       })
@@ -92,7 +96,8 @@ describe('Wallet: Place Order', () => {
         metadata: {
           from: customerDid.uri,         // Customer's DID
           to: quote.metadata.from,       // PFI's DID
-          exchangeId: quote.exchangeId  // Exchange ID from the Quote
+          exchangeId: quote.exchangeId,  // Exchange ID from the Quote
+          protocol: "1.0"
         }
       });
       // :snippet-end:
@@ -103,7 +108,7 @@ describe('Wallet: Place Order', () => {
 
       try{
       // :snippet-start: sendOrderJS
-      await TbdexHttpClient.sendMessage({ message: order });
+      await TbdexHttpClient.submitOrder(order);
       // :snippet-end:
       }catch(e){
         expect.fail(e);
@@ -117,19 +122,20 @@ describe('Wallet: Place Order', () => {
 
     while (!closeMessage) {
       const exchange = await TbdexHttpClient.getExchange({
-        did: customerDid,
         pfiDid: order.metadata.to,
+        did: customerDid,
         exchangeId: order.exchangeId
       });
 
       for (const message of exchange) {
         if (message instanceof OrderStatus) {
-          //a status update to display to your customer
+          // a status update to display to your customer
           orderStatusUpdate = message.data.orderStatus;
         }
         else if (message instanceof Close){
-          //final message of exchange has been written
+          // final message of exchange has been written
           closeMessage = message;
+          break;
         }
       }
     }

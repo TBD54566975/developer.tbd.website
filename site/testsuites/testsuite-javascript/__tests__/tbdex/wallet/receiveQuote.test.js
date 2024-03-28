@@ -99,13 +99,14 @@ describe('Wallet: Receive Quote', () => {
       metadata: {
         from: customerDid.uri,
         to: quote.metadata.from,
-        exchangeId: quote.exchangeId
+        exchangeId: quote.exchangeId,
+        protocol: '1.0'
       },
       data: { reason: 'Canceled by customer'}
     });
 
     await close.sign(customerDid);
-    await TbdexHttpClient.sendMessage({ message: close });
+    await TbdexHttpClient.submitClose(close);
     // :snippet-end:
 
     expect(close.exchangeId).toBe(quote.exchangeId);

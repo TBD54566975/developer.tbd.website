@@ -3,6 +3,12 @@ sidebar_position: 5
 title: Credential Issuance Service
 ---
 
+:::warning
+This project is not actively being maintained. If you are interested in adopting it, please [open an issue](https://github.com/TBD54566975/ssi-service).
+:::
+
+# Credential Issuance Service
+
 This tutorial walks you through the lifecycle of a verifiable credential (VC) from designing a schema, issuing a credential, presenting the credential, and verifying it. 
 
 :::info
