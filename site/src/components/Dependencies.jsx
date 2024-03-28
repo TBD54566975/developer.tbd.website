@@ -58,6 +58,14 @@ ${dependenciesBlock}
   return <CodeBlock language="xml">{mavenString}</CodeBlock>;
 }
 
+function SwiftDependencies({ dependencies }) {
+  const swiftImports = dependencies.map(dep => `import ${dep}`).join('\n');
+
+  return <CodeBlock language="swift">{swiftImports}</CodeBlock>;
+}
+
+
+
 // Function to render npm install commands
 function InstallCommands({ dependencies }) {
   const commandString = dependencies.map(dep => `npm install ${dep}`).join('\r\n');
@@ -96,16 +104,23 @@ function Dependencies({ language, dependencies, display = 'install' }) {
 
   const { SDK_VERSIONS } = customFields;
 
-  if (display === 'install') {
-    if (language === 'javascript') {
-      return <InstallCommands dependencies={dependencies} />;
-    } if (language === 'gradle') {
-      return <JvmDependencies language='gradle' dependencies={dependencies} sdks={SDK_VERSIONS.jvm} />;
-    }
-    if(language === 'maven') {
-      return <JvmDependencies language='maven' dependencies={dependencies} sdks={SDK_VERSIONS.jvm} />
-    }
+  switch (display) {
+    case 'install':
+      switch (language) {
+        case 'javascript':
+          return <InstallCommands dependencies={dependencies} />;
+        case 'gradle':
+        case 'maven':
+          return <JvmDependencies language={language} dependencies={dependencies} sdks={SDK_VERSIONS.jvm} />;
+        case 'swift':
+          return <SwiftDependencies dependencies={dependencies} />;
+        default:
+          return null; // Handle unsupported languages
+      }
+    default:
+      return null; // Handle unsupported displays
   }
+  
 
   switch (language) {
     case 'javascript':
