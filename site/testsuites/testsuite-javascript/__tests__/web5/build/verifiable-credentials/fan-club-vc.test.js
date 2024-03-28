@@ -14,7 +14,7 @@ describe('fan-club-vc', () => {
                 this.level = level;
                 this.legit = legit;
             }
-        }; 
+        };
 
         vc = await VerifiableCredential.create({
             type: 'SwiftiesFanClub',
