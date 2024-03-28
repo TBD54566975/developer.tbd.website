@@ -76,7 +76,6 @@ final class SendingRfqTests: XCTestCase {
                     ),
                     claims: selectedCredentials // Array of signed VCs required by the PFI
                 ),
-                externalID: nil,
                 protocol: "1.0"
                 //highlight-end
             )

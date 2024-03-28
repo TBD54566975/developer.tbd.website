@@ -54,7 +54,6 @@ public struct MockData {
                 ),
                 claims: []
             ),
-            externalID: nil,
             protocol: "1.0"
         )
 
@@ -87,7 +86,6 @@ public struct MockData {
                     fee: "0.50"
                 )
             ),
-            externalID: nil,
             protocol: "1.0"
         )
     }
@@ -102,7 +100,6 @@ public struct MockData {
                 to: to,
                 exchangeID: exchangeId,
                 data: .init(),
-                externalID: nil,
                 protocol: "1.0"
             )
     }
@@ -120,7 +117,6 @@ public struct MockData {
             data: .init(
                 orderStatus: status
             ),
-            externalID: nil,
             protocol: "1.0"
         )
     }
@@ -138,7 +134,6 @@ public struct MockData {
             data: .init(
                 reason: reason
             ),
-            externalID: nil,
             protocol: "1.0"
         )
     }
@@ -171,7 +166,6 @@ public struct MockData {
                     fee: "0.50"
                 )
             ),
-            externalID: nil,
             protocol: "1.0"
         )
     }
