@@ -5,10 +5,6 @@
         <id>mavenCentral</id>
         <url>https://repo1.maven.org/maven2/</url>
     </repository>
-    <repository>
-        <id>danubetech-maven-public</id>
-        <url>https://repo.danubetech.com/repository/maven-public/</url>
-    </repository>
 </repositories>
 
 <dependencies>
