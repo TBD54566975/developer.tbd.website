@@ -314,7 +314,7 @@ const projects = {
         value: 'ci.yaml',
       },
     ],
-    license: [{ type: 'ghLicense' }, { type: 'mvnLicense' }],
+    license: [{ type: 'ghLicense' }],
     scan: [
       {
         type: 'ghWorkflow',
@@ -362,7 +362,7 @@ const projects = {
         value: 'ci.yml',
       },
     ],
-    license: [{ type: 'ghLicense' }, { type: 'mvnLicense' }],
+    license: [{ type: 'ghLicense' }],
     scan: [
       {
         type: 'ghWorkflow',
@@ -525,9 +525,6 @@ function Shield({
   } else if (type === 'npmPkg') {
     badgeSrc = `https://img.shields.io/npm/v/@${group}/${packageName}.svg?style=flat-square&logo=npm&logoColor=FFFFFF&color=4c1&santize=true`;
     href = `https://www.npmjs.com/package/@${group}/${packageName}`;
-  } else if (type === 'mvnLicense') {
-    badgeSrc = `https://img.shields.io/badge/mvn-todo-indigo?style=flat-square&logo=apachemaven&logoColor=FFFFFF&santize=true`;
-    href = `https://www.npmjs.com/package/${value}`;
   } else if (type === 'mavenCentral') {
     badgeSrc = `https://img.shields.io/maven-central/v/xyz.block/${value}?color=green`
     href = `https://central.sonatype.com/artifact/xyz.block/${value}`;
