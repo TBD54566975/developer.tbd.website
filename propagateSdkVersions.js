@@ -92,9 +92,6 @@ const updatePomXmlProperties = async (filePath, sdkVersions) => {
 };
 
 
-
-
-
 // Function to recursively find and update pom.xml files, excluding node_modules
 async function findAndUpdatePomProperties(dirPath, sdkVersions) {
   const entries = await fs.promises.readdir(dirPath, { withFileTypes: true });
@@ -110,7 +107,41 @@ async function findAndUpdatePomProperties(dirPath, sdkVersions) {
   }
 }
 
-// Make sure to update the propagateVersions function or any initial call to use findAndUpdatePomProperties
+// Function to update Package.swift dependencies
+const updatePackageSwiftDependencies = async (dirPath, sdkVersions) => {
+  const packageSwiftPath = path.join(dirPath, 'Package.swift');
+  
+  try {
+    const packageSwiftContent = await fs.promises.readFile(packageSwiftPath, 'utf8');
+    let updatedPackageSwiftContent = packageSwiftContent;
+
+    Object.keys(sdkVersions.swift).forEach(dependency => {
+      const { url, branch } = sdkVersions.swift[dependency];
+      const regex = new RegExp(`\\.package\\(url: "${url}", branch: ".*?"\\)`, 'g');
+      updatedPackageSwiftContent = updatedPackageSwiftContent.replace(regex, `.package(url: "${url}", branch: "${branch}")`);
+    });
+
+    await fs.promises.writeFile(packageSwiftPath, updatedPackageSwiftContent);
+  } catch (error) {
+    console.error(`Failed to update Package.swift in ${dirPath}:`, error);
+  }
+};
+
+
+// Function to recursively find and update Package.swift files
+async function findAndUpdatePackageSwift(dirPath, sdkVersions) {
+  const entries = await fs.promises.readdir(dirPath, { withFileTypes: true });
+  for (let dirent of entries) {
+    if (dirent.name === 'node_modules') continue; // Skip node_modules directory
+
+    const fullPath = path.join(dirPath, dirent.name);
+    if (dirent.isDirectory()) {
+      await findAndUpdatePackageSwift(fullPath, sdkVersions); // Recursive call for directories
+    } else if (dirent.name === 'Package.swift') {
+      await updatePackageSwiftDependencies(dirPath, sdkVersions); // Directly update dependencies in Package.swift files
+    }
+  }
+}
 
 
 // Main function to initiate the version propagation process
@@ -121,6 +152,7 @@ async function propagateVersions() {
     for (const dirPath of directoriesToUpdate) {
       await updatePackageJsonDependencies(dirPath, sdkVersions);
       await findAndUpdatePomProperties(dirPath, sdkVersions);
+      await findAndUpdatePackageSwift(dirPath, sdkVersions); // Add this line to update Swift dependencies
     }
   } catch (error) {
     console.error('Failed to propagate versions:', error);
