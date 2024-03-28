@@ -4,7 +4,9 @@ const projects = {
   '@web5/common': {
     url: 'https://github.com/TBD54566975/web5-js/tree/main/packages/common',
     language: 'js',
-    ghOwnerRepo: 'TBD54566975/web5-js',
+    repo: 'web5-js',
+    group: 'web5',
+    packageName: 'common',
     ciStatus: [
       {
         type: 'ghWorkflow',
@@ -14,7 +16,7 @@ const projects = {
     ],
     license: [
       { type: 'ghLicense' },
-      { type: 'npmLicense', value: '@web5/common' },
+      { type: 'npmLicense' },
     ],
     scan: [
       {
@@ -22,23 +24,26 @@ const projects = {
         label: 'scan',
         value: 'security.yml',
       },
-      { type: 'fossa' },
+      { type: 'fossa-license' },
+      { type: 'fossa-security' },
     ],
     ossf: [{ type: 'ossf' }],
     sast: [{ type: 'ghWorkflow', label: 'CodeQL', value: 'codeql.yml' }],
-    tests: [{ label: 'unit' }, { type: 'codecov' }, { label: 'vectors' }],
+    tests: [{ type: 'unit' }, { type: 'codecov' }, { type: 'vectors' }],
     release: [
-      { type: 'ghTag' },
-      { type: 'npmPkg', value: '@web5/common' },
+      { type: 'ghTag', value: 'common-*' },
+      { type: 'npmPkg' },
       { label: 'spdx' },
       { label: 'cydx' },
     ],
-    apiDocs: [{ label: 'docs ci' }, { label: 'docs publish' }],
+    apiDocs: [],
   },
   '@web5/crypto': {
     url: 'https://github.com/TBD54566975/web5-js/tree/main/packages/crypto',
     language: 'js',
-    ghOwnerRepo: 'TBD54566975/web5-js',
+    repo: 'web5-js',
+    group: 'web5',
+    packageName: 'crypto',
     ciStatus: [
       {
         type: 'ghWorkflow',
@@ -48,7 +53,7 @@ const projects = {
     ],
     license: [
       { type: 'ghLicense' },
-      { type: 'npmLicense', value: '@web5/crypto' },
+      { type: 'npmLicense' },
     ],
     scan: [
       {
@@ -56,23 +61,42 @@ const projects = {
         label: 'scan',
         value: 'security.yml',
       },
-      { type: 'fossa' },
+      { type: 'fossa-license' },
+      { type: 'fossa-security' },
     ],
     ossf: [{ type: 'ossf' }],
     sast: [{ type: 'ghWorkflow', label: 'CodeQL', value: 'codeql.yml' }],
-    tests: [{ label: 'unit' }, { type: 'codecov' }, { label: 'vectors' }],
+    tests: [{ type: 'unit' }, { type: 'codecov' }, { type: 'vectors' }],
     release: [
-      { type: 'ghTag' },
-      { type: 'npmPkg', value: '@web5/crypto' },
+      { type: 'ghTag', value: 'crypto-*' },
+      { type: 'npmPkg' },
       { label: 'spdx' },
       { label: 'cydx' },
     ],
-    apiDocs: [{ label: 'docs ci' }, { label: 'docs publish' }],
+    apiDocs: [
+      {
+        type: 'ghWorkflow',
+        label: 'docs ci',
+        value: 'docs-ci.yml',
+      },
+      {
+        type: 'ghWorkflow',
+        label: 'docs publish',
+        value: 'docs-publish.yml',
+      },
+      {
+        value: 'reference docs',
+        href: 'https://tbd54566975.github.io/web5-js/modules/_web5_crypto.html',
+        color: 'purple',
+      },
+    ],
   },
   '@web5/dids': {
     url: 'https://github.com/TBD54566975/web5-js/tree/main/packages/dids',
     language: 'js',
-    ghOwnerRepo: 'TBD54566975/web5-js',
+    repo: 'web5-js',
+    group: 'web5',
+    packageName: 'dids',
     ciStatus: [
       {
         type: 'ghWorkflow',
@@ -82,7 +106,7 @@ const projects = {
     ],
     license: [
       { type: 'ghLicense' },
-      { type: 'npmLicense', value: '@web5/dids' },
+      { type: 'npmLicense' },
     ],
     scan: [
       {
@@ -90,23 +114,42 @@ const projects = {
         label: 'scan',
         value: 'security.yml',
       },
-      { type: 'fossa' },
+      { type: 'fossa-license' },
+      { type: 'fossa-security' },
     ],
     ossf: [{ type: 'ossf' }],
     sast: [{ type: 'ghWorkflow', label: 'CodeQL', value: 'codeql.yml' }],
-    tests: [{ label: 'unit' }, { type: 'codecov' }, { label: 'vectors' }],
+    tests: [{ type: 'unit' }, { type: 'codecov' }, { type: 'vectors' }],
     release: [
-      { type: 'ghTag' },
-      { type: 'npmPkg', value: '@web5/dids' },
+      { type: 'ghTag', value: 'dids-*' },
+      { type: 'npmPkg' },
       { label: 'spdx' },
       { label: 'cydx' },
     ],
-    apiDocs: [{ label: 'docs ci' }, { label: 'docs publish' }],
+    apiDocs: [
+      {
+        type: 'ghWorkflow',
+        label: 'docs ci',
+        value: 'docs-ci.yml',
+      },
+      {
+        type: 'ghWorkflow',
+        label: 'docs publish',
+        value: 'docs-publish.yml',
+      },
+      {
+        value: 'reference docs',
+        href: 'https://tbd54566975.github.io/web5-js/modules/_web5_dids.html',
+        color: 'purple',
+      },
+    ],
   },
   '@tbdex/protocol': {
     url: 'https://github.com/TBD54566975/tbdex-js/tree/main/packages/protocol',
     language: 'js',
-    ghOwnerRepo: 'TBD54566975/tbdex-js',
+    repo: 'tbdex-js',
+    group: 'tbdex',
+    packageName: 'protocol',
     ciStatus: [
       {
         type: 'ghWorkflow',
@@ -116,7 +159,7 @@ const projects = {
     ],
     license: [
       { type: 'ghLicense' },
-      { type: 'npmLicense', value: '@tbdex/protocol' },
+      { type: 'npmLicense' },
     ],
     scan: [
       {
@@ -124,14 +167,15 @@ const projects = {
         label: 'scan',
         value: 'security.yml',
       },
-      { type: 'fossa' },
+      { type: 'fossa-license' },
+      { type: 'fossa-security' },
     ],
     ossf: [{ type: 'ossf' }],
     sast: [{ type: 'ghWorkflow', label: 'CodeQL', value: 'codeql.yml' }],
-    tests: [{ label: 'unit' }, { type: 'codecov' }, { label: 'vectors' }],
+    tests: [{ type: 'unit' }, { type: 'codecov' }, { type: 'vectors' }],
     release: [
-      { type: 'ghTag' },
-      { type: 'npmPkg', value: '@tbdex/protocol' },
+      { type: 'ghTag', value: '@tbdex/protocol@*' },
+      { type: 'npmPkg' },
       { label: 'spdx' },
       { label: 'cydx' },
     ],
@@ -156,7 +200,9 @@ const projects = {
   '@tbdex/http-client': {
     url: 'https://github.com/TBD54566975/tbdex-js/tree/main/packages/http-client',
     language: 'js',
-    ghOwnerRepo: 'TBD54566975/tbdex-js',
+    repo: 'tbdex-js',
+    group: 'tbdex',
+    packageName: 'http-client',
     ciStatus: [
       {
         type: 'ghWorkflow',
@@ -166,7 +212,7 @@ const projects = {
     ],
     license: [
       { type: 'ghLicense' },
-      { type: 'npmLicense', value: '@tbdex/http-client' },
+      { type: 'npmLicense' },
     ],
     scan: [
       {
@@ -174,14 +220,15 @@ const projects = {
         label: 'scan',
         value: 'security.yml',
       },
-      { type: 'fossa' },
+      { type: 'fossa-license' },
+      { type: 'fossa-security' },
     ],
     ossf: [{ type: 'ossf' }],
     sast: [{ type: 'ghWorkflow', label: 'CodeQL', value: 'codeql.yml' }],
-    tests: [{ label: 'unit' }, { type: 'codecov' }, { label: 'vectors' }],
+    tests: [{ type: 'unit' }, { type: 'codecov' }, { type: 'vectors' }],
     release: [
-      { type: 'ghTag' },
-      { type: 'npmPkg', value: '@tbdex/http-client' },
+      { type: 'ghTag', value: '@tbdex/http-client@*' },
+      { type: 'npmPkg' },
       { label: 'spdx' },
       { label: 'cydx' },
     ],
@@ -206,7 +253,9 @@ const projects = {
   '@tbdex/http-server': {
     url: 'https://github.com/TBD54566975/tbdex-js/tree/main/packages/http-server',
     language: 'js',
-    ghOwnerRepo: 'TBD54566975/tbdex-js',
+    repo: 'tbdex-js',
+    group: 'tbdex',
+    packageName: 'http-server',
     ciStatus: [
       {
         type: 'ghWorkflow',
@@ -216,7 +265,7 @@ const projects = {
     ],
     license: [
       { type: 'ghLicense' },
-      { type: 'npmLicense', value: '@tbdex/http-server' },
+      { type: 'npmLicense' },
     ],
     scan: [
       {
@@ -224,14 +273,15 @@ const projects = {
         label: 'scan',
         value: 'security.yml',
       },
-      { type: 'fossa' },
+      { type: 'fossa-license' },
+      { type: 'fossa-security' },
     ],
     ossf: [{ type: 'ossf' }],
     sast: [{ type: 'ghWorkflow', label: 'CodeQL', value: 'codeql.yml' }],
-    tests: [{ label: 'unit' }, { type: 'codecov' }, { label: 'vectors' }],
+    tests: [{ type: 'unit' }, { type: 'codecov' }, { type: 'vectors' }],
     release: [
-      { type: 'ghTag' },
-      { type: 'npmPkg', value: '@tbdex/http-server' },
+      { type: 'ghTag', value: '@tbdex/http-server@*' },
+      { type: 'npmPkg' },
       { label: 'spdx' },
       { label: 'cydx' },
     ],
@@ -256,7 +306,7 @@ const projects = {
   'tbdex-kt': {
     url: 'https://github.com/TBD54566975/tbdex-kt',
     language: 'kt',
-    ghOwnerRepo: 'TBD54566975/tbdex-kt',
+    repo: 'tbdex-kt',
     ciStatus: [
       {
         type: 'ghWorkflow',
@@ -264,21 +314,22 @@ const projects = {
         value: 'ci.yaml',
       },
     ],
-    license: [{ type: 'ghLicense' }, { type: 'mvnLicense' }],
+    license: [{ type: 'ghLicense' }],
     scan: [
       {
         type: 'ghWorkflow',
         label: 'scan',
         value: 'security.yaml',
       },
-      { type: 'fossa' },
+      { type: 'fossa-license' },
+      { type: 'fossa-security' },
     ],
     ossf: [{ type: 'ossf' }],
     sast: [{ type: 'ghWorkflow', label: 'CodeQL', value: 'codeql.yaml' }],
-    tests: [{ label: 'unit' }, { type: 'codecov' }, { label: 'vectors' }],
+    tests: [{ type: 'unit' }, { type: 'codecov' }, { type: 'vectors' }],
     release: [
       { type: 'ghTag' },
-      { type: 'jitPkg' },
+      { type: 'mavenCentral', value: 'tbdex' },
       { label: 'spdx' },
       { label: 'cydx' },
     ],
@@ -303,7 +354,7 @@ const projects = {
   'web5-kt': {
     url: 'https://github.com/TBD54566975/web5-kt',
     language: 'kt',
-    ghOwnerRepo: 'TBD54566975/web5-kt',
+    repo: 'web5-kt',
     ciStatus: [
       {
         type: 'ghWorkflow',
@@ -311,21 +362,22 @@ const projects = {
         value: 'ci.yml',
       },
     ],
-    license: [{ type: 'ghLicense' }, { type: 'mvnLicense' }],
+    license: [{ type: 'ghLicense' }],
     scan: [
       {
         type: 'ghWorkflow',
         label: 'scan',
         value: 'security.yml',
       },
-      { type: 'fossa' },
+      { type: 'fossa-license' },
+      { type: 'fossa-security' },
     ],
     ossf: [{ type: 'ossf' }],
     sast: [{ type: 'ghWorkflow', label: 'CodeQL', value: 'codeql.yml' }],
-    tests: [{ label: 'unit' }, { type: 'codecov' }, { label: 'vectors' }],
+    tests: [{ type: 'unit' }, { type: 'codecov' }, { type: 'vectors' }],
     release: [
       { type: 'ghTag' },
-      { type: 'jitPkg' },
+      { type: 'mavenCentral', value: 'web5' },
       { label: 'spdx' },
       { label: 'cydx' },
     ],
@@ -438,40 +490,50 @@ function Shield({
   href,
   value = 'todo',
   color = 'indigo',
-  ghOwnerRepo,
+  group,
+  packageName,
+  repo,
 }) {
   let badgeSrc = `https://img.shields.io/${type}/${label}-${value}-${color}?style=flat-square`;
   if (type === 'ghWorkflow') {
-    badgeSrc = `https://img.shields.io/github/actions/workflow/status/${ghOwnerRepo}/${value}?style=flat-square&branch=main&logo=github&label=${label}&logoColor=FFFFFF`;
-    href = `https://github.com/${ghOwnerRepo}/actions/workflows/${value}`;
+    badgeSrc = `https://img.shields.io/github/actions/workflow/status/TBD54566975/${repo}/${value}?style=flat-square&branch=main&logo=github&label=${label}&logoColor=FFFFFF`;
+    href = `https://github.com/TBD54566975/${repo}/actions/workflows/${value}`;
   } else if (type === 'ghLicense') {
-    badgeSrc = `https://img.shields.io/github/license/${ghOwnerRepo}?style=flat-square&logo=github&color=4c1&label=gh`;
-    href = `https://github.com/${ghOwnerRepo}/blob/main/LICENSE`;
-  } else if (type === 'fossa') {
-    const fossaRepoPath = ghOwnerRepo.replace('/', '%2F');
-    badgeSrc = `https://app.fossa.com/api/projects/custom%2B588%2Fgithub.com%2F${fossaRepoPath}.svg?type=small`;
-    href = `https://app.fossa.com/projects/custom%2B588%2Fgithub.com%2F${fossaRepoPath}?ref=badge_small`;
+    badgeSrc = `https://img.shields.io/github/license/TBD54566975/${repo}?style=flat-square&logo=github&color=4c1&label=gh`;
+    href = `https://github.com/TBD54566975/${repo}/blob/main/LICENSE`;
+  } else if (type === 'fossa-license') {
+    badgeSrc = `https://app.fossa.com/api/projects/custom%2B588%2Fgithub.com%2FTBD54566975%2F${repo}.svg?type=shield&issueType=license`;
+    href = `https://app.fossa.com/projects/custom%2B588%2Fgithub.com%2FTBD54566975%2F${repo}?ref=badge_shield&issueType=license`;
+  } else if (type === 'fossa-security') {
+    badgeSrc = `https://app.fossa.com/api/projects/custom%2B588%2Fgithub.com%2FTBD54566975%2F${repo}.svg?type=shield&issueType=security`;
+    href = `https://app.fossa.com/projects/custom%2B588%2Fgithub.com%2FTBD54566975%2F${repo}?ref=badge_shield&issueType=security`;
   } else if (type === 'ossf') {
-    badgeSrc = `https://img.shields.io/ossf-scorecard/github.com/${ghOwnerRepo}?label=ossf&style=flat-square`;
-    href = `https://securityscorecards.dev/viewer/?uri=github.com/${ghOwnerRepo}`;
+    badgeSrc = `https://img.shields.io/ossf-scorecard/github.com/TBD54566975/${repo}?label=ossf&style=flat-square`;
+    href = `https://securityscorecards.dev/viewer/?uri=github.com/TBD54566975/${repo}`;
   } else if (type === 'codecov') {
-    badgeSrc = `https://img.shields.io/codecov/c/gh/${ghOwnerRepo}/main?label=codecov&style=flat-square&token=YI87CKF1LI`;
-    href = `https://codecov.io/github/${ghOwnerRepo}`;
+    badgeSrc = `https://img.shields.io/codecov/c/gh/TBD54566975/${repo}/main?label=codecov&style=flat-square&token=YI87CKF1LI`;
+    href = `https://codecov.io/github/TBD54566975/${repo}`;
   } else if (type === 'ghTag') {
-    badgeSrc = `https://img.shields.io/github/v/release/${ghOwnerRepo}?logo=github&label=tag&style=flat-square&color=4c1`;
-    href = `https://github.com/${ghOwnerRepo}/releases`;
+    badgeSrc = `https://img.shields.io/github/v/release/TBD54566975/${repo}?logo=github&label=tag&style=flat-square&color=4c1`;
+    if(value) {
+      badgeSrc += `&filter=${value}`;
+    }
+    href = `https://github.com/TBD54566975/${repo}/releases`;
   } else if (type === 'npmLicense') {
-    badgeSrc = `https://img.shields.io/npm/l/${value}.svg?style=flat-square&logo=npm&logoColor=FFFFFF&&color=4c1&santize=true&label=npm`;
-    href = `https://www.npmjs.com/package/${value}`;
+    badgeSrc = `https://img.shields.io/npm/l/@${group}/${packageName}.svg?style=flat-square&logo=npm&logoColor=FFFFFF&&color=4c1&santize=true&label=npm`;
+    href = `https://www.npmjs.com/package/@${group}/${packageName}`;
   } else if (type === 'npmPkg') {
-    badgeSrc = `https://img.shields.io/npm/v/${value}.svg?style=flat-square&logo=npm&logoColor=FFFFFF&color=4c1&santize=true`;
-    href = `https://www.npmjs.com/package/${value}`;
-  } else if (type === 'mvnLicense') {
-    badgeSrc = `https://img.shields.io/badge/mvn-todo-indigo?style=flat-square&logo=apachemaven&logoColor=FFFFFF&santize=true`;
-    href = `https://www.npmjs.com/package/${value}`;
-  } else if (type === 'jitPkg') {
-    badgeSrc = `https://img.shields.io/jitpack/version/com.github.${ghOwnerRepo}?style=flat-square&logo=jitpack&color=4c1`;
-    href = `https://jitpack.io/#${ghOwnerRepo}`;
+    badgeSrc = `https://img.shields.io/npm/v/@${group}/${packageName}.svg?style=flat-square&logo=npm&logoColor=FFFFFF&color=4c1&santize=true`;
+    href = `https://www.npmjs.com/package/@${group}/${packageName}`;
+  } else if (type === 'mavenCentral') {
+    badgeSrc = `https://img.shields.io/maven-central/v/xyz.block/${value}?color=green`
+    href = `https://central.sonatype.com/artifact/xyz.block/${value}`;
+  } else if (type == 'unit') {
+    badgeSrc = `https://img.shields.io/codecov/c/gh/TBD54566975/${repo}/main?label=BuildKite&style=flat-square&token=YI87CKF1LI`;
+    href = `https://buildkite.com/organizations/tbd-oss/analytics/suites/TBD54566975/${repo}?branch=main`
+  } else if (type == 'vectors') {
+    badgeSrc = `https://tbd54566975.github.io/sdk-report-runner/${repo}.svg`
+    href = "https://tbd54566975.github.io/sdk-report-runner/"
   }
 
   const img = <img className="m-0.5" src={badgeSrc} />;
