@@ -140,7 +140,6 @@ describe('fan-club-vc', () => {
             additionalData: { presentationResult }
         });
         // :snippet-end:
-        console.log(JSON.stringify(vp))
         expect(presentationResult.presentation).toHaveProperty('@context');
         expect(presentationResult.presentation).toHaveProperty('type');
         expect(presentationResult.presentation).toHaveProperty('presentation_submission');
