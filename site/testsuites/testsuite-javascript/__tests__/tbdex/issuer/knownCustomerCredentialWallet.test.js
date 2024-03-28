@@ -26,7 +26,10 @@ describe('Presentation Exchange Process', () => {
         constraints: {
           fields: [
             {
-              path: ['$.credentialSubject.given_name'],
+              path: [
+                '$.credentialSubject.given_name',
+                '$.vc.credentialSubject.given_name',
+              ],
               filter: {
                 type: 'string',
               },
@@ -41,7 +44,10 @@ describe('Presentation Exchange Process', () => {
         constraints: {
           fields: [
             {
-              path: ['$.credentialSubject.family_name'],
+              path: [
+                '$.credentialSubject.family_name',
+                '$.vc.credentialSubject.family_name',
+              ],
               filter: {
                 type: 'string',
               },
@@ -56,7 +62,10 @@ describe('Presentation Exchange Process', () => {
         constraints: {
           fields: [
             {
-              path: ['$.credentialSubject.birthdate'],
+              path: [
+                '$.credentialSubject.birthdate',
+                '$.vc.credentialSubject.birthdate',
+              ],
               filter: {
                 type: 'string',
                 format: 'date',
@@ -72,7 +81,10 @@ describe('Presentation Exchange Process', () => {
         constraints: {
           fields: [
             {
-              path: ['$.credentialSubject.national_identifier'],
+              path: [
+                '$.credentialSubject.national_identifier',
+                '$.vc.credentialSubject.national_identifier',
+              ],
               filter: {
                 type: 'string',
               },

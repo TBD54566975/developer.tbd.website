@@ -4,7 +4,7 @@ title: KCC Wallet Flow
 hide_title: true
 ---
 
-<LanguageSwitcher languages="JavaScript, Kotlin" />
+<LanguageSwitcher languages="JavaScript, Kotlin, Swift" />
 
 # Requesting a Known Customer Credential
 
@@ -49,6 +49,14 @@ Your Wallet App will require libraries for handling HTTP requests and processing
       },
     },
   ]}
+  inlineSnippets={[
+    {
+      code: `dependencies: [
+      .package(url: "https://github.com/TBD54566975/web5-swift", exact: "0.0.4"),
+]`,
+      language: 'Swift',
+    },
+  ]}
 />
 
 ### Framework Flexibility
@@ -78,6 +86,18 @@ Your Wallet App will require libraries for handling HTTP requests and processing
       libraries of your chosen framework or platform.
     </p>
   </div>
+  <div language="Swift">
+    <p>
+      The core logic provided in the code snippets of this guide is designed to
+      be adaptable across different development environments. The code examples
+      primarily cater to a **Swift environment** utilizing Xcode however, the
+      concepts shown can be applied within various frameworks or platforms,
+      including web applications, server-side applications, and mobile
+      applications. Depending on your development context, you'll need to adjust
+      aspects like HTTP request handling, and secure storage to align with the
+      practices and libraries of your chosen framework or platform.
+    </p>
+  </div>
 </LanguageSwitchBlock>
 
 ## IDV Process
@@ -104,6 +124,11 @@ Resolve the Issuer's DID to get the IDV service Endpoint that can be found in th
       language: 'Kotlin',
       title: 'Application.kt',
     },
+    {
+      snippetName: 'knownCustomerCredentialResolveIssuerDidSwift',
+      language: 'Swift',
+      title: 'Application.swift',
+    },
   ]}
 />
 
@@ -122,6 +147,12 @@ Send an HTTP request to the IDV Service Endpoint:
       snippetName: 'knownCustomerCredentialSendRequestToIdvServiceEndpointKT',
       language: 'Kotlin',
       title: 'Application.kt',
+    },
+    {
+      snippetName:
+        'knownCustomerCredentialSendRequestToIdvServiceEndpointSwift',
+      language: 'Swift',
+      title: 'Application.swift',
     },
   ]}
 />
@@ -225,6 +256,11 @@ Decode the Issuer's SIOPv2 Authorization Request and create a [SIOPv2 Authorizat
       language: 'Kotlin',
       title: 'Application.kt',
     },
+    {
+      snippetName: 'knownCustomerCredentialhandleSiopRequestWalletSwift',
+      language: 'Swift',
+      title: 'Application.swift',
+    },
   ]}
 />
 
@@ -279,6 +315,11 @@ Extract and store the `credential_issuer` URL and `pre_authorized_code` from the
       language: 'Kotlin',
       title: 'Application.kt',
     },
+    {
+      snippetName: 'knownCustomerCredentialHandleIssuerResponseWalletSwift',
+      language: 'Swift',
+      title: 'Application.swift',
+    },
   ]}
 />
 
@@ -303,6 +344,11 @@ To construct the URL to fetch the Issuer's Metadata, the Wallet needs to append 
       snippetName: 'knownCustomerCredentialFetchIssuerMetadataWalletKT',
       language: 'Kotlin',
       title: 'Application.kt',
+    },
+    {
+      snippetName: 'knownCustomerCredentialFetchIssuerMetadataWalletSwift',
+      language: 'Swift',
+      title: 'Application.swift',
     },
   ]}
 />
@@ -329,7 +375,7 @@ Here is an example of an Issuer's Metadata:
       "format": "jwt_vc_json",
       "scope": "CustomerIdentity",
       "cryptographic_binding_methods_supported": ["did:example"],
-      "credential_signing_alg_values_supported": ["ES256"],
+      "credential_signing_alg_values_supported": ["EdDSA", "ES256K"],
       "credential_definition": {
         "type": ["VerifiableCredential", "KnownCustomerCredential"],
         "credentialSubject": {
@@ -345,7 +391,7 @@ Here is an example of an Issuer's Metadata:
       },
       "proof_types_supported": {
         "jwt": {
-          "proof_signing_alg_values_supported": ["ES256"]
+          "proof_signing_alg_values_supported": ["EdDSA", "ES256K"]
         }
       },
       "display": [
@@ -386,6 +432,11 @@ Before the Wallet can request a KCC from the Issuer, the Wallet needs to also fe
       language: 'Kotlin',
       title: 'Application.kt',
     },
+    {
+      snippetName: 'knownCustomerCredentialFetchAuthServerMetadataWalletSwift',
+      language: 'Swift',
+      title: 'Application.Swift',
+    },
   ]}
 />
 
@@ -424,6 +475,11 @@ Fetch the Access Token from the Issuer's `/token` endpoint:
       language: 'Kotlin',
       title: 'Application.kt',
     },
+    {
+      snippetName: 'knownCustomerCredentialFetchAccessTokenWalletSwift',
+      language: 'Swift',
+      title: 'Application.swift',
+    },
   ]}
 />
 
@@ -448,6 +504,7 @@ Here's an example Access Token Response from the Issuer:
 
 ````
 </details>
+
 ## Request Known Customer Credential
 
 After receiving the `access_token` from the Issuer, the Wallet can now send a KCC request to the `credential_endpoint` that was in the Issuer's Metadata.
@@ -468,13 +525,18 @@ Sign and Send an HTTP POST request to the Issuer's credential endpoint:
       language: 'Kotlin',
       title: 'Application.kt',
     },
+    {
+      snippetName: 'knownCustomerCredentialRequestCredentialWalletSwift',
+      language: 'Swift',
+      title: 'Application.swift',
+    },
   ]}
 />
 
 :::info
 To learn more about the **fields** within the `payload` and `header`, please refer to [OpenID's specs](https://openid.net/specs/openid-4-verifiable-credential-issuance-1_0.html#section-7.2.1.1-2.1.1).
 
-The Known Customer Credential will be a signed VC [JSON Web Token](https://jwt.io/) for secure transmission.
+The Known Customer Credential will be a signed VC [JSON Web Token](https://www.w3.org/TR/vc-data-model/#json-web-token) for secure transmission.
 :::
 
 ## Example Known Customer Credential
@@ -496,8 +558,8 @@ To convert the signed VC JWT into a `VerifiableCredential` object you can use th
     "expirationDate": "2026-05-19T08:02:04Z",
     "evidence": [
       {
-      kind: "document_verification",
-      checks: ["passport", "utility_bill"]
+        kind: "document_verification",
+        checks: ["passport", "utility_bill"]
       },
       {
         kind: "sanction_screening",
@@ -511,7 +573,7 @@ To convert the signed VC JWT into a `VerifiableCredential` object you can use th
     }
   }
 }
-```
+````
 
    </p>
 
@@ -530,8 +592,8 @@ To convert the signed VC JWT into a `VerifiableCredential` object you can use th
   "expirationDate": "2026-05-19T08:02:04Z",
   "evidence": [
     {
-    kind: "document_verification",
-    checks: ["passport", "utility_bill"]
+      kind: "document_verification",
+      checks: ["passport", "utility_bill"]
     },
     {
       kind: "sanction_screening",
@@ -548,6 +610,38 @@ To convert the signed VC JWT into a `VerifiableCredential` object you can use th
 
 </p>
 
+  </div>
+
+<div language="Swift">
+<p>
+
+```javascript
+{
+  "@context": ["https://www.w3.org/2018/credentials/v1"],
+  "type": ["VerifiableCredential", "KnownCustomerCredential"],
+  "id": "urn:uuid:12345678-1234-5678-1234-567812345678",
+  "issuer": "did:dht:z6Mkn4w6nSaWe4fjNJRvaHZwFnMm5VexvjzDeozEu2G7jC34",
+  "issuanceDate": "2024-01-01T19:23:24Z",
+  "expirationDate": "2026-05-19T08:02:04Z",
+  "evidence": [
+    {
+      kind: "document_verification",
+      checks: ["passport", "utility_bill"]
+    },
+    {
+      kind: "sanction_screening",
+      checks: ["PEP"]
+    }
+  ],
+  "credentialSubject": {
+    "id": "did:dht:z6MkjGSeekPGE9QfczHWyW8v2ZzJU68kqSHzV7L2dmQyuyDu",
+    "country_of_residence": "US",
+    "tier": "Gold"
+  }
+}
+```
+
+</p>
 
   </div>
 </LanguageSwitchBlock>
@@ -557,4 +651,3 @@ To the user, an example KCC may look like this:
 [**KCC IMAGE**]
 
 With that, you've successfully gone through the Identity Verification flow, requested a Known Customer Credential on behalf of the user, and securely stored the user's Known Customer Credential. Please note that this example is a foundational implementation. For a production environment, it's crucial to enhance this basic setup with comprehensive error handling, secure storage and security measures.
-````

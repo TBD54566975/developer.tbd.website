@@ -181,6 +181,9 @@ class KnownCustomerCredentialWalletTest {
     // :snippet-start: knownCustomerCredentialResolveIssuerDidKT
     private suspend fun resolveIssuerDid(issuerDidUri: String): String {
         try {
+            /****************************************
+            * Resolve DID & Get IDV Service Endpoint
+            ****************************************/
             val resolvedDid = DidResolvers.resolve(issuerDidUri)
             val didDocument = resolvedDid.didDocument ?: throw Exception(
                 "DID Document is null"
