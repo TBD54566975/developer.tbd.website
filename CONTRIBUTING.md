@@ -38,6 +38,69 @@ We are centralizing our depencies to a single json object at the root level name
 
 Whenever you'd like to update a dependency for a specific language, you update that version in the respective language attribute. When you run `pnpm install` these versions will be propagated throughout the repo in the right places.
 
+### <Dependencies />
+
+We havea Dependencies component that helps you display required dependencies for each SDK.
+
+For example, if you want to display `npm install` commands for JavaScript, you'd use it like this:
+
+```jsx
+<Dependencies language="javascript" dependencies={["@web5/api", "@web5/crypto"]} />
+```
+
+Please refer to the sdk-versions.json file to correctly refer to the package names.
+
+This also supports handling maven and gradle dependencies.
+
+Example:
+
+```jsx
+<Dependencies language="maven" dependencies={['tbdex', 'web5-credentials']} />
+```
+
+Will return:
+
+```xml
+<repositories>
+        <repository>
+            <id>mavenCentral</id>
+            <url>https://repo1.maven.org/maven2/</url>
+        </repository>
+        <repository>
+            <id>danubetech-maven-public</id>
+            <url>https://repo.danubetech.com/repository/maven-public/</url>
+        </repository>
+</repositories>
+
+<dependencies>
+        <dependency>
+            <groupId>xyz.block</groupId>
+            <artifactId>tbdex</artifactId>
+            <version>0.10.0-beta</version>
+        </dependency>
+</dependencies>
+```
+
+For gradle:
+
+```jsx
+<Dependencies language="gradle" dependencies={['tbdex', 'web5-credentials']} />
+```
+
+Will Return:
+
+```gradle
+repositories {
+        mavenCentral()
+        maven("https://repo.danubetech.com/repository/maven-public/")
+}
+dependencies {
+        implementation("xyz.block:web5-credentials:0.0.9-delta")
+        implementation("xyz.block:web5-dids:0.0.9-delta")
+        implementation("xyz.block:tbdex:0.10.0-beta")
+}
+```
+
 #### Contributing Content
 
 It's important for the integrity of our documentation to remain in tact while adding content to our docs site. We do this by making sure that most of the code snippets we display are also testable from an execution standpoint. If you plan on editing or adding code snippets to our docs, please follow the guideline below:
