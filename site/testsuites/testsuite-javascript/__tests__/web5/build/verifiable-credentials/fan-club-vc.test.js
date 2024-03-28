@@ -1,21 +1,20 @@
 import { test, expect, vi, describe, beforeAll } from 'vitest';
-import { DidKey } from '@web5/dids';
-import { VerifiableCredential, PresentationExchange } from '@web5/credentials';
-import { setUpWeb5 } from '../../../setup-web5';
+import { DidDht } from '@web5/dids';
+import { VerifiableCredential, PresentationExchange, VerifiablePresentation } from '@web5/credentials';
 
 describe('fan-club-vc', () => {
     let fanClubIssuerDid, aliceDid, SwiftiesFanClub, vc, signedVcJwt, presentationDefinition;
 
     beforeAll(async () => {
-        fanClubIssuerDid = await DidKey.create();
-        aliceDid = await DidKey.create();
+        fanClubIssuerDid = await DidDht.create();
+        aliceDid = await DidDht.create();
 
         SwiftiesFanClub = class {
             constructor(level, legit) {
                 this.level = level;
                 this.legit = legit;
             }
-        };
+        }; 
 
         vc = await VerifiableCredential.create({
             type: 'SwiftiesFanClub',
@@ -55,11 +54,11 @@ describe('fan-club-vc', () => {
     });
     test('createDids creates an issuer DID and alice DID with did:key method', async () => {
         // :snippet-start: createDids
-        const fanClubIssuerDid = await DidKey.create();
-        const aliceDid = await DidKey.create();
+        const fanClubIssuerDid = await DidDht.create();
+        const aliceDid = await DidDht.create();
         // :snippet-end:
-        expect(aliceDid.uri).toMatch(/^did:key:/);
-        expect(fanClubIssuerDid.uri).toMatch(/^did:key:/);
+        expect(aliceDid.uri).toMatch(/^did:dht:/);
+        expect(fanClubIssuerDid.uri).toMatch(/^did:dht:/);
     });
 
     test('createFanClubVc creates a vc for fan club', async () => {
@@ -134,13 +133,20 @@ describe('fan-club-vc', () => {
         // :snippet-start: createPresentationFromCredentialsFanClubVc
         // Create Presentation Result that contains a Verifiable Presentation and Presentation Submission
         const presentationResult = PresentationExchange.createPresentationFromCredentials({ vcJwts: [signedVcJwt], presentationDefinition: presentationDefinition });
+        
+        const vp = await VerifiablePresentation.create({
+            holder: aliceDid.uri,
+            vcJwts: [signedVcJwt],
+            additionalData: { presentationResult }
+        });
         // :snippet-end:
-
+        console.log(JSON.stringify(vp))
         expect(presentationResult.presentation).toHaveProperty('@context');
         expect(presentationResult.presentation).toHaveProperty('type');
         expect(presentationResult.presentation).toHaveProperty('presentation_submission');
         expect(presentationResult).toHaveProperty('presentationSubmissionLocation');
         expect(presentationResult).toHaveProperty('presentationSubmission');
+        expect(vp.vpDataModel.verifiableCredential[0]).toEqual(signedVcJwt);
     });
     test('verifyFanClubVc checks if VC verification is successful', async () => {
         const logSpy = vi.spyOn(console, 'log');

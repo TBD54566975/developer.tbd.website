@@ -317,41 +317,56 @@ The result of the presentation:
     {
       code: `
 {
-  "presentation": {
+  "vpDataModel": {
     "@context": [
-      "https://www.w3.org/2018/credentials/v1",
-      "https://identity.foundation/presentation-exchange/submission/v1"
+      "https://www.w3.org/2018/credentials/v1"
     ],
     "type": [
-      "VerifiablePresentation",
-      "PresentationSubmission"
+      "VerifiablePresentation"
     ],
-    "presentation_submission": {
-      "id": "kMqRP0zRKaiZNlbtbEIxd",
-      "definition_id": "presDefId123",
-      "descriptor_map": [
-        {
-          "id": "legitness",
-          "format": "jwt_vc",
-          "path": "$.verifiableCredential[0]"
-        }
-      ]
-    },
+    "id": "urn:uuid:09dd1229-450c-46b2-aebb-c988a3b29ffd",
+    "holder": "did:dht:mb7e5azb7m5mcxbjdirnkrhsbttpu8mccs3apywagdms4bii17yo",
     "verifiableCredential": [
       "eyJ0eXAiOipOSl...WndCJ9.eyJ2YyTk0MN2pDMzQhdG...UR1In0.rtlg8k9KU8_ENkrY06y..."
-    ]
-  },
-  "presentationSubmissionLocation": 1,
-  "presentationSubmission": {
-    "id": "kMqRP0zRKaiZNlbtbEIxd",
-    "definition_id": "presDefId123",
-    "descriptor_map": [
-      {
-        "id": "legitness",
-        "format": "jwt_vc",
-        "path": "$.verifiableCredential[0]"
+    ],
+    "presentationResult": {
+      "presentation": {
+        "@context": [
+          "https://www.w3.org/2018/credentials/v1",
+          "https://identity.foundation/presentation-exchange/submission/v1"
+        ],
+        "type": [
+          "VerifiablePresentation",
+          "PresentationSubmission"
+        ],
+        "presentation_submission": {
+          "id": "7wTT3HWSr_EeSK6CuxXxL",
+          "definition_id": "presDefId123",
+          "descriptor_map": [
+            {
+              "id": "legitness",
+              "format": "jwt_vc",
+              "path": "$.verifiableCredential[0]"
+            }
+          ]
+        },
+        "verifiableCredential": [
+          "eyJ0eXAiOipOSl...WndCJ9.eyJ2YyTk0MN2pDMzQhdG...UR1In0.rtlg8k9KU8_ENkrY06y..."
+        ]
+      },
+      "presentationSubmissionLocation": 1,
+      "presentationSubmission": {
+        "id": "7wTT3HWSr_EeSK6CuxXxL",
+        "definition_id": "presDefId123",
+        "descriptor_map": [
+          {
+            "id": "legitness",
+            "format": "jwt_vc",
+            "path": "$.verifiableCredential[0]"
+          }
+        ]
       }
-    ]
+    }
   }
 }
       `,
