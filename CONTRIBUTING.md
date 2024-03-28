@@ -40,7 +40,7 @@ Whenever you'd like to update a dependency for a specific language, you update t
 
 ### <Dependencies />
 
-We havea Dependencies component that helps you display required dependencies for each SDK.
+We have a Dependencies component that helps you display required dependencies for each SDK.
 
 For example, if you want to display `npm install` commands for JavaScript, you'd use it like this:
 
