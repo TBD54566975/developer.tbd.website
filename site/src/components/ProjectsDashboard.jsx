@@ -529,7 +529,7 @@ function Shield({
     badgeSrc = `https://img.shields.io/badge/mvn-todo-indigo?style=flat-square&logo=apachemaven&logoColor=FFFFFF&santize=true`;
     href = `https://www.npmjs.com/package/${value}`;
   } else if (type === 'mavenCentral') {
-    badgeSrc = `https://img.shields.io/maven-central/v/xyz.block/${value}`
+    badgeSrc = `https://img.shields.io/maven-central/v/xyz.block/${value}?color=green`
     href = `https://central.sonatype.com/artifact/xyz.block/${value}`;
   } else if (type == 'unit') {
     badgeSrc = `https://img.shields.io/codecov/c/gh/TBD54566975/${repo}/main?label=BuildKite&style=flat-square&token=YI87CKF1LI`;
