@@ -75,11 +75,6 @@ function SwiftDependencies({ dependencies, sdkVersions }) {
 }
 
 
-
-
-
-
-
 // Function to render npm install commands
 function InstallCommands({ dependencies }) {
   const commandString = dependencies.map(dep => `npm install ${dep}`).join('\r\n');
