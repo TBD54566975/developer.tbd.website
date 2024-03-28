@@ -31,7 +31,6 @@ final class PlaceOrderTests: XCTestCase {
             to: pfiDid, // PFI's DID
             exchangeID: quote!.metadata.exchangeID, // Exchange ID from the Quote
             data: .init(),
-            externalID: nil,
             protocol: "1.0"
         )
         // :snippet-end:
