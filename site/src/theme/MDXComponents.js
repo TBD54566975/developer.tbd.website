@@ -16,6 +16,7 @@ import LanguageSwitchLink from '@site/src/components/language/LanguageSwitchLink
 import LanguageSupport from '@site/src/components/language/LanguageSupport';
 import LanguageSwitcher from '@site/src/components/language/LanguageSwitcher';
 import LanguageTabBar from '@site/src/components/language/LanguageTabBar';
+import Dependencies from '@site/src/components/Dependencies';
 import Shnip from '@site/src/components/language/Shnip';
 import CodeBlock from '@theme/CodeBlock';
 const CustomMDXComponents = {
@@ -25,6 +26,7 @@ const CustomMDXComponents = {
   Actors,
   ProjectList,
   Divider,
+  Dependencies,
   PillarList,
   SwitchIllustration,
   TwoColumnContainer,
