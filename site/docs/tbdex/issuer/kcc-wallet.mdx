@@ -104,7 +104,46 @@ Your Wallet App will require libraries for handling HTTP requests and processing
 
 Identity Verification is a critical component of typical KYC requirements, where certain types of Personally Identifiable Information (PII) are collected and verified from an individual. IDV is a crucial step before a KCC can be issued.
 
-[**Wallet's IDV Flow diagram**]
+```mermaid
+%%{
+  init: {
+    'theme': 'base',
+    'themeVariables': {
+        'background': '#000',
+        'primaryColor': '#333',
+        'primaryTextColor': '#fff',
+        'secondaryColor': '#9a1aff',
+        'tertiaryColor': '#000',
+        'fontFamily': 'IBM Plex Mono',
+        'primaryBorderColor': '#ffec19',
+        'actorTextColor': '#24f2ff',
+        'actorBorder': '#ffec19',
+        'actorBkg': '#000',
+        'sequenceNumberColor': '#f00',
+        'loopTextColor': '#24f2ff'
+    }
+  }
+}%%
+sequenceDiagram
+autonumber
+participant App as Customer's Wallet App
+participant DID as DID Resolver
+participant I as Issuer
+
+%% Step 1: Get IDV Endpoint
+App->>+DID: Resolve Issuer's DID
+DID-->>-App: DID Document with IDV Service Endpoint
+
+%% Step 2: Send HTTP Request to Service Endpoint
+App->>+I: HTTP Request to IDV Service Endpoint
+I->>I: Process Request
+I-->>-App: SIOPv2 Authorization Request
+
+%% Step 3: Handle SIOPv2 Authorization Request
+App->>App: Decode & Process SIOPv2 Auth Request
+App->>+I: SIOPv2 Authorization Response with id_token (& vp_token if applicable)
+I-->>-App: Process Authorization Response
+```
 
 The IDV flow begins when your app, as the customer's agent, sends an HTTP request to the Issuer's IDV service endpoint specified in the Issuer's [Decentralized Identifier (DID)](/docs/web5/learn/decentralized-identifiers) Document.
 
@@ -268,9 +307,11 @@ Decode the Issuer's SIOPv2 Authorization Request and create a [SIOPv2 Authorizat
 If the User's Verifiable Credentials do not satisfy the Authorization Request's Presentation Definition then only the `id_token` will be sent to the Issuer's `response_uri`. If the credentials **do** satisfy then a [Verifiable Presentation](https://developer.tbd.website/docs/glossary/#verifiable-presentation) (`vp_token`) will also be sent.  
 :::
 
-If `vp_token` wasn't in the SIOPv2 Response, the Issuer will respond with a `credential_offer` and a `url` that points to a webpage for the customer to provide their information. After successful completion of this form, the Wallet can proceed with the next steps, [processing the Credential Offer](#processing-the-credential-offer).
+If `vp_token` wasn't in the SIOPv2 Response, the Issuer will respond with a `credential_offer` and a `url` that points to a webpage (IDV form) for the customer to provide their Personally Identifiable Information. After successful completion of this form, the Wallet can proceed with the next steps, [processing the Credential Offer](#processing-the-credential-offer).
 
-[**GIF of PII info being filled out?**]
+![IDV Form](/img/pii-form.gif)
+
+> IDV Form being filled out
 
 ## Processing the Credential Offer
 
@@ -648,6 +689,6 @@ To convert the signed VC JWT into a `VerifiableCredential` object you can use th
 
 To the user, an example KCC may look like this:
 
-[**KCC IMAGE**]
+![example KCC](/img/aliceKcc.png)
 
 With that, you've successfully gone through the Identity Verification flow, requested a Known Customer Credential on behalf of the user, and securely stored the user's Known Customer Credential. Please note that this example is a foundational implementation. For a production environment, it's crucial to enhance this basic setup with comprehensive error handling, secure storage and security measures.
