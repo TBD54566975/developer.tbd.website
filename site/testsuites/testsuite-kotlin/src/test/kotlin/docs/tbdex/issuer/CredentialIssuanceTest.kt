@@ -45,7 +45,7 @@ fun checkSanctionsList(): SanctionsListResult {
 data class SanctionsListResult(val isSanctioned: Boolean, val listsCleared: List<String>)
 // :snippet-end:
 
-fun main() = runBlocking {
+private fun createADid() = runBlocking {
     // :snippet-start: createADidWithAServiceEndpointKT
     val idvService = Service(
         id = "idv", 
@@ -61,7 +61,8 @@ fun main() = runBlocking {
     val issuerBearerDid = DidDht.create(InMemoryKeyManager(), options)
     // :snippet-end:
 }
-fun main() = runBlocking {
+private fun updateADid() = runBlocking {
+    val issuerBearerDid = DidDht.create(InMemoryKeyManager(), CreateDidDhtOptions(publish = true))
     // :snippet-start: updateADidWithAServiceEndpointKT
     val serviceToAdd = Service.Builder()
     .id("idv")
