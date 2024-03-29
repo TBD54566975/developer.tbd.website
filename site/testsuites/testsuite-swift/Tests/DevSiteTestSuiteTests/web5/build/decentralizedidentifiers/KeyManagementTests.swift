@@ -1,5 +1,5 @@
 import XCTest
-@testable import DevSiteTestSuite
+import DevSiteTestSuite
 import Mocker
 import Web5
 
@@ -10,9 +10,13 @@ final class KeyManagementTests: XCTestCase {
         let testPortableDID = try bearerDID.export()
 
         // :snippet-start: initializeKeyManagementSwift
-        func initializeKeyManagement(portableDID: PortableDID?) throws -> BearerDID {
-            //Creates a new instance of the InMemoryKeyManager
-            let keyManager = InMemoryKeyManager() // if production, use a different key manager
+        func initKeyManagement(env: String?, portableDID: PortableDID?) throws -> BearerDID {
+            let keyManager = InMemoryKeyManager()
+
+            // if production, use a more secure and production-ready key manager.
+            if env == "production" {
+                // if production, use a more secure and production-ready key manager.
+            }
 
             if portableDID != nil {
                 return try DIDJWK.import(
@@ -28,7 +32,7 @@ final class KeyManagementTests: XCTestCase {
         }
         // :snippet-end:
 
-        let testImport = try! initializeKeyManagement(portableDID: testPortableDID)
+        let testImport = try! initKeyManagement(env: "", portableDID: testPortableDID)
 
         XCTAssertEqual(testImport.uri, bearerDID.uri, "URI should match")
         XCTAssertEqual(testImport.document, bearerDID.document, "Document should match")
