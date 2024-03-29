@@ -74,7 +74,6 @@ final class ReceiveQuotes: XCTestCase {
             to: quote!.metadata.from,
             exchangeID: quote!.metadata.exchangeID,
             data: CloseData(reason: "Canceled by customer"),
-            externalID: nil,
             protocol: "1.0"
         )
         try! closeMessage.sign(did: customerDid!)
