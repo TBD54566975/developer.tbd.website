@@ -245,7 +245,7 @@ app.get('/.well-known/openid-credential-issuer', (req, res) => {
         format: 'jwt_vc_json',
         scope: 'CustomerIdentity',
         cryptographic_binding_methods_supported: ['did:example'],
-        credential_signing_alg_values_supported: ['ES256'],
+        credential_signing_alg_values_supported: ['EdDSA', 'ES256K'],
         credential_definition: {
           type: ['VerifiableCredential', 'KnownCustomerCredential'],
           credentialSubject: {
@@ -256,7 +256,7 @@ app.get('/.well-known/openid-credential-issuer', (req, res) => {
         },
         proof_types_supported: {
           jwt: {
-            proof_signing_alg_values_supported: ['ES256'],
+            proof_signing_alg_values_supported: ['EdDSA', 'ES256K'],
           },
         },
         display: [
