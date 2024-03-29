@@ -32,7 +32,6 @@ function checkSanctionsList(payload) {
 // :snippet-end:
 
 // :snippet-start: createADidWithServiceEndpointJS
-// create a DID with 'IDV' service endpoint
 const issuerBearerDid = await DidDht.create({
   options: {
     publish: true,
@@ -45,8 +44,9 @@ const issuerBearerDid = await DidDht.create({
     ],
   },
 });
+// :snippet-end:
 
-// update an existing did with 'IDV' endpoint
+// :snippet-start: updateADidWithServiceEndpointJS
 issuerBearerDid.document.service.push({
   id: 'idv',
   type: 'IDV',
@@ -54,7 +54,7 @@ issuerBearerDid.document.service.push({
 });
 
 await DidDht.publish({ did: issuerDid });
-// :snippet-end:
+// snippet-end:
 
 const app = express();
 app.use(express.json());

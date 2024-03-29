@@ -60,6 +60,7 @@ You'll also need to install `@web5/credentials` to create and issue credentials:
 ### Create a DID
 
 Additionally, to issue credentials, you need a [Decentralized Identifier (DID)](/docs/web5/learn/decentralized-identifiers) which will serve as your Issuer's identity.
+
 If you don't already have one, you'll need to [create a DID](/docs/web5/build/decentralized-identifiers/how-to-create-did) with an IDV (Identity Verification) service endpoint:
 
 <Shnip
@@ -71,6 +72,23 @@ If you don't already have one, you'll need to [create a DID](/docs/web5/build/de
     },
     {
       snippetName: 'createADidWithAServiceEndpointKT',
+      language: 'Kotlin',
+      title: 'Application.kt',
+    },
+  ]}
+/>
+
+If you have an existing DID you'll need to update that DID Document with an IDV service endpoint:
+
+<Shnip
+  snippets={[
+    {
+      snippetName: 'updateADidWithServiceEndpointJS',
+      language: 'JavaScript',
+      title: 'did.js',
+    },
+    {
+      snippetName: 'updateADidWithAServiceEndpointKT',
       language: 'Kotlin',
       title: 'Application.kt',
     },
@@ -111,7 +129,7 @@ fun main() {
 }
 ```
 
-4. next, in the same file define your API routes:
+4. In the same file, define your API routes:
 
 ```kt title=Application.kt
 fun Application.configureRouting() {

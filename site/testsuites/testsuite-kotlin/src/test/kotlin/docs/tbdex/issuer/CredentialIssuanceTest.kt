@@ -47,7 +47,6 @@ data class SanctionsListResult(val isSanctioned: Boolean, val listsCleared: List
 
 fun main() = runBlocking {
     // :snippet-start: createADidWithAServiceEndpointKT
-    // Create a DID with 'IDV' service endpoint
     val idvService = Service(
         id = "idv", 
         type = "IDV",
@@ -60,8 +59,10 @@ fun main() = runBlocking {
     )
 
     val issuerBearerDid = DidDht.create(InMemoryKeyManager(), options)
-
-    // Update an existing DID with 'IDV' endpoint
+    // :snippet-end:
+}
+fun main() = runBlocking {
+    // :snippet-start: updateADidWithAServiceEndpointKT
     val serviceToAdd = Service.Builder()
     .id("idv")
     .type("IDV")
@@ -71,7 +72,7 @@ fun main() = runBlocking {
     issuerBearerDid.didDocument?.service.orEmpty() + serviceToAdd
     issuerBearerDid.publish()
     // :snippet-end:
-}
+}    
 
 class CredentialIssuanceTest {
 
