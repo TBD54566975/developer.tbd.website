@@ -6,23 +6,23 @@ import Mocker
 import TypeID
 
 public struct MockData {
-    public static let pfiDid: String = "did:dht:4ykjcjdq7udyjq5iy1qbcy98xnd4dkzuizm14ih4rn6953b8ohoo"
+    public static let pfiDid: String = "did:dht:ac7uj566xgmhypniw1cb96dyhod51inwp98o8ugyb9ygikig6coy"
     public static var exchangeID: String = "exchange_123"
     public static let customerBearerDid: BearerDID? = try? DIDJWK.create(keyManager: InMemoryKeyManager())
     public static let BTC_ADDRESS = "bc1q52csjdqa6cq5d2ntkkyz8wk7qh2qevy04dyyfd"
 
-    public static let selectedOffering = Offering(
-        from: pfiDid,
-        data: .init(
-            description: "test offering",
-            payoutUnitsPerPayinUnit: "1",
-            payinCurrency: .init(currencyCode: "AUD"),
-            payoutCurrency: .init(currencyCode: "BTC"),
-            payinMethods: [],
-            payoutMethods: [],
-            requiredClaims: [:]
-        )
-    )
+    public static let selectedOfferingJson = "{\"metadata\":{\"from\":\"\(pfiDid)\",\"kind\":\"offering\",\"id\":\"offering_01hsc1j5g7fg7ayew2ys7wmsb7\",\"createdAt\":\"2024-03-19T19:03:42.855Z\",\"protocol\":\"1.0\"},\"data\":{\"description\":\"test offering\",\"payoutUnitsPerPayinUnit\":\"1\",\"payinCurrency\":{\"currencyCode\":\"AUD\"},\"payoutCurrency\":{\"currencyCode\":\"BTC\"},\"payinMethods\":[],\"payoutMethods\":[],\"requiredClaims\":{\"id\":\"7ce4004c-3c38-4853-968b-e411bafcd945\",\"input_descriptors\":[{\"id\":\"bbdb9b7c-5754-4f46-b63b-590bada959e0\",\"constraints\":{\"fields\":[{\"path\":[\"$.type\"],\"filter\":{\"type\":\"string\",\"const\":\"YoloCredential\"}}]}}]}}}"
+
+    public static var selectedOffering: Offering {
+        let jsonData = selectedOfferingJson.data(using: .utf8)!
+        let decoder = tbDEXJSONDecoder()
+        do {
+            let offering = try decoder.decode(Offering.self, from: jsonData)
+            return offering
+        } catch {
+            fatalError("Failed to decode the selected offering: \(error)")
+        }
+    }
 
     public static var rfq: RFQ? {
         guard let customerBearerDid = customerBearerDid else {
@@ -53,7 +53,8 @@ public struct MockData {
                     ]
                 ),
                 claims: []
-            )
+            ),
+            protocol: "1.0"
         )
 
         exchangeID = mock_rfq.metadata.exchangeID
@@ -84,7 +85,8 @@ public struct MockData {
                     amount: "2.00",
                     fee: "0.50"
                 )
-            )
+            ),
+            protocol: "1.0"
         )
     }
 
@@ -97,7 +99,8 @@ public struct MockData {
                 from: from,
                 to: to,
                 exchangeID: exchangeId,
-                data: .init()
+                data: .init(),
+                protocol: "1.0"
             )
     }
 
@@ -113,7 +116,8 @@ public struct MockData {
             exchangeID: exchangeId,
             data: .init(
                 orderStatus: status
-            )
+            ),
+            protocol: "1.0"
         )
     }
 
@@ -129,7 +133,8 @@ public struct MockData {
             exchangeID: exchangeId,
             data: .init(
                 reason: reason
-            )
+            ),
+            protocol: "1.0"
         )
     }
 
@@ -160,16 +165,17 @@ public struct MockData {
                     amount: "2.00",
                     fee: "0.50"
                 )
-            )
+            ),
+            protocol: "1.0"
         )
     }
 
     public static func mockGetExchangeWithClose(
         from: String = customerBearerDid!.uri,
         to: String = pfiDid,
-        exchangeId: String = exchangeID, 
+        exchangeId: String = exchangeID,
         closeReason: String = "") {
-        let url = URL(string: "http://localhost:9000/exchanges/\(exchangeId)")!
+        let url = URL(string: "https://localhost:9000/exchanges/\(exchangeId)")!
         let close = MockData.createClose(from: from, to: to, exchangeId: exchangeId, reason: closeReason)
         var exchange: [Close] = [Close]()
         exchange.append(close)
@@ -179,27 +185,28 @@ public struct MockData {
     }
 
     public static func mockSendOrderMessage(exchangeId: String) {
-        let orderEndpoint = "http://localhost:9000/exchanges/\(exchangeId)/order"
-        guard let orderURL = URL(string: orderEndpoint) else {
-            XCTFail("Failed to create URL for closing exchange")
-            return
-        }
-
-        let mockOrderResponse = Mock(url: orderURL, contentType: .json, statusCode: 200, data: [.post: Data()])
-        mockOrderResponse.register()
+        let url = URL(string: "https://localhost:9000/exchanges/\(exchangeId)")!
+        Mocker.register(Mock(url: url, contentType: .json, statusCode: 200, data: [.put: Data()]))
     }
 
     public static func mockExchangeWithQuote(
-        to: String = pfiDid, 
-        from: String = customerBearerDid!.uri, 
+        to: String = pfiDid,
+        from: String = customerBearerDid!.uri,
         exchangeId: String = exchangeID) {
-        let url = URL(string: "http://localhost:9000/exchanges/\(exchangeId)")!
+        let url = URL(string: "https://localhost:9000/exchanges/\(exchangeId)")!
         let quote = MockData.createQuote(from: from, to: to, exchangeId: exchangeId)
         var exchange: [Quote] = [Quote]()
         exchange.append(quote)
         let exchangeJson: [String: [Quote]] = ["data": exchange]
 
         MockData.setupMockGetCall(url: url, data: exchangeJson)
+    }
+
+    //Force Mock to ignore the request so that resolve endpoint is called for real
+    public static func allowDidResolution(didUri: String) {
+        let id = didUri.components(separatedBy: ":").last
+        let ignoredURL = URL(string: "https://diddht.tbddev.org/" + id!)!
+        Mocker.ignore(ignoredURL)
     }
 
     private static func setupMockGetCall(url: URL, data: Encodable) {
