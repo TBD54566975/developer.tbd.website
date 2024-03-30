@@ -2,7 +2,6 @@
 // Configure repositories
 repositories {
   mavenCentral()
-  maven("https://repo.danubetech.com/repository/maven-public/")
 }
 // Configure dependencies
 dependencies {

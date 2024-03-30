@@ -5,7 +5,7 @@ import tbDEX
 final class PlaceOrderTests: XCTestCase {
 
     var customerDid: BearerDID?
-    let pfiDid: String = "did:dht:4ykjcjdq7udyjq5iy1qbcy98xnd4dkzuizm14ih4rn6953b8ohoo"
+    let pfiDid: String = "did:dht:ac7uj566xgmhypniw1cb96dyhod51inwp98o8ugyb9ygikig6coy"
     var quote: Quote?
     var close: Close?
     let closeReason: String = "Transaction complete"
@@ -13,6 +13,7 @@ final class PlaceOrderTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
+        MockData.allowDidResolution(didUri: pfiDid)
         
         customerDid = try! DIDJWK.create(keyManager: InMemoryKeyManager())
         
@@ -29,18 +30,19 @@ final class PlaceOrderTests: XCTestCase {
             from: customerDid!.uri, // Customer's DID
             to: pfiDid, // PFI's DID
             exchangeID: quote!.metadata.exchangeID, // Exchange ID from the Quote
-            data: .init()
+            data: .init(),
+            protocol: "1.0"
         )
         // :snippet-end:
-
-        MockData.mockSendOrderMessage(exchangeId: exchangeId)
 
         // :snippet-start: signOrderSwift
         try! order.sign(did: customerDid!)
         // :snippet-end:
 
+        MockData.mockSendOrderMessage(exchangeId: exchangeId)
+
         // :snippet-start: sendOrderSwift
-        try! await tbDEXHttpClient.sendMessage(message: order)
+        try! await tbDEXHttpClient.submitOrder(order: order)
         // :snippet-end:
     }
 
@@ -65,11 +67,11 @@ final class PlaceOrderTests: XCTestCase {
             
             for message in exchange {
                 if case .orderStatus(let orderStatus) = message {
-                    //a status update to display to your customer
+                    // a status update to display to your customer
                     orderStatusUpdate = orderStatus.data.orderStatus
                 }
                 else if case .close(let close) = message {
-                    //final message of exchange has been written
+                    // final message of exchange has been written
                     closeMessage = close
                     break
                 }

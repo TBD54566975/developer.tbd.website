@@ -860,6 +860,9 @@ html.plugin-docs.plugin-id-default article .theme-card p {
   cursor: pointer;
   margin: 0;
 }
+.mermaid text {
+    font-weight: bold;
+}
 
 .beat-fade {
   animation-name: beat-fade;

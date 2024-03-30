@@ -1,7 +1,6 @@
 // :snippet-start: pfiSdkInstallGradle
 repositories {
         mavenCentral()
-        maven("https://repo.danubetech.com/repository/maven-public/")
 }
 dependencies {
         implementation("xyz.block:tbdex:0.10.0-beta")

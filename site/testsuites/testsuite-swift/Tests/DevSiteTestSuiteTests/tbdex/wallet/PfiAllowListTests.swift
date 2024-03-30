@@ -10,11 +10,8 @@ import Web5
 final class PfiAllowListTests: XCTestCase {
     
     func testPfiDidHasPfiService() async throws {
-        //Force Mock to ignore the request so that resolve endpoint is called for real
-        let ignoredURL = URL(string: "https://diddht.tbddev.org/4ykjcjdq7udyjq5iy1qbcy98xnd4dkzuizm14ih4rn6953b8ohoo")!
-        Mocker.ignore(ignoredURL)
-        
-        let pfiDid = "did:dht:4ykjcjdq7udyjq5iy1qbcy98xnd4dkzuizm14ih4rn6953b8ohoo"
+        let pfiDid = "did:dht:ac7uj566xgmhypniw1cb96dyhod51inwp98o8ugyb9ygikig6coy"
+        MockData.allowDidResolution(didUri: pfiDid)
         
         // :snippet-start: isPFISwift
         let isPfi: Bool = await DIDDHT.Resolver()
