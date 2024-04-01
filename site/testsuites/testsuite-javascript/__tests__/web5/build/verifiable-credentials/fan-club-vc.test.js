@@ -52,7 +52,7 @@ describe('fan-club-vc', () => {
             },
         }));
     });
-    test('createDids creates an issuer DID and alice DID with did:key method', async () => {
+    test('createDids creates an issuer DID and alice DID with did:dht method', async () => {
         // :snippet-start: createDids
         const fanClubIssuerDid = await DidDht.create();
         const aliceDid = await DidDht.create();

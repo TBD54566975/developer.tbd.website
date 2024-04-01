@@ -43,8 +43,8 @@ After installing the packages, we'll import them into our project as shown below
   inlineSnippets={[
     {
       code: `
-import { DidKeyMethod } from '@web5/dids';
-import { VerifiableCredential, PresentationExchange } from '@web5/credentials';
+import { DidDht } from '@web5/dids';
+import { VerifiableCredential, VerifiablePresentation, PresentationExchange } from '@web5/credentials';
       `,
       language: 'JavaScript', 
       title: 'Issuer.js'
@@ -52,8 +52,9 @@ import { VerifiableCredential, PresentationExchange } from '@web5/credentials';
     {
       code: `
 import web5.sdk.crypto.InMemoryKeyManager
-import web5.sdk.dids.methods.key.DidKey
+import web5.sdk.dids.methods.dht.DidDht
 import web5.sdk.credentials.VerifiableCredential
+import web5.sdk.credentials.VerifiablePresentation
 import web5.sdk.credentials.PresentationExchange
       `,
       language: 'Kotlin', 
