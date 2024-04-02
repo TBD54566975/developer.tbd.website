@@ -24,6 +24,7 @@ final class KeyManagementTests: XCTestCase {
 
             // Initialize or load a DID
             if portableDID != nil {
+                 // Load existing DID
                 return try DIDJWK.import(
                     keyManager: keyManager,
                     portableDID: portableDID!
