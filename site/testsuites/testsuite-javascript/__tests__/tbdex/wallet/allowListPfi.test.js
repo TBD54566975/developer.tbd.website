@@ -1,6 +1,7 @@
 import { test, expect, describe, beforeAll } from 'vitest';
+import { DidDht } from '@web5/dids';
 // :prepend-start: isPFIJs
-import { DidResolver, DidDht, DidJwk } from '@web5/dids';
+import { resolveDid } from '@tbdex/protocol'
 // :prepend-end:
 
 let pfiDid;
@@ -22,9 +23,8 @@ describe('Wallet: Allowlist PFIs', () => {
 
   test('PFI DID has PFI service', async () => {
     // :snippet-start: isPFIJs
-    const resolver = new DidResolver({ didResolvers: [DidDht, DidJwk] });
-    const resolvedDid = await resolver.resolve(pfiDid);
-    const isPFI = resolvedDid.didDocument.service.some(service => service.type === 'PFI');
+    const didDocument = await resolveDid(pfiDid);
+    const isPFI = didDocument.service.some(service => service.type === 'PFI');
     // :snippet-end:
     expect(isPFI).toBe(true)
   });
