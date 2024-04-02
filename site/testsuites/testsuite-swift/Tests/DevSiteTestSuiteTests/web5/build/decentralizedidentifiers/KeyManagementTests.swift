@@ -22,6 +22,7 @@ final class KeyManagementTests: XCTestCase {
                 keyManager = InMemoryKeyManager()
             }
 
+            // Initialize or load a DID
             if portableDID != nil {
                 return try DIDJWK.import(
                     keyManager: keyManager,
