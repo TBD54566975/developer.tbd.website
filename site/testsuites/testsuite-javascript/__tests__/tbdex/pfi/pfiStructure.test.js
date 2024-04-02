@@ -52,7 +52,7 @@ describe('PFI: Structure', () => {
     test('PFI initializes routes', async () => {
         try {
             // :snippet-start: pfiOverviewServerRoutesJs
-            tbDexServer.onSubmitRfq(async (ctx, rfq, opts) => {
+            tbDexServer.onCreateExchange(async (ctx, rfq, opts) => {
                 await exchangesApiProvider.write({ message: rfq, replyTo: opts.replyTo })
             })
 
@@ -66,9 +66,9 @@ describe('PFI: Structure', () => {
             // :snippet-end:
 
             expect.soft(Object.keys(tbDexServer.callbacks).length).toBe(3)
-            expect.soft(tbDexServer.callbacks.rfq).toBeDefined()
-            expect.soft(tbDexServer.callbacks.order).toBeDefined()
-            expect.soft(tbDexServer.callbacks.close).toBeDefined()
+            expect.soft(tbDexServer.callbacks.createExchange).toBeDefined()
+            expect.soft(tbDexServer.callbacks.submitOrder).toBeDefined()
+            expect.soft(tbDexServer.callbacks.submitClose).toBeDefined()
         } catch(e) {
             assert.fail(`Failed to set up submit routes: ${e.message}`);
         }
