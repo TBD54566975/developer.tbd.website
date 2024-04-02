@@ -11,10 +11,14 @@ final class KeyManagementTests: XCTestCase {
 
         // :snippet-start: initializeKeyManagementSwift
         func initKeyManagement(env: String?, portableDID: PortableDID?) throws -> BearerDID {
-            let keyManager = InMemoryKeyManager()
+            let keyManager: LocalKeyManager
 
             if env == "production" {
                 // if production, use a more secure and production-ready key manager.
+                keyManager = KeychainKeyManager()
+            }
+            else {
+                keyManager = InMemoryKeyManager()
             }
 
             if portableDID != nil {
