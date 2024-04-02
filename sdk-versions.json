@@ -11,19 +11,19 @@
     "@web5/identity-agent": "0.2.5"
   },
   "maven": {
-    "tbdex": "0.12.0-beta",
-    "web5-credentials": "0.0.11",
-    "web5-dids": "0.0.11",
-    "web5-crypto": "0.0.1"
+    "tbdex": "1.0.0.rc2-SNAPSHOT",
+    "web5-credentials": "0.17.0",
+    "web5-dids": "0.17.0",
+    "web5-crypto": "0.17.0"
   },
   "swift": {
     "Web5": {
       "url": "https://github.com/TBD54566975/web5-swift.git",
-      "branch": "main"
+      "branch": "release/v1.0.0-rc"
     },
     "tbDex": {
       "url": "https://github.com/TBD54566975/tbdex-swift.git",
-      "branch": "main"
+      "branch": "release/v1.0.0-rc"
     }
   }
 }
