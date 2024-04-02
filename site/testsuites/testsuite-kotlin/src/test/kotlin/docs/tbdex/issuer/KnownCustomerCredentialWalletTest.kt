@@ -13,16 +13,16 @@ import io.ktor.client.statement.*
 import io.ktor.http.*
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertDoesNotThrow
-import web5.sdk.dids.Did
+import web5.sdk.dids.did.BearerDid
 import java.net.URL
 import java.net.HttpURLConnection
 
 // :prepend-start: knownCustomerCredentialhandleSiopRequestWalletKT
 import web5.sdk.credentials.PresentationExchange
-import web5.sdk.credentials.util.JwtUtil
+import web5.sdk.jose.jwt.Jwt
 import web5.sdk.credentials.VerifiablePresentation
 import web5.sdk.credentials.model.PresentationDefinitionV2
-import com.nimbusds.jwt.JWTClaimsSet
+import web5.sdk.jose.jwt.JwtClaimsSet
 // :prepend-end:
 
 import web5.sdk.crypto.InMemoryKeyManager
@@ -161,15 +161,15 @@ class KnownCustomerCredentialWalletTest {
 
     @Test
     fun `JwtUtil sign() works with a valid payload and bearer DID`() {
-        val idTokenPayload = JWTClaimsSet.Builder()
+        val idTokenPayload = JwtClaimsSet.Builder()
             .subject(userBearerDid.uri.toString()) 
             .issuer(issuerDidUri) 
-            .issueTime(Date(System.currentTimeMillis())) 
-            .expirationTime(Date(System.currentTimeMillis() + 86400 * 1000)) 
+            .issueTime(System.currentTimeMillis() / 1000) // Issued time
+            .expirationTime((System.currentTimeMillis() / 1000) + 86400) // Expiration time 
             .build()
 
         try {
-            val idToken = JwtUtil.sign(userBearerDid, null, idTokenPayload)
+            val idToken = Jwt.sign(userBearerDid, idTokenPayload)
 
             assertNotNull(idToken, "idtoken should not be null")
             assertTrue(idToken.isNotEmpty(), "idtoken should not be empty")
@@ -242,17 +242,17 @@ class KnownCustomerCredentialWalletTest {
         /*******************************************************
         * Generate & sign id_token
         *******************************************************/
-        val idTokenPayload = JWTClaimsSet.Builder()
+        val idTokenPayload = JwtClaimsSet.Builder()
             .subject(userBearerDid.uri) // user's DID string
             .issuer(userBearerDid.uri)
-            .audience(listOf(clientId))
-            .issueTime(Date())
-            .expirationTime(Date(System.currentTimeMillis() + 3600 * 1000)) 
-            .claim("nonce", nonce)
+            .audience(clientId)
+            .issueTime(System.currentTimeMillis() / 1000) // Issued time
+            .expirationTime((System.currentTimeMillis() / 1000) + 86400) // Expiration time 
+            .misc("nonce", nonce)
             .build()
 
         val idToken = try {
-            JwtUtil.sign(userBearerDid, null, idTokenPayload)
+            Jwt.sign(userBearerDid, idTokenPayload)
         } catch (e: Exception) {
             throw Exception("Failed to sign id_token: ${e.message}")
         }
@@ -298,17 +298,17 @@ class KnownCustomerCredentialWalletTest {
                 additionalData = mapOf("presentation_submission" to presentationResult)
             )
             
-            val vpClaims = JWTClaimsSet.Builder()
+            val vpClaims = JwtClaimsSet.Builder()
                 .subject(userBearerDid.uri) 
                 .issuer(userBearerDid.uri) 
-                .issueTime(Date(System.currentTimeMillis())) 
-                .expirationTime(Date(System.currentTimeMillis() + 3600 * 1000)) 
-                .claim("holder", vp.holder)
-                .claim("presentation_submission", presentationResult)
+                .issueTime(System.currentTimeMillis() / 1000) // Issued time
+                .expirationTime((System.currentTimeMillis() / 1000) + 86400) // Expiration time 
+                .misc("holder", vp.holder)
+                .misc("presentation_submission", presentationResult)
                 .build()
 
             vpToken = try {
-                JwtUtil.sign(userBearerDid, null, vpClaims) 
+                Jwt.sign(userBearerDid, vpClaims) 
             } catch (e: Exception) {
                 throw Exception("Failed to sign vp_token: ${e.message}")
             }
@@ -543,24 +543,25 @@ class KnownCustomerCredentialWalletTest {
     private suspend fun requestKnownCustomerCredential(credentialEndpoint: String?, accessToken: String?) {
             val client = HttpClient()
 
-            if (WalletStorage.cNonce == null) {
+            val cNonce = WalletStorage.cNonce 
+            if (cNonce == null) {
                 throw Exception("cNonce is missing in Wallet storage")
             }
 
             /*************************************************
             * Construct & sign the JWT payload
             **************************************************/
-            val jwtPayload = JWTClaimsSet.Builder()
+            val jwtPayload = JwtClaimsSet.Builder()
                 .issuer(userBearerDid.uri) // user's DID string
-                .audience(issuerDidUri) // Issuer's DID string) 
-                .issueTime(Date())
-                .claim("nonce", WalletStorage.cNonce)
+                .audience(issuerDidUri) // Issuer's DID string 
+                .issueTime(System.currentTimeMillis() / 1000) // Issued time
+                .misc("nonce", cNonce)
                 .build()
             
             credentialEndpoint?.let { endpoint ->
             accessToken?.let { token ->
             try {
-                val signedJwt = JwtUtil.sign(userBearerDid, null, jwtPayload)
+                val signedJwt = Jwt.sign(userBearerDid, jwtPayload)
 
                 val requestBody = buildJsonObject {
                     putJsonObject("proof") {
