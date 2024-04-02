@@ -52,7 +52,8 @@ public struct MockData {
                         )
                     ]
                 )), 
-                protocol: "1.0")
+                protocol: "1.0"
+            )
     }
 
     public static var rfq: RFQ? {
