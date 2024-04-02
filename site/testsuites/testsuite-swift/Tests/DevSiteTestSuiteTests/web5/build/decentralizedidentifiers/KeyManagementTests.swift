@@ -13,6 +13,7 @@ final class KeyManagementTests: XCTestCase {
         func initKeyManagement(env: String?, portableDID: PortableDID?) throws -> BearerDID {
             let keyManager: LocalKeyManager
 
+            // Determine which key manager to use based on the environment
             if env == "production" {
                 // if production, use a more secure and production-ready key manager.
                 keyManager = KeychainKeyManager()
