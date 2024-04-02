@@ -44,7 +44,7 @@ After installing the packages, we'll import them into our project as shown below
     {
       code: `
 import { DidKeyMethod } from '@web5/dids';
-import { VerifiableCredential, PresentationExchange } from '@web5/credentials';
+import { VerifiableCredential, PresentationExchange, VerifiablePresentation } from '@web5/credentials';
       `,
       language: 'JavaScript', 
       title: 'Issuer.js'
@@ -54,6 +54,7 @@ import { VerifiableCredential, PresentationExchange } from '@web5/credentials';
 import web5.sdk.crypto.InMemoryKeyManager
 import web5.sdk.dids.methods.key.DidKey
 import web5.sdk.credentials.VerifiableCredential
+import web5.sdk.credentials.VerifiablePresentation
 import web5.sdk.credentials.PresentationExchange
       `,
       language: 'Kotlin', 
@@ -165,11 +166,11 @@ Let's break down the `VerifiableCredential.create()` method to understand what e
 vcDataModel: {
   '@context': [ 'https://www.w3.org/2018/credentials/v1' ],
   type: [ 'VerifiableCredential', 'SwiftiesFanClub' ],
-  id: 'urn:uuid:daa5ff01-9b7d-485b-9410-22a42952d46c',
-  issuer: 'did:key:z6Mkn4w6nSaWe4fjNJRvaHZwFnMm5VexvjzDeozEu2G7jC34',
+  id: 'urn:uuid:c699153c-ea5b-4a10-89e1-dad8bcd95a03',
+  issuer: 'did:dht:yhqhpn1fi9syrantkcou9rdzk864kwhnbm1dnc9ejzdhm1tdrcyo',
   issuanceDate: '2023-12-14T08:20:41Z',
   credentialSubject: {
-    id: 'did:key:z6MkjGSeekPGE9QfczHWyW8v2ZzJU68kqSHzV7L2dmQyuyDu',
+    id: 'did:dht:syd4h8aosm3e74qspb7anue5cbzfmgho76rq3yqwozs9ri1kp1do',
     level: 'Stan',
     legit: true
   }
@@ -187,11 +188,11 @@ vcDataModel: {
     "VerifiableCredential",
     "SwiftiesFanClub"
   ],
-  "id": "urn:uuid:daa5ff01-9b7d-485b-9410-22a42952d46c",
-  "issuer": "did:key:z6Mkn4w6nSaWe4fjNJRvaHZwFnMm5VexvjzDeozEu2G7jC34",
+  "id": "urn:uuid:c699153c-ea5b-4a10-89e1-dad8bcd95a03",
+  "issuer": "did:dht:yhqhpn1fi9syrantkcou9rdzk864kwhnbm1dnc9ejzdhm1tdrcyo",
   "issuanceDate": "2023-12-14T08:20:41Z",
   "credentialSubject": {
-    "id": "did:key:z6MkjGSeekPGE9QfczHWyW8v2ZzJU68kqSHzV7L2dmQyuyDu",
+    "id": "did:dht:syd4h8aosm3e74qspb7anue5cbzfmgho76rq3yqwozs9ri1kp1do",
     "level": "Stan",
     "legit": true
   }
@@ -317,41 +318,56 @@ The result of the presentation:
     {
       code: `
 {
-  "presentation": {
+  "vpDataModel": {
     "@context": [
-      "https://www.w3.org/2018/credentials/v1",
-      "https://identity.foundation/presentation-exchange/submission/v1"
+      "https://www.w3.org/2018/credentials/v1"
     ],
     "type": [
-      "VerifiablePresentation",
-      "PresentationSubmission"
+      "VerifiablePresentation"
     ],
-    "presentation_submission": {
-      "id": "kMqRP0zRKaiZNlbtbEIxd",
-      "definition_id": "presDefId123",
-      "descriptor_map": [
-        {
-          "id": "legitness",
-          "format": "jwt_vc",
-          "path": "$.verifiableCredential[0]"
-        }
-      ]
-    },
+    "id": "urn:uuid:956875ff-18da-42fe-86ba-c228fa83affa",
+    "holder": "did:dht:syd4h8aosm3e74qspb7anue5cbzfmgho76rq3yqwozs9ri1kp1do",
     "verifiableCredential": [
       "eyJ0eXAiOipOSl...WndCJ9.eyJ2YyTk0MN2pDMzQhdG...UR1In0.rtlg8k9KU8_ENkrY06y..."
-    ]
-  },
-  "presentationSubmissionLocation": 1,
-  "presentationSubmission": {
-    "id": "kMqRP0zRKaiZNlbtbEIxd",
-    "definition_id": "presDefId123",
-    "descriptor_map": [
-      {
-        "id": "legitness",
-        "format": "jwt_vc",
-        "path": "$.verifiableCredential[0]"
+    ],
+    "presentationResult": {
+      "presentation": {
+        "@context": [
+          "https://www.w3.org/2018/credentials/v1",
+          "https://identity.foundation/presentation-exchange/submission/v1"
+        ],
+        "type": [
+          "VerifiablePresentation",
+          "PresentationSubmission"
+        ],
+        "presentation_submission": {
+          "id": "MvH8D95tqItRlr70T2isw",
+          "definition_id": "presDefId123",
+          "descriptor_map": [
+            {
+              "id": "legitness",
+              "format": "jwt_vc",
+              "path": "$.verifiableCredential[0]"
+            }
+          ]
+        },
+        "verifiableCredential": [
+          "eyJ0eXAiOipOSl...WndCJ9.eyJ2YyTk0MN2pDMzQhdG...UR1In0.rtlg8k9KU8_ENkrY06y..."
+        ]
+      },
+      "presentationSubmissionLocation": 1,
+      "presentationSubmission": {
+        "id": "MvH8D95tqItRlr70T2isw",
+        "definition_id": "presDefId123",
+        "descriptor_map": [
+          {
+            "id": "legitness",
+            "format": "jwt_vc",
+            "path": "$.verifiableCredential[0]"
+          }
+        ]
       }
-    ]
+    }
   }
 }
       `,
@@ -368,7 +384,7 @@ The result of the presentation:
   ],
   "id": "urn:uuid:956875ff-18da-42fe-86ba-c228fa83affa",
   "presentation_submission": {
-    "id": "kMqRP0zRKaiZNlbtbEIxd",
+    "id": "18656032-8ccb-48bb-adba-9b92bb849878",
     "definitionId": "presDefId123",
     "descriptorMap": [
       {
@@ -379,9 +395,9 @@ The result of the presentation:
     ]
   },
   "verifiableCredential": [
-    "eyJ0eXAiOipOSl...WndCJ9.eyJ2YyTk0MN2pDMzQhdG...UR1In0.rtlg8k9KU8_ENkrY06y..."
-   ],
-  "holder": "did:key:z6MkjGSeekPGE9QfczHWyW8v2ZzJU68kqSHzV7L2dmQyuyDu"
+    "eyJ0eXAiOipOSl...WndCJ9.eyJ2YyTk0MN2pDMzQhdG...UR1In0.rtlg8k9KU8_ENkrY06y.."
+  ],
+  "holder": "did:dht:syd4h8aosm3e74qspb7anue5cbzfmgho76rq3yqwozs9ri1kp1do"
 }
       `,
       language: 'Kotlin',
@@ -429,10 +445,10 @@ vcDataModel: {
   '@context': [ 'https://www.w3.org/2018/credentials/v1' ],
   type: [ 'VerifiableCredential', 'SwiftiesFanClub' ],
   id: 'urn:uuid:daa5ff01-9b7d-485b-9410-22a42952d46c',
-  issuer: 'did:key:z6Mkn4w6nSaWe4fjNJRvaHZwFnMm5VexvjzDeozEu2G7jC34',
+  issuer: 'did:dht:syd4h8aosm3e74qspb7anue5cbzfmgho76rq3yqwozs9ri1kp1do',
   issuanceDate: '2023-12-14T08:20:41Z',
   credentialSubject: {
-    id: 'did:key:z6MkjGSeekPGE9QfczHWyW8v2ZzJU68kqSHzV7L2dmQyuyDu',
+    id: 'did:dht:syd4h8aosm3e74qspb7anue5cbzfmgho76rq3yqwozs9ri1kp1do',
     level: 'Stan',
     legit: true
   }
@@ -452,10 +468,10 @@ vcDataModel: {
     "SwiftiesFanClub"
   ],
   "id": "urn:uuid:daa5ff01-9b7d-485b-9410-22a42952d46c",
-  "issuer": "did:key:z6Mkn4w6nSaWe4fjNJRvaHZwFnMm5VexvjzDeozEu2G7jC34",
+  "issuer": "did:dht:syd4h8aosm3e74qspb7anue5cbzfmgho76rq3yqwozs9ri1kp1do",
   "issuanceDate": "2023-12-14T08:20:41Z",
   "credentialSubject": {
-    "id": "did:key:z6MkjGSeekPGE9QfczHWyW8v2ZzJU68kqSHzV7L2dmQyuyDu",
+    "id": "did:dht:syd4h8aosm3e74qspb7anue5cbzfmgho76rq3yqwozs9ri1kp1do",
     "level": "Stan",
     "legit": true
   }

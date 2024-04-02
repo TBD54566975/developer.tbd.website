@@ -183,20 +183,11 @@ The Verifier would then examine the results of the verifications to determine th
 
 ## Verify Verifiable Presentations
 
-:::note
-The information in this section is only applicable to the Kotlin SDK.
-:::
-
 Upon receipt, a Verifiable Presentation is encoded as a [JWT](/docs/web5/build/verifiable-credentials/jwt-to-vc#what-is-a-jwt) and can be verified via the `VerifiablePresentation.verify()` function. 
 
 <Shnip
-  inlineSnippets={[
-    {
-      content: 'This functionality does not exist in the Javascript SDK.',
-      language: 'JavaScript',
-    }
-  ]}
   snippets={[
+    { snippetName: 'verifyVpJs', language: 'JavaScript'},
     { snippetName: 'verifyVpKt', language: 'Kotlin'},
   ]}
 />
