@@ -3,14 +3,13 @@ import express from 'express';
 import { Jwt, VerifiableCredential } from '@web5/credentials';
 import { DidDht } from '@web5/dids';
 
-const issuerDid = await DidDht.create({ 
-  options: { publish: true } 
+const issuerDid = await DidDht.create({
+  options: { publish: true },
 });
 
-const signerDid = await DidDht.create({ 
-  options: { publish: true } 
+const signerDid = await DidDht.create({
+  options: { publish: true },
 });
-
 
 // :snippet-start: sanctionsCredentialClass
 class SanctionsCredential {
@@ -22,7 +21,6 @@ class SanctionsCredential {
 export default SanctionsCredential;
 // :snippet-end:
 
-
 // :snippet-start: checkSanctionsListsFunction
 function checkSanctionsList(payload) {
   // This is where you would add the functionality to perform the actual sanction checks
@@ -33,18 +31,40 @@ function checkSanctionsList(payload) {
 }
 // :snippet-end:
 
+// :snippet-start: createADidWithServiceEndpointJS
+const issuerBearerDid = await DidDht.create({
+  options: {
+    publish: true,
+    services: [
+      {
+        id: 'idv',
+        type: 'IDV',
+        serviceEndpoint: 'https://exampleIdvEndpoint.com/idv/siopv2/initiate',
+      },
+    ],
+  },
+});
+// :snippet-end:
+
+// :snippet-start: updateADidWithServiceEndpointJS
+issuerBearerDid.document.service.push({
+  id: 'idv',
+  type: 'IDV',
+  serviceEndpoint: 'https://exampleIdvEndpoint.com/idv/siopv2/initiate',
+});
+
+await DidDht.publish({ did: issuerDid });
+// snippet-end:
 
 const app = express();
 app.use(express.json());
 
-
 // :snippet-start: checkSanctionsEndpoint
 app.get('/check-sanctions', async (req, res) => {
-
   /***********************************************
-  * Accepts a JWT in the Authorization header 
-  * and parse to get the signer DID
-  ************************************************/
+   * Accepts a JWT in the Authorization header
+   * and parse to get the signer DID
+   ************************************************/
   try {
     const authHeader = req.headers['authorization'];
 
@@ -72,14 +92,13 @@ app.get('/check-sanctions', async (req, res) => {
       payload = verificationResult.payload;
     } catch (error) {
       return res.status(401).json({
-        errors: ['Invalid token']
+        errors: ['Invalid token'],
       });
     }
 
-
     /***********************************************
-    * Perform the sanctions check and get the result
-    ************************************************/
+     * Perform the sanctions check and get the result
+     ************************************************/
     const sanctionsListResult = checkSanctionsList(payload);
 
     if (!sanctionsListResult || sanctionsListResult.isSanctioned) {
@@ -89,8 +108,8 @@ app.get('/check-sanctions', async (req, res) => {
     }
 
     /***********************************************
-    * Create credential
-    ************************************************/    
+     * Create credential
+     ************************************************/
     const sanctions_credential = await VerifiableCredential.create({
       type: 'SanctionsCredential',
       issuer: issuerDid.uri,
@@ -99,8 +118,8 @@ app.get('/check-sanctions', async (req, res) => {
     });
 
     /***********************************************
-    * To secure the VC, you must sign it
-    ************************************************/     
+     * To secure the VC, you must sign it
+     ************************************************/
     const credential_token = await sanctions_credential.sign({
       did: issuerDid,
     });
@@ -115,7 +134,6 @@ app.get('/check-sanctions', async (req, res) => {
 });
 // :snippet-end:
 
-
 /* 
 Have to add tests separately because the big snippet is
 contained within the express app and the objects within
@@ -123,13 +141,13 @@ are outside of the function's scope to be tested
 */
 
 describe('Sanctions Credential Issuance', () => {
-
   const sanctionsListResult = {
     listsCleared: ["FBI's Most Wanted, USA Watchlist", 'EU Watchlist'],
   };
-  
+
   test('Jwt.verify() works with a valid JWT', async () => {
-    const validJwt = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJFZERTQSIsImtpZCI6ImRpZDprZXk6ejZNa3djSmkzeVVONDJFZ1N2cmNHRlFyQzRKY1pkenlWWkhQOVdmMXFRZWRuVlRQI3o2TWt3Y0ppM3lVTjQyRWdTdnJjR0ZRckM0SmNaZHp5VlpIUDlXZjFxUWVkblZUUCJ9.eyJ2YyI6eyJAY29udGV4dCI6WyJodHRwczovL3d3dy53My5vcmcvMjAxOC9jcmVkZW50aWFscy92MSJdLCJ0eXBlIjpbIlZlcmlmaWFibGVDcmVkZW50aWFsIiwiSWRlbnRpZmljYXRpb25DcmVkZW50aWFsIl0sImlkIjoidXJuOnV1aWQ6MDQ3ZTg0ZWItY2NhMS00NjFlLWFjZjAtMGMyZGE5ZDczOTNhIiwiaXNzdWVyIjoiZGlkOmtleTp6Nk1rd2NKaTN5VU40MkVnU3ZyY0dGUXJDNEpjWmR6eVZaSFA5V2YxcVFlZG5WVFAiLCJpc3N1YW5jZURhdGUiOiIyMDI0LTAyLTE1VDE5OjMyOjE2WiIsImNyZWRlbnRpYWxTdWJqZWN0Ijp7ImlkIjoiZGlkOmtleTp6Nk1rd2NKaTN5VU40MkVnU3ZyY0dGUXJDNEpjWmR6eVZaSFA5V2YxcVFlZG5WVFAiLCJuYW1lIjoiam9obiJ9fSwiaXNzIjoiZGlkOmtleTp6Nk1rd2NKaTN5VU40MkVnU3ZyY0dGUXJDNEpjWmR6eVZaSFA5V2YxcVFlZG5WVFAiLCJzdWIiOiJkaWQ6a2V5Ono2TWt3Y0ppM3lVTjQyRWdTdnJjR0ZRckM0SmNaZHp5VlpIUDlXZjFxUWVkblZUUCJ9.7oFAPckx-vxCbbzKSk9bU7eXlnjBFvMborl9woHCbcvWaLt0LvTRuDfvGDPC24V9D1K5OFpTnnBiN5jtIOmbBg';
+    const validJwt =
+      'eyJ0eXAiOiJKV1QiLCJhbGciOiJFZERTQSIsImtpZCI6ImRpZDprZXk6ejZNa3djSmkzeVVONDJFZ1N2cmNHRlFyQzRKY1pkenlWWkhQOVdmMXFRZWRuVlRQI3o2TWt3Y0ppM3lVTjQyRWdTdnJjR0ZRckM0SmNaZHp5VlpIUDlXZjFxUWVkblZUUCJ9.eyJ2YyI6eyJAY29udGV4dCI6WyJodHRwczovL3d3dy53My5vcmcvMjAxOC9jcmVkZW50aWFscy92MSJdLCJ0eXBlIjpbIlZlcmlmaWFibGVDcmVkZW50aWFsIiwiSWRlbnRpZmljYXRpb25DcmVkZW50aWFsIl0sImlkIjoidXJuOnV1aWQ6MDQ3ZTg0ZWItY2NhMS00NjFlLWFjZjAtMGMyZGE5ZDczOTNhIiwiaXNzdWVyIjoiZGlkOmtleTp6Nk1rd2NKaTN5VU40MkVnU3ZyY0dGUXJDNEpjWmR6eVZaSFA5V2YxcVFlZG5WVFAiLCJpc3N1YW5jZURhdGUiOiIyMDI0LTAyLTE1VDE5OjMyOjE2WiIsImNyZWRlbnRpYWxTdWJqZWN0Ijp7ImlkIjoiZGlkOmtleTp6Nk1rd2NKaTN5VU40MkVnU3ZyY0dGUXJDNEpjWmR6eVZaSFA5V2YxcVFlZG5WVFAiLCJuYW1lIjoiam9obiJ9fSwiaXNzIjoiZGlkOmtleTp6Nk1rd2NKaTN5VU40MkVnU3ZyY0dGUXJDNEpjWmR6eVZaSFA5V2YxcVFlZG5WVFAiLCJzdWIiOiJkaWQ6a2V5Ono2TWt3Y0ppM3lVTjQyRWdTdnJjR0ZRckM0SmNaZHp5VlpIUDlXZjFxUWVkblZUUCJ9.7oFAPckx-vxCbbzKSk9bU7eXlnjBFvMborl9woHCbcvWaLt0LvTRuDfvGDPC24V9D1K5OFpTnnBiN5jtIOmbBg';
     const verificationResult = await Jwt.verify({ jwt: validJwt });
 
     expect(verificationResult).toHaveProperty('header');
@@ -158,8 +176,8 @@ describe('Sanctions Credential Issuance', () => {
       data: new SanctionsCredential(sanctionsListResult),
     });
 
-    const signedCredential = await sanctionsCredential.sign({ 
-      did: issuerDid 
+    const signedCredential = await sanctionsCredential.sign({
+      did: issuerDid,
     });
 
     expect(typeof signedCredential).toBe('string');
