@@ -12,8 +12,8 @@
   "license": "ISC",
   "dependencies": {
     "@web5/api": "0.8.4",
-    "@web5/credentials": "0.4.2",
-    "@web5/dids": "0.4.1",
+    "@web5/credentials": "0.4.5",
+    "@web5/dids": "0.4.3",
     "@web5/user-agent": "0.2.5"
   }
 }
