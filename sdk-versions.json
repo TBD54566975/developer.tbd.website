@@ -11,7 +11,7 @@
     "@web5/identity-agent": "0.2.5"
   },
   "maven": {
-    "tbdex": "1.0.0.rc2-SNAPSHOT",
+    "tbdex": "1.0.0.rc1-SNAPSHOT",
     "web5-credentials": "0.17.0",
     "web5-dids": "0.17.0",
     "web5-crypto": "0.17.0"
