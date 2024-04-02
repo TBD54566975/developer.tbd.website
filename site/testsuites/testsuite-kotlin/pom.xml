@@ -15,7 +15,7 @@
     <version.kotlin>1.9.22</version.kotlin>
     <version.kotlin.compiler.incremental>true</version.kotlin.compiler.incremental>
     <version.junit-jupiter>5.10.1</version.junit-jupiter>
-    <version.tbdex>0.12.0-beta</version.tbdex>
+    <version.tbdex>1.0.0.rc1-SNAPSHOT</version.tbdex>
     <version.ktor>2.3.7</version.ktor>
   </properties>
   <dependencyManagement>
