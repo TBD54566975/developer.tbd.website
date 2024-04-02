@@ -10,9 +10,8 @@ import tbdex.sdk.httpserver.TbdexHttpServer
 import tbdex.sdk.httpserver.TbdexHttpServerConfig
 import web5.sdk.crypto.AwsKeyManager
 import web5.sdk.dids.methods.dht.DidDht
-import tbdex.sdk.httpserver.models.SubmitKind
 import web5.sdk.crypto.InMemoryKeyManager
-import web5.sdk.dids.Did
+import web5.sdk.dids.did.BearerDid
 import java.time.OffsetDateTime
 import website.tbd.developer.site.docs.tbdex.pfi.*
 import website.tbd.developer.site.docs.utils.*
@@ -27,7 +26,7 @@ class CreatingQuotesTest {
     private lateinit var offeringsApiProvider: OfferingsApiProvider
     private lateinit var exchangesApiProvider: ExchangesApiProvider
     private lateinit var dataProvider: MockDataProvider
-    private lateinit var pfiDid: DidDht
+    private lateinit var pfiDid: BearerDid
     private lateinit var message: Message
 
     @BeforeEach
