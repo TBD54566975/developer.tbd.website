@@ -7445,8 +7445,8 @@ packages:
       '@web5/dids': 0.4.3
     dev: false
 
-  /@web5/crypto-aws-kms@0.2.1:
-    resolution: {integrity: sha512-cUucOgo8ciPEH9m1pF2xRPO6kDl+mRZ12rBxSqqHhOkrv6HEya3/AliLhvJ2IspNNRG4jjJIt2/m3MQJhvtK6A==}
+  /@web5/crypto-aws-kms@0.2.0:
+    resolution: {integrity: sha512-U5d2mcKfqSZzDku6+IlI5QTVxetxvwCmhEFrCgeK9eoBk35duug5WFq6k2HDPANYWgwKk8gO4drKP3yy/ZjF0Q==}
     engines: {node: '>=18.0.0'}
     dependencies:
       '@aws-sdk/client-kms': 3.478.0

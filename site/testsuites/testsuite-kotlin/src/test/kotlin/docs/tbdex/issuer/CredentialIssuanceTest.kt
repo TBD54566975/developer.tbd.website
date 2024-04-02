@@ -21,6 +21,10 @@ import io.ktor.server.application.*
 import io.ktor.server.response.*
 import io.ktor.server.request.*
 import io.ktor.http.*
+import kotlinx.coroutines.runBlocking
+
+import web5.sdk.dids.didcore.Service
+
 
 
 // :snippet-start: sanctionsCredentialClassKt
@@ -40,6 +44,36 @@ fun checkSanctionsList(): SanctionsListResult {
 // sanctionsListResult class
 data class SanctionsListResult(val isSanctioned: Boolean, val listsCleared: List<String>)
 // :snippet-end:
+
+private fun createADid() = runBlocking {
+    // :snippet-start: createADidWithAServiceEndpointKT
+    val idvService = Service(
+        id = "idv", 
+        type = "IDV",
+        serviceEndpoint = listOf("https://exampleIdvEndpoint.com/idv/siopv2/initiate")
+    )
+
+    val options = CreateDidDhtOptions(
+        services = listOf(idvService),
+        publish = true 
+    )
+
+    val issuerBearerDid = DidDht.create(InMemoryKeyManager(), options)
+    // :snippet-end:
+}
+private fun updateADid() = runBlocking {
+    val issuerBearerDid = DidDht.create(InMemoryKeyManager(), CreateDidDhtOptions(publish = true))
+    // :snippet-start: updateADidWithAServiceEndpointKT
+    val serviceToAdd = Service.Builder()
+    .id("idv")
+    .type("IDV")
+    .serviceEndpoint(listOf("https://exampleIdvEndpoint.com/idv/siopv2/initiate"))
+    .build()
+
+    issuerBearerDid.didDocument?.service.orEmpty() + serviceToAdd
+    issuerBearerDid.publish()
+    // :snippet-end:
+}    
 
 class CredentialIssuanceTest {
 
