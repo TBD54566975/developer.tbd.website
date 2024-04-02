@@ -1,0 +1,90 @@
+---
+slug: tbdex-v1
+title: 'tbDEX 1.0 Now Available'
+description: The first major version of tbDEX, an open source liquidity and trust protocol, has been released
+authors:
+  name: Angie Jones
+tags: [tbDEX]
+---
+
+<head>
+  <meta property="og:title" content="tbDEX 1.0 Now Available" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content='https://developer.tbd.website/blog/tbdex-v1' />
+  <meta name="og:description" content="The first major version of tbDEX, an open source liquidity and trust protocol, has been released" />
+  <meta property="og:image" content="https://developer.tbd.website/assets/images/tbdex-v1-blog-header-751284f3cfab50712d1aa5c3aa3f31f4.png" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta property="twitter:domain" content="developer.tbd.website" />
+  <meta name="twitter:site" content="@tbdevs" />
+  <meta name="twitter:title" content="tbDEX 1.0 Now Available" />
+  <meta property="twitter:url" content='https://developer.tbd.website/blog/tbdex-v1' /> 
+  <meta name="twitter:description" content="The first major version of tbDEX, an open source liquidity and trust protocol, has been released" />
+  <meta name="twitter:image" content="https://developer.tbd.website/assets/images/tbdex-v1-blog-header-751284f3cfab50712d1aa5c3aa3f31f4.png" />
+
+  <link rel="apple-touch-icon" href="https://developer.tbd.website/img/tbd-fav-icon-main.png" />
+</head>
+
+import Button from '@site/src/components/Button';
+
+![tbDEX 1.0 Now Available](/img/tbdex-v1-blog-header.png)
+
+The first major version of tbDEX, an open source liquidity and trust protocol, has been released! 🎉 SDK implementations of the protocol are available in TypeScript/JavaScript, Kotlin, and Swift enabling integration with Web, Android, and iOS applications.
+
+<!--truncate-->
+
+tbDEX is architected on [Web5](/projects/web5/) infrastructure, utilizing decentralized technologies such as [Decentralized Identifiers (DIDs)](/docs/web5/learn/decentralized-identifiers) and [Verifiable Credentials (VCs)](/docs/web5/learn/verifiable-credentials) to securely validate counterparty identity and trust, as well as desired compliance with relevant laws and regulations.
+
+tbDEX enables wallet applications to connect liquidity seekers with providers and equips all participants with a common language for facilitating transactions.
+
+## 🏦 Features for PFIs
+Participating Financial Institutions (PFIs) can use tbDEX to provide liquidity to any wallet application in the world who also uses tbDEX. Version 1.0 of tbDEX includes the ability to:
+
+* Provide a static list of offered currency pairs and payment methods
+
+* Specify the required credentials the customer must provide in order to transact
+
+* Provide real-time quotes based on the financial transaction the customer is requesting as well as the payment methods selected
+
+* Provide status updates on orders
+
+* Indicate if the transaction was completed successfully or not
+
+
+## 💼 Features for Wallets
+
+Wallet applications using tbDEX act as agents for customers who are seeking liquidity. Version 1.0 of tbDEX includes the ability to:
+
+* Obtain service offerings from PFIs to determine which meet your customers' needs
+
+* Initiate exchanges with a PFIs
+
+* Provide PFIs with verifiable credentials on behalf on your customers
+
+* Receive real-time quotes and place orders
+
+* Receive status updates on orders
+
+* Cancel an exchange
+
+
+## ✅ Features for Issuers
+In a tbDEX ecosystem, verifiable credentials serve as a method for establishing trust and ensuring regulatory compliance during transactions. Issuers create and distribute these credentials. tbDEX utilizes the Web5 SDK to allow issuers to:
+
+* Create decentralized identifiers for PFIs, Issuers, and Wallet users
+* Issue verifiable credentials
+* Verify credentials
+
+:::tip KYC Credential
+We have designed a [Known Customer Credential](https://www.tbdex.io/guides/kcc) to satisfy Know Your Customer regulatory requirements.
+:::
+
+## 🛠️ Get Started with tbDEX
+
+tbDEX allows for a permissionless network, meaning you do not need our blessing to use the SDK. It's all open source, so feel free to [begin building with tbDEX today](/docs/tbdex/)!
+
+If there are missing features that your business needs, we welcome your [feedback](https://discord.gg/tbd) and/or [contributions](https://github.com/TBD54566975/tbdex).
+
+<div align='center'>
+<Button label='Visit tbdex.io' url='https://www.tbdex.io/' title='tbDEX website' />
+</div>
