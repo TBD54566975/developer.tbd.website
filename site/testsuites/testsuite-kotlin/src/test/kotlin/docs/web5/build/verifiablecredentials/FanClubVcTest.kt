@@ -10,7 +10,7 @@ import web5.sdk.credentials.VerifiableCredential
 import web5.sdk.credentials.PresentationExchange
 import web5.sdk.credentials.model.*
 import web5.sdk.crypto.InMemoryKeyManager
-import web5.sdk.dids.methods.key.DidKey
+import web5.sdk.dids.methods.dht.DidDht
 import web5.sdk.credentials.VerifiablePresentation
 
 /**
@@ -22,8 +22,8 @@ internal class FanClubVcTest {
         val legit: Boolean
     )
 
-    val fanClubIssuerDid = DidKey.create(InMemoryKeyManager())
-    val aliceDid = DidKey.create(InMemoryKeyManager())
+    val fanClubIssuerDid = DidDht.create(InMemoryKeyManager())
+    val aliceDid = DidDht.create(InMemoryKeyManager())
     
     val vc = VerifiableCredential.create(
         type = "SwiftiesFanClub",
@@ -56,11 +56,11 @@ internal class FanClubVcTest {
   @Test
   fun `createDidsKt imports dids package and creates dids`() {
     // :snippet-start: createDidsKt
-    val fanClubIssuerDid = DidKey.create(InMemoryKeyManager())
-    val aliceDid = DidKey.create(InMemoryKeyManager())
+    val fanClubIssuerDid = DidDht.create(InMemoryKeyManager())
+    val aliceDid = DidDht.create(InMemoryKeyManager())
     // :snippet-end:
-    assertTrue(fanClubIssuerDid.uri.startsWith("did:key:"), "fanClubIssuerDid should start with 'did:key:'")
-    assertTrue(aliceDid.uri.startsWith("did:key:"), "aliceDid should start with 'did:key:'")
+    assertTrue(fanClubIssuerDid.uri.startsWith("did:dht:"), "fanClubIssuerDid should start with 'did:dht:'")
+    assertTrue(aliceDid.uri.startsWith("did:dht:"), "aliceDid should start with 'did:dht:'")
   }
 
   @Test
