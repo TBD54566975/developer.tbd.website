@@ -31,6 +31,7 @@ final class KeyManagementTests: XCTestCase {
 
             }
             else {
+                // Create a new DID
                 return try DIDJWK.create(keyManager: keyManager)
             }
 
