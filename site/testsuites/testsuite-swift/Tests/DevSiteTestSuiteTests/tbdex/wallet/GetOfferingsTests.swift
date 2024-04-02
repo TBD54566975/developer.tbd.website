@@ -11,9 +11,11 @@ final class GetOfferingsTests: XCTestCase {
     override func setUp() {
         super.setUp()
         MockData.allowDidResolution(didUri: pfiDid)
+
         var offerings = [Offering]()
         offerings.append(MockData.selectedOffering)
-        MockData.setupMockGetCall(url: mockURL, data: ["data": offerings])
+        let data: [String: [Offering]] = ["data": offerings]
+        MockData.setupMockGetCall(url: mockURL, data: data)
     }
     
     func testGetOfferings() async throws {
