@@ -54,8 +54,8 @@ final class ManagingCredentialsTest: XCTestCase {
 
             // Filter offerings based on the desired currency pair
             let filteredOfferings = offerings.filter { offering in
-                offering.data.payinCurrency.currencyCode == payinCurrencyCode &&
-                offering.data.payoutCurrency.currencyCode == payoutCurrencyCode
+                offering.data.payin.currencyCode == payinCurrencyCode &&
+                offering.data.payout.currencyCode == payoutCurrencyCode
             }
             for offering in filteredOfferings {
                 // Extract the presentation definition from the offering
