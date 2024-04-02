@@ -15,7 +15,6 @@ final class KeyManagementTests: XCTestCase {
 
             // Determine which key manager to use based on the environment
             if env == "production" {
-                // if production, use a more secure and production-ready key manager.
                 keyManager = KeychainKeyManager()
             }
             else {
