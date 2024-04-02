@@ -20,7 +20,6 @@ describe('Wallet: Place Order', () => {
 
     pfiDid = await DidDht.create({
       options:{
-        //publish  : true,
         services : [{
           type            : 'PFI',
           id              : 'pfi',
