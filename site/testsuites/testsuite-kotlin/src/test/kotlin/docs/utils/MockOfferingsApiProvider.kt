@@ -2,9 +2,6 @@ package website.tbd.developer.site.docs.utils
 
 import tbdex.sdk.httpserver.models.*
 import tbdex.sdk.protocol.models.*
-import website.tbd.developer.site.docs.utils.MockDataProvider
-import website.tbd.developer.site.docs.utils.TestData
-import de.fxlae.typeid.TypeId
 
 open class MockOfferingsApiProvider: OfferingsApi {
 

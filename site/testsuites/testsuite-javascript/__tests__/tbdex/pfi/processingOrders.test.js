@@ -69,7 +69,10 @@ describe('PFI: Orders', () => {
                 to: orderMessage.metadata.from, 
                 exchangeId: orderMessage.metadata.exchangeId
             },
-            data: { reason: 'COMPLETED' }
+            data: { 
+                reason: 'COMPLETED',
+                success: true // Indicates the transaction was successful
+            }
         })
         
         await closeMessage.sign(pfiDid)

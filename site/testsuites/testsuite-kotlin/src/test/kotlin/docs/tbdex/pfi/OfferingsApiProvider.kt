@@ -1,9 +1,7 @@
 package website.tbd.developer.site.docs.tbdex.pfi
 
-import website.tbd.developer.site.docs.utils.MockExchangesApiProvider
 import tbdex.sdk.protocol.models.*
 import website.tbd.developer.site.docs.utils.*
-import tbdex.sdk.httpserver.models.*
 
 class OfferingsApiProvider: MockOfferingsApiProvider() {
 

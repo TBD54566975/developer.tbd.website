@@ -114,7 +114,8 @@ describe('PFI: Quotes', () => {
       metadata: {
         from: pfiDid.uri,
         to: message.from,
-        exchangeId: message.exchangeId
+        exchangeId: message.exchangeId,
+        protocol: '1.0'
       },
       data: {
         expiresAt: quoteExpiration.toLocaleDateString('en-us'),
