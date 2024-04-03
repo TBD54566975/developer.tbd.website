@@ -49,28 +49,26 @@ class PfiStructureTest {
     @Test
     fun `PFI initializes routes`() {
         // :snippet-start: pfiOverviewServerRoutesKt
-        tbDexServer.submit(
-          .rfq) { call, message, offering, replyTo ->
+        tbDexServer.onCreateExchange { call, message, offering, replyTo ->
             exchangesApiProvider.write(message)
             call.respond(HttpStatusCode.Accepted)
         }
 
-        tbDexServer.submit(SubmitKind.order) { call, message, offering, replyTo ->
-            exchangesApiProvider.write(message)
+        tbDexServer.onSubmitOrder { call, order ->
+            exchangesApiProvider.write(order)
             call.respond(HttpStatusCode.Accepted)
         }
 
-        tbDexServer.submit(SubmitKind.close) { call, message, offering, replyTo ->
-            exchangesApiProvider.write(message)
+        tbDexServer.onSubmitClose { call, close ->
+            exchangesApiProvider.write(close)
             call.respond(HttpStatusCode.Accepted)
         }
         // :snippet-end:
 
-        val actualCallbacks = tbDexServer.submitCallbacks
-        assertTrue(actualCallbacks.contains(SubmitKind.rfq.name), "Callbacks should contain rfq")
-        assertTrue(actualCallbacks.contains(SubmitKind.order.name), "Callbacks should contain order")
-        assertTrue(actualCallbacks.contains(SubmitKind.close.name), "Callbacks should contain close")
-        assertEquals(actualCallbacks.size, 3, "There should be 3 routes")
+        val actualCallbacks = tbDexServer.callbacks
+        assertNotNull(actualCallbacks.createExchange, "Should contain createExchange callback.")
+        assertNotNull(actualCallbacks.submitOrder, "Should contain submitOrder callback.")
+        assertNotNull(actualCallbacks.submitClose, "Should contain submitClose callback.")
     }
 
     @Test
@@ -85,7 +83,7 @@ class PfiStructureTest {
         Thread.sleep(1000)
 
         // Test calls against the server
-        val url = URI.create("http://localhost:8080/").toURL()
+        val url = URI.create("https://localhost:8080/").toURL()
         val connection = url.openConnection() as HttpURLConnection
         connection.requestMethod = "GET"
         connection.disconnect()
