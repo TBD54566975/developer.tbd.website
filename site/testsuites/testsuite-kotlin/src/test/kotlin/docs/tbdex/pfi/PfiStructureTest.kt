@@ -6,7 +6,8 @@ import java.net.HttpURLConnection
 import java.net.URI
 import kotlin.concurrent.thread
 import website.tbd.developer.site.docs.utils.*
-import tbdex.sdk.httpserver.models.SubmitKind
+import tbdex.sdk.httpserver.models.SubmitCloseCallback
+import tbdex.sdk.httpserver.models.SubmitOrderCallback
 import io.ktor.http.*
 import io.ktor.server.response.*
 import org.junit.jupiter.api.*
@@ -48,7 +49,8 @@ class PfiStructureTest {
     @Test
     fun `PFI initializes routes`() {
         // :snippet-start: pfiOverviewServerRoutesKt
-        tbDexServer.submit(SubmitKind.rfq) { call, message, offering, replyTo ->
+        tbDexServer.submit(
+          .rfq) { call, message, offering, replyTo ->
             exchangesApiProvider.write(message)
             call.respond(HttpStatusCode.Accepted)
         }

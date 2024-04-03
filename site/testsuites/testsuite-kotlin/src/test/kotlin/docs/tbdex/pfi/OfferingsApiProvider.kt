@@ -13,7 +13,7 @@ class OfferingsApiProvider: MockOfferingsApiProvider() {
         return result as Offering
     }
 
-    override fun getOfferings(filter: GetOfferingsFilter?): List<Offering> {
+    override fun getOfferings(): List<Offering> {
         val results = dataProvider.query("offering", "*")
         val offerings = mutableListOf<Offering>()
 

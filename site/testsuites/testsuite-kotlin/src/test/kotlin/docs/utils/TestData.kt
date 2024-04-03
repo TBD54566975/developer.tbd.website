@@ -28,7 +28,7 @@ object TestData {
     val serviceToAdd = Service.Builder()
         .id("pfi")
         .type("PFI")
-        .serviceEndpoint(listOf("http://localhost:9000"))
+        .serviceEndpoint(listOf("https://localhost:9000"))
         .build()
 
     val options = CreateDidDhtOptions(
@@ -102,13 +102,13 @@ object TestData {
               paymentDetails = mapOf("address" to "123456"),
               amount = "10.00"
             ),
-           payout = CreateSelectedPayoutMethod(
+            payout = CreateSelectedPayoutMethod(
              kind = "MOMO",
              paymentDetails = mapOf(
                "phoneNumber" to "254712345678",
                "accountHolderName" to "Alfred Holder"
              )
-           ),
+            ),
             claims = claims
         )
     )

@@ -66,7 +66,7 @@ class GetOfferingsTest {
             // Filter offerings based on the currency pair
             val filteredOfferings = offerings.filter { offering ->
                 offering.data.payin.currencyCode == payinCurrencyCode &&
-                        offering.data.payout.currencyCode == payoutCurrencyCode
+                offering.data.payout.currencyCode == payoutCurrencyCode
             }
 
             matchedOfferings.addAll(filteredOfferings)
