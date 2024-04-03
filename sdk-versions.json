@@ -1,13 +1,13 @@
 {
   "js": {
-    "@tbdex/http-client": "0.28.0",
-    "@tbdex/http-server": "0.28.0",
-    "@tbdex/protocol": "0.28.0",
+    "@tbdex/http-client": "0.0.0-next-e852f25-20240403233344",
+    "@tbdex/http-server": "0.0.0-next-e852f25-20240403233344",
+    "@tbdex/protocol": "0.0.0-next-e852f25-20240403233344",
     "@web5/api": "0.8.4",
-    "@web5/credentials": "0.4.5",
-    "@web5/crypto": "0.4.1",
-    "@web5/crypto-aws-kms": "0.2.0",
-    "@web5/dids": "0.4.3",
+    "@web5/credentials": "1.0.0",
+    "@web5/crypto": "1.0.0",
+    "@web5/crypto-aws-kms": "1.0.0",
+    "@web5/dids": "1.0.0",
     "@web5/identity-agent": "0.2.5"
   },
   "jvm": {

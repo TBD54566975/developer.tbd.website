@@ -26,29 +26,29 @@ importers:
         specifier: 0.2.0
         version: 0.2.0(@fortawesome/fontawesome-svg-core@6.4.2)(react@18.2.0)
       '@tbdex/http-client':
-        specifier: 0.28.0
-        version: 0.28.0
+        specifier: 0.0.0-next-e852f25-20240403233344
+        version: 0.0.0-next-e852f25-20240403233344
       '@tbdex/http-server':
-        specifier: 0.28.0
-        version: 0.28.0
+        specifier: 0.0.0-next-e852f25-20240403233344
+        version: 0.0.0-next-e852f25-20240403233344
       '@tbdex/protocol':
-        specifier: 0.28.0
-        version: 0.28.0
+        specifier: 0.0.0-next-e852f25-20240403233344
+        version: 0.0.0-next-e852f25-20240403233344
       '@web5/api':
         specifier: 0.8.4
         version: 0.8.4
       '@web5/credentials':
-        specifier: 0.4.5
-        version: 0.4.5
+        specifier: 1.0.0
+        version: 1.0.0
       '@web5/crypto':
-        specifier: 0.4.1
-        version: 0.4.1
+        specifier: 1.0.0
+        version: 1.0.0
       '@web5/crypto-aws-kms':
-        specifier: 0.2.1
-        version: 0.2.1
+        specifier: 1.0.0
+        version: 1.0.0
       '@web5/dids':
-        specifier: 0.4.3
-        version: 0.4.3
+        specifier: 1.0.0
+        version: 1.0.0
       '@web5/identity-agent':
         specifier: 0.2.5
         version: 0.2.5
@@ -217,11 +217,11 @@ importers:
         specifier: 0.8.4
         version: 0.8.4
       '@web5/credentials':
-        specifier: 0.4.5
-        version: 0.4.5
+        specifier: 1.0.0
+        version: 1.0.0
       '@web5/dids':
-        specifier: 0.4.3
-        version: 0.4.3
+        specifier: 1.0.0
+        version: 1.0.0
       '@web5/user-agent':
         specifier: 0.2.5
         version: 0.2.5
@@ -6377,40 +6377,40 @@ packages:
       - supports-color
     dev: false
 
-  /@tbdex/http-client@0.28.0:
-    resolution: {integrity: sha512-D8Bj0JSlQIT9JxCrrKQygEacWKK0s7e3dhP0oG4JfZ2fVbiSPwGBpOUeZbgJpt0ogZXEHOXyFLq/Kz1+fkFDAA==}
+  /@tbdex/http-client@0.0.0-next-e852f25-20240403233344:
+    resolution: {integrity: sha512-1cpRtIkGQjlwP4y1K4c9E4d0XficNDYPy5bpvaWmDBOYnCSAiUdU4wt0PILO5H3Nl7JLstqZDuixrNLFKkRptQ==}
     dependencies:
-      '@tbdex/protocol': 0.28.0
-      '@web5/common': 0.2.4
-      '@web5/credentials': 0.4.5
-      '@web5/crypto': 0.4.1
-      '@web5/dids': 0.4.3
+      '@tbdex/protocol': 0.0.0-next-e852f25-20240403233344
+      '@web5/common': 1.0.0
+      '@web5/credentials': 1.0.0
+      '@web5/crypto': 1.0.0
+      '@web5/dids': 1.0.0
       ms: 2.1.3
       query-string: 8.2.0
       typeid-js: 0.3.0
     dev: false
 
-  /@tbdex/http-server@0.28.0:
-    resolution: {integrity: sha512-UzW1efq+ggAwnxlL3qRrUYWTsSpvX6TQ5qJATtP3F0P5zBWcGusSxk0LCKEiNDMW87H4gw37jpyR9us9twHNkQ==}
+  /@tbdex/http-server@0.0.0-next-e852f25-20240403233344:
+    resolution: {integrity: sha512-zjuMOqJY8kHmeIkH8XrWTDMzdmOtE45CxVFMiJsmIxLk4tsysvGSz82T4rMqq7RrjDeuG9DUvPYL2U9Vqjlb1g==}
     dependencies:
-      '@tbdex/http-client': 0.28.0
-      '@tbdex/protocol': 0.28.0
-      '@web5/dids': 0.4.3
+      '@tbdex/http-client': 0.0.0-next-e852f25-20240403233344
+      '@tbdex/protocol': 0.0.0-next-e852f25-20240403233344
+      '@web5/dids': 1.0.0
       cors: 2.8.5
       express: 4.19.2
     transitivePeerDependencies:
       - supports-color
     dev: false
 
-  /@tbdex/protocol@0.28.0:
-    resolution: {integrity: sha512-qymOwc//lmMzJeE9FFSEP4+MsD4AQTXCvf3sF7ZfNX6RhiT6YkfeYSiNFuZCBboszFkS4sJBee8zcBJfSG26nA==}
+  /@tbdex/protocol@0.0.0-next-e852f25-20240403233344:
+    resolution: {integrity: sha512-BIYS3DNhN5dGCn3R4QXuC0yPlGym2qwFL7uzGuSQ1ValALqbekbu6K5WoVCHqSQazOECdbLsHmu+qPuArG4/YQ==}
     dependencies:
       '@noble/hashes': 1.3.3
       '@types/node': 7.10.14
-      '@web5/common': 0.2.4
-      '@web5/credentials': 0.4.5
-      '@web5/crypto': 0.4.1
-      '@web5/dids': 0.4.3
+      '@web5/common': 1.0.0
+      '@web5/credentials': 1.0.0
+      '@web5/crypto': 1.0.0
+      '@web5/dids': 1.0.0
       ajv: 8.12.0
       bignumber.js: 9.1.2
       canonicalize: 2.0.0
@@ -7406,8 +7406,8 @@ packages:
       readable-stream: 4.4.2
     dev: false
 
-  /@web5/common@0.2.4:
-    resolution: {integrity: sha512-h7I+FbAzTbkQWnv5RZCtE1lFsOzwssvcr4aQuQvO1mx8qTjzl5gGXhFIpl6JB9aSE2FayNUV6kQBID8Sb5HXTQ==}
+  /@web5/common@1.0.0:
+    resolution: {integrity: sha512-3JHF6X5o0h+3oAVQeBC4XpMoZeEYZYdEmQdgpOfKv/rnSru2yHQSAM+0wbIvEFcSCmelBT3u7rUAcpJjelLB0w==}
     engines: {node: '>=18.0.0'}
     dependencies:
       '@isaacs/ttlcache': 1.4.1
@@ -7416,22 +7416,22 @@ packages:
       readable-stream: 4.4.2
     dev: false
 
-  /@web5/credentials@0.4.5:
-    resolution: {integrity: sha512-gr5VwGlOV0w7FPLdIoHUWwiY4oDxr0CIiq/nl9rIRF4PyU5v3itaUrb9gP67w+m5Nw6Esl/zryRypwJZ3Q24sQ==}
+  /@web5/credentials@1.0.0:
+    resolution: {integrity: sha512-rlVaPA+eyTmoscMCiK3OCg8mucZ1jex/xo6dDOV4Fll3S7vVGocG8wZXK7x281xrcqWhypDyeidU8r1tJBBp0w==}
     engines: {node: '>=18.0.0'}
     dependencies:
       '@sphereon/pex': 2.1.0
-      '@web5/common': 0.2.4
-      '@web5/crypto': 0.4.1
-      '@web5/dids': 0.4.3
+      '@web5/common': 1.0.0
+      '@web5/crypto': 1.0.0
+      '@web5/dids': 1.0.0
     dev: false
 
-  /@web5/crypto-aws-kms@0.2.1:
-    resolution: {integrity: sha512-cUucOgo8ciPEH9m1pF2xRPO6kDl+mRZ12rBxSqqHhOkrv6HEya3/AliLhvJ2IspNNRG4jjJIt2/m3MQJhvtK6A==}
+  /@web5/crypto-aws-kms@1.0.0:
+    resolution: {integrity: sha512-qDFbIsIyPGsbWCCphLLsOyG82P3HcgD9AW92c0d3Y1e7wi2P4ZRFgbzbwmYkpWqtVm+srgbuvO5qzT4jto2H0A==}
     engines: {node: '>=18.0.0'}
     dependencies:
       '@aws-sdk/client-kms': 3.478.0
-      '@web5/crypto': 0.4.1
+      '@web5/crypto': 1.0.0
     transitivePeerDependencies:
       - aws-crt
     dev: false
@@ -7446,14 +7446,14 @@ packages:
       '@web5/common': 0.2.1
     dev: false
 
-  /@web5/crypto@0.4.1:
-    resolution: {integrity: sha512-23LxbdnpTnHBfspqin2L+qy0UKPgdx212SUg6K1pgj2oTvP7gyCKDOyN6yJ4HhexlT0AQxZ6TJ5reoTVn8Cu+g==}
+  /@web5/crypto@1.0.0:
+    resolution: {integrity: sha512-z1CsgycTqiXEsS6pPlJDDLGAeGsgzfdBeWvyxLXTgh08Q8ACULmEGRXjSsgWHFn6DO6MpWFn55h/hF4wZZRxvA==}
     engines: {node: '>=18.0.0'}
     dependencies:
       '@noble/ciphers': 0.4.1
       '@noble/curves': 1.3.0
       '@noble/hashes': 1.3.3
-      '@web5/common': 0.2.4
+      '@web5/common': 1.0.0
     dev: false
 
   /@web5/dids@0.2.3:
@@ -7495,14 +7495,14 @@ packages:
       - supports-color
     dev: false
 
-  /@web5/dids@0.4.3:
-    resolution: {integrity: sha512-VyTG8dY7iY3j8O055/wBFoGU5Xu1rwTF0RJpFazUE/6W3IuZEYAFTNl2mZ5KSuNRDT1f0VcwebuXW9PbzGuAaw==}
+  /@web5/dids@1.0.0:
+    resolution: {integrity: sha512-TJPRyNIuS50Za3qMHBgNDgwbJQUcVVWXm3Uc3UsDtZIpTLjYb+4LRaynlKzjRPAOR44Q185a+59//5Lyffon+Q==}
     engines: {node: '>=18.0.0'}
     dependencies:
       '@decentralized-identity/ion-sdk': 1.0.1
       '@dnsquery/dns-packet': 6.1.1
-      '@web5/common': 0.2.4
-      '@web5/crypto': 0.4.1
+      '@web5/common': 1.0.0
+      '@web5/crypto': 1.0.0
       abstract-level: 1.0.4
       bencode: 4.0.0
       buffer: 6.0.3
