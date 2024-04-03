@@ -10,7 +10,7 @@
     "@web5/dids": "0.4.3",
     "@web5/identity-agent": "0.2.5"
   },
-  "maven": {
+  "jvm": {
     "tbdex": "1.0.0.rc.309e5f9-SNAPSHOT",
     "web5-credentials": "0.17.0",
     "web5-dids": "0.17.0",
