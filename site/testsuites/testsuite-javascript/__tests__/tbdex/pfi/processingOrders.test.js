@@ -1,7 +1,7 @@
 import { Order, OrderStatus, Close } from '@tbdex/http-server'
 import { DidDht } from '@web5/dids';
 import { MockDataProvider } from '../../utils/mockDataProvider'
-import { vi, test, expect, describe, beforeAll, assert } from 'vitest';
+import { test, expect, describe, beforeAll, assert } from 'vitest';
 
 let pfiDid;
 let senderDid;
