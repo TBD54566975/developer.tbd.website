@@ -17,7 +17,7 @@ let package = Package(
     ],
     dependencies: [
         // Dependencies declare other packages that this package depends on.
-         .package(url: "https://github.com/TBD54566975/web5-swift.git", branch: "main"),
+         .package(url: "https://github.com/TBD54566975/web5-swift.git", exact: "1.0.0"),
          .package(url: "https://github.com/TBD54566975/tbdex-swift.git", branch: "release/v1.0.0-rc"),
          .package(url: "https://github.com/WeTransfer/Mocker.git", .upToNextMajor(from: "3.0.2")),
         ],
