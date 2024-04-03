@@ -71,16 +71,19 @@ const updatePomXmlProperties = async (filePath, sdkVersions) => {
     let updated = false;
     const properties = parsedPomContent.project.properties;
     if (properties) {
-      // Loop through each property in sdk-versions.json under the 'maven' key
       Object.entries(sdkVersions.jvm).forEach(([key, value]) => {
-        const propertyKey = `version.${key}`;
-        if (properties.hasOwnProperty(propertyKey)) {
-          properties[propertyKey] = value;
-          updated = true;
-        }
+        Object.keys(properties).forEach((propertyKey) => {
+          if (propertyKey.endsWith(key)) {
+            properties[propertyKey] = value;
+            updated = true;
+          }
+        });
       });
 
       if (updated) {
+        const builder = new xml2js.Builder({
+          renderOpts: { pretty: true, indent: "    ", newline: "\n" },
+        });
         let updatedPomContent = builder.buildObject(parsedPomContent);
 
         // Correctly handle namespace attributes without introducing duplicates
@@ -95,6 +98,7 @@ const updatePomXmlProperties = async (filePath, sdkVersions) => {
           ""
         );
 
+        // No additional string replacements are needed here if namespaces are correctly handled by the builder configuration
         await fs.promises.writeFile(filePath, updatedPomContent);
         console.log(`Successfully updated properties in ${filePath}`);
       } else {
