@@ -23,7 +23,7 @@
     },
     "tbDex": {
       "url": "https://github.com/TBD54566975/tbdex-swift.git",
-      "branch": "release/v1.0.0-rc"
+      "branch": "main"
     }
   }
 }
