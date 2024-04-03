@@ -28,7 +28,7 @@ object TestData {
     val serviceToAdd = Service.Builder()
         .id("pfi")
         .type("PFI")
-        .serviceEndpoint(listOf("https://localhost:9000"))
+        .serviceEndpoint(listOf("http://localhost:9000"))
         .build()
 
     val options = CreateDidDhtOptions(
