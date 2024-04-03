@@ -19,11 +19,11 @@
   "swift": {
     "Web5": {
       "url": "https://github.com/TBD54566975/web5-swift.git",
-      "branch": "main"
+      "exact": "1.0.0"
     },
     "tbDex": {
       "url": "https://github.com/TBD54566975/tbdex-swift.git",
-      "branch": "main"
+      "exact": "1.0.0"
     }
   }
 }
