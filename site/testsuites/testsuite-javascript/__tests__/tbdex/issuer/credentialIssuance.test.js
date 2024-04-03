@@ -54,7 +54,7 @@ issuerBearerDid.document.service.push({
 });
 
 await DidDht.publish({ did: issuerDid });
-// snippet-end:
+// :snippet-end:
 
 const app = express();
 app.use(express.json());
