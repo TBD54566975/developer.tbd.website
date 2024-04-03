@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
   <modelVersion>4.0.0</modelVersion>
   <groupId>website.tbd.developer.site</groupId>
   <artifactId>kotlin-testsuite</artifactId>
@@ -15,7 +17,7 @@
     <version.kotlin>1.9.22</version.kotlin>
     <version.kotlin.compiler.incremental>true</version.kotlin.compiler.incremental>
     <version.junit-jupiter>5.10.1</version.junit-jupiter>
-    <version.tbdex>1.0.0.rc.309e5f9-SNAPSHOT</version.tbdex>
+    <version.tbdex>1.0.0.rc.821cf76-SNAPSHOT</version.tbdex>
     <version.ktor>2.3.7</version.ktor>
   </properties>
   <dependencyManagement>
@@ -208,7 +210,7 @@
       <id>sonatype-oss-snapshots</id>
       <name>sonatype-oss-snapshots</name>
       <url>https://s01.oss.sonatype.org/content/repositories/snapshots/</url>
-      <snapshots/>
+      <snapshots />
     </repository>
   </repositories>
 </project>

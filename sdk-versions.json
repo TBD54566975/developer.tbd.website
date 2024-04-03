@@ -11,7 +11,7 @@
     "@web5/identity-agent": "0.2.5"
   },
   "jvm": {
-    "tbdex": "1.0.0.rc.309e5f9-SNAPSHOT",
+    "tbdex": "1.0.0.rc.821cf76-SNAPSHOT",
     "web5-credentials": "0.17.0",
     "web5-dids": "0.17.0",
     "web5-crypto": "0.17.0"
