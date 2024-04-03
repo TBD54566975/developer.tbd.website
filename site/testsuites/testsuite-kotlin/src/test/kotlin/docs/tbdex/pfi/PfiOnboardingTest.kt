@@ -8,7 +8,6 @@ import web5.sdk.dids.methods.dht.CreateDidDhtOptions
 import web5.sdk.dids.methods.dht.DidDht
 import web5.sdk.crypto.InMemoryKeyManager
 import web5.sdk.dids.didcore.Service
-import java.net.URI
 // :snippet-end:
 
 /**

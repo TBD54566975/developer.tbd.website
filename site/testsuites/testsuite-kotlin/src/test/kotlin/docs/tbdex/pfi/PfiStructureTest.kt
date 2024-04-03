@@ -6,8 +6,6 @@ import java.net.HttpURLConnection
 import java.net.URI
 import kotlin.concurrent.thread
 import website.tbd.developer.site.docs.utils.*
-import tbdex.sdk.httpserver.models.SubmitCloseCallback
-import tbdex.sdk.httpserver.models.SubmitOrderCallback
 import io.ktor.http.*
 import io.ktor.server.response.*
 import org.junit.jupiter.api.*

@@ -12,7 +12,6 @@ import web5.sdk.credentials.model.ConstraintsV2
 import web5.sdk.credentials.model.FieldV2
 import web5.sdk.credentials.model.InputDescriptorV2
 import web5.sdk.credentials.model.PresentationDefinitionV2
-import web5.sdk.credentials.model.*
 
 import org.junit.jupiter.api.*
 import org.junit.jupiter.api.Assertions.*

@@ -1,6 +1,5 @@
 package website.tbd.developer.site.docs.utils
 
-import website.tbd.developer.site.docs.utils.*
 import tbdex.sdk.httpserver.models.*
 import tbdex.sdk.protocol.models.*
 import de.fxlae.typeid.TypeId
