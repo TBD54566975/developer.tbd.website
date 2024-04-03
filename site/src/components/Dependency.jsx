@@ -8,7 +8,12 @@ import BreadcrumbTab from '@site/src/components/BreadcrumbTab';
 function GradleDependencies({ dependencies, sdks }) {
   const repositoriesBlock = `repositories {
     mavenCentral()
-    maven("https://repo.danubetech.com/repository/maven-public/")
+    maven {
+      name = "tbd-oss-thirdparty"
+      url = uri("https://blockxyz.jfrog.io/artifactory/tbd-oss-thirdparty-maven2/")
+      mavenContent {
+        releasesOnly()
+    }
   }`;
 
   // Generate the implementation lines
@@ -27,24 +32,37 @@ function GradleDependencies({ dependencies, sdks }) {
 
 
 function MavenDependencies({ dependencies, sdks }) {
-  const repositoriesBlock = dependencies.map(dep => {
-    return `
+  const repositoriesBlock = `
+    <repositories>
         <repository>
             <id>mavenCentral</id>
             <url>https://repo1.maven.org/maven2/</url>
         </repository>
-    `;
-  }).join('\n');
+        <repository>
+            <id>tbd-oss-thirdparty</id>
+            <name>tbd-oss-thirdparty</name>
+            <url>https://blockxyz.jfrog.io/artifactory/tbd-oss-thirdparty-maven2/</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
+  `;
 
-  const dependenciesBlock = dependencies.map(dep => {
-    return `
+  const dependenciesBlock = dependencies
+    .map((dep) => {
+      return `
         <dependency>
             <groupId>xyz.block</groupId>
             <artifactId>${dep}</artifactId>
             <version>${sdks[dep]}</version>
         </dependency>
     `;
-  }).join('\n');
+    })
+    .join('\n');
 
   const mavenString = `
 <repositories>
