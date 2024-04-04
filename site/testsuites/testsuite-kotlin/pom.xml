@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  
   <modelVersion>4.0.0</modelVersion>
   <groupId>website.tbd.developer.site</groupId>
   <artifactId>kotlin-testsuite</artifactId>
@@ -10,98 +8,101 @@
   <name>kotlin-testsuite</name>
   <url>http://developer.tbd.website</url>
   <properties>
+
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
     <kotlin.jvm.target>17</kotlin.jvm.target>
     <kotlin.compiler.incremental>true</kotlin.compiler.incremental>
-    <version.assertj>3.25.2</version.assertj>
     <version.kotlin>1.9.22</version.kotlin>
-    <version.kotlin.compiler.incremental>true</version.kotlin.compiler.incremental>
-    <version.junit-jupiter>5.10.1</version.junit-jupiter>
-    <version.tbdex>1.0.0.rc.821cf76-SNAPSHOT</version.tbdex>
-    <version.ktor>2.3.7</version.ktor>
+
+    
+    <version.com.squareup.okhttp3>4.11.0</version.com.squareup.okhttp3>
+    <version.io.ktor>2.3.7</version.io.ktor>
+    <version.org.assertj>3.25.2</version.org.assertj>
+    <version.org.junit.jupiter>5.10.1</version.org.junit.jupiter>
+    <version.xyz.block.tbdex>0.14.0-issue204-alpha-1</version.xyz.block.tbdex>
+
   </properties>
   <dependencyManagement>
     <dependencies>
+
+      <!-- tbDEX Dependency Management (BOM)-->
       <dependency>
-        <groupId>org.assertj</groupId>
-        <artifactId>assertj-core</artifactId>
-        <version>${version.assertj}</version>
-        <scope>test</scope>
+        <groupId>xyz.block</groupId>
+        <artifactId>tbdex-parent</artifactId>
+        <version>${version.xyz.block.tbdex}</version>
+        <type>pom</type>
+        <scope>import</scope>
       </dependency>
+      <!-- tbDEX Dependencies (Distribution POM)-->
       <dependency>
-        <groupId>org.junit.jupiter</groupId>
-        <artifactId>junit-jupiter-api</artifactId>
-        <version>${version.junit-jupiter}</version>
-        <scope>test</scope>
+        <groupId>xyz.block</groupId>
+        <artifactId>tbdex</artifactId>
+        <version>${version.xyz.block.tbdex}</version>
+        <type>pom</type>
       </dependency>
-      <dependency>
-        <groupId>org.junit.jupiter</groupId>
-        <artifactId>junit-jupiter-engine</artifactId>
-        <version>${version.junit-jupiter}</version>
-        <scope>test</scope>
-      </dependency>
+
+      <!-- Kotlin -->
       <dependency>
         <groupId>org.jetbrains.kotlin</groupId>
         <artifactId>kotlin-stdlib</artifactId>
         <version>${version.kotlin}</version>
       </dependency>
+
+      <!-- Test Dependencies -->
       <dependency>
-        <groupId>xyz.block</groupId>
-        <artifactId>tbdex</artifactId>
-        <version>${version.tbdex}</version>
+        <groupId>org.assertj</groupId>
+        <artifactId>assertj-core</artifactId>
+        <version>${version.org.assertj}</version>
+        <scope>test</scope>
       </dependency>
       <dependency>
-        <groupId>io.ktor</groupId>
-        <artifactId>ktor-client-okhttp-jvm</artifactId>
-        <version>${version.ktor}</version>
+        <groupId>org.junit.jupiter</groupId>
+        <artifactId>junit-jupiter-api</artifactId>
+        <version>${version.org.junit.jupiter}</version>
+        <scope>test</scope>
       </dependency>
       <dependency>
-        <groupId>io.ktor</groupId>
-        <artifactId>ktor-client-content-negotiation-jvm</artifactId>
-        <version>${version.ktor}</version>
+        <groupId>org.junit.jupiter</groupId>
+        <artifactId>junit-jupiter-engine</artifactId>
+        <version>${version.org.junit.jupiter}</version>
+        <scope>test</scope>
       </dependency>
       <dependency>
-        <groupId>io.ktor</groupId>
-        <artifactId>ktor-serialization-jackson-jvm</artifactId>
-        <version>${version.ktor}</version>
-      </dependency>
-      <dependency>
-        <groupId>io.ktor</groupId>
-        <artifactId>ktor-serialization-kotlinx-json-jvm</artifactId>
-        <version>${version.ktor}</version>
-      </dependency>
-      <dependency>
-        <groupId>io.ktor</groupId>
-        <artifactId>ktor-serialization-kotlinx-jvm</artifactId>
-        <version>${version.ktor}</version>
-      </dependency>
-      <dependency>
-        <groupId>io.ktor</groupId>
-        <artifactId>ktor-client-logging-jvm</artifactId>
-        <version>${version.ktor}</version>
-      </dependency>
-      <dependency>
-        <groupId>io.ktor</groupId>
-        <artifactId>ktor-server-netty-jvm</artifactId>
-        <version>${version.ktor}</version>
+        <groupId>com.squareup.okhttp3</groupId>
+        <artifactId>mockwebserver</artifactId>
+        <version>${version.com.squareup.okhttp3}</version>
         <scope>test</scope>
       </dependency>
       <dependency>
         <groupId>io.ktor</groupId>
-        <artifactId>ktor-server-content-negotiation-jvm</artifactId>
-        <version>${version.ktor}</version>
+        <artifactId>ktor-server-test-host</artifactId>
+        <version>${version.io.ktor}</version>
         <scope>test</scope>
       </dependency>
+
     </dependencies>
   </dependencyManagement>
   <dependencies>
+    
+    <!-- tbDEX Dependencies via single declaration -->
     <dependency>
-      <groupId>org.assertj</groupId>
-      <artifactId>assertj-core</artifactId>
+      <groupId>xyz.block</groupId>
+      <artifactId>tbdex</artifactId>
+      <type>pom</type>
     </dependency>
+
+    <!-- Kotlin -->
     <dependency>
       <groupId>org.jetbrains.kotlin</groupId>
       <artifactId>kotlin-stdlib</artifactId>
+    </dependency>
+
+
+    <!-- Test Dependencies -->
+    <dependency>
+      <groupId>org.assertj</groupId>
+      <artifactId>assertj-core</artifactId>
     </dependency>
     <dependency>
       <groupId>org.junit.jupiter</groupId>
@@ -112,29 +113,20 @@
       <artifactId>junit-jupiter-engine</artifactId>
     </dependency>
     <dependency>
-      <groupId>xyz.block</groupId>
-      <artifactId>tbdex</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>io.ktor</groupId>
-      <artifactId>ktor-server-netty-jvm</artifactId>
-    </dependency>
-    <dependency>
       <groupId>com.squareup.okhttp3</groupId>
       <artifactId>mockwebserver</artifactId>
-      <version>4.11.0</version>
     </dependency>
     <dependency>
       <groupId>io.ktor</groupId>
       <artifactId>ktor-server-test-host</artifactId>
-      <version>${version.ktor}</version>
-      <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>io.ktor</groupId>
       <artifactId>ktor-server-content-negotiation-jvm</artifactId>
+      <scope>test</scope>
     </dependency>
   </dependencies>
+
   <build>
     <sourceDirectory>${project.basedir}/src/main/kotlin</sourceDirectory>
     <testSourceDirectory>${project.basedir}/src/test/kotlin</testSourceDirectory>
@@ -194,7 +186,9 @@
       </plugin>
     </plugins>
   </build>
+
   <repositories>
+    <!-- 3rdparty dependencies of TBD Projects-->
     <repository>
       <id>tbd-oss-thirdparty</id>
       <name>tbd-oss-thirdparty</name>
@@ -206,11 +200,26 @@
       </snapshots>
       <url>https://blockxyz.jfrog.io/artifactory/tbd-oss-thirdparty-maven2/</url>
     </repository>
+
+    <!-- TBD Releases-->
+    <repository>
+      <id>tbd-oss-releases</id>
+      <name>tbd-oss-releases</name>
+      <releases>
+        <enabled>true</enabled>
+      </releases>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+      <url>https://blockxyz.jfrog.io/artifactory/tbd-oss-releases-maven2/</url>
+    </repository>
+    
+    <!-- OSSRH Snapshots -->
     <repository>
       <id>sonatype-oss-snapshots</id>
       <name>sonatype-oss-snapshots</name>
       <url>https://s01.oss.sonatype.org/content/repositories/snapshots/</url>
-      <snapshots />
+      <snapshots/>
     </repository>
   </repositories>
 </project>
