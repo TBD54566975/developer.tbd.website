@@ -213,6 +213,19 @@
       </snapshots>
       <url>https://blockxyz.jfrog.io/artifactory/tbd-oss-releases-maven2/</url>
     </repository>
+
+    <!-- TBD SNAPSHOTs-->
+    <repository>
+      <id>tbd-oss-snapshots</id>
+      <name>tbd-oss-snapshots</name>
+      <releases>
+        <enabled>false</enabled>
+      </releases>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
+      <url>https://blockxyz.jfrog.io/artifactory/tbd-oss-snapshots-maven2/</url>
+    </repository>
     
     <!-- OSSRH Snapshots -->
     <repository>
