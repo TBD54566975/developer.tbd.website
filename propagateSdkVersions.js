@@ -60,66 +60,49 @@ const updatePackageJsonDependencies = async (dirPath, sdkVersions) => {
   }
 };
 
-const updatePomXmlVersion = async (filePath, sdkVersions) => {
+const updatePomXmlProperties = async (filePath, sdkVersions) => {
   try {
     const pomContent = await fs.promises.readFile(filePath, "utf8");
     const parsedPomContent = await parseString(pomContent, {
-      explicitArray: true,
+      explicitArray: false,
       mergeAttrs: true,
     });
 
     let updated = false;
-
-    const updateDependencies = (dependencies) => {
-      dependencies.forEach((dependency) => {
-        const artifactId = dependency.artifactId;
-        if (sdkVersions.jvm[artifactId]) {
-          dependency.version = [sdkVersions.jvm[artifactId]];
+    const properties = parsedPomContent.project.properties;
+    if (properties) {
+      // Loop through each property in sdk-versions.json under the 'maven' key
+      Object.entries(sdkVersions.jvm).forEach(([key, value]) => {
+        const propertyKey = `version.${key}`;
+        if (properties.hasOwnProperty(propertyKey)) {
+          properties[propertyKey] = value;
           updated = true;
         }
       });
-    };
 
-    if (
-      parsedPomContent.project.dependencies &&
-      parsedPomContent.project.dependencies[0].dependency
-    ) {
-      updateDependencies(parsedPomContent.project.dependencies[0].dependency);
-    }
+      if (updated) {
+        let updatedPomContent = builder.buildObject(parsedPomContent);
 
-    if (
-      parsedPomContent.project.dependencyManagement &&
-      parsedPomContent.project.dependencyManagement[0].dependencies[0]
-        .dependency
-    ) {
-      updateDependencies(
-        parsedPomContent.project.dependencyManagement[0].dependencies[0]
-          .dependency
-      );
-    }
+        // Correctly handle namespace attributes without introducing duplicates
+        updatedPomContent = updatedPomContent.replace(
+          "<project>",
+          '<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">'
+        );
 
-    if (updated) {
-      let updatedPomContent = builder.buildObject(parsedPomContent);
+        // Remove any duplicate namespace declarations that might have been added
+        updatedPomContent = updatedPomContent.replace(
+          /<xmlns.*?>.*?<\/xmlns.*?>\s*<xmlns:xsi.*?>.*?<\/xmlns:xsi.*?>\s*<xsi:schemaLocation.*?>.*?<\/xsi:schemaLocation.*?>/g,
+          ""
+        );
 
-      // Correctly handle namespace attributes without introducing duplicates
-      updatedPomContent = updatedPomContent.replace(
-        "<project>",
-        '<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">'
-      );
-
-      // Remove any duplicate namespace declarations that might have been added
-      updatedPomContent = updatedPomContent.replace(
-        /<xmlns>.*<\/xmlns>\s*<xmlns:xsi>.*<\/xmlns:xsi>\s*<xsi:schemaLocation>.*<\/xsi:schemaLocation>/,
-        ""
-      );
-
-      await fs.promises.writeFile(filePath, updatedPomContent);
-      console.log(`Successfully updated dependencies in ${filePath}`);
-    } else {
-      console.log(`No dependencies were updated in ${filePath}`);
+        await fs.promises.writeFile(filePath, updatedPomContent);
+        console.log(`Successfully updated properties in ${filePath}`);
+      } else {
+        console.log(`No properties were updated in ${filePath}`);
+      }
     }
   } catch (error) {
-    console.error(`Failed to update ${filePath}:`, error);
+    console.error(`Failed to update properties in ${filePath}:`, error);
   }
 };
 
@@ -133,7 +116,7 @@ async function findAndUpdatePomFiles(dirPath, sdkVersions) {
     if (dirent.isDirectory()) {
       await findAndUpdatePomFiles(fullPath, sdkVersions); // Recursive call for directories
     } else if (dirent.name === "pom.xml") {
-      await updatePomXmlVersion(fullPath, sdkVersions); // Directly update pom.xml files
+      await updatePomXmlProperties(fullPath, sdkVersions); // Directly update pom.xml files
     }
   }
 }
