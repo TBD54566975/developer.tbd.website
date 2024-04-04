@@ -13,6 +13,13 @@ const languageMap = {
 };
 
 function Dependencies({ languageDependencies }) {
+  const mavenDependencies =
+    languageDependencies.find(({ language }) => language === 'maven')
+      ?.dependencies || [];
+  const gradleDependencies =
+    languageDependencies.find(({ language }) => language === 'gradle')
+      ?.dependencies || [];
+
   return (
     <>
       <LanguageTabBar />
@@ -21,11 +28,13 @@ function Dependencies({ languageDependencies }) {
           if (language === 'maven' || language === 'gradle') {
             return (
               <div key={language} language={languageMap[language]}>
-                <KotlinDependencies dependencies={dependencies} />
+                <KotlinDependencies
+                  mavenDependencies={mavenDependencies}
+                  gradleDependencies={gradleDependencies}
+                />
               </div>
             );
           } else {
-            console.log('language', language)
             return (
               <div language={languageMap[language]}>
                 <Dependency language={language} dependencies={dependencies} />
@@ -38,11 +47,18 @@ function Dependencies({ languageDependencies }) {
   );
 }
 
-function KotlinDependencies({ dependencies }) {
-
+function KotlinDependencies({ mavenDependencies, gradleDependencies }) {
   const kotlinDependencies = [
-    <Dependency key="Gradle" language="gradle" dependencies={dependencies} />,
-    <Dependency key="Maven" language="maven" dependencies={dependencies} />,
+    <Dependency
+      key="Gradle"
+      language="gradle"
+      dependencies={gradleDependencies}
+    />,
+    <Dependency
+      key="Maven"
+      language="maven"
+      dependencies={mavenDependencies}
+    />,
   ];
   return <BreadcrumbTab dependencies={kotlinDependencies} />;
 }

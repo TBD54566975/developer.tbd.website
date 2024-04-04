@@ -28,36 +28,13 @@ For a detailed guide on Known Customer Credentials for **Issuers**, please refer
 
 Your Wallet App will require libraries for handling HTTP requests and processing [JSON Web Tokens(JWTs)](https://jwt.io/). You can include these libraries in your project by installing the following dependencies:
 
-<Shnip
-  snippets={[
-    {
-      snippetName: 'knownCustomerCredentialJsPackage',
-      language: 'JavaScript',
-      codeLanguage: 'bash',
-    },
-    {
-      language: 'Kotlin',
-      nestedSnippets: {
-        Gradle: {
-          snippetName: 'knownCustomerCredentialGradlePackage',
-          language: 'gradle',
-        },
-        Maven: {
-          snippetName: 'knownCustomerCredentialMavenPackage',
-          language: 'xml',
-        },
-      },
-    },
-  ]}
-  inlineSnippets={[
-    {
-      code: `dependencies: [
-      .package(url: "https://github.com/TBD54566975/web5-swift", exact: "0.0.4"),
-]`,
-      language: 'Swift',
-    },
-  ]}
-/>
+<Dependencies languageDependencies={[
+  { language: 'javascript', dependencies: ['@web5/credentials', '@web5/dids', 'node-fetch'] },
+  { language: 'maven', dependencies: ['web5-credentials', 'web5-dids',  'io.ktor:ktor-client-cio:2.3.9', 'io.ktor:ktor-client-core:2.3.9', 'com.nimbusds:nimbus-jose-jwt:9.15.2'] },
+  { language: 'gradle', dependencies: ['web5-credentials', 'web5-dids',  'io.ktor:ktor-client-cio:2.3.9', 'io.ktor:ktor-client-core:2.3.9'] },
+  { language: 'swift', dependencies: ['Web5'] }
+]}/> 
+
 
 ### Framework Flexibility
 
