@@ -20,7 +20,7 @@
     <version.io.ktor>2.3.7</version.io.ktor>
     <version.org.assertj>3.25.2</version.org.assertj>
     <version.org.junit.jupiter>5.10.1</version.org.junit.jupiter>
-    <version.xyz.block.tbdex>0.14.0-issue204-alpha-1</version.xyz.block.tbdex>
+    <version.xyz.block.tbdex>1.0.0-maven-rc-1</version.xyz.block.tbdex>
 
   </properties>
   <dependencyManagement>
