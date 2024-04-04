@@ -26,14 +26,14 @@ importers:
         specifier: 0.2.0
         version: 0.2.0(@fortawesome/fontawesome-svg-core@6.4.2)(react@18.2.0)
       '@tbdex/http-client':
-        specifier: 0.0.0-next-e852f25-20240403233344
-        version: 0.0.0-next-e852f25-20240403233344
+        specifier: 1.0.0
+        version: 1.0.0
       '@tbdex/http-server':
-        specifier: 0.0.0-next-e852f25-20240403233344
-        version: 0.0.0-next-e852f25-20240403233344
+        specifier: 1.0.0
+        version: 1.0.0
       '@tbdex/protocol':
-        specifier: 0.0.0-next-e852f25-20240403233344
-        version: 0.0.0-next-e852f25-20240403233344
+        specifier: 1.0.0
+        version: 1.0.0
       '@web5/api':
         specifier: 0.8.4
         version: 0.8.4
@@ -6377,10 +6377,10 @@ packages:
       - supports-color
     dev: false
 
-  /@tbdex/http-client@0.0.0-next-e852f25-20240403233344:
-    resolution: {integrity: sha512-1cpRtIkGQjlwP4y1K4c9E4d0XficNDYPy5bpvaWmDBOYnCSAiUdU4wt0PILO5H3Nl7JLstqZDuixrNLFKkRptQ==}
+  /@tbdex/http-client@1.0.0:
+    resolution: {integrity: sha512-LvGPn2wKPTw7jP5V0vaum9+O/p/z61X4yoWR75vHmFhY0MYwwzTE/Xid32VS2uAsWL5n2Cf4BcqG2gAA/juFJg==}
     dependencies:
-      '@tbdex/protocol': 0.0.0-next-e852f25-20240403233344
+      '@tbdex/protocol': 1.0.0
       '@web5/common': 1.0.0
       '@web5/credentials': 1.0.0
       '@web5/crypto': 1.0.0
@@ -6390,11 +6390,11 @@ packages:
       typeid-js: 0.3.0
     dev: false
 
-  /@tbdex/http-server@0.0.0-next-e852f25-20240403233344:
-    resolution: {integrity: sha512-zjuMOqJY8kHmeIkH8XrWTDMzdmOtE45CxVFMiJsmIxLk4tsysvGSz82T4rMqq7RrjDeuG9DUvPYL2U9Vqjlb1g==}
+  /@tbdex/http-server@1.0.0:
+    resolution: {integrity: sha512-KQqRRaejSADkc3kk/d+nYYdvP6s8JF0k0tXRmfkSpZ8PPrUc9SCBI9G9FFQNGcKIHPzCKZigLzwja6S0h9Odyw==}
     dependencies:
-      '@tbdex/http-client': 0.0.0-next-e852f25-20240403233344
-      '@tbdex/protocol': 0.0.0-next-e852f25-20240403233344
+      '@tbdex/http-client': 1.0.0
+      '@tbdex/protocol': 1.0.0
       '@web5/dids': 1.0.0
       cors: 2.8.5
       express: 4.19.2
@@ -6402,8 +6402,8 @@ packages:
       - supports-color
     dev: false
 
-  /@tbdex/protocol@0.0.0-next-e852f25-20240403233344:
-    resolution: {integrity: sha512-BIYS3DNhN5dGCn3R4QXuC0yPlGym2qwFL7uzGuSQ1ValALqbekbu6K5WoVCHqSQazOECdbLsHmu+qPuArG4/YQ==}
+  /@tbdex/protocol@1.0.0:
+    resolution: {integrity: sha512-xdgq13ZOsfw32EtcyMD/LbsPhX+HqcNGxNlouyXLkz0iSNyG8J/BGyYE0X6laF3uV9OQYMB83Rsvqo28SnE8iA==}
     dependencies:
       '@noble/hashes': 1.3.3
       '@types/node': 7.10.14
