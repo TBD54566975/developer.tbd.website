@@ -122,8 +122,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/TBD54566975/tbdex-swift.git",
       "state" : {
-        "branch" : "release/v1.0.0-rc",
-        "revision" : "dafa0aac574c276f6279045db81427917e7ac032"
+        "revision" : "741a2c6a9220b5b7822309ea4120618429b1fc89",
+        "version" : "1.0.0"
       }
     },
     {
@@ -131,8 +131,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/TBD54566975/web5-swift.git",
       "state" : {
-        "branch" : "release/v1.0.0-rc",
-        "revision" : "1353f59e105ef09b4705f8675ce329f0f7e4c104"
+        "revision" : "1353f59e105ef09b4705f8675ce329f0f7e4c104",
+        "version" : "1.0.0"
       }
     }
   ],
