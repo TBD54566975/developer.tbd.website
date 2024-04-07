@@ -4,7 +4,7 @@ title: Web Assembly with ChatGPT
 description: Using ChatGPT to help add WASM support to the self-sovereign identity SDK
 authors:
   name: Mic Neale
-tags: [Self Sovereign Identity, SSI, AI, ChatGPT]
+tags: [Self Sovereign Identity, AI, ChatGPT]
 ---
 
 <head>
