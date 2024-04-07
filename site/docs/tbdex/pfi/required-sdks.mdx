@@ -18,28 +18,11 @@ To implement and operate as a PFI, you’ll need to use the following SDKs:
 
 ## Install SDKs
 
-<Shnip
-  snippets={[
-    {
-      snippetName: 'pfiSdkInstallJs',
-      language: 'JavaScript',
-      codeLanguage: 'bash',
-    },
-    {
-      language: 'Kotlin',
-      nestedSnippets: {
-        Gradle: {
-          snippetName: 'pfiSdkInstallGradle',
-          language: 'gradle',
-        },
-        Maven: {
-          snippetName: 'pfiSdkInstallPom',
-          language: 'xml',
-        },
-      },
-    },
-  ]}
-/>
+<Dependencies languageDependencies={[
+  { language: 'javascript', dependencies: ['@web5/dids', '@web5/credentials', '@tbdex/http-server'] },
+  { language: 'maven', dependencies: ['tbdex'] },
+  { language: 'gradle', dependencies: ['tbdex'] },
+]}/>
 
 ## Import Classes
 

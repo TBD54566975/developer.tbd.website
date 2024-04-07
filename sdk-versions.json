@@ -11,10 +11,10 @@
     "@web5/identity-agent": "0.2.5"
   },
   "jvm": {
-    "tbdex": "1.0.0.rc.821cf76-SNAPSHOT",
-    "web5-credentials": "0.17.0",
-    "web5-dids": "0.17.0",
-    "web5-crypto": "0.17.0"
+    "tbdex": "commit-145bfc5-SNAPSHOT",
+    "web5-credentials": "commit-89fc453-SNAPSHOT",
+    "web5-dids": "commit-89fc453-SNAPSHOT",
+    "web5-crypto": "commit-89fc453-SNAPSHOT"
   },
   "swift": {
     "Web5": {
