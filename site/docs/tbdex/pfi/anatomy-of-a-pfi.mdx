@@ -13,10 +13,9 @@ Every PFI on the tbDEX network is required to handle its end of the responsibili
 
 * **A main server entry point** - this will leverage the tbDEX SDK to create an http server subscribed to tbDEX messaging.
 
-* **An exchange API provider** - this class is responsible for implementing the ExchangeApi protocol, which is a common interface for managing the database containing your tbDEX offer, order, quote, close, and RFQ data.
-
 * **An offering API provider** - this class is responsible for implementing the OfferingsApi protocol, which is a common interface for managing the database containing your offerings data. When a Wallet queries your PFI for Offerings, the tbDEX SDK will use the interfaces in this class to automatically handle returning Offerings from your database to the Wallet.
 
+* **An exchange API provider** - this class is responsible for implementing the ExchangeApi protocol, which is a common interface for managing the database containing your tbDEX offer, order, quote, close, and RFQ data.
 
 ## Main Server Entrypoint
 
@@ -90,6 +89,22 @@ Now your server is configured with the appropriate routing setup.
 Error handling for things like duplicate RFQs, invalid data, and non-existent Offerings is automatically handled by the tbDEX SDK behind the scenes. Your app can focus on implementing business logic rather than needing to worry about input validation.
 :::
 
+## Offerings API Provider
+
+The `Offerings` API is the set of methods that deals with reading and writing any offering data, based on the <LanguageSwitchLink text="OfferingsApi" links='{"JavaScript": "https://tbd54566975.github.io/tbdex-js/interfaces/_tbdex_http_server.OfferingsApi.html", "Kotlin": "https://tbd54566975.github.io/tbdex-kt/httpserver/tbdex.sdk.httpserver.models/-offerings-api/index.html?query=interface%20OfferingsApi"}'/> class. 
+Although the interface for `OfferingsApi` only requires to be filled out with read operations, you may find it useful to write operations into the class as well. 
+
+Although the Offerings API isn’t directly exposed in the main server entrypoint, it is still used to fetch and write offerings to your PFI's database. 
+Here's an example of how to get offerings as specified by the `OfferingsApi` interface:
+
+<Shnip snippets={
+  [
+    { snippetName: 'pfiOverviewReadOfferingsJs', language: 'JavaScript'},
+    { snippetName: 'pfiOverviewReadOfferingsKt', language: 'Kotlin'}
+  ]} />
+
+By implementing the `getOffering()` and `getOfferings()` methods, you'll allow Wallets to get a specific Offering they'd be interested in, or query all your Offerings, respectively. The convenience of the tbDEX SDK is that you aren't required to actually write an API endpoint yourself to handle interfacing with Wallets as the SDK handles it all for you.
+
 ## Exchange API Provider
 
 The Exchanges API is the set of methods that deals with reading and writing messages, based on the [ExchangesApi](https://tbd54566975.github.io/tbdex-js/interfaces/_tbdex_http_server.ExchangesApi.html) class. 
@@ -121,18 +136,3 @@ Assuming a generic `dataProvider` class serves as your PFI’s means of accessin
   ]} />
 
 
-## Offerings API Provider
-
-The `Offerings` API is the set of methods that deals with reading and writing any offering data, based on the [OfferingsApi](https://tbd54566975.github.io/tbdex-js/interfaces/_tbdex_http_server.OfferingsApi.html) class. 
-Although the interface for `OfferingsApi` only requires to be filled out with read operations, you may find it useful to write operations into the class as well. 
-
-Although the Offerings API isn’t directly exposed in the main server entrypoint, it is still used to fetch and write offerings to your PFI's database. 
-Here's an example of how to get offerings as specified by the `OfferingsApi` interface:
-
-<Shnip snippets={
-  [
-    { snippetName: 'pfiOverviewReadOfferingsJs', language: 'JavaScript'},
-    { snippetName: 'pfiOverviewReadOfferingsKt', language: 'Kotlin'}
-  ]} />
-
-By implementing the `getOffering()` and `getOfferings()` methods, you'll allow Wallets to get a specific Offering they'd be interested in, or query all your Offerings, respectively. The convenience of the tbDEX SDK is that you aren't required to actually write an API endpoint yourself to handle interfacing with Wallets as the SDK handles it all for you.

@@ -50,12 +50,16 @@ To send and receive tbDEX messages, import the following classes:
   inlineSnippets={[
     {
       code: `      import tbdex.sdk.httpserver.TbdexHttpServer
-      import tbdex.sdk.httpserver.models.SubmitKind
       import tbdex.sdk.protocol.models.Rfq
       import tbdex.sdk.protocol.models.Quote
       import tbdex.sdk.protocol.models.Order
       import tbdex.sdk.protocol.models.OrderStatus
-      import tbdex.sdk.protocol.models.Close`,
+      import tbdex.sdk.protocol.models.Close
+      import tbdex.sdk.protocol.Parser
+      import tbdex.sdk.protocol.Validator
+      import tbdex.sdk.protocol.serialization.Json
+      import web5.sdk.credentials.PresentationExchange
+      import web5.sdk.credentials.model.*`,
       language: 'Kotlin',
     },
   ]}

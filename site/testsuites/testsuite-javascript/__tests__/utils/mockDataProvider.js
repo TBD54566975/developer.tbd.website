@@ -12,7 +12,6 @@ export class MockDataProvider {
         // Serialize parameters for key
         const paramsKey = params.join('');
         const key = `${methodName}:${paramsKey}`;
-    
         this.responses.set(key, response);
     }  
 
@@ -34,20 +33,15 @@ export class MockDataProvider {
     async execute(methodName, ...params) {
         const paramsKey = params.join('');
         const key = `${methodName}:${paramsKey}`;
-
         if (this.responses.has(key)) {
             // Call the response function if parameters match
             return this.responses.get(key)(...params);
-        } else {
-            throw new Error(`No response found for method ${methodName} with the given parameters.`);
-        }
+        } 
     }
 
     // Mock methods
     async insert(...params) {
-        // input shouldn't matter for insert, we'll always return okay
-        // unless we want to throw an error
-        return;
+        return this.setup("insert", params);
     }
 
     async get(collection, id) {

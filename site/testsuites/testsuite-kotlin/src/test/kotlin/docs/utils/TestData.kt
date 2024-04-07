@@ -64,8 +64,8 @@ object TestData {
 
     fun getOffering(
         from: String = PFI_DID.uri,
-        requiredClaims: PresentationDefinitionV2 = getPresentationDefinition()) =
-        Offering.create(
+        requiredClaims: PresentationDefinitionV2 = getPresentationDefinition()
+    ) = Offering.create(
             from = from,
             OfferingData(
                 description = "A sample offering",

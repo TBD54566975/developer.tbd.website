@@ -1,4 +1,4 @@
-import { Order, OrderStatus, Close } from '@tbdex/http-server'
+import { Order, OrderStatus, Close, Offering } from '@tbdex/http-server'
 import { DidDht } from '@web5/dids';
 import { MockDataProvider } from '../../utils/mockDataProvider'
 import { test, expect, describe, beforeAll, assert } from 'vitest';

@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
   <modelVersion>4.0.0</modelVersion>
   <groupId>website.tbd.developer.site</groupId>
@@ -48,7 +46,7 @@
       <dependency>
         <groupId>xyz.block</groupId>
         <artifactId>tbdex</artifactId>
-        <version>${version.tbdex}</version>
+        <version>1.0.0.rc.821cf76-SNAPSHOT</version>
       </dependency>
       <dependency>
         <groupId>io.ktor</groupId>
@@ -114,6 +112,7 @@
     <dependency>
       <groupId>xyz.block</groupId>
       <artifactId>tbdex</artifactId>
+      <version>1.0.0.rc.821cf76-SNAPSHOT</version>
     </dependency>
     <dependency>
       <groupId>io.ktor</groupId>
@@ -136,7 +135,6 @@
     </dependency>
   </dependencies>
   <build>
-    <sourceDirectory>${project.basedir}/src/main/kotlin</sourceDirectory>
     <testSourceDirectory>${project.basedir}/src/test/kotlin</testSourceDirectory>
     <pluginManagement>
       <plugins>
@@ -210,7 +208,7 @@
       <id>sonatype-oss-snapshots</id>
       <name>sonatype-oss-snapshots</name>
       <url>https://s01.oss.sonatype.org/content/repositories/snapshots/</url>
-      <snapshots />
+      <snapshots/>
     </repository>
   </repositories>
 </project>

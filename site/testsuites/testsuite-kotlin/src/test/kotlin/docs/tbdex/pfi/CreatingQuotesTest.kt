@@ -12,6 +12,7 @@ import web5.sdk.dids.didcore.Service
 import web5.sdk.dids.methods.dht.CreateDidDhtOptions
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.*
+import java.time.OffsetDateTime.*
 
 class CreatingQuotesTest {
 
@@ -46,9 +47,9 @@ class CreatingQuotesTest {
     @Test
     fun `PFI verifies offering requirements and should not throw an error`() {
         dataProvider.setupInsert("exchange", "") { arrayOf<Any>() }
-        offeringsApiProvider.setOffering(message.metadata.id.toString(), pfiDid.uri)
+        offeringsApiProvider.setOffering(message.metadata.id, pfiDid)
 
-        // :snippet-start: pfiCreateOfferingKt
+        // :snippet-start: pfiWriteOfferingKt
         // Write the message to your exchanges database
         val data = mapOf(
             "exchangeid" to message.metadata.exchangeId,
@@ -60,12 +61,12 @@ class CreatingQuotesTest {
 
         dataProvider.insert("exchange", data)
         //highlight-start
-        val offering = offeringsApiProvider.getOffering(message.metadata.id.toString())
+        val offering = offeringsApiProvider.getOffering(message.metadata.id)
         //highlight-end
         // :snippet-end:
 
         // :snippet-start: pfiRfqVerifyOfferingRequirementsKt
-        if (offering is Offering && message is Rfq) {
+        if (message is Rfq) {
             try {
                 val rfq = message as Rfq
                 rfq.verifyOfferingRequirements(offering)
@@ -85,7 +86,7 @@ class CreatingQuotesTest {
             exchangeId = message.metadata.exchangeId,
             protocol = "1.0",
             quoteData = QuoteData(
-                expiresAt = OffsetDateTime.now().plusDays(10),
+                expiresAt = now().plusDays(10),
                 payin = QuoteDetails(
                     currencyCode = "BTC",
                     amount = "1000.0",

@@ -19,7 +19,7 @@ describe('PFI: Structure', () => {
                 services: [{
                     id: 'pfi',
                     type: 'PFI',
-                    serviceEndpoint: 'https://example.com/'
+                    serviceEndpoint: 'https://localhost:8080'
                 }]
             }
           })
@@ -104,8 +104,14 @@ describe('PFI: Structure', () => {
                     'Authorization': `Bearer: ${requestToken}`
                 }
               };
-            
-            offeringsApiProvider.setOfferings([DevTools.createOffering()]);
+        
+
+            const offering = DevTools.createOffering({
+                from: pfiDid.uri
+            });
+            await offering.sign(pfiDid);
+
+            offeringsApiProvider.setOfferings([offering]);
 
             await new Promise((resolve, reject) => {
                 // Send the HTTP request
@@ -116,7 +122,7 @@ describe('PFI: Structure', () => {
 
                 // Handle request errors
                 req.on('error', (error) => {
-                    assert.fail("Failed to start server");
+                    assert.fail(`Failed to start server: ${error}`);
                 });
 
                 // End the request
