@@ -8,9 +8,11 @@ hide_title: true
 
 # Processing Orders
 
-This guide covers how to use tbDEX to communicate about progress on Orders you receive.
+This guide covers how to use tbDEX to communicate about progress on Orders you receive. Before processing orders, you'll want to be sure to [properly set up your PFI](/docs/tbdex/pfi/anatomy-of-a-pfi). 
 
 ## Provide an Initial OrderStatus
+
+Your business logic for handling an incoming order should be placed in your server's `onSubmitOrder()` callback parameter. As a best practice, you'll want to first [store your `Order` message in your Exchanges database](/docs/tbdex/pfi/anatomy-of-a-pfi#main-server-entrypoint).
 
 Upon storing the `Order` message, you will want to create an initial <LanguageSwitchLink text="OrderStatus" links='{"JavaScript": "https://tbd54566975.github.io/tbdex-js/classes/_tbdex_http_client.OrderStatus.html", "Kotlin": "https://tbd54566975.github.io/tbdex-kt/docs/tb-d-e-x%20-s-d-k%20-documentation/tbdex.sdk.protocol.models/-order-status/index.html"}'/>  to update the Wallet on the status of their `Order`:
 
