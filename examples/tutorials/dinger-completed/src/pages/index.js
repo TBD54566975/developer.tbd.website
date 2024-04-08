@@ -66,9 +66,9 @@ export default function Home() {
       structure: {
         ding: {
           $actions: [
-            { who: "anyone", can: "write" },
-            { who: "author", of: "ding", can: "read" },
-            { who: "recipient", of: "ding", can: "read" },
+            { who: "anyone", can: ["create", "update"] },
+            { who: "author", of: "ding", can: ["read"] },
+            { who: "recipient", of: "ding", can: ["read"] },
           ],
         },
       },
