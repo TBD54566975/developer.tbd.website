@@ -40,10 +40,14 @@ The metadata properties identify the DIDs of the sender (your customer), the rec
 The data properties contain the specifics of the transaction, such as the id of the Offering you're requesting the Quote for, payment methods, and credentials:
 
 * **offeringId** - The unique identifier of the PFI's Offering the customer is interested in
-* **payinAmount** - Total amount of payin currency the customer wants to pay in exchange for payout currency
-* **payinMethod** - How the customer intends to pay, including the currency and amount. This includes a `paymentDetails` object which should contain the properties defined in the Offering's `requiredPaymentDetails` JSON schema
-* **payoutMethod** - How the customer wishes to receive the payout. This includes a `paymentDetails` object which should contain the properties defined in the Offering's `requiredPaymentDetails` JSON schema
-* **claims** - The [VCs that satisfy the requirements of the Offer](/docs/tbdex/wallet/managing-credentials#select-credentials-that-satisfy-requirements)
+* **payin** - How the customer intends to pay the PFI
+  * **kind** - Type of payment method e.g. BTC_ADDRESS, DEBIT_CARD, MOMO_MPESA
+  * **amount** - Total amount of currency the customer wants to pay in exchange for payout currency
+  * **paymentDetails** - The exact details of the payment method. As this information is senstive, the SDK will convert these details into [salted hashes](https://github.com/TBD54566975/tbdex/tree/main/specs/protocol#privatedata-1)
+* **payout** - How the customer wishes to receive the payout from the PFI
+  * **kind** - Type of payment method e.g. BTC_ADDRESS, BANK_ACCOUNT, MOMO_MPESA
+  * **paymentDetails** - The exact details of the payment method. As this information is senstive, the SDK will convert these details into [salted hashes](https://github.com/TBD54566975/tbdex/tree/main/specs/protocol#privatedata-1)
+* **claims** - The [VCs that satisfy the requirements of the Offer](/docs/tbdex/wallet/managing-credentials#select-credentials-that-satisfy-requirements). As this information is senstive, the SDK will convert these details into [salted hashes](https://github.com/TBD54566975/tbdex/tree/main/specs/protocol#privatedata-1)
 
 <Shnip
   snippets={[
@@ -55,7 +59,7 @@ The data properties contain the specifics of the transaction, such as the id of 
 
 
 ## Sign the RFQ
-Signing the RFQ ensures its authenticity. You can do so with the customer's [Portable DID](/docs/web5/build/decentralized-identifiers/how-to-create-did#portable-did):
+Signing the RFQ ensures its authenticity. You can do so with the customer's [Bearer DID](/docs/web5/build/decentralized-identifiers/how-to-create-did#create-did):
 
 <Shnip
   snippets={[

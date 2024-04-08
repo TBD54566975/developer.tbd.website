@@ -1,5 +1,5 @@
 import { MockOfferingsApiProvider } from '../../utils/mockOfferingsApiProvider'
-import { Offering } from '@tbdex/protocol'
+import { Parser } from '@tbdex/http-server'
 
 export class OfferingsApiProvider extends MockOfferingsApiProvider {
 
@@ -10,30 +10,33 @@ export class OfferingsApiProvider extends MockOfferingsApiProvider {
   
     // :snippet-start: pfiOverviewReadOfferingsJs
     async getOffering(id) {
-        return this.dataProvider.get('offering', id).then((result) => {
-            return Offering.create({
-                metadata: { 
-                    id: id,
-                    from: this.pfiDid.did 
-                },
-                data: result
-            });
+        return this.dataProvider.get('offering', id).then(async (result) => {
+            if(result){
+                return await Parser.parseResource(result);
+            }
         });
     }
+    
   
     async getOfferings() {
         return this.dataProvider.query('offering', "*").then((results) => {
             const offerings = [];
-      
+            
             for (let result of results) {
-                const offering = Offering.create({
-                  metadata: { from: this.pfiDid },
-                  data: result.data
-                })
+                const offering = Parser.rawToResourceModel(result);
                 offerings.push(offering);
             }
-        
+
             return offerings;
+        });
+    }
+    
+    async setOffering(offering) {
+        await this.dataProvider.insert('offering', {
+            offeringid: offering.metadata.id,
+            payoutcurrency: offering.data.payout.currencyCode,
+            payincurrency: offering.data.payin.currencyCode,
+            offering: Parser.rawToResourceModel(offering)
         });
     }
     // :snippet-end:

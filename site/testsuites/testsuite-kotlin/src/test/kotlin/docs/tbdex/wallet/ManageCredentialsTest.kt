@@ -12,7 +12,6 @@ import web5.sdk.credentials.model.ConstraintsV2
 import web5.sdk.credentials.model.FieldV2
 import web5.sdk.credentials.model.InputDescriptorV2
 import web5.sdk.credentials.model.PresentationDefinitionV2
-import web5.sdk.credentials.model.*
 
 import org.junit.jupiter.api.*
 import org.junit.jupiter.api.Assertions.*
@@ -70,7 +69,7 @@ class GetMatchedOfferingsTest {
         val offering = mockOfferings.first()
 
         // :snippet-start: retrievePresentationDefinitionFromOfferingsRequiredClaimsKt
-        val presentationDefinition = offering.data.requiredClaims 
+        val presentationDefinition = offering.data.requiredClaims
         //  :snippet-end:
         ?: fail("Presentation definition should not be null")
 
@@ -86,17 +85,17 @@ class GetMatchedOfferingsTest {
         val payoutCurrencyCode = "KES" // Desired payout currency code
 
         // Customer's signed credentials in JWT format
-        val credentials = listOf(vcJwtResidence, vcJwtSanctions) 
+        val credentials = listOf(vcJwtResidence, vcJwtSanctions)
 
         // Array to store the matched offerings
         val matchedOfferings = ArrayList<Offering>()
 
         for (pfiDid in pfiDids) {
             val offerings = TbdexHttpClient.getOfferings(pfiDid)
-            
+
             // Filter offerings based on the desired currency pair
             offerings.filter { offering ->
-                offering.data.payinCurrency.currencyCode == payinCurrencyCode && offering.data.payoutCurrency.currencyCode == payoutCurrencyCode
+                offering.data.payin.currencyCode == payinCurrencyCode && offering.data.payout.currencyCode == payoutCurrencyCode
             }.forEach { offering ->
 
                 // Extract the presentation definition from the offering
@@ -107,7 +106,7 @@ class GetMatchedOfferingsTest {
                         PresentationExchange.satisfiesPresentationDefinition(
                             credentials, presentationDefinition
                         )
-                        //highlight-end 
+                        //highlight-end
 
                         //  Add offerings that match the customer's needs and qualifications
                         matchedOfferings.add(offering)
@@ -128,7 +127,7 @@ class GetMatchedOfferingsTest {
         // :snippet-start: getSelectedCredentialsKt
         // Select the credentials to be used for the exchange
         val selectedCredentials = PresentationExchange.selectCredentials(
-            credentials, 
+            credentials,
             selectedOffering.data.requiredClaims!!
         )
         // :snippet-end:

@@ -52,21 +52,20 @@ final class SendingRfqTests: XCTestCase {
         let selectedCredentials: [String] = []
         do {
             // :snippet-start: createRfqMessageSwift
-            var rfq = RFQ(
-                to: selectedOffering.metadata.from,  // PFI's DID
-                from: customerDid!.uri,    // Customer's DID
+            var rfq: RFQ = try RFQ(
+                to: selectedOffering.metadata.from,           // PFI's DID
+                from: customerDid!.uri,                       // Customer's DID
                 //highlight-start
-                data: RFQData(
-                    offeringId: selectedOffering.metadata.id,   // The ID of the selected offering
-                    payinAmount: "0.012",  // The amount of the payin currency
-                    payinMethod: SelectedPaymentMethod(
-                        kind: "BTC_WALLET_ADDRESS",   // The method of payment
+                data: CreateRFQData(
+                    offeringId: selectedOffering.metadata.id, // The ID of the selected offering
+                    payin: CreateRFQPayinMethod(
+                        amount: "0.012",                      // The amount of the payin currency
+                        kind: "BTC_WALLET_ADDRESS",           // The method for sending payment
                         paymentDetails: [
-                            "btc_address": BTC_ADDRESS   // Customer's BTC wallet address
-                        ]
-                    ),
-                    payoutMethod: SelectedPaymentMethod(
-                        kind: "DEBIT_CARD",  // The method for receiving payout
+                            "btc_address": BTC_ADDRESS        // Customer's BTC wallet address
+                        ]),          
+                    payout: CreateRFQPayoutMethod(
+                        kind: "DEBIT_CARD",                   // The method for receiving payout
                         paymentDetails: [
                             "cvv": "123",
                             "cardNumber": "1234567890123456789",
@@ -74,7 +73,7 @@ final class SendingRfqTests: XCTestCase {
                             "cardHolderName": "Alice Doe"
                         ]
                     ),
-                    claims: selectedCredentials // Array of signed VCs required by the PFI
+                    claims: selectedCredentials
                 ),
                 protocol: "1.0"
                 //highlight-end

@@ -2,9 +2,7 @@ package website.tbd.developer.site.docs.utils
 
 import tbdex.sdk.httpserver.models.*
 import tbdex.sdk.protocol.models.*
-import website.tbd.developer.site.docs.utils.MockDataProvider
-import website.tbd.developer.site.docs.utils.TestData
-import de.fxlae.typeid.TypeId
+import web5.sdk.dids.did.BearerDid
 
 open class MockOfferingsApiProvider: OfferingsApi {
 
@@ -19,7 +17,7 @@ open class MockOfferingsApiProvider: OfferingsApi {
         return Offering.parse(result as String)
     }
 
-    override fun getOfferings(filter: GetOfferingsFilter?): List<Offering> {
+    override fun getOfferings(): List<Offering> {
         val results = dataProvider.query("offering", "*")
         val offerings = mutableListOf<Offering>()
 
@@ -35,10 +33,10 @@ open class MockOfferingsApiProvider: OfferingsApi {
     // Setup Methods
     //---------------------------------------------------------------------------//
 
-    fun setOffering(id: String, pfiDid: String) {
-        dataProvider.setupGet("offering", id) {
-            TestData.getOffering(pfiDid, TestData.getPresentationDefinition())
-        }
+    fun setOffering(id: String, pfiDid: BearerDid) {
+        val offering = TestData.getOffering(pfiDid.uri, TestData.getPresentationDefinition())
+        offering.sign(pfiDid)
+        dataProvider.setupGet("offering", id) {offering }
     }
 
     fun setOfferings(offeringDids: List<String>) {

@@ -1,7 +1,7 @@
-import { Order, OrderStatus, Close } from '@tbdex/http-server'
+import { Order, OrderStatus, Close, Offering } from '@tbdex/http-server'
 import { DidDht } from '@web5/dids';
 import { MockDataProvider } from '../../utils/mockDataProvider'
-import { vi, test, expect, describe, beforeAll, assert } from 'vitest';
+import { test, expect, describe, beforeAll, assert } from 'vitest';
 
 let pfiDid;
 let senderDid;
@@ -69,7 +69,10 @@ describe('PFI: Orders', () => {
                 to: orderMessage.metadata.from, 
                 exchangeId: orderMessage.metadata.exchangeId
             },
-            data: { reason: 'COMPLETED' }
+            data: { 
+                reason: 'COMPLETED',
+                success: true // Indicates the transaction was successful
+            }
         })
         
         await closeMessage.sign(pfiDid)

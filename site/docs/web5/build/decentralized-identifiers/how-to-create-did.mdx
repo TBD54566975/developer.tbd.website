@@ -17,36 +17,12 @@ You can create a DID using any of the [Web5-supported DID methods](/docs/web5/le
 
 ## Install
 
-<Shnip
-  snippets={[
-    {
-      snippetName: 'createADidDependency',
-      language: "JavaScript",
-      codeLanguage: 'bash'
-    },
-    {
-      language: 'Kotlin',
-      nestedSnippets: {
-        Gradle: {
-          snippetName: 'createADidDependencyGradle',
-          language: 'gradle',
-        },
-        Maven: {
-          snippetName: 'createADidDependencyMaven',
-          language: 'xml',
-        },
-      },
-    }
-  ]}
-  inlineSnippets={[
-    {
-      code: `dependencies: [
-    .package(url: "https://github.com/TBD54566975/web5-swift", exact: "0.0.4"),
-]`,
-      language: 'Swift',
-    },
-  ]}
-/>
+<Dependencies languageDependencies={[
+  { language: 'javascript', dependencies: ['@web5/dids'] },
+  { language: 'maven', dependencies: ['web5-dids'] },
+  { language: 'gradle', dependencies: ['web5-dids'] },
+  {language: 'swift', dependencies: ['Web5']},
+]}/>
 
 ## Import
 
@@ -59,6 +35,10 @@ You can create a DID using any of the [Web5-supported DID methods](/docs/web5/le
 />
 
 ## Create DID
+When creating a DID with the Web5 SDK, what's returned is a `BearerDid`.
+A `BearerDid` is a composite type that combines a DID with a KeyManager containing keys associated to the DID. 
+Together, these two components form a BearerDid that can be used to sign and verify data.
+
 The following DID methods are supported:
 
 ### did\:dht

@@ -9,10 +9,7 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import tbdex.sdk.httpclient.TbdexHttpClient
 import tbdex.sdk.httpclient.models.TbdexResponseException
-import tbdex.sdk.protocol.models.Offering
-import tbdex.sdk.protocol.models.Rfq
-import tbdex.sdk.protocol.models.RfqData
-import tbdex.sdk.protocol.models.SelectedPaymentMethod
+import tbdex.sdk.protocol.models.*
 import java.net.HttpURLConnection
 import website.tbd.developer.site.docs.utils.TestData
 
@@ -89,21 +86,21 @@ class SendRfqTest {
             to = selectedOffering.metadata.from,  // PFI's DID
             from = customerDid.uri,  // Customer DID
             //highlight-start
-            rfqData = RfqData(
+            rfqData = CreateRfqData(
                 offeringId = selectedOffering.metadata.id, // The ID of the selected offering
-                payinAmount = "0.012", // The amount of the payin currency
-                payinMethod = SelectedPaymentMethod(
-                    "BTC_ADDRESS", // The method of payment
-                    mapOf("btcAddress" to BTC_ADDRESS) // Customer's BTC wallet address
+                payin = CreateSelectedPayinMethod(
+                  kind = "BTC_ADDRESS", // The method of payment
+                  paymentDetails = mapOf("btcAddress" to BTC_ADDRESS), // Customer's BTC wallet address
+                  amount = "0.012", // The amount of the payin currency
                 ),
-                payoutMethod = SelectedPaymentMethod(
-                    "DEBIT_CARD", // The method for receiving payout
-                    mapOf(
-                        "cvv" to "123",
-                        "cardNumber" to "1234567890123456789",
-                        "expiryDate" to "05/25",
-                        "cardHolderName" to "Alice Doe"
-                    )
+                payout = CreateSelectedPayoutMethod(
+                  kind = "DEBIT_CARD", // The method for receiving payout
+                  paymentDetails = mapOf(
+                    "cvv" to "123",
+                    "cardNumber" to "1234567890123456789",
+                    "expiryDate" to "05/25",
+                    "cardHolderName" to "Alice Doe"
+                  )
                 ),
                 claims = selectedCredentials // Array of signed VCs required by the PFI
             )
