@@ -393,7 +393,7 @@ const projects = {
       },
       {
         value: 'reference docs',
-        href: 'https://tbd54566975.github.io/tbdex-kt/index.html',
+        href: 'https://tbd54566975.github.io/tbdex-kt/docs',
       },
     ],
   },
@@ -440,7 +440,7 @@ const projects = {
       },
       {
         value: 'reference docs',
-        href: 'https://tbd54566975.github.io/web5-kt/docs/htmlMultiModule/',
+        href: 'https://tbd54566975.github.io/web5-kt/docs',
       },
     ],
   },
