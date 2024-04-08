@@ -33,7 +33,7 @@
     "@tbdex/http-client": "1.0.0",
     "@tbdex/http-server": "1.0.0",
     "@tbdex/protocol": "1.0.0",
-    "@web5/api": "0.8.4",
+    "@web5/api": "0.0.0-next-c47ea5e-20240408180231",
     "@web5/credentials": "1.0.0",
     "@web5/crypto": "1.0.0",
     "@web5/crypto-aws-kms": "1.0.0",
