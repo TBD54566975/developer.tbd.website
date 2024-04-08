@@ -15,7 +15,7 @@
     <version.io.ktor>2.3.7</version.io.ktor>
     <version.org.assertj>3.25.2</version.org.assertj>
     <version.org.junit.jupiter>5.10.1</version.org.junit.jupiter>
-    <version.xyz.block.tbdex>commit-3aee120-SNAPSHOT</version.xyz.block.tbdex>
+    <version.xyz.block.tbdex>1.0.0</version.xyz.block.tbdex>
     <version.kotlin>1.9.22</version.kotlin>
     <version.kotlin.compiler.incremental>true</version.kotlin.compiler.incremental>
   </properties>

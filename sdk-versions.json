@@ -11,7 +11,7 @@
     "@web5/identity-agent": "0.2.5"
   },
   "jvm": {
-    "tbdex": "commit-3aee120-SNAPSHOT",
+    "tbdex": "1.0.0",
     "web5-credentials": "1.0.0",
     "web5-dids": "1.0.0",
     "web5-crypto": "1.0.0"
