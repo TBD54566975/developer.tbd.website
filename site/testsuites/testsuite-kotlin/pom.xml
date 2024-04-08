@@ -15,7 +15,7 @@
     <version.io.ktor>2.3.7</version.io.ktor>
     <version.org.assertj>3.25.2</version.org.assertj>
     <version.org.junit.jupiter>5.10.1</version.org.junit.jupiter>
-    <version.xyz.block.tbdex>commit-145bfc5-SNAPSHOT</version.xyz.block.tbdex>
+    <version.xyz.block.tbdex>commit-3aee120-SNAPSHOT</version.xyz.block.tbdex>
     <version.kotlin>1.9.22</version.kotlin>
     <version.kotlin.compiler.incremental>true</version.kotlin.compiler.incremental>
   </properties>
@@ -204,19 +204,6 @@
         <enabled>false</enabled>
       </snapshots>
       <url>https://blockxyz.jfrog.io/artifactory/tbd-oss-thirdparty-maven2/</url>
-    </repository>
-
-    <!-- TBD Releases-->
-    <repository>
-      <id>tbd-oss-releases</id>
-      <name>tbd-oss-releases</name>
-      <releases>
-        <enabled>true</enabled>
-      </releases>
-      <snapshots>
-        <enabled>false</enabled>
-      </snapshots>
-      <url>https://blockxyz.jfrog.io/artifactory/tbd-oss-releases-maven2/</url>
     </repository>
 
     <!-- TBD SNAPSHOTs-->
