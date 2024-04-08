@@ -1,19 +1,11 @@
 package website.tbd.developer.site.docs.tbdex.pfi
 
-import de.fxlae.typeid.TypeId
-import web5.sdk.dids.didcore.Service
-import tbdex.sdk.httpserver.models.*
 import tbdex.sdk.protocol.models.Order
 import tbdex.sdk.protocol.models.OrderStatus
 import tbdex.sdk.protocol.models.OrderStatusData
 import tbdex.sdk.protocol.models.Close
 import tbdex.sdk.protocol.models.CloseData
-import web5.sdk.dids.methods.dht.DidDht
-import web5.sdk.crypto.InMemoryKeyManager
-import web5.sdk.dids.methods.dht.CreateDidDhtOptions
-import website.tbd.developer.site.docs.tbdex.pfi.*
 import website.tbd.developer.site.docs.utils.*
-import java.net.URI
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.*
 
@@ -45,6 +37,7 @@ class ProcessingOrdersTest {
             from = pfiDid.uri,
             to = orderMessage.metadata.from,
             exchangeId = orderMessage.metadata.exchangeId,
+            protocol = "1.0",
             orderStatusData = OrderStatusData("PROCESSING")
         )
 
@@ -66,7 +59,11 @@ class ProcessingOrdersTest {
             to = orderMessage.metadata.from,
             from = pfiDid.uri,
             exchangeId = orderMessage.metadata.exchangeId,
-            closeData = CloseData(reason = "COMPLETED")
+            protocol = "1.0",
+            closeData = CloseData(
+                reason = "COMPLETED",
+                success = true // Indicates the transaction was successful
+            )
         )
 
         closeMessage.sign(pfiDid)

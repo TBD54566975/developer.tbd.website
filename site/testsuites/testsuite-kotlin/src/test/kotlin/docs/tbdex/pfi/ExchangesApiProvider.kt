@@ -2,8 +2,6 @@ package website.tbd.developer.site.docs.tbdex.pfi
 
 import website.tbd.developer.site.docs.utils.MockExchangesApiProvider
 import tbdex.sdk.protocol.models.Message
-import website.tbd.developer.site.docs.utils.*
-import tbdex.sdk.httpserver.models.*
 
 class ExchangesApiProvider: MockExchangesApiProvider() {
     // :snippet-start: pfiOverviewWriteKt

@@ -159,7 +159,7 @@ async function propagateVersions() {
 
     for (const dirPath of directoriesToUpdate) {
       await updatePackageJsonDependencies(dirPath, sdkVersions);
-      await findAndUpdatePomProperties(dirPath, sdkVersions);
+      //await findAndUpdatePomFiles(dirPath, sdkVersions);
       await findAndUpdatePackageSwift(dirPath, sdkVersions); // Add this line to update Swift dependencies
     }
   } catch (error) {

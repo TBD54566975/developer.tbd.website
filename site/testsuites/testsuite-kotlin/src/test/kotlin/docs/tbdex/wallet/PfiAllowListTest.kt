@@ -1,11 +1,6 @@
 
 package website.tbd.developer.site.docs.tbdex.wallet
 
-import web5.sdk.dids.didcore.Service
-import web5.sdk.crypto.InMemoryKeyManager
-import web5.sdk.dids.methods.dht.CreateDidDhtOptions
-import web5.sdk.dids.methods.dht.DidDht
-import java.net.URI
 import website.tbd.developer.site.docs.utils.TestData
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions.*

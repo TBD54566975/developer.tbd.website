@@ -34,28 +34,11 @@ This example demonstrates how to use Express to set up the VC issuance service. 
 
 You'll also need to install `@web5/credentials` to create and issue credentials:
 
-<Shnip
-  snippets={[
-    {
-      snippetName: 'credentialIssuanceJsPackage',
-      language: 'JavaScript',
-      codeLanguage: 'bash',
-    },
-    {
-      language: 'Kotlin',
-      nestedSnippets: {
-        Gradle: {
-          snippetName: 'credentialIssuanceGradlePackage',
-          language: 'gradle',
-        },
-        Maven: {
-          snippetName: 'credentialIssuanceMavenPackage',
-          language: 'xml',
-        },
-      },
-    },
-  ]}
-/>
+<Dependencies languageDependencies={[
+  { language: 'javascript', dependencies: ['@web5/credentials'] },
+  { language: 'maven', dependencies: ['web5-credentials'] },
+  { language: 'gradle', dependencies: ['web5-credentials'] },
+]}/>
 
 ### Create a DID
 
@@ -196,6 +179,6 @@ export { app as api };
 
 Now that you have your server environment set up, depending on your use case, you can proceed with one of the following guides:
 
-- [Credential Issuance Guide](/)
+- [Credential Issuance Guide](/docs/tbdex/issuer/kcc/kcc-issuer)
 
-- [Known Customer Credential Guide](/)
+- [Known Customer Credential Guide](/docs/tbdex/issuer/kcc/kcc-wallet)

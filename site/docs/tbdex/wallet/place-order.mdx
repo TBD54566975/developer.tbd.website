@@ -14,7 +14,7 @@ If the customer chooses to place the order, your application will create an Orde
 
 ## Create Order Object
 To place an Order in response to a Quote, the first step is to create the `Order` object. 
-This instantiates a new Order, including metadata such as the customer's DID, the PFI's DID, and the exchange ID obtained from the Quote.
+This instantiates a new Order, including metadata such as the customer's DID, the PFI's DID, the exchange ID obtained from the Quote, and the tbDEX protocol version being used.
 
 <Shnip
   snippets={[
@@ -76,16 +76,16 @@ Once a `Close` message is written, the exchange is ended and no additional messa
     "from": " /* PFI DID */ ",
     "to": " /* CUSTOMER DID */ ",
     "exchangeId": "rfq_01hj2g5wrzfp4tmrfkhz277g9w",
+    "protocol": "1.0",
     "kind": "close",
     "id": "close_01hj2g6493fadax5xazq2d2da6",
     "createdAt": "2023-12-20T02:16:59.939Z"
   },
   "data": {
     "reason": "Order fulfilled",
-    "_signature": " /* PFI's cryptographic signature */ ",
-    "validNext": Set(0) {},
-    "kind": "close"
-  }
+    "success": true
+  },
+  "signature": " /* PFI's cryptographic signature */ "
 }
 ```
 

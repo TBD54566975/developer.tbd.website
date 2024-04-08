@@ -1,4 +1,4 @@
-import { describe, test, expect, vi, beforeEach } from 'vitest';
+import { describe, test, expect } from 'vitest';
 import { Jwt, VerifiableCredential } from '@web5/credentials';
 import { DidJwk } from '@web5/dids';
 import express from 'express';

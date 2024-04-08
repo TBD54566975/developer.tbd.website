@@ -2,8 +2,9 @@ import { describe, test, expect, vi, beforeEach } from 'vitest';
 // :prepend-start: knownCustomerCredentialhandleSiopRequestWalletJS
 import { Jwt, PresentationExchange } from '@web5/credentials';
 // :prepend-end:
+import { DidJwk } from '@web5/dids';
 // :prepend-start: knownCustomerCredentialResolveIssuerDidJS
-import { DidResolver, DidDht, DidJwk } from '@web5/dids';
+import { resolveDid } from '@tbdex/protocol'
 // :prepend-end:
 
 const issuerBearerDid = await DidJwk.create();
@@ -141,14 +142,12 @@ describe('Presentation Exchange Process', () => {
 
 // :snippet-start: knownCustomerCredentialResolveIssuerDidJS
 async function resolveIssuerDid(issuerDidUri) {
-  const resolver = new DidResolver({ didResolvers: [DidDht, DidJwk] });
-
   try {
     /****************************************
      * Resolve DID & Get IDV Service Endpoint
      ****************************************/
-    const resolvedDid = await resolver.resolve(issuerDidUri);
-    const idvService = resolvedDid.didDocument.service.find(
+    const didDocument = await resolveDid(issuerDidUri)
+    const idvService = didDocument.service.find(
       (service) => service.type === 'IDV',
     );
 
