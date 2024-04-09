@@ -1,39 +1,39 @@
 [
   {
-    "login": "vokrox",
-    "avatar_url": "https://avatars.githubusercontent.com/u/7928540?s=48&v=4",
+    "login": "River",
+    "avatar_url": "https://avatars.githubusercontent.com/u/60234090?v=4",
     "contributions": ["Community Champion Award"],
-    "description": "This month you've been super active from attending live streams to consuming content. Thank you for participating! (P.S.) your funny comments during our live streams are awesome!"
+    "description": "You started strong with a huge did:dht create PR to our Web5 project, helped keep the community safe, and were involved in all our events in some way. Thank you so much for being here and being a rock star contributor too. 💞"
   },
   {
-    "login": "facutherock.eth",
-    "avatar_url": "https://avatars.githubusercontent.com/u/3358683?s=48&v=4",
-    "contributions": ["Community Champion Award"],
-    "description": "Thank you for exploring and taking the time to ask great questions! 🤗"
-  },
-  {
-    "login": "0xjevan",
-    "avatar_url": "https://avatars.githubusercontent.com/u/58369673?v=4",
+    "login": "AlexHsieh",
+    "avatar_url": "https://avatars.githubusercontent.com/u/1450695?v=4",
     "contributions": ["New Contributor Award"],
-    "description": "You've been learning and exploring the SDKs this month and we love to see it! We can't wait to see if you have any projects in store 👀! We're thrilled you're here! 🥳"
+    "description": "You were fearless with your contribution to did:dht tests issue and made an incredible contribution in doing that. Thanks to members like you, we'll be able to quickly resolve issues and address feedback together. Thank you for being here! 🍻"
   },
   {
-    "login": "enmand",
-    "avatar_url": "https://avatars.githubusercontent.com/u/432487?v=4",
-    "contributions": ["Content Creator Award"],
-    "description": "Your Rust implementation work is super impressive!!🔥 Thank you for being apart of the community!"
+    "login": "ozipi",
+    "avatar_url": "https://avatars.githubusercontent.com/u/153045?v=4",
+    "contributions": ["Trend Setter Award"],
+    "description": "You were the reason more contributors got involved and your contribution to our developer site project was hugely impactful. Thank you for taking the time to address open issues, you're a star! ⭐"
   },
   {
-    "login": "André",
-    "avatar_url": "https://avatars.githubusercontent.com/u/4354556?s=48&v=4",
+    "login": "theisiens",
+    "avatar_url": "https://avatars.githubusercontent.com/u/54779423?v=4",
+    "contributions": ["Specialist Contributor Award"],
+    "description": "Your PR supporting Secp256r1 curve signing & verifying was an important verification piece, and we are beyond ecstatic to have you in our community. Thank you for your contribution! 🌟"
+  },
+  {
+    "login": "Gerald G",
+    "avatar_url": "https://cdn.discordapp.com/avatars/917483321284513892/0192ceb71695138fdf6c66559593f1d3?size=1024",
     "contributions": ["Rising Star Award"],
-    "description": "You never miss a live stream or a Discord community event and you always come with thoughtful and engaging questions. We're so happy you're here! 🥳"
+    "description": "From taking your inspiration from our livestream and turning it to a Bitstring Status List synthesis to your amazing feedback on tbDEX.io, you add a lot of great vibes and contributions with every thought you share. Thank you for being here! ❤️"
   },
   {
-    "login": "grahnj",
-    "avatar_url": "https://avatars.githubusercontent.com/u/11844218?v=4",
-    "contributions": ["New Contributor Award"],
-    "description": "Thank you for taking the time to tackle one of our open issues and open up a PR in our web5-go repo. We hope to see more PRs from you in the future. 💖"
+    "login": "rbe",
+    "avatar_url": "https://cdn.discordapp.com/avatars/114142818460631046/19c9cc7e22a0f3813768b0ac8b176a3c?size=1024",
+    "contributions": ["Feedback Champion Award"],
+    "description": "You have been consistently supportive and talkative about all things TBD, and you have given our team great feedback already. Thank you so much for being part of our community! 🥰"
   }
 ]
 

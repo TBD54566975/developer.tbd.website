@@ -7,10 +7,7 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import tbdex.sdk.httpclient.TbdexHttpClient
-import tbdex.sdk.protocol.models.Close
-import tbdex.sdk.protocol.models.CloseData
-import tbdex.sdk.protocol.models.Quote
-import tbdex.sdk.protocol.models.Rfq
+import tbdex.sdk.protocol.models.*
 import tbdex.sdk.protocol.serialization.Json
 import java.net.HttpURLConnection
 import website.tbd.developer.site.docs.utils.*
@@ -30,11 +27,7 @@ class ReceiveQuoteTest {
         server = MockWebServer()
         server.start(9000)
 
-        rfq = Rfq.create(
-            from = customerDid.uri,
-            to = pfi.uri,
-            rfqData = TestData.getRfq().data
-        )
+        rfq = TestData.getRfq()
         rfq.sign(customerDid)
 
         quote = Quote.create(

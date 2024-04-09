@@ -34,36 +34,12 @@ Below is an example that uses `AwsKeyManager` for production environments, and `
 
 **Install Packages**
 
-<Shnip
-  inlineSnippets={[
-    {
-      code: `npm i @web5/crypto @web5/dids @web5/crypto-aws-kms`,
-      language: 'JavaScript',
-      codeLanguage: 'bash',
-    },
-    {
-      code: `dependencies: [
-    .package(url: "https://github.com/TBD54566975/web5-swift.git", branch: "main")
-]`,
-      language: 'Swift',
-    },
-  ]}
-  snippets={[
-    {
-      nestedSnippets:{
-          'Gradle': {
-            "snippetName": 'keyManagementDependencyGradle',
-            "language": 'gradle'
-          },
-          'Maven': {
-            "snippetName": 'keyManagementDependencyPom',
-            "language": 'xml'
-          }
-        },
-        language: 'Kotlin'
-    }
-  ]}
-/>
+<Dependencies languageDependencies={[
+  { language: 'javascript', dependencies: ['@web5/dids', '@web5/crypto', '@web5/crypto-aws-kms'] },
+  { language: 'maven', dependencies: ['web5-dids', 'web5-crypto'] },
+  { language: 'gradle', dependencies: ['web5-dids', 'web5-crypto'] },
+  { language: 'swift', dependencies: ['Web5']},
+]}/> 
 
 **Import Classes**
 

@@ -18,7 +18,6 @@ describe('Wallet: Send RFQ', () => {
 
     pfiDid = await DidDht.create({
       options:{
-        publish  : true,
         services : [{
           type            : 'PFI',
           id              : 'pfi',
@@ -34,7 +33,7 @@ describe('Wallet: Send RFQ', () => {
 
     // Mock the response from the PFI
     server = setupServer(
-      http.post(new RegExp('https://localhost:9000/exchanges/(.+)/rfq'), () => {
+      http.post(new RegExp('https://localhost:9000/exchanges'), () => {
         return HttpResponse.json({
           status: 202
         })
@@ -69,8 +68,8 @@ describe('Wallet: Send RFQ', () => {
         //highlight-start
         metadata: {
           to: selectedOffering.metadata.from,  // PFI's DID
-          from: customerDid.uri, // Customer's DID
-          protocol: '1.0'
+          from: customerDid.uri,               // Customer's DID
+          protocol: '1.0'                      // Version of tbDEX protocol you're using
         },
         //highlight-end
         data: {}
@@ -91,21 +90,21 @@ describe('Wallet: Send RFQ', () => {
     const rfq = Rfq.create({
       metadata: {
         to: selectedOffering.metadata.from, // PFI's DID
-        from: customerDid.uri, // Customer DID
-        protocol: '1.0'
+        from: customerDid.uri,              // Customer DID
+        protocol: '1.0'                     // Version of tbDEX protocol you're using
       },
       //highlight-start
       data: {
         offeringId: selectedOffering.metadata.id,   // The ID of the selected offering
-        payinAmount: '0.012',  // The amount of the payin currency
-        payinMethod: {
-          kind: 'BTC_WALLET_ADDRESS',   // The method of payment
+        payin: {
+          kind: 'BTC_WALLET_ADDRESS',               // The method of payment
+          amount: '0.012',                          // The amount of the payin currency
           paymentDetails: {
-            btcAddress: BTC_ADDRESS       // Customer's BTC wallet address
+            btcAddress: BTC_ADDRESS                 // Customer's BTC wallet address
           }
         },
-        payoutMethod: {
-          kind: 'DEBIT_CARD',  // The method for receiving payout
+        payout: {
+          kind: 'DEBIT_CARD',                       // The method for receiving payout
           paymentDetails: {
             cvv: '123',
             cardNumber: '1234567890123456789',

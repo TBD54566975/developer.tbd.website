@@ -20,7 +20,6 @@ describe('Wallet: Place Order', () => {
 
     pfiDid = await DidDht.create({
       options:{
-        publish  : true,
         services : [{
           type            : 'PFI',
           id              : 'pfi',
@@ -33,7 +32,8 @@ describe('Wallet: Place Order', () => {
       metadata: {
         from       : customerDid.uri,
         to         : pfiDid.uri,
-        exchangeId : Message.generateId('rfq')
+        exchangeId : Message.generateId('rfq'),
+        protocol   : "1.0"
       }
     })
     await order.sign(customerDid);
@@ -42,7 +42,8 @@ describe('Wallet: Place Order', () => {
       metadata: {
         from: pfiDid.uri,
         to: customerDid.uri,
-        exchangeId: order.exchangeId
+        exchangeId: order.exchangeId,
+        protocol   : "1.0"
       },
       data: {
         orderStatus: orderStatusMsg
@@ -54,15 +55,22 @@ describe('Wallet: Place Order', () => {
       metadata: {
         from: pfiDid.uri,
         to: customerDid.uri,
-        exchangeId: order.exchangeId
+        exchangeId: order.exchangeId,
+        protocol   : "1.0"
       },
-      data: { reason: closeReason }
+      data: { 
+        reason: closeReason,
+        success: true
+      }
     });
     await close.sign(pfiDid);
 
-    // Mock the response from the PFI
+    // Mock responses from the PFI
     server = setupServer(
-      http.post(new RegExp('https://localhost:9000/exchanges/(.+)/order'), () => {
+      http.put(new RegExp('https://localhost:9000/exchanges/(.+)'), () => {
+        return HttpResponse.json({ status: 202 })
+      }),
+      http.post(new RegExp('https://localhost:9000/exchanges/(.+)'), () => {
         return HttpResponse.json({ status: 202 })
       }),
       http.get(new RegExp('https://localhost:9000/exchanges/(.+)'), () => {
@@ -97,7 +105,7 @@ describe('Wallet: Place Order', () => {
           from: customerDid.uri,         // Customer's DID
           to: quote.metadata.from,       // PFI's DID
           exchangeId: quote.exchangeId,  // Exchange ID from the Quote
-          protocol: "1.0"
+          protocol: "1.0"                // Version of tbDEX protocol you're using
         }
       });
       // :snippet-end:
@@ -111,7 +119,7 @@ describe('Wallet: Place Order', () => {
       await TbdexHttpClient.submitOrder(order);
       // :snippet-end:
       }catch(e){
-        expect.fail(e);
+        expect.fail(e.message);
       }
   });
 
@@ -146,5 +154,6 @@ describe('Wallet: Place Order', () => {
     const reasonForClose = closeMessage.data.reason;
     // :snippet-end:
     expect(reasonForClose).toBe(closeReason);
+    expect(closeMessage.data.success).toBe(true);
   });
 });

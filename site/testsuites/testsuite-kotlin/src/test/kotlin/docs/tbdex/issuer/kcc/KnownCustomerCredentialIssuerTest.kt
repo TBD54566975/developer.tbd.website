@@ -1,6 +1,7 @@
 package website.tbd.developer.site.docs.tbdex
 
-import com.nimbusds.jwt.JWTClaimsSet
+
+import web5.sdk.jose.jwt.JwtClaimsSet
 import org.junit.jupiter.api.Assertions.*
 import com.nimbusds.jwt.JWTParser
 import io.ktor.server.routing.*
@@ -10,9 +11,9 @@ import io.ktor.server.request.*
 import io.ktor.http.*
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertDoesNotThrow
-import web5.sdk.dids.Did
+import web5.sdk.dids.did.BearerDid
 import web5.sdk.credentials.VerifiableCredential
-import web5.sdk.credentials.util.JwtUtil
+import web5.sdk.jose.jwt.Jwt
 import web5.sdk.crypto.InMemoryKeyManager
 import web5.sdk.dids.methods.dht.CreateDidDhtOptions
 import web5.sdk.dids.methods.dht.DidDht
@@ -76,16 +77,18 @@ class KnownCustomerCredentialIssuerTest {
     fun `JwtUtil sign() works with a valid payload and bearer DID`() {
         val issuerBearerDid = generateTestDid()
         val customerBearerDid = generateTestDid()
+        val currentTimeInSeconds = System.currentTimeMillis() / 1000 
+        val expirationTimeInSeconds = currentTimeInSeconds + 86400 
 
-        val accessTokenPayload = JWTClaimsSet.Builder()
+        val accessTokenPayload = JwtClaimsSet.Builder()
             .subject(customerBearerDid.uri.toString()) 
             .issuer(issuerBearerDid.uri.toString()) 
-            .issueTime(Date(System.currentTimeMillis())) 
-            .expirationTime(Date(System.currentTimeMillis() + 86400 * 1000)) 
+            .issueTime(currentTimeInSeconds) 
+            .expirationTime(expirationTimeInSeconds)
             .build()
 
         try {
-            val accessToken = JwtUtil.sign(issuerBearerDid, null, accessTokenPayload)
+            val accessToken = Jwt.sign(issuerBearerDid, accessTokenPayload)
 
             assertNotNull(accessToken, "Access token should not be null")
             assertTrue(accessToken.isNotEmpty(), "Access token should not be empty")
@@ -103,7 +106,7 @@ class KnownCustomerCredentialIssuerTest {
         }
     }
        
-    private fun generateTestDid(): Did {
+    private fun generateTestDid(): BearerDid {
         val issuerDid = DidDht.create(InMemoryKeyManager(), CreateDidDhtOptions(publish = true))
         return issuerDid
     }
@@ -489,18 +492,18 @@ class KnownCustomerCredentialIssuerTest {
                     /*******************************************
                     Create the payload for the access token
                     ********************************************/
-                val accessTokenPayload = JWTClaimsSet.Builder()
+                val accessTokenPayload = JwtClaimsSet.Builder()
                     .subject("did:dht:customer7ufcbgnnc4ikkfpd8b1u9on1b1n7k7wdcapbgo") // Customer's DID string
                     .issuer(issuerBearerDid.uri) // Issuer's DID string
-                    .issueTime(Date(System.currentTimeMillis())) // Issued at
-                    .expirationTime(Date(System.currentTimeMillis() + 86400 * 1000)) // Expiration time, 86400 seconds from now
+                    .issueTime(System.currentTimeMillis() / 1000) // Issued time
+                    .expirationTime((System.currentTimeMillis() / 1000) + 86400) // Expiration time 
                     .build()
 
                     /*******************************************
                     sign accessToken and generate a c_nonce
                     ********************************************/
                 try {
-                    val accessToken = JwtUtil.sign(issuerBearerDid, null, accessTokenPayload)
+                    val accessToken = Jwt.sign(issuerBearerDid, accessTokenPayload)
                     val cNonce = generateCNonce()
                     accessTokenToCNonceMap[accessToken] = cNonce
 
@@ -569,7 +572,7 @@ class KnownCustomerCredentialIssuerTest {
                     }
 
                     VerifiableCredential.verify(proofJwt)
-                    val claimsSet: JWTClaimsSet = JWTParser.parse(proofJwt).jwtClaimsSet
+                    val claimsSet = JWTParser.parse(proofJwt).jwtClaimsSet
                     val customersDidUri = claimsSet.subject ?: ""
                     val nonceInProof = claimsSet.getStringClaim("nonce")
 
@@ -604,7 +607,7 @@ class KnownCustomerCredentialIssuerTest {
                         issuer = issuerBearerDid.uri, // Issuer's DID string
                         subject = customersDidUri, // Customer's DID string from the verified JWT
                         expirationDate = expirationDate,
-                        // evidence = evidence,
+                        evidence = evidence,
                         data = KccCredential(country_of_residence = "US", tier = "Gold")
                     )
 

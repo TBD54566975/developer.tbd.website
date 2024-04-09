@@ -1,231 +1,192 @@
 ---
+title: Creating Offerings
+hide_title: true
 sidebar_position: 6
 ---
+<LanguageSwitcher languages="JavaScript, Kotlin"/>
 
-# Offerings
+# Creating Offerings
 
 Offerings describe a currency pair that can be exchanged and specify the requirements, conditions, and constraints needed to fulfill the described transaction.
-In other words, an Offering is a way of describing a financial product you’re offering as a PFI on a tbDEX network. Any Wallet that has your PFI's DID will be able to query your PFI for all available Offerings, as well as fetch specific Offerings. Wallets will then use that data to make an Request for Quote (RFQ) to your PFI to begin a potential transaction process.
+In other words, an Offering is a way of describing a financial product you’re offering as a PFI on a tbDEX network. 
 
-## Offering Data Schema
+Any Wallet that has your PFI's DID will be able to query your PFI for all available Offerings, as well as fetch specific Offerings. Wallets will then use that data to make an [Request for Quote (RFQ)](/docs/tbdex/wallet/send-rfq) to your PFI to begin a potential transaction process.
 
-At a top-level, the Offering data object is described by the following properties:
+## Create an Offering
 
-* Currency pairings for the transaction
-* Pay-in methods
-* Pay-out methods
-* Pay-out conversion
-* Required credentials
+You can use the tbDEX SDK to create Offerings. 
+An Offering must adhere to the [Offering schema](https://github.com/TBD54566975/tbdex/tree/main/specs/protocol#offering).
 
-To define these parameters, you’ll create a JSON object per the [Offering schema](https://github.com/TBD54566975/tbdex/tree/main/specs/protocol#offering):
-
-
-<table>
-  <tr>
-   <td>
-     <strong>Offering Trait</strong>
-   </td>
-   <td>
-     <strong>tbDEX Field</strong>
-   </td>
-   <td>
-     <strong>Data Type</strong>
-   </td>
-  </tr>
-  <tr>
-   <td>Currency Pairing for swap</td>
-   <td>payinCurrency and payoutCurrency</td>
-   <td>CurrencyDetails</td>
-  </tr>
-  <tr>
-   <td>Pay-in Method</td>
-   <td>payinMethods</td>
-   <td>PaymentMethod[]</td>
-  </tr>
-  <tr>
-   <td>Pay-out Method</td>
-   <td>payoutMethods</td>
-   <td>PaymentMethods[]</td>
-  </tr>
-  <tr>
-   <td>Pay-out Conversion</td>
-   <td>payoutUnitsPerPayinUnit</td>
-   <td>string</td>
-  </tr>
-  <tr>
-   <td>Required Credentials</td>
-   <td>requiredClaims</td>
-   <td>PresentationDefinitionV2</td>
-  </tr>
-</table>
-
-### Currencies
-
-Both the `payinCurrency` and `payoutCurrency` fields are described by the [`CurrencyDetails`](https://tbd54566975.github.io/tbdex-js/types/_tbdex_protocol.CurrencyDetails.html) data type, which has the following fields:
-
-| Field        | Data Type | Description                                            |
-|--------------|-----------|--------------------------------------------------------|
-| `currencyCode` | string    | ISO 4217 currency code string. This field is required. |
-| `minSubunits`  | string    | Minimum amount of currency that the offer is valid for |
-| `maxSubunits`  | string    | Maximum amount of currency that the offer is valid for |
-
-To find more information on currency code strings to ensure your PFI uses a valid and correct value, see the [currency lists provided here](https://www.six-group.com/en/products-services/financial-information/data-standards.html).
-
-### Payment Methods
-
-Both the `payinMethods` and `payoutMethods` fields are described by the [`PaymentMethod`](https://tbd54566975.github.io/tbdex-js/types/_tbdex_protocol.PaymentMethod.html) data type, which has the following fields:
-
-| Field                    | Data Type | Description                                                                                                                                                             |
-|--------------------------|-----------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `kind`                   | string    | Type of payment method (i.e. `DEBIT_CARD`, `CREDIT_CARD`, etc.). Note that because this field is of type string, the values are not standardized. This field is required. |
-| `requiredPaymentDetails` | JSON      | A JSON schema containing the fields the Wallet must enter in order to use this payment method.                 |
-
-When structuring your `requiredPaymentDetails` object, it will look similar to the following:
-
-```json
-{
-  "requiredPaymentDetails": {
-    "$schema": "http://json-schema.org/draft-07/schema",
-    "type": "object",
-    "properties": {
-      "property1": {
-        "type": "string",
-        "description": "Credit Card Number",
-        "property1MaxLength": 16,
-      },
-      "property2": {
-        "type": "string",
-        "description": "Card Expiration Date in MM/YY Format",
-        "patternToMatch": "^(0[1-9]|1[0-2])\\/([0-9]{2})$"
-      }
-    }
-  }
-}
-```
-Note that while `type` and `description` fields are more intuitive and standard for you to include in your `requiredPaymentDetails` schema, you have the flexibility to detail any requirements you have in this object. Each `payinMethod` or `payoutMethod` can be represented by an array of `PaymentMethods`.
+<Shnip snippets={
+  [
+    { snippetName: 'pfiCreateOfferingJs', language: 'JavaScript'},
+    { snippetName: 'pfiCreateOfferingKt', language: 'Kotlin'}
+  ]} />
 
 ### Required Claims
 
 In order to comply with certain financial regulations, you may require information about the customer you are transacting with.
 You can obtain this information via [Verifiable Credentials](/docs/web5/learn/verifiable-credentials).
 
-To specify the exact credentials you need, you can do so in the `requiredClaims` section of your Offering by following [creating a Presentation Definition](/docs/web5/build/verifiable-credentials/presentation-definition/).
+To specify the exact credentials you need, you can do so in the `requiredClaims` section of your Offering by [creating a Presentation Definition](/docs/web5/build/verifiable-credentials/presentation-definition/).
 You'll specify all required forms and details of proof, optional selection rules, and define flexibility where possible when different types of input may satisfy the requirements.
 
 For a full breakdown of all the available fields and combinations, [see the DIF website](https://identity.foundation/presentation-exchange/#presentation-definition) for details.
-Below is a example of how you could request a Wallet provide a VC of type **SanctionsCredential**:
 
-```json
-{
-  "presentation_definition": {
-    "id": "6bdaec32-e511-489d-b2fd-27a051bd819b",
-    "input_descriptors": [
-      {
-        "id": "65752b5a-a454-4605-85de-7f159b22ce01",
-        "purpose": "We need to know if you are a sanctioned individual",
-        "constraints": {
-          "fields": [
-            {
-              "path": [ "$.type[*]" ],
-              "filter": {
-                "type": "string",
-                "const": "SanctionsCredential"
-              }
-            }
-          ]
-        }
-      }
-    ]
-  }
-}
-```
+Below is a example of how you could specify that a [KnownCustomerCredential](https://www.tbdex.io/guides/kcc) is required to order this Offering:
 
-Once you've created your required claims, it's important to [validate them](/docs/web5/build/verifiable-credentials/presentation-definition#validate-the-presentation-definition) to ensure there are no errors in the design.
+<Shnip snippets={
+  [
+    { snippetName: 'kccPresentationDefintionJs', language: 'JavaScript'},
+    { snippetName: 'kccPresentationDefintionKt', language: 'Kotlin'}
+  ]} />
+
+Once you've created your required claims, it's important to validate them to ensure there are no errors in the design.
+This will throw an error if it's not valid.
+
+<Shnip snippets={
+  [
+    { snippetName: 'kccValidatePdJs', language: 'JavaScript'},
+    { snippetName: 'kccValidatePdKt', language: 'Kotlin'}
+  ]} />
+
+### Sign Offering
+After creating your Offering, it's necessary to cryptographically sign it so that Wallet apps know that it's authentic.
+
+<Shnip snippets={
+  [
+    { snippetName: 'pfiSignOfferingJs', language: 'JavaScript'},
+    { snippetName: 'pfiSignOfferingKt', language: 'Kotlin'}
+  ]} />
+
+### Validate Offering
+After signing the Offering, you can validate that your Offering's structure is valid.
+This will throw an error if it's not valid.
+
+<Shnip snippets={
+  [
+    { snippetName: 'pfiValidateOfferingJs', language: 'JavaScript'},
+    { snippetName: 'pfiValidateOfferingKt', language: 'Kotlin'}
+  ]} />
+
+
+Once the Offering has been generated, you can store it in your database using code as shown in the [Offerings API Provider section](/docs/tbdex/pfi/anatomy-of-a-pfi#http://localhost:3000/docs/tbdex/pfi/anatomy-of-a-pfi#offerings-api-provider).
+
 
 ## Sample Offering
 
 When combining all the data above, you can end up with a full Offering object that looks something like the following:
 
-```json
+```js
 {
   "metadata": {
-    "from": "did:ex:pfi",
+    "from": "did:dht:d4sgiggd3dwimo4ubki7spo45q5dazxphrizbxhcgapapcnzpouy",
+    "protocol": "1.0",
     "kind": "offering",
-    "id": "offering_01ha82y8d0fhstg95hhfjwmgxf",
-    "createdAt": "2023-09-13T20:15:22.528Z"
+    "id": "offering_01htkr88ybffzbxfea01rq3ht9",
+    "createdAt": "2024-04-04T05:10:38.796Z"
   },
   "data": {
     "description": "Selling BTC for USD",
-    "payinCurrency": {
-      "currencyCode": "USD"
+    "payin": {
+      "currencyCode": "USD",
+      "methods": [
+        {
+          "kind": "DEBIT_CARD",
+          "requiredPaymentDetails": {
+            "$schema": "http://json-schema.org/draft-07/schema",
+            "type": "object",
+            "properties": {
+              "cardNumber": {
+                "type": "string",
+                "description": "The 16-digit debit card number",
+                "minLength": 16,
+                "maxLength": 16
+              },
+              "expiryDate": {
+                "type": "string",
+                "description": "The expiry date of the card in MM/YY format",
+                "pattern": "^(0[1-9]|1[0-2])\\/([0-9]{2})$"
+              },
+              "cardHolderName": {
+                "type": "string",
+                "description": "Name of the cardholder as it appears on the card"
+              },
+              "cvv": {
+                "type": "string",
+                "description": "The 3-digit CVV code",
+                "minLength": 3,
+                "maxLength": 3
+              }
+            }
+          }
+        }
+      ]
     },
-    "payoutCurrency": {
+    "payout": {
       "currencyCode": "BTC",
-      "maxSubunits": "99952611"
+      "methods": [
+        {
+          "kind": "BITCOIN_ADDRESS",
+          "estimatedSettlementTime": 60,
+          "fee": "0.25"
+        }
+      ]
     },
     "payoutUnitsPerPayinUnit": "0.00003826",
-    "payinMethods": [
-      {
-        "kind": "DEBIT_CARD",
-        "requiredPaymentDetails": {
-          "$schema": "http://json-schema.org/draft-07/schema",
-          "type": "object",
-          "properties": {
-            "cardNumber": {
-              "type": "string",
-              "description": "The 16-digit debit card number",
-              "minLength": 16,
-              "maxLength": 16
-            },
-            "expiryDate": {
-              "type": "string",
-              "description": "The expiry date of the card in MM/YY format",
-              "pattern": "^(0[1-9]|1[0-2])\\/([0-9]{2})$"
-            },
-            "cardHolderName": {
-              "type": "string",
-              "description": "Name of the cardholder as it appears on the card"
-            },
-            "cvv": {
-              "type": "string",
-              "description": "The 3-digit CVV code",
-              "minLength": 3,
-              "maxLength": 3
-            }
-          }
-        }
-      }
-    ],
-    "payoutMethods": [
-      {
-        "kind": "BTC_ADDRESS",
-        "requiredPaymentDetails": {
-          "$schema": "http://json-schema.org/draft-07/schema",
-          "type": "object",
-          "properties": {
-            "btcAddress": {
-              "type": "string",
-              "description": "your Bitcoin wallet address"
-            }
-          }
-          "additionalProperties": false
-        }
-      }
-    ],
     "requiredClaims": {
-      "id": "7ce4004c-3c38-4853-968b-e411bafcd945",
+      "id": "presentation-definition-kcc",
+      "name": "Customer Verification",
+      "purpose": "We need to verify your customer status and conduct necessary checks.",
+      "format": {
+        "jwt_vc": {
+          "alg": [
+            "ES256K",
+            "EdDSA"
+          ]
+        }
+      },
       "input_descriptors": [
         {
-          "id": "bbdb9b7c-5754-4f46-b63b-590bada959e0",
+          "id": "known-customer-credential",
+          "name": "Known Customer Credential",
+          "purpose": "Please present your Known Customer Credential for verification.",
           "constraints": {
             "fields": [
               {
                 "path": [
-                  "$.type"
+                  "$.type[*]"
                 ],
                 "filter": {
                   "type": "string",
-                  "const": "YoloCredential"
+                  "pattern": "KnownCustomerCredential"
+                }
+              },
+              {
+                "path": [
+                  "$.evidence[*].kind"
+                ],
+                "filter": {
+                  "type": "string",
+                  "pattern": "sanction_screening"
+                }
+              },
+              {
+                "path": [
+                  "$.credentialSubject.country_of_residence"
+                ],
+                "filter": {
+                  "type": "string",
+                  "const": "US"
+                }
+              },
+              {
+                "path": [
+                  "$.issuer"
+                ],
+                "filter": {
+                  "type": "string",
+                  "const": "did:dht:d4sgiggd3dwimo4ubki7spo45q5dazxphrizbxhcgapapcnzpouy"
                 }
               }
             ]
@@ -234,8 +195,7 @@ When combining all the data above, you can end up with a full Offering object th
       ]
     }
   },
-  "signature": "eyJhbGciOiJFZERTQSIsImtpZCI6ImRpZDprZXk6ejZNa2syc1QyZUtvQWdUUTdzWjY3YTdmRDMzR21jYzZ1UXdaYmlxeWF5Rk1hYkhHI3o2TWtrMnNUMmVLb0FnVFE3c1o2N2E3ZkQzM0dtY2M2dVF3WmJpcXlheUZNYWJIRyJ9..9EBTL3VcajsQzSNOm8GElhcwvYcFGaRp24FTwmC845RCF84Md-ZB-CxdCo7kEjzsAY8OaB55XFSH_8K9vedhAw"
+  "signature": "eyJhbGciOiJFZERTQSIsImtpZCI6ImRpZDpkaHQ6ZDRzZ2lnZ2QzZHdpbW80dWJraTdzcG80NXE1ZGF6eHBocml6YnhoY2dhcGFwY256cG91eSMwIn0..CcC0pWCpZXzqvPF-2z-axvJQyHhT6-Of4lavPIrrIrJ4WM5eyKRaR7YgEORh7xMwR_pXZ_KUHnPksmSQZsm2Ag"
 }
 ```
 
-Once the Offering has been generated, you can store it in your database using code as shown in the [Exchange API Provider section](/docs/tbdex/pfi/anatomy-of-a-pfi#exchange-api-provider).

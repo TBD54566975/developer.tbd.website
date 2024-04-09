@@ -10,7 +10,6 @@ tags:
     Decentralized Web Nodes,
     Artificial Intelligence,
     Verifiable Credentials,
-    Decentralized Identifiers,
     Protocols,
     Community,
   ]

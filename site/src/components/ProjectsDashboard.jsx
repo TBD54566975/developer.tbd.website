@@ -358,7 +358,7 @@ const projects = {
       {
         type: 'ghWorkflow',
         label: 'ci',
-        value: 'ci.yaml',
+        value: 'ci.yml',
       },
     ],
     license: [{ type: 'ghLicense' }],
@@ -366,13 +366,13 @@ const projects = {
       {
         type: 'ghWorkflow',
         label: 'scan',
-        value: 'security.yaml',
+        value: 'security.yml',
       },
       { type: 'fossa-license' },
       { type: 'fossa-security' },
     ],
     ossf: [{ type: 'ossf' }],
-    sast: [{ type: 'ghWorkflow', label: 'CodeQL', value: 'codeql.yaml' }],
+    sast: [{ type: 'ghWorkflow', label: 'CodeQL', value: 'codeql.yml' }],
     tests: [{ type: 'codecov' }, { type: 'vectors' }],
     release: [
       { type: 'ghTag' },
@@ -384,16 +384,16 @@ const projects = {
       {
         type: 'ghWorkflow',
         label: 'docs ci',
-        value: 'ci.yaml',
+        value: 'ci.yml',
       },
       {
         type: 'ghWorkflow',
         label: 'docs publish',
-        value: 'docs.yaml',
+        value: 'release.yml',
       },
       {
         value: 'reference docs',
-        href: 'https://tbd54566975.github.io/tbdex-kt/index.html',
+        href: 'https://tbd54566975.github.io/tbdex-kt/docs',
       },
     ],
   },
@@ -436,11 +436,11 @@ const projects = {
       {
         type: 'ghWorkflow',
         label: 'docs publish',
-        value: 'gh-pages-deploy.yml',
+        value: 'release.yml',
       },
       {
         value: 'reference docs',
-        href: 'https://tbd54566975.github.io/web5-kt/docs/htmlMultiModule/',
+        href: 'https://tbd54566975.github.io/web5-kt/docs',
       },
     ],
   },

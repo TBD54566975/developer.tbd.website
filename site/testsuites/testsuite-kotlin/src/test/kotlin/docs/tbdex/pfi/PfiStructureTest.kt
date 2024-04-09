@@ -6,7 +6,6 @@ import java.net.HttpURLConnection
 import java.net.URI
 import kotlin.concurrent.thread
 import website.tbd.developer.site.docs.utils.*
-import tbdex.sdk.httpserver.models.SubmitKind
 import io.ktor.http.*
 import io.ktor.server.response.*
 import org.junit.jupiter.api.*
@@ -48,27 +47,26 @@ class PfiStructureTest {
     @Test
     fun `PFI initializes routes`() {
         // :snippet-start: pfiOverviewServerRoutesKt
-        tbDexServer.submit(SubmitKind.rfq) { call, message, offering, replyTo ->
+        tbDexServer.onCreateExchange { call, message, offering, replyTo ->
             exchangesApiProvider.write(message)
             call.respond(HttpStatusCode.Accepted)
         }
 
-        tbDexServer.submit(SubmitKind.order) { call, message, offering, replyTo ->
-            exchangesApiProvider.write(message)
+        tbDexServer.onSubmitOrder { call, order ->
+            exchangesApiProvider.write(order)
             call.respond(HttpStatusCode.Accepted)
         }
 
-        tbDexServer.submit(SubmitKind.close) { call, message, offering, replyTo ->
-            exchangesApiProvider.write(message)
+        tbDexServer.onSubmitClose { call, close ->
+            exchangesApiProvider.write(close)
             call.respond(HttpStatusCode.Accepted)
         }
         // :snippet-end:
 
-        val actualCallbacks = tbDexServer.submitCallbacks
-        assertTrue(actualCallbacks.contains(SubmitKind.rfq.name), "Callbacks should contain rfq")
-        assertTrue(actualCallbacks.contains(SubmitKind.order.name), "Callbacks should contain order")
-        assertTrue(actualCallbacks.contains(SubmitKind.close.name), "Callbacks should contain close")
-        assertEquals(actualCallbacks.size, 3, "There should be 3 routes")
+        val actualCallbacks = tbDexServer.callbacks
+        assertNotNull(actualCallbacks.createExchange, "Should contain createExchange callback.")
+        assertNotNull(actualCallbacks.submitOrder, "Should contain submitOrder callback.")
+        assertNotNull(actualCallbacks.submitClose, "Should contain submitClose callback.")
     }
 
     @Test

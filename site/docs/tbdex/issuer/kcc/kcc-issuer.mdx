@@ -1,6 +1,6 @@
 ---
 sidebar_position: 1
-title: KCC Issuer Flow
+title: Issuing a KCC
 hide_title: true
 ---
 
@@ -23,7 +23,7 @@ In this guide, we'll cover:
 - Issuing a KCC conformant with [OpenID for Verifiable Credential Issuance (OID4VCI)](https://openid.net/specs/openid-4-verifiable-credential-issuance-1_0.html) following successful IDV.
 
 :::info
-For a detailed guide on managing Known Customer Credentials as a Wallet application, please refer to the [Known Customer Credential Guide for Wallet Apps](/)
+For a detailed guide on managing Known Customer Credentials as a Wallet application, please refer to the [Known Customer Credential Guide for Wallet Apps](/docs/tbdex/issuer/kcc/kcc-wallet)
 :::
 
 ## Environment Setup
@@ -414,12 +414,12 @@ To convert the signed VC JWT into a `VerifiableCredential` object you can use th
     "type": ["VerifiableCredential", "KnownCustomerCredential"],
     "id": "urn:uuid:12345678-1234-5678-1234-567812345678",
     "issuer": "did:dht:z6Mkn4w6nSaWe4fjNJRvaHZwFnMm5VexvjzDeozEu2G7jC34",
-    "issuanceDate": "2024-01-01T19:23:24Z",
+    "issuanceDate": "2024-05-29T19:23:24Z",
     "expirationDate": "2026-05-19T08:02:04Z",
     "evidence": [
       {
-      kind: "document_verification",
-      checks: ["passport", "utility_bill"]
+        kind: "document_verification",
+        checks: ["passport", "utility_bill"]
       },
       {
         kind: "sanction_screening",

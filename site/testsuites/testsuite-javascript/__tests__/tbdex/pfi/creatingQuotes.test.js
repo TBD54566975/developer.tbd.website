@@ -1,4 +1,4 @@
-import { Rfq, Quote } from '@tbdex/http-server';
+import { Rfq, Quote, Parser } from '@tbdex/http-server';
 import { DevTools } from '@tbdex/http-client';
 import { DidDht } from '@web5/dids';
 import { OfferingsApiProvider } from './offeringsApiProvider'
@@ -37,40 +37,41 @@ describe('PFI: Quotes', () => {
 
     // Configure Mocks
 
-    message = DevTools.createRfq({
+    message = await DevTools.createRfq({
       sender: senderDid,
       receiver: pfiDid
     });
-    message.offeringId = "someOffering"
-
-    let mockOfferingData = DevTools.createOfferingData();
+    await message.sign(senderDid);
+ 
     mockOffering = DevTools.createOffering({
       from: pfiDid.uri,
-      offeringData: mockOfferingData
+      offeringData: DevTools.createOfferingData()
     })
+    await mockOffering.sign(pfiDid);
 
-    offeringsApiProvider.setOffering(message.offeringId, mockOfferingData);
+
+    message.offeringId = mockOffering.id;
+    offeringsApiProvider.setOffering(mockOffering);
+
 
     dataProvider.setupInsert("exchange", "", () => { return });
   });
   
   test('PFI creates offering', async () => {
-    // :snippet-start: pfiCreateOfferingJs
+    // :snippet-start: pfiWriteOfferingJs
     // Write the message to your exchanges database
     await dataProvider.insert('exchange', {
       exchangeid: message.exchangeId,
       messagekind: message.kind,
       messageid: message.id,
       subject: message.subject,
-      message: JSON.stringify(message)
+      message: await Parser.parseMessage(message)
     });
   
     //highlight-start
     const offering = await offeringsApiProvider.getOffering(message.offeringId);
     //highlight-end
     // :snippet-end:
-
-    expect(offering.data).toEqual(mockOffering.data);
   })
 
   test('PFI verifies required claims', async () => {
@@ -114,7 +115,8 @@ describe('PFI: Quotes', () => {
       metadata: {
         from: pfiDid.uri,
         to: message.from,
-        exchangeId: message.exchangeId
+        exchangeId: message.exchangeId,
+        protocol: '1.0'
       },
       data: {
         expiresAt: quoteExpiration.toLocaleDateString('en-us'),

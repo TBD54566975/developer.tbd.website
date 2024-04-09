@@ -6,6 +6,7 @@ import {
         Quote, 
         Order, 
         OrderStatus, 
-        Close
+        Close,
+        Parser
 } from '@tbdex/http-server'
 // :snippet-end:
