@@ -43,11 +43,11 @@ The data properties contain the specifics of the transaction, such as the id of 
 * **payin** - How the customer intends to pay the PFI
   * **kind** - Type of payment method e.g. BTC_ADDRESS, DEBIT_CARD, MOMO_MPESA
   * **amount** - Total amount of currency the customer wants to pay in exchange for payout currency
-  * **paymentDetails** - The exact details of the payment method. As this information is senstive, the SDK will convert these details into [salted hashes](https://github.com/TBD54566975/tbdex/tree/main/specs/protocol#privatedata-1)
+  * **paymentDetails** - The exact details of the payment method. As this information is sensitive, the SDK will convert these details into [salted hashes](https://github.com/TBD54566975/tbdex/tree/main/specs/protocol#privatedata-1)
 * **payout** - How the customer wishes to receive the payout from the PFI
   * **kind** - Type of payment method e.g. BTC_ADDRESS, BANK_ACCOUNT, MOMO_MPESA
-  * **paymentDetails** - The exact details of the payment method. As this information is senstive, the SDK will convert these details into [salted hashes](https://github.com/TBD54566975/tbdex/tree/main/specs/protocol#privatedata-1)
-* **claims** - The [VCs that satisfy the requirements of the Offer](/docs/tbdex/wallet/managing-credentials#select-credentials-that-satisfy-requirements). As this information is senstive, the SDK will convert these details into [salted hashes](https://github.com/TBD54566975/tbdex/tree/main/specs/protocol#privatedata-1)
+  * **paymentDetails** - The exact details of the payment method. As this information is sensitive, the SDK will convert these details into [salted hashes](https://github.com/TBD54566975/tbdex/tree/main/specs/protocol#privatedata-1)
+* **claims** - The [VCs that satisfy the requirements of the Offer](/docs/tbdex/wallet/managing-credentials#select-credentials-that-satisfy-requirements). As this information is sensitive, the SDK will convert these details into [salted hashes](https://github.com/TBD54566975/tbdex/tree/main/specs/protocol#privatedata-1)
 
 <Shnip
   snippets={[
