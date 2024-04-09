@@ -21,6 +21,7 @@ const checkCopyDIDButton = async (page) => {
 };
 
 const testCopyDIDButton = async (page) => {
+    await expect(page.locator('#copy-did-button')).toBeVisible({ timeout: 20000 });
     await page.click('#copy-did-button');
     await page.click('text=Create +');
     await expect(page.locator('input[name="recipientDid"]')).toBeVisible();
