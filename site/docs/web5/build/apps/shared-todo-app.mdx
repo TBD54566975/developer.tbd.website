@@ -179,11 +179,7 @@ Create a new file called `shared-todo-protocol.json` under the `assets/` folder 
       "$actions": [
         {
           "who": "anyone",
-          "can": "read"
-        },
-        {
-          "who": "anyone",
-          "can": "write"
+          "can": ["read", "create"]
         }
       ],
       "todo": {
@@ -191,12 +187,12 @@ Create a new file called `shared-todo-protocol.json` under the `assets/` folder 
           {
             "who": "author",
             "of": "list",
-            "can": "write"
+            "can": ["create"]
           },
           {
             "who": "recipient",
             "of": "list",
-            "can": "write"
+            "can": ["create"]
           }
         ]
       }
