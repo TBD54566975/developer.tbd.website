@@ -40,13 +40,13 @@ afterAll(async () => {
 
   if (agent) {
     const dbs = [
-      agent.appData._store,
-      agent.didResolver.cache,
-      agent.syncManager._db,
-      agent.dwnManager._dwn.messageStore.blockstore.db,
-      agent.dwnManager._dwn.messageStore.index.db,
-      agent.dwnManager._dwn.dataStore.blockstore.db,
-      agent.dwnManager._dwn.eventLog.db,
+      agent.vault._store,
+      agent.did.cache.cache,
+      agent.sync._syncEngine._db,
+      agent.dwn._dwn.messageStore.blockstore.db,
+      agent.dwn._dwn.messageStore.index.db,
+      agent.dwn._dwn.dataStore.blockstore.db,
+      agent.dwn._dwn.eventLog.index.db,
     ];
 
     for (const db of dbs) {
