@@ -11,6 +11,8 @@ const directoriesToUpdate = [
   path.resolve(__dirname, "./site/testsuites"),
 ];
 
+console.log("directories", directoriesToUpdate);
+
 const parseString = util.promisify(xml2js.parseString);
 const builder = new xml2js.Builder();
 
