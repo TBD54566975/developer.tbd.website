@@ -8,7 +8,7 @@ if (!globalThis.crypto) globalThis.crypto = webcrypto;
 
 const testDwnUrl = import.meta.env.VITE_APP_TEST_DWN_URL;
 
-import { IdentityAgent } from '@web5/identity-agent';
+import { Web5IdentityAgent } from '@web5/identity-agent';
 
 export const setUpWeb5 = async () => {
   const dwnOptions = testDwnUrl
@@ -28,7 +28,7 @@ export const setUpWeb5 = async () => {
 };
 
 export const setUpIdentityManager = async () => {
-  const identityAgent = await IdentityAgent.create();
+  const identityAgent = await Web5IdentityAgent.create();
 
   globalThis.identityAgent = identityAgent;
 
