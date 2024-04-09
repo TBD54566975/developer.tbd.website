@@ -86,22 +86,22 @@ export async function playlistProtocolDefinition(web5){
     structure: {
       playlist: {
         $actions: [
-          { who: "anyone", can: "write" },
-          { who: "author", of: "playlist", can: "read" },
-          { who: "recipient", of: "playlist", can: "read" },
+          { who: "anyone", can: ["create"] },
+          { who: "author", of: "playlist", can: ["read"] },
+          { who: "recipient", of: "playlist", can: ["read"] },
         ],
         audio: {
           $actions: [
-            { who: "anyone", can: "write" },
-            { who: "author", of: "audio", can: "read" },
-            { who: "recipient", of: "audio", can: "read" },
+            { who: "anyone", can: ["create"] },
+            { who: "author", of: "audio", can: ["read"] },
+            { who: "recipient", of: "audio", can: ["read"] },
           ],
         },
         video: {
           $actions: [
-            { who: "anyone", can: "write" },
-            { who: "author", of: "video", can: "read" },
-            { who: "recipient", of: "video", can: "read" },
+            { who: "anyone", can: ["create"] },
+            { who: "author", of: "video", can: ["read"] },
+            { who: "recipient", of: "video", can: ["read"] },
           ]
         },
       },
