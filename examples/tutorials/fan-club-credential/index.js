@@ -92,3 +92,68 @@ try {
 // Create Presentation Result that contains a Verifiable Presentation and Presentation Submission
 const presentationResult = PresentationExchange.createPresentationFromCredentials({ vcJwts: [signedVcJwt], presentationDefinition: presentationDefinition });
 console.log('\nPresentation Result: ' + JSON.stringify(presentationResult));
+
+/** 
+ * Storing a self signed VC in a DWN
+ */
+
+// Create a user agent.
+const userAgent = await Web5UserAgent.create();
+
+// Start the agent.
+if (await userAgent.firstLaunch()) {
+  // The vault has not been initialized yet.
+  await userAgent.initialize({ password: 'insecure-static-phrase' });
+} else {
+  // The vault is already initialized, so just unlock/start it.
+  await userAgent.start({ password: 'insecure-static-phrase' });
+}
+
+// Import Alice's DID as an agent-managed Identity.
+const identity = await userAgent.identity.import({
+  portableIdentity: {
+    portableDid: await aliceDid.export(),
+    metadata: { name: 'Alice', tenant: aliceDid.uri, uri: aliceDid.uri }
+  }
+});
+
+// Initialize the Web5 API with the user agent and Alice's DID.
+const web5 = new Web5({
+  agent: userAgent,
+  connectedDid: aliceDid.uri
+});
+
+// Create a date of birth object to add as a claim to the self-signed VC.
+class DateOfBirth {
+  constructor(dob) {
+    this.dob = dob;
+  }
+}
+
+// Create a self-signed VC.
+const dwnVc = await VerifiableCredential.create({ type: 'DateOfBirth', issuer: aliceDid.uri, subject: aliceDid.uri, data: new DateOfBirth('1989-11-11') });
+const signedDwnVc = await dwnVc.sign({ did: aliceDid });
+console.log(signedDwnVc)
+
+// Store the VC in the DWN.
+const { record } = await web5.dwn.records.create({
+  data: signedDwnVc,
+  message: {
+    schema: 'DateOfBirth',
+    dataFormat: 'application/vc+jwt',
+  },
+});
+
+console.log('\nVC Record ID: ' + record.id + '\n');
+
+// Read the VC from the DWN.
+const { record: readRecord } = await web5.dwn.records.read({
+  message: {
+    filter: {
+      recordId: record.id
+    }
+  }
+});
+
+const readVcJwt = await readRecord.data.text();
+console.log('\nVC Record: \n' + readVcJwt + '\n');
