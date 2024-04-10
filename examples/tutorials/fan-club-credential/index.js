@@ -97,13 +97,10 @@ console.log('\nPresentation Result: ' + JSON.stringify(presentationResult));
  * Storing a self signed VC in a DWN
  */
 
-// Web5 Connect
-const myDid = await DidDht.create();
+// Create a user agent.
 const userAgent = await Web5UserAgent.create();
 
-const portableDid = await myDid.export()
-
-// // Start the agent.
+// Start the agent.
 if (await userAgent.firstLaunch()) {
   // The vault has not been initialized yet.
   await userAgent.initialize({ password: 'insecure-static-phrase' });
@@ -112,47 +109,33 @@ if (await userAgent.firstLaunch()) {
   await userAgent.start({ password: 'insecure-static-phrase' });
 }
 
-const portableIdentity = {
-  portableDid: {
-    uri: portableDid.uri,
-    document: portableDid.document,
-    metadata: portableDid.metadata,
-    privateKeys: portableDid.privateKeys
-  },
-  metadata: {
-    name: "Alice", 
-    tenant: portableDid.uri,
-    uri: portableDid.uri
-  }
-};
-
-
-// Import the did and create an identity
+// Import Alice's DID as an agent-managed Identity.
 const identity = await userAgent.identity.import({
-  portableIdentity: portableIdentity,
+  portableIdentity: {
+    portableDid: await aliceDid.export(),
+    metadata: { name: 'Alice', tenant: aliceDid.uri, uri: aliceDid.uri }
+  }
 });
 
-/** Import the Identity metadata to the User Agent's tenant so that it can be restored
- * on subsequent launches or page reloads. */
+// Initialize the Web5 API with the user agent and Alice's DID.
 const web5 = new Web5({
-  agent: userAgent, 
-  connectedDid: myDid.uri,
+  agent: userAgent,
+  connectedDid: aliceDid.uri
 });
 
-
-// Create self signed VC
+// Create a date of birth object to add as a claim to the self-signed VC.
 class DateOfBirth {
   constructor(dob) {
     this.dob = dob;
   }
 }
 
-// Create self signed VC
-const dwnVc = await VerifiableCredential.create({ type: 'DateOfBirth', issuer: myDid.uri, subject: myDid.uri, data: new DateOfBirth('1989-11-11') });
-const signedDwnVc = await dwnVc.sign({ did: myDid });
+// Create a self-signed VC.
+const dwnVc = await VerifiableCredential.create({ type: 'DateOfBirth', issuer: aliceDid.uri, subject: aliceDid.uri, data: new DateOfBirth('1989-11-11') });
+const signedDwnVc = await dwnVc.sign({ did: aliceDid });
 console.log(signedDwnVc)
 
-// Storing VC in DWN
+// Store the VC in the DWN.
 const { record } = await web5.dwn.records.create({
   data: signedDwnVc,
   message: {
@@ -163,7 +146,7 @@ const { record } = await web5.dwn.records.create({
 
 console.log('\nVC Record ID: ' + record.id + '\n');
 
-// Reading VC from DWN
+// Read the VC from the DWN.
 const { record: readRecord } = await web5.dwn.records.read({
   message: {
     filter: {
