@@ -35,8 +35,8 @@ importers:
         specifier: 1.0.0
         version: 1.0.0
       '@web5/api':
-        specifier: 0.0.0-next-c47ea5e-20240408180231
-        version: 0.0.0-next-c47ea5e-20240408180231
+        specifier: 0.9.1
+        version: 0.9.1
       '@web5/credentials':
         specifier: 1.0.0
         version: 1.0.0
@@ -160,14 +160,14 @@ importers:
   examples/tutorials/book-reviews:
     dependencies:
       '@web5/api':
-        specifier: 0.0.0-next-c47ea5e-20240408180231
-        version: 0.0.0-next-c47ea5e-20240408180231
+        specifier: 0.9.1
+        version: 0.9.1
 
   examples/tutorials/dinger-completed:
     dependencies:
       '@web5/api':
-        specifier: 0.0.0-next-c47ea5e-20240408180231
-        version: 0.0.0-next-c47ea5e-20240408180231
+        specifier: 0.9.1
+        version: 0.9.1
       buffer:
         specifier: ^6.0.3
         version: 6.0.3
@@ -193,8 +193,8 @@ importers:
   examples/tutorials/dinger-starter:
     dependencies:
       '@web5/api':
-        specifier: 0.0.0-next-c47ea5e-20240408180231
-        version: 0.0.0-next-c47ea5e-20240408180231
+        specifier: 0.9.1
+        version: 0.9.1
       crypto-browserify:
         specifier: 3.12.0
         version: 3.12.0
@@ -217,8 +217,8 @@ importers:
   examples/tutorials/fan-club-credential:
     dependencies:
       '@web5/api':
-        specifier: 0.0.0-next-c47ea5e-20240408180231
-        version: 0.0.0-next-c47ea5e-20240408180231
+        specifier: 0.9.1
+        version: 0.9.1
       '@web5/credentials':
         specifier: 1.0.0
         version: 1.0.0
@@ -241,8 +241,8 @@ importers:
         specifier: 1.3.1
         version: 1.3.1
       '@web5/api':
-        specifier: 0.0.0-next-c47ea5e-20240408180231
-        version: 0.0.0-next-c47ea5e-20240408180231
+        specifier: 0.9.1
+        version: 0.9.1
       vite-plugin-node-stdlib-browser:
         specifier: 0.2.1
         version: 0.2.1(node-stdlib-browser@1.2.0)(rollup@2.61.1)(vite@5.1.4)
@@ -287,8 +287,8 @@ importers:
         specifier: 1.3.1
         version: 1.3.1
       '@web5/api':
-        specifier: 0.0.0-next-c47ea5e-20240408180231
-        version: 0.0.0-next-c47ea5e-20240408180231
+        specifier: 0.9.1
+        version: 0.9.1
       vue:
         specifier: 3.3.4
         version: 3.3.4
@@ -339,8 +339,8 @@ importers:
         specifier: 9.6.0
         version: 9.6.0(vue@3.2.41)
       '@web5/api':
-        specifier: 0.0.0-next-c47ea5e-20240408180231
-        version: 0.0.0-next-c47ea5e-20240408180231
+        specifier: 0.9.1
+        version: 0.9.1
       multiformats:
         specifier: 10.0.2
         version: 10.0.2
@@ -6359,6 +6359,39 @@ packages:
       - supports-color
     dev: false
 
+  /@tbd54566975/dwn-sdk-js@0.2.22:
+    resolution: {integrity: sha512-TBobNAWt09bsAKADiiWNcdgiuuWNkHAumPvuYM9d+V/Brcl99Q9jg3ssVQhMfhV3TN8zxCbAGWYALUfxgX4N3w==}
+    engines: {node: '>= 18'}
+    dependencies:
+      '@ipld/dag-cbor': 9.0.3
+      '@js-temporal/polyfill': 0.4.4
+      '@noble/ed25519': 2.0.0
+      '@noble/secp256k1': 2.0.0
+      '@web5/dids': 1.0.0
+      abstract-level: 1.0.3
+      ajv: 8.12.0
+      blockstore-core: 4.2.0
+      cross-fetch: 4.0.0
+      eciesjs: 0.4.5
+      interface-blockstore: 5.2.3
+      interface-store: 5.1.2
+      ipfs-unixfs-exporter: 13.1.5
+      ipfs-unixfs-importer: 15.1.5
+      level: 8.0.0
+      lodash: 4.17.21
+      lru-cache: 9.1.2
+      ms: 2.1.3
+      multiformats: 11.0.2
+      randombytes: 2.1.0
+      readable-stream: 4.5.2
+      ulidx: 2.1.0
+      uuid: 8.3.2
+      varint: 6.0.0
+    transitivePeerDependencies:
+      - encoding
+      - supports-color
+    dev: false
+
   /@tbd54566975/dwn-sdk-js@0.2.8:
     resolution: {integrity: sha512-oiKk+ekAQO94bUkt6yk+xkDY8uCGmNC+rKaYQLhAoTrhYrczeRSuDT04F5/vPBT5K6NfAoRcQsIyBmvgRCUvgA==}
     engines: {node: '>= 18'}
@@ -7406,6 +7439,27 @@ packages:
       - supports-color
     dev: false
 
+  /@web5/agent@0.3.1:
+    resolution: {integrity: sha512-LIkRc9PGsrzYzRdxfgC857Ml9cchl6dfiadbUckdSTUMzaoXcI5YmucRtO6bDchRltDMazuKhdWb96a8sb0XMw==}
+    engines: {node: '>=18.0.0'}
+    dependencies:
+      '@noble/ciphers': 0.4.1
+      '@scure/bip39': 1.2.2
+      '@tbd54566975/dwn-sdk-js': 0.2.22
+      '@web5/common': 1.0.0
+      '@web5/crypto': 1.0.0
+      '@web5/dids': 1.0.0
+      abstract-level: 1.0.4
+      ed25519-keygen: 0.4.11
+      level: 8.0.0
+      ms: 2.1.3
+      readable-web-to-node-stream: 3.0.2
+      ulidx: 2.1.0
+    transitivePeerDependencies:
+      - encoding
+      - supports-color
+    dev: false
+
   /@web5/api@0.0.0-next-c47ea5e-20240408180231:
     resolution: {integrity: sha512-k4+iTqkX/PX+hxsTLsNrvobr2ufTXwXynPHmct6BM+Pqdlp+dtccMxKfRyH3PdlK8F7ZeAgdlLr9iRwXzqPKHQ==}
     engines: {node: '>=18.0.0'}
@@ -7415,6 +7469,20 @@ packages:
       '@web5/crypto': 1.0.0
       '@web5/dids': 1.0.0
       '@web5/user-agent': 0.3.0
+    transitivePeerDependencies:
+      - encoding
+      - supports-color
+    dev: false
+
+  /@web5/api@0.9.1:
+    resolution: {integrity: sha512-P0vKf7Jn3yuy4g/P6rUgJx2gLG5fwCmLQXa1eGCS8KJ+J6ZK/Qx0/FEnNo2mDcooBk8esxO3FVB+93p5nXcpgw==}
+    engines: {node: '>=18.0.0'}
+    dependencies:
+      '@web5/agent': 0.3.1
+      '@web5/common': 1.0.0
+      '@web5/crypto': 1.0.0
+      '@web5/dids': 1.0.0
+      '@web5/user-agent': 0.3.1
     transitivePeerDependencies:
       - encoding
       - supports-color
@@ -7591,6 +7659,19 @@ packages:
       '@web5/common': 0.2.4
       '@web5/crypto': 0.4.1
       '@web5/dids': 0.4.3
+    transitivePeerDependencies:
+      - encoding
+      - supports-color
+    dev: false
+
+  /@web5/user-agent@0.3.1:
+    resolution: {integrity: sha512-6MgtqUYs7x5h/YQUKDp0r5I82kxEklEI+V2RxHFYPcs3ZrCTpNGP8k2J0WIOnAjyU4BvTX2uggGp305GQlbsiA==}
+    engines: {node: '>=18.0.0'}
+    dependencies:
+      '@web5/agent': 0.3.1
+      '@web5/common': 1.0.0
+      '@web5/crypto': 1.0.0
+      '@web5/dids': 1.0.0
     transitivePeerDependencies:
       - encoding
       - supports-color
