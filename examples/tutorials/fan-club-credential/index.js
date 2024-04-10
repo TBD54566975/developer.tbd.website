@@ -92,3 +92,87 @@ try {
 // Create Presentation Result that contains a Verifiable Presentation and Presentation Submission
 const presentationResult = PresentationExchange.createPresentationFromCredentials({ vcJwts: [signedVcJwt], presentationDefinition: presentationDefinition });
 console.log('\nPresentation Result: ' + JSON.stringify(presentationResult));
+
+/** 
+ * Storing a self signed VC in a DWN
+ */
+
+// Web5 Connect
+const myDid = await DidDht.create();
+const userAgent = await Web5UserAgent.create();
+
+const portableDid = await myDid.export()
+
+// // Start the agent.
+if (await userAgent.firstLaunch()) {
+  // The vault has not been initialized yet.
+  await userAgent.initialize({ password: 'insecure-static-phrase' });
+} else {
+  // The vault is already initialized, so just unlock/start it.
+  await userAgent.start({ password: 'insecure-static-phrase' });
+}
+
+const portableIdentity = {
+  portableDid: {
+    uri: portableDid.uri,
+    document: portableDid.document,
+    metadata: portableDid.metadata,
+    privateKeys: portableDid.privateKeys
+  },
+  metadata: {
+    name: "Alice", 
+    tenant: portableDid.uri,
+    uri: portableDid.uri
+  }
+};
+
+
+// Import the did and create an identity
+const identity = await userAgent.identity.import({
+  portableIdentity: portableIdentity,
+});
+
+/** Import the Identity metadata to the User Agent's tenant so that it can be restored
+ * on subsequent launches or page reloads. */
+const web5 = new Web5({
+  agent: userAgent, 
+  connectedDid: myDid.uri,
+});
+
+
+// Create self signed VC
+class DateOfBirth {
+  constructor(dob) {
+    this.dob = dob;
+  }
+}
+
+// Create self signed VC
+const dwnVc = await VerifiableCredential.create({ type: 'DateOfBirth', issuer: myDid.uri, subject: myDid.uri, data: new DateOfBirth('1989-11-11') });
+const signedDwnVc = await dwnVc.sign({ did: myDid });
+console.log(signedDwnVc)
+
+// Storing VC in DWN
+const { record } = await web5.dwn.records.create({
+  data: signedDwnVc,
+  message: {
+    schema: 'DateOfBirth',
+    dataFormat: 'application/vc+jwt',
+  },
+});
+
+console.log('\nVC Record ID: ' + record.id + '\n');
+
+// Reading VC from DWN
+const { record: readRecord } = await web5.dwn.records.read({
+  message: {
+    filter: {
+      recordId: record.id
+    }
+  }
+});
+
+const readVcJwt = await readRecord.data.text();
+console.log('\nVC Record: \n' + readVcJwt + '\n');
+
+console.log('Finished!');
