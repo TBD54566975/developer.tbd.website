@@ -32,7 +32,12 @@ export default function Home() {
 
   useEffect(() => {
     const initWeb5 = async () => {
-      const { web5, did } = await Web5.connect();
+      const { web5, did } = await Web5.connect({
+        techPreview: {
+          // pointing to local DWN instead of public remote DWN
+          dwnEndpoints: ['http://localhost:3000'],
+        }
+  });
       setWeb5(web5);
       setMyDid(did);
 
@@ -66,9 +71,9 @@ export default function Home() {
       structure: {
         ding: {
           $actions: [
-            { who: "anyone", can: "write" },
-            { who: "author", of: "ding", can: "read" },
-            { who: "recipient", of: "ding", can: "read" },
+            { who: "anyone", can: ["create", "update"] },
+            { who: "author", of: "ding", can: ["read"] },
+            { who: "recipient", of: "ding", can: ["read"] },
           ],
         },
       },

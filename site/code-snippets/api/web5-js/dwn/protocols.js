@@ -24,25 +24,24 @@ export async function configureProtocolWithDefinition(web5, myDid) {
         "structure": {
           "album": {
             "$actions": [
-              { "who": "author", "of": "album", "can": "write" }
+              { "who": "author", "of": "album", "can": ["create"] }
             ]
           },
           "photo": {
             "$actions": [
-              { "who": "recipient", "of": "photo", "can": "read" }
+              { "who": "recipient", "of": "photo", "can": ["read"] }
             ],
             "binaryImage": {
               "$actions": [
-                { "who": "author", "of": "photo", "can": "write" }
+                { "who": "author", "of": "photo", "can": ["create"] }
               ]
             },
             "comment": {
               "$actions": [
-                { "who": "anyone", "can": "write" },
-                { "who": "anyone", "can": "read" },
-                { "who": "author", "of": "comment", "can": "delete" },
-                { "who": "recipient", "of": "comment", "can": "delete" },
-                { "who": "author", "of": "comment", "can": "update" }
+                { "who": "anyone", "can": ["create", "read"] },
+                { "who": "author", "of": "comment", "can": ["delete"] },
+                { "who": "recipient", "of": "comment", "can": ["delete"] },
+                { "who": "author", "of": "comment", "can": ["update"] }
               ]
             }
           }
