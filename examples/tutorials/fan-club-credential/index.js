@@ -157,5 +157,3 @@ const { record: readRecord } = await web5.dwn.records.read({
 
 const readVcJwt = await readRecord.data.text();
 console.log('\nVC Record: \n' + readVcJwt + '\n');
-
-console.log('Finished!');
