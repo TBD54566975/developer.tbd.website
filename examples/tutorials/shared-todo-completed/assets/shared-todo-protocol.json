@@ -16,11 +16,7 @@
       "$actions": [
         {
           "who": "anyone",
-          "can": "read"
-        },
-        {
-          "who": "anyone",
-          "can": "write"
+          "can": ["create", "update", "read"]
         }
       ],
       "todo": {
@@ -28,12 +24,12 @@
           {
             "who": "author",
             "of": "list",
-            "can": "write"
+            "can": ["create", "update"]
           },
           {
             "who": "recipient",
             "of": "list",
-            "can": "write"
+            "can": ["create", "update"]
           }
         ]
       }
