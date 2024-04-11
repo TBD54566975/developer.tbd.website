@@ -15,7 +15,7 @@ Proper [key management](https://en.wikipedia.org/wiki/Key_management) ensures th
 
 ## Supported Types
 
-The Web5 SDK offers two distinct `KeyManager` implementations:
+The Web5 SDK provides a `KeyManager` interface that makes it possible to use any key management solution of your choice. A few examples out of the box are:
 
 * **InMemoryKeyManager**: This implementation utilizes in-memory, ephemeral storage for managing keys.
 It's ideal for scenarios where temporary key management is sufficient, such as in testing environments.
@@ -25,6 +25,8 @@ Since the keys are stored in memory, they are lost when the application is termi
 It's well-suited for production environments where a high level of security and availability are critical.
 
 Both implementations facilitate key generation and signature operations essential for creating and managing DIDs. Each caters to distinct security needs, and the choice between them should be based on the specific requirements of your application.
+
+Other production friendly KMS solutions include [Azure Key Vault](https://azure.microsoft.com/en-us/products/key-vault), [Google Cloud KMS](https://cloud.google.com/security/products/security-key-management), and [HashiCorp Vault](https://www.hashicorp.com/products/vault) etc.
 
 ## Example
 Below is an example that uses `AwsKeyManager` for production environments, and `InMemoryKeyManager` for any other environments (dev, test, etc).
@@ -39,7 +41,7 @@ Below is an example that uses `AwsKeyManager` for production environments, and `
   { language: 'maven', dependencies: ['web5-dids', 'web5-crypto'] },
   { language: 'gradle', dependencies: ['web5-dids', 'web5-crypto'] },
   { language: 'swift', dependencies: ['Web5']},
-]}/> 
+]}/>
 
 **Import Classes**
 
