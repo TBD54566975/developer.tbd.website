@@ -61,6 +61,13 @@ export const content = {
         isExternalLink: false
       },
     },
-
+    {
+      type: 'button',
+      data: {
+        label: 'Projects Dashboard',
+        url: '/open-source/projects-dashboard',
+        isExternalLink: false
+      },
+    },
   ],
 };
