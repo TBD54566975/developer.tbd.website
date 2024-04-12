@@ -5,12 +5,7 @@ export default defineNuxtPlugin({
     let web5;
     let myDID;
 
-    ({ web5, did: myDID } = await Web5.connect({
-      sync: '5s',
-      techPreview: {
-        dwnEndpoints: ['http://localhost:3000'],
-      },
-    }));
+    ({ web5, did: myDID } = await Web5.connect({ sync: '5s'}));
 
     return {
       provide: {
