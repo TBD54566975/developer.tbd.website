@@ -22,8 +22,6 @@ The SSI Console leverages the SSI Service API to simplify credential issuance an
 ## Installation
 :::info
 The SSI Console leverages the SSI Service which is packaged as a Docker container. Make sure you have [Docker downloaded](https://www.docker.com/products/docker-desktop/) and running on your desktop.
-
-Alternatively, you can visit the [SSI playground](https://console.benri.io/), and skip ahead to the [next section](#create-a-decentralized-identifier-did).
 :::
 
 Verify that both `docker` and `docker-compose` commands are available:

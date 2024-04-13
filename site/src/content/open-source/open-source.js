@@ -69,5 +69,13 @@ export const content = {
         isExternalLink: false
       },
     },
+    {
+      type: 'button',
+      data: {
+        label: 'Security Policy',
+        url: '/open-source/security',
+        isExternalLink: false
+      },
+    },
   ],
 };
