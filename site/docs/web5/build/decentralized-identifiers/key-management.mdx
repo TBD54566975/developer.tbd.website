@@ -26,7 +26,7 @@ It's well-suited for production environments where a high level of security and 
 
 Both implementations facilitate key generation and signature operations essential for creating and managing DIDs. Each caters to distinct security needs, and the choice between them should be based on the specific requirements of your application.
 
-Other production friendly KMS solutions include [Azure Key Vault](https://azure.microsoft.com/en-us/products/key-vault), [Google Cloud KMS](https://cloud.google.com/security/products/security-key-management), and [HashiCorp Vault](https://www.hashicorp.com/products/vault) etc.
+Other production friendly KMS solutions include [Azure Key Vault](https://azure.microsoft.com/en-us/products/key-vault), [Google Cloud KMS](https://cloud.google.com/security/products/security-key-management), and [HashiCorp Vault](https://www.hashicorp.com/products/vault) etc. Any of these can be used by implementing the <LanguageSwitchLink text="keyManager" links='{"JavaScript": "https://tbd54566975.github.io/web5-js/classes/_web5_dids.BearerDid.html#keyManager", "Kotlin": "https://tbd54566975.github.io/web5-kt/docs/-web5%20-s-d-k%20-documentation/web5.sdk.crypto/-key-manager/index.html", "Swift":"https://swiftpackageindex.com/tbd54566975/web5-swift/main/documentation/web5/keymanager"}' /> interface.
 
 ## Example
 Below is an example that uses `AwsKeyManager` for production environments, and `InMemoryKeyManager` for any other environments (dev, test, etc).
