@@ -39,8 +39,7 @@ describe('send', () => {
       structure: {
         myobject: {
           $actions: [
-            { who: 'anyone', can: 'write' },
-            { who: 'anyone', can: 'read' },
+            { who: 'anyone', can: ['create', 'read'] },
           ],
         },
       },
@@ -73,8 +72,7 @@ describe('send', () => {
       structure: {
         myobject: {
           $actions: [
-            { who: 'anyone', can: 'write' },
-            { who: 'anyone', can: 'read' },
+            { who: 'anyone', can: ['create', 'read'] },
           ],
         },
       },
