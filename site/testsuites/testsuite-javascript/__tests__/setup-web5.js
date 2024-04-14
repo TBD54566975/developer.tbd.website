@@ -11,15 +11,24 @@ const testDwnUrl = import.meta.env.VITE_APP_TEST_DWN_URL;
 import { Web5IdentityAgent } from '@web5/identity-agent';
 
 export const setUpWeb5 = async () => {
+  const testDwnUrl = import.meta.env.VITE_APP_TEST_DWN_URL;
+  const password = 'rizel-made-this-password-replace-this'; 
+
   const dwnOptions = testDwnUrl
     ? {
-        techPreview: {
-          dwnEndpoints: ['http://localhost:3000'],
-        },
-      }
+      techPreview: {
+        dwnEndpoints: ['http://localhost:3000'],
+      },
+    }
     : undefined;
 
-  const { web5, did } = await Web5.connect(dwnOptions);
+  let options = { password: password };
+
+  if (dwnOptions) {
+    options.techPreview = dwnOptions.techPreview;
+  }
+
+  const { web5, did } = await Web5.connect(options);
 
   globalThis.web5 = web5;
   globalThis.did = did;
