@@ -32,12 +32,7 @@ export default function Home() {
 
   useEffect(() => {
     const initWeb5 = async () => {
-      const { web5, did } = await Web5.connect({
-        techPreview: {
-          // pointing to local DWN instead of public remote DWN
-          dwnEndpoints: ['http://localhost:3000'],
-        }
-  });
+      const { web5, did } = await Web5.connect({});
       setWeb5(web5);
       setMyDid(did);
 
