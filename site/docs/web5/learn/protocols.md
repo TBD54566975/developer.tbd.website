@@ -346,8 +346,7 @@ const replyResponse = await web5.dwn.records.create({
       protocol: protocolDefinition.protocol,
       protocolPath: 'post/reply',
       //highlight-next-line
-      parentId: postRecord.id,
-      contextId: postRecord.contextId,
+      parentContextId: postRecord.id,
       schema: "https://social-media.xyz/schemas/replySchema",
       dataFormat: 'text/plain',
     },
