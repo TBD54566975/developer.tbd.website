@@ -11,7 +11,7 @@ const testDwnUrl = import.meta.env.VITE_APP_TEST_DWN_URL;
 import { Web5IdentityAgent } from '@web5/identity-agent';
 
 export const setUpWeb5 = async () => {
-  const password = 'rizel-made-this-password-replace-this'; 
+  const password = 'super-secret-test-password'; 
 
   const dwnOptions = testDwnUrl
     ? {
