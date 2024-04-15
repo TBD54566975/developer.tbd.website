@@ -147,7 +147,7 @@ async function addTodo() {
             protocolPath: 'list/todo',
             schema: protocolDefinition.types.todo.schema,
             dataFormat: protocolDefinition.types.todo.dataFormats[0],
-            parentContextId
+            parentContextId: listId.value
         }
     });
 
