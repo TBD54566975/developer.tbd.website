@@ -18,7 +18,7 @@ describe('Wallet: Get Offerings from PFI', () => {
         services: [{
             id: 'pfi',
             type: 'PFI',
-            serviceEndpoint: 'http://localhost:9000'
+            serviceEndpoint: 'https://localhost:9000'
         }]
       }
     })
@@ -30,12 +30,12 @@ describe('Wallet: Get Offerings from PFI', () => {
       from: pfiDid,
       offeringData: {
           ...defaultOfferingData,
-          payinCurrency: {
-              ...defaultOfferingData.payinCurrency,
+          payin: {
+              ...defaultOfferingData.payin,
               currencyCode: 'USD'
           },
-          payoutCurrency: {
-              ...defaultOfferingData.payoutCurrency,
+          payout: {
+              ...defaultOfferingData.payout,
               currencyCode: 'KES'
           }
         }
@@ -43,7 +43,7 @@ describe('Wallet: Get Offerings from PFI', () => {
     await mockOffering.sign(pfi)
 
     server = setupServer(
-      http.get('http://localhost:9000/offerings', () => {
+      http.get('https://localhost:9000/offerings', () => {
         return HttpResponse.json({ data: [mockOffering] }, {
           status: 200
         })
@@ -82,8 +82,8 @@ describe('Wallet: Get Offerings from PFI', () => {
       // Filter offerings based on the currency pair
       if(offerings){
         const filteredOfferings = offerings.filter(offering =>
-          offering.data.payinCurrency.currencyCode === payinCurrencyCode &&
-          offering.data.payoutCurrency.currencyCode === payoutCurrencyCode
+          offering.data.payin.currencyCode === payinCurrencyCode &&
+          offering.data.payout.currencyCode === payoutCurrencyCode
         );
         matchedOfferings.push(...filteredOfferings);
       }
