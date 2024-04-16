@@ -91,8 +91,8 @@ class CreatingQuotesTest {
                 expiresAt = now().plusDays(10),
                 payin = QuoteDetails(
                     currencyCode = offering.data.payin.currencyCode,
-                    amount = "0.01",
-                    fee = "0.0001",
+                    amount = "250",
+                    fee = "0.001",
                     paymentInstruction = PaymentInstruction(
                         link = "https://example.com/paymentInstructions",
                         instruction = "Detailed payout instructions"
@@ -100,7 +100,7 @@ class CreatingQuotesTest {
                 ),
                 payout = QuoteDetails(
                     currencyCode = offering.data.payout.currencyCode,
-                    amount = "0.01",
+                    amount = "1248.22",
                     paymentInstruction = PaymentInstruction(
                         link = "https://example.com/paymentInstructions",
                         instruction = "Detailed payout instructions"
