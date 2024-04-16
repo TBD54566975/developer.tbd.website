@@ -133,7 +133,7 @@ describe('PFI: Quotes', () => {
         },
         payout: {
           currencyCode: offering.data.payout.currencyCode,
-          amount: '0.01',
+          amount: '1000.00',
           paymentInstruction : {
             link: 'https://example.com/paymentInstructions',
             instruction: 'Detailed payout instructions'

@@ -39,6 +39,10 @@ That responsibility lies with the transacting parties.
 
 As you deem appropriate for your customers, you can provide them with multiple `OrderStatus` messages using the same code as in the section above.
 
+## Facilitating Payments
+
+As part of their `RFQ` message, the Wallet will have provided you with a <LanguageSwitchLink text="`privateData`" links='{"JavaScript": "https://tbd54566975.github.io/tbdex-js/classes/_tbdex_protocol.Rfq.html#privateData", "Kotlin": "https://tbd54566975.github.io/tbdex-kt/docs/tb-d-e-x%20-s-d-k%20-documentation/tbdex.sdk.protocol.models/-rfq-private-data/index.html"}'/> object that contains `payin` and `payout` information. These objects will contain the information needed to facilitate the payment. In that object, you'll be able to find information like credit card numbers, bank account numbers, Bitcoin wallet addresses, and other information needed to facilitate the payment.
+
 
 ## Close the Order
 
