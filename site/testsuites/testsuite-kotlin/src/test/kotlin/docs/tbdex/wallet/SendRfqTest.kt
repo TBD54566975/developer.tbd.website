@@ -33,7 +33,7 @@ class SendRfqTest {
 
         //Mock PFI Server
         server = MockWebServer()
-        server.start(9000) // pfiDid resolves to http://localhost:9000
+        server.start(9000) // pfiDid resolves to https://localhost:9000
         server.enqueue(MockResponse().setResponseCode(HttpURLConnection.HTTP_OK))
     }
 
@@ -89,12 +89,12 @@ class SendRfqTest {
             rfqData = CreateRfqData(
                 offeringId = selectedOffering.metadata.id, // The ID of the selected offering
                 payin = CreateSelectedPayinMethod(
-                  kind = selectedOffering.data.payin.methods.find({ it.kind.contains("BANK")})?.kind ?: "BANK", // The method of payment
+                  kind = "BTC_ADDRESS", // The method of payment
                   paymentDetails = mapOf("btcAddress" to BTC_ADDRESS), // Customer's BTC wallet address
                   amount = "0.012", // The amount of the payin currency
                 ),
                 payout = CreateSelectedPayoutMethod(
-                  kind = selectedOffering.data.payout.methods.find({ it.kind.contains("KES")})?.kind ?: "KES", // The method for receiving payout
+                  kind = "DEBIT_CARD", // The method for receiving payout
                   paymentDetails = mapOf(
                     "cvv" to "123",
                     "cardNumber" to "1234567890123456789",

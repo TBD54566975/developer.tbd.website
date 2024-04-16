@@ -28,6 +28,16 @@ class ProcessingOrdersTest {
         )
     }
 
+  @Test
+  fun `PFI Accesses Private Data`() {
+    val rfq = TestData.getRfq()
+
+    // :snippet-start: pfiAccessPrivateDataKt
+    val creditCardNumber = rfq.privateData!!.payin!!.paymentDetails!!["cardNumber"]
+    // :snippet-end:
+
+    assertNotNull(creditCardNumber)
+  }
     @Test
     fun `PFI creates orderStatus and verifies it`() {
         exchangesApiProvider.setWrite()

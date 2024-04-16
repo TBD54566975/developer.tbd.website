@@ -60,7 +60,7 @@ final class SendingRfqTests: XCTestCase {
                     offeringId: selectedOffering.metadata.id, // The ID of the selected offering
                     payin: CreateRFQPayinMethod(
                         amount: "0.012",                      // The amount of the payin currency
-                        kind: "BTC_WALLET_ADDRESS",           // The method for sending payment
+                        kind: "BTC_ADDRESS",           // The method for sending payment
                         paymentDetails: [
                             "btc_address": BTC_ADDRESS        // Customer's BTC wallet address
                         ]),          

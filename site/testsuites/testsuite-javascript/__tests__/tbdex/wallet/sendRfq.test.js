@@ -97,14 +97,14 @@ describe('Wallet: Send RFQ', () => {
       data: {
         offeringId: selectedOffering.metadata.id,   // The ID of the selected offering
         payin: {
-          kind: selectedOffering.data.payin.methods.find(method => method.kind.includes("DEBIT")).kind,               // The method of payment
+          kind: 'BTC_ADDRESS',                      // The method of payment
           amount: '0.012',                          // The amount of the payin currency
           paymentDetails: {
             btcAddress: BTC_ADDRESS                 // Customer's BTC wallet address
           }
         },
         payout: {
-          kind: selectedOffering.data.payout.methods.find(method => method.kind.includes("BTC")).kind,                       // The method for receiving payout
+          kind: 'DEBIT_CARD',                       // The method for receiving payout
           paymentDetails: {
             cvv: '123',
             cardNumber: '1234567890123456789',
