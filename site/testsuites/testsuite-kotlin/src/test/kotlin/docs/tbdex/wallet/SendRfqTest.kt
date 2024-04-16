@@ -33,7 +33,7 @@ class SendRfqTest {
 
         //Mock PFI Server
         server = MockWebServer()
-        server.start(9000) // pfiDid resolves to http://localhost:9000
+        server.start(9000) // pfiDid resolves to https://localhost:9000
         server.enqueue(MockResponse().setResponseCode(HttpURLConnection.HTTP_OK))
     }
 

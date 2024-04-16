@@ -106,6 +106,8 @@ describe('PFI: Quotes', () => {
   });
 
   test('PFI creates and signs quote', async () => {
+    const offering = mockOffering
+
     // :snippet-start: pfiCreateQuoteJs
     // Set the Quote's expiration date for 10 days from now
     var quoteExpiration = new Date();
@@ -121,7 +123,7 @@ describe('PFI: Quotes', () => {
       data: {
         expiresAt: quoteExpiration.toLocaleDateString('en-us'),
         payin: {
-          currencyCode: 'BTC',
+          currencyCode: offering.data.payin.currencyCode,
           amount: '0.01',
           fee: '0.0001',
           paymentInstruction : {
@@ -130,7 +132,7 @@ describe('PFI: Quotes', () => {
           }
         },
         payout: {
-          currencyCode: 'USD',
+          currencyCode: offering.data.payout.currencyCode,
           amount: '1000.00',
           paymentInstruction : {
             link: 'https://example.com/paymentInstructions',
