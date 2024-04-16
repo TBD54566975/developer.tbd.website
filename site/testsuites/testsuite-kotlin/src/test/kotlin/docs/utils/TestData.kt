@@ -99,7 +99,10 @@ object TestData {
             offeringId = offeringId.toString(),
             payin = CreateSelectedPayinMethod(
               kind = "BANK_ACCOUNT",
-              paymentDetails = mapOf("address" to "123456"),
+              paymentDetails = mapOf(
+                "address" to "123456",
+                "cardNumber" to "1234567890123456"
+              ),
               amount = "10.00"
             ),
             payout = CreateSelectedPayoutMethod(

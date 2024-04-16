@@ -79,6 +79,8 @@ class CreatingQuotesTest {
 
     @Test
     fun `PFI creates and signs quote`() {
+        val offering = TestData.getOffering(from = pfiDid.uri)
+
         // :snippet-start: pfiCreateQuoteKt
         val quote = Quote.create(
             to = message.metadata.from,
@@ -88,16 +90,17 @@ class CreatingQuotesTest {
             quoteData = QuoteData(
                 expiresAt = now().plusDays(10),
                 payin = QuoteDetails(
-                    currencyCode = "BTC",
-                    amount = "1000.0",
+                    currencyCode = offering.data.payin.currencyCode,
+                    amount = "250",
+                    fee = "0.001",
                     paymentInstruction = PaymentInstruction(
                         link = "https://example.com/paymentInstructions",
                         instruction = "Detailed payout instructions"
                     )
                 ),
                 payout = QuoteDetails(
-                    currencyCode = "KES",
-                    amount = "123456789.0",
+                    currencyCode = offering.data.payout.currencyCode,
+                    amount = "1248.22",
                     paymentInstruction = PaymentInstruction(
                         link = "https://example.com/paymentInstructions",
                         instruction = "Detailed payout instructions"
