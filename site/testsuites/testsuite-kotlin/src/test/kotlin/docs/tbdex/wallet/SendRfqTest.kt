@@ -89,12 +89,12 @@ class SendRfqTest {
             rfqData = CreateRfqData(
                 offeringId = selectedOffering.metadata.id, // The ID of the selected offering
                 payin = CreateSelectedPayinMethod(
-                  kind = "BTC_ADDRESS", // The method of payment
+                  kind = selectedOffering.data.payin.methods.find({ it.kind.contains("BANK")})?.kind ?: "BANK", // The method of payment
                   paymentDetails = mapOf("btcAddress" to BTC_ADDRESS), // Customer's BTC wallet address
                   amount = "0.012", // The amount of the payin currency
                 ),
                 payout = CreateSelectedPayoutMethod(
-                  kind = "DEBIT_CARD", // The method for receiving payout
+                  kind = selectedOffering.data.payout.methods.find({ it.kind.contains("KES")})?.kind ?: "KES", // The method for receiving payout
                   paymentDetails = mapOf(
                     "cvv" to "123",
                     "cardNumber" to "1234567890123456789",

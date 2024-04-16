@@ -28,7 +28,7 @@ You can also write the `OrderStatus` to your database and the Wallet will poll f
 
 ## Process the Order
 
-The <LanguageSwitchLink text="Order message" links='{"JavaScript": "https://tbd54566975.github.io/tbdex-js/classes/_tbdex_http_client.Order.html", "Kotlin": "https://tbd54566975.github.io/tbdex-kt/docs/tb-d-e-x%20-s-d-k%20-documentation/tbdex.sdk.protocol.models/-order/index.html"}'/> will contain the information you initially stored in an `Offering` object that will specify the pay-in, pay-out, and rate of conversion needed. 
+The <LanguageSwitchLink text="Order message" links='{"JavaScript": "https://tbd54566975.github.io/tbdex-js/classes/_tbdex_http_client.Order.html", "Kotlin": "https://tbd54566975.github.io/tbdex-kt/docs/tb-d-e-x%20-s-d-k%20-documentation/tbdex.sdk.protocol.models/-order/index.html"}'/> will contain the information you initially stored in an `Offering` object that will specify the pay-in, pay-out, and rate of conversion needed. You should have determined this information when you [created your initial quote](/docs/tbdex/pfi/creating-quotes).
 
 Using that information, you’ll be able to use your logic of choice to actually fulfill that order for your customer. 
 
