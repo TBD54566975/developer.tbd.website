@@ -11,9 +11,6 @@ const directoriesToUpdate = [
   path.resolve(__dirname, "./site/testsuites"),
 ];
 
-const parseString = util.promisify(xml2js.parseString);
-const builder = new xml2js.Builder();
-
 // Grab SDK versions from sdk-versions.json
 const getSdkVersions = async () => {
   try {
@@ -73,60 +70,29 @@ const updatePackageJsonDependencies = async (dirPath, sdkVersions) => {
 const updatePomXmlVersion = async (filePath, sdkVersions) => {
   try {
     const pomContent = await fs.promises.readFile(filePath, "utf8");
-    const parsedPomContent = await parseString(pomContent, {
-      explicitArray: true,
-      mergeAttrs: true,
+    let updatedPomContent = pomContent;
+
+    Object.entries(sdkVersions.jvm).forEach(([artifactId, version]) => {
+      const versionTagRegex = new RegExp(
+        `(<version.xyz.block.${artifactId}>)(.*?)(<\/version.xyz.block.${artifactId}>)`,
+        "g"
+      );
+      if (versionTagRegex.test(pomContent)) {
+        console.log(
+          `Found matches for ${artifactId}, updating to version ${version}.`
+        );
+      } else {
+        console.log(`No matches found for ${artifactId}.`);
+      }
+      updatedPomContent = updatedPomContent.replace(
+        versionTagRegex,
+        `$1${version}$3`
+      );
     });
 
-    let updated = false;
-
-    const updateDependencies = (dependencies) => {
-      dependencies.forEach((dependency) => {
-        const artifactId = dependency.artifactId;
-        if (sdkVersions.jvm[artifactId]) {
-          dependency.version = [sdkVersions.jvm[artifactId]];
-          updated = true;
-        }
-      });
-    };
-
-    if (
-      parsedPomContent.project.dependencies &&
-      parsedPomContent.project.dependencies[0].dependency
-    ) {
-      updateDependencies(parsedPomContent.project.dependencies[0].dependency);
-    }
-
-    if (
-      parsedPomContent.project.dependencyManagement &&
-      parsedPomContent.project.dependencyManagement[0].dependencies[0]
-        .dependency
-    ) {
-      updateDependencies(
-        parsedPomContent.project.dependencyManagement[0].dependencies[0]
-          .dependency
-      );
-    }
-
-    if (updated) {
-      let updatedPomContent = builder.buildObject(parsedPomContent);
-
-      // Correctly handle namespace attributes without introducing duplicates
-      updatedPomContent = updatedPomContent.replace(
-        "<project>",
-        '<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">'
-      );
-
-      // Remove any duplicate namespace declarations that might have been added
-      updatedPomContent = updatedPomContent.replace(
-        /<xmlns>.*<\/xmlns>\s*<xmlns:xsi>.*<\/xmlns:xsi>\s*<xsi:schemaLocation>.*<\/xsi:schemaLocation>/,
-        ""
-      );
-
+    if (updatedPomContent !== pomContent) {
       await fs.promises.writeFile(filePath, updatedPomContent);
-      console.log(`Successfully updated dependencies in ${filePath}`);
     } else {
-      console.log(`No dependencies were updated in ${filePath}`);
     }
   } catch (error) {
     console.error(`Failed to update ${filePath}:`, error);
@@ -199,7 +165,7 @@ async function propagateVersions() {
 
     for (const dirPath of directoriesToUpdate) {
       await updatePackageJsonDependencies(dirPath, sdkVersions);
-      //await findAndUpdatePomFiles(dirPath, sdkVersions);
+      await findAndUpdatePomFiles(dirPath, sdkVersions);
       await findAndUpdatePackageSwift(dirPath, sdkVersions); // Add this line to update Swift dependencies
     }
   } catch (error) {
