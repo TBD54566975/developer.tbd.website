@@ -97,7 +97,7 @@ describe('Wallet: Send RFQ', () => {
       data: {
         offeringId: selectedOffering.metadata.id,   // The ID of the selected offering
         payin: {
-          kind: 'BTC_WALLET_ADDRESS',               // The method of payment
+          kind: 'BTC_ADDRESS',                      // The method of payment
           amount: '0.012',                          // The amount of the payin currency
           paymentDetails: {
             btcAddress: BTC_ADDRESS                 // Customer's BTC wallet address

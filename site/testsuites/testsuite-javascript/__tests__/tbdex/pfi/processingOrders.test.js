@@ -1,6 +1,7 @@
-import { Order, OrderStatus, Close, Offering } from '@tbdex/http-server'
+import { Order, OrderStatus, Close  } from '@tbdex/http-server';
+import { DevTools } from '@tbdex/http-client';
 import { DidDht } from '@web5/dids';
-import { MockDataProvider } from '../../utils/mockDataProvider'
+import { MockDataProvider } from '../../utils/mockDataProvider';
 import { test, expect, describe, beforeAll, assert } from 'vitest';
 
 let pfiDid;
@@ -34,6 +35,19 @@ describe('PFI: Orders', () => {
                 exchangeId: "MyExchange"
             }
         });
+    });
+
+    test('PFI Accesses Private Data', async () => {
+        const rfq = await DevTools.createRfq({
+            sender: senderDid,
+            receiver: pfiDid
+        });
+        
+        // :snippet-start: pfiAccessPrivateDataJs
+        const creditCardNumber = rfq.privateData.payin.paymentDetails.cardNumber
+        // :snippet-end:
+
+        expect(creditCardNumber).toBeDefined();
     });
 
     test('PFI Creates OrderStatus', async () => {
