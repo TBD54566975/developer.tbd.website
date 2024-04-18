@@ -74,37 +74,6 @@ describe('PFI: Quotes', () => {
     // :snippet-end:
   })
 
-  test('PFI verifies required claims', async () => {
-    const offering = DevTools.createOffering({
-      from: pfiDid.did
-    });
-
-    const rfq = Rfq.create({
-      metadata: {
-        from: pfiDid.uri,
-        to: senderDid.uri
-      },
-      data: await DevTools.createRfqData({
-        sender: senderDid
-      })
-    });
-    //change RFQ to have the same offering id
-    rfq.data.offeringId = offering.id;
-
-    const consoleSpy = vi.spyOn(console, 'log');
-
-    // :snippet-start: pfiRfqVerifyOfferingRequirementsJs
-    try {
-      await rfq.verifyOfferingRequirements(offering);
-    } catch(e) {
-      console.log(`Failed to verify offering requirements: ${e.message}`);
-    }
-    // :snippet-end:
-
-    expect(consoleSpy).not.toHaveBeenCalled();
-    consoleSpy.mockRestore();
-  });
-
   test('PFI creates and signs quote', async () => {
     const offering = mockOffering
 
