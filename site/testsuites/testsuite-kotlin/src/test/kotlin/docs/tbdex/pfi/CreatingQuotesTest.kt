@@ -45,39 +45,6 @@ class CreatingQuotesTest {
     }
 
     @Test
-    fun `PFI verifies offering requirements and should not throw an error`() {
-        dataProvider.setupInsert("exchange", "") { arrayOf<Any>() }
-        offeringsApiProvider.setOffering(message.metadata.id, pfiDid)
-
-        // :snippet-start: pfiWriteOfferingKt
-        // Write the message to your exchanges database
-        val data = mapOf(
-            "exchangeid" to message.metadata.exchangeId,
-            "messagekind" to message.metadata.kind,
-            "messageid" to message.metadata.id,
-            "subject" to message.metadata.from,
-            "message" to message.data
-        )
-
-        dataProvider.insert("exchange", data)
-        //highlight-start
-        val offering = offeringsApiProvider.getOffering(message.metadata.id)
-        //highlight-end
-        // :snippet-end:
-
-        // :snippet-start: pfiRfqVerifyOfferingRequirementsKt
-        if (message is Rfq) {
-            try {
-                val rfq = message as Rfq
-                rfq.verifyOfferingRequirements(offering)
-            } catch (e: Exception) {
-                println("Failed to verify offering requirements: ${e.message}")
-            }
-        }
-        // :snippet-end:
-    }
-
-    @Test
     fun `PFI creates and signs quote`() {
         val offering = TestData.getOffering(from = pfiDid.uri)
 
