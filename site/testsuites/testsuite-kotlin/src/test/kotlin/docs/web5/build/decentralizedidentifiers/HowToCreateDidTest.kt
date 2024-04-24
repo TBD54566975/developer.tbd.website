@@ -27,6 +27,9 @@ internal class HowToCreateDidTest {
 
     //DID Document
     val didDocument = portableDid.didDocument
+
+    //Republish DID
+    val republishedDid = DidDht.publish(didDht)
     // :snippet-end:
 
     assertNotNull(did, "DID should not be null")
