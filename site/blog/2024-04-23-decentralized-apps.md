@@ -4,23 +4,23 @@ title: "Beyond Blockchain: How Web5 Enables Fully Decentralized Apps"
 description: "Why Web5 enables the decentralized apps blockchain made you dream - or have nightmares - about"
 authors:
   name: Chris Giglio
-tags: [Decentralized Identity, Web5, Blockchain]
+tags: [Decentralized Web Nodes, Decentralized Identity, Web5]
 ---
 
 <head>
   <meta property="og:title" content="Beyond Blockchain: How Web5 Enables Fully Decentralized Apps" />
   <meta property="og:type" content="website" />
   <meta property="og:url" content='https://developer.tbd.website/blog/decentralized-apps' />
-  <meta name="og:description" content="Why Web5 enables the decentralized apps blockchain made you dream - or have nightmares - about" />
-  <meta property="og:image" content="https://developer.tbd.website/assets/images/blog-decentralized-apps.png" /> 
+  <meta name="og:description" content="How Web5 enables the decentralized apps blockchain made you dream - or have nightmares - about" />
+  <meta property="og:image" content="https://developer.tbd.website/assets/images/blog-decentralized-apps-64390c260a8ec957e939aa841c5e76bb.png" /> 
 
   <meta name="twitter:card" content="summary_large_image" />
   <meta property="twitter:domain" content="developer.tbd.website" />
   <meta name="twitter:site" content="@tbdevs" />
   <meta name="twitter:title" content="Beyond Blockchain: How Web5 Enables Fully Decentralized Apps" />
   <meta property="twitter:url" content='https://developer.tbd.website/blog/decentralized-apps' /> 
-  <meta name="twitter:description" content="Why Web5 enables the decentralized apps blockchain made you dream - or have nightmares - about" />
-  <meta name="twitter:image" content="https://developer.tbd.website/assets/images/blog-decentralized-apps.png" />
+  <meta name="twitter:description" content="How Web5 enables the decentralized apps blockchain made you dream - or have nightmares - about" />
+  <meta name="twitter:image" content="https://developer.tbd.website/assets/images/blog-decentralized-apps-64390c260a8ec957e939aa841c5e76bb.png" />
 
   <link rel="apple-touch-icon" href="https://developer.tbd.website/img/tbd-fav-icon-main.png" />
 </head>
@@ -35,7 +35,7 @@ When blockchain technology was first introduced a decade and a half ago, it made
 There are two common problems when trying to port a traditional centralized application over to the blockchain: data efficiency and data custody. In this post we’ll discuss why those two problems are blockers for most applications, and how Web5 components allow developers to build performant decentralized applications in a way that wasn't possible before.
 
 
-# Where Blockchain Doesn’t Fit
+## Where Blockchain Doesn’t Fit
 
 
 ### Data Storage & Efficiency
@@ -68,7 +68,7 @@ In order to take custody of your on-chain data then you would need to run your o
 It’s important to note that while the issues of wallet storage and running nodes aren’t unsolvable problems, they are inherently outside of the definitions of what a typical blockchain wallet does today.
 
 
-# Building With Web5 Tools
+## Building With Web5
 
 Bearing in mind the limitations of custody and efficiency, it becomes clear that not a lot of data makes sense to be stored on-chain. However, just because you might not want to store important, large data like photos, or small, unimportant data like favicon history on-chain doesn’t mean that it isn’t possible to store that data in a decentralized way that offers custody and efficiency.
 
