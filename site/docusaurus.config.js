@@ -5,11 +5,14 @@ require('dotenv').config();
 const lightCodeTheme = require('prism-react-renderer').themes.github;
 const darkCodeTheme = require('prism-react-renderer').themes.dracula;
 const WEB5_VERSION = require('../package.json').dependencies['@web5/api'];
-const SDK_VERSIONS = require('../sdk-versions.json')
+const SDK_VERSIONS = require('../sdk-versions.json');
 
 const algoliaApiKey = process.env.DOC_SEARCH_API_KEY;
 const algoliaIndexName = process.env.DOC_SEARCH_INDEX_NAME;
 const algoliaAppId = process.env.DOC_SEARCH_APP_ID;
+const inkeepApiKey = process.env.INKEEP_API_KEY;
+const inkeepIntegrationId = process.env.INKEEP_INTEGRATION_ID;
+const inkeepOrgId = process.env.INKEEP_ORG_ID;
 
 const feedbackWidgetApiUrl = process.env.FEEDBACK_WIDGET_API_URL;
 
@@ -36,9 +39,13 @@ let config = {
   onBrokenMarkdownLinks: 'warn',
   favicon: '/img/favicon.ico',
   markdown: {
-    mermaid: true
+    mermaid: true,
   },
-  themes: ['@docusaurus/theme-mermaid'],
+  themes: [
+    '@docusaurus/theme-mermaid',
+    '@inkeep/docusaurus/chatButton',
+    '@inkeep/docusaurus/searchBar',
+  ],
   // Even if you don't use internalization, you can use this field to set useful
   // metadata like html lang. For example, if your site is Chinese, you may want
   // to replace "en" with "zh-Hans".
@@ -53,7 +60,7 @@ let config = {
   },
   plugins: [
     'docusaurus-tailwindcss',
-    require.resolve("./webpackPlugin"),
+    require.resolve('./webpackPlugin'),
     // [
     //   '@docusaurus/plugin-content-docs',
     //   {
@@ -183,10 +190,10 @@ let config = {
             label: 'Docs',
             position: 'left',
           },
-          {
-            to: '#ask',
-            label: 'Ask 🤖',
-          },
+          // {
+          //   to: '#ask',
+          //   label: 'Ask 🤖',
+          // },
           // {
           //   to: 'https://tbd.website',
           //   position: 'right',
@@ -253,7 +260,64 @@ let config = {
             },
           ],
         },
-        additionalLanguages: ['kotlin', 'swift', 'dart', 'rust', 'bash', 'gradle'],
+        additionalLanguages: [
+          'kotlin',
+          'swift',
+          'dart',
+          'rust',
+          'bash',
+          'gradle',
+        ],
+      },
+      inkeepConfig: {
+        baseSettings: {
+          apiKey: inkeepApiKey,
+          integrationId: inkeepIntegrationId,
+          organizationId: inkeepOrgId,
+          primaryBrandColor: '#FFEC19',
+        },
+        aiChatSettings: {
+          chatSubjectName: 'Square',
+          botAvatarSrcUrl:
+            'https://storage.googleapis.com/organization-image-assets/block-botAvatarSrcUrl-1712259107250.png',
+          botAvatarDarkSrcUrl:
+            'https://storage.googleapis.com/organization-image-assets/block-botAvatarDarkSrcUrl-1712259106540.png',
+          quickQuestions: [
+            'How do I cancel a subscription via API?',
+            'How do I add Square as a payment method to my iOS app?',
+            'How do I show a buyer past transactions?',
+          ],
+          getHelpCallToActions: [
+            {
+              url: 'https://squareup.com/us/en/l/developers/contact',
+              name: 'Support Center',
+              icon: {
+                builtIn: 'IoHelpBuoyOutline',
+              },
+            },
+            {
+              url: 'https://developer.squareup.com/forums',
+              name: 'Forums',
+              icon: {
+                builtIn: 'IoPeopleOutline',
+              },
+            },
+            {
+              url: 'https://discord.gg/squaredev',
+              name: 'Discord',
+              icon: {
+                builtIn: 'FaDiscord',
+              },
+            },
+            {
+              url: 'https://squareup.com/help',
+              name: 'Developer and App Marketplace Support',
+              icon: {
+                builtIn: 'IoChatbubblesOutline',
+              },
+            },
+          ],
+        },
       },
     }),
 };

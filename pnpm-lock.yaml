@@ -505,6 +505,9 @@ importers:
       '@docusaurus/utils':
         specifier: 3.1.1
         version: 3.1.1(@docusaurus/types@3.1.1)
+      '@inkeep/docusaurus':
+        specifier: ^1.0.20
+        version: 1.0.20
       '@mdx-js/react':
         specifier: 3.0.1
         version: 3.0.1(@types/react@18.2.57)(react@18.2.0)
@@ -4027,6 +4030,10 @@ packages:
   /@humanwhocodes/object-schema@1.2.1:
     resolution: {integrity: sha512-ZnQMnLV4e7hDlUvw8H+U8ASL02SS2Gn6+9Ac3wGGLIe7+je2AeAOxPY+izIPJDfFDb7eDjev0Us8MO1iFRN8hA==}
     dev: true
+
+  /@inkeep/docusaurus@1.0.20:
+    resolution: {integrity: sha512-krXJJIgsHLiHKX5iqYtsHRVs7kdQoi3TgxAeq1udQMLCzrI8Q57O8ZG/3h7NZL+jjCM6/4Vdjpf+rAqoXzPmCQ==}
+    dev: false
 
   /@ioredis/commands@1.2.0:
     resolution: {integrity: sha512-Sx1pU8EM64o2BrqNpEO1CNLtKQwyhuXuqyfH7oGKCk+1a33d2r5saW8zNwm3j6BTExtjrv2BxTgzzkMwts6vGg==}
