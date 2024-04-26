@@ -73,6 +73,7 @@ describe('Wallet: Receive Quote', () => {
   test('poll for quote message', async () => {
     // :snippet-start: pollforQuoteJS
     let quote;
+    let close;
 
     //Wait for Quote message to appear in the exchange
     while (!quote) {
@@ -85,13 +86,21 @@ describe('Wallet: Receive Quote', () => {
       quote = exchange.find(msg => msg instanceof Quote);
 
       if (!quote) {
-        // Wait 2 seconds before making another request
-        await new Promise(resolve => setTimeout(resolve, 2000));
+        // Make sure the exchange is still open
+        close = exchange.find(msg => msg instanceof Close);
+        
+        if(close) { break; } 
+        else {
+          // Wait 2 seconds before making another request
+          await new Promise(resolve => setTimeout(resolve, 2000));
+        }
       }
     }
     // :snippet-end:
 
-    expect(quote.exchangeId).toBe(rfq.exchangeId);
+    expect(quote).toBeDefined()
+    expect.soft(quote.exchangeId).toBe(rfq.exchangeId);
+    expect(close).toBe(undefined);
   });
 
   test('cancel exchange', async () => {
