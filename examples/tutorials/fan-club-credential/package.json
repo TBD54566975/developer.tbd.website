@@ -11,9 +11,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@web5/api": "0.9.3-alpha-20240429-a39b1eb",
+    "@web5/api": "0.9.3",
     "@web5/credentials": "1.0.0",
     "@web5/dids": "1.0.0",
-    "@web5/user-agent": "0.3.2-alpha-20240429-a39b1eb"
+    "@web5/user-agent": "0.3.2"
   }
 }
