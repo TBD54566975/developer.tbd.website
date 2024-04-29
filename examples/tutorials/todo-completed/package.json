@@ -20,7 +20,7 @@
     "varint": "6.0.0",
     "vue": "3.2.41",
     "vue-toastification": "2.0.0-rc.5",
-    "@web5/api": "0.0.0-next-8663aee-20240429171142",
+    "@web5/api": "0.9.3-alpha-20240429-a39b1eb",
     "vue-router": "4.2.5"
   },
   "devDependencies": {
