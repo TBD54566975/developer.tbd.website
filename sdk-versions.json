@@ -3,12 +3,12 @@
     "@tbdex/http-client": "1.0.0",
     "@tbdex/http-server": "1.0.0",
     "@tbdex/protocol": "1.0.0",
-    "@web5/api": "0.9.2",
+    "@web5/api": "0.9.3",
     "@web5/credentials": "1.0.0",
     "@web5/crypto": "1.0.0",
     "@web5/crypto-aws-kms": "1.0.0",
     "@web5/dids": "1.0.0",
-    "@web5/identity-agent": "0.3.1"
+    "@web5/identity-agent": "0.3.2"
   },
   "jvm": {
     "tbdex": "1.0.0",
