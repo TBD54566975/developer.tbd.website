@@ -45,17 +45,17 @@ Speaking of DIDs -- **_did_** you know that Decentralized Identifiers are one of
 
 In this post, we'll explore nine more things you may not have known about Decentralized Identifiers.
 
-## DIDs are a W3C Standard 
+## 1. DIDs are a W3C Standard 
 
 In 1994, Tim Berners Lee, the creator of the World Wide Web, founded the World Wide Web Consortium (W3C). The W3C is made up of groups of people focused on setting the best practices and standards for building the web. For example, the W3C develops and maintains standards for HTML, CSS, Web Accessibility, and Web Security. In July 2022, The W3C officially [published standards for Decentralized Identifiers](https://www.w3.org/TR/did-core/). This way, technologists would have blueprint for building and managing digital identities as we make the shift towards controlling your own identity on the internet.	
 
 
-## DIDs can represent more than just humans
+## 2. DIDs can represent more than just humans
 
 While DIDs represent people across the web, they can also represent organizations such as manufacturers, businesses, or government agencies. Technologists are exploring using [DIDs to represent IoT devices](https://www.arcadian-iot.eu/iot-decentralized-identity-arcadian/) like smart hubs, smart thermostats, or autonomous cars, allowing you to maintain control over your data usage! Here's a taboo but realistic use case that might make you blush— DIDs can even represent sex tech devices! 😳
 
 
-## It's nearly impossible for someone to steal your DID
+## 3. It's nearly impossible for someone to steal your DID
 
 A common question people often ask me is, "Can someone steal my DID?" DIDs are alphanumeric strings, so they may give people the impression that DIDs are top-secret passwords or API keys. But that's not the case; you can share your DID with anyone without compromising your safety. It's nearly impossible for someone to steal your DID and pretend to be you because DIDs are all cryptographically signed. 
 
@@ -69,7 +69,7 @@ In addition to all these security algorithms that protect your DID from being st
 
 ![digital wallet with did](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/noh03yerdgasf4yhcmpm.png)
 
-## Your DID is more than a string
+## 4. Your DID is more than a string
 
 While your DID _is_ a string, it's part of a larger JSON object called a DID document. In addition to the DID string, the DID document includes metadata like:
 
@@ -116,7 +116,7 @@ Below is an example of a DID document:
 Learn more about DID documents [here](https://developer.tbd.website/docs/web5/learn/did_document).
 
 
-## Every DID has a DID method
+## 5. Every DID has a DID method
 
 Let's examine the anatomy of a DID method. 
 ![anatomy of a did](/img/did-example.png)
@@ -133,19 +133,19 @@ A schema and a DID method together may look like `did:web` or `did:jwk`.
 DID methods define the rules for creating, managing, and deactivating DIDs. 
 
 
-## There are over 100 DID methods
+## 6. There are over 100 DID methods
 
 **Anyone** can create a DID method. Companies, individuals, or communities may create a custom DID method to fit a specific use case or live on a specific type of ledger. However, to ensure the DID method is recognized, interoperable, and meets the correct standards, it's strongly recommended to include the DID method on the [W3C DID Spec Registry](https://github.com/w3c/did-spec-registries).
 
-## TBD created its own DID method
+## 7. TBD created its own DID method
 
 We (TBD) created our own DID method called DID:DHT. DHT stands for **Distributed Hash Table** indicating the use of Mainline DHT. You can learn more about DID:DHT via the [spec](https://did-dht.com/) and this [blog post](https://developer.tbd.website/blog/did-dht) written by TBD’s Director of Open Standards, [Gabe Cohen](https://www.linkedin.com/in/cohengabe).
 
 At TBD, we colloquially call DID:DHT, DID THAT.
 
-![tamar braxton saying she did that](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExdTc0dWhhdTE5ZHNiZGRkeWZjcmE3MzFieHgzYzNrcnN5cmwyYWV5ciZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/3oD3YF49jXQaqcpsGI/giphy.gif)
+<img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExdTc0dWhhdTE5ZHNiZGRkeWZjcmE3MzFieHgzYzNrcnN5cmwyYWV5ciZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/3oD3YF49jXQaqcpsGI/giphy.gif"  width="900" height="1000" alt="tamar braxton saying she did that"/>
 
-## You don't have to use blockchain; we use BitTorrent
+## 8. You don't have to use blockchain; we use BitTorrent
 
 When I hear the words, "decentralized" or "immutable", I immediately think of blockchain and cryptocurrency. I don't think that train of thought is in the minority.
 
@@ -159,7 +159,7 @@ Anchoring a DID means recording DID transactions on a distributed ledger.
 
 At TBD, we _**actually**_ took a blockchain-less approach. We anchored DID:DHT to BitTorrent. As mentioned above, DID:DHT uses a Mainline DHT, which is a distributed hash table used by the [BitTorrent protocol](https://github.com/bittorrent/bittorrent.org).
 
-## You can create a DID with the Web5 SDK 
+## 9. You can create a DID with the Web5 SDK 
 
 You can use the Web5 SDK to [create a DID](https://developer.tbd.website/docs/web5/build/decentralized-identifiers/how-to-create-did)!
 
