@@ -23,6 +23,7 @@ tags: [Decentralized Identity, Decentralized Identifiers, Web5, DHT]
   <meta name="twitter:image" content="https://developer.tbd.website/assets/images/things-you-didnt-know-dids-23a6d9c83bf1a1e91b44f9b8bca8ec51.png" />
 
   <link rel="apple-touch-icon" href="https://developer.tbd.website/img/tbd-fav-icon-main.png" />
+  <link rel="canonical" href="https://dev.to/tbdevs/9-things-you-didnt-know-about-decentralized-identifiers-2eh9" />
 </head>
 
 ![9 Things You Didn't Know About Decentralized Identifiers](/img/things-you-didnt-know-dids.png)
