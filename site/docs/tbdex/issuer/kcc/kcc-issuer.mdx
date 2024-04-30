@@ -400,7 +400,7 @@ Before issuing a Known Customer Credential, it's important to complete all neces
 />
 
 :::info
-- The `id` within the `credentialSchema` field needs to correspond to a real JSON schema that is hosted somewhere. This is essential for the validation process, ensuring the credential conforms to the specified schema.
+- The `id` referenced in the `credentialSchema` field must correspond to a valid JSON schema that is hosted on an accessible server.
 - Signing will return a VC [JSON Web Token](https://jwt.io/), which is ideal for secure transmission of the credential.
 :::
 
