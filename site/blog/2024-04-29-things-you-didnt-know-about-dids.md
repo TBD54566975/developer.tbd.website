@@ -119,8 +119,7 @@ Learn more about DID documents [here](https://developer.tbd.website/docs/web5/le
 ## Every DID has a DID method
 
 Let's examine the anatomy of a DID method. 
-![anatomy of did](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/n6ubvmicbr083xvm8yqd.png)
-*Source: https://www.w3.org/TR/did-core/#a-simple-example*
+![anatomy of a did](/img/did-example.png)
 
 Every DID:
 - Starts with the schema `did:`
