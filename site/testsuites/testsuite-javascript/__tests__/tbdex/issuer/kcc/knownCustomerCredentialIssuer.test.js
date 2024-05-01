@@ -353,11 +353,12 @@ app.post('/token', async (req, res) => {
 
 // :snippet-start: KnownCustomerCredentialsClass
 class KccCredential {
-  constructor(country, tier, evidence) {
+  constructor(country, tier, credentialSchema, evidence) {
     this.data = {
       country_of_residence: country,
       tier: tier, // optional
     };
+    this.credentialSchema = credentialSchema;
     this.evidence = evidence; // optional
   }
 }
@@ -418,16 +419,21 @@ app.post('/credentials', async (req, res) => {
     /***********************************************
      * Create and sign the credential
      ************************************************/
-    const kccCredentialInstance = new KccCredential('US', 'Gold', [
-      {
-        kind: 'document_verification',
-        checks: ['passport', 'utility_bill'],
+    const kccCredentialInstance = new KccCredential('US', 'Gold', {
+        id: "https://schema.org/PFI",
+        type: "JsonSchema"
       },
-      {
-        kind: 'sanction_screening',
-        checks: ['PEP'],
-      },
-    ]);
+      [
+        {
+          kind: 'document_verification',
+          checks: ['passport', 'utility_bill'],
+        },
+        {
+          kind: 'sanction_screening',
+          checks: ['PEP'],
+        },
+      ]
+    );
 
     const known_customer_credential = await VerifiableCredential.create({
       type: 'KnownCustomerCredential',
@@ -438,6 +444,7 @@ app.post('/credentials', async (req, res) => {
         country_of_residence: kccCredentialInstance.data.country_of_residence,
         tier: kccCredentialInstance.data.tier, // optional
       },
+      credentialSchema: kccCredentialInstance.credentialSchema,
       evidence: kccCredentialInstance.evidence, // optional
     });
 
