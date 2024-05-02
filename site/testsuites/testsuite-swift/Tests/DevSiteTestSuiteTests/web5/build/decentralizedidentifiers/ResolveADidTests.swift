@@ -12,8 +12,11 @@ final class ResolveADidTests: XCTestCase {
         let userDidUri = userDid.uri
 
         // :snippet-start: resolveADidSwift
+        // DHT method DIDs currently can not be created/resolved in Swift 
+
         let resolver = DIDJWK.Resolver()
         let resolvedDid = await resolver.resolve(didURI: userDidUri)
+        
         // access the DID Document
         let didDocument = resolvedDid.didDocument
         // :snippet-end:

@@ -1,8 +1,8 @@
 // :prepend-start: resolveADidJS
-import { resolveDid } from '@tbdex/protocol';
+import {DidDht, DidJwk} from '@web5/dids';
 // :prepend-end:
 import { test, expect, describe } from 'vitest';
-import { DidDht} from '@web5/dids';
+
 
 describe('DID Document Resolver Tests', () => {
     test('didDocument retrieves a valid DID document', async () => {
@@ -11,7 +11,14 @@ describe('DID Document Resolver Tests', () => {
       const userDidUri = userDid.uri;
   
       // :snippet-start: resolveADidJS
-      const didDocument = await resolveDid(userDidUri);
+      // resolve JWK method DIDs
+      const resolvedJwkDid = await DidJwk.resolve(userDidUri);
+
+      // resolve DHT method DIDs
+      const resolvedDhtDid = await DidDht.resolve(userDidUri);
+
+      // access DID Document
+      const didDocument = resolvedDhtDid.didDocument; // resolvedJwkDid.didDocument;
       // :snippet-end: 
   
       expect(didDocument).toHaveProperty('id');
