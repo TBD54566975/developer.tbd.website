@@ -20,6 +20,7 @@
     "@docusaurus/theme-common": "3.1.1",
     "@docusaurus/types": "3.1.1",
     "@docusaurus/utils": "3.1.1",
+    "@inkeep/docusaurus": "^1.0.20",
     "@mdx-js/react": "3.0.1",
     "@react-aria/ssr": "3.6.0",
     "@react-aria/tooltip": "3.2.0",
