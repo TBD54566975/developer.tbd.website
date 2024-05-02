@@ -59,18 +59,19 @@ final class SendingRfqTests: XCTestCase {
                 data: CreateRFQData(
                     offeringId: selectedOffering.metadata.id, // The ID of the selected offering
                     payin: CreateRFQPayinMethod(
-                        amount: "0.012",                      // The amount of the payin currency
-                        kind: "BTC_ADDRESS",           // The method for sending payment
-                        paymentDetails: [
-                            "btc_address": BTC_ADDRESS        // Customer's BTC wallet address
-                        ]),          
-                    payout: CreateRFQPayoutMethod(
-                        kind: "DEBIT_CARD",                   // The method for receiving payout
+                        amount: "500.65",                     // The amount of the payin currency
+                        kind: "DEBIT_CARD",                   // The method for sending payment
                         paymentDetails: [
                             "cvv": "123",
-                            "cardNumber": "1234567890123456789",
+                            "cardNumber": "1234567890123456",
                             "expiryDate": "05/25",
                             "cardHolderName": "Alice Doe"
+                        ]
+                    ),          
+                    payout: CreateRFQPayoutMethod(
+                        kind: "BTC_ADDRESS",                  // The method for receiving payout
+                        paymentDetails: [
+                            "btc_address": BTC_ADDRESS        // Recipient's BTC wallet address
                         ]
                     ),
                     claims: selectedCredentials
