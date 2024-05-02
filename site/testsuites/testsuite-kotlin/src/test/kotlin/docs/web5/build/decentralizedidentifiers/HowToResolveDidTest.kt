@@ -6,7 +6,7 @@ import web5.sdk.crypto.InMemoryKeyManager
 import web5.sdk.dids.methods.dht.DidDht
 import web5.sdk.dids.methods.dht.CreateDidDhtOptions
 
-// :prepend-start: resolveADidKT
+// :prepend-start: resolveDidKT
 import web5.sdk.dids.DidResolvers
 // :prepend-end:
 
@@ -14,15 +14,15 @@ import web5.sdk.dids.DidResolvers
  * Tests backing the Resolve a DID Guide
  */
 
-internal class HowToResolveADidTest {
+internal class HowToResolveDidTest {
   @Test
   fun `resolve a DID`() {
-    val userDid = DidDht.create(InMemoryKeyManager(), CreateDidDhtOptions(publish = true))
-    val userDidUri = userDid.uri
+    val did = DidDht.create(InMemoryKeyManager(), CreateDidDhtOptions(publish = true))
+    val didUri = did.uri
 
-    // :snippet-start: resolveADidKT
-    val resolvedDid = DidResolvers.resolve(userDidUri)
-    // access DID Document
+    // :snippet-start: resolveDidKT
+    // resolve any DID
+    val resolvedDid = DidResolvers.resolve(didUri)
     val didDocument = resolvedDid.didDocument
     // :snippet-end:
 
