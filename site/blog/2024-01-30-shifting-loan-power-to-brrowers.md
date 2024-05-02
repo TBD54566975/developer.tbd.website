@@ -68,9 +68,9 @@ As part of our [incubation program](/community/incubation-projects/), organizati
 - [Credential Selector](https://github.com/TBD54566975/incubation-verifiable-credential-selector) - A Web5 protocol that enables developers to embed the Verifiable Credentials (VCs) into their application and allows users to select and retrieve VCs.
 
 ## Rewatch the full episode
-Learn more about what FormFree is building and watch the full live stream [here](https://youtu.be/TZkK8a64E7I?si=2qhaIF22uGbD7lbJ).
+Learn more about what FormFree is building and watch the full live stream [here](https://youtu.be/vXYyT8rLaR4).
 
-<iframe class="aspect-video" src="https://www.youtube.com/embed/TZkK8a64E7I" title="formfree" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+<iframe class="aspect-video" src="https://www.youtube.com/embed/vXYyT8rLaR4" title="formfree" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
 *This post highlights key moments from our collaborative live stream with leaders and builders at FormFree. Join our weekly live streams every Friday at 12pm ET/9 am PT. We're learning how innovators and community members are advancing the Self-Sovereign Identity and Global Payments industry. Tune in next time via [Twitch](https://twitch.tv/tbdevs ) or in our community [Discord](https://discord.com/invite/tbd).*
 

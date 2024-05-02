@@ -58,8 +58,8 @@ Simon envisions a future where Kin takes full advantage of Web5's data ownership
 _"This is where owning and controlling your data suddenly becomes extremely valuable,"_ Simon proclaims. Data ownership is not just about keeping your data private but having control over who you share your data with. 
 
 ## Rewatch the full episode
-Learn more about what Kin is building and watch the full live stream [here](https://youtu.be/vKAkQz2QYW0?si=lOT1BzyJGDZ0laTz).
+Learn more about what Kin is building and watch the full live stream [here](https://youtu.be/FboOp6V47n8).
 
-<iframe class="aspect-video" src="https://www.youtube.com/embed/vKAkQz2QYW0?si=lO9_6vdZ6X_RJelxI" title="formfree" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+<iframe class="aspect-video" src="https://www.youtube.com/embed/FboOp6V47n8" title="formfree" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
 *This post highlights key moments from our collaborative live stream with leaders and builders at Kin. Join our weekly live streams every Friday at 12pm ET/9 am PT. We're learning how innovators and community members are advancing the Self-Sovereign Identity and Global Payments industry. Tune in next time via [Twitch](https://twitch.tv/tbdevs ) or in our community [Discord](https://discord.com/invite/tbd).*
