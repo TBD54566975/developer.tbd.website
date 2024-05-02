@@ -26,7 +26,13 @@ internal class HowToResolveDidTest {
     val didDocument = resolvedDid.didDocument
     // :snippet-end:
 
-    assertNotNull(didDocument, "DID Document should not be null") 
-    assertNotNull(didDocument?.verificationMethod, "DID Document should have verification methods")  
+    assertNotNull(didDocument, "(JWK) DID Document should not be null")
+    assertEquals(didDocument?.id, didUri, "(JWK) DID Document id should be same as DID URI")
+
+    //Not shown in the guides, but adding tests for DHT to make sure it works as well
+    val didDht = DidDht.create(InMemoryKeyManager(), CreateDidDhtOptions(publish = true))
+    val didDhtDocument = DidResolvers.resolve(didDht.uri).didDocument
+    assertNotNull(didDhtDocument, "(DHT) DID Document should not be null")
+    assertEquals(didDhtDocument!!.id, didDht.uri, "(DHT) DID Document id should be same as DID URI")
   }
 }
