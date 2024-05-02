@@ -379,10 +379,10 @@ Here are a bunch of [example protocols](https://github.com/TBD54566975/dwn-sdk-j
 
 <div className="grid grid-cols-1 desktop:grid-cols-2 gap-5">
 
-  <iframe class="aspect-video" src="https://www.youtube.com/embed/RfUE-bd73bE?si=eEZPwauDvRgEywIU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+  <iframe class="aspect-video" src="https://www.youtube.com/embed/96rtA1CvylU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
-  <iframe class="aspect-video" src="https://www.youtube.com/embed/KE1s8NfomKk?si=dRXbfQHaXHNMLoas" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+  <iframe class="aspect-video" src="https://www.youtube.com/embed/8XX8AgXnY2I" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
-  <iframe class="aspect-video" src="https://www.youtube.com/embed/AioiNfpsPu0?si=zx9eva4AKJ7r4end" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+  <iframe class="aspect-video" src="https://www.youtube.com/embed/Jy2PvarC82c" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
 </div>
