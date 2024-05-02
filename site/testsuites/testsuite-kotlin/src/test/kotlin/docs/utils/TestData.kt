@@ -17,6 +17,7 @@ import web5.sdk.dids.methods.dht.CreateDidDhtOptions
 import web5.sdk.dids.methods.dht.DidDht
 import java.net.URI
 import java.time.OffsetDateTime
+import java.time.OffsetDateTime.*
 import java.util.*
 
 object TestData {
@@ -87,7 +88,32 @@ object TestData {
             )
         )
 
-    fun getRfq(
+  fun getOfferingWithNoClaims(
+    from: String = PFI_DID.uri
+  ) = Offering.create(
+    from = from,
+    OfferingData(
+      description = "A sample offering",
+      payoutUnitsPerPayinUnit = "1",
+      payin = PayinDetails("USD", "0.01", "100.00", listOf(PayinMethod(
+        kind = "DEBIT_CARD",
+        requiredPaymentDetails = requiredPaymentDetailsSchema()
+      ))),
+      payout = PayoutDetails(
+        currencyCode = "BTC",
+        methods =  listOf(PayoutMethod(
+          kind = "BTC_ADDRESS",
+          requiredPaymentDetails = requiredPaymentDetailsSchema(),
+          estimatedSettlementTime = 3600
+        )
+        )
+      ),
+      requiredClaims = null
+    )
+  )
+
+
+  fun getRfq(
         to: String = PFI_DID.uri,
         from: String = ALICE_DID.uri,
         offeringId: TypeId = TypeId.generate(ResourceKind.offering.name),
@@ -121,7 +147,7 @@ object TestData {
         from: String = PFI_DID.uri) = Quote.create(
         ALICE_DID.uri, PFI_DID.uri, TypeId.generate(MessageKind.rfq.name).toString(),
         QuoteData(
-            expiresAt = OffsetDateTime.now().plusDays(1),
+            expiresAt = now().plusDays(1),
             payin = QuoteDetails("USD", "10.00", "0.01"),
             payout = QuoteDetails("KES", "0.12", "0.02"),
         )
