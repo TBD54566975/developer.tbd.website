@@ -57,6 +57,36 @@ The data properties contain the specifics of the transaction, such as the id of 
   ]}
 />
 
+## Verify RFQ Data
+Before sending the RFQ to the PFI, you can verify that the `data` within the RFQ satifies the Offering's requirements.
+
+<Shnip
+  snippets={[
+    { snippetName: 'verifyOfferingRequirementsJS', language: 'JavaScript' },
+    { snippetName: 'verifyOfferingRequirementsKt', language: 'Kotlin' }
+  ]}
+    inlineSnippets={[
+    {
+      code: '// verifyOfferings() is not available in the Swift SDK',
+      language: 'Swift',
+    },
+  ]}
+/>
+
+This will throw an error for any of the following:
+* `data.offeringId` doesn't match the provided Offering's id
+* `data.payin.amount` exceeds the provided Offering's max units allowed or is below the Offering's min units allowed
+* `data.payin.kind` does not match the provided Offering's payin kinds
+* `data.payout.kind` does not match the provided Offering's payout kinds
+* `data.payin.paymentDetails` doesn't satisfy the Offering's `requiredPaymentDetails`
+* `data.payout.paymentDetails` doesn't satisfy the Offering's `requiredPaymentDetails`
+* `data.claims` does not contain JWTs for VCs that match the Offering's `requiredClaims`
+ 
+**Example error output**
+
+> Error: offering does not support rfq's payinMethod kind. (rfq) BTC_ADDRESS was not found in: [BANK_ACCOUNT] (offering)
+
+
 
 ## Sign the RFQ
 Signing the RFQ ensures its authenticity. You can do so with the customer's [Bearer DID](/docs/web5/build/decentralized-identifiers/how-to-create-did#create-did):

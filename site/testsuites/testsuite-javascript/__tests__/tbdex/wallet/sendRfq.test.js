@@ -84,7 +84,8 @@ describe('Wallet: Send RFQ', () => {
   test('create signed RFQ message and send to PFI', async () => {
 
     const BTC_ADDRESS = 'bc1q52csjdqa6cq5d2ntkkyz8wk7qh2qevy04dyyfd'
-    const selectedCredentials = []
+    const yoloCredential = "eyJ0eXAiOiJKV1QiLCJhbGciOiJFZERTQSIsImtpZCI6ImRpZDpqd2s6ZXlKamNuWWlPaUpGWkRJMU5URTVJaXdpYTNSNUlqb2lUMHRRSWl3aWVDSTZJalJ2WTE5eGRuVkZPVzEyUldkNFpXRmZlbVJYY1MxUlZVUlJRemswZWpGTlZVbFhaa1F6V1V4b2JVa2lMQ0pyYVdRaU9pSmtZazF3V25OT1ZHcE9ZbmQ2WW5OMFZXOVVTbU5aZFRKS1RIQkNhR2xCUnpRd1JYcDRORXRHVWsxbklpd2lZV3huSWpvaVJXUkVVMEVpZlEjMCJ9.eyJ2YyI6eyJAY29udGV4dCI6WyJodHRwczovL3d3dy53My5vcmcvMjAxOC9jcmVkZW50aWFscy92MSJdLCJ0eXBlIjpbIlZlcmlmaWFibGVDcmVkZW50aWFsIiwiWW9sb0NyZWRlbnRpYWwiXSwiaWQiOiJ1cm46dXVpZDo4YjBmNjA3Zi1mMTdlLTRjNDktODczNS02YzU2MmU2N2U1NDEiLCJpc3N1ZXIiOiJkaWQ6andrOmV5SmpjbllpT2lKRlpESTFOVEU1SWl3aWEzUjVJam9pVDB0UUlpd2llQ0k2SWpSdlkxOXhkblZGT1cxMlJXZDRaV0ZmZW1SWGNTMVJWVVJSUXprMGVqRk5WVWxYWmtReldVeG9iVWtpTENKcmFXUWlPaUprWWsxd1duTk9WR3BPWW5kNlluTjBWVzlVU21OWmRUSktUSEJDYUdsQlJ6UXdSWHA0TkV0R1VrMW5JaXdpWVd4bklqb2lSV1JFVTBFaWZRIiwiaXNzdWFuY2VEYXRlIjoiMjAyNC0wNS0wMlQwNDoyNTo0NFoiLCJjcmVkZW50aWFsU3ViamVjdCI6eyJpZCI6ImRpZDpqd2s6ZXlKamNuWWlPaUpGWkRJMU5URTVJaXdpYTNSNUlqb2lUMHRRSWl3aWVDSTZJalJ2WTE5eGRuVkZPVzEyUldkNFpXRmZlbVJYY1MxUlZVUlJRemswZWpGTlZVbFhaa1F6V1V4b2JVa2lMQ0pyYVdRaU9pSmtZazF3V25OT1ZHcE9ZbmQ2WW5OMFZXOVVTbU5aZFRKS1RIQkNhR2xCUnpRd1JYcDRORXRHVWsxbklpd2lZV3huSWpvaVJXUkVVMEVpZlEiLCJiZWVwIjoiYm9vcCJ9fSwibmJmIjoxNzE0NjIzOTQ0LCJqdGkiOiJ1cm46dXVpZDo4YjBmNjA3Zi1mMTdlLTRjNDktODczNS02YzU2MmU2N2U1NDEiLCJpc3MiOiJkaWQ6andrOmV5SmpjbllpT2lKRlpESTFOVEU1SWl3aWEzUjVJam9pVDB0UUlpd2llQ0k2SWpSdlkxOXhkblZGT1cxMlJXZDRaV0ZmZW1SWGNTMVJWVVJSUXprMGVqRk5WVWxYWmtReldVeG9iVWtpTENKcmFXUWlPaUprWWsxd1duTk9WR3BPWW5kNlluTjBWVzlVU21OWmRUSktUSEJDYUdsQlJ6UXdSWHA0TkV0R1VrMW5JaXdpWVd4bklqb2lSV1JFVTBFaWZRIiwic3ViIjoiZGlkOmp3azpleUpqY25ZaU9pSkZaREkxTlRFNUlpd2lhM1I1SWpvaVQwdFFJaXdpZUNJNklqUnZZMTl4ZG5WRk9XMTJSV2Q0WldGZmVtUlhjUzFSVlVSUlF6azBlakZOVlVsWFprUXpXVXhvYlVraUxDSnJhV1FpT2lKa1lrMXdXbk5PVkdwT1luZDZZbk4wVlc5VVNtTlpkVEpLVEhCQ2FHbEJSelF3UlhwNE5FdEdVazFuSWl3aVlXeG5Jam9pUldSRVUwRWlmUSIsImlhdCI6MTcxNDYyMzk0NH0.CMZVBfNCq5aYgWmRcJVFN5fXiuPlgrwiGAsmYOZsFLHaRfqiA5gxqPDjBAQ1Ra7gK5X6_tZm5ue6kU6hN_7ZAA"
+    const selectedCredentials = [yoloCredential]
 
     // :snippet-start: createRfqMessageJS
     const rfq = Rfq.create({
@@ -97,19 +98,19 @@ describe('Wallet: Send RFQ', () => {
       data: {
         offeringId: selectedOffering.metadata.id,   // The ID of the selected offering
         payin: {
-          kind: 'BTC_ADDRESS',                      // The method of payment
-          amount: '0.012',                          // The amount of the payin currency
+          kind: 'DEBIT_CARD',                       // The method of payment
+          amount: '500.65',                         // The amount of the payin currency 
           paymentDetails: {
-            btcAddress: BTC_ADDRESS                 // Customer's BTC wallet address
+            cardNumber: '1234567890123456',
+            expiryDate: '05/25',
+            cardHolderName: 'Alice Doe',
+            cvv: '123'
           }
         },
         payout: {
-          kind: 'DEBIT_CARD',                       // The method for receiving payout
+          kind: 'BTC_ADDRESS',                      // The method for receiving payout                         
           paymentDetails: {
-            cvv: '123',
-            cardNumber: '1234567890123456789',
-            expiryDate: '05/25',
-            cardHolderName: 'Alice Doe'
+            btcAddress: BTC_ADDRESS                 // Recipient's BTC wallet address
           }
         },
         claims: selectedCredentials  // Array of signed VCs required by the PFI
@@ -117,6 +118,16 @@ describe('Wallet: Send RFQ', () => {
       //highlight-end
     });
     // :snippet-end:
+
+    expect(() => {
+      // :snippet-start: verifyOfferingRequirementsJS
+      try{
+        rfq.verifyOfferingRequirements(selectedOffering);
+      } catch (e) {
+        // handle failed verification
+      }
+      // :snippet-end:
+    }).not.toThrow();
 
     // :snippet-start: signRfqMessageJS
     await rfq.sign(customerDid);
