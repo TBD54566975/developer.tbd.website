@@ -21,7 +21,7 @@ describe('DID Document Resolver Tests', () => {
       const dhtDidDocument = resolvedDhtDid.didDocument;
       // :snippet-end: 
   
-      expect(jwkDidDocument).toHaveProperty('id');
-      expect(dhtDidDocument).toHaveProperty('id');
+      expect(jwkDidDocument.id).equals(didJwkUri);
+      expect(dhtDidDocument.id).equals(didDhtUri);
     });
   });
