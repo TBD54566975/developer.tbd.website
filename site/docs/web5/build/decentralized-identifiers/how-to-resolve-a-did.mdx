@@ -8,36 +8,31 @@ sidebar_position: 2
 
 # Resolve a DID
 
-Resolving a DID refers to the process of retrieving the [DID document](/docs/web5/learn/did_document) associated with a [Decentralized Identifier](/docs/web5/learn/decentralized-identifiers). The DID Document contains important information such as, public keys, authentication protocols, service endpoints, and more. 
-
+Resolving a DID refers to the process of retrieving the [DID document](/docs/web5/learn/did_document) associated with a [Decentralized Identifier](/docs/web5/learn/decentralized-identifiers). The DID Document contains important information such as public keys, authentication methods, service endpoints, and more. 
 
 
 ## Retrieving the DID Document
 
-When resolving a DID, make sure you are passing the DID string(URI) to the resolver function.
+When resolving a DID, make sure you are passing the [DID URI](/docs/web5/build/decentralized-identifiers/how-to-create-did/#did) to the resolver function.
 
 <Shnip
   snippets={[
     {
-      snippetName: 'resolveADidJS',
+      snippetName: 'resolveDidJS',
       language: 'JavaScript'
     },
     {
-      snippetName: 'resolveADidKT',
+      snippetName: 'resolveDidKT',
       language: 'Kotlin'
     },
     {
-      snippetName: 'resolveADidSwift',
+      snippetName: 'resolveDidSwift',
       language: 'Swift'
     },
   ]}
 />
 
-:::info
-To learn how to access your own DID string please refer to the [Create A DID guide](/docs/web5/build/decentralized-identifiers/how-to-create-did#diddht).
-:::
-
-Here's an example DID Document:
+**Here's an example DID Document:**
 
 ``` javascript
 {
