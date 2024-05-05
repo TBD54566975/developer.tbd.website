@@ -20,6 +20,7 @@ describe('Wallet: Send RFQ', () => {
 
     pfiDid = await DidDht.create({
       options:{
+        publish: true,
         services : [{
           type            : 'PFI',
           id              : 'pfi',
