@@ -46,20 +46,3 @@ internal class HowToUpdateDidTest {
     assertEquals(serviceToAdd.type, myBearerDid.document.service?.last()?.type)
   }
 }
-
-/*
-      // if service does not exist, create an empty array
-      if (!myBearerDid.document.service) {
-        myBearerDid.document.service  = [];
-      }
-
-      // add a service to the DID document
-      myBearerDid.document.service.push({
-        id: 'pfi',
-        type: 'PFI',
-        serviceEndpoint: 'https://example.com/'
-      });
-
-      // republish the updated DID document
-      DidDht.publish({did: myBearerDid});
- */
