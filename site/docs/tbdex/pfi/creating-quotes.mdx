@@ -37,10 +37,13 @@ Building on the example from the [Exchange API Provider section](/docs/tbdex/pfi
     { snippetName: 'pfiWriteOfferingKt', language: 'Kotlin'}
   ]} />
 
+## Verify Credentials
+
+Upon receiving an `RFQ`, the tbDEX SDK will automatically [verify the submitted credentials](/docs/web5/build/verifiable-credentials/verify-vc#verify-verifiable-credentials) to guarantee their integrity and authenticity as well as ensure that they meet the `requiredClaims` specified in the `Offering`. 
 
 ## Create a Quote
 
-Before creating a `Quote` in response to the received `RFQ`, you may want to review the [protocol definition for Quotes](https://github.com/TBD54566975/tbdex/tree/main/specs/protocol#quote). 
+Before creating a `Quote` in response to the received `RFQ`, you can review the [protocol definition for Quotes](https://github.com/TBD54566975/tbdex/tree/main/specs/protocol#quote). 
 With that in mind, you can then create your quote using the `Quote.create()` method as shown below:
 
 <Shnip snippets={
