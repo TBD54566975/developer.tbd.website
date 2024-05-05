@@ -174,7 +174,7 @@ describe('Wallet: Send RFQ', () => {
     expect(rfq.signature).toBeDefined();
   });
 
-  test.skip('send RFQ message with URL as replyTo', async () => {
+  test('send RFQ message with URL as replyTo', async () => {
     try{
       // :snippet-start: rfqWithUrlReplyToJS
       await TbdexHttpClient.createExchange(
