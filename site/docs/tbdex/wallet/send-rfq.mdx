@@ -65,7 +65,7 @@ Before sending the RFQ to the PFI, you can verify that the `data` within the RFQ
     { snippetName: 'verifyOfferingRequirementsJS', language: 'JavaScript' },
     { snippetName: 'verifyOfferingRequirementsKt', language: 'Kotlin' }
   ]}
-    inlineSnippets={[
+  inlineSnippets={[
     {
       code: '// verifyOfferings() is not available in the Swift SDK',
       language: 'Swift',
@@ -101,7 +101,8 @@ Signing the RFQ ensures its authenticity. You can do so with the customer's [Bea
 
 
 ## Send RFQ to PFI
-Use `TbdexHttpClient` to send the RFQ to the PFI, with an optional `replyTo` property containing a valid URI where new messages from the PFI will be sent:
+Use `TbdexHttpClient` to send the RFQ to the PFI. If no error is thrown, the RFQ has been successfully sent to the PFI and an **exchange** has been created.
+This exchange serves as a thread of messages between your application and the PFI regarding this transaction.
 
 <Shnip
   snippets={[
@@ -111,16 +112,65 @@ Use `TbdexHttpClient` to send the RFQ to the PFI, with an optional `replyTo` pro
   ]}
 />
 
-:::tip Callback
-Callbacks are fully qualified URIs (DID or URL) that can be provided to the PFI via the `replyTo` property.
+The next message written to the exchange will be a [Quote](/docs/tbdex/wallet/receive-quote) from the PFI.
+You'll need to [poll the PFI](/docs/tbdex/wallet/receive-quote#polling-for-quote) to receive the `Quote` and all other messages within the exchange, unless you provide an `replyTo` callback when sending the RFQ.
+
+### Optional Callback
+If your wallet application has a deployed server, you can provide a callback when sending the RFQ.
+Callbacks are fully qualified URIs (DID or URL) that can be provided to the PFI via the optional `replyTo` property.
 
 If `replyTo` is provided, the PFI will send all new messages of the exchange to the supplied URI. 
 This URI is scoped to each exchange, allowing you to specify a different URI per exchange if desired. 
 
-If `replyTo` is _not_ present, you will need to poll the PFI to receive new messages within the exchange.
+:::tip No Callback
+If a callback is not provided, you'll need to [poll the PFI](/docs/tbdex/wallet/receive-quote#polling-for-quote) to receive the `Quote` and all other messages within the exchange.
 :::
 
-If no error is thrown, the RFQ has been successfully sent to the PFI and an **exchange** has been created.
-This exchange serves as a thread of messages between your application and the PFI regarding this transaction.
+#### Callback as a URL
 
-The next message written to the exchange will be a [Quote](/docs/tbdex/wallet/receive-quote) from the PFI.
+<Shnip
+  snippets={[
+    { snippetName: 'rfqWithUrlReplyToJS', language: 'JavaScript' },
+    { snippetName: 'rfqWithUrlReplyToKt', language: 'Kotlin' }
+  ]}
+  inlineSnippets={[
+    {
+      code: '// replyTo is not available in the Swift SDK',
+      language: 'Swift',
+    },
+  ]}
+/>
+
+#### Callback as a DID
+
+To provide your wallet application's DID as the `replyTo` property, it must have a service type of `tbdex`.
+
+<Shnip
+  snippets={[
+    { snippetName: 'createDidWithTbdexServiceJS', language: 'JavaScript' },
+    { snippetName: 'createDidWithTbdexServiceKt', language: 'Kotlin' }
+  ]}
+  inlineSnippets={[
+    {
+      code: '// replyTo is not available in the Swift SDK',
+      language: 'Swift',
+    },
+  ]}
+/>
+
+To use your DID as the `replyTo`, you'll provide its `uri`.
+
+<Shnip
+  snippets={[
+    { snippetName: 'rfqWithDidReplyToJS', language: 'JavaScript' },
+    { snippetName: 'rfqWithDidReplyToKt', language: 'Kotlin' }
+  ]}
+  inlineSnippets={[
+    {
+      code: '// replyTo is not available in the Swift SDK',
+      language: 'Swift',
+    },
+  ]}  
+/>
+
+

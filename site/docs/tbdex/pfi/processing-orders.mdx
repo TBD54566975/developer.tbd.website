@@ -47,7 +47,8 @@ As you deem appropriate for your customers, you can provide them with <LanguageS
     { snippetName: 'pfiOrderStatusKt', language: 'Kotlin'}
   ]} />
 
-If the Wallet application supplied a `replyTo` address, you'll send the `OrderStatus` message there.
+If the Wallet application supplied a `replyTo` address, the tbDEX SDK will send the `OrderStatus` message there.
+
 You should also write the `OrderStatus` to your database and the Wallet will poll for these updates.
 
 

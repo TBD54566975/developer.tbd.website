@@ -13,7 +13,6 @@ export class MockOfferingsApiProvider {
     //---------------------------------------------------------------------------//
 
     async getOffering(id) {
-console.log('called getOffering', id)
         this.dataProvider.get('offering', id).then(([result]) => {
             return Offering.create({
                 metadata: { from: this.pfiDid },

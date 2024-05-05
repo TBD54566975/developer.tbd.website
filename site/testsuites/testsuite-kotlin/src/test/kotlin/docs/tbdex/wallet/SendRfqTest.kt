@@ -10,6 +10,10 @@ import org.junit.jupiter.api.Test
 import tbdex.sdk.httpclient.TbdexHttpClient
 import tbdex.sdk.httpclient.models.TbdexResponseException
 import tbdex.sdk.protocol.models.*
+import web5.sdk.crypto.InMemoryKeyManager
+import web5.sdk.dids.didcore.Service
+import web5.sdk.dids.methods.dht.CreateDidDhtOptions
+import web5.sdk.dids.methods.dht.DidDht
 import java.net.HttpURLConnection
 import website.tbd.developer.site.docs.utils.TestData
 
@@ -22,11 +26,15 @@ class SendRfqTest {
   private val customerDid = TestData.ALICE_DID
   private lateinit var selectedOffering: Offering
   private lateinit var server: MockWebServer
+  private lateinit var rfq: Rfq
 
   @BeforeEach
   fun setup() {
     selectedOffering = TestData.getOfferingWithNoClaims(pfi.uri)
     selectedOffering.sign(pfi)
+
+    rfq = TestData.getRfq()
+    rfq.sign(customerDid)
 
     //Mock PFI Server
     server = MockWebServer()
@@ -119,15 +127,62 @@ class SendRfqTest {
 
     try{
       // :snippet-start: sendRfqMessageKt
-      TbdexHttpClient.createExchange(
-        rfq,
-        "https://example.com/callback"
-      )
+      TbdexHttpClient.createExchange(rfq)
       // :snippet-end:
 
     }catch(e: TbdexResponseException){
       fail("Failed to send RFQ message to PFI: $e")
     }
     assertNotNull(rfq.signature, "RFQ is not signed")
+  }
+
+  @Test
+  fun `send RFQ message with URL as replyTo`(){
+    try {
+      // :snippet-start: rfqWithUrlReplyToKt
+      TbdexHttpClient.createExchange(
+        rfq,
+        //highlight-next-line
+        "https://example.com/callback"
+      )
+      // :snippet-end:
+    }catch(e: TbdexResponseException){
+      fail("Failed to send RFQ with URL replyTo: $e")
+    }
+  }
+
+
+  @Test
+  fun `send RFQ message with DID as replyTo`(){
+    val keyManager = InMemoryKeyManager()
+
+    // :snippet-start: createDidWithTbdexServiceKt
+    val serviceToAdd = Service.Builder()
+      .id("tbdex")
+      //highlight-start
+      .type("tbdex")
+      .serviceEndpoint(listOf("https://example.com/callback"))
+      //highlight-end
+      .build()
+
+    val options = CreateDidDhtOptions(
+      publish = true,
+      services = listOf(serviceToAdd),
+    )
+
+    val walletDid = DidDht.create(keyManager, options)
+    // :snippet-end:
+
+    try {
+      // :snippet-start: rfqWithDidReplyToKt
+      TbdexHttpClient.createExchange(
+        rfq,
+        //highlight-next-line
+        walletDid.uri
+      )
+      // :snippet-end:
+    }catch(e: TbdexResponseException){
+      fail("Failed to send RFQ with DID replyTo: $e")
+    }
   }
 }
