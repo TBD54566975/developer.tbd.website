@@ -1,5 +1,8 @@
 import { beforeAll, beforeEach, afterEach, afterAll } from 'vitest';
 import { Web5 } from '@web5/api';
+import { DidDht, BearerDid } from '@web5/dids';
+import fs from 'fs';  // For loading the DID JSON
+import path from 'path';  // For resolving file paths
 
 // node.js 18 and earlier,  needs globalThis.crypto polyfill
 import { webcrypto } from 'node:crypto';
@@ -9,6 +12,33 @@ if (!globalThis.crypto) globalThis.crypto = webcrypto;
 const testDwnUrl = import.meta.env.VITE_APP_TEST_DWN_URL;
 
 import { Web5IdentityAgent } from '@web5/identity-agent';
+
+
+async function loadAndRepublishDID() {
+  try {
+    const didFilePath = path.resolve('site/testsuites/reusableDidDht.json');
+
+    const loadedDidDht = JSON.parse(fs.readFileSync(didFilePath, 'utf8'));
+
+   // console.log(loadedDidDht)
+    const did = await BearerDid.import({ portableDid: loadedDidDht });
+    //console.log(did)
+    // console.log(loadedDidDht)
+
+
+    const registrationResult = await DidDht.publish({ did: did });
+
+    console.log(registrationResult)
+
+
+    console.log('Successfully republished DID:', loadedDidDht.uri);
+
+    // Store the BearerDid object in globalThis for use in tests
+    globalThis.didDht = registrationResult;
+  } catch (error) {
+    console.error('Failed to load and republish DID:', error);
+  }
+}
 
 export const setUpWeb5 = async () => {
   const password = 'super-secret-test-password'; 
@@ -32,6 +62,8 @@ export const setUpWeb5 = async () => {
   globalThis.web5 = web5;
   globalThis.did = did;
 
+  await loadAndRepublishDID();
+
   return { web5, did };
 };
 
@@ -42,6 +74,9 @@ export const setUpIdentityManager = async () => {
 
   return identityAgent;
 };
+
+
+
 
 afterAll(async () => {
   const agent = globalThis.identityAgent || globalThis.web5?.agent;

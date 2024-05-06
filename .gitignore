@@ -64,3 +64,6 @@ temp
 
 playwright-report
 test-results
+
+## Published DidDht
+/site/testsuites/create-reusable-dht.js
