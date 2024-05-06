@@ -1,8 +1,8 @@
 import { beforeAll, beforeEach, afterEach, afterAll } from 'vitest';
 import { Web5 } from '@web5/api';
 import { DidDht, BearerDid } from '@web5/dids';
-import fs from 'fs';  // For loading the DID JSON
-import path from 'path';  // For resolving file paths
+import fs from 'fs'; 
+import path from 'path'; 
 
 // node.js 18 and earlier,  needs globalThis.crypto polyfill
 import { webcrypto } from 'node:crypto';
@@ -16,25 +16,17 @@ import { Web5IdentityAgent } from '@web5/identity-agent';
 
 async function loadAndRepublishDID() {
   try {
-    const didFilePath = path.resolve('site/testsuites/reusableDidDht.json');
+    const reusableDidFilePath = path.resolve('site/testsuites/reusableDidDht.json');
 
-    const loadedDidDht = JSON.parse(fs.readFileSync(didFilePath, 'utf8'));
+    const loadedDidDht = JSON.parse(fs.readFileSync(reusableDidFilePath, 'utf8'));
 
-   // console.log(loadedDidDht)
-    const did = await BearerDid.import({ portableDid: loadedDidDht });
-    //console.log(did)
-    // console.log(loadedDidDht)
+    const importedDidDht = await BearerDid.import({ portableDid: loadedDidDht });
 
+    const republishedDidDht = await DidDht.publish({ did: importedDidDht });
 
-    const registrationResult = await DidDht.publish({ did: did });
+    console.log('Successfully republished DID:', republishedDidDht.uri);
 
-    console.log(registrationResult)
-
-
-    console.log('Successfully republished DID:', loadedDidDht.uri);
-
-    // Store the BearerDid object in globalThis for use in tests
-    globalThis.didDht = registrationResult;
+    globalThis.didDht = republishedDidDht;
   } catch (error) {
     console.error('Failed to load and republish DID:', error);
   }
