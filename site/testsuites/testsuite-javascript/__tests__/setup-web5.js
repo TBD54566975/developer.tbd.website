@@ -67,9 +67,6 @@ export const setUpIdentityManager = async () => {
   return identityAgent;
 };
 
-
-
-
 afterAll(async () => {
   const agent = globalThis.identityAgent || globalThis.web5?.agent;
 
