@@ -24,8 +24,6 @@ async function loadAndRepublishDID() {
 
     const republishedDidDht = await DidDht.publish({ did: importedDidDht });
 
-    console.log('Successfully republished DID:', republishedDidDht.uri);
-
     globalThis.didDht = republishedDidDht;
   } catch (error) {
     console.error('Failed to load and republish DID:', error);
