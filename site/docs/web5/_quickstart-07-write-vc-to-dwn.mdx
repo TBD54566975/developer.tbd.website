@@ -1,0 +1,54 @@
+import CodeSnippet from '@site/src/components/CodeSnippet';
+
+<section class="docs-section">
+
+## 5. Store your VC in your DWN
+
+Let's store your VC in your Decentralized Web Node(DWN).
+
+A DWN is a personal data store - a platform for messages, pictures, videos, medical records, and just about any content a user may want to store.
+
+<details>
+    <summary>Read more about DWNs</summary>
+
+Your app should not store users' data in your centralized database. Instead, their data should be stored in their DWN. This is how the user retains ownership over their content. Through permissions, users can decide which apps can read, write, and delete content from their DWN.
+
+The DWN exists in local storage under the name dwn-info. The DWN persists across browser sessions and can be synched across a user's devices.
+
+A user can host their DWN in mulitple locations. The Web5 SDK is both browser and Node.js compliant, meaning you can use the same APIs on both client side and serverside.
+
+</details>
+
+To store your VC in your DWN, add the following lines of code to your `index.js`:
+
+<CodeSnippet functionName="didCreate" />
+
+When an issuer signs a VC, it attests that they are truly the one who issued it. 
+This cryptographic process also converts the VC into a JSON Web Token (JWT), making the credential tamper-evident and verifiable by others.
+
+<details>
+    <summary>Test your code</summary>
+
+Wanna see the identity you just imported?
+
+In index.js, add the following line and save your file:
+
+```js
+console.log('writeResult', record);
+```
+
+Then from the terminal, run:
+```bash
+node index.js
+```
+
+You'll see the record that was written to the user's DWN. It will resemble:
+```bash
+writeResult _Record {}
+```
+    
+</details>
+
+#### Try it!
+
+</section>

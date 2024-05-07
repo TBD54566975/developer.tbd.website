@@ -23,7 +23,7 @@ import PackageJson from '@site/src/components/PackageJson';
 
 ### 1. Create a directory
 
-<p>This will be the home of your new Web5 app. In your CLI: </p>{' '}
+<p>This will be the home of your new Web5 app. Run the following commands in your CLI: </p>{' '}
 
 ```bash
 mkdir web5-app
@@ -41,16 +41,16 @@ npm init -y
 <p>Use NPM to install Web5:</p>
 
 ```bash
-npm install @web5/api
+npm install @web5/api @web5/credentials
 ```
 
-These steps will create a `package.json` in the root of your project. Open `package.json` and add `module` as a type:
+These steps will create a `package.json` in the root of your project. Open the newly created `package.json` and add `module` as a type:
 
 <PackageJson />
 
 ### 3. Import Web5
 
-Let's create an `index.js` file to write our application:
+Create an `index.js` file where you will write all of your application logic:
 
 ```bash
 touch index.js
@@ -66,10 +66,11 @@ New-Item index.js -ItemType File
 After `npm` resolves the dependency, you may see a few warnings. You can ignore these for now.
 :::
 
-Open `index.js` in your editor and add this line at the top of the file to import Web5:
+At the top of your `index.js` file, add these lines to import the Web5 package dependencies that you will use to build your application::
 
 ```js
 import { Web5 } from '@web5/api';
+import { VerifiableCredential } from '@web5/credentials';
 ```
 
 <details>
@@ -113,6 +114,6 @@ secp.etc.hmacSha256Async = (k, ...m) =>
 
 </details>
 
-Now we have the Web5 SDK installed and are ready to start building!
+Now that you've installed the Web5 SDKs, you are ready to start building!
 
 </section>

@@ -10,6 +10,7 @@ function PackageJson() {
   const json = {
     dependencies: {
       '@web5/api': customFields.WEB5_VERSION,
+      '@web5/credentials': customFields.WEB5_CREDENTIALS_VERSION,
     },
     type: 'module',
   };

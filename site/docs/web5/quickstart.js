@@ -3,11 +3,15 @@ import React, { useEffect } from 'react';
 import Web5QuickstartIntro from './_quickstart-01-intro.mdx';
 import Web5QuickstartPrereqsAndInstallation from './_quickstart-02-prereqs-and-installation.mdx';
 import Web5QuickstartCreateDid from './_quickstart-03-create-did.mdx';
-import Web5QuickstartWriteDwn from './_quickstart-05-write-record.mdx';
-import Web5QuickstartReadDwn from './_quickstart-06-read-record.mdx';
-import Web5QuickstartUpdateDwn from './_quickstart-07-update-record.mdx';
-import Web5QuickstartDeleteDwn from './_quickstart-08-delete-record.mdx';
+import Web5QuickStartGetBearerIdentity from './_quickstart-04-get-bearer-id.mdx';
+import Web5QuickstartCreateVc from './_quickstart-05-create-vc.mdx';
+import Web5QuickstartSignVc from './_quickstart-06-sign-vc.mdx';
+import Web5QuickStartWriteVcToDwn from './_quickstart-07-write-vc-to-dwn.mdx';
+import Web5QuickstartReadVcFromDwn from './_quickstart-08-read-vc-from-dwn.mdx';
+import Web5QuickstartParseVc from './_quickstart-09-parse-vc.mdx';
+
 import Web5QuickstartNextSteps from './_quickstart-10-next-steps.mdx';
+import { Web5 } from '@web5/api';
 
 let web5;
 let createRecordResult;
@@ -65,25 +69,6 @@ let dwnWriteInputProgress;
 let dwnWriteOutputSummary;
 let dwnWriteOutputDetailsTextarea;
 
-let dwnQueryInputButton;
-let dwnQueryInputProgress;
-let dwnQueryOutputSummary;
-let dwnQueryOutputDetailsTextarea;
-
-let dwnReadInputButton;
-let dwnReadInputProgress;
-let dwnReadOutput;
-
-let dwnDeleteInputButton;
-let dwnDeleteInputProgress;
-let dwnDeleteOutputSummary;
-let dwnDeleteOutputDetailsTextarea;
-
-let dwnUpdateInputFile;
-let dwnUpdateInputButton;
-let dwnUpdateInputProgress;
-let dwnUpdateOutput;
-
 function Web5Quickstart() {
   useEffect(() => {
     const loadWeb5 = async () => {
@@ -104,51 +89,6 @@ function Web5Quickstart() {
     );
     didCreateOutputDetailsTextarea = document.querySelector(
       '#did-create .output details textarea',
-    );
-
-    dwnWriteInputText = document.querySelector('#dwn-write .input input');
-    dwnWriteInputButton = document.querySelector('#dwn-write .input button');
-    dwnWriteInputProgress = document.querySelector(
-      '#dwn-write .input progress',
-    );
-    dwnWriteOutputSummary = document.querySelector(
-      '#dwn-write .output details summary',
-    );
-    dwnWriteOutputDetailsTextarea = document.querySelector(
-      '#dwn-write .output details textarea',
-    );
-
-    dwnQueryInputButton = document.querySelector('#dwn-query .input button');
-    dwnQueryInputProgress = document.querySelector(
-      '#dwn-query .input progress',
-    );
-    dwnQueryOutputSummary = document.querySelector(
-      '#dwn-query .output details summary',
-    );
-    dwnQueryOutputDetailsTextarea = document.querySelector(
-      '#dwn-query .output details textarea',
-    );
-
-    dwnReadInputButton = document.querySelector('#dwn-read .input button');
-    dwnReadInputProgress = document.querySelector('#dwn-read .input progress');
-    dwnReadOutput = document.querySelector('#dwn-read .output');
-
-    dwnUpdateInputFile = document.querySelector('#dwn-update .input input');
-    dwnUpdateInputButton = document.querySelector('#dwn-update .input button');
-    dwnUpdateInputProgress = document.querySelector(
-      '#dwn-update .input progress',
-    );
-    dwnUpdateOutput = document.querySelector('#dwn-update .output');
-
-    dwnDeleteInputButton = document.querySelector('#dwn-delete .input button');
-    dwnDeleteInputProgress = document.querySelector(
-      '#dwn-delete .input progress',
-    );
-    dwnDeleteOutputSummary = document.querySelector(
-      '#dwn-delete .output details summary',
-    );
-    dwnDeleteOutputDetailsTextarea = document.querySelector(
-      '#dwn-delete .output details textarea',
     );
 
     // event listeners
@@ -179,106 +119,6 @@ function Web5Quickstart() {
 
       //didRegisterInputButton.disabled = false;
       //didRegisterOutput.innerHTML = '';
-      update();
-    });
-
-    dwnWriteInputText.addEventListener('input', () => {
-      dwnWriteInputButton.disabled = false;
-      dwnWriteOutputSummary.innerHTML = '...';
-      dwnWriteOutputDetailsTextarea.value = '';
-      update();
-    });
-
-    dwnWriteInputButton.addEventListener('click', async () => {
-      dwnWriteInputButton.disabled = true;
-      dwnWriteInputProgress.style.visibility = 'visible';
-      dwnWriteOutputSummary.innerHTML = '...';
-
-      let did = parseDid();
-
-      let data = dwnWriteInputText.value;
-
-      let result = await createTextRecord(web5, data);
-
-      createRecordResult = result.record;
-
-      dwnWriteOutputDetailsTextarea.value +=
-        JSON.stringify(result, null, 2) + '\n';
-
-      dwnWriteOutputDetailsTextarea.scrollTop =
-        dwnWriteOutputDetailsTextarea.scrollHeight;
-
-      dwnWriteOutputSummary.innerHTML = '&#x2714; Written to DWN!';
-
-      dwnWriteInputButton.disabled = false;
-      dwnWriteInputProgress.style.visibility = 'hidden';
-      // dwnQueryInputButton.disabled = false;
-      if (dwnWriteOutputDetailsTextarea.value !== '') {
-        dwnReadInputButton.disabled = false;
-      }
-      update();
-    });
-
-    dwnReadInputButton.addEventListener('click', async () => {
-      dwnReadInputButton.disabled = true;
-      dwnReadInputProgress.style.visibility = 'visible';
-
-      dwnReadOutput.innerHTML = '';
-
-      console.log('createRecordResult', createRecordResult);
-
-      const result = await createRecordResult.data.text();
-
-      dwnReadOutput.innerHTML = `${result}`;
-
-      dwnUpdateInputFile.disabled = false;
-      dwnUpdateInputButton.disabled = false;
-      dwnReadInputProgress.style.visibility = 'hidden';
-      update();
-    });
-
-    dwnUpdateInputFile.addEventListener('input', () => {
-      dwnUpdateInputButton.disabled = false;
-      update();
-    });
-
-    dwnUpdateInputButton.addEventListener('click', async () => {
-      dwnUpdateInputButton.disabled = true;
-      dwnUpdateInputProgress.style.visibility = 'visible';
-
-      let data = dwnUpdateInputFile.value;
-      await createRecordResult.update({ data });
-      const textResult = await createRecordResult.data.text();
-
-      dwnUpdateOutput.innerHTML = `${textResult}`;
-
-      dwnDeleteInputButton.disabled = false;
-      dwnUpdateInputProgress.style.visibility = 'hidden';
-      update();
-    });
-
-    dwnDeleteInputButton.addEventListener('click', async () => {
-      dwnDeleteInputButton.disabled = true;
-      dwnDeleteInputProgress.style.visibility = 'visible';
-
-      dwnDeleteOutputSummary.innerHTML = '...';
-
-      const result = await web5.dwn.records.delete({
-        from: parseDid(),
-        message: { recordId: createRecordResult.id },
-      });
-
-      dwnDeleteOutputDetailsTextarea.value +=
-        JSON.stringify(result, null, 2) + '\n';
-
-      dwnDeleteOutputDetailsTextarea.scrollTop =
-        dwnDeleteOutputDetailsTextarea.scrollHeight;
-
-      dwnDeleteOutputSummary.innerHTML = `&#x2714; Record deleted!`;
-
-      dwnReadInputButton.disabled = true;
-      dwnDeleteInputProgress.style.visibility = 'hidden';
-      dwnUpdateInputButton.disabled = true;
       update();
     });
   }, []);
@@ -321,114 +161,12 @@ function Web5Quickstart() {
         </div>
       </section>
 
-      <Web5QuickstartWriteDwn />
-      <section id="dwn-write">
-        <div className="input input-container">
-          <label htmlFor="dwn-write-input">Your message</label>
-          <input
-            placeholder="Write text in me!"
-            type="text"
-            disabled
-            id="dwn-write-input"
-          />
-        </div>
-        <div className="sandbox-container">
-          <div className="input">
-            <button disabled>Run ›</button>
-            <label className="sr-only" htmlFor="dwn-write-progress">
-              Write progress
-            </label>
-            <progress id="dwn-write-progress"></progress>
-          </div>
-          <div className="output">
-            <details>
-              <summary>
-                <code>
-                  <span className="sandbox-placeholder">
-                    Your message will appear here
-                  </span>
-                </code>
-              </summary>
-              <textarea readOnly></textarea>
-            </details>
-          </div>
-        </div>
-      </section>
-
-      <Web5QuickstartReadDwn />
-      <section id="dwn-read" className="sandbox-container">
-        <div className="input">
-          <button disabled>Run ›</button>
-          <label className="sr-only" htmlFor="dwn-read-progress">
-            Read progress
-          </label>
-          <progress id="dwn-read-progress"></progress>
-        </div>
-        <div className="output">
-          <code>
-            <span className="sandbox-placeholder">
-              Your read result will appear here
-            </span>
-          </code>
-        </div>
-      </section>
-
-      <Web5QuickstartUpdateDwn />
-      <section id="dwn-update">
-        <div className="input input-container">
-          <label htmlFor="dwn-update-input">Your updated message</label>
-          <input
-            placeholder="Update me!"
-            type="text"
-            disabled
-            id="dwn-update-input"
-          />
-        </div>
-        <div className="sandbox-container">
-          <div className="input">
-            <button disabled>Run ›</button>
-            <label className="sr-only" htmlFor="dwn-update-progress">
-              Update progress
-            </label>
-            <progress id="dwn-update-progress"></progress>
-          </div>
-          <div className="output">
-            <code>
-              <span className="sandbox-placeholder">
-                Your updated message will appear here
-              </span>
-            </code>
-          </div>
-        </div>
-      </section>
-
-      <Web5QuickstartDeleteDwn />
-      <section id="dwn-delete" className="sandbox-container">
-        <div className="input">
-          <button disabled>Run ›</button>
-          <label className="sr-only" htmlFor="dwn-delete-progress">
-            Delete progress
-          </label>
-          <progress id="dwn-delete-progress"></progress>
-        </div>
-        <div className="output">
-          <details>
-            <summary>
-              <code>
-                <span className="sandbox-placeholder">
-                  The result of your delete operation will appear here
-                </span>
-              </code>
-            </summary>
-            <textarea readOnly></textarea>
-          </details>
-        </div>
-      </section>
-
-      <div className="w-full max-w-container">
-        <hr className="bg-slash-dark border-none h-2" />
-      </div>
-
+      <Web5QuickStartGetBearerIdentity />
+      <Web5QuickstartCreateVc />
+      <Web5QuickstartSignVc />
+      <Web5QuickStartWriteVcToDwn />
+      <Web5QuickstartReadVcFromDwn />
+      <Web5QuickstartParseVc />
       <Web5QuickstartNextSteps />
     </div>
   );

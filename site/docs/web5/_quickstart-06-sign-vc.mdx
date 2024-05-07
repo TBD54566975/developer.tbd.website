@@ -1,0 +1,41 @@
+import CodeSnippet from '@site/src/components/CodeSnippet';
+
+<section class="docs-section">
+
+## 4. Sign your VC
+
+Now, you will sign the VC to ensure its authenticity and integrity.
+
+To sign your VC, add this line to your `index.js`:
+
+<CodeSnippet functionName="didCreate" />
+
+When an issuer signs a VC, it attests that they are truly the one who issued it. 
+This cryptographic process also converts the VC into a JSON Web Token (JWT), making the credential tamper-evident and verifiable by others.
+
+<details>
+    <summary>Test your code</summary>
+
+Wanna see the JWT version of your signed VC?
+
+In index.js, add the following line and save your file:
+
+```js
+console.log(signedVc);
+```
+
+Then from the terminal, run:
+```bash
+node index.js
+```
+
+You'll see the JWT-encoded version of your Verifiable Credential similar to the alphanumeric string below:
+```bash
+eyJ0eXAiOiJKV1QiLCJhbGciOiJFZERTQSIsImtpZCI6ImRpZDpkaHQ6bWMxcWl6cnVhOG9pZWZ5cWhyNm9teTZjYzQzNnByY20xc3U1cjNwNzVxazkxdGY2eHcxbyMwIn0.eyJ2YyI6eyJAY29udGV4dCI6WyJodHRwczovL3d3dy53My5vcmcvMjAxOC9jcmVkZW50aWFscy92MSJdLCJ0eXBlIjpbIlZlcmlmaWFibGVDcmVkZW50aWFsIiwiTXlWZXJpZmlhYmxlQ3JlZGVudGlhbCJdLCJpZCI6InVybjp1dWlkOmI2NmE5ZDk3LWNjMzktNDQyYy1iNjFhLTE2YzhkOTJhOGM2NCIsImlzc3VlciI6ImRpZDpkaHQ6bWMxcWl6cnVhOG9pZWZ5cWhyNm9teTZjYzQzNnByY20xc3U1cjNwNzVxazkxdGY2eHcxbyIsImlzc3VhbmNlRGF0ZSI6IjIwMjQtMDUtMDZUMDA6MDk6MTVaIiwiY3JlZGVudGlhbFN1YmplY3QiOnsiaWQiOiJkaWQ6ZGh0Om1jMXFpenJ1YThvaWVmeXFocjZvbXk2Y2M0MzZwcmNtMXN1NXIzcDc1cWs5MXRmNnh3MW8iLCJuYW1lIjoiQWxpY2UgU21pdGgiLCJkb2IiOiIxOTk1LTA3LTA0VDEyOjM0OjU2WiIsImFkZHJlc3MiOiIxMDZ0aCBhbmQgUGFyayBOWSwgVVNBIDAyMTEwIiwicGhvbmVOdW1iZXIiOiI2NzgtOTk5LTgyMTIifSwiZXhwaXJhdGlvbkRhdGUiOiIyMDI2LTA5LTMwVDEyOjM0OjU2WiJ9LCJuYmYiOjE3MTQ5NTQxNTUsImp0aSI6InVybjp1dWlkOmI2NmE5ZDk3LWNjMzktNDQyYy1iNjFhLTE2YzhkOTJhOGM2NCIsImlzcyI6ImRpZDpkaHQ6bWMxcWl6cnVhOG9pZWZ5cWhyNm9teTZjYzQzNnByY20xc3U1cjNwNzVxazkxdGY2eHcxbyIsInN1YiI6ImRpZDpkaHQ6bWMxcWl6cnVhOG9pZWZ5cWhyNm9teTZjYzQzNnByY20xc3U1cjNwNzVxazkxdGY2eHcxbyIsImlhdCI6MTcxNDk1NDE1NSwiZXhwIjoxNzkwNzcxNjk2fQ.pSv5Yp9_Doeotoqf1RPhM6Q_QnoHtPhUzZQr5i1H7ENfXUhdSNTDmsH8FA910jR2yLioPQQZ5cbTlw-PJqJCCw
+```
+
+</details>
+
+#### Try it!
+
+</section>

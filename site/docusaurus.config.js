@@ -5,6 +5,7 @@ require('dotenv').config();
 const lightCodeTheme = require('prism-react-renderer').themes.github;
 const darkCodeTheme = require('prism-react-renderer').themes.dracula;
 const WEB5_VERSION = require('../package.json').dependencies['@web5/api'];
+const WEB5_CREDENTIALS_VERSION = require('../package.json').dependencies['@web5/credentials'];
 const SDK_VERSIONS = require('../sdk-versions.json')
 
 const algoliaApiKey = process.env.DOC_SEARCH_API_KEY;
@@ -48,6 +49,7 @@ let config = {
   // },
   customFields: {
     WEB5_VERSION,
+    WEB5_CREDENTIALS_VERSION,
     feedbackWidgetApiUrl,
     SDK_VERSIONS,
   },
