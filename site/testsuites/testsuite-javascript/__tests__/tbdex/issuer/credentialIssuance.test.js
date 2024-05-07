@@ -53,7 +53,7 @@ issuerBearerDid.document.service.push({
   serviceEndpoint: 'https://exampleIdvEndpoint.com/idv/siopv2/initiate',
 });
 
-await DidDht.publish({ did: issuerDid });
+await DidDht.publish({ did: issuerBearerDid });
 // :snippet-end:
 
 const app = express();
@@ -154,6 +154,19 @@ describe('Sanctions Credential Issuance', () => {
     expect(verificationResult).toHaveProperty('payload');
     expect(verificationResult.payload).toHaveProperty('iss');
     expect(verificationResult.payload).toHaveProperty('sub');
+  });
+
+  test('add service endpoint to existing DID document', async () => {
+    issuerBearerDid.document.service.push({
+      id: 'idv',
+      type: 'IDV',
+      serviceEndpoint: 'https://exampleIdvEndpoint.com/idv/siopv2/initiate',
+    });
+    
+    const updatedDocument = await DidDht.publish({ did: issuerBearerDid });
+    console.log(updatedDocument)
+
+    expect(updatedDocument.didDocument).toHaveProperty('service');
   });
 
   test('.create() creates a credential with expected fields', async () => {
