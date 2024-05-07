@@ -48,7 +48,7 @@ class PfiStructureTest {
     fun `PFI initializes routes`() {
         // :snippet-start: pfiOverviewServerRoutesKt
         tbDexServer.onCreateExchange { call, message, offering, replyTo ->
-            exchangesApiProvider.write(message)
+            exchangesApiProvider.write(message, replyTo ?: "")
             call.respond(HttpStatusCode.Accepted)
         }
 
