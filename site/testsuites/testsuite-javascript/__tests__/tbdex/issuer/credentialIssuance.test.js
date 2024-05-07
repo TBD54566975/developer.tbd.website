@@ -166,6 +166,7 @@ describe('Sanctions Credential Issuance', () => {
     const updatedDocument = await DidDht.publish({ did: issuerBearerDid });
 
     expect(updatedDocument.didDocument).toHaveProperty('service');
+    expect(updatedDocument.didDocument.service.some(service => service.id === 'idv')).toBeTruthy();
   });
 
   test('.create() creates a credential with expected fields', async () => {
