@@ -164,7 +164,6 @@ describe('Sanctions Credential Issuance', () => {
     });
     
     const updatedDocument = await DidDht.publish({ did: issuerBearerDid });
-    console.log(updatedDocument)
 
     expect(updatedDocument.didDocument).toHaveProperty('service');
   });
