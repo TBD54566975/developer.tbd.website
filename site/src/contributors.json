@@ -1,39 +1,39 @@
 [
   {
-    "login": "River",
-    "avatar_url": "https://avatars.githubusercontent.com/u/60234090?v=4",
-    "contributions": ["Community Champion Award"],
-    "description": "You started strong with a huge did:dht create PR to our Web5 project, helped keep the community safe, and were involved in all our events in some way. Thank you so much for being here and being a rock star contributor too. 💞"
-  },
-  {
-    "login": "AlexHsieh",
-    "avatar_url": "https://avatars.githubusercontent.com/u/1450695?v=4",
-    "contributions": ["New Contributor Award"],
-    "description": "You were fearless with your contribution to did:dht tests issue and made an incredible contribution in doing that. Thanks to members like you, we'll be able to quickly resolve issues and address feedback together. Thank you for being here! 🍻"
-  },
-  {
-    "login": "ozipi",
-    "avatar_url": "https://avatars.githubusercontent.com/u/153045?v=4",
-    "contributions": ["Trend Setter Award"],
-    "description": "You were the reason more contributors got involved and your contribution to our developer site project was hugely impactful. Thank you for taking the time to address open issues, you're a star! ⭐"
-  },
-  {
-    "login": "theisiens",
-    "avatar_url": "https://avatars.githubusercontent.com/u/54779423?v=4",
-    "contributions": ["Specialist Contributor Award"],
-    "description": "Your PR supporting Secp256r1 curve signing & verifying was an important verification piece, and we are beyond ecstatic to have you in our community. Thank you for your contribution! 🌟"
-  },
-  {
-    "login": "Gerald G",
-    "avatar_url": "https://cdn.discordapp.com/avatars/917483321284513892/0192ceb71695138fdf6c66559593f1d3?size=1024",
+    "login": "FussofBug5",
+    "avatar_url": "https://cdn.discordapp.com/avatars/1028151700839727235/5de9c5dba1ce252ef26de56f4991d2e7?size=1024",
     "contributions": ["Rising Star Award"],
-    "description": "From taking your inspiration from our livestream and turning it to a Bitstring Status List synthesis to your amazing feedback on tbDEX.io, you add a lot of great vibes and contributions with every thought you share. Thank you for being here! ❤️"
+    "description": "You joined our community and from the get go have been making your best effort to learn Web5 inside and out, from the ground up. Thank you for being part of our community. 💞"
   },
   {
-    "login": "rbe",
-    "avatar_url": "https://cdn.discordapp.com/avatars/114142818460631046/578c2b6bc2d97553021b459478794786?size=1024",
+    "login": "abyteham",
+    "avatar_url": "https://cdn.discordapp.com/avatars/278678395129298955/a36f0ca93cd60c734630c7359700cb87?size=1024",
+    "contributions": ["Rising Star Award"],
+    "description": "From jumping headfirst into a todo app with Web5 to answering questions straight away, it's thanks to members like you that our community is so lively. Thank you for being here.🍻"
+  },
+  {
+    "login": "JosephWeb3",
+    "avatar_url": "https://cdn.discordapp.com/avatars/944829617825533953/fd95590460ceb7dba12e3f85197066f0?size=1024",
+    "contributions": ["Community Champion Award"],
+    "description": "You consistently share feedback and praises for tbDEX, Web5, and open source projects as they benefit the community, you're a star! ⭐"
+  },
+  {
+    "login": "planetnineisaspaceship",
+    "avatar_url": "https://cdn.discordapp.com/avatars/550813645135806485/53f74b594612b30b75fa1729ab77777e?size=1024",
     "contributions": ["Feedback Champion Award"],
-    "description": "You have been consistently supportive and talkative about all things TBD, and you have given our team great feedback already. Thank you so much for being part of our community! 🥰"
+    "description": "Your feedback towards our documentation is one of many reasons being open source is important to us. We couldn't do this without community members like you. Thank you for your contribution! 🌟"
+  },
+  {
+    "login": "liru8394",
+    "avatar_url": "https://cdn.discordapp.com/avatars/856384707058860045/a67976d851aa96c6af90e031b8aafb49?size=1024",
+    "contributions": ["Community Champion Award"],
+    "description": "You consistently ask great questions, are working hard to learn Web5 and help other community members get started just by posting. Thank you for being here! ❤️"
+  },
+  {
+    "login": "sondreb",
+    "avatar_url": "https://cdn.discordapp.com/avatars/185450368782696448/b8531ccdd4257d2091ca4cae6bd6150b?size=1024",
+    "contributions": ["Trendsetter Award"],
+    "description": "You have been consistently supportive of our projects by checking in on progress updates and even answering questions from other community members. Thank you so much for being part of our community! 🥰"
   }
 ]
 
