@@ -123,5 +123,5 @@ At TBD, we're envisioning the future we aspire to create. Follow our journey acr
 * [Discord](https://discord.com/invite/tbd)
 * [Developer Docs](https://developer.tbd.website/docs)
 * [Developer Blog](https://developer.tbd.website/blog)
-* [YouTube](https://www.youtube.com/@TBD54566975)
+* [YouTube](https://www.youtube.com/@tbd.videos)
 * [Weekly Live Stream](https://www.twitch.tv/tbdevs)

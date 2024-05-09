@@ -98,7 +98,7 @@ function DocsIndex() {
         <ExploreCard
           text="Videos"
           icon="/img/tv-yellow-blue.svg"
-          url="https://www.youtube.com/@TBD54566975/videos"
+          url="https://www.youtube.com/@tbd.videos"
         />
         <ExploreCard
           text="Blog Posts"
