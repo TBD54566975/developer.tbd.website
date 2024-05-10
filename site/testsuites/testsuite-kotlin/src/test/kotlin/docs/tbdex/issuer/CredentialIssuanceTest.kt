@@ -61,20 +61,7 @@ private fun createADid() = runBlocking {
     val issuerBearerDid = DidDht.create(InMemoryKeyManager(), options)
     // :snippet-end:
 }
-private fun updateADid() = runBlocking {
-    val keyManager = InMemoryKeyManager()
-    val issuerBearerDid = DidDht.create(keyManager, CreateDidDhtOptions(publish = true))
-    // :snippet-start: updateADidWithAServiceEndpointKT
-    val serviceToAdd = Service.Builder()
-    .id("idv")
-    .type("IDV")
-    .serviceEndpoint(listOf("https://exampleIdvEndpoint.com/idv/siopv2/initiate"))
-    .build()
 
-    issuerBearerDid.document.service.orEmpty() + serviceToAdd
-    DidDht.publish(keyManager, issuerBearerDid.document)
-    // :snippet-end:
-}
 
 class CredentialIssuanceTest {
 

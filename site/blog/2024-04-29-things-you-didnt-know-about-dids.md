@@ -191,4 +191,4 @@ Check out the [documentation](https://developer.tbd.website/docs/web5/build/dece
 
 * Have a question? Ask it in our [Discord](https://dischord.com/invite/tbd); we're happy to help!
 * Eager to start building? Follow the guides in our [documentation](https://developer.tbd.website/docs/).
-* Curious about the entire ecosystem? Watch our [YouTube videos](https://www.youtube.com/@TBD54566975).
+* Curious about the entire ecosystem? Watch our [YouTube videos](https://www.youtube.com/@tbd.videos).
