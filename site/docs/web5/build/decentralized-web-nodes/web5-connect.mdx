@@ -238,21 +238,6 @@ Below are examples of how to use `Web5.connect()` with or without additional opt
 If `connectedDid` is provided, the `agent` property must also be provided.
 <CodeSnippet functionName="connectWithAgentAndConnectedDid" />
 
-##### Connect with password
-It's strongly recommended to set a secure, unique passphrase to prevent unauthorized access to your private data, including your identity and cryptographic keys.
-
-```js
-const { web5, did: userDid } = await Web5.connect({password: 'mySecurePassword'});
-```
-
-#### Retrieve full identity associated with DID
-By default, `Web5.connect()` returns a DID URI. Use the returned DID URI to access your `BearerIdentity` and `BearerDid` 
-
-```js
-const { web5, did } = await Web5.connect();
-
-const bearerIdentity = await web5.agent.identity.get({ didUri: did });
-```
 
 ##### Configure sync interval when connecting to Web5
 Sync defaults to running every 2 minutes and can be set to [any value accepted by ms](https://www.npmjs.com/package/ms). To disable sync set to 'off'.
