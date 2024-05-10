@@ -18,6 +18,13 @@ export async function connectWithAgentAndConnectedDid(existingDid) {
   });
   return did;
 }
+export async function connectAndReturnBearerIdentity() {
+  const { web5, did } = await Web5.connect({});
+  // const bearerIdentity = await web5.agent.identity.get({ didUri: did });
+  console.log(did);
+  console.log(web5);
+  return did;
+}
 
 export async function connectWithSyncConfig() {
   const { web5, did } = await Web5.connect({

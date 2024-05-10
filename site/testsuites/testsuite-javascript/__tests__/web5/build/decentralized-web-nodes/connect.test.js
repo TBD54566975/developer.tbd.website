@@ -1,5 +1,6 @@
 import { test, expect, describe, beforeAll, vi } from 'vitest';
 import {
+  connectAndReturnBearerIdentity,
   connectWithDWNEndpoint,
   connectWithAgentAndConnectedDid,
   connectWithSyncConfig,
@@ -41,5 +42,11 @@ describe('web5-js-api-index', () => {
   test('connect with sync configuration', async () => {
     const did = await connectWithSyncConfig();
     expect(did).toBeTypeOf('string');
+  });
+
+  test('connect and return bearer identity', async () => {
+    const bearerIdentity = await connectAndReturnBearerIdentity();
+    console.log(bearerIdentity)
+    // expect(bearerIdentity.did.uri).toBeTypeOf('string');
   });
 });
