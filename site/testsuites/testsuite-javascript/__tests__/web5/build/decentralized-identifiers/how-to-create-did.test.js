@@ -58,6 +58,7 @@ import { DidJwk } from '@web5/dids'
 
     // DID Document
     const didDocument = JSON.stringify(didDht.document);
+    
     // :snippet-end:
 
     expect(did).toMatch(/^did:dht:/);

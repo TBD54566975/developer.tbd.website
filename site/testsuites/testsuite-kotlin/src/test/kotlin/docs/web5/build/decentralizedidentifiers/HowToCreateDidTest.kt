@@ -27,6 +27,7 @@ internal class HowToCreateDidTest {
 
     //DID Document
     val didDocument = portableDid.didDocument
+    
     // :snippet-end:
 
     assertNotNull(did, "DID should not be null")
