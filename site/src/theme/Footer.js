@@ -44,7 +44,7 @@ export function Footer() {
       },
       {
         src: '/img/youtube-icon.svg',
-        url: 'https://www.youtube.com/@tbd.videos',
+        url: 'https://www.youtube.com/channel/UCRAYhEkp3fEuYQAzteNqHsA/featured',
         altText: 'YouTube button',
         title: 'Go to YouTube',
       },

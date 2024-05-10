@@ -227,7 +227,7 @@ function CommunityIndex() {
           skill-building, 🎮 Twitch Streams for everything fun. Miss an event?
           checkout our{' '}
           <a
-            href="https://www.youtube.com/@tbd.videos"
+            href="https://www.youtube.com/playlist?list=PLji3z0eqSkXEws2wrNjyVyW3xQTW_dNlq"
             target="_blank"
             rel="noopener noreferrer"
           >
