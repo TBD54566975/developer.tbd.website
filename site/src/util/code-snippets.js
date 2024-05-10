@@ -1,14 +1,92 @@
 import { Web5 } from '@web5/api';
+import { VerifiableCredential } from '@web5/credentials';
 
-export async function didCreate() {
-  return await Web5.connect();
+export function didCreate() {
+  return async function () {
+    return await Web5.connect();
+  }
 }
 
-export async function createTextRecord(web5, textData) {
-  return await web5.dwn.records.create({
-    data: textData,
-    message: {
-      dataFormat: 'text/plain',
-    },
-  });
+export function getBearerId(web5, didUri) {
+  return async function () {
+    return await web5.agent.identity.get({ didUri });
+  }
+}
+
+export function createQuickstartVc(web5, aliceDid) {
+  return async function () {
+    class UserDetailsCredential {
+      constructor(name, dob, address, phoneNumber) {
+        this.name = name;
+        this.dob = dob;
+        this.address = address;
+        this.phoneNumber = phoneNumber;
+      }
+    }
+
+    return await VerifiableCredential.create({
+      type: 'UserDetailsCredential',
+      issuer: aliceDid,
+      subject: aliceDid,
+      expirationDate: '2026-09-30T12:34:56Z',
+      data: new UserDetailsCredential(
+        'Alice Smith',
+        '1995-07-04T12:34:56Z',
+        '106th and Park NY, USA 02110',
+        '678-999-8212'
+      )
+    });
+  }
+}
+
+export function signQuickstartVc(web5, aliceDid) {
+  return async function () {
+    class UserDetailsCredential {
+      constructor(name, dob, address, phoneNumber) {
+        this.name = name;
+        this.dob = dob;
+        this.address = address;
+        this.phoneNumber = phoneNumber;
+      }
+    }
+
+    const vc = await VerifiableCredential.create({
+      type: 'UserDetailsCredential',
+      issuer: aliceDid,
+      subject: aliceDid,
+      expirationDate: '2026-09-30T12:34:56Z',
+      data: new UserDetailsCredential(
+        'Alice Smith',
+        '1995-07-04T12:34:56Z',
+        '106th and Park NY, USA 02110',
+        '678-999-8212'
+      )
+    });
+
+    return await vc.sign(({ did: alice.did }));
+  }
+}
+
+export function writeVcToDwn(web5, vc) {
+  return async function () {
+    return await web5.dwn.records.create({
+      data: vc,
+      message: {
+        dataFormat: 'application/vc+jwt',
+      },
+    });
+  }
+}
+
+export function readVcFromDwn(web5, recordId) {
+  return async function () {
+    const { record } = await web5.dwn.records.get({ recordId });
+    return await record.data.json();
+  }
+}
+
+export function parseVc(web5, vc) {
+  return async function () {
+    return await VerifiableCredential.parseJwt({ vcJwt: vc })
+  }
 }
