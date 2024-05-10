@@ -11,6 +11,7 @@ import Web5QuickstartReadVcFromDwn from './_quickstart-08-read-vc-from-dwn.mdx';
 import Web5QuickstartParseVc from './_quickstart-09-parse-vc.mdx';
 
 import Web5QuickstartNextSteps from './_quickstart-10-next-steps.mdx';
+import { Web5 } from '@web5/api';
 
 let web5;
 let did;
