@@ -21,12 +21,34 @@ describe('write-to-dwn', () => {
   });
 
   test('createTextRecord creates a text record', async () => {
-    const record = await createTextRecord(web5);
+    // :snippet-start: createTextRecord
+    // Create a plain text record
+    const { record } = await web5.dwn.records.create({
+      data: {
+        content: "Hello Web5",
+        description: "Keep Building!"
+      },
+      message: {
+        dataFormat: 'application/json'
+      }
+    });
+    // :snippet-end:
     expect(record).toBeDefined();
   });
 
   test('createJsonRecord creates a JSON record', async () => {
-    const record = await createJsonRecord(web5);
+    // :snippet-start: createJsonRecord
+    // Create a JSON record
+    const { record } = await web5.dwn.records.create({
+      data: {
+        content: "Hello Web5",
+        description: "Keep Building!"
+      },
+      message: {
+        dataFormat: 'application/json'
+      }
+    });
+     // :snippet-end:
     expect(record).toBeDefined();
   });
 
@@ -61,4 +83,35 @@ describe('write-to-dwn', () => {
     const record = await createMixedRecord(username, messageText, imageFile);
     expect(record).toBeDefined();
   });
+});
+
+test('createRecordFrom creates a record from an existing record', async () => {
+  const { record } = await web5.dwn.records.create({
+    data: 'Hello, Web5!',
+    message: {
+      dataFormat: 'text/plain',
+    },
+  });
+  // :snippet-start: createRecordFrom
+  // Get existing record by id
+  let { record: existingRecord } = await web5.dwn.records.read({
+    message: {
+      filter: {
+        recordId: record.id,
+      },
+    },
+  });
+
+  // Create a new record from an existing record
+  const { record: newRecord } = await web5.dwn.records.createFrom({
+    record: existingRecord,
+    data: 'I am a new version of the original record!',
+    message: {
+      dataFormat: 'application/json',
+      published: true,
+    },
+  });
+  // :snippet-end:
+  const newRecordDataText = await newRecord.data.text();
+  expect(newRecordDataText).toBe('I am a new version of the original record!');
 });
