@@ -150,18 +150,9 @@ test('createRecordFrom creates a record from an existing record', async () => {
     },
   });
   // :snippet-start: createRecordFrom
-  // Get original record by id
-  let { record: existingRecord } = await web5.dwn.records.read({
-    message: {
-      filter: {
-        recordId: originalRecord.id,
-      },
-    },
-  });
-
   // Create a new version of the record based on the existing record
   const { record: newVersionRecord } = await web5.dwn.records.createFrom({
-    record: existingRecord,
+    record: originalRecord,
     data: 'I am a new version of the original record!',
     message: {
       dataFormat: 'application/json',
