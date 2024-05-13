@@ -155,7 +155,7 @@ test('createRecordFrom creates a record from an existing record', async () => {
     record: originalRecord,
     data: 'I am a new version of the original record!',
     message: {
-      dataFormat: 'application/json',
+      dataFormat: 'text/plain',
       published: true,
     },
   });
