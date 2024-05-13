@@ -150,7 +150,7 @@ test('createRecordFrom creates a record from an existing record', async () => {
     },
   });
   // :snippet-start: createRecordFrom
-  // Create a new version of the record based on the existing record
+  // Create a new version of the record based on the original record
   const { record: newVersionRecord } = await web5.dwn.records.createFrom({
     record: originalRecord,
     data: 'I am a new version of the original record!',
