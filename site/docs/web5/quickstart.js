@@ -15,11 +15,13 @@ import { Web5 } from '@web5/api';
 
 let web5;
 let did;
-let bearerId;
+let bearerDid;
 let createRecordResult;
 
 let didCreate;
-let getBearerId;
+let getBearerDid;
+let createQuickstartVc;
+let signQuickstartVc;
 let createTextRecord;
 
 function parseDid() {
@@ -32,11 +34,11 @@ function parseDid() {
 
 function update() {
   if (!didCreateOutputSummaryCode.innerHTML) {
-    dwnWriteInputText.disabled = true;
-    dwnWriteInputButton.disabled = true;
-    dwnWriteInputProgress.style.visibility = 'hidden';
-    dwnWriteOutputSummary.innerHTML = '...';
-    dwnWriteOutputDetailsTextarea.value = '';
+    createVcInputText.disabled = true;
+    createVcInputButton.disabled = true;
+    createVcInputProgress.style.visibility = 'hidden';
+    createVcOutputSummary.innerHTML = '...';
+    createVcOutputDetailsTextarea.value = '';
   }
 }
 
@@ -51,11 +53,17 @@ let getBearerIdOutputSummaryCode;
 let getBearerIdOutputDetailsTextarea;
 
 
-let dwnWriteInputText;
-let dwnWriteInputButton;
-let dwnWriteInputProgress;
-let dwnWriteOutputSummary;
-let dwnWriteOutputDetailsTextarea;
+let createVcInputText;
+let createVcInputButton;
+let createVcInputProgress;
+let createVcOutputSummary;
+let createVcOutputDetailsTextarea;
+
+let signVcInputText;
+let signVcInputButton;
+let signVcInputProgress;
+let signVcOutputSummaryCode;
+let signVcOutputDetailsTextarea;
 
 function Web5Quickstart() {
   
@@ -63,7 +71,9 @@ function Web5Quickstart() {
     const loadWeb5 = async () => {
       const codeSnippetsUtils = await import('../../src/util/code-snippets');
       didCreate = codeSnippetsUtils.didCreate;
-      getBearerId = codeSnippetsUtils.getBearerId;
+      getBearerDid = codeSnippetsUtils.getBearerDid;
+      createQuickstartVc = codeSnippetsUtils.createQuickstartVc;
+      signQuickstartVc = codeSnippetsUtils.signQuickstartVc;
       createTextRecord = codeSnippetsUtils.createTextRecord;
     };
     loadWeb5();
@@ -85,6 +95,31 @@ function Web5Quickstart() {
     getBearerIdInputProgress = document.querySelector('#get-bearer-id .input progress');
     getBearerIdOutputSummaryCode = document.querySelector('#get-bearer-id .output details summary code');
     getBearerIdOutputDetailsTextarea = document.querySelector('#get-bearer-id .output details textarea');
+
+    createVcInputText = document.querySelector('#create-vc .input input');
+    createVcInputButton = document.querySelector('#create-vc .input button');
+    createVcInputProgress = document.querySelector(
+      '#create-vc .input progress',
+    );
+    createVcOutputSummary = document.querySelector(
+      '#create-vc .output details summary',
+    );
+    createVcOutputDetailsTextarea = document.querySelector(
+      '#create-vc .output details textarea',
+    );
+
+    signVcInputText = document.querySelector('#sign-vc .input input');
+    signVcInputButton = document.querySelector('#sign-vc .input button');
+    signVcInputProgress = document.querySelector(
+      '#sign-vc .input progress',
+    );
+    signVcOutputSummaryCode = document.querySelector(
+      '#sign-vc .output details summary',
+    );
+    signVcOutputDetailsTextarea = document.querySelector(
+      '#sign-vc .output details textarea',
+    );
+
 
     // event listeners
 
@@ -119,29 +154,14 @@ function Web5Quickstart() {
       // const result = await getBearerId(web5, "your-did-uri"); // Adjust 'your-did-uri' accordingly
 
       
-      const performGetBearerId = getBearerId(web5, did);
-        performGetBearerId().then(bearerId => {
-   
-          console.log(bearerId)
-          const rebuiltBearerIdentity = {
-            did: {
-             document: bearerId.did.document,
-              keyManager: {
-                _agent: 'Web5UserAgent',
-                _algorithmInstances: bearerId.did.keyManager._algorithmInstances,
-                _keyStore: bearerId.did.keyManager._keyStore,
-              },
-              uri: bearerId.did.uri,
-              metadata: bearerId.did.metadata,
+      const performGetBearerId = getBearerDid(web5, did);
+      performGetBearerId().then(bearerDid => {
 
-            },
-            metadata: bearerId.metadata,
-          }
-
-          const htmlContent = objectToDetailsHTML(rebuiltBearerIdentity, 'BearerIdentity');
-       //   console.log(htmlContent)
-          bearerId = bearerId;
-          getBearerIdOutputSummaryCode.innerHTML = htmlContent;
+         
+        getBearerIdOutputSummaryCode.innerHTML = '&#x2714; Bearer DID created!';
+        getBearerIdInputProgress.style.visibility = 'hidden';
+        getBearerIdInputButton.disabled = false;
+        createVcInputText.disabled = false;
         });
 
     
@@ -151,19 +171,51 @@ function Web5Quickstart() {
       // getBearerIdInputProgress.style.visibility = 'hidden';
     });
 
+    createVcInputButton.addEventListener('click', async () => {
+
+      createVcInputButton.disabled = true;
+      createVcInputProgress.style.visibility = 'visible';
+
+      let inputName = createVcInputText.value;
+
+      const performCreateQuickstartVc = createQuickstartVc(web5, did, inputName);
+      performCreateQuickstartVc().then(vc => {
+        console.log(vc);
+        createVcInputButton.disabled = false;
+        createVcInputProgress.style.visibility = 'hidden';
+        createVcOutputSummary.innerHTML = JSON.stringify(vc.vcDataModel.credentialSubject, null, 2);
+
+      });
+    });
+
+    signVcInputButton.addEventListener('click', async () => {
+      signVcInputButton.disabled = true;
+      signVcInputProgress.style.visibility = 'visible';
+
+      // // Assuming 'web5' and 'didUri' are available here
+      // const result = await getBearerId(web5, "your-did-uri"); // Adjust 'your-did-uri' accordingly
+
+
+      const performSignVc = signQuickstartVc(web5, did);
+      performSignVc().then(signedVc => {
+        signVcOutputSummaryCode.innerHTML = signedVc;
+        signVcInputProgress.style.visibility = 'hidden';
+        signVcInputButton.disabled = false;
+      //  createVcInputText.disabled = false;
+      });
+
+
+      // getBearerIdOutputDetailsTextarea.value = JSON.stringify(result, null, 2);
+
+      // getBearerIdInputButton.disabled = false;
+      // getBearerIdInputProgress.style.visibility = 'hidden';
+    });
+
+
+
+    
+
   }, []);
-
-  function objectToDetailsHTML(data, name = 'Root') {
-    if (typeof data !== 'object' || data === null) {
-      return `<div>${name}: ${String(data)}</div>`;  // Handle non-object and null
-    }
-
-    const details = Object.keys(data).map(key => {
-      return objectToDetailsHTML(data[key], key);
-    }).join('');
-
-    return `<details><summary>${name}</summary>${details}</details>`;
-  }
 
   return (
     <div>
@@ -228,7 +280,64 @@ function Web5Quickstart() {
       </section>
 
       <Web5QuickstartCreateVc />
+
+      <section id="create-vc">
+        <div className="input input-container">
+          <label htmlFor="create-vc-input">Your message</label>
+          <input
+            placeholder="Write name in me!"
+            type="text"
+            disabled
+            id="create-vc-input"
+          />
+        </div>
+        <div className="sandbox-container">
+          <div className="input">
+            <button>Run ›</button>
+            <label className="sr-only" htmlFor="create-vc-progress">
+              Create Vc Progress
+            </label>
+            <progress id="create-vc-progress"></progress>
+          </div>
+          <div className="output">
+            <details>
+              <summary>
+                <code>
+                  <span className="sandbox-placeholder">
+                    Your VC will appear here
+                  </span>
+                </code>
+              </summary>
+              <textarea readOnly></textarea>
+            </details>
+          </div>
+        </div>
+      </section>
+
       <Web5QuickstartSignVc />
+
+      <section id="sign-vc" className="sandbox-container">
+        <div className="input">
+          <button>Run ›</button>
+          <label className="sr-only" htmlFor="sign-vc-progress">
+            Signed VC Progress
+          </label>
+          <progress id="sign-vc-progress"></progress>
+        </div>
+        <div className="output">
+          <details className="sandbox-details">
+            <summary>
+              <code>
+                <span className="sandbox-placeholder">
+                  Your JWT will appear here
+                </span>
+              </code>
+            </summary>
+            <textarea spellCheck="false"></textarea>
+          </details>
+        </div>
+      </section>
+
       <Web5QuickStartWriteVcToDwn />
       <Web5QuickstartReadVcFromDwn />
       <Web5QuickstartParseVc />

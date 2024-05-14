@@ -32,11 +32,11 @@ describe('/site/tests/quickstart.test.js', async () => {
     expect(didRegex.test(aliceDid)).toBe(true);
   });
 
-  test('getBearerId returns a bearer identity', async () => {
-    // :snippet-start: getBearerId
-    const alice = await web5.agent.identity.get({ didUri: aliceDid });
+  test('getBearerDid returns a bearer identity', async () => {
+    // :snippet-start: getBearerDid
+    const { did: aliceBearerDid } = await web5.agent.identity.get({ didUri: did });
     // :snippet-end:
-    expect(alice.did.uri).toBe(aliceDid);
+    expect(aliceBearerDid.uri).toBe(aliceDid);
   });
 
   test('createQuickstartVc returns a vc', async () => {

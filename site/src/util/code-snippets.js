@@ -7,13 +7,14 @@ export function didCreate() {
   }
 }
 
-export function getBearerId(web5, didUri) {
+export function getBearerDid(web5, didUri) {
   return async function () {
-    return await web5.agent.identity.get({ didUri });
+    const { did: aliceBearerDid } = await web5.agent.identity.get({ didUri });
+    return await aliceBearerDid;
   }
 }
 
-export function createQuickstartVc(web5, aliceDid) {
+export function createQuickstartVc(web5, aliceDid, inputName, inputDate) {
   return async function () {
     class UserDetailsCredential {
       constructor(name, dob, address, phoneNumber) {
@@ -30,8 +31,8 @@ export function createQuickstartVc(web5, aliceDid) {
       subject: aliceDid,
       expirationDate: '2026-09-30T12:34:56Z',
       data: new UserDetailsCredential(
-        'Alice Smith',
-        '1995-07-04T12:34:56Z',
+        inputName,
+        inputDate,
         '106th and Park NY, USA 02110',
         '678-999-8212'
       )
@@ -39,8 +40,14 @@ export function createQuickstartVc(web5, aliceDid) {
   }
 }
 
-export function signQuickstartVc(web5, aliceDid) {
+export function signQuickstartVc(web5, aliceDid) {  
   return async function () {
+
+   // console.log(aliceDid)
+    const { did: aliceBearerDid } = await web5.agent.identity.get({ didUri: aliceDid });
+
+    console.log(aliceBearerDid)
+    
     class UserDetailsCredential {
       constructor(name, dob, address, phoneNumber) {
         this.name = name;
@@ -63,7 +70,8 @@ export function signQuickstartVc(web5, aliceDid) {
       )
     });
 
-    return await vc.sign(({ did: alice.did }));
+    return await vc.sign(({ did: aliceBearerDid }));
+  
   }
 }
 
