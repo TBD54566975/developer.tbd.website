@@ -43,7 +43,7 @@ import io.ktor.http.HttpStatusCode
 class KnownCustomerCredentialIssuerTest {
 
     // :snippet-start: KnownCustomerCredentialsClassKT
-    data class KccCredential(val country_of_residence: String, val tier: String?)
+    data class KccCredential(val countryOfResidence: String, val tier: String?)
     data class Evidence(val kind: String, val checks: List<String>)
     // :snippet-end:
 
@@ -608,7 +608,7 @@ class KnownCustomerCredentialIssuerTest {
                         subject = customersDidUri, // Customer's DID string from the verified JWT
                         expirationDate = expirationDate,
                         evidence = evidence,
-                        data = KccCredential(country_of_residence = "US", tier = "Gold")
+                        data = KccCredential(countryOfResidence = "US", tier = "Gold")
                     )
 
                     val credentialToken = knownCustomerCredential.sign(

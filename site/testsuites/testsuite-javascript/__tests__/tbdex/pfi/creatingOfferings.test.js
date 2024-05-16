@@ -43,7 +43,7 @@ describe("PFI: Offerings", () => {
                       }
                     },
                     {
-                      path: ["$.credentialSubject.country_of_residence"],
+                      path: ["$.credentialSubject.countryOfResidence"],
                       filter: {
                         type: "string",
                         const: "US"
