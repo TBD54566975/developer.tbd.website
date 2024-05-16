@@ -355,7 +355,7 @@ app.post('/token', async (req, res) => {
 class KccCredential {
   constructor(country, tier, credentialSchema, evidence) {
     this.data = {
-      country_of_residence: country,
+      countryOfResidence: country,
       tier: tier, // optional
     };
     this.credentialSchema = credentialSchema;
@@ -441,7 +441,7 @@ app.post('/credentials', async (req, res) => {
       subject: customersDidUri, // Customer's DID string from the verified JWT
       expirationDate: '2026-05-19T08:02:04Z',
       data: {
-        country_of_residence: kccCredentialInstance.data.country_of_residence,
+        countryOfResidence: kccCredentialInstance.data.countryOfResidence,
         tier: kccCredentialInstance.data.tier, // optional
       },
       credentialSchema: kccCredentialInstance.credentialSchema,

@@ -49,7 +49,7 @@ class CreatingOfferingsTest {
                 )
               ),
               FieldV2(
-                path = listOf("$.credentialSubject.country_of_residence"),
+                path = listOf("$.credentialSubject.countryOfResidence"),
                 filterJson = objectMapper.readTree(
                   """{"type": "string", "const": "US"}"""
                 )
