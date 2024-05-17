@@ -13,6 +13,9 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertDoesNotThrow
 import web5.sdk.dids.did.BearerDid
 import web5.sdk.credentials.VerifiableCredential
+// :prepend-start: KnownCustomerCredentialsClassKT
+import web5.sdk.credentials.CredentialSchema
+// :prepend-end:
 import web5.sdk.jose.jwt.Jwt
 import web5.sdk.crypto.InMemoryKeyManager
 import web5.sdk.dids.methods.dht.CreateDidDhtOptions
@@ -608,7 +611,11 @@ class KnownCustomerCredentialIssuerTest {
                         subject = customersDidUri, // Customer's DID string from the verified JWT
                         expirationDate = expirationDate,
                         evidence = evidence,
-                        data = KccCredential(countryOfResidence = "US", tier = "Gold")
+                        data = KccCredential(countryOfResidence = "US", tier = "Gold"),
+                        credentialSchema = CredentialSchema(
+                            id = "https://schema.org/PFI",
+                            type = "JsonSchema"
+                        ),
                     )
 
                     val credentialToken = knownCustomerCredential.sign(
@@ -632,5 +639,3 @@ class KnownCustomerCredentialIssuerTest {
         }
     }
 }
-
-
