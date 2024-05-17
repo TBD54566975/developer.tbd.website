@@ -62,13 +62,28 @@ class KnownCustomerCredentialIssuerTest {
         val customerBearerDid = generateTestDid()
         val dateFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'")
         val expirationDate: Date = dateFormat.parse("2026-05-19T08:02:04Z")
+        val evidence = listOf(
+            Evidence(
+                kind = "document_verification",
+                checks = listOf("passport", "utility_bill")
+                ),
+            Evidence(
+                kind = "sanction_screening",
+                checks = listOf("PEP")
+                )
+            )
 
         val knownCustomerCredential = VerifiableCredential.create(
             type = "KnownCustomerCredential",
             issuer = issuerBearerDid.uri.toString(),
             subject = customerBearerDid.uri.toString(),
             expirationDate = expirationDate,
-            data = KccCredential("US" , "Gold")
+            data = KccCredential("US" , "Gold"),
+            evidence = evidence,
+            credentialSchema = CredentialSchema(
+                id = "https://schema.org/PFI",
+                type = "JsonSchema"
+            ),
         )
 
         val credentialToken = knownCustomerCredential.sign(issuerBearerDid)
