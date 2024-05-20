@@ -13,6 +13,9 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertDoesNotThrow
 import web5.sdk.dids.did.BearerDid
 import web5.sdk.credentials.VerifiableCredential
+// :prepend-start: KnownCustomerCredentialsClassKT
+import web5.sdk.credentials.CredentialSchema
+// :prepend-end:
 import web5.sdk.jose.jwt.Jwt
 import web5.sdk.crypto.InMemoryKeyManager
 import web5.sdk.dids.methods.dht.CreateDidDhtOptions
@@ -43,7 +46,7 @@ import io.ktor.http.HttpStatusCode
 class KnownCustomerCredentialIssuerTest {
 
     // :snippet-start: KnownCustomerCredentialsClassKT
-    data class KccCredential(val country_of_residence: String, val tier: String?)
+    data class KccCredential(val countryOfResidence: String, val tier: String?)
     data class Evidence(val kind: String, val checks: List<String>)
     // :snippet-end:
 
@@ -59,13 +62,28 @@ class KnownCustomerCredentialIssuerTest {
         val customerBearerDid = generateTestDid()
         val dateFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'")
         val expirationDate: Date = dateFormat.parse("2026-05-19T08:02:04Z")
+        val evidence = listOf(
+            Evidence(
+                kind = "document_verification",
+                checks = listOf("passport", "utility_bill")
+                ),
+            Evidence(
+                kind = "sanction_screening",
+                checks = listOf("PEP")
+                )
+            )
 
         val knownCustomerCredential = VerifiableCredential.create(
             type = "KnownCustomerCredential",
             issuer = issuerBearerDid.uri.toString(),
             subject = customerBearerDid.uri.toString(),
             expirationDate = expirationDate,
-            data = KccCredential("US" , "Gold")
+            data = KccCredential("US" , "Gold"),
+            evidence = evidence,
+            credentialSchema = CredentialSchema(
+                id = "https://schema.org/PFI",
+                type = "JsonSchema"
+            ),
         )
 
         val credentialToken = knownCustomerCredential.sign(issuerBearerDid)
@@ -608,7 +626,11 @@ class KnownCustomerCredentialIssuerTest {
                         subject = customersDidUri, // Customer's DID string from the verified JWT
                         expirationDate = expirationDate,
                         evidence = evidence,
-                        data = KccCredential(country_of_residence = "US", tier = "Gold")
+                        data = KccCredential(countryOfResidence = "US", tier = "Gold"),
+                        credentialSchema = CredentialSchema(
+                            id = "https://schema.org/PFI",
+                            type = "JsonSchema"
+                        ),
                     )
 
                     val credentialToken = knownCustomerCredential.sign(
@@ -632,5 +654,3 @@ class KnownCustomerCredentialIssuerTest {
         }
     }
 }
-
-

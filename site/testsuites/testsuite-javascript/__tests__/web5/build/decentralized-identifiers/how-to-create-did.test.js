@@ -58,10 +58,7 @@ import { DidJwk } from '@web5/dids'
 
     // DID Document
     const didDocument = JSON.stringify(didDht.document);
-
-    // Republish DID 
-    const republishedDid = await DidDht.publish({did: didDht});
-
+    
     // :snippet-end:
 
     expect(did).toMatch(/^did:dht:/);
