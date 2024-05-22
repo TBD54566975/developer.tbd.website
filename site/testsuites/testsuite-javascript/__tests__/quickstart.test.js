@@ -208,5 +208,3 @@ describe('/site/tests/quickstart.test.js', async () => {
   });
 
 });
-
-function getFrontPageHtml(pariss) { }
