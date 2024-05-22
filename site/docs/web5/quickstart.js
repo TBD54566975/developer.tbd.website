@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import Web5QuickstartIntro from './_quickstart-01-intro.mdx';
 import Web5QuickstartPrereqsAndInstallation from './_quickstart-02-prereqs-and-installation.mdx';
 import Web5QuickstartCreateDid from './_quickstart-03-create-did.mdx';
-import Web5QuickStartGetBearerIdentity from './_quickstart-04-get-bearer-id.mdx';
+import Web5QuickStartGenerateBearerDid from './_quickstart-04-generate-bearer-did.mdx';
 import Web5QuickstartCreateVc from './_quickstart-05-create-vc.mdx';
 import Web5QuickstartSignVc from './_quickstart-06-sign-vc.mdx';
 import Web5QuickStartWriteVcToDwn from './_quickstart-07-write-vc-to-dwn.mdx';
@@ -53,10 +53,10 @@ let didCreateInputProgress;
 let didCreateOutputSummaryCode;
 let didCreateOutputDetailsTextarea;
 
-let getBearerIdInputButton;
-let getBearerIdInputProgress;
-let getBearerIdOutputSummaryCode;
-let getBearerIdOutputDetailsTextarea;
+let getBearerDidInputButton;
+let getBearerDidInputProgress;
+let getBearerDidOutputSummaryCode;
+let getBearerDidOutputDetailsTextarea;
 
 let createVcInputText;
 let createVcInputButton;
@@ -123,10 +123,10 @@ function Web5Quickstart() {
       '#did-create .output details textarea',
     );
 
-    getBearerIdInputButton = document.querySelector('#get-bearer-id .input button');
-    getBearerIdInputProgress = document.querySelector('#get-bearer-id .input progress');
-    getBearerIdOutputSummaryCode = document.querySelector('#get-bearer-id .output details summary code');
-    getBearerIdOutputDetailsTextarea = document.querySelector('#get-bearer-id .output details textarea');
+    getBearerDidInputButton = document.querySelector('#get-bearer-did .input button');
+    getBearerDidInputProgress = document.querySelector('#get-bearer-did .input progress');
+    getBearerDidOutputSummaryCode = document.querySelector('#get-bearer-did .output details summary code');
+    getBearerDidOutputDetailsTextarea = document.querySelector('#get-bearer-did .output details textarea');
 
     createVcInputText = document.querySelector('#create-vc .input input');
     createVcInputButton = document.querySelector('#create-vc .input button');
@@ -214,18 +214,18 @@ function Web5Quickstart() {
       update();
     });
 
-    getBearerIdInputButton.addEventListener('click', async () => {
-      getBearerIdInputButton.disabled = true;
-      getBearerIdInputProgress.style.visibility = 'visible';
+    getBearerDidInputButton.addEventListener('click', async () => {
+      getBearerDidInputButton.disabled = true;
+      getBearerDidInputProgress.style.visibility = 'visible';
 
       const performGetBearerId = getBearerDid(web5, did);
       performGetBearerId().then(bearerDid => {
         bearerDidVar = bearerDid;
 
-        getBearerIdOutputSummaryCode.innerHTML = '&#x2714; Bearer DID created!';
+        getBearerDidOutputSummaryCode.innerHTML = '&#x2714; Bearer DID created!';
         setIsBearerDidCreated(true);
-        getBearerIdInputProgress.style.visibility = 'hidden';
-        getBearerIdInputButton.disabled = false;
+        getBearerDidInputProgress.style.visibility = 'hidden';
+        getBearerDidInputButton.disabled = false;
         createVcInputText.disabled = false;
       });
     });
@@ -343,22 +343,22 @@ function Web5Quickstart() {
         </div>
       </section>
 
-      <Web5QuickStartGetBearerIdentity />
+      <Web5QuickStartGenerateBearerDid />
 
-      <section id="get-bearer-id" className="sandbox-container">
+      <section id="get-bearer-did" className="sandbox-container">
         <div className="input">
           <button disabled={!isDidCreated}>Run ›</button>
-          <label className="sr-only" htmlFor="get-bearer-id-progress">
-            Bearer Identity Creation Progress
+          <label className="sr-only" htmlFor="get-bearer-did-progress">
+            Bearer DID Creation Progress
           </label>
-          <progress id="get-bearer-id-progress"></progress>
+          <progress id="get-bearer-did-progress"></progress>
         </div>
         <div className="output">
           <details className="sandbox-details">
             <summary>
               <code>
                 <span className="sandbox-placeholder">
-                  Your Bearer Identity will appear here
+                  Your Bearer DID result will appear here
                 </span>
               </code>
             </summary>
@@ -371,9 +371,9 @@ function Web5Quickstart() {
 
       <section id="create-vc">
         <div className="input input-container">
-          <label htmlFor="create-vc-input">Your message</label>
+          <label htmlFor="create-vc-input">Your username</label>
           <input
-            placeholder="Write name in me!"
+            placeholder="Enter a username in me!"
             type="text"
             disabled
             id="create-vc-input"
@@ -383,7 +383,7 @@ function Web5Quickstart() {
           <div className="input">
             <button disabled={!isBearerDidCreated}>Run ›</button>
             <label className="sr-only" htmlFor="create-vc-progress">
-              Create Vc Progress
+              Create VC Progress
             </label>
             <progress id="create-vc-progress"></progress>
           </div>
@@ -441,7 +441,7 @@ function Web5Quickstart() {
             <summary>
               <code>
                 <span className="sandbox-placeholder">
-                  Your write result will appear here
+                  The VC stored in your DWN will appear here
                 </span>
               </code>
             </summary>

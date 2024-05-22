@@ -15,25 +15,25 @@ export function getBearerDid(web5, didUri) {
 }
 
 export function createQuickstartVc(aliceDid, inputName) {
+  const todaysDate = new Date().toISOString().split('T')[0];
   return async function () {
-    class UserDetailsCredential {
-      constructor(name, dob, address, phoneNumber) {
-        this.name = name;
-        this.dob = dob;
-        this.address = address;
-        this.phoneNumber = phoneNumber;
+    class Web5QuickstartCompletionCredential {
+      constructor(username, completionDate, expertiseLevel) {
+        this.username = username || '@alicesmith123';
+        this.completionDate = completionDate;
+        this.expertiseLevel = expertiseLevel;
       }
     }
 
     return await VerifiableCredential.create({
-      type: 'UserDetailsCredential',
+      type: 'Web5QuickstartCompletionCredential',
       issuer: aliceDid,
       subject: aliceDid,
       expirationDate: '2026-09-30T12:34:56Z',
-      data: new UserDetailsCredential(
+      data: new Web5QuickstartCompletionCredential(
         inputName,
-        '106th and Park NY, USA 02110',
-        '678-999-8212'
+        todaysDate,
+        'Beginner',
       )
     });
   }

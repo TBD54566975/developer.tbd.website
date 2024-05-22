@@ -34,33 +34,30 @@ describe('/site/tests/quickstart.test.js', async () => {
 
   test('getBearerDid returns a bearer identity', async () => {
     // :snippet-start: getBearerDid
-    const { did: aliceBearerDid } = await web5.agent.identity.get({ didUri: did });
+    const { did: aliceBearerDid } = await web5.agent.identity.get({ didUri: aliceDid });
     // :snippet-end:
     expect(aliceBearerDid.uri).toBe(aliceDid);
   });
 
   test('createQuickstartVc returns a vc', async () => {
-    const alice = await web5.agent.identity.get({ didUri: aliceDid });
     // :snippet-start: createQuickstartVc
-    class UserDetailsCredential {
-      constructor(name, dob, address, phoneNumber) {
-        this.name = name;
-        this.dob = dob;
-        this.address = address;
-        this.phoneNumber = phoneNumber;
+    class Web5QuickstartCompletionCredential {
+      constructor(username, completionDate, expertiseLevel) {
+        this.username = username;
+        this.completionDate = completionDate;
+        this.expertiseLevel = expertiseLevel;
       }
     }
 
     const vc = await VerifiableCredential.create({
-      type: 'UserDetailsCredential',
-      issuer: alice.did.uri,
-      subject: alice.did.uri,
+      type: 'Web5QuickstartCompletionCredential',
+      issuer: aliceDid,
+      subject: aliceDid,
       expirationDate: '2026-09-30T12:34:56Z',
-      data: new UserDetailsCredential(
-        'Alice Smith',
-        '1995-07-04T12:34:56Z',
-        '106th and Park NY, USA 02110',
-        '678-999-8212'
+      data: new Web5QuickstartCompletionCredential(
+        '@alicesmith123',
+        '2024-05-22',
+        'Beginner',
       )
     });
     // :snippet-end:
@@ -68,7 +65,7 @@ describe('/site/tests/quickstart.test.js', async () => {
   });
 
   test('signQuickstartVc returns a jwt', async () => {
-    const alice = await web5.agent.identity.get({ didUri: aliceDid });
+    const { did: aliceBearerDid } = await web5.agent.identity.get({ didUri: aliceDid });
     class UserDetailsCredential {
       constructor(name, dob, address, phoneNumber) {
         this.name = name;
@@ -80,8 +77,8 @@ describe('/site/tests/quickstart.test.js', async () => {
 
     const vc = await VerifiableCredential.create({
       type: 'UserDetailsCredential',
-      issuer: alice.did.uri,
-      subject: alice.did.uri,
+      issuer: aliceDid,
+      subject: aliceDid,
       expirationDate: '2026-09-30T12:34:56Z',
       data: new UserDetailsCredential(
         'Alice Smith',
@@ -91,7 +88,7 @@ describe('/site/tests/quickstart.test.js', async () => {
       )
     });
     // :snippet-start: signQuickstartVc
-    const signedVc = await vc.sign({ did: alice.did });
+    const signedVc = await vc.sign({ did: aliceBearerDid });
     // :snippet-end:
     expect(typeof signedVc).toBe('string');
   });
@@ -212,4 +209,4 @@ describe('/site/tests/quickstart.test.js', async () => {
 
 });
 
-function getFrontPageHtml(pariss) {}
+function getFrontPageHtml(pariss) { }

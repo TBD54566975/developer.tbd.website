@@ -2,13 +2,14 @@ import CodeSnippet from '@site/src/components/CodeSnippet';
 
 <section class="docs-section">
 
-## 2. Access your Bearer Identity
+## 2. Generate a Bearer DID
 
 In the previous step, you generated what is known as a (DID), which appears as an alphanumeric string, referred to as a DID URI. 
-This DID URI is part of a broader JSON object containing metadata such as cryptographic keys that prove ownership of the DID and rules governing its usage, management, or modification. 
-This object is known as your BearerIdentity. It enables you to securely sign and verify data, ensuring authenticity and integrity.
+This DID URI is part of a broader JSON object containing metadata such as cryptographic keys that prove ownership of the DID and rules governing its usage, management, or modification.
 
-To access your Bearer Identity, add the following lines of code to your `index.js`:
+This object is known as a **Bearer DID**. It enables users to securely sign and verify data, ensuring authenticity and integrity.
+
+To access your Bearer DID, add the following lines of code to your `index.js`:
 
 <CodeSnippet snippetName="getBearerDid" />
 
@@ -20,7 +21,7 @@ Wanna see the identity you just created?
 In index.js, add the following line and save your file:
 
 ```js
-console.log(alice);
+console.log(aliceBearerDid);
 ```
 
 Then from the terminal, run:
@@ -31,7 +32,7 @@ node index.js
 You'll see the full identity. It should resemble the output below:
 
 ```bash
-BearerIdentity { // nested objects and properties here }
+BearerDid { // nested objects and properties here }
 ```
 </details>
 
