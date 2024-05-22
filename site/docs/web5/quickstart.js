@@ -56,6 +56,7 @@ let didCreateOutputDetailsTextarea;
 let getBearerIdInputButton;
 let getBearerIdInputProgress;
 let getBearerIdOutputSummaryCode;
+let getBearerIdOutputDetailsTextarea;
 
 let createVcInputText;
 let createVcInputButton;
@@ -65,17 +66,25 @@ let createVcOutputDetailsTextarea;
 
 let signVcInputButton;
 let signVcInputProgress;
+let signVcInputText;
+let signVcOutputDetailsTextarea;
 let signVcOutputSummaryCode;
 
 let dwnWriteInputButton;
+let dwnWriteInputText;
 let dwnWriteInputProgress;
+let dwnWriteOutputDetailsTextarea;
 let dwnWriteOutputSummary;
 
 let dwnReadInputButton;
+let dwnReadInputText;
+let dwnReadOutputDetailsTextarea;
 let dwnReadInputProgress;
 let dwnReadOutputSummary;
 
 let parseVcInputButton;
+let parseVcInputText;
+let parseVcOutputDetailsTextarea;
 let parseVcInputProgress;
 let parseVcOutputSummary;
 
