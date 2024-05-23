@@ -31,24 +31,16 @@ describe('/site/tests/quickstart.test.js', async () => {
 
   test('createQuickstartVc returns a vc', async () => {
     // :snippet-start: createQuickstartVc
-    class Web5QuickstartCompletionCredential {
-      constructor(username, completionDate, expertiseLevel) {
-        this.username = username;
-        this.completionDate = completionDate;
-        this.expertiseLevel = expertiseLevel;
-      }
-    }
-
     const vc = await VerifiableCredential.create({
       type: 'Web5QuickstartCompletionCredential',
       issuer: aliceDid,
       subject: aliceDid,
       expirationDate: '2026-09-30T12:34:56Z',
-      data: new Web5QuickstartCompletionCredential(
-        '@alicesmith123',
-        '2024-05-22',
-        'Beginner',
-      )
+      data: {
+        username: '@alicesmith123',
+        completionDate: '2024-05-22',
+        expertiseLevel: 'Beginner'
+      }
     });
     // :snippet-end:
     expect(vc.vcDataModel.issuer).toBe(aliceDid);
