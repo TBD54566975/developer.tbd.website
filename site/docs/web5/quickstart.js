@@ -19,7 +19,6 @@ let verifiableCred;
 let bearerDidVar;
 let signedJwt;
 let dwnRecord;
-let createRecordResult;
 
 let didCreate;
 let getBearerDid;
@@ -28,7 +27,6 @@ let writeVcToDwn;
 let signQuickstartVc;
 let readVcFromDwn;
 let parseVc;
-let createTextRecord;
 
 function parseDid() {
   try {
@@ -106,7 +104,6 @@ function Web5Quickstart() {
       writeVcToDwn = codeSnippetsUtils.writeVcToDwn;
       readVcFromDwn = codeSnippetsUtils.readVcFromDwn;
       parseVc = codeSnippetsUtils.parseVc;
-      createTextRecord = codeSnippetsUtils.createTextRecord;
     };
     loadWeb5();
 
@@ -269,7 +266,6 @@ function Web5Quickstart() {
 
       const performWriteVcToDwn = writeVcToDwn(web5, signedJwt);
       performWriteVcToDwn().then(record => {
-        console.log(record);
         dwnRecord = record;
         dwnWriteOutputSummary.innerHTML = '&#x2714; Written to DWN!';
         setIsVcWrittenToDwn(true);

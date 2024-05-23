@@ -1,10 +1,4 @@
 import { test, beforeAll, expect, describe } from 'vitest';
-import {
-  createTextRecord,
-  readTextRecord,
-  updateTextRecord,
-  deleteTextRecord,
-} from '../../../code-snippets/web5/quickstart';
 import { setUpWeb5 } from './setup-web5';
 import { VerifiableCredential } from '@web5/credentials';
 
@@ -13,10 +7,6 @@ let web5;
 // This is the decentralized ID that will be referred to for all tests. This comes back as a result from Web5.connect() being used in the didCreate function.
 let aliceDid;
 // This record result is what comes back from the createTextRecord function. This is used to test the record's attributes and methods.
-let recordResult;
-
-const textInput = 'Hello, Web5!';
-const updatedTextInput = 'Hello, Web5! I am updated.';
 
 describe('/site/tests/quickstart.test.js', async () => {
   // This is where we create a DID, assign the web5 and aliceDid variables, and then use the aliceDid to write a text record.
@@ -66,25 +56,23 @@ describe('/site/tests/quickstart.test.js', async () => {
 
   test('signQuickstartVc returns a jwt', async () => {
     const { did: aliceBearerDid } = await web5.agent.identity.get({ didUri: aliceDid });
-    class UserDetailsCredential {
-      constructor(name, dob, address, phoneNumber) {
-        this.name = name;
-        this.dob = dob;
-        this.address = address;
-        this.phoneNumber = phoneNumber;
+    class Web5QuickstartCompletionCredential {
+      constructor(username, completionDate, expertiseLevel) {
+        this.username = username;
+        this.completionDate = completionDate;
+        this.expertiseLevel = expertiseLevel;
       }
     }
 
     const vc = await VerifiableCredential.create({
-      type: 'UserDetailsCredential',
+      type: 'Web5QuickstartCompletionCredential',
       issuer: aliceDid,
       subject: aliceDid,
       expirationDate: '2026-09-30T12:34:56Z',
-      data: new UserDetailsCredential(
-        'Alice Smith',
-        '1995-07-04T12:34:56Z',
-        '106th and Park NY, USA 02110',
-        '678-999-8212'
+      data: new Web5QuickstartCompletionCredential(
+        '@alicesmith123',
+        '2024-05-22',
+        'Beginner',
       )
     });
     // :snippet-start: signQuickstartVc
@@ -94,34 +82,32 @@ describe('/site/tests/quickstart.test.js', async () => {
   });
 
   test('writeQuickstartVcToDwn writes a signed vc to dwn', async () => {
-    const alice = await web5.agent.identity.get({ didUri: aliceDid });
-    class UserDetailsCredential {
-      constructor(name, dob, address, phoneNumber) {
-        this.name = name;
-        this.dob = dob;
-        this.address = address;
-        this.phoneNumber = phoneNumber;
+    const { did: aliceBearerDid } = await web5.agent.identity.get({ didUri: aliceDid });
+    class Web5QuickstartCompletionCredential {
+      constructor(username, completionDate, expertiseLevel) {
+        this.username = username;
+        this.completionDate = completionDate;
+        this.expertiseLevel = expertiseLevel;
       }
     }
 
     const vc = await VerifiableCredential.create({
-      type: 'UserDetailsCredential',
-      issuer: alice.did.uri,
-      subject: alice.did.uri,
+      type: 'Web5QuickstartCompletionCredential',
+      issuer: aliceDid,
+      subject: aliceDid,
       expirationDate: '2026-09-30T12:34:56Z',
-      data: new UserDetailsCredential(
-        'Alice Smith',
-        '1995-07-04T12:34:56Z',
-        '106th and Park NY, USA 02110',
-        '678-999-8212'
+      data: new Web5QuickstartCompletionCredential(
+        '@alicesmith123',
+        '2024-05-22',
+        'Beginner',
       )
     });
-    const signedVc = await vc.sign({ did: alice.did });
+    const signedVc = await vc.sign({ did: aliceBearerDid });
     // :snippet-start: writeQuickstartVcToDwn
     const { record } = await web5.dwn.records.create({
       data: signedVc,
       message: {
-        schema: 'UserDetailsCredential',
+        schema: 'Web5QuickstartCompletionCredential',
         dataFormat: 'application/vc+jwt',
       }
     });
@@ -130,34 +116,32 @@ describe('/site/tests/quickstart.test.js', async () => {
   });
 
   test('readQuickstartVc reads jwt from DWN', async () => {
-    const alice = await web5.agent.identity.get({ didUri: aliceDid });
-    class UserDetailsCredential {
-      constructor(name, dob, address, phoneNumber) {
-        this.name = name;
-        this.dob = dob;
-        this.address = address;
-        this.phoneNumber = phoneNumber;
+    const { did: aliceBearerDid } = await web5.agent.identity.get({ didUri: aliceDid });
+    class Web5QuickstartCompletionCredential {
+      constructor(username, completionDate, expertiseLevel) {
+        this.username = username;
+        this.completionDate = completionDate;
+        this.expertiseLevel = expertiseLevel;
       }
     }
 
     const vc = await VerifiableCredential.create({
-      type: 'UserDetailsCredential',
-      issuer: alice.did.uri,
-      subject: alice.did.uri,
+      type: 'Web5QuickstartCompletionCredential',
+      issuer: aliceDid,
+      subject: aliceDid,
       expirationDate: '2026-09-30T12:34:56Z',
-      data: new UserDetailsCredential(
-        'Alice Smith',
-        '1995-07-04T12:34:56Z',
-        '106th and Park NY, USA 02110',
-        '678-999-8212'
+      data: new Web5QuickstartCompletionCredential(
+        '@alicesmith123',
+        '2024-05-22',
+        'Beginner',
       )
     });
-    const signedVc = await vc.sign({ did: alice.did });
+    const signedVc = await vc.sign({ did: aliceBearerDid });
 
     const { record } = await web5.dwn.records.create({
       data: signedVc,
       message: {
-        schema: 'UserDetailsCredential',
+        schema: 'Web5QuickstartCompletionCredential',
         dataFormat: 'application/vc+jwt',
       }
     });
@@ -168,34 +152,33 @@ describe('/site/tests/quickstart.test.js', async () => {
   });
 
   test('parseQuickstartVc reads jwt from DWN', async () => {
-    const alice = await web5.agent.identity.get({ didUri: aliceDid });
-    class UserDetailsCredential {
-      constructor(name, dob, address, phoneNumber) {
-        this.name = name;
-        this.dob = dob;
-        this.address = address;
-        this.phoneNumber = phoneNumber;
+    const { did: aliceBearerDid } = await web5.agent.identity.get({ didUri: aliceDid });
+    class Web5QuickstartCompletionCredential {
+      constructor(username, completionDate, expertiseLevel) {
+        this.username = username;
+        this.completionDate = completionDate;
+        this.expertiseLevel = expertiseLevel;
       }
     }
 
     const vc = await VerifiableCredential.create({
-      type: 'UserDetailsCredential',
-      issuer: alice.did.uri,
-      subject: alice.did.uri,
+      type: 'Web5QuickstartCompletionCredential',
+      issuer: aliceDid,
+      subject: aliceDid,
       expirationDate: '2026-09-30T12:34:56Z',
-      data: new UserDetailsCredential(
-        'Alice Smith',
-        '1995-07-04T12:34:56Z',
-        '106th and Park NY, USA 02110',
-        '678-999-8212'
+      data: new Web5QuickstartCompletionCredential(
+        '@alicesmith123',
+        '2024-05-22',
+        'Beginner',
       )
     });
-    const signedVc = await vc.sign({ did: alice.did });
+
+    const signedVc = await vc.sign({ did: aliceBearerDid });
 
     const { record } = await web5.dwn.records.create({
       data: signedVc,
       message: {
-        schema: 'UserDetailsCredential',
+        schema: 'Web5QuickstartCompletionCredential',
         dataFormat: 'application/vc+jwt',
       }
     });
