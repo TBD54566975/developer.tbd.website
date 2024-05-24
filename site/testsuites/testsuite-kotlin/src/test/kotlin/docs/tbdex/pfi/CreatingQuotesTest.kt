@@ -46,7 +46,24 @@ class CreatingQuotesTest {
 
     @Test
     fun `PFI creates and signs quote`() {
-        val offering = TestData.getOffering(from = pfiDid.uri)
+        dataProvider.setupInsert("exchange", "") { arrayOf<Any>() }
+        offeringsApiProvider.setOffering(message.metadata.id, pfiDid)
+
+        // :snippet-start: pfiWriteOfferingKt
+        // Write the message to your exchanges database
+        val data = mapOf(
+            "exchangeid" to message.metadata.exchangeId,
+            "messagekind" to message.metadata.kind,
+            "messageid" to message.metadata.id,
+            "subject" to message.metadata.from,
+            "message" to message.data
+        )
+
+        dataProvider.insert("exchange", data)
+        //highlight-start
+        val offering = offeringsApiProvider.getOffering(message.metadata.id)
+        //highlight-end
+        // :snippet-end:
 
         // :snippet-start: pfiCreateQuoteKt
         val quote = Quote.create(
