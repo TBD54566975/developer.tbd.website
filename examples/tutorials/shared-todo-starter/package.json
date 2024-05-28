@@ -24,7 +24,7 @@
   "dependencies": {
     "@heroicons/vue": "1.0.6",
     "@nuxt/ui-templates": "1.3.1",
-    "@web5/api": "0.9.3",
+    "@web5/api": "0.9.4-alpha-20240528-cc47014",
     "vue": "3.3.4",
     "vue-router": "4.2.5"
   }
