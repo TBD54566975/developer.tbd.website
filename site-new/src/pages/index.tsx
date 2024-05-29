@@ -15,9 +15,16 @@ export default function Home(): JSX.Element {
 
       <main className="flex flex-col items-center">
         <h3>Blog Card - Large</h3>
-        <BlogCard tags={["Test1", "Test2", "Test3"]} size="large" />
+        <BlogCard
+          date={new Date("2024-05-28")}
+          tags={["Test1", "Test2", "Test3"]}
+          size="large"
+        />
         <h3>Blog Card - Small</h3>
-        <BlogCard tags={["Test1", "Test2", "Test3"]} />
+        <BlogCard
+          date={new Date("2024-05-28")}
+          tags={["Test1", "Test2", "Test3"]}
+        />
         <h3>Square Background component (WIP)</h3>
       </main>
     </Layout>

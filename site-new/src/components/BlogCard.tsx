@@ -1,7 +1,7 @@
 import clsx from "clsx";
 
 type BlogCardProps = {
-  date?: string;
+  date?: Date;
   author?: string;
   title?: string;
   tags?: string[];
@@ -11,7 +11,7 @@ type BlogCardProps = {
 };
 
 function BlogCard({
-  date = "date",
+  date = new Date(),
   author = "author",
   title = "Title",
   tags = [],
@@ -30,7 +30,7 @@ function BlogCard({
     >
       <img className="h-auto max-w-full block" src={image} />
       <div className="p-4">
-        <div>{date}</div>
+        <div>{date.toLocaleDateString()}</div>
         <div className="text-tbd-yellow group-hover:text-[black]">{`@${author}`}</div>
         <h2 className="text-4xl tracking-wide">{title}</h2>
         <div className="flex">
