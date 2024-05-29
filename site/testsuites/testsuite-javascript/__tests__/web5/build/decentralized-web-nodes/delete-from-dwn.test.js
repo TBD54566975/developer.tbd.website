@@ -20,4 +20,80 @@ describe('delete-from-dwn', () => {
     const result = await deleteFromLocalDWN(web5, record.id);
     expect(result.status.code).toBe(202);
   });
+
+  test('pruneRecords deletes parents record and its children', async () => {
+    const { status: protocolStatus, protocol } = await web5.dwn.protocols.configure({
+      message: {
+        definition: {
+          protocol: 'http://example.com/parent-child',
+          published: true,
+          types: {
+            post: {
+              schema: 'http://example.com/post',
+            },
+            comment: {
+              schema: 'http://example.com/comment'
+            }
+          },
+          structure: {
+            post: {
+              comment: {}
+            }
+          }
+        }
+      }
+    });
+
+    const { record: parentRecord } = await web5.dwn.records.create({
+      data: 'Hello, world!',
+      message: {
+        protocol: protocol.definition.protocol,
+        protocolPath: 'post',
+        schema: 'http://example.com/post',
+        dataFormat: 'text/plain'
+      }
+    });
+
+    const { record: childRecord } = await web5.dwn.records.create({
+      data: 'Hello, world!',
+      message: {
+        protocol: protocol.definition.protocol,
+        protocolPath: 'post/comment',
+        schema: 'http://example.com/comment',
+        dataFormat: 'text/plain',
+        parentContextId: parentRecord.contextId
+      }
+    });
+
+    // :snippet-start: pruneRecords
+    const { status: deleteStatus } = await web5.dwn.records.delete({
+      message: {
+        recordId: parentRecord.id,
+        //highlight-next-line
+        prune: true
+      }
+    });
+    // :snippet-end:
+
+    const { records: childrenRecordsAfterDelete } = await web5.dwn.records.query({
+      message: {
+        filter: {
+          protocol: protocol.definition.protocol,
+          protocolPath: 'post/comment'
+        }
+      }
+    });
+
+    const { records: parentRecordsAfterDelete } = await web5.dwn.records.query({
+      message: {
+        filter: {
+          protocol: protocol.definition.protocol,
+          protocolPath: 'post'
+        }
+      }
+    });
+    expect(deleteStatus.code).toBe(202);
+    expect(parentRecordsAfterDelete).to.have.lengthOf(0);
+    expect(childrenRecordsAfterDelete).to.have.lengthOf(0);
+  });
 });
