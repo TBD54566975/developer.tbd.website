@@ -3,7 +3,7 @@
     "@tbdex/http-client": "1.0.0",
     "@tbdex/http-server": "1.0.0",
     "@tbdex/protocol": "1.0.0",
-    "@web5/api": "0.9.4-alpha-20240528-cc47014",
+    "@web5/api": "0.9.4",
     "@web5/credentials": "1.0.1",
     "@web5/crypto": "1.0.0",
     "@web5/crypto-aws-kms": "1.0.0",
