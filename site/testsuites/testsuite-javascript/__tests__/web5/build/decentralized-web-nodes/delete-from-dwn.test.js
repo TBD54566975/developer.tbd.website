@@ -74,7 +74,26 @@ describe('delete-from-dwn', () => {
       }
     });
     // :snippet-end:
-    expect(deleteStatus.code).toBe(202);
 
+    const { records: childrenRecordsAfterDelete } = await web5.dwn.records.query({
+      message: {
+        filter: {
+          protocol: protocol.definition.protocol,
+          protocolPath: 'post/comment'
+        }
+      }
+    });
+
+    const { records: parentRecordsAfterDelete } = await web5.dwn.records.query({
+      message: {
+        filter: {
+          protocol: protocol.definition.protocol,
+          protocolPath: 'post'
+        }
+      }
+    });
+    expect(deleteStatus.code).toBe(202);
+    expect(parentRecordsAfterDelete).to.have.lengthOf(0);
+    expect(childrenRecordsAfterDelete).to.have.lengthOf(0);
   });
 });
