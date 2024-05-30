@@ -1,42 +1,31 @@
-import clsx from 'clsx';
-import Link from '@docusaurus/Link';
-import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
-import Layout from '@theme/Layout';
-import HomepageFeatures from '@site/src/components/HomepageFeatures';
-import Heading from '@theme/Heading';
-
-import styles from './index.module.css';
-
-function HomepageHeader() {
-  const {siteConfig} = useDocusaurusContext();
-  return (
-    <header className={clsx('hero ', styles.heroBanner)}>
-      <div className="container">
-        <Heading as="h1" className="hero__title">
-          {siteConfig.title}
-        </Heading>
-        <p className="hero__subtitle">{siteConfig.tagline}</p>
-        <div className={styles.buttons}>
-          <Link
-            className="button button--secondary button--lg"
-            to="/docs/intro">
-            Docusaurus Tutorial - 5min ⏱️
-          </Link>
-        </div>
-      </div>
-    </header>
-  );
-}
+import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
+import Layout from "@theme/Layout";
+import BlogCard from "../components/BlogCard";
 
 export default function Home(): JSX.Element {
-  const {siteConfig} = useDocusaurusContext();
+  const { siteConfig } = useDocusaurusContext();
   return (
     <Layout
       title={`Hello from ${siteConfig.title}`}
-      description="Description will go into a meta tag in <head />">
-      <HomepageHeader />
-      <main>
-        <HomepageFeatures />
+      description="Description will go into a meta tag in <head />"
+    >
+      <header className=" flex justify-center items-center">
+        <h1>TBD Components</h1>
+      </header>
+
+      <main className="flex flex-col items-center">
+        <h3>Blog Card - Large</h3>
+        <BlogCard
+          date={new Date("2024-05-28")}
+          tags={["Test1", "Test2", "Test3"]}
+          size="large"
+        />
+        <h3>Blog Card - Small</h3>
+        <BlogCard
+          date={new Date("2024-05-28")}
+          tags={["Test1", "Test2", "Test3"]}
+        />
+        <h3>Square Background component (WIP)</h3>
       </main>
     </Layout>
   );

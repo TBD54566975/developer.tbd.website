@@ -9,6 +9,12 @@ module.exports = {
   darkMode: ["class", '[data-theme="dark"]'],
   content: ["./src/**/*.{jsx,tsx,html}"],
   theme: {
+    colors: {
+      "tbd-yellow": "#FFEC19",
+      "tbd-purple": "#9A1AFF",
+      "tbd-blue": "#1AF1FF",
+      "dark-grey": "#141414",
+    },
     extend: {
       fontFamily: {
         sans: ['"Inter"', ...fontFamily.sans],
@@ -21,7 +27,6 @@ module.exports = {
       screens: {
         sm: "0px",
         lg: "997px",
-        colors: {},
       },
     },
   },
