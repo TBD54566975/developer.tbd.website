@@ -7,7 +7,7 @@ const config: Config = {
   title: 'My Site',
   tagline: 'Dinosaurs are cool',
   favicon: 'img/favicon.ico',
-  plugins: [tailwindPlugin],
+  plugins: [tailwindPlugin, '@docusaurus/theme-live-codeblock'],
   // Set the production url of your site here
   url: 'https://your-docusaurus-site.example.com',
   // Set the /<baseUrl>/ pathname under which your site is served
@@ -56,7 +56,13 @@ const config: Config = {
   ],
 
   themeConfig: {
-    // Replace with your project's social card
+    liveCodeBlock: {
+      /**
+       * The position of the live playground, above or under the editor
+       * Possible values: "top" | "bottom"
+       */
+      playgroundPosition: 'bottom',
+    },
     image: 'img/docusaurus-social-card.jpg',
     navbar: {
       title: 'My Site',
