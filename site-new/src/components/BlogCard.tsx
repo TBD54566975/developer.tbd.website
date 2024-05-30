@@ -15,7 +15,7 @@ function BlogCard({
   author = "author",
   title = "Title",
   tags = [],
-  image = require("/static/img/test-image.png").default,
+  image = require("/static/img/test-image16x9.png").default,
   description = "Some description here",
   size = "small",
 }: BlogCardProps) {
