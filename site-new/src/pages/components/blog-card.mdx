@@ -4,18 +4,13 @@ import BlogCard from '@site/src/components/BlogCard';
 
 The `BlogCard` component is a reusable card component designed to display blog titles. You can use this for both large and small sizes.
 
-## Props
-
-| Name         | Type                    | Default                                              | Description                                 |
-|--------------|-------------------------|------------------------------------------------------|---------------------------------------------|
-| `date`       | `Date`                  | `new Date()`                                         | The date to display in the card.            |
-| `author`     | `string`                | `"author"`                                           | The author's name.                          |
-| `title`      | `string`                | `"Title"`                                            | The title of the blog post.                 |
-| `tags`       | `string[]`              | `[]`                                                 | An array of tags to display in the card.    |
-| `image`      | `string \| null`        | `require('/static/img/test-image16x9.png').default`  | The image to display in the card.           |
-| `description`| `string`                | `"Some description here"`                            | The description text for the card.          |
-| `size`       | `"large" \| "small"`    | `"small"`                                            | The size of the card. Determines max width. |
-
+<BlogCard
+  date={new Date('2024-05-28')}
+  author="John Doe"
+  title="Example Blog Post"
+  tags={['example', 'blog', 'post']}
+  size="large"
+/>
 
 ## Usage
 
@@ -33,10 +28,14 @@ import BlogCard from '@site/src/components/BlogCard';
 />
 ```
 
-<BlogCard
-  date={new Date('2024-05-28')}
-  author="John Doe"
-  title="Example Blog Post"
-  tags={['example', 'blog', 'post']}
-  size="large"
-/>
+## Props
+
+| Name         | Type                    | Default                                              | Description                                 |
+|--------------|-------------------------|------------------------------------------------------|---------------------------------------------|
+| `date`       | `Date`                  | `new Date()`                                         | The date to display in the card.            |
+| `author`     | `string`                | `"author"`                                           | The author's name.                          |
+| `title`      | `string`                | `"Title"`                                            | The title of the blog post.                 |
+| `tags`       | `string[]`              | `[]`                                                 | An array of tags to display in the card.    |
+| `image`      | `string \| null`        | `require('/static/img/test-image16x9.png').default`  | The image to display in the card.           |
+| `description`| `string`                | `"Some description here"`                            | The description text for the card.          |
+| `size`       | `"large" \| "small"`    | `"small"`                                            | The size of the card. Determines max width. |
