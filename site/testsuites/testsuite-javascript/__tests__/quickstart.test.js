@@ -60,7 +60,7 @@ describe('/site/tests/quickstart.test.js', async () => {
       issuer: aliceDid,
       subject: aliceDid,
       data: new Web5QuickstartCompletionCredential(
-        '@alicesmith123',
+        'Alice Smith',
         '2024-05-22',
         'Beginner',
       )
@@ -86,7 +86,7 @@ describe('/site/tests/quickstart.test.js', async () => {
       issuer: aliceDid,
       subject: aliceDid,
       data: new Web5QuickstartCompletionCredential(
-        '@alicesmith123',
+        'Alice Smith',
         '2024-05-22',
         'Beginner',
       )
@@ -120,7 +120,7 @@ describe('/site/tests/quickstart.test.js', async () => {
       issuer: aliceDid,
       subject: aliceDid,
       data: new Web5QuickstartCompletionCredential(
-        '@alicesmith123',
+        'Alice Smith',
         '2024-05-22',
         'Beginner',
       )
@@ -156,7 +156,7 @@ describe('/site/tests/quickstart.test.js', async () => {
       issuer: aliceDid,
       subject: aliceDid,
       data: new Web5QuickstartCompletionCredential(
-        '@alicesmith123',
+        'Alice Smith',
         '2024-05-22',
         'Beginner',
       )

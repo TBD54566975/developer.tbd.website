@@ -9,7 +9,7 @@ const CreateVc = ({ web5, aliceDid, bearerDid, setVc }) => {
 
     const handleRun = async () => {
         setLoading(true);
-        const user = name || '@alicesmith123';
+        const user = name || 'Alice Smith';
         const vcResult = await executeCreateVc(aliceDid, user);
         setVc(vcResult);
         setVC(JSON.stringify(vcResult, null, 2));
