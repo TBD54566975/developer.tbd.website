@@ -18,7 +18,7 @@ export async function executeCreateVc(myDid, username) {
         subject: myDid,
         data: {
             username: username || '@alicesmith123',
-            completionDate: '2024-05-22',
+            completionDate: new Date().toISOString(),
             expertiseLevel: 'Beginner',
         },
     });

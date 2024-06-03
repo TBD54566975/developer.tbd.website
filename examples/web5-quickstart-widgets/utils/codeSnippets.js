@@ -14,7 +14,7 @@ const vc = await VerifiableCredential.create({
   subject: aliceDid,
   data: {
     username: '@alicesmith123',
-    completionDate: '2024-05-22',
+    completionDate: new Date().toISOString(),
     level: 'Beginner'
   }
 });

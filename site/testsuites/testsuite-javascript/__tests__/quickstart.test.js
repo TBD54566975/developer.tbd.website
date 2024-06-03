@@ -37,7 +37,7 @@ describe('/site/tests/quickstart.test.js', async () => {
       subject: aliceDid,
       data: {
         username: '@alicesmith123',
-        completionDate: '2024-05-22',
+        completionDate: new Date().toISOString(),
         expertiseLevel: 'Beginner'
       }
     });
