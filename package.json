@@ -52,6 +52,7 @@
     "react-fontawesome": "1.7.1",
     "react-markdown": "8.0.7",
     "react-slick": "0.29.0",
+    "react18-json-view": "^0.2.8",
     "slick-carousel": "1.8.1",
     "xml2js": "0.6.2"
   },

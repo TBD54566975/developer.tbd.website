@@ -19,6 +19,9 @@ import LanguageTabBar from '@site/src/components/language/LanguageTabBar';
 import Dependency from '@site/src/components/Dependency';
 import Shnip from '@site/src/components/language/Shnip';
 import CodeBlock from '@theme/CodeBlock';
+import QuickstartCodeRunner from '@site/src/components/QuickstartCodeRunner';
+
+
 import Dependencies from '@site/src/components/Dependencies';
 const CustomMDXComponents = {
   ...MDXComponents,
@@ -42,6 +45,7 @@ const CustomMDXComponents = {
   Shnip,
   CodeBlock,
   Dependencies,
+  QuickstartCodeRunner,
   p: (props) => <p {...props} className="my-6 copy" />,
   ul: (props) => <ul {...props} className="list-disc pl-6 copy my-8" />,
   li: (props) => <li {...props} className="my-4" />,
