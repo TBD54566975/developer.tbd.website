@@ -16,7 +16,6 @@ export async function executeCreateVc(myDid, username) {
         type: 'Web5QuickstartCompletionCredential',
         issuer: myDid,
         subject: myDid,
-        expirationDate: '2026-09-30T12:34:56Z',
         data: {
             username: username || '@alicesmith123',
             completionDate: '2024-05-22',

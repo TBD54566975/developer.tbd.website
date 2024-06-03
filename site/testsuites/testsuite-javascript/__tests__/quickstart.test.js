@@ -35,7 +35,6 @@ describe('/site/tests/quickstart.test.js', async () => {
       type: 'Web5QuickstartCompletionCredential',
       issuer: aliceDid,
       subject: aliceDid,
-      expirationDate: '2026-09-30T12:34:56Z',
       data: {
         username: '@alicesmith123',
         completionDate: '2024-05-22',
@@ -60,7 +59,6 @@ describe('/site/tests/quickstart.test.js', async () => {
       type: 'Web5QuickstartCompletionCredential',
       issuer: aliceDid,
       subject: aliceDid,
-      expirationDate: '2026-09-30T12:34:56Z',
       data: new Web5QuickstartCompletionCredential(
         '@alicesmith123',
         '2024-05-22',
@@ -87,7 +85,6 @@ describe('/site/tests/quickstart.test.js', async () => {
       type: 'Web5QuickstartCompletionCredential',
       issuer: aliceDid,
       subject: aliceDid,
-      expirationDate: '2026-09-30T12:34:56Z',
       data: new Web5QuickstartCompletionCredential(
         '@alicesmith123',
         '2024-05-22',
@@ -121,7 +118,6 @@ describe('/site/tests/quickstart.test.js', async () => {
       type: 'Web5QuickstartCompletionCredential',
       issuer: aliceDid,
       subject: aliceDid,
-      expirationDate: '2026-09-30T12:34:56Z',
       data: new Web5QuickstartCompletionCredential(
         '@alicesmith123',
         '2024-05-22',
@@ -157,7 +153,6 @@ describe('/site/tests/quickstart.test.js', async () => {
       type: 'Web5QuickstartCompletionCredential',
       issuer: aliceDid,
       subject: aliceDid,
-      expirationDate: '2026-09-30T12:34:56Z',
       data: new Web5QuickstartCompletionCredential(
         '@alicesmith123',
         '2024-05-22',
