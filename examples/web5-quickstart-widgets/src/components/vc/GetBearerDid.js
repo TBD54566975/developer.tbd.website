@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { executeGetBearerDid } from '../../utils/executableCode';
-import { getBearerDidSnippet } from '../../utils/codeSnippets';
+import { executeGetBearerDid } from '../../../utils/executableCode';
+import { getBearerDidSnippet } from '../../../utils/codeSnippets';
 const GetBearerDid = ({ web5, myDid, setBearerDid }) => {
     const [bearerDid, setLocalBearerDid] = useState('');
     const [loading, setLoading] = useState(false);

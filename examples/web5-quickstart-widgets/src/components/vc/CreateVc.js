@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { executeCreateVc } from '../../utils/executableCode';
-import { createVcSnippet } from '../../utils/codeSnippets';
+import { executeCreateVc } from '../../../utils/executableCode';
+import { createVcSnippet } from '../../../utils/codeSnippets';
 
 const CreateVc = ({ web5, aliceDid, bearerDid, setVc }) => {
     const [vc, setVC] = useState('');

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { executeSignVc } from '../../utils/executableCode';
-import { signVcSnippet } from '../../utils/codeSnippets';
+import { executeSignVc } from '../../../utils/executableCode';
+import { signVcSnippet } from '../../../utils/codeSnippets';
 
 const SignVc = ({ vc, bearerDid, setSignedVc }) => {
     const [signedVc, setLocalSignedVc] = useState('');

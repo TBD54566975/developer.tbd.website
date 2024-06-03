@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { executeParseSignedVc } from '../../utils/executableCode';
-import { parseSignedVcSnippet } from '../../utils/codeSnippets';
+import { executeParseSignedVc } from '../../../utils/executableCode';
+import { parseSignedVcSnippet } from '../../../utils/codeSnippets';
 
 
 const ParseSignedVc = ({ readSignedVc }) => {

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { executeWriteVc } from '../../utils/executableCode';
-import { writeVcSnippet } from '../../utils/codeSnippets';
+import { executeWriteVc } from '../../../utils/executableCode';
+import { writeVcSnippet } from '../../../utils/codeSnippets';
 
 const WriteVc = ({ web5, signedVc, setRecord }) => {
     const [localRecord, setLocalRecord] = useState('');

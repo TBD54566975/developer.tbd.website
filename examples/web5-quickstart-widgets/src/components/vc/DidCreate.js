@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { executeDidCreate } from '../../utils/executableCode';
-import { didCreateSnippet } from '../../utils/codeSnippets';
+import { executeDidCreate } from '../../../utils/executableCode';
+import { didCreateSnippet } from '../../../utils/codeSnippets';
 
 const DidCreate = ({ setWeb5, setMyDid }) => {
     const [output, setOutput] = useState('');

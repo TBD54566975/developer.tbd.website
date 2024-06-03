@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { executeReadSignedVc } from '../../utils/executableCode';
-import { readSignedVcSnippet } from '../../utils/codeSnippets';
+import { executeReadSignedVc } from '../../../utils/executableCode';
+import { readSignedVcSnippet } from '../../../utils/codeSnippets';
 
 const ReadSignedVc = ({ record, setReadSignedVc }) => {
     const [signedVc, setSignedVc] = useState('');

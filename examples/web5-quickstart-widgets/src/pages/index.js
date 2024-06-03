@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import DidCreate from '../components/DidCreate';
-import GetBearerDid from '../components/GetBearerDid';
-import CreateVc from '../components/CreateVc';
-import SignVc from '../components/SignVc';
-import WriteVc from '../components/WriteVc';
-import ReadSignedVc from '../components/ReadSignedVc';
-import ParseSignedVc from '../components/ParseSignedVc';
+import DidCreate from '../components/vc/DidCreate';
+import GetBearerDid from '../components/vc/GetBearerDid';
+import CreateVc from '../components/vc/CreateVc';
+import SignVc from '../components/vc/SignVc';
+import WriteVc from '../components/vc/WriteVc';
+import ReadSignedVc from '../components/vc/ReadSignedVc';
+import ParseSignedVc from '../components/vc/ParseSignedVc';
 
 const Home = () => {
   const [web5, setWeb5] = useState(null);
