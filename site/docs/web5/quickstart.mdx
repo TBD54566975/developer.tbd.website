@@ -112,7 +112,7 @@ Now that you've installed the Web5 SDKs, you are ready to start building!
 
 ## Create Web5 App
 
-### Instantiate Web5 and Create DID 
+### 1. Instantiate Web5 and Create DID 
 
 In Web5 apps, a user’s unique identifier - like an email address - is called a [Decentralized Identifier (DID)](/docs/web5/learn/decentralized-identifiers).
 We are building a decentralized app, so your users are using identifiers that aren't tied to a centralized authority.
@@ -148,7 +148,7 @@ This Web5 instance is what you'll use to access the other objects of Web5 such a
 
 <QuickstartCodeRunner executeCodeName="executeDidCreate" stepIndex={0} autoOpenDetails={false} customPlaceholder={"Your DID will appear here"} />
 
- ### Access Bearer DID
+ ### 2. Access Bearer DID
 
 In the previous step, you generated what is known as a (DID), which appears as an alphanumeric string. It's more specifically referred to as a DID URI. 
 
@@ -182,7 +182,7 @@ You'll see the Bearer DID.
 #### Try it!
 <QuickstartCodeRunner executeCodeName="executeGetBearerDid" stepIndex={1} viewJsonObj={true} collapseLevel={1} customPlaceholder={"Your Bearer DID will appear here"}/>
 
-### Create a VC
+### 3. Create a VC
 
 [Verifiable Credentials (VCs)](https://developer.tbd.website/docs/web5/learn/verifiable-credentials) are digital proofs used to confirm specific facts about individuals, organizations, or entities.
 In this step, you'll enable your users to create a self-signed VC -- allowing them to issue a Verifiable Credential that makes claims about themselves. For this example, the credential will state that the user has completed the Web5 Quickstart Guide.
@@ -216,7 +216,7 @@ Enter a name in the input field and click "Run" to create a Verifiable Credentia
 
 <QuickstartCodeRunner executeCodeName="executeCreateVc" stepIndex={2} viewJsonObj={true} defaultInputValue="Alice Smith" customPlaceholder={"Your VC will appear here"}/>
 
-### Sign VC
+### 4. Sign VC
 
 Now, your users can sign the VC with their Bearer DID to ensure its authenticity and integrity.
 
@@ -255,7 +255,7 @@ eyJ0eXAiOiJKV1QiLCJhbGciOiJFZERTQSIsImtpZCI6ImRpZDpkaHQ6cDNpeHo1MXp4azR1MW5uN29x
 <QuickstartCodeRunner executeCodeName="executeSignVc" stepIndex={3} customPlaceholder={"Your JWT will appear here"}/>
 
 
-### Store VC in DWN
+### 5. Store VC in DWN
 
 Your users can now store the JWT form of their VC in a [DWN (Decentralized Web Node)](https://developer.tbd.website/docs/web5/learn/decentralized-web-nodes).
 
@@ -302,7 +302,7 @@ writeResult _Record {}
 #### Try it!
 <QuickstartCodeRunner executeCodeName="executeWriteVcToDwn" stepIndex={4} viewJsonObj={true} collapseLevel={1} customPlaceholder={"Your written result will appear here"}/>
 
-### Read VC from DWN
+### 6. Read VC from DWN
 
 If the user has given your app read permissions to their DWN, you can read their data by accessing it through the record property. 
 
@@ -343,7 +343,7 @@ eyJ0eXAiOiJKV1QiLCJhbGciOiJFZERTQSIsImtpZCI6ImRpZDpkaHQ6cDNpeHo1MXp4azR1MW5uN29x
 
 <QuickstartCodeRunner executeCodeName="executeReadVcFromDwn" stepIndex={5} customPlaceholder={"Your read result will appear here"}/>
 
-### Parse VC
+### 7. Parse VC
 
 Upon receiving a Verifiable Credential (VC) as a JSON Web Token (JWT), applications can convert it back to JSON format using the `VerifiableCredential.parseJwt()` method. 
 This allows you to inspect the contents of the VC in a readable format.
