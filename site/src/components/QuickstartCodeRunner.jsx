@@ -60,7 +60,7 @@ const QuickstartCodeRunner = ({
                     <div className="input-container">
                         <input
                             type="text"
-                            placeholder="Enter value"
+                            placeholder="Enter username"
                             value={inputValue}
                             onChange={(e) => setInputValue(e.target.value)}
                         />
