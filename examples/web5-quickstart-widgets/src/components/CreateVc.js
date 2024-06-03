@@ -5,11 +5,11 @@ import { createVcSnippet } from '../../utils/codeSnippets';
 const CreateVc = ({ web5, aliceDid, bearerDid, setVc }) => {
     const [vc, setVC] = useState('');
     const [loading, setLoading] = useState(false);
-    const [username, setUsername] = useState('');
+    const [name, setName] = useState('');
 
     const handleRun = async () => {
         setLoading(true);
-        const user = username || '@alicesmith123';
+        const user = name || '@alicesmith123';
         const vcResult = await executeCreateVc(aliceDid, user);
         setVc(vcResult);
         setVC(JSON.stringify(vcResult, null, 2));
@@ -29,9 +29,9 @@ const CreateVc = ({ web5, aliceDid, bearerDid, setVc }) => {
                 </code></pre>
                 <input
                     type="text"
-                    placeholder="Enter username"
-                    value={username}
-                    onChange={(e) => setUsername(e.target.value)}
+                    placeholder="Enter name"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
                 />
                 <button onClick={handleRun} disabled={!web5 || !aliceDid || !bearerDid}>Run!</button>
                 {loading && <progress />}

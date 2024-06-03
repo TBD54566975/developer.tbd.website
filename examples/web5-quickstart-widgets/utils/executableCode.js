@@ -11,13 +11,13 @@ export async function executeGetBearerDid(web5, myDid) {
     return myBearerDid;
 }
 
-export async function executeCreateVc(myDid, username) {
+export async function executeCreateVc(myDid, name) {
     const vc = await VerifiableCredential.create({
         type: 'Web5QuickstartCompletionCredential',
         issuer: myDid,
         subject: myDid,
         data: {
-            username: username || '@alicesmith123',
+            name: name || 'Alice Smith',
             completionDate: new Date().toISOString(),
             expertiseLevel: 'Beginner',
         },

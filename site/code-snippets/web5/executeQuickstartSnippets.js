@@ -21,14 +21,14 @@ export async function executeGetBearerDid() {
   return bearerDid;
 }
 
-export async function executeCreateVc(username) {
+export async function executeCreateVc(name) {
   const vc = await VerifiableCredential.create({
     type: 'Web5QuickstartCompletionCredential',
     issuer: context.did,
     subject: context.did,
     expirationDate: '2026-09-30T12:34:56Z',
     data: {
-      username: username,
+      name: name,
       completionDate: new Date().toISOString(),
       expertiseLevel: 'Beginner',
     },

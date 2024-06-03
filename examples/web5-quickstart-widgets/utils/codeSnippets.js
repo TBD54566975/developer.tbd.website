@@ -13,7 +13,7 @@ const vc = await VerifiableCredential.create({
   issuer: aliceDid,
   subject: aliceDid,
   data: {
-    username: '@alicesmith123',
+    name: 'Alice Smith',
     completionDate: new Date().toISOString(),
     level: 'Beginner'
   }

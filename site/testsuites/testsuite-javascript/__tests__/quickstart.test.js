@@ -36,7 +36,7 @@ describe('/site/tests/quickstart.test.js', async () => {
       issuer: aliceDid,
       subject: aliceDid,
       data: {
-        username: '@alicesmith123',
+        name: 'Alice Smith',
         completionDate: new Date().toISOString(),
         expertiseLevel: 'Beginner'
       }
@@ -48,8 +48,8 @@ describe('/site/tests/quickstart.test.js', async () => {
   test('signQuickstartVc returns a jwt', async () => {
     const { did: aliceBearerDid } = await web5.agent.identity.get({ didUri: aliceDid });
     class Web5QuickstartCompletionCredential {
-      constructor(username, completionDate, expertiseLevel) {
-        this.username = username;
+      constructor(name, completionDate, expertiseLevel) {
+        this.name = name;
         this.completionDate = completionDate;
         this.expertiseLevel = expertiseLevel;
       }
@@ -74,8 +74,8 @@ describe('/site/tests/quickstart.test.js', async () => {
   test('writeQuickstartVcToDwn writes a signed vc to dwn', async () => {
     const { did: aliceBearerDid } = await web5.agent.identity.get({ didUri: aliceDid });
     class Web5QuickstartCompletionCredential {
-      constructor(username, completionDate, expertiseLevel) {
-        this.username = username;
+      constructor(name, completionDate, expertiseLevel) {
+        this.name = name;
         this.completionDate = completionDate;
         this.expertiseLevel = expertiseLevel;
       }
@@ -107,8 +107,8 @@ describe('/site/tests/quickstart.test.js', async () => {
   test('readQuickstartVc reads jwt from DWN', async () => {
     const { did: aliceBearerDid } = await web5.agent.identity.get({ didUri: aliceDid });
     class Web5QuickstartCompletionCredential {
-      constructor(username, completionDate, expertiseLevel) {
-        this.username = username;
+      constructor(name, completionDate, expertiseLevel) {
+        this.name = name;
         this.completionDate = completionDate;
         this.expertiseLevel = expertiseLevel;
       }
@@ -142,8 +142,8 @@ describe('/site/tests/quickstart.test.js', async () => {
   test('parseQuickstartVc reads jwt from DWN', async () => {
     const { did: aliceBearerDid } = await web5.agent.identity.get({ didUri: aliceDid });
     class Web5QuickstartCompletionCredential {
-      constructor(username, completionDate, expertiseLevel) {
-        this.username = username;
+      constructor(name, completionDate, expertiseLevel) {
+        this.name = name;
         this.completionDate = completionDate;
         this.expertiseLevel = expertiseLevel;
       }
