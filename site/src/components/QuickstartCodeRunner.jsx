@@ -4,8 +4,21 @@ import '@site/src/css/web5-quickstart.css';
 import 'react18-json-view/src/style.css';
 import { useQuickstartExecutionContext } from '@site/src/components/QuickstartExecutionContext';
 
+// Don't delete. Need this for now due to webpack / docusaurus config
+const importFunction = async (name) => (await import('../../code-snippets/web5/quickstart.js'))[name];
+
+const executeFunctions = {
+    executeDidCreate: () => importFunction('executeDidCreate'),
+    executeGetBearerDid: () => importFunction('executeGetBearerDid'),
+    executeCreateVc: () => importFunction('executeCreateVc'),
+    executeSignVc: () => importFunction('executeSignVc'),
+    executeWriteVcToDwn: () => importFunction('executeWriteVcToDwn'),
+    executeReadVcFromDwn: () => importFunction('executeReadVcFromDwn'),
+    executeParseVc: () => importFunction('executeParseVc'),
+};
+
 const QuickstartCodeRunner = ({
-    executeCode,
+    executeCodeName,
     viewJsonObj = false,
     stepIndex,
     collapseLevel,
@@ -22,6 +35,7 @@ const QuickstartCodeRunner = ({
     const handleRun = async () => {
         setLoading(true);
         try {
+            const executeCode = await executeFunctions[executeCodeName]();
             const result = await executeCode(inputValue.trim() || defaultInputValue);
             setOutput(result);
             if (detailsRef.current && autoOpenDetails) {

@@ -10,7 +10,6 @@ import Version from '@site/src/components/Version';
 import PackageJson from '@site/src/components/PackageJson';
 import CodeSnippet from '@site/src/components/CodeSnippet';
 import QuickstartCodeRunner from '@site/src/components/QuickstartCodeRunner';
-import {executeDidCreate, executeGetBearerDid, executeCreateVc, executeSignVc, executeWriteVcToDwn, executeReadVcFromDwn, executeParseVc } from '@site/code-snippets/web5/quickstart.js';
 
 <QuickstartExecutionProvider>
 # Web5 in 5️⃣ minutes
@@ -143,7 +142,7 @@ This Web5 instance is what you'll use to access the other objects of Web5 such a
 
 #### Try it!
 
-<QuickstartCodeRunner executeCode={executeDidCreate} stepIndex={0} autoOpenDetails={false} customPlaceholder={"Your DID will appear here"} />
+<QuickstartCodeRunner executeCodeName="executeDidCreate" stepIndex={0} autoOpenDetails={false} customPlaceholder={"Your DID will appear here"} />
 
  ## 2. Access Bearer DID
 
@@ -177,7 +176,7 @@ You'll see the Bearer DID.
 </details>
 
 #### Try it!
-<QuickstartCodeRunner executeCode={executeGetBearerDid} stepIndex={1} viewJsonObj={true} collapseLevel={1} customPlaceholder={"Your Bearer DID will appear here"}/>
+<QuickstartCodeRunner executeCodeName="executeGetBearerDid" stepIndex={1} viewJsonObj={true} collapseLevel={1} customPlaceholder={"Your Bearer DID will appear here"}/>
 
 ## 3. Create a VC
 
@@ -211,7 +210,7 @@ Enter a username in the input field and click "Run" to create a Verifiable Crede
 
 #### Try it!
 
-<QuickstartCodeRunner executeCode={executeCreateVc} stepIndex={2} viewJsonObj={true} defaultInputValue="@alicesmith123" customPlaceholder={"Your VC will appear here"}/>
+<QuickstartCodeRunner executeCodeName="executeCreateVc" stepIndex={2} viewJsonObj={true} defaultInputValue="@alicesmith123" customPlaceholder={"Your VC will appear here"}/>
 
 ## 4. Sign VC
 
@@ -249,7 +248,7 @@ eyJ0eXAiOiJKV1QiLCJhbGciOiJFZERTQSIsImtpZCI6ImRpZDpkaHQ6cDNpeHo1MXp4azR1MW5uN29x
 
 #### Try it!
 
-<QuickstartCodeRunner executeCode={executeSignVc} stepIndex={3} customPlaceholder={"Your JWT will appear here"}/>
+<QuickstartCodeRunner executeCodeName="executeSignVc" stepIndex={3} customPlaceholder={"Your JWT will appear here"}/>
 
 
 ## 5. Store VC in DWN
@@ -297,7 +296,7 @@ writeResult _Record {}
 </details>
 
 #### Try it!
-<QuickstartCodeRunner executeCode={executeWriteVcToDwn} stepIndex={4} viewJsonObj={true} collapseLevel={1} customPlaceholder={"Your written result will appear here"}/>
+<QuickstartCodeRunner executeCodeName="executeWriteVcToDwn" stepIndex={4} viewJsonObj={true} collapseLevel={1} customPlaceholder={"Your written result will appear here"}/>
 
 ## 6. Read VC from DWN
 
@@ -340,7 +339,7 @@ eyJ0eXAiOiJKV1QiLCJhbGciOiJFZERTQSIsImtpZCI6ImRpZDpkaHQ6cDNpeHo1MXp4azR1MW5uN29x
 
 #### Try it!
 
-<QuickstartCodeRunner executeCode={executeReadVcFromDwn} stepIndex={5} customPlaceholder={"Your read result will appear here"}/>
+<QuickstartCodeRunner executeCodeName="executeReadVcFromDwn" stepIndex={5} customPlaceholder={"Your read result will appear here"}/>
 
 ## 7. Parse VC
 
@@ -374,7 +373,7 @@ You will see a decoded version of the JWT!
 
 #### Try it!
 
-<QuickstartCodeRunner executeCode={executeParseVc} stepIndex={6} viewJsonObj={true} customPlaceholder={"Your parsed VC will appear here"} />
+<QuickstartCodeRunner executeCodeName="executeParseVc" stepIndex={6} viewJsonObj={true} customPlaceholder={"Your parsed VC will appear here"} />
 
 ## Summary
 
