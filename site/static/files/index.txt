@@ -23,6 +23,7 @@ const { record } = await web5.dwn.records.create({
   message: {
     schema: 'Web5QuickstartCompletionCredential',
     dataFormat: 'application/vc+jwt',
+    published: true
   }
 });
 

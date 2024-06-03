@@ -36,6 +36,7 @@ export async function executeWriteVc(web5, signedVc) {
         message: {
             schema: 'Web5QuickstartCompletionCredential',
             dataFormat: 'application/vc+jwt',
+            published: true
         },
     });
     return record;

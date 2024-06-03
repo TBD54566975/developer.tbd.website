@@ -49,6 +49,7 @@ export async function executeWriteVcToDwn() {
     message: {
       schema: 'Web5QuickstartCompletionCredential',
       dataFormat: 'application/json',
+      published: true
     },
   });
   context.record = record

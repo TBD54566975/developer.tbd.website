@@ -98,6 +98,7 @@ describe('/site/tests/quickstart.test.js', async () => {
       message: {
         schema: 'Web5QuickstartCompletionCredential',
         dataFormat: 'application/vc+jwt',
+        published: true
       }
     });
     // :snippet-end:
@@ -131,6 +132,7 @@ describe('/site/tests/quickstart.test.js', async () => {
       message: {
         schema: 'Web5QuickstartCompletionCredential',
         dataFormat: 'application/vc+jwt',
+        published: true
       }
     });
     // :snippet-start: readQuickstartVc
@@ -167,6 +169,7 @@ describe('/site/tests/quickstart.test.js', async () => {
       message: {
         schema: 'Web5QuickstartCompletionCredential',
         dataFormat: 'application/vc+jwt',
+        published: true
       }
     });
 
