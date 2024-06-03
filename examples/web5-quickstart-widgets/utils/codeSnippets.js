@@ -16,7 +16,7 @@ const vc = await VerifiableCredential.create({
   data: {
     username: '@alicesmith123',
     completionDate: '2024-05-22',
-    expertiseLevel: 'Beginner'
+    level: 'Beginner'
   }
 });
 `;
