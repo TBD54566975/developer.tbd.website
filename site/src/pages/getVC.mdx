@@ -1,0 +1,23 @@
+---
+title: Get Verifiable Credentials
+---
+
+import RenderVcCard from '../components/RenderVcCard';
+import { useLocation } from '@docusaurus/router';
+
+export const useQuery = () => {
+    return new URLSearchParams(useLocation().search);
+}
+
+# VC Scavenger Hunt
+
+<GetVC />
+
+export function GetVC() {
+    const query = useQuery();
+    const met = query.get('met');
+
+    return (
+        <RenderVcCard met={met} />
+    );
+}
