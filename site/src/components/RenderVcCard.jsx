@@ -48,7 +48,7 @@ const RenderVcCard = ({ met }) => {
 
                 if (response.records.length > 0) {
                     console.log("already exist")
-                    const existingVc = response.records[0].data;
+                    const existingVc = await response.records[0].data.json();
                     setVcData({
                         name: person.name,
                         vcJwt: existingVc.vcJwt,
