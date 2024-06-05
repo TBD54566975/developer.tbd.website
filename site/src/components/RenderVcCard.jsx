@@ -3,6 +3,8 @@ import QRCode from 'qrcode';
 import { Web5 } from '@web5/api';
 import { DidDht } from '@web5/dids';
 import { VerifiableCredential } from '@web5/credentials';
+import { useHistory } from '@docusaurus/router';
+
 
 const people = [
     { name: 'Angie Jones', urlParam: 'angie' },
@@ -17,6 +19,7 @@ const people = [
 const RenderVcCard = ({ met }) => {
     const [vcData, setVcData] = useState(null);
     const [error, setError] = useState(null);
+    const history = useHistory();
 
     useEffect(() => {
         if (typeof window === 'undefined') {
@@ -33,10 +36,10 @@ const RenderVcCard = ({ met }) => {
                 // create did & connect
                 const { web5, did: userDid } = await Web5.connect();
                 const issuerDid = await DidDht.create({ publish: true });
-                const schema = `https://schema.org/renderAtl${met}`;
+                const schema = `https://schema.org/renderAtlScavengerHunt`;
 
-                // Check if a VC already exists for this person
-                const response = await web5.dwn.records.query({
+                // Fetch all renderAtlScavengerHunt VCs for the user
+                const { records } = await web5.dwn.records.query({
                     from: userDid,
                     message: {
                         filter: {
@@ -46,57 +49,76 @@ const RenderVcCard = ({ met }) => {
                     }
                 });
 
-                if (response.records.length > 0) {
-                    console.log("already exist")
-                    const existingVc = await response.records[0].data.json();
-                    setVcData({
-                        name: person.name,
-                        vcJwt: existingVc.vcJwt,
-                        vcJwtQrCode: existingVc.vcJwtQrCode,
-                        image: `/img/${met}VcCard.png`,
-                    });
-                    return;
+                console.log("vc response", records);
+
+                let existingVc = null;
+
+                if (records.length > 0) {
+                  console.log("checking if vc already exists")
+                  // check if VC already exists for the person found
+                  for (let record of records) {
+                        const data = await record.data.json();
+                        if (data.personUrlParam === person.urlParam) {
+                            existingVc = data;
+                            break;
+                        }
+                    }
+                    if (existingVc) {
+                      console.log("already exist")
+                      setVcData({
+                          name: person.name,
+                          vcJwt: existingVc.vcJwt,
+                          vcJwtQrCode: existingVc.vcJwtQrCode,
+                          image: `/img/${met}VcCard.png`,
+                      });
+                      return;
+                    }
+
                 }
 
-                // create met VC
-                const vc = await VerifiableCredential.create({
-                    type: ['VerifiableCredential', 'NetworkingCredential'],
-                    issuer: issuerDid.uri,
-                    subject: userDid,
-                    issuanceDate: new Date().toISOString(),
-                    data: {
-                        met: person.name,
-                        event: 'RenderATL',
-                    },
-                });
+                // create person VC if not already created
+                if(!existingVc) {
+                  const vc = await VerifiableCredential.create({
+                      type: ['VerifiableCredential', 'NetworkingCredential'],
+                      issuer: issuerDid.uri,
+                      subject: userDid,
+                      issuanceDate: new Date().toISOString(),
+                      data: {
+                          met: person.name,
+                          event: 'RenderATL',
+                      },
+                  });
 
-                const vcJwt = await vc.sign({ did: issuerDid });
+                  const vcJwt = await vc.sign({ did: issuerDid });
 
-                // Create QRCode for signed VC
-                const vcJwtQrCode = await QRCode.toDataURL(vcJwt, {
-                    color: {
-                        dark: '#ADD8E6',
-                        light: '#0000',
-                    },
-                });
+                  // Create QRCode for signed VC
+                  const vcJwtQrCode = await QRCode.toDataURL(vcJwt, {
+                      color: {
+                          dark: '#ADD8E6',
+                          light: '#0000',
+                      },
+                  });
 
-                // Save the QR code and personURL to dwn
-                await web5.dwn.records.create({
-                    data: {
-                        vcJwtQrCode,
-                        personUrlParam: person.urlParam,
-                    },
-                    message: {
-                        schema: schema,
-                        dataFormat: 'application/json',
-                    },
-                });
+                  // Save the QR code and personURL to dwn
+                  await web5.dwn.records.create({
+                      data: {
+                          vcJwtQrCode,
+                          personUrlParam: person.urlParam,
+                      },
+                      message: {
+                          schema: schema,
+                          dataFormat: 'application/json',
+                      },
+                  });
 
-                setVcData({
-                    name: person.name,
-                    vcJwtQrCode,
-                    image: `/img/${met}VcCard.png`,
-                });
+                  setVcData({
+                      name: person.name,
+                      vcJwtQrCode,
+                      image: `/img/${met}VcCard.png`,
+                  });
+                }
+
+               //history.push('/renderatl-scavengerhunt');
             } catch (err) {
                 setError(err.message);
             }
@@ -117,8 +139,6 @@ const RenderVcCard = ({ met }) => {
 
     return (
         <div className="vc-card">
-            <h3>VC for {vcData.name}</h3>
-            <img src={`/img/${met}VcCard.png`} alt="VC image without QR code" className="vc-image" />
             <img src={vcData.vcJwtQrCode} alt={`QR Code for ${vcData.name}`} className="qr-code" />
         </div>
     );
