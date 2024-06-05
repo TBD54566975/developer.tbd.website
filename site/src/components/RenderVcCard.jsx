@@ -117,7 +117,7 @@ const RenderVcCard = ({ met }) => {
                       image: `/img/${met}VcCard.png`,
                   });
                 }
-
+            // TODO: Enable this once fetching existing VC works properly.
                //history.push('/renderatl-scavengerhunt');
             } catch (err) {
                 setError(err.message);
