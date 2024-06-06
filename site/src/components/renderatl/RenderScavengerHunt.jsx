@@ -61,38 +61,41 @@ const RenderScavengerHunt = () => {
   return (
     <div>
       {showConfetti && <Confetti />}
-      <p>Find everyone to win!</p>
+        {allFound ? (
+          <div className="mt-4 mb-4 text-center">
+            <h2 className="text-2xl font-bold">Congratulations! 🎉</h2>
+            <p className="text-lg">You have found everyone! Please meet us at the prize booth to redeem your prize.</p>
+          </div>
+        ) : (
+          <p>Find everyone to win!</p>
+        )}
       <div className="grid grid-cols-1 tablet:grid-cols-2 desktop-lg:grid-cols-4 gap-4">
         {people.map((person) => {
           const found = foundPeople.find((vc) => vc.personUrlParam === person.urlParam);
           return (
             <a
-              href='#'
-              className={`explore-card no-underline w-70 h-56 border-[#282828] border-2 rounded-sm flex flex-col justify-end items-center transition-transform transform hover:-translate-y-1 relative`}
-              style={{
-                boxShadow: hoveredPerson === person.urlParam ? '0 4px 8px rgba(33, 241, 255, 0.7)' : 'none',
-                backgroundImage: `url(/img/${person.urlParam}VcCard.png)`,
-                backgroundSize: 'contain',
-                backgroundPosition: 'center',
-                backgroundRepeat: 'no-repeat'
-              }}
-              onMouseEnter={() => setHoveredPerson(person.urlParam)}
-              onMouseLeave={() => setHoveredPerson(null)}
-              key={person.urlParam}
-            >
-              <div className="flex justify-between px-4 py-6 bg-[#282828] bg-opacity-70 w-full">
-                <p className="text-white">{person.name} {found ? '✅' : '❌'}</p>
-              </div>
-            </a>
+            href='#'
+            className={`explore-card no-underline w-70 h-56 border-[#282828] border-2 rounded-sm flex flex-col justify-end items-center transition-transform transform hover:-translate-y-1 relative`}
+            style={{
+              boxShadow: hoveredPerson === person.urlParam ? '0 4px 8px rgba(33, 241, 255, 0.7)' : 'none',
+              backgroundImage: `url(/img/${person.urlParam}VcCard.png)`,
+              backgroundSize: 'contain',
+              backgroundPosition: 'center',
+              backgroundRepeat: 'no-repeat'
+            }}
+            onMouseEnter={() => setHoveredPerson(person.urlParam)}
+            onMouseLeave={() => setHoveredPerson(null)}
+            key={person.urlParam}
+          >
+            {!found && <div className="absolute inset-0 bg-black bg-opacity-50"></div>} {/* Semi-transparent overlay that does not cover the text */}
+            <div className="flex justify-between px-4 py-6 bg-[#282828] bg-opacity-70 w-full z-10 relative"> {/* Ensures text is on top of the overlay */}
+              <p className="text-white z-20 relative">{person.name} {found ? '✅' : '❌'}</p>
+            </div>
+          </a>
+
           );
         })}
       </div>
-      {allFound && (
-        <div className="mt-4 text-center">
-          <h2 className="text-2xl font-bold">Congratulations! 🎉</h2>
-          <p className="text-lg">You have found everyone! Please meet us at the prize booth to redeem your prize.</p>
-        </div>
-      )}
     </div>
   );
 };
