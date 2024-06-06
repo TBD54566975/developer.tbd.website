@@ -12,7 +12,6 @@ const people = [
     { name: 'Ebony Louis', urlParam: 'ebony' },
     { name: 'Tania Chakraborty', urlParam: 'tania' },
     { name: 'Adewale Abati', urlParam: 'ace' },
-    { name: 'Frank Hinek', urlParam: 'frank' },
     { name: 'Kia Richards', urlParam: 'kia' },
 ];
 
@@ -39,7 +38,7 @@ const RenderVcCard = ({ met }) => {
                 const schema = `https://schema.org/renderAtlScavengerHunt`;
 
                 // Fetch all renderAtlScavengerHunt VCs for the user
-                const { records } = await web5.dwn.records.query({
+                const response = await web5.dwn.records.query({
                     from: userDid,
                     message: {
                         filter: {
@@ -49,14 +48,15 @@ const RenderVcCard = ({ met }) => {
                     }
                 });
 
-                console.log("vc response", records);
+                console.log("vc response", response);
+                console.log("vc response records", response.records);
 
                 let existingVc = null;
 
-                if (records.length > 0) {
+                if (response.records.length > 0) {
                   console.log("checking if vc already exists")
                   // check if VC already exists for the person found
-                  for (let record of records) {
+                  for (let record of response.records) {
                         const data = await record.data.json();
                         if (data.personUrlParam === person.urlParam) {
                             existingVc = data;
@@ -71,7 +71,8 @@ const RenderVcCard = ({ met }) => {
                           vcJwtQrCode: existingVc.vcJwtQrCode,
                           image: `/img/${met}VcCard.png`,
                       });
-                      return;
+                      history.push('/renderatl-scavengerhunt');
+                      // return;
                     }
 
                 }
@@ -100,16 +101,19 @@ const RenderVcCard = ({ met }) => {
                   });
 
                   // Save the QR code and personURL to dwn
-                  await web5.dwn.records.create({
+                  const cResponse = await web5.dwn.records.create({
                       data: {
                           vcJwtQrCode,
                           personUrlParam: person.urlParam,
                       },
                       message: {
                           schema: schema,
+                          published: true,
                           dataFormat: 'application/json',
                       },
                   });
+
+                  console.log("vc response", cResponse);
 
                   setVcData({
                       name: person.name,
@@ -117,8 +121,9 @@ const RenderVcCard = ({ met }) => {
                       image: `/img/${met}VcCard.png`,
                   });
                 }
-            // TODO: Enable this once fetching existing VC works properly.
-               //history.push('/renderatl-scavengerhunt');
+
+              history.push('/renderatl-scavengerhunt');
+
             } catch (err) {
                 setError(err.message);
             }

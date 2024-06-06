@@ -1,6 +1,6 @@
 import React, { Suspense, useEffect, useState } from 'react';
 import { useHistory } from '@docusaurus/router';
-const RenderVcCard = React.lazy(() => import('../components/RenderVcCard'));
+const RenderVcCard = React.lazy(() => import('./RenderVcCard'));
 
 
 
@@ -41,7 +41,8 @@ const GetVC = () => {
         <Suspense fallback={<div>Loading...</div>}>
             {person ? (
               <>
-                <h3>You just met {person.name}! Issuing Verifiable Credential as proof! 🎉</h3>
+                <h3>You just met {person.name}! 🎉🎉</h3>
+                <h4>Issuing Verifiable Credential as proof...</h4>
                 <img src={`/img/${person.urlParam}VcCard.png`} alt="VC image without QR code" className="vc-image" />
                 <RenderVcCard met={person.urlParam} />
               </>
