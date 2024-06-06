@@ -1,8 +1,5 @@
-import React, { Suspense, useEffect, useState } from 'react';
-import { useHistory } from '@docusaurus/router';
+import React, { Suspense } from 'react';
 const RenderScavengerHunt = React.lazy(() => import('./RenderScavengerHunt'));
-
-
 
 // Static data moved outside the component
 const people = [
@@ -15,9 +12,6 @@ const people = [
 ];
 
 const ScavengerHunt = () => {
-    const [person, setPerson] = useState(null);
-    const history = useHistory();
-
     return (
         <Suspense fallback={<div>Loading...</div>}>
             <RenderScavengerHunt />
