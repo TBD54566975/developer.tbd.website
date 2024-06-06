@@ -11,7 +11,6 @@ const people = [
     { name: 'Ebony Louis', urlParam: 'ebony' },
     { name: 'Tania Chakraborty', urlParam: 'tania' },
     { name: 'Adewale Abati', urlParam: 'ace' },
-    { name: 'Frank Hinek', urlParam: 'frank' },
     { name: 'Kia Richards', urlParam: 'kia' },
 ];
 
