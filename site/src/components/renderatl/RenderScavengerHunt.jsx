@@ -63,7 +63,7 @@ const RenderScavengerHunt = () => {
         ) : (
           <>
           <h1>Come Find Us</h1>
-            <p> Find all members of the TBD team at RenderATL 2024! Scan all 6 jerseys for verifiable credentials to claim a prize! 🎁</p>
+            <p> Find all members of the TBD team at RenderATL 2024! Scan all 6 QR Codes for Verifiable Credentials to claim a prize! 🎁</p>
             <br />
             <p>Learn more about the magic of <a href="/docs/web5/learn/verifiable-credentials" style={{ color: 'cyan', textDecoration: 'underline' }}>
                 Verifiable Credentials
@@ -82,7 +82,7 @@ const RenderScavengerHunt = () => {
             style={{
               boxShadow: found ? '0 4px 8px rgba(33, 241, 255, 0.7)' : 'none',
               backgroundImage: `url(/img/${person.urlParam}VcCard.png)`,
-              backgroundSize: 'cover',
+              backgroundSize: 'contain',
               backgroundPosition: 'center',
               backgroundRepeat: 'no-repeat'
             }}
