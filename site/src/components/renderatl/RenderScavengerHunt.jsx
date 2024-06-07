@@ -62,6 +62,7 @@ const RenderScavengerHunt = () => {
           </div>
         ) : (
           <>
+          <h1>Come Find Us</h1>
             <p> Find all members of the TBD team at RenderATL 2024! Scan all 6 jerseys for verifiable credentials to claim a prize! 🎁</p>
             <p>
             <a href="/docs/web5/learn/verifiable-credentials" style={{ color: 'cyan', textDecoration: 'underline' }}>
