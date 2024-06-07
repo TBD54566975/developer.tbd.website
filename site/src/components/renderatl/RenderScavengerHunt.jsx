@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Confetti from 'react-confetti';
-import ProgressBar from './ProgressBar'; 
+import ProgressBar from './ProgressBar';
 
 const people = [
     { name: 'Angie Jones', urlParam: 'angie' },
@@ -64,12 +64,11 @@ const RenderScavengerHunt = () => {
           <>
           <h1>Come Find Us</h1>
             <p> Find all members of the TBD team at RenderATL 2024! Scan all 6 jerseys for verifiable credentials to claim a prize! 🎁</p>
-            <p>
-            <a href="/docs/web5/learn/verifiable-credentials" style={{ color: 'cyan', textDecoration: 'underline' }}>
+            <br />
+            <p>Learn more about the magic of <a href="/docs/web5/learn/verifiable-credentials" style={{ color: 'cyan', textDecoration: 'underline' }}>
                 Verifiable Credentials
-            </a> are cryptographically signed digital documents made by an authority about a subject to verify a claim - in this case, that you've met each member of the TBD team at RenderATL ✨
-            </p>
-            <div className="mt-4 mb-4"> 
+            </a>. ✨</p>
+            <div className="mt-4 mb-4">
               <ProgressBar value={foundPeople.length} max={people.length} />
             </div>
           </>
