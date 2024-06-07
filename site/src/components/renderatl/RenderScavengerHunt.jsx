@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Confetti from 'react-confetti';
+import ProgressBar from './ProgressBar'; 
 
 const people = [
     { name: 'Angie Jones', urlParam: 'angie' },
@@ -53,14 +54,26 @@ const RenderScavengerHunt = () => {
   return (
     <div>
       {showConfetti && <Confetti />}
-      {showConfetti ? (
-        <div className="mt-4 mb-4 pb-4 text-center">
-          <h2 className="text-2xl font-bold">Congratulations! 🎉</h2>
-          <p className="text-lg">You have found everyone! Please meet us at x to redeem your prize.</p>
-        </div>
-      ) : (
-        <p className="pb-4">Can you find all members of the TBD team at RenderATL 2024? Find them all and win a prize! 🎁</p>
-      )}
+      <div className="text-center pb-4">
+        {showConfetti ? (
+          <div className="mt-4 mb-4">
+            <h2 className="text-2xl font-bold">Congratulations! 🎉</h2>
+            <p className="text-lg">You have found everyone! Please meet us at x to redeem your prize.</p>
+          </div>
+        ) : (
+          <>
+            <p> Find all members of the TBD team at RenderATL 2024! Scan all 6 jerseys for verifiable credentials to claim a prize! 🎁</p>
+            <p>
+            <a href="/docs/web5/learn/verifiable-credentials" style={{ color: 'cyan', textDecoration: 'underline' }}>
+                Verifiable Credentials
+            </a> are cryptographically signed digital documents made by an authority about a subject to verify a claim - in this case, that you've met each member of the TBD team at RenderATL ✨
+            </p>
+            <div className="mt-4 mb-4"> 
+              <ProgressBar value={foundPeople.length} max={people.length} />
+            </div>
+          </>
+        )}
+      </div>
       <div className="grid grid-cols-1 tablet:grid-cols-2 desktop-lg:grid-cols-4 gap-4">
         {people.map((person) => {
           const found = foundPeople.find((vc) => vc.personUrlParam === person.urlParam);
@@ -76,7 +89,7 @@ const RenderScavengerHunt = () => {
             key={person.urlParam}
             >
               {!found && <div className="absolute inset-0 bg-black bg-opacity-50"></div>}
-              <div className="flex justify-between px-4 py-6 bg-[#282828] bg-opacity-70 w-full z-10 relative">
+              <div className="flex justify-between px-4 py-4 bg-[#282828] bg-opacity-70 w-full z-10 relative">
                 <p className="text-white z-20 relative">{person.name} {found ? '✅' : '❌'}</p>
               </div>
             </a>

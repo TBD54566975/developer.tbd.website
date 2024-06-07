@@ -37,17 +37,18 @@ const GetVC = () => {
     }, []);
 
     return (
-        <Suspense fallback={<div>Loading...</div>}>
+        <Suspense fallback={<div className="flex justify-center items-center mt-10"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500"></div></div>}>
             {person ? (
               <>
-                <h3>You just met {person.name}! 🎉🎉</h3>
-                <h4>Issuing Verifiable Credential as proof...</h4>
+                <h2>You just met {person.name}! 🎉🎉</h2>
+                <h4 className="text-cyan-300">Issuing Verifiable Credential as proof...</h4>
                 <RenderVcCard met={person.urlParam} />
               </>
             ) : (
-                <p>Loading...</p>
+                <div className="flex justify-center items-center mt-10"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500"></div></div>
             )}
         </Suspense>
+
     );
 };
 
