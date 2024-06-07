@@ -3,7 +3,7 @@ import Confetti from 'react-confetti';
 
 const people = [
     { name: 'Angie Jones', urlParam: 'angie' },
-    { name: 'Rizel Scarlet', urlParam: 'rizel' },
+    { name: 'Rizel Scarlett', urlParam: 'rizel' },
     { name: 'Ebony Louis', urlParam: 'ebony' },
     { name: 'Tania Chakraborty', urlParam: 'tania' },
     { name: 'Adewale Abati', urlParam: 'ace' },
@@ -69,7 +69,7 @@ const RenderScavengerHunt = () => {
             style={{
               boxShadow: found ? '0 4px 8px rgba(33, 241, 255, 0.7)' : 'none',
               backgroundImage: `url(/img/${person.urlParam}VcCard.png)`,
-              backgroundSize: 'contain',
+              backgroundSize: 'cover',
               backgroundPosition: 'center',
               backgroundRepeat: 'no-repeat'
             }}
