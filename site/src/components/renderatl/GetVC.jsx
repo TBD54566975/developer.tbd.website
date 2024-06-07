@@ -42,7 +42,6 @@ const GetVC = () => {
               <>
                 <h3>You just met {person.name}! 🎉🎉</h3>
                 <h4>Issuing Verifiable Credential as proof...</h4>
-                <img src={`/img/${person.urlParam}VcCard.png`} alt="VC image without QR code" className="vc-image" />
                 <RenderVcCard met={person.urlParam} />
               </>
             ) : (
