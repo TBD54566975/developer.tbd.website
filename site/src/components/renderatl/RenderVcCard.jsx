@@ -126,7 +126,6 @@ const RenderVcCard = ({ met }) => {
 
     return (
         <div className="vc-card">
-            {/* <img src={vcData.vcJwtQrCode} alt={`QR Code for ${vcData.name}`} className="qr-code" /> */}
         </div>
     );
 };
