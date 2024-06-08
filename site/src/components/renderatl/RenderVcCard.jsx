@@ -5,12 +5,12 @@ import { VerifiableCredential } from '@web5/credentials';
 import { useHistory } from '@docusaurus/router';
 
 const people = [
-    { name: 'Angie Jones', urlParam: 'angie' },
-    { name: 'Rizel Scarlet', urlParam: 'rizel' },
-    { name: 'Ebony Louis', urlParam: 'ebony' },
-    { name: 'Tania Chakraborty', urlParam: 'tania' },
     { name: 'Adewale Abati', urlParam: 'ace' },
+    { name: 'Angie Jones', urlParam: 'angie' },
+    { name: 'Ebony Louis', urlParam: 'ebony' },
     { name: 'Kia Richards', urlParam: 'kia' },
+    { name: 'Rizel Scarlett', urlParam: 'rizel' },
+    { name: 'Tania Chakraborty', urlParam: 'tania' }
 ];
 
 const RenderVcCard = ({ met }) => {

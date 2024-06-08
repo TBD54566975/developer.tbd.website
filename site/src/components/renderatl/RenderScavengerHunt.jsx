@@ -3,12 +3,12 @@ import Confetti from 'react-confetti';
 import ProgressBar from './ProgressBar';
 
 const people = [
-    { name: 'Angie Jones', urlParam: 'angie' },
-    { name: 'Rizel Scarlett', urlParam: 'rizel' },
-    { name: 'Ebony Louis', urlParam: 'ebony' },
-    { name: 'Tania Chakraborty', urlParam: 'tania' },
     { name: 'Adewale Abati', urlParam: 'ace' },
+    { name: 'Angie Jones', urlParam: 'angie' },
+    { name: 'Ebony Louis', urlParam: 'ebony' },
     { name: 'Kia Richards', urlParam: 'kia' },
+    { name: 'Rizel Scarlett', urlParam: 'rizel' },
+    { name: 'Tania Chakraborty', urlParam: 'tania' }
 ];
 
 const RenderScavengerHunt = () => {
@@ -62,8 +62,8 @@ const RenderScavengerHunt = () => {
           </div>
         ) : (
           <>
-          <h1>Come Find Us</h1>
-            <p> Find all members of the TBD team at RenderATL 2024! Scan all 6 QR Codes for Verifiable Credentials to claim a prize! 🎁</p>
+          <h1>Pull Up On Us</h1>
+            <p> Find all 6 members of the TBD team at RenderATL! Scan their QR codes to collect all Verifiable Credentials and win a prize! 🎁</p>
             <br />
             <p>Learn more about the magic of <a href="/docs/web5/learn/verifiable-credentials" style={{ color: 'cyan', textDecoration: 'underline' }}>
                 Verifiable Credentials
