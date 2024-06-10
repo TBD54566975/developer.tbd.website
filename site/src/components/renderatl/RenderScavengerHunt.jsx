@@ -58,7 +58,7 @@ const RenderScavengerHunt = () => {
         {showConfetti ? (
           <div className="mt-4 mb-4">
             <h2 className="text-2xl font-bold">Congratulations! 🎉</h2>
-            <p className="text-lg">You have found everyone! Please meet us at x to redeem your prize.</p>
+            <p className="text-lg">You have found everyone! Collect your SWAG!! 🥳</p>
           </div>
         ) : (
           <>
