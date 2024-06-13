@@ -8,6 +8,7 @@
  */
 
 /* You can override the default Infima variables here. */
+
 :root {
   --ifm-color-primary: #FFEC19;
   --ifm-color-primary-dark: #FFEC19;
@@ -37,4 +38,15 @@
   --ifm-color-primary-lighter: #32d8b4;
   --ifm-color-primary-lightest: #4fddbf;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+}
+
+
+/**SIDEBAR **/
+
+.menu.thin-scrollbar {
+  background-color: var(--ifm-color-primary);
+}
+
+.menu__link{
+  color: black
 }
