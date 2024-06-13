@@ -20,6 +20,7 @@
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
   --ifm-heading-color: 'black';
   --ifm-color-secondary: #9A1AFF;
+  --ifm-background-color: #000;
 }
 
 .hero-primary {
