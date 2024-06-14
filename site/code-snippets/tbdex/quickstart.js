@@ -1,13 +1,18 @@
-import { test, expect, describe, beforeAll, afterAll } from 'vitest';
 import { TbdexHttpClient, Rfq, Quote, Order, Close } from '@tbdex/http-client';
 import { PresentationExchange } from '@web5/credentials';
-import { DidDht } from '@web5/dids';
+import { Web5 } from '@web5/api';
 
 let context = {};
 
-export async function quickstartGetOfferings() {
+export async function quickstartDidCreate() {
+    const { web5, did: customerDid } = await Web5.connect();
+    context.web5 = web5;
+    context.customerDid = customerDid;
     context.pfiDid = 'did:dht:e4re9qwmtfqbonqcpkrfac3h56417tor7hm7rcsfcgxwj8dwfqqo';
-    context.customerDid = globalThis.did;
+    return customerDid;
+}
+
+export async function quickstartGetOfferings() {
     await getOfferings();
 
     return context.selectedOffering;
@@ -26,9 +31,6 @@ export async function quickstartCreateRfq() {
 }
 
 export async function quickstartSendRfq() {
-    await getOfferings();
-    await getCredentials();
-    await createRfq();
     await sendRfq();
 
     return context.rfq;
@@ -45,47 +47,34 @@ export async function quickstartProcessQuote() {
 }
 
 export async function quickstartCreateOrder() {
-    await getOfferings();
-    await getCredentials();
-    await createRfq();
-    await sendRfq();
-    await processQuote();
     await createOrder();
 
     return context.order;
 }
 
 export async function quickstartSubmitOrder() {
-    await getOfferings();
-    await getCredentials();
-    await createRfq();
-    await sendRfq();
-    await processQuote();
-    await createOrder();
     await submitOrder();
 
     return context.order;
 }   
 
 export async function quickstartProcessClose() {
-    await getOfferings();
-    await getCredentials();
-    await createRfq();
-    await sendRfq();
-    await processQuote();
-    await createOrder();
-    await submitOrder();
     await processClose();
 
     return context.reasonForClose;
 }
 
 async function getOfferings() {
-    const offerings  = await TbdexHttpClient.getOfferings({ pfiDid: context.pfiDid });
 
-    // TODO: Get credentials and the presentation definition
-
-    context.selectedOffering = offerings[0];
+    try {
+        const offerings  = await TbdexHttpClient.getOfferings({ pfiDid: context.pfiDid });
+        // TODO: Get credentials and the presentation definition
+    
+        context.selectedOffering = offerings[0];
+    } catch (e) {
+        console.log(e.message);
+    }
+    
 }
 
 async function getCredentials() {

@@ -8,6 +8,7 @@ import { useQuickstartExecutionContext } from '@site/src/components/QuickstartEx
 const importFunction = async (name) => (await import('../../code-snippets/tbdex/quickstart.js'))[name];
 
 const executeFunctions = {
+    executeDidCreate: () => importFunction('quickstartDidCreate'),
     executeGetOfferings: () => importFunction('quickstartGetOfferings'),
     executeGetCredentials: () => importFunction('quickstartGetCredentials'),
     executeCreateRFQ: () => importFunction('quickstartCreateRFQ'),

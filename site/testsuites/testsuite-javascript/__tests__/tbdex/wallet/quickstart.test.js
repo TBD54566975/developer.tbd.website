@@ -5,7 +5,7 @@ import { PresentationExchange } from '@web5/credentials';
 import { DidDht } from '@web5/dids';
 // :snippet-end:
 
-let customerDid = globalThis.did;
+let customerDid;
 let pfiDid = 'did:dht:e4re9qwmtfqbonqcpkrfac3h56417tor7hm7rcsfcgxwj8dwfqqo';
 let selectedOffering;
 let credentials;
@@ -17,6 +17,15 @@ let order;
 describe('Wallet: Quickstart', () => {
 
     test('getOfferings HTTP Call', async () => {
+
+        // :snippet-start: walletQuickstartDidCreate
+        customerDid = await DidDht.create({
+            options: {
+                publish: true
+            },
+        });
+        // :snippet-end:
+
         // :snippet-start: walletQuickstartGetOfferings
         const offerings  = await TbdexHttpClient.getOfferings({ pfiDid: pfiDid });
         // :snippet-end:
@@ -146,7 +155,7 @@ describe('Wallet: Quickstart', () => {
         
     test('Sign and Submit Order', async () => {
         expect(async () => {
-            // :snippet-start: walletQuickstartSendOrder
+            // :snippet-start: walletQuickstartSubmitOrder
             await order.sign(customerDid);
             await TbdexHttpClient.submitOrder(order);
             // :snippet-end:

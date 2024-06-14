@@ -14,41 +14,45 @@ import WalletQuickstartCodeRunner from '@site/src/components/WalletQuickstartCod
 <QuickstartExecutionProvider>
 # tbDEX Wallet in 5️⃣ minutes
 
-# Overview
+## Overview
 
 Let’s build a tbDEX-enabled wallet in under 5 minutes, right here in the browser. You will learn how to:
 
 ✅  Stand up a basic wallet app
+
 ✅  Add Participating Financial Institutions (PFIs) to your wallet using Decentralized Identifiers (DIDs)
+
 ✅  Create and send Request for Quotes (RFQs) to PFIs
+
 ✅  Receive quotes in response to your RFQs
+
 ✅  Place orders with PFIs
 
 Let’s go!
 
 
-# Wallet App Basics
+## Wallet App Basics
 
 In order to be addressable and communicate with PFIs, your wallet is going to need a DID. That DID will represent the identity of the wallet holder when interacting with not just PFIs, but any Web5-based application.
 
 
-## Import 
+### Import 
 
 Ensure your `wallet.js` makes all the necessary imports:
 
-<CodeSnippet snippetName="walletQuickstartGetOfferings" />
+<CodeSnippet snippetName="walletQuickstartImports" />
 
-## Create your Customer DID
+### Create your Customer DID
 
 While your wallet itself will not need a `DID`, every user of your app will need one. You can create a `DID` like this:
 
-<CodeSnippet snippetName="walletQuickstartCreateCustomerDid" />
+<CodeSnippet snippetName="walletQuickstartDidCreate" />
 
-### **Try it!**
+{/* <WalletQuickstartCodeRunner executeCodeName="executeDidCreate" stepIndex={0} customPlaceholder={"See your DID"} /> */}
 
 And with that you now have a `DID` that represents your wallet and is ready to interface with PFIs!
 
-# Connecting to a PFI
+## Connecting to a PFI
 
 Currently if you’d like to connect with a PFI, you’ll need to know their `DID`. For the sake of this example, we’ll assume that we already have `DID` that we’ll call `pfiDid` ready for use.
 
@@ -56,16 +60,16 @@ For testing purposes we offer a mock PFI with the DID <code>​did:dht:e4re9qwmt
 
 To learn more about interacting with PFIs, [you can see our guide here](https://developer.tbd.website/docs/tbdex/wallet/allowlist-pfis). Additionally, you can learn more about how to handle credentials when interacting with PFIs [in this guide](https://developer.tbd.website/docs/tbdex/wallet/managing-credentials).
 
-# Getting Offerings
+## Getting Offerings
 
 [Offerings](https://developer.tbd.website/docs/tbdex/message-types#offerings) describe the currency pair and transaction parameters for an exchange to take place. PFIs are responsible for creating offerings, and wallets consume them in order to hopefully place an order against that offering. Once you have a PFI's `DID`, you can then fetch all of the offerings they have:
 
 <CodeSnippet snippetName="walletQuickstartGetOfferings" />
 
-<WalletQuickstartCodeRunner executeCodeName="executeGetOfferings" stepIndex={0} autoOpenDetails={false} customPlaceholder={"See the PFI's Offerings"} />
+{/* <WalletQuickstartCodeRunner executeCodeName="executeGetOfferings" stepIndex={0} autoOpenDetails={false} customPlaceholder={"See the PFI's Offerings"} /> */}
 
 
-### Grab Your Credentials
+#### Grab Your Credentials
 
 The Offering you received will likely have a `requiredClaims` section that specifies which, if any, [Verifiable Credentials](https://developer.tbd.website/docs/web5/learn/verifiable-credentials) (VCs) you’ll need to present in order to be eligible for the Offering. VCs are stored as JWTs, and you can access them as follows:
 
@@ -73,59 +77,59 @@ Note that you’ll need to have stored any VCs in the `PresentationExchange` cla
 
 <CodeSnippet snippetName="walletQuickstartSelectCredentials" />
 
-<WalletQuickstartCodeRunner executeCodeName="executeGetCredentials" stepIndex={1} customPlaceholder={"Your Credentials will appear here as JWTs"}/>
+{/* <WalletQuickstartCodeRunner executeCodeName="executeGetCredentials" stepIndex={1} customPlaceholder={"Your Credentials will appear here as JWTs"}/> */}
 
 
-### Create an RFQ
+#### Create an RFQ
 
 Let’s say you’ve found an offering we’ll call `selectedOffering` from the PFI that you’d like to then request a quote on. To submit an RFQ, you’ll then create an `RFQ` object:
 
 <CodeSnippet snippetName="walletQuickstartCreateRfq" />
 
-<WalletQuickstartCodeRunner executeCodeName="executeCreateRfq" stepIndex={2} customPlaceholder={"See your RFQ"}/>
+{/* <WalletQuickstartCodeRunner executeCodeName="executeCreateRfq" stepIndex={2} customPlaceholder={"See your RFQ"}/> */}
 
 Then you’ll want to verify the correctness of your RFQ before finally signing and sending it to the PFI by initiating an exchange. Verification helps to prevent malformed messages from being processed by the PFI, while signing a message with your bearer DID ensures the authenticity of a message:
 
 <CodeSnippet snippetName="walletQuickstartSendRfq" />
 
-<WalletQuickstartCodeRunner executeCodeName="executeSendRfq" stepIndex={3} customPlaceholder={"See your RFQ"}/>
+{/* <WalletQuickstartCodeRunner executeCodeName="executeSendRfq" stepIndex={3} customPlaceholder={"See your RFQ"}/> */}
 
 With the code above you would need to [poll the PFI](https://developer.tbd.website/docs/tbdex/wallet/receive-quote#polling-for-quote) in order to see if it has provided a Quote for you. However, you do have the option to [add a callback URL or DID](https://developer.tbd.website/docs/tbdex/wallet/send-rfq#optional-callback) instead if your wallet is deployed.
 
-# Process a Quote
+## Process a Quote
 
 Assuming we do not supply a callback URL or DID, we can poll the PFI for a quote response:
 
 <CodeSnippet snippetName="walletQuickstartProcessQuote" />
 
-<WalletQuickstartCodeRunner executeCodeName="executeProcessQuote" stepIndex={4} customPlaceholder={"View Quote"}/> 
+{/* <WalletQuickstartCodeRunner executeCodeName="executeProcessQuote" stepIndex={4} customPlaceholder={"View Quote"}/>  */}
 
 Although you can [cancel the exchange](https://developer.tbd.website/docs/tbdex/wallet/receive-quote#cancel-exchange) if you don’t like the quote, once you have that quote you’re then ready to place an order.
 
 
-# Place an Order
+## Place an Order
 
 Given the quote object we found in our exchange with the PFI, you can construct a new order to send to the PFI:
 
 <CodeSnippet snippetName="walletQuickstartCreateOrder" />
 
-<WalletQuickstartCodeRunner executeCodeName="executeCreateOrder" stepIndex={5} customPlaceholder={"Create your order"}/> 
+{/* <WalletQuickstartCodeRunner executeCodeName="executeCreateOrder" stepIndex={5} customPlaceholder={"Create your order"}/>  */}
 
 By verifying and then sending this order, you’ll then receive follow-up `OrderStatus` messages either by polling the PFI or by ensuring that the `replyTo` callback URL/DID was given to the PFI upon initializing your exchange with them:
 
 <CodeSnippet snippetName="walletQuickstartSubmitOrder" />
 
-<WalletQuickstartCodeRunner executeCodeName="executeSubmitOrder" stepIndex={6} customPlaceholder={"Submit your order"}/> 
+{/* <WalletQuickstartCodeRunner executeCodeName="executeSubmitOrder" stepIndex={6} customPlaceholder={"Submit your order"}/>  */}
 
-# Close out the Exchange
+## Close out the Exchange
 
 Once the PFI writes a `Close` message into the exchange, the exchange is over and no additional messages can be added to the exchange. You’ll want to check the `reason` property of the `Close` message to present to the user, as it could be an indication of transaction success or failure:
 
 <CodeSnippet snippetName="walletQuickstartProcessClose" />
 
-<WalletQuickstartCodeRunner executeCodeName="executeProcessClose" stepIndex={7} customPlaceholder={"View your close reason"}/> 
+{/* <WalletQuickstartCodeRunner executeCodeName="executeProcessClose" stepIndex={7} customPlaceholder={"View your close reason"}/>  */}
 
-# Next Steps with tbDEX
+## Next Steps with tbDEX
 
 Congratulations on creating your first Wallet! In just a few minutes you were able to contact a PFI for its offerings, request a quote, place an order, and finish your transaction.
 
