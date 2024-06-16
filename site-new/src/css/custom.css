@@ -43,16 +43,14 @@
 
 /**SIDEBAR **/
 
+
 .menu.thin-scrollbar {
   background-color: var(--ifm-color-primary);
-  padding-left: 12px;
-  padding-right: 12px;
 }
 
 .menu__link {
   color: black;
   border-radius: 0;
-  transition-duration: 0;
 }
 
 .menu__list-item .menu__link:hover {
@@ -74,8 +72,49 @@
   border-top: 1px solid rgba(0, 0, 0, 0.2);
 }
 
-/* Bread Crumbs */
 
+.menu__list a[href*="web5"]::before {
+  content: url("../../static/img/web5-icon.svg");
+  font-family: 'FontAwesome';
+  display: inline-block;
+  margin-left: 5px;
+  vertical-align: middle;
+}
+
+.menu__list a[href*="tbdex"]::before {
+  content: url("../../static/img/light-bulb.svg");
+  font-family: 'FontAwesome';
+  /* Ensure you have included Font Awesome */
+  display: inline-block;
+  margin-left: 5px;
+  /* Adjust the spacing as needed */
+  vertical-align: middle;
+  /* Align the icon with the text */
+}
+
+.menu__list a[href*="web5"]::before:hover {
+  content: url("../../static/img/web5-icon.svg");
+  /* Example: Font Awesome user icon (use the appropriate unicode) */
+  font-family: 'FontAwesome';
+  /* Ensure you have included Font Awesome */
+  display: inline-block;
+  margin-left: 5px;
+  /* Adjust the spacing as needed */
+  vertical-align: middle;
+}
+
+.menu__list a[href*="tbdex"]::before:hover {
+  content: url("../../static/img/light-bulb.svg");
+  font-family: 'FontAwesome';
+  /* Ensure you have included Font Awesome */
+  display: inline-block;
+  margin-left: 5px;
+  /* Adjust the spacing as needed */
+  vertical-align: middle;
+  /* Align the icon with the text */
+}
+
+/* Bread Crumbs */
 
 .theme-doc-breadcrumbs .breadcrumbs__link {
   color: var(--ifm-color-primary);
@@ -90,4 +129,14 @@
   margin: 0 var(--ifm-breadcrumb-spacing);
   opacity: 0.8;
   width: calc(var(--ifm-breadcrumb-separator-size) * var(--ifm-breadcrumb-size-multiplier) * var(--ifm-breadcrumb-separator-size-multiplier));
+}
+
+
+/* Navbar */
+.navbar {
+  background-color: var(--ifm-color-primary);
+}
+
+.navbar a {
+  color: black;
 }
