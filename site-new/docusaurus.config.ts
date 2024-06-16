@@ -4,8 +4,8 @@ import type * as Preset from "@docusaurus/preset-classic";
 import tailwindPlugin from "./plugins/tailwind-pluging.cjs";
 
 const config: Config = {
-  title: "My Site",
-  tagline: "Dinosaurs are cool",
+  title: "TBDevs",
+  tagline: "TBD",
   favicon: "img/favicon.ico",
   plugins: [tailwindPlugin],
   staticDirectories: ["public", "static"],
@@ -60,24 +60,18 @@ const config: Config = {
     // Replace with your project's social card
     image: "img/docusaurus-social-card.jpg",
     navbar: {
-      title: "My Site",
       logo: {
-        alt: "My Site Logo",
+        alt: "TBD Dev",
         src: "img/logo.svg",
       },
       items: [
         {
           type: "docSidebar",
           sidebarId: "docsSidebar",
-          position: "left",
+          position: "right",
           label: "Docs",
         },
-        { to: "/blog", label: "Blog", position: "left" },
-        {
-          href: "https://github.com/facebook/docusaurus",
-          label: "GitHub",
-          position: "right",
-        },
+        { to: "/blog", label: "Blog", position: "right" },
       ],
     },
     footer: {
