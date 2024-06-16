@@ -21,6 +21,7 @@ const sidebars: SidebarsConfig = {
       type: "category",
       label: "SDKs",
       collapsible: false,
+      collapsed: false,
       items: [
         { type: "link", label: "Web5 SDK", href: "web5-sdk" },
         { type: "link", label: "tbDex SDK", href: "tbdex-sdk" },
