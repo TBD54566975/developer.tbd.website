@@ -6,7 +6,7 @@ import { DidDht } from '@web5/dids';
 // :snippet-end:
 
 let customerDid;
-let pfiDid = 'did:dht:e4re9qwmtfqbonqcpkrfac3h56417tor7hm7rcsfcgxwj8dwfqqo';
+let pfiDid = 'did:dht:zwxd1e77xp875it79so7hyhaw7ojdp3gzdomxw1zje9dm1ft7mho';
 let selectedOffering;
 let credentials;
 let exchangeId;

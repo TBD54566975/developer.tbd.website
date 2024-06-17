@@ -8,7 +8,7 @@ export async function quickstartDidCreate() {
     const { web5, did: customerDid } = await Web5.connect();
     context.web5 = web5;
     context.customerDid = customerDid;
-    context.pfiDid = 'did:dht:e4re9qwmtfqbonqcpkrfac3h56417tor7hm7rcsfcgxwj8dwfqqo';
+    context.pfiDid = 'did:dht:zwxd1e77xp875it79so7hyhaw7ojdp3gzdomxw1zje9dm1ft7mho';
     return customerDid;
 }
 
