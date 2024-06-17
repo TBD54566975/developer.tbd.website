@@ -79,17 +79,20 @@
   display: inline-block;
   margin-left: 5px;
   vertical-align: middle;
+  position: relative;
+  top: 3px;
+  right: 8px;
 }
 
 .menu__list a[href*="tbdex"]::before {
   content: url("../../static/img/light-bulb.svg");
   font-family: 'FontAwesome';
-  /* Ensure you have included Font Awesome */
   display: inline-block;
   margin-left: 5px;
-  /* Adjust the spacing as needed */
   vertical-align: middle;
-  /* Align the icon with the text */
+  position: relative;
+  top: 3px;
+  right: 8px;
 }
 
 .menu__list a[href*="web5"]::before:hover {
@@ -113,6 +116,7 @@
   vertical-align: middle;
   /* Align the icon with the text */
 }
+
 
 /* Bread Crumbs */
 
