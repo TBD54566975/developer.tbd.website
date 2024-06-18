@@ -436,7 +436,6 @@ app.post('/credentials', async (req, res) => {
     );
 
     const known_customer_credential = await VerifiableCredential.create({
-      type: 'KnownCustomerCredential',
       issuer: issuerBearerDid.uri, // Issuer's DID string
       subject: customersDidUri, // Customer's DID string from the verified JWT
       expirationDate: '2026-05-19T08:02:04Z',
@@ -502,7 +501,6 @@ describe('Known Customer Credental Issuer Flow', () => {
 
   test('VerifiableCredential.create() creates credential & .sign() creates JWT', async () => {
     const known_customer_credential = await VerifiableCredential.create({
-      type: 'KnownCustomerCredential',
       issuer: issuerBearerDid.uri,
       subject: customerBearerDid.uri,
       expirationDate: '2026-05-19T08:02:04Z',
