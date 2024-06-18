@@ -26,9 +26,6 @@ const sidebars: SidebarsConfig = {
       label: "SDKs",
       collapsible: false,
       collapsed: false,
-      customProps: {
-        sidebarHeader: "Docs",
-      },
       items: [
         {
           type: "link",
@@ -61,18 +58,14 @@ const sidebars: SidebarsConfig = {
       dirName: "web5-sdk/dids",
       customProps: { sidebarHeader: "test" },
     },
-    // {
-    //   type: "link",
-    //   label: "Web5 SDK",
-    //   href: "learn",
-    //   customProps: {
-    //     sidebarHeader: "Web5 SDK",
-    //   },
-    // },
   ],
-  tbdexSidebar: {
-    "tbDex SDKs": ["tbdex-sdk/index"],
-  },
+  tbdexSidebar: [
+    {
+      type: "doc",
+      id: "tbdex-sdk/index",
+      customProps: { sidebarHeader: "tbDex SDK" },
+    },
+  ],
   learnSidebar: [
     {
       type: "category",
