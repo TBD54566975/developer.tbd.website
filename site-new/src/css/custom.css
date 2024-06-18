@@ -73,7 +73,7 @@
 }
 
 
-.menu__list a[href*="web5"]::before {
+.menu__list .web5-icon a::before {
   content: url("../../static/img/web5-icon.svg");
   font-family: 'FontAwesome';
   display: inline-block;
@@ -84,7 +84,7 @@
   right: 8px;
 }
 
-.menu__list a[href*="tbdex"]::before {
+.menu__list .tbdex-icon a::before {
   content: url("../../static/img/light-bulb.svg");
   font-family: 'FontAwesome';
   display: inline-block;
