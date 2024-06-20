@@ -247,7 +247,7 @@ app.get('/.well-known/openid-credential-issuer', (req, res) => {
         cryptographic_binding_methods_supported: ['did:example'],
         credential_signing_alg_values_supported: ['EdDSA', 'ES256K'],
         credential_definition: {
-          type: ['VerifiableCredential', 'KnownCustomerCredential'],
+          type: ['VerifiableCredential'],
           credentialSubject: {
             country: {
               display: [{ name: 'Country', locale: 'en-US' }],
