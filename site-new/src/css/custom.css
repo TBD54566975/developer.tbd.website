@@ -1,6 +1,43 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+  font-family: 'Basis';
+  src: url('../fonts/Basis/MADType\ -\ Basis.ttf');
+}
+
+@font-face {
+  font-family: 'SpaceGrotesk-Light';
+  src: url('../fonts/Space-Grotesk/SpaceGrotesk-Light.ttf')
+}
+
+@font-face {
+  font-family: 'SpaceGrotesk-Bold';
+  src: url('../fonts/Space-Grotesk/SpaceGrotesk-Bold.ttf')
+}
+
+@font-face {
+  font-family: 'SpaceGrotesk-Medium';
+  src: url('../fonts/Space-Grotesk/SpaceGrotesk-Medium.ttf');
+}
+
+@font-face {
+  font-family: 'SpaceGrotesk-Regular';
+  src: url('../fonts/Space-Grotesk/SpaceGrotesk-Regular.ttf');
+}
+
+
+@font-face {
+  font-family: 'SpaceGrotesk-VariableFont';
+  src: url('../fonts/Space-Grotesk/SpaceGrotesk-VariableFont_wght.ttf');
+}
+
+@font-face {
+  font-family: 'Inter';
+  src: url('../fonts/Inter/Inter-VariableFont_slnt,wght.ttf');
+}
+
 /**
  * Any CSS included here will be global. The classic template
  * bundles Infima by default. Infima is a CSS framework designed to
@@ -24,6 +61,12 @@
   --ifm-background-color: #000;
 }
 
+h2 {
+  font-family: 'Space-Grotesk-Bold';
+  font-weight: 600;
+  font-size: 32px;
+}
+
 .hero-primary {
 --ifm-hero-background-color: var(--ifm-color-primary);
 }
@@ -43,6 +86,16 @@
 
 /**SIDEBAR **/
 
+.category-label {
+  font-family: 'Basis';
+  opacity: 60%;
+  padding-left: 12px;
+  padding-top: 24px;
+  font-size: 12px;
+  font-weight: 400;
+  margin-top: 12px;
+  border-top: 1px solid rgba(0, 0, 0, 0.2);
+}
 
 .menu.thin-scrollbar {
   background-color: var(--ifm-color-primary);
