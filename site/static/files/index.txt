@@ -1,16 +1,32 @@
 import { Web5 } from '@web5/api';
+import { VerifiableCredential } from '@web5/credentials';
 
 const { web5, did: aliceDid } = await Web5.connect();
 
-const { record } = await web5.dwn.records.create({
-    data: "Hello Web5",
-    message: {
-      dataFormat: 'text/plain',
-    },
+const { did: aliceBearerDid } = await web5.agent.identity.get({ didUri: aliceDid });
+
+const vc = await VerifiableCredential.create({
+  type: 'Web5QuickstartCompletionCredential',
+  issuer: aliceDid,
+  subject: aliceDid,
+  data: {
+    name: 'Alice Smith',
+    completionDate: new Date().toISOString(),
+    expertiseLevel: 'Beginner'
+  }
 });
 
-const readResult = await record.data.text();
+const signedVc = await vc.sign({ did: aliceBearerDid });
 
-const updateResult = await record.update({ data: "Hello, I'm updated!" });
+const { record } = await web5.dwn.records.create({
+  data: signedVc,
+  message: {
+    schema: 'Web5QuickstartCompletionCredential',
+    dataFormat: 'application/vc+jwt',
+    published: true
+  }
+});
 
-const deleteResult = await web5.dwn.records.delete({ from: aliceDid, message: { recordId: record.id } });
+const readSignedVc = await record.data.text();
+
+const parsedVc = VerifiableCredential.parseJwt({ vcJwt: readSignedVc });

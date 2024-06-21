@@ -25,16 +25,7 @@ The SSI Service facilitates all things relating to DIDs and Verifiable Credentia
         imageURL: '/img/external-link-blue-icon.svg',
         isExternalLink: true,
       },
-    },
-    {
-      type: 'button',
-      data: {
-        label: 'Explore Playground',
-        url: 'https://ssi.benri.io/',
-        isExternalLink: true,
-        imageURL: '/img/external-link-blue-icon.svg',
-      }
-    },    
+    },   
     {
       type: 'button',
       data: {

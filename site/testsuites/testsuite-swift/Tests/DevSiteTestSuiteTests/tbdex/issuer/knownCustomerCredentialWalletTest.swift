@@ -1,4 +1,5 @@
 import XCTest
+import AnyCodable
 // :prepend-start: knownCustomerCredentialResolveIssuerDidSwift
 import Web5
 import Foundation
@@ -92,7 +93,6 @@ final class KnownCustomerCredentialWalletTest: XCTestCase {
             presentationDefinition: presentationDefinition
         )
         XCTAssertEqual(selectedCredentials.count, 2)
-        // todo: add test for create vp
     }
 
     func testJWTSignWithValidPayloadAndBearerDid() async throws {
@@ -185,6 +185,13 @@ final class KnownCustomerCredentialWalletTest: XCTestCase {
         return try JSONDecoder().decode(PresentationDefinitionV2.self, from: encodedPresentation)
     }
 
+    enum PresentationError: Error {
+        case serializationError
+        case signingError
+    }
+
+
+
     // :snippet-start: knownCustomerCredentialhandleSiopRequestWalletSwift
     func handleSiopRequest(encodedSiopRequest: String) async throws {
         /*******************************************************
@@ -231,9 +238,32 @@ final class KnownCustomerCredentialWalletTest: XCTestCase {
             /*******************************************************
             * Generate & sign vp_token
             *******************************************************/
-            // let vp = try await PresentationExchange.createPresentationFromCredentials(vcJWTs: selectedCredentials, presentationDefinition: pdEncoded) // method not implemented in Swift yet 
+            let vp = try PresentationExchange.createPresentationFromCredentials(vcJWTs: selectedCredentials, presentationDefinition: pdEncoded)
 
-            // vpToken = try JWT.sign(did: userBearerDid, claims: vp)
+            let vpJsonObject: [String: Any] = [
+                "context": ["https://www.w3.org/2018/credentials/v1"],
+                "type": ["VerifiablePresentation"], 
+                "verifiableCredential": selectedCredentials, // The array of credential JWTs
+                "presentationSubmission": vp // The presentation submission 
+            ]
+
+            if let jsonData = try? JSONSerialization.data(withJSONObject: vpJsonObject),
+            let jsonString = String(data: jsonData, encoding: .utf8){
+                let jsonCodable = AnyCodable(jsonString)
+                let claims = JWT.Claims(
+                    issuer: userBearerDid.uri,
+                    subject: userBearerDid.uri,
+                    expiration: Date().addingTimeInterval(3600), 
+                    issuedAt: Date(),
+                    misc: ["vp": jsonCodable]
+                )
+
+                vpToken = try JWT.sign(did: userBearerDid, claims: claims)
+            }else{
+              throw PresentationError.serializationError
+            }         
+        }else{
+            vpToken = nil
         }
 
         /*******************************************************
@@ -243,10 +273,10 @@ final class KnownCustomerCredentialWalletTest: XCTestCase {
             throw URLError(.badURL)
         }
 
-        let responsePayload: [String: Any] = ["id_token": idToken]
-        // if let vp = vpToken {
-        //     responsePayload["vp_token"] = vp
-        // }
+        var responsePayload: [String: Any] = ["id_token": idToken]
+        if let vp = vpToken {
+            responsePayload["vp_token"] = vp
+        }
 
         var request = URLRequest(url: responseUri)
         request.httpMethod = "POST"
@@ -379,7 +409,7 @@ final class KnownCustomerCredentialWalletTest: XCTestCase {
     }
     // :snippet-end:
 
-        enum AccessTokenError: Error {
+    enum AccessTokenError: Error {
         case badURL
         case httpRequestFailed(String)
         case authorizationPending
@@ -495,11 +525,12 @@ final class KnownCustomerCredentialWalletTest: XCTestCase {
         * Construct & sign the JWT payload
         **************************************************/
     let issuedAtDate = Date()
+    let jsonCodable = AnyCodable(cNonce)
     let jwtClaims = JWT.Claims(
         issuer: userBearerDid.uri, // user's DID string
         audience: issuerBearerDid.uri, // Issuer's DID string
-        issuedAt: issuedAtDate
-        // nonce: cNonce (not implemented in Swift yet)
+        issuedAt: issuedAtDate,
+        misc: ["nonce": jsonCodable]
     )
 
     do {

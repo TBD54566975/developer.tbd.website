@@ -4,7 +4,7 @@ hide_title: true
 sidebar_position: 2
 ---
 
-<LanguageSwitcher languages="JavaScript, Kotlin" />
+<LanguageSwitcher languages="JavaScript, Kotlin, Swift" />
 
 # Key Management
 
@@ -15,7 +15,7 @@ Proper [key management](https://en.wikipedia.org/wiki/Key_management) ensures th
 
 ## Supported Types
 
-The Web5 SDK offers two distinct `KeyManager` implementations:
+The Web5 SDK provides a `KeyManager` interface that makes it possible to use any key management solution of your choice. A few examples out of the box are:
 
 * **InMemoryKeyManager**: This implementation utilizes in-memory, ephemeral storage for managing keys.
 It's ideal for scenarios where temporary key management is sufficient, such as in testing environments.
@@ -26,6 +26,28 @@ It's well-suited for production environments where a high level of security and 
 
 Both implementations facilitate key generation and signature operations essential for creating and managing DIDs. Each caters to distinct security needs, and the choice between them should be based on the specific requirements of your application.
 
+Other production-friendly KMS solutions include [Azure Key Vault](https://azure.microsoft.com/en-us/products/key-vault), [Google Cloud KMS](https://cloud.google.com/security/products/security-key-management), and [HashiCorp Vault](https://www.hashicorp.com/products/vault) etc.
+
+<LanguageSwitchBlock>
+  <div language="JavaScript">
+    <p>
+Any of these can be used by implementing the [CryptoApi](https://tbd54566975.github.io/web5-js/interfaces/_web5_crypto.CryptoApi.html) interface.
+   </p>
+  </div>
+
+  <div language="Kotlin">
+    <p>
+Any of these can be used by implementing the [KeyManager](https://tbd54566975.github.io/web5-kt/docs/-web5%20-s-d-k%20-documentation/web5.sdk.crypto/-key-manager/index.html) interface.
+    </p>
+  </div>
+  <div language="Swift">
+    <p>
+Any of these can be used by implementing the [KeyManager](https://swiftpackageindex.com/tbd54566975/web5-swift/main/documentation/web5/keymanager) interface.
+    </p>
+  </div>
+</LanguageSwitchBlock>
+
+
 ## Example
 Below is an example that uses `AwsKeyManager` for production environments, and `InMemoryKeyManager` for any other environments (dev, test, etc).
 
@@ -34,43 +56,27 @@ Below is an example that uses `AwsKeyManager` for production environments, and `
 
 **Install Packages**
 
-<Shnip
-  inlineSnippets={[
-    {
-      code: `npm i @web5/crypto @web5/dids @web5/crypto-aws-kms`,
-      language: 'JavaScript',
-      codeLanguage: 'bash',
-    }
-  ]}
-  snippets={[
-    {
-      nestedSnippets:{
-          'Gradle': {
-            "snippetName": 'keyManagementDependencyGradle',
-            "language": 'gradle'
-          },
-          'Maven': {
-            "snippetName": 'keyManagementDependencyPom',
-            "language": 'xml'
-          }
-        },
-        language: 'Kotlin'
-    }
-  ]}
-/>
+<Dependencies languageDependencies={[
+  { language: 'javascript', dependencies: ['@web5/dids', '@web5/crypto', '@web5/crypto-aws-kms'] },
+  { language: 'maven', dependencies: ['web5-dids', 'web5-crypto'] },
+  { language: 'gradle', dependencies: ['web5-dids', 'web5-crypto'] },
+  { language: 'swift', dependencies: ['Web5']},
+]}/>
 
 **Import Classes**
 
 <Shnip snippets={[
     { snippetName: 'importKeyManagementJs', language: 'JavaScript'},
-    { snippetName: 'importKeyManagementKt', language: 'Kotlin'}
+    { snippetName: 'importKeyManagementKt', language: 'Kotlin'},
+    { snippetName: 'web5ImportSwift', language: 'Swift'}
 ]} />
 
 </details>
 
 <Shnip snippets={[
     { snippetName: 'initializeKeyManagementJs', language: 'JavaScript'},
-    { snippetName: 'initializeKeyManagementKt', language: 'Kotlin'}
+    { snippetName: 'initializeKeyManagementKt', language: 'Kotlin'},
+    { snippetName: 'initializeKeyManagementSwift', language: 'Swift'}
 ]} />
 
 ## Configuring AWS Key Manager

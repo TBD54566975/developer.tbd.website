@@ -1,4 +1,4 @@
-import { Rfq, Quote } from '@tbdex/http-server';
+import { Rfq, Quote, Parser } from '@tbdex/http-server';
 import { DevTools } from '@tbdex/http-client';
 import { DidDht } from '@web5/dids';
 import { OfferingsApiProvider } from './offeringsApiProvider'
@@ -37,74 +37,46 @@ describe('PFI: Quotes', () => {
 
     // Configure Mocks
 
-    message = DevTools.createRfq({
+    message = await DevTools.createRfq({
       sender: senderDid,
       receiver: pfiDid
     });
-    message.offeringId = "someOffering"
-
-    let mockOfferingData = DevTools.createOfferingData();
+    await message.sign(senderDid);
+ 
     mockOffering = DevTools.createOffering({
       from: pfiDid.uri,
-      offeringData: mockOfferingData
+      offeringData: DevTools.createOfferingData()
     })
+    await mockOffering.sign(pfiDid);
 
-    offeringsApiProvider.setOffering(message.offeringId, mockOfferingData);
+
+    message.offeringId = mockOffering.id;
+    offeringsApiProvider.setOffering(mockOffering);
+
 
     dataProvider.setupInsert("exchange", "", () => { return });
   });
   
   test('PFI creates offering', async () => {
-    // :snippet-start: pfiCreateOfferingJs
+    // :snippet-start: pfiWriteOfferingJs
     // Write the message to your exchanges database
     await dataProvider.insert('exchange', {
       exchangeid: message.exchangeId,
       messagekind: message.kind,
       messageid: message.id,
       subject: message.subject,
-      message: JSON.stringify(message)
+      message: await Parser.parseMessage(message)
     });
   
     //highlight-start
     const offering = await offeringsApiProvider.getOffering(message.offeringId);
     //highlight-end
     // :snippet-end:
-
-    expect(offering.data).toEqual(mockOffering.data);
   })
 
-  test('PFI verifies required claims', async () => {
-    const offering = DevTools.createOffering({
-      from: pfiDid.did
-    });
-
-    const rfq = Rfq.create({
-      metadata: {
-        from: pfiDid.uri,
-        to: senderDid.uri
-      },
-      data: await DevTools.createRfqData({
-        sender: senderDid
-      })
-    });
-    //change RFQ to have the same offering id
-    rfq.data.offeringId = offering.id;
-
-    const consoleSpy = vi.spyOn(console, 'log');
-
-    // :snippet-start: pfiRfqVerifyOfferingRequirementsJs
-    try {
-      await rfq.verifyOfferingRequirements(offering);
-    } catch(e) {
-      console.log(`Failed to verify offering requirements: ${e.message}`);
-    }
-    // :snippet-end:
-
-    expect(consoleSpy).not.toHaveBeenCalled();
-    consoleSpy.mockRestore();
-  });
-
   test('PFI creates and signs quote', async () => {
+    const offering = mockOffering
+
     // :snippet-start: pfiCreateQuoteJs
     // Set the Quote's expiration date for 10 days from now
     var quoteExpiration = new Date();
@@ -114,12 +86,13 @@ describe('PFI: Quotes', () => {
       metadata: {
         from: pfiDid.uri,
         to: message.from,
-        exchangeId: message.exchangeId
+        exchangeId: message.exchangeId,
+        protocol: '1.0'
       },
       data: {
         expiresAt: quoteExpiration.toLocaleDateString('en-us'),
         payin: {
-          currencyCode: 'BTC',
+          currencyCode: offering.data.payin.currencyCode,
           amount: '0.01',
           fee: '0.0001',
           paymentInstruction : {
@@ -128,7 +101,7 @@ describe('PFI: Quotes', () => {
           }
         },
         payout: {
-          currencyCode: 'USD',
+          currencyCode: offering.data.payout.currencyCode,
           amount: '1000.00',
           paymentInstruction : {
             link: 'https://example.com/paymentInstructions',

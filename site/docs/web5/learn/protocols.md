@@ -58,11 +58,7 @@ const protocolDefinition = {
         "$actions": [
           {
             "who": "anyone",
-            "can": "read"
-          },
-          {
-            "who": "anyone",
-            "can": "write"
+            "can": ["create", "read"]
           }
         ],
         "reply": {
@@ -70,12 +66,12 @@ const protocolDefinition = {
             {
               "who": "recipient",
               "of": "post",
-              "can": "write"
+              "can": ["create"]
             },
             {
               "who": "author",
               "of": "post",
-              "can": "write"
+              "can": ["create"]
             }
           ]
         }
@@ -84,23 +80,19 @@ const protocolDefinition = {
         "$actions": [
           {
             "who": "anyone",
-            "can": "read"
-          },
-          {
-            "who": "anyone",
-            "can": "write"
+            "can": ["create", "read"]
           }
         ],
         "caption": {
           "$actions": [
             {
               "who": "anyone",
-              "can": "read"
+              "can": ["read"]
             },
             {
               "who": "author",
               "of": "image",
-              "can": "write"
+              "can": ["create"]
             }
           ]
         },
@@ -109,12 +101,12 @@ const protocolDefinition = {
             {
               "who": "author",
               "of": "image",
-              "can": "read"
+              "can": ["read"]
             },
             {
               "who": "recipient",
               "of": "image",
-              "can": "write"
+              "can": ["create"]
             }
           ]
         }
@@ -165,11 +157,7 @@ You’ll then notice how each of those `types` is used in the large `structure` 
     "$actions": [
       {
         "who": "anyone",
-        "can": "read"
-      },
-      {
-        "who": "anyone",
-        "can": "write"
+        "can": ["create", "read"]
       }
     ],
     "reply": {
@@ -177,12 +165,12 @@ You’ll then notice how each of those `types` is used in the large `structure` 
         {
           "who": "recipient",
           "of": "post",
-          "can": "write"
+          "can": ["create"]
         },
         {
             "who": "author",
             "of": "post",
-            "can": "write"
+            "can": ["create"]
           }
       ]
     }
@@ -192,23 +180,23 @@ You’ll then notice how each of those `types` is used in the large `structure` 
     "$actions": [
       {
         "who": "anyone",
-        "can": "read"
+        "can": ["read"]
       },
       {
         "who": "anyone",
-        "can": "write"
+        "can": ["create"]
       }
     ],
     "caption": {
       "$actions": [
         {
           "who": "anyone",
-          "can": "read"
+          "can": ["read"]
         },
         {
           "who": "author",
           "of": "image",
-          "can": "write"
+          "can": ["create"]
         }
       ]
     },
@@ -217,12 +205,12 @@ You’ll then notice how each of those `types` is used in the large `structure` 
         {
           "who": "author",
           "of": "image",
-          "can": "read"
+          "can": ["read"]
         },
         {
           "who": "recipient",
           "of": "image",
-          "can": "write"
+          "can": ["create"]
         }
       ]
     }
@@ -230,18 +218,14 @@ You’ll then notice how each of those `types` is used in the large `structure` 
 }
 ```
 
-Within `post`, you’ll notice we define `actions` permissions to let anyone read or write one.
+Within `post`, you’ll notice we define `actions` permissions to let anyone read or create one.
 
 ```json
 "post": {
     "$actions": [
       {
         "who": "anyone",
-        "can": "read"
-      },
-      {
-        "who": "anyone",
-        "can": "write"
+        "can": ["create", "read"]
       }
     ],
 },
@@ -254,11 +238,7 @@ But then we nest another `structure` object to hold the child property of `reply
   "$actions": [
       {
         "who": "anyone",
-        "can": "read"
-      },
-      {
-        "who": "anyone",
-        "can": "write"
+        "can": ["read", "create"]
       }
   ],
   //highlight-next-line
@@ -267,12 +247,12 @@ But then we nest another `structure` object to hold the child property of `reply
       {
         "who": "recipient",
         "of": "post",
-        "can": "write"
+        "can": ["create"]
       },
       {
         "who": "author",
         "of": "post",
-        "can": "write"
+        "can": ["create"]
       }
     ]
   }
@@ -287,11 +267,7 @@ Additionally, you’ll notice the `image` object below it also defines `actions`
   "$actions": [
     {
       "who": "anyone",
-      "can": "read"
-    },
-    {
-      "who": "anyone",
-      "can": "write"
+      "can": ["create","read"]
     }
   ],
   //highlight-next-line
@@ -299,12 +275,12 @@ Additionally, you’ll notice the `image` object below it also defines `actions`
     "$actions": [
       {
         "who": "anyone",
-        "can": "read"
+        "can": ["read"]
       },
       {
         "who": "author",
         "of": "image",
-        "can": "write"
+        "can": ["create"]
       }
     ]
   },
@@ -314,12 +290,12 @@ Additionally, you’ll notice the `image` object below it also defines `actions`
       {
         "who": "author",
         "of": "image",
-        "can": "read"
+        "can": ["read"]
       },
       {
         "who": "recipient",
         "of": "image",
-        "can": "write"
+        "can": ["create"]
       }
     ]
   }
@@ -370,8 +346,7 @@ const replyResponse = await web5.dwn.records.create({
       protocol: protocolDefinition.protocol,
       protocolPath: 'post/reply',
       //highlight-next-line
-      parentId: postRecord.id,
-      contextId: postRecord.contextId,
+      parentContextId: postRecord.id,
       schema: "https://social-media.xyz/schemas/replySchema",
       dataFormat: 'text/plain',
     },
@@ -404,10 +379,10 @@ Here are a bunch of [example protocols](https://github.com/TBD54566975/dwn-sdk-j
 
 <div className="grid grid-cols-1 desktop:grid-cols-2 gap-5">
 
-  <iframe class="aspect-video" src="https://www.youtube.com/embed/RfUE-bd73bE?si=eEZPwauDvRgEywIU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+  <iframe class="aspect-video" src="https://www.youtube.com/embed/96rtA1CvylU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
-  <iframe class="aspect-video" src="https://www.youtube.com/embed/KE1s8NfomKk?si=dRXbfQHaXHNMLoas" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+  <iframe class="aspect-video" src="https://www.youtube.com/embed/8XX8AgXnY2I" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
-  <iframe class="aspect-video" src="https://www.youtube.com/embed/AioiNfpsPu0?si=zx9eva4AKJ7r4end" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+  <iframe class="aspect-video" src="https://www.youtube.com/embed/Jy2PvarC82c" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
 </div>

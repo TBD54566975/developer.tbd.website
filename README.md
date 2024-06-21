@@ -1,5 +1,6 @@
 # TBD Developer Site
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/19baaad3-74aa-4443-8638-43f89fc55926/deploy-status)](https://app.netlify.com/sites/tbd-website-developer/deploys)
 [![OpenSSF Scorecard](https://api.securityscorecards.dev/projects/github.com/TBD54566975/developer.tbd.website/badge)](https://securityscorecards.dev/viewer/?uri=github.com/TBD54566975/developer.tbd.website)
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FTBD54566975%2Fdeveloper.tbd.website.svg?type=shield&issueType=license)](https://app.fossa.com/projects/git%2Bgithub.com%2FTBD54566975%2Fdeveloper.tbd.website?ref=badge_shield&issueType=license)
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FTBD54566975%2Fdeveloper.tbd.website.svg?type=shield&issueType=security)](https://app.fossa.com/projects/git%2Bgithub.com%2FTBD54566975%2Fdeveloper.tbd.website?ref=badge_shield&issueType=security)

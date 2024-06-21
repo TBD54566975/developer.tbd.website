@@ -4,13 +4,11 @@ import okhttp3.mockwebserver.MockResponse
 import okhttp3.mockwebserver.MockWebServer
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Assertions.assertNull
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import tbdex.sdk.httpclient.TbdexHttpClient
-import tbdex.sdk.protocol.models.Close
-import tbdex.sdk.protocol.models.CloseData
-import tbdex.sdk.protocol.models.Quote
-import tbdex.sdk.protocol.models.Rfq
+import tbdex.sdk.protocol.models.*
 import tbdex.sdk.protocol.serialization.Json
 import java.net.HttpURLConnection
 import website.tbd.developer.site.docs.utils.*
@@ -30,11 +28,7 @@ class ReceiveQuoteTest {
         server = MockWebServer()
         server.start(9000)
 
-        rfq = Rfq.create(
-            from = customerDid.uri,
-            to = pfi.uri,
-            rfqData = TestData.getRfq().data
-        )
+        rfq = TestData.getRfq()
         rfq.sign(customerDid)
 
         quote = Quote.create(
@@ -58,27 +52,35 @@ class ReceiveQuoteTest {
 
     @Test
     fun `poll for quote message`() {
-        // :snippet-start: pollforQuoteKt
-        var quote: Quote? = null
+      // :snippet-start: pollforQuoteKt
+      var quote: Quote? = null
+      var close: Close? = null
 
-        //Wait for Quote message to appear in the exchange
-        while (quote == null) {
-            val exchange = TbdexHttpClient.getExchange(
-                pfiDid = rfq.metadata.to,
-                requesterDid = customerDid,
-                exchangeId = rfq.metadata.exchangeId
-            )
+      //Wait for Quote message to appear in the exchange
+      while (quote == null) {
+        val exchange = TbdexHttpClient.getExchange(
+          pfiDid = rfq.metadata.to,
+          requesterDid = customerDid,
+          exchangeId = rfq.metadata.exchangeId
+        )
 
-            quote = exchange.find { it is Quote } as Quote?
+        quote = exchange.find { it is Quote } as Quote?
 
-            if (quote == null) {
-                // Wait 2 seconds before making another request
-                Thread.sleep(2000)
-            }
+        if (quote == null) {
+          // Make sure the exchange is still open
+          close = exchange.find { it is Close } as Close?
+
+          if (close != null) { break }
+          else {
+            // Wait 2 seconds before making another request
+            Thread.sleep(2000)
+          }
         }
         // :snippet-end:
+      }
 
-        assertEquals(rfq.metadata.exchangeId, quote.metadata.exchangeId)
+      assertEquals(rfq.metadata.exchangeId, quote?.metadata?.exchangeId)
+      assertNull(close)
     }
 
     @Test

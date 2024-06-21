@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import CodeSnippet from '@site/src/components/CodeSnippet';
 
-const BreadcrumbTab = ({ snippetMappings }) => {
-  const [activeTab, setActiveTab] = useState(Object.keys(snippetMappings)[0]);
+const BreadcrumbTab = ({ snippetMappings, dependencies }) => {
+  const [activeTab, setActiveTab] = useState(snippetMappings ? Object.keys(snippetMappings)[0] : dependencies[0].props.language);
 
   const handleTabClick = (tab) => {
     setActiveTab(tab === activeTab ? null : tab);
@@ -11,7 +11,7 @@ const BreadcrumbTab = ({ snippetMappings }) => {
   return (
     <div>
       <div className='breadcrumbTabs' style={{ display: 'flex' }}>
-        {Object.keys(snippetMappings).map(title => (
+        {(snippetMappings ? Object.keys(snippetMappings) : dependencies.map(dep => dep.props.language)).map(title => (
           <div
             key={title}
             onClick={() => handleTabClick(title)}
@@ -24,7 +24,8 @@ const BreadcrumbTab = ({ snippetMappings }) => {
               backgroundColor: activeTab === title ? '#ffec19' : '#333333',
               color: activeTab === title ? '#000' : '#fff',
               border: '1px solid #ffec19',
-              fontSize: '0.9em'
+              fontSize: '0.9em',
+              textTransform: 'capitalize'
             }}
           >
             {title}
@@ -32,7 +33,14 @@ const BreadcrumbTab = ({ snippetMappings }) => {
         ))}
       </div>
       <div>
-        {activeTab && (
+        {activeTab && dependencies && dependencies.map(dep => {
+          return (
+            <div key={dep.props.language} style={{ display: activeTab === dep.props.language ? 'block' : 'none' }}>
+              {dep}
+            </div>
+          )
+        })}
+        {activeTab && snippetMappings && (
           <CodeSnippet
             snippet={snippetMappings[activeTab].snippet}
             snippetName={snippetMappings[activeTab].snippetName}

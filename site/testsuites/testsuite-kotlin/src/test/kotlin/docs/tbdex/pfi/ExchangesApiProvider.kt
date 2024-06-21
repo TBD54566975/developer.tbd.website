@@ -2,12 +2,10 @@ package website.tbd.developer.site.docs.tbdex.pfi
 
 import website.tbd.developer.site.docs.utils.MockExchangesApiProvider
 import tbdex.sdk.protocol.models.Message
-import website.tbd.developer.site.docs.utils.*
-import tbdex.sdk.httpserver.models.*
 
 class ExchangesApiProvider: MockExchangesApiProvider() {
     // :snippet-start: pfiOverviewWriteKt
-    fun write(message: Message) {
+    fun write(message: Message, replyTo: String = "") {
         val data = mapOf(
             "exchangeid" to message.metadata.exchangeId,
             "messagekind" to message.metadata.kind,
@@ -16,6 +14,14 @@ class ExchangesApiProvider: MockExchangesApiProvider() {
             "message" to message.data
         )
         dataProvider.insert("exchange", data)
+
+        if (replyTo.isNotEmpty()) {
+            val callbackData = mapOf(
+                "exchangeId" to message.metadata.exchangeId,
+                "uri" to replyTo
+            )
+            dataProvider.insert("callbacks", replyTo)
+        }
     }
     // :snippet-end:
 }

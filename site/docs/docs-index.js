@@ -14,7 +14,7 @@ function DocsIndex() {
         Give your customers control of their identity, data, and finances.
       </h1>
       <p className="mb-8">
-        Our toolkits bring decentralized identity, messaging, and data storage to your applications. 
+        Our toolkits bring decentralized identity, messaging, and data storage to your applications.
         They let developers focus on creating delightful user experiences, while returning ownership to individuals.
       </p>
       <div className="grid grid-cols-1 desktop:grid-cols-2 gap-4">
@@ -35,7 +35,7 @@ function DocsIndex() {
           imgSrc="/img/money-msg-blue-purple.svg"
           imgClass="w-36 flip"
           themeColor="cyan"
-        
+
         />
       </div>
 
@@ -98,7 +98,7 @@ function DocsIndex() {
         <ExploreCard
           text="Videos"
           icon="/img/tv-yellow-blue.svg"
-          url="https://www.youtube.com/@TBD54566975/videos"
+          url="https://www.youtube.com/@tbd.videos"
         />
         <ExploreCard
           text="Blog Posts"

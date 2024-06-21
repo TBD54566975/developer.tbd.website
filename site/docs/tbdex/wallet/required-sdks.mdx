@@ -19,33 +19,12 @@ To implement and operate as a Wallet on a tbDEX network, you’ll need to use th
 
 ## Install SDKs
 
-<Shnip 
-  snippets={[
-    { snippetName: 'walletSdkInstallJs', language: 'JavaScript', codeLanguage: 'bash',},
-    { 
-      nestedSnippets:{
-          'Gradle': {
-            "snippetName": 'walletSdkInstallGradle',
-            "language": 'gradle'
-          },
-          'Maven': {
-            "snippetName": 'walletSdkInstallPom',
-            "language": 'xml'
-          }
-        },
-        language: 'Kotlin'
-    }
-  ]}
-  inlineSnippets={[
-    {
-      code: `dependencies: [
-    .package(url: "https://github.com/TBD54566975/web5-swift", exact: "0.0.4"),
-    .package(url: "https://github.com/TBD54566975/tbdex-swift.git", branch: "main"),
-]`,
-      language: 'Swift',
-    },
-  ]}
-/>
+<Dependencies languageDependencies={[
+  { language: 'javascript', dependencies: ['@web5/dids', '@web5/credentials', '@tbdex/http-client'] },
+  { language: 'maven', dependencies: ['web5-credentials','web5-dids','tbdex'] },
+  { language: 'gradle', dependencies:['web5-credentials','web5-dids','tbdex'] },
+  { language: 'swift', dependencies: ['Web5', 'tbDex'] },
+]}/>
 
 <LanguageSwitchBlock>
   <div language="Kotlin">

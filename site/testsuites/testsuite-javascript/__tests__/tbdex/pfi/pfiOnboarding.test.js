@@ -2,7 +2,7 @@
 import { DidDht } from '@web5/dids';
 import { LocalKeyManager } from '@web5/crypto'; // optional
 // :snippet-end:
-import { test, expect, describe, beforeAll } from 'vitest';
+import { test, expect, describe } from 'vitest';
 
 describe('PFI: Onboarding', () => {
     test('Create DID for a PFI', async () => {

@@ -1,4 +1,4 @@
-import Web5
+@testable import Web5
 @testable import tbDEX
 import Foundation
 import XCTest
@@ -11,17 +11,49 @@ public struct MockData {
     public static let customerBearerDid: BearerDID? = try? DIDJWK.create(keyManager: InMemoryKeyManager())
     public static let BTC_ADDRESS = "bc1q52csjdqa6cq5d2ntkkyz8wk7qh2qevy04dyyfd"
 
-    public static let selectedOfferingJson = "{\"metadata\":{\"from\":\"\(pfiDid)\",\"kind\":\"offering\",\"id\":\"offering_01hsc1j5g7fg7ayew2ys7wmsb7\",\"createdAt\":\"2024-03-19T19:03:42.855Z\",\"protocol\":\"1.0\"},\"data\":{\"description\":\"test offering\",\"payoutUnitsPerPayinUnit\":\"1\",\"payinCurrency\":{\"currencyCode\":\"AUD\"},\"payoutCurrency\":{\"currencyCode\":\"BTC\"},\"payinMethods\":[],\"payoutMethods\":[],\"requiredClaims\":{\"id\":\"7ce4004c-3c38-4853-968b-e411bafcd945\",\"input_descriptors\":[{\"id\":\"bbdb9b7c-5754-4f46-b63b-590bada959e0\",\"constraints\":{\"fields\":[{\"path\":[\"$.type\"],\"filter\":{\"type\":\"string\",\"const\":\"YoloCredential\"}}]}}]}}}"
-
     public static var selectedOffering: Offering {
-        let jsonData = selectedOfferingJson.data(using: .utf8)!
-        let decoder = tbDEXJSONDecoder()
-        do {
-            let offering = try decoder.decode(Offering.self, from: jsonData)
-            return offering
-        } catch {
-            fatalError("Failed to decode the selected offering: \(error)")
-        }
+        return Offering(
+            from: pfiDid, 
+            data: OfferingData(
+                description: "test offering", 
+                payoutUnitsPerPayinUnit: "1", 
+                payin: PayinDetails(
+                    currencyCode: "USD", 
+                    methods: []
+                ), 
+                payout: PayoutDetails(
+                    currencyCode: "KES", 
+                    methods: []
+                ), 
+                requiredClaims: PresentationDefinitionV2(
+                    id: "7ce4004c-3c38-4853-968b-e411bafcd945",
+                    name: nil,
+                    purpose: nil,
+                    format: nil,
+                    submissionRequirements: nil,
+                    inputDescriptors: [
+                        InputDescriptorV2(
+                            id: "bbdb9b7c-5754-4f46-b63b-590bada959e0",
+                            name: nil,
+                            purpose: nil,
+                            format: nil,
+                            constraints: ConstraintsV2(
+                                fields: [
+                                    FieldV2(
+                                        path: ["$.type"],
+                                        filter: [
+                                            "type": "string",
+                                            "const": "YoloCredential"
+                                        ]
+                                    )
+                                ],
+                                limitDisclosure: nil
+                            )
+                        )
+                    ]
+                )), 
+                protocol: "1.0"
+            )
     }
 
     public static var rfq: RFQ? {
@@ -30,21 +62,21 @@ public struct MockData {
         }
 
         let offeringId: TypeID = TypeID(rawValue: selectedOffering.metadata.id.rawValue) ?? TypeID(rawValue: "default")!
-
-        let mock_rfq = RFQ(
+        do {
+            let mock_rfq: RFQ = try RFQ(
             to: selectedOffering.metadata.from,
             from: customerBearerDid.uri,
-            data: .init(
-                offeringId: offeringId,
-                payinAmount: "0.012",
-                payinMethod: SelectedPaymentMethod(
-                    kind: "BTC_WALLET_ADDRESS",
+            data: CreateRFQData(
+                offeringId: offeringId, 
+                payin: CreateRFQPayinMethod(
+                    amount: "0.012",                      
+                    kind: "BTC_WALLET_ADDRESS",           
                     paymentDetails: [
-                        "btc_address": BTC_ADDRESS
+                        "btc_address": BTC_ADDRESS        
                     ]
-                ),
-                payoutMethod: SelectedPaymentMethod(
-                    kind: "DEBIT_CARD",
+                ),          
+                payout: CreateRFQPayoutMethod(
+                    kind: "DEBIT_CARD",                   
                     paymentDetails: [
                         "cvv": "123",
                         "cardNumber": "1234567890123456789",
@@ -59,6 +91,9 @@ public struct MockData {
 
         exchangeID = mock_rfq.metadata.exchangeID
         return mock_rfq
+        } catch {
+            fatalError("Failed to create RFQ: \(error)")
+        }
     }
 
     public static var mockQuote: Quote? {
@@ -209,7 +244,7 @@ public struct MockData {
         Mocker.ignore(ignoredURL)
     }
 
-    private static func setupMockGetCall(url: URL, data: Encodable) {
+    public static func setupMockGetCall(url: URL, data: Encodable) {
         let encoder = tbDEXJSONEncoder()
         encoder.outputFormatting = .prettyPrinted
         let jsonData = try! encoder.encode(data)

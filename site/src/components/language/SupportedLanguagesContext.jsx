@@ -10,7 +10,7 @@ export function useSupportedLanguages() {
 
 // Provider component
 export function LanguageOptionsProvider({ children }) {
-  const [languages, setLanguages] = useState(['JavaScript', 'Kotlin']); // Default languages
+  const [languages, setLanguages] = useState(['JavaScript', 'Kotlin','Swift']); // Default languages
 
   const changeLanguages = (newLanguages) => {
     setLanguages(newLanguages);

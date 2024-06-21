@@ -20,11 +20,10 @@ describe('Wallet: Receive Quote', () => {
 
     pfiDid = await DidDht.create({
       options:{
-        publish  : true,
         services : [{
           type            : 'PFI',
           id              : 'pfi',
-          serviceEndpoint : 'http://localhost:9000'
+          serviceEndpoint : 'https://localhost:9000'
         }]
       }
     })
@@ -32,7 +31,8 @@ describe('Wallet: Receive Quote', () => {
     rfq = await Rfq.create({
       metadata: {
         from: customerDid.uri,
-        to: pfiDid.uri
+        to: pfiDid.uri,
+        protocol: '1.0'
       },
       data: await DevTools.createRfqData()
     });
@@ -43,7 +43,8 @@ describe('Wallet: Receive Quote', () => {
       metadata: {
         exchangeId : rfq.metadata.exchangeId,
         from: pfiDid.uri,
-        to: customerDid.uri
+        to: customerDid.uri,
+        protocol: '1.0'
       },
       data: DevTools.createQuoteData()
     })
@@ -51,12 +52,12 @@ describe('Wallet: Receive Quote', () => {
 
     // Mock the response from the PFI
     server = setupServer(
-      http.get(new RegExp('http://localhost:9000/exchanges/(.+)'), () => {
+      http.get(new RegExp('https://localhost:9000/exchanges/(.+)'), () => {
         return HttpResponse.json(
           {data: [quote]},
           {status: 200})
       }),
-      http.post(new RegExp('http://localhost:9000/exchanges/(.+)/close'), () => {
+      http.put(new RegExp('https://localhost:9000/exchanges/(.+)'), () => {
         return HttpResponse.json(
           {status: 200})
       })
@@ -72,6 +73,7 @@ describe('Wallet: Receive Quote', () => {
   test('poll for quote message', async () => {
     // :snippet-start: pollforQuoteJS
     let quote;
+    let close;
 
     //Wait for Quote message to appear in the exchange
     while (!quote) {
@@ -84,13 +86,21 @@ describe('Wallet: Receive Quote', () => {
       quote = exchange.find(msg => msg instanceof Quote);
 
       if (!quote) {
-        // Wait 2 seconds before making another request
-        await new Promise(resolve => setTimeout(resolve, 2000));
+        // Make sure the exchange is still open
+        close = exchange.find(msg => msg instanceof Close);
+        
+        if(close) { break; } 
+        else {
+          // Wait 2 seconds before making another request
+          await new Promise(resolve => setTimeout(resolve, 2000));
+        }
       }
     }
     // :snippet-end:
 
-    expect(quote.exchangeId).toBe(rfq.exchangeId);
+    expect(quote).toBeDefined()
+    expect.soft(quote.exchangeId).toBe(rfq.exchangeId);
+    expect(close).toBe(undefined);
   });
 
   test('cancel exchange', async () => {

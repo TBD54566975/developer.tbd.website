@@ -44,7 +44,8 @@ class PlaceOrderTest {
         val order = Order.create(
             from = customerDid.uri,                 // Customer's DID
             to = quote.metadata.from,               // PFI's DID
-            exchangeId = quote.metadata.exchangeId // Exchange ID from the Quote
+            exchangeId = quote.metadata.exchangeId, // Exchange ID from the Quote
+            protocol= "1.0"                        // Version of tbDEX protocol you're using
         )
         // :snippet-end:
 

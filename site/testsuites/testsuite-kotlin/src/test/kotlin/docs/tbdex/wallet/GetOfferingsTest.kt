@@ -50,7 +50,7 @@ class GetOfferingsTest {
     @Test
     fun `find matching offerings`() {
         val pfiDids = arrayOf(pfiDid)
-        
+
         // :snippet-start: walletFindMatchingOfferingsKt
         val payinCurrencyCode = "USD"; // Desired payin currency code
         val payoutCurrencyCode = "KES"; // Desired payout currency code
@@ -65,8 +65,8 @@ class GetOfferingsTest {
 
             // Filter offerings based on the currency pair
             val filteredOfferings = offerings.filter { offering ->
-                offering.data.payinCurrency.currencyCode == payinCurrencyCode &&
-                        offering.data.payoutCurrency.currencyCode == payoutCurrencyCode
+                offering.data.payin.currencyCode == payinCurrencyCode &&
+                offering.data.payout.currencyCode == payoutCurrencyCode
             }
 
             matchedOfferings.addAll(filteredOfferings)

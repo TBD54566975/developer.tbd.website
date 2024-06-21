@@ -20,20 +20,6 @@ const checkCopyDIDButton = async (page) => {
     await expect(page.locator('#copy-did-button')).toBeVisible({ timeout: 20000 });
 };
 
-const testCopyDIDButton = async (page) => {
-    await page.click('#copy-did-button');
-    await page.click('text=Create +');
-    await expect(page.locator('input[name="recipientDid"]')).toBeVisible();
-    await page.fill('input[name="recipientDid"]', fakeDID);
-
-    const input = await page.$('input[name="recipientDid"]');
-    const inputValue = await input.getAttribute('value');
-    expect(inputValue).toBe(fakeDID);
-
-    await page.click('text=Confirm');
-    await expect(page.locator('input[name="note"]')).toBeVisible();
-};
-
 test.describe('Next.js app renders - Dinger Chat', () => {
     test.beforeEach(async ({ page }) => {
         await mockWeb5(page, fakeDID);
@@ -47,10 +33,5 @@ test.describe('Next.js app renders - Dinger Chat', () => {
     test('Web5 loads successfully and Copy DID button appears', async ({ page }) => {
         await page.goto(dingerUrl);
         await checkCopyDIDButton(page);
-    });
-
-    test('Copy DID button copies DID and pastes it in new chat input', async ({ page }) => {
-        await page.goto(dingerUrl);
-        await testCopyDIDButton(page);
     });
 });

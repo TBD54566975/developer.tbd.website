@@ -36,6 +36,7 @@ final class ReceiveQuotes: XCTestCase {
 
         // :snippet-start: pollForQuoteSwift
         var quote: Quote? = nil
+        var close: Close? = nil
 
         // Wait for Quote message to appear in the exchange
         while quote == nil {
@@ -46,22 +47,29 @@ final class ReceiveQuotes: XCTestCase {
             )
 
             for message in exchange {
-                guard case let .quote(quoteMessage) = message else {
-                    continue
+                if case let .quote(quoteMessage) = message {
+                    quote = quoteMessage
+                    break
+                } else if case let .close(closeMessage) = message {
+                    close = closeMessage
+                    break
                 }
-
-                quote = quoteMessage
-                break
             }
 
             if quote == nil {
-                // Wait 2 seconds before making another request
-                try await Task.sleep(nanoseconds: 2_000_000_000)
+                // Make sure the exchange is still open
+                if close != nil { break }
+                else {
+                    // Wait 2 seconds before making another request
+                    try await Task.sleep(nanoseconds: 2_000_000_000)
+                }
             }
         }
+
         // :snippet-end:
-        XCTAssertNotNil(quote, "No quote found")
-        XCTAssertEqual(quote?.metadata.exchangeID, exchangeID, "The exchangeID of the found quote does not match")
+        XCTAssertNotNil(quote)
+        XCTAssertEqual(quote?.metadata.exchangeID, exchangeID)
+        XCTAssertNil(close)
     }
 
     func testCloseExchange() async throws {

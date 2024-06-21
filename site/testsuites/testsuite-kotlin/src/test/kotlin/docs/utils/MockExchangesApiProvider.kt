@@ -1,6 +1,5 @@
 package website.tbd.developer.site.docs.utils
 
-import website.tbd.developer.site.docs.utils.*
 import tbdex.sdk.httpserver.models.*
 import tbdex.sdk.protocol.models.*
 import de.fxlae.typeid.TypeId
@@ -22,7 +21,7 @@ open class MockExchangesApiProvider: ExchangesApi {
         return messages
     }
 
-    override fun getExchange(id: String): List<Message> {
+    override fun getExchange(id: String, requesterDid: String): List<Message> {
         return dataProvider.get("exchanges", id) as? List<Message> ?: emptyList()
     }
 
@@ -59,15 +58,15 @@ open class MockExchangesApiProvider: ExchangesApi {
     }
 
     fun setRfq(
-        exchangeId: String, 
+        exchangeId: String,
         to: String,
         from: String,
         offeringId: TypeId = TypeId.generate(ResourceKind.offering.name),
         claims: List<String> = emptyList()) {
         dataProvider.setupGet("rfq", exchangeId) {
             TestData.getRfq(
-                to = to, 
-                from = from, 
+                to = to,
+                from = from,
                 offeringId = offeringId,
                 claims = claims)
         }
@@ -79,7 +78,7 @@ open class MockExchangesApiProvider: ExchangesApi {
         from: String) {
         dataProvider.setupGet("quote", exchangeId) {
             TestData.getQuote(
-                to = to, 
+                to = to,
                 from = from)
         }
     }
@@ -90,7 +89,7 @@ open class MockExchangesApiProvider: ExchangesApi {
         from: String) {
         dataProvider.setupGet("order", exchangeId) {
             TestData.getOrder(
-                to = to, 
+                to = to,
                 from = from)
         }
     }
@@ -103,7 +102,7 @@ open class MockExchangesApiProvider: ExchangesApi {
     ) {
         dataProvider.setupGet("orderstatus", exchangeId) {
             TestData.getOrderStatus(
-                to = to, 
+                to = to,
                 from = from,
                 orderStatus = orderStatus)
         }
@@ -117,7 +116,7 @@ open class MockExchangesApiProvider: ExchangesApi {
     ) {
         dataProvider.setupGet("close", exchangeId) {
             TestData.getClose(
-                to = to, 
+                to = to,
                 from = from,
                 closeData = closeData)
         }

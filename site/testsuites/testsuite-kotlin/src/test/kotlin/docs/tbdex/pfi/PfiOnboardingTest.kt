@@ -8,7 +8,6 @@ import web5.sdk.dids.methods.dht.CreateDidDhtOptions
 import web5.sdk.dids.methods.dht.DidDht
 import web5.sdk.crypto.InMemoryKeyManager
 import web5.sdk.dids.didcore.Service
-import java.net.URI
 // :snippet-end:
 
 /**
@@ -34,6 +33,6 @@ class PfiOnboardingTest {
     val pfiDid = DidDht.create(keyManager, options)
     // :snippet-end:
 
-    assertEquals("PFI", pfiDid.didDocument?.service?.get(0)?.type, "DID should start with 'did:dht'")
+    assertEquals("PFI", pfiDid.document.service?.get(0)?.type, "DID should start with 'did:dht'")
   }
 }

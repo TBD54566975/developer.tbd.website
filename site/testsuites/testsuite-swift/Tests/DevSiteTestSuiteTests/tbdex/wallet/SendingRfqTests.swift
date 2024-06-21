@@ -52,29 +52,29 @@ final class SendingRfqTests: XCTestCase {
         let selectedCredentials: [String] = []
         do {
             // :snippet-start: createRfqMessageSwift
-            var rfq = RFQ(
-                to: selectedOffering.metadata.from,  // PFI's DID
-                from: customerDid!.uri,    // Customer's DID
+            var rfq: RFQ = try RFQ(
+                to: selectedOffering.metadata.from,           // PFI's DID
+                from: customerDid!.uri,                       // Customer's DID
                 //highlight-start
-                data: RFQData(
-                    offeringId: selectedOffering.metadata.id,   // The ID of the selected offering
-                    payinAmount: "0.012",  // The amount of the payin currency
-                    payinMethod: SelectedPaymentMethod(
-                        kind: "BTC_WALLET_ADDRESS",   // The method of payment
-                        paymentDetails: [
-                            "btc_address": BTC_ADDRESS   // Customer's BTC wallet address
-                        ]
-                    ),
-                    payoutMethod: SelectedPaymentMethod(
-                        kind: "DEBIT_CARD",  // The method for receiving payout
+                data: CreateRFQData(
+                    offeringId: selectedOffering.metadata.id, // The ID of the selected offering
+                    payin: CreateRFQPayinMethod(
+                        amount: "500.65",                     // The amount of the payin currency
+                        kind: "DEBIT_CARD",                   // The method for sending payment
                         paymentDetails: [
                             "cvv": "123",
-                            "cardNumber": "1234567890123456789",
+                            "cardNumber": "1234567890123456",
                             "expiryDate": "05/25",
                             "cardHolderName": "Alice Doe"
                         ]
+                    ),          
+                    payout: CreateRFQPayoutMethod(
+                        kind: "BTC_ADDRESS",                  // The method for receiving payout
+                        paymentDetails: [
+                            "btc_address": BTC_ADDRESS        // Recipient's BTC wallet address
+                        ]
                     ),
-                    claims: selectedCredentials // Array of signed VCs required by the PFI
+                    claims: selectedCredentials
                 ),
                 protocol: "1.0"
                 //highlight-end

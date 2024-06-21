@@ -10,7 +10,6 @@ tags:
     Decentralized Web Nodes,
     Artificial Intelligence,
     Verifiable Credentials,
-    Decentralized Identifiers,
     Protocols,
     Community,
   ]
@@ -37,6 +36,8 @@ tags:
 ![Shifting Loan Power to Borrowers](/img/shifting-loan-power-to-borrowers.png)
 
 _"Our current credit system says, 'Saddle yourself, so we can give you more to saddle.'"_ Eric Lapin, President of [FormFree](https://www.formfree.com/), stated during a recent [TBD live stream](https://youtu.be/TZkK8a64E7I?si=2qhaIF22uGbD7lbJ). His comment sheds light on a fundamental paradox of the U.S. credit system: it often requires you to accumulate debt as a prerequisite for obtaining loans, leading to more debt. This systemic issue is underscored by [recent data from the Federal Reserve Bank of New York](https://www.newyorkfed.org/microeconomics/sce/credit-access#/experiences-credit-demand1), which reveals that 1 in 5 applicants for mortgages, car loans, or other types of loans were rejected — the highest rate in five years. This trend disproportionately impacts Black and Latino applicants. Guided by their slogan, 'Democratizing lending for all people without bias,' FormFree developed a platform built with Web5 and AI to address these issues.
+
+<!--truncate-->
 
 ## Residual Income Knowledge Index (RIKI)
 The Fair Isaac Corporation score, better known as a FICO score, is a three-digit score that helps lenders in the U.S. evaluate the likelihood of a borrower repaying a loan. A higher score indicates greater reliability. However, achieving a high FICO score — or any credit score — largely depends on accruing and gradually repaying debt. This may come as a disadvantage for various groups of people who may not have a credit score, including veterans, formerly incarcerated individuals, immigrants, young adults, and folks who prefer cash transactions.
@@ -67,9 +68,9 @@ As part of our [incubation program](/community/incubation-projects/), organizati
 - [Credential Selector](https://github.com/TBD54566975/incubation-verifiable-credential-selector) - A Web5 protocol that enables developers to embed the Verifiable Credentials (VCs) into their application and allows users to select and retrieve VCs.
 
 ## Rewatch the full episode
-Learn more about what FormFree is building and watch the full live stream [here](https://youtu.be/TZkK8a64E7I?si=2qhaIF22uGbD7lbJ).
+Learn more about what FormFree is building and watch the full live stream [here](https://youtu.be/vXYyT8rLaR4).
 
-<iframe class="aspect-video" src="https://www.youtube.com/embed/TZkK8a64E7I" title="formfree" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+<iframe class="aspect-video" src="https://www.youtube.com/embed/vXYyT8rLaR4" title="formfree" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
 *This post highlights key moments from our collaborative live stream with leaders and builders at FormFree. Join our weekly live streams every Friday at 12pm ET/9 am PT. We're learning how innovators and community members are advancing the Self-Sovereign Identity and Global Payments industry. Tune in next time via [Twitch](https://twitch.tv/tbdevs ) or in our community [Discord](https://discord.com/invite/tbd).*
 

@@ -27,11 +27,11 @@ final class PlaceOrderTests: XCTestCase {
     func testSendOrderMessage() async throws {
         // :snippet-start: createOrderSwift
         var order = Order(
-            from: customerDid!.uri, // Customer's DID
-            to: pfiDid, // PFI's DID
+            from: customerDid!.uri,                 // Customer's DID
+            to: pfiDid,                             // PFI's DID
             exchangeID: quote!.metadata.exchangeID, // Exchange ID from the Quote
             data: .init(),
-            protocol: "1.0"
+            protocol: "1.0"                         // Version of tbDEX protocol you're using
         )
         // :snippet-end:
 

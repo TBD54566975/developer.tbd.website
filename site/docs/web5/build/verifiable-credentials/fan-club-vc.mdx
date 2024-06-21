@@ -16,24 +16,11 @@ In this tutorial, we'll learn how to use [verifiable credentials](/docs/web5/lea
 ## Setting the Stage
 Before we start issuing and verifying credentials, let's set up our environment by installing the <LanguageSwitchLink text='@web5/credentials' links='{"JavaScript": "https://www.npmjs.com/package/@web5/credentials", "Kotlin": "https://mvnrepository.com/artifact/xyz.block/web5-credentials"}'/> and <LanguageSwitchLink text='@web5/dids' links='{"JavaScript": "https://www.npmjs.com/package/@web5/dids", "Kotlin": "https://mvnrepository.com/artifact/xyz.block/web5-dids"}'/> packages:
 
-<Shnip
-   snippets={[
-    { snippetName: 'fanClubSdkInstallJs', language: 'JavaScript', codeLanguage: 'bash'},
-    {
-      language: 'Kotlin',
-      nestedSnippets:{
-          'Gradle': {
-            "snippetName": 'fanClubSdkInstallGradle',
-            "language": 'gradle'
-          },
-          'Maven': {
-            "snippetName": 'fanClubSdkInstallPom',
-            "language": 'xml'
-          }
-        }
-    }
-    ]}
-/>
+<Dependencies languageDependencies={[
+  { language: 'javascript', dependencies: ['@web5/credentials', '@web5/dids'] },
+  { language: 'maven', dependencies: ['web5-credentials', 'web5-dids'] },
+  { language: 'gradle', dependencies: ['web5-credentials', 'web5-dids'] },
+]}/> 
 
 ### Import packages
 

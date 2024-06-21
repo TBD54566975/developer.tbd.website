@@ -12,18 +12,19 @@ import web5.sdk.credentials.model.FieldV2
 import web5.sdk.credentials.model.InputDescriptorV2
 import web5.sdk.credentials.model.PresentationDefinitionV2
 import web5.sdk.crypto.InMemoryKeyManager
-import web5.sdk.dids.Did
+import web5.sdk.dids.did.BearerDid
 import web5.sdk.dids.methods.dht.CreateDidDhtOptions
 import web5.sdk.dids.methods.dht.DidDht
 import java.net.URI
 import java.time.OffsetDateTime
+import java.time.OffsetDateTime.*
 import java.util.*
 
 object TestData {
     const val ALICE = "alice"
     const val PFI = "pfi"
     private val aliceKeyManager = InMemoryKeyManager()
-    val ALICE_DID: Did = DidDht.create(aliceKeyManager)
+    val ALICE_DID: BearerDid = DidDht.create(aliceKeyManager)
 
     val serviceToAdd = Service.Builder()
         .id("pfi")
@@ -64,31 +65,55 @@ object TestData {
 
     fun getOffering(
         from: String = PFI_DID.uri,
-        requiredClaims: PresentationDefinitionV2 = getPresentationDefinition()) =
-        Offering.create(
+        requiredClaims: PresentationDefinitionV2 = getPresentationDefinition()
+    ) = Offering.create(
             from = from,
             OfferingData(
                 description = "A sample offering",
                 payoutUnitsPerPayinUnit = "1",
-                payinCurrency = CurrencyDetails("USD", "0.01", "100.00"),
-                payoutCurrency = CurrencyDetails("KES"),
-                payinMethods = listOf(
-                    PaymentMethod(
-                        kind = "BANK_ACCOUNT",
-                        requiredPaymentDetails = requiredPaymentDetailsSchema()
-                    )
-                ),
-                payoutMethods = listOf(
-                    PaymentMethod(
+                payin = PayinDetails("USD", "0.01", "100.00", listOf(PayinMethod(
+                  kind = "BANK_ACCOUNT",
+                  requiredPaymentDetails = requiredPaymentDetailsSchema()
+                ))),
+                payout = PayoutDetails(
+                    currencyCode = "KES",
+                    methods =  listOf(PayoutMethod(
                         kind = "MOMO",
-                        requiredPaymentDetails = requiredPaymentDetailsSchema()
+                        requiredPaymentDetails = requiredPaymentDetailsSchema(),
+                        estimatedSettlementTime = 3600
+                      )
                     )
                 ),
                 requiredClaims = requiredClaims
             )
         )
 
-    fun getRfq(
+  fun getOfferingWithNoClaims(
+    from: String = PFI_DID.uri
+  ) = Offering.create(
+    from = from,
+    OfferingData(
+      description = "A sample offering",
+      payoutUnitsPerPayinUnit = "1",
+      payin = PayinDetails("USD", "0.01", "100.00", listOf(PayinMethod(
+        kind = "DEBIT_CARD",
+        requiredPaymentDetails = requiredPaymentDetailsSchema()
+      ))),
+      payout = PayoutDetails(
+        currencyCode = "BTC",
+        methods =  listOf(PayoutMethod(
+          kind = "BTC_ADDRESS",
+          requiredPaymentDetails = requiredPaymentDetailsSchema(),
+          estimatedSettlementTime = 3600
+        )
+        )
+      ),
+      requiredClaims = null
+    )
+  )
+
+
+  fun getRfq(
         to: String = PFI_DID.uri,
         from: String = ALICE_DID.uri,
         offeringId: TypeId = TypeId.generate(ResourceKind.offering.name),
@@ -96,15 +121,22 @@ object TestData {
     ) = Rfq.create(
         to = PFI_DID.uri,
         from = ALICE_DID.uri,
-        rfqData = RfqData(
+        rfqData = CreateRfqData(
             offeringId = offeringId.toString(),
-            payinAmount = "10.00",
-            payinMethod = SelectedPaymentMethod("BANK_ACCOUNT", mapOf("address" to "123456")),
-            payoutMethod = SelectedPaymentMethod(
-                "MOMO", mapOf(
-                    "phoneNumber" to "+254712345678",
-                    "accountHolderName" to "Alfred Holder"
-                )
+            payin = CreateSelectedPayinMethod(
+              kind = "BANK_ACCOUNT",
+              paymentDetails = mapOf(
+                "address" to "123456",
+                "cardNumber" to "1234567890123456"
+              ),
+              amount = "10.00"
+            ),
+            payout = CreateSelectedPayoutMethod(
+             kind = "MOMO",
+             paymentDetails = mapOf(
+               "phoneNumber" to "254712345678",
+               "accountHolderName" to "Alfred Holder"
+             )
             ),
             claims = claims
         )
@@ -115,7 +147,7 @@ object TestData {
         from: String = PFI_DID.uri) = Quote.create(
         ALICE_DID.uri, PFI_DID.uri, TypeId.generate(MessageKind.rfq.name).toString(),
         QuoteData(
-            expiresAt = OffsetDateTime.now().plusDays(1),
+            expiresAt = now().plusDays(1),
             payin = QuoteDetails("USD", "10.00", "0.01"),
             payout = QuoteDetails("KES", "0.12", "0.02"),
         )

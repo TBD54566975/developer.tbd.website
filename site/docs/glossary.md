@@ -36,10 +36,6 @@ A specific scheme for creating, resolving, updating, and deactivating DIDs and t
 
 The `did:dht` method is based on the Pkarr project and utilizes BitTorrent's Mainline Distributed Hash Table (DHT) to anchor DIDs and store DID Documents. This approach ensures that the identity information is maintained in a decentralized manner. This method  allows operations like creating, reading, updating, and deactivating DIDs, and includes optional features like type indexing and gateway APIs for extended functionalities.
 
-### DID Method - Key
-
-The `did:key` method is a simple, lightweight way to create a DID. It is based on a public key, and it is self-contained, meaning it does not rely on any external blockchain or registry. This makes `did:key` a convenient method for use cases that don't require the complexity and additional features provided by other DID methods.
-
 ### DID Method - Jwk
 The `did:jwk` method, similar to the `did:key` method, is designed for simplicity and self-containment in creating a DID. It involves encoding a JSON Web Key (JWK) using base64url. This method appeals to those seeking a straightforward approach.
 

@@ -42,6 +42,7 @@ export class MockOfferingsApiProvider {
     //---------------------------------------------------------------------------//
   
     setOffering(id, offering) {
+console.log('called setOffering', id, offering)
         this.dataProvider.setupGet('offering', id, () => {
             return offering
         })

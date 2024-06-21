@@ -40,10 +40,14 @@ The metadata properties identify the DIDs of the sender (your customer), the rec
 The data properties contain the specifics of the transaction, such as the id of the Offering you're requesting the Quote for, payment methods, and credentials:
 
 * **offeringId** - The unique identifier of the PFI's Offering the customer is interested in
-* **payinAmount** - Total amount of payin currency the customer wants to pay in exchange for payout currency
-* **payinMethod** - How the customer intends to pay, including the currency and amount. This includes a `paymentDetails` object which should contain the properties defined in the Offering's `requiredPaymentDetails` JSON schema
-* **payoutMethod** - How the customer wishes to receive the payout. This includes a `paymentDetails` object which should contain the properties defined in the Offering's `requiredPaymentDetails` JSON schema
-* **claims** - The [VCs that satisfy the requirements of the Offer](/docs/tbdex/wallet/managing-credentials#select-credentials-that-satisfy-requirements)
+* **payin** - How the customer intends to pay the PFI
+  * **kind** - Type of payment method e.g. BTC_ADDRESS, DEBIT_CARD, MOMO_MPESA
+  * **amount** - Total amount of currency the customer wants to pay in exchange for payout currency
+  * **paymentDetails** - The exact details of the payment method. As this information is sensitive, the SDK will convert these details into [salted hashes](https://github.com/TBD54566975/tbdex/tree/main/specs/protocol#privatedata-1)
+* **payout** - How the customer wishes to receive the payout from the PFI
+  * **kind** - Type of payment method e.g. BTC_ADDRESS, BANK_ACCOUNT, MOMO_MPESA
+  * **paymentDetails** - The exact details of the payment method. As this information is sensitive, the SDK will convert these details into [salted hashes](https://github.com/TBD54566975/tbdex/tree/main/specs/protocol#privatedata-1)
+* **claims** - The [VCs that satisfy the requirements of the Offer](/docs/tbdex/wallet/managing-credentials#select-credentials-that-satisfy-requirements). As this information is sensitive, the SDK will convert these details into [salted hashes](https://github.com/TBD54566975/tbdex/tree/main/specs/protocol#privatedata-1)
 
 <Shnip
   snippets={[
@@ -53,9 +57,39 @@ The data properties contain the specifics of the transaction, such as the id of 
   ]}
 />
 
+## Verify RFQ Data
+Before sending the RFQ to the PFI, you can verify that the `data` within the RFQ satifies the Offering's requirements.
+
+<Shnip
+  snippets={[
+    { snippetName: 'verifyOfferingRequirementsJS', language: 'JavaScript' },
+    { snippetName: 'verifyOfferingRequirementsKt', language: 'Kotlin' }
+  ]}
+  inlineSnippets={[
+    {
+      code: '// verifyOfferings() is not available in the Swift SDK',
+      language: 'Swift',
+    },
+  ]}
+/>
+
+This will throw an error for any of the following:
+* `data.offeringId` doesn't match the provided Offering's id
+* `data.payin.amount` exceeds the provided Offering's max units allowed or is below the Offering's min units allowed
+* `data.payin.kind` does not match the provided Offering's payin kinds
+* `data.payout.kind` does not match the provided Offering's payout kinds
+* `data.payin.paymentDetails` doesn't satisfy the Offering's `requiredPaymentDetails`
+* `data.payout.paymentDetails` doesn't satisfy the Offering's `requiredPaymentDetails`
+* `data.claims` does not contain JWTs for VCs that match the Offering's `requiredClaims`
+ 
+**Example error output**
+
+> Error: offering does not support rfq's payinMethod kind. (rfq) BTC_ADDRESS was not found in: [BANK_ACCOUNT] (offering)
+
+
 
 ## Sign the RFQ
-Signing the RFQ ensures its authenticity. You can do so with the customer's [Portable DID](/docs/web5/build/decentralized-identifiers/how-to-create-did#portable-did):
+Signing the RFQ ensures its authenticity. You can do so with the customer's [Bearer DID](/docs/web5/build/decentralized-identifiers/how-to-create-did#create-did):
 
 <Shnip
   snippets={[
@@ -67,7 +101,8 @@ Signing the RFQ ensures its authenticity. You can do so with the customer's [Por
 
 
 ## Send RFQ to PFI
-Use `TbdexHttpClient` to send the RFQ to the PFI, with an optional `replyTo` property containing a valid URI where new messages from the PFI will be sent:
+Use `TbdexHttpClient` to send the RFQ to the PFI. If no error is thrown, the RFQ has been successfully sent to the PFI and an **exchange** has been created.
+This exchange serves as a thread of messages between your application and the PFI regarding this transaction.
 
 <Shnip
   snippets={[
@@ -77,16 +112,65 @@ Use `TbdexHttpClient` to send the RFQ to the PFI, with an optional `replyTo` pro
   ]}
 />
 
-:::tip Callback
-Callbacks are fully qualified URIs (DID or URL) that can be provided to the PFI via the `replyTo` property.
+The next message written to the exchange will be a [Quote](/docs/tbdex/wallet/receive-quote) from the PFI.
+You'll need to [poll the PFI](/docs/tbdex/wallet/receive-quote#polling-for-quote) to receive the `Quote` and all other messages within the exchange, unless you provide an `replyTo` callback when sending the RFQ.
+
+### Optional Callback
+If your wallet application has a deployed server, you can provide a callback when sending the RFQ.
+Callbacks are fully qualified URIs (DID or URL) that can be provided to the PFI via the optional `replyTo` property.
 
 If `replyTo` is provided, the PFI will send all new messages of the exchange to the supplied URI. 
 This URI is scoped to each exchange, allowing you to specify a different URI per exchange if desired. 
 
-If `replyTo` is _not_ present, you will need to poll the PFI to receive new messages within the exchange.
+:::tip No Callback
+If a callback is not provided, you'll need to [poll the PFI](/docs/tbdex/wallet/receive-quote#polling-for-quote) to receive the `Quote` and all other messages within the exchange.
 :::
 
-If no error is thrown, the RFQ has been successfully sent to the PFI and an **exchange** has been created.
-This exchange serves as a thread of messages between your application and the PFI regarding this transaction.
+#### Callback as a URL
 
-The next message written to the exchange will be a [Quote](/docs/tbdex/wallet/receive-quote) from the PFI.
+<Shnip
+  snippets={[
+    { snippetName: 'rfqWithUrlReplyToJS', language: 'JavaScript' },
+    { snippetName: 'rfqWithUrlReplyToKt', language: 'Kotlin' }
+  ]}
+  inlineSnippets={[
+    {
+      code: '// replyTo is not available in the Swift SDK',
+      language: 'Swift',
+    },
+  ]}
+/>
+
+#### Callback as a DID
+
+To provide your wallet application's DID as the `replyTo` property, it must have a service type of `tbdex`.
+
+<Shnip
+  snippets={[
+    { snippetName: 'createDidWithTbdexServiceJS', language: 'JavaScript' },
+    { snippetName: 'createDidWithTbdexServiceKt', language: 'Kotlin' }
+  ]}
+  inlineSnippets={[
+    {
+      code: '// replyTo is not available in the Swift SDK',
+      language: 'Swift',
+    },
+  ]}
+/>
+
+To use your DID as the `replyTo`, you'll provide its `uri`.
+
+<Shnip
+  snippets={[
+    { snippetName: 'rfqWithDidReplyToJS', language: 'JavaScript' },
+    { snippetName: 'rfqWithDidReplyToKt', language: 'Kotlin' }
+  ]}
+  inlineSnippets={[
+    {
+      code: '// replyTo is not available in the Swift SDK',
+      language: 'Swift',
+    },
+  ]}  
+/>
+
+

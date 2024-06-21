@@ -4,7 +4,7 @@ title: Protocol-Based Messaging with HomeNode Manager
 description: Homenode Manager is a project created by community member, longform, which enables you to send and receive DWN messages using a protocol
 authors:
   name: nearlyjuly
-tags: [Decentralized Web Nodes, Decentralized Identity, Protocol, Community]
+tags: [Decentralized Web Nodes, Decentralized Identity, Protocols, Community]
 ---
 
 <head>

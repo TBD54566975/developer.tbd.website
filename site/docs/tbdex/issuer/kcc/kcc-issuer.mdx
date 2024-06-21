@@ -1,6 +1,6 @@
 ---
 sidebar_position: 1
-title: KCC Issuer Flow
+title: Issuing a KCC
 hide_title: true
 ---
 
@@ -23,7 +23,7 @@ In this guide, we'll cover:
 - Issuing a KCC conformant with [OpenID for Verifiable Credential Issuance (OID4VCI)](https://openid.net/specs/openid-4-verifiable-credential-issuance-1_0.html) following successful IDV.
 
 :::info
-For a detailed guide on managing Known Customer Credentials as a Wallet application, please refer to the [Known Customer Credential Guide for Wallet Apps](/)
+For a detailed guide on managing Known Customer Credentials as a Wallet application, please refer to the [Known Customer Credential Guide for Wallet Apps](/docs/tbdex/issuer/kcc/kcc-wallet)
 :::
 
 ## Environment Setup
@@ -335,11 +335,13 @@ Define a `KccCredential` class with **required** and **optional** fields for a K
     },
   ]}
 />
-- `country_of_residence`: Is a `ISO-3166` 2-letter country code representing the
+- `countryOfResidence`: Is a `ISO-3166` 2-letter country code representing the
 customer’s verified country of residence (ex: US)
 
 - `tier`: The tier your customer falls into,
   assuming you perform tier-based KYC.
+
+- `credentialSchema`: Schema used to define the shape of the credential including its required fields.
 
 - `evidence`: Is an Array of objects, where each object contains `kind` (String) and `checks` (array of Strings). `kind` states the **type** of evidence and `checks` details the specific proofs or checks used during IDV.
 
@@ -398,7 +400,8 @@ Before issuing a Known Customer Credential, it's important to complete all neces
 />
 
 :::info
-Signing will return a VC [JSON Web Token](https://jwt.io/), which is ideal for secure transmission of the credential.
+- The `id` referenced in the `credentialSchema` field must correspond to a valid JSON schema that is hosted on an accessible server.
+- Signing will return a VC [JSON Web Token](https://jwt.io/), which is ideal for secure transmission of the credential.
 :::
 
 To convert the signed VC JWT into a `VerifiableCredential` object you can use the [`parseJwt()` method](/docs/web5/build/verifiable-credentials/jwt-to-vc#decoding-jwt). Here is what your decoded **Known Customer Credential** would look like:
@@ -414,23 +417,27 @@ To convert the signed VC JWT into a `VerifiableCredential` object you can use th
     "type": ["VerifiableCredential", "KnownCustomerCredential"],
     "id": "urn:uuid:12345678-1234-5678-1234-567812345678",
     "issuer": "did:dht:z6Mkn4w6nSaWe4fjNJRvaHZwFnMm5VexvjzDeozEu2G7jC34",
-    "issuanceDate": "2024-01-01T19:23:24Z",
+    "issuanceDate": "2024-05-29T19:23:24Z",
     "expirationDate": "2026-05-19T08:02:04Z",
-    "evidence": [
-      {
-      kind: "document_verification",
-      checks: ["passport", "utility_bill"]
-      },
-      {
-        kind: "sanction_screening",
-        checks: ["PEP"]
-      }
-    ],
     "credentialSubject": {
       "id": "did:dht:z6MkjGSeekPGE9QfczHWyW8v2ZzJU68kqSHzV7L2dmQyuyDu",
-      "country_of_residence": "US",
+      "countryOfResidence": "US",
       "tier": "Gold"
-    }
+    },
+    "credentialSchema": {
+      id: "https://schema.org/PFI",
+      type: "JsonSchema"
+    },
+    "evidence": [
+      {
+        "kind": "document_verification",
+        "checks": ["passport", "utility_bill"]
+      },
+      {
+        "kind": "sanction_screening",
+        "checks": ["PEP"]
+      }
+    ]
   }
 }
 ```
@@ -450,21 +457,25 @@ To convert the signed VC JWT into a `VerifiableCredential` object you can use th
   "issuer": "did:dht:z6Mkn4w6nSaWe4fjNJRvaHZwFnMm5VexvjzDeozEu2G7jC34",
   "issuanceDate": "2024-01-01T19:23:24Z",
   "expirationDate": "2026-05-19T08:02:04Z",
-  "evidence": [
-    {
-    kind: "document_verification",
-    checks: ["passport", "utility_bill"]
-    },
-    {
-      kind: "sanction_screening",
-      checks: ["PEP"]
-    }
-  ],
   "credentialSubject": {
     "id": "did:dht:z6MkjGSeekPGE9QfczHWyW8v2ZzJU68kqSHzV7L2dmQyuyDu",
-    "country_of_residence": "US",
+    "countryOfResidence": "US",
     "tier": "Gold"
-  }
+  },
+  "credentialSchema": {
+    id: "https://schema.org/PFI",
+    type: "JsonSchema"
+  },
+  "evidence": [
+    {
+      "kind": "document_verification",
+      "checks": ["passport", "utility_bill"]
+    },
+    {
+      "kind": "sanction_screening",
+      "checks": ["PEP"]
+    }
+  ]
 }
 ```
 

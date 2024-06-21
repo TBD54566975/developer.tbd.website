@@ -21,12 +21,34 @@ describe('write-to-dwn', () => {
   });
 
   test('createTextRecord creates a text record', async () => {
-    const record = await createTextRecord(web5);
+    // :snippet-start: createTextRecord
+    // Create a plain text record
+    const { record } = await web5.dwn.records.create({
+      data: {
+        content: "Hello Web5",
+        description: "Keep Building!"
+      },
+      message: {
+        dataFormat: 'application/json'
+      }
+    });
+    // :snippet-end:
     expect(record).toBeDefined();
   });
 
   test('createJsonRecord creates a JSON record', async () => {
-    const record = await createJsonRecord(web5);
+    // :snippet-start: createJsonRecord
+    // Create a JSON record
+    const { record } = await web5.dwn.records.create({
+      data: {
+        content: "Hello Web5",
+        description: "Keep Building!"
+      },
+      message: {
+        dataFormat: 'application/json'
+      }
+    });
+     // :snippet-end:
     expect(record).toBeDefined();
   });
 
@@ -36,8 +58,20 @@ describe('write-to-dwn', () => {
         files: [new Blob(['fake image data'], { type: 'image/png' })],
       },
     };
-
-    const record = await uploadImage(mockEvent);
+    // :snippet-start: uploadImage
+    // Create a blob record
+    async function upload(event) {
+      const blob = new Blob(event.currentTarget.files, { type: "image/png" });
+      const { record } = await web5.dwn.records.create({
+        data: blob,
+        message: {
+          dataFormat: "image/png"
+        }
+      });
+      return record;
+    }
+    //:snippet-end:
+    const record = await upload(mockEvent);
     expect(record).toBeDefined();
   });
 
@@ -49,16 +83,83 @@ describe('write-to-dwn', () => {
         ],
       },
     };
+    // :snippet-start: uploadFile
+    // Create a file record
+    async function upload(event) {
+      const file = event.currentTarget.files[0];
+      const { status: fileStatus, record } = await web5.dwn.records.create({
+        data: file,
+        message: {
+          schema: "https://schema.org/path/to/schema",
+          dataFormat: "application/octet-stream"
+        }
+      });
+      return record;
+    }
+    //:snippet-end:
 
-    const record = await uploadFile(mockEvent);
+    const record = await upload(mockEvent);
     expect(record).toBeDefined();
   });
   test('createMixedRecord creates a message with an image and file', async () => {
     const username = 'testUser';
     const messageText = 'testMessage';
     const imageFile = new Blob(['fake image data'], { type: 'image/png' });
+    // :snippet-start: createMixedRecord
+    // Create a mixed record
+    async function createMessage(username, messageText, imageFile) {
+      let base64Image = null;
 
-    const record = await createMixedRecord(username, messageText, imageFile);
+      if (imageFile) {
+        const binaryImage = await imageFile.arrayBuffer();
+        base64Image = btoa(
+          new Uint8Array(binaryImage).reduce(
+            (data, byte) => data + String.fromCharCode(byte),
+            ""
+          )
+        );
+      }
+
+      const messageData = {
+        username,
+        message: messageText,
+        image: base64Image
+      };
+
+      const { record } = await web5.dwn.records.create({
+        data: messageData,
+        message: {
+          schema: "http://schema-registry.org/message",
+          dataFormat: "application/json"
+        },
+      });
+      return record;
+    }
+    //:snippet-end:
+
+    const record = await createMessage(username, messageText, imageFile);
     expect(record).toBeDefined();
   });
+});
+
+test('createRecordFrom creates a record from an existing record', async () => {
+  const { record: originalRecord } = await web5.dwn.records.create({
+    data: 'Hello, Web5!',
+    message: {
+      dataFormat: 'text/plain',
+    },
+  });
+  // :snippet-start: createRecordFrom
+  // Create a new version of the record based on the original record
+  const { record: newVersionRecord } = await web5.dwn.records.createFrom({
+    record: originalRecord,
+    data: 'I am a new version of the original record!',
+    message: {
+      dataFormat: 'text/plain',
+      published: true,
+    },
+  });
+  // :snippet-end:
+  const newRecordDataText = await newVersionRecord.data.text();
+  expect(newRecordDataText).toBe('I am a new version of the original record!');
 });

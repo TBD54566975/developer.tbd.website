@@ -8,12 +8,38 @@ hide_title: true
 
 # Processing Orders
 
-This guide covers how to use tbDEX to communicate about progress on Orders you receive.
+After the Wallet app receives a [Quote](/docs/tbdex/pfi/creating-quotes) from your PFI, they are able to submit an Order.
+This guide covers how to use tbDEX to communicate progress on Orders you receive.
 
-## Provide an Initial OrderStatus
+## Receiving an Order
 
-Upon storing the `Order` message, you will want to create an initial <LanguageSwitchLink text="OrderStatus" links='{"JavaScript": "https://tbd54566975.github.io/tbdex-js/classes/_tbdex_http_client.OrderStatus.html", "Kotlin": "https://tbd54566975.github.io/tbdex-kt/protocol/tbdex.sdk.protocol.models/-order-status/index.html"}'/>  to update the Wallet on the status of their `Order`:
+When a Wallet application places an order, your server's `onSubmitOrder()` callback parameter will be invoked.
+This is where you should implement your business logic for handling these incoming orders. 
 
+As a best practice, store the `Order` message in your [Exchanges database](/docs/tbdex/pfi/anatomy-of-a-pfi#main-server-entrypoint).
+
+## Accessing Hashed Data
+
+The payment details for the Order were specified in the <LanguageSwitchLink text="RFQ message" links='{"JavaScript": "https://tbd54566975.github.io/tbdex-js/classes/_tbdex_protocol.Rfq.html", 
+"Kotlin": "https://tbd54566975.github.io/tbdex-kt/docs/tb-d-e-x%20-s-d-k%20-documentation/tbdex.sdk.protocol.models/-rfq/index.html"}'/> that was sent by the Wallet application.
+
+Sensitive information such as payment details and claims are hashed and are accessible from the [privateData](https://github.com/TBD54566975/tbdex/tree/main/specs/protocol#privatedata-1) section of the RFQ:
+
+<Shnip snippets={
+  [
+    { snippetName: 'pfiAccessPrivateDataJs', language: 'JavaScript'},
+    { snippetName: 'pfiAccessPrivateDataKt', language: 'Kotlin'}
+  ]} />
+
+Using this information, you are free to use the logic of choice to fulfill the Order.
+
+:::note
+tbDEX is a messaging protocol that facilitates communication to enable transactions but does not actually provide the APIs to fulfill them. 
+That responsibility lies with the transacting parties. 
+:::
+
+## Provide Order Status 
+As you deem appropriate for your customers, you can provide them with <LanguageSwitchLink text="OrderStatus messages" links='{"JavaScript": "https://tbd54566975.github.io/tbdex-js/classes/_tbdex_http_client.OrderStatus.html", "Kotlin": "https://tbd54566975.github.io/tbdex-kt/docs/tb-d-e-x%20-s-d-k%20-documentation/tbdex.sdk.protocol.models/-order-status/index.html"}'/> to keep them updated on the status of their `Order`:
 
 <Shnip snippets={
   [
@@ -21,26 +47,14 @@ Upon storing the `Order` message, you will want to create an initial <LanguageSw
     { snippetName: 'pfiOrderStatusKt', language: 'Kotlin'}
   ]} />
 
-If the Wallet Application supplied a `replyTo` address, you'll send the `OrderStatus` message there.
-You can also write the `OrderStatus` to your database and the Wallet will poll for `OrderStatus` data.
+If the Wallet application supplied a `replyTo` address, the tbDEX SDK will send the `OrderStatus` message there.
 
-## Process the Order
-
-The <LanguageSwitchLink text="Order message" links='{"JavaScript": "https://tbd54566975.github.io/tbdex-js/classes/_tbdex_http_client.Order.html", "Kotlin": "https://tbd54566975.github.io/tbdex-kt/protocol/tbdex.sdk.protocol.models/-order/index.html"}'/> will contain the information you initially stored in an `Offering` object that will specify the pay-in, pay-out, and rate of conversion needed. 
-
-Using that information, you’ll be able to use your logic of choice to actually fulfill that order for your customer. 
-
-:::note
-tbDEX is a messaging protocol that facilitates communication to enable transactions but does not actually provide the APIs to fulfill them. 
-That responsibility lies with the transacting parties. 
-:::
-
-As you deem appropriate for your customers, you can provide them with multiple `OrderStatus` messages using the same code as in the section above.
+You should also write the `OrderStatus` to your database and the Wallet will poll for these updates.
 
 
 ## Close the Order
 
-When the `Order` has reached a terminal state (e.g. order fulfilled, order rejected, etc), you can create a `Close` message, which will be the final message of the thread. 
+When the `Order` has reached a terminal state (e.g. order fulfilled, order rejected, etc), you can create a `Close` message, which will be the final message of the thread: 
 
 <Shnip snippets={
   [

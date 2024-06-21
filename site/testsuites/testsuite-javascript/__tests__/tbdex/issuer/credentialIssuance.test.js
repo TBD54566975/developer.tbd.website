@@ -1,4 +1,4 @@
-import { describe, test, expect, vi, beforeEach } from 'vitest';
+import { describe, test, expect } from 'vitest';
 import express from 'express';
 import { Jwt, VerifiableCredential } from '@web5/credentials';
 import { DidDht } from '@web5/dids';
@@ -45,16 +45,6 @@ const issuerBearerDid = await DidDht.create({
   },
 });
 // :snippet-end:
-
-// :snippet-start: updateADidWithServiceEndpointJS
-issuerBearerDid.document.service.push({
-  id: 'idv',
-  type: 'IDV',
-  serviceEndpoint: 'https://exampleIdvEndpoint.com/idv/siopv2/initiate',
-});
-
-await DidDht.publish({ did: issuerDid });
-// snippet-end:
 
 const app = express();
 app.use(express.json());
@@ -154,6 +144,21 @@ describe('Sanctions Credential Issuance', () => {
     expect(verificationResult).toHaveProperty('payload');
     expect(verificationResult.payload).toHaveProperty('iss');
     expect(verificationResult.payload).toHaveProperty('sub');
+  });
+
+  test('add service endpoint to existing DID document', async () => {
+    // :snippet-start: updateADidWithServiceEndpointJS
+    issuerBearerDid.document.service.push({
+      id: 'idv',
+      type: 'IDV',
+      serviceEndpoint: 'https://exampleIdvEndpoint.com/idv/siopv2/initiate',
+    });
+    
+    const updatedDidDocument = await DidDht.publish({ did: issuerBearerDid });
+    // :snippet-end:
+
+    expect(updatedDidDocument.didDocument).toHaveProperty('service');
+    expect(updatedDidDocument.didDocument.service.some(service => service.id === 'idv')).toBeTruthy();
   });
 
   test('.create() creates a credential with expected fields', async () => {

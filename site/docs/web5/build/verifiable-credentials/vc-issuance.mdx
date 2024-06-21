@@ -15,24 +15,11 @@ This guide provides a step-by-step process for issuing a [verifiable credential 
 
 **Install Packages**
 
-<Shnip
-   snippets={[
-    { snippetName: 'vcSdkInstallJs', language: 'JavaScript', codeLanguage: 'bash'},
-    {
-      language: 'Kotlin',
-      nestedSnippets:{
-          'Gradle': {
-            "snippetName": 'vcSdkInstallGradle',
-            "language": 'gradle'
-          },
-          'Maven': {
-            "snippetName": 'vcSdkInstallPom',
-            "language": 'xml'
-          }
-        }
-    }
-    ]}
-/>
+<Dependencies languageDependencies={[
+  { language: 'javascript', dependencies: ['@web5/credentials'] },
+  { language: 'maven', dependencies: ['web5-credentials'] },
+  { language: 'gradle', dependencies: ['web5-credentials'] },
+]}/> 
 
 **Install Classes**
 
