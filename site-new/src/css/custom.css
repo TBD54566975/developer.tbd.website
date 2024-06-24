@@ -197,3 +197,8 @@ h2 {
 .navbar a {
   color: black;
 }
+
+/* Mobile Sidebar */
+.navbar-sidebar {
+  background: var(--ifm-color-primary)
+}
