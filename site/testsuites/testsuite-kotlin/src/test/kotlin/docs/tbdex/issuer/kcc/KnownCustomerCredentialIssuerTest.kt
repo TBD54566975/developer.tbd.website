@@ -74,7 +74,7 @@ class KnownCustomerCredentialIssuerTest {
             )
 
         val knownCustomerCredential = VerifiableCredential.create(
-            type = "KnownCustomerCredential",
+            type = "VerifiableCredential",
             issuer = issuerBearerDid.uri.toString(),
             subject = customerBearerDid.uri.toString(),
             expirationDate = expirationDate,
@@ -621,7 +621,7 @@ class KnownCustomerCredentialIssuerTest {
                     val expirationDate: Date = dateFormat.parse("2026-05-19T08:02:04Z")
 
                     val knownCustomerCredential = VerifiableCredential.create(
-                        type = "KnownCustomerCredential",
+                        type = "VerifiableCredential",
                         issuer = issuerBearerDid.uri, // Issuer's DID string
                         subject = customersDidUri, // Customer's DID string from the verified JWT
                         expirationDate = expirationDate,
