@@ -324,7 +324,7 @@ class KnownCustomerCredentialIssuerTest {
                     .issuer(issuerBearerDid.uri) // Issuer's DID
                     .issueTime(System.currentTimeMillis() / 1000) // Issued time
                     .expirationTime((System.currentTimeMillis() / 1000) + 86400) // Expiration time 
-                    .misc("request", siopRequest.toString()) // Embedding the SIOP request payload directly into the JWT
+                    .misc("request", siopRequest.toString()) // Embed the SIOPv2 Auth request payload 
                     .build()
 
                 try {

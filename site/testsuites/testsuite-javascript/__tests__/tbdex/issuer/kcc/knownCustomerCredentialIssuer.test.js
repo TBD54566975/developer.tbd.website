@@ -145,11 +145,11 @@ app.get('/idv/siopv2/initiate', async (req, res) => {
   //highlight-start
   // Sign the SIOPv2 Auth Request
   const siopRequestJwtPayload = {
-    sub: issuerBearerDid.uri, // Issuer's DID
-    iss: issuerBearerDid.uri, // Issuer's DID
+    sub: issuerBearerDid.uri, // Issuer's Decentralized Identifier string
+    iss: issuerBearerDid.uri, // Issuer's Decentralized Identifier string
     iat: Math.floor(Date.now() / 1000), // Issued at
     exp: Math.floor(Date.now() / 1000) + 86400, // Expiration time
-    request: siopRequestPayload, // Embedding the SIOP request payload directly into the JWT
+    request: siopRequestPayload, // Embed the SIOPv2 Auth request payload
   };
 
   try {
@@ -328,8 +328,8 @@ app.post('/token', async (req, res) => {
    * Create the payload for the access token
    ********************************************/
   const accessTokenPayload = {
-    sub: customersDidUri, // Customer's DID string
-    iss: issuerBearerDid.uri, // Issuer's DID string
+    sub: customersDidUri, // Customer's Decentralized Identifier string
+    iss: issuerBearerDid.uri, // Issuer's Decentralized Identifier string
     iat: Math.floor(Date.now() / 1000), // Issued at
     exp: Math.floor(Date.now() / 1000) + 86400, // Expiration time
   };
@@ -417,7 +417,7 @@ app.post('/credentials', async (req, res) => {
 
     try {
       const verificationResult = await Jwt.verify({ jwt: proof.jwt });
-      customersDidUri = verificationResult.payload.iss; // Customer's DID string
+      customersDidUri = verificationResult.payload.iss; // Customer's Decentralized Identifier string
       if (storedCNonce === payload.nonce) {
         accessTokenToCNonceMap.delete(accessToken);
       } else {
@@ -447,8 +447,8 @@ app.post('/credentials', async (req, res) => {
     );
 
     const known_customer_credential = await VerifiableCredential.create({
-      issuer: issuerBearerDid.uri, // Issuer's DID string
-      subject: customersDidUri, // Customer's DID string from the verified JWT
+      issuer: issuerBearerDid.uri, // Issuer's Decentralized Identifier string
+      subject: customersDidUri, // Customer's Decentralized Identifier string from the verified JWT
       expirationDate: '2026-05-19T08:02:04Z',
       data: {
         countryOfResidence: kccCredentialInstance.data.countryOfResidence,
