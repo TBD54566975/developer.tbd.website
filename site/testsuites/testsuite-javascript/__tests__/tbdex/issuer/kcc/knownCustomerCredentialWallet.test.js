@@ -9,7 +9,7 @@ import { resolveDid } from '@tbdex/protocol'
 
 const issuerBearerDid = await DidJwk.create();
 const issuerDidUri = issuerBearerDid.uri;
-const customerBearerDid = await DidJwk.create();
+const userBearerDid = await DidJwk.create();
 
 describe('Presentation Exchange Process', () => {
   const nameCredentialJwt =
@@ -125,7 +125,7 @@ describe('Presentation Exchange Process', () => {
 
   test('Jwt.sign() works with a bearer DID & valid payload', async () => {
     const accessTokenPayload = {
-      sub: customerBearerDid.uri,
+      sub: userBearerDid.uri,
       iss: issuerBearerDid.uri,
       iat: Math.floor(Date.now() / 1000),
       exp: Math.floor(Date.now() / 1000) + 86400,
@@ -181,21 +181,32 @@ async function sendRequestToIdvServiceEndpoint(idvServiceEndpoint) {
 
 // :snippet-start: knownCustomerCredentialhandleSiopRequestWalletJS
 async function handleSiopRequest(encodedSiopRequest) {
-  /*******************************************************
-   * Decode the SIOP request from the encoded string
-   *******************************************************/
+  /*************************************************************
+   * Decode the SIOP request JAR from the encoded URL parameters
+   *************************************************************/
   const params = new URLSearchParams(encodedSiopRequest);
-  const siopRequest = {};
-  for (const [key, value] of params) {
-    siopRequest[key] = decodeURIComponent(value);
+  const jwtRequest = params.get('request');
+
+  if (!jwtRequest) {
+    throw new Error('No JWT found in SIOP Request');
   }
+
+  let decodedSiopRequest;
+  try {
+    decodedSiopRequest = await Jwt.verify({ jwt: jwtRequest });
+  } catch (error) {
+    throw new Error(`Error decoding SIOP Request JWT: ${error.message}`);
+  }
+
+  // Extract the payload from the verified JWT
+  const siopRequest = decodedSiopRequest.payload.request;
 
   /*******************************************************
    * Generate & sign id_token
    *******************************************************/
   const idTokenPayload = {
-    iss: userDid.uri, // user's DID string
-    sub: userDid.uri,
+    iss: userBearerDid.uri, // user's DID string
+    sub: userBearerDid.uri,
     aud: siopRequest.client_id,
     nonce: siopRequest.nonce,
     exp: Math.floor(Date.now() / 1000) + 60 * 60, // Expiration time
@@ -349,7 +360,7 @@ function fetchAccessToken(
   const requestBody = {
     grant_type: 'urn:ietf:params:oauth:grant-type:pre-authorized_code',
     code: preAuthorizationCode,
-    client_id: userDid.uri, // user's did string
+    client_id: userBearerDid.uri, // user's did string
   };
 
   /*********************************************
@@ -413,7 +424,7 @@ function requestKnownCustomerCredential(credentialEndpoint, accessToken) {
    * Construct & sign the JWT payload
    **************************************************/
   const jwtPayload = {
-    iss: userDid.uri, // user's DID string
+    iss: userBearerDid.uri, // user's DID string
     aud: issuerDidUri, // Issuer's DID string
     iat: Math.floor(Date.now() / 1000),
     nonce: walletStorage.cNonce,
