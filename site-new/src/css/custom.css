@@ -4,38 +4,38 @@
 
 @font-face {
   font-family: 'Basis';
-  src: url('../fonts/Basis/MADType\ -\ Basis.ttf');
+  src: url('/fonts/Basis/MADType\ -\ Basis.ttf');
 }
 
 @font-face {
   font-family: 'SpaceGrotesk-Light';
-  src: url('../fonts/Space-Grotesk/SpaceGrotesk-Light.ttf')
+  src: url('/fonts/Space-Grotesk/SpaceGrotesk-Light.ttf')
 }
 
 @font-face {
   font-family: 'SpaceGrotesk-Bold';
-  src: url('../fonts/Space-Grotesk/SpaceGrotesk-Bold.ttf')
+  src: url('/fonts/Space-Grotesk/SpaceGrotesk-Bold.ttf')
 }
 
 @font-face {
   font-family: 'SpaceGrotesk-Medium';
-  src: url('../fonts/Space-Grotesk/SpaceGrotesk-Medium.ttf');
+  src: url('/fonts/Space-Grotesk/SpaceGrotesk-Medium.ttf');
 }
 
 @font-face {
   font-family: 'SpaceGrotesk-Regular';
-  src: url('../fonts/Space-Grotesk/SpaceGrotesk-Regular.ttf');
+  src: url('/fonts/Space-Grotesk/SpaceGrotesk-Regular.ttf');
 }
 
 
 @font-face {
   font-family: 'SpaceGrotesk-VariableFont';
-  src: url('../fonts/Space-Grotesk/SpaceGrotesk-VariableFont_wght.ttf');
+  src: url('/fonts/Space-Grotesk/SpaceGrotesk-VariableFont_wght.ttf');
 }
 
 @font-face {
   font-family: 'Inter';
-  src: url('../fonts/Inter/Inter-VariableFont_slnt,wght.ttf');
+  src: url('/fonts/Inter/Inter-VariableFont_slnt,wght.ttf');
 }
 
 /**
@@ -86,6 +86,10 @@ h2 {
 
 /**SIDEBAR **/
 
+.thin-scrollbar {
+  padding: 0;
+}
+
 .category-label {
   font-family: 'Basis';
   opacity: 60%;
@@ -99,6 +103,7 @@ h2 {
 
 .menu.thin-scrollbar {
   background-color: var(--ifm-color-primary);
+  padding: 0;
 }
 
 .menu__link {
@@ -106,11 +111,19 @@ h2 {
   border-radius: 0;
 }
 
-.menu__list-item .menu__link:hover {
-  color: var(--ifm-color-primary);
-  background-color: var(--ifm-background-color);
+.menu__list-item .menu__link {
+  transition: border-left 0.3s ease, color 0.3s ease;
 }
 
+.menu__link--active {
+  border-left: 3px solid black;
+  color: black;
+}
+
+.menu__list-item .menu__link:hover {
+  border-left: 3px solid black;
+  color: black;
+}
 .theme-doc-sidebar-item-category-level-1 {
   position: relative;
   margin-bottom: 24px;
@@ -127,7 +140,7 @@ h2 {
 
 
 .menu__list .web5-icon a::before {
-  content: url("../../static/img/web5-icon.svg");
+  content: url("/img/5-icon.svg");
   font-family: 'FontAwesome';
   display: inline-block;
   margin-left: 5px;
@@ -138,7 +151,7 @@ h2 {
 }
 
 .menu__list .tbdex-icon a::before {
-  content: url("../../static/img/light-bulb.svg");
+  content: url("/img/light-bulb.svg");
   font-family: 'FontAwesome';
   display: inline-block;
   margin-left: 5px;
@@ -148,8 +161,8 @@ h2 {
   right: 8px;
 }
 
-.menu__list a[href*="web5"]::before:hover {
-  content: url("../../static/img/web5-icon.svg");
+.menu__list .web5-icon a::before:hover {
+  content: url("/img/5-icon.svg");
   /* Example: Font Awesome user icon (use the appropriate unicode) */
   font-family: 'FontAwesome';
   /* Ensure you have included Font Awesome */
@@ -159,8 +172,8 @@ h2 {
   vertical-align: middle;
 }
 
-.menu__list a[href*="tbdex"]::before:hover {
-  content: url("../../static/img/light-bulb.svg");
+.menu__list .tbdex-icon a::before:hover {
+  content: url("/img/light-bulb.svg");
   font-family: 'FontAwesome';
   /* Ensure you have included Font Awesome */
   display: inline-block;
@@ -178,7 +191,7 @@ h2 {
 }
 
 .breadcrumbs__item:not(:last-child)::after {
-  background: url('../../static/img//caret.svg') center no-repeat;
+  background: url('/img/caret.svg') center no-repeat;
   content: ' ';
   display: inline-block;
   filter: var(--ifm-breadcrumb-separator-filter);
