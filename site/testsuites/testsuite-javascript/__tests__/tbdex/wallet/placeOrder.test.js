@@ -126,9 +126,9 @@ describe('Wallet: Place Order', () => {
   test('listen for Order Status updates', async () => {
     // :snippet-start: listenForOrderStatusJS
     let orderStatusUpdate;
-    let closeMessage;
+    let close;
 
-    while (!closeMessage) {
+    while (!close) {
       const exchange = await TbdexHttpClient.getExchange({
         pfiDid: order.metadata.to,
         did: customerDid,
@@ -142,7 +142,7 @@ describe('Wallet: Place Order', () => {
         }
         else if (message instanceof Close){
           // final message of exchange has been written
-          closeMessage = message;
+          close = message;
           break;
         }
       }
@@ -151,9 +151,10 @@ describe('Wallet: Place Order', () => {
     expect.soft(orderStatusUpdate).toBe(orderStatusMsg);
 
     // :snippet-start: getCloseReasonJS
-    const reasonForClose = closeMessage.data.reason;
+    const isSuccessful = close.data.success;
+    const reasonForClose = close.data.reason;
     // :snippet-end:
     expect(reasonForClose).toBe(closeReason);
-    expect(closeMessage.data.success).toBe(true);
+    expect(isSuccessful).toBe(true);
   });
 });

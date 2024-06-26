@@ -66,20 +66,20 @@ class PlaceOrderTest {
     fun `listen for Order Status updates`() {
         val order = TestData.getOrder().apply { sign(customerDid) }
         val orderStatus = TestData.getOrderStatus().apply { sign(pfi) }
-        val close = TestData.getClose().apply { sign(pfi) }
+        val closeMessage = TestData.getClose().apply { sign(pfi) }
 
         val orderStatusMsg = orderStatus.data.orderStatus;
-        val closeReason = close.data.reason
+        val closeReason = closeMessage.data.reason
 
-        val mockExchange = listOf(orderStatus, close)
+        val mockExchange = listOf(orderStatus, closeMessage)
         getExchangeResponse = Json.jsonMapper.writeValueAsString(mapOf("data" to mockExchange))
         server.enqueue(MockResponse().setBody(getExchangeResponse).setResponseCode(HttpURLConnection.HTTP_OK))
 
         // :snippet-start: listenForOrderStatusKt
         var orderStatusUpdate: String? = ""
-        var closeMessage: Close? = null
+        var close: Close? = null
 
-        while (closeMessage == null) {
+        while (close == null) {
             val exchange = TbdexHttpClient.getExchange(
                 pfiDid = order.metadata.to,
                 requesterDid = customerDid,
@@ -94,7 +94,7 @@ class PlaceOrderTest {
                     }
                     is Close -> {
                         // final message of exchange has been written
-                        closeMessage = message
+                        close = message
                     }
                     else -> {}
                 }
@@ -104,8 +104,11 @@ class PlaceOrderTest {
         assertEquals(orderStatusMsg, orderStatusUpdate, "Order Status message is incorrect")
 
         // :snippet-start: getCloseReasonKt
-        val reasonForClose = closeMessage.data.reason
+        val isSuccessful = close.data.success
+        val reasonForClose = close.data.reason
         // :snippet-end:
+
+        assertTrue(isSuccessful == true, "Close was not successful")
         assertEquals(closeReason, reasonForClose, "Close reason is incorrect")
     }
 }
