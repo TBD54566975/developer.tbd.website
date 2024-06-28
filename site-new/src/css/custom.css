@@ -1,6 +1,43 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+  font-family: 'Basis';
+  src: url('/fonts/Basis/MADType\ -\ Basis.ttf');
+}
+
+@font-face {
+  font-family: 'SpaceGrotesk-Light';
+  src: url('/fonts/Space-Grotesk/SpaceGrotesk-Light.ttf')
+}
+
+@font-face {
+  font-family: 'SpaceGrotesk-Bold';
+  src: url('/fonts/Space-Grotesk/SpaceGrotesk-Bold.ttf')
+}
+
+@font-face {
+  font-family: 'SpaceGrotesk-Medium';
+  src: url('/fonts/Space-Grotesk/SpaceGrotesk-Medium.ttf');
+}
+
+@font-face {
+  font-family: 'SpaceGrotesk-Regular';
+  src: url('/fonts/Space-Grotesk/SpaceGrotesk-Regular.ttf');
+}
+
+
+@font-face {
+  font-family: 'SpaceGrotesk-VariableFont';
+  src: url('/fonts/Space-Grotesk/SpaceGrotesk-VariableFont_wght.ttf');
+}
+
+@font-face {
+  font-family: 'Inter';
+  src: url('/fonts/Inter/Inter-VariableFont_slnt,wght.ttf');
+}
+
 /**
  * Any CSS included here will be global. The classic template
  * bundles Infima by default. Infima is a CSS framework designed to
@@ -8,6 +45,7 @@
  */
 
 /* You can override the default Infima variables here. */
+
 :root {
   --ifm-color-primary: #FFEC19;
   --ifm-color-primary-dark: #FFEC19;
@@ -20,6 +58,13 @@
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
   --ifm-heading-color: 'black';
   --ifm-color-secondary: #9A1AFF;
+  --ifm-background-color: #000;
+}
+
+h2 {
+  font-family: 'Space-Grotesk-Bold';
+  font-weight: 600;
+  font-size: 32px;
 }
 
 .hero-primary {
@@ -36,4 +81,137 @@
   --ifm-color-primary-lighter: #32d8b4;
   --ifm-color-primary-lightest: #4fddbf;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+}
+
+
+/**SIDEBAR **/
+
+.thin-scrollbar {
+  padding: 0;
+}
+
+.category-label {
+  font-family: 'Basis';
+  opacity: 60%;
+  padding-left: 12px;
+  padding-top: 24px;
+  font-size: 12px;
+  font-weight: 400;
+  margin-top: 12px;
+  border-top: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.menu.thin-scrollbar {
+  background-color: var(--ifm-color-primary);
+  padding: 0;
+}
+
+.menu__link {
+  color: black;
+  border-radius: 0;
+}
+
+.menu__list-item .menu__link {
+  transition: border-left 0.3s ease, color 0.3s ease;
+}
+
+.menu__link--active {
+  border-left: 3px solid black;
+  color: black;
+}
+
+.menu__list-item .menu__link:hover {
+  border-left: 3px solid black;
+  color: black;
+}
+.theme-doc-sidebar-item-category-level-1 {
+  position: relative;
+  margin-bottom: 24px;
+}
+
+.theme-doc-sidebar-item-category-level-1::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 3%;
+  right: 3%;
+  border-top: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+
+.menu__list .web5-icon a::before {
+  content: url("/img/5-icon.svg");
+  font-family: 'FontAwesome';
+  display: inline-block;
+  margin-left: 5px;
+  vertical-align: middle;
+  position: relative;
+  top: 3px;
+  right: 8px;
+}
+
+.menu__list .tbdex-icon a::before {
+  content: url("/img/light-bulb.svg");
+  font-family: 'FontAwesome';
+  display: inline-block;
+  margin-left: 5px;
+  vertical-align: middle;
+  position: relative;
+  top: 3px;
+  right: 8px;
+}
+
+.menu__list .web5-icon a::before:hover {
+  content: url("/img/5-icon.svg");
+  /* Example: Font Awesome user icon (use the appropriate unicode) */
+  font-family: 'FontAwesome';
+  /* Ensure you have included Font Awesome */
+  display: inline-block;
+  margin-left: 5px;
+  /* Adjust the spacing as needed */
+  vertical-align: middle;
+}
+
+.menu__list .tbdex-icon a::before:hover {
+  content: url("/img/light-bulb.svg");
+  font-family: 'FontAwesome';
+  /* Ensure you have included Font Awesome */
+  display: inline-block;
+  margin-left: 5px;
+  /* Adjust the spacing as needed */
+  vertical-align: middle;
+  /* Align the icon with the text */
+}
+
+
+/* Bread Crumbs */
+
+.theme-doc-breadcrumbs .breadcrumbs__link {
+  color: var(--ifm-color-primary);
+}
+
+.breadcrumbs__item:not(:last-child)::after {
+  background: url('/img/caret.svg') center no-repeat;
+  content: ' ';
+  display: inline-block;
+  filter: var(--ifm-breadcrumb-separator-filter);
+  height: calc(var(--ifm-breadcrumb-separator-size) * var(--ifm-breadcrumb-size-multiplier) * var(--ifm-breadcrumb-separator-size-multiplier));
+  margin: 0 var(--ifm-breadcrumb-spacing);
+  opacity: 0.8;
+  width: calc(var(--ifm-breadcrumb-separator-size) * var(--ifm-breadcrumb-size-multiplier) * var(--ifm-breadcrumb-separator-size-multiplier));
+}
+
+
+/* Navbar */
+.navbar {
+  background-color: var(--ifm-color-primary);
+}
+
+.navbar a {
+  color: black;
+}
+
+/* Mobile Sidebar */
+.navbar-sidebar {
+  background: var(--ifm-color-primary)
 }
