@@ -420,7 +420,7 @@ app.post('/credentials', async (req, res) => {
      * Create and sign the credential
      ************************************************/
     const kccCredentialInstance = new KccCredential('US', 'Gold', {
-        id: "https://schema.org/PFI",
+        id: "https://purple-charming-snail-690.mypinata.cloud/ipfs/QmZbPpfPXsp4bFQvQvWRaexCu9Vxmj6qkwWerVfPwY9kQS",
         type: "JsonSchema"
       },
       [

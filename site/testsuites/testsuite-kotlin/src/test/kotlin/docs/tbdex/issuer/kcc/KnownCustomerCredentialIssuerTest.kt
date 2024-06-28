@@ -81,7 +81,7 @@ class KnownCustomerCredentialIssuerTest {
             data = KccCredential("US" , "Gold"),
             evidence = evidence,
             credentialSchema = CredentialSchema(
-                id = "https://schema.org/PFI",
+                id = "https://purple-charming-snail-690.mypinata.cloud/ipfs/QmZbPpfPXsp4bFQvQvWRaexCu9Vxmj6qkwWerVfPwY9kQS",
                 type = "JsonSchema"
             ),
         )
@@ -628,7 +628,7 @@ class KnownCustomerCredentialIssuerTest {
                         evidence = evidence,
                         data = KccCredential(countryOfResidence = "US", tier = "Gold"),
                         credentialSchema = CredentialSchema(
-                            id = "https://schema.org/PFI",
+                            id = "https://purple-charming-snail-690.mypinata.cloud/ipfs/QmZbPpfPXsp4bFQvQvWRaexCu9Vxmj6qkwWerVfPwY9kQS",
                             type = "JsonSchema"
                         ),
                     )
