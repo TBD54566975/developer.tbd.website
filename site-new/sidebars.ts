@@ -34,7 +34,7 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: "link",
-      label: "tbDex SDK",
+      label: "tbDEX SDK",
       href: "tbdex-sdk",
       className: "tbdex-icon",
     },
