@@ -5,10 +5,14 @@ import Logo from "@theme/Logo";
 import CollapseButton from "@theme/DocSidebar/Desktop/CollapseButton";
 import Content from "@theme/DocSidebar/Desktop/Content";
 import type { Props } from "@theme/DocSidebar/Desktop";
+import Background from "@site/src/components/Background";
 
 import styles from "./styles.module.css";
 
-function DocSidebarDesktop({ path, sidebar, onCollapse, isHidden }: Props) {
+function DocSidebarDesktop(
+  { path, sidebar, onCollapse, isHidden },
+  props: Props
+) {
   const {
     navbar: { hideOnScroll },
     docs: {
