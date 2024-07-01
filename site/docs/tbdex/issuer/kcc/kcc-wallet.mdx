@@ -172,7 +172,7 @@ Send an HTTP request to the IDV Service Endpoint:
   ]}
 />
 
-The Issuer will then respond with a URI-encoded [SIOPv2 Authorization Request](https://openid.github.io/SIOPv2/openid-connect-self-issued-v2-wg-draft.html#section-9).
+The Issuer will then respond with a [SIOPv2 Authorization Request](https://openid.github.io/SIOPv2/openid-connect-self-issued-v2-wg-draft.html#section-) in the [JWT-Secured Authorization Request (JAR)](https://www.rfc-editor.org/rfc/rfc9101.html) format.
 This request contains information about the Issuer along with a [Presentation Definition](https://developer.tbd.website/docs/web5/build/verifiable-credentials/presentation-definition). Some of the key information included is:
 
 - **`client_id`**: Issuer's DID, establishing the Issuer/requestor's identity.

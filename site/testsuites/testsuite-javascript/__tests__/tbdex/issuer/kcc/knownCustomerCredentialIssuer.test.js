@@ -12,7 +12,7 @@ app.use(express.json());
 // :snippet-start: siopv2InitiateId_tokenEndpointIssuerJs
 app.get('/idv/siopv2/initiate', async (req, res) => {
   const siopRequestOnlyIdToken = {
-    client_id: issuerDid, // Issuer's Decentralized Identifier
+    client_id: issuerBearerDid.uri, // Issuer's Decentralized Identifier string
     scope: 'openid', // Standard OpenID Connect scope
     response_type: 'id_token', // Only requesting an ID Token
     response_uri: 'https://issuer.example.com/siopv2/response', // Endpoint for SIOP response delivery
@@ -21,15 +21,15 @@ app.get('/idv/siopv2/initiate', async (req, res) => {
     // Note: No presentation_definition is included, as we're not requesting a vp_token
   };
 
-  // Encode and send the SIOPv2 Authorization Request
+  // Sign and send the SIOPv2 Authorization Request as JAR
 });
 // :snippet-end:
 
 // :snippet-start: siopv2InitiateId_tokenAndVp_tokenEndpointIssuerJs
 app.get('/idv/siopv2/initiate', async (req, res) => {
   // Construct the SIOPv2 Authorization Request
-  const siopRequest = {
-    client_id: issuerDid, // Issuer's Decentralized Identifier
+  const siopRequestPayload = {
+    client_id: issuerBearerDid.uri, // Issuer's Decentralized Identifier string
     scope: 'openid', // Standard OpenID Connect scope
     response_type: 'id_token vp_token', // Expected response formats: ID Token and optionally, Verifiable Presentation Token
     response_uri: 'https://issuer.example.com/siopv2/response', // Endpoint for SIOP response delivery
@@ -82,15 +82,15 @@ app.get('/idv/siopv2/initiate', async (req, res) => {
     },
   };
 
-  // Encode and send the SIOPv2 Authorization Request
+  // Sign and send the SIOPv2 Authorization Request as JAR
 });
 // :snippet-end:
 
 // :snippet-start: encodeSiopv2AuthRequestIssuerJs
 app.get('/idv/siopv2/initiate', async (req, res) => {
   // Construct the SIOPv2 Authorization Request
-  const siopRequest = {
-    client_id: issuerDid, // Issuer's Decentralized Identifier
+  const siopRequestPayload = {
+    client_id: issuerBearerDid.uri, // Issuer's Decentralized Identifier string
     scope: 'openid', // Standard OpenID Connect scope
     response_type: 'id_token vp_token', // Expected response formats: ID Token and optionally, Verifiable Presentation Token
     response_uri: 'https://issuer.example.com/siopv2/response', // Endpoint for SIOP response delivery
@@ -143,20 +143,31 @@ app.get('/idv/siopv2/initiate', async (req, res) => {
     },
   };
   //highlight-start
-  const queryString = Object.entries(siopRequest)
-    .map(([key, value]) => {
-      if (typeof value === 'object') {
-        value = encodeURIComponent(JSON.stringify(value));
-      } else {
-        value = encodeURIComponent(value);
-      }
-      return `${encodeURIComponent(key)}=${value}`;
-    })
-    .join('&');
+  // Sign the SIOPv2 Auth Request
+  const siopRequestJwtPayload = {
+    sub: issuerBearerDid.uri, // Issuer's Decentralized Identifier string
+    iss: issuerBearerDid.uri, // Issuer's Decentralized Identifier string
+    iat: Math.floor(Date.now() / 1000), // Issued at
+    exp: Math.floor(Date.now() / 1000) + 86400, // Expiration time
+    request: siopRequestPayload, // Embed the SIOPv2 Auth request payload
+  };
 
-  res.send(queryString);
+  try {
+    const jwtToken = await Jwt.sign({
+      signerDid: issuerBearerDid, 
+      payload: siopRequestJwtPayload,
+    });
+  // Send the SIOPv2 Auth Request in JAR format 
+    const queryString = `client_id=${encodeURIComponent(issuerBearerDid.uri)}&request=${encodeURIComponent(jwtToken)}`;
+    res.send(queryString);
+  } catch (err) {
+    console.error('Error signing the SIOPv2 request:', err);
+    res.status(500).send('Failed to generate JWT for SIOPv2 Authorization Request');
+  }
   //highlight-end
 });
+
+
 // :snippet-end:
 
 // :snippet-start: siopv2ResponseEndpointIssuerJs
@@ -317,8 +328,8 @@ app.post('/token', async (req, res) => {
    * Create the payload for the access token
    ********************************************/
   const accessTokenPayload = {
-    sub: customersDidUri, // Customer's DID string
-    iss: issuersBearerDid.uri, // Issuer's DID string
+    sub: customersDidUri, // Customer's Decentralized Identifier string
+    iss: issuerBearerDid.uri, // Issuer's Decentralized Identifier string
     iat: Math.floor(Date.now() / 1000), // Issued at
     exp: Math.floor(Date.now() / 1000) + 86400, // Expiration time
   };
@@ -406,7 +417,7 @@ app.post('/credentials', async (req, res) => {
 
     try {
       const verificationResult = await Jwt.verify({ jwt: proof.jwt });
-      customersDidUri = verificationResult.payload.iss; // Customer's DID string
+      customersDidUri = verificationResult.payload.iss; // Customer's Decentralized Identifier string
       if (storedCNonce === payload.nonce) {
         accessTokenToCNonceMap.delete(accessToken);
       } else {
@@ -436,8 +447,8 @@ app.post('/credentials', async (req, res) => {
     );
 
     const known_customer_credential = await VerifiableCredential.create({
-      issuer: issuerBearerDid.uri, // Issuer's DID string
-      subject: customersDidUri, // Customer's DID string from the verified JWT
+      issuer: issuerBearerDid.uri, // Issuer's Decentralized Identifier string
+      subject: customersDidUri, // Customer's Decentralized Identifier string from the verified JWT
       expirationDate: '2026-05-19T08:02:04Z',
       data: {
         countryOfResidence: kccCredentialInstance.data.countryOfResidence,
@@ -485,11 +496,16 @@ describe('Known Customer Credental Issuer Flow', () => {
 
   test('Jwt.sign() works with a valid payload & bearer DID', async () => {
     const accessTokenPayload = {
-      sub: customerBearerDid.uri,
-      iss: issuerBearerDid.uri,
-      iat: Math.floor(Date.now() / 1000),
-      exp: Math.floor(Date.now() / 1000) + 86400,
+        "client_id": "did:web:192.168.4.23%3A8892:ingress",
+        "client_metadata": "",
+        "iss": "did:web:192.168.4.23%3A8892:ingress",
+        "nonce": "168e442893f72390bbe4778b94848011",
+        "response_mode": "direct_post",
+        "response_type": "id_token vp_token",
+        "response_uri": "http://192.168.4.23:8892/ingress/kcc",
+        "scope": "openid"
     };
+
     const accessToken = await Jwt.sign({
       signerDid: issuerBearerDid,
       payload: accessTokenPayload,
