@@ -216,6 +216,28 @@ h2 {
   vertical-align: middle;
 }
 
+.menu__list .external-link-icon a::before {
+  content: url("/img/external-link.svg");
+  font-family: 'FontAwesome';
+  display: inline-block;
+  margin-left: 5px;
+  vertical-align: middle;
+  position: relative;
+  top: 3px;
+  right: 8px;
+}
+
+.menu__list .glossary-icon a::before {
+  content: url("/img/glossary.svg");
+  font-family: 'FontAwesome';
+  display: inline-block;
+  margin-left: 5px;
+  vertical-align: middle;
+  position: relative;
+  top: 3px;
+  right: 8px;
+}
+
 
 /* Bread Crumbs */
 
@@ -279,12 +301,10 @@ h2 {
   fill: black;
   transition: transform 0.3s ease;
   transform: rotate(-90deg);
-  /* Point up by default */
 }
 
 .selected-option .icon-right.open {
   transform: rotate(90deg);
-  /* Point down when open */
 }
 
 .selected-option .option-label {
