@@ -3,10 +3,11 @@ import { test, expect, describe, beforeAll, afterAll } from 'vitest';
 import { TbdexHttpClient, Rfq, Quote, Order, Close } from '@tbdex/http-client';
 import { PresentationExchange } from '@web5/credentials';
 import { DidDht } from '@web5/dids';
+import { VerifiableCredential } from '@web5/credentials'
 // :snippet-end:
 
 let customerDid;
-let pfiDid = 'did:dht:zwxd1e77xp875it79so7hyhaw7ojdp3gzdomxw1zje9dm1ft7mho';
+let pfiDid = 'did:dht:ccqamm6qgbe763ya8f3bo5mkrtxx1pz7i789zeqq4bmoae4qnixy';
 let selectedOffering;
 let credentials;
 let exchangeId;
@@ -26,21 +27,40 @@ describe('Wallet: Quickstart', () => {
         });
         // :snippet-end:
 
+        let customerDidString = '{"uri":"did:dht:h8e3yqnhgjwhtkjhxwhfy5mmkn4nebqxr8idguwrsxgef6ow8efo","document":{"id":"did:dht:h8e3yqnhgjwhtkjhxwhfy5mmkn4nebqxr8idguwrsxgef6ow8efo","verificationMethod":[{"id":"did:dht:h8e3yqnhgjwhtkjhxwhfy5mmkn4nebqxr8idguwrsxgef6ow8efo#0","type":"JsonWebKey","controller":"did:dht:h8e3yqnhgjwhtkjhxwhfy5mmkn4nebqxr8idguwrsxgef6ow8efo","publicKeyJwk":{"crv":"Ed25519","kty":"OKP","x":"4dGQOFwyacipPH04UG1rULQkBc8h6jNOhLPMgvoUOgs","kid":"XPokllC3LZAVGizIL0naDdByQHeyY12uLJaXO4j46Nw","alg":"EdDSA"}}],"authentication":["did:dht:h8e3yqnhgjwhtkjhxwhfy5mmkn4nebqxr8idguwrsxgef6ow8efo#0"],"assertionMethod":["did:dht:h8e3yqnhgjwhtkjhxwhfy5mmkn4nebqxr8idguwrsxgef6ow8efo#0"],"capabilityDelegation":["did:dht:h8e3yqnhgjwhtkjhxwhfy5mmkn4nebqxr8idguwrsxgef6ow8efo#0"],"capabilityInvocation":["did:dht:h8e3yqnhgjwhtkjhxwhfy5mmkn4nebqxr8idguwrsxgef6ow8efo#0"]},"metadata":{"published":true,"versionId":"1718740086"},"privateKeys":[{"crv":"Ed25519","d":"iTfn3Z8uPp3gTg-9LxQVZVODGqnP3M0UDjZiIwBEctc","kty":"OKP","x":"4dGQOFwyacipPH04UG1rULQkBc8h6jNOhLPMgvoUOgs","kid":"XPokllC3LZAVGizIL0naDdByQHeyY12uLJaXO4j46Nw","alg":"EdDSA"}]}'
+
+        // Customer DID    
+        const portableDid = JSON.parse(customerDidString);
+        customerDid = await DidDht.import({ portableDid });
+
         // :snippet-start: walletQuickstartGetOfferings
         const offerings  = await TbdexHttpClient.getOfferings({ pfiDid: pfiDid });
         // :snippet-end:
-
-        // TODO: Get credentials and the presentation definition
 
         selectedOffering = offerings[0];
         expect(selectedOffering).toBeDefined();
     });
 
     test('Pull Wallet Credentials', async () => {
-        // Get the credential like this:
-        // https://github.com/TBD54566975/tbdex-pfi-exemplar/blob/268bf174362d67b1f0408e3342b0807cc31461af/src/example/issue-credential.ts
 
-        let myCredentials = [];
+        let issuerDid = '{"uri":"did:dht:91szhs8sagq3rq9x6fraono8gci7ekcz7s5ubfenjpkqk1dbi8po","document":{"id":"did:dht:91szhs8sagq3rq9x6fraono8gci7ekcz7s5ubfenjpkqk1dbi8po","verificationMethod":[{"id":"did:dht:91szhs8sagq3rq9x6fraono8gci7ekcz7s5ubfenjpkqk1dbi8po#0","type":"JsonWebKey","controller":"did:dht:91szhs8sagq3rq9x6fraono8gci7ekcz7s5ubfenjpkqk1dbi8po","publicKeyJwk":{"crv":"Ed25519","kty":"OKP","x":"5ax3B9NJSaxwEgXXc11CdtOdEybefUaf6RDgrL2VjLs","kid":"9pIk_m7d5-1etmbk94DleDYaQra4CsKjrt37q28sugk","alg":"EdDSA"}}],"authentication":["did:dht:91szhs8sagq3rq9x6fraono8gci7ekcz7s5ubfenjpkqk1dbi8po#0"],"assertionMethod":["did:dht:91szhs8sagq3rq9x6fraono8gci7ekcz7s5ubfenjpkqk1dbi8po#0"],"capabilityDelegation":["did:dht:91szhs8sagq3rq9x6fraono8gci7ekcz7s5ubfenjpkqk1dbi8po#0"],"capabilityInvocation":["did:dht:91szhs8sagq3rq9x6fraono8gci7ekcz7s5ubfenjpkqk1dbi8po#0"]},"metadata":{"published":true,"versionId":"1718729356"},"privateKeys":[{"crv":"Ed25519","d":"FMPebUFD4ZskD1Z7WzRPC52Zl0zt4qwxPQq8DMaWfEQ","kty":"OKP","x":"5ax3B9NJSaxwEgXXc11CdtOdEybefUaf6RDgrL2VjLs","kid":"9pIk_m7d5-1etmbk94DleDYaQra4CsKjrt37q28sugk","alg":"EdDSA"}]}'
+
+        const portableDid = JSON.parse(issuerDid);
+        const issuer = await DidDht.import({ portableDid });
+
+        const vc = await VerifiableCredential.create({
+            type    : 'SanctionCredential',
+            issuer  : issuer.uri,
+            subject : customerDid.uri,
+            data    : {
+              'beep': 'boop'
+            }
+          })
+          
+        const vcJwt = await vc.sign({ did: issuer})
+
+        // Hard-coded credential
+        let myCredentials = [vcJwt];
 
         // :snippet-start: walletQuickstartSelectCredentials
         const selectedCredentials = PresentationExchange.selectCredentials({
@@ -59,14 +79,14 @@ describe('Wallet: Quickstart', () => {
         // :snippet-start: walletQuickstartCreateRfq
         rfq = Rfq.create({
             metadata: {
-            to: selectedOffering.metadata.from, // PFI's DID
+            to: pfiDid, // PFI's DID
             from: customerDid.uri,              // Customer DID
             protocol: '1.0'                     // Version of tbDEX protocol you're using
             },
             data: {
             offeringId: selectedOffering.metadata.id,   // The ID of the selected offering
             payin: {
-                kind: 'DEBIT_CARD',                       // The method of payment
+                kind: 'USD_LEDGER',                       // The method of payment
                 amount: '500.65',                         // The amount of the payin currency 
                 paymentDetails: {
                 cardNumber: '1234567890123456',
@@ -76,9 +96,10 @@ describe('Wallet: Quickstart', () => {
                 }
             },
             payout: {
-                kind: 'BTC_ADDRESS',                      // The method for receiving payout                         
+                kind: 'MOMO_MPESA',                      // The method for receiving payout                         
                 paymentDetails: {
-                btcAddress: BTC_ADDRESS                 // Recipient's BTC wallet address
+                    phoneNumber: '123-456-7890',                 // Recipient's BTC wallet address
+                    reason: "Payment for services rendered"
                 }
             },
             claims: selectedCredentials  // Array of signed VCs required by the PFI
@@ -115,7 +136,7 @@ describe('Wallet: Quickstart', () => {
         exchangeId = rfq.exchangeId;
         while (!quote) {
             const exchange = await TbdexHttpClient.getExchange({
-                pfiDid: rfq.metadata.to,
+                pfiDid: pfiDid,
                 did: customerDid,
                 exchangeId: exchangeId
             });

@@ -1,14 +1,17 @@
 import { TbdexHttpClient, Rfq, Quote, Order, Close } from '@tbdex/http-client';
 import { PresentationExchange } from '@web5/credentials';
-import { Web5 } from '@web5/api';
+import { DidDht } from '@web5/dids';
 
 let context = {};
 
 export async function quickstartDidCreate() {
-    const { web5, did: customerDid } = await Web5.connect();
-    context.web5 = web5;
+    const customerDid = await DidDht.create({
+        options: { publish: true },
+      });
+
+    const didExport = customerDid.export();
     context.customerDid = customerDid;
-    context.pfiDid = 'did:dht:zwxd1e77xp875it79so7hyhaw7ojdp3gzdomxw1zje9dm1ft7mho';
+    context.pfiDid = 'did:dht:ccqamm6qgbe763ya8f3bo5mkrtxx1pz7i789zeqq4bmoae4qnixy';
     return customerDid;
 }
 
@@ -37,10 +40,6 @@ export async function quickstartSendRfq() {
 }
 
 export async function quickstartProcessQuote() {
-    await getOfferings();
-    await getCredentials();
-    await createRfq();
-    await sendRfq();
     await processQuote();
 
     return context.quote;
@@ -68,7 +67,6 @@ async function getOfferings() {
 
     try {
         const offerings  = await TbdexHttpClient.getOfferings({ pfiDid: context.pfiDid });
-        // TODO: Get credentials and the presentation definition
     
         context.selectedOffering = offerings[0];
     } catch (e) {
@@ -78,6 +76,7 @@ async function getOfferings() {
 }
 
 async function getCredentials() {
+    // Hard-coded credential
     let myCredentials = [];
 
     // :snippet-start: walletQuickstartSelectCredentials
