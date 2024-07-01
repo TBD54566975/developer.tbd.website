@@ -10,6 +10,7 @@ import DocSidebarItems from "@theme/DocSidebarItems";
 import type { Props } from "@theme/DocSidebar/Desktop/Content";
 import Background from "@site/src/components/Background";
 import useBaseUrl from "@docusaurus/useBaseUrl";
+import DocBreadcrumbsWrapper from "@site/src/theme/DocBreadcrumbs";
 
 import styles from "./styles.module.css";
 
@@ -38,6 +39,7 @@ export default function DocSidebarDesktopContent({
     { label: "JavaScript", icon: useBaseUrl("/img/js-icon.svg") },
   ];
 
+  const sidebarHeader = sidebar[0].customProps.sidebarHeader;
   const [selectedOption, setSelectedOption] = useState(options[0]);
 
   const handleChange = (event) => {
@@ -65,9 +67,10 @@ export default function DocSidebarDesktopContent({
       <Background
         primaryColor="#FFEC19"
         squareCount={5}
-        className={"w-64 h-52 py-8 pl-4"}
+        className={"w-64 h-52 py-2 pl-4"}
       >
-        <h2>Docs</h2>
+        <DocBreadcrumbsWrapper />
+        <h2>{sidebarHeader}</h2>
       </Background>
       <ul
         className={clsx(
