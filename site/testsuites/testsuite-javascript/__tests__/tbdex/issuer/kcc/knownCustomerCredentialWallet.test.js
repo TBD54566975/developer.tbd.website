@@ -9,7 +9,7 @@ import { resolveDid } from '@tbdex/protocol'
 
 const issuerBearerDid = await DidJwk.create();
 const issuerDidUri = issuerBearerDid.uri;
-const userBearerDid = await DidJwk.create();
+const customerBearerDid = await DidJwk.create();
 
 describe('Presentation Exchange Process', () => {
   const nameCredentialJwt =
@@ -125,7 +125,7 @@ describe('Presentation Exchange Process', () => {
 
   test('Jwt.sign() works with a bearer DID & valid payload', async () => {
     const accessTokenPayload = {
-      sub: userBearerDid.uri,
+      sub: customerBearerDid.uri,
       iss: issuerBearerDid.uri,
       iat: Math.floor(Date.now() / 1000),
       exp: Math.floor(Date.now() / 1000) + 86400,
@@ -205,8 +205,8 @@ async function handleSiopRequest(encodedSiopRequest) {
    * Generate & sign id_token
    *******************************************************/
   const idTokenPayload = {
-    iss: userBearerDid.uri, // user's DID string
-    sub: userBearerDid.uri,
+    iss: customerBearerDid.uri, // user's DID string
+    sub: customerBearerDid.uri,
     aud: siopRequest.client_id,
     nonce: siopRequest.nonce,
     exp: Math.floor(Date.now() / 1000) + 60 * 60, // Expiration time
@@ -214,7 +214,7 @@ async function handleSiopRequest(encodedSiopRequest) {
   };
 
   const idToken = await Jwt.sign({
-    signerDid: userBearerDid,
+    signerDid: customerBearerDid,
     payload: idTokenPayload,
   });
 
@@ -242,7 +242,7 @@ async function handleSiopRequest(encodedSiopRequest) {
         presentationDefinition: siopRequest.presentation_definition,
       });
 
-      vpToken = await Jwt.sign({ signerDid: userBearerDid, payload: vp });
+      vpToken = await Jwt.sign({ signerDid: customerBearerDid, payload: vp });
     } catch (error) {
       throw new Error(
         `Presentation Definition not satisfied: ${error.message}`,
@@ -360,7 +360,7 @@ function fetchAccessToken(
   const requestBody = {
     grant_type: 'urn:ietf:params:oauth:grant-type:pre-authorized_code',
     code: preAuthorizationCode,
-    client_id: userBearerDid.uri, // user's did string
+    client_id: customerBearerDid.uri, // user's did string
   };
 
   /*********************************************
@@ -424,13 +424,13 @@ function requestKnownCustomerCredential(credentialEndpoint, accessToken) {
    * Construct & sign the JWT payload
    **************************************************/
   const jwtPayload = {
-    iss: userBearerDid.uri, // user's DID string
+    iss: customerBearerDid.uri, // user's DID string
     aud: issuerDidUri, // Issuer's DID string
     iat: Math.floor(Date.now() / 1000),
     nonce: walletStorage.cNonce,
   };
 
-  Jwt.sign({ signerDid: userBearerDid, payload: jwtPayload })
+  Jwt.sign({ signerDid: customerBearerDid, payload: jwtPayload })
     .then((signedJwt) => {
       const requestBody = {
         proof: {

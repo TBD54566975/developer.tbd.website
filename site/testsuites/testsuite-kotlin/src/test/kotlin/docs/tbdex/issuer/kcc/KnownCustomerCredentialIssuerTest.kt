@@ -329,7 +329,7 @@ class KnownCustomerCredentialIssuerTest {
 
                 try {
                     val jwtToken = Jwt.sign(issuerBearerDid, siopRequestJwtPayload)
-                // Send the SIOPv2 Auth Request in JAR format
+                    // Send the SIOPv2 Auth Request in JAR format
                     val queryString = "client_id=${URLEncoder.encode(issuerBearerDid.uri.toString(), "UTF-8")}&request=${URLEncoder.encode(jwtToken, "UTF-8")}"
 
                     call.respondText(queryString, ContentType.Text.Plain)
