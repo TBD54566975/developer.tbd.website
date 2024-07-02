@@ -39,8 +39,18 @@ const sidebars: SidebarsConfig = {
       className: "tbdex-icon",
     },
     { type: "html", value: "RESOURCES", className: "category-label" },
-    { type: "link", label: "API Reference Guides", href: "/" },
-    { type: "link", label: "Glossary", href: "/" },
+    {
+      type: "link",
+      label: "API Reference Guides",
+      href: "/",
+      className: "external-link-icon no-caret",
+    },
+    {
+      type: "link",
+      label: "Glossary",
+      href: "/",
+      className: "glossary-icon no-caret",
+    },
   ],
   web5Sidebar: [
     {
