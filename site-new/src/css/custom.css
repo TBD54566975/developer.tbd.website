@@ -245,6 +245,10 @@ h2 {
   right: 8px;
 }
 
+.no-caret .menu__link::after {
+  content: ''
+}
+
 
 /* Bread Crumbs */
 

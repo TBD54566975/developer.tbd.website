@@ -43,9 +43,14 @@ const sidebars: SidebarsConfig = {
       type: "link",
       label: "API Reference Guides",
       href: "/",
-      className: "external-link-icon",
+      className: "external-link-icon no-caret",
     },
-    { type: "link", label: "Glossary", href: "/", className: "glossary-icon" },
+    {
+      type: "link",
+      label: "Glossary",
+      href: "/",
+      className: "glossary-icon no-caret",
+    },
   ],
   web5Sidebar: [
     {
