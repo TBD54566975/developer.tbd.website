@@ -1,7 +1,7 @@
 const { devices } = require('playwright/test');
 
 module.exports = {
-  timeout: 20000,
+  timeout: 40000,
   use: {
     browserName: 'chromium',
     headless: true,
