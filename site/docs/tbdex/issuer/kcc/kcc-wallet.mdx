@@ -172,7 +172,7 @@ Send an HTTP request to the IDV Service Endpoint:
   ]}
 />
 
-The Issuer will then respond with a URI-encoded [SIOPv2 Authorization Request](https://openid.github.io/SIOPv2/openid-connect-self-issued-v2-wg-draft.html#section-9).
+The Issuer will then respond with a [SIOPv2 Authorization Request](https://openid.github.io/SIOPv2/openid-connect-self-issued-v2-wg-draft.html#section-) in the [JWT-Secured Authorization Request (JAR)](https://www.rfc-editor.org/rfc/rfc9101.html) format.
 This request contains information about the Issuer along with a [Presentation Definition](https://developer.tbd.website/docs/web5/build/verifiable-credentials/presentation-definition). Some of the key information included is:
 
 - **`client_id`**: Issuer's DID, establishing the Issuer/requestor's identity.
@@ -568,7 +568,7 @@ To convert the signed VC JWT into a `VerifiableCredential` object you can use th
 {
   "vcDataModel": {
     "@context": ["https://www.w3.org/2018/credentials/v1"],
-    "type": ["VerifiableCredential", "KnownCustomerCredential"],
+    "type": ["VerifiableCredential"],
     "id": "urn:uuid:12345678-1234-5678-1234-567812345678",
     "issuer": "did:dht:z6Mkn4w6nSaWe4fjNJRvaHZwFnMm5VexvjzDeozEu2G7jC34",
     "issuanceDate": "2024-01-01T19:23:24Z",
@@ -602,7 +602,7 @@ To convert the signed VC JWT into a `VerifiableCredential` object you can use th
 ```javascript
 {
   "@context": ["https://www.w3.org/2018/credentials/v1"],
-  "type": ["VerifiableCredential", "KnownCustomerCredential"],
+  "type": ["VerifiableCredential"],
   "id": "urn:uuid:12345678-1234-5678-1234-567812345678",
   "issuer": "did:dht:z6Mkn4w6nSaWe4fjNJRvaHZwFnMm5VexvjzDeozEu2G7jC34",
   "issuanceDate": "2024-01-01T19:23:24Z",
@@ -635,7 +635,7 @@ To convert the signed VC JWT into a `VerifiableCredential` object you can use th
 ```javascript
 {
   "@context": ["https://www.w3.org/2018/credentials/v1"],
-  "type": ["VerifiableCredential", "KnownCustomerCredential"],
+  "type": ["VerifiableCredential"],
   "id": "urn:uuid:12345678-1234-5678-1234-567812345678",
   "issuer": "did:dht:z6Mkn4w6nSaWe4fjNJRvaHZwFnMm5VexvjzDeozEu2G7jC34",
   "issuanceDate": "2024-01-01T19:23:24Z",

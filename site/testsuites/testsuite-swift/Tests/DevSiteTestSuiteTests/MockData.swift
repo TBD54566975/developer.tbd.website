@@ -167,7 +167,8 @@ public struct MockData {
             to: to,
             exchangeID: exchangeId,
             data: .init(
-                reason: reason
+                reason: reason,
+                success: true
             ),
             protocol: "1.0"
         )
