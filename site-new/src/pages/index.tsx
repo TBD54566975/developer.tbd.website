@@ -13,7 +13,7 @@ export default function Home(): JSX.Element {
       <Background
         width={100}
         height={50}
-        primaryColor="#FFEC19"
+        primaryColor="#F5D800"
         squareCount={10}
       >
         <main className="flex flex-col items-center z-20">TBD Home Page</main>

@@ -99,6 +99,7 @@ h2 {
 .thin-scrollbar {
   padding: 0;
   min-height: initial !important;
+  scrollbar-gutter: initial !important;
 }
 
 .category-label {
@@ -158,6 +159,12 @@ h2 {
   border-left: 3px solid black;
   color: black;
   font-weight: 600;
+  background-color: #F5D800;
+}
+
+.menu__link--active:not(.menu__link--sublist) {
+  background: none;
+  border-left: none;
 }
 .theme-doc-sidebar-item-category-level-1 {
   position: relative;
@@ -214,6 +221,32 @@ h2 {
   display: inline-block;
   margin-left: 5px;
   vertical-align: middle;
+}
+
+.menu__list .external-link-icon a::before {
+  content: url("/img/external-link.svg");
+  font-family: 'FontAwesome';
+  display: inline-block;
+  margin-left: 5px;
+  vertical-align: middle;
+  position: relative;
+  top: 3px;
+  right: 8px;
+}
+
+.menu__list .glossary-icon a::before {
+  content: url("/img/glossary.svg");
+  font-family: 'FontAwesome';
+  display: inline-block;
+  margin-left: 5px;
+  vertical-align: middle;
+  position: relative;
+  top: 3px;
+  right: 8px;
+}
+
+.no-caret .menu__link::after {
+  content: ''
 }
 
 
@@ -279,12 +312,10 @@ h2 {
   fill: black;
   transition: transform 0.3s ease;
   transform: rotate(-90deg);
-  /* Point up by default */
 }
 
 .selected-option .icon-right.open {
   transform: rotate(90deg);
-  /* Point down when open */
 }
 
 .selected-option .option-label {
@@ -299,5 +330,32 @@ h2 {
   width: 100%;
   height: 100%;
   opacity: 0;
-  cursor: pointer;
+  cursor: pointer;  
+}
+
+
+
+/* Bread Crumbs */
+
+.breadcrumbs__item .breadcrumbs__link {
+  color: black;
+  vertical-align: bottom;
+}
+
+.container .breadcrumbs {
+  display: none;
+}
+
+.breadcrumbs {
+  color: black;
+}
+
+.breadcrumbs__link {
+  padding: 0;
+  font-weight: 400;
+  font-size: 14px;
+  background: none !important;
+}
+.breadcrumbs__item:not(:last-child)::after {
+  display: none;
 }
