@@ -46,7 +46,7 @@ In order for you to communicate with PFIs on Alice's behalf, she'll need a DID (
 
 <CodeSnippet snippetName="walletQuickstartDidCreate" />
 
-{/* <WalletQuickstartCodeRunner executeCodeName="executeDidCreate" stepIndex={0} customPlaceholder={"See your DID"} /> */}
+<WalletQuickstartCodeRunner executeCodeName="executeDidCreate" stepIndex={0} customPlaceholder={"See your DID"} />
 
 
 ## Connect to a PFI
@@ -61,7 +61,7 @@ To connect to a PFI, all you need is their DID. Let's get connected to a mock PF
 
 <CodeSnippet snippetName="walletQuickstartGetOfferings" />
 
-{/* <WalletQuickstartCodeRunner executeCodeName="executeGetOfferings" stepIndex={0} autoOpenDetails={false} customPlaceholder={"See the PFI's Offerings"} /> */}
+<WalletQuickstartCodeRunner executeCodeName="executeGetOfferings" stepIndex={0} autoOpenDetails={false} customPlaceholder={"See the PFI's Offerings"} />
 
 
 #### Obtain Verifiable Credentials
@@ -71,7 +71,7 @@ The Offering you received will likely have a `requiredClaims` section that speci
 
 <CodeSnippet snippetName="walletQuickstartSelectCredentials" />
 
-{/* <WalletQuickstartCodeRunner executeCodeName="executeGetCredentials" stepIndex={1} customPlaceholder={"Your Credentials will appear here as JWTs"}/> */}
+<WalletQuickstartCodeRunner executeCodeName="executeGetCredentials" stepIndex={1} customPlaceholder={"Your Credentials will appear here as JWTs"}/>
 
 
 ## Request a Quote
@@ -80,7 +80,7 @@ Now that you've found an offering that matches Alice's request, your app can req
 
 <CodeSnippet snippetName="walletQuickstartCreateRfq" />
 
-{/* <WalletQuickstartCodeRunner executeCodeName="executeCreateRfq" stepIndex={2} customPlaceholder={"See your RFQ"}/> */}
+<WalletQuickstartCodeRunner executeCodeName="executeCreateRfq" stepIndex={2} customPlaceholder={"See your RFQ"}/>
 
 After creating an RFQ message, you can verify that it is properly constructed and its data satisfies the Offering's requirements.
 
@@ -90,18 +90,13 @@ Then finally, you'll send the RFQ to the PFI to initiate the transaction.
 
 <CodeSnippet snippetName="walletQuickstartSendRfq" />
 
-{/* <WalletQuickstartCodeRunner executeCodeName="executeSendRfq" stepIndex={3} customPlaceholder={"See your RFQ"}/> */}
-
-
 ## Process Quote
 
 In response to your RFQ, the PFI will write a Quote message to the exchange if they are able to fulfill Alice's request, or a Close message if not. Here's how to obtain that message:
 
 <CodeSnippet snippetName="walletQuickstartProcessQuote" />
 
-{/* <WalletQuickstartCodeRunner executeCodeName="executeProcessQuote" stepIndex={4} customPlaceholder={"View Quote"}/>  */}
-
-
+<WalletQuickstartCodeRunner executeCodeName="executeProcessQuote" stepIndex={3} customPlaceholder={"View Quote"}/> 
 
 ## Place Order
 
@@ -109,12 +104,9 @@ The Quote message will contain the exact exchange rate including any fees. Your 
 
 <CodeSnippet snippetName="walletQuickstartCreateOrder" />
 
-{/* <WalletQuickstartCodeRunner executeCodeName="executeCreateOrder" stepIndex={5} customPlaceholder={"Create your order"}/>  */}
+<WalletQuickstartCodeRunner executeCodeName="executeCreateOrder" stepIndex={4} customPlaceholder={"Create your order"}/> 
 
-
-<CodeSnippet snippetName="walletQuickstartSubmitOrder" />
-
-{/* <WalletQuickstartCodeRunner executeCodeName="executeSubmitOrder" stepIndex={6} customPlaceholder={"Submit your order"}/>  */}
+<WalletQuickstartCodeRunner executeCodeName="executeSubmitOrder" stepIndex={5} customPlaceholder={"Submit your order"}/> 
 
 ## End Transaction
 
@@ -122,7 +114,7 @@ To end the transaction, the PFI will write a Close message indicating whether th
 
 <CodeSnippet snippetName="walletQuickstartProcessClose" />
 
-{/* <WalletQuickstartCodeRunner executeCodeName="executeProcessClose" stepIndex={7} customPlaceholder={"View your close reason"}/>  */}
+<WalletQuickstartCodeRunner executeCodeName="executeProcessClose" stepIndex={6} customPlaceholder={"View your close reason"}/> 
 
 ## Next Steps with tbDEX
 

@@ -202,6 +202,9 @@ describe('Wallet: Quickstart', () => {
         const reasonForClose = close.data.reason;
         // :snippet-end:
 
+        const closeSuccess = close.data.success;
+
+        expect(closeSuccess).toBe(true);
         expect(reasonForClose).toBeDefined();
         });
 });
