@@ -112,7 +112,7 @@ export default function DocBreadcrumbs(): JSX.Element | null {
               addMicrodata={!!href}
             >
               <BreadcrumbsItemLink href={href} isLast={isLast}>
-                {item.label}
+                Back
               </BreadcrumbsItemLink>
             </BreadcrumbsItem>
           );

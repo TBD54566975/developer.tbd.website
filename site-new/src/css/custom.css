@@ -99,6 +99,7 @@ h2 {
 .thin-scrollbar {
   padding: 0;
   min-height: initial !important;
+  scrollbar-gutter: initial !important;
 }
 
 .category-label {
@@ -158,6 +159,12 @@ h2 {
   border-left: 3px solid black;
   color: black;
   font-weight: 600;
+  background-color: #F5D800;
+}
+
+.menu__link--active:not(.menu__link--sublist) {
+  background: none;
+  border-left: none;
 }
 .theme-doc-sidebar-item-category-level-1 {
   position: relative;
@@ -328,7 +335,7 @@ h2 {
 
 .breadcrumbs__item .breadcrumbs__link {
   color: black;
-  vertical-align: middle;
+  vertical-align: bottom;
 }
 
 .container .breadcrumbs {
@@ -343,9 +350,8 @@ h2 {
   padding: 0;
   font-weight: 400;
   font-size: 14px;
-  text-decoration: underline;
+  background: none !important;
 }
 .breadcrumbs__item:not(:last-child)::after {
-  content: '/';
-  background: none;
+  display: none;
 }
