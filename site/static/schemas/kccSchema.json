@@ -8,7 +8,7 @@
           "id": {
             "type": "string"
           },
-          "country_of_residence": {
+          "countryOfResidence": {
             "type": "string",
             "pattern": "^[A-Z]{2}$"
           },
@@ -19,7 +19,7 @@
         },
         "required": [
           "id",
-          "country_of_residence"
+          "countryOfResidence"
         ]
       },
       "issuer": {
@@ -41,7 +41,8 @@
             "format": "uri"
           },
           "type": {
-            "type": "string"
+            "type": "string",
+            "const": "JsonSchema"
           }
         },
         "required": [
