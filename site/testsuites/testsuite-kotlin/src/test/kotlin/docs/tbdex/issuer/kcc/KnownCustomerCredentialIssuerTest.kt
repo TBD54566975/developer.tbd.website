@@ -81,7 +81,7 @@ class KnownCustomerCredentialIssuerTest {
             data = KccCredential("US" , "Gold"),
             evidence = evidence,
             credentialSchema = CredentialSchema(
-                id = "https://schema.org/PFI",
+                id = "https://developer.tbd.website/schemas/kccSchema.json",
                 type = "JsonSchema"
             ),
         )
@@ -638,7 +638,7 @@ class KnownCustomerCredentialIssuerTest {
                         evidence = evidence,
                         data = KccCredential(countryOfResidence = "US", tier = "Gold"),
                         credentialSchema = CredentialSchema(
-                            id = "https://schema.org/PFI",
+                            id = "https://developer.tbd.website/schemas/kccSchema.json",
                             type = "JsonSchema"
                         ),
                     )
