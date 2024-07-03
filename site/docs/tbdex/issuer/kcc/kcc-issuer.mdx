@@ -425,7 +425,7 @@ To convert the signed VC JWT into a `VerifiableCredential` object you can use th
       "tier": "Gold"
     },
     "credentialSchema": {
-      id: "https://schema.org/PFI",
+      id: "https://developer.tbd.website/schemas/kccSchema.json",
       type: "JsonSchema"
     },
     "evidence": [
@@ -463,7 +463,7 @@ To convert the signed VC JWT into a `VerifiableCredential` object you can use th
     "tier": "Gold"
   },
   "credentialSchema": {
-    id: "https://schema.org/PFI",
+    id: "https://developer.tbd.website/schemas/kccSchema.json",
     type: "JsonSchema"
   },
   "evidence": [
@@ -486,3 +486,7 @@ To convert the signed VC JWT into a `VerifiableCredential` object you can use th
 
 With that, you've successfully gone through the Identity Verification flow, and issued a Known Customer Credential. Please note that this example is a foundational implementation.
 For a production environment, it's crucial to enhance this basic setup with comprehensive error handling, and security measures.
+
+## Next Steps
+
+For an example of the flow covered in this guide, check out the [Known Customer Credential Exemplar](https://github.com/TBD54566975/kcc-prototype-exemplar) on GitHub. This exemplar provides a implementation of issuing a Known Customer Credential (KCC), demonstrating how to set up, manage, and issue KCCs.

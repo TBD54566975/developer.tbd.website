@@ -431,7 +431,7 @@ app.post('/credentials', async (req, res) => {
      * Create and sign the credential
      ************************************************/
     const kccCredentialInstance = new KccCredential('US', 'Gold', {
-        id: "https://schema.org/PFI",
+        id: "https://developer.tbd.website/schemas/kccSchema.json",
         type: "JsonSchema"
       },
       [
