@@ -12,6 +12,8 @@ import Background from "@site/src/components/Background";
 import useBaseUrl from "@docusaurus/useBaseUrl";
 import DocBreadcrumbsWrapper from "@site/src/theme/DocBreadcrumbs";
 
+import LanguageSwitcher from "@site/src/components/LanguageSwitcher";
+
 import styles from "./styles.module.css";
 
 function useShowAnnouncementBar() {
@@ -35,19 +37,8 @@ export default function DocSidebarDesktopContent({
   className,
 }: Props): JSX.Element {
   const showAnnouncementBar = useShowAnnouncementBar();
-  const options = [
-    { label: "JavaScript", icon: useBaseUrl("/img/js-icon.svg") },
-  ];
 
   const sidebarHeader = sidebar[0].customProps.sidebarHeader;
-  const [selectedOption, setSelectedOption] = useState(options[0]);
-
-  const handleChange = (event) => {
-    const selected = options.find(
-      (option) => option.label === event.target.value
-    );
-    setSelectedOption(selected);
-  };
 
   return (
     <nav
@@ -80,35 +71,7 @@ export default function DocSidebarDesktopContent({
       >
         <DocSidebarItems items={sidebar} activePath={path} level={1} />
       </ul>
-      <div className="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 category-label">
-        LANGUAGE
-      </div>
-      <section className="p-4">
-        <div className="flex items-center justify-center">
-          <div className="custom-select">
-            <div className="selected-option">
-              <img
-                src={selectedOption.icon}
-                alt={selectedOption.label}
-                className="icon-left"
-              />
-              <span className="option-label">{selectedOption.label}</span>
-              <img
-                src={useBaseUrl("/img/chevron.svg")}
-                alt="Caret Icon"
-                className="icon-right"
-              />
-            </div>
-            <select onChange={handleChange} value={selectedOption.label}>
-              {options.map((option) => (
-                <option key={option.label} value={option.label}>
-                  {option.label}
-                </option>
-              ))}
-            </select>
-          </div>
-        </div>
-      </section>
+      <LanguageSwitcher />
     </nav>
   );
 }
