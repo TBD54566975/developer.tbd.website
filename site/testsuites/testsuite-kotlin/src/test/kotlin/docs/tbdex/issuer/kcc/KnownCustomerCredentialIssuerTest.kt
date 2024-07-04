@@ -74,14 +74,14 @@ class KnownCustomerCredentialIssuerTest {
             )
 
         val knownCustomerCredential = VerifiableCredential.create(
-            type = "KnownCustomerCredential",
+            type = "VerifiableCredential",
             issuer = issuerBearerDid.uri.toString(),
             subject = customerBearerDid.uri.toString(),
             expirationDate = expirationDate,
             data = KccCredential("US" , "Gold"),
             evidence = evidence,
             credentialSchema = CredentialSchema(
-                id = "https://schema.org/PFI",
+                id = "https://developer.tbd.website/schemas/kccSchema.json",
                 type = "JsonSchema"
             ),
         )
@@ -318,15 +318,25 @@ class KnownCustomerCredentialIssuerTest {
                     put("client_metadata", clientMetadata)
                 }
                 //highlight-start
-                val queryString = siopRequest.toMap().entries.joinToString("&") { (key, value) ->
-                    val encodedValue = when (value) {
-                        is JsonElement -> URLEncoder.encode(value.toString(), Charsets.UTF_8.name())
-                        else -> URLEncoder.encode(value.toString(), Charsets.UTF_8.name())
-                    }
-                    "${URLEncoder.encode(key, Charsets.UTF_8.name())}=$encodedValue"
-                }
+                // Sign the SIOPv2 Auth Request
+                val siopRequestJwtPayload = JwtClaimsSet.Builder()
+                    .subject(issuerBearerDid.uri) // Issuer's DID
+                    .issuer(issuerBearerDid.uri) // Issuer's DID
+                    .issueTime(System.currentTimeMillis() / 1000) // Issued time
+                    .expirationTime((System.currentTimeMillis() / 1000) + 86400) // Expiration time 
+                    .misc("request", siopRequest.toString()) // Embed the SIOPv2 Auth request payload 
+                    .build()
 
-                call.respondText(queryString, ContentType.Text.Plain)
+                try {
+                    val jwtToken = Jwt.sign(issuerBearerDid, siopRequestJwtPayload)
+                    // Send the SIOPv2 Auth Request in JAR format
+                    val queryString = "client_id=${URLEncoder.encode(issuerBearerDid.uri.toString(), "UTF-8")}&request=${URLEncoder.encode(jwtToken, "UTF-8")}"
+
+                    call.respondText(queryString, ContentType.Text.Plain)
+                } catch (err: Exception) {
+                    println("Error signing the SIOPv2 request: ${err.message}")
+                    call.respond(HttpStatusCode.InternalServerError, "Failed to generate JWT for SIOPv2 Authorization Request")
+                }
                 //highlight-end
             }
         // :snippet-end:
@@ -621,14 +631,14 @@ class KnownCustomerCredentialIssuerTest {
                     val expirationDate: Date = dateFormat.parse("2026-05-19T08:02:04Z")
 
                     val knownCustomerCredential = VerifiableCredential.create(
-                        type = "KnownCustomerCredential",
+                        type = "VerifiableCredential",
                         issuer = issuerBearerDid.uri, // Issuer's DID string
                         subject = customersDidUri, // Customer's DID string from the verified JWT
                         expirationDate = expirationDate,
                         evidence = evidence,
                         data = KccCredential(countryOfResidence = "US", tier = "Gold"),
                         credentialSchema = CredentialSchema(
-                            id = "https://schema.org/PFI",
+                            id = "https://developer.tbd.website/schemas/kccSchema.json",
                             type = "JsonSchema"
                         ),
                     )

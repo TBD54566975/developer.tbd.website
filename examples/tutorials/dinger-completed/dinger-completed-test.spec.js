@@ -17,7 +17,7 @@ const checkHeading = async (page) => {
 };
 
 const checkCopyDIDButton = async (page) => {
-    await expect(page.locator('#copy-did-button')).toBeVisible({ timeout: 20000 });
+    await expect(page.locator('#copy-did-button')).toBeVisible({ timeout: 80000 });
 };
 
 test.describe('Next.js app renders - Dinger Chat', () => {

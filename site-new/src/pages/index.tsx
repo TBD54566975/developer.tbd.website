@@ -1,6 +1,7 @@
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import Layout from "@theme/Layout";
 import BlogCard from "../components/BlogCard";
+import Background from "../components/Background";
 
 export default function Home(): JSX.Element {
   const { siteConfig } = useDocusaurusContext();
@@ -9,24 +10,14 @@ export default function Home(): JSX.Element {
       title={`Hello from ${siteConfig.title}`}
       description="Description will go into a meta tag in <head />"
     >
-      <header className=" flex justify-center items-center">
-        <h1>TBD Components</h1>
-      </header>
-
-      <main className="flex flex-col items-center">
-        <h3>Blog Card - Large</h3>
-        <BlogCard
-          date={new Date("2024-05-28")}
-          tags={["Test1", "Test2", "Test3"]}
-          size="large"
-        />
-        <h3>Blog Card - Small</h3>
-        <BlogCard
-          date={new Date("2024-05-28")}
-          tags={["Test1", "Test2", "Test3"]}
-        />
-        <h3>Square Background component (WIP)</h3>
-      </main>
+      <Background
+        width={100}
+        height={50}
+        primaryColor="#F5D800"
+        squareCount={10}
+      >
+        <main className="flex flex-col items-center z-20">TBD Home Page</main>
+      </Background>
     </Layout>
   );
 }

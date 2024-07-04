@@ -56,9 +56,9 @@ final class PlaceOrderTests: XCTestCase {
 
         // :snippet-start: listenForOrderStatusSwift
         var orderStatusUpdate: String?
-        var closeMessage: Close?
+        var close: Close?
 
-        while closeMessage == nil {
+        while close == nil {
             let exchange = try await tbDEXHttpClient.getExchange(
                 pfiDIDURI: quote!.metadata.from,
                 requesterDID: customerDid!,
@@ -70,9 +70,9 @@ final class PlaceOrderTests: XCTestCase {
                     // a status update to display to your customer
                     orderStatusUpdate = orderStatus.data.orderStatus
                 }
-                else if case .close(let close) = message {
+                else if case .close(let closeMessage) = message {
                     // final message of exchange has been written
-                    closeMessage = close
+                    close = closeMessage
                     break
                 }
             }
@@ -80,9 +80,11 @@ final class PlaceOrderTests: XCTestCase {
         // :snippet-end:
         
         // :snippet-start: getCloseReasonSwift
-        let reasonForClose = closeMessage!.data.reason
+        let isSuccessful = close!.data.success!
+        let reasonForClose = close!.data.reason
         // :snippet-end:
 
+        XCTAssertTrue(isSuccessful)
         XCTAssertEqual(reasonForClose, closeReason)
 
         //removing warning from console
