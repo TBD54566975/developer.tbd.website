@@ -11,6 +11,7 @@ module.exports = {
   theme: {
     colors: {
       "tbd-yellow": "#FFEC19",
+      "tbd-yellow-2": "#F5D800",
       "tbd-purple": "#9A1AFF",
       "tbd-blue": "#1AF1FF",
       "dark-grey": "#141414",

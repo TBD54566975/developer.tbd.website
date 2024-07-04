@@ -15,7 +15,9 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertDoesNotThrow
 import web5.sdk.dids.did.BearerDid
 import java.net.URL
+import com.nimbusds.jwt.JWTClaimsSet
 import java.net.HttpURLConnection
+import web5.sdk.credentials.VerifiableCredential
 
 // :prepend-start: knownCustomerCredentialhandleSiopRequestWalletKT
 import web5.sdk.credentials.PresentationExchange
@@ -227,17 +229,31 @@ class KnownCustomerCredentialWalletTest {
     // :snippet-start: knownCustomerCredentialhandleSiopRequestWalletKT
     private suspend fun handleSiopRequest(encodedSiopRequest: String) {
         /*******************************************************
-        * Decode the SIOP request from the encoded string
+        * Decode the JAR from the encoded URI string
         *******************************************************/
         val params = encodedSiopRequest.split("&").associate { 
             val (key, value) = it.split("=")
             key to URLDecoder.decode(value, "UTF-8")
         }
 
-        val clientId = params["client_id"] ?: throw Exception(
-            "Client ID missing in SIOP request"
-        )
-        val nonce = params["nonce"] ?: throw Exception("Nonce missing in SIOP request")
+        val jwtRequest = params["request"] ?: throw Exception("JWT request missing in SIOP request")
+
+        /************************************************************
+        // Verify the JWT, decode its payload & Process SIOP Request
+        ************************************************************/
+        try {
+            VerifiableCredential.verify(jwtRequest)
+        } catch (e: Exception) {
+            throw Exception("Failed to verify JWT: ${e.message}")
+        }
+
+        val claimsSet = JWTParser.parse(jwtRequest).jwtClaimsSet
+        val payloadJson = Json.parseToJsonElement(claimsSet.toJSONObject().toString()).jsonObject
+
+        val siopRequest = payloadJson["request"]?.jsonObject ?: throw Exception("Request data not found in JWT payload")
+
+        val clientId = siopRequest["client_id"]?.jsonPrimitive?.content ?: throw Exception("Client ID missing in SIOP request")
+        val nonce = siopRequest["nonce"]?.jsonPrimitive?.content ?: throw Exception("Nonce missing in SIOP request")
 
         /*******************************************************
         * Generate & sign id_token
@@ -258,14 +274,12 @@ class KnownCustomerCredentialWalletTest {
         }
 
         var vpToken: String? = null
-        if ("vp_token" in (params["response_type"] ?: "")) {
+        if ("vp_token" in siopRequest["response_type"].toString()) {
             /*******************************************************
             * Parse the presentation definition from SIOP request
             *******************************************************/
-            val presentationDefinitionJson = params["presentation_definition"]
-            ?: throw Exception("Presentation definition missing in SIOP request")
             val presentationDefinition = Json.decodeFromString<PresentationDefinitionV2>(
-                presentationDefinitionJson.toString()
+                siopRequest["presentation_definition"].toString()
             )
 
             /*******************************************************
@@ -322,14 +336,12 @@ class KnownCustomerCredentialWalletTest {
             vpToken?.let { put("vp_token", it) }
         }
 
-        val responseUri = params["response_uri"] ?: throw Exception(
+        val responseUri = siopRequest["response_uri"]?.jsonPrimitive?.content ?: throw Exception(
             "Response URI missing in SIOP request"
         )
-        postSiopResponse(
-            responseUri, 
-            responsePayload.toString()) // function shown in next step
+        postSiopResponse(responseUri, responsePayload.toString()) // function shown in next step
     }
-    // :snippet-end:
+// :snippet-end:
 
     // :snippet-start: knownCustomerCredentialIssuerResponseClassKT
     @Serializable

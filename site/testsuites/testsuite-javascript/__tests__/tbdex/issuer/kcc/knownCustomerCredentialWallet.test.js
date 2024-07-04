@@ -181,21 +181,32 @@ async function sendRequestToIdvServiceEndpoint(idvServiceEndpoint) {
 
 // :snippet-start: knownCustomerCredentialhandleSiopRequestWalletJS
 async function handleSiopRequest(encodedSiopRequest) {
-  /*******************************************************
-   * Decode the SIOP request from the encoded string
-   *******************************************************/
+  /*************************************************************
+   * Decode the SIOP request JAR from the encoded URL parameters
+   *************************************************************/
   const params = new URLSearchParams(encodedSiopRequest);
-  const siopRequest = {};
-  for (const [key, value] of params) {
-    siopRequest[key] = decodeURIComponent(value);
+  const jwtRequest = params.get('request');
+
+  if (!jwtRequest) {
+    throw new Error('No JWT found in SIOP Request');
   }
+
+  let decodedSiopRequest;
+  try {
+    decodedSiopRequest = await Jwt.verify({ jwt: jwtRequest });
+  } catch (error) {
+    throw new Error(`Error decoding SIOP Request JWT: ${error.message}`);
+  }
+
+  // Extract the payload from the verified JWT
+  const siopRequest = decodedSiopRequest.payload.request;
 
   /*******************************************************
    * Generate & sign id_token
    *******************************************************/
   const idTokenPayload = {
-    iss: userDid.uri, // user's DID string
-    sub: userDid.uri,
+    iss: customerBearerDid.uri, // user's DID string
+    sub: customerBearerDid.uri,
     aud: siopRequest.client_id,
     nonce: siopRequest.nonce,
     exp: Math.floor(Date.now() / 1000) + 60 * 60, // Expiration time
@@ -203,7 +214,7 @@ async function handleSiopRequest(encodedSiopRequest) {
   };
 
   const idToken = await Jwt.sign({
-    signerDid: userBearerDid,
+    signerDid: customerBearerDid,
     payload: idTokenPayload,
   });
 
@@ -231,7 +242,7 @@ async function handleSiopRequest(encodedSiopRequest) {
         presentationDefinition: siopRequest.presentation_definition,
       });
 
-      vpToken = await Jwt.sign({ signerDid: userBearerDid, payload: vp });
+      vpToken = await Jwt.sign({ signerDid: customerBearerDid, payload: vp });
     } catch (error) {
       throw new Error(
         `Presentation Definition not satisfied: ${error.message}`,
@@ -349,7 +360,7 @@ function fetchAccessToken(
   const requestBody = {
     grant_type: 'urn:ietf:params:oauth:grant-type:pre-authorized_code',
     code: preAuthorizationCode,
-    client_id: userDid.uri, // user's did string
+    client_id: customerBearerDid.uri, // user's did string
   };
 
   /*********************************************
@@ -413,13 +424,13 @@ function requestKnownCustomerCredential(credentialEndpoint, accessToken) {
    * Construct & sign the JWT payload
    **************************************************/
   const jwtPayload = {
-    iss: userDid.uri, // user's DID string
+    iss: customerBearerDid.uri, // user's DID string
     aud: issuerDidUri, // Issuer's DID string
     iat: Math.floor(Date.now() / 1000),
     nonce: walletStorage.cNonce,
   };
 
-  Jwt.sign({ signerDid: userBearerDid, payload: jwtPayload })
+  Jwt.sign({ signerDid: customerBearerDid, payload: jwtPayload })
     .then((signedJwt) => {
       const requestBody = {
         proof: {

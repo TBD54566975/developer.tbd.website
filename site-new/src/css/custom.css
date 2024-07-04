@@ -1,6 +1,52 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+  font-family: 'Basis';
+  src: url('/fonts/Basis/MADType\ -\ Basis.ttf');
+}
+
+@font-face {
+  font-family: 'SpaceGrotesk';
+  src: url('/fonts/Space-Grotesk/SpaceGrotesk-Light.ttf');
+  font-weight: 300;
+}
+
+@font-face {
+  font-family: 'SpaceGrotesk';
+  src: url('/fonts/Space-Grotesk/SpaceGrotesk-Bold.ttf');
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: 'SpaceGrotesk';
+  src: url('/fonts/Space-Grotesk/SpaceGrotesk-Medium.ttf');
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: 'SpaceGrotesk';
+  src: url('/fonts/Space-Grotesk/SpaceGrotesk-Regular.ttf');
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: 'SpaceGrotesk';
+  src: url('/fonts/Space-Grotesk/SpaceGrotesk-VariableFont_wght.ttf');
+  font-weight: 100 900;
+}
+
+@font-face {
+  font-family: 'Inter';
+  src: url('/fonts/Inter/Inter-VariableFont_slnt,wght.ttf');
+}
+
+body {
+
+  /* or 300, 500, 700 as needed */
+}
+
 /**
  * Any CSS included here will be global. The classic template
  * bundles Infima by default. Infima is a CSS framework designed to
@@ -8,6 +54,7 @@
  */
 
 /* You can override the default Infima variables here. */
+
 :root {
   --ifm-color-primary: #FFEC19;
   --ifm-color-primary-dark: #FFEC19;
@@ -20,6 +67,14 @@
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
   --ifm-heading-color: 'black';
   --ifm-color-secondary: #9A1AFF;
+  --ifm-background-color: #000;
+}
+
+h2 {
+  font-family: 'SpaceGrotesk', sans-serif;
+  font-family: 'SpaceGrotesk';
+  font-weight: 600;
+  font-size: 32px;
 }
 
 .hero-primary {
@@ -36,4 +91,271 @@
   --ifm-color-primary-lighter: #32d8b4;
   --ifm-color-primary-lightest: #4fddbf;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+}
+
+
+/**SIDEBAR **/
+
+.thin-scrollbar {
+  padding: 0;
+  min-height: initial !important;
+  scrollbar-gutter: initial !important;
+}
+
+.category-label {
+  font-family: 'Basis';
+  opacity: 60%;
+  padding-left: 12px;
+  padding-top: 24px;
+  font-size: 12px;
+  font-weight: 400;
+  margin-top: 12px;
+  border-top: 1px solid rgba(0, 0, 0, 0.2);
+  line-height: 14.4px;
+}
+
+.menu.thin-scrollbar {
+  background-color: var(--ifm-color-primary);
+  padding: 0;
+}
+
+.menu__link {
+  color: black;
+  border-radius: 0;
+  font-family: 'SpaceGrotesk', sans-serif;
+  font-family: 'SpaceGrotesk';
+}
+
+.menu__list-item {
+  position: relative;
+}
+
+.menu__list-item .menu__link::after {
+  content: url('/img/chevron.svg');
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.menu__list-item .menu__link {
+  transition: border-left 0.3s ease, color 0.3s ease;
+  font-weight: 500;
+  font-size: 18px;
+}
+
+.menu__list-item .menu__link::after {
+  content: url('/img/chevron.svg');
+}
+
+.menu__link--active {
+  border-left: 3px solid black;
+  color: black;
+  font-weight: 500;
+  font-size: 18px;
+}
+
+.menu__list-item .menu__link:hover {
+  border-left: 3px solid black;
+  color: black;
+  font-weight: 600;
+  background-color: #F5D800;
+}
+
+.menu__link--active:not(.menu__link--sublist) {
+  background: none;
+  border-left: none;
+}
+.theme-doc-sidebar-item-category-level-1 {
+  position: relative;
+  margin-bottom: 24px;
+  font-weight: 600;
+}
+
+.theme-doc-sidebar-item-category-level-1::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 3%;
+  right: 3%;
+  border-top: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+
+.menu__list .web5-icon a::before {
+  content: url("/img/5-icon.svg");
+  font-family: 'FontAwesome';
+  display: inline-block;
+  margin-left: 5px;
+  vertical-align: middle;
+  position: relative;
+  top: 3px;
+  right: 8px;
+}
+
+.menu__list .tbdex-icon a::before {
+  content: url("/img/light-bulb.svg");
+  font-family: 'FontAwesome';
+  display: inline-block;
+  margin-left: 5px;
+  vertical-align: middle;
+  position: relative;
+  top: 3px;
+  right: 8px;
+}
+
+.menu__list .web5-icon a::before {
+  content: url('/img/web5-icon.svg');
+  display: inline-block;
+  margin-left: 5px;
+  vertical-align: middle;
+}
+
+.menu__list .web5-icon a::before:hover {
+  content: url('/img/web5-icon.svg');
+}
+
+.menu__list .tbdex-icon a::before:hover {
+  content: url("/img/light-bulb.svg");
+  font-family: 'FontAwesome';
+  display: inline-block;
+  margin-left: 5px;
+  vertical-align: middle;
+}
+
+.menu__list .external-link-icon a::before {
+  content: url("/img/external-link.svg");
+  font-family: 'FontAwesome';
+  display: inline-block;
+  margin-left: 5px;
+  vertical-align: middle;
+  position: relative;
+  top: 3px;
+  right: 8px;
+}
+
+.menu__list .glossary-icon a::before {
+  content: url("/img/glossary.svg");
+  font-family: 'FontAwesome';
+  display: inline-block;
+  margin-left: 5px;
+  vertical-align: middle;
+  position: relative;
+  top: 3px;
+  right: 8px;
+}
+
+.no-caret .menu__link::after {
+  content: ''
+}
+
+
+/* Bread Crumbs */
+
+.theme-doc-breadcrumbs .breadcrumbs__link {
+  color: var(--ifm-color-primary);
+}
+
+.breadcrumbs__item:not(:last-child)::after {
+  background: url('/img/caret.svg') center no-repeat;
+  content: ' ';
+  display: inline-block;
+  filter: var(--ifm-breadcrumb-separator-filter);
+  height: calc(var(--ifm-breadcrumb-separator-size) * var(--ifm-breadcrumb-size-multiplier) * var(--ifm-breadcrumb-separator-size-multiplier));
+  margin: 0 var(--ifm-breadcrumb-spacing);
+  opacity: 0.8;
+  width: calc(var(--ifm-breadcrumb-separator-size) * var(--ifm-breadcrumb-size-multiplier) * var(--ifm-breadcrumb-separator-size-multiplier));
+}
+
+
+/* Navbar */
+.navbar {
+  background-color: var(--ifm-color-primary);
+}
+
+.navbar a {
+  color: black;
+}
+
+/* Mobile Sidebar */
+.navbar-sidebar {
+  background: var(--ifm-color-primary)
+}
+
+/* LANGUAGE SWITCHER (WIP) */
+
+.custom-select {
+  position: relative;
+  display: inline-block;
+  width: 200px;
+}
+
+.selected-option {
+  display: flex;
+  align-items: center;
+  padding: 5px 10px;
+  background-color: var(--ifm-color-primary);
+  justify-content: space-between;
+  cursor: pointer;
+}
+
+.selected-option .icon-left {
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+}
+
+.selected-option .icon-right {
+  width: 20px;
+  height: 20px;
+  margin-left: 10px;
+  fill: black;
+  transition: transform 0.3s ease;
+  transform: rotate(-90deg);
+}
+
+.selected-option .icon-right.open {
+  transform: rotate(90deg);
+}
+
+.selected-option .option-label {
+  flex-grow: 1;
+  text-align: left;
+}
+
+.custom-select select {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;  
+}
+
+
+
+/* Bread Crumbs */
+
+.breadcrumbs__item .breadcrumbs__link {
+  color: black;
+  vertical-align: bottom;
+}
+
+.container .breadcrumbs {
+  display: none;
+}
+
+.breadcrumbs {
+  color: black;
+}
+
+.breadcrumbs__link {
+  padding: 0;
+  font-weight: 400;
+  font-size: 14px;
+  background: none !important;
+}
+.breadcrumbs__item:not(:last-child)::after {
+  display: none;
 }
