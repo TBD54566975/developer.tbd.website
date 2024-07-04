@@ -38,12 +38,13 @@ describe('Wallet: Quickstart', () => {
         // :snippet-end:
 
         selectedOffering = offerings[0];
+
         expect(selectedOffering).toBeDefined();
     });
 
     test('Pull Wallet Credentials', async () => {
 
-        let issuerDid = '{"uri":"did:dht:91szhs8sagq3rq9x6fraono8gci7ekcz7s5ubfenjpkqk1dbi8po","document":{"id":"did:dht:91szhs8sagq3rq9x6fraono8gci7ekcz7s5ubfenjpkqk1dbi8po","verificationMethod":[{"id":"did:dht:91szhs8sagq3rq9x6fraono8gci7ekcz7s5ubfenjpkqk1dbi8po#0","type":"JsonWebKey","controller":"did:dht:91szhs8sagq3rq9x6fraono8gci7ekcz7s5ubfenjpkqk1dbi8po","publicKeyJwk":{"crv":"Ed25519","kty":"OKP","x":"5ax3B9NJSaxwEgXXc11CdtOdEybefUaf6RDgrL2VjLs","kid":"9pIk_m7d5-1etmbk94DleDYaQra4CsKjrt37q28sugk","alg":"EdDSA"}}],"authentication":["did:dht:91szhs8sagq3rq9x6fraono8gci7ekcz7s5ubfenjpkqk1dbi8po#0"],"assertionMethod":["did:dht:91szhs8sagq3rq9x6fraono8gci7ekcz7s5ubfenjpkqk1dbi8po#0"],"capabilityDelegation":["did:dht:91szhs8sagq3rq9x6fraono8gci7ekcz7s5ubfenjpkqk1dbi8po#0"],"capabilityInvocation":["did:dht:91szhs8sagq3rq9x6fraono8gci7ekcz7s5ubfenjpkqk1dbi8po#0"]},"metadata":{"published":true,"versionId":"1718729356"},"privateKeys":[{"crv":"Ed25519","d":"FMPebUFD4ZskD1Z7WzRPC52Zl0zt4qwxPQq8DMaWfEQ","kty":"OKP","x":"5ax3B9NJSaxwEgXXc11CdtOdEybefUaf6RDgrL2VjLs","kid":"9pIk_m7d5-1etmbk94DleDYaQra4CsKjrt37q28sugk","alg":"EdDSA"}]}'
+        let issuerDid = '{"uri":"did:dht:hge69zswp474myt94d149pftycsgk6yr9tufrh7new48re76b5ny","document":{"id":"did:dht:hge69zswp474myt94d149pftycsgk6yr9tufrh7new48re76b5ny","verificationMethod":[{"id":"did:dht:hge69zswp474myt94d149pftycsgk6yr9tufrh7new48re76b5ny#0","type":"JsonWebKey","controller":"did:dht:hge69zswp474myt94d149pftycsgk6yr9tufrh7new48re76b5ny","publicKeyJwk":{"crv":"Ed25519","kty":"OKP","x":"4ZHv3tRuu6WCP9Dlr7SxAyxleAT8ZlJzokU0ciO-DsQ","kid":"YovQ1tV4TzP3vEK56W1ALWw4yaakW2YxnTWjRkoisD0","alg":"EdDSA"}}],"authentication":["did:dht:hge69zswp474myt94d149pftycsgk6yr9tufrh7new48re76b5ny#0"],"assertionMethod":["did:dht:hge69zswp474myt94d149pftycsgk6yr9tufrh7new48re76b5ny#0"],"capabilityDelegation":["did:dht:hge69zswp474myt94d149pftycsgk6yr9tufrh7new48re76b5ny#0"],"capabilityInvocation":["did:dht:hge69zswp474myt94d149pftycsgk6yr9tufrh7new48re76b5ny#0"]},"metadata":{"published":true,"versionId":"1720053903"},"privateKeys":[{"crv":"Ed25519","d":"WvJD_vX0s5qqHkW2D4t3RUABg7a_3usAMKet1QEoKj0","kty":"OKP","x":"4ZHv3tRuu6WCP9Dlr7SxAyxleAT8ZlJzokU0ciO-DsQ","kid":"YovQ1tV4TzP3vEK56W1ALWw4yaakW2YxnTWjRkoisD0","alg":"EdDSA"}]}'
 
         const portableDid = JSON.parse(issuerDid);
         const issuer = await DidDht.import({ portableDid });
@@ -73,7 +74,6 @@ describe('Wallet: Quickstart', () => {
     });
     
     test('Create RFQ', async () => {
-        const BTC_ADDRESS = 'bc1q52csjdqa6cq5d2ntkkyz8wk7qh2qevy04dyyfd'
         const selectedCredentials = credentials;
 
         // :snippet-start: walletQuickstartCreateRfq
@@ -184,6 +184,7 @@ describe('Wallet: Quickstart', () => {
     });
 
     test('Process Close', async () => {
+        var close;
         while (!close) {
             const exchange = await TbdexHttpClient.getExchange({
                 pfiDid: pfiDid,

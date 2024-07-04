@@ -71,6 +71,8 @@ async function getCredentials() {
         const portableDid = JSON.parse(issuerDid);
         const issuer = await DidDht.import({ portableDid });
 
+        await DidDht.publish({ did: issuer });
+
         const vc = await VerifiableCredential.create({
             type    : 'SanctionCredential',
             issuer  : issuer.uri,
@@ -193,7 +195,7 @@ async function processClose() {
             }
         }
     }
-    
+
     context.closeSuccess = close.data.success;
     context.reasonForClose = close.data.reason;
 }
