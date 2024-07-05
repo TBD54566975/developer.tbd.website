@@ -1,20 +1,21 @@
 import React, { useState } from "react";
 import useBaseUrl from "@docusaurus/useBaseUrl";
 import JsIcon from "@site/static/img/js-icon";
+import { useLanguage } from "../context/LanguageSwitcher";
 
 function LanguageSwitcher() {
+  const { selectedOption, toggleLanguage } = useLanguage();
+  const [isOpen, setIsOpen] = useState(false);
+
   const options = [
     { label: "JavaScript", icon: useBaseUrl("/img/js-icon.svg") },
   ];
-
-  const [selectedOption, setSelectedOption] = useState(options[0]);
-  const [isOpen, setIsOpen] = useState(false);
 
   const handleChange = (event) => {
     const selected = options.find(
       (option) => option.label === event.target.value
     );
-    setSelectedOption(selected);
+    toggleLanguage(selected);
     setIsOpen(false);
   };
 
@@ -31,19 +32,21 @@ function LanguageSwitcher() {
         <div className="flex items-center justify-start pb-4">
           <div className="relative inline-block w-full">
             <div
-              className="flex items-center cursor-pointer p-2 border border-gray-300 rounded-none bg-tbd-yellow"
+              className="flex items-center justify-between cursor-pointer p-2 border border-gray-300 rounded-none bg-tbd-yellow"
               onClick={toggleDropdown}
             >
-              <img
-                src={selectedOption.icon}
-                alt={selectedOption.label}
-                className="w-5 h-5 mr-2"
-              />
-              <span className="mr-2">{selectedOption.label}</span>
+              <div className="flex items-center">
+                <img
+                  src={selectedOption.icon}
+                  alt={selectedOption.label}
+                  className="w-5 h-5 mr-2"
+                />
+                <span className="mr-2">{selectedOption.label}</span>
+              </div>
               <img
                 src={useBaseUrl("/img/chevron.svg")}
                 alt="Caret Icon"
-                className={`w-3 h-3 transition-transform ${
+                className={`w-4 h-4 transition-transform ${
                   isOpen
                     ? "transform rotate-[90deg]"
                     : "transform rotate-[-90deg]"
@@ -57,8 +60,7 @@ function LanguageSwitcher() {
                     key={option.label}
                     className="flex items-center cursor-pointer p-2 hover:bg-gray-700"
                     onClick={() => {
-                      setSelectedOption(option);
-                      setIsOpen(false);
+                      handleChange({ target: { value: option.label } });
                     }}
                   >
                     <JsIcon
