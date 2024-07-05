@@ -15,12 +15,14 @@ module.exports = {
       "tbd-purple": "#9A1AFF",
       "tbd-blue": "#1AF1FF",
       "dark-grey": "#141414",
+      white: "#FFF",
     },
     extend: {
       fontFamily: {
         sans: ['"Inter"', ...fontFamily.sans],
         jakarta: ['"Plus Jakarta Sans"', ...fontFamily.sans],
         mono: ['"Fira Code"', ...fontFamily.mono],
+        spaceGrotesk: ["SpaceGrotesk", "sans-serif"],
       },
       borderRadius: {
         sm: "4px",
