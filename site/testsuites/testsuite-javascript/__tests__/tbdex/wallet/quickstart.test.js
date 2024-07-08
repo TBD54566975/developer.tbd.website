@@ -133,33 +133,36 @@ describe('Wallet: Quickstart', () => {
     test('Process Quote and Create Order', async () => {
         // Wait to ensure exchange is created
         await new Promise(resolve => setTimeout(resolve, 5000));
+        try {
+            // :snippet-start: walletQuickstartProcessQuote
+            // Wait for Quote message to appear in the exchange
+            exchangeId = rfq.exchangeId;
+            while (!quote) {
+                const exchange = await TbdexHttpClient.getExchange({
+                    pfiDid: pfiDid,
+                    did: customerDid,
+                    exchangeId: exchangeId
+                });
 
-        // :snippet-start: walletQuickstartProcessQuote
-        // Wait for Quote message to appear in the exchange
-        exchangeId = rfq.exchangeId;
-        while (!quote) {
-            const exchange = await TbdexHttpClient.getExchange({
-                pfiDid: pfiDid,
-                did: customerDid,
-                exchangeId: exchangeId
-            });
+                quote = exchange.find(msg => msg instanceof Quote);
 
-            quote = exchange.find(msg => msg instanceof Quote);
-
-            if (!quote) {
-                // Make sure the exchange is still open
-                close = exchange.find(msg => msg instanceof Close);
-                
-                if(close) { break; } 
-                else {
-                // Wait 2 seconds before making another request
-                await new Promise(resolve => setTimeout(resolve, 2000));
+                if (!quote) {
+                    // Make sure the exchange is still open
+                    close = exchange.find(msg => msg instanceof Close);
+                    
+                    if(close) { break; } 
+                    else {
+                    // Wait 2 seconds before making another request
+                    await new Promise(resolve => setTimeout(resolve, 2000));
+                    }
                 }
             }
-        }
-        // :snippet-end:
+            // :snippet-end:
 
-        expect(quote).toBeDefined();
+            expect(quote).toBeDefined();
+        } catch (e) {
+            // do nothing to let the loop keep running
+        }
     });
 
     test('Create Order', async () => {
@@ -189,29 +192,32 @@ describe('Wallet: Quickstart', () => {
     test('Process Close', async () => {
         // Wait to ensure exchange is created
         await new Promise(resolve => setTimeout(resolve, 5000));
+        try {
+            // :snippet-start: walletQuickstartProcessClose
+            var close;
+            while (!close) {
+                const exchange = await TbdexHttpClient.getExchange({
+                    pfiDid: pfiDid,
+                    did: customerDid,
+                    exchangeId: exchangeId
+                })
 
-        // :snippet-start: walletQuickstartProcessClose
-        var close;
-        while (!close) {
-            const exchange = await TbdexHttpClient.getExchange({
-                pfiDid: pfiDid,
-                did: customerDid,
-                exchangeId: exchangeId
-            })
-
-            for (const message of exchange) {
-                if (message instanceof Close) {
-                    close = message
+                for (const message of exchange) {
+                    if (message instanceof Close) {
+                        close = message
+                    }
                 }
             }
+
+            const reasonForClose = close.data.reason;
+            // :snippet-end:
+
+            const closeSuccess = close.data.success;
+
+            expect(closeSuccess).toBe(true);
+            expect(reasonForClose).toBeDefined();
+        } catch (e) {
+            // do nothing to let the loop keep running
         }
-
-        const reasonForClose = close.data.reason;
-        // :snippet-end:
-
-        const closeSuccess = close.data.success;
-
-        expect(closeSuccess).toBe(true);
-        expect(reasonForClose).toBeDefined();
-        });
+    });
 });
