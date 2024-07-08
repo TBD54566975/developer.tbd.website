@@ -1,7 +1,7 @@
 // :snippet-start: pfiOnboardingImportsJs
 import { DidDht } from '@web5/dids';
-import { LocalKeyManager } from '@web5/crypto'; // optional
 // :snippet-end:
+import { LocalKeyManager } from '@web5/crypto';
 import { test, expect, describe } from 'vitest';
 
 describe('PFI: Onboarding', () => {

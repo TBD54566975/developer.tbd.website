@@ -67,7 +67,7 @@ function DocsIndex() {
         />
         <HeroCard
           heroText="Wallet App Example"
-          buttonUrl="https://github.com/TBD54566975/tbDEX-Example-iOS"
+          buttonUrl="https://github.com/TBD54566975/tbd-examples/tree/main/swift/tbdex-example-ios"
           buttonText="Learn"
           imgSrc="/img/wallet-blue-yellow.svg"
           imgClass="w-32 beat-fade"
@@ -93,7 +93,7 @@ function DocsIndex() {
         <ExploreCard
           text="Sample Apps"
           icon="/img/mobile-phone-yellow-blue.svg"
-          url="https://github.com/TBD54566975/developer.tbd.website/tree/main/examples/tutorials"
+          url="https://github.com/TBD54566975/tbd-examples"
         />
         <ExploreCard
           text="Videos"
