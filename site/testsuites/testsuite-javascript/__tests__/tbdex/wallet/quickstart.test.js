@@ -107,9 +107,9 @@ describe('Wallet: Quickstart', () => {
         });
         // :snippet-end:
         
-        expect(() => {
+        expect(async () => {
             try{
-                rfq.verifyOfferingRequirements(selectedOffering);
+                await rfq.verifyOfferingRequirements(selectedOffering);
             } catch (e) {
                 // handle failed verification
             }
@@ -120,7 +120,7 @@ describe('Wallet: Quickstart', () => {
         expect(async () => {
             // :snippet-start: walletQuickstartSendRfq
             try{
-                rfq.verifyOfferingRequirements(selectedOffering);
+                await rfq.verifyOfferingRequirements(selectedOffering);
                 await rfq.sign(customerDid);
                 await TbdexHttpClient.createExchange(rfq);
             } catch (e) {
@@ -131,8 +131,6 @@ describe('Wallet: Quickstart', () => {
     });
 
     test('Process Quote and Create Order', async () => {
-        // Wait to ensure exchange is created
-        await new Promise(resolve => setTimeout(resolve, 5000));
         try {
             // :snippet-start: walletQuickstartProcessQuote
             // Wait for Quote message to appear in the exchange
@@ -190,8 +188,6 @@ describe('Wallet: Quickstart', () => {
     });
 
     test('Process Close', async () => {
-        // Wait to ensure exchange is created
-        await new Promise(resolve => setTimeout(resolve, 5000));
         try {
             // :snippet-start: walletQuickstartProcessClose
             var close;
