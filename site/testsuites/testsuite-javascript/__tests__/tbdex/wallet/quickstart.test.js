@@ -131,6 +131,9 @@ describe('Wallet: Quickstart', () => {
     });
 
     test('Process Quote and Create Order', async () => {
+        // Wait to ensure exchange is created
+        await new Promise(resolve => setTimeout(resolve, 10000));
+        
         // :snippet-start: walletQuickstartProcessQuote
         // Wait for Quote message to appear in the exchange
         exchangeId = rfq.exchangeId;
