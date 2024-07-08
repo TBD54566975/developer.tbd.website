@@ -133,7 +133,7 @@ describe('Wallet: Quickstart', () => {
     test('Process Quote and Create Order', async () => {
         // Wait to ensure exchange is created
         await new Promise(resolve => setTimeout(resolve, 10000));
-        
+
         // :snippet-start: walletQuickstartProcessQuote
         // Wait for Quote message to appear in the exchange
         exchangeId = rfq.exchangeId;
@@ -164,9 +164,9 @@ describe('Wallet: Quickstart', () => {
 
     test('Create Order', async () => {
         // :snippet-start: walletQuickstartCreateOrder
-        const order = Order.create({
+        order = Order.create({
             metadata: {
-            from: customerDid,         // Customer's DID
+            from: customerDid.uri,         // Customer's DID
             to: pfiDid,       // PFI's DID
             exchangeId: exchangeId,  // Exchange ID from the Quote
             protocol: "1.0"                // Version of tbDEX protocol you're using
@@ -191,7 +191,7 @@ describe('Wallet: Quickstart', () => {
         while (!close) {
             const exchange = await TbdexHttpClient.getExchange({
                 pfiDid: pfiDid,
-                did: customerDid,
+                did: customerDid.uri,
                 exchangeId: exchangeId
             })
 
