@@ -66,12 +66,10 @@ async function getOfferings() {
 }
 
 async function getCredentials() {
-    let issuerDid = '{"uri":"did:dht:91szhs8sagq3rq9x6fraono8gci7ekcz7s5ubfenjpkqk1dbi8po","document":{"id":"did:dht:91szhs8sagq3rq9x6fraono8gci7ekcz7s5ubfenjpkqk1dbi8po","verificationMethod":[{"id":"did:dht:91szhs8sagq3rq9x6fraono8gci7ekcz7s5ubfenjpkqk1dbi8po#0","type":"JsonWebKey","controller":"did:dht:91szhs8sagq3rq9x6fraono8gci7ekcz7s5ubfenjpkqk1dbi8po","publicKeyJwk":{"crv":"Ed25519","kty":"OKP","x":"5ax3B9NJSaxwEgXXc11CdtOdEybefUaf6RDgrL2VjLs","kid":"9pIk_m7d5-1etmbk94DleDYaQra4CsKjrt37q28sugk","alg":"EdDSA"}}],"authentication":["did:dht:91szhs8sagq3rq9x6fraono8gci7ekcz7s5ubfenjpkqk1dbi8po#0"],"assertionMethod":["did:dht:91szhs8sagq3rq9x6fraono8gci7ekcz7s5ubfenjpkqk1dbi8po#0"],"capabilityDelegation":["did:dht:91szhs8sagq3rq9x6fraono8gci7ekcz7s5ubfenjpkqk1dbi8po#0"],"capabilityInvocation":["did:dht:91szhs8sagq3rq9x6fraono8gci7ekcz7s5ubfenjpkqk1dbi8po#0"]},"metadata":{"published":true,"versionId":"1718729356"},"privateKeys":[{"crv":"Ed25519","d":"FMPebUFD4ZskD1Z7WzRPC52Zl0zt4qwxPQq8DMaWfEQ","kty":"OKP","x":"5ax3B9NJSaxwEgXXc11CdtOdEybefUaf6RDgrL2VjLs","kid":"9pIk_m7d5-1etmbk94DleDYaQra4CsKjrt37q28sugk","alg":"EdDSA"}]}'
+    let issuerDid = '{"uri":"did:dht:hge69zswp474myt94d149pftycsgk6yr9tufrh7new48re76b5ny","document":{"id":"did:dht:hge69zswp474myt94d149pftycsgk6yr9tufrh7new48re76b5ny","verificationMethod":[{"id":"did:dht:hge69zswp474myt94d149pftycsgk6yr9tufrh7new48re76b5ny#0","type":"JsonWebKey","controller":"did:dht:hge69zswp474myt94d149pftycsgk6yr9tufrh7new48re76b5ny","publicKeyJwk":{"crv":"Ed25519","kty":"OKP","x":"4ZHv3tRuu6WCP9Dlr7SxAyxleAT8ZlJzokU0ciO-DsQ","kid":"YovQ1tV4TzP3vEK56W1ALWw4yaakW2YxnTWjRkoisD0","alg":"EdDSA"}}],"authentication":["did:dht:hge69zswp474myt94d149pftycsgk6yr9tufrh7new48re76b5ny#0"],"assertionMethod":["did:dht:hge69zswp474myt94d149pftycsgk6yr9tufrh7new48re76b5ny#0"],"capabilityDelegation":["did:dht:hge69zswp474myt94d149pftycsgk6yr9tufrh7new48re76b5ny#0"],"capabilityInvocation":["did:dht:hge69zswp474myt94d149pftycsgk6yr9tufrh7new48re76b5ny#0"]},"metadata":{"published":true,"versionId":"1720053903"},"privateKeys":[{"crv":"Ed25519","d":"WvJD_vX0s5qqHkW2D4t3RUABg7a_3usAMKet1QEoKj0","kty":"OKP","x":"4ZHv3tRuu6WCP9Dlr7SxAyxleAT8ZlJzokU0ciO-DsQ","kid":"YovQ1tV4TzP3vEK56W1ALWw4yaakW2YxnTWjRkoisD0","alg":"EdDSA"}]}'
 
         const portableDid = JSON.parse(issuerDid);
         const issuer = await DidDht.import({ portableDid });
-
-        await DidDht.publish({ did: issuer });
 
         const vc = await VerifiableCredential.create({
             type    : 'SanctionCredential',
@@ -97,7 +95,6 @@ async function getCredentials() {
 }
 
 async function createRfq() {
-    const BTC_ADDRESS = 'bc1q52csjdqa6cq5d2ntkkyz8wk7qh2qevy04dyyfd'
     const selectedCredentials = context.credentials;
 
     // :snippet-start: walletQuickstartCreateRFQ
@@ -122,7 +119,7 @@ async function createRfq() {
             payout: {
                 kind: 'MOMO_MPESA',                      // The method for receiving payout                         
                 paymentDetails: {
-                    phoneNumber: '123-456-7890',                 // Recipient's BTC wallet address
+                    phoneNumber: '123-456-7890',                 // Details to execute payment
                     reason: "Payment for services rendered"
                 }
             },
@@ -142,6 +139,9 @@ async function sendRfq() {
 }
 
 async function processQuote() {
+    // Wait to ensure exchange is created
+    await new Promise(resolve => setTimeout(resolve, 5000));
+
     context.exchangeId = context.rfq.exchangeId;
     while (!context.quote) {
         const exchange = await TbdexHttpClient.getExchange({
@@ -168,7 +168,7 @@ async function processQuote() {
 async function createOrder() {
     context.order = Order.create({
         metadata: {
-        from: context.customerDid,         // Customer's DID
+        from: context.customerDid.uri,         // Customer's DID
         to: context.pfiDid,       // PFI's DID
         exchangeId: context.exchangeId,  // Exchange ID from the Quote
         protocol: "1.0"                // Version of tbDEX protocol you're using
@@ -182,6 +182,7 @@ async function submitOrder() {
 }
 
 async function processClose() {
+    let close = null;
     while (!close) {
         const exchange = await TbdexHttpClient.getExchange({
             pfiDid: context.pfiDid,
@@ -196,6 +197,5 @@ async function processClose() {
         }
     }
 
-    context.closeSuccess = close.data.success;
     context.reasonForClose = close.data.reason;
 }

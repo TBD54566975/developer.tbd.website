@@ -15,7 +15,6 @@ const executeFunctions = {
     executeSendRfq: () => importFunction('quickstartSendR'),
     executeProcessQuote: () => importFunction('quickstartProcessQuote'),
     executeCreateOrder: () => importFunction('quickstartCreateOrder'),
-    executeSubmitOrder: () => importFunction('quickstartSubmitOrder'),
     executeProcessClose: () => importFunction('quickstartProcessClose')
 };
 

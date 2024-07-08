@@ -98,7 +98,7 @@ describe('Wallet: Quickstart', () => {
             payout: {
                 kind: 'MOMO_MPESA',                      // The method for receiving payout                         
                 paymentDetails: {
-                    phoneNumber: '123-456-7890',                 // Recipient's BTC wallet address
+                    phoneNumber: '123-456-7890',                 // Details required to execute payment
                     reason: "Payment for services rendered"
                 }
             },
@@ -132,7 +132,7 @@ describe('Wallet: Quickstart', () => {
 
     test('Process Quote and Create Order', async () => {
         // Wait to ensure exchange is created
-        await new Promise(resolve => setTimeout(resolve, 10000));
+        await new Promise(resolve => setTimeout(resolve, 5000));
 
         // :snippet-start: walletQuickstartProcessQuote
         // Wait for Quote message to appear in the exchange
@@ -167,8 +167,8 @@ describe('Wallet: Quickstart', () => {
         order = Order.create({
             metadata: {
             from: customerDid.uri,         // Customer's DID
-            to: pfiDid,       // PFI's DID
-            exchangeId: exchangeId,  // Exchange ID from the Quote
+            to: pfiDid,                    // PFI's DID
+            exchangeId: exchangeId,        // Exchange ID from the Quote
             protocol: "1.0"                // Version of tbDEX protocol you're using
             }
         });
@@ -187,11 +187,15 @@ describe('Wallet: Quickstart', () => {
     });
 
     test('Process Close', async () => {
+        // Wait to ensure exchange is created
+        await new Promise(resolve => setTimeout(resolve, 5000));
+
+        // :snippet-start: walletQuickstartProcessClose
         var close;
         while (!close) {
             const exchange = await TbdexHttpClient.getExchange({
                 pfiDid: pfiDid,
-                did: customerDid.uri,
+                did: customerDid,
                 exchangeId: exchangeId
             })
 
@@ -202,7 +206,6 @@ describe('Wallet: Quickstart', () => {
             }
         }
 
-        // :snippet-start: walletQuickstartProcessClose
         const reasonForClose = close.data.reason;
         // :snippet-end:
 
