@@ -17,7 +17,7 @@ export async function quickstartDidCreate() {
 export async function quickstartGetOfferings() {
     await getOfferings();
 
-    return JSON.stringify(context.selectedOffering);
+    return context.selectedOffering;
 }
 
 export async function quickstartGetCredentials() {
