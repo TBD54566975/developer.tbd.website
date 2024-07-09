@@ -37,7 +37,19 @@ describe('Wallet: Quickstart', () => {
         const offerings  = await TbdexHttpClient.getOfferings({ pfiDid: pfiDid });
         // :snippet-end:
 
-        selectedOffering = offerings[0];
+        //:snippet-start: walletQuickstartSelectOffering
+        var matchedOfferings = [];
+        if(offerings){
+            const filteredOfferings = offerings.filter(offering =>
+            offering.data.payin.currencyCode === 'USD' &&
+            offering.data.payout.currencyCode === 'KES'
+            );
+            matchedOfferings.push(...filteredOfferings);
+        }
+
+        // Try the first offering that matches our criteria
+        selectedOffering = matchedOfferings[0];
+        //:snippet-end:
 
         expect(selectedOffering).toBeDefined();
     });

@@ -1,6 +1,6 @@
 ---
 sidebar_position: 1
-title: Quickstart
+title: Wallet Quickstart
 hide_title: true
 hide_table_of_contents: false
 ---
@@ -31,14 +31,7 @@ Let’s go!
 
 ## Wallet App Basics
 
-In this exercise, your app is responsible for helping your customer, Alice, convert `USD` to `KES`. First, we'll import the necessary tbDEX classes, then we'll create a [DID (Decentralized Identifier)](/docs/web5/learn/decentralized-identifiers) for Alice.
-
-
-### Import Classes
-
-Ensure your `wallet.js` makes all the necessary imports:
-
-<CodeSnippet snippetName="walletQuickstartImports" />
+In this exercise, your app is responsible for helping your customer, Alice, exchange `USD` for `KES`. First, we'll create a [DID (Decentralized Identifier)](/docs/web5/learn/decentralized-identifiers) for Alice.
 
 ### Create Customer's DID
 
@@ -46,33 +39,35 @@ In order for you to communicate with PFIs on Alice's behalf, she'll need a DID (
 
 <CodeSnippet snippetName="walletQuickstartDidCreate" />
 
-<WalletQuickstartCodeRunner executeCodeName="executeDidCreate" stepIndex={0} customPlaceholder={"See your DID"} />
+<WalletQuickstartCodeRunner executeCodeName="executeDidCreate" stepIndex={0} customPlaceholder={"See your DID"}/>
 
 
 ## Connect to a PFI
 
-To connect to a PFI, all you need is their DID. Let's get connected to a mock PFI whose DID is `did:dht:e4re9qwmtfqbonqcpkrfac3h56417tor7hm7rcsfcgxwj8dwfqqo`.
-
+To connect to a PFI, all you need is their DID. Let's get connected to a mock PFI whose DID is `did:dht:ccqamm6qgbe763ya8f3bo5mkrtxx1pz7i789zeqq4bmoae4qnixy`.
 
 
 ## Get Offerings
 
-[Offerings](https://developer.tbd.website/docs/tbdex/message-types#offerings) describe the currency pair and transaction parameters. With the PFI's DID, your app can fetch all of their offerings:
+[Offerings](docs/tbdex/message-types#offerings) describe the currency pair and transaction parameters. With the PFI's DID, your app can fetch all of their offerings:
 
-<CodeSnippet snippetName="walletQuickstartGetOfferings" />
+<CodeSnippet snippetName="walletQuickstartGetOfferings"/>
 
-<WalletQuickstartCodeRunner executeCodeName="executeGetOfferings" stepIndex={0} autoOpenDetails={false} customPlaceholder={"See the PFI's Offerings"} />
+<WalletQuickstartCodeRunner executeCodeName="executeGetOfferings" stepIndex={1} autoOpenDetails={false} customPlaceholder={"See the PFI's Offerings"} viewJsonObj={true} collapseLevel={1}/>
 
+Once you have all of the PFI's offerings, you can filter it based on a variety of factors, including the currency pair you're looking for. In this case, you're looking for an offering that exchanges `USD` for `KES`:
+
+<CodeSnippet snippetName="walletQuickstartSelectOffering" />
 
 #### Obtain Verifiable Credentials
 
-The Offering you received will likely have a `requiredClaims` section that specifies which, if any, [Verifiable Credentials](https://developer.tbd.website/docs/web5/learn/verifiable-credentials) (VCs) you’ll need to present in order to be eligible for the Offering. VCs are stored as JWTs, and you can access them as follows:
+The Offering you received will likely have a `requiredClaims` section that specifies which, if any, [Verifiable Credentials](/docs/web5/learn/verifiable-credentials) (VCs) you’ll need to present in order to be eligible for the Offering. Begin by applying for your VC:
 
+<WalletQuickstartCodeRunner executeCodeName="executeApplyForCredential" stepIndex={2} customPlaceholder={"Apply for a SanctionCredential"}/>
+
+VCs are stored as JWTs, and once you've saved the token above you can access and filter through them like so:
 
 <CodeSnippet snippetName="walletQuickstartSelectCredentials" />
-
-<WalletQuickstartCodeRunner executeCodeName="executeGetCredentials" stepIndex={1} customPlaceholder={"Your Credentials will appear here as JWTs"}/>
-
 
 ## Request a Quote
 
@@ -80,7 +75,7 @@ Now that you've found an offering that matches Alice's request, your app can req
 
 <CodeSnippet snippetName="walletQuickstartCreateRfq" />
 
-<WalletQuickstartCodeRunner executeCodeName="executeCreateRfq" stepIndex={2} customPlaceholder={"See your RFQ"}/>
+<WalletQuickstartCodeRunner executeCodeName="executeCreateRfq" stepIndex={3} customPlaceholder={"See your RFQ"} viewJsonObj={true} collapseLevel={1}/>
 
 After creating an RFQ message, you can verify that it is properly constructed and its data satisfies the Offering's requirements.
 
@@ -96,7 +91,7 @@ In response to your RFQ, the PFI will write a Quote message to the exchange if t
 
 <CodeSnippet snippetName="walletQuickstartProcessQuote" />
 
-<WalletQuickstartCodeRunner executeCodeName="executeProcessQuote" stepIndex={3} customPlaceholder={"View Quote"}/> 
+<WalletQuickstartCodeRunner executeCodeName="executeProcessQuote" stepIndex={4} customPlaceholder={"View Quote"} viewJsonObj={true} collapseLevel={1}/> 
 
 ## Place Order
 
@@ -104,7 +99,7 @@ The Quote message will contain the exact exchange rate including any fees. Your 
 
 <CodeSnippet snippetName="walletQuickstartCreateOrder" />
 
-<WalletQuickstartCodeRunner executeCodeName="executeCreateOrder" stepIndex={4} customPlaceholder={"Create your order"}/> 
+<WalletQuickstartCodeRunner executeCodeName="executeCreateOrder" stepIndex={5} customPlaceholder={"Create your order"} viewJsonObj={true} collapseLevel={1}/> 
 
 ## End Transaction
 
@@ -112,12 +107,12 @@ To end the transaction, the PFI will write a Close message indicating whether th
 
 <CodeSnippet snippetName="walletQuickstartProcessClose" />
 
-<WalletQuickstartCodeRunner executeCodeName="executeProcessClose" stepIndex={5} customPlaceholder={"View your close reason"}/> 
+<WalletQuickstartCodeRunner executeCodeName="executeProcessClose" stepIndex={6} customPlaceholder={"View your close reason"}/> 
 
 ## Next Steps with tbDEX
 
 Congratulations on creating your first Wallet! In just a few minutes you were able to contact a PFI for its offerings, request a quote, place an order, and finish your transaction.
 
-If you’d like to get started building an even more robust wallet, you can see our full [Wallet guide](https://developer.tbd.website/docs/tbdex/wallet/overview). Additionally, you can learn more about [building your own PFI](https://developer.tbd.website/docs/tbdex/pfi/overview), as well as [becoming a Credential Issuer](https://developer.tbd.website/docs/tbdex/issuer/overview) on the tbDEX network too!
+If you’d like to get started building an even more robust wallet, you can see our full [Wallet guide](docs/tbdex/wallet/overview). Additionally, you can learn more about [building your own PFI](docs/tbdex/pfi/overview), as well as [becoming a Credential Issuer](docs/tbdex/issuer/overview) on the tbDEX network too!
 
 </QuickstartExecutionProvider>

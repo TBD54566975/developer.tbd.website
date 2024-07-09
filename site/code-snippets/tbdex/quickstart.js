@@ -17,7 +17,13 @@ export async function quickstartDidCreate() {
 export async function quickstartGetOfferings() {
     await getOfferings();
 
-    return JSON.stringify(context.selectedOffering);
+    return context.selectedOffering;
+}
+
+export async function quickstartApplyForCredential() {
+    await applyForCredentials();
+
+    return context.credentials;
 }
 
 export async function quickstartGetCredentials() {
@@ -30,20 +36,20 @@ export async function quickstartCreateRfq() {
     await createRfq();
     await sendRfq();
 
-    return JSON.stringify(context.rfq);
+    return context.rfq;
 }
 
 export async function quickstartProcessQuote() {
     await processQuote();
 
-    return JSON.stringify(context.quote);
+    return context.quote;
 }
 
 export async function quickstartCreateOrder() {
     await createOrder();
     await submitOrder();
 
-    return JSON.stringify(context.order);
+    return context.order;
 }
 
 export async function quickstartProcessClose() {
@@ -65,25 +71,31 @@ async function getOfferings() {
     
 }
 
-async function getCredentials() {
+async function applyForCredentials() {
     let issuerDid = '{"uri":"did:dht:hge69zswp474myt94d149pftycsgk6yr9tufrh7new48re76b5ny","document":{"id":"did:dht:hge69zswp474myt94d149pftycsgk6yr9tufrh7new48re76b5ny","verificationMethod":[{"id":"did:dht:hge69zswp474myt94d149pftycsgk6yr9tufrh7new48re76b5ny#0","type":"JsonWebKey","controller":"did:dht:hge69zswp474myt94d149pftycsgk6yr9tufrh7new48re76b5ny","publicKeyJwk":{"crv":"Ed25519","kty":"OKP","x":"4ZHv3tRuu6WCP9Dlr7SxAyxleAT8ZlJzokU0ciO-DsQ","kid":"YovQ1tV4TzP3vEK56W1ALWw4yaakW2YxnTWjRkoisD0","alg":"EdDSA"}}],"authentication":["did:dht:hge69zswp474myt94d149pftycsgk6yr9tufrh7new48re76b5ny#0"],"assertionMethod":["did:dht:hge69zswp474myt94d149pftycsgk6yr9tufrh7new48re76b5ny#0"],"capabilityDelegation":["did:dht:hge69zswp474myt94d149pftycsgk6yr9tufrh7new48re76b5ny#0"],"capabilityInvocation":["did:dht:hge69zswp474myt94d149pftycsgk6yr9tufrh7new48re76b5ny#0"]},"metadata":{"published":true,"versionId":"1720053903"},"privateKeys":[{"crv":"Ed25519","d":"WvJD_vX0s5qqHkW2D4t3RUABg7a_3usAMKet1QEoKj0","kty":"OKP","x":"4ZHv3tRuu6WCP9Dlr7SxAyxleAT8ZlJzokU0ciO-DsQ","kid":"YovQ1tV4TzP3vEK56W1ALWw4yaakW2YxnTWjRkoisD0","alg":"EdDSA"}]}'
 
-        const portableDid = JSON.parse(issuerDid);
-        const issuer = await DidDht.import({ portableDid });
+    const portableDid = JSON.parse(issuerDid);
+    const issuer = await DidDht.import({ portableDid });
 
-        const vc = await VerifiableCredential.create({
-            type    : 'SanctionCredential',
-            issuer  : issuer.uri,
-            subject : context.customerDid.uri,
-            data    : {
-              'beep': 'boop'
-            }
-          })
-          
-        const vcJwt = await vc.sign({ did: issuer})
+    const vc = await VerifiableCredential.create({
+        type    : 'SanctionCredential',
+        issuer  : issuer.uri,
+        subject : context.customerDid.uri,
+        data    : {
+            'beep': 'boop'
+        }
+        })
+        
+    const vcJwt = await vc.sign({ did: issuer})
 
-        // Hard-coded credential
-        let myCredentials = [vcJwt];
+    // Hard-coded credential
+    context.credentials = [vcJwt];
+
+    return vcJwt;
+}
+
+async function getCredentials() {
+    let myCredentials = context.credentials;
 
     // :snippet-start: walletQuickstartSelectCredentials
     const selectedCredentials = PresentationExchange.selectCredentials({
