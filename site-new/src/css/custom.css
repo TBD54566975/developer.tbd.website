@@ -359,3 +359,17 @@ h2 {
 .breadcrumbs__item:not(:last-child)::after {
   display: none;
 }
+
+/* mobile styles */
+
+@media (max-width: 996px) {
+  .navbar__items {
+    flex-direction: row-reverse;
+    display: flex;
+      justify-content: space-between;
+  }
+
+  .nav-sidebar {
+  left: 20px;
+  }
+}
