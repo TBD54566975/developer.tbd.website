@@ -176,18 +176,26 @@ describe('Wallet: Quickstart', () => {
     });
 
     test('Create Order', async () => {
-        // :snippet-start: walletQuickstartCreateOrder
-        order = Order.create({
-            metadata: {
-            from: customerDid.uri,         // Customer's DID
-            to: pfiDid,                    // PFI's DID
-            exchangeId: exchangeId,        // Exchange ID from the Quote
-            protocol: "1.0"                // Version of tbDEX protocol you're using
-            }
-        });
-        // :snippet-end:
+        // Wrap in while/try block to avoid issue where the exchange
+        // isn't yet present
+        while (!order) {
+            try {
+                // :snippet-start: walletQuickstartCreateOrder
+                order = Order.create({
+                    metadata: {
+                    from: customerDid.uri,         // Customer's DID
+                    to: pfiDid,                    // PFI's DID
+                    exchangeId: exchangeId,        // Exchange ID from the Quote
+                    protocol: "1.0"                // Version of tbDEX protocol you're using
+                    }
+                });
+                // :snippet-end:
 
-        expect(order).toBeDefined();
+                expect(order).toBeDefined();
+            } catch (e) {
+
+            }
+        }
     });
         
     test('Sign and Submit Order', async () => {
