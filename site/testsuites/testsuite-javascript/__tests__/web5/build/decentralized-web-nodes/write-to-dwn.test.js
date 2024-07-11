@@ -169,19 +169,19 @@ test('createRecordWithTags creates a record with tags', async() => {
   // :snippet-start: createRecordWithTags
   // Creates a record with tags
   const { record } = await web5.dwn.records.create({
-    data: "iPhone 13",
+    data: "Chocolate Chip Cookies",
     message: {
       dataFormat: 'application/json',
       tags    : {
-        manufacturer: 'Apple',
-        releaseYear: '2021',
+        dishType: 'Dessert',
+        dietaryRestriction: 'Contains Gluten'
       }
     }
   });
  // :snippet-end:
   expect(record.tags).to.exist;
   expect(record.tags).to.deep.equal({
-    manufacturer: 'Apple',
-    releaseYear: '2021',
+    dishType: 'Dessert',
+    dietaryRestriction: 'Contains Gluten'
   });
 })
