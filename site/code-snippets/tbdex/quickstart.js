@@ -196,16 +196,21 @@ async function submitOrder() {
 async function processClose() {
     let close = null;
     while (!close) {
-        const exchange = await TbdexHttpClient.getExchange({
-            pfiDid: context.pfiDid,
-            did: context.customerDid,
-            exchangeId: context.exchangeId
-        })
+        try {
+            const exchange = await TbdexHttpClient.getExchange({
+                pfiDid: context.pfiDid,
+                did: context.customerDid,
+                exchangeId: context.exchangeId
+            })
 
-        for (const message of exchange) {
-            if (message instanceof Close) {
-                close = message
+            for (const message of exchange) {
+                if (message instanceof Close) {
+                    close = message
+                }
             }
+        } catch (e) {
+            // do nothing to let the loop keep running in the event
+            // the exchange hasn't populated yet
         }
     }
 
