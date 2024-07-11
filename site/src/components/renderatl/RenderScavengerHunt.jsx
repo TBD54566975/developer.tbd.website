@@ -3,12 +3,12 @@ import Confetti from 'react-confetti';
 import ProgressBar from './ProgressBar';
 
 const people = [
-    { name: 'Angie Jones', urlParam: 'angie' },
-    { name: 'Kirah Sapong', urlParam: 'kirah' },
-    { name: 'Ebony Louis', urlParam: 'ebony' },
-    { name: 'Tania Chakraborty', urlParam: 'tania' },
-    { name: 'Adewale Abati', urlParam: 'ace' },
-    { name: 'Daniel Buchner', urlParam: 'daniel' },
+  { name: 'Adewale Abati', urlParam: 'ace' },
+  { name: 'Angie Jones', urlParam: 'angie' },
+  { name: 'Daniel Buchner', urlParam: 'daniel' },
+  { name: 'Ebony Louis', urlParam: 'ebony' },
+  { name: 'Kirah Sapong', urlParam: 'kirah' },
+  { name: 'Tania Chakraborty', urlParam: 'tania' },  
 ];
 
 const RenderScavengerHunt = () => {
@@ -62,7 +62,7 @@ const RenderScavengerHunt = () => {
           </div>
         ) : (
           <>
-          <h1 className="pt-4">Pull Up On Us</h1>
+          <h1 className="pt-4">Come Find Us</h1>
             <p> Find all 6 members of the TBD team at WeAreDevelopers World Congress! Scan their QR codes to collect all Verifiable Credentials and win a prize! 🎁</p>
             <br />
             <p>Learn more about the magic of <a href="/docs/web5/learn/verifiable-credentials" style={{ color: 'cyan', textDecoration: 'underline' }}>

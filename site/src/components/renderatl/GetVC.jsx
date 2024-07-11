@@ -6,12 +6,12 @@ const RenderVcCard = React.lazy(() => import('./RenderVcCard'));
 
 // Static data moved outside the component
 const people = [
-    { name: 'Angie Jones', urlParam: 'angie' },
-    { name: 'Kirah Sapong', urlParam: 'kirah' },
-    { name: 'Ebony Louis', urlParam: 'ebony' },
-    { name: 'Tania Chakraborty', urlParam: 'tania' },
     { name: 'Adewale Abati', urlParam: 'ace' },
+    { name: 'Angie Jones', urlParam: 'angie' },
     { name: 'Daniel Buchner', urlParam: 'daniel' },
+    { name: 'Ebony Louis', urlParam: 'ebony' },
+    { name: 'Kirah Sapong', urlParam: 'kirah' },
+    { name: 'Tania Chakraborty', urlParam: 'tania' },  
 ];
 
 const GetVC = () => {
