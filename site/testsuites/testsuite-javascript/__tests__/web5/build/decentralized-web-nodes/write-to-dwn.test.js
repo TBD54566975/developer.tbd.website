@@ -174,7 +174,7 @@ test('createRecordWithTags creates a record with tags', async() => {
       dataFormat: 'application/json',
       tags    : {
         manufacturer: 'Apple',
-        year: '2021',
+        releaseYear: '2021',
       }
     }
   });
