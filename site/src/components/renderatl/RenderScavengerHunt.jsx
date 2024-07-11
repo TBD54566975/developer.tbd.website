@@ -58,15 +58,22 @@ const RenderScavengerHunt = () => {
   const handleScan = async (result) => {
     if (result) {
       const url = new URL(result);
+      console.log('Scanned URL:', url.href);
       const params = url.searchParams;
       const metParam = params.get('met');
       if (metParam) {
         try {
-          const vcData = await createAndIssueVC(metParam);
-          console.log('VC Data:', vcData);
-          setFoundPeople(prev => [...prev, { personUrlParam: metParam }]);
+          const personAlreadyFound = foundPeople.some(person => person.personUrlParam === metParam);
+          if (!personAlreadyFound) {
+            const vcData = await createAndIssueVC(metParam);
+            console.log('VC Data:', vcData);
+            setFoundPeople(prev => [...prev, { personUrlParam: metParam }]);
+          } else {
+            console.log('Person already found:', metParam);
+          }
           setScanning(false);
         } catch (err) {
+          console.error('Error issuing VC:', err);
           setScanning(false);
         }
       } else {
