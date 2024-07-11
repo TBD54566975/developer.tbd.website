@@ -167,6 +167,7 @@ test('createRecordFrom creates a record from an existing record', async () => {
 test('createRecordWithTags creates a record with tags', async() => {
    
   // :snippet-start: createRecordWithTags
+  // Creates a record with tags
   const { record } = await web5.dwn.records.create({
     data: "iPhone 13",
     message: {
