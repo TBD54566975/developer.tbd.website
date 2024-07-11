@@ -108,12 +108,12 @@ const RenderScavengerHunt = () => {
       </div>
       {scanning && (
         <QrReader
-          delay={300}
-          onError={handleError}
-          onScan={handleScan}
-          style={{ width: '100%' }}
-          facingMode="environment" 
-        />
+        delay={300}
+        style={{ width: '100%' }}
+        onError={handleError}
+        onResult={handleScan}
+        constraints={{ facingMode: 'environment' }} 
+      />
       )}
       <div className="grid grid-cols-1 tablet:grid-cols-2 desktop-lg:grid-cols-3 gap-4">
         {people.map((person) => {
