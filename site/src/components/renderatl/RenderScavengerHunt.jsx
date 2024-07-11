@@ -55,19 +55,22 @@ const RenderScavengerHunt = () => {
     fetchFoundVCs();
   }, []);
 
-  const handleScan = async (data) => {
-    if (data) {
-      const params = new URLSearchParams(data);
+  const handleScan = async (result) => {
+    if (result) {
+      const url = new URL(result);
+      const params = url.searchParams;
       const metParam = params.get('met');
       if (metParam) {
         try {
           const vcData = await createAndIssueVC(metParam);
+          console.log('VC Data:', vcData);
           setFoundPeople(prev => [...prev, { personUrlParam: metParam }]);
           setScanning(false);
         } catch (err) {
-          console.error("Error issuing VC:", err);
           setScanning(false);
         }
+      } else {
+        console.error('metParam not found in QR code');
       }
     }
   };
