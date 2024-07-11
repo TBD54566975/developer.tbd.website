@@ -3,15 +3,13 @@ import { useHistory } from '@docusaurus/router';
 const RenderVcCard = React.lazy(() => import('./RenderVcCard'));
 
 
-
-// Static data moved outside the component
 const people = [
     { name: 'Adewale Abati', urlParam: 'ace' },
     { name: 'Angie Jones', urlParam: 'angie' },
     { name: 'Daniel Buchner', urlParam: 'daniel' },
     { name: 'Ebony Louis', urlParam: 'ebony' },
     { name: 'Kirah Sapong', urlParam: 'kirah' },
-    { name: 'Tania Chakraborty', urlParam: 'tania' },  
+    { name: 'Tania Chakraborty', urlParam: 'tania' }, 
 ];
 
 const GetVC = () => {

@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import Confetti from 'react-confetti';
 import ProgressBar from './ProgressBar';
+import { QrReader } from 'react-qr-reader';
+import Button from '../Button'; 
+import { createAndIssueVC } from '../../vcUtils'; 
 
 const people = [
   { name: 'Adewale Abati', urlParam: 'ace' },
@@ -14,6 +17,7 @@ const people = [
 const RenderScavengerHunt = () => {
   const [foundPeople, setFoundPeople] = useState([]);
   const [showConfetti, setShowConfetti] = useState(false);
+  const [scanning, setScanning] = useState(false);
 
   useEffect(() => {
     if (typeof window === 'undefined') {
@@ -51,6 +55,28 @@ const RenderScavengerHunt = () => {
     fetchFoundVCs();
   }, []);
 
+  const handleScan = async (data) => {
+    if (data) {
+      const params = new URLSearchParams(data);
+      const metParam = params.get('met');
+      if (metParam) {
+        try {
+          const vcData = await createAndIssueVC(metParam);
+          setFoundPeople(prev => [...prev, { personUrlParam: metParam }]);
+          setScanning(false);
+        } catch (err) {
+          console.error("Error issuing VC:", err);
+          setScanning(false);
+        }
+      }
+    }
+  };
+
+  const handleError = (err) => {
+    console.error(err);
+    setScanning(false);
+  };
+
   return (
     <div>
       {showConfetti && <Confetti />}
@@ -62,18 +88,33 @@ const RenderScavengerHunt = () => {
           </div>
         ) : (
           <>
-          <h1 className="pt-4">Come Find Us</h1>
-            <p> Find all 6 members of the TBD team at WeAreDevelopers World Congress! Scan their QR codes to collect all Verifiable Credentials and win a prize! 🎁</p>
+            <h1 className="pt-4">Come Find Us</h1>
+            <p>Find all 6 members of the TBD team at WeAreDevelopers World Congress! Scan their QR codes to collect all Verifiable Credentials and win a prize! 🎁</p>
             <br />
-            <p>Learn more about the magic of <a href="/docs/web5/learn/verifiable-credentials" style={{ color: 'cyan', textDecoration: 'underline' }}>
-                Verifiable Credentials
-            </a>. ✨</p>
+            <p>Learn more about the magic of <a href="/docs/web5/learn/verifiable-credentials" style={{ color: 'cyan', textDecoration: 'underline' }}>Verifiable Credentials</a>. ✨</p>
             <div className="mt-4 mb-4">
+              <div className="flex justify-center mb-8">
+                <Button
+                  label={scanning ? 'Stop Scanning' : 'Start Scanning'}
+                  url="#"
+                  className="mb-4"
+                  onClick={() => setScanning(!scanning)} 
+                />
+              </div>
               <ProgressBar value={foundPeople.length} max={people.length} />
             </div>
           </>
         )}
       </div>
+      {scanning && (
+        <QrReader
+          delay={300}
+          onError={handleError}
+          onScan={handleScan}
+          style={{ width: '100%' }}
+          facingMode="environment" 
+        />
+      )}
       <div className="grid grid-cols-1 tablet:grid-cols-2 desktop-lg:grid-cols-3 gap-4">
         {people.map((person) => {
           const found = foundPeople.find((vc) => vc.personUrlParam === person.urlParam);
