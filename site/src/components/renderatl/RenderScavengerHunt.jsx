@@ -11,13 +11,14 @@ const people = [
   { name: 'Daniel Buchner', urlParam: 'daniel' },
   { name: 'Ebony Louis', urlParam: 'ebony' },
   { name: 'Kirah Sapong', urlParam: 'kirah' },
-  { name: 'Tania Chakraborty', urlParam: 'tania' },  
+  { name: 'Tania Chakraborty', urlParam: 'tania' }, 
 ];
 
 const RenderScavengerHunt = () => {
   const [foundPeople, setFoundPeople] = useState([]);
   const [showConfetti, setShowConfetti] = useState(false);
   const [scanning, setScanning] = useState(false);
+  const [processing, setProcessing] = useState(false);
 
   useEffect(() => {
     if (typeof window === 'undefined') {
@@ -41,8 +42,8 @@ const RenderScavengerHunt = () => {
 
       const availableVCs = [];
       for (let record of response.records) {
-          const data = await record.data.json();
-          availableVCs.push(data);
+        const data = await record.data.json();
+        availableVCs.push(data);
       }
 
       setFoundPeople(availableVCs);
@@ -50,46 +51,48 @@ const RenderScavengerHunt = () => {
       if (availableVCs.length >= people.length) {
         setShowConfetti(true);
       }
-    }
+    };
 
     fetchFoundVCs();
   }, []);
 
   const handleScan = async (result) => {
-    if (result) {
+    if (result && !processing) {
+      setProcessing(true);
       const url = new URL(result);
       const params = url.searchParams;
       const metParam = params.get('met');
-  
+
       if (metParam) {
         try {
           const personAlreadyFound = foundPeople.some(person => person.personUrlParam === metParam);
-          
           if (!personAlreadyFound) {
             const vcData = await createAndIssueVC(metParam);
             setFoundPeople(prev => [...prev, { personUrlParam: metParam }]);
           } else {
             console.log('Person already found:', metParam);
           }
-          setScanning(false);
+
+          if (foundPeople.length + 1 >= people.length) {
+            setShowConfetti(true);
+          }
         } catch (err) {
+          console.error('Error issuing VC:', err);
+        } finally {
+          setProcessing(false);
           setScanning(false);
         }
       } else {
         console.error('metParam not found in QR code');
+        setProcessing(false);
       }
     }
   };
-  
-  let debounceTimeout;
-  const handleScanDebounced = (result) => {
-    clearTimeout(debounceTimeout);
-    debounceTimeout = setTimeout(() => handleScan(result), 500); 
-  };
 
   const handleError = (err) => {
-    console.error(err);
+    console.error('QR Reader Error:', err);
     setScanning(false);
+    setProcessing(false);
   };
 
   return (
@@ -123,12 +126,12 @@ const RenderScavengerHunt = () => {
       </div>
       {scanning && (
         <QrReader
-        delay={300}
-        style={{ width: '100%' }}
-        onError={handleError}
-        onResult={handleScanDebounced}
-        constraints={{ facingMode: 'environment' }} 
-      />
+          delay={300}
+          style={{ width: '100%' }}
+          onError={handleError}
+          onResult={handleScan}
+          constraints={{ facingMode: 'environment' }} 
+        />
       )}
       <div className="grid grid-cols-1 tablet:grid-cols-2 desktop-lg:grid-cols-3 gap-4">
         {people.map((person) => {
