@@ -3,12 +3,12 @@ import Confetti from 'react-confetti';
 import ProgressBar from './ProgressBar';
 
 const people = [
-    { name: 'Adewale Abati', urlParam: 'ace' },
     { name: 'Angie Jones', urlParam: 'angie' },
+    { name: 'Kirah Sapong', urlParam: 'kirah' },
     { name: 'Ebony Louis', urlParam: 'ebony' },
-    { name: 'Kia Richards', urlParam: 'kia' },
-    { name: 'Rizel Scarlett', urlParam: 'rizel' },
-    { name: 'Tania Chakraborty', urlParam: 'tania' }
+    { name: 'Tania Chakraborty', urlParam: 'tania' },
+    { name: 'Adewale Abati', urlParam: 'ace' },
+    { name: 'Daniel Buchner', urlParam: 'daniel' },
 ];
 
 const RenderScavengerHunt = () => {
@@ -23,7 +23,7 @@ const RenderScavengerHunt = () => {
     const fetchFoundVCs = async () => {
       const { Web5 } = await import('@web5/api');
       const { web5, did: userDid } = await Web5.connect();
-      const schema = `https://schema.org/renderAtlScavengerHunt`;
+      const schema = `https://schema.org/wadScavengerHunt`;
 
       const response = await web5.dwn.records.query({
         from: userDid,
@@ -62,8 +62,8 @@ const RenderScavengerHunt = () => {
           </div>
         ) : (
           <>
-          <h1>Pull Up On Us</h1>
-            <p> Find all 6 members of the TBD team at RenderATL! Scan their QR codes to collect all Verifiable Credentials and win a prize! 🎁</p>
+          <h1 className="pt-4">Pull Up On Us</h1>
+            <p> Find all 6 members of the TBD team at WeAreDevelopers World Congress! Scan their QR codes to collect all Verifiable Credentials and win a prize! 🎁</p>
             <br />
             <p>Learn more about the magic of <a href="/docs/web5/learn/verifiable-credentials" style={{ color: 'cyan', textDecoration: 'underline' }}>
                 Verifiable Credentials

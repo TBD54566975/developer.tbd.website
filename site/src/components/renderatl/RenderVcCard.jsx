@@ -5,12 +5,12 @@ import { VerifiableCredential } from '@web5/credentials';
 import { useHistory } from '@docusaurus/router';
 
 const people = [
-    { name: 'Adewale Abati', urlParam: 'ace' },
     { name: 'Angie Jones', urlParam: 'angie' },
+    { name: 'Kirah Sapong', urlParam: 'kirah' },
     { name: 'Ebony Louis', urlParam: 'ebony' },
-    { name: 'Kia Richards', urlParam: 'kia' },
-    { name: 'Rizel Scarlett', urlParam: 'rizel' },
-    { name: 'Tania Chakraborty', urlParam: 'tania' }
+    { name: 'Tania Chakraborty', urlParam: 'tania' },
+    { name: 'Adewale Abati', urlParam: 'ace' },
+    { name: 'Daniel Buchner', urlParam: 'daniel' },
 ];
 
 const RenderVcCard = ({ met }) => {
@@ -32,7 +32,7 @@ const RenderVcCard = ({ met }) => {
 
                 const { web5, did: userDid } = await Web5.connect();
                 const issuerDid = await DidDht.create({ publish: true });
-                const schema = `https://schema.org/renderAtlScavengerHunt`;
+                const schema = `https://schema.org/wadScavengerHunt`;
 
                 const { records } = await web5.dwn.records.query({
                     from: userDid,
@@ -64,7 +64,7 @@ const RenderVcCard = ({ met }) => {
                             vcJwt: existingVc.vcJwt,
                             image: `/img/${met}VcCard.png`,
                         });
-                        history.push('/renderatl-scavengerhunt');
+                        history.push('/wad-scavengerhunt');
                         return;
                     }
                 }
@@ -78,7 +78,7 @@ const RenderVcCard = ({ met }) => {
                         issuanceDate: new Date().toISOString(),
                         data: {
                             met: person.name,
-                            event: 'RenderATL',
+                            event: 'WAD',
                         },
                     });
 
@@ -103,7 +103,7 @@ const RenderVcCard = ({ met }) => {
                         image: `/img/${met}VcCard.png`,
                     });
 
-                    history.push('/renderatl-scavengerhunt');
+                    history.push('/wad-scavengerhunt');
                     console.log("VC created and state updated")
                 }
             } catch (err) {
