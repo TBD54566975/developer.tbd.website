@@ -163,3 +163,25 @@ test('createRecordFrom creates a record from an existing record', async () => {
   const newRecordDataText = await newVersionRecord.data.text();
   expect(newRecordDataText).toBe('I am a new version of the original record!');
 });
+
+test('createRecordWithTags creates a record with tags', async() => {
+   
+  // :snippet-start: createRecordWithTags
+  // Creates a record with tags
+  const { record } = await web5.dwn.records.create({
+    data: "Chocolate Chip Cookies",
+    message: {
+      dataFormat: 'application/json',
+      tags    : {
+        dishType: 'Dessert',
+        dietaryRestriction: 'Contains Gluten'
+      }
+    }
+  });
+ // :snippet-end:
+  expect(record.tags).to.exist;
+  expect(record.tags).to.deep.equal({
+    dishType: 'Dessert',
+    dietaryRestriction: 'Contains Gluten'
+  });
+})
