@@ -182,6 +182,6 @@ test('createRecordWithTags creates a record with tags', async() => {
   expect(record.tags).to.exist;
   expect(record.tags).to.deep.equal({
     manufacturer: 'Apple',
-    year: '2021',
+    releaseYear: '2021',
   });
 })
