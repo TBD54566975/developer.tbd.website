@@ -35,7 +35,7 @@ In this exercise, your app is responsible for helping your customer, Alice, exch
 
 ### Create Customer's DID
 
-In order for you to communicate with PFIs on Alice's behalf, she'll need a DID (as will all of your customers). Here's how to create a DID:
+In order for you to communicate with PFIs on your customers' behalf, they will need a DID. Let's create one for Alice now:
 
 <CodeSnippet snippetName="walletQuickstartDidCreate" />
 
@@ -44,12 +44,12 @@ In order for you to communicate with PFIs on Alice's behalf, she'll need a DID (
 
 ## Connect to a PFI
 
-To connect to a PFI, all you need is their DID. Let's get connected to a mock PFI whose DID is `did:dht:ccqamm6qgbe763ya8f3bo5mkrtxx1pz7i789zeqq4bmoae4qnixy`.
+To connect to a PFI, all you need is their DID. Let's use the DID of a mock PFI: 
 
 
 ## Get Offerings
 
-[Offerings](/docs/tbdex/message-types#offerings) describe the currency pair and transaction parameters. With the PFI's DID, your app can fetch all of their offerings:
+All PFIs have [Offerings](/docs/tbdex/message-types#offerings) which are a menu of services they provide. Offerings describe the currency pairs and transaction parameters offered . Let's fetch all of the offerings from the PFI:
 
 <CodeSnippet snippetName="walletQuickstartGetOfferings"/>
 
@@ -61,7 +61,7 @@ Once you have all of the PFI's offerings, you can filter it based on a variety o
 
 #### Obtain Verifiable Credentials
 
-The Offering you received will likely have a `requiredClaims` section that specifies which, if any, [Verifiable Credentials](/docs/web5/learn/verifiable-credentials) (VCs) you’ll need to present in order to be eligible for the Offering. Begin by applying for your VC:
+The Offering we selected has a `requiredClaims` section that specifies [Verifiable Credentials](/docs/web5/learn/verifiable-credentials) (VCs) Alice needs  in order to be eligible for the Offering. 
 
 <WalletQuickstartCodeRunner executeCodeName="executeApplyForCredential" stepIndex={2} customPlaceholder={"Apply for a SanctionCredential"}/>
 

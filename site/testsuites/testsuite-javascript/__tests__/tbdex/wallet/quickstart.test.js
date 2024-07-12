@@ -47,7 +47,7 @@ describe('Wallet: Quickstart', () => {
             matchedOfferings.push(...filteredOfferings);
         }
 
-        // Try the first offering that matches our criteria
+        // Select the first offering that matches our criteria
         selectedOffering = matchedOfferings[0];
         //:snippet-end:
 
