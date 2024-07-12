@@ -251,6 +251,31 @@ h2 {
   content: ''
 }
 
+/* Typography */
+
+body {
+    font-family: "Inter";
+    font-size: 22px;
+    font-weight: 400;
+    line-height: 30.8px;
+}
+
+h1 {
+  font-family: 'SpaceGrotesk', sans-serif;
+  font-weight: 500;
+  font-size: 62px;
+  line-height: 68.2px;
+  color: var(--ifm-color-primary)
+}
+
+h4 {
+  font-family: 'SpaceGrotesk', sans-serif;
+  font-weight: 500;
+  font-size: 28px;
+  line-height: 36.4px;
+  color: white
+}
+
 
 /* Bread Crumbs */
 
@@ -269,6 +294,11 @@ h2 {
   width: calc(var(--ifm-breadcrumb-separator-size) * var(--ifm-breadcrumb-size-multiplier) * var(--ifm-breadcrumb-separator-size-multiplier));
 }
 
+/* Docs Content */
+
+.theme-doc-markdown {
+  color: white
+}
 
 /* Navbar */
 .navbar {
