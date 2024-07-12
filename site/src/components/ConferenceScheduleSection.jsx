@@ -10,8 +10,8 @@ function ScheduleCard({ image, DateTime, EventName, EventDetails,ExtraDetails })
         </div>
         <div className="text-center">
           <h3 className="text-[#22f1ff]" style={{ whiteSpace: 'nowrap' }}>{DateTime}</h3>
-          <p>{EventName}</p>
-          <p>{EventDetails}</p>
+          <p style={{ fontWeight: 'bold' }}>{EventName}</p>
+          <p style={{color: '#1ccfdb'}}>{EventDetails}</p>
           <p style={{ fontWeight: 'bold' }}>{ExtraDetails}</p>
         </div>
       </div>
@@ -24,24 +24,26 @@ function ConferenceSchedule() {
     <div>
       <div className="community-card grid grid-cols-1 tablet:grid-cols-3 desktop:grid-cols-3 gap-4 pb-7 space-x-4">
         <ScheduleCard
-          DateTime="July 27 @ 11:30"
+          DateTime="July 19 @ 10:00"
           image="/img/learn/headshots/angie_jones.png"
-          EventName={`"Refactoring the Web"`}
-          EventDetails={`Angie Jones, Main Stage`}
+          EventName={`"Do you speak tbDEX? Learn the Language of Global Payments"`}
+          EventDetails={`Angie Jones`}
+          ExtraDetails= {`Workshop Room M3 💻`}
+
         />
         <ScheduleCard
-          DateTime="July 27, 15:00 - 19:00"
+          DateTime="July 18 @ 16:00"
           image="/img/happy-hour.png"
           EventName={`TBD Happy Hour`}
-          EventDetails={`Hall 2.2, Booth 2_62
-          Drinks, swag & more!`}
-          ExtraDetails= {`We'll be at the booth both days so feel free to stop by then too. See you there!`}
+          EventDetails={`Hall 2.2, Booth 2_40`}
+          ExtraDetails= {`FREE Swag & Beer - see you there!🍻`}
         />
         <ScheduleCard
-          DateTime="July 28 @ 09:00"
-          image="/img/what_is_web5.png"
-          EventName={`Web5 Workshop`}
-          EventDetails={"Workshop M5"}
+          DateTime="July 19 @ 12:10"
+          image="/img/opening_panel.png"
+          EventName={`Opening Keynote`}
+          EventDetails={`Angie Jones, Mike Brock, Daniel Buchner & Google`}
+          ExtraDetails= {`Mainstage`}
         />
       </div>
     </div>
