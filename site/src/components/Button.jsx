@@ -1,6 +1,5 @@
 import PropTypes from 'prop-types';
-import React from 'react';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 const Button = ({
   label,
@@ -10,6 +9,7 @@ const Button = ({
   colorDarkMode,
   imageURL,
   title,
+  onClick, 
 }) => {
   const [classesDarkMode, setClassesDarkMode] = useState('');
   useEffect(() => {
@@ -42,7 +42,6 @@ const Button = ({
     <div className={cssClasses}>
       <div className="flex gap-3">
         <img src={imageURL} alt={title} className="w-6 h-6" />
-
         <span className="relative top-[1px]">{label}</span>
       </div>
     </div>
@@ -57,6 +56,7 @@ const Button = ({
       target="_blank"
       href={url}
       title={title}
+      onClick={onClick} 
     >
       {linkContent}
     </a>
@@ -66,6 +66,7 @@ const Button = ({
       target="_self"
       href={url}
       title={title}
+      onClick={onClick} 
     >
       {linkContent}
     </a>
@@ -82,6 +83,7 @@ Button.propTypes = {
   imageURL: PropTypes.string,
   isExternalLink: PropTypes.bool,
   colorDarkMode: PropTypes.string,
+  onClick: PropTypes.func, 
 };
 
 Button.defaultProps = {
