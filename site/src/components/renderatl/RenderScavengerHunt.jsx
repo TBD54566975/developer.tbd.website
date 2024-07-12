@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import Confetti from 'react-confetti';
 import ProgressBar from './ProgressBar';
 import { QrReader } from 'react-qr-reader';
-import Button from '../Button'; 
-import { createAndIssueVC } from '../../vcUtils'; 
+import Button from '../Button';
+import { createAndIssueVC } from '../../vcUtils';
 
 const people = [
   { name: 'Adewale Abati', urlParam: 'ace' },
@@ -11,7 +11,7 @@ const people = [
   { name: 'Daniel Buchner', urlParam: 'daniel' },
   { name: 'Ebony Louis', urlParam: 'ebony' },
   { name: 'Kirah Sapong', urlParam: 'kirah' },
-  { name: 'Tania Chakraborty', urlParam: 'tania' }, 
+  { name: 'Tania Chakraborty', urlParam: 'tania' },
 ];
 
 const RenderScavengerHunt = () => {
@@ -19,12 +19,9 @@ const RenderScavengerHunt = () => {
   const [showConfetti, setShowConfetti] = useState(false);
   const [scanning, setScanning] = useState(false);
   const [processing, setProcessing] = useState(false);
+  const debounceTimeoutRef = useRef(null);
 
   useEffect(() => {
-    if (typeof window === 'undefined') {
-      return;
-    }
-
     const fetchFoundVCs = async () => {
       const { Web5 } = await import('@web5/api');
       const { web5, did: userDid } = await Web5.connect();
@@ -66,24 +63,27 @@ const RenderScavengerHunt = () => {
       if (metParam) {
         try {
           const personAlreadyFound = foundPeople.some(person => person.personUrlParam === metParam);
+
           if (!personAlreadyFound) {
             const vcData = await createAndIssueVC(metParam);
-            setFoundPeople(prev => [...prev, { personUrlParam: metParam }]);
+            const updatedFoundPeople = [...foundPeople, { personUrlParam: metParam }];
+            setFoundPeople(updatedFoundPeople);
+
+            if (updatedFoundPeople.length >= people.length) {
+              setShowConfetti(true);
+            }
           } else {
             console.log('Person already found:', metParam);
-          }
-
-          if (foundPeople.length + 1 >= people.length) {
-            setShowConfetti(true);
           }
         } catch (err) {
           console.error('Error issuing VC:', err);
         } finally {
-          setProcessing(false);
           setScanning(false);
+          setProcessing(false);
         }
       } else {
         console.error('metParam not found in QR code');
+        setScanning(false);
         setProcessing(false);
       }
     }
@@ -93,6 +93,13 @@ const RenderScavengerHunt = () => {
     console.error('QR Reader Error:', err);
     setScanning(false);
     setProcessing(false);
+  };
+
+  const handleScanDebounced = (result) => {
+    clearTimeout(debounceTimeoutRef.current);
+    debounceTimeoutRef.current = setTimeout(() => {
+      handleScan(result);
+    }, 500);
   };
 
   return (
@@ -116,7 +123,10 @@ const RenderScavengerHunt = () => {
                   label={scanning ? 'Stop Scanning' : 'Start Scanning'}
                   url="#"
                   className="mb-4"
-                  onClick={() => setScanning(!scanning)} 
+                  onClick={() => {
+                    setScanning(!scanning);
+                    setProcessing(false);
+                  }}
                 />
               </div>
               <ProgressBar value={foundPeople.length} max={people.length} />
@@ -129,8 +139,8 @@ const RenderScavengerHunt = () => {
           delay={300}
           style={{ width: '100%' }}
           onError={handleError}
-          onResult={handleScan}
-          constraints={{ facingMode: 'environment' }} 
+          onResult={handleScanDebounced}
+          constraints={{ facingMode: 'environment' }}
         />
       )}
       <div className="grid grid-cols-1 tablet:grid-cols-2 desktop-lg:grid-cols-3 gap-4">
@@ -138,14 +148,14 @@ const RenderScavengerHunt = () => {
           const found = foundPeople.find((vc) => vc.personUrlParam === person.urlParam);
           return (
             <a href='#' className={`explore-card no-underline w-70 h-56 border-[#282828] border-2 rounded-sm flex flex-col justify-end items-center transition-transform transform hover:-translate-y-1 relative`}
-            style={{
-              boxShadow: found ? '0 4px 8px rgba(33, 241, 255, 0.7)' : 'none',
-              backgroundImage: `url(/img/${person.urlParam}VcCard.png)`,
-              backgroundSize: 'contain',
-              backgroundPosition: 'center',
-              backgroundRepeat: 'no-repeat'
-            }}
-            key={person.urlParam}
+              style={{
+                boxShadow: found ? '0 4px 8px rgba(33, 241, 255, 0.7)' : 'none',
+                backgroundImage: `url(/img/${person.urlParam}VcCard.png)`,
+                backgroundSize: 'contain',
+                backgroundPosition: 'center',
+                backgroundRepeat: 'no-repeat'
+              }}
+              key={person.urlParam}
             >
               {!found && <div className="absolute inset-0 bg-black bg-opacity-50"></div>}
               <div className="flex justify-between px-4 py-4 bg-[#282828] bg-opacity-70 w-full z-10 relative">
