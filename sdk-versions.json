@@ -14,7 +14,8 @@
     "tbdex": "2.0.0",
     "web5-credentials": "2.0.0",
     "web5-dids": "2.0.0",
-    "web5-crypto": "2.0.0"
+    "web5-crypto": "2.0.0",
+    "web5-keymanager-aws": "2.0.0"
   },
   "swift": {
     "Web5": {
