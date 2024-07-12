@@ -129,20 +129,20 @@ const RenderScavengerHunt = () => {
                   }}
                 />
               </div>
+              {scanning && (
+                <QrReader
+                  delay={300}
+                  style={{ width: '100%' }}
+                  onError={handleError}
+                  onResult={handleScanDebounced}
+                  constraints={{ facingMode: 'environment' }}
+                />
+              )}
               <ProgressBar value={foundPeople.length} max={people.length} />
             </div>
           </>
         )}
       </div>
-      {scanning && (
-        <QrReader
-          delay={300}
-          style={{ width: '100%' }}
-          onError={handleError}
-          onResult={handleScanDebounced}
-          constraints={{ facingMode: 'environment' }}
-        />
-      )}
       <div className="grid grid-cols-1 tablet:grid-cols-2 desktop-lg:grid-cols-3 gap-4">
         {people.map((person) => {
           const found = foundPeople.find((vc) => vc.personUrlParam === person.urlParam);
