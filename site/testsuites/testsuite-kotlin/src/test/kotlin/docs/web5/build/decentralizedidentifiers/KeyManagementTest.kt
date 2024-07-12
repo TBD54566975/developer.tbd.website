@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
 // :snippet-start: importKeyManagementKt
 import web5.sdk.dids.didcore.DidDocument
-import web5.sdk.crypto.AwsKeyManager
+import web5.sdk.keymanager.aws.AwsKeyManager
 import web5.sdk.crypto.InMemoryKeyManager
 import web5.sdk.dids.did.BearerDid
 import web5.sdk.dids.did.PortableDid

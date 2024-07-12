@@ -11,10 +11,10 @@
     "@web5/identity-agent": "0.3.8"
   },
   "jvm": {
-    "tbdex": "1.1.0",
-    "web5-credentials": "1.1.0",
-    "web5-dids": "1.1.0",
-    "web5-crypto": "1.1.0"
+    "tbdex": "2.0.0",
+    "web5-credentials": "2.0.0",
+    "web5-dids": "2.0.0",
+    "web5-crypto": "2.0.0"
   },
   "swift": {
     "Web5": {
