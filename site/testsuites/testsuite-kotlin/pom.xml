@@ -16,6 +16,12 @@
     <version.org.assertj>3.25.2</version.org.assertj>
     <version.org.junit.jupiter>5.10.1</version.org.junit.jupiter>
     <version.xyz.block.tbdex>2.0.0</version.xyz.block.tbdex>
+    <!--
+    TODO
+    Temp, this should be coming in inherited from dependencyManagement of Web5
+    https://github.com/TBD54566975/web5-kt/issues/331
+    -->
+    <version.xyz.block.web5.keymanager.aws>2.0.0</version.xyz.block.web5.keymanager.aws>
     <version.kotlin>1.9.22</version.kotlin>
     <version.kotlin.compiler.incremental>true</version.kotlin.compiler.incremental>
   </properties>
@@ -90,6 +96,17 @@
       <groupId>xyz.block</groupId>
       <artifactId>tbdex</artifactId>
       <type>pom</type>
+    </dependency>
+    <!-- Web5 Extension Dependencies not included in Distribution -->
+    <dependency>
+      <groupId>xyz.block</groupId>
+      <artifactId>web5-keymanager-aws</artifactId>
+      <!--
+      TODO
+      Temp explicit versioning, remove when this issue is satisfied
+      https://github.com/TBD54566975/web5-kt/issues/331
+      -->
+      <version>${version.xyz.block.web5.keymanager.aws}</version>
     </dependency>
 
     <!-- Kotlin -->
