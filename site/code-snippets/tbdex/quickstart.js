@@ -178,7 +178,7 @@ async function processQuote() {
             
             if(context.close) { break; } 
             else {
-            // Wait 2 seconds before making another request
+                // Wait 2 seconds before making another request
             await new Promise(resolve => setTimeout(resolve, 2000));
             }
         }
