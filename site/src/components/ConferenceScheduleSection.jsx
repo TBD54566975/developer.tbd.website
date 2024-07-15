@@ -27,8 +27,8 @@ function ConferenceSchedule() {
           DateTime="July 18 @ 16:00"
           image="/img/happy-hour.png"
           EventName={`TBD Happy Hour`}
-          EventDetails={`Hall 2.2, Booth 2_40`}
-          ExtraDetails= {`FREE Swag & Beer - see you there!🍻`}
+          EventDetails={`FREE Swag & Beer - see you there!🍻`}
+          ExtraDetails= {`Hall 2.2, Booth 2_40`}
         />
         <ScheduleCard
           DateTime="July 18 @ 16:10"
@@ -48,7 +48,7 @@ function ConferenceSchedule() {
         <ScheduleCard
           DateTime="July 19 @ 12:20"
           image="/img/opening_panel.png"
-          EventName={`Opening Keynote`}
+          EventName={`Mainstage Keynote`}
           EventDetails={` Mike Brock, Daniel Buchner, Angie Jones & Nalin Mittal (Product Manager at Google)`}
           ExtraDetails= {`Mainstage`}
         />
