@@ -3,15 +3,13 @@ import { useHistory } from '@docusaurus/router';
 const RenderVcCard = React.lazy(() => import('./RenderVcCard'));
 
 
-
-// Static data moved outside the component
 const people = [
-    { name: 'Angie Jones', urlParam: 'angie' },
-    { name: 'Rizel Scarlet', urlParam: 'rizel' },
-    { name: 'Ebony Louis', urlParam: 'ebony' },
-    { name: 'Tania Chakraborty', urlParam: 'tania' },
     { name: 'Adewale Abati', urlParam: 'ace' },
-    { name: 'Kia Richards', urlParam: 'kia' },
+    { name: 'Angie Jones', urlParam: 'angie' },
+    { name: 'Daniel Buchner', urlParam: 'daniel' },
+    { name: 'Ebony Louis', urlParam: 'ebony' },
+    { name: 'Kirah Sapong', urlParam: 'kirah' },
+    { name: 'Tania Chakraborty', urlParam: 'tania' }, 
 ];
 
 const GetVC = () => {
@@ -28,11 +26,11 @@ const GetVC = () => {
                 setPerson(matchedPerson);
             } else {
                 console.error('No matching person found for the given URL parameter.');
-                history.push('/renderatl-scavengerhunt');
+                history.push('/wad-scavengerhunt');
             }
         } else {
             console.error('No URL parameter provided.');
-            history.push('/renderatl-scavengerhunt');
+            history.push('/wad-scavengerhunt');
         }
     }, []);
 
