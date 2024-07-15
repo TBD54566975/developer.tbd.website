@@ -39,7 +39,7 @@ In order for you to communicate with PFIs on your customers' behalf, they will n
 
 <CodeSnippet snippetName="walletQuickstartDidCreate" />
 
-<WalletQuickstartCodeRunner executeCodeName="executeDidCreate" stepIndex={0} customPlaceholder={"See your DID"}/>
+<WalletQuickstartCodeRunner executeCodeName="executeDidCreate" stepIndex={0} customPlaceholder={"See Alice's DID"}/>
 
 
 ## Connect to a PFI
@@ -80,7 +80,9 @@ The Offering we selected has a `requiredClaims` section that specifies [Verifiab
               'path': [ '$.type[*]' ],
               'filter': {
                 'type': 'string',
+                //highlight-start
                 'const': 'SanctionsCredential'
+                //highlight-end
               }
             }
           ]
@@ -104,7 +106,7 @@ Now that you've found an offering that matches Alice's request, your app can req
 
 <CodeSnippet snippetName="walletQuickstartCreateRfq" />
 
-<WalletQuickstartCodeRunner executeCodeName="executeCreateRfq" stepIndex={3} customPlaceholder={"See your RFQ"} viewJsonObj={true} collapseLevel={1}/>
+<WalletQuickstartCodeRunner executeCodeName="executeCreateRfq" stepIndex={3} customPlaceholder={"See the RFQ"} viewJsonObj={true} collapseLevel={1}/>
 
 After creating an RFQ message, you can verify that it is properly constructed and its data satisfies the Offering's requirements.
 
@@ -130,13 +132,13 @@ The Quote contains the exact exchange rate including any fees. Your app can pres
 
 <CodeSnippet snippetName="walletQuickstartCreateOrder" />
 
-<WalletQuickstartCodeRunner executeCodeName="executeCreateOrder" stepIndex={6} customPlaceholder={"Create your order"} viewJsonObj={true} collapseLevel={1}/> 
+<WalletQuickstartCodeRunner executeCodeName="executeCreateOrder" stepIndex={6} customPlaceholder={"Create Alice's Order"} viewJsonObj={true} collapseLevel={1}/> 
 
 Once you have an order message, you can sign it with Alice's DID and send it to the PFI to execute the transaction.
 
 <CodeSnippet snippetName="walletQuickstartSubmitOrder" />
 
-<WalletQuickstartCodeRunner executeCodeName="executeSendOrder" stepIndex={7} customPlaceholder={"Submit your order"} viewJsonObj={true} collapseLevel={1}/> 
+<WalletQuickstartCodeRunner executeCodeName="executeSendOrder" stepIndex={7} customPlaceholder={"Submit Order to PFI"} viewJsonObj={true} collapseLevel={1}/> 
 
 ## End Transaction
 
