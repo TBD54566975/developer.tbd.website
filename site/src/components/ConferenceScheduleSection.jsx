@@ -49,7 +49,7 @@ function ConferenceSchedule() {
           DateTime="July 19 @ 12:20"
           image="/img/opening_panel.png"
           EventName={`Mainstage Keynote`}
-          EventDetails={` Mike Brock, Daniel Buchner, Angie Jones & Nalin Mittal (Product Manager at Google)`}
+          EventDetails={` Mike Brock, Daniel Buchner, Angie Jones & Nalin Mittal`}
           ExtraDetails= {`Mainstage`}
         />
       </div>
