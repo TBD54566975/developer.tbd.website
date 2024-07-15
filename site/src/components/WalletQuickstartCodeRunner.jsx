@@ -12,9 +12,11 @@ const executeFunctions = {
     executeGetOfferings: () => importFunction('quickstartGetOfferings'),
     executeGetCredentials: () => importFunction('quickstartGetCredentials'),
     executeCreateRfq: () => importFunction('quickstartCreateRfq'),
+    executeSendRfq: () => importFunction('quickstartSendRfq'),
     executeApplyForCredential: () => importFunction('quickstartApplyForCredential'),
     executeProcessQuote: () => importFunction('quickstartProcessQuote'),
     executeCreateOrder: () => importFunction('quickstartCreateOrder'),
+    executeSendOrder: () => importFunction('quickstartSendOrder'),
     executeProcessClose: () => importFunction('quickstartProcessClose')
 };
 

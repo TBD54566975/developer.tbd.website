@@ -39,6 +39,10 @@ export async function quickstartCreateRfq() {
     return context.rfq;
 }
 
+export async function quickstartSendRfq() {
+    return "HTTP 202: Successfully Submitted RFQ";
+}
+
 export async function quickstartProcessQuote() {
     await processQuote();
 
@@ -50,6 +54,10 @@ export async function quickstartCreateOrder() {
     await submitOrder();
 
     return context.order;
+}
+
+export async function quickstartSendOrder() {
+    return "HTTP 202: Successfully Submitted Order";
 }
 
 export async function quickstartProcessClose() {

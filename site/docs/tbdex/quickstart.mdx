@@ -46,7 +46,7 @@ In order for you to communicate with PFIs on your customers' behalf, they will n
 
 To connect to a PFI, all you need is their DID. Let's use the DID of a mock PFI: 
 
-```
+```js
 const pfiDid = did:dht:ccqamm6qgbe763ya8f3bo5mkrtxx1pz7i789zeqq4bmoae4qnixy
 ```
 
@@ -89,21 +89,29 @@ Then finally, you'll send the RFQ to the PFI to initiate the transaction.
 
 <CodeSnippet snippetName="walletQuickstartSendRfq" />
 
+<WalletQuickstartCodeRunner executeCodeName="executeSendRfq" stepIndex={4} customPlaceholder={"Submit RFQ"} viewJsonObj={true} collapseLevel={1}/> 
+
 ## Process Quote
 
 In response to your RFQ, the PFI will write a Quote message to the exchange if they are able to fulfill Alice's request, or a Close message if not. Here's how to obtain that message:
 
 <CodeSnippet snippetName="walletQuickstartProcessQuote" />
 
-<WalletQuickstartCodeRunner executeCodeName="executeProcessQuote" stepIndex={4} customPlaceholder={"View Quote"} viewJsonObj={true} collapseLevel={1}/> 
+<WalletQuickstartCodeRunner executeCodeName="executeProcessQuote" stepIndex={5} customPlaceholder={"View Quote"} viewJsonObj={true} collapseLevel={1}/> 
 
 ## Place Order
 
-The Quote contains the exact exchange rate including any fees. Your app can present this to Alice to determine if she wants to proceed with the transaction. If she does, you'll create an Order message, sign it with Alice's DID, and send it to the PFI:
+The Quote contains the exact exchange rate including any fees. Your app can present this to Alice to determine if she wants to proceed with the transaction. If she does, you'll create an Order message:
 
 <CodeSnippet snippetName="walletQuickstartCreateOrder" />
 
-<WalletQuickstartCodeRunner executeCodeName="executeCreateOrder" stepIndex={5} customPlaceholder={"Create your order"} viewJsonObj={true} collapseLevel={1}/> 
+<WalletQuickstartCodeRunner executeCodeName="executeCreateOrder" stepIndex={6} customPlaceholder={"Create your order"} viewJsonObj={true} collapseLevel={1}/> 
+
+Once you have an order message, you can sign it with Alice's DID and send it to the PFI to execute the transaction.
+
+<CodeSnippet snippetName="walletQuickstartSubmitOrder" />
+
+<WalletQuickstartCodeRunner executeCodeName="executeSendOrder" stepIndex={7} customPlaceholder={"Submit your order"} viewJsonObj={true} collapseLevel={1}/> 
 
 ## End Transaction
 
@@ -111,7 +119,7 @@ To end the transaction, the PFI will write a Close message indicating whether th
 
 <CodeSnippet snippetName="walletQuickstartProcessClose" />
 
-<WalletQuickstartCodeRunner executeCodeName="executeProcessClose" stepIndex={6} customPlaceholder={"View your close reason"}/> 
+<WalletQuickstartCodeRunner executeCodeName="executeProcessClose" stepIndex={8} customPlaceholder={"View your close reason"}/> 
 
 ## Next Steps with tbDEX
 
