@@ -33,14 +33,14 @@ function ConferenceSchedule() {
         <ScheduleCard
           DateTime="July 18 @ 16:10"
           image="/img/communityPanel.png"
-          EventName={`Panel: The Power of Developer Communities`}
+          EventName={`The Power of Developer Communities`}
           EventDetails={`Scott Hanselman, Angie Jones, Rajeev Rajan`}
           ExtraDetails= {`Tech Leaders Stage (500)`}
         />
         <ScheduleCard
           DateTime="July 19 @ 10:00"
           image="/img/learn/headshots/angie_jones.png"
-          EventName={`"Do you speak tbDEX? Learn the Language of Global Payments"`}
+          EventName={`Do you speak tbDEX? Learn the Language of Global Payments`}
           EventDetails={`Angie Jones`}
           ExtraDetails= {`Workshop Room M3 💻`}
 
