@@ -34,7 +34,7 @@ function ConferenceSchedule() {
           DateTime="July 18 @ 16:10"
           image="/img/communityPanel.png"
           EventName={`The Power of Developer Communities`}
-          EventDetails={`Scott Hanselman, Angie Jones, Rajeev Rajan`}
+          EventDetails={`Angie Jones along with Scott Hanselman and Rajeev Rajan`}
           ExtraDetails= {`Tech Leaders Stage (500)`}
         />
         <ScheduleCard
@@ -49,7 +49,7 @@ function ConferenceSchedule() {
           DateTime="July 19 @ 12:20"
           image="/img/opening_panel.png"
           EventName={`Mainstage Keynote`}
-          EventDetails={` Mike Brock, Daniel Buchner, Angie Jones & Nalin Mittal`}
+          EventDetails={`Mike Brock, Daniel Buchner, Angie Jones`}
           ExtraDetails= {`Mainstage`}
         />
       </div>
