@@ -69,7 +69,7 @@ The Offering we selected has a `requiredClaims` section that specifies [Verifiab
 
 <WalletQuickstartCodeRunner executeCodeName="executeApplyForCredential" stepIndex={2} customPlaceholder={"Apply for a SanctionCredential"}/>
 
-VCs are stored as JWTs - in this case we're assuming that they have been fetched from local storage and placed into a string array called `myCredentials` -, and once you've saved the token above you can access and filter through them like so:
+VCs are stored as JSON Web Tokens (JWTs). Your wallet app has saved Alice's new VC into an array named `myCredentials`. Let's now find which of Alice’s credentials meet the PFI's requirements:
 
 <CodeSnippet snippetName="walletQuickstartSelectCredentials" />
 
@@ -99,7 +99,7 @@ In response to your RFQ, the PFI will write a Quote message to the exchange if t
 
 ## Place Order
 
-The Quote message will contain the exact exchange rate including any fees. Your app can present this to Alice to determine if she wants to proceed with the transaction. If she does, you'll create an Order message, sign it with Alice's DID, and send it to the PFI:
+The Quote contains the exact exchange rate including any fees. Your app can present this to Alice to determine if she wants to proceed with the transaction. If she does, you'll create an Order message, sign it with Alice's DID, and send it to the PFI:
 
 <CodeSnippet snippetName="walletQuickstartCreateOrder" />
 
@@ -115,7 +115,7 @@ To end the transaction, the PFI will write a Close message indicating whether th
 
 ## Next Steps with tbDEX
 
-Congratulations on creating your first Wallet! In just a few minutes you were able to contact a PFI for its offerings, request a quote, place an order, and finish your transaction.
+Congratulations on creating your first Wallet! In just a few minutes you were able to contact a PFI for its offerings, request a quote, and place an order for Alice to swap USD for KES.
 
 If you’d like to get started building an even more robust wallet, you can see our full [Wallet guide](/docs/tbdex/wallet/overview). Additionally, you can learn more about [building your own PFI](/docs/tbdex/pfi/overview), as well as [becoming a Credential Issuer](/docs/tbdex/issuer/overview) on the tbDEX network too!
 
