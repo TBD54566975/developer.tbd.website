@@ -48,7 +48,7 @@ function ConferenceSchedule() {
         <ScheduleCard
           DateTime="July 19 @ 12:20"
           image="/img/opening_panel.png"
-          EventName={`Mainstage Keynote`}
+          EventName={`Giving the individual control of their data: Open Source Decentralized Web Nodes`}
           EventDetails={`Mike Brock, Daniel Buchner, Angie Jones`}
           ExtraDetails= {`Mainstage`}
         />
