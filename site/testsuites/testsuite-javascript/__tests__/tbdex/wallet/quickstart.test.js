@@ -124,6 +124,7 @@ describe('Wallet: Quickstart', () => {
                 await rfq.verifyOfferingRequirements(selectedOffering);
             } catch (e) {
                 // handle failed verification
+                throw e;
             }
         }).not.toThrow();
     });
@@ -137,6 +138,7 @@ describe('Wallet: Quickstart', () => {
                 await TbdexHttpClient.createExchange(rfq);
             } catch (e) {
                 // handle failed verification
+                throw e;
             }
             // :snippet-end:
         }).not.toThrow();
@@ -167,6 +169,12 @@ describe('Wallet: Quickstart', () => {
                     }
                 }
             } catch (e) {
+                if (e.name != 'ResponseError') {
+                    // The error is not due to a lack of exchange being present
+                    // on the PFI server.
+                    throw e;
+                }
+
                 // do nothing to let the loop keep running in the event
                 // the exchange hasn't populated yet
             }
@@ -192,6 +200,12 @@ describe('Wallet: Quickstart', () => {
 
                 expect(order).toBeDefined();
             } catch (e) {
+                if (e.name != 'ResponseError') {
+                    // The error is not due to a lack of exchange being present
+                    // on the PFI server.
+                    throw e;
+                }
+
                 // do nothing to let the loop keep running in the event
                 // the exchange hasn't populated yet
             }
@@ -224,6 +238,12 @@ describe('Wallet: Quickstart', () => {
                         }
                     }
                 } catch (e) {
+                    if (e.name != 'ResponseError') {
+                        // The error is not due to a lack of exchange being present
+                        // on the PFI server.
+                        throw e;
+                    }
+    
                     // do nothing to let the loop keep running in the event
                     // the exchange hasn't populated yet
                 }
