@@ -160,27 +160,31 @@ async function sendRfq() {
 
 async function processQuote() {
     // Wait to ensure exchange is created
-    await new Promise(resolve => setTimeout(resolve, 5000));
 
     context.exchangeId = context.rfq.exchangeId;
     while (!context.quote) {
-        const exchange = await TbdexHttpClient.getExchange({
-            pfiDid: context.pfiDid,
-            did: context.customerDid,
-            exchangeId: context.exchangeId
-        });
-
-        context.quote = exchange.find(msg => msg instanceof Quote);
-
-        if (!context.quote) {
-            // Make sure the exchange is still open
-            context.close = exchange.find(msg => msg instanceof Close);
-            
-            if(context.close) { break; } 
-            else {
-            // Wait 2 seconds before making another request
-            await new Promise(resolve => setTimeout(resolve, 2000));
+        try {
+            const exchange = await TbdexHttpClient.getExchange({
+                pfiDid: context.pfiDid,
+                did: context.customerDid,
+                exchangeId: context.exchangeId
+            });
+    
+            context.quote = exchange.find(msg => msg instanceof Quote);
+    
+            if (!context.quote) {
+                // Make sure the exchange is still open
+                context.close = exchange.find(msg => msg instanceof Close);
+                
+                if(context.close) { break; } 
+                else {
+                // Wait 2 seconds before making another request
+                await new Promise(resolve => setTimeout(resolve, 2000));
+                }
             }
+        } catch (e) {
+            // do nothing to let the loop keep running in the event
+            // the exchange hasn't populated yet
         }
     }
 }
