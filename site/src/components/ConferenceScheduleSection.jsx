@@ -22,7 +22,21 @@ function ScheduleCard({ image, DateTime, EventName, EventDetails,ExtraDetails })
 function ConferenceSchedule() {
   return (
     <div>
-      <div className="community-card grid grid-cols-1 tablet:grid-cols-3 desktop:grid-cols-3 gap-4 pb-7 space-x-4">
+      <div className="community-card grid grid-cols-1 tablet:grid-cols-3 desktop:grid-cols-4 gap-4 pb-7 space-x-4">
+        <ScheduleCard
+          DateTime="July 18 @ 16:00"
+          image="/img/happy-hour.png"
+          EventName={`TBD Happy Hour`}
+          EventDetails={`Hall 2.2, Booth 2_40`}
+          ExtraDetails= {`FREE Swag & Beer - see you there!🍻`}
+        />
+        <ScheduleCard
+          DateTime="July 18 @ 16:10"
+          image="/img/communityPanel.png"
+          EventName={`Panel: The Power of Developer Communities`}
+          EventDetails={`Tech Leaders Stage (500)`}
+          ExtraDetails= {`Scott Hanselman, Angie Jones, Rajeev Rajan`}
+        />
         <ScheduleCard
           DateTime="July 19 @ 10:00"
           image="/img/learn/headshots/angie_jones.png"
@@ -32,17 +46,10 @@ function ConferenceSchedule() {
 
         />
         <ScheduleCard
-          DateTime="July 18 @ 16:00"
-          image="/img/happy-hour.png"
-          EventName={`TBD Happy Hour`}
-          EventDetails={`Hall 2.2, Booth 2_40`}
-          ExtraDetails= {`FREE Swag & Beer - see you there!🍻`}
-        />
-        <ScheduleCard
-          DateTime="July 19 @ 12:10"
+          DateTime="July 19 @ 12:20"
           image="/img/opening_panel.png"
           EventName={`Opening Keynote`}
-          EventDetails={`Angie Jones, Mike Brock, Daniel Buchner & Google`}
+          EventDetails={` Mike Brock, Daniel Buchner, Angie Jones & Nalin Mittal, Product Manager at Google`}
           ExtraDetails= {`Mainstage`}
         />
       </div>
