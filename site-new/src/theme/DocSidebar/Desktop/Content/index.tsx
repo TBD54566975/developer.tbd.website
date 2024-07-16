@@ -61,7 +61,7 @@ export default function DocSidebarDesktopContent({
         className={"w-64 h-52 py-2 pl-4 mb-8"}
       >
         <DocBreadcrumbsWrapper />
-        <h2>{sidebarHeader}</h2>
+        <h2 className="text-dark-grey">{sidebarHeader}</h2>
       </Background>
       <ul
         className={clsx(
