@@ -260,20 +260,40 @@ body {
     line-height: 30.8px;
 }
 
-h1 {
-  font-family: 'SpaceGrotesk', sans-serif;
-  font-weight: 500;
-  font-size: 62px;
-  line-height: 68.2px;
-  color: var(--ifm-color-primary)
-}
-
+h1,
+h2,
+h3,
 h4 {
   font-family: 'SpaceGrotesk', sans-serif;
   font-weight: 500;
+  color: white;
+}
+
+h1 {
+  font-size: 62px;
+  line-height: 68.2px;
+}
+
+h2 {
+  font-size: 42px;
+  line-height: 48.3px;
+}
+
+h3 {
+  font-size: 34px;
+  line-height: 40.8px;
+}
+
+h4 {
   font-size: 28px;
   line-height: 36.4px;
-  color: white
+}
+
+.eyebrow {
+  font-family: 'Basis';
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 14.4px;
 }
 
 
@@ -303,6 +323,10 @@ h4 {
 /* Navbar */
 .navbar {
   background-color: var(--ifm-color-primary);
+  font-family: 'SpaceGrotesk';
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 18px;
 }
 
 .navbar a {
