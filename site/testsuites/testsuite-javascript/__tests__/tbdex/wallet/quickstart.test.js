@@ -137,7 +137,6 @@ describe('Wallet: Quickstart', () => {
                 await rfq.sign(customerDid);
                 await TbdexHttpClient.createExchange(rfq);
             } catch (e) {
-                // handle failed verification
                 throw e;
             }
             // :snippet-end:
