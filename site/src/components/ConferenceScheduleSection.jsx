@@ -5,7 +5,7 @@ function ScheduleCard({ image, DateTime, EventName, EventDetails,ExtraDetails })
   return (
     <div className="p-8 w-full">
       <div className="flex flex-col items-center">
-        <div className="rounded-full overflow-hidden w-40 h-40 mb-4">
+        <div className="overflow-hidden w-40 h-40 mb-4">
           <img className="w-full h-full object-cover" src={image} alt={DateTime} />
         </div>
         <div className="text-center">
@@ -39,7 +39,7 @@ function ConferenceSchedule() {
         />
         <ScheduleCard
           DateTime="July 19 @ 10:00"
-          image="/img/learn/headshots/angie_jones.png"
+          image="/img/tbdex-workshop-icon.png"
           EventName={`Do you speak tbDEX? Learn the Language of Global Payments`}
           EventDetails={`Angie Jones`}
           ExtraDetails= {`Workshop Room M3 💻`}
