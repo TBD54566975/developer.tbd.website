@@ -123,7 +123,6 @@ describe('Wallet: Quickstart', () => {
             try{
                 await rfq.verifyOfferingRequirements(selectedOffering);
             } catch (e) {
-                // handle failed verification
                 throw e;
             }
         }).not.toThrow();
