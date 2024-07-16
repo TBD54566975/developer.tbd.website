@@ -14,6 +14,8 @@ let customerDid;
 
 describe('PFI: Structure', () => {
     beforeAll(async () => {
+
+        //:snippet-start:pfiOverviewCreateDid
         pfiDid = await DidDht.create({
             options:{
                 services: [{
@@ -22,7 +24,8 @@ describe('PFI: Structure', () => {
                     serviceEndpoint: 'https://localhost:8080'
                 }]
             }
-          })
+        });
+        //:snippet-end:
 
         customerDid = await DidDht.create();
     });

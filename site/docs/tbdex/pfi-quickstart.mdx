@@ -1,0 +1,231 @@
+---
+sidebar_position: 2
+title: PFI Quickstart
+hide_title: true
+hide_table_of_contents: false
+---
+
+import { QuickstartExecutionProvider } from '@site/src/components/QuickstartExecutionContext';
+import Version from '@site/src/components/Version';
+import PackageJson from '@site/src/components/PackageJson';
+import CodeSnippet from '@site/src/components/CodeSnippet';
+import PfiQuickstartCodeRunner from '@site/src/components/PfiQuickstartCodeRunner';
+
+<QuickstartExecutionProvider>
+# tbDEX PFI in 5️⃣ minutes
+
+## Overview
+
+Let’s build a tbDEX-enabled PFI in under 5 minutes, right here in the browser. You will learn how to:
+
+✅  Stand up a basic PFI
+
+✅  Open endpoints for tbDEX-enabled Wallets to interact with your PFI
+
+✅  Broadcast Offerings
+
+✅  Process Requests for Quote and respond with Quotes
+
+✅  Accept Orders, provide OrderStatus Updates, and Close out Orders
+
+
+Let’s go!
+
+
+## PFI App Basics
+
+In this exercise, your PFI app is responsible for creating an `Offering` that swaps `USD` for `KES` and facilitating that transaction for your customer Alice.
+
+### Declare your PFI with a DID
+
+In order for your app to be recognized as a PFI by other apps, you’ll need to create a DID that declares a `pfi` service and an associated `serviceEndpoint` that is the hostname you want Wallets to be able to reach you at:
+
+<CodeSnippet snippetName="pfiOverviewCreateDid" />
+
+<PfiQuickstartCodeRunner executeCodeName="executeDidCreate" stepIndex={0} customPlaceholder={"See PFI DID"}/>
+
+### Structure Your PFI App
+
+PFIs built using the `tbDEX` SDK are effectively node `express` servers with added convenience methods designed to enable your server to “speak” the `tbDEX` protocol. Your app will require a server and a database, and in this exercise we’ll focus on the server and abstract away our database as a `postgres` instance. For the sake of this guide, we’ll assume that there is already a `postgres` database set up with an `offerings` table and an `exchanges` table.
+
+Your server API is bisected into two key functional areas by the SDK: Offerings (what your PFI can do for wallets) and Exchanges (what your PFI is in the process of actively doing for wallets). As a result, you’ll have a `main.ts` file that serves as your main server entrypoint, as well as two other files that implement the Offerings and Exchanges functionality as detailed by the interfaces `OfferingsApi` and `ExchangesApi`, respectively. Your main server entrypoint will look as follows:
+
+<CodeSnippet snippetName="pfiOverviewConfigJs" title="main.ts"/>
+
+Once your server object is created, you can then configure the 3 primary routes that your PFI will expose to wallets for facilitating exchanges: `RFQ` creation, `Order` handling, and closing out an exchange:
+
+<CodeSnippet snippetName="pfiOverviewServerRoutesJs" title="main.ts"/>
+
+<PfiQuickstartCodeRunner executeCodeName="executePingServer" stepIndex={1} customPlaceholder={"Ping the PFI"}/>
+
+Next you’ll need to implement the `ExchangesApiProvider` and `OfferingsApiProvider` classes. We’ll come back to the `OfferingsApiProvider`, but for now let’s focus on implementing the `write` function of `ExchangesApiProvider`, which will write exchange data into your database via the generic sample provider we’ve written called `dataProvider`:
+
+<CodeSnippet snippetName="pfiOverviewWriteJs" title="exchangesApiProvider.ts"/>
+
+While there is more functionality to build out later, for now we have the overall structure of our app.
+
+## Building Out Offerings
+
+Without any Offerings to provide to potential customers, your PFI won’t be able to do anything! That’s why next we’ll go ahead and create a sample Offering to place into our database. How exactly you do so depends on your database technology.
+
+### Create Your First Offering
+
+ Regardless of what database technology you’re using, you can create  here’s the Offering we created to get started:
+
+ ```js
+const myOffering = Offering.create({
+      metadata: { from: config.pfiDid.uri },
+      data: {
+        description: 'fake offering 1',
+        payoutUnitsPerPayinUnit: '0.0069', // ex. we send 100 dollars, so that means 14550.00 KES
+        payin: {
+          currencyCode: 'USD',
+          methods: [
+            {
+              kind: 'USD_LEDGER',
+              requiredPaymentDetails: {},
+            },
+          ],
+        },
+        payout: {
+          currencyCode: 'KES',
+          methods: [
+            {
+              kind: 'MOMO_MPESA',
+              requiredPaymentDetails: {
+                $schema: 'http://json-schema.org/draft-07/schema#',
+                title: 'Mobile Money Required Payment Details',
+                type: 'object',
+                required: ['phoneNumber', 'reason'],
+                additionalProperties: false,
+                properties: {
+                  phoneNumber: {
+                    title: 'Mobile money phone number',
+                    description: 'Phone number of the Mobile Money account',
+                    type: 'string',
+                  },
+                  reason: {
+                    title: 'Reason for sending',
+                    description:
+                      'To abide by the travel rules and financial reporting requirements, the reason for sending money',
+                    type: 'string',
+                  },
+                },
+              },
+              estimatedSettlementTime: 10
+            },
+            {
+              kind: 'BANK_FIRSTBANK',
+              requiredPaymentDetails: {
+                $schema: 'http://json-schema.org/draft-07/schema#',
+                title: 'Bank Transfer Required Payment Details',
+                type: 'object',
+                required: ['accountNumber', 'reason'],
+                additionalProperties: false,
+                properties: {
+                  accountNumber: {
+                    title: 'Bank account number',
+                    description: 'Bank account of the recipient\'s bank account',
+                    type: 'string',
+                  },
+                  reason: {
+                    title: 'Reason for sending',
+                    description:
+                      'To abide by the travel rules and financial reporting requirements, the reason for sending money',
+                    type: 'string',
+                  },
+                },
+              },
+              estimatedSettlementTime: 10
+            },
+          ],
+        },
+
+        requiredClaims: {
+          id: '7ce4004c-3c38-4853-968b-e411bafcd945',
+          input_descriptors: [
+            {
+              id: 'bbdb9b7c-5754-4f46-b63b-590bada959e0',
+              constraints: {
+                fields: [
+                  {
+                    path: ['$.type[*]'],
+                    filter: {
+                      type: 'string',
+                      pattern: '^SanctionCredential$',
+                    },
+                  },
+                  {
+                    path: ['$.issuer'],
+                    filter: {
+                      type: 'string',
+                      const: issuerDid.trim() // Use the read issuer DID here
+                    }
+                  }
+                ],
+              },
+            },
+          ],
+        },
+      },
+    })
+
+ ```
+
+You can then insert this document into your `offerings` table via a `dataProvider.insert()` call.
+
+<PfiQuickstartCodeRunner executeCodeName="executeAddOffering" stepIndex={2} customPlaceholder={"Add the Offering to the database"}/>
+
+### Fetch Offerings for Wallets
+
+Now that you have an actual `Offering` available in your database, you’ll need to make it so that Wallets querying your PFI can obtain them. The `tbDEX` SDK will automatically take care of setting up and maintaining those routes so long as you implement the `OfferingsApi` interface:
+
+<CodeSnippet snippetName="pfiOverviewReadOfferingsJs" title="offeringsApiProvider.ts"/>
+
+<PfiQuickstartCodeRunner executeCodeName="executeGetOfferings" stepIndex={3} customPlaceholder={"Ping the /offerings API Endpoint"}/>
+
+## Support Exchanges APIs
+
+With a DID and OfferingsApi, our PFI is now ready to receive Requests for Quote (RFQs), which initiate exchanges that can lead to orders. Although we previously implemented the `write` function of `ExchangesApiProvider`, we’ll now finish out the implementation with the [required methods inherited from `ExchangesApi`](https://tbd54566975.github.io/tbdex-js/interfaces/_tbdex_http_server.ExchangesApi.html).
+
+By implementing these methods, you make it so that `HTTP` requests to your PFI such as queries to the `/exchanges/{exchangeId}` route that returns details of a particular exchange for authenticated parties, automatically now work. To do this, we’ll go back to our `main.ts` file and add logic to process each message we receive from a Wallet, as well as how we’ll respond.
+
+<PfiQuickstartCodeRunner executeCodeName="executeGetExchanges" stepIndex={4} customPlaceholder={"Fetch a sample Exchange"}/>
+
+## Processing tbDEX Messages
+
+With all of the core structure of our PFI implemented, you’ll now need to add the logic of actually advancing a customer on their journey from RFQ to Quote to Order to Close. 
+
+### Processing RFQs and Returning Quotes
+
+Provided that you are able to [verify that the user has submitted the Verifiable Credentials (VCs) ](/docs/tbdex/pfi/creating-quotes)required by the Offering, you can then proceed to generate a `Quote` for them:
+
+<CodeSnippet snippetName="pfiCreateQuoteJs" title="exchangeApiProvider.ts"/>
+
+<PfiQuickstartCodeRunner executeCodeName="executeGetQuote" stepIndex={5} customPlaceholder={"See the Quote"}/>
+
+### Receiving Orders and Returning OrderStatus
+
+If a customer decides to accept your `Quote` and place an `Order`, you’ll then be required to [process the order](/docs/tbdex/pfi/processing-orders), which will likely involve [accessing private data](/docs/tbdex/pfi/processing-orders#accessing-hashed-data) to actually fulfill it. Once an order has been placed and fulfillment begins, you can keep your customer up to date by sending them `OrderStatus` messages. There are no restrictions on the contents or frequency of these updates, however it is a best practice to send one when a customer initially places their order:
+
+<CodeSnippet snippetName="pfiOrderStatusJs" title="exchangeApiProvider.ts"/>
+<PfiQuickstartCodeRunner executeCodeName="executeGetOrderStatus" stepIndex={6} customPlaceholder={"See the OrderStatus"}/>
+
+:::note
+ Customers have the change to opt-in to push notifications when they initiate an exchange by specifying a <code>replyTo</code> field. If they do not do so, they’ll be required to poll your <code>ExchangesApi</code> to receive <code>OrderStatus</code> and other updates.
+:::
+
+### Closing Out Orders
+
+When you have fulfilled an `Order` and there’s nothing left to do, you can close it out with a `Close` message. Additionally, you may receive a notification from the customer to close the exchange:
+
+<CodeSnippet snippetName="pfiCloseOrderJs" title="exchangeApiProvider.ts"/>
+<PfiQuickstartCodeRunner executeCodeName="executeGetClose" stepIndex={7} customPlaceholder={"See the Close Message"}/>
+
+## Next Steps with tbDEX
+
+Congratulations on creating your first PFI! In just a few minutes you were able to create a PFI that has offerings, gives quotes, accepts orders, and closes out transactions.
+
+If you’d like to get started building an even more robust PFI, you can see our full [PFI guide](/docs/tbdex/pfi/overview). Additionally, you can learn more about [building your own Wallet](/docs/tbdex/wallet/overview), as well as [becoming a Credential Issuer](/docs/tbdex/issuer/overview) on the tbDEX network too!
+
+</QuickstartExecutionProvider>
