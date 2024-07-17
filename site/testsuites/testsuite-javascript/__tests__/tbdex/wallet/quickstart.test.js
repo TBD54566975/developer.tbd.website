@@ -162,19 +162,15 @@ describe('Wallet: Quickstart', () => {
                     
                     if(close) { break; } 
                     else {
-                    // Wait 2 seconds before making another request
-                    await new Promise(resolve => setTimeout(resolve, 2000));
+                        // Wait 2 seconds before making another request
+                        await new Promise(resolve => setTimeout(resolve, 2000));
                     }
                 }
             } catch (e) {
-                if (e.name != 'ResponseError') {
-                    // The error is not due to a lack of exchange being present
-                    // on the PFI server.
-                    throw e;
+                if (e.statusCode === 404) {
+                    //waiting on RFQ to be processed
                 }
-
-                // do nothing to let the loop keep running in the event
-                // the exchange hasn't populated yet
+                else throw e;
             }
         }
         // :snippet-end:
@@ -198,14 +194,10 @@ describe('Wallet: Quickstart', () => {
 
                 expect(order).toBeDefined();
             } catch (e) {
-                if (e.name != 'ResponseError') {
-                    // The error is not due to a lack of exchange being present
-                    // on the PFI server.
-                    throw e;
+                if (e.statusCode === 404) {
+                    //waiting on RFQ to be added to the exchange
                 }
-
-                // do nothing to let the loop keep running in the event
-                // the exchange hasn't populated yet
+                else throw e;
             }
         }
     });
@@ -236,14 +228,10 @@ describe('Wallet: Quickstart', () => {
                         }
                     }
                 } catch (e) {
-                    if (e.name != 'ResponseError') {
-                        // The error is not due to a lack of exchange being present
-                        // on the PFI server.
-                        throw e;
+                    if (e.statusCode === 404) {
+                        //waiting on RFQ to be added to the exchange
                     }
-    
-                    // do nothing to let the loop keep running in the event
-                    // the exchange hasn't populated yet
+                    else throw e;
                 }
             }
 
