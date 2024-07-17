@@ -2,7 +2,7 @@ import { it, expect, describe } from 'vitest';
 // :snippet-start: walletQuickstartImports
 import { TbdexHttpClient, Rfq, Quote, Order, Close } from '@tbdex/http-client';
 import { PresentationExchange } from '@web5/credentials';
-import { DidDht } from '@web5/dids';
+import { DidDht,DidJwk } from '@web5/dids';
 import { VerifiableCredential } from '@web5/credentials'
 // :snippet-end:
 
@@ -13,41 +13,30 @@ describe('Wallet: Quickstart', () => {
     it('Testing Quickstart Workflow', async () => {
 
         // :snippet-start: walletQuickstartDidCreate
-        var customerDid = await DidDht.create({
+        var customerDid = await DidJwk.create({
             options: {
                 publish: true
             },
         });
         // :snippet-end:
 
-        let customerDidString = '{"uri":"did:dht:h8e3yqnhgjwhtkjhxwhfy5mmkn4nebqxr8idguwrsxgef6ow8efo","document":{"id":"did:dht:h8e3yqnhgjwhtkjhxwhfy5mmkn4nebqxr8idguwrsxgef6ow8efo","verificationMethod":[{"id":"did:dht:h8e3yqnhgjwhtkjhxwhfy5mmkn4nebqxr8idguwrsxgef6ow8efo#0","type":"JsonWebKey","controller":"did:dht:h8e3yqnhgjwhtkjhxwhfy5mmkn4nebqxr8idguwrsxgef6ow8efo","publicKeyJwk":{"crv":"Ed25519","kty":"OKP","x":"4dGQOFwyacipPH04UG1rULQkBc8h6jNOhLPMgvoUOgs","kid":"XPokllC3LZAVGizIL0naDdByQHeyY12uLJaXO4j46Nw","alg":"EdDSA"}}],"authentication":["did:dht:h8e3yqnhgjwhtkjhxwhfy5mmkn4nebqxr8idguwrsxgef6ow8efo#0"],"assertionMethod":["did:dht:h8e3yqnhgjwhtkjhxwhfy5mmkn4nebqxr8idguwrsxgef6ow8efo#0"],"capabilityDelegation":["did:dht:h8e3yqnhgjwhtkjhxwhfy5mmkn4nebqxr8idguwrsxgef6ow8efo#0"],"capabilityInvocation":["did:dht:h8e3yqnhgjwhtkjhxwhfy5mmkn4nebqxr8idguwrsxgef6ow8efo#0"]},"metadata":{"published":true,"versionId":"1718740086"},"privateKeys":[{"crv":"Ed25519","d":"iTfn3Z8uPp3gTg-9LxQVZVODGqnP3M0UDjZiIwBEctc","kty":"OKP","x":"4dGQOFwyacipPH04UG1rULQkBc8h6jNOhLPMgvoUOgs","kid":"XPokllC3LZAVGizIL0naDdByQHeyY12uLJaXO4j46Nw","alg":"EdDSA"}]}'
-
-        // Customer DID    
-        let customerPortableDid = JSON.parse(customerDidString);
-        customerDid = await DidDht.import({ portableDid: customerPortableDid });
-
-        await DidDht.publish({ did: customerDid });
-
         // :snippet-start: walletQuickstartGetOfferings
         const offerings  = await TbdexHttpClient.getOfferings({ pfiDid: pfiDid });
         // :snippet-end:
 
         //:snippet-start: walletQuickstartSelectOffering
-        var matchedOfferings = [];
+        var selectedOffering;
         if(offerings){
-            const filteredOfferings = offerings.filter(offering =>
+            selectedOffering = offerings.find(offering =>
             offering.data.payin.currencyCode === 'USD' &&
             offering.data.payout.currencyCode === 'KES'
             );
-            matchedOfferings.push(...filteredOfferings);
         }
-
-        // Select the first offering that matches our criteria
-        let selectedOffering = matchedOfferings[0];
         //:snippet-end:
 
         expect(selectedOffering).toBeDefined();
 
+ //TODO: REMOVE THIS ISSUER DID AND ISSUE THE VC WITH THE PFI'S BEARER DID       
         let issuerDidString = '{"uri":"did:dht:hge69zswp474myt94d149pftycsgk6yr9tufrh7new48re76b5ny","document":{"id":"did:dht:hge69zswp474myt94d149pftycsgk6yr9tufrh7new48re76b5ny","verificationMethod":[{"id":"did:dht:hge69zswp474myt94d149pftycsgk6yr9tufrh7new48re76b5ny#0","type":"JsonWebKey","controller":"did:dht:hge69zswp474myt94d149pftycsgk6yr9tufrh7new48re76b5ny","publicKeyJwk":{"crv":"Ed25519","kty":"OKP","x":"4ZHv3tRuu6WCP9Dlr7SxAyxleAT8ZlJzokU0ciO-DsQ","kid":"YovQ1tV4TzP3vEK56W1ALWw4yaakW2YxnTWjRkoisD0","alg":"EdDSA"}}],"authentication":["did:dht:hge69zswp474myt94d149pftycsgk6yr9tufrh7new48re76b5ny#0"],"assertionMethod":["did:dht:hge69zswp474myt94d149pftycsgk6yr9tufrh7new48re76b5ny#0"],"capabilityDelegation":["did:dht:hge69zswp474myt94d149pftycsgk6yr9tufrh7new48re76b5ny#0"],"capabilityInvocation":["did:dht:hge69zswp474myt94d149pftycsgk6yr9tufrh7new48re76b5ny#0"]},"metadata":{"published":true,"versionId":"1720053903"},"privateKeys":[{"crv":"Ed25519","d":"WvJD_vX0s5qqHkW2D4t3RUABg7a_3usAMKet1QEoKj0","kty":"OKP","x":"4ZHv3tRuu6WCP9Dlr7SxAyxleAT8ZlJzokU0ciO-DsQ","kid":"YovQ1tV4TzP3vEK56W1ALWw4yaakW2YxnTWjRkoisD0","alg":"EdDSA"}]}'
 
         let issuerPortableDid = JSON.parse(issuerDidString);
@@ -84,7 +73,7 @@ describe('Wallet: Quickstart', () => {
                 to: pfiDid, // PFI's DID
                 from: customerDid.uri,              // Customer DID
                 protocol: '1.0'                     // Version of tbDEX protocol you're using
-                },
+            },
             data: {
                 offeringId: selectedOffering.metadata.id,   // The ID of the selected offering
                 payin: {
@@ -108,6 +97,8 @@ describe('Wallet: Quickstart', () => {
             }
         });
         // :snippet-end:
+
+    
 
         expect(async () => {
             try{
