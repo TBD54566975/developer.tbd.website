@@ -17,7 +17,7 @@ let order;
 
 describe('Wallet: Quickstart', () => {
 
-    it('getOfferings HTTP Call', async () => {
+    it('Testing Quickstart Workflow', async () => {
 
         // :snippet-start: walletQuickstartDidCreate
         customerDid = await DidDht.create({
@@ -30,8 +30,8 @@ describe('Wallet: Quickstart', () => {
         let customerDidString = '{"uri":"did:dht:h8e3yqnhgjwhtkjhxwhfy5mmkn4nebqxr8idguwrsxgef6ow8efo","document":{"id":"did:dht:h8e3yqnhgjwhtkjhxwhfy5mmkn4nebqxr8idguwrsxgef6ow8efo","verificationMethod":[{"id":"did:dht:h8e3yqnhgjwhtkjhxwhfy5mmkn4nebqxr8idguwrsxgef6ow8efo#0","type":"JsonWebKey","controller":"did:dht:h8e3yqnhgjwhtkjhxwhfy5mmkn4nebqxr8idguwrsxgef6ow8efo","publicKeyJwk":{"crv":"Ed25519","kty":"OKP","x":"4dGQOFwyacipPH04UG1rULQkBc8h6jNOhLPMgvoUOgs","kid":"XPokllC3LZAVGizIL0naDdByQHeyY12uLJaXO4j46Nw","alg":"EdDSA"}}],"authentication":["did:dht:h8e3yqnhgjwhtkjhxwhfy5mmkn4nebqxr8idguwrsxgef6ow8efo#0"],"assertionMethod":["did:dht:h8e3yqnhgjwhtkjhxwhfy5mmkn4nebqxr8idguwrsxgef6ow8efo#0"],"capabilityDelegation":["did:dht:h8e3yqnhgjwhtkjhxwhfy5mmkn4nebqxr8idguwrsxgef6ow8efo#0"],"capabilityInvocation":["did:dht:h8e3yqnhgjwhtkjhxwhfy5mmkn4nebqxr8idguwrsxgef6ow8efo#0"]},"metadata":{"published":true,"versionId":"1718740086"},"privateKeys":[{"crv":"Ed25519","d":"iTfn3Z8uPp3gTg-9LxQVZVODGqnP3M0UDjZiIwBEctc","kty":"OKP","x":"4dGQOFwyacipPH04UG1rULQkBc8h6jNOhLPMgvoUOgs","kid":"XPokllC3LZAVGizIL0naDdByQHeyY12uLJaXO4j46Nw","alg":"EdDSA"}]}'
 
         // Customer DID    
-        const portableDid = JSON.parse(customerDidString);
-        customerDid = await DidDht.import({ portableDid });
+        const customerPortableDid = JSON.parse(customerDidString);
+        customerDid = await DidDht.import({ customerPortableDid });
 
         await DidDht.publish({ did: customerDid });
 
@@ -54,25 +54,22 @@ describe('Wallet: Quickstart', () => {
         //:snippet-end:
 
         expect(selectedOffering).toBeDefined();
-    });
 
-    it('Pull Wallet Credentials', async () => {
+        let issuerDidString = '{"uri":"did:dht:hge69zswp474myt94d149pftycsgk6yr9tufrh7new48re76b5ny","document":{"id":"did:dht:hge69zswp474myt94d149pftycsgk6yr9tufrh7new48re76b5ny","verificationMethod":[{"id":"did:dht:hge69zswp474myt94d149pftycsgk6yr9tufrh7new48re76b5ny#0","type":"JsonWebKey","controller":"did:dht:hge69zswp474myt94d149pftycsgk6yr9tufrh7new48re76b5ny","publicKeyJwk":{"crv":"Ed25519","kty":"OKP","x":"4ZHv3tRuu6WCP9Dlr7SxAyxleAT8ZlJzokU0ciO-DsQ","kid":"YovQ1tV4TzP3vEK56W1ALWw4yaakW2YxnTWjRkoisD0","alg":"EdDSA"}}],"authentication":["did:dht:hge69zswp474myt94d149pftycsgk6yr9tufrh7new48re76b5ny#0"],"assertionMethod":["did:dht:hge69zswp474myt94d149pftycsgk6yr9tufrh7new48re76b5ny#0"],"capabilityDelegation":["did:dht:hge69zswp474myt94d149pftycsgk6yr9tufrh7new48re76b5ny#0"],"capabilityInvocation":["did:dht:hge69zswp474myt94d149pftycsgk6yr9tufrh7new48re76b5ny#0"]},"metadata":{"published":true,"versionId":"1720053903"},"privateKeys":[{"crv":"Ed25519","d":"WvJD_vX0s5qqHkW2D4t3RUABg7a_3usAMKet1QEoKj0","kty":"OKP","x":"4ZHv3tRuu6WCP9Dlr7SxAyxleAT8ZlJzokU0ciO-DsQ","kid":"YovQ1tV4TzP3vEK56W1ALWw4yaakW2YxnTWjRkoisD0","alg":"EdDSA"}]}'
 
-        let issuerDid = '{"uri":"did:dht:hge69zswp474myt94d149pftycsgk6yr9tufrh7new48re76b5ny","document":{"id":"did:dht:hge69zswp474myt94d149pftycsgk6yr9tufrh7new48re76b5ny","verificationMethod":[{"id":"did:dht:hge69zswp474myt94d149pftycsgk6yr9tufrh7new48re76b5ny#0","type":"JsonWebKey","controller":"did:dht:hge69zswp474myt94d149pftycsgk6yr9tufrh7new48re76b5ny","publicKeyJwk":{"crv":"Ed25519","kty":"OKP","x":"4ZHv3tRuu6WCP9Dlr7SxAyxleAT8ZlJzokU0ciO-DsQ","kid":"YovQ1tV4TzP3vEK56W1ALWw4yaakW2YxnTWjRkoisD0","alg":"EdDSA"}}],"authentication":["did:dht:hge69zswp474myt94d149pftycsgk6yr9tufrh7new48re76b5ny#0"],"assertionMethod":["did:dht:hge69zswp474myt94d149pftycsgk6yr9tufrh7new48re76b5ny#0"],"capabilityDelegation":["did:dht:hge69zswp474myt94d149pftycsgk6yr9tufrh7new48re76b5ny#0"],"capabilityInvocation":["did:dht:hge69zswp474myt94d149pftycsgk6yr9tufrh7new48re76b5ny#0"]},"metadata":{"published":true,"versionId":"1720053903"},"privateKeys":[{"crv":"Ed25519","d":"WvJD_vX0s5qqHkW2D4t3RUABg7a_3usAMKet1QEoKj0","kty":"OKP","x":"4ZHv3tRuu6WCP9Dlr7SxAyxleAT8ZlJzokU0ciO-DsQ","kid":"YovQ1tV4TzP3vEK56W1ALWw4yaakW2YxnTWjRkoisD0","alg":"EdDSA"}]}'
-
-        const portableDid = JSON.parse(issuerDid);
-        const issuer = await DidDht.import({ portableDid });
+        const issuerPortableDid = JSON.parse(issuerDidString);
+        const issuerDid = await DidDht.import({ issuerPortableDid });
 
         const vc = await VerifiableCredential.create({
             type    : 'SanctionCredential',
-            issuer  : issuer.uri,
+            issuer  : issuerDid.uri,
             subject : customerDid.uri,
             data    : {
               'beep': 'boop'
             }
           })
           
-        const vcJwt = await vc.sign({ did: issuer})
+        const vcJwt = await vc.sign({ did: issuerDid})
 
         // Hard-coded credential
         let myCredentials = [vcJwt];
@@ -85,10 +82,6 @@ describe('Wallet: Quickstart', () => {
         // :snippet-end:
         credentials = selectedCredentials;
         expect(selectedCredentials.length).toBe(1);
-    });
-    
-    it('Create RFQ', async () => {
-        const selectedCredentials = credentials;
 
         // :snippet-start: walletQuickstartCreateRfq
         rfq = Rfq.create({
@@ -128,9 +121,7 @@ describe('Wallet: Quickstart', () => {
                 throw e;
             }
         }).not.toThrow();
-    });
 
-    it('Verify, send, and sign RFQ', async () => {
         expect(async () => {
             try{
                 // :snippet-start: walletQuickstartSendRfq
@@ -142,9 +133,7 @@ describe('Wallet: Quickstart', () => {
                 throw e;
             }
         }).not.toThrow();
-    });
 
-    it('Process Quote', async () => {
         // :snippet-start: walletQuickstartProcessQuote
         // Wait for Quote message to appear in the exchange
         exchangeId = rfq.exchangeId;
@@ -178,9 +167,7 @@ describe('Wallet: Quickstart', () => {
         // :snippet-end:
 
         expect(quote).toBeDefined();
-    });
 
-    it('Create Order', async () => {
         while (!order) {
             // :snippet-start: walletQuickstartCreateOrder
             order = Order.create({
@@ -195,9 +182,7 @@ describe('Wallet: Quickstart', () => {
 
             expect(order).toBeDefined();
         }
-    });
-        
-    it('Sign and Submit Order', async () => {
+
         expect(async () => {
             try {
                 // :snippet-start: walletQuickstartSubmitOrder
@@ -211,9 +196,7 @@ describe('Wallet: Quickstart', () => {
                 else throw e;
             }
         }).not.toThrow();
-    });
 
-    it('Process Close', async () => {
         // :snippet-start: walletQuickstartProcessClose
         var close;
         while (!close) {
