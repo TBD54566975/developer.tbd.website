@@ -1,4 +1,4 @@
-import { test, expect, describe, beforeAll, afterAll } from 'vitest';
+import { it, expect, describe } from 'vitest';
 // :snippet-start: walletQuickstartImports
 import { TbdexHttpClient, Rfq, Quote, Order, Close } from '@tbdex/http-client';
 import { PresentationExchange } from '@web5/credentials';
@@ -17,7 +17,7 @@ let order;
 
 describe('Wallet: Quickstart', () => {
 
-    test('getOfferings HTTP Call', async () => {
+    it('getOfferings HTTP Call', async () => {
 
         // :snippet-start: walletQuickstartDidCreate
         customerDid = await DidDht.create({
@@ -54,7 +54,7 @@ describe('Wallet: Quickstart', () => {
         expect(selectedOffering).toBeDefined();
     });
 
-    test('Pull Wallet Credentials', async () => {
+    it('Pull Wallet Credentials', async () => {
 
         let issuerDid = '{"uri":"did:dht:hge69zswp474myt94d149pftycsgk6yr9tufrh7new48re76b5ny","document":{"id":"did:dht:hge69zswp474myt94d149pftycsgk6yr9tufrh7new48re76b5ny","verificationMethod":[{"id":"did:dht:hge69zswp474myt94d149pftycsgk6yr9tufrh7new48re76b5ny#0","type":"JsonWebKey","controller":"did:dht:hge69zswp474myt94d149pftycsgk6yr9tufrh7new48re76b5ny","publicKeyJwk":{"crv":"Ed25519","kty":"OKP","x":"4ZHv3tRuu6WCP9Dlr7SxAyxleAT8ZlJzokU0ciO-DsQ","kid":"YovQ1tV4TzP3vEK56W1ALWw4yaakW2YxnTWjRkoisD0","alg":"EdDSA"}}],"authentication":["did:dht:hge69zswp474myt94d149pftycsgk6yr9tufrh7new48re76b5ny#0"],"assertionMethod":["did:dht:hge69zswp474myt94d149pftycsgk6yr9tufrh7new48re76b5ny#0"],"capabilityDelegation":["did:dht:hge69zswp474myt94d149pftycsgk6yr9tufrh7new48re76b5ny#0"],"capabilityInvocation":["did:dht:hge69zswp474myt94d149pftycsgk6yr9tufrh7new48re76b5ny#0"]},"metadata":{"published":true,"versionId":"1720053903"},"privateKeys":[{"crv":"Ed25519","d":"WvJD_vX0s5qqHkW2D4t3RUABg7a_3usAMKet1QEoKj0","kty":"OKP","x":"4ZHv3tRuu6WCP9Dlr7SxAyxleAT8ZlJzokU0ciO-DsQ","kid":"YovQ1tV4TzP3vEK56W1ALWw4yaakW2YxnTWjRkoisD0","alg":"EdDSA"}]}'
 
@@ -85,7 +85,7 @@ describe('Wallet: Quickstart', () => {
         expect(selectedCredentials.length).toBe(1);
     });
     
-    test('Create RFQ', async () => {
+    it('Create RFQ', async () => {
         const selectedCredentials = credentials;
 
         // :snippet-start: walletQuickstartCreateRfq
@@ -128,7 +128,7 @@ describe('Wallet: Quickstart', () => {
         }).not.toThrow();
     });
 
-    test('Verify, send, and sign RFQ', async () => {
+    it('Verify, send, and sign RFQ', async () => {
         expect(async () => {
             try{
                 // :snippet-start: walletQuickstartSendRfq
@@ -142,7 +142,7 @@ describe('Wallet: Quickstart', () => {
         }).not.toThrow();
     });
 
-    test('Process Quote', async () => {
+    it('Process Quote', async () => {
         // :snippet-start: walletQuickstartProcessQuote
         // Wait for Quote message to appear in the exchange
         exchangeId = rfq.exchangeId;
@@ -178,75 +178,53 @@ describe('Wallet: Quickstart', () => {
         expect(quote).toBeDefined();
     });
 
-    test('Create Order', async () => {
+    it('Create Order', async () => {
         while (!order) {
-            try {
-                // :snippet-start: walletQuickstartCreateOrder
-                order = Order.create({
-                    metadata: {
-                        from: customerDid.uri,         // Customer's DID
-                        to: pfiDid,                    // PFI's DID
-                        exchangeId: exchangeId,        // Exchange ID from the Quote
-                        protocol: "1.0"                // Version of tbDEX protocol you're using
-                    }
-                });
-                // :snippet-end:
-
-                expect(order).toBeDefined();
-            } catch (e) {
-                if (e.statusCode === 404) {
-                    //race condition bug
+            // :snippet-start: walletQuickstartCreateOrder
+            order = Order.create({
+                metadata: {
+                    from: customerDid.uri,         // Customer's DID
+                    to: pfiDid,                    // PFI's DID
+                    exchangeId: exchangeId,        // Exchange ID from the Quote
+                    protocol: "1.0"                // Version of tbDEX protocol you're using
                 }
-                else throw e;
-            }
+            });
+            // :snippet-end:
+
+            expect(order).toBeDefined();
         }
     });
         
-    test('Sign and Submit Order', async () => {
+    it('Sign and Submit Order', async () => {
         expect(async () => {
-            try{
-                // :snippet-start: walletQuickstartSubmitOrder
-                await order.sign(customerDid);
-                await TbdexHttpClient.submitOrder(order);
-                // :snippet-end:
-            }catch(e){
-                if (e.statusCode === 404) {
-                    //race condition bug
-                }
-                else throw e;
-            }
-
+            // :snippet-start: walletQuickstartSubmitOrder
+            await order.sign(customerDid);
+            await TbdexHttpClient.submitOrder(order);
+            // :snippet-end:
         }).not.toThrow();
     });
 
-    test('Process Close', async () => {
-        try {
-            // :snippet-start: walletQuickstartProcessClose
-            var close;
-            while (!close) {
-                const exchange = await TbdexHttpClient.getExchange({
-                    pfiDid: pfiDid,
-                    did: customerDid,
-                    exchangeId: exchangeId
-                })
+    it('Process Close', async () => {
+        // :snippet-start: walletQuickstartProcessClose
+        var close;
+        while (!close) {
+            const exchange = await TbdexHttpClient.getExchange({
+                pfiDid: pfiDid,
+                did: customerDid,
+                exchangeId: exchangeId
+            })
 
-                for (const message of exchange) {
-                    if (message instanceof Close) {
-                        close = message
-                    }
+            for (const message of exchange) {
+                if (message instanceof Close) {
+                    close = message
                 }
             }
-            const reasonForClose = close.data.reason;
-            const closeSuccess = close.data.success;
-            // :snippet-end:
+        }
+        const reasonForClose = close.data.reason;
+        const closeSuccess = close.data.success;
+        // :snippet-end:
 
-            expect(closeSuccess).toBe(true);
-            expect(reasonForClose).toBeDefined(); 
-        }catch (e) {
-            if (e.statusCode === 404) {
-                //race condition bug
-            }
-            else throw e;
-        }    
+        expect(closeSuccess).toBe(true);
+        expect(reasonForClose).toBeDefined();   
     });
 });
