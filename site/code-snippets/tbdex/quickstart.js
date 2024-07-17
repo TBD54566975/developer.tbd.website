@@ -153,7 +153,7 @@ async function sendRfq() {
         await context.rfq.sign(context.customerDid);
         await TbdexHttpClient.createExchange(context.rfq);
     } catch (e) {
-        // handle failed verification
+        throw e;
     }
 }
 
@@ -182,8 +182,10 @@ async function processQuote() {
                 }
             }
         } catch (e) {
-            // do nothing to let the loop keep running in the event
-            // the exchange hasn't populated yet
+            if (e.statusCode === 404 || e.statusCode === 401) {
+                //waiting on RFQ to be processed
+            }
+            else throw e;
         }
     }
 }
@@ -220,8 +222,10 @@ async function processClose() {
                 }
             }
         } catch (e) {
-            // do nothing to let the loop keep running in the event
-            // the exchange hasn't populated yet
+            if (e.statusCode === 404 || e.statusCode === 401) {
+                //waiting on RFQ to be processed
+            }
+            else throw e;
         }
     }
 

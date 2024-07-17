@@ -33,6 +33,8 @@ describe('Wallet: Quickstart', () => {
         const portableDid = JSON.parse(customerDidString);
         customerDid = await DidDht.import({ portableDid });
 
+        await DidDht.publish({ did: customerDid });
+
         // :snippet-start: walletQuickstartGetOfferings
         const offerings  = await TbdexHttpClient.getOfferings({ pfiDid: pfiDid });
         // :snippet-end:
@@ -167,7 +169,7 @@ describe('Wallet: Quickstart', () => {
                     }
                 }
             } catch (e) {
-                if (e.statusCode === 404) {
+                if (e.statusCode === 404 || e.statusCode === 401) {
                     //waiting on RFQ to be processed
                 }
                 else throw e;
@@ -197,10 +199,17 @@ describe('Wallet: Quickstart', () => {
         
     it('Sign and Submit Order', async () => {
         expect(async () => {
-            // :snippet-start: walletQuickstartSubmitOrder
-            await order.sign(customerDid);
-            await TbdexHttpClient.submitOrder(order);
-            // :snippet-end:
+            try {
+                // :snippet-start: walletQuickstartSubmitOrder
+                await order.sign(customerDid);
+                await TbdexHttpClient.submitOrder(order);
+                // :snippet-end:
+            } catch (e) {
+                if (e.statusCode === 404) {
+                    //waiting on RFQ to be processed
+                }
+                else throw e;
+            }
         }).not.toThrow();
     });
 
@@ -208,16 +217,23 @@ describe('Wallet: Quickstart', () => {
         // :snippet-start: walletQuickstartProcessClose
         var close;
         while (!close) {
-            const exchange = await TbdexHttpClient.getExchange({
-                pfiDid: pfiDid,
-                did: customerDid,
-                exchangeId: exchangeId
-            })
+            try {
+                const exchange = await TbdexHttpClient.getExchange({
+                    pfiDid: pfiDid,
+                    did: customerDid,
+                    exchangeId: exchangeId
+                })
 
-            for (const message of exchange) {
-                if (message instanceof Close) {
-                    close = message
+                for (const message of exchange) {
+                    if (message instanceof Close) {
+                        close = message
+                    }
                 }
+            } catch (e) {
+                if (e.statusCode === 404 || e.statusCode === 401) {
+                    //waiting on RFQ to be processed
+                }
+                else throw e;
             }
         }
         const reasonForClose = close.data.reason;

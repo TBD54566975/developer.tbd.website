@@ -65,7 +65,7 @@ Once you have all of the PFI's offerings, you can filter it based on a variety o
 
 #### Obtain Verifiable Credentials
 
-The Offering we selected has a `requiredClaims` section that specifies [Verifiable Credentials](/docs/web5/learn/verifiable-credentials) (VCs) Alice needs  in order to be eligible for the Offering. This PFI requires Alice to have a `SanctionsCredential`, as outlined in the `requiredClaims` section of the Offering:
+The Offering we selected has a `requiredClaims` section that specifies [Verifiable Credentials](/docs/web5/learn/verifiable-credentials) (VCs) Alice needs in order to be eligible for the Offering. This PFI requires Alice to have a `SanctionsCredential`, as outlined in the `requiredClaims` section of the Offering. Additionally, that credential must be issued by a specific issuer as described by the issuer's DID below:
 
 ```js
 {
@@ -83,6 +83,13 @@ The Offering we selected has a `requiredClaims` section that specifies [Verifiab
                 //highlight-start
                 'const': 'SanctionsCredential'
                 //highlight-end
+              }
+            },
+            {
+              'path': [ 0: '$.issuer' ],
+              'filter': {
+                'type': 'string'
+                'const': 'did:dht:hge69zswp474myt94d149pftycsgk6yr9tufrh7new48re76b5ny'
               }
             }
           ]
