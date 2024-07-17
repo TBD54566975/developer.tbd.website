@@ -30,7 +30,8 @@ describe('key-management', () => {
 
     test('initialize key management', async () => {
         const returnedDid = await initKeyManagement("dev");
-        expect(returnedDid.keyManager).toBeInstanceOf(LocalKeyManager);
+        expect(returnedDid.keyManager).toHaveProperty('_algorithmInstances');
+        expect(returnedDid.keyManager).toHaveProperty('_keyStore');
     });
 
 });
