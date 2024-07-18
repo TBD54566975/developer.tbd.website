@@ -1,0 +1,41 @@
+---
+sidebar_position: 10
+---
+
+import CodeSnippet from '@site/src/components/CodeSnippet';
+
+# Upgrade to PWA
+
+Upgrading your app to a Progressive Web App(PWA) enables offline functionality, use of Decentralized Resource Locators (DRLs), and offline synchronization of Decentralized Web Nodes (DWNs). For a practical implementation, refer to the [DWA starter app](https://github.com/TBD54566975/dwa-starter).
+
+## Import packages
+
+```js
+import { activatePolyfills } from '@web5/api';
+```
+
+## Set up a service worker
+Configure a service worker to activate Web5 polyfills while managing caching and data synchronization tasks.
+
+```js
+// Activate Web5 Service Worker Polyfills
+activatePolyfills({
+  onCacheCheck() {
+    return {
+      ttl: 30000,
+    };
+  },
+});
+```
+
+## Fetch data via DRLs
+
+Use Decentralized Resource Locators (DRLs) to fetch data directly from the decentralized network.
+
+```js
+export const drlFetchRecord = async (did, recordId) => {
+  const dwebUrl = `https://dweb/${did}/read/records/${recordId}`;
+  const response = await fetch(dwebUrl);
+  return response;
+};
+```
