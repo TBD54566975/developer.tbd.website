@@ -14,14 +14,15 @@ This guide will walk you through upgrading your PWA to a DWA. For a practical im
 
 ## Import packages
 
-The following package import will manage the installation of a service worker for handling decentralized resources and enable the resolution of Decentralized Resource Locators (DRLs), which allow your app to fetch data from decentralized networks:
+Import the necessary package to handle decentralized resources and enable Decentralized Resource Locators (DRLs):
 
 ```js
 import { activatePolyfills } from '@web5/api';
 ```
 
 ## Set up a service worker
-Service workers enable offline functionality and background processing for PWAs. In this context, the service worker will act as a proxy between the traditional web and the decentralized web.
+[Service workers](https://web.dev/learn/pwa/service-workers) enable offline functionality and background processing.
+
 The following snippet configures a service worker to activate polyfills, manage caching, and handle data synchronization tasks in the background:
 
 ```js
@@ -37,6 +38,10 @@ activatePolyfills({
 
 ## Fetch data via DRLs
 
-Decentralized Resource Locators (DRLs) enable direct access to data stored in Decentralized Web Nodes (DWNs). After writing records to a DWN, you can use DRLs, prefixed with `dweb://`, to fetch this data. DRLs return JSON data that can be used throughout your web app, from populating UI elements to setting attributes on HTML tags.
+Decentralized Resource Locators (DRLs) enable direct access to data stored in Decentralized Web Nodes (DWNs). After writing records to a DWN, you can use DRLs (prefixed with `dweb://`) to fetch data. 
+
+Here's how to fetch a record from a DWN using a DRL:
 
 <CodeSnippet snippetName="drlFetchReadRecord"/>
+
+DRLs return JSON data that can be used throughout your web app, from populating UI elements to setting attributes on HTML tags.
