@@ -230,6 +230,26 @@ Below are examples of how to use `Web5.connect()` with or without additional opt
 ##### Connect with no parameters
 <CodeSnippet functionName="createDidAutomatically" />
 
+##### Connect to DIF/Google Community Node
+
+Connect to the community node instance hosted by Google and DIF:
+
+```js
+const {did, web5} = await Web5.connect({
+  didCreateOptions: {
+    dwnEndpoints: ['https://dwn.gcda.xyz'], // User provides google's community DWN instance
+  },
+  registration: {
+    onSuccess: () => {
+      // Registration succeeded, set a local storage value to indicate the user is registered and registration does not need to occur again.
+    },
+    onFailure: (error) => {
+      // Registration failed, display an error message to the user, and pass in the registration object again to retry next time the user connects.
+    },
+  },
+})
+```
+
 ##### Connect with an existing Decentralized Web Node endpoint
 <CodeSnippet functionName="connectWithDWNEndpoint" />
 
