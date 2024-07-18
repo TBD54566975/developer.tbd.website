@@ -38,6 +38,11 @@ describe('web5-js-api-index', () => {
     expect(returnedDid).toBe(existingDid);
   });
 
+  test('connect to community node', async () => {
+    const testDid = await connectToCommunityNode();
+    expect(testDid).toBeTypeOf('string');
+  });
+
   test('connect with sync configuration', async () => {
     const did = await connectWithSyncConfig();
     expect(did).toBeTypeOf('string');

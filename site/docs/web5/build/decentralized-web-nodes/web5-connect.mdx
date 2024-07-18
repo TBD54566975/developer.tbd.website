@@ -224,11 +224,51 @@ The outputs of this method invocation will be used throughout the other API meth
 
 <br />
 
+## Create and connect to a DWA
+To create a DWA, you need to activate polyfills. Use this [DWA starter app](https://github.com/TBD54566975/dwa-starter) as an example:
+
+```js
+export function activatePolyfills(options: any = {}){
+  if (options.serviceWorker !== false) {
+    installWorker(options);
+  }
+  if (typeof window !== 'undefined' && typeof window.document !== 'undefined') {
+    if (options.injectStyles !== false) {
+      if (document.readyState !== 'loading') injectElements();
+      else {
+        document.addEventListener('DOMContentLoaded', injectElements, { once: true });
+      }
+    }
+    if (options.links !== false) addLinkFeatures();
+  }
+}
+```
+
 ## Examples
 Below are examples of how to use `Web5.connect()` with or without additional option parameters.
 
 ##### Connect with no parameters
 <CodeSnippet functionName="createDidAutomatically" />
+
+##### Connect to DIF/Google Community Node
+
+Connect to the community node instance hosted by Google and DIF:
+
+```js
+const {did, web5} = await Web5.connect({
+  didCreateOptions: {
+    dwnEndpoints: ['https://dwn.gcda.xyz'], // User provides google's community DWN instance
+  },
+  registration: {
+    onSuccess: () => {
+      // Registration succeeded, set a local storage value to indicate the user is registered and registration does not need to occur again.
+    },
+    onFailure: (error) => {
+      // Registration failed, display an error message to the user, and pass in the registration object again to retry next time the user connects.
+    },
+  },
+})
+```
 
 ##### Connect with an existing Decentralized Web Node endpoint
 <CodeSnippet functionName="connectWithDWNEndpoint" />
