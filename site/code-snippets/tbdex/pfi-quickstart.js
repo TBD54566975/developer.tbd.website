@@ -1,4 +1,4 @@
-import { Quote, Offering, OrderStatus, Close } from '@tbdex/http-server';
+import { Quote, Offering, OrderStatus, Close } from '@tbdex/http-client';
 import { DidDht } from '@web5/dids';
 
 let context = {};
