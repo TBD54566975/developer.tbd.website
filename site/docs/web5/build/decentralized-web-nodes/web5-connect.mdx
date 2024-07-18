@@ -224,11 +224,41 @@ The outputs of this method invocation will be used throughout the other API meth
 
 <br />
 
+## Upgrade your application to a PWA
+Upgrade your app to a PWA and use Web5 activated polyfills to add Decentralized Resource Locators(DRLs) and manage DWN offline syncs. See [DWA starter app](https://github.com/TBD54566975/dwa-starter)
+```js
+// Activate Web5 Service Worker Polyfills 
+activatePolyfills({ 
+  onCacheCheck() { return { ttl: 30000, }; 
+  },
+});
+```
+
 ## Examples
 Below are examples of how to use `Web5.connect()` with or without additional option parameters.
 
 ##### Connect with no parameters
 <CodeSnippet functionName="createDidAutomatically" />
+
+##### Connect to DIF/Google Community Node
+
+Connect to the community node instance hosted by Google and DIF:
+
+```js
+const {did, web5} = await Web5.connect({
+  didCreateOptions: {
+    dwnEndpoints: ['https://dwn.gcda.xyz'], // User provides google's community DWN instance
+  },
+  registration: {
+    onSuccess: () => {
+      // Registration succeeded, set a local storage value to indicate the user is registered and registration does not need to occur again.
+    },
+    onFailure: (error) => {
+      // Registration failed, display an error message to the user, and pass in the registration object again to retry next time the user connects.
+    },
+  },
+})
+```
 
 ##### Connect with an existing Decentralized Web Node endpoint
 <CodeSnippet functionName="connectWithDWNEndpoint" />

@@ -55,6 +55,7 @@ afterAll(async () => {
       agent.dwn._dwn.messageStore.index.db,
       agent.dwn._dwn.dataStore.blockstore.db,
       agent.dwn._dwn.eventLog.index.db,
+      agent.dwn._dwn.resumableTaskStore.db
     ];
 
     for (const db of dbs) {
