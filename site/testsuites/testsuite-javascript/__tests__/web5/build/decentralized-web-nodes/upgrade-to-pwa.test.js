@@ -13,15 +13,14 @@ describe('Testing upgrade to PWA', () => {
   });
 
   beforeEach(() => {
-    originalFetch = global.fetch; // Save the original fetch function
-    // Mock @web5/api
+    originalFetch = global.fetch; 
+
     vi.mock('@web5/api', () => ({
       Web5: {
         connect: vi.fn(() => Promise.resolve({ web5, did }))
       }
     }));
 
-    // Mock fetch globally in your test environment
     global.fetch = vi.fn((url) => {
       if (url === `https://dweb/${did}/read/records/${recordId}`) {
         return Promise.resolve({
@@ -35,8 +34,8 @@ describe('Testing upgrade to PWA', () => {
   });
 
   afterEach(() => {
-    vi.resetAllMocks(); // Reset mocks to their original state
-    global.fetch = originalFetch; // Restore the original fetch function
+    vi.resetAllMocks(); 
+    global.fetch = originalFetch;
   });
 
   test('drl fetches a read record', async () => {
