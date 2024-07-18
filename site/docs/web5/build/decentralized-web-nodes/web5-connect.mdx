@@ -224,6 +224,26 @@ The outputs of this method invocation will be used throughout the other API meth
 
 <br />
 
+## Create and connect to a DWA
+To create a DWA, you need to activate polyfills. Use this [DWA starter app](https://github.com/TBD54566975/dwa-starter) as an example:
+
+```js
+export function activatePolyfills(options: any = {}){
+  if (options.serviceWorker !== false) {
+    installWorker(options);
+  }
+  if (typeof window !== 'undefined' && typeof window.document !== 'undefined') {
+    if (options.injectStyles !== false) {
+      if (document.readyState !== 'loading') injectElements();
+      else {
+        document.addEventListener('DOMContentLoaded', injectElements, { once: true });
+      }
+    }
+    if (options.links !== false) addLinkFeatures();
+  }
+}
+```
+
 ## Examples
 Below are examples of how to use `Web5.connect()` with or without additional option parameters.
 
