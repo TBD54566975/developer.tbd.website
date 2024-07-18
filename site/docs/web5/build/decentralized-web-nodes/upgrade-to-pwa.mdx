@@ -32,10 +32,4 @@ activatePolyfills({
 
 Use Decentralized Resource Locators (DRLs) to fetch data directly from the decentralized network.
 
-```js
-export const drlFetchRecord = async (did, recordId) => {
-  const dwebUrl = `https://dweb/${did}/read/records/${recordId}`;
-  const response = await fetch(dwebUrl);
-  return response;
-};
-```
+<CodeSnippet snippetName="drlFetchReadRecord"/>
