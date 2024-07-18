@@ -3,6 +3,7 @@ import {
   connectWithDWNEndpoint,
   connectWithAgentAndConnectedDid,
   connectWithSyncConfig,
+  connectToCommunityNode,
 } from '../../../../../../code-snippets/api/web5-js';
 import { setUpWeb5 } from '../../../setup-web5';
 
