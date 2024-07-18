@@ -10,7 +10,7 @@ export async function quickstartDidCreate() {
 
     const portableDid = JSON.parse(customerDidString);
     context.customerDid = await DidDht.import({ portableDid });
-    context.pfiDid = 'did:dht:ccqamm6qgbe763ya8f3bo5mkrtxx1pz7i789zeqq4bmoae4qnixy';
+    context.pfiDid = 'did:dht:rj9xmgqcqs1rysongf833wo5g1dtabbhnimcorczcyurke4fmizo';
     return context.customerDid.uri;
 }
 
@@ -80,7 +80,7 @@ async function getOfferings() {
 }
 
 async function applyForCredentials() {
-    let issuerDid = '{"uri":"did:dht:hge69zswp474myt94d149pftycsgk6yr9tufrh7new48re76b5ny","document":{"id":"did:dht:hge69zswp474myt94d149pftycsgk6yr9tufrh7new48re76b5ny","verificationMethod":[{"id":"did:dht:hge69zswp474myt94d149pftycsgk6yr9tufrh7new48re76b5ny#0","type":"JsonWebKey","controller":"did:dht:hge69zswp474myt94d149pftycsgk6yr9tufrh7new48re76b5ny","publicKeyJwk":{"crv":"Ed25519","kty":"OKP","x":"4ZHv3tRuu6WCP9Dlr7SxAyxleAT8ZlJzokU0ciO-DsQ","kid":"YovQ1tV4TzP3vEK56W1ALWw4yaakW2YxnTWjRkoisD0","alg":"EdDSA"}}],"authentication":["did:dht:hge69zswp474myt94d149pftycsgk6yr9tufrh7new48re76b5ny#0"],"assertionMethod":["did:dht:hge69zswp474myt94d149pftycsgk6yr9tufrh7new48re76b5ny#0"],"capabilityDelegation":["did:dht:hge69zswp474myt94d149pftycsgk6yr9tufrh7new48re76b5ny#0"],"capabilityInvocation":["did:dht:hge69zswp474myt94d149pftycsgk6yr9tufrh7new48re76b5ny#0"]},"metadata":{"published":true,"versionId":"1720053903"},"privateKeys":[{"crv":"Ed25519","d":"WvJD_vX0s5qqHkW2D4t3RUABg7a_3usAMKet1QEoKj0","kty":"OKP","x":"4ZHv3tRuu6WCP9Dlr7SxAyxleAT8ZlJzokU0ciO-DsQ","kid":"YovQ1tV4TzP3vEK56W1ALWw4yaakW2YxnTWjRkoisD0","alg":"EdDSA"}]}'
+    let issuerDid = '{"uri":"did:dht:rj9xmgqcqs1rysongf833wo5g1dtabbhnimcorczcyurke4fmizo","document":{"id":"did:dht:rj9xmgqcqs1rysongf833wo5g1dtabbhnimcorczcyurke4fmizo","verificationMethod":[{"id":"did:dht:rj9xmgqcqs1rysongf833wo5g1dtabbhnimcorczcyurke4fmizo#0","type":"JsonWebKey","controller":"did:dht:rj9xmgqcqs1rysongf833wo5g1dtabbhnimcorczcyurke4fmizo","publicKeyJwk":{"crv":"Ed25519","kty":"OKP","x":"In71mcx1pEBaAjFPnNIbNIccBDwVVsgRl2AmRSNFXW8","kid":"yBmVo8U4VzCFqhj0a88kiZPOU_gpMxEmHUy-tdvKqHM","alg":"EdDSA"}}],"authentication":["did:dht:rj9xmgqcqs1rysongf833wo5g1dtabbhnimcorczcyurke4fmizo#0"],"assertionMethod":["did:dht:rj9xmgqcqs1rysongf833wo5g1dtabbhnimcorczcyurke4fmizo#0"],"capabilityDelegation":["did:dht:rj9xmgqcqs1rysongf833wo5g1dtabbhnimcorczcyurke4fmizo#0"],"capabilityInvocation":["did:dht:rj9xmgqcqs1rysongf833wo5g1dtabbhnimcorczcyurke4fmizo#0"],"service":[{"id":"did:dht:rj9xmgqcqs1rysongf833wo5g1dtabbhnimcorczcyurke4fmizo#pfi","type":"PFI","serviceEndpoint":"https://pfiexemplar.tbddev.org"}]},"metadata":{"published":true,"versionId":"1721323484"},"privateKeys":[{"crv":"Ed25519","d":"rTGqrDYW2rQUGsnPAtpPO0ZVe585WDbbtkufheCAloU","kty":"OKP","x":"In71mcx1pEBaAjFPnNIbNIccBDwVVsgRl2AmRSNFXW8","kid":"yBmVo8U4VzCFqhj0a88kiZPOU_gpMxEmHUy-tdvKqHM","alg":"EdDSA"}]}'
     const portableDid = JSON.parse(issuerDid);
     const issuer = await DidDht.import({ portableDid });
 
