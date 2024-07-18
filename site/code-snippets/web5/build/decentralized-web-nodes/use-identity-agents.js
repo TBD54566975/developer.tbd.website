@@ -1,6 +1,4 @@
 import { IdentityAgent } from '@web5/identity-agent';
-import { getTechPreviewDwnEndpoints } from '@web5/api';
-import { DidIon } from '@web5/dids';
 
 
 export async function createIdentityAgent() {
@@ -15,7 +13,7 @@ export async function authenticateIdentityAgent(agent) {
 
 export async function getDwnEndpoints() {
 // selects DWN endpoints that are provided by default during the Web5 tech preview period
-const serviceEndpointNodes = await getTechPreviewDwnEndpoints();
+const serviceEndpointNodes = ['https://dwn.tbddev.org/beta']
 
 // generates key pairs used for authorization and encryption when interfacing with DWNs
 const didOptions = {
