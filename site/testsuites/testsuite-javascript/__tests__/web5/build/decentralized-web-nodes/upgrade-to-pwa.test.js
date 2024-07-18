@@ -39,10 +39,11 @@ describe('Testing upgrade to PWA', () => {
   });
 
   test('drl fetches a read record', async () => {
+    // :snippet-start: drlFetchReadRecord
     const dwebUrl = `https://dweb/${did}/read/records/${recordId}`;
     const response = await fetch(dwebUrl);
     const data = await response.json();
-
+    // :snippet-end:
     expect(response.ok).toBeTruthy();
     expect(response.status).toBe(200);
     expect(data).toEqual({ data: "Hello, World" });
