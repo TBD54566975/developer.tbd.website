@@ -1,4 +1,4 @@
-import { beforeAll, describe, it, expect, vi } from 'vitest';
+import { beforeAll, describe, test, expect, vi } from 'vitest';
 import { setUpWeb5 } from '../../../setup-web5';
 
 describe('Testing upgrade to PWA', () => {
