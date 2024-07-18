@@ -6,16 +6,23 @@ import CodeSnippet from '@site/src/components/CodeSnippet';
 
 # Upgrade to DWA
 
-A **Decentralized Web App (DWA)** is a Progressive Web App (PWA) that incorporates Web5 functionalities, providing offline capabilities, Decentralized Resource Locators (DRLs), and offline synchronization of Decentralized Web Nodes (DWNs). For a practical implementation, refer to the [DWA starter app](https://github.com/TBD54566975/dwa-starter).
+## What is a DWA?
+
+A [Decentralized Web App (DWA)](/blog/dwas-vs-pwas) is a Progressive Web App (PWA) that incorporates Web5 functionalities, providing offline capabilities and offline synchronization of [Decentralized Web Nodes (DWNs)](/docs/web5/learn/decentralized-web-nodes/). 
+
+This guide will walk you through upgrading your PWA to a DWA. For a practical implementation, refer to the [DWA starter app](https://github.com/TBD54566975/dwa-starter).
 
 ## Import packages
+
+The following package import will manage the installation of a service worker for handling decentralized resources and enable the resolution of Decentralized Resource Locators (DRLs), which allow your app to fetch data from decentralized networks:
 
 ```js
 import { activatePolyfills } from '@web5/api';
 ```
 
 ## Set up a service worker
-Configure a service worker to activate Web5 polyfills while managing caching and data synchronization tasks.
+Service workers enable offline functionality and background processing for PWAs. In this context, the service worker will act as a proxy between the traditional web and the decentralized web.
+The following snippet configures a service worker to activate polyfills, manage caching, and handle data synchronization tasks in the background:
 
 ```js
 // Activate Web5 Service Worker Polyfills
@@ -30,6 +37,6 @@ activatePolyfills({
 
 ## Fetch data via DRLs
 
-After you [write records](/docs/web5/build/decentralized-web-nodes/write-to-dwn) to a DWN, you can Decentralized Resource Locators (DRLs) to fetch data directly from the decentralized network.
+Decentralized Resource Locators (DRLs) enable direct access to data stored in Decentralized Web Nodes (DWNs). After writing records to a DWN, you can use DRLs, prefixed with `dweb://`, to fetch this data. DRLs return JSON data that can be used throughout your web app, from populating UI elements to setting attributes on HTML tags.
 
 <CodeSnippet snippetName="drlFetchReadRecord"/>
