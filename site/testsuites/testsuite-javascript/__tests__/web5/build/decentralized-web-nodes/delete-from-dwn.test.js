@@ -17,8 +17,18 @@ describe('delete-from-dwn', () => {
 
   test('deleteFromLocalDWN deletes a record', async () => {
     const record = await createLocalRecord(web5);
-    const result = await deleteFromLocalDWN(web5, record.id);
-    expect(result.status.code).toBe(202);
+    // :snippet-start: deleteRecordFromLocalDwn
+    const { status: deleteStatus } = await record.delete();
+    // :snippet-end:
+    const readResult = await web5.dwn.records.read({
+      message: {
+        filter: {
+          recordId: record.id
+        }
+      }
+    });
+    expect(deleteStatus.code).toBe(202);
+    expect(readResult.status.code).toBe(404);
   });
 
   test('pruneRecords deletes parents record and its children', async () => {
