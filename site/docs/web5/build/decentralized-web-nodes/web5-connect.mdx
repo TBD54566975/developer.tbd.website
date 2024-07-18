@@ -224,24 +224,14 @@ The outputs of this method invocation will be used throughout the other API meth
 
 <br />
 
-## Create and connect to a DWA
-To create a DWA, you need to activate polyfills. Use this [DWA starter app](https://github.com/TBD54566975/dwa-starter) as an example:
-
+## Upgrade your application to a PWA
+Upgrade your app to a PWA and use Web5 activated polyfills to add Decentralized Resource Locators(DRLs) and manage DWN offline syncs. See [DWA starter app](https://github.com/TBD54566975/dwa-starter)
 ```js
-export function activatePolyfills(options: any = {}){
-  if (options.serviceWorker !== false) {
-    installWorker(options);
-  }
-  if (typeof window !== 'undefined' && typeof window.document !== 'undefined') {
-    if (options.injectStyles !== false) {
-      if (document.readyState !== 'loading') injectElements();
-      else {
-        document.addEventListener('DOMContentLoaded', injectElements, { once: true });
-      }
-    }
-    if (options.links !== false) addLinkFeatures();
-  }
-}
+// Activate Web5 Service Worker Polyfills 
+activatePolyfills({ 
+  onCacheCheck() { return { ttl: 30000, }; 
+  },
+});
 ```
 
 ## Examples
