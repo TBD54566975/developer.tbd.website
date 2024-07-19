@@ -128,6 +128,43 @@ h2 {
   font-family: 'SpaceGrotesk';
 }
 
+.menu__list .menu__list {
+  padding-left: 0;
+
+}
+
+.theme-doc-sidebar-item-link-level-1 {
+  padding-left: 0;
+}
+
+.theme-doc-sidebar-item-link-level-1 a {
+  padding-left: 1.50rem;
+}
+
+.theme-doc-sidebar-item-link-level-2 {
+  padding-left: 0;
+}
+
+.theme-doc-sidebar-item-link-level-2 a {
+  padding-left: 1.50rem;
+}
+
+.theme-doc-sidebar-item-link-level-3 {
+  padding-left: 0;
+}
+
+.theme-doc-sidebar-item-link-level-3 a {
+  padding-left: 1.50rem;
+}
+
+.theme-doc-sidebar-item-link-level-4 {
+  padding-left: 0;
+}
+
+.theme-doc-sidebar-item-link-level-4 a {
+  padding-left: 1.50rem;
+}
+
 .menu__list-item {
   position: relative;
 }
