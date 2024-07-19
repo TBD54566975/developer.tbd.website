@@ -182,7 +182,7 @@ Now that you have an actual `Offering` available in your database, you’ll need
 
 <CodeSnippet snippetName="pfiOverviewReadOfferingsJs" title="offeringsApiProvider.ts"/>
 
-<PfiQuickstartCodeRunner executeCodeName="executeGetOfferings" stepIndex={3} customPlaceholder={"Ping the /offerings API Endpoint"}/>
+<PfiQuickstartCodeRunner executeCodeName="executeGetOfferings" stepIndex={3} customPlaceholder={"Ping the /offerings API Endpoint"} viewJsonObj={true} collapseLevel={1}/>
 
 ## Support Exchanges APIs
 
@@ -190,7 +190,7 @@ With a DID and OfferingsApi, our PFI is now ready to receive Requests for Quote 
 
 By implementing these methods, you make it so that `HTTP` requests to your PFI such as queries to the `/exchanges/{exchangeId}` route that returns details of a particular exchange for authenticated parties, automatically now work. To do this, we’ll go back to our `main.ts` file and add logic to process each message we receive from a Wallet, as well as how we’ll respond.
 
-<PfiQuickstartCodeRunner executeCodeName="executeGetExchanges" stepIndex={4} customPlaceholder={"Fetch a sample Exchange"}/>
+<PfiQuickstartCodeRunner executeCodeName="executeGetExchanges" stepIndex={4} customPlaceholder={"Fetch a sample Exchange"} viewJsonObj={true} collapseLevel={1}/>
 
 ## Processing tbDEX Messages
 
@@ -202,14 +202,14 @@ Provided that you are able to [verify that the user has submitted the Verifiable
 
 <CodeSnippet snippetName="pfiCreateQuoteJs" title="exchangeApiProvider.ts"/>
 
-<PfiQuickstartCodeRunner executeCodeName="executeGetQuote" stepIndex={5} customPlaceholder={"See the Quote"}/>
+<PfiQuickstartCodeRunner executeCodeName="executeGetQuote" stepIndex={5} customPlaceholder={"See the Quote"} viewJsonObj={true} collapseLevel={1}/>
 
 ### Receiving Orders and Returning OrderStatus
 
 If a customer decides to accept your `Quote` and place an `Order`, you’ll then be required to [process the order](/docs/tbdex/pfi/processing-orders), which will likely involve [accessing private data](/docs/tbdex/pfi/processing-orders#accessing-hashed-data) to actually fulfill it. Once an order has been placed and fulfillment begins, you can keep your customer up to date by sending them `OrderStatus` messages. There are no restrictions on the contents or frequency of these updates, however it is a best practice to send one when a customer initially places their order:
 
 <CodeSnippet snippetName="pfiOrderStatusJs" title="exchangeApiProvider.ts"/>
-<PfiQuickstartCodeRunner executeCodeName="executeGetOrderStatus" stepIndex={6} customPlaceholder={"See the OrderStatus"}/>
+<PfiQuickstartCodeRunner executeCodeName="executeGetOrderStatus" stepIndex={6} customPlaceholder={"See the OrderStatus"} viewJsonObj={true} collapseLevel={1}/>
 
 :::note
  Customers have the change to opt-in to push notifications when they initiate an exchange by specifying a <code>replyTo</code> field. If they do not do so, they’ll be required to poll your <code>ExchangesApi</code> to receive <code>OrderStatus</code> and other updates.
@@ -220,7 +220,7 @@ If a customer decides to accept your `Quote` and place an `Order`, you’ll then
 When you have fulfilled an `Order` and there’s nothing left to do, you can close it out with a `Close` message. Additionally, you may receive a notification from the customer to close the exchange:
 
 <CodeSnippet snippetName="pfiCloseOrderJs" title="exchangeApiProvider.ts"/>
-<PfiQuickstartCodeRunner executeCodeName="executeGetClose" stepIndex={7} customPlaceholder={"See the Close Message"}/>
+<PfiQuickstartCodeRunner executeCodeName="executeGetClose" stepIndex={7} customPlaceholder={"See the Close Message"} viewJsonObj={true} collapseLevel={1}/>
 
 ## Next Steps with tbDEX
 

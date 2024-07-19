@@ -1,5 +1,6 @@
-import { Quote, Offering, OrderStatus, Close } from '@tbdex/http-client';
+import { Quote, Offering, OrderStatus, Close, Rfq } from '@tbdex/http-client';
 import { DidDht } from '@web5/dids';
+import { VerifiableCredential } from '@web5/credentials'
 
 let context = {};
 
@@ -16,6 +17,8 @@ export async function pfiQuickstartGetDid() {
 
     context.issuerDid = await DidDht.create();
     context.customerDid = "did:dht:h8e3yqnhgjwhtkjhxwhfy5mmkn4nebqxr8idguwrsxgef6ow8efo";
+
+    return context.pfiDid.uri;
 }
 
 export async function pfiQuickstartPingServer() {
@@ -109,7 +112,7 @@ export async function pfiQuickstartAddOffering() {
                       path: ['$.issuer'],
                       filter: {
                         type: 'string',
-                        const: context.issuerDid.trim()
+                        const: context.issuerDid.uri
                       }
                     }
                   ],
@@ -119,6 +122,8 @@ export async function pfiQuickstartAddOffering() {
           },
         },
       })
+
+    await context.offering.sign(context.issuerDid);
       
     return "HTTP 202:OK";
 } 
@@ -129,6 +134,49 @@ export async function pfiQuickstartGetOfferings() {
 
 export async function pfiQuickstartGetExchanges() {
 
+  const vc = await VerifiableCredential.create({
+    type    : 'SanctionCredential',
+    issuer  : context.issuerDid.uri,
+    subject : context.customerDid,
+    data    : {
+        'beep': 'boop'
+    }
+  });
+    
+  const vcJwt = await vc.sign({ did: context.issuerDid});
+
+  let rfq = Rfq.create({
+    metadata: {
+      to: context.pfiDid.uri, // PFI's DID
+      from: context.customerDid,              // Customer DID
+      protocol: '1.0'                     // Version of tbDEX protocol you're using
+    },
+    data: {
+      offeringId: context.offering.metadata.id,   // The ID of the selected offering
+      payin: {
+          kind: 'USD_LEDGER',                       // The method of payment
+          amount: '500.65',                         // The amount of the payin currency 
+          paymentDetails: {
+          cardNumber: '1234567890123456',
+          expiryDate: '05/25',
+          cardHolderName: 'Alice Doe',
+          cvv: '123'
+          }
+      },
+      payout: {
+          kind: 'MOMO_MPESA',                      // The method for receiving payout                         
+          paymentDetails: {
+              phoneNumber: '123-456-7890',                 // Details to execute payment
+              reason: "Payment for services rendered"
+          }
+      },
+      claims: vcJwt  // Array of signed VCs required by the PFI
+    }
+  });
+
+  await rfq.sign(context.pfiDid);
+
+  return [rfq];
 }
 
 export async function pfiQuickstartGetQuote() {
@@ -164,6 +212,8 @@ export async function pfiQuickstartGetQuote() {
         }
     }
     });
+
+    await quote.sign(context.pfiDid);
 
     return quote;
 }
