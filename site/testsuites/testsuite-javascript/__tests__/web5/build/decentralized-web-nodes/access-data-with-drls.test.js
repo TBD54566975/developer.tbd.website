@@ -8,7 +8,6 @@ describe('Testing upgrade to PWA', () => {
   let web5, did;
   let originalFetch;
   let recordId;
-  let imageUrl;
 
   beforeAll(async () => {
     await setUpWeb5();
@@ -54,7 +53,7 @@ describe('Testing upgrade to PWA', () => {
     // :snippet-start: drlFetchReadRecord
     const dwebUrl = `https://dweb/${did}/read/records/${recordId}`;
     const response = await fetch(dwebUrl);
-    imageUrl = URL.createObjectURL(await response.blob());
+    const imageUrl = URL.createObjectURL(await response.blob());
     // :snippet-end:
     expect(response.ok).toBeTruthy();
     expect(response.status).toBe(200);
@@ -62,6 +61,16 @@ describe('Testing upgrade to PWA', () => {
   });
 
   test('set image src to url', async () => {
+    const mockEvent = {
+      currentTarget: {
+        files: [new Blob(['fake image data'], { type: 'image/png' })],
+      },
+    };
+    const record = await uploadImage(mockEvent)
+    recordId = record.id;
+    const dwebUrl = `https://dweb/${did}/read/records/${recordId}`;
+    const response = await fetch(dwebUrl);
+    const imageUrl = URL.createObjectURL(await response.blob());
       return (
          `
           // :snippet-start: renderImageUrlTag
