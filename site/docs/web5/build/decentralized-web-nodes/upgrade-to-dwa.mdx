@@ -40,11 +40,15 @@ activatePolyfills({
 
 Decentralized Resource Locators (DRLs) enable direct read access to permussioned data stored in DWNs. To read records from a DWN,  After writing records to a DWN, you can use DRLs (prefixed with `https://dweb`) to fetch the data. 
 
-Here's how to fetch a record from a DWN using a DRL:
+Here's how to fetch an image record from a DWN using a DRL:
 
 <CodeSnippet snippetName="drlFetchReadRecord"/>
 
-DRLs return JSON data that can be used throughout your web app, from populating UI elements to setting attributes on HTML tags.
+## Display fetched data in app
+
+DRLs return data that can be used throughout your web app, from populating UI elements to setting attributes on HTML tags. 
+
+This example demonstrates directly setting a fetched image URL as the source attribute in an HTML `img` tag:
 
 <CodeSnippet snippetName="renderImageUrlTag"/>
 

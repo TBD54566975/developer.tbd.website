@@ -8,7 +8,6 @@ describe('Testing upgrade to PWA', () => {
   let web5, did;
   let originalFetch;
   let recordId;
-  let imageUrl;
 
   beforeAll(async () => {
     await setUpWeb5();
