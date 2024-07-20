@@ -16,13 +16,6 @@ import CodeSnippet from '@site/src/components/CodeSnippet';
 The Web5 JS SDK provides a simple interface to get started building Web5 applications quickly. It provides APIs to use [Decentralized Identifiers (DIDs)](/docs/web5/learn/decentralized-identifiers) and [Decentralized Web Nodes (DWNs)](/docs/web5/learn/decentralized-web-nodes) right away by initializing the SDK through `Web5.connect()`.
 <br />
 
-:::caution
-WEB5 JS SDK IS CURRENTLY IN TECH PREVIEW
-
-The SDK is currently still in Tech Preview and under active development. Additional functionality will be added in the lead up to version 1.0, and modifications will be made to address issues and community feedback.
-:::
-
-
 ## Install
 
 <Tabs>
@@ -224,13 +217,14 @@ The outputs of this method invocation will be used throughout the other API meth
 
 <br />
 
-## Upgrade your application to a PWA
-Upgrade your app to a PWA and use Web5 activated polyfills to add Decentralized Resource Locators(DRLs) and manage DWN offline syncs. See [DWA starter app](https://github.com/TBD54566975/dwa-starter)
-```js
-// Activate Web5 Service Worker Polyfills 
+## Activate Polyfills
+Activate Web5 service worker polyfills to add Decentralized Resource Locators(DRLs) and manage DWN offline syncs. See [DWA starter app](https://github.com/TBD54566975/dwa-starter) for more info.
+
+```js 
 activatePolyfills({ 
-  onCacheCheck() { return { ttl: 30000, }; 
-  },
+  onCacheCheck() { 
+    return { ttl: 30000 } 
+  }
 });
 ```
 
@@ -240,21 +234,28 @@ Below are examples of how to use `Web5.connect()` with or without additional opt
 ##### Connect with no parameters
 <CodeSnippet functionName="createDidAutomatically" />
 
-##### Connect to DIF/Google Community Node
+##### Connect to DIF Community Node
 
-Connect to the community node instance hosted by Google and DIF:
+Connect to the free [DIF community node instance](https://blog.identity.foundation/dwn-community-node/) hosted by Google Cloud:
 
 ```js
 const {did, web5} = await Web5.connect({
   didCreateOptions: {
-    dwnEndpoints: ['https://dwn.gcda.xyz'], // User provides google's community DWN instance
+    // Use community DWN instance hosted on Google Cloud
+    dwnEndpoints: ['https://dwn.gcda.xyz']
   },
   registration: {
     onSuccess: () => {
-      // Registration succeeded, set a local storage value to indicate the user is registered and registration does not need to occur again.
+      /*
+      Registration succeeded, set a local storage value to indicate the user 
+      is registered and registration does not need to occur again
+      */
     },
     onFailure: (error) => {
-      // Registration failed, display an error message to the user, and pass in the registration object again to retry next time the user connects.
+      /* 
+      Registration failed, display an error message to the user, and pass in 
+      the registration object again to retry next time the user connects
+      */
     },
   },
 })
