@@ -68,8 +68,8 @@ describe('Testing upgrade to PWA', () => {
     };
     const record = await uploadImage(mockEvent)
     recordId = record.id;
-    const dwebUrl = `https://dweb/${did}/read/records/${recordId}`;
-    const response = await fetch(dwebUrl);
+    const drl = `https://dweb/${did}/read/records/${recordId}`;
+    const response = await fetch(drl);
     const imageUrl = URL.createObjectURL(await response.blob());
       return (
          `
