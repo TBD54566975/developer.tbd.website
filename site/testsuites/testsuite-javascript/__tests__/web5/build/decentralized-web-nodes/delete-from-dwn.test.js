@@ -1,6 +1,4 @@
 import { test, beforeAll, expect, describe } from 'vitest';
-
-import { deleteFromLocalDWN } from '../../../../../../code-snippets/web5/build/decentralized-web-nodes/delete-from-dwn';
 import { createLocalRecord, sendLocalRecordToTarget } from '../../../../../../code-snippets/web5/build/decentralized-web-nodes/send';
 import { setUpWeb5 } from '../../../setup-web5';
 
