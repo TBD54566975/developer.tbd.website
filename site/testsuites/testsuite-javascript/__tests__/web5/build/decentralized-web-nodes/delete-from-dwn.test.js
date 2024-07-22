@@ -1,7 +1,5 @@
 import { test, beforeAll, expect, describe } from 'vitest';
-
-import { deleteFromLocalDWN } from '../../../../../../code-snippets/web5/build/decentralized-web-nodes/delete-from-dwn';
-import { createLocalRecord } from '../../../../../../code-snippets/web5/build/decentralized-web-nodes/send';
+import { createLocalRecord, sendLocalRecordToTarget } from '../../../../../../code-snippets/web5/build/decentralized-web-nodes/send';
 import { setUpWeb5 } from '../../../setup-web5';
 
 let web5;
@@ -15,10 +13,32 @@ describe('delete-from-dwn', () => {
     did = globalThis.did;
   });
 
-  test('deleteFromLocalDWN deletes a record', async () => {
+  test('deleteRecordFromLocalDwn deletes a record', async () => {
     const record = await createLocalRecord(web5);
-    const result = await deleteFromLocalDWN(web5, record.id);
-    expect(result.status.code).toBe(202);
+    // :snippet-start: deleteRecordFromLocalDwn
+    const { status: deleteStatus } = await record.delete();
+    // :snippet-end:
+    const readResult = await web5.dwn.records.read({
+      message: {
+        filter: {
+          recordId: record.id
+        }
+      }
+    });
+    expect(deleteStatus.code).toBe(202);
+    expect(readResult.status.code).toBe(404);
+  });
+
+  test('deleteRecordFromRemoteDwn deletes a remote record', async () => {
+    const record = await sendLocalRecordToTarget(web5, did);
+    // :snippet-start: deleteRecordFromRemoteDwn
+    const { status: deleteStatus } = await record.delete();
+    // send the delete request to the remote DWN
+    const { status: deleteSendStatus } = await record.send(did);
+    // :snippet-end:
+    expect(record.deleted).toBe(true);
+    expect(deleteStatus.code).toBe(202);
+    expect(deleteSendStatus.code).toEqual(202);
   });
 
   test('pruneRecords deletes parents record and its children', async () => {
@@ -66,13 +86,7 @@ describe('delete-from-dwn', () => {
     });
 
     // :snippet-start: pruneRecords
-    const { status: deleteStatus } = await web5.dwn.records.delete({
-      message: {
-        recordId: parentRecord.id,
-        //highlight-next-line
-        prune: true
-      }
-    });
+    const { status: deleteStatus } = await parentRecord.delete({ prune: true });
     // :snippet-end:
 
     const { records: childrenRecordsAfterDelete } = await web5.dwn.records.query({
