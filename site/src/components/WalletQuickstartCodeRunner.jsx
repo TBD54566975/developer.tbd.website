@@ -5,7 +5,7 @@ import 'react18-json-view/src/style.css';
 import { useQuickstartExecutionContext } from '@site/src/components/QuickstartExecutionContext';
 
 // Don't delete. Need this for now due to webpack / docusaurus config
-const importFunction = async (name) => (await import('../../code-snippets/tbdex/quickstart.js'))[name];
+const importFunction = async (name) => (await import('../../code-snippets/tbdex/wallet-quickstart.js'))[name];
 
 const executeFunctions = {
     executeDidCreate: () => importFunction('quickstartDidCreate'),

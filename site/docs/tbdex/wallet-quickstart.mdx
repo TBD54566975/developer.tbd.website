@@ -1,6 +1,6 @@
 ---
-sidebar_position: 1
-title: Wallet Quickstart
+sidebar_position: 2
+title: 'Quickstart: Wallet'
 hide_title: true
 hide_table_of_contents: false
 ---
@@ -57,7 +57,7 @@ All PFIs have [Offerings](/docs/tbdex/message-types#offerings) which are a menu 
 
 <CodeSnippet snippetName="walletQuickstartGetOfferings"/>
 
-<WalletQuickstartCodeRunner executeCodeName="executeGetOfferings" stepIndex={1} autoOpenDetails={false} customPlaceholder={"See the PFI's Offerings"} viewJsonObj={true} collapseLevel={1}/>
+<WalletQuickstartCodeRunner executeCodeName="executeGetOfferings" stepIndex={1} autoOpenDetails={false} customPlaceholder={"See the PFI's Offerings"} viewJsonObj={true} collapseLevel={2}/>
 
 Once you have all of the PFI's offerings, you can filter it based on a variety of factors, including the currency pair you're looking for. In this case, you're looking for an offering that exchanges `USD` for `KES`:
 
@@ -113,7 +113,7 @@ Now that you've found an offering that matches Alice's request, your app can req
 
 <CodeSnippet snippetName="walletQuickstartCreateRfq" />
 
-<WalletQuickstartCodeRunner executeCodeName="executeCreateRfq" stepIndex={3} customPlaceholder={"See the RFQ"} viewJsonObj={true} collapseLevel={1}/>
+<WalletQuickstartCodeRunner executeCodeName="executeCreateRfq" stepIndex={3} customPlaceholder={"See the RFQ"} viewJsonObj={true} collapseLevel={2}/>
 
 After creating an RFQ message, you can verify that it is properly constructed and its data satisfies the Offering's requirements.
 
@@ -123,7 +123,7 @@ Then finally, you'll send the RFQ to the PFI to initiate the transaction.
 
 <CodeSnippet snippetName="walletQuickstartSendRfq" />
 
-<WalletQuickstartCodeRunner executeCodeName="executeSendRfq" stepIndex={4} customPlaceholder={"Submit RFQ"} viewJsonObj={true} collapseLevel={1}/> 
+<WalletQuickstartCodeRunner executeCodeName="executeSendRfq" stepIndex={4} customPlaceholder={"Submit RFQ"} viewJsonObj={true} collapseLevel={2}/> 
 
 ## Process Quote
 
@@ -131,7 +131,7 @@ In response to your RFQ, the PFI will write a Quote message to the exchange if t
 
 <CodeSnippet snippetName="walletQuickstartProcessQuote" />
 
-<WalletQuickstartCodeRunner executeCodeName="executeProcessQuote" stepIndex={5} customPlaceholder={"View Quote"} viewJsonObj={true} collapseLevel={1}/> 
+<WalletQuickstartCodeRunner executeCodeName="executeProcessQuote" stepIndex={5} customPlaceholder={"View Quote"} viewJsonObj={true} collapseLevel={2}/> 
 
 ## Place Order
 
@@ -139,13 +139,13 @@ The Quote contains the exact exchange rate including any fees. Your app can pres
 
 <CodeSnippet snippetName="walletQuickstartCreateOrder" />
 
-<WalletQuickstartCodeRunner executeCodeName="executeCreateOrder" stepIndex={6} customPlaceholder={"Create Alice's Order"} viewJsonObj={true} collapseLevel={1}/> 
+<WalletQuickstartCodeRunner executeCodeName="executeCreateOrder" stepIndex={6} customPlaceholder={"Create Alice's Order"} viewJsonObj={true} collapseLevel={2}/> 
 
 Once you have an order message, you can sign it with Alice's DID and send it to the PFI to execute the transaction.
 
 <CodeSnippet snippetName="walletQuickstartSubmitOrder" />
 
-<WalletQuickstartCodeRunner executeCodeName="executeSendOrder" stepIndex={7} customPlaceholder={"Submit Order to PFI"} viewJsonObj={true} collapseLevel={1}/> 
+<WalletQuickstartCodeRunner executeCodeName="executeSendOrder" stepIndex={7} customPlaceholder={"Submit Order to PFI"} viewJsonObj={true} collapseLevel={2}/> 
 
 ## End Transaction
 
