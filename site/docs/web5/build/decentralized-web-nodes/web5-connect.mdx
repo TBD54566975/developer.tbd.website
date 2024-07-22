@@ -217,17 +217,6 @@ The outputs of this method invocation will be used throughout the other API meth
 
 <br />
 
-## Activate Polyfills
-Activate Web5 service worker polyfills to add Decentralized Resource Locators(DRLs) and manage DWN offline syncs. See [DWA starter app](https://github.com/TBD54566975/dwa-starter) for more info.
-
-```js 
-activatePolyfills({ 
-  onCacheCheck() { 
-    return { ttl: 30000 } 
-  }
-});
-```
-
 ## Examples
 Below are examples of how to use `Web5.connect()` with or without additional option parameters.
 
