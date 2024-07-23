@@ -204,6 +204,7 @@ export default function DocSidebarItemCategory({
               }}
             />
           )}
+
           {label}
         </Link>
       </div>
