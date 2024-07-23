@@ -169,12 +169,23 @@ h2 {
   position: relative;
 }
 
-.menu__list-item .menu__link::after {
-  content: url('/img/chevron.svg');
+
+.menu__link--sublist-caret::after {
+  background: url('/img/chevron.svg');
   position: absolute;
   right: 10px;
   top: 50%;
   transform: translateY(-50%);
+
+}
+
+.menu__link--sublist-caret::before {
+  background: url('/img/chevron.svg');
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+
 }
 
 .menu__list-item .menu__link {
@@ -183,9 +194,9 @@ h2 {
   font-size: 18px;
 }
 
-.menu__list-item .menu__link::after {
+/* .menu__list-item .menu__link::after {
   content: url('/img/chevron.svg');
-}
+} */
 
 .menu__link--active {
   border-left: 3px solid black;
