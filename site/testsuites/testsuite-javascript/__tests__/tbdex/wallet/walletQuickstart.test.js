@@ -144,7 +144,7 @@ describe('Wallet: Quickstart', () => {
             }
         }
         // :snippet-end:
-console.log(quote);
+
         expect(quote).toBeDefined();
 
         let order; 
@@ -159,7 +159,7 @@ console.log(quote);
                 }
             });
             // :snippet-end:
-console.log(order);
+
             expect(order).toBeDefined();
         }
 
