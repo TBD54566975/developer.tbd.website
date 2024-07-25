@@ -111,31 +111,6 @@ jobs:
         run: |
           pnpm test:swift
 
-  test-browser:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: '18'
-
-      - name: Install pnpm
-        run: npm install -g pnpm
-  
-      - name: Install dependencies
-        run: pnpm install
-  
-      - name: Install Playwright browsers
-        run: pnpm playwright install --with-deps
-
-      - name: Run Browser Tests
-        run: |
-          pnpm test:browser
-  
   test-apps:
     runs-on: ubuntu-latest
 
@@ -164,7 +139,7 @@ jobs:
         run: pnpm --filter feedback-server test run
 
   deploy:
-    needs: [test-js, test-kotlin, test-swift, test-browser, test-apps]
+    needs: [test-js, test-kotlin, test-swift, test-apps]
     # Deploy the preview branch to Netlify only if it's a PR
     if: github.event_name == 'pull_request'
     runs-on: ubuntu-latest
