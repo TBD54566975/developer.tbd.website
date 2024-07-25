@@ -10,7 +10,7 @@ export async function pfiQuickstartGetDid() {
             services: [{
                 id: 'pfi',
                 type: 'PFI',
-                serviceEndpoint: 'https://localhost:8080'
+                serviceEndpoint: 'https://pfiexemplar.tbddev.org/'
             }]
         }
     });
@@ -29,7 +29,7 @@ export async function pfiQuickstartAddOffering() {
     context.offering = Offering.create({
         metadata: { from: context.pfiDid.uri },
         data: {
-          description: 'fake offering 1',
+          description: 'Exchange USD to KES',
           payoutUnitsPerPayinUnit: '0.0069', // ex. we send 100 dollars, so that means 14550.00 KES
           payin: {
             currencyCode: 'USD',
@@ -54,13 +54,13 @@ export async function pfiQuickstartAddOffering() {
                   properties: {
                     phoneNumber: {
                       title: 'Mobile money phone number',
-                      description: 'Phone number of the Mobile Money account',
+                      description: 'Phone number',
                       type: 'string',
                     },
                     reason: {
                       title: 'Reason for sending',
                       description:
-                        'To abide by the travel rules and financial reporting requirements, the reason for sending money',
+                        'Required for legal reasons',
                       type: 'string',
                     },
                   },
@@ -78,13 +78,13 @@ export async function pfiQuickstartAddOffering() {
                   properties: {
                     accountNumber: {
                       title: 'Bank account number',
-                      description: 'Bank account of the recipient\'s bank account',
+                      description: 'Recepient bank account',
                       type: 'string',
                     },
                     reason: {
                       title: 'Reason for sending',
                       description:
-                        'To abide by the travel rules and financial reporting requirements, the reason for sending money',
+                        'Required for legal reasons',
                       type: 'string',
                     },
                   },
@@ -93,7 +93,6 @@ export async function pfiQuickstartAddOffering() {
               },
             ],
           },
-   
           requiredClaims: {
             id: '7ce4004c-3c38-4853-968b-e411bafcd945',
             input_descriptors: [

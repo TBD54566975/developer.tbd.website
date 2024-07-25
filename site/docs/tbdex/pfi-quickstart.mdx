@@ -16,7 +16,7 @@ import PfiQuickstartCodeRunner from '@site/src/components/PfiQuickstartCodeRunne
 
 ## Overview
 
-Let’s build a tbDEX-enabled PFI in under 5 minutes, right here in the browser. You will learn how to:
+The role of a Participating Financial Institution (PFI) in the tbDEX ecosystem is to provide offerings of liquidity to customers (represented by Wallets) which those customers can then request quotes on. From there, PFIs are then able to fulfill customer orders assuming that customer passes all requirements for placing such an order. Let’s build a tbDEX-enabled PFI in under 5 minutes, right here in the browser. You will learn how to:
 
 ✅  Stand up a basic PFI
 
@@ -34,9 +34,7 @@ Let’s go!
 
 ## PFI App Basics
 
-In this exercise, your PFI app is responsible for creating an `Offering` that swaps `USD` for `KES` and facilitating that transaction for your customer Alice.
-
-### Declare your PFI with a DID
+### Create a DID
 
 In order for your app to be recognized as a PFI by other apps, you’ll need to create a DID that declares a `pfi` service and an associated `serviceEndpoint` that is the hostname you want Wallets to be able to reach you at:
 
@@ -66,113 +64,11 @@ While there is more functionality to build out later, for now we have the overal
 
 ## Building Out Offerings
 
-Without any Offerings to provide to potential customers, your PFI won’t be able to do anything! That’s why next we’ll go ahead and create a sample Offering to place into our database. How exactly you do so depends on your database technology.
+Without any Offerings to provide to potential customers, your PFI won’t be able to do anything! That’s why next we’ll go ahead and create a sample Offering to place into our database. How exactly you do so depends on your database technology. In this exercise, your PFI app is responsible for creating an `Offering` that swaps `USD` for `KES` and facilitating that transaction for your customer Alice.
 
 ### Create Your First Offering
 
- Regardless of what database technology you’re using, you can create  here’s the Offering we created to get started:
-
- ```js
-const myOffering = Offering.create({
-      metadata: { from: config.pfiDid.uri },
-      data: {
-        description: 'fake offering 1',
-        payoutUnitsPerPayinUnit: '0.0069', // ex. we send 100 dollars, so that means 14550.00 KES
-        payin: {
-          currencyCode: 'USD',
-          methods: [
-            {
-              kind: 'USD_LEDGER',
-              requiredPaymentDetails: {},
-            },
-          ],
-        },
-        payout: {
-          currencyCode: 'KES',
-          methods: [
-            {
-              kind: 'MOMO_MPESA',
-              requiredPaymentDetails: {
-                $schema: 'http://json-schema.org/draft-07/schema#',
-                title: 'Mobile Money Required Payment Details',
-                type: 'object',
-                required: ['phoneNumber', 'reason'],
-                additionalProperties: false,
-                properties: {
-                  phoneNumber: {
-                    title: 'Mobile money phone number',
-                    description: 'Phone number of the Mobile Money account',
-                    type: 'string',
-                  },
-                  reason: {
-                    title: 'Reason for sending',
-                    description:
-                      'To abide by the travel rules and financial reporting requirements, the reason for sending money',
-                    type: 'string',
-                  },
-                },
-              },
-              estimatedSettlementTime: 10
-            },
-            {
-              kind: 'BANK_FIRSTBANK',
-              requiredPaymentDetails: {
-                $schema: 'http://json-schema.org/draft-07/schema#',
-                title: 'Bank Transfer Required Payment Details',
-                type: 'object',
-                required: ['accountNumber', 'reason'],
-                additionalProperties: false,
-                properties: {
-                  accountNumber: {
-                    title: 'Bank account number',
-                    description: 'Bank account of the recipient\'s bank account',
-                    type: 'string',
-                  },
-                  reason: {
-                    title: 'Reason for sending',
-                    description:
-                      'To abide by the travel rules and financial reporting requirements, the reason for sending money',
-                    type: 'string',
-                  },
-                },
-              },
-              estimatedSettlementTime: 10
-            },
-          ],
-        },
-
-        requiredClaims: {
-          id: '7ce4004c-3c38-4853-968b-e411bafcd945',
-          input_descriptors: [
-            {
-              id: 'bbdb9b7c-5754-4f46-b63b-590bada959e0',
-              constraints: {
-                fields: [
-                  {
-                    path: ['$.type[*]'],
-                    filter: {
-                      type: 'string',
-                      pattern: '^SanctionCredential$',
-                    },
-                  },
-                  {
-                    path: ['$.issuer'],
-                    filter: {
-                      type: 'string',
-                      const: issuerDid.trim() // Use the read issuer DID here
-                    }
-                  }
-                ],
-              },
-            },
-          ],
-        },
-      },
-    })
-
- ```
-
-You can then insert this document into your `offerings` table via a `dataProvider.insert()` call.
+Next, you'll create an (`Offering`)[https://tbd54566975.github.io/tbdex-js/classes/_tbdex_protocol.Offering.html] object with the attributes of your choice. You can then insert this document into your `offerings` table via a `dataProvider.insert()` call.
 
 <PfiQuickstartCodeRunner executeCodeName="executeAddOffering" stepIndex={2} customPlaceholder={"Add the Offering to the database"}/>
 
@@ -182,7 +78,7 @@ Now that you have an actual `Offering` available in your database, you’ll need
 
 <CodeSnippet snippetName="pfiOverviewReadOfferingsJs" title="offeringsApiProvider.ts"/>
 
-<PfiQuickstartCodeRunner executeCodeName="executeGetOfferings" stepIndex={3} customPlaceholder={"Ping the /offerings API Endpoint"} viewJsonObj={true} collapseLevel={1}/>
+<PfiQuickstartCodeRunner executeCodeName="executeGetOfferings" stepIndex={3} customPlaceholder={"Ping the /offerings API Endpoint"} viewJsonObj={true} collapseLevel={3}/>
 
 ## Support Exchanges APIs
 
@@ -190,7 +86,7 @@ With a DID and OfferingsApi, our PFI is now ready to receive Requests for Quote 
 
 By implementing these methods, you make it so that `HTTP` requests to your PFI such as queries to the `/exchanges/{exchangeId}` route that returns details of a particular exchange for authenticated parties, automatically now work. To do this, we’ll go back to our `main.ts` file and add logic to process each message we receive from a Wallet, as well as how we’ll respond.
 
-<PfiQuickstartCodeRunner executeCodeName="executeGetExchanges" stepIndex={4} customPlaceholder={"Fetch a sample Exchange"} viewJsonObj={true} collapseLevel={1}/>
+<PfiQuickstartCodeRunner executeCodeName="executeGetExchanges" stepIndex={4} customPlaceholder={"Fetch a sample Exchange"} viewJsonObj={true} collapseLevel={3}/>
 
 ## Processing tbDEX Messages
 
