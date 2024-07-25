@@ -26,7 +26,7 @@ internal class RevokeVcTest {
   fun `create empty statusListCredential`() {
     val keyManager = InMemoryKeyManager()
     val issuerDid = DidKey.create(keyManager)
-    
+
     // :snippet-start: createStatusListCredentialKt
     val statusListCredential = StatusListCredential.create(
       "revocation-id",
@@ -58,8 +58,8 @@ internal class RevokeVcTest {
     val credentialStatus = StatusList2021Entry.builder()
       .id(URI.create("cred-with-status-id"))
       .statusPurpose("revocation")
-      .statusListIndex("123")
-      .statusListCredential(URI.create("https://example.com/credentials/status/3"))
+      .statusListIndex("94567")
+      .statusListCredential(URI.create("https://statuslistcred.com/123"))
       .build()
 
     val credWithCredStatus = VerifiableCredential.create(

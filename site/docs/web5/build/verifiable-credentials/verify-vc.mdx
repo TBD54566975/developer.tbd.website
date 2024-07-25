@@ -15,7 +15,7 @@ A verifiable credential (VC) is a digital proof related to an entity, known as t
 
 ## Verify Verifiable Credentials
 
-Upon receipt, the presentation of the VCs is encoded as [JWTs](/docs/web5/build/verifiable-credentials/jwt-to-vc#what-is-a-jwt) and can be verified via the `VerifiableCredentials.verify()` function. 
+Upon receipt, the presentation of the VCs is encoded as [JWTs](/docs/web5/build/verifiable-credentials/jwt-to-vc#what-is-a-jwt) and can be verified via the `VerifiableCredentials.verify()` function.
 
 This function will:
 
@@ -183,7 +183,7 @@ The Verifier would then examine the results of the verifications to determine th
 
 ## Verify Verifiable Presentations
 
-Upon receipt, a Verifiable Presentation is encoded as a [JWT](/docs/web5/build/verifiable-credentials/jwt-to-vc#what-is-a-jwt) and can be verified via the `VerifiablePresentation.verify()` function. 
+Upon receipt, a Verifiable Presentation is encoded as a [JWT](/docs/web5/build/verifiable-credentials/jwt-to-vc#what-is-a-jwt) and can be verified via the `VerifiablePresentation.verify()` function.
 
 <Shnip
   snippets={[
@@ -266,6 +266,8 @@ If the status is `warn` or `error`, the details will be in the `warnings` or `er
 
 The `VerifiableCredential.verify()` function does not perform a revocation status check to determine whether the VCs have been revoked.
 We strongly recommend that you verify this information by referencing the VC's `credentialStatus` property before honoring the VC as valid.
+
+Learn more about [revoking credentials](/docs/web5/build/verifiable-credentials/revoke-credentials).
 
 
 ## Read VC Data
