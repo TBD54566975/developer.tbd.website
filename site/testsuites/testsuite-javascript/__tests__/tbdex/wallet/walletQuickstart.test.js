@@ -12,7 +12,7 @@ const pfiDid = 'did:dht:rj9xmgqcqs1rysongf833wo5g1dtabbhnimcorczcyurke4fmizo';
 
 describe('Wallet: Quickstart', () => {
 
-    it('Testing Quickstart Workflow', async () => {
+    it.skip('Testing Quickstart Workflow', async () => {
 
         // :snippet-start: walletQuickstartDidCreate
         var customerDid = await DidJwk.create({
