@@ -6,7 +6,9 @@ import { DidDht,DidJwk } from '@web5/dids';
 import { VerifiableCredential } from '@web5/credentials'
 // :snippet-end:
 
-let pfiDid = 'did:dht:rj9xmgqcqs1rysongf833wo5g1dtabbhnimcorczcyurke4fmizo';
+// :snippet-start: walletQuickstartPfiDid
+const pfiDid = 'did:dht:rj9xmgqcqs1rysongf833wo5g1dtabbhnimcorczcyurke4fmizo';
+// :snippet-end:
 
 describe('Wallet: Quickstart', () => {
 
@@ -20,23 +22,23 @@ describe('Wallet: Quickstart', () => {
         });
         // :snippet-end:
       
-        let issuerDidString = '{"uri":"did:dht:rj9xmgqcqs1rysongf833wo5g1dtabbhnimcorczcyurke4fmizo","document":{"id":"did:dht:rj9xmgqcqs1rysongf833wo5g1dtabbhnimcorczcyurke4fmizo","verificationMethod":[{"id":"did:dht:rj9xmgqcqs1rysongf833wo5g1dtabbhnimcorczcyurke4fmizo#0","type":"JsonWebKey","controller":"did:dht:rj9xmgqcqs1rysongf833wo5g1dtabbhnimcorczcyurke4fmizo","publicKeyJwk":{"crv":"Ed25519","kty":"OKP","x":"In71mcx1pEBaAjFPnNIbNIccBDwVVsgRl2AmRSNFXW8","kid":"yBmVo8U4VzCFqhj0a88kiZPOU_gpMxEmHUy-tdvKqHM","alg":"EdDSA"}}],"authentication":["did:dht:rj9xmgqcqs1rysongf833wo5g1dtabbhnimcorczcyurke4fmizo#0"],"assertionMethod":["did:dht:rj9xmgqcqs1rysongf833wo5g1dtabbhnimcorczcyurke4fmizo#0"],"capabilityDelegation":["did:dht:rj9xmgqcqs1rysongf833wo5g1dtabbhnimcorczcyurke4fmizo#0"],"capabilityInvocation":["did:dht:rj9xmgqcqs1rysongf833wo5g1dtabbhnimcorczcyurke4fmizo#0"],"service":[{"id":"did:dht:rj9xmgqcqs1rysongf833wo5g1dtabbhnimcorczcyurke4fmizo#pfi","type":"PFI","serviceEndpoint":"https://pfiexemplar.tbddev.org"}]},"metadata":{"published":true,"versionId":"1721323484"},"privateKeys":[{"crv":"Ed25519","d":"rTGqrDYW2rQUGsnPAtpPO0ZVe585WDbbtkufheCAloU","kty":"OKP","x":"In71mcx1pEBaAjFPnNIbNIccBDwVVsgRl2AmRSNFXW8","kid":"yBmVo8U4VzCFqhj0a88kiZPOU_gpMxEmHUy-tdvKqHM","alg":"EdDSA"}]}';
+        const pfiDidString = '{"uri":"did:dht:rj9xmgqcqs1rysongf833wo5g1dtabbhnimcorczcyurke4fmizo","document":{"id":"did:dht:rj9xmgqcqs1rysongf833wo5g1dtabbhnimcorczcyurke4fmizo","verificationMethod":[{"id":"did:dht:rj9xmgqcqs1rysongf833wo5g1dtabbhnimcorczcyurke4fmizo#0","type":"JsonWebKey","controller":"did:dht:rj9xmgqcqs1rysongf833wo5g1dtabbhnimcorczcyurke4fmizo","publicKeyJwk":{"crv":"Ed25519","kty":"OKP","x":"In71mcx1pEBaAjFPnNIbNIccBDwVVsgRl2AmRSNFXW8","kid":"yBmVo8U4VzCFqhj0a88kiZPOU_gpMxEmHUy-tdvKqHM","alg":"EdDSA"}}],"authentication":["did:dht:rj9xmgqcqs1rysongf833wo5g1dtabbhnimcorczcyurke4fmizo#0"],"assertionMethod":["did:dht:rj9xmgqcqs1rysongf833wo5g1dtabbhnimcorczcyurke4fmizo#0"],"capabilityDelegation":["did:dht:rj9xmgqcqs1rysongf833wo5g1dtabbhnimcorczcyurke4fmizo#0"],"capabilityInvocation":["did:dht:rj9xmgqcqs1rysongf833wo5g1dtabbhnimcorczcyurke4fmizo#0"],"service":[{"id":"did:dht:rj9xmgqcqs1rysongf833wo5g1dtabbhnimcorczcyurke4fmizo#pfi","type":"PFI","serviceEndpoint":"https://pfiexemplar.tbddev.org"}]},"metadata":{"published":true,"versionId":"1721323484"},"privateKeys":[{"crv":"Ed25519","d":"rTGqrDYW2rQUGsnPAtpPO0ZVe585WDbbtkufheCAloU","kty":"OKP","x":"In71mcx1pEBaAjFPnNIbNIccBDwVVsgRl2AmRSNFXW8","kid":"yBmVo8U4VzCFqhj0a88kiZPOU_gpMxEmHUy-tdvKqHM","alg":"EdDSA"}]}';
 
-        let issuerPortableDid = JSON.parse(issuerDidString);
-        const issuerDid = await DidDht.import({ portableDid: issuerPortableDid });
+        const pfiPortableDid = JSON.parse(pfiDidString);
+        const pfiBearerDid = await DidDht.import({ portableDid: pfiPortableDid });
 
-        await DidDht.publish({ did: issuerDid });
+        await DidDht.publish({ did: pfiBearerDid });
 
         const vc = await VerifiableCredential.create({
             type    : 'SanctionCredential',
-            issuer  : issuerDid.uri,
+            issuer  : pfiBearerDid.uri,
             subject : customerDid.uri,
             data    : {
               'beep': 'boop'
             }
           })
           
-        const vcJwt = await vc.sign({ did: issuerDid})
+        const vcJwt = await vc.sign({ did: pfiBearerDid})
 
         // Hard-coded credential
         let myCredentials = [vcJwt];
