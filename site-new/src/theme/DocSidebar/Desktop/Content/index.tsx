@@ -56,12 +56,12 @@ export default function DocSidebarDesktopContent({
       style={{ minHeight: "100vh" }}
     >
       <Background
-        primaryColor="#F5D800"
+        primaryColor="#fae100"
         squareCount={5}
         className={"w-64 h-52 py-2 pl-4 mb-8"}
       >
         <DocBreadcrumbsWrapper />
-        <h2 className="text-dark-grey">{sidebarHeader}</h2>
+        <h4 className="text-dark-grey">{sidebarHeader}</h4>
       </Background>
       <ul
         className={clsx(
