@@ -1,73 +1,78 @@
-import { test, expect, describe, vi } from 'vitest';
-import { VerifiableCredential, StatusListCredential, StatusPurpose  } from '@web5/credentials';
+import { test, expect, describe, it } from 'vitest';
+// :prepend-start: createStatusListCredential
+import { VerifiableCredential, StatusListCredential, StatusPurpose } from '@web5/credentials';
+// :prepend-end:
 import { DidDht } from '@web5/dids';
 
 
 const issuerDid = await DidDht.create({ publish: true });
 const subjectDid = await DidDht.create({ publish: true });
+const subjectDidUri = subjectDid.uri;
 let statusListCredential;
-let credentialWithCredStatus;
+let revocableVC;
 
 describe('Revoke Credentials', () => {
 
-  test('create credential with credentialStatus', async () => {
+  it('create Status List Credential', async () => {
     // :snippet-start: createStatusListCredential
-    const statusListCred = StatusListCredential.create({
-      statusListCredentialId : 'https://statuslistcred.com/123',
+    statusListCredential = StatusListCredential.create({
+      statusListCredentialId : 'https://example.com/credentials/status/1',
       issuer                 : issuerDid.uri,
-      statusPurpose          : 'revocation',
+      statusPurpose          : StatusPurpose.revocation,
       credentialsToDisable   : []
     });
     // :snippet-end:
 
-    // :snippet-start: createRevocableVerifiableCredential
-    const credentialStatus = {
-      id                   : 'cred-with-status-id',
-      type                 : 'StatusList2021Entry',
-      statusPurpose        : 'revocation',
-      statusListIndex      : '94567',
-      statusListCredential : 'https://statuslistcred.com/123',
-    };
+    expect(statusListCredential).toBeDefined();
 
-    const credWithCredStatus = await VerifiableCredential.create({
+    const credentialSubject = statusListCredential.vcDataModel.credentialSubject;
+    expect.soft(credentialSubject.type).to.equal('StatusList2021');
+    expect.soft(credentialSubject.statusPurpose).to.equal(StatusPurpose.revocation);
+  });
+
+  it('create revocable VC', async () => {
+    // :snippet-start: createRevocableVerifiableCredentialJs
+    revocableVC = await VerifiableCredential.create({
       type             : 'StreetCred',
       issuer           : issuerDid.uri,
-      subject          : subjectDid.uri,
+      subject          : subjectDidUri,
       data             : {
         streetCred : 'high',
-        verified   : true
+        legit   : true
       },
-      credentialStatus : credentialStatus
+      // highlight-start
+      credentialStatus : {
+        id                   : 'https://example.com/credentials/status/1#94567',
+        type                 : 'StatusList2021Entry',
+        statusPurpose        : StatusPurpose.revocation,
+        statusListIndex      : '94567',
+        statusListCredential : 'https://example.com/credentials/status/1',
+      }
+      // highlight-end
     });
     // :snippet-end:
-    credentialWithCredStatus = credWithCredStatus;
-    const credentialSubject = statusListCred.vcDataModel.credentialSubject;
 
-
-    expect(statusListCred).not.be.undefined;
-    expect(credentialSubject['type']).to.equal('StatusList2021');
-    expect(credentialSubject['statusPurpose']).to.equal('revocation');
+    const credentialStatus = revocableVC.vcDataModel.credentialStatus;
+    expect(credentialStatus).toBeDefined();
+    expect(credentialStatus['type']).to.equal('StatusList2021Entry');
+    expect(credentialStatus['statusPurpose']).to.equal('revocation');
   });
 
-  test('revoke credential', async () => {
+  it('revoke credential', async () => {
     // :snippet-start: revokeCredential
-    const credentialstoRevoke = credentialWithCredStatus
-    const statusListCred = StatusListCredential.create({
-        statusListCredentialId : 'https://statuslistcred.com/123',
+    statusListCredential = StatusListCredential.create({
+        statusListCredentialId : 'https://example.com/credentials/status/1',
         issuer                 : issuerDid.uri,
         statusPurpose          : StatusPurpose.revocation,
-        credentialsToDisable   : [credentialstoRevoke]
+        // highlight-next-line
+        credentialsToDisable   : [revocableVC]
     });
     // :snippet-end:
-    statusListCredential = statusListCred;
 
-    expect(statusListCred).toBeDefined();
-
-  });
-
-  test('check if credential is revoked.', async () => {
     // :snippet-start: checkIfCredentialIsRevoked
-    const isRevoked = StatusListCredential.validateCredentialInStatusList(credentialWithCredStatus, statusListCredential);
+    const isRevoked = StatusListCredential.validateCredentialInStatusList(
+      revocableVC, statusListCredential
+    );
     // :snippet-end:
 
     expect(isRevoked).toBe(true);
