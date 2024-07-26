@@ -17,6 +17,7 @@ import Link from "@docusaurus/Link";
 import { translate } from "@docusaurus/Translate";
 import useIsBrowser from "@docusaurus/useIsBrowser";
 import DocSidebarItems from "@theme/DocSidebarItems";
+import Chevron from "@site/static/img/chevron";
 import type { Props } from "@theme/DocSidebarItem/Category";
 
 // If we navigate to a category and it becomes active, it should automatically
@@ -71,10 +72,14 @@ function CollapseButton({
 }: {
   collapsed: boolean;
   categoryLabel: string;
-  onClick: ComponentProps<"button">["onClick"];
+  onClick: ComponentProps<"div">["onClick"];
 }) {
   return (
-    <button
+    <div
+      style={{
+        transform: `${collapsed ? "rotate(-90deg)" : "rotate(0deg)"}`,
+      }}
+      role="button"
       aria-label={
         collapsed
           ? translate(
@@ -95,10 +100,15 @@ function CollapseButton({
             )
       }
       aria-expanded={!collapsed}
-      type="button"
-      className="clean-btn menu__caret"
+      tabIndex={0}
+      className="clean-btn menu__caret transition-transform duration-300"
       onClick={onClick}
-    />
+    >
+      <Chevron
+        className={`transition-transform duration-300`}
+        fill="currentColor"
+      />
+    </div>
   );
 }
 
@@ -170,7 +180,7 @@ export default function DocSidebarItemCategory({
         <Link
           className={clsx("menu__link", {
             "menu__link--sublist": collapsible,
-            "menu__link--sublist-no-caret": !href && collapsible,
+            "menu__link--sublist-": !href && collapsible,
             "menu__link--active": isActive,
           })}
           onClick={

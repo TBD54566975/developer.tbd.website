@@ -27,7 +27,7 @@ export default function CollapseButton({ onClick }: Props): JSX.Element {
       )}
       onClick={onClick}
     >
-      <IconArrow className={styles.collapseSidebarButtonIcon} />
+      <Arrow className={styles.collapseSidebarButtonIcon} />
     </button>
   );
 }
