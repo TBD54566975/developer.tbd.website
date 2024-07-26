@@ -11,6 +11,8 @@ import PackageJson from '@site/src/components/PackageJson';
 import CodeSnippet from '@site/src/components/CodeSnippet';
 import QuickstartCodeRunner from '@site/src/components/QuickstartCodeRunner';
 
+<LanguageSwitcher languages="JavaScript" />
+
 <QuickstartExecutionProvider>
 # Web5 in 5️⃣ minutes
 
@@ -157,7 +159,11 @@ This DID URI is part of a broader JSON object, known as a [Bearer DID](http://de
 
 To access your Bearer DID, add the following lines of code to your `index.js`:
 
-<CodeSnippet snippetName="getBearerDid" />
+<Shnip
+  snippets={[
+    { snippetName: 'getBearerDid', language: 'JavaScript'},
+    ]}
+/>
 
 <details>
     <summary>Test your code</summary>
@@ -189,7 +195,12 @@ In this step, you'll enable your users to create a self-signed VC -- allowing th
 
 In your `index.js`, create your Verifiable Credential:
 
-<CodeSnippet snippetName="createQuickstartVc" />
+<Shnip
+  snippets={[
+    { snippetName: 'createQuickstartVc', language: 'JavaScript'},
+    ]}
+/>
+
 
 <details>
     <summary>Test your code</summary>
@@ -222,7 +233,12 @@ Now, your users can sign the VC with their Bearer DID to ensure its authenticity
 
 To allow users to sign a VC, add this line to your `index.js`:
 
-<CodeSnippet snippetName="signQuickstartVc" />
+<Shnip
+  snippets={[
+    { snippetName: 'signQuickstartVc', language: 'JavaScript'},
+    ]}
+/>
+
 
 When an issuer signs a VC, it attests that they are truly the one who issued it. 
 This cryptographic process also converts the VC into a [JSON Web Token (JWT)](https://jwt.io/), making the credential tamper-evident and verifiable by others.
@@ -274,7 +290,11 @@ A user can host their DWN in multiple locations. The Web5 SDK is both browser an
 
 To store a VC in a DWN, add the following lines of code to your `index.js`:
 
-<CodeSnippet snippetName="writeQuickstartVcToDwn" />
+<Shnip
+  snippets={[
+    { snippetName: 'writeQuickstartVcToDwn', language: 'JavaScript'},
+    ]}
+/>
 
 <details>
     <summary>Test your code</summary>
@@ -308,7 +328,13 @@ If the user has given your app read permissions to their DWN, you can read their
 
 To read the JWT-encoded VC stored in your DWN, add the following to your `index.js`:
 
-<CodeSnippet snippetName="readQuickstartVc" />
+<Shnip
+  snippets={[
+    { snippetName: 'readQuickstartVc', language: 'JavaScript'},
+    ]}
+/>
+
+
 
 :::note
 Since the record is [public](https://developer.tbd.website/docs/web5/build/decentralized-web-nodes/publishing-records) 
@@ -350,7 +376,12 @@ This allows you to inspect the contents of the VC in a readable format.
 
 Add the following line to your index.js to parse the JWT-encoded VC:
 
-<CodeSnippet snippetName="parseQuickstartVc"/>
+<Shnip
+  snippets={[
+    { snippetName: 'parseQuickstartVc', language: 'JavaScript'},
+    ]}
+/>
+
 
 <details>
     <summary>Test your code</summary>
