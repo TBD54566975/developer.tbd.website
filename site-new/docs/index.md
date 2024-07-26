@@ -5,6 +5,8 @@ hide_title: true
 hide_table_of_contents: true
 ---
 
+<span>Getting started</span>
+
 <h1>Build a Chat App</h1>
 
 <h4>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor

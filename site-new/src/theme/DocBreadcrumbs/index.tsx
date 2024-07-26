@@ -80,6 +80,8 @@ export default function DocBreadcrumbs(): JSX.Element | null {
     return null;
   }
 
+  console.log("home page route", homePageRoute);
+
   return (
     <nav
       className={clsx(
@@ -98,7 +100,8 @@ export default function DocBreadcrumbs(): JSX.Element | null {
         itemType="https://schema.org/BreadcrumbList"
       >
         {homePageRoute && <HomeBreadcrumbItem />}
-        {breadcrumbs.map((item, idx) => {
+        <span>Back</span>
+        {/* {breadcrumbs.map((item, idx) => {
           const isLast = idx === breadcrumbs.length - 1;
           const href =
             item.type === "category" && item.linkUnlisted
@@ -112,11 +115,11 @@ export default function DocBreadcrumbs(): JSX.Element | null {
               addMicrodata={!!href}
             >
               <BreadcrumbsItemLink href={href} isLast={isLast}>
-                Back
+                {item.label}
               </BreadcrumbsItemLink>
             </BreadcrumbsItem>
           );
-        })}
+        })} */}
       </ul>
     </nav>
   );
