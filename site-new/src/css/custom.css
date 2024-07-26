@@ -139,12 +139,12 @@ h2 {
 
 
 .theme-doc-sidebar-item-link-level-2 a {
-  padding-left: 4.50rem;
+  padding-left: 4.5rem;
 }
 
 
 .theme-doc-sidebar-item-link-level-3 a {
-  padding-left: 5.50rem;
+  padding-left: 4.5rem;
 }
 
 .theme-doc-sidebar-item-link-level-4 {
@@ -175,7 +175,7 @@ h2 {
   border-radius: 0;
 }
 
-.theme-doc-sidebar-item-category-level-2 .menu__list-item-collapsible button {
+.theme-doc-sidebar-item-category-level-2 .menu__list-item-collapsible a {
   padding-left: 2rem;
 }
 
