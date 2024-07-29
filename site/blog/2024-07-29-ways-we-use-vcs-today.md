@@ -44,7 +44,7 @@ If you often misplace your wallet like me, there's good news — your state may 
 
 VCs are the technology behind mDLs because they offer features like revocation, authentication, expiration, and tamper evidence. If you use an mDL, you're using VCs!
 
-![Louisiane mDL Wallet](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/wpr2jpmtbgg4a8axwtvr.png)
+![Louisiana mDL Wallet](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/wpr2jpmtbgg4a8axwtvr.png)
 
 _Source: https://lawallet.com/_
 
