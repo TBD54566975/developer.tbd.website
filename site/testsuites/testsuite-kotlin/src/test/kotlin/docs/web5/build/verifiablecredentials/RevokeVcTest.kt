@@ -8,8 +8,13 @@ import web5.sdk.credentials.VerifiableCredential
 import web5.sdk.credentials.model.*
 import web5.sdk.credentials.VerifiablePresentation
 import web5.sdk.credentials.PresentationExchange
+
+// :prepend-start: createStatusListCredentialKt
 import web5.sdk.credentials.StatusListCredential
-import web5.sdk.credentials.*
+import web5.sdk.credentials.StatusPurpose
+import web5.sdk.credentials.StatusList2021Entry
+// :prepend-end:
+
 import java.net.URI
 import web5.sdk.crypto.InMemoryKeyManager
 import web5.sdk.dids.methods.key.DidKey
@@ -29,7 +34,7 @@ internal class RevokeVcTest {
 
     // :snippet-start: createStatusListCredentialKt
     val statusListCredential = StatusListCredential.create(
-      "revocation-id",
+      "https://example.com/credentials/status/1",
       issuerDid.uri,
       StatusPurpose.REVOCATION,
       listOf()
@@ -55,41 +60,44 @@ internal class RevokeVcTest {
 
     // :snippet-start: createRevocableVerifiableCredentialKt
 
-    val credentialStatus = StatusList2021Entry.builder()
-      .id(URI.create("cred-with-status-id"))
-      .statusPurpose("revocation")
-      .statusListIndex("94567")
-      .statusListCredential(URI.create("https://statuslistcred.com/123"))
-      .build()
-
-    val credWithCredStatus = VerifiableCredential.create(
+    val revocableVC = VerifiableCredential.create(
       type = "StreetCred",
       issuer = issuerDid.uri,
       subject = holderDid.uri,
       data = StreetCredibility(localRespect = "high", legit = true),
-      credentialStatus = credentialStatus
+      // highlight-start
+      credentialStatus = StatusList2021Entry.builder()
+        .id(URI.create("https://example.com/credentials/status/1#94567"))
+        .statusPurpose("revocation")
+        .statusListIndex("94567")
+        .statusListCredential(URI.create("https://example.com/credentials/status/1"))
+        .build()
+      // highlight-end
     )
 
     // :snippet-end:
 
     // :snippet-start: revokeCredentialKt
     val statusListCredential = StatusListCredential.create(
-      "revocation-id",
+      "https://example.com/credentials/status/1",
       issuerDid.uri,
       StatusPurpose.REVOCATION,
-      listOf(credWithCredStatus)
+      // highlight-next-line
+      listOf(revocableVC)
     )
 
     // :snippet-end:
 
     // :snippet-start: checkIfCredentialIsRevokedKt
-    val isRevoked = StatusListCredential.validateCredentialInStatusList(credWithCredStatus, statusListCredential)
+    val isRevoked = StatusListCredential.validateCredentialInStatusList(
+      revocableVC, statusListCredential
+    )
     // :snippet-end:
 
 
-    assertNotNull(credWithCredStatus)
+    assertNotNull(revocableVC)
     assertTrue(
-      credWithCredStatus.vcDataModel.contexts.containsAll(
+      revocableVC.vcDataModel.contexts.containsAll(
         listOf(
           URI.create("https://www.w3.org/2018/credentials/v1"),
           URI.create("https://w3id.org/vc/status-list/2021/v1")

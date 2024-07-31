@@ -1,5 +1,5 @@
 import { test, expect, describe, it } from 'vitest';
-// :prepend-start: createStatusListCredential
+// :prepend-start: createStatusListCredentialJs
 import { VerifiableCredential, StatusListCredential, StatusPurpose } from '@web5/credentials';
 // :prepend-end:
 import { DidDht } from '@web5/dids';
@@ -14,7 +14,7 @@ let revocableVC;
 describe('Revoke Credentials', () => {
 
   it('create Status List Credential', async () => {
-    // :snippet-start: createStatusListCredential
+    // :snippet-start: createStatusListCredentialJs
     statusListCredential = StatusListCredential.create({
       statusListCredentialId : 'https://example.com/credentials/status/1',
       issuer                 : issuerDid.uri,
@@ -40,6 +40,7 @@ describe('Revoke Credentials', () => {
         streetCred : 'high',
         legit   : true
       },
+
       // highlight-start
       credentialStatus : {
         id                   : 'https://example.com/credentials/status/1#94567',
@@ -49,6 +50,7 @@ describe('Revoke Credentials', () => {
         statusListCredential : 'https://example.com/credentials/status/1',
       }
       // highlight-end
+
     });
     // :snippet-end:
 
@@ -59,7 +61,7 @@ describe('Revoke Credentials', () => {
   });
 
   it('revoke credential', async () => {
-    // :snippet-start: revokeCredential
+    // :snippet-start: revokeCredentialJs
     statusListCredential = StatusListCredential.create({
         statusListCredentialId : 'https://example.com/credentials/status/1',
         issuer                 : issuerDid.uri,
@@ -69,7 +71,7 @@ describe('Revoke Credentials', () => {
     });
     // :snippet-end:
 
-    // :snippet-start: checkIfCredentialIsRevoked
+    // :snippet-start: checkIfCredentialIsRevokedJs
     const isRevoked = StatusListCredential.validateCredentialInStatusList(
       revocableVC, statusListCredential
     );
