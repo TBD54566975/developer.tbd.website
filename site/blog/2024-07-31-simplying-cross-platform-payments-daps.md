@@ -68,7 +68,7 @@ DAPs debuted during a company-wide Hackathon at Block, where TBD, Cash App, and 
 
 * Join the [TBD Discord](http://discord.gg/tbd)
 * Read the DAP [specification](https://github.com/TBD54566975/dap)
-* Contribute to our multilanguage SDKs:
+* Contribute to the open source SDKs:
     * [DAP-JS](https://github.com/tbd54566975/dap-js)
     * [DAP-GO](https://github.com/tbd54566975/dap-go)
     * [DAP-KT](https://github.com/tbd54566975/dap-kt)
