@@ -37,7 +37,7 @@ Peer-to-peer (P2P) payment applications have existed since the late '90s, starti
 
 However, a persistent issue remains: the sender and recipient must use the same app to complete a transaction. People have personal and valid reasons for choosing their preferred payment apps.
 
-This situation creates a tense, unspoken battle when you need to pay a friend after dinner or a contractor for a service, only to discover that you use CashApp while they use Venmo. Now, you both face the dilemma of deciding who will download a new app, set up a new account, and link it to their bank account.
+This situation creates an uncomfortable, unspoken battle when you need to pay a friend after dinner or a contractor for a service, only to discover that you use CashApp while they use Venmo. Now, you both face the dilemma of deciding who will download a new app, set up a new account, and link it to their bank account.
 
 With DAPs, it doesn't matter which app you prefer. You can use a DAP to transfer funds and financially "dap each other up."
 
