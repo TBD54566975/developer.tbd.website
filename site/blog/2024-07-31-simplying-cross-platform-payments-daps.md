@@ -44,7 +44,7 @@ With DAPs, it doesn't matter which app you prefer. You can use a DAP to transfer
 
 ## Introducting Decentralized Agnostic Paytags (DAPs)
 
-A DAP is a user-friendly handle for payments, structured as `@local-handle/domain.` 
+A DAP is a user-friendly handle for payments, structured as `@local-handle/domain`. 
 
 Here's an example: I love the handle blackgirlbytes. If I registered that handle on CashApp's DAP registry, my DAP would be `@blackgirlbytes/cash.app`. Similarly, if I registered that handle on DIDPay's DAP registry, my handle would be `@blackgirlbytes/didpay.me`.
 
@@ -55,7 +55,6 @@ Each DAP links to a [Decentralized Identifier (DID)](https://developer.tbd.websi
 The DAP ecosystem has two key actors: the payment platform that offers DAPs and the users who own the DAPs.
 
 **For Organizations:** Any organization can enable users to create a DAP on their platform by setting up a DAP registry associated with their domain. This registry serves two main functions:
-
 * It allows users to sign up for DAPs.
 * It maps users' DAPs with their DID and money address.
 
@@ -67,14 +66,14 @@ If you're eager to experiment with DAPs but your preferred payment platform hasn
 
 DAPs debuted during a company-wide Hackathon at Block, where TBD, CashApp, and Square teams collaborated to bring this vision to life. As our DAPs implementation continues to evolve, here are ways you can get involved:
 
-* Join the[ TBD Discord](http://discord.gg/tbd)
+* Join the [TBD Discord](http://discord.gg/tbd)
 * Read the DAP [specification](https://github.com/TBD54566975/dap)
 * Contribute to our multilanguage SDKs:
     * [DAP-JS](https://github.com/tbd54566975/dap-js)
     * [DAP-GO](https://github.com/tbd54566975/dap-go)
     * [DAP-KT](https://github.com/tbd54566975/dap-kt)
     * [DAP-DART](https://github.com/tbd54566975/dap-dart)
-* Create a DAP in our[ static DAP registry](https://github.com/TBD54566975/dap-registry-static)
+* Create a DAP in our [static DAP registry](https://github.com/TBD54566975/dap-registry-static)
 
 **Watch the video below to learn more**
 
