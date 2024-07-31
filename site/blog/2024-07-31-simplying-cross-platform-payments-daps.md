@@ -46,7 +46,7 @@ With DAPs, it doesn't matter which app you prefer. You can use a DAP to transfer
 
 A DAP is a user-friendly handle for payments, structured as `@local-handle/domain`. 
 
-Here's an example: I love the handle blackgirlbytes. If I registered that handle on CashApp's DAP registry, my DAP would be `@blackgirlbytes/cash.app`. Similarly, if I registered that handle on DIDPay's DAP registry, my handle would be `@blackgirlbytes/didpay.me`.
+Here's an example: I love the handle blackgirlbytes. If I registered that handle on Cash App's DAP registry, my DAP would be `@blackgirlbytes/cash.app`. Similarly, if I registered that handle on DIDPay's DAP registry, my handle would be `@blackgirlbytes/didpay.me`.
 
 Each DAP links to a [Decentralized Identifier (DID)](https://developer.tbd.website/docs/web5/learn/decentralized-identifiers) to help identify who you are, regardless of the platform. While your DID includes cryptographic keys for identity protection, it also contains your money address—a unique identifier that directs different payment systems where to send your funds.
 
