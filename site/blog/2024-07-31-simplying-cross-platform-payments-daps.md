@@ -27,7 +27,7 @@ tags: [Decentralized Agnostic Paytags, Decentralized Identifiers]
 
 ![Simplifying Cross-Platform Payments with DAPs](/img/dap-blog-banner.png)
 
-"Dap me up!" is a colloquial term followed by a gesture used in Western cultures to greet people or express solidarity. At TBD, we're adding a new meaning to this phrase with Decentralized Agnostic Paytags (DAPs), an approach designed to simplify peer-to-peer payments across various applications.
+"Dap me up!" is a colloquial term followed by a gesture used in Western cultures to greet people or express solidarity. At TBD, we're adding a new meaning to this phrase with Decentralized Agnostic Paytags (DAPs), an open source approach designed to simplify peer-to-peer payments across various applications.
 
 <!--truncate-->
 
