@@ -33,7 +33,7 @@ tags: [Decentralized Agnostic Paytags, Decentralized Identifiers]
 
 ## Solving an Awkward Issue
 
-Peer-to-peer (P2P) payment applications have existed since the late '90s, starting with tools like PayPal. With the rise of smartphones, innovative mobile apps like Venmo, Zelle, and Block's very own CashApp have made it easier to exchange funds directly from our phones. 
+Peer-to-peer (P2P) payment applications have existed since the late '90s, starting with tools like PayPal. With the rise of smartphones, innovative mobile apps like Venmo, Zelle, and Block's very own Cash App have made it easier to exchange funds directly from our phones. 
 
 However, a persistent issue remains: the sender and recipient must use the same app to complete a transaction. People have personal and valid reasons for choosing their preferred payment apps.
 
