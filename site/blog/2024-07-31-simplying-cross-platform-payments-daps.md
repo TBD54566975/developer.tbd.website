@@ -39,7 +39,7 @@ However, a persistent issue remains: the sender and recipient must use the same 
 
 This situation creates an uncomfortable, unspoken battle when you need to pay a friend after dinner or a contractor for a service, only to discover that you use CashApp while they use Venmo. Now, you both face the dilemma of deciding who will download a new app, set up a new account, and link it to their bank account.
 
-Instead, P2P payment apps can use DAPs—agnostic unique identifiers stored in a registry—to identify and route payments to the correct destination across different platforms. This allows you and the recipient to financially "dap each other up" regardless of which apps you prefer.
+Instead, P2P payment apps can use DAPs&mdash;agnostic unique identifiers stored in a registry&mdash;to identify and route payments to the correct destination across different platforms. This allows you and the recipient to financially "dap each other up" regardless of which apps you prefer.
 
 ## Introducting Decentralized Agnostic Paytags (DAPs)
 
@@ -63,7 +63,7 @@ If you're eager to experiment with DAPs but your preferred payment platform hasn
 
 ## Keep Up to Date
 
-DAPs debuted during a company-wide Hackathon at Block, where TBD, Cash App, and Square teams collaborated to bring this vision to life. As the DAP implementation continues to evolve, here are ways you can get involved:
+DAPs debuted during a company-wide Hackathon at Block, where TBD, Cash App, and Square teams collaborated to bring this vision to life. As the DAP implementation continues to evolve, here are a few ways you can stay involved:
 
 * Join the [TBD Discord](http://discord.gg/tbd)
 * Read the DAP [specification](https://github.com/TBD54566975/dap)
