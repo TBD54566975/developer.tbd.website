@@ -41,7 +41,7 @@ This situation creates an uncomfortable, unspoken battle when you need to pay a 
 
 Instead, P2P payment apps can use DAPs&mdash;agnostic unique identifiers stored in a registry&mdash;to identify and route payments to the correct destination across different platforms. This allows you and the recipient to financially "dap each other up" regardless of which apps you prefer.
 
-## Introducting Decentralized Agnostic Paytags (DAPs)
+## Introducing Decentralized Agnostic Paytags (DAPs)
 
 A DAP is a user-friendly handle for payments, structured as `@local-handle/domain`. 
 
