@@ -4,7 +4,7 @@ title: "Simplifying Cross-Platform Payments with DAPs"
 description: "Introducing Decentralized Agnostic Paytags, a universal money address tied to Decentralized Identifiers"
 authors:
   name: Rizèl Scarlett
-tags: [Decentralized Agnostic Paytags, Decentralized Identifiers]
+tags: [Decentralized Agnostic Paytags, DAP, Decentralized Identifiers]
 ---
 
 <head>
@@ -39,8 +39,7 @@ However, a persistent issue remains: the sender and recipient must use the same 
 
 This situation creates an uncomfortable, unspoken battle when you need to pay a friend after dinner or a contractor for a service, only to discover that you use CashApp while they use Venmo. Now, you both face the dilemma of deciding who will download a new app, set up a new account, and link it to their bank account.
 
-With DAPs, it doesn't matter which app you prefer. You can use a DAP to transfer funds and financially "dap each other up."
-
+Instead, P2P payment apps can use DAPs—agnostic unique identifiers stored in a registry—to identify and route payments to the correct destination across different platforms. This allows you and the recipient to financially "dap each other up" regardless of which apps you prefer.
 
 ## Introducting Decentralized Agnostic Paytags (DAPs)
 
