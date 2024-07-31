@@ -64,7 +64,7 @@ If you're eager to experiment with DAPs but your preferred payment platform hasn
 
 ## Keep Up to Date
 
-DAPs debuted during a company-wide Hackathon at Block, where TBD, CashApp, and Square teams collaborated to bring this vision to life. As our DAPs implementation continues to evolve, here are ways you can get involved:
+DAPs debuted during a company-wide Hackathon at Block, where TBD, Cash App, and Square teams collaborated to bring this vision to life. As our DAPs implementation continues to evolve, here are ways you can get involved:
 
 * Join the [TBD Discord](http://discord.gg/tbd)
 * Read the DAP [specification](https://github.com/TBD54566975/dap)
