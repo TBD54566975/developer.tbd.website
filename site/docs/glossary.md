@@ -51,9 +51,6 @@ A digital storage system that securely stores and manages a DID's cryptographic 
 
 A mathematical algorithm used to generate digital signatures. These are used to verify the authenticity, integrity, and non-repudiation of electronic documents, messages, or transactions by creating a unique digital signature that can be cryptographically validated.
 
-## Sidetree Protocol
-
-The Sidetree protocol is a decentralized and blockchain-agnostic protocol that enables the creation and management of decentralized identifiers (DIDs) and their associated data off-chain, while utilizing the blockchain as a trust anchor for anchoring DID operations, thereby reducing the load on the blockchain and enhancing scalability.
 
 ## Self Sovereign Identity (SSI)
 
