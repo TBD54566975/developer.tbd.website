@@ -116,7 +116,7 @@ const RenderScavengerHunt = () => {
             <h1 className="pt-4">Come Find Us</h1>
             <p>Find all 6 members of the TBD team at WeAreDevelopers World Congress! Scan their QR codes to collect all Verifiable Credentials and win a prize! 🎁</p>
             <br />
-            <p>Learn more about the magic of <a href="/docs/web5/learn/verifiable-credentials" style={{ color: 'cyan', textDecoration: 'underline' }}>Verifiable Credentials</a>. ✨</p>
+            <p>Learn more about the magic of <a href="/docs/web5/verifiable-credentials/what-are-vcs" style={{ color: 'cyan', textDecoration: 'underline' }}>Verifiable Credentials</a>. ✨</p>
             <div className="mt-4 mb-4">
               <div className="flex justify-center mb-8">
                 <Button

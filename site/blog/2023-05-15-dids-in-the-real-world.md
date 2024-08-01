@@ -73,4 +73,4 @@ These persistent DIDs enable users to migrate their account data to any other ap
 
 These companies are embracing the use of decentralized technology for identity management and verification at a massive scale. As this technology continues to mature, we can expect to see more widespread adoption of DIDs in various industries.
 
-Want to learn more about DIDs and VCs? Check out our [guide on DIDs](https://developer.tbd.website/docs/web5/learn/decentralized-identifiers), [blog post on VCs](https://developer.tbd.website/blog/what-are-verifiable-credentials), and tutorial to [create your own DID](https://developer.tbd.website/docs/web5/build/decentralized-identifiers/how-to-create-did).
+Want to learn more? Check out our guides on [DIDs](/docs/web5/decentralized-identifiers/what-are-dids) and [VCs](/docs/web5/verifiable-credentials/what-are-vcs).

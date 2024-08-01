@@ -8,16 +8,55 @@ to = "/files/Decentralized-Web-Platform.pdf"
 
 [[redirects]]
 from = "/docs/web5/build/troubleshooting-guide"
-to = "/docs/web5/troubleshooting/common-errors"
+to = "/docs/web5/decentralized-web-nodes/troubleshooting/common-errors"
 
 [[redirects]]
 from = "/docs/web5/troubleshooting-guide"
-to = "/docs/web5/troubleshooting/common-errors"
+to = "/docs/web5/decentralized-web-nodes/troubleshooting/common-errors"
 
 [[redirects]]
 from = "/docs/web5/build/frameworks/next"
-to = "/docs/web5/troubleshooting/next"
+to = "/docs/web5/decentralized-web-nodes/troubleshooting/next"
 
 [[redirects]]
 from = "/docs/web5/build/frameworks/vue"
-to = "/docs/web5/troubleshooting/vue"
+to = "/docs/web5/decentralized-web-nodes/troubleshooting/vue"
+
+[[redirects]]
+from = "/docs/web5/troubleshooting/*"
+to = "/docs/web5/decentralized-web-nodes/troubleshooting/:splat"
+status = 301"
+
+[[redirects]]
+from = "/docs/web5/build/*"
+to = "/docs/web5/:splat"
+status = 301
+
+[[redirects]]
+from = "/docs/web5/learn/decentralized-identifiers"
+to = "/docs/web5/decentralized-identifiers/what-are-dids"
+
+[[redirects]]
+from = "/docs/web5/learn/decentralized-web-nodes"
+to = "/docs/web5/decentralized-web-nodes/what-are-dwns"
+
+[[redirects]]
+from = "/docs/web5/learn/verifiable-credentials"
+to = "/docs/web5/verifiable-credentials/what-are-vcs"
+
+[[redirects]]
+from = "/docs/web5/learn/did_documents"
+to = "/docs/web5/decentralized-identifiers/did_documentss"
+
+[[redirects]]
+from = "/docs/web5/learn/agents"
+to = "/docs/web5/decentralized-web-nodes/agents"
+
+[[redirects]]
+from = "/docs/web5/learn/protocols"
+to = "/docs/web5/decentralized-web-nodes/protocols"
+
+[[redirects]]
+from = "/docs/web5/learn/sync"
+to = "/docs/web5/decentralized-web-nodes/sync"
+
