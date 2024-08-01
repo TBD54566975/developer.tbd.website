@@ -40,7 +40,7 @@ For many years, artificial intelligence primarily piqued the interest of academi
 For the last three years, I've deemed ChatGPT my bestie, so when I heard about Kin, I immediately downloaded the beta on my phone. My initial impression was that there was a sense of familiarity because the user interface and interaction were reminiscent of other LLM-powered chatbots such as ChatGPT and Gemini. However, there were some key differences between Kin and traditional chatbots – it focuses on **privacy** and **personalization**.
 
 ## Privacy-First Artificial Intelligence
-With traditional Generative AI Chatbots, your data lives on the company's servers for telemetry purposes (and more). In contrast, Simon explained that Kin doesn't have backend servers, and users' data stays exclusively with the user. This is possible because of Web5's [Decentralized Web Nodes (DWN)](https://developer.tbd.website/docs/web5/learn/decentralized-web-nodes). DWNs provide users with a local and personal data store. Now, you can ask an AI personal questions without worrying if someone else can also read it.
+With traditional Generative AI Chatbots, your data lives on the company's servers for telemetry purposes (and more). In contrast, Simon explained that Kin doesn't have backend servers, and users' data stays exclusively with the user. This is possible because of Web5's [Decentralized Web Nodes (DWN)](https://developer.tbd.website/docs/web5/decentralized-web-nodes/what-are-dwns). DWNs provide users with a local and personal data store. Now, you can ask an AI personal questions without worrying if someone else can also read it.
 
 ## Personalized for You
 Unlike traditional Generative AI Chatbots, Kin retains the context of your conversations to provide personalized and relevant responses. As users engage with Kin, the platform analyzes these interactions to extract facts about the user, constructing a semantic memory. This process involves graphing and mapping details such as your name, relationships, interests, etc.
@@ -53,7 +53,7 @@ The team at Kin is working on enhancing the platform's memory beyond facts of th
 They also plan to implement natural voice interfaces and personalized reminders.
 
 ## The True Value of Data Ownership
-Simon envisions a future where Kin takes full advantage of Web5's data ownership and cryptographic verification capabilities. He provided a futuristic example: After a year of personalized interaction, Kin could use [Verifiable Credentials](https://developer.tbd.website/docs/web5/learn/verifiable-credentials) to serve as a digital assistant with verified authority on the user's behalf. Kin could share preferences with third parties like e-commerce websites with the user's permission. 
+Simon envisions a future where Kin takes full advantage of Web5's data ownership and cryptographic verification capabilities. He provided a futuristic example: After a year of personalized interaction, Kin could use [Verifiable Credentials](https://developer.tbd.website/docs/web5/verifiable-credentials/what-are-vcs) to serve as a digital assistant with verified authority on the user's behalf. Kin could share preferences with third parties like e-commerce websites with the user's permission. 
 
 _"This is where owning and controlling your data suddenly becomes extremely valuable,"_ Simon proclaims. Data ownership is not just about keeping your data private but having control over who you share your data with. 
 

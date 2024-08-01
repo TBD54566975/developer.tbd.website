@@ -30,7 +30,7 @@ tags: [Verifiable Credentials, Web5]
 
 "Verifiable Credentials seem niche. Only a small group of technologists would be interested in this," a conference attendee declared after I enthusiastically described my company's work in the Global Payments and Self-Sovereign Identity (SSI) ecosystem.
 
-This comment gave me pause. Less than a year ago, I first encountered [Verifiable Credentials (VCs)](https://developer.tbd.website/docs/web5/learn/verifiable-credentials) - a W3C standard for digital credentials that state specific facts about individuals, organizations, or entities. My initial reaction was similar to the conference attendee’s response. However, after interviewing SSI builders on a weekly livestream, my perspective changed dramatically.
+This comment gave me pause. Less than a year ago, I first encountered [Verifiable Credentials (VCs)](https://developer.tbd.website/docs/web5/verifiable-credentials/what-are-vcs) - a W3C standard for digital credentials that state specific facts about individuals, organizations, or entities. My initial reaction was similar to the conference attendee’s response. However, after interviewing SSI builders on a weekly livestream, my perspective changed dramatically.
 
 While VCs are relatively new and primarily explored by SSI enthusiasts, their benefits extend far beyond this group. Many of the services and products you use today already rely on them – even if you don't realize it.
 
@@ -125,6 +125,6 @@ Verifiable Credentials are making a tangible difference by solving real problems
 
 If you have ideas for building apps with VCs, check out these resources:
 
-* [Build your own Verifiable Credentials with the Web5 SDK](https://developer.tbd.website/docs/web5/build/verifiable-credentials/vc-issuance)
+* [Build your own Verifiable Credentials with the Web5 SDK](https://developer.tbd.website/docs/web5/verifiable-credentials/vc-issuance)
 * [How TBD is using VCs in the tbDEX SDK](https://developer.tbd.website/docs/tbdex/)
 * [TBD’s YouTube Channel](https://www.youtube.com/@tbd.videos/?sub_confirmation=1)

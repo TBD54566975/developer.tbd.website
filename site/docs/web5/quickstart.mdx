@@ -116,7 +116,7 @@ Now that you've installed the Web5 SDKs, you are ready to start building!
 
 ### 1. Instantiate Web5 and Create DID 
 
-In Web5 apps, a user’s unique identifier - like an email address - is called a [Decentralized Identifier (DID)](/docs/web5/learn/decentralized-identifiers).
+In Web5 apps, a user’s unique identifier - like an email address - is called a [Decentralized Identifier (DID)](/docs/web5/decentralized-identifiers/what-are-dids).
 We are building a decentralized app, so your users are using identifiers that aren't tied to a centralized authority.
 
 The `Web5` class is an isolated API object for doing all things Web5. The `connect()` function creates an instance of Web5 and also creates a decentralized identifier or obtains connection to an existing one.
@@ -124,7 +124,7 @@ The `Web5` class is an isolated API object for doing all things Web5. The `conne
 In `index.js` below the import statement, create a new instance of `Web5`:
 <CodeSnippet functionName="didCreate" />
 
-This Web5 instance is what you'll use to access the other objects of Web5 such as `dwn`. Within the connect function we’re using `dht` as the DID method. Learn more [DID methods](/docs/web5/learn/decentralized-identifiers#methods).
+This Web5 instance is what you'll use to access the other objects of Web5 such as `dwn`. Within the connect function we’re using `dht` as the DID method. Learn more [DID methods](/docs/web5/decentralized-identifiers/what-are-dids#methods).
 
 
 <details>
@@ -154,7 +154,7 @@ This Web5 instance is what you'll use to access the other objects of Web5 such a
 
 In the previous step, you generated what is known as a (DID), which appears as an alphanumeric string. It's more specifically referred to as a DID URI. 
 
-This DID URI is part of a broader JSON object, known as a [Bearer DID](http://developer.tbd.website/docs/web5/build/decentralized-identifiers/how-to-create-did#create-did), which contains metadata such as cryptographic keys that prove ownership of the DID and rules governing its usage, management, or modification. With a Bearer DID, the owner can securely sign and verify data, ensuring authenticity and integrity.
+This DID URI is part of a broader JSON object, known as a [Bearer DID](/docs/web5/decentralized-identifiers/how-to-create-did#create-did), which contains metadata such as cryptographic keys that prove ownership of the DID and rules governing its usage, management, or modification. With a Bearer DID, the owner can securely sign and verify data, ensuring authenticity and integrity.
 
 
 To access your Bearer DID, add the following lines of code to your `index.js`:
@@ -190,7 +190,7 @@ You'll see the Bearer DID.
 
 ### 3. Create a VC
 
-[Verifiable Credentials (VCs)](https://developer.tbd.website/docs/web5/learn/verifiable-credentials) are digital proofs used to confirm specific facts about individuals, organizations, or entities.
+[Verifiable Credentials (VCs)](https://developer.tbd.website/docs/web5/verifiable-credentials/what-are-vcs) are digital proofs used to confirm specific facts about individuals, organizations, or entities.
 In this step, you'll enable your users to create a self-signed VC -- allowing them to issue a Verifiable Credential that makes claims about themselves. For this example, the credential will state that the user has completed the Web5 Quickstart Guide.
 
 In your `index.js`, create your Verifiable Credential:
@@ -273,7 +273,7 @@ eyJ0eXAiOiJKV1QiLCJhbGciOiJFZERTQSIsImtpZCI6ImRpZDpkaHQ6cDNpeHo1MXp4azR1MW5uN29x
 
 ### 5. Store VC in DWN
 
-Your users can now store the JWT form of their VC in a [DWN (Decentralized Web Node)](https://developer.tbd.website/docs/web5/learn/decentralized-web-nodes).
+Your users can now store the JWT form of their VC in a [DWN (Decentralized Web Node)](https://developer.tbd.website/docs/web5/decentralized-web-nodes/what-are-dwns).
 
 A DWN is a personal data store - a platform for messages, pictures, videos, medical records, and just about any content a user may want to store.
 
@@ -337,10 +337,10 @@ To read the JWT-encoded VC stored in your DWN, add the following to your `index.
 
 
 :::note
-Since the record is [public](https://developer.tbd.website/docs/web5/build/decentralized-web-nodes/publishing-records) 
+Since the record is [public](/docs/web5/decentralized-web-nodes/publishing-records) 
 (set by the `published` property), anyone can access it without permissions. 
 If you need to access a private record from a DWN that doesn't belong to you, you would need permissions from the DWN's owner and to use 
-the [query](https://developer.tbd.website/docs/web5/build/decentralized-web-nodes/query-from-dwn) method. 
+the [query](/docs/web5/decentralized-web-nodes/query-from-dwn) method. 
 :::
 
 <details>
@@ -423,9 +423,9 @@ Congrats! You've successfully created an application with two key functionalitie
 
 ## Next Steps
 
-* [Learn more about DIDs](/docs/web5/learn/decentralized-identifiers)
-* [Learn more about VCs](/docs/web5/learn/verifiable-credentials)
-* [Learn more about DWNs](/docs/web5/learn/decentralized-web-nodes)
-* [Build a shared ToDo app](/docs/web5/build/apps/shared-todo-app) 
+* [Learn more about DIDs](/docs/web5/decentralized-identifiers/what-are-dids)
+* [Learn more about VCs](/docs/web5/verifiable-credentials/what-are-vcs)
+* [Learn more about DWNs](/docs/web5/decentralized-web-nodes/what-are-dwns)
+* [Build a shared ToDo app](/docs/web5/apps/shared-todo-app) 
 
 </QuickstartExecutionProvider>

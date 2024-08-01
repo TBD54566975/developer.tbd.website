@@ -8,7 +8,7 @@ hide_title: true
 
 # Requesting a Known Customer Credential
 
-Known Customer Credentials (KCCs) are [Verifiable Credentials](/docs/web5/learn/verifiable-credentials) designed to streamline the [Know Your Customer (KYC)](https://www.tbdex.io/guides/compliance) process for tbDEX protocol users. KCCs help in gaining access to PFIs that provide regulated financial services.
+Known Customer Credentials (KCCs) are [Verifiable Credentials](/docs/web5/verifiable-credentials/what-are-vcs) designed to streamline the [Know Your Customer (KYC)](https://www.tbdex.io/guides/compliance) process for tbDEX protocol users. KCCs help in gaining access to PFIs that provide regulated financial services.
 
 For a comprehensive exploration of the practical applications and compliance considerations of KCCs, refer to the [KCC Compliance Guide](https://www.tbdex.io/guides/kcc). It provides detailed examples and insights into how KCCs align with certain regulatory requirements. This offers valuable context for those overseeing the implementation and management of KCCs.
 
@@ -121,11 +121,11 @@ App->>+I: SIOPv2 Authorization Response with id_token (& vp_token if applicable)
 I-->>-App: Process Authorization Response
 ```
 
-The IDV flow begins when your app, as the customer's agent, sends an HTTP request to the Issuer's IDV service endpoint specified in the Issuer's [Decentralized Identifier (DID)](/docs/web5/learn/decentralized-identifiers) Document.
+The IDV flow begins when your app, as the customer's agent, sends an HTTP request to the Issuer's IDV service endpoint specified in the Issuer's [Decentralized Identifier (DID)](/docs/web5/decentralized-identifiers/what-are-dids) Document.
 
 ### 1. Get IDV Endpoint
 
-Resolve the Issuer's DID to get the IDV service Endpoint that can be found in the Issuer's [DID Document](/docs/web5/learn/decentralized-identifiers#did-documents):
+Resolve the Issuer's DID to get the IDV service Endpoint that can be found in the Issuer's [DID Document](/docs/web5/decentralized-identifiers/what-are-dids#did-documents):
 
 <Shnip
   snippets={[
@@ -173,7 +173,7 @@ Send an HTTP request to the IDV Service Endpoint:
 />
 
 The Issuer will then respond with a [SIOPv2 Authorization Request](https://openid.github.io/SIOPv2/openid-connect-self-issued-v2-wg-draft.html#section-) in the [JWT-Secured Authorization Request (JAR)](https://www.rfc-editor.org/rfc/rfc9101.html) format.
-This request contains information about the Issuer along with a [Presentation Definition](https://developer.tbd.website/docs/web5/build/verifiable-credentials/presentation-definition). Some of the key information included is:
+This request contains information about the Issuer along with a [Presentation Definition](https://developer.tbd.website/docs/web5/verifiable-credentials/presentation-definition). Some of the key information included is:
 
 - **`client_id`**: Issuer's DID, establishing the Issuer/requestor's identity.
 - **`response_type`**: Indicates the desired format (e.g., `id_token`, `vp_token`) where `id_token` is required and `vp_token` is optional. If the desired format specifies `vp_token`, a verifiable presentation token should be provided to satisfy the presentation definition contained within the request.
@@ -558,7 +558,7 @@ The Known Customer Credential will be a signed VC [JSON Web Token](https://www.w
 
 ## Example Known Customer Credential
 
-To convert the signed VC JWT into a `VerifiableCredential` object you can use the [`parseJwt()` method](/docs/web5/build/verifiable-credentials/jwt-to-vc#decoding-jwt). Here is what a decoded **Known Customer Credential** would look like:
+To convert the signed VC JWT into a `VerifiableCredential` object you can use the [`parseJwt()` method](/docs/web5/verifiable-credentials/jwt-to-vc#decoding-jwt). Here is what a decoded **Known Customer Credential** would look like:
 
 <LanguageSwitchBlock>
   <div language="JavaScript">
