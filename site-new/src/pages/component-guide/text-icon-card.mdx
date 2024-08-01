@@ -1,0 +1,73 @@
+import React from 'react';
+import TextIconCard from '@site/src/components/TextIconCard';
+import tbdRex from '@site/static/img/tbd-rex';
+
+# TextIconCard Component
+
+<div className="component-guide">
+<p>
+This component displays an icon, title, text, and a button. It supports multiple themes.
+</p>
+
+
+## Properties
+
+
+| Property     | Type                                                | Required | Default | Description                                                                                           |
+|--------------|-----------------------------------------------------|----------|---------|-------------------------------------------------------------------------------------------------------|
+| `icon`       | `React.ComponentType<{ className: string; fill: string }>` | Yes      |         | The icon component to display in the card.                                                            |
+| `title`      | `string`                                            | Yes      |         | The title text for the card.                                                                          |
+| `text`       | `string`                                            | Yes      |         | The description or text content for the card.                                                         |
+| `url`        | `string`                                            | Yes      |         | The URL to navigate to when the button is clicked.                                                    |
+| `className`  | `string`                                            | No       |         | Additional CSS classes to apply to the card.                                                          |
+| `theme`      | `"yellow" \| "teal" \| "purple" \| "grey"`          | No       | `grey`  | The theme color of the card.                                                                          |
+| `buttonText` | `string`                                            | Yes      |         | The text to display on the button.                                                                    |
+
+
+
+## Usage
+
+```jsx title="TextIconCard"
+<TextIconCard
+  icon={tbdRex}
+  title="Rocket"
+  text="An open source messaging service that enables wallet applications to communicate with financial institutions to discover and obtain liquidity."
+  url="https://example.com"
+  theme="yellow"
+  buttonText="Talk Money To Me"
+/>
+```
+
+## Examples
+
+Yellow Theme
+<TextIconCard
+icon={tbdRex}
+title="Rocket"
+text="An open source messaging service that enables wallet applications to communicate with financial institutions to discover and obtain liquidity."
+url="https://example.com"
+theme="yellow"
+buttonText="Talk Money To Me"
+/>
+
+Teal Theme
+<TextIconCard
+icon={tbdRex}
+title="Liquidity Finder"
+text="A tool to help you find the best liquidity options available in the market."
+url="https://example.com"
+theme="teal"
+buttonText="Find Liquidity"
+/>
+
+Purple Theme
+<TextIconCard
+icon={tbdRex}
+title="Market Watch"
+text="Keep track of market trends and make informed decisions with real-time data."
+url="https://example.com"
+theme="purple"
+buttonText="Watch Market"
+/>
+
+</div>
