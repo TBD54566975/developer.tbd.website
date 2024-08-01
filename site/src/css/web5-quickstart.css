@@ -15,9 +15,14 @@ body > progress ~ * {
   display: none;
 }
 
+.sandbox-container progress {
+  vertical-align: middle;
+  visibility: visible;
+}
+
 .markdown progress {
   vertical-align: middle;
-  visibility: hidden;
+  visibility: visible;
 }
 
 .markdown input[type='file'] {
@@ -64,3 +69,26 @@ body > progress ~ * {
 .quickstart-container {
   margin: 0 2em;
 }
+
+.result {
+  color: white;
+  font-weight: bold;
+  font-size: 2em;
+}
+
+.json-view {
+  color: white !important;
+  --json-property: var(--color-yellow) !important;
+  --json-index: var(--color-yellow) !important;
+  --json-number:var(--color-blue) !important; 
+  --json-string: var(--color-blue) !important; 
+  --json-boolean: var(--color-blue) !important; 
+  --json-null: var(--color-blue) !important;
+}
+
+.json-view .json-view--property { color: var(--json-property); }
+.json-view .json-view--index { color: var(--json-index); }
+.json-view .json-view--number { color: var(--json-number); }
+.json-view .json-view--string { color: var(--json-string); }
+.json-view .json-view--boolean { color: var(--json-boolean); }
+.json-view .json-view--null { color: var(--json-null); }

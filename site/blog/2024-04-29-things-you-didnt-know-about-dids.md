@@ -38,7 +38,7 @@ This fragmentation of identity on the web poses a significant challenge: **_How 
 
 Many organizations are working hard to answer this question. Some are going passwordless via passkeys. Others, like the [Open Researcher and Contributor ID](https://orcid.org/) (ORCID), implemented digital identifiers to associate publications, research, and open source contributions with a particular researcher.
 
-Companies focused on advancing identity tech and self-sovereign identity are embracing [Decentralized Identifiers (DIDs)](https://developer.tbd.website/docs/web5/learn/decentralized-identifiers) as a solution. DIDs are globally unique, alphanumeric, immutable strings representing who you are across the decentralized web. 
+Companies focused on advancing identity tech and self-sovereign identity are embracing [Decentralized Identifiers (DIDs)](https://developer.tbd.website/docs/web5/decentralized-identifiers/what-are-dids) as a solution. DIDs are globally unique, alphanumeric, immutable strings representing who you are across the decentralized web. 
 
 Speaking of DIDs -- **_did_** you know that Decentralized Identifiers are one of the pillars of Web5? 
 
@@ -114,7 +114,7 @@ Below is an example of a DID document:
 
 *Source: https://www.w3.org/TR/did-core/#example-an-example-of-a-relative-did-url*
 
-Learn more about DID documents [here](https://developer.tbd.website/docs/web5/learn/did_document).
+Learn more about DID documents [here](https://developer.tbd.website/docs/web5/decentralized-identifiers/did_documents).
 
 
 ## 5. Every DID has a DID method
@@ -162,7 +162,7 @@ At TBD, we _**actually**_ took a blockchain-less approach. We anchored DID:DHT t
 
 ## 9. You can create a DID with the Web5 SDK 
 
-You can use the Web5 SDK to [create a DID](https://developer.tbd.website/docs/web5/build/decentralized-identifiers/how-to-create-did)!
+You can use the Web5 SDK to [create a DID](https://developer.tbd.website/docs/web5/decentralized-identifiers/how-to-create-did)!
 
 ### **`Web5.connect()`**
 
@@ -184,11 +184,11 @@ You can generate a DID using the Web5.connect() method with the following steps:
 
 ### **More ways to create a DID**
 
-Check out the [documentation](https://developer.tbd.website/docs/web5/build/decentralized-identifiers/how-to-create-did) to learn more ways to create a DID in various languages including JavaScript, Kotlin, and Swift.
+Check out the [documentation](https://developer.tbd.website/docs/web5/decentralized-identifiers/how-to-create-did) to learn more ways to create a DID in various languages including JavaScript, Kotlin, and Swift.
 
 
 ## Learn more about Decentralized Identifiers
 
 * Have a question? Ask it in our [Discord](https://dischord.com/invite/tbd); we're happy to help!
 * Eager to start building? Follow the guides in our [documentation](https://developer.tbd.website/docs/).
-* Curious about the entire ecosystem? Watch our [YouTube videos](https://www.youtube.com/@TBD54566975).
+* Curious about the entire ecosystem? Watch our [YouTube videos](https://www.youtube.com/@tbd.videos).

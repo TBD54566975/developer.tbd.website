@@ -26,7 +26,7 @@ This instantiates a new Order, including metadata such as the customer's DID, th
 
 ## Sign Order
 
-Then sign the Order with the customer's [Portable DID](/docs/web5/build/decentralized-identifiers/how-to-create-did#portable-did):
+Then sign the Order with the customer's [Portable DID](/docs/web5/decentralized-identifiers/how-to-create-did#portable-did):
 
 <Shnip
   snippets={[
@@ -89,7 +89,8 @@ Once a `Close` message is written, the exchange is ended and no additional messa
 }
 ```
 
-When the PFI closes the Order, it's important to check the `reason` on the Close message and report that to your customer, as it could be because the transaction was completed successfully or it could be that the Order has failed.
+When the PFI closes the Order, it's important to check the `success` indicator to determine if the transaction was completed successfully.
+In the event that it was not, there is a `reason` on the Close message that should provide more detail. 
 
 <Shnip
   snippets={[

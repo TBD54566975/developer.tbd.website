@@ -1,0 +1,27 @@
+---
+sidebar_position: 8
+---
+
+import CodeSnippet from '@site/src/components/CodeSnippet';
+
+
+# Delete DWN Records
+
+You can delete a record stored in the user's DWN, or another party's DWN (if permission has been granted).
+
+The following snippets allow you to delete from a DWN:
+
+### Delete record from the user's local DWN
+
+<CodeSnippet snippetName='deleteRecordFromLocalDwn'/>
+
+
+### Delete record from a remote DWN
+
+<CodeSnippet snippetName='deleteRecordFromRemoteDwn'/>
+
+### Delete parent record and all children
+
+To delete a parent record along with all its child records, set the prune option to true.
+
+<CodeSnippet snippetName='pruneRecords'/>

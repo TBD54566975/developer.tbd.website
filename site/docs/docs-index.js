@@ -14,7 +14,7 @@ function DocsIndex() {
         Give your customers control of their identity, data, and finances.
       </h1>
       <p className="mb-8">
-        Our toolkits bring decentralized identity, messaging, and data storage to your applications. 
+        Our toolkits bring decentralized identity, messaging, and data storage to your applications.
         They let developers focus on creating delightful user experiences, while returning ownership to individuals.
       </p>
       <div className="grid grid-cols-1 desktop:grid-cols-2 gap-4">
@@ -35,7 +35,7 @@ function DocsIndex() {
           imgSrc="/img/money-msg-blue-purple.svg"
           imgClass="w-36 flip"
           themeColor="cyan"
-        
+
         />
       </div>
 
@@ -49,7 +49,7 @@ function DocsIndex() {
       <div className="grid grid-cols-1 desktop:grid-cols-2 gap-4">
         <HeroCard
           heroText="Decentralized Identifiers"
-          buttonUrl="/docs/web5/learn/decentralized-identifiers"
+          buttonUrl="/docs/web5/decentralized-identifiers/what-are-dids"
           buttonText="Learn"
           imgSrc="/img/id-blue-purple.svg"
           imgClass="w-32 beat-fade"
@@ -58,7 +58,7 @@ function DocsIndex() {
         />
         <HeroCard
           heroText="Verifiable Credentials"
-          buttonUrl="/docs/web5/learn/verifiable-credentials"
+          buttonUrl="/docs/web5/verifiable-credentials/what-are-vcs"
           buttonText="Learn"
           imgSrc="/img/credential-yellow.svg"
           imgClass="w-32 beat-fade"
@@ -67,7 +67,7 @@ function DocsIndex() {
         />
         <HeroCard
           heroText="Wallet App Example"
-          buttonUrl="https://github.com/TBD54566975/tbDEX-Example-iOS"
+          buttonUrl="https://github.com/TBD54566975/tbd-examples/tree/main/swift/tbdex-example-ios"
           buttonText="Learn"
           imgSrc="/img/wallet-blue-yellow.svg"
           imgClass="w-32 beat-fade"
@@ -93,12 +93,12 @@ function DocsIndex() {
         <ExploreCard
           text="Sample Apps"
           icon="/img/mobile-phone-yellow-blue.svg"
-          url="https://github.com/TBD54566975/developer.tbd.website/tree/main/examples/tutorials"
+          url="https://github.com/TBD54566975/tbd-examples"
         />
         <ExploreCard
           text="Videos"
           icon="/img/tv-yellow-blue.svg"
-          url="https://www.youtube.com/@TBD54566975/videos"
+          url="https://www.youtube.com/@tbd.videos"
         />
         <ExploreCard
           text="Blog Posts"

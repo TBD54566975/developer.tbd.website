@@ -5,13 +5,13 @@ function ScheduleCard({ image, DateTime, EventName, EventDetails,ExtraDetails })
   return (
     <div className="p-8 w-full">
       <div className="flex flex-col items-center">
-        <div className="rounded-full overflow-hidden w-40 h-40 mb-4">
+        <div className="overflow-hidden w-40 h-40 mb-4">
           <img className="w-full h-full object-cover" src={image} alt={DateTime} />
         </div>
         <div className="text-center">
           <h3 className="text-[#22f1ff]" style={{ whiteSpace: 'nowrap' }}>{DateTime}</h3>
-          <p>{EventName}</p>
-          <p>{EventDetails}</p>
+          <p style={{ fontWeight: 'bold' }}>{EventName}</p>
+          <p style={{color: '#1ccfdb'}}>{EventDetails}</p>
           <p style={{ fontWeight: 'bold' }}>{ExtraDetails}</p>
         </div>
       </div>
@@ -22,26 +22,35 @@ function ScheduleCard({ image, DateTime, EventName, EventDetails,ExtraDetails })
 function ConferenceSchedule() {
   return (
     <div>
-      <div className="community-card grid grid-cols-1 tablet:grid-cols-3 desktop:grid-cols-3 gap-4 pb-7 space-x-4">
+      <div className="community-card grid grid-cols-1 tablet:grid-cols-3 desktop:grid-cols-4 gap-4 pb-7 space-x-4">
         <ScheduleCard
-          DateTime="July 27 @ 11:30"
-          image="/img/learn/headshots/angie_jones.png"
-          EventName={`"Refactoring the Web"`}
-          EventDetails={`Angie Jones, Main Stage`}
-        />
-        <ScheduleCard
-          DateTime="July 27, 15:00 - 19:00"
+          DateTime="July 18 @ 16:00"
           image="/img/happy-hour.png"
           EventName={`TBD Happy Hour`}
-          EventDetails={`Hall 2.2, Booth 2_62
-          Drinks, swag & more!`}
-          ExtraDetails= {`We'll be at the booth both days so feel free to stop by then too. See you there!`}
+          EventDetails={`FREE Swag & Beer - see you there!🍻`}
+          ExtraDetails= {`Hall 2.2, Booth 2_40`}
         />
         <ScheduleCard
-          DateTime="July 28 @ 09:00"
-          image="/img/what_is_web5.png"
-          EventName={`Web5 Workshop`}
-          EventDetails={"Workshop M5"}
+          DateTime="July 18 @ 16:10"
+          image="/img/communityPanel.png"
+          EventName={`The Power of Developer Communities`}
+          EventDetails={`Angie Jones along with Scott Hanselman and Rajeev Rajan`}
+          ExtraDetails= {`Tech Leaders Stage (500)`}
+        />
+        <ScheduleCard
+          DateTime="July 19 @ 10:00"
+          image="/img/tbdex-workshop-icon.png"
+          EventName={`Do you speak tbDEX? Learn the Language of Global Payments`}
+          EventDetails={`Angie Jones`}
+          ExtraDetails= {`Workshop Room M3 💻`}
+
+        />
+        <ScheduleCard
+          DateTime="July 19 @ 12:20"
+          image="/img/opening_panel.png"
+          EventName={`Giving the individual control of their data: Open Source Decentralized Web Nodes`}
+          EventDetails={`Mike Brock, Daniel Buchner, Angie Jones`}
+          ExtraDetails= {`Mainstage`}
         />
       </div>
     </div>

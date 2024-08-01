@@ -13,6 +13,9 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertDoesNotThrow
 import web5.sdk.dids.did.BearerDid
 import web5.sdk.credentials.VerifiableCredential
+// :prepend-start: KnownCustomerCredentialsClassKT
+import web5.sdk.credentials.CredentialSchema
+// :prepend-end:
 import web5.sdk.jose.jwt.Jwt
 import web5.sdk.crypto.InMemoryKeyManager
 import web5.sdk.dids.methods.dht.CreateDidDhtOptions
@@ -43,7 +46,7 @@ import io.ktor.http.HttpStatusCode
 class KnownCustomerCredentialIssuerTest {
 
     // :snippet-start: KnownCustomerCredentialsClassKT
-    data class KccCredential(val country_of_residence: String, val tier: String?)
+    data class KccCredential(val countryOfResidence: String, val tier: String?)
     data class Evidence(val kind: String, val checks: List<String>)
     // :snippet-end:
 
@@ -59,13 +62,28 @@ class KnownCustomerCredentialIssuerTest {
         val customerBearerDid = generateTestDid()
         val dateFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'")
         val expirationDate: Date = dateFormat.parse("2026-05-19T08:02:04Z")
+        val evidence = listOf(
+            Evidence(
+                kind = "document_verification",
+                checks = listOf("passport", "utility_bill")
+                ),
+            Evidence(
+                kind = "sanction_screening",
+                checks = listOf("PEP")
+                )
+            )
 
         val knownCustomerCredential = VerifiableCredential.create(
-            type = "KnownCustomerCredential",
+            type = "VerifiableCredential",
             issuer = issuerBearerDid.uri.toString(),
             subject = customerBearerDid.uri.toString(),
             expirationDate = expirationDate,
-            data = KccCredential("US" , "Gold")
+            data = KccCredential("US" , "Gold"),
+            evidence = evidence,
+            credentialSchema = CredentialSchema(
+                id = "https://vc.schemas.host/kcc.schema.json",
+                type = "JsonSchema"
+            ),
         )
 
         val credentialToken = knownCustomerCredential.sign(issuerBearerDid)
@@ -300,15 +318,25 @@ class KnownCustomerCredentialIssuerTest {
                     put("client_metadata", clientMetadata)
                 }
                 //highlight-start
-                val queryString = siopRequest.toMap().entries.joinToString("&") { (key, value) ->
-                    val encodedValue = when (value) {
-                        is JsonElement -> URLEncoder.encode(value.toString(), Charsets.UTF_8.name())
-                        else -> URLEncoder.encode(value.toString(), Charsets.UTF_8.name())
-                    }
-                    "${URLEncoder.encode(key, Charsets.UTF_8.name())}=$encodedValue"
-                }
+                // Sign the SIOPv2 Auth Request
+                val siopRequestJwtPayload = JwtClaimsSet.Builder()
+                    .subject(issuerBearerDid.uri) // Issuer's DID
+                    .issuer(issuerBearerDid.uri) // Issuer's DID
+                    .issueTime(System.currentTimeMillis() / 1000) // Issued time
+                    .expirationTime((System.currentTimeMillis() / 1000) + 86400) // Expiration time 
+                    .misc("request", siopRequest.toString()) // Embed the SIOPv2 Auth request payload 
+                    .build()
 
-                call.respondText(queryString, ContentType.Text.Plain)
+                try {
+                    val jwtToken = Jwt.sign(issuerBearerDid, siopRequestJwtPayload)
+                    // Send the SIOPv2 Auth Request in JAR format
+                    val queryString = "client_id=${URLEncoder.encode(issuerBearerDid.uri.toString(), "UTF-8")}&request=${URLEncoder.encode(jwtToken, "UTF-8")}"
+
+                    call.respondText(queryString, ContentType.Text.Plain)
+                } catch (err: Exception) {
+                    println("Error signing the SIOPv2 request: ${err.message}")
+                    call.respond(HttpStatusCode.InternalServerError, "Failed to generate JWT for SIOPv2 Authorization Request")
+                }
                 //highlight-end
             }
         // :snippet-end:
@@ -603,12 +631,16 @@ class KnownCustomerCredentialIssuerTest {
                     val expirationDate: Date = dateFormat.parse("2026-05-19T08:02:04Z")
 
                     val knownCustomerCredential = VerifiableCredential.create(
-                        type = "KnownCustomerCredential",
+                        type = "VerifiableCredential",
                         issuer = issuerBearerDid.uri, // Issuer's DID string
                         subject = customersDidUri, // Customer's DID string from the verified JWT
                         expirationDate = expirationDate,
                         evidence = evidence,
-                        data = KccCredential(country_of_residence = "US", tier = "Gold")
+                        data = KccCredential(countryOfResidence = "US", tier = "Gold"),
+                        credentialSchema = CredentialSchema(
+                            id = "https://vc.schemas.host/kcc.schema.json",
+                            type = "JsonSchema"
+                        ),
                     )
 
                     val credentialToken = knownCustomerCredential.sign(
@@ -632,5 +664,3 @@ class KnownCustomerCredentialIssuerTest {
         }
     }
 }
-
-

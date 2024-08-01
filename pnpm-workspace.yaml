@@ -1,4 +1,5 @@
 packages:
-  - 'site/**'
-  - 'examples/**'
-  - 'apps/**'
+  - "site/**"
+  - "examples/**"
+  - "apps/**"
+  - "site-new/**"

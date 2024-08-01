@@ -6,9 +6,9 @@ import org.junit.jupiter.api.Assertions.*
 // :snippet-start: pfiOnboardingImportsKt
 import web5.sdk.dids.methods.dht.CreateDidDhtOptions
 import web5.sdk.dids.methods.dht.DidDht
-import web5.sdk.crypto.InMemoryKeyManager
 import web5.sdk.dids.didcore.Service
 // :snippet-end:
+import web5.sdk.crypto.InMemoryKeyManager
 
 /**
  * Tests for PFI Onboarding guide

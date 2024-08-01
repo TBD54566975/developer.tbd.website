@@ -42,9 +42,9 @@ You'll also need to install `@web5/credentials` to create and issue credentials:
 
 ### Create a DID
 
-Additionally, to issue credentials, you need a [Decentralized Identifier (DID)](/docs/web5/learn/decentralized-identifiers) which will serve as your Issuer's identity.
+Additionally, to issue credentials, you need a [Decentralized Identifier (DID)](/docs/web5/decentralized-identifiers/what-are-dids) which will serve as your Issuer's identity.
 
-If you don't already have one, you'll need to [create a DID](/docs/web5/build/decentralized-identifiers/how-to-create-did) with an IDV (Identity Verification) service endpoint:
+If you don't already have one, you'll need to [create a DID](/docs/web5/decentralized-identifiers/how-to-create-did) with an IDV (Identity Verification) service endpoint:
 
 <Shnip
   snippets={[
@@ -69,11 +69,13 @@ If you have an existing DID you'll need to update that DID Document with an IDV 
       snippetName: 'updateADidWithServiceEndpointJS',
       language: 'JavaScript',
       title: 'did.js',
-    },
+    }
+  ]}
+  inlineSnippets={[
     {
-      snippetName: 'updateADidWithAServiceEndpointKT',
+      code: `Updating a DID Document with a service endpoint is not currently supported in Kotlin.`,
       language: 'Kotlin',
-      title: 'Application.kt',
+      codeLanguage: 'text',
     },
   ]}
 />

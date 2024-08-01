@@ -1,9 +1,6 @@
 /* eslint-disable quotes */
 import Heading from './heading.mdx';
-import DataOwnership from './data-self-ownership.mdx';
 import ProvingIdentity from './proving-your-identity.mdx';
-import SSIService from '../ssi-service.mdx';
-import TBDEXProtocol from '../tbdex-protocol.mdx';
 export const content = {
   meta: {
     title: 'tbDEX | TBD',
@@ -20,7 +17,7 @@ export const content = {
         description:
           'Decentralized Identifiers are a W3C international standard for identifiers created, owned, and controlled by individuals, without reliance on centralized entities',
         textButton: 'View Component',
-        url: '/docs/web5/learn/decentralized-identifiers'
+        url: '/docs/web5/decentralized-identifiers/what-are-dids'
       },
       {
         icon: '/img/component-icon.svg',
@@ -28,7 +25,7 @@ export const content = {
         description:
           'Verifiable Credentials are a W3C international standard for verifiable claims.',
         textButton: 'View Component',
-        url: '/docs/web5/learn/verifiable-credentials'
+        url: '/docs/web5/verifiable-credentials/what-are-vcs'
       }
     ],
   },

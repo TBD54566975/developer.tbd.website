@@ -61,7 +61,7 @@ At TBD, we aim to make the financial world accessible to everyone. Initially, th
 After a few months of working here, I'm playing a part in making this vision possible by writing code, hosting live streams, and blogging. From my viewpoint, here's how I see our projects making an impact:
 
 * **Making global payments easy** - We recognize that much of technology is U.S. centric. We've proudly contributed to making money exchange easy within the U.S. through platforms like CashApp. Now, we're striving to expand this accessibility worldwide with the development of the [tbDEX SDK](https://developer.tbd.website/docs/tbdex/), which will enable developers to create platforms to power global money exchange.
-* **Modernizing ID management** - Along with other organizations, we're part of a collective to leverage W3C standards to reduce reliance on passwords or physical identification cards. In the future, we’re working on creating a world where it will be popular to store IDs and credentials on your cellphone via [Verifiable Credentials](https://developer.tbd.website/docs/web5/learn/verifiable-credentials), [Decentralized Identifiers](https://developer.tbd.website/docs/web5/learn/decentralized-identifiers), and [Agents](https://developer.tbd.website/docs/web5/learn/agents).
+* **Modernizing ID management** - Along with other organizations, we're part of a collective to leverage W3C standards to reduce reliance on passwords or physical identification cards. In the future, we’re working on creating a world where it will be popular to store IDs and credentials on your cellphone via [Verifiable Credentials](https://developer.tbd.website/docs/web5/verifiable-credentials/what-are-vcs), [Decentralized Identifiers](https://developer.tbd.website/docs/web5/decentralized-identifiers/what-are-dids), and [Agents](https://developer.tbd.website/docs/web5/decentralized-web-nodes/agents).
 * **Introducing data portability** - We built the [Web5 SDK](https://developer.tbd.website/docs/web5/) to empower developers to create web apps where users can keep their data private and easily migrate data from one platform to another.
 
 ## My Top 2 Predictions
@@ -123,5 +123,5 @@ At TBD, we're envisioning the future we aspire to create. Follow our journey acr
 * [Discord](https://discord.com/invite/tbd)
 * [Developer Docs](https://developer.tbd.website/docs)
 * [Developer Blog](https://developer.tbd.website/blog)
-* [YouTube](https://www.youtube.com/@TBD54566975)
+* [YouTube](https://www.youtube.com/@tbd.videos)
 * [Weekly Live Stream](https://www.twitch.tv/tbdevs)

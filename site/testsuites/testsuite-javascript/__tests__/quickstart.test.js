@@ -1,21 +1,12 @@
 import { test, beforeAll, expect, describe } from 'vitest';
-import {
-  createTextRecord,
-  readTextRecord,
-  updateTextRecord,
-  deleteTextRecord,
-} from '../../../code-snippets/web5/quickstart';
 import { setUpWeb5 } from './setup-web5';
+import { VerifiableCredential } from '@web5/credentials';
 
 // This is the web5 instance that will be referred to for all tests. This comes back as a result from Web5.connect() being used in the didCreate function.
 let web5;
 // This is the decentralized ID that will be referred to for all tests. This comes back as a result from Web5.connect() being used in the didCreate function.
 let aliceDid;
 // This record result is what comes back from the createTextRecord function. This is used to test the record's attributes and methods.
-let recordResult;
-
-const textInput = 'Hello, Web5!';
-const updatedTextInput = 'Hello, Web5! I am updated.';
 
 describe('/site/tests/quickstart.test.js', async () => {
   // This is where we create a DID, assign the web5 and aliceDid variables, and then use the aliceDid to write a text record.
@@ -31,33 +22,162 @@ describe('/site/tests/quickstart.test.js', async () => {
     expect(didRegex.test(aliceDid)).toBe(true);
   });
 
-  test('createTextRecord returns a record with aliceDid being the same value as the author attribute', async () => {
-    // This is where we write a text record and assign the result to the recordResult variable.
-    const response = await createTextRecord(web5, textInput);
-    recordResult = response.record;
-    expect(recordResult.author).toBe(aliceDid);
+  test('getBearerDid returns a bearer identity', async () => {
+    // :snippet-start: getBearerDid
+    const { did: aliceBearerDid } = await web5.agent.identity.get({ didUri: aliceDid });
+    // :snippet-end:
+    expect(aliceBearerDid.uri).toBe(aliceDid);
   });
 
-  test('recordResult returns a record with the textInput being the same value as the data attribute', async () => {
-    const textResult = await readTextRecord(recordResult);
-    expect(textResult).toBe(textInput);
+  test('createQuickstartVc returns a vc', async () => {
+    // :snippet-start: createQuickstartVc
+    const vc = await VerifiableCredential.create({
+      type: 'Web5QuickstartCompletionCredential',
+      issuer: aliceDid,
+      subject: aliceDid,
+      data: {
+        name: 'Alice Smith',
+        completionDate: new Date().toISOString(),
+        expertiseLevel: 'Beginner'
+      }
+    });
+    // :snippet-end:
+    expect(vc.vcDataModel.issuer).toBe(aliceDid);
   });
 
-  test('recordResult successfully sends an updated textInput', async () => {
-    const updatedRecordResult = await updateTextRecord(recordResult);
+  test('signQuickstartVc returns a jwt', async () => {
+    const { did: aliceBearerDid } = await web5.agent.identity.get({ didUri: aliceDid });
+    class Web5QuickstartCompletionCredential {
+      constructor(name, completionDate, expertiseLevel) {
+        this.name = name;
+        this.completionDate = completionDate;
+        this.expertiseLevel = expertiseLevel;
+      }
+    }
 
-    expect.soft(updatedRecordResult.status.code).toBe(202);
-    expect(updatedTextInput).toBe(await recordResult.data.text());
+    const vc = await VerifiableCredential.create({
+      type: 'Web5QuickstartCompletionCredential',
+      issuer: aliceDid,
+      subject: aliceDid,
+      data: new Web5QuickstartCompletionCredential(
+        'Alice Smith',
+        '2024-05-22',
+        'Beginner',
+      )
+    });
+    // :snippet-start: signQuickstartVc
+    const signedVc = await vc.sign({ did: aliceBearerDid });
+    // :snippet-end:
+    expect(typeof signedVc).toBe('string');
   });
 
-  test('recordResult successfully deletes the record', async () => {
-    const deletedRecordResult = await deleteTextRecord(
-      web5,
-      aliceDid,
-      recordResult,
-    );
-    expect.soft(deletedRecordResult.status.code).toBe(202);
+  test('writeQuickstartVcToDwn writes a signed vc to dwn', async () => {
+    const { did: aliceBearerDid } = await web5.agent.identity.get({ didUri: aliceDid });
+    class Web5QuickstartCompletionCredential {
+      constructor(name, completionDate, expertiseLevel) {
+        this.name = name;
+        this.completionDate = completionDate;
+        this.expertiseLevel = expertiseLevel;
+      }
+    }
+
+    const vc = await VerifiableCredential.create({
+      type: 'Web5QuickstartCompletionCredential',
+      issuer: aliceDid,
+      subject: aliceDid,
+      data: new Web5QuickstartCompletionCredential(
+        'Alice Smith',
+        '2024-05-22',
+        'Beginner',
+      )
+    });
+    const signedVc = await vc.sign({ did: aliceBearerDid });
+    // :snippet-start: writeQuickstartVcToDwn
+    const { record } = await web5.dwn.records.create({
+      data: signedVc,
+      message: {
+        schema: 'Web5QuickstartCompletionCredential',
+        dataFormat: 'application/vc+jwt',
+        published: true
+      }
+    });
+    // :snippet-end:
+    expect(record.author).toBe(aliceDid);
   });
+
+  test('readQuickstartVc reads jwt from DWN', async () => {
+    const { did: aliceBearerDid } = await web5.agent.identity.get({ didUri: aliceDid });
+    class Web5QuickstartCompletionCredential {
+      constructor(name, completionDate, expertiseLevel) {
+        this.name = name;
+        this.completionDate = completionDate;
+        this.expertiseLevel = expertiseLevel;
+      }
+    }
+
+    const vc = await VerifiableCredential.create({
+      type: 'Web5QuickstartCompletionCredential',
+      issuer: aliceDid,
+      subject: aliceDid,
+      data: new Web5QuickstartCompletionCredential(
+        'Alice Smith',
+        '2024-05-22',
+        'Beginner',
+      )
+    });
+    const signedVc = await vc.sign({ did: aliceBearerDid });
+
+    const { record } = await web5.dwn.records.create({
+      data: signedVc,
+      message: {
+        schema: 'Web5QuickstartCompletionCredential',
+        dataFormat: 'application/vc+jwt',
+        published: true
+      }
+    });
+    // :snippet-start: readQuickstartVc
+    const readSignedVc = await record.data.text();
+    // :snippet-end:
+    expect(typeof readSignedVc).toBe('string');
+  });
+
+  test('parseQuickstartVc reads jwt from DWN', async () => {
+    const { did: aliceBearerDid } = await web5.agent.identity.get({ didUri: aliceDid });
+    class Web5QuickstartCompletionCredential {
+      constructor(name, completionDate, expertiseLevel) {
+        this.name = name;
+        this.completionDate = completionDate;
+        this.expertiseLevel = expertiseLevel;
+      }
+    }
+
+    const vc = await VerifiableCredential.create({
+      type: 'Web5QuickstartCompletionCredential',
+      issuer: aliceDid,
+      subject: aliceDid,
+      data: new Web5QuickstartCompletionCredential(
+        'Alice Smith',
+        '2024-05-22',
+        'Beginner',
+      )
+    });
+
+    const signedVc = await vc.sign({ did: aliceBearerDid });
+
+    const { record } = await web5.dwn.records.create({
+      data: signedVc,
+      message: {
+        schema: 'Web5QuickstartCompletionCredential',
+        dataFormat: 'application/vc+jwt',
+        published: true
+      }
+    });
+
+    const readSignedVc = await record.data.text();
+    // :snippet-start: parseQuickstartVc
+    const parsedVc = VerifiableCredential.parseJwt({ vcJwt: readSignedVc });
+    // :snippet-end:
+    expect(parsedVc.vcDataModel.issuer).toBe(aliceDid);
+  });
+
 });
-
-function getFrontPageHtml(pariss) {}
