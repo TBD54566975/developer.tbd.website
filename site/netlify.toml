@@ -1,8 +1,4 @@
 [[redirects]]
-from = "/blog/issue-verifiable-credential-manually"
-to = "/docs/ssi/create-credentials"
-
-[[redirects]]
 from = "/code-of-conduct"
 to = "/open-source/code-of-conduct"
 

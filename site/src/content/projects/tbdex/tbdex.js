@@ -2,7 +2,6 @@
 import Heading from './heading.mdx';
 import DataOwnership from './data-self-ownership.mdx';
 import ProvingIdentity from './proving-your-identity.mdx';
-import SSIService from '../ssi-service.mdx';
 import TBDEXProtocol from '../tbdex-protocol.mdx';
 export const content = {
   meta: {
@@ -26,7 +25,7 @@ export const content = {
         icon: '/img/component-icon.svg',
         title: 'Verifiable Credentials',
         description:
-          'Verifiable Credentials are a W3C international standard for verifiable claims.',
+          'Verifiable Credentials are a W3C international standard for verifiable claims',
         textButton: 'View Component',
         url: '/docs/web5/learn/verifiable-credentials'
       }
