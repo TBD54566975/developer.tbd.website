@@ -1,0 +1,93 @@
+---
+title: Parse JWT into VC
+hide_title: true
+sidebar_position: 6
+---
+
+<LanguageSwitcher languages="JavaScript, Kotlin" />
+
+# Parse JWT into VC
+
+When [signing a Verifiable Credential (VC)](/docs/web5/verifiable-credentials/vc-issuance#sign-vc), a [JSON Web Token (JWT)](https://jwt.io/) is returned.
+This guide demonstrates how to parse the JWT to get the corresponding VC object.
+
+## What is a JWT
+A VC JWT is a secure URL-safe string representation of a credential, ideal for storage or transmission between two parties.
+JWT format is used to encode the credentials, making them both secure and easily transmissible.
+
+**Example JWT**
+
+<Shnip
+  snippets={[
+    { snippetName: 'jwtToVcVar', language: 'JavaScript'},
+    { snippetName: 'jwtToVcVarKt', language: 'Kotlin'},
+    ]}
+/>
+
+
+## Decoding JWT
+
+Once a VC JWT is received, the credential verifier will likely need to inspect or use the data that's contained within the credential.
+They can use `parseJwt()` to decode the JWT and convert it back into a `VerifiableCredential` object.
+This object format is more convenient for accessing and manipulating the credential's data within their application.
+
+<Shnip
+  snippets={[
+    { snippetName: 'jwtToVcParse', language: 'JavaScript'},
+    { snippetName: 'jwtToVcParseKt', language: 'Kotlin'},
+    ]}
+/>
+
+This returns the VC in JSON:
+
+<Shnip
+  inlineSnippets={[
+    {
+      code: `
+{
+  vcDataModel: {
+    '@context': [ 'https://www.w3.org/2018/credentials/v1' ],
+    type: [ 'VerifiableCredential', 'EmploymentCredential' ],
+    id: 'urn:uuid:8fd52030-1caf-4978-a35d-d417eb8e00b2',
+    issuer: 'did:dht:kfdtbcm9zgocf5matf9fxtnnffhhzxc7mgbwr4k3x3qziaucpp4y',
+    issuanceDate: '2023-12-21T17:02:01Z',
+    credentialSubject: {
+      id: 'did:dht:y39m48ozoete7z6fzaangcos87fhuh1dzi7f7jwbjft7otskh9to',
+      position: 'Software Developer',
+      startDate: '2021-04-01T12:34:56Z',
+      employmentStatus: 'Contractor'
+    },
+    expirationDate: '2022-09-30T12:34:56Z'
+  }
+}
+      `,
+      language: 'JavaScript',
+      codeLanguage: 'bash',
+    },
+    {
+      code: `
+{
+  "@context": [
+    "https://www.w3.org/2018/credentials/v1"
+  ],
+  "type": [
+    "VerifiableCredential",
+    "EmploymentCredential"
+  ],
+  "id": "urn:uuid:8fd52030-1caf-4978-a35d-d417eb8e00b2",
+  "issuer": "did:dht:kfdtbcm9zgocf5matf9fxtnnffhhzxc7mgbwr4k3x3qziaucpp4y",
+  "issuanceDate": "2023-12-21T17:02:01Z",
+  "credentialSubject": {
+    "id": "did:dht:y39m48ozoete7z6fzaangcos87fhuh1dzi7f7jwbjft7otskh9to",
+    "position": "Software Developer",
+    "startDate": "2021-04-01T12:34:56Z",
+    "employmentStatus": "Contractor"
+  },
+  "expirationDate": "2022-09-30T12:34:56Z"
+}
+      `,
+      language: 'Kotlin', 
+      codeLanguage: 'javascript',
+    }
+  ]}
+/>
