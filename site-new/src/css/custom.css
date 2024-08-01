@@ -297,19 +297,8 @@ h2 {
   right: 8px;
 }
 
-.menu__list .web5-icon a::before {
-  content: url('/img/web5-icon.svg');
-  display: inline-block;
-  margin-left: 5px;
-  vertical-align: middle;
-}
-
-.menu__list .web5-icon a::before:hover {
-  content: url('/img/web5-icon.svg');
-}
 
 .menu__list .tbdex-icon a::before:hover {
-  content: url("/img/light-bulb.svg");
   font-family: 'FontAwesome';
   display: inline-block;
   margin-left: 5px;
