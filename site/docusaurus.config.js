@@ -112,13 +112,7 @@ let config = {
       'redocusaurus',
       {
         // Plugin Options for loading OpenAPI files
-        specs: [
-          {
-            id: 'ssi-sdk',
-            spec: 'https://raw.githubusercontent.com/TBD54566975/ssi-service/main/doc/swagger.yaml',
-            route: '/docs/apis/ssi-service',
-          },
-        ],
+        specs: [],
         // Theme Options for modifying how redoc renders them
         theme: {
           // Change with your site colors

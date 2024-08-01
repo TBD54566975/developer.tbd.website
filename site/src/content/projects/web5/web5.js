@@ -1,5 +1,4 @@
 /* eslint-disable quotes */
-import SSIService from '../ssi-service.mdx';
 import TBDEXProtocol from '../tbdex-protocol.mdx';
 import Heading from './heading.mdx';
 export const content = {
@@ -18,44 +17,25 @@ export const content = {
         description:
           'Decentralized Identifiers are a W3C international standard for identifiers created, owned, and controlled by individuals, without reliance on centralized entities',
         textButton: 'View Component',
-        url: 'https://w3c.github.io/did-core/',
-        isExternalLink: true,
+        url: '/docs/web5/decentralized-identifiers/what-are-dids',
+        isExternalLink: false,
       },
       {
         icon: '/img/component-icon.svg',
-        title: 'Decentralized Web Node',
+        title: 'Verifiable Credentials',
+        description:'Verifiable Credentials are a W3C international standard for cryptographically-signed statements made by an issuer about a holder',
+        textButton: 'View Component',
+        url: '/docs/web5/verifiable-credentials/what-are-vcs',
+        isExternalLink: false,
+      },
+      {
+        icon: '/img/component-icon.svg',
+        title: 'Decentralized Web Nodes',
         description: TBDEXProtocol,
         textButton: 'View Component',
-        url: 'https://github.com/TBD54566975/dwn-sdk-js#readme',
-        isExternalLink: true,
-      },
-
-      {
-        icon: '/img/component-icon.svg',
-        title: 'Self-Sovereign Identity Service',
-        description:
-          'An in-a-box service that handles the full Verifiable Credentials lifecycle, including issuance, verification, revocation, and more',
-        textButton: 'View Component',
-        url: 'https://github.com/TBD54566975/ssi-service#readme',
-        isExternalLink: true,
-      },
-      {
-        icon: '/img/component-icon.svg',
-        title: 'Self-Sovereign Identity SDK',
-        description: SSIService,
-        textButton: 'View Component',
-        url: 'https://github.com/TBD54566975/ssi-sdk/blob/main/README.md',
-        isExternalLink: true,
-      },
-      {
-        icon: '/img/component-icon.svg',
-        title: 'Self-Sovereign Identity Console',
-        description:
-          'A user-friendly GUI Console for managing Verifiable Credentials lifecycle, from issuance to revocation',
-        textButton: 'View Component',
-        url: 'https://github.com/TBD54566975/ssi-admin-ui/blob/main/README.md',
-        isExternalLink: true,
-      },
+        url: '/docs/web5/decentralized-identifiers/what-are-dwns',
+        isExternalLink: false,
+      }
     ],
   },
   actors: {

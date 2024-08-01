@@ -1,9 +1,6 @@
 /* eslint-disable quotes */
 import Heading from './heading.mdx';
-import DataOwnership from './data-self-ownership.mdx';
 import ProvingIdentity from './proving-your-identity.mdx';
-import SSIService from '../ssi-service.mdx';
-import TBDEXProtocol from '../tbdex-protocol.mdx';
 export const content = {
   meta: {
     title: 'tbDEX | TBD',
