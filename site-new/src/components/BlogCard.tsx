@@ -24,15 +24,17 @@ function BlogCard({
   return (
     <div
       className={clsx(
-        "group border-[gray] border-2 border-solid bg-dark-grey hover:bg-tbd-yellow text-[#FFF] hover:text-[black]",
+        "group border-[gray] border-2 border-solid bg-dark-grey hover:bg-tbd-yellow text-[#FFF] group-hover:text-tbd-gray",
         cardSizeClass
       )}
     >
       <img className="h-auto max-w-full block" src={image} />
-      <div className="p-4">
+      <div className="p-4 group-hover:text-tbd-gray">
         <div>{date.toLocaleDateString()}</div>
-        <div className="text-tbd-yellow group-hover:text-[black]">{`@${author}`}</div>
-        <h2 className="text-4xl tracking-wide">{title}</h2>
+        <div className="text-tbd-yellow group-hover:text-tbd-gray">{`@${author}`}</div>
+        <h2 className="text-4xl tracking-wide group-hover:text-tbd-gray">
+          {title}
+        </h2>
         <div className="flex">
           {tags.map((t) => (
             <div

@@ -1,0 +1,66 @@
+import React from 'react';
+import BlogCard from '@site/src/components/BlogCard';
+
+# BlogCard Component
+
+<div className="component-guide text-white">
+<p>This component displays a blog card with an image, date, author, title, tags, and description. It supports multiple sizes.</p>
+
+## Properties
+
+| Property     | Type                | Required | Default                                                | Description                                                                                           |
+|--------------|---------------------|----------|--------------------------------------------------------|-------------------------------------------------------------------------------------------------------|
+| `date`       | `Date`              | No       | `new Date()`                                           | The publication date of the blog post.                                                                |
+| `author`     | `string`            | No       | `"author"`                                             | The author of the blog post.                                                                          |
+| `title`      | `string`            | No       | `"Title"`                                              | The title of the blog post.                                                                           |
+| `tags`       | `string[]`          | No       | `[]`                                                   | An array of tags associated with the blog post.                                                       |
+| `image`      | `string \| null`    | No       | `require("/static/img/test-image16x9.png").default`    | The image URL for the blog post.                                                                      |
+| `description`| `string`            | No       | `"Some description here"`                              | The description of the blog post.                                                                     |
+| `size`       | `"large" \| "small"`| No       | `"small"`                                              | The size of the blog card. Determines the maximum width.                                              |
+
+## Usage
+
+```jsx title="BlogCard"
+<BlogCard
+  date={new Date()}
+  author="John Doe"
+  title="An Interesting Blog Post"
+  tags={['React', 'TailwindCSS']}
+  image="/path/to/image.jpg"
+  description="This is a brief description of the blog post."
+  size="large"
+/>
+```
+
+## Examples
+<p>Small Size</p>
+<BlogCard
+  date={new Date()}
+  author="John Doe"
+  title="An Interesting Blog Post"
+  tags={['React', 'TailwindCSS']}
+  image={require('/static/img/test-image16x9.png').default}
+  description="This is a brief description of the blog post."
+  size="small"
+/>
+<p>Large Size</p>
+<BlogCard
+  date={new Date()}
+  author="Jane Smith"
+  title="A Fascinating Blog Post"
+  tags={['JavaScript', 'CSS']}
+  image={require('/static/img/test-image16x9.png').default}
+  description="This is a longer description of the blog post, providing more details."
+  size="large"
+/>
+<p>No Image</p>
+<BlogCard
+  date={new Date()}
+  author="Alex Johnson"
+  title="A Blog Post Without an Image"
+  tags={['HTML', 'Web Development']}
+  image={null}
+  description="This blog post does not have an image associated with it."
+  size="small"
+/>
+</div>

@@ -3,6 +3,11 @@ import type { Config } from "@docusaurus/types";
 import type * as Preset from "@docusaurus/preset-classic";
 import tailwindPlugin from "./plugins/tailwind-pluging.cjs";
 
+const { github, dracula } = prismThemes;
+
+// const lightCodeTheme = require("prism-react-renderer").themes.github;
+// const darkCodeTheme = require("prism-react-renderer").themes.dracula;
+
 const config: Config = {
   title: "TBDevs",
   tagline: "TBD",
@@ -121,8 +126,29 @@ const config: Config = {
     //   copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
     // },
     prism: {
-      theme: prismThemes.github,
-      darkTheme: prismThemes.dracula,
+      theme: dracula,
+      darkTheme: {
+        plain: {
+          color: "#f8f8f2",
+          backgroundColor: "#282a36",
+        },
+        styles: [
+          {
+            types: ["keyword", "variable"],
+            style: {
+              color: "rgb(189, 147, 249)",
+            },
+          },
+        ],
+      },
+      additionalLanguages: [
+        "kotlin",
+        "swift",
+        "dart",
+        "rust",
+        "bash",
+        "gradle",
+      ],
     },
   } satisfies Preset.ThemeConfig,
 };
