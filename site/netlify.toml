@@ -25,13 +25,10 @@ to = "/docs/web5/decentralized-web-nodes/troubleshooting/vue"
 [[redirects]]
 from = "/docs/web5/troubleshooting/*"
 to = "/docs/web5/decentralized-web-nodes/troubleshooting/:splat"
-status = 301
 
 [[redirects]]
 from = "/docs/web5/build/*"
 to = "/docs/web5/:splat"
-status = 301
-force = true
 
 [[redirects]]
 from = "/docs/web5/learn/decentralized-identifiers"
