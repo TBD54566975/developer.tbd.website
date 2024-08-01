@@ -47,8 +47,8 @@ Here's how it works from a user perspective: a user can upload any document, fro
 
 Anthony used the following Web5 technologies to build Netonomy:
 
-- **[Decentralized Identifiers (DID)](https://developer.tbd.website/docs/web5/learn/decentralized-identifiers)** - The app generates a DID to identify you when you first launch it. This is stored in the browser and acts as your identity.
-- **[Decentralized Web Nodes (DWN)](https://developer.tbd.website/docs/web5/learn/decentralized-web-nodes)** - A DWN is created in the browser to store your data encrypted securely. Anthony uses it to store uploaded files.
+- **[Decentralized Identifiers (DID)](https://developer.tbd.website/docs/web5/decentralized-identifiers/what-are-dids)** - The app generates a DID to identify you when you first launch it. This is stored in the browser and acts as your identity.
+- **[Decentralized Web Nodes (DWN)](https://developer.tbd.website/docs/web5/decentralized-web-nodes/what-are-dwns)** - A DWN is created in the browser to store your data encrypted securely. Anthony uses it to store uploaded files.
 
 ## Future plans
 

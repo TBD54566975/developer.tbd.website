@@ -81,7 +81,7 @@ Decentralized VR Museum was created by team **Digital Dream Crafters**. It's an 
 
 ## 🏅 Auth5
 
-Auth5 was developed by team **MAVIGO**. It's a authentication system that ensures personal data is stored on the users [Decentralized Web Nodes](/docs/web5/learn/decentralized-web-nodes). Allowing the user to control who can access their data.
+Auth5 was developed by team **MAVIGO**. It's a authentication system that ensures personal data is stored on the users [Decentralized Web Nodes](/docs/web5/decentralized-web-nodes/what-are-dwns). Allowing the user to control who can access their data.
 
 **Try It Out:**
 

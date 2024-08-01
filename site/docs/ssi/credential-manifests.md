@@ -10,7 +10,7 @@ This project is not actively being maintained. If you are interested in adopting
 # Credential Manifests
 
 ## What is a Credential Manifest?
-A [Credential Manifest](https://identity.foundation/credential-manifest/) is like a checklist of requirements needed to acquire a credential from an Issuer. Take, for instance, the process of acquiring a digital driver's license. To obtain this license, you'd need to know which pieces of information the license issuer (e.g., vehicle and driver's licensing agency or, in the U.S., the DMV) requires from you. The Credential Manifest, encapsulated as a JSON object, informs a [User Agent](/docs/web5/learn/agents) (e.g., digital wallet) of the specific data it must submit to the Issuer on your behalf.
+A [Credential Manifest](https://identity.foundation/credential-manifest/) is like a checklist of requirements needed to acquire a credential from an Issuer. Take, for instance, the process of acquiring a digital driver's license. To obtain this license, you'd need to know which pieces of information the license issuer (e.g., vehicle and driver's licensing agency or, in the U.S., the DMV) requires from you. The Credential Manifest, encapsulated as a JSON object, informs a [User Agent](/docs/web5/decentralized-web-nodes/agents) (e.g., digital wallet) of the specific data it must submit to the Issuer on your behalf.
 
 In our digital driver's license example, the Credential Manifest might instruct your wallet: "The user must provide their name, photo, and driving test results."
 

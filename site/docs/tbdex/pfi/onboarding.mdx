@@ -8,9 +8,9 @@ hide_title: true
 
 # Onboarding
 
-Before beginning development of your PFI’s code, you’ll need to create an identity to use on the network. A tbDEX network is built to be decentralized, which is why you’ll need to create your own [Decentralized Identifier](/docs/web5/learn/decentralized-identifiers) (DID) to assign to the PFI. That DID will represent the PFI, as well as serve as the signer for tbDEX messages and resources that are sent to other parties.
+Before beginning development of your PFI’s code, you’ll need to create an identity to use on the network. A tbDEX network is built to be decentralized, which is why you’ll need to create your own [Decentralized Identifier](/docs/web5/decentralized-identifiers/what-are-dids) (DID) to assign to the PFI. That DID will represent the PFI, as well as serve as the signer for tbDEX messages and resources that are sent to other parties.
 
-DIDs are associated with [DID Documents](/docs/web5/learn/did_document) which describe how to engage with your PFI.
+DIDs are associated with [DID Documents](/docs/web5/decentralized-identifiers/did_documents) which describe how to engage with your PFI.
 
 
 To create a DID and identify yourself as a PFI, use the `web5/dids` package:
@@ -34,5 +34,5 @@ If you also have an existing key management system to secure your secrets e.g [A
   ]} />
 
 :::note Notes
-* `LocalKeyManager` or `InMemoryKeyManager` should only be used in non-production environments. See [Key Management Service](/docs/web5/build/decentralized-identifiers/key-management) for more details.
+* `LocalKeyManager` or `InMemoryKeyManager` should only be used in non-production environments. See [Key Management Service](/docs/web5/decentralized-identifiers/key-management) for more details.
 :::

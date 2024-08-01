@@ -1,0 +1,424 @@
+---
+sidebar_position: 4
+---
+
+import PackageJson from '@site/src/components/PackageJson';
+
+# Build a Book Review App
+
+There are many sites that allow users to write book reviews such as Amazon, GoodReads, Barnes & Noble, LibraryThing, and BookBub just to name a few.
+Some of these apps even function as social media sites for book enthusiasts.
+
+Let's create a decentralized app for readers who want to keep reviews on the various books they've read. Rather than being locked into one book review app, they wish to have control over their reviews and easily share them across different platforms.
+
+This tutorial demonstrates how to use Web5.js to create an app that stores users' book reviews within their [DWNs](/docs/web5/decentralized-web-nodes/what-are-dwns) so that they can be accessed by any app on the web that has [permission](/docs/web5/decentralized-web-nodes/what-are-dwns#authorization).
+
+## Running Locally
+
+Download a copy to your local machine and run the following commands to start the app.
+
+Note: If you don't have `pnpm` installed, you can install it by running `npm install -g pnpm`.
+
+```bash
+git clone https://github.com/TBD54566975/tbd-examples.git
+cd tbd-examples/javascript/book-reviews
+pnpm install
+pnpm start
+```
+
+:::info
+## Online Playground
+You can open the finished app directly in CodeSandbox
+[![Play in CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/TBD54566975/tbd-examples/tree/main/javascript/book-reviews)
+:::
+
+## Setup
+
+1. Install `Web5`
+
+```bash
+npm install @web5/api
+```
+
+2. In the root of your project, find and open `package.json` and add `module` as a type:
+
+<PackageJson />
+
+3. Within a code editor, create a new JS file (e.g. `book_reviews.js`).
+
+4. Open this JS file and import `Web5`
+
+```js
+import { Web5 } from "@web5/api";
+```
+
+<details>
+<summary>Additional import for Node 18</summary>
+
+```js
+/*
+Needs globalThis.crypto polyfill.
+This is *not* the crypto you're thinking of.
+It's the original crypto...CRYPTOGRAPHY.
+*/
+import { webcrypto } from "node:crypto";
+
+// @ts-ignore
+if (!globalThis.crypto) globalThis.crypto = webcrypto;
+```
+</details>
+
+<details>
+<summary>Additional imports for React Native</summary>
+
+```js
+/*
+React Native needs crypto.getRandomValues polyfill and sha512.
+This is *not* the crypto you're thinking of.
+It's the original crypto...CRYPTOGRAPHY.
+*/
+import "react-native-get-random-values";
+import { hmac } from "@noble/hashes/hmac";
+import { sha256 } from "@noble/hashes/sha256";
+import { sha512 } from "@noble/hashes/sha512";
+ed.etc.sha512Sync = (...m) => sha512(ed.etc.concatBytes(...m));
+ed.etc.sha512Async = (...m) => Promise.resolve(ed.etc.sha512Sync(...m));
+
+secp.etc.hmacSha256Sync = (k, ...m) =>
+  hmac(sha256, k, secp.etc.concatBytes(...m));
+secp.etc.hmacSha256Async = (k, ...m) =>
+  Promise.resolve(secp.etc.hmacSha256Sync(k, ...m));
+```
+</details>
+
+Now we have the Web5 SDK installed and are ready to start building!
+
+## Connect to Web5
+
+The first thing we want to do is **connect**. In Web5 apps, this replaces the traditional login step. Instead of centralized accounts that belong to one application, users have [DIDs](/docs/web5/decentralized-identifiers/what-are-dids) and [DWNs](/docs/web5/decentralized-web-nodes/what-are-dwns), decentralized identity and storage, respectively.
+
+```js
+const {web5, did: userDid} = await Web5.connect();
+```
+
+Without parameters, this function will look for a local DWN and DID on the user's device and will connect to it. If it doesn't already exist, a DID and local DWN will be automatically created.
+
+The `connect()` function returns an instance of `Web5` as `web5` as well as the user's DID as `did`. The `web5` instance gives you access to Web5's three core pillars: `web5.did`, `web5.vc`, and `web5.dwn`.
+
+:::note
+Note that your app can [allow users to connect with an agent](https://tbd54566975.github.io/web5-js/modules/_web5_api.html#md:web5connectoptions) and provide an existing DID and remote DWN.
+:::
+
+## Create Interoperable Data
+
+Now that the user has connected, your app can obtain any public or permissioned data from their DWN, even if your app didn't create the data. This is the power of DWNs - users are able to keep their data with them and utilize it in any app that allows this.
+
+In order for data to be interoperable across apps, the apps must understand and support the same data structure. Fortunately, this is not a new concept. In fact, [schema.org](https://schema.org) exists for this very reason - to provide a shared vocabulary for structured data.
+
+There's a schema for just about anything you can think of, including [reviews](https://schema.org/Review)!
+
+Provided this is the schema the app will support for reviews, let's indicate that within our code:
+
+```js
+//Schema we'll use for Book Reviews
+const schema = {
+    "context": 'https://schema.org/',
+    "type": 'Review',
+    get uri() { return this.context + this.type; }
+}
+```
+
+## Get Book Reviews
+
+The objects that are written to a DWN are called records. To query for records from a user's DWN, we call `web5.dwn.records.query()` and pass in [filters](/docs/web5/decentralized-web-nodes/query-from-dwn#filterable-record-properties) to find the specific records we want. In our case, we want to query for all records that follow the Review schema.
+
+```js
+//Query book review (search for DWN records)
+async function getReviews() {
+    //highlight-start
+    let {records} = await web5.dwn.records.query({
+        message: {
+            filter: {
+                schema: schema.uri
+            },
+        },
+        dateSort: 'createdAscending'
+    });
+    //highlight-end
+    return records;
+}
+
+let existingReviews = await getReviews();
+process.exit();
+```
+
+This returns an array of records that match our schema. Your app can display the user's existing reviews as you see fit.
+
+
+## Add Book Review
+Your app may offer the ability for users to create new book reviews. If so, you'll write their reviews to their DWNs as opposed to your own backend server.
+
+Your interface may allow the user to enter a star rating (1-5) as well as a review for any given book. Your app would then take that data and structure objects that match the Review schema.
+
+This JSON represents multiple reviews the user wants to add and follows the Review schema.
+
+```js
+//Book Reviews
+let reviews = [
+    {
+        "@context": schema.context,
+        "@type": schema.type,
+        "itemReviewed": {
+            "@type": "Book",
+            "name": "The Great Gatsby",
+            "author": {
+                "@type": "Person",
+                "name": "F. Scott Fitzgerald"
+            },
+            "datePublished": "1925",
+            "genre": "Fiction",
+            "identifier": "978-1982149482",
+        },
+        "author": {
+            "@type": "Person",
+            "identifier": userDid
+        },
+        "datePublished": "2023-09-18",
+        "reviewRating": {
+            "@type": "Rating",
+            "ratingValue": "4.5"
+        },
+        "reviewBody": "A classic novel with timeless themes and memorable characters. Fitzgerald's prose is simply enchanting."
+    },
+    {
+        "@context": schema.context,
+        "@type": schema.type,
+        "itemReviewed": {
+            "@type": "Book",
+            "name": "To Kill a Mockingbird",
+            "author": {
+                "@type": "Person",
+                "name": "Harper Lee"
+            },
+            "datePublished": "1960",
+            "genre": "Fiction",
+            "identifier": "978-0446310789",
+        },
+        "author": {
+            "@type": "Person",
+            "identifier": userDid
+        },
+        "datePublished": "2023-09-18",
+        "reviewRating": {
+            "@type": "Rating",
+            "ratingValue": "5.0"
+        },
+        "reviewBody": "A powerful exploration of morality, justice, and the human condition. Truly a must-read."
+    },
+    {
+        "@context": schema.context,
+        "@type": schema.type,
+        "itemReviewed": {
+            "@type": "Book",
+            "name": "1984",
+            "author": {
+                "@type": "Person",
+                "name": "George Orwell"
+            },
+            "datePublished": "1949",
+            "genre": "Dystopian",
+            "identifier": "978-0451524935",
+        },
+        "author": {
+            "@type": "Person",
+            "identifier": userDid
+        },
+        "datePublished": "2023-09-18",
+        "reviewRating": {
+            "@type": "Rating",
+            "ratingValue": "4.7"
+        },
+        "reviewBody": "A disturbing vision of a totalitarian future. Orwell's work is as relevant today as it was when it was first published."
+    },
+    {
+        "@context": schema.context,
+        "@type": schema.type,
+        "itemReviewed": {
+            "@type": "Book",
+            "name": "Brave New World",
+            "author": {
+                "@type": "Person",
+                "name": "Aldous Huxley"
+            },
+            "datePublished": "1932",
+            "genre": "Dystopian",
+            "identifier": "978-0060850524",
+        },
+        "author": {
+            "@type": "Person",
+            "identifier": userDid
+        },
+        "datePublished": "2023-09-18",
+        "reviewRating": {
+            "@type": "Rating",
+            "ratingValue": "4.8"
+        },
+        "reviewBody": "A deeply disturbing yet essential read. Huxley's vision of a future driven by technology and hedonism serves as a potent warning for society."
+    }
+]
+```
+
+Notice that the reviews contain `author.identifier` that specifies the DID of the user who is authoring the review.
+
+Now that we have the data in an interoperable format, we want to write it to the user's DWN. But first, let's make a function to see if the review they are submitting already exists within their DWN.
+
+```js
+//checks if review already exists (you may not want duplicate data in the DWN)
+async function isReviewPresent(review) {
+    for(let record of existingReviews) {
+        let bookData = await record.data.json();
+        let isbn = bookData.itemReviewed.identifier;
+
+        if(isbn === review.itemReviewed.identifier) {
+            return true;
+        }
+    };
+    return false;
+}
+```
+
+Within our `addReviews()` function, we'll loop through the reviews that the user wants to add, call `isReviewPresent()` to make sure it doesn't already exist, and if it doesn't, we'll call `web5.dwn.records.create()` to add the review to the user's DWN.
+
+```js
+//Create book review (write record to DWN)
+async function addReviews() {
+    for (const review of reviews) {
+        let reviewExists = await isReviewPresent(review);
+        if (reviewExists) {
+            console.log(`Review for ${review.itemReviewed.name} already exists`);
+        }
+        else {
+            //highlight-start
+            const response = await web5.dwn.records.create({
+                data: review,
+                message: {
+                    schema: schema.uri,
+                    dataFormat: 'application/json',
+                    published: true,
+                },
+            });
+            //highlight-end
+
+            if (response.status.code === 202) {
+                console.log(`Review for ${review.itemReviewed.name} added successfully`);
+            } else {
+                console.log(`${response.status}. Error adding review for ${review.itemReviewed.name}`);
+            }
+        }
+    }
+    existingReviews = await getReviews();
+}
+
+let existingReviews = await getReviews();
+//highlight-next-line
+await addReviews();
+process.exit();
+```
+
+Let's look a bit closer at the call that creates the record:
+
+```js
+const response = await web5.dwn.records.create({
+    data: review,
+    message: {
+        schema: schema.uri,
+        dataFormat: 'application/json',
+        published: true,
+    },
+});
+```
+
+We see that `create()` accepts `data` and `message`. The `data` is the payload of the record and the `message` is metadata about that payload.
+
+Notice that we provide the actual book review as the value of `data`, and for the `message`, we're specifying the:
+* URI of the schema
+* format of the data
+* [publicity](/docs/web5/decentralized-web-nodes/publishing-records) of the data. Because we specified the records as published, they are available for public queries without requiring authorization.
+
+All of this metadata helps with the discoverability of the data by apps.
+
+Also note that while the user wants to create multiple reviews, there's no way to create multiple records at the same time with Web5. Instead, we called `create()` for each record that needed to be added, via a loop.
+
+## Update Book Review
+
+Your app may have access to update book reviews as well. Let's write a function that calls the `web5.dwn.record.update()` method to change the rating of one of the reviews.
+
+```js
+//Update book review rating
+async function updateReviewRating(review, newRating) {
+    let bookData = await review.data.json();
+    console.log(`old rating for ${bookData.itemReviewed.name}`, bookData.reviewRating.ratingValue);
+
+    //highlight-start
+    //Update the value within the JSON then send the entire JSON to update
+    bookData.reviewRating.ratingValue = newRating;
+    let response = await review.update({
+        data: bookData
+    });
+    //highlight-end
+
+    if (response.status.code === 202) {
+        //Obtain the updated record
+        const { record: updatedReview } = await web5.dwn.records.read({
+            message: {
+                filter: {
+                    recordId: review.id       
+                }
+            },
+        });
+        const updatedData = await updatedReview.data.json();
+        console.log(`updated rating for ${bookData.itemReviewed.name}`, updatedData.reviewRating.ratingValue);
+    }
+    else console.log(`${response.status}. Error updating rating for ${bookData.itemReviewed.name}`);
+}
+
+let existingReviews = await getReviews();
+await addReviews();
+//highlight-next-line
+await updateReviewRating(existingReviews[1], "4.2");
+process.exit();
+```
+
+## Delete Book Reviews
+If your app is permissioned to do so, you can also delete book reviews from the user's DWN.
+
+```js
+//Delete all book reviews
+async function deleteReviews() {
+    let records = await getReviews();
+
+    for (const record of records) {
+        let title = (await record.data.json()).itemReviewed.name;
+        //highlight-start
+        let response = await web5.dwn.records.delete({
+            message: {
+                recordId: record.id,
+            }
+        });
+        //highlight-end
+        console.log(`deleted ${title}. status: ${response.status.code}`);
+    }
+}
+
+
+let existingReviews = await getReviews();
+await addReviews();
+await updateReviewRating(existingReviews[1], "4.2");
+//highlight-next-line
+await deleteReviews();
+
+process.exit();
+```
+
+
+Congrats! You've created an application that creates, reads, updates, and deletes book reviews from a user's DWN. The user is free to take their reviews with them and use it in any app that they grant permission.

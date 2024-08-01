@@ -45,14 +45,14 @@ Open `localhost:3000` in a browser and follow the guide below for all actions yo
 
 ## Create a Decentralized Identifier (DID)
 
-Upon installation, a [DID](https://developer.tbd.website/docs/web5/learn/decentralized-identifiers) will be created by default, but you can follow the steps below to create one for yourself.
+Upon installation, a [DID](https://developer.tbd.website/docs/web5/decentralized-identifiers/what-are-dids) will be created by default, but you can follow the steps below to create one for yourself.
 
 ### 1. Click `DIDs` tab
 
 ### 2. Click `Add New`
 
 ### 3. Set DID Method
-There are three different [DID methods](https://developer.tbd.website/docs/web5/learn/decentralized-identifiers/#methods) to choose from: `Ion`, `Web`, and `Key`. The DID `Key` method is a good method for testing purposes so let's select that for now.
+There are three different [DID methods](https://developer.tbd.website/docs/web5/decentralized-identifiers/what-are-dids/#methods) to choose from: `Ion`, `Web`, and `Key`. The DID `Key` method is a good method for testing purposes so let's select that for now.
 
 ### 4. Set keyType and options
 Click `Try sample input` and then submit.

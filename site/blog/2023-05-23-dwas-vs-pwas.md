@@ -40,7 +40,7 @@ The basic client-server model that PWAs use is and has been the presumed standar
 
 In DWAs, users own their own data and, as a result, their apps no longer need an API service because apps connect directly to the data source. This shift leads to virtually no UI/UX change, but triggers a radical change in app architecture because developers are now directly interfacing with a user’s data store instead of with app-owned server storage via API. 
 
-In DWAs, app data is stored in [Decentralized Web Nodes (DWNs)](/docs/web5/learn/decentralized-web-nodes), which are user-owned and redundant data stores capable of transmitting data that provide strong promises of privacy and guaranteed ownership. DWNs can be permissioned publicly or privately related to the querying decentralized identifier (DID) using [permissions](/docs/web5/learn/decentralized-web-nodes) and[ protocols](/docs/web5/learn/protocols) to allow select access to all the data stored in them. 
+In DWAs, app data is stored in [Decentralized Web Nodes (DWNs)](/docs/web5/decentralized-web-nodes/what-are-dwns), which are user-owned and redundant data stores capable of transmitting data that provide strong promises of privacy and guaranteed ownership. DWNs can be permissioned publicly or privately related to the querying decentralized identifier (DID) using [permissions](/docs/web5/decentralized-web-nodes/what-are-dwns) and[ protocols](/docs/web5/decentralized-web-nodes/protocols) to allow select access to all the data stored in them. 
 
 Going back to our ToDo app example, a user would be able to store all of their todo items and app data on their own DWN rather than on a specific 3rd party’s servers, and all the app would do is focus on creating a presentation layer and additional features around the app’s concept. 
 
@@ -48,7 +48,7 @@ Going back to our ToDo app example, a user would be able to store all of their t
 # Upgrading to DWAs
 
 
-If you want to migrate a PWA to a DWA, the only thing you’ll need to do is make sure that whatever data you were originally storing remotely and transmitting via API calls is now stored on the user’s DWN and is accessed [using CRUD operations](/docs/web5/build/decentralized-web-nodes/write-to-dwn) on the user’s DWN. For example, your ToDo app may have previously made an API call to write a new item to your list, but now you’d replace that API call with:
+If you want to migrate a PWA to a DWA, the only thing you’ll need to do is make sure that whatever data you were originally storing remotely and transmitting via API calls is now stored on the user’s DWN and is accessed [using CRUD operations](/docs/web5/decentralized-web-nodes/write-to-dwn) on the user’s DWN. For example, your ToDo app may have previously made an API call to write a new item to your list, but now you’d replace that API call with:
 
 
 ```js

@@ -41,7 +41,7 @@ The SSI Service facilitates all things relating to DIDs and Verifiable Credentia
 <Divider type="slash" />
 
 ## Core Functionality
-- Create and manage [Decentralized Identifiers](/docs/web5/learn/decentralized-identifiers)
+- Create and manage [Decentralized Identifiers](/docs/web5/decentralized-identifiers/what-are-dids)
 - Create and manage [Verifiable Credentials](create-credentials)
 - Credential status updates, including suspension and revocation
 - Interacting with the SSI ecosystem and its myriad components to:
