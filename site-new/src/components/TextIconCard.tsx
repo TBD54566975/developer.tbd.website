@@ -44,11 +44,13 @@ function TextIconCard({
 
   return (
     <div
-      className={`md:min-w-[512px] sm:w-72 col-span-4 border-2 border-solid ${themeClass} ${className} transition-all duration-300 group`}
+      className={`md:min-w-[512px] sm:w-72 col-span-4 border-2 border-solid ${themeClass} ${className} transition-all duration-300 group mb-8`}
     >
       <div className="flex flex-col justify-center p-8 h-full">
         <div>
-          <Icon className={`text-6xl ${iconClass}`} />
+          <Icon
+            className={`text-6xl ${iconClass} transition-all duration-300`}
+          />
           <h3
             className={`text-2xl font-bold mt-4 text-tbd-${theme} group-hover:text-tbd-gray transition-all duration-300`}
           >
@@ -58,7 +60,7 @@ function TextIconCard({
         </div>
         <a
           href={url}
-          className={`w-fit text-sm mt-auto items-center inline-flex px-4 pb-2 pt-2 border-solid border-t-4 border-tbd-yellow text-tbd-gray bg-tbd-yellow group-hover:bg-tbd-gray group-hover:text-white group-hover:border-t-white transition-all duration-300`}
+          className={`w-fit text-sm mt-auto items-center inline-flex px-4 pb-2 pt-2 border-solid border-t-4 border-tbd-yellow text-tbd-gray bg-tbd-yellow group-hover:bg-tbd-gray group-hover:text-white group-hover:border-t-white transition-all duration-300 border-b-0 border-x-0`}
           target="_blank"
           rel="noreferrer"
         >
