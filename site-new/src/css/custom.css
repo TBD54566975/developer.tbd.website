@@ -70,6 +70,7 @@
   --ifm-heading-color: 'black';
   --ifm-color-secondary: #9A1AFF;
   --ifm-background-color: #000;
+  --ifm-font-color-base: #fff;
 }
 
 h2 {
@@ -512,4 +513,9 @@ h4 {
   .nav-sidebar {
   left: 20px;
   }
+}
+
+code {
+  background-color: #000;
+  font-size: 16px;
 }
