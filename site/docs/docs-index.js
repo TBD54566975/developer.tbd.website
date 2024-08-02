@@ -49,7 +49,7 @@ function DocsIndex() {
       <div className="grid grid-cols-1 desktop:grid-cols-2 gap-4">
         <HeroCard
           heroText="Decentralized Identifiers"
-          buttonUrl="/docs/web5/learn/decentralized-identifiers"
+          buttonUrl="/docs/web5/decentralized-identifiers/what-are-dids"
           buttonText="Learn"
           imgSrc="/img/id-blue-purple.svg"
           imgClass="w-32 beat-fade"
@@ -58,7 +58,7 @@ function DocsIndex() {
         />
         <HeroCard
           heroText="Verifiable Credentials"
-          buttonUrl="/docs/web5/learn/verifiable-credentials"
+          buttonUrl="/docs/web5/verifiable-credentials/what-are-vcs"
           buttonText="Learn"
           imgSrc="/img/credential-yellow.svg"
           imgClass="w-32 beat-fade"

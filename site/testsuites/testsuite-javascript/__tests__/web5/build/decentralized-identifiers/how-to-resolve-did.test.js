@@ -1,4 +1,4 @@
-// :prepend-start: resolveADidJS
+// :prepend-start: resolveDidJS
 import {DidDht, DidJwk} from '@web5/dids';
 // :prepend-end:
 import { test, expect, describe } from 'vitest';
@@ -6,8 +6,8 @@ import { test, expect, describe } from 'vitest';
 
 describe('DID Document Resolver Tests', () => {
     test('didDocument retrieves a valid DID document', async () => {
-      const didDht = await DidDht.create({ publish: true });
-      const didJwk = await DidJwk.create({ publish: true });
+      const didDht = await DidDht.create({ options: { publish: true } });
+      const didJwk = await DidJwk.create({ options: { publish: true } });
       const didDhtUri = didDht.uri;
       const didJwkUri = didJwk.uri;
   
