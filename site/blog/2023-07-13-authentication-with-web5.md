@@ -27,7 +27,7 @@ tags: [Decentralized Identity, Decentralized Web Nodes]
 
 ![Authentication With Web5](/img/did-Authentication.png)
 
-With the emergence of Web5 comes the exciting possibilities for individuals seeking more control over their online identities, data and content. With Web5, traditional authentication methods are no longer the sole means of verifying identity and ownership. Instead, users can leverage [Decentralized Identifiers (DIDs)](https://developer.tbd.website/docs/web5/learn/decentralized-identifiers/) to establish their digital presence while retaining full control over their data. Let's explore how this revolutionizes authentication and content ownership as we know it. 
+With the emergence of Web5 comes the exciting possibilities for individuals seeking more control over their online identities, data and content. With Web5, traditional authentication methods are no longer the sole means of verifying identity and ownership. Instead, users can leverage [Decentralized Identifiers (DIDs)](https://developer.tbd.website/docs/web5/decentralized-identifiers/what-are-dids/) to establish their digital presence while retaining full control over their data. Let's explore how this revolutionizes authentication and content ownership as we know it. 
 
 <!--truncate-->
 
@@ -38,13 +38,13 @@ Web5 applications eliminate the need for centralized authorities to authenticate
 
 ## How It Works
 
-Let's delve into the technical aspects of this. When you acquire a DID, it comes with a public-private key pair. Your DID can be resolved by anyone into a [DID document](https://developer.tbd.website/docs/web5/learn/decentralized-identifiers#what-is-it), containing your public key, similar to a username that can be copied and pasted into a login screen. 
+Let's delve into the technical aspects of this. When you acquire a DID, it comes with a public-private key pair. Your DID can be resolved by anyone into a [DID document](https://developer.tbd.website/docs/web5/decentralized-identifiers/what-are-dids#what-is-it), containing your public key, similar to a username that can be copied and pasted into a login screen. 
 
 However, to prove that you are the rightful owner of the DID and it is indeed you logging in, your private key becomes crucial. Your private key should never be shared, and it allows you to generate a digital signature. Whenever you author a message, it automatically carries a digital signature. To verify the same message, it requires the public key. For example, when logging into example.com, sending a message and successfully authenticating it, the online platform will utilize your public key for verification. If the verification process is successful, they can confirm that you are the rightful owner of the given DID, without ever needing your private key.
 
 With Web5 authentication, you can effortlessly create an account, free from the hassle of coming up with a new handle or hoping your existing usernames are available. Instead, you can embrace the simplicity of using your DID. Your DID becomes a personalized "username" that you can use to log into any supporting app's login screen.
 
-Your DID serves as a URI (Unique Resource Identifier) that leads to your DID document, acting as a special hub providing a glimpse into your digital identity. Within your DID document, the application utilizes the URIs as guideposts, leading them to your [DWNs (Decentralized Web Nodes)](https://developer.tbd.website/docs/web5/learn/decentralized-web-nodes) which store your content and data.
+Your DID serves as a URI (Unique Resource Identifier) that leads to your DID document, acting as a special hub providing a glimpse into your digital identity. Within your DID document, the application utilizes the URIs as guideposts, leading them to your [DWNs (Decentralized Web Nodes)](https://developer.tbd.website/docs/web5/decentralized-web-nodes/what-are-dwns) which store your content and data.
 
 This user-friendly approach relieves you from the burdens of creating new content or manually downloading from one platform to upload on another. All the content to which you have granted the application access to will be readily available for the application to read/write to, simply by logging in with your DID.
 

@@ -80,8 +80,6 @@ export default function DocBreadcrumbs(): JSX.Element | null {
     return null;
   }
 
-  console.log("home page route", homePageRoute);
-
   return (
     <nav
       className={clsx(

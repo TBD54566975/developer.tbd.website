@@ -1,0 +1,295 @@
+---
+title: Presentation Exchange
+hide_title: true
+sidebar_position: 5
+---
+
+<LanguageSwitcher languages="JavaScript, Kotlin" />
+
+# Presentation Exchange
+
+In this guide, we'll cover the process of presenting [Verifiable Credentials (VCs)](/docs/web5/verifiable-credentials/what-are-vcs) to a verifier.
+This process is known as a **Presentation Exchange (PEX)** and involves selecting credentials that satisfy a Presentation Definition, creating a presentation based on that definition, and submitting the presentation to a verifier.
+PEX is typically executed by the user's Wallet application, acting on behalf of the user.
+
+:::note
+Before presenting VCs in a PEX, it's important to note that the VCs would have already been [created](/docs/web5/verifiable-credentials/vc-issuance#create-vc),
+[signed in a JWT format](/docs/web5/verifiable-credentials/vc-issuance#sign-vc), and [stored](/docs/web5/verifiable-credentials/vcs-in-dwn#storing-vc-in-dwn)
+in the user's Wallet application.
+:::
+
+## Presentation Definition
+
+The entity requesting credentials, aka the verifier, will have defined the presentation requirements using a [Presentation Definition](/docs/web5/verifiable-credentials/presentation-definition).
+This definition specifies the criteria that the VCs need to meet.
+
+Assume a lender has an existing Presentation Definition specifying that applicants must provide VCs to prove their legal name, date of birth, and employment status:
+
+<details>
+<summary>Presentation Definition</summary>
+
+<Shnip
+   snippets={[
+    { snippetName: 'getLoanAppPresentationDefinition', language: 'JavaScript'},
+    { snippetName: 'getLoanAppPresentationDefinitionKt', language: 'Kotlin'}
+    ]}
+/>
+
+</details>
+
+We'll use the Presentation Definition above to present credentials that meet its requirements.
+
+## Import PresentationExchange
+
+All methods needed to perform a PEX are in the `PresentationExchange` class.
+You can import this class from the `@web5/credentials` package:
+
+<Shnip
+  inlineSnippets={[
+    {
+      code: `import { PresentationExchange, VerifiablePresentation } from '@web5/credentials';`,
+      language: 'JavaScript',
+    },
+    {
+      code: `import web5.sdk.credentials.PresentationExchange
+import web5.sdk.credentials.VerifiablePresentation
+import web5.sdk.credentials.model.PresentationSubmission
+import web5.sdk.credentials.model.*`,
+      language: 'Kotlin',
+    }
+  ]}
+/>
+
+## Select Credentials
+
+A user may possess multiple credentials.
+To preserve the user's privacy, when creating a Presentation, you'll want to present only the VCs that match the Presentation Definition requirements.
+This is done with the `selectCredentials()` method:
+
+<Shnip
+   snippets={[
+    { snippetName: 'selectCredentialsForPex', language: 'JavaScript'},
+    { snippetName: 'selectCredentialsForPexKt', language: 'Kotlin'}
+    ]}
+/>
+
+## Satisfy Presentation Definition
+
+To ensure that the selected credentials collectively satisfy all of the Presentation Definition's requirements, call the `satisfiesPresentationDefinition()` method:
+
+<Shnip
+   snippets={[
+    { snippetName: 'satisfiesPresentationDefinitionForPex', language: 'JavaScript'},
+    { snippetName: 'satisfiesPresentationDefinitionForPexKt', language: 'Kotlin'}
+    ]}
+/>
+
+This method will throw an error if all requirements of the Presentation Definition are not satisfied.
+
+## Create Presentation
+
+Once you've confirmed that the VCs successfully satisfy the Presentation Definition, you can create a presentation using the `createPresentationFromCredentials()` method:
+
+<Shnip
+   snippets={[
+    {
+      snippetName: 'createPresentationFromCredentialsForPex',
+      language: 'JavaScript'
+    },
+    {
+      snippetName: 'createPresentationFromCredentialsForPexKt',
+      language: 'Kotlin'},
+    ]}
+/>
+
+
+
+<Shnip
+  inlineSnippets={[
+    {
+      content: 'This method returns a `PresentationResult` which contains the presentation:',
+      code: `
+{
+  "vpDataModel": {
+    "@context": [
+      "https://www.w3.org/2018/credentials/v1"
+    ],
+    "type": [
+      "VerifiablePresentation"
+    ],
+    "id": "urn:uuid:7747d88c-17be-40e0-a10a-0481b330581e",
+    "holder": "did:dht:99tgimyf665zdntupjf88yoi8q656g15j8z87r4kdg45578mwacy",
+    "verifiableCredential": [
+      [
+        "eyJhbGciOiJFZERTQSIsInR5cCI6IkpXVCIsImtpZCI6ImRpZDprZXk6ejZNa2VyNDlDbnVnN2hzdkhEZ3Y0NHl2cGR2dE1oNHlMaURYeFM2N2huclVodHQyI3o2TWtlcjQ5Q251Zzdoc3ZIRGd2NDR5dnBkdnRNaDR5TGlEWHhTNjdobnJVaHR0MiJ9.eyJpc3MiOiJkaWQ6a2V5Ono2TWtlcjQ5Q251Zzdoc3ZIRGd2NDR5dnBkdnRNaDR5TGlEWHhTNjdobnJVaHR0MiIsInZjIjp7IkBjb250ZXh0IjpbImh0dHBzOi8vd3d3LnczLm9yZy8yMDE4L2NyZWRlbnRpYWxzL3YxIl0sInR5cGUiOlsiVmVyaWZpYWJsZUNyZWRlbnRpYWwiLCJFbXBsb3ltZW50Q3JlZGVudGlhbCJdLCJpZCI6InVybjp1dWlkOjcyNDhiOTkyLTkwOTYtNDk2NS1hMGVjLTc3ZDhhODNhMWRmYiIsImlzc3VlciI6ImRpZDprZXk6ejZNa2VyNDlDbnVnN2hzdkhEZ3Y0NHl2cGR2dE1oNHlMaURYeFM2N2huclVodHQyIiwiaXNzdWFuY2VEYXRlIjoiMjAyMy0xMi0yMVQyMDoxMToyNVoiLCJjcmVkZW50aWFsU3ViamVjdCI6eyJpZCI6ImRpZDppb246RWlEMTR4UmY0cTJNWlh1ZWY2X2ZXYnBGbVlTUG94dGFxTkp1SmdEMG96Wl84UTpleUprWld4MFlTSTZleUp3WVhSamFHVnpJanBiZXlKaFkzUnBiMjRpT2lKeVpYQnNZV05sSWl3aVpHOWpkVzFsYm5RaU9uc2ljSFZpYkdsalMyVjVjeUk2VzNzaWFXUWlPaUprZDI0dGMybG5JaXdpY0hWaWJHbGpTMlY1U25kcklqcDdJbU55ZGlJNklrVmtNalUxTVRraUxDSnJkSGtpT2lKUFMxQWlMQ0o0SWpvaWVubGFNbVYzTlhKeVVXdFVjbUV3WlZsVk16WlBTblJzTURCbFJWZHhhalZhV0dkNmNEZFpSVTVKUVNKOUxDSndkWEp3YjNObGN5STZXeUpoZFhSb1pXNTBhV05oZEdsdmJpSmRMQ0owZVhCbElqb2lTbk52YmxkbFlrdGxlVEl3TWpBaWZTeDdJbWxrSWpvaVpIZHVMV1Z1WXlJc0luQjFZbXhwWTB0bGVVcDNheUk2ZXlKamNuWWlPaUp6WldOd01qVTJhekVpTENKcmRIa2lPaUpGUXlJc0luZ2lPaUpQZDJZMFQyMUViamxKWm5SNFdYWnBkRTFHWm1jMVVXeDVMVVV6VWs1b1dsUkdPVlpFTWtnNVQzVjNJaXdpZVNJNkltUnZjVmxtV2s1c1NtRlRNVll4U201bU9HdEZObEF6VkRsd2QzaDNla3hFVTJWc1ZqTlRUa2s1U2xFaWZTd2ljSFZ5Y0c5elpYTWlPbHNpYTJWNVFXZHlaV1Z0Wlc1MElsMHNJblI1Y0dVaU9pSktjMjl1VjJWaVMyVjVNakF5TUNKOVhTd2ljMlZ5ZG1salpYTWlPbHQ3SW1sa0lqb2laSGR1SWl3aWMyVnlkbWxqWlVWdVpIQnZhVzUwSWpwN0ltVnVZM0o1Y0hScGIyNUxaWGx6SWpwYklpTmtkMjR0Wlc1aklsMHNJbTV2WkdWeklqcGJJbWgwZEhCek9pOHZaSGR1TG5SaVpHUmxkaTV2Y21jdlpIZHVOaUlzSW1oMGRIQnpPaTh2WkhkdUxuUmlaR1JsZGk1dmNtY3ZaSGR1TUNKZExDSnphV2R1YVc1blMyVjVjeUk2V3lJalpIZHVMWE5wWnlKZGZTd2lkSGx3WlNJNklrUmxZMlZ1ZEhKaGJHbDZaV1JYWldKT2IyUmxJbjFkZlgxZExDSjFjR1JoZEdWRGIyMXRhWFJ0Wlc1MElqb2lSV2xEWm05bVFUQkpVbU5uY2tWdVVHZHdRbU5RV1ZsV2VFWlliR0pTYjJRd2RVNWZRVkJwTkVrNUxVRmZRU0o5TENKemRXWm1hWGhFWVhSaElqcDdJbVJsYkhSaFNHRnphQ0k2SWtWcFFtd3pWWG80VldGT2REZGxlREJKYjJJMFJFNXNhbFJGVmpaelQwTmtjbFJ3TWxvNE5FTkJPVFJPUWtFaUxDSnlaV052ZG1WeWVVTnZiVzFwZEcxbGJuUWlPaUpGYVVOWk9WRldZbWRKYkUxemRraEZYMVJtTld4a1MxQjBkR3d3WVV4blNrdHNSbmt6Vms0d2QzQTJhVFpSSW4xOSIsImVtcGxveW1lbnRTdGF0dXMiOiJlbXBsb3llZCJ9fX0.Sazc8Ndhs-NKjxvtVMKeC9dxjEkI26fVsp2kFNWM-SYLtxMzKvl5ffeWd81ysHgPmBBSk2ar4dMqGgUsyM4gAQ",
+        "eyJhbGciOiJFZERTQSIsInR5cCI6IkpXVCIsImtpZCI6ImRpZDprZXk6ejZNa2pwUzRHVUFoYmdCSmg2azJnZTZvWTQ0UUxyRXA3NXJadHNqYVRLb3JSRGR0I3o2TWtqcFM0R1VBaGJnQkpoNmsyZ2U2b1k0NFFMckVwNzVyWnRzamFUS29yUkRkdCJ9.eyJpc3MiOiJkaWQ6a2V5Ono2TWtqcFM0R1VBaGJnQkpoNmsyZ2U2b1k0NFFMckVwNzVyWnRzamFUS29yUkRkdCIsInZjIjp7IkBjb250ZXh0IjpbImh0dHBzOi8vd3d3LnczLm9yZy8yMDE4L2NyZWRlbnRpYWxzL3YxIl0sInR5cGUiOlsiVmVyaWZpYWJsZUNyZWRlbnRpYWwiLCJOYW1lQW5kRG9iQ3JlZGVudGlhbCJdLCJpZCI6InVybjp1dWlkOjliZjM2YzY5LTI0ODAtNDllZC1iMTYyLTRlZDEwOWE3MTc3NyIsImlzc3VlciI6ImRpZDprZXk6ejZNa2pwUzRHVUFoYmdCSmg2azJnZTZvWTQ0UUxyRXA3NXJadHNqYVRLb3JSRGR0IiwiaXNzdWFuY2VEYXRlIjoiMjAyMy0xMi0yMVQyMDowNjowMVoiLCJjcmVkZW50aWFsU3ViamVjdCI6eyJpZCI6ImRpZDppb246RWlDS2o2M0FyZlBGcEpsb2lTd3gxQUhxVWtpWlNoSDZGdnZoSzRaTl9fZDFtQTpleUprWld4MFlTSTZleUp3WVhSamFHVnpJanBiZXlKaFkzUnBiMjRpT2lKeVpYQnNZV05sSWl3aVpHOWpkVzFsYm5RaU9uc2ljSFZpYkdsalMyVjVjeUk2VzNzaWFXUWlPaUprZDI0dGMybG5JaXdpY0hWaWJHbGpTMlY1U25kcklqcDdJbU55ZGlJNklrVmtNalUxTVRraUxDSnJkSGtpT2lKUFMxQWlMQ0o0SWpvaWNscFdXbTVJVkVrNWFEWkJUVmxVV0dwT01HcFhTVkYwTTI5ak4xTnJTeTF4Y2kxcVVuSTBUalEzUlNKOUxDSndkWEp3YjNObGN5STZXeUpoZFhSb1pXNTBhV05oZEdsdmJpSmRMQ0owZVhCbElqb2lTbk52YmxkbFlrdGxlVEl3TWpBaWZTeDdJbWxrSWpvaVpIZHVMV1Z1WXlJc0luQjFZbXhwWTB0bGVVcDNheUk2ZXlKamNuWWlPaUp6WldOd01qVTJhekVpTENKcmRIa2lPaUpGUXlJc0luZ2lPaUpaVDFwRE5WSmlUMHQ1T0dadVVUWTJVWEZPUkc5aldFMXZPVXhUZEdNNVYyOWthMHd0ZFZCZlExQnZJaXdpZVNJNklsWnZZM0UxVERodFozQlhXVTFrYjFwS1JrWlJUa1ZDT0hsR0xXTndkRWQzZFdkcFRWVm5hR2t6Y21jaWZTd2ljSFZ5Y0c5elpYTWlPbHNpYTJWNVFXZHlaV1Z0Wlc1MElsMHNJblI1Y0dVaU9pSktjMjl1VjJWaVMyVjVNakF5TUNKOVhTd2ljMlZ5ZG1salpYTWlPbHQ3SW1sa0lqb2laSGR1SWl3aWMyVnlkbWxqWlVWdVpIQnZhVzUwSWpwN0ltVnVZM0o1Y0hScGIyNUxaWGx6SWpwYklpTmtkMjR0Wlc1aklsMHNJbTV2WkdWeklqcGJJbWgwZEhCek9pOHZaSGR1TG5SaVpHUmxkaTV2Y21jdlpIZHVOaUlzSW1oMGRIQnpPaTh2WkhkdUxuUmlaR1JsZGk1dmNtY3ZaSGR1TUNKZExDSnphV2R1YVc1blMyVjVjeUk2V3lJalpIZHVMWE5wWnlKZGZTd2lkSGx3WlNJNklrUmxZMlZ1ZEhKaGJHbDZaV1JYWldKT2IyUmxJbjFkZlgxZExDSjFjR1JoZEdWRGIyMXRhWFJ0Wlc1MElqb2lSV2xCTXpSMlMzb3llVmswZVV4dGRDMUdabkJuYWpWbGFFRm1ZWFI1YzFOa2MwNVNWbVpMYkhwUWRqTjVkeUo5TENKemRXWm1hWGhFWVhSaElqcDdJbVJsYkhSaFNHRnphQ0k2SWtWcFF6ZGZjMXBzTW1wMVVXNUdhRVJIV1RSb2NFVTRiMlF4YVU5MWRuZG1PVFJ5TVVkbk9HMWFWbVJCVmxFaUxDSnlaV052ZG1WeWVVTnZiVzFwZEcxbGJuUWlPaUpGYVVKdU5sTnJiSEpWYzNKdVFuaFJPVXBqVXkxTlNVaGtWelYwTXpRM1MxWjNaMXBwVEZwMFQwcDRRVkYzSW4xOSIsIm5hbWUiOiJhbGljZSBib2IiLCJkYXRlT2ZCaXJ0aCI6IjEwLTAxLTE5OTAifX19.mNCDv_JntH-wZpYONKNL58UbOWaYXCYJO_HPI_WVlSgwzo6dhYmV_9qtpFKd_exFb-aaEYPeSE43twWlrJeSBg"
+      ]
+    ],
+    "presentationResult": {
+      "presentation": {
+        "@context": [
+          "https://www.w3.org/2018/credentials/v1",
+          "https://identity.foundation/presentation-exchange/submission/v1"
+        ],
+        "type": [
+          "VerifiablePresentation",
+          "PresentationSubmission"
+        ],
+        "presentation_submission": {
+          "id": "WOiGWyQL7gdsfpvllAySZ",
+          "definition_id": "presDefIdloanAppVerification123",
+          "descriptor_map": [
+            {
+              "id": "employmentVerification",
+              "format": "jwt_vc",
+              "path": "$.verifiableCredential[0]"
+            },
+            {
+              "id": "dobVerification",
+              "format": "jwt_vc",
+              "path": "$.verifiableCredential[1]"
+            },
+            {
+              "id": "nameVerification",
+              "format": "jwt_vc",
+              "path": "$.verifiableCredential[1]"
+            }
+          ]
+        },
+        "verifiableCredential": [
+          "eyJhbGciOiJFZERTQSIsInR5cCI6IkpXVCIsImtpZCI6ImRpZDprZXk6ejZNa2VyNDlDbnVnN2hzdkhEZ3Y0NHl2cGR2dE1oNHlMaURYeFM2N2huclVodHQyI3o2TWtlcjQ5Q251Zzdoc3ZIRGd2NDR5dnBkdnRNaDR5TGlEWHhTNjdobnJVaHR0MiJ9.eyJpc3MiOiJkaWQ6a2V5Ono2TWtlcjQ5Q251Zzdoc3ZIRGd2NDR5dnBkdnRNaDR5TGlEWHhTNjdobnJVaHR0MiIsInZjIjp7IkBjb250ZXh0IjpbImh0dHBzOi8vd3d3LnczLm9yZy8yMDE4L2NyZWRlbnRpYWxzL3YxIl0sInR5cGUiOlsiVmVyaWZpYWJsZUNyZWRlbnRpYWwiLCJFbXBsb3ltZW50Q3JlZGVudGlhbCJdLCJpZCI6InVybjp1dWlkOjcyNDhiOTkyLTkwOTYtNDk2NS1hMGVjLTc3ZDhhODNhMWRmYiIsImlzc3VlciI6ImRpZDprZXk6ejZNa2VyNDlDbnVnN2hzdkhEZ3Y0NHl2cGR2dE1oNHlMaURYeFM2N2huclVodHQyIiwiaXNzdWFuY2VEYXRlIjoiMjAyMy0xMi0yMVQyMDoxMToyNVoiLCJjcmVkZW50aWFsU3ViamVjdCI6eyJpZCI6ImRpZDppb246RWlEMTR4UmY0cTJNWlh1ZWY2X2ZXYnBGbVlTUG94dGFxTkp1SmdEMG96Wl84UTpleUprWld4MFlTSTZleUp3WVhSamFHVnpJanBiZXlKaFkzUnBiMjRpT2lKeVpYQnNZV05sSWl3aVpHOWpkVzFsYm5RaU9uc2ljSFZpYkdsalMyVjVjeUk2VzNzaWFXUWlPaUprZDI0dGMybG5JaXdpY0hWaWJHbGpTMlY1U25kcklqcDdJbU55ZGlJNklrVmtNalUxTVRraUxDSnJkSGtpT2lKUFMxQWlMQ0o0SWpvaWVubGFNbVYzTlhKeVVXdFVjbUV3WlZsVk16WlBTblJzTURCbFJWZHhhalZhV0dkNmNEZFpSVTVKUVNKOUxDSndkWEp3YjNObGN5STZXeUpoZFhSb1pXNTBhV05oZEdsdmJpSmRMQ0owZVhCbElqb2lTbk52YmxkbFlrdGxlVEl3TWpBaWZTeDdJbWxrSWpvaVpIZHVMV1Z1WXlJc0luQjFZbXhwWTB0bGVVcDNheUk2ZXlKamNuWWlPaUp6WldOd01qVTJhekVpTENKcmRIa2lPaUpGUXlJc0luZ2lPaUpQZDJZMFQyMUViamxKWm5SNFdYWnBkRTFHWm1jMVVXeDVMVVV6VWs1b1dsUkdPVlpFTWtnNVQzVjNJaXdpZVNJNkltUnZjVmxtV2s1c1NtRlRNVll4U201bU9HdEZObEF6VkRsd2QzaDNla3hFVTJWc1ZqTlRUa2s1U2xFaWZTd2ljSFZ5Y0c5elpYTWlPbHNpYTJWNVFXZHlaV1Z0Wlc1MElsMHNJblI1Y0dVaU9pSktjMjl1VjJWaVMyVjVNakF5TUNKOVhTd2ljMlZ5ZG1salpYTWlPbHQ3SW1sa0lqb2laSGR1SWl3aWMyVnlkbWxqWlVWdVpIQnZhVzUwSWpwN0ltVnVZM0o1Y0hScGIyNUxaWGx6SWpwYklpTmtkMjR0Wlc1aklsMHNJbTV2WkdWeklqcGJJbWgwZEhCek9pOHZaSGR1TG5SaVpHUmxkaTV2Y21jdlpIZHVOaUlzSW1oMGRIQnpPaTh2WkhkdUxuUmlaR1JsZGk1dmNtY3ZaSGR1TUNKZExDSnphV2R1YVc1blMyVjVjeUk2V3lJalpIZHVMWE5wWnlKZGZTd2lkSGx3WlNJNklrUmxZMlZ1ZEhKaGJHbDZaV1JYWldKT2IyUmxJbjFkZlgxZExDSjFjR1JoZEdWRGIyMXRhWFJ0Wlc1MElqb2lSV2xEWm05bVFUQkpVbU5uY2tWdVVHZHdRbU5RV1ZsV2VFWlliR0pTYjJRd2RVNWZRVkJwTkVrNUxVRmZRU0o5TENKemRXWm1hWGhFWVhSaElqcDdJbVJsYkhSaFNHRnphQ0k2SWtWcFFtd3pWWG80VldGT2REZGxlREJKYjJJMFJFNXNhbFJGVmpaelQwTmtjbFJ3TWxvNE5FTkJPVFJPUWtFaUxDSnlaV052ZG1WeWVVTnZiVzFwZEcxbGJuUWlPaUpGYVVOWk9WRldZbWRKYkUxemRraEZYMVJtTld4a1MxQjBkR3d3WVV4blNrdHNSbmt6Vms0d2QzQTJhVFpSSW4xOSIsImVtcGxveW1lbnRTdGF0dXMiOiJlbXBsb3llZCJ9fX0.Sazc8Ndhs-NKjxvtVMKeC9dxjEkI26fVsp2kFNWM-SYLtxMzKvl5ffeWd81ysHgPmBBSk2ar4dMqGgUsyM4gAQ",
+          "eyJhbGciOiJFZERTQSIsInR5cCI6IkpXVCIsImtpZCI6ImRpZDprZXk6ejZNa2pwUzRHVUFoYmdCSmg2azJnZTZvWTQ0UUxyRXA3NXJadHNqYVRLb3JSRGR0I3o2TWtqcFM0R1VBaGJnQkpoNmsyZ2U2b1k0NFFMckVwNzVyWnRzamFUS29yUkRkdCJ9.eyJpc3MiOiJkaWQ6a2V5Ono2TWtqcFM0R1VBaGJnQkpoNmsyZ2U2b1k0NFFMckVwNzVyWnRzamFUS29yUkRkdCIsInZjIjp7IkBjb250ZXh0IjpbImh0dHBzOi8vd3d3LnczLm9yZy8yMDE4L2NyZWRlbnRpYWxzL3YxIl0sInR5cGUiOlsiVmVyaWZpYWJsZUNyZWRlbnRpYWwiLCJOYW1lQW5kRG9iQ3JlZGVudGlhbCJdLCJpZCI6InVybjp1dWlkOjliZjM2YzY5LTI0ODAtNDllZC1iMTYyLTRlZDEwOWE3MTc3NyIsImlzc3VlciI6ImRpZDprZXk6ejZNa2pwUzRHVUFoYmdCSmg2azJnZTZvWTQ0UUxyRXA3NXJadHNqYVRLb3JSRGR0IiwiaXNzdWFuY2VEYXRlIjoiMjAyMy0xMi0yMVQyMDowNjowMVoiLCJjcmVkZW50aWFsU3ViamVjdCI6eyJpZCI6ImRpZDppb246RWlDS2o2M0FyZlBGcEpsb2lTd3gxQUhxVWtpWlNoSDZGdnZoSzRaTl9fZDFtQTpleUprWld4MFlTSTZleUp3WVhSamFHVnpJanBiZXlKaFkzUnBiMjRpT2lKeVpYQnNZV05sSWl3aVpHOWpkVzFsYm5RaU9uc2ljSFZpYkdsalMyVjVjeUk2VzNzaWFXUWlPaUprZDI0dGMybG5JaXdpY0hWaWJHbGpTMlY1U25kcklqcDdJbU55ZGlJNklrVmtNalUxTVRraUxDSnJkSGtpT2lKUFMxQWlMQ0o0SWpvaWNscFdXbTVJVkVrNWFEWkJUVmxVV0dwT01HcFhTVkYwTTI5ak4xTnJTeTF4Y2kxcVVuSTBUalEzUlNKOUxDSndkWEp3YjNObGN5STZXeUpoZFhSb1pXNTBhV05oZEdsdmJpSmRMQ0owZVhCbElqb2lTbk52YmxkbFlrdGxlVEl3TWpBaWZTeDdJbWxrSWpvaVpIZHVMV1Z1WXlJc0luQjFZbXhwWTB0bGVVcDNheUk2ZXlKamNuWWlPaUp6WldOd01qVTJhekVpTENKcmRIa2lPaUpGUXlJc0luZ2lPaUpaVDFwRE5WSmlUMHQ1T0dadVVUWTJVWEZPUkc5aldFMXZPVXhUZEdNNVYyOWthMHd0ZFZCZlExQnZJaXdpZVNJNklsWnZZM0UxVERodFozQlhXVTFrYjFwS1JrWlJUa1ZDT0hsR0xXTndkRWQzZFdkcFRWVm5hR2t6Y21jaWZTd2ljSFZ5Y0c5elpYTWlPbHNpYTJWNVFXZHlaV1Z0Wlc1MElsMHNJblI1Y0dVaU9pSktjMjl1VjJWaVMyVjVNakF5TUNKOVhTd2ljMlZ5ZG1salpYTWlPbHQ3SW1sa0lqb2laSGR1SWl3aWMyVnlkbWxqWlVWdVpIQnZhVzUwSWpwN0ltVnVZM0o1Y0hScGIyNUxaWGx6SWpwYklpTmtkMjR0Wlc1aklsMHNJbTV2WkdWeklqcGJJbWgwZEhCek9pOHZaSGR1TG5SaVpHUmxkaTV2Y21jdlpIZHVOaUlzSW1oMGRIQnpPaTh2WkhkdUxuUmlaR1JsZGk1dmNtY3ZaSGR1TUNKZExDSnphV2R1YVc1blMyVjVjeUk2V3lJalpIZHVMWE5wWnlKZGZTd2lkSGx3WlNJNklrUmxZMlZ1ZEhKaGJHbDZaV1JYWldKT2IyUmxJbjFkZlgxZExDSjFjR1JoZEdWRGIyMXRhWFJ0Wlc1MElqb2lSV2xCTXpSMlMzb3llVmswZVV4dGRDMUdabkJuYWpWbGFFRm1ZWFI1YzFOa2MwNVNWbVpMYkhwUWRqTjVkeUo5TENKemRXWm1hWGhFWVhSaElqcDdJbVJsYkhSaFNHRnphQ0k2SWtWcFF6ZGZjMXBzTW1wMVVXNUdhRVJIV1RSb2NFVTRiMlF4YVU5MWRuZG1PVFJ5TVVkbk9HMWFWbVJCVmxFaUxDSnlaV052ZG1WeWVVTnZiVzFwZEcxbGJuUWlPaUpGYVVKdU5sTnJiSEpWYzNKdVFuaFJPVXBqVXkxTlNVaGtWelYwTXpRM1MxWjNaMXBwVEZwMFQwcDRRVkYzSW4xOSIsIm5hbWUiOiJhbGljZSBib2IiLCJkYXRlT2ZCaXJ0aCI6IjEwLTAxLTE5OTAifX19.mNCDv_JntH-wZpYONKNL58UbOWaYXCYJO_HPI_WVlSgwzo6dhYmV_9qtpFKd_exFb-aaEYPeSE43twWlrJeSBg"
+        ]
+      },
+      "presentationSubmissionLocation": 1,
+      "presentationSubmission": {
+        "id": "WOiGWyQL7gdsfpvllAySZ",
+        "definition_id": "presDefIdloanAppVerification123",
+        "descriptor_map": [
+          {
+            "id": "employmentVerification",
+            "format": "jwt_vc",
+            "path": "$.verifiableCredential[0]"
+          },
+          {
+            "id": "dobVerification",
+            "format": "jwt_vc",
+            "path": "$.verifiableCredential[1]"
+          },
+          {
+            "id": "nameVerification",
+            "format": "jwt_vc",
+            "path": "$.verifiableCredential[1]"
+          }
+        ]
+      }
+    }
+  }
+}
+      `,
+      language: 'JavaScript',
+    },
+    {
+      content: 'This method returns a `VerifiablePresentation` which contains the presentation:',
+      code: `
+{
+  "@context": [
+    "https://www.w3.org/2018/credentials/v1"
+  ],
+  "type": [
+    "VerifiablePresentation"
+  ],
+  "id": "urn:uuid:258bd593-0057-4944-9119-baf53ffd654a",
+  "presentation_submission": {
+    "id": "epzZXstAcVNt5MRrcyG91",
+    "definitionId": "presDefIdloanAppVerification123",
+    "descriptorMap": [
+      {
+        "id": "employmentVerification",
+        "format": "jwt_vc",
+        "path": "$.verifiableCredential[0]"
+      },
+      {
+        "id": "dobVerification",
+        "format": "jwt_vc",
+        "path": "$.verifiableCredential[1]"
+      },
+      {
+        "id": "nameVerification",
+        "format": "jwt_vc",
+        "path": "$.verifiableCredential[2]"
+      }
+    ]
+  },
+  "verifiableCredential": [
+    "eyJraWQiOiJkaWQ6a2V5OnpRM3NoVWFqYWNvUFQxc3dGOW91bkZqRGRTV2YzeTRBMTJ2bWtneG9WVDVzcmZuaUIjelEzc2hVYWphY29QVDFzd0Y5b3VuRmpEZFNXZjN5NEExMnZta2d4b1ZUNXNyZm5pQiIsInR5cCI6IkpXVCIsImFsZyI6IkVTMjU2SyJ9.eyJpc3MiOiJkaWQ6a2V5OnpRM3NoVWFqYWNvUFQxc3dGOW91bkZqRGRTV2YzeTRBMTJ2bWtneG9WVDVzcmZuaUIiLCJzdWIiOiJkaWQ6a2V5OnpRM3NoWHJBbmJnZnl0UVlRamlmVW0yRWNCQmJSQWVBZUdmZ0M0VFpyanc0WDcxaVoiLCJpYXQiOjE3MDcxMzAwMDksInZjIjp7IkBjb250ZXh0IjpbImh0dHBzOi8vd3d3LnczLm9yZy8yMDE4L2NyZWRlbnRpYWxzL3YxIl0sInR5cGUiOlsiVmVyaWZpYWJsZUNyZWRlbnRpYWwiLCJFbXBsb3ltZW50Q3JlZGVudGlhbCJdLCJpZCI6InVybjp1dWlkOjc3MWJhNzE3LTc2NGEtNGU5NC1iNzAwLTM4ODY2YTE3OTc5YiIsImlzc3VlciI6ImRpZDprZXk6elEzc2hVYWphY29QVDFzd0Y5b3VuRmpEZFNXZjN5NEExMnZta2d4b1ZUNXNyZm5pQiIsImlzc3VhbmNlRGF0ZSI6IjIwMjQtMDItMDVUMTA6NDY6NDlaIiwiY3JlZGVudGlhbFN1YmplY3QiOnsiaWQiOiJkaWQ6a2V5OnpRM3NoWHJBbmJnZnl0UVlRamlmVW0yRWNCQmJSQWVBZUdmZ0M0VFpyanc0WDcxaVoiLCJlbXBsb3ltZW50U3RhdHVzIjoiZW1wbG95ZWQifX19.94QKD7UU6lAi1x_AMCJ7_-nfyV41mHXDBVwYdyWHB6ZYlCoDOroovhxgjtweqiQ7sRjTbZfoEu01-RmF_J9yQg",
+    "eyJraWQiOiJkaWQ6a2V5OnpRM3NoVWFqYWNvUFQxc3dGOW91bkZqRGRTV2YzeTRBMTJ2bWtneG9WVDVzcmZuaUIjelEzc2hVYWphY29QVDFzd0Y5b3VuRmpEZFNXZjN5NEExMnZta2d4b1ZUNXNyZm5pQiIsInR5cCI6IkpXVCIsImFsZyI6IkVTMjU2SyJ9.eyJpc3MiOiJkaWQ6a2V5OnpRM3NoVWFqYWNvUFQxc3dGOW91bkZqRGRTV2YzeTRBMTJ2bWtneG9WVDVzcmZuaUIiLCJzdWIiOiJkaWQ6a2V5OnpRM3NoWHJBbmJnZnl0UVlRamlmVW0yRWNCQmJSQWVBZUdmZ0M0VFpyanc0WDcxaVoiLCJpYXQiOjE3MDcxMzAwMDksInZjIjp7IkBjb250ZXh0IjpbImh0dHBzOi8vd3d3LnczLm9yZy8yMDE4L2NyZWRlbnRpYWxzL3YxIl0sInR5cGUiOlsiVmVyaWZpYWJsZUNyZWRlbnRpYWwiLCJEYXRlT2ZCaXJ0aENyZWRlbnRpYWwiXSwiaWQiOiJ1cm46dXVpZDoxNTBkMmE4OC1iMzViLTQ1NTUtODNiOC0yNmY1NmJkZjVmZDAiLCJpc3N1ZXIiOiJkaWQ6a2V5OnpRM3NoVWFqYWNvUFQxc3dGOW91bkZqRGRTV2YzeTRBMTJ2bWtneG9WVDVzcmZuaUIiLCJpc3N1YW5jZURhdGUiOiIyMDI0LTAyLTA1VDEwOjQ2OjQ5WiIsImNyZWRlbnRpYWxTdWJqZWN0Ijp7ImlkIjoiZGlkOmtleTp6UTNzaFhyQW5iZ2Z5dFFZUWppZlVtMkVjQkJiUkFlQWVHZmdDNFRacmp3NFg3MWlaIiwiZGF0ZU9mQmlydGgiOiIxOTkwLTAxLTAxIn19fQ.GZwkqdUdXL8SEpP6Cjm3BdVrGVNLVvqehBBVpgixrfAQ4IiY3eZFmNMRqfkK_Qbk4XKksAyMrr-58WwISh3zcA",
+ ],
+  "holder": "did:dht:zQ3shXrAnbgfytQYQjifUm2EcBBbRAeAeGfgC4TZrjw4X71iZ"
+}
+      `,
+      language: 'Kotlin',
+      codeLanguage: 'javascript'
+    }
+  ]}
+/>
+
+
+## Validate Presentation Submission
+
+Before submitting the presentation to a lender, you can validate the Presentation via the `validateSubmission()` method:
+
+<Shnip
+snippets={[
+    { snippetName: 'validPresentationSubmissionForPex', language: 'JavaScript'},
+    { snippetName: 'validatePresentationSubmissionForPexKt', language: 'Kotlin'}
+    ]}
+/>
+
+:::note
+The information regarding `Checked` objects is only applicable to the JavaScript SDK.
+:::
+
+
+<Shnip
+  inlineSnippets={[
+    {
+      content: 'This method checks the presentation submission for any errors, returns an array of `Checked` objects representing the validation checks performed on the presentation submission:',
+      code: `
+[ Checked { tag: 'root', status: 'info', message: 'ok' } ]
+      `,
+      language: 'JavaScript',
+    },
+    {
+      content: "If unsuccessful, an error will be thrown. Here is an example:",
+      code:`
+PresentationSubmission id must not be empty
+      `,
+      language: 'Kotlin',
+    }
+  ]}
+/>
+
+
+Each `Checked` object contains:
+
+- **tag**: the path, `root` of the submission that was checked
+- **status**: the result of the check, which is `info` for successful checks or `error` for failed checks
+- **message**: shows `ok` if successful, and if unsuccessful this is where you'll find error messages
+
+
+## Verifiable Presentation
+
+Once the [Presentation](/docs/glossary#verifiable-presentation) is error-free and has passed the validation checks, you can submit the Verifiable Presentation as a signed and encoded JWT to the lender for [verification](/docs/web5/verifiable-credentials/verify-vc#verify-verifiable-presentations).
+
+<Shnip
+   snippets={[
+    {
+      snippetName: 'validVerifiablePresentationForPex',
+      language: 'JavaScript'},
+    {
+      snippetName: 'signVpForPexKt',
+      language: 'Kotlin'
+    },
+  ]}
+/>

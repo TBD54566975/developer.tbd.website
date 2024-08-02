@@ -13,11 +13,7 @@ module.exports = {
     './learn/**/*.{js,jsx,ts,tsx,md,mdx}',
     './docs/**/*.{js,jsx,ts,tsx,md,mdx}',
   ],
-  darkMode: 'class', // hooks into docusaurus' dark mode settigns
-  // plugins: [
-  //   require('tailwind-component-classes'),
-  //   require('@tailwindcss/typography'),
-  // ],
+  darkMode: 'class',
   theme: {
     extend: {
       screens: {

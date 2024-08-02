@@ -26,15 +26,7 @@ export const content = {
         'Connects the world of legacy money to the world of digital money',
       textButton: 'View Project',
       url: '/projects/tbdex',
-    },
-    {
-      icon: '/img/article-icon.svg',
-      title: 'SSI',
-      description:
-        'Identity created, owned, and controlled by individuals, without reliance on centralized entities',
-      textButton: 'View Project',
-      url: '/projects/ssi',
-    },    
+    }    
   ],
   
   Column1: Column1,
