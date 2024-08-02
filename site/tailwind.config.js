@@ -1,5 +1,3 @@
-import defaultTheme from 'tailwindcss/defaultTheme';
-
 module.exports = {
   mode: 'jit',
   purge: [
@@ -17,12 +15,18 @@ module.exports = {
   ],
   darkMode: 'class',
   theme: {
-    screens: {
-      ...defaultTheme.screens,
-    },
     extend: {
       screens: {
-        mobile: { raw: '(max-width: 360px)' },
+        'tablet': '768px',
+        // => @media (min-width: 768px) { ... }
+        'desktop': '1024px',
+        // => @media (min-width: 1024px) { ... }
+        'desktop-lg': '1200px',
+        // => @media (min-width: 1200) { ... }
+        'desktop-xl': '1400px',
+        // => @media (min-width: 1200) { ... }
+        'hd': '1820px',
+        // => @media (min-width: 1820px) { ... }
       },
       colors: {
         'primary-yellow': 'var(--color-yellow)',
