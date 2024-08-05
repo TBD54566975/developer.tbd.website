@@ -21,6 +21,7 @@ In this guide, we'll cover how to:
 - Specify a KBC as a required claim in an [Offering](/docs/tbdex/pfi/creating-offerings)
 
 ## Environment Setup
+
 If you haven't already, please follow the [Credential Issuance Server Setup Guide](/docs/tbdex/issuer/vc-serverSetup) for detailed instructions on the dependencies and packages needed to set up your server
 
 ## Issue Credential
@@ -43,6 +44,10 @@ We've designed an open source schema for KBCs that you're welcome to use at http
 If you issue a KBC to a business, you'll want to specify that credential as a required claim on any applicable Offerings you may provide. 
 
 You can do this via a [Presentation Definition](/docs/web5/verifiable-credentials/presentation-definition) where your input descriptors will specify that the KBC must be issued by your PFI (as noted by your DID URI) and the KBC's credential schema ID must be a specific URL (the one you used to issue the credential).
+
+:::note
+The `id` property is a string that uniquely identifies the `input_descriptor`. It is required and must be unique within the `presentation_definition`.
+:::
 
 ### Create Presentation Definition
 

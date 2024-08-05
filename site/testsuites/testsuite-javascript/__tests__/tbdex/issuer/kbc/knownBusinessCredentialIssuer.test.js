@@ -44,7 +44,7 @@ describe("Known Business Credential", () => {
     test("Required claims in Known Business Credential", async () => {
         // :snippet-start: kbcPresentationDefinitionJs
         const pd = {
-            id: "presentation-definition-kbc",
+            id: "presentation-definition-kbc", // required unique id for presentation definition
             name: "KYB Verification",
             purpose: "Verifiying your business status.",
             format: {
@@ -74,7 +74,8 @@ describe("Known Business Credential", () => {
                                 }
                             }
                         ]
-                    }
+                    },
+                    id: "1" // required unique id for the input descriptor
                 }
             ]
         };
