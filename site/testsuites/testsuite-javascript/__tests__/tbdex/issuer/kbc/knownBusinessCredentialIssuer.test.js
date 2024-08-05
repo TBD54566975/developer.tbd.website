@@ -35,7 +35,7 @@ describe("Known Business Credential", () => {
         // :snippet-end:
 
         // :snippet-start: issueKbcJs
-        const vc = await VerifiableCredential.create({
+        const kbc = await VerifiableCredential.create({
             issuer: pfiDid.uri,
             subject: subjectDid.uri,
             expirationDate: '2025-09-30T12:34:56Z',
@@ -47,11 +47,11 @@ describe("Known Business Credential", () => {
                 },
             )
         });
-        const signedVc = await vc.sign({ did: pfiDid })
+        const signedKbc = await vc.sign({ did: pfiDid })
         // :snippet-end:
-        expect(vc).toBeDefined();
-        expect.soft(vc).toHaveProperty('issuer', pfiDid.uri);
-        expect(typeof signedVc).toBe('string');
+        expect(kbc).toBeDefined();
+        expect.soft(kbc).toHaveProperty('issuer', pfiDid.uri);
+        expect(typeof signedKbc).toBe('string');
 
     })
 
