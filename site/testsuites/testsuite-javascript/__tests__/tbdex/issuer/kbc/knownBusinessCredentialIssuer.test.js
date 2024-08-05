@@ -1,9 +1,7 @@
 import { describe, test, expect, beforeAll } from 'vitest';
-// :snippet-start: importKnownBusinessCredentialJs
 import { VerifiableCredential } from '@web5/credentials';
 import { DidDht } from '@web5/dids';
 import { Offering } from '@tbdex/http-client';
-// :snippet-end:
 
 describe("Known Business Credential", () => {
     let pfiDid;
