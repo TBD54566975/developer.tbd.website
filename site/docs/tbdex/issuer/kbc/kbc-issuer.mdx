@@ -1,0 +1,69 @@
+---
+sidebar_position: 1
+title: Issuing a KBC
+hide_title: true
+---
+
+<LanguageSwitcher languages="JavaScript, Kotlin" />
+
+# Issuing a Known Business Credential
+
+Known Business Credentials (KBC) are [Verifiable Credentials](/docs/web5/verifiable-credentials/what-are-vcs) designed to streamline the Know Your Business (KYB) process for tbDEX protocol users. 
+KBCs help businesses gain access to PFIs providing regulated financial services. 
+
+This guide is intended for PFIs that are using tbDEX to transact with other known businesses, without directly onboarding those businesses’ customers."
+
+:::danger Important
+This guide is intended for educational purposes only and does not constitute legal advice. Compliance programs may have varying requirements. Consult your legal and/or compliance advisors to ensure that the KBC is consistent with your legal and compliance obligations.
+:::
+
+In this guide, we'll cover how to:
+- Design and issue a KBC
+- Specify a KBC as a required claim in an [Offering](https://developer.tbd.website/docs/tbdex/pfi/creating-offerings)
+
+## Install packages
+
+<Dependencies languageDependencies={[
+  { language: 'javascript', dependencies: ['@web5/credentials', '@web5/dids'] },
+]}/>
+
+## Import Classes
+
+<Shnip snippets={[
+    { snippetName: 'importKnownBusinessCredentialJs', language: 'JavaScript'},
+]} />
+
+## Issue and Sign Credential
+
+<Shnip
+  snippets={[
+    {
+      snippetName: 'issueKbcJs',
+      language: 'JavaScript',
+    }
+  ]}
+/>
+
+## Specify a KBC as a required claim in an Offering
+
+### Create Presentation Definition
+
+<Shnip
+  snippets={[
+    {
+      snippetName: 'kbcPresentationDefinitionJs',
+      language: 'JavaScript',
+    }
+  ]}
+/>
+
+### Specify required claim in Offering
+
+<Shnip
+  snippets={[
+    {
+      snippetName: 'kbcCreateOfferingJs',
+      language: 'JavaScript',
+    }
+  ]}
+/>
