@@ -5,7 +5,7 @@ import { Offering } from '@tbdex/http-client';
 
 describe("Known Business Credential", () => {
     let pfiDid;
-    let subjectDid;
+    let subjectDidUri;
     beforeAll(async () => {
         pfiDid = await DidDht.create({
             options: {
@@ -17,35 +17,22 @@ describe("Known Business Credential", () => {
                 }]
             },
         })
-        subjectDid = await DidDht.create()
+        const subjectDid = await DidDht.create()
+        subjectDidUri = subjectDid.uri;
     })
 
-    test("Issue and Sign Known Business Credential", async () => {
-        // :snippet-start: kbcCredentialClass
-        class KbcCredential {
-            constructor(id, credentialSchema) {
-                this.data = {
-                    id: id
-                };
-                this.credentialSchema = credentialSchema;
-            }
-        }
-        // :snippet-end:
-
+    test("Issue Known Business Credential", async () => {
         // :snippet-start: issueKbcJs
         const kbc = await VerifiableCredential.create({
             issuer: pfiDid.uri,
-            subject: subjectDid.uri,
+            subject: subjectDidUri,
             expirationDate: '2025-09-30T12:34:56Z',
-            data: new KbcCredential(
-                subjectDid.uri,
-                {
-                    type: "JsonSchema",
-                    id: "https://vc.schemas.host/kbc.schema.json"
-                },
-            )
-        });
-        const signedKbc = await kbc.sign({ did: pfiDid })
+            data: {},
+            credentialSchema: {
+                type: "JsonSchema",
+                id: "https://vc.schemas.host/kbc.schema.json"
+            }
+        })
         // :snippet-end:
         expect(kbc).toBeDefined();
         expect.soft(kbc).toHaveProperty('issuer', pfiDid.uri);
@@ -160,7 +147,4 @@ describe("Known Business Credential", () => {
             expect.fail(e.message)
         }
     })
-
-
-
 })
