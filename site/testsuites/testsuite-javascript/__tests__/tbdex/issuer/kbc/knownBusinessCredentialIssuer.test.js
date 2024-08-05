@@ -60,7 +60,7 @@ describe("Known Business Credential", () => {
                     constraints: {
                         fields: [
                             {
-                                path: ["$.credentialSchema.id"],
+                                path: ["$.vc.credentialSchema[0].id"],
                                 filter: {
                                     type: "string",
                                     const: "https://vc.schemas.host/kbc.schema.json"
