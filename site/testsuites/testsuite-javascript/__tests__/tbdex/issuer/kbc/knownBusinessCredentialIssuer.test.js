@@ -45,7 +45,7 @@ describe("Known Business Credential", () => {
                 },
             )
         });
-        const signedKbc = await vc.sign({ did: pfiDid })
+        const signedKbc = await kbc.sign({ did: pfiDid })
         // :snippet-end:
         expect(kbc).toBeDefined();
         expect.soft(kbc).toHaveProperty('issuer', pfiDid.uri);
