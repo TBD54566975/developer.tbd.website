@@ -23,18 +23,29 @@ describe("Known Business Credential", () => {
     })
 
     test("Issue and Sign Known Business Credential", async () => {
+        // :snippet-start: kbcCredentialClass
+        class KbcCredential {
+            constructor(id, credentialSchema) {
+                this.data = {
+                    id: id
+                };
+                this.credentialSchema = credentialSchema;
+            }
+        }
+        // :snippet-end:
+
         // :snippet-start: issueKbcJs
         const vc = await VerifiableCredential.create({
             issuer: pfiDid.uri,
             subject: subjectDid.uri,
             expirationDate: '2025-09-30T12:34:56Z',
-            data: {
-                id: subjectDid.uri
-            },
-            credentialSchema: {
-                type: "JsonSchema",
-                id: "https://vc.schemas.host/kbc.schema.json"
-            }
+            data: new KbcCredential(
+                subjectDid.uri,
+                {
+                    type: "JsonSchema",
+                    id: "https://vc.schemas.host/kbc.schema.json"
+                },
+            )
         });
         const signedVc = await vc.sign({ did: pfiDid })
         // :snippet-end:
@@ -83,7 +94,7 @@ describe("Known Business Credential", () => {
         };
         // :snippet-end:
 
-        try{
+        try {
             // :snippet-start: kbcCreateOfferingJs
             const offering = Offering.create({
                 metadata: {
@@ -95,34 +106,34 @@ describe("Known Business Credential", () => {
                     payin: {
                         currencyCode: "USD",
                         methods: [{
-                          kind: "DEBIT_CARD",
-                          requiredPaymentDetails: {
-                              "$schema": "http://json-schema.org/draft-07/schema",
-                              "type": "object",
-                              "properties": {
-                                  "cardNumber": {
-                                      "type": "string",
-                                      "description": "The 16-digit debit card number",
-                                      "minLength": 16,
-                                      "maxLength": 16
-                                  },
-                                  "expiryDate": {
-                                      "type": "string",
-                                      "description": "The expiry date of the card in MM/YY format",
-                                      "pattern": "^(0[1-9]|1[0-2])\\/([0-9]{2})$"
-                                  },
-                                  "cardHolderName": {
-                                      "type": "string",
-                                      "description": "Name of the cardholder as it appears on the card"
-                                  },
-                                  "cvv": {
-                                      "type": "string",
-                                      "description": "The 3-digit CVV code",
-                                      "minLength": 3,
-                                      "maxLength": 3
-                                  }
-                              }
-                          }
+                            kind: "DEBIT_CARD",
+                            requiredPaymentDetails: {
+                                "$schema": "http://json-schema.org/draft-07/schema",
+                                "type": "object",
+                                "properties": {
+                                    "cardNumber": {
+                                        "type": "string",
+                                        "description": "The 16-digit debit card number",
+                                        "minLength": 16,
+                                        "maxLength": 16
+                                    },
+                                    "expiryDate": {
+                                        "type": "string",
+                                        "description": "The expiry date of the card in MM/YY format",
+                                        "pattern": "^(0[1-9]|1[0-2])\\/([0-9]{2})$"
+                                    },
+                                    "cardHolderName": {
+                                        "type": "string",
+                                        "description": "Name of the cardholder as it appears on the card"
+                                    },
+                                    "cvv": {
+                                        "type": "string",
+                                        "description": "The 3-digit CVV code",
+                                        "minLength": 3,
+                                        "maxLength": 3
+                                    }
+                                }
+                            }
                         }]
                     },
                     payout: {
@@ -135,23 +146,23 @@ describe("Known Business Credential", () => {
                             }
                         ]
                     },
-                    payoutUnitsPerPayinUnit: '0.00003826',  
+                    payoutUnitsPerPayinUnit: '0.00003826',
                     // highlight-next-line
                     requiredClaims: pd
                 }
             });
             // :snippet-end:
 
-        
+
             await offering.sign(pfiDid);
 
             offering.validate();
-    
-        } catch(e) {
+
+        } catch (e) {
             expect.fail(e.message)
         }
     })
 
-    
 
-    })
+
+})

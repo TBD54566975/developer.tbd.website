@@ -33,6 +33,18 @@ In this guide, we'll cover how to:
     { snippetName: 'importKnownBusinessCredentialJs', language: 'JavaScript'},
 ]} />
 
+## Design Known Business Credential
+When creating a Verifiable Credential, you can design a model class to represent the specific type of credential you'd like to issue.
+When defining a KbcCredential, you'll need to specify an `id` and a `credentialSchema`.
+<Shnip
+  snippets={[
+    {
+      snippetName: 'kbcCredentialClass',
+      language: 'JavaScript',
+    }
+  ]}
+/>
+
 ## Issue and Sign Credential
 
 <Shnip
