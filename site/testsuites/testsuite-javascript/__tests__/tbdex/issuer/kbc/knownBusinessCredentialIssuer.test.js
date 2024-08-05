@@ -85,7 +85,6 @@ describe("Known Business Credential", () => {
             const offering = Offering.create({
                 metadata: {
                     from: pfiDid.uri,
-                    protocol: "1.0"
                 },
                 data: {
                     description: "Selling BTC for USD",

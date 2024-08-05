@@ -25,6 +25,10 @@ If you haven't already, please follow the [Credential Issuance Server Setup Guid
 
 ## Issue Credential
 
+To issue a KBC, call `VerifiableCredential.create()` and pass in the URL to the credential schema the VC is based on. 
+
+We've designed an open source schema for KBCs that you're welcome to use at https://vc.schemas.host/kbc.schema.json.
+
 <Shnip
   snippets={[
     {
@@ -34,7 +38,11 @@ If you haven't already, please follow the [Credential Issuance Server Setup Guid
   ]}
 />
 
-## Specify a KBC as a required claim in an Offering
+## Specify KBC as Requirement
+
+If you issue a KBC to a business, you'll want to specify that credential as a required claim on any applicable Offerings you may provide. 
+
+You can do this via a [Presentation Definition](/docs/web5/verifiable-credentials/presentation-definition) where your input descriptors will specify that the KBC must be issued by your PFI (as noted by your DID URI) and the KBC's credential schema ID must be a specific URL (the one you used to issue the credential).
 
 ### Create Presentation Definition
 
@@ -47,7 +55,9 @@ If you haven't already, please follow the [Credential Issuance Server Setup Guid
   ]}
 />
 
-### Specify required claim in Offering
+## Add Required Claim to Offering
+
+Now that you've defined your requirements, you can add them to any relevant Offerings.
 
 <Shnip
   snippets={[
