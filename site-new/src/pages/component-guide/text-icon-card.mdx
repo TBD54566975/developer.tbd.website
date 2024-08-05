@@ -6,24 +6,20 @@ import tbdRex from '@site/static/img/tbd-rex';
 
 <div className="component-guide">
 <p>
-This component displays an icon, title, text, and a button. It supports multiple themes.
+This component displays an optional icon, title, text, and an optional button. It supports multiple themes.
 </p>
-
 
 ## Properties
 
-
 | Property     | Type                                                | Required | Default | Description                                                                                           |
 |--------------|-----------------------------------------------------|----------|---------|-------------------------------------------------------------------------------------------------------|
-| `icon`       | `React.ComponentType<{ className: string; fill: string }>` | Yes      |         | The icon component to display in the card.                                                            |
+| `icon`       | `React.ComponentType<{ className: string; fill: string }>` | No       |         | The optional icon component to display in the card.                                                            |
 | `title`      | `string`                                            | Yes      |         | The title text for the card.                                                                          |
 | `text`       | `string`                                            | Yes      |         | The description or text content for the card.                                                         |
-| `url`        | `string`                                            | Yes      |         | The URL to navigate to when the button is clicked.                                                    |
+| `url`        | `string`                                            | No       |         | The optional URL to navigate to when the button is clicked.                                                    |
 | `className`  | `string`                                            | No       |         | Additional CSS classes to apply to the card.                                                          |
 | `theme`      | `"yellow" \| "teal" \| "purple" \| "grey"`          | No       | `grey`  | The theme color of the card.                                                                          |
-| `buttonText` | `string`                                            | Yes      |         | The text to display on the button.                                                                    |
-
-
+| `buttonText` | `string`                                            | No       |         | The optional text to display on the button.                                                                    |
 
 ## Usage
 
@@ -68,6 +64,22 @@ text="Keep track of market trends and make informed decisions with real-time dat
 url="https://example.com"
 theme="purple"
 buttonText="Watch Market"
+/>
+
+Teal Theme without Icon
+<TextIconCard
+title="No Icon"
+text="This card does not have an icon."
+url="https://example.com"
+theme="teal"
+buttonText="Find Out More"
+/>
+
+Purple Theme without Button and Icon
+<TextIconCard
+title="No Button and Icon"
+text="This card does not have a button and an icon."
+theme="purple"
 />
 
 </div>

@@ -1,39 +1,39 @@
 [
   {
-    "login": "Bryan",
-    "avatar_url": "https://cdn.discordapp.com/avatars/642772853942386698/6f2370d19eefdff03f74ab7e15596394?size=1024",
-    "contributions": ["Community Champion Award"],
-    "description": "Your efforts in helping community members understand the fundamentals of Web5 are invaluable. It's amazing seeing your Incubation Project come to life with your contributions. Thank you for being part of our community."
-  },
-  {
-    "login": "Caleb Couch",
-    "avatar_url": "https://cdn.discordapp.com/avatars/511273334818996234/8de0df833e8656ecda6591576b6e6e15?size=1024",
-    "contributions": ["Rising Star Award"],
-    "description": "Your ambition of building web5-rust and your eagerness to learn everything about Web5 is amazing. Thank you for being in our community!"
-  },
-  {
-    "login": "fibi_01",
-    "avatar_url": "https://cdn.discordapp.com/avatars/973941791562801172/b1b1548048defaa641f027b9a403670e?size=1024",
-    "contributions": ["Trend Setter Award"],
-    "description": "Your consistent participation in our events and your enthusiasm on Discord matter a great deal to us.Thank you for sharing your excitement in our community."
-  },
-  {
-    "login": "Dan",
-    "avatar_url": "https://cdn.discordapp.com/avatars/1250050983225065544/e89ddef573d331e8857631ce8ac822fe?size=1024",
-    "contributions": ["Community Champion Award"],
-    "description": "Your passion and proactive attitude towards Web5 and our DWN projects are truly inspirational. Thank you for contributing and being part of our community."
-  },
-  {
-    "login": "Gokalp",
-    "avatar_url": "https://cdn.discordapp.com/avatars/1081525410715684884/74235f5d5635dee9443943b1e5046377?size=1024",
-    "contributions": ["Rising Star Award"],
-    "description": "You came to learn about Web5 and stayed to make significant contributions to the project. We're so grateful you are here!"
-  },
-  {
-    "login": "fincrispe",
-    "avatar_url": "https://cdn.discordapp.com/avatars/777228522199842856/914b00e3ebfa36c1f1040b3ae96ba7d5?size=1024",
+    "login": "Non-linearity",
+    "avatar_url": "https://cdn.discordapp.com/avatars/753166295561666642/b38d6f521683b6e6b60979ff80e636d1?size=1024",
     "contributions": ["Feedback Champion Award"],
-    "description": "Your commitment to learning Web5 is impressive, and we can't wait to see your future contributions. We're delighted to have you in our community."
+    "description": "Your eagerness and proactive attitude towards our initiatives makes our community a safe space we strive to build. Thank you for sharing your excitement in our community."
+  },
+  {
+    "login": "Pippellia",
+    "avatar_url": "https://cdn.discordapp.com/avatars/759368862080041020/ced6c124708e33851f17a028b06f18c9?size=1024",
+    "contributions": ["Discord Contributor Award"],
+    "description": "Your passion for learning all about Web5 is not only impressive, it's infectious. Thank you for sharing your excitement for our projects in our community!"
+  },
+  {
+    "login": "Brent Chandler",
+    "avatar_url": "https://media.licdn.com/dms/image/D5603AQHSccHmHKrezA/profile-displayphoto-shrink_400_400/0/1685901724996?e=1727913600&v=beta&t=9Yt5OSkpnAKZIjvWmTfeof3gokVjnhkKhX0BDnVuBmo",
+    "contributions": ["Community Champion Award"],
+    "description": "Your presentation at WeAreDevelopers conference and all your work with #dcx have been massively important to the greater open source Web5 community. We're so grateful you're here!"
+  },
+  {
+    "login": "AnonymityAdvoc8",
+    "avatar_url": "https://cdn.discordapp.com/embed/avatars/5.png",
+    "contributions": ["Feedback Champion Award"],
+    "description": "Your consistent participation in our events and streams means the world to us. Thank you for joining our community our community!"
+  },
+  {
+    "login": "trosel",
+    "avatar_url": "https://cdn.discordapp.com/avatars/736254306134523965/e2757a904784ecd368384a1c60714d78?size=1024",
+    "contributions": ["Trend Setter Award"],
+    "description": "Your commitment to understanding complex topics is inspiring, and we can't wait to see your future contributions. Thank you for being part of our community."
+  },
+  {
+    "login": "pcfreak30",
+    "avatar_url": "https://cdn.discordapp.com/avatars/114588115343114245/16700f2ed58b94992b03c8cf17b7ab08?size=1024",
+    "contributions": ["Rising Star Award"],
+    "description": "You joined to learn about DWNs, and stayed to share your continued excitement and commitment to building with Web5. Thank you so much for being a member of our community!"
   }
 ]
 
