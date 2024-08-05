@@ -24,13 +24,13 @@ describe("Known Business Credential", () => {
     test("Issue Known Business Credential", async () => {
         // :snippet-start: issueKbcJs
         const kbc = await VerifiableCredential.create({
-            issuer: pfiDid.uri,
-            subject: subjectDidUri,
-            expirationDate: '2025-09-30T12:34:56Z',
+            issuer: pfiDid.uri, // Issuer's DID URI
+            subject: subjectDidUri, // Wallet app's DID URI
+            expirationDate: '2025-09-30T12:34:56Z', // Date the KBC should expire
             data: {},
             credentialSchema: {
-                type: "JsonSchema",
-                id: "https://vc.schemas.host/kbc.schema.json"
+                type: "JsonSchema", // Format type of the schema used for the KBC
+                id: "https://vc.schemas.host/kbc.schema.json" // URL to the schema used for the KBC
             }
         })
         const signedKbc = await kbc.sign({ did: pfiDid });
