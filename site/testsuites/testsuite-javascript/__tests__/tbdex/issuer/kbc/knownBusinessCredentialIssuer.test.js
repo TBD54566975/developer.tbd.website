@@ -67,7 +67,7 @@ describe("Known Business Credential", () => {
                                 }
                             },
                             {
-                                path: ["$.issuer"],
+                                path: ["$.vc.issuer"],
                                 filter: {
                                     type: "string",
                                     const: pfiDid.uri
