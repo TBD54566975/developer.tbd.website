@@ -90,36 +90,14 @@ describe("Known Business Credential", () => {
                     description: "Selling BTC for USD",
                     payin: {
                         currencyCode: "USD",
-                        methods: [{
-                            kind: "DEBIT_CARD",
-                            requiredPaymentDetails: {
-                                "$schema": "http://json-schema.org/draft-07/schema",
-                                "type": "object",
-                                "properties": {
-                                    "cardNumber": {
-                                        "type": "string",
-                                        "description": "The 16-digit debit card number",
-                                        "minLength": 16,
-                                        "maxLength": 16
-                                    },
-                                    "expiryDate": {
-                                        "type": "string",
-                                        "description": "The expiry date of the card in MM/YY format",
-                                        "pattern": "^(0[1-9]|1[0-2])\\/([0-9]{2})$"
-                                    },
-                                    "cardHolderName": {
-                                        "type": "string",
-                                        "description": "Name of the cardholder as it appears on the card"
-                                    },
-                                    "cvv": {
-                                        "type": "string",
-                                        "description": "The 3-digit CVV code",
-                                        "minLength": 3,
-                                        "maxLength": 3
-                                    }
-                                }
-                            }
-                        }]
+                        max: "100.00",
+                        methods: [
+                          {
+                            description: "Pay in via Debit Card, Apple Pay, or CashApp Pay",
+                            kind: "PAYMENT_LINK",
+                            name: "Debit Card, ApplePay, CashApp Pay"
+                          }
+                        ]
                     },
                     payout: {
                         currencyCode: 'BTC',
