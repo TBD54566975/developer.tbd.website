@@ -58,7 +58,7 @@ internal class KbcIssuanceTest {
                 id = "https://vc.schemas.host/kbc.schema.json" // URL to the schema used for the KBC
             )
         )
-        val signedKbc: String = kbc.sign(pfiDid)
+        val signedKbc = kbc.sign(pfiDid)
         // :snippet-end:
         assertNotNull(kbc)
         assertEquals(pfiDid.uri, kbc.issuer)
