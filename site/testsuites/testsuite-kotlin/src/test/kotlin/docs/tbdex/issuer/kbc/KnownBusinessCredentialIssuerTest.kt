@@ -24,20 +24,22 @@ import java.util.*
  */
 internal class KbcIssuanceTest {
     private val objectMapper = ObjectMapper()
-    val pfiDid = DidDht.create(InMemoryKeyManager())
+   
+    val serviceToAdd = Service.Builder()
+        .id("pfi")
+        .type("PFI")
+        .serviceEndpoint(listOf("https://example.com/"))
+        .build()
+
+    val options = CreateDidDhtOptions(
+        publish = true,
+        services = listOf(serviceToAdd),
+    )
+
+    val pfiDid = DidDht.create(InMemoryKeyManager(), options)
+
     @Test
     fun `issue KBC`() {
-        val serviceToAdd = Service.Builder()
-            .id("pfi")
-            .type("PFI")
-            .serviceEndpoint(listOf("https://example.com/"))
-            .build()
-
-        val options = CreateDidDhtOptions(
-            publish = true,
-            services = listOf(serviceToAdd),
-        )
-
         val subjectDid = DidDht.create(InMemoryKeyManager(),options)
         val subjectDidUri = subjectDid.uri
         data class AdditionalData(
