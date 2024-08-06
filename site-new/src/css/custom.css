@@ -542,3 +542,11 @@ code {
 .table-of-contents > li {
   margin-top: 18px;
 }
+
+.table-of-contents__left-border {
+  border: none;
+}
+
+ .theme-doc-toc-desktop {
+   min-width: 200px;
+ }
