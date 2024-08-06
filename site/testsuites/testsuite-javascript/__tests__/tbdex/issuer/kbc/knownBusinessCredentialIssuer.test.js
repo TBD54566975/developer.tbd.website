@@ -27,7 +27,9 @@ describe("Known Business Credential", () => {
             issuer: pfiDid.uri, // Issuer's DID URI
             subject: subjectDidUri, // Wallet app's DID URI
             expirationDate: '2025-09-30T12:34:56Z', // Date the KBC should expire
-            data: {}, // Optional: Custom attributes for the KBC
+            data: {
+                //Custom attributes for the KBC 
+                },
             credentialSchema: {
                 type: "JsonSchema", // Format type of the schema used for the KBC
                 id: "https://vc.schemas.host/kbc.schema.json" // URL to the schema used for the KBC
