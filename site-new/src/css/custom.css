@@ -519,3 +519,34 @@ code {
   background-color: #000;
   font-size: 16px;
 }
+
+/*Table of Contents */
+
+.table-of-contents li a {
+  font-size: 18px;
+  font-weight: 500;
+  color: white;
+  line-height: 25px;
+  padding: 4px;
+}
+
+.table-of-contents li a:hover {
+  background-color: #212121;
+  color: white;
+}
+
+.table-of-contents__link--active {
+  color: var(--ifm-color-primary) !important;
+}
+
+.table-of-contents > li {
+  margin-top: 18px;
+}
+
+.table-of-contents__left-border {
+  border: none;
+}
+
+ .theme-doc-toc-desktop {
+   min-width: 200px;
+ }
