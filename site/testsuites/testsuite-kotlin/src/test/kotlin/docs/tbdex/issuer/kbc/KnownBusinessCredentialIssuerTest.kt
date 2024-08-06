@@ -81,7 +81,7 @@ internal class KbcIssuanceTest {
             ),
             inputDescriptors = listOf(
                 InputDescriptorV2(
-                    id = "known-business-credential", // required unique id for the input descriptor
+                    id = "known-business-credential_1", // required unique id for the input descriptor
                     name = "Known Business Credential",
                     purpose = "Please present your Known Business Credential for verification.",
                     constraints = ConstraintsV2(

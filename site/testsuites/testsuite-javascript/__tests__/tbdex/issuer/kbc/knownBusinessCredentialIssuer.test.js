@@ -54,7 +54,7 @@ describe("Known Business Credential", () => {
             },
             input_descriptors: [
                 {
-                    id: "known-business-credential",
+                    id: "known-business-credential_1", // required unique id for the input descriptor
                     name: "Known Business Credential",
                     purpose: "Please present your Known Business Credential for verification.",
                     constraints: {
@@ -75,7 +75,6 @@ describe("Known Business Credential", () => {
                             }
                         ]
                     },
-                    id: "1" // required unique id for the input descriptor
                 }
             ]
         };
@@ -118,7 +117,7 @@ describe("Known Business Credential", () => {
 
             await offering.sign(pfiDid);
             offering.validate();
-            
+
             // :snippet-end:
 
         } catch (e) {
