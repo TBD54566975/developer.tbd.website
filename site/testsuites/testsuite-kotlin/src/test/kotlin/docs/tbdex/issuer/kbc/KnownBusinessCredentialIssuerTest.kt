@@ -9,28 +9,24 @@ import web5.sdk.dids.methods.dht.CreateDidDhtOptions
 import web5.sdk.dids.didcore.Service
 import java.time.Instant
 import web5.sdk.credentials.CredentialSchema
-import java.util.Date
- 
+
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.junit.jupiter.api.*
 import tbdex.sdk.protocol.Parser
 import tbdex.sdk.protocol.Validator
 import tbdex.sdk.protocol.models.*
-import tbdex.sdk.protocol.serialization.Json
-import web5.sdk.credentials.PresentationExchange
 import web5.sdk.credentials.model.*
-import website.tbd.developer.site.docs.utils.TestData
+import java.util.*
 
-import com.fasterxml.jackson.core.JsonParseException
 
 /**
  * Tests backing the KBC Issuance Guide
  */
 internal class KbcIssuanceTest {
-    val objectMapper = ObjectMapper()
+    private val objectMapper = ObjectMapper()
     val pfiDid = DidDht.create(InMemoryKeyManager())
     @Test
-    fun `createEmploymentCredentialKt returns a credential`() {
+    fun `issue KBC`() {
         val serviceToAdd = Service.Builder()
             .id("pfi")
             .type("PFI")
@@ -42,7 +38,7 @@ internal class KbcIssuanceTest {
             services = listOf(serviceToAdd),
         )
 
-        val subjectDid = DidDht.create(InMemoryKeyManager())
+        val subjectDid = DidDht.create(InMemoryKeyManager(),options)
         val subjectDidUri = subjectDid.uri
         data class AdditionalData(
             val exampleField: String = "exampleValue"
@@ -89,13 +85,23 @@ internal class KbcIssuanceTest {
                             FieldV2(
                                 path = listOf("$.credentialSchema.id"),
                                 filterJson = objectMapper.readTree(
-                                    """{"type": "string", "const": "https://vc.schemas.host/kbc.schema.json"}"""
+                                    """
+                                    {
+                                      "type": "string",
+                                      "const": "https://vc.schemas.host/kbc.schema.json"
+                                    }
+                                    """.trimIndent()
                                 ),
                             ),
                             FieldV2(
                                 path = listOf("$.issuer"),
                                 filterJson = objectMapper.readTree(
-                                    """{"type": "string", "const":  "${pfiDid.uri}"}"""
+                                    """
+                                    {
+                                      "type": "string",
+                                      "const":  "${pfiDid.uri}"
+                                    }
+                                    """.trimIndent()
                                 )
                             )
                         )
@@ -143,7 +149,7 @@ internal class KbcIssuanceTest {
             // :snippet-end:
         } catch (e: Exception) {
             Assertions.fail(e.message)
-        }        
+        }
     }
 
 }
