@@ -115,12 +115,11 @@ describe("Known Business Credential", () => {
                     requiredClaims: pd
                 }
             });
-            // :snippet-end:
-
 
             await offering.sign(pfiDid);
-
             offering.validate();
+            
+            // :snippet-end:
 
         } catch (e) {
             expect.fail(e.message)
