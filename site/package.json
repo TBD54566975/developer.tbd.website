@@ -15,11 +15,11 @@
     "shnip": "pnpm shnip clear && pnpm shnip"
   },
   "dependencies": {
-    "@docusaurus/core": "3.1.1",
-    "@docusaurus/preset-classic": "3.1.1",
-    "@docusaurus/theme-common": "3.1.1",
-    "@docusaurus/types": "3.1.1",
-    "@docusaurus/utils": "3.1.1",
+    "@docusaurus/core": "3.4.0",
+    "@docusaurus/preset-classic": "3.4.0",
+    "@docusaurus/theme-common": "3.4.0",
+    "@docusaurus/types": "3.4.0",
+    "@docusaurus/utils": "3.4.0",
     "@mdx-js/react": "3.0.1",
     "@react-aria/ssr": "3.6.0",
     "@react-aria/tooltip": "3.2.0",
