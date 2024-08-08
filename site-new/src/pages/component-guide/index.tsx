@@ -5,6 +5,7 @@ function ComponentList() {
   const components = [
     { name: "TextIconCard", path: "/component-guide/text-icon-card" },
     { name: "BlogCard", path: "/component-guide/blog-card" },
+    { name: "HorizontalImageCard", path: "/component-guide/horizontal-image-card" },
   ];
 
   return (
