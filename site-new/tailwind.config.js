@@ -48,6 +48,10 @@ module.exports = {
         sm: "0px",
         lg: "997px",
       },
+      borderWidth: {
+        '0.5': '0.5px',
+        '4': '4px',
+      },
     },
   },
   plugins: [],
