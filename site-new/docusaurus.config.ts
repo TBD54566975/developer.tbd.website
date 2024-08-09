@@ -2,6 +2,7 @@ import { themes as prismThemes } from "prism-react-renderer";
 import type { Config } from "@docusaurus/types";
 import type * as Preset from "@docusaurus/preset-classic";
 import tailwindPlugin from "./plugins/tailwind-pluging.cjs";
+import { type } from "@generated/site-storage";
 
 const { github, dracula } = prismThemes;
 
@@ -72,12 +73,22 @@ const config: Config = {
       },
       items: [
         {
+          type: "dropdown",
+          label: "Community",
+          position: "right",
+          items: [
+            { label: "Test", to: "/test" },
+            { label: "Things", to: "/things" },
+            { label: "Here", to: "/here" },
+          ],
+        },
+        { to: "/blog", label: "Blog", position: "right" },
+        {
           type: "docSidebar",
           sidebarId: "docsSidebar",
           position: "right",
           label: "Docs",
         },
-        { to: "/blog", label: "Blog", position: "right" },
       ],
     },
     // footer: {

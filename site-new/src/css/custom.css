@@ -418,6 +418,16 @@ h4 {
 
 .navbar a {
   color: black;
+  padding: 9px;
+}
+
+.navbar a:hover {
+  color: var(--ifm-color-primary);
+  background-color: var(--ifm-background-color);
+  padding: 9px;
+  border-bottom: white;
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
 }
 
 /* Mobile Sidebar */
