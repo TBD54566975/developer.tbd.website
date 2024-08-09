@@ -1,0 +1,66 @@
+import React from 'react';
+import HorizontalImageCard from '@site/src/components/HorizontalImageCard';
+
+# HorizontalImageCard Component
+
+<div className="component-guide text-white">
+<p>This component displays a horizontal image card with an image, title, description, and an optional button. It supports hover states.</p>
+
+## Properties
+
+| Property     | Type                              | Required | Default                                              | Description                                                                                           |
+|--------------|-----------------------------------|----------|------------------------------------------------------|-------------------------------------------------------------------------------------------------------|
+| `title`      | `string`                          | Yes       | `"Title"`                                            | The title of the card.                                                                                |
+| `image`      | `string`                          | Yes       | `require("/static/img/test-card-image.png").default` | The image URL for the card.                                                                           |
+| `description`| `string`                          | Yes       | `"Some description here"`                            | The description of the card.                                                                          |
+| `button`     | `boolean`                         | No       | `true`                                               | Determines whether the button is displayed.                                                           |
+| `state`      | `"default" \| "hover"`            | Yes       | `"default"`                                          | The state of the card which affects its appearance on hover.                                          |
+| `buttonText` | `string`                          | No       | `"Some button text here"`                            | The text to be displayed on the button.                                                               |
+
+## Usage
+
+```jsx title="HorizontalImageCard"
+<HorizontalImageCard
+  title="Our Philosphy"
+  image={require('/static/img/test-card-image.png').default}
+  description="We’re building open protocols, standards, and libraries. Our projects are open source because we want everyone in the economy to benefit: individuals, businesses, institutions, and government."
+  buttonText="Talk Money to Me"
+/>
+```
+
+## Examples
+<p>Default</p>
+<HorizontalImageCard
+  title="Our Philosphy"
+  image={require('/static/img/test-card-image.png').default}
+  description="We’re building open protocols, standards, and libraries. Our projects are open source because we want everyone in the economy to benefit: individuals, businesses, institutions, and government."
+  buttonText="Talk Money to Me"
+/>
+
+
+<p>Hover</p>
+<HorizontalImageCard
+  title="Our Philosphy"
+  image={require('/static/img/test-card-image.png').default}
+  state="hover"
+  description="We’re building open protocols, standards, and libraries. Our projects are open source because we want everyone in the economy to benefit: individuals, businesses, institutions, and government."
+  buttonText="Talk Money to Me"
+/>
+
+<p>Button On</p>
+<HorizontalImageCard
+  title="Our Philosphy"
+  image={require('/static/img/test-card-image.png').default}
+  description="We’re building open protocols, standards, and libraries. Our projects are open source because we want everyone in the economy to benefit: individuals, businesses, institutions, and government."
+  buttonText="Talk Money to Me"
+/>
+
+<p>Button Off</p>
+<HorizontalImageCard
+  title="Our Philosphy"
+  image={require('/static/img/test-card-image.png').default}
+  button={false}
+  description="We’re building open protocols, standards, and libraries. Our projects are open source because we want everyone in the economy to benefit: individuals, businesses, institutions, and government."
+/>
+
+</div>
