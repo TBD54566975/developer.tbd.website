@@ -5,10 +5,10 @@ import java.io.PrintStream
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions.*
+import web5.sdk.credentials.model.*
 // :snippet-start: fanClubVcImportsKt
 import web5.sdk.credentials.VerifiableCredential
 import web5.sdk.credentials.PresentationExchange
-import web5.sdk.credentials.model.*
 import web5.sdk.crypto.InMemoryKeyManager
 import web5.sdk.dids.methods.dht.DidDht
 import web5.sdk.credentials.VerifiablePresentation
