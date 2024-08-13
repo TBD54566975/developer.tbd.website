@@ -1,6 +1,8 @@
 import { test, expect, vi, describe, beforeAll } from 'vitest';
+// :snippet-start: fanClubVcImportsJs
 import { DidDht } from '@web5/dids';
 import { VerifiableCredential, PresentationExchange, VerifiablePresentation } from '@web5/credentials';
+// :snippet-end:
 
 describe('fan-club-vc', () => {
     let fanClubIssuerDid, aliceDid, SwiftiesFanClub, vc, signedVcJwt, presentationDefinition;
