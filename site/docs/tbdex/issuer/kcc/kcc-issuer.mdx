@@ -424,10 +424,12 @@ To convert the signed VC JWT into a `VerifiableCredential` object you can use th
       "countryOfResidence": "US",
       "tier": "Gold"
     },
-    "credentialSchema": {
-      id: "https://vc.schemas.host/kcc.schema.json",
-      type: "JsonSchema"
-    },
+    "credentialSchema": [
+      {
+        id: "https://vc.schemas.host/kcc.schema.json",
+        type: "JsonSchema"
+      }
+    ],
     "evidence": [
       {
         "kind": "document_verification",
