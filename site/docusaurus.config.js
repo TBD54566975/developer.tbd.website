@@ -5,7 +5,7 @@ require('dotenv').config();
 const lightCodeTheme = require('prism-react-renderer').themes.github;
 const darkCodeTheme = require('prism-react-renderer').themes.dracula;
 const WEB5_VERSION = require('../package.json').dependencies['@web5/api'];
-const SDK_VERSIONS = require('../sdk-versions.json')
+const SDK_VERSIONS = require('../sdk-versions.json');
 
 const algoliaApiKey = process.env.DOC_SEARCH_API_KEY;
 const algoliaIndexName = process.env.DOC_SEARCH_INDEX_NAME;
@@ -36,7 +36,7 @@ let config = {
   onBrokenMarkdownLinks: 'warn',
   favicon: '/img/favicon.ico',
   markdown: {
-    mermaid: true
+    mermaid: true,
   },
   themes: ['@docusaurus/theme-mermaid'],
   // Even if you don't use internalization, you can use this field to set useful
@@ -53,7 +53,27 @@ let config = {
   },
   plugins: [
     'docusaurus-tailwindcss',
-    require.resolve("./webpackPlugin"),
+    require.resolve('./webpackPlugin'),
+    [
+      '@docusaurus/plugin-content-docs',
+      {
+        id: 'tbdex',
+        path: 'docs/tbdex',
+        routeBasePath: 'docs/tbdex',
+        sidebarPath: require.resolve('./tbdex-sidebars.js'),
+        breadcrumbs: false,
+      },
+    ],
+    [
+      '@docusaurus/plugin-content-docs',
+      {
+        id: 'web5',
+        path: 'docs/web5',
+        routeBasePath: 'docs/web5',
+        sidebarPath: require.resolve('./web5-sidebars.js'),
+        breadcrumbs: false,
+      },
+    ],
     // [
     //   '@docusaurus/plugin-content-docs',
     //   {
@@ -75,6 +95,7 @@ let config = {
     //   },
     // ],
   ],
+
   scripts: [
     {
       src: 'https://www.datadoghq-browser-agent.com/us1/v4/datadog-rum.js',
@@ -95,6 +116,8 @@ let config = {
       /** @type {import('@docusaurus/preset-classic').Options} */
       ({
         docs: {
+          path: 'docs/common',
+          routeBasePath: 'docs',
           sidebarPath: require.resolve('./sidebars.js'),
           breadcrumbs: false,
         },
@@ -247,7 +270,14 @@ let config = {
             },
           ],
         },
-        additionalLanguages: ['kotlin', 'swift', 'dart', 'rust', 'bash', 'gradle'],
+        additionalLanguages: [
+          'kotlin',
+          'swift',
+          'dart',
+          'rust',
+          'bash',
+          'gradle',
+        ],
       },
     }),
 };
