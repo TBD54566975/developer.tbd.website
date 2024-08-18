@@ -1,6 +1,9 @@
 ---
+title: Protocol Roles
 sidebar_position: 11
 ---
+
+<LanguageSwitcher languages="JavaScript" />
 
 # Protocol Roles
 
@@ -20,94 +23,59 @@ You can assign actors with these roles the ability to read, write, query, update
 
 To define custom roles in your protocol, specify the role as a type, set `$role` to `true` in the structure, and assign permissions that outline which roles can perform specific actions.
 
-Let's say Bob wants to grant Alice the ability to issue verifiable credentials in his application. Here’s an example of how Bob can set up roles within a protocol designed for this purpose:
+Let's say Bob wants to grant Alice the ability to curate playlists in his application. Here’s an example of how Bob can set up roles within a protocol designed for this purpose:
 
-```js 
-const vcProtocolDefinition = {
-    protocol: 'https://vc-to-dwn.tbddev.org/vc-protocol',
-    published: true,
-    types: {
-        credential: {
-            schema: "https://vc-to-dwn.tbddev.org/vc-protocol/schema/credential",
-            dataFormats: ['application/vc+jwt']
-        },
-        issuer: {
-            schema: "https://vc-to-dwn.tbddev.org/vc-protocol/schema/issuer",
-            dataFormats: ['text/plain']
-        }
-    },
-    structure: {
-        issuer: {
-            $role: true,
-        },
-        credential: {
-            $actions: [ 
-                {
-                    who: 'anyone',
-                    can: ['read']
-                },
-                {
-                    role: 'issuer', 
-                    can: ['create', 'update']
-                }
-            ],
-        }
+<Shnip
+  snippets={[
+    {
+      snippetName: 'curatorPlaylistProtocolDefinitionJs',
+      language: 'JavaScript',
     }
-};
-```
+  ]}
+/>
 
 ## Install the Protocol on Each Actor's DWN
 
 To use a protocol in your app, each actor will need to install that protocol on their own DWN. 
 
-Bob and Alice can use the following code snippet to install the `vcProtocolDefinition` protocol:
+Bob and Alice can install the protocol using the following code snippet:
 
-```js 
-const { protocol, status } = await web5.dwn.protocols.configure({
-    message: {
-        definition: vcProtocolDefinition,
-    },
-});
-
-await protocol.send(did);
-```
+<Shnip
+  snippets={[
+    {
+      snippetName: 'installPlaylistProtocolJs',
+      language: 'JavaScript',
+    }
+  ]}
+/>
 
 ## Assign a role
 
 Once the protocol is configured, the next step is to create and store a record in your DWN that assigns the role to a user. This role will grant the necessary permissions to perform actions defined in the protocol.
 
-Bob can use the following code snippet to assign the issuer role to Alice:
+Bob can use the following code snippet to assign the `curator` role to Alice:
 
-```js
-const { record, status } = await web5.dwn.records.create({
-    message: {
-        dataFormat: 'text/plain',
-        protocol: vcProtocolDefinition.protocol,
-        protocolPath: 'issuer',
-        schema: vcProtocolDefinition.types.issuer.schema,
-        recipient: issuerDid,
-    },
-});
+<Shnip
+  snippets={[
+    {
+      snippetName: 'assignPlaylistRoleJs',
+      language: 'JavaScript',
+    }
+  ]}
+/>
 
-const { status: resultsToCustomerStatus } = await record.send(did);
-   
-```
 
 ## Perform Actions within a Role
 
 Once a role is assigned, the actor can perform actions on data according to the permissions granted by that role. Depending on the role's permissions, these actions may include creating, querying, updating, deleting, or pruning.
 
-In the example below, Alice can use the `issuer` role to create a credential record:
-```js
-const { record, status } = await web5.dwn.records.create({
-            data: credential_token,
-            message: {
-                dataFormat: 'application/vc+jwt',
-                protocol: vcProtocolDefinition.protocol,
-                protocolPath: 'credential',
-                protocolRole: 'issuer',
-                schema: vcProtocolDefinition.types.credential.schema,
-                recipient: customerDidUri,
-            },
-        });
-```
+In the example below, Alice can use the `curator` role to create a playlist record:
+
+<Shnip
+  snippets={[
+    {
+      snippetName: 'createRecordInRoleJs',
+      language: 'JavaScript',
+    }
+  ]}
+/>
