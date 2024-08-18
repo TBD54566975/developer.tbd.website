@@ -19,7 +19,7 @@ Bob and Alice are two friends that love doing things together. They often have s
 We will build a decentralized shared todo app that allows them to collaborate on their tasks while also being able to have these tasks on other apps they use if needed.
 
 We are going to learn how to:
-- Enforce permissions or authorization on records through [protocols](/docs/web5/decentralized-web-nodes/protocols)
+- Enforce permissions or authorization on records through [protocols](/docs/web5/decentralized-web-nodes/what-are-protocols)
 - Send and update records across multiple users' [Decentralized Web Nodes (DWN)](/docs/web5/decentralized-web-nodes/what-are-dwns)
 
 By the end of this tutorial, we'll have gained an understanding of protocols, DWN to DWN communication, and how to build a multi-user app on the decentralized web.
@@ -151,7 +151,7 @@ const sharedList = ref([]);
 The `web5` object is the single entry point for all Web5 operations. You've also set up a `sharedList` array to hold our shared lists, and a variable to remember the app user's decentralized identifier (DID) as `myDid`.
 
 ## Set Permissions and Authorizations
-[Protocols](/docs/web5/decentralized-web-nodes/protocols) help define both the data schema and permissions as it relates to a certain application or use case. It details what objects are stored as part of the application and who has what permissions on these objects.
+[Protocols](/docs/web5/decentralized-web-nodes/what-are-protocols) help define both the data schema and permissions as it relates to a certain application or use case. It details what objects are stored as part of the application and who has what permissions on these objects.
 
 For our app, let's define the objects that we want to use in our app: `list` and `todo`; and also define who has what permissions:
 

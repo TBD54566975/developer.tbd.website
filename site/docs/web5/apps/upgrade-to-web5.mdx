@@ -33,7 +33,7 @@ You’ll notice that while data ownership and location radically changed between
 Right now, your app is probably storing data in a variety of databases. Let’s say, for example, you’ve created a basic todo app - you’ll need to store your user’s account information including settings, plus you’ll need to store their todos ([you can build your own Todo app here](/docs/web5/apps/todo-app-tutorial)). Rather than creating two databases to support this app, you can simply upgrade your app to run on web5 and leverage your user’s DWN to store and manage data. There are a number of ways you can achieve this migration:
 
 * Start writing to the DWN. You can write to the user’s DWN as a data store by calling the records.create() method which will allow you to directly write data to their data store so long as you’ve been granted permission to do so.
-* Establish a [protocol](/docs/web5/decentralized-web-nodes/protocols) and programmatically install that protocol on the user’s DWN. By leveraging protocols, you can then remotely access your user’s DWN according to the contract defined by the installed protocol.
+* Establish a [protocol](/docs/web5/decentralized-web-nodes/what-are-protocols) and programmatically install that protocol on the user’s DWN. By leveraging protocols, you can then remotely access your user’s DWN according to the contract defined by the installed protocol.
 
 Once you’ve established where your data will reside and how it will be organized, then you’re ready to access it in your app.
 
