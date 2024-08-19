@@ -56,6 +56,28 @@ const curatorPlaylistProtocolDefinition = {
 };
 // :snippet-end:
 
+// :snippet-start: chatProtocolDefinitionJs
+const chatProtocolDefinition = {
+    protocol: "https://example.com/chat-protocol",
+    published: true,
+    types: {
+      chat: {
+        schema: "https://example.com/chat-protocol/schema/chat",
+        dataFormats: ["application/json"],
+      },
+    },
+    structure: {
+      chat: {
+        $actions: [
+          { who: "anyone", can: ["create"] },
+          { who: "author", of: "chat", can: ["read"] },
+          { who: "recipient", of: "chat", can: ["read"] },
+        ],
+      },
+    },
+  };
+  // :snippet-end:
+
 describe('Playlist protocol roles', () => {
   // connect to web5 beforeAll tests and assign it to web5 variable
   beforeAll(async () => {
@@ -64,6 +86,21 @@ describe('Playlist protocol roles', () => {
     did = globalThis.did;
     aliceDid = await DidDht.create();
   });
+
+  test('install chat protocol', async () => {
+    // just to make sure chat protocol is working as expected
+    const { protocol, status } = await web5.dwn.protocols.configure({
+        message: {
+            definition: chatProtocolDefinition,
+        },
+    });
+
+    // send protocol to remote DWNs immediately
+    const { status: sendStatus } = await protocol.send(did);
+    expect(protocol).toBeDefined();
+    expect(status.code).to.equal(202);
+    expect(sendStatus.code).to.equal(202);
+    });
 
 
   test('install playlist protocol', async () => {
