@@ -1,6 +1,6 @@
 ---
 title: Send DWN Records
-sidebar_position: 11
+sidebar_position: 12
 ---
 
 import CodeSnippet from '@site/src/components/CodeSnippet';
