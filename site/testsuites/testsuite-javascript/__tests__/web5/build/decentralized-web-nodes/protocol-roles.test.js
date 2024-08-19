@@ -15,19 +15,23 @@ const curatorPlaylistProtocolDefinition = {
             schema: "https://example.com/playlist-protocol/schema/playlist",
             dataFormats: ['application/json']
         },
+        // highlight-start
         curator: {
             schema: "https://example.com/playlist-protocol/schema/curator",
             dataFormats: ['text/plain']
         },
+        // highlight-end
         admin: {
             schema: "https://example.com/playlist-protocol/schema/admin",
             dataFormats: ['text/plain']
         }
     },
     structure: {
+        // highlight-start
         curator: {
             $role: true,
         },
+        // highlight-end
         admin: {
             $role: true,
         },
@@ -37,10 +41,12 @@ const curatorPlaylistProtocolDefinition = {
                     who: 'anyone',
                     can: ['read']
                 },
+                // highlight-start
                 {
                     role: 'curator', 
                     can: ['create', 'update']
                 },
+                // highlight-end
                 {
                     role: 'admin', 
                     can: ['create', 'update', 'delete']
