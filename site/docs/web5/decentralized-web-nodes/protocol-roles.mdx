@@ -1,0 +1,92 @@
+---
+title: Protocol Roles
+sidebar_position: 11
+---
+
+<LanguageSwitcher languages="JavaScript" />
+
+# Protocol Roles
+
+[Protocols](/docs/web5/decentralized-web-nodes/what-are-protocols) offer the option to use roles for managing permissions, allowing you to control which actors can access and interact with data within an application. This guide explains how to define and use roles in your applications.
+
+## Built-In Roles
+
+Protocols offer three built-in roles that you can assign permissions to if needed:
+
+* **author**: The entity that created the record.
+* **recipient**: The entity with whom the record is shared.
+* **anyone**: Any user who has access to the application and has installed the protocol.
+
+You can assign actors with these roles the ability to read, create, query, update, delete, or prune data stored on your [Decentralized Web Node (DWN)](/docs/web5/decentralized-web-nodes/what-are-dwns) as shown in the example below:
+
+<Shnip
+  snippets={[
+    {
+      snippetName: 'chatProtocolDefinitionJs',
+      language: 'JavaScript',
+    }
+  ]}
+/>
+
+
+## Define Custom Roles in Your Protocol
+
+To define a custom role in your protocol, include it as an element in the `types` section. 
+Use the `structure` object to outline the permissions by marking the `$role` as `true` and assigning `$actions` to specify what the role can do.
+
+Let's say Bob wants to grant Alice the ability to curate playlists in his application. Here’s an example of how Bob can set up roles within a protocol designed for this purpose:
+
+<Shnip
+  snippets={[
+    {
+      snippetName: 'curatorPlaylistProtocolDefinitionJs',
+      language: 'JavaScript',
+    }
+  ]}
+/>
+
+## Install the Protocol on Each Actor's DWN
+
+To use a protocol in your app, each actor will need to install that protocol on their own DWN. 
+
+Bob and Alice can install the protocol using the following code snippet:
+
+<Shnip
+  snippets={[
+    {
+      snippetName: 'installPlaylistProtocolJs',
+      language: 'JavaScript',
+    }
+  ]}
+/>
+
+## Assign a Role
+
+Once the protocol is configured, the next step is to create and store a record in your DWN that assigns the role to a user. This role will grant the necessary permissions to perform actions defined in the protocol.
+
+Bob can use the following code snippet to assign the `curator` role to Alice:
+
+<Shnip
+  snippets={[
+    {
+      snippetName: 'assignPlaylistRoleJs',
+      language: 'JavaScript',
+    }
+  ]}
+/>
+
+
+## Perform Actions within a Role
+
+Once a role is assigned, the actor can perform actions on data according to the permissions granted by that role. Depending on the role's permissions, these actions may include creating, querying, updating, deleting, or pruning.
+
+In the example below, Alice can use the `curator` role to create a playlist record:
+
+<Shnip
+  snippets={[
+    {
+      snippetName: 'createRecordInRoleJs',
+      language: 'JavaScript',
+    }
+  ]}
+/>

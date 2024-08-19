@@ -33,7 +33,7 @@ Topology of an exchange between Decentralized Web Nodes, duplicated from the [DI
 DWNs have two mechanisms to allow others access to read, write, or delete data on your node.
 
 - **Permissions:** Allow someone access to read, write, or delete specific data records on your node.
-- **Protocols:** Install a [protocol](/docs/web5/decentralized-web-nodes/protocols) that lets you define data types and authorization for a decentralized web app.
+- **Protocols:** Install a [protocol](/docs/web5/decentralized-web-nodes/what-are-protocols) that lets you define data types and authorization for a decentralized web app.
 
 The easiest way to understand this distinction is to think of permissions as active, explicit, and manual, whereas protocols are passive, syntactic, and contractual.
 

@@ -6,7 +6,7 @@ sidebar_position: 4
 import CodeSnippet from '@site/src/components/CodeSnippet';
 
 
-When records are created, they are private by default. Private records are not accessible without the use of a [protocol](/docs/web5/decentralized-web-nodes/protocols/) or permissions. To make a record publicly available, the record must be published.
+When records are created, they are private by default. Private records are not accessible without the use of a [protocol](/docs/web5/decentralized-web-nodes/what-are-protocols/) or permissions. To make a record publicly available, the record must be published.
 
 In this guide, we’ll discuss how to publish a record.
 
