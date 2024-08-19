@@ -364,10 +364,11 @@ app.post('/token', async (req, res) => {
 
 // :snippet-start: KnownCustomerCredentialsClass
 class KccCredential {
-  constructor(country, tier, credentialSchema, evidence) {
+  constructor(country, tier, jurisdiction, credentialSchema, evidence) {
     this.data = {
       countryOfResidence: country,
       tier: tier, // optional
+      jurisdiction: jurisdiction // optional
     };
     this.credentialSchema = credentialSchema;
     this.evidence = evidence; // optional
@@ -431,6 +432,9 @@ app.post('/credentials', async (req, res) => {
      * Create and sign the credential
      ************************************************/
     const kccCredentialInstance = new KccCredential('US', 'Gold', {
+      country: "US" 
+      },
+      {
         id: "https://vc.schemas.host/kcc.schema.json",
         type: "JsonSchema"
       },
@@ -453,6 +457,7 @@ app.post('/credentials', async (req, res) => {
       data: {
         countryOfResidence: kccCredentialInstance.data.countryOfResidence,
         tier: kccCredentialInstance.data.tier, // optional
+        jurisdiction: kccCredentialInstance.data.jurisdiction // optional
       },
       credentialSchema: kccCredentialInstance.credentialSchema,
       evidence: kccCredentialInstance.evidence, // optional
