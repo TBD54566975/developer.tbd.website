@@ -70,7 +70,7 @@ const chatProtocolDefinition = {
       chat: {
         $actions: [
           { who: "anyone", can: ["create"] },
-          { who: "author", of: "chat", can: ["read", "delete", "update"] },
+          { who: "author", of: "chat", can: ["read"] },
           { who: "recipient", of: "chat", can: ["read"] },
         ],
       },
