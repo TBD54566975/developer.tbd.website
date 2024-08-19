@@ -27,11 +27,10 @@ const curatorPlaylistProtocolDefinition = {
         }
     },
     structure: {
-        // highlight-start
         curator: {
+            // highlight-next-line
             $role: true,
         },
-        // highlight-end
         admin: {
             $role: true,
         },
