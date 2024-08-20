@@ -22,7 +22,7 @@ A DID is a "type of identifier that enables verifiable, decentralized digital id
 
 DIDs are typically represented as a unique resource identifier (URI) and are designed to be used for identity verification, authentication, and authorization.
 
-<div role="figure" aria-labelledby="caption-1" class="figure-container">
+<div role="figure" aria-labelledby="caption-1" className="figure-container">
 
 ![](/img/did-example.png)
 
@@ -46,17 +46,15 @@ Now that Alice and Bob know that they need a DID let's take a look at the differ
 
 There are lots of different implementations of DIDs (called [DID methods](https://www.w3.org/TR/did-core/#methods)) with different use cases. Web5 currently supports a few methods.
 
-#### ```did:dht```
+#### `did:dht`
 
-The [did:dht](https://did-dht.com/) method, based on the Pkarr project, utilizes BitTorrent's Mainline Distributed Hash Table (DHT) to anchor DIDs and store [DID Documents](#did-documents). This approach ensures that the identity information is maintained in a decentralized manner. 
+The [did:dht](https://did-dht.com/) method, based on the Pkarr project, utilizes BitTorrent's Mainline Distributed Hash Table (DHT) to anchor DIDs and store [DID Documents](#did-documents). This approach ensures that the identity information is maintained in a decentralized manner.
 
 The did:dht method allows operations like creating, reading, updating, and deactivating DIDs, and includes optional features like type indexing and gateway APIs for extended functionalities.
 
-
-#### ```did:jwk```
+#### `did:jwk`
 
 A [did:jwk](https://github.com/quartzjer/did-jwk/blob/main/spec.md) DID is designed for simplicity and self-containment when creating a DID. It involves encoding a JSON Web Key (JWK) using base64url. This method appeals to those seeking a straightforward approach.
-
 
 ### DID Documents
 
@@ -85,7 +83,7 @@ The only required field is the `id` field. This value is your DID. You might fin
 
 #### Controller - Subject relationship
 
-<div role="figure" aria-labelledby="caption-2" class="figure-container">
+<div role="figure" aria-labelledby="caption-2" className="figure-container">
 
 ![](/img/did-controller-trust.png)
 

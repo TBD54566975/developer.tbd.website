@@ -11,7 +11,7 @@ function CommunityCard({ icon, title, CTA, buttonUrl, buttonText }) {
           <h3 className="text-[#22f1ff]">{title}</h3>
           <p>{CTA}</p>
           <div className='padding-top--lg' />
-          <Button label={buttonText} url={buttonUrl} colorDarkMode="cyan" isExternalLink="true" className="community-button "/>
+          <Button label={buttonText} url={buttonUrl} colorDarkMode="cyan" isExternalLink={true} className="community-button "/>
         </div>
       </div>
     </div>

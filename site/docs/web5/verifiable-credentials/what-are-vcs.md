@@ -6,7 +6,7 @@ hide_title: true
 
 # Verifiable Credentials
 
-<iframe class="aspect-video" src="https://www.youtube.com/embed/k9CL1ETxCkU" title="Verifiable Credentials" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+<iframe className="aspect-video" src="https://www.youtube.com/embed/k9CL1ETxCkU" title="Verifiable Credentials" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
 
 Alice and Bob have obtained [Decentralized Identifiers (DIDs)](https://developer.tbd.website/docs/web5/decentralized-identifiers/what-are-dids) and are now exploring Verifiable Credentials (VCs).
 

@@ -69,4 +69,4 @@ To accelerate development, Anthony plans to open-source the project and invite c
 
 Learn more about what he's building and watch the full live stream [here](https://www.youtube.com/watch?v=pJgMp8qVgMk).
 
-<iframe class="aspect-video" src="https://www.youtube.com/embed/pJgMp8qVgMk" title="netonomy" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+<iframe className="aspect-video" src="https://www.youtube.com/embed/pJgMp8qVgMk" title="netonomy" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>

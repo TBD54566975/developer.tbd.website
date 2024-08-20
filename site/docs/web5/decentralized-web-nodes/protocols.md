@@ -35,85 +35,85 @@ We know the key words for defining protocols - `types`, `structure`, and `action
 
 ```js
 const protocolDefinition = {
-    "protocol": "https://social-media.xyz",
-    "published": true,
-    "types": {
-      "post": {
-        "schema": "https://social-media.xyz/schemas/postSchema",
-        "dataFormats": ["text/plain"]
-      },
-      "reply": {
-        "schema": "https://social-media.xyz/schemas/replySchema",
-        "dataFormats": ["text/plain"]
-      },
-      "image": {
-        "dataFormats": ["image/jpeg"]
-      },
-      "caption": {
-        "schema": "https://social-media.xyz/schemas/captionSchema",
-        "dataFormats": ["text/plain"]
-      }
+  protocol: 'https://social-media.xyz',
+  published: true,
+  types: {
+    post: {
+      schema: 'https://social-media.xyz/schemas/postSchema',
+      dataFormats: ['text/plain'],
     },
-    "structure": {
-      "post": {
-        "$actions": [
-          {
-            "who": "anyone",
-            "can": ["create", "read"]
-          }
-        ],
-        "reply": {
-          "$actions": [
-            {
-              "who": "recipient",
-              "of": "post",
-              "can": ["create"]
-            },
-            {
-              "who": "author",
-              "of": "post",
-              "can": ["create"]
-            }
-          ]
-        }
-      },
-      "image": {
-        "$actions": [
-          {
-            "who": "anyone",
-            "can": ["create", "read"]
-          }
-        ],
-        "caption": {
-          "$actions": [
-            {
-              "who": "anyone",
-              "can": ["read"]
-            },
-            {
-              "who": "author",
-              "of": "image",
-              "can": ["create"]
-            }
-          ]
+    reply: {
+      schema: 'https://social-media.xyz/schemas/replySchema',
+      dataFormats: ['text/plain'],
+    },
+    image: {
+      dataFormats: ['image/jpeg'],
+    },
+    caption: {
+      schema: 'https://social-media.xyz/schemas/captionSchema',
+      dataFormats: ['text/plain'],
+    },
+  },
+  structure: {
+    post: {
+      $actions: [
+        {
+          who: 'anyone',
+          can: ['create', 'read'],
         },
-        "reply": {
-          "$actions": [
-            {
-              "who": "author",
-              "of": "image",
-              "can": ["read"]
-            },
-            {
-              "who": "recipient",
-              "of": "image",
-              "can": ["create"]
-            }
-          ]
-        }
-      }
-    }
-}
+      ],
+      reply: {
+        $actions: [
+          {
+            who: 'recipient',
+            of: 'post',
+            can: ['create'],
+          },
+          {
+            who: 'author',
+            of: 'post',
+            can: ['create'],
+          },
+        ],
+      },
+    },
+    image: {
+      $actions: [
+        {
+          who: 'anyone',
+          can: ['create', 'read'],
+        },
+      ],
+      caption: {
+        $actions: [
+          {
+            who: 'anyone',
+            can: ['read'],
+          },
+          {
+            who: 'author',
+            of: 'image',
+            can: ['create'],
+          },
+        ],
+      },
+      reply: {
+        $actions: [
+          {
+            who: 'author',
+            of: 'image',
+            can: ['read'],
+          },
+          {
+            who: 'recipient',
+            of: 'image',
+            can: ['create'],
+          },
+        ],
+      },
+    },
+  },
+};
 ```
 
 The value for `protocol` is a URI that serves as the key of the protocol being configured. If two or more applications use the same protocol, identified by the URI, users can enjoy common experiences across these apps in a more interoperable way. Ideally, the protocol URI should lead to a JSON Schema document that validates the configurations, however, this URI is not resolved nor are its contents validated by Web5.
@@ -123,7 +123,7 @@ The `published` attribute indicates whether the protocol should be public. Publi
 ```json
 {
   "protocol": "https://social-media.xyz",
-  "published": true,
+  "published": true
 }
 ```
 
@@ -309,9 +309,9 @@ To use a protocol in your app, you’ll need to install that protocol to your DW
 
 ```js
 const { protocol, status } = await web5.dwn.protocols.configure({
-    message: {
-      definition: protocolDefinition
-    }
+  message: {
+    definition: protocolDefinition,
+  },
 });
 
 //sends protocol to remote DWNs immediately (vs waiting for sync)
@@ -325,45 +325,46 @@ Once you’ve installed that protocol to your DWN, you’re ready to communicate
 Building on our social media example, let’s say that you wanted to post a message to your friend Alice. First, ensure that she has also installed the `https://social-media.xyz` protocol on her DWN. Then, you can write to her DWN via the `https://social-media.xyz` protocol using:
 
 ```js
-const { record: postRecord, status: createStatus } = await web5.dwn.records.create({
-  data: 'Hey this is my first post!',
-  message: {
-    recipient: aliceDid,
-    schema: 'https://social-media.xyz/schemas/postSchema',
-    dataFormat: 'text/plain',
-    protocol: protocolDefinition.protocol,
-    protocolPath: 'post'
-  }
-});
+const { record: postRecord, status: createStatus } =
+  await web5.dwn.records.create({
+    data: 'Hey this is my first post!',
+    message: {
+      recipient: aliceDid,
+      schema: 'https://social-media.xyz/schemas/postSchema',
+      dataFormat: 'text/plain',
+      protocol: protocolDefinition.protocol,
+      protocolPath: 'post',
+    },
+  });
 ```
 
 Now, let's say Alice wants to reply to the post. Remember, `reply` is a child of `post`, therefore this record should reference the post record's id as its parent.
 
 ```js
 const replyResponse = await web5.dwn.records.create({
-    data: "replying to post",
-    message: {
-      recipient: senderDid,
-      protocol: protocolDefinition.protocol,
-      protocolPath: 'post/reply',
-      //highlight-next-line
-      parentContextId: postRecord.id,
-      schema: "https://social-media.xyz/schemas/replySchema",
-      dataFormat: 'text/plain',
-    },
-})
+  data: 'replying to post',
+  message: {
+    recipient: senderDid,
+    protocol: protocolDefinition.protocol,
+    protocolPath: 'post/reply',
+    //highlight-next-line
+    parentContextId: postRecord.id,
+    schema: 'https://social-media.xyz/schemas/replySchema',
+    dataFormat: 'text/plain',
+  },
+});
 ```
 
 If an app wants to display all of a post's replies, it can obtain the post's record ID and then query for records that have that id as a `parentId`.
 
 ```js
 const { records: replies } = await web5.dwn.records.query({
-    message: {
-        filter: {
-            parentId: postRecord.id
-        }
-    }
-})
+  message: {
+    filter: {
+      parentId: postRecord.id,
+    },
+  },
+});
 ```
 
 And that’s it! Via the `social-media` protocol, you’ve now written a message to Alice’s DWN and she has replied.
@@ -371,19 +372,21 @@ And that’s it! Via the `social-media` protocol, you’ve now written a message
 This protocol enables a basic social network using Web5, which means we’ve created a basic trustless, decentralized social network where your users host all of their own data.
 
 ## Validating Protocols
+
 As you write your protocol documents, you can use this [simple protocol validator UI](https://radiant-semifreddo-af73bb.netlify.app/) app to explore and validate the types and structures in your protocol. This should help with testing and improving your protocol. Find out more about how to use this project on [GitHub](https://github.com/kirahsapong/protocol-validator#protocol-validator).
 
 ## Example Protocols
+
 Here are a bunch of [example protocols](https://github.com/TBD54566975/dwn-sdk-js/tree/main/tests/vectors/protocol-definitions) for more inspiration!
 
 ## Video Tutorials
 
 <div className="grid grid-cols-1 desktop:grid-cols-2 gap-5">
 
-  <iframe class="aspect-video" src="https://www.youtube.com/embed/96rtA1CvylU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+  <iframe className="aspect-video" src="https://www.youtube.com/embed/96rtA1CvylU" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
 
-  <iframe class="aspect-video" src="https://www.youtube.com/embed/8XX8AgXnY2I" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+  <iframe className="aspect-video" src="https://www.youtube.com/embed/8XX8AgXnY2I" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
 
-  <iframe class="aspect-video" src="https://www.youtube.com/embed/Jy2PvarC82c" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+  <iframe className="aspect-video" src="https://www.youtube.com/embed/Jy2PvarC82c" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
 
 </div>

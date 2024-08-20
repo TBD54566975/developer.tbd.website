@@ -6,18 +6,21 @@ import { useLocation } from '@docusaurus/router';
 import useBrokenLinks from '@docusaurus/useBrokenLinks';
 import ChatSearch from '../../components/ChatGPTSearch';
 import { LanguageProvider } from '../../components/language/LanguageContext';
+import generatedRoutes from '@generated/routes';
 
 import { SSRProvider } from '@react-aria/ssr';
 import { LanguageOptionsProvider } from '../../components/language/SupportedLanguagesContext';
 
 export default function LayoutWrapper(props) {
   const { hash } = useLocation();
-  useBrokenLinks().collectAnchor("ask");
-  useBrokenLinks().collectAnchor("tag/Manifests");
-  useBrokenLinks().collectAnchor("tag/PresentationRequests");
-  useBrokenLinks().collectAnchor("tag/Presentations/paths/~1v1~1presentations~1definitions/put");
-  useBrokenLinks().collectAnchor("tag/Credentials/paths/~1v1~1credentials/put");
-  useBrokenLinks().collectAnchor("offering-object");
+  useBrokenLinks().collectAnchor('ask');
+  useBrokenLinks().collectAnchor('tag/Manifests');
+  useBrokenLinks().collectAnchor('tag/PresentationRequests');
+  useBrokenLinks().collectAnchor(
+    'tag/Presentations/paths/~1v1~1presentations~1definitions/put',
+  );
+  useBrokenLinks().collectAnchor('tag/Credentials/paths/~1v1~1credentials/put');
+  useBrokenLinks().collectAnchor('offering-object');
 
   useEffect(() => {
     if (hash) {
@@ -28,6 +31,7 @@ export default function LayoutWrapper(props) {
       const timeout = setTimeout(scrollToAnchor, 0);
     }
   }, []);
+
   return (
     <SSRProvider>
       <GlitchWrapper>

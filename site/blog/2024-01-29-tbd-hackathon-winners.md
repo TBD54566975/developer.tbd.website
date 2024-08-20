@@ -45,7 +45,7 @@ As we wrap up our very first self-hosted hackathon, we're thrilled to announce t
 
 Turtle Shell is a portable personal data management tool that combines your digital life under one Shell, allowing users to own, manage, and view all their data. It was developed by, [Moises E Jaramillo](https://www.linkedin.com/in/moisesjaramillo/) and [Courtney Chan](https://devpost.com/courtneychan-design).
 
-<iframe class="aspect-video" src="https://www.youtube.com/embed/4FJXnpMU2JQ?si=FNyTJFSwGaeWXItw" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+<iframe className="aspect-video" src="https://www.youtube.com/embed/4FJXnpMU2JQ?si=FNyTJFSwGaeWXItw" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
 
 **Try it Out:**
 
@@ -55,7 +55,7 @@ Turtle Shell is a portable personal data management tool that combines your digi
 
 RideFair was developed by [Rebecca Chan](https://www.linkedin.com/in/rebeccachandesign/), [Jennifer To](https://www.linkedin.com/in/jennifer-d-to/) and [Brian Lam](https://www.linkedin.com/in/brian-lam-b20572172/). It's a decentralized ride-sharing app that gives users control over their ride-sharing experience, prioritizing safety and privacy.
 
-<iframe class="aspect-video" src="https://www.youtube.com/embed/6c0_oSvkdU4?si=xkilfedZfs_suiVz" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+<iframe className="aspect-video" src="https://www.youtube.com/embed/6c0_oSvkdU4?si=xkilfedZfs_suiVz" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
 
 **Try it Out:**
 
@@ -67,7 +67,7 @@ RideFair was developed by [Rebecca Chan](https://www.linkedin.com/in/rebeccachan
 
 Talent Toekn, developed by [Marco Boschetti](https://devpost.com/marcoo-boschetti), is a decentralized professional networking platform. Where users can manage their profile, share and receive endorsements for their skills, languages and work experiences without compromising privacy.
 
-<iframe class="aspect-video" src="https://www.youtube.com/embed/b9MRGBeq0XM?si=924HUPSzpWKY2V8e" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+<iframe className="aspect-video" src="https://www.youtube.com/embed/b9MRGBeq0XM?si=924HUPSzpWKY2V8e" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
 
 **Try it Out:**
 
@@ -79,7 +79,7 @@ Talent Toekn, developed by [Marco Boschetti](https://devpost.com/marcoo-boschett
 
 MoneySavvy, **winner of Best FinTech Inspired App**, was developed by [Ahmad Nurfadilah](https://ahmadnf.dev/). It's a decentralized financial management application. That empowers users to take control of their finances in a privacy-focused environment.
 
-<iframe class="aspect-video" src="https://www.youtube.com/embed/0SNsNzpE7_c?si=-52dwjCXQW70GZZh" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+<iframe className="aspect-video" src="https://www.youtube.com/embed/0SNsNzpE7_c?si=-52dwjCXQW70GZZh" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
 
 **Try it Out:**
 
@@ -90,7 +90,7 @@ MoneySavvy, **winner of Best FinTech Inspired App**, was developed by [Ahmad Nur
 
 Rapha, **winner of Best Health Inspired App**, was developed by [Festus Idowu](https://www.linkedin.com/in/festus-idowu-8269b3159/). It allows individuals to own and carry their health history with them. Utilizing decentralized web nodes (DWNs) for securly storing medical records.
 
-<iframe class="aspect-video" src="https://www.youtube.com/embed/DnDy6cebYhs?si=fGtcl_m_CNBE1Vuy" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+<iframe className="aspect-video" src="https://www.youtube.com/embed/DnDy6cebYhs?si=fGtcl_m_CNBE1Vuy" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
 
 **Try it Out:**
 
@@ -102,7 +102,7 @@ Rapha, **winner of Best Health Inspired App**, was developed by [Festus Idowu](h
 
 Musiv, **winner of Best Music and Arts Inspired App**, was developed by [Denis Riush](https://devpost.com/dennzriush). It's a decentralized music distribution application. That allows the artist to share their music while maintaining ownership.
 
-<iframe class="aspect-video" src="https://www.youtube.com/embed/0TvngnpP-50?si=eCDUbITfzMV-S8O6" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+<iframe className="aspect-video" src="https://www.youtube.com/embed/0TvngnpP-50?si=eCDUbITfzMV-S8O6" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
 
 **Try it Out:**
 
@@ -114,7 +114,7 @@ Musiv, **winner of Best Music and Arts Inspired App**, was developed by [Denis R
 
 Tracks, **winner of Best Personal Data Inspired Appp**, was developed by [Jack Watson](https://devpost.com/theblindguest). It's a decentralized digital travel diary that lets users pin places they've visited with photos and notes on a customizable world map, that can be shared.
 
-<iframe class="aspect-video" src="https://www.youtube.com/embed/6ZFjqLXkVHA?si=jwkqo8qG1wsritg_" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+<iframe className="aspect-video" src="https://www.youtube.com/embed/6ZFjqLXkVHA?si=jwkqo8qG1wsritg_" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
 
 **Try it Out:**
 
@@ -125,7 +125,7 @@ Tracks, **winner of Best Personal Data Inspired Appp**, was developed by [Jack W
 
 FifthPoll, **winners of Best Empowerment & Enablement Inspired App**, was developed by [Spandan Barve](https://devpost.com/marsian83), and [Riya Jain](https://www.linkedin.com/in/jriyyya). It's a decentralized community-driven voting platform where every individual's voice is heard.
 
-<iframe class="aspect-video" src="https://www.youtube.com/embed/uH3v5nR2Eyo?si=CkVLA-wVB9OosubY" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+<iframe className="aspect-video" src="https://www.youtube.com/embed/uH3v5nR2Eyo?si=CkVLA-wVB9OosubY" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
 
 **Try it Out:**
 

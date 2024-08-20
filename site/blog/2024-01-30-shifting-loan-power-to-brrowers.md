@@ -40,14 +40,17 @@ _"Our current credit system says, 'Saddle yourself, so we can give you more to s
 <!--truncate-->
 
 ## Residual Income Knowledge Index (RIKI)
+
 The Fair Isaac Corporation score, better known as a FICO score, is a three-digit score that helps lenders in the U.S. evaluate the likelihood of a borrower repaying a loan. A higher score indicates greater reliability. However, achieving a high FICO score — or any credit score — largely depends on accruing and gradually repaying debt. This may come as a disadvantage for various groups of people who may not have a credit score, including veterans, formerly incarcerated individuals, immigrants, young adults, and folks who prefer cash transactions.
 
 To provide a more holistic view of a person's creditworthiness, FormFree developed a new system called [Residual Income Knowledge Index™ (RIKI™)](https://www.formfree.com/news-and-insights/formfree-releases-residual-income-knowledge-index/). Instead, RIKI analyzes monthly income and spending. Integrating this method into our existing credit system provides greater opportunities for home ownership, car purchases, and other essential loans.
 
 ## "It's like Tinder for banks!"
+
 During the live stream, FormFree Software Engineer, Jon West, showcased their [Passport](https://passport.formfree.com/) product. The demo highlighted Passport's ability to match borrowers with lenders. This feature inspired an audience member to comment, 'It's like Tinder for banks!'"
 
 Here's how it works:
+
 - Borrowers securely connect to their bank account.
 - FormFree analyzes the account records and creates an anonymized credit profile for the borrower.
 - Lenders review these anonymized profiles and decide which borrowers to extend offers to.
@@ -57,20 +60,23 @@ Here's how it works:
 Typically, borrowers endure aggressively pitched products from dozens of lending institutions. FormFree shifts control to users for more tailored loan consideration.
 
 ## How FormFree Uses Web5
+
 FormFree uses the following Web5 technologies:
+
 - [Decentralized Identifiers (DID)](/docs/web5/decentralized-identifiers/what-are-dids) - After sign up, the application associates a user's account with a DID.
 - [Verifiable Credentials (VC)](/docs/web5/verifiable-credentials/what-are-vcs) - A borrower's credit profile is secured as a Verifiable Credential enabling the borrower's information to stay anonymous and tamper-proof.
 
 ## Coming Soon - tbLend and Credential Selector
+
 As part of our [incubation program](/community/incubation-projects/), organizations such as [FormFree](https://www.formfree.com/), [Sophtron](https://sophtron.com/index), and [MX](https://www.mx.com/) are working in partnership to build Web5 protocols that will help their products evolve.
 
 - [tbLend](https://github.com/TBD54566975/incubation-tblend#web5service) - A Web5 protocol that connects the lender and borrower to exchange money securely.
 - [Credential Selector](https://github.com/TBD54566975/incubation-verifiable-credential-selector) - A Web5 protocol that enables developers to embed the Verifiable Credentials (VCs) into their application and allows users to select and retrieve VCs.
 
 ## Rewatch the full episode
+
 Learn more about what FormFree is building and watch the full live stream [here](https://youtu.be/vXYyT8rLaR4).
 
-<iframe class="aspect-video" src="https://www.youtube.com/embed/vXYyT8rLaR4" title="formfree" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+<iframe className="aspect-video" src="https://www.youtube.com/embed/vXYyT8rLaR4" title="formfree" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
 
-*This post highlights key moments from our collaborative live stream with leaders and builders at FormFree. Join our weekly live streams every Friday at 12pm ET/9 am PT. We're learning how innovators and community members are advancing the Self-Sovereign Identity and Global Payments industry. Tune in next time via [Twitch](https://twitch.tv/tbdevs ) or in our community [Discord](https://discord.com/invite/tbd).*
-
+_This post highlights key moments from our collaborative live stream with leaders and builders at FormFree. Join our weekly live streams every Friday at 12pm ET/9 am PT. We're learning how innovators and community members are advancing the Self-Sovereign Identity and Global Payments industry. Tune in next time via [Twitch](https://twitch.tv/tbdevs) or in our community [Discord](https://discord.com/invite/tbd)._

@@ -346,10 +346,10 @@ const copyDID = async() => {
 And in the `<template>` section, we update the header to include the copy DID button.
 
 ```html title="pages/index.vue"
-<header class="flex-col text-center mb-4">
-    <h1 class="text-2xl font-bold mb-4">Shared Todo</h1>
+<header className="flex-col text-center mb-4">
+    <h1 className="text-2xl font-bold mb-4">Shared Todo</h1>
     <p>Manage a set of todos towards your goals with friends.</p>
-    <button v-if="myDID" class="btn" id="copy-did" @click="copyDID">Copy your DID</button>
+    <button v-if="myDID" className="btn" id="copy-did" @click="copyDID">Copy your DID</button>
 </header>
 ```
 

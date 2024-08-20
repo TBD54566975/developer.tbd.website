@@ -47,7 +47,7 @@ The results are in! Out of **418 participants** we have our **top 3** projects! 
 
 Anonymous Door Unlocking with Anonymity Revocation, was developed by a team from Sako laboratory of Waseda University in Tokyo, comprising of [Dorakemon Watanabe](https://github.com/dorakemon), [Kohei Morita](https://devpost.com/mrtkhgm), [Md Zaki Muzahid](https://devpost.com/md_zaki), [0xvon Tsutsumi](https://devpost.com/0xvon), and [Haruto Kimura](https://devpost.com/harutokimura0608). It's a solution designed for secure and private access control in lab environments.
 
-<iframe class="aspect-video" src="https://www.youtube.com/embed/SAJD-V_LJJc?si=y1LJ5n3QZZvHhVoo" title="Anonymous Door Unlocking with Anonymity Revocation" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+<iframe className="aspect-video" src="https://www.youtube.com/embed/SAJD-V_LJJc?si=y1LJ5n3QZZvHhVoo" title="Anonymous Door Unlocking with Anonymity Revocation" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
 
 **Try it Out:**
 
@@ -59,7 +59,7 @@ To learn more about their project and their experience checkout their [project's
 
 The second winner, Decentralinked developed by [Ad0ll Ll0da](https://devpost.com/ad0ll), [Roman Belfer](https://devpost.com/belfer-roman), and [Rb Wolff](https://github.com/reisepass). Is a decentralized job posting application, that helps connect employers and applicants.
 
-<iframe class="aspect-video" src="https://www.youtube.com/embed/L8otIoAIuzg?si=p3uM9rUIARvWvkOh" title="Decentralinked" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+<iframe className="aspect-video" src="https://www.youtube.com/embed/L8otIoAIuzg?si=p3uM9rUIARvWvkOh" title="Decentralinked" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
 
 **Try it Out:**
 
@@ -72,7 +72,7 @@ To learn more about their project and their experience checkout their [project's
 
 Rounding out our winners, HealthX Protocol developed by [Harsh Tyagi](https://www.linkedin.com/in/mr-harshtyagi/), and [Yashasvi Chaudhary](https://www.linkedin.com/in/0xyshv/). To empower individuals to take control of their health by changing the way medical history is shared and stored.
 
-<iframe class="aspect-video" src="https://www.youtube.com/embed/erBRonO3Kig?si=-bRMjt05DALp5xIS" title="HealthX Protocol" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+<iframe className="aspect-video" src="https://www.youtube.com/embed/erBRonO3Kig?si=-bRMjt05DALp5xIS" title="HealthX Protocol" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
 
 **Try it Out:**
 

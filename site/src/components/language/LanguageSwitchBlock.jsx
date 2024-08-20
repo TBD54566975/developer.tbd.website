@@ -5,6 +5,7 @@ import React, { Children } from 'react';
 const LanguageSwitchBlock = ({ children }) => {
   const { language } = useLanguage();
 
+  
   const childArray = Children.toArray(children);
   var childToRender;
 

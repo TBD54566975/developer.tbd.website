@@ -7,7 +7,7 @@ import PackageJson from '@site/src/components/PackageJson';
 # Build a ToDo App
 
 <div className="grid grid-cols-1 desktop:grid-cols-1">
-  <iframe class="aspect-video" src="https://www.youtube.com/embed/2wAVyId6QHc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+  <iframe className="aspect-video" src="https://www.youtube.com/embed/2wAVyId6QHc" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
 </div>
 
 In this tutorial, you will learn how to build a basic single-party decentralized ToDo app built using `web5.js`. It’s composed of a `Vue.js` app powered by [web5.js](https://www.npmjs.com/package/@web5/api) which adds data storage underpinned by a [Decentralized Web Node](/docs/web5/decentralized-web-nodes/what-are-dwns) (DWN).
@@ -157,12 +157,12 @@ Now that your app user's ToDos are stored in their DWN, you can display them by 
 In the template where you see `<!-- ToDos -->` add this:
 
 ```jsx
-<div v-if="(todos.length > 0)" class="border-gray-200 border-t border-x mt-16 rounded-lg shadow-md sm:max-w-xl sm:mx-auto sm:w-full">
-  <div v-for="todo in todos" :key="todo" class="border-b border-gray-200 flex items-center p-4">
-    <div @click="toggleTodoComplete(todo)" class="cursor-pointer">
-      <CheckCircleIcon class="h-8 text-gray-200 w-8" :class="{ 'text-green-500': todo.data.completed }" />
+<div v-if="(todos.length > 0)" className="border-gray-200 border-t border-x mt-16 rounded-lg shadow-md sm:max-w-xl sm:mx-auto sm:w-full">
+  <div v-for="todo in todos" :key="todo" className="border-b border-gray-200 flex items-center p-4">
+    <div @click="toggleTodoComplete(todo)" className="cursor-pointer">
+      <CheckCircleIcon className="h-8 text-gray-200 w-8" :className="{ 'text-green-500': todo.data.completed }" />
     </div>
-    <div class="font-light ml-3 text-gray-500 text-xl">
+    <div className="font-light ml-3 text-gray-500 text-xl">
       {{ todo.data.description }}
     </div>
     <!-- Delete ToDo goes here later -->
@@ -180,18 +180,18 @@ To allow for add functionality, begin by creating the UI needed to add ToDos.
 
 In the template add this code block to `<!-- Add ToDos Form -->`:
 ```jsx
-<div class="mt-16">
-  <form class="flex space-x-4" @submit.prevent="addTodo">
-    <div class="border-b border-gray-200 sm:w-full">
-      <label for="add-todo" class="sr-only">Add a todo</label>
+<div className="mt-16">
+  <form className="flex space-x-4" @submit.prevent="addTodo">
+    <div className="border-b border-gray-200 sm:w-full">
+      <label for="add-todo" className="sr-only">Add a todo</label>
       <textarea
         rows="1" name="add-todo" id="add-todo" v-model="newTodoDescription"
         @keydown.enter.exact.prevent="addTodo"
-        class="block border-0 border-transparent focus:ring-0 p-0 pb-2 resize-none sm:text-sm w-96"
+        className="block border-0 border-transparent focus:ring-0 p-0 pb-2 resize-none sm:text-sm w-96"
         placeholder="Add a Todo" />
     </div>
-    <button type="submit" class="bg-indigo-600 border border-transparent focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 hover:bg-indigo-700 inline-flex items-center p-1 rounded-full shadow-sm text-white">
-      <PlusIconMini class="h-5 w-5" aria-hidden="true" />
+    <button type="submit" className="bg-indigo-600 border border-transparent focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 hover:bg-indigo-700 inline-flex items-center p-1 rounded-full shadow-sm text-white">
+      <PlusIconMini className="h-5 w-5" aria-hidden="true" />
     </button>
   </form>
 </div>
@@ -269,9 +269,9 @@ async function deleteTodo(todoItem) {
 We’ll connect that to the UI with the following code. This replaces the `<!-- Delete ToDo goes here later -->` comment we added earlier:
 
 ```jsx
-<div class="ml-auto">
-  <div @click="deleteTodo(todo)" class="cursor-pointer">
-    <TrashIcon class="h-8 text-gray-200 w-8" :class="'text-red-500'" />
+<div className="ml-auto">
+  <div @click="deleteTodo(todo)" className="cursor-pointer">
+    <TrashIcon className="h-8 text-gray-200 w-8" :className="'text-red-500'" />
   </div>
 </div>
 ```

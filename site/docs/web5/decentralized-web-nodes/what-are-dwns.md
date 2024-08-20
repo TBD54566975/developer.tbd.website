@@ -13,10 +13,10 @@ A Decentralized Web Node (DWN) is a data storage and message relay mechanism tha
 A DWN is a personal data store. This means you can:
 
 - **Own your data:** You decide where to host your node. You control who has access.
-- **Back up your data:** Host multiple nodes in different places, and keep them all [synced](/docs/web5/decentralized-web-nodes/sync) effortlessly. If one goes down, you have your backup. 
+- **Back up your data:** Host multiple nodes in different places, and keep them all [synced](/docs/web5/decentralized-web-nodes/sync) effortlessly. If one goes down, you have your backup.
 - **Send and receive data:** Alice controls her DWN using her DID. Bob controls his DWN with his DID. Alice can send data to Bob just by resolving his DID.
 
-<div role="figure" aria-labelledby="caption-1" class="figure-container">
+<div role="figure" aria-labelledby="caption-1" className="figure-container">
 
 ![](/img/did-resolve.png)
 
@@ -41,7 +41,7 @@ The easiest way to understand this distinction is to think of permissions as act
 
 Data types are bound to known schemas, letting applications agree on data models. This opens the door to applications working together in ways that have been much more difficult with traditional development platforms.
 
-User-defined schemas are not validated on the payload of the record, as this sort of validation is impossible for encrypted payloads since the DWN doesn't have the private keys to decrypt. It is up the application layer if such validation is to be performed on the data. 
+User-defined schemas are not validated on the payload of the record, as this sort of validation is impossible for encrypted payloads since the DWN doesn't have the private keys to decrypt. It is up the application layer if such validation is to be performed on the data.
 
 ## Messaging
 

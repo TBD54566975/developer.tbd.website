@@ -31,7 +31,7 @@ function ApiCard({ name, description, links }) {
       }
 
       return (
-        <a href={url} target={shouldOpenInNewTab} rel="noopener noreferrer">
+        <a href={url} key={key} target={shouldOpenInNewTab} rel="noopener noreferrer">
           <img src={imgSrc} alt={key} />
         </a>
       );
@@ -42,7 +42,7 @@ function ApiCard({ name, description, links }) {
     <div className="api-card flex flex-col bg-transparent border-2 shadow overflow-hidden sm:rounded-sm px-4 py-5 sm:px-6">
       <div className="flex-col flex">
         <h2>{name}</h2>
-        {description && <p class="copy">{description}</p>}
+        {description && <p className="copy">{description}</p>}
       </div>
       <div className="api-card-icon flex-row">
         {renderLinkImages(links)}

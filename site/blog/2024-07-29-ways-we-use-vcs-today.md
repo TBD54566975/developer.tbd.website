@@ -1,7 +1,7 @@
 ---
 slug: 7-ways-we-use-vcs-today
-title: "7 Unexpected Ways Verifiable Credentials Are Used Today"
-description: "Verifiable Credentials are more than a buzzword. Discover 7 real-world use cases revealing their hidden impact."
+title: '7 Unexpected Ways Verifiable Credentials Are Used Today'
+description: 'Verifiable Credentials are more than a buzzword. Discover 7 real-world use cases revealing their hidden impact.'
 authors:
   name: Rizèl Scarlett
 tags: [Verifiable Credentials, Web5]
@@ -12,7 +12,7 @@ tags: [Verifiable Credentials, Web5]
   <meta property="og:type" content="website" />
   <meta property="og:url" content='https://developer.tbd.website/blog/7-ways-we-use-vcs-today' />
   <meta name="og:description" content="Verifiable Credentials are more than a buzzword. Discover 7 real-world use cases revealing their hidden impact." />
-  <meta property="og:image" content="https://developer.tbd.website/assets/images/7-ways-we-use-vcs-banner-8a8dea8051868deb97d246064cb5aef0.png" /> 
+  <meta property="og:image" content="https://developer.tbd.website/assets/images/7-ways-we-use-vcs-banner-8a8dea8051868deb97d246064cb5aef0.png" />
 
   <meta name="twitter:card" content="summary_large_image" />
   <meta property="twitter:domain" content="developer.tbd.website" />
@@ -40,7 +40,7 @@ From healthcare to content creation, finance to travel, VCs are changing how we 
 
 ## 1. Mobile Driver’s Licenses
 
-If you often misplace your wallet like me, there's good news — your state may support the use of Mobile Driver's Licenses (mDLs). Louisiana was the [first state to implement mDLs](https://envoc.com/case-study/the-nations-first-digital-drivers-license/#:~:text=July%202018%3A%20LA%20Wallet%20is,as%20fishing%20and%20hunting%20licenses.) in 2018. Since then, mDLs have been [gaining traction](https://www.aamva.org/jurisdiction-data-maps#anchorformdlmap) across the United States.  With mDLs, residents of participating states can store a digital version of their driver's license on their smartphones. This allows users to leave their physical ID at home and use their phones for identification in various situations, including travel, age-restricted services, voting, and law enforcement interactions.
+If you often misplace your wallet like me, there's good news — your state may support the use of Mobile Driver's Licenses (mDLs). Louisiana was the [first state to implement mDLs](https://envoc.com/case-study/the-nations-first-digital-drivers-license/#:~:text=July%202018%3A%20LA%20Wallet%20is,as%20fishing%20and%20hunting%20licenses.) in 2018. Since then, mDLs have been [gaining traction](https://www.aamva.org/jurisdiction-data-maps#anchorformdlmap) across the United States. With mDLs, residents of participating states can store a digital version of their driver's license on their smartphones. This allows users to leave their physical ID at home and use their phones for identification in various situations, including travel, age-restricted services, voting, and law enforcement interactions.
 
 VCs are the technology behind mDLs because they offer features like revocation, authentication, expiration, and tamper evidence. If you use an mDL, you're using VCs!
 
@@ -48,20 +48,19 @@ VCs are the technology behind mDLs because they offer features like revocation, 
 
 _Source: https://lawallet.com/_
 
-
 ## 2. The Pharmaceutical Supply Chain
 
-[Dr. Carsten Stöcker](https://www.linkedin.com/in/dr-carsten-st%C3%B6cker-1145871/), CEO of [Spherity](https://www.spherity.com/), introduced me to a fascinating application of VCs in the pharmaceutical industry. Pharmacies often trade medicines with each other to maintain their stock, but this exchange requires complex verification processes. They must verify the legitimacy of three key elements: 
+[Dr. Carsten Stöcker](https://www.linkedin.com/in/dr-carsten-st%C3%B6cker-1145871/), CEO of [Spherity](https://www.spherity.com/), introduced me to a fascinating application of VCs in the pharmaceutical industry. Pharmacies often trade medicines with each other to maintain their stock, but this exchange requires complex verification processes. They must verify the legitimacy of three key elements:
 
-* the medicine,
-* the organization they're trading with,
-* the provider making the trade
+- the medicine,
+- the organization they're trading with,
+- the provider making the trade
 
 [Caro.vc](http://Caro.vc), a Spherity company, employs VCs to simplify this process and reduce errors. Their solution allows pharmacies to quickly and securely verify all these elements, ensuring the integrity of the pharmaceutical supply chain.
 
 **To learn more about this use case, check out this discussion between Dr. Carsten Stocker and the Developer Relations Team at TBD:**
 
-<iframe class="aspect-video" src="https://www.youtube.com/embed/5_2wCT9Tlb0?si=0VRp5EnA0NxfdVss" title="Trust Me I'm a Pharmacist" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+<iframe className="aspect-video" src="https://www.youtube.com/embed/5_2wCT9Tlb0?si=0VRp5EnA0NxfdVss" title="Trust Me I'm a Pharmacist" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
 
 ## 3. Content Creation and Generative AI
 
@@ -85,7 +84,7 @@ To address these issues, Davis built [Switchcord](https://www.switchchord.com/),
 
 **To learn more about this use case, check out this discussion between Cole Davis and the Developer Relations Team at TBD:**
 
-<iframe class="aspect-video" src="https://www.youtube.com/embed/NBvryBhD9YY?si=Mk_IV3XLqPtqBswiY" title="The Sound of Ownership" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+<iframe className="aspect-video" src="https://www.youtube.com/embed/NBvryBhD9YY?si=Mk_IV3XLqPtqBswiY" title="The Sound of Ownership" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
 
 ## 5. Loan Applications
 
@@ -95,19 +94,19 @@ The U.S. credit system requires residents to accumulate debt as a prerequisite f
 
 **To learn more about this use case, check out this discussion between the FormFree team and the Developer Relations Team at TBD:**
 
-<iframe class="aspect-video" src="https://www.youtube.com/embed/vXYyT8rLaR4?si=ioQbSkiDEJ3t5XQb" title="Democratizing Loans" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+<iframe className="aspect-video" src="https://www.youtube.com/embed/vXYyT8rLaR4?si=ioQbSkiDEJ3t5XQb" title="Democratizing Loans" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
 
 ## 6. Online Marketplaces and Catfishing
 
 Unfortunately, online marketplace scams are common. From purchasing a car to renting a home or adopting a pet, you can buy and sell almost anything online. However, there's no foolproof mechanism to ensure the seller is trustworthy.
 
-With the rise of social media, catfishing — where a person pretends to be someone they're not while online dating — has also increased dramatically. While many believe they're not susceptible, [23%](https://wifitalents.com/statistic/social-media-catfish/) of online dating participants reported being catfished, and [41%](https://wifitalents.com/statistic/social-media-catfish/) of catfish victims are between the ages of 18 and 34. 
+With the rise of social media, catfishing — where a person pretends to be someone they're not while online dating — has also increased dramatically. While many believe they're not susceptible, [23%](https://wifitalents.com/statistic/social-media-catfish/) of online dating participants reported being catfished, and [41%](https://wifitalents.com/statistic/social-media-catfish/) of catfish victims are between the ages of 18 and 34.
 
-[Jeffrey Schwartz](https://www.linkedin.com/in/jeffrey-alan-schwartz) created [Dentity](https://www.dentity.com/) to reduce the frequency of scams and catfishing incidents. Dentity uses VCs to verify individuals on any platform, from dating apps to online marketplaces. 
+[Jeffrey Schwartz](https://www.linkedin.com/in/jeffrey-alan-schwartz) created [Dentity](https://www.dentity.com/) to reduce the frequency of scams and catfishing incidents. Dentity uses VCs to verify individuals on any platform, from dating apps to online marketplaces.
 
 **To learn more about this use case, check out this discussion between Jeffrey and the Developer Relations Team at TBD:**
 
-<iframe class="aspect-video" src="https://www.youtube.com/embed/hnNZcqfbBFE?si=4sG6LGexwVOobDNi" title="Swipe Right Safely" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+<iframe className="aspect-video" src="https://www.youtube.com/embed/hnNZcqfbBFE?si=4sG6LGexwVOobDNi" title="Swipe Right Safely" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
 
 ## 7. Native Tribes
 
@@ -117,14 +116,14 @@ The Catawba Digital Economic Zone is using the [Web5 SDK](https://developer.tbd.
 
 **To learn more about this use case, check out this discussion between the Catawba Digital Economic Zone Team and the Developer Relations Team at TBD:**
 
-<iframe class="aspect-video" src="https://www.youtube.com/embed/hshymp4NfYY?si=nv1vHS7sUGl79BHx" title="Catawba Indian Nation Adopts Web5" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+<iframe className="aspect-video" src="https://www.youtube.com/embed/hshymp4NfYY?si=nv1vHS7sUGl79BHx" title="Catawba Indian Nation Adopts Web5" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
 
-## Learn More 
+## Learn More
 
 Verifiable Credentials are making a tangible difference by solving real problems for real people - simplifying loan applications, protecting artists' rights, ensuring pharmaceutical safety, and supporting tribal sovereignty.
 
 If you have ideas for building apps with VCs, check out these resources:
 
-* [Build your own Verifiable Credentials with the Web5 SDK](https://developer.tbd.website/docs/web5/verifiable-credentials/vc-issuance)
-* [How TBD is using VCs in the tbDEX SDK](https://developer.tbd.website/docs/tbdex/)
-* [TBD’s YouTube Channel](https://www.youtube.com/@tbd.videos/?sub_confirmation=1)
+- [Build your own Verifiable Credentials with the Web5 SDK](https://developer.tbd.website/docs/web5/verifiable-credentials/vc-issuance)
+- [How TBD is using VCs in the tbDEX SDK](https://developer.tbd.website/docs/tbdex/)
+- [TBD’s YouTube Channel](https://www.youtube.com/@tbd.videos/?sub_confirmation=1)

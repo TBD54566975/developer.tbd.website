@@ -36,7 +36,7 @@ function Dependencies({ languageDependencies }) {
             );
           } else {
             return (
-              <div language={languageMap[language]}>
+              <div key="language" language={languageMap[language]}>
                 <Dependency language={language} dependencies={dependencies} />
               </div>
             );
