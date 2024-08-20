@@ -14,6 +14,8 @@
 @import 'illustration.css';
 @import 'web5-quickstart.css';
 @import 'api.css';
+@import 'tbdex.css';
+@import 'web5.css';
 
 root {
   --color-black: #000000;
