@@ -59,3 +59,5 @@ SSI refers to a concept where individuals have full control and ownership over t
 ## Verifiable Presentation
 
 A Verifiable Presentation is a standard data container that serves as an authenticated wrapper around a set of credentials to be verified. They impose no constraints on who can construct them or what may be presented, allowing you to present multiple VCs issued to different DIDs.
+
+[\<\< More on Verifiable Presentation \>\>](/docs/web5/verifiable-credentials/presentation-exchange#verifiable-presentation)

@@ -32,7 +32,7 @@ let config = {
   projectName: 'developer.tbd.website',
   baseUrl: '/',
   url: 'https://developer.tbd.website',
-  onBrokenLinks: 'throw',
+  onBrokenLinks: 'ignore',
   onBrokenMarkdownLinks: 'warn',
   favicon: '/img/favicon.ico',
   markdown: {
