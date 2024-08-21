@@ -283,6 +283,9 @@ importers:
       '@docusaurus/core':
         specifier: 3.5.1
         version: 3.5.1(@docusaurus/types@3.5.1)(react-dom@18.2.0)(react@18.2.0)(typescript@5.2.2)
+      '@docusaurus/plugin-content-docs':
+        specifier: 3.5.1
+        version: 3.5.1(react-dom@18.2.0)(react@18.2.0)(typescript@5.2.2)
       '@docusaurus/preset-classic':
         specifier: 3.5.1
         version: 3.5.1(@algolia/client-search@4.24.0)(@types/react@18.3.3)(react-dom@18.2.0)(react@18.2.0)(search-insights@2.15.0)(typescript@5.2.2)
