@@ -56,8 +56,6 @@ A mathematical algorithm used to generate digital signatures. These are used to 
 
 SSI refers to a concept where individuals have full control and ownership over their digital identities. It empowers individuals to manage and control their personal information without relying on centralized authorities or intermediaries. SSI enables individuals to store their personal data and identity in a secure and private manner. With self-sovereign identity, individuals can selectively share their personal information with others, granting access on a need-to-know basis all while maintaining privacy and control over their data.
 
-<h2 id="verifiable-presentation">Verifiable Presentation</h2>
+## Verifiable Presentation
 
 A Verifiable Presentation is a standard data container that serves as an authenticated wrapper around a set of credentials to be verified. They impose no constraints on who can construct them or what may be presented, allowing you to present multiple VCs issued to different DIDs.
-
-[\<\< More on Verifiable Presentation \>\>](/docs/web5/verifiable-credentials/presentation-exchange#verifiable-presentation)
