@@ -34,9 +34,10 @@ A specific scheme for creating, resolving, updating, and deactivating DIDs and t
 
 ### DID Method - DHT
 
-The `did:dht` method is based on the Pkarr project and utilizes BitTorrent's Mainline Distributed Hash Table (DHT) to anchor DIDs and store DID Documents. This approach ensures that the identity information is maintained in a decentralized manner. This method  allows operations like creating, reading, updating, and deactivating DIDs, and includes optional features like type indexing and gateway APIs for extended functionalities.
+The `did:dht` method is based on the Pkarr project and utilizes BitTorrent's Mainline Distributed Hash Table (DHT) to anchor DIDs and store DID Documents. This approach ensures that the identity information is maintained in a decentralized manner. This method allows operations like creating, reading, updating, and deactivating DIDs, and includes optional features like type indexing and gateway APIs for extended functionalities.
 
 ### DID Method - Jwk
+
 The `did:jwk` method, similar to the `did:key` method, is designed for simplicity and self-containment in creating a DID. It involves encoding a JSON Web Key (JWK) using base64url. This method appeals to those seeking a straightforward approach.
 
 ### DID Method - Web
@@ -51,12 +52,11 @@ A digital storage system that securely stores and manages a DID's cryptographic 
 
 A mathematical algorithm used to generate digital signatures. These are used to verify the authenticity, integrity, and non-repudiation of electronic documents, messages, or transactions by creating a unique digital signature that can be cryptographically validated.
 
-
 ## Self Sovereign Identity (SSI)
 
 SSI refers to a concept where individuals have full control and ownership over their digital identities. It empowers individuals to manage and control their personal information without relying on centralized authorities or intermediaries. SSI enables individuals to store their personal data and identity in a secure and private manner. With self-sovereign identity, individuals can selectively share their personal information with others, granting access on a need-to-know basis all while maintaining privacy and control over their data.
 
-## Verifiable Presentation
+<h2 id="verifiable-presentation">Verifiable Presentation</h2>
 
 A Verifiable Presentation is a standard data container that serves as an authenticated wrapper around a set of credentials to be verified. They impose no constraints on who can construct them or what may be presented, allowing you to present multiple VCs issued to different DIDs.
 
