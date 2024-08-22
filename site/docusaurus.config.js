@@ -5,7 +5,7 @@ require('dotenv').config();
 const lightCodeTheme = require('prism-react-renderer').themes.github;
 const darkCodeTheme = require('prism-react-renderer').themes.dracula;
 const WEB5_VERSION = require('../package.json').dependencies['@web5/api'];
-const SDK_VERSIONS = require('../sdk-versions.json')
+const SDK_VERSIONS = require('../sdk-versions.json');
 
 const algoliaApiKey = process.env.DOC_SEARCH_API_KEY;
 const algoliaIndexName = process.env.DOC_SEARCH_INDEX_NAME;
@@ -36,7 +36,7 @@ let config = {
   onBrokenMarkdownLinks: 'warn',
   favicon: '/img/favicon.ico',
   markdown: {
-    mermaid: true
+    mermaid: true,
   },
   themes: ['@docusaurus/theme-mermaid'],
   // Even if you don't use internalization, you can use this field to set useful
@@ -53,7 +53,7 @@ let config = {
   },
   plugins: [
     'docusaurus-tailwindcss',
-    require.resolve("./webpackPlugin"),
+    require.resolve('./webpackPlugin'),
     // [
     //   '@docusaurus/plugin-content-docs',
     //   {
@@ -102,6 +102,7 @@ let config = {
           showReadingTime: true,
           blogSidebarTitle: 'All posts',
           blogSidebarCount: 'ALL',
+          onInlineAuthors: 'ignore',
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
@@ -247,7 +248,14 @@ let config = {
             },
           ],
         },
-        additionalLanguages: ['kotlin', 'swift', 'dart', 'rust', 'bash', 'gradle'],
+        additionalLanguages: [
+          'kotlin',
+          'swift',
+          'dart',
+          'rust',
+          'bash',
+          'gradle',
+        ],
       },
     }),
 };
