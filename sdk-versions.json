@@ -4,7 +4,7 @@
     "@tbdex/http-server": "1.1.0",
     "@tbdex/protocol": "1.1.0",
     "@web5/api": "0.10.0",
-    "@web5/credentials": "1.0.3",
+    "@web5/credentials": "1.1.0",
     "@web5/crypto": "1.0.1",
     "@web5/crypto-aws-kms": "1.0.1",
     "@web5/dids": "1.1.2",
