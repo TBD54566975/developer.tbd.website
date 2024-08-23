@@ -1,8 +1,14 @@
-import { beforeAll, beforeEach, afterEach, describe, test, expect, vi } from 'vitest';
-import { setUpWeb5 } from '../../../setup-web5';
 import {
-  uploadImage,
-} from '../../../../../../code-snippets/web5/build/decentralized-web-nodes/write-to-dwn';
+  beforeAll,
+  beforeEach,
+  afterEach,
+  describe,
+  test,
+  expect,
+  vi,
+} from 'vitest';
+import { setUpWeb5 } from '../../../test-utils/setup-web5';
+import { uploadImage } from '../../../../code-snippets/web5/build/decentralized-web-nodes/write-to-dwn';
 
 describe('Testing upgrade to PWA', () => {
   let web5, did;
@@ -16,12 +22,12 @@ describe('Testing upgrade to PWA', () => {
   });
 
   beforeEach(() => {
-    originalFetch = global.fetch; 
+    originalFetch = global.fetch;
 
     vi.mock('@web5/api', () => ({
       Web5: {
-        connect: vi.fn(() => Promise.resolve({ web5, did }))
-      }
+        connect: vi.fn(() => Promise.resolve({ web5, did })),
+      },
     }));
 
     global.fetch = vi.fn((url) => {
@@ -30,7 +36,10 @@ describe('Testing upgrade to PWA', () => {
         return Promise.resolve({
           ok: true,
           status: 200,
-          blob: () => Promise.resolve(new Blob(['fake image data'], { type: 'image/png' }))
+          blob: () =>
+            Promise.resolve(
+              new Blob(['fake image data'], { type: 'image/png' }),
+            ),
         });
       }
       return Promise.reject(new Error('URL not found'));
@@ -38,7 +47,7 @@ describe('Testing upgrade to PWA', () => {
   });
 
   afterEach(() => {
-    vi.resetAllMocks(); 
+    vi.resetAllMocks();
     global.fetch = originalFetch;
   });
 
@@ -48,7 +57,7 @@ describe('Testing upgrade to PWA', () => {
         files: [new Blob(['fake image data'], { type: 'image/png' })],
       },
     };
-    const record = await uploadImage(mockEvent)
+    const record = await uploadImage(mockEvent);
     recordId = record.id;
     // :snippet-start: drlFetchReadRecord
     const drl = `https://dweb/${did}/read/records/${recordId}`;
@@ -66,17 +75,15 @@ describe('Testing upgrade to PWA', () => {
         files: [new Blob(['fake image data'], { type: 'image/png' })],
       },
     };
-    const record = await uploadImage(mockEvent)
+    const record = await uploadImage(mockEvent);
     recordId = record.id;
     const drl = `https://dweb/${did}/read/records/${recordId}`;
     const response = await fetch(drl);
     const imageUrl = URL.createObjectURL(await response.blob());
-      return (
-         `
+    return `
           // :snippet-start: renderImageUrlTag
          <img src="${imageUrl}" alt="uploaded image" />
          // :snippet-end:
-         `
-      )
+         `;
   });
 });

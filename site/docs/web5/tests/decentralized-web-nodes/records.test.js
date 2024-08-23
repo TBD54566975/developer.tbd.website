@@ -3,8 +3,8 @@ import { test, beforeAll, expect, describe } from 'vitest';
 import {
   readRecordFromId,
   deleteRecordFromDid,
-} from '../../../../../../code-snippets/web5/build/decentralized-web-nodes/records';
-import { setUpWeb5 } from '../../../setup-web5';
+} from '../../../../code-snippets/web5/build/decentralized-web-nodes/records';
+import { setUpWeb5 } from '../../../test-utils/setup-web5';
 
 let web5;
 let record;
@@ -18,7 +18,6 @@ describe('records', () => {
   });
 
   describe('tests for /api/web5-js/dwn/records', async () => {
-
     test('readRecordFromId reads a record', async () => {
       const text = 'readRecordFromId';
       const { record: textRecord } = await web5.dwn.records.create({
@@ -33,7 +32,7 @@ describe('records', () => {
 
     test('deleteRecordFromDid deletes a record', async () => {
       const { record } = await web5.dwn.records.create({
-        data: "delete me",
+        data: 'delete me',
         message: {
           dataFormat: 'text/plain',
         },

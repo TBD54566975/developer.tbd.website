@@ -1,9 +1,7 @@
 import { test, expect, describe } from 'vitest';
 import { DidDht } from '@web5/dids';
 import { VerifiableCredential } from '@web5/credentials';
-import {
-  signCredential,
-} from '../../../../../../code-snippets/web5/build/verifiable-credentials/vc-issuance';
+import { signCredential } from '../../../../code-snippets/web5/build/verifiable-credentials/vc-issuance';
 
 const employer = await DidDht.create();
 const employee = await DidDht.create();
@@ -17,10 +15,10 @@ describe('issue a credential', () => {
       subject: employee.uri,
       expirationDate: '2023-09-30T12:34:56Z',
       data: {
-        "position": "Software Developer",
-        "startDate": "2023-04-01T12:34:56Z",
-        "employmentStatus": "Contractor"
-      }
+        position: 'Software Developer',
+        startDate: '2023-04-01T12:34:56Z',
+        employmentStatus: 'Contractor',
+      },
     });
     // :snippet-end:
 
@@ -48,6 +46,8 @@ describe('issue a credential', () => {
       .toHaveProperty('employmentStatus', 'Contractor');
 
     expect(vc_jwt_employment).toBeDefined();
-    expect(vc_jwt_employment).toMatch(/^[a-zA-Z0-9-_]+\.[a-zA-Z0-9-_]+\.[a-zA-Z0-9-_]+$/);
+    expect(vc_jwt_employment).toMatch(
+      /^[a-zA-Z0-9-_]+\.[a-zA-Z0-9-_]+\.[a-zA-Z0-9-_]+$/,
+    );
   });
 });

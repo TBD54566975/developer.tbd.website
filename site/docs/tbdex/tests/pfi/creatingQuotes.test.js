@@ -1,9 +1,9 @@
 import { Rfq, Quote, Parser } from '@tbdex/http-server';
 import { DevTools } from '@tbdex/http-client';
 import { DidDht } from '@web5/dids';
-import { OfferingsApiProvider } from './offeringsApiProvider'
-import { ExchangesApiProvider } from './exchangesApiProvider'
-import { MockDataProvider } from '../../utils/mockDataProvider'
+import { OfferingsApiProvider } from './offeringsApiProvider';
+import { ExchangesApiProvider } from './exchangesApiProvider';
+import { MockDataProvider } from '../../../test-utils/mockDataProvider';
 import { vi, test, expect, describe, beforeAll } from 'vitest';
 
 let pfiDid;
@@ -18,20 +18,22 @@ describe('PFI: Quotes', () => {
   beforeAll(async () => {
     // Set up providers and DID
     pfiDid = await DidDht.create({
-      options:{
+      options: {
         publish: true,
-        services: [{
+        services: [
+          {
             id: 'pfi',
             type: 'PFI',
-            serviceEndpoint: 'https://example.com/'
-        }]
-      }
+            serviceEndpoint: 'https://example.com/',
+          },
+        ],
+      },
     });
 
     senderDid = await DidDht.create({
-      options: { publish: true }
-    })
-    
+      options: { publish: true },
+    });
+
     offeringsApiProvider = new OfferingsApiProvider(pfiDid);
     exchangesApiProvider = new ExchangesApiProvider();
 
@@ -39,24 +41,24 @@ describe('PFI: Quotes', () => {
 
     message = await DevTools.createRfq({
       sender: senderDid,
-      receiver: pfiDid
+      receiver: pfiDid,
     });
     await message.sign(senderDid);
- 
+
     mockOffering = DevTools.createOffering({
       from: pfiDid.uri,
-      offeringData: DevTools.createOfferingData()
-    })
+      offeringData: DevTools.createOfferingData(),
+    });
     await mockOffering.sign(pfiDid);
-
 
     message.offeringId = mockOffering.id;
     offeringsApiProvider.setOffering(mockOffering);
 
-
-    dataProvider.setupInsert("exchange", "", () => { return });
+    dataProvider.setupInsert('exchange', '', () => {
+      return;
+    });
   });
-  
+
   test('PFI creates offering', async () => {
     // :snippet-start: pfiWriteOfferingJs
     // Write the message to your exchanges database
@@ -65,17 +67,17 @@ describe('PFI: Quotes', () => {
       messagekind: message.kind,
       messageid: message.id,
       subject: message.subject,
-      message: await Parser.parseMessage(message)
+      message: await Parser.parseMessage(message),
     });
-  
+
     //highlight-start
     const offering = await offeringsApiProvider.getOffering(message.offeringId);
     //highlight-end
     // :snippet-end:
-  })
+  });
 
   test('PFI creates and signs quote', async () => {
-    const offering = mockOffering
+    const offering = mockOffering;
 
     // :snippet-start: pfiCreateQuoteJs
     // Set the Quote's expiration date for 10 days from now
@@ -87,7 +89,7 @@ describe('PFI: Quotes', () => {
         from: pfiDid.uri,
         to: message.from,
         exchangeId: message.exchangeId,
-        protocol: '1.0'
+        protocol: '1.0',
       },
       data: {
         expiresAt: quoteExpiration.toLocaleDateString('en-us'),
@@ -95,31 +97,30 @@ describe('PFI: Quotes', () => {
           currencyCode: offering.data.payin.currencyCode,
           amount: '0.01',
           fee: '0.0001',
-          paymentInstruction : {
+          paymentInstruction: {
             link: 'https://example.com/paymentInstructions',
-            instruction: 'Detailed payment instructions'
-          }
+            instruction: 'Detailed payment instructions',
+          },
         },
         payout: {
           currencyCode: offering.data.payout.currencyCode,
           amount: '1000.00',
-          paymentInstruction : {
+          paymentInstruction: {
             link: 'https://example.com/paymentInstructions',
-            instruction: 'Detailed payout instructions'
-          }
-        }
-      }
+            instruction: 'Detailed payout instructions',
+          },
+        },
+      },
     });
     // :snippet-end:
-  
+
     exchangesApiProvider.setWrite();
-  
+
     // :snippet-start: pfiSignQuoteJs
     await quote.sign(pfiDid);
     exchangesApiProvider.write(quote);
     // :snippet-end:
     const signature = await quote.verifySignature();
     expect(signature).toBeDefined();
-  })
-
-})
+  });
+});

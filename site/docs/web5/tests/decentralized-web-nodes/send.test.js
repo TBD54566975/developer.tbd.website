@@ -7,8 +7,8 @@ import {
   sendRecordToRemoteDWNs,
   sendProtocolToRemoteDWNs,
   sendRecordToDWNOfRecipient,
-} from '../../../../../../code-snippets/web5/build/decentralized-web-nodes/send';
-import { setUpWeb5 } from '../../../setup-web5';
+} from '../../../../code-snippets/web5/build/decentralized-web-nodes/send';
+import { setUpWeb5 } from '../../../test-utils/setup-web5';
 
 let web5;
 let did;
@@ -38,9 +38,7 @@ describe('send', () => {
       },
       structure: {
         myobject: {
-          $actions: [
-            { who: 'anyone', can: ['create', 'read'] },
-          ],
+          $actions: [{ who: 'anyone', can: ['create', 'read'] }],
         },
       },
     };
@@ -71,9 +69,7 @@ describe('send', () => {
       },
       structure: {
         myobject: {
-          $actions: [
-            { who: 'anyone', can: ['create', 'read'] },
-          ],
+          $actions: [{ who: 'anyone', can: ['create', 'read'] }],
         },
       },
     };

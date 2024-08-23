@@ -4,8 +4,8 @@ import {
   connectWithAgentAndConnectedDid,
   connectWithSyncConfig,
   connectToCommunityNode,
-} from '../../../../../../code-snippets/api/web5-js';
-import { setUpWeb5 } from '../../../setup-web5';
+} from '../../../../code-snippets/api/web5-js';
+import { setUpWeb5 } from '../../../test-utils/setup-web5';
 
 // Mock needed to not conflict with globalThis.web5
 vi.mock('@web5/api', () => {

@@ -1,6 +1,6 @@
 import { test, expect, beforeAll, describe, vi } from 'vitest';
-import { createAliceDid } from '../../../../../../code-snippets/web5/build/apps/upgrade-to-web5';
-import { setUpWeb5 } from '../../../setup-web5';
+import { createAliceDid } from '../../../../code-snippets/web5/build/apps/upgrade-to-web5';
+import { setUpWeb5 } from '../../../test-utils/setup-web5';
 
 let web5;
 

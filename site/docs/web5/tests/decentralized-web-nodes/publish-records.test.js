@@ -3,8 +3,8 @@ import { test, beforeAll, expect, describe } from 'vitest';
 import {
   createPublishedRecord,
   createRecordWithDatePublished,
-} from '../../../../../../code-snippets/web5/build/decentralized-web-nodes/publishing-records';
-import { setUpWeb5 } from '../../../setup-web5';
+} from '../../../../code-snippets/web5/build/decentralized-web-nodes/publishing-records';
+import { setUpWeb5 } from '../../../test-utils/setup-web5';
 
 let web5;
 let did;

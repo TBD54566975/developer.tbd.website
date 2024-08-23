@@ -6,8 +6,8 @@ import {
   uploadImage,
   uploadFile,
   createMixedRecord,
-} from '../../../../../../code-snippets/web5/build/decentralized-web-nodes/write-to-dwn';
-import { setUpWeb5 } from '../../../setup-web5';
+} from '../../../../code-snippets/web5/build/decentralized-web-nodes/write-to-dwn';
+import { setUpWeb5 } from '../../../test-utils/setup-web5';
 
 let web5;
 let did;
@@ -25,12 +25,12 @@ describe('write-to-dwn', () => {
     // Create a plain text record
     const { record } = await web5.dwn.records.create({
       data: {
-        content: "Hello Web5",
-        description: "Keep Building!"
+        content: 'Hello Web5',
+        description: 'Keep Building!',
       },
       message: {
-        dataFormat: 'application/json'
-      }
+        dataFormat: 'application/json',
+      },
     });
     // :snippet-end:
     expect(record).toBeDefined();
@@ -41,14 +41,14 @@ describe('write-to-dwn', () => {
     // Create a JSON record
     const { record } = await web5.dwn.records.create({
       data: {
-        content: "Hello Web5",
-        description: "Keep Building!"
+        content: 'Hello Web5',
+        description: 'Keep Building!',
       },
       message: {
-        dataFormat: 'application/json'
-      }
+        dataFormat: 'application/json',
+      },
     });
-     // :snippet-end:
+    // :snippet-end:
     expect(record).toBeDefined();
   });
 
@@ -61,12 +61,12 @@ describe('write-to-dwn', () => {
     // :snippet-start: uploadImage
     // Create a blob record
     async function upload(event) {
-      const blob = new Blob(event.currentTarget.files, { type: "image/png" });
+      const blob = new Blob(event.currentTarget.files, { type: 'image/png' });
       const { record } = await web5.dwn.records.create({
         data: blob,
         message: {
-          dataFormat: "image/png"
-        }
+          dataFormat: 'image/png',
+        },
       });
       return record;
     }
@@ -90,9 +90,9 @@ describe('write-to-dwn', () => {
       const { status: fileStatus, record } = await web5.dwn.records.create({
         data: file,
         message: {
-          schema: "https://schema.org/path/to/schema",
-          dataFormat: "application/octet-stream"
-        }
+          schema: 'https://schema.org/path/to/schema',
+          dataFormat: 'application/octet-stream',
+        },
       });
       return record;
     }
@@ -115,22 +115,22 @@ describe('write-to-dwn', () => {
         base64Image = btoa(
           new Uint8Array(binaryImage).reduce(
             (data, byte) => data + String.fromCharCode(byte),
-            ""
-          )
+            '',
+          ),
         );
       }
 
       const messageData = {
         username,
         message: messageText,
-        image: base64Image
+        image: base64Image,
       };
 
       const { record } = await web5.dwn.records.create({
         data: messageData,
         message: {
-          schema: "http://schema-registry.org/message",
-          dataFormat: "application/json"
+          schema: 'http://schema-registry.org/message',
+          dataFormat: 'application/json',
         },
       });
       return record;
@@ -164,24 +164,23 @@ test('createRecordFrom creates a record from an existing record', async () => {
   expect(newRecordDataText).toBe('I am a new version of the original record!');
 });
 
-test('createRecordWithTags creates a record with tags', async() => {
-   
+test('createRecordWithTags creates a record with tags', async () => {
   // :snippet-start: createRecordWithTags
   // Creates a record with tags
   const { record } = await web5.dwn.records.create({
-    data: "Chocolate Chip Cookies",
+    data: 'Chocolate Chip Cookies',
     message: {
       dataFormat: 'application/json',
-      tags    : {
+      tags: {
         dishType: 'Dessert',
-        dietaryRestriction: 'Contains Gluten'
-      }
-    }
+        dietaryRestriction: 'Contains Gluten',
+      },
+    },
   });
- // :snippet-end:
+  // :snippet-end:
   expect(record.tags).to.exist;
   expect(record.tags).to.deep.equal({
     dishType: 'Dessert',
-    dietaryRestriction: 'Contains Gluten'
+    dietaryRestriction: 'Contains Gluten',
   });
-})
+});

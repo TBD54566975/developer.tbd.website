@@ -1,5 +1,5 @@
 import { test, beforeAll, expect, describe } from 'vitest';
-import { setUpWeb5 } from './setup-web5';
+import { setUpWeb5 } from '../../test-utils/setup-web5';
 import { VerifiableCredential } from '@web5/credentials';
 
 // This is the web5 instance that will be referred to for all tests. This comes back as a result from Web5.connect() being used in the didCreate function.
@@ -24,7 +24,9 @@ describe('/site/tests/quickstart.test.js', async () => {
 
   test('getBearerDid returns a bearer identity', async () => {
     // :snippet-start: getBearerDid
-    const { did: aliceBearerDid } = await web5.agent.identity.get({ didUri: aliceDid });
+    const { did: aliceBearerDid } = await web5.agent.identity.get({
+      didUri: aliceDid,
+    });
     // :snippet-end:
     expect(aliceBearerDid.uri).toBe(aliceDid);
   });
@@ -38,15 +40,17 @@ describe('/site/tests/quickstart.test.js', async () => {
       data: {
         name: 'Alice Smith',
         completionDate: new Date().toISOString(),
-        expertiseLevel: 'Beginner'
-      }
+        expertiseLevel: 'Beginner',
+      },
     });
     // :snippet-end:
     expect(vc.vcDataModel.issuer).toBe(aliceDid);
   });
 
   test('signQuickstartVc returns a jwt', async () => {
-    const { did: aliceBearerDid } = await web5.agent.identity.get({ didUri: aliceDid });
+    const { did: aliceBearerDid } = await web5.agent.identity.get({
+      didUri: aliceDid,
+    });
     class Web5QuickstartCompletionCredential {
       constructor(name, completionDate, expertiseLevel) {
         this.name = name;
@@ -63,7 +67,7 @@ describe('/site/tests/quickstart.test.js', async () => {
         'Alice Smith',
         '2024-05-22',
         'Beginner',
-      )
+      ),
     });
     // :snippet-start: signQuickstartVc
     const signedVc = await vc.sign({ did: aliceBearerDid });
@@ -72,7 +76,9 @@ describe('/site/tests/quickstart.test.js', async () => {
   });
 
   test('writeQuickstartVcToDwn writes a signed vc to dwn', async () => {
-    const { did: aliceBearerDid } = await web5.agent.identity.get({ didUri: aliceDid });
+    const { did: aliceBearerDid } = await web5.agent.identity.get({
+      didUri: aliceDid,
+    });
     class Web5QuickstartCompletionCredential {
       constructor(name, completionDate, expertiseLevel) {
         this.name = name;
@@ -89,7 +95,7 @@ describe('/site/tests/quickstart.test.js', async () => {
         'Alice Smith',
         '2024-05-22',
         'Beginner',
-      )
+      ),
     });
     const signedVc = await vc.sign({ did: aliceBearerDid });
     // :snippet-start: writeQuickstartVcToDwn
@@ -98,15 +104,17 @@ describe('/site/tests/quickstart.test.js', async () => {
       message: {
         schema: 'Web5QuickstartCompletionCredential',
         dataFormat: 'application/vc+jwt',
-        published: true
-      }
+        published: true,
+      },
     });
     // :snippet-end:
     expect(record.author).toBe(aliceDid);
   });
 
   test('readQuickstartVc reads jwt from DWN', async () => {
-    const { did: aliceBearerDid } = await web5.agent.identity.get({ didUri: aliceDid });
+    const { did: aliceBearerDid } = await web5.agent.identity.get({
+      didUri: aliceDid,
+    });
     class Web5QuickstartCompletionCredential {
       constructor(name, completionDate, expertiseLevel) {
         this.name = name;
@@ -123,7 +131,7 @@ describe('/site/tests/quickstart.test.js', async () => {
         'Alice Smith',
         '2024-05-22',
         'Beginner',
-      )
+      ),
     });
     const signedVc = await vc.sign({ did: aliceBearerDid });
 
@@ -132,8 +140,8 @@ describe('/site/tests/quickstart.test.js', async () => {
       message: {
         schema: 'Web5QuickstartCompletionCredential',
         dataFormat: 'application/vc+jwt',
-        published: true
-      }
+        published: true,
+      },
     });
     // :snippet-start: readQuickstartVc
     const readSignedVc = await record.data.text();
@@ -142,7 +150,9 @@ describe('/site/tests/quickstart.test.js', async () => {
   });
 
   test('parseQuickstartVc reads jwt from DWN', async () => {
-    const { did: aliceBearerDid } = await web5.agent.identity.get({ didUri: aliceDid });
+    const { did: aliceBearerDid } = await web5.agent.identity.get({
+      didUri: aliceDid,
+    });
     class Web5QuickstartCompletionCredential {
       constructor(name, completionDate, expertiseLevel) {
         this.name = name;
@@ -159,7 +169,7 @@ describe('/site/tests/quickstart.test.js', async () => {
         'Alice Smith',
         '2024-05-22',
         'Beginner',
-      )
+      ),
     });
 
     const signedVc = await vc.sign({ did: aliceBearerDid });
@@ -169,8 +179,8 @@ describe('/site/tests/quickstart.test.js', async () => {
       message: {
         schema: 'Web5QuickstartCompletionCredential',
         dataFormat: 'application/vc+jwt',
-        published: true
-      }
+        published: true,
+      },
     });
 
     const readSignedVc = await record.data.text();
@@ -179,5 +189,4 @@ describe('/site/tests/quickstart.test.js', async () => {
     // :snippet-end:
     expect(parsedVc.vcDataModel.issuer).toBe(aliceDid);
   });
-
 });

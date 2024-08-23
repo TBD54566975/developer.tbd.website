@@ -1,6 +1,6 @@
 import { test, expect, describe } from 'vitest';
-import { getDwnEndpoints } from '../../../../../../code-snippets/web5/build/decentralized-web-nodes/use-identity-agents';
-import { setUpIdentityManager } from '../../../setup-web5';
+import { getDwnEndpoints } from '../../../../code-snippets/web5/build/decentralized-web-nodes/use-identity-agents';
+import { setUpIdentityManager } from '../../../test-utils/setup-web5';
 
 let agent;
 

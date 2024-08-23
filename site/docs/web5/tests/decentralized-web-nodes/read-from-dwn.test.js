@@ -1,6 +1,6 @@
 import { test, beforeAll, expect, describe } from 'vitest';
-import { readFromDwn } from '../../../../../../code-snippets/web5/build/decentralized-web-nodes/read-from-dwn';
-import { setUpWeb5 } from '../../../setup-web5';
+import { readFromDwn } from '../../../../code-snippets/web5/build/decentralized-web-nodes/read-from-dwn';
+import { setUpWeb5 } from '../../../test-utils/setup-web5';
 
 let web5;
 

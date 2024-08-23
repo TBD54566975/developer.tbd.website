@@ -1,7 +1,7 @@
 import { test, expect, vi, describe, beforeAll } from 'vitest';
 import { DidDht, DidJwk } from '@web5/dids';
-import { createDidAutomatically } from '../../../../../../code-snippets/web5/build/decentralized-identifiers/how-to-create-did';
-import { setUpWeb5 } from '../../../setup-web5';
+import { createDidAutomatically } from '../../../../code-snippets/web5/build/decentralized-identifiers/how-to-create-did';
+import { setUpWeb5 } from '../../../test-utils/setup-web5';
 
 let web5;
 
@@ -24,7 +24,6 @@ describe('how-to-create-did', () => {
       };
     });
   });
-
 
   test('show required imports to create did', async () => {
     const requiredImports = `
@@ -51,14 +50,14 @@ import { DidJwk } from '@web5/dids'
     const didDht = await DidDht.create({ publish: true });
 
     // DID and its associated data which can be exported and used in different contexts/apps
-    const portableDid = didDht.export()
+    const portableDid = didDht.export();
 
     // DID string
     const did = didDht.uri;
 
     // DID Document
     const didDocument = JSON.stringify(didDht.document);
-    
+
     // :snippet-end:
 
     expect(did).toMatch(/^did:dht:/);
@@ -70,7 +69,7 @@ import { DidJwk } from '@web5/dids'
     const didJwk = await DidJwk.create();
 
     //DID and its associated data which can be exported and used in different contexts/apps
-    const portableDid = didJwk.export()
+    const portableDid = didJwk.export();
 
     //DID string
     const did = didJwk.uri;
