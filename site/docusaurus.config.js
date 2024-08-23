@@ -204,6 +204,11 @@ let config = {
             to: '#ask',
             label: 'Ask 🤖',
           },
+          {
+            label: 'Web5 SDK',
+            docsPluginId: 'web5',
+            type: 'docsVersionDropdown',
+          },
           // {
           //   to: 'https://tbd.website',
           //   position: 'right',

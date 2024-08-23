@@ -1,0 +1,592 @@
+---
+sidebar_position: 3
+---
+
+import PackageJson from '@site/src/components/PackageJson';
+
+# Build a Shared Todo App
+
+In the [Build a Todo App](/docs/web5/apps/todo-app-tutorial) tutorial, we learned how to build a single-user decentralized todo app with `Web5.js` and `Vue.js`.
+
+This tutorial takes it a step further. We will expand on the core features and build out a more collaborative app that allows multiple users work on the same, shared todo list.
+
+This is also a multi-paged app, so we will learn how we can reuse a `web5` instance across multiple pages.
+
+## Objectives
+
+Bob and Alice are two friends that love doing things together. They often have specific goals and a bunch of tasks each of them have to complete to achieve this goal.
+
+We will build a decentralized shared todo app that allows them to collaborate on their tasks while also being able to have these tasks on other apps they use if needed.
+
+We are going to learn how to:
+- Enforce permissions or authorization on records through [protocols](/docs/web5/decentralized-web-nodes/what-are-protocols)
+- Send and update records across multiple users' [Decentralized Web Nodes (DWN)](/docs/web5/decentralized-web-nodes/what-are-dwns)
+
+By the end of this tutorial, we'll have gained an understanding of protocols, DWN to DWN communication, and how to build a multi-user app on the decentralized web.
+
+
+## Our Toolkit
+
+We will use the following tools to build our app:
+- [Web5 SDK](https://www.npmjs.com/package/@web5/api) - a JavaScript SDK for building decentralized web apps
+- [NuxtJS](https://nuxtjs.org/) - a VueJS framework for building web applications
+- [TailwindCSS](https://tailwindcss.com/) - a utility-first CSS framework for rapidly building custom designs
+
+## Get the Skeleton App
+
+To follow this tutorial, you can use your own UI design or use our starter code. As you work through the tutorial, we'll add logic to the various methods and make adjustments to the UI.
+
+To access the starter code, follow the instructions below or explore the project directly in CodeSandbox.
+
+Note: If you don't have `pnpm` installed, you can install it by running `npm install -g pnpm`.
+
+```bash
+git clone https://github.com/TBD54566975/tbd-examples.git
+cd tbd-examples/javascript/todo-starter
+pnpm install --shamefully-hoist
+pnpm dev
+```
+
+
+[![Play in CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/TBD54566975/tbd-examples/tree/main/tbd-examples/javascript/shared-todo-starter)
+
+<details>
+<summary>Finished Shared Todo App</summary>
+<p>
+
+If you’d like to skip ahead and see the finished version of this tutorial, you can check out the running app on CodeSandbox.
+
+[![Play in CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/TBD54566975/tbd-examples/tree/main/javascript/shared-todo)
+
+You can also download and run the example by executing:
+
+Note: If you don't have `pnpm` installed, you can install it by running `npm install -g pnpm`.
+
+```bash
+git clone https://github.com/TBD54566975/tbd-examples.git
+cd tbd-examples/javascript/shared-todo
+pnpm install --shamefully-hoist
+pnpm dev
+```
+
+
+</p>
+</details>
+
+## Set Up the App
+
+Add `Web5` to package.json in the `dependencies` section:
+
+<PackageJson />
+
+Install the dependencies and get the project running:
+
+```bash
+npm install
+npm run dev
+```
+
+You should now have the app running on [http://localhost:3000](http://localhost:3000).
+
+## App Architecture
+
+We are building a [NuxtJS App](https://nuxt.com/) using file-based routing through the `pages` folder. We have the following key files in our app:
+
+- `pages/index.vue` - the home page of the app
+- `pages/todos/[id].vue` - the page for viewing a todo list
+- `assets/shared-todo-protocol.json`: a JSON file defining the protocol used for sharing to-do lists
+
+Our shared todo app will have the following features that we need to build out:
+
+- Creating a todo list with another user
+- Displaying all todo lists with different users
+- Adding tasks to a todo list
+- Marking tasks as completed
+
+## Initialize Constants and Variables
+
+We are building a multi-paged application and as a result, we will need to access Web5 on multiple pages. However we want to avoid running `Web5.connect()` on every page as it would impact performance. Instead, we will create a Nuxt plugin and have our Web5 instance and DID available across our application.
+
+Create a new file at `plugins/web5.client.js` and add the following code:
+
+```js title="plugins/web5.client.js"
+    import { Web5 } from '@web5/api';
+
+    export default defineNuxtPlugin({
+        async setup (nuxtApp) {
+            console.log("Plugin loaded")
+            let web5;
+            let myDID;
+
+            ({ web5, did: myDID } = await Web5.connect({
+                sync: '5s'
+            }));
+
+            console.log("Here's your DID", myDID)
+
+            return {
+                provide: {
+                    web5,
+                    myDID
+                }
+            };
+        },
+    });
+```
+The first time a user accesses your Shared Todo app, you’ll need to handle creating an _account_ for them - this means ensuring they have a DID and DWN available to access their app data. Once they come back for subsequent sessions, you’ll want to fetch and load that data for them.
+
+
+In the code above, we import and connect to Web5 while setting `sync` interval to 5 seconds. This is the amount of time between automatic syncs of the user's local and remote DWNs. We also return the `web5` and `myDID` variables to be available across our application.
+
+Open `pages/index.vue` and add the following code after all the `import` statements under `<script setup>`:
+
+```js title="pages/index.vue"
+// Get our global web5 instance and DID.
+const { $web5: web5, $myDID: myDID } = useNuxtApp();
+
+// The lists of existing todo items
+const sharedList = ref([]);
+```
+
+The `web5` object is the single entry point for all Web5 operations. You've also set up a `sharedList` array to hold our shared lists, and a variable to remember the app user's decentralized identifier (DID) as `myDid`.
+
+## Set Permissions and Authorizations
+[Protocols](/docs/web5/decentralized-web-nodes/what-are-protocols) help define both the data schema and permissions as it relates to a certain application or use case. It details what objects are stored as part of the application and who has what permissions on these objects.
+
+For our app, let's define the objects that we want to use in our app: `list` and `todo`; and also define who has what permissions:
+
+- Anyone can read and write a list
+- The author and recipient of a list can write to the todo list
+
+Create a new file called `shared-todo-protocol.json` under the `assets/` folder and add the following protocol defintion:
+
+```json title="assets/shared-todo-protocol.json"
+{
+  "protocol": "https://didcomm.org/shared-todo",
+  "published": true,
+  "types": {
+    "list": {
+      "schema": "https://didcomm.org/shared-todo/schemas/list.json",
+      "dataFormats": ["application/json"]
+    },
+    "todo": {
+      "schema": "https://didcomm.org/shared-todo/schemas/todo.json",
+      "dataFormats": ["application/json"]
+    }
+  },
+  "structure": {
+    "list": {
+      "$actions": [
+        {
+          "who": "anyone",
+          "can": ["read", "create"]
+        }
+      ],
+      "todo": {
+        "$actions": [
+          {
+            "who": "author",
+            "of": "list",
+            "can": ["create"]
+          },
+          {
+            "who": "recipient",
+            "of": "list",
+            "can": ["create"]
+          }
+        ]
+      }
+    }
+  }
+}
+```
+
+### Install the Protocol
+To implement this protocol, we have to install it in our app for any of the users.
+
+Let's import the protocol definition:
+
+```js title="pages/index.vue"
+import protocolDefinition from "~/assets/shared-todo-protocol.json";
+```
+
+Now, we can create the function that checks if the protocol is installed and installs it if it isn't.
+
+```js title="pages/index.vue"
+const configureProtocol = async () => {
+    // query the list of existing protocols on the DWN
+    const { protocols, status } = await web5.dwn.protocols.query({
+        message: {
+            filter: {
+                protocol: protocolDefinition.protocol,
+            }
+        }
+    });
+
+    if(status.code !== 200) {
+        alert('Error querying protocols');
+        console.error('Error querying protocols', status);
+        return;
+    }
+
+    // if the protocol already exists, we return
+    if(protocols.length > 0) {
+        console.log('Protocol already exists');
+        return;
+    }
+
+    // configure protocol on local DWN
+    const { status: configureStatus, protocol } = await web5.dwn.protocols.configure({
+        message: {
+            definition: protocolDefinition,
+        }
+    });
+
+    console.log('Protocol configured', configureStatus, protocol);
+}
+```
+
+Once this is done, we create an `onBeforeMount` function and call the `configureProtocol` function as the page loads.
+
+```js title="pages/index.vue"
+onBeforeMount(async () => {
+    await configureProtocol()
+});
+```
+
+## Create Shared List
+Right now, we have no existing lists, so we need to create one.
+
+We currently have the following variables already declared - `newTodo` and `sharedList`. We will use these to store the form data for a new list and all other existing lists respectively.
+
+
+```js title="pages/index.vue"
+const newTodo = ref({
+    title: '',
+    description: '',
+    recipientDID: '',
+});
+
+const sharedList = ref([]);
+```
+
+Now we proceed to update the `createSharedList` function.
+
+```js title="pages/index.vue"
+const createSharedList = async () => {
+    let recipientDID = newTodo.value.recipientDID;
+    const sharedListData = {
+        "@type": "list",
+        "title": newTodo.value.title,
+        "description": newTodo.value.description,
+        "author": myDID,
+        "recipient": newTodo.value.recipientDID,
+    }
+
+    newTodo.value = { title: '', description: '', recipientDID: '' }
+
+    try {
+        const { record } = await web5.dwn.records.create({
+            data: sharedListData,
+            message: {
+                protocol: protocolDefinition.protocol,
+                protocolPath: 'list',
+                schema: protocolDefinition.types.list.schema,
+                dataFormat: protocolDefinition.types.list.dataFormats[0],
+                recipient: recipientDID
+            }
+        });
+
+        const data = await record.data.json();
+        const list = {record, data, id: record.id};
+
+        sharedList.value.push(list);
+        showForm.value = false
+
+        const { status: sendStatus } = await record.send(recipientDID);
+
+        if (sendStatus.code !== 202) {
+            console.log("Unable to send to target did:" + sendStatus);
+            return;
+        }
+        else {
+            console.log("Shared list sent to recipient");
+        }
+    } catch (e) {
+        console.error(e);
+        return;
+    }
+}
+```
+
+To break this down, we are creating a new list with the following properties:
+- `@type`: the type of object we are creating (in our case, it is a list)
+- `title`: the title of the list
+- `description`: the description of the list
+- `author`: the DID of the author of the list
+- `recipient`: the DID of the recipient of the list
+
+Then we use the `web5.dwn.records.create` function to create the list, providing it with both the data and the protocol definition. The protocol definition ensures our data adheres to the correct permissions and structure.
+
+Now we have to ensure that the recipient also receives this new list data. And for that, we use `record.send()`.
+
+```js title="pages/index.vue"
+const { status: sendStatus } = await record.send(recipientDID);
+```
+
+But how do users get to easily copy and share their own DIDs with other users? We are going to implement a Copy DID feature.
+
+```js title="pages/index.vue"
+const copyDID = async() => {
+    await navigator.clipboard.writeText(myDID);
+    alert('DID copied to clipboard');
+}
+```
+
+And in the `<template>` section, we update the header to include the copy DID button.
+
+```html title="pages/index.vue"
+<header class="flex-col text-center mb-4">
+    <h1 class="text-2xl font-bold mb-4">Shared Todo</h1>
+    <p>Manage a set of todos towards your goals with friends.</p>
+    <button v-if="myDID" class="btn" id="copy-did" @click="copyDID">Copy your DID</button>
+</header>
+```
+
+We are now able to create new lists, which updates our UI immediately. The next step is to fetch existing lists from the DWN for both the authors and recipient.
+
+:::info
+## Testing the App
+To simulate multiple users with different DIDs in order to test the app, you can have a tab open in different browsers, or have one tab in normal browser mode and another tab in incognito mode.
+:::
+
+
+## Display Todo Lists
+
+Using our `onBeforeMount()` method, we've been able to initialize web5, and configure our protocol. We also use this method to fetch existing lists from the DWN.
+
+```js title="pages/index.vue"
+onBeforeMount(async () => {
+    ...
+
+    // Fetch shared todo lists
+    const{ records } = await web5.dwn.records.query({
+        message: {
+            filter: {
+                schema: protocolDefinition.types.list.schema,
+            },
+            dateSort: 'createdAscending'
+        }
+    });
+
+    console.log("Saved records", records);
+
+    // add entry to sharedList
+    for (let record of records) {
+        const data = await record.data.json();
+        const list = {record, data, id: record.id};
+        sharedList.value.push(list);
+    }
+...
+});
+```
+
+We are querying the DWN for all records that match the schema of our protocol. We then add each record to our `sharedList` array.
+
+🎉 We have completed the first feature of our app. We can now create todo lists and share them with another user.
+
+## Add Tasks
+The next part of our project involves adding specific todos to each list. We want both participants of the list to be able to add todos, but only the author of each task can mark it as done. This behaviour is enforced by the protocol that we added earlier.
+
+Using NuxtLink, we are able to navigate to our list page by passing the `listId` as a url parameter (e.g `localhost:3000/todos/[id]`). This is why we have `pages/todos/[id].vue` in our project to dynamically render based on the list we open.
+
+### Fetch List Details
+In our dynamic todo page, let's import the protocol definition document so it can be reused.
+
+```js title="pages/todos/[id].vue"
+import protocolDefinition from "~/assets/shared-todo-protocol.json";
+```
+
+We need to fetch the list details from the DWN so let's get the list id from the url parameter, get our global `web5` and `myDID` variables and use the `listId` to query the DWN for the list.
+
+```js title="pages/todos/[id].vue"
+const route = useRoute();
+const listId = ref(route.params.id);
+
+const { $web5: web5, $myDID: myDID } = useNuxtApp();
+
+
+onBeforeMount(async () => {
+    console.log("this is your DID", myDID);
+
+    // fetch shared list details
+    const { record } = await web5.dwn.records.read({
+        message: {
+            filter: {
+                recordId: listId.value
+            }
+        }
+    })
+
+    todoList = await record.data.json();
+
+    fetchingListInfo.value = false;
+});
+```
+
+We update the `todoList` variable with the data from the DWN which is shown on our page.
+
+### Fetch Tasks from List
+Every list comes with its own tasks. We can fetch this also in the `onBeforeMount()` method.
+
+```js title="pages/todos/[id].vue"
+onBeforeMount(async () => {
+    console.log("this is your DID", myDID);
+
+    // fetch shared list details
+    const { record } = await web5.dwn.records.read({
+        message: {
+            filter: {
+                recordId: listId.value
+            }
+        }
+    })
+
+    // fetch todos under list
+    const { records: todoRecords } = await web5.dwn.records.query({
+        message: {
+            filter: {
+                parentId: listId.value
+            },
+        }
+    })
+
+    todoList = await record.data.json();
+
+    // add entry to array
+    for (let record of todoRecords) {
+        const data = await record.data.json();
+        const todo = { record, data, id: record.id };
+        todoItems.value.push(todo);
+    }
+
+    fetchingListInfo.value = false;
+});
+```
+
+### Add Tasks to List
+To add a task, we want to connect it to the list as the parent, identify who authored it, store it with the schema matching the protocol and then also send it to the other party's DWN.
+
+To get the DID of the recipient to send the record to, since either of the author or recipient of the list could be the one creating the todo, we use a `getTodoRecipient()` method to help us out.
+
+```js title="pages/todos/[id].vue"
+let todoRecipient;
+
+const getTodoRecipient = () => {
+    if (myDID === todoList.author) {
+        return todoList.recipient;
+    } else {
+        return todoList.author;
+    }
+}
+
+```
+
+Then in the `onBeforeMount()` method, let's update the `todoRecipient` variable so that it's only updated when we've fetched the list details and gotten the participating DIDs.
+
+```js title="pages/todos/[id].vue"
+onBeforeMount(async () => {
+...
+
+    todoList = await record.data.json();
+    todoRecipient = await getTodoRecipient();
+
+...
+});
+```
+
+### Create Task
+We create a new todo by calling the `web5.dwn.records.create()` method. We pass the data we want to store, and the protocol definition.
+
+```js title="pages/todos/[id].vue"
+async function addTodo() {
+    const todoData = {
+        completed: false,
+        description: newTodoDescription.value,
+        author: myDID,
+        parentId: listId.value
+    };
+
+    newTodoDescription.value = '';
+
+    const { record: todoRecord, status: createStatus } = await web5.dwn.records.create({
+        data: todoData,
+        message: {
+            protocol: protocolDefinition.protocol,
+            protocolPath: 'list/todo',
+            schema: protocolDefinition.types.todo.schema,
+            dataFormat: protocolDefinition.types.todo.dataFormats[0],
+            parentContextId: listId.value,
+        }
+    });
+
+    const data = await todoRecord.data.json();
+    const todo = { todoRecord, data, id: todoRecord.id };
+    todoItems.value.push(todo);
+
+    const { status: sendStatus } = await todoRecord.send(todoRecipient);
+
+    if (sendStatus.code !== 202) {
+        console.log("Unable to send to target did:" + sendStatus);
+        return;
+    }
+    else {
+        console.log("Sent todo to recipient");
+    }
+}
+```
+
+## Toggle Todo Status
+We can toggle the status of a todo as completed by updating the `completed` property of the todo and sending it to the other party:
+
+```js title="pages/todos/[id].vue"
+async function toggleTodoComplete(todoItem) {
+    let toggledTodo;
+    let updatedTodoData;
+
+    for (let todo of todoItems.value) {
+        if (todoItem.id === todo.id) {
+            toggledTodo = todo;
+            todo.data.completed = !todo.data.completed;
+            updatedTodoData = { ...toRaw(todo.data) };
+            break;
+        }
+    }
+
+    // Get record in DWN
+    const { record } = await web5.dwn.records.read({
+        message: {
+            filter: {
+                recordId: toggledTodo.id
+            }
+        }
+    });
+
+    // Update the record in DWN
+    await record.update({ data: updatedTodoData });
+
+    const { status: sendStatus } = await record.send(todoRecipient);
+
+    if (sendStatus.code !== 202) {
+        console.log("Unable to send updated data to target did:", sendStatus);
+        return;
+    }
+    else {
+        console.log("Sent todo update to recipient");
+    }
+}
+```
+
+Congratulations! We've just built a multi-paged, collaborative and decentralized web app that can be used by multiple users. You can check out the finished version of the app running on CodeSandbox.
+
+[![Play in CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/TBD54566975/tbd-examples/tree/main/javascript/shared-todo)

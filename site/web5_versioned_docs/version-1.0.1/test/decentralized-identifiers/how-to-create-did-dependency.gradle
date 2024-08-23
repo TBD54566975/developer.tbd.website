@@ -1,0 +1,9 @@
+// kotlin Gradle dependencies
+// :snippet-start: createADidDependencyGradle
+repositories {
+    mavenCentral()
+}
+dependencies {
+    implementation("xyz.block:web5-dids:0.10.0")
+}
+ // :snippet-end:
