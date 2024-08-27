@@ -7,7 +7,6 @@ const util = require("util");
 const sdkVersionsPath = path.resolve(__dirname, "sdk-versions.json");
 const directoriesToUpdate = [
   __dirname,
-  path.resolve(__dirname, "./examples/tutorials"),
   path.resolve(__dirname, "./site/testsuites"),
 ];
 
