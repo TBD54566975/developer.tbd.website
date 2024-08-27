@@ -225,7 +225,7 @@ function CommunityIndex() {
           Filter through our exciting events: 👀 Show & Tells for project
           highlights, 🏢 Office Hours for open discussions, 💡 Workshops for
           skill-building, 🎮 Live Streams for everything fun. Miss an event?
-          checkout our{' '}
+          Check out our{' '}
           <a
             href="https://www.youtube.com/@tbd.videos"
             target="_blank"
