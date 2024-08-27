@@ -25,13 +25,36 @@ function clearOutputDirectory(outputDirectory) {
   }
 }
 
+function findTestDirectories(baseDir) {
+  let testDirectories = [];
+
+  function traverseDirectory(currentDir) {
+    const files = fs.readdirSync(currentDir);
+    for (const file of files) {
+      const filePath = path.join(currentDir, file);
+      const stats = fs.statSync(filePath);
+
+      if (stats.isDirectory()) {
+        if (file === "test") {
+          testDirectories.push(filePath);
+        } else {
+          traverseDirectory(filePath);
+        }
+      }
+    }
+  }
+
+  traverseDirectory(baseDir);
+  return testDirectories;
+}
+
 function main() {
   const args = process.argv.slice(2);
   const configPath = findConfigFile();
   const configDir = path.dirname(configPath);
   let config = require(configPath);
 
-  config.rootDirectory = path.resolve(configDir, config.rootDirectory);
+  // Resolve paths for output directory
   config.outputDirectory = path.resolve(configDir, config.outputDirectory);
 
   // Check for "clear" argument
@@ -62,8 +85,18 @@ function main() {
     process.exit(1);
   }
 
-  const extractor = new SnippetExtractor(config);
-  extractor.extractSnippets();
+  // Process each root directory or traverse dynamically
+  let directoriesToProcess = config.rootDirectories
+    .map((rootDir) => path.resolve(configDir, rootDir))
+    .reduce((acc, dir) => {
+      return acc.concat(findTestDirectories(dir));
+    }, []);
+
+  directoriesToProcess.forEach((directory) => {
+    config.rootDirectory = directory; // Set the current root directory
+    const extractor = new SnippetExtractor(config);
+    extractor.extractSnippets();
+  });
 }
 
 main();

@@ -1,5 +1,9 @@
 {
-  "rootDirectory": "./site/testsuites",
+  "rootDirectories": [
+    "./site/testsuites",
+    "./site/docs/tbdex/test",
+    "./site/docs/web5/test"
+  ],
   "outputDirectory": "./site/snippets",
   "fileExtensions": [".js", ".ts", ".kt", ".gradle", ".xml", ".bash", ".swift"],
   "exclude": ["pfiOverviewReadOfferingsJs", "pfiOverviewWriteJs", "pfiOverviewWriteOfferingsJs"],
