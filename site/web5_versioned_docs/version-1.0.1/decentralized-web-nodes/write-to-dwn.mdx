@@ -1,0 +1,40 @@
+---
+sidebar_position: 3
+---
+import CodeSnippet from '@site/src/components/CodeSnippet';
+
+# Write DWN Records
+
+Various data types, such as text, JSON, images, streams or files, can be stored as records in a DWN. Below are examples of each.
+
+### Create a text record
+
+<CodeSnippet snippetName='createTextRecord'/>
+
+### Create a JSON record
+
+<CodeSnippet snippetName='createJsonRecord'/>
+
+### Create a blob or image record
+
+<CodeSnippet snippetName='uploadImage'/>
+
+### Create a file record
+
+<CodeSnippet snippetName='uploadFile'/>
+
+### Create records with mixed data
+You can also store mixed data via JSON - including text, images, or files.
+
+<CodeSnippet snippetName='createMixedRecord'/>
+
+### Create records from an existing record
+You can create a new version of a record while maintaining a link to the version of the original record.
+
+<CodeSnippet snippetName='createRecordFrom'/>
+
+### Create records with tags
+You can assign tags to records to enable filtering by specific keywords.
+<CodeSnippet snippetName='createRecordWithTags'/>
+
+For more information on writing records to DWNs, see our [API Guide](https://tbd54566975.github.io/web5-js/classes/_web5_api.DwnApi.html#records).

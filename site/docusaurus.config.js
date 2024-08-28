@@ -74,6 +74,26 @@ let config = {
     //     sidebarPath: require.resolve('./learn-sidebars.js'),
     //   },
     // ],
+    [
+      '@docusaurus/plugin-content-docs',
+      {
+        id: 'tbdex',
+        path: 'docs/tbdex',
+        routeBasePath: 'docs/tbdex',
+        sidebarPath: require.resolve('./tbdex-sidebars.js'),
+        breadcrumbs: false,
+      },
+    ],
+    [
+      '@docusaurus/plugin-content-docs',
+      {
+        id: 'web5',
+        path: 'docs/web5',
+        routeBasePath: 'docs/web5',
+        sidebarPath: require.resolve('./web5-sidebars.js'),
+        breadcrumbs: false,
+      },
+    ],
   ],
   scripts: [
     {
@@ -95,6 +115,8 @@ let config = {
       /** @type {import('@docusaurus/preset-classic').Options} */
       ({
         docs: {
+          path: 'docs/common',
+          routeBasePath: 'docs',
           sidebarPath: require.resolve('./sidebars.js'),
           breadcrumbs: false,
         },
@@ -181,6 +203,11 @@ let config = {
           {
             to: '#ask',
             label: 'Ask 🤖',
+          },
+          {
+            label: 'Web5 SDK',
+            docsPluginId: 'web5',
+            type: 'docsVersionDropdown',
           },
           // {
           //   to: 'https://tbd.website',

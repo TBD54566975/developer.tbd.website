@@ -1,15 +1,12 @@
-import { defineConfig, configDefaults } from 'vitest/config';
+import { defineConfig, configDefaults } from "vitest/config";
 
 export default defineConfig({
   test: {
     testTimeout: 40000,
     hookTimeout: 40000,
     teardownTimeout: 40000,
-    exclude: [
-      ...configDefaults.exclude,
-      'apps/**',
-      '**/*.spec.{js,ts,jsx,tsx}',
-    ],
+    include: ["./site/docs/**/*.{test,spec}.{js,ts,jsx,tsx}"], // Include all test files in site/docs and its subdirectories
+    exclude: [...configDefaults.exclude, "apps/**"],
     //TODO: Investigate coverage options later for output files
     // coverage: {
     //   provider: 'istanbul',
@@ -21,8 +18,6 @@ export default defineConfig({
     //   enabled: true,
     //   headless: true,
     // },
-    setupFiles: [
-      './site/testsuites/testsuite-javascript/__tests__/setup-web5.js',
-    ],
+    setupFiles: ["./site/docs/test-utils/setup-web5.js"],
   },
 });

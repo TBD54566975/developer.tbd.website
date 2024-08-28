@@ -1,0 +1,419 @@
+---
+sidebar_position: 1
+---
+
+import KnowledgeCheck from '@site/src/components/KnowledgeCheck';
+
+# Build a Chat App
+
+Welcome to Web5, the magical land where Web2 and Web3 intertwine. My name is Alice. I am a wanderer in search of an application where I can send short-text messages to my best friend, Bob.
+
+🚀 **Your mission**
+
+Build [Dinger](https://dinger-chat.vercel.app/), a self-sovereign, modern day pager that allows users to send short text-based messages or "dings" to each other.
+
+🛠️ **Your toolkit**
+
+To build this app, you will wield the following technologies:
+
+- [React](https://react.dev/) - A JavaScript library, your brush to paint user interfaces, craft reusable components, and manage the state of your creation.
+- [Next.js](https://nextjs.org/) - A React metaframework, your compass to guide you through creating pages, managing routes, and managing server-side rendering.
+- [Web5.js](https://tbd54566975.github.io/web5-js/) - A Web5 JavaScript SDK, your key to creating decentralized applications, facilitating direct communication between users, and granting them sovereignty over their data and identity.
+
+🏆 **Your reward**
+
+By the end of this journey, you will acquire a deeper understanding of peer-to-peer communication in a Web5 ecosystem.
+
+If you're ready for the challenge, let's get started!
+
+:::note
+This tutorial is most suitable for those who prefer to learn by doing.
+:::
+
+## Level 1: Explore the starter code
+
+Good news! You don't have to start from scratch. There is a pre-built application that contains the user interface for Dinger. Right now, the functions in the code don’t do much. They just print messages to the console and don’t have any real actions. As you progress through the tutorial, you will add logic to the functions.
+### 📝 Task
+
+To access the starter code, follow the instructions below or explore the project directly in CodeSandbox.
+
+Note: If you don't have `pnpm` installed, you can install it by running `npm install -g pnpm`.
+
+```bash
+git clone https://github.com/TBD54566975/tbd-examples.git
+cd tbd-examples/javascript/dinger-starter
+pnpm install
+pnpm start
+```
+
+[![Play in CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/TBD54566975/tbd-examples/tree/main/javascript/dinger-starter)
+
+<details>
+<summary>Finished Dinger App</summary>
+<p>
+
+If you’d like to skip ahead and see the finished version of this tutorial, you can check out the running app on CodeSandbox.
+
+[![Play in CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/TBD54566975/tbd-examples/tree/main/javascript/dinger)
+
+You can also download and run the example by executing:
+
+Note: If you don't have `pnpm` installed, you can install it by running `npm install -g pnpm`.
+
+```bash
+git clone https://github.com/TBD54566975/tbd-examples.git
+cd tbd-examples/javascript/dinger
+pnpm install
+pnpm start
+```
+
+There is also a hosted example deployed at [https://dinger-chat.vercel.app/](https://dinger-chat.vercel.app/)
+</p>
+</details>
+
+To fully interact with the web app, please click **"Open in New Tab"** as demonstrated in the GIF below.
+
+![Description of the image](@site/static/img/open-sandbox-in-new-tab.gif)
+
+### 🕵️ What to Explore
+- Navigate to the `src/pages/index.js` file.
+- Identify the functions that currently only print console.logs.
+- Try to understand how each function interacts.
+
+## Level 2: Connect to Web5 and create a DID
+### 📝 Task
+Locate the line:
+```javascript title="src/pages/index.js"
+console.log(`this log is in initWeb5`);
+```
+and replace it with the following code snippet:
+```javascript title="src/pages/index.js"
+const { web5, did } = await Web5.connect();
+setWeb5(web5);
+setMyDid(did);
+```
+
+### 🧩 Breaking it down
+- **Web5.connect()** returns a Web5 instance: It initializes and returns an instance of Web5, allowing you to interact with the Web5 ecosystem.
+- **Web5.connect()** also creates or connects to a DID: A DID ([Decentralized Identifier](https://developer.tbd.website/docs/web5/decentralized-identifiers/what-are-dids)) is a user’s unique ID card for the decentralized, digital world. It belongs only to you. `Web5.connect()` will either connect to an existing DID that you have or create a new one for you if you don't have one yet. A DID acts as an authenticator for Web5 apps, removing the need for login credentials.
+
+### 📘 Learn more
+Learn more about [DID authentication](https://developer.tbd.website/blog/did-authentication).
+
+## Level 3: Define a protocol
+### 📝 Task
+Locate the line:
+```javascript title="src/pages/index.js"
+console.log('this log is in createProtocolDefinition');
+```
+
+And replace it with the following code snippet:
+```javascript title="src/pages/index.js"
+const dingerProtocolDefinition = {
+  protocol: "https://blackgirlbytes.dev/dinger-chat-protocol",
+  published: true,
+  types: {
+    ding: {
+      schema: "https://blackgirlbytes.dev/ding",
+      dataFormats: ["application/json"],
+    },
+  },
+  structure: {
+    ding: {
+      $actions: [
+        { who: "anyone", can: ["create"] },
+        { who: "author", of: "ding", can: ["read"] },
+        { who: "recipient", of: "ding", can: ["read"] },
+      ],
+    },
+  },
+};
+return dingerProtocolDefinition;
+```
+### 🧩 Breaking it down
+- **dingerProtocolDefinition:** This object defines the protocol, its structure, and it grants permissions outlining who can perform specific actions like reading or writing a ding.
+
+### 📘 Learn more
+Learn more about [defining protocols](https://developer.tbd.website/docs/web5/decentralized-web-nodes/what-are-protocols#defining-a-protocol).
+
+## Level 4: Install the defined protocol
+### 📝 Task
+Locate the line:
+```javascript title="src/pages/index.js"
+console.log(`this log is in installProtocolLocally`);
+```
+
+And replace it with the following code snippet:
+```javascript title="src/pages/index.js"
+    return await web5.dwn.protocols.configure({
+      message: {
+        definition: protocolDefinition,
+      },
+    });
+```
+### 🧩 Breaking it down
+- **web5.dwn.protocols.configure():** This function installs the protocol. The protocol needs to be installed because it ensures that both the sender's and recipient's applications (or Decentralized Web Nodes - DWNs) are aligned in terms of communication standards and data formats.
+
+## Level 5: Query the protocol
+### 📝 Task
+```javascript title="src/pages/index.js"
+console.log(`this log is in queryForProtocol`);
+```
+
+And replace it with the following code snippet:
+```javascript title="src/pages/index.js"
+return await web5.dwn.protocols.query({
+  message: {
+    filter: {
+      protocol: "https://blackgirlbytes.dev/dinger-chat-protocol",
+    },
+  },
+});
+```
+### 🧩 Breaking it down
+- **web5.dwn.protocols.query():** This function checks if the protocol already exists
+
+### 📘 Learn more
+Learn more about [querying protocols](https://developer.tbd.website/docs/web5/decentralized-web-nodes/what-are-protocols#protocols-in-practice).
+
+## Level 6: Bring all the protocol steps together
+### 📝 Task
+```javascript title="src/pages/index.js"
+console.log(`this log is in configureProtocol`);
+```
+And replace it with the following code snippet:
+```javascript title="src/pages/index.js"
+const protocolDefinition = await createProtocolDefinition();
+
+const { protocols: localProtocol, status: localProtocolStatus } = await queryForProtocol(web5);
+
+console.log({ localProtocol, localProtocolStatus });
+
+if (localProtocolStatus.code !== 200 || localProtocol.length === 0) {
+
+  const { protocol, status } = await installProtocolLocally(web5, protocolDefinition);
+  console.log("Protocol installed locally", protocol, status);
+  const { status: configureRemoteStatus } = await protocol.send(did);
+  console.log("Did the protocol install on the remote DWN?", configureRemoteStatus);
+
+} else {
+  console.log("Protocol already installed");
+}
+```
+- **configureProtocol()**: This function is responsible for configuring the protocol in both the local and remote DWNs. It first checks if the protocol is already installed locally. If not, it installs the protocol locally and then attempts to install it on the remote DWN associated with the user's DID.
+
+### 📘 Learn more
+- Learn more about [protocols](https://developer.tbd.website/docs/web5/decentralized-web-nodes/what-are-protocols/).
+
+
+## Level 7: Write to the DWN
+
+### 📝 Task
+Locate the line:
+```javascript title="src/pages/index.js"
+console.log(`this log is in writeToDwn`);
+```
+
+And replace it with the following code snippet:
+```javascript title="src/pages/index.js"
+const { record } = await web5.dwn.records.write({
+  data: ding,
+  message: {
+    protocol: "https://blackgirlbytes.dev/dinger-chat-protocol",
+    protocolPath: "ding",
+    schema: "https://blackgirlbytes.dev/ding",
+    recipient: recipientDid,
+  },
+});
+return record;
+```
+
+### 🧩 Breaking it down
+- You are storing each ding on a Decentralized Web Node (DWN), or personal data store. This method **web5.dwn.records.write()** is responsible for writing data to the DWN.
+
+
+### 📘 Learn more
+- Learn more about[ Decentralized Web Nodes](/docs/web5/decentralized-web-nodes/what-are-dwns) and [writing DWN records](https://developer.tbd.website/docs/web5/decentralized-web-nodes/write-to-dwn).
+
+## Level 8: Send dings
+
+### 📝 Task
+Locate the line:
+```javascript title="src/pages/index.js"
+console.log(`this log is in sendRecord`);
+```
+
+And replace it with the following code snippet:
+```javascript title="src/pages/index.js"
+return await record.send(recipientDid);
+```
+
+### 🧩 Breaking it down
+- Users can have multiple DWNs, such as on their phone, laptop, or in the cloud. The method **record.send()** immediately sends the ding to all of the recipient's Decentralized Web Nodes (DWNs).
+
+
+### 📘 Learn more
+- Learn more about [sync intervals](https://developer.tbd.website/docs/web5/decentralized-web-nodes/sync#sync-intervals).
+
+## Level 9: Retrieve dings
+### 📝 Task 1
+Locate the line:
+```javascript title="src/pages/index.js"
+console.log(`this log is in fetchSentMessages`);
+```
+And replace it with the following code snippet:
+```javascript title="src/pages/index.js"
+const response = await web5.dwn.records.query({
+  message: {
+    filter: {
+      protocol: "https://blackgirlbytes.dev/dinger-chat-protocol",
+    },
+  },
+});
+
+if (response.status.code === 200) {
+  const sentDings = await Promise.all(
+    response.records.map(async (record) => {
+      const data = await record.data.json();
+      return data;
+    })
+  );
+  console.log(sentDings, "I sent these dings");
+  return sentDings;
+} else {
+  console.log("error", response.status);
+}
+```
+### 📝 Task 2
+Locate the line:
+```javascript title="src/pages/index.js"
+console.log(`this log is in fetchReceivedMessages`);
+```
+And replace it with the following code snippet:
+```javascript title="src/pages/index.js"
+const response = await web5.dwn.records.query({
+  from: did,
+  message: {
+    filter: {
+      protocol: "https://blackgirlbytes.dev/dinger-chat-protocol",
+      schema: "https://blackgirlbytes.dev/ding",
+    },
+  },
+});
+
+if (response.status.code === 200) {
+  const receivedDings = await Promise.all(
+    response.records.map(async (record) => {
+      const data = await record.data.json();
+      return data;
+    })
+  );
+  console.log(receivedDings, "I received these dings");
+  return receivedDings;
+} else {
+  console.log("error", response.status);
+}
+```
+### 📝 Task 3
+Locate the line:
+```javascript title="src/pages/index.js"
+console.log(`this log is in fetchDings`);
+```
+And replace it with the following code snippet:
+```javascript title="src/pages/index.js"
+const sentMessages = await fetchSentMessages(web5, did);
+const receivedMessages = await fetchReceivedMessages(web5, did);
+const allMessages = [...(sentMessages || []), ...(receivedMessages || [])];
+setAllDings(allMessages);
+
+```
+
+### 🧩 Breaking it down
+- The method web5.dwn.records.query() queries the DWN for records matching a specified filter. In the above code snippet, it retrieves records with the protocol https://blackgirlbytes.dev/dinger-chat-protocol.
+
+### 📘 Learn more
+- - Learn more about how to [query DWN records](/docs/web5/decentralized-web-nodes/query-from-dwn) and [filterable record properties](/docs/web5/decentralized-web-nodes/query-from-dwn#filterable-record-properties).
+
+
+## Level 10: Sync the UI with the DWN
+
+### 📝 Task
+Locate the line:
+```javascript title="src/pages/index.js"
+console.log(`this log is in intervalId`);
+```
+
+And replace it with the following code snippet:
+```javascript title="src/pages/index.js"
+await fetchDings(web5, myDid);
+```
+
+This line is located within the following function:
+```javascript title="src/pages/index.js"
+  useEffect(() => {
+    if (!web5 || !myDid) return;
+
+    const intervalId = setInterval(async () => {
+      console.log(`this log is in intervalId`);
+    }, 2000);
+
+    return () => clearInterval(intervalId);
+  }, [web5, myDid]);
+```
+### 🧩 Breaking it down
+- The **useEffect()** and **setInterval()** fetch new dings every two seconds, allowing the UI to accurately display the chat.
+
+### 📘 Learn more
+- Learn more about React's [useEffect()](https://react.dev/reference/react/useEffect) hook and JavaScript's [setInterval()](https://developer.mozilla.org/en-US/docs/Web/API/setInterval) method.
+
+## Level 11: Try it out!
+### 📝 Task
+Time to test the Dinger app by simulating a conversation between two users by using two different browser sessions.
+
+**Set Up Your Browsers**:
+- Open your browser in **regular mode**.
+- Open a new window in **incognito/private mode**.
+
+**Send a Message from Incognito to Regular Mode**:
+- In the **incognito** window, locate and press the `Copy DID` button to copy the DID.
+- Switch to the **regular mode** browser window.
+- Press the `Create +` button
+- Paste the copied DID into the `recipient DID` input box, then `Confirm`
+- Type a short message in the `note` input box.
+- Press `Send` to send the message.
+
+**Reply from Regular Mode to Incognito**:
+- In the **regular mode** window, locate and press the `Copy DID` button to copy the DID.
+- Switch back to the **incognito** window.
+- Press the `Create +` button
+- Paste the copied DID into the `recipient DID` input box, then `Confirm`
+- Type a reply in the `note` input box.
+- Press `Send` to send your reply.
+
+After following these steps, you should see a conversation taking place between the two browser sessions!
+
+<details>
+<summary>Not receiving any messages?</summary>
+<a href="https://developer.tbd.website/docs/web5/decentralized-web-nodes/sync/">Sync</a> intervals occur every two minutes. If you're eager to see immediate updates for testing purposes, you can adjust the sync settings. Update the line:
+
+```javascript title="src/pages/index.js"
+const { web5, did } = await Web5.connect();
+```
+
+to:
+
+```javascript title="src/pages/index.js"
+const { web5, did } = await Web5.connect({sync: '5s'});
+```
+This change forces a synchronization interval to happen every 5 seconds. However, be cautious: this is not recommended for production applications as it can lead to higher resource usage, battery drain, and potential rate limiting.
+</details>
+
+## 🧠 Knowledge check
+
+<KnowledgeCheck url="https://codesandbox.io/embed/kc-1-chatty-h99tnx?fontsize=14&hidenavigation=1&theme=dark&view=preview"/>
+
+## 🫡 Mission complete
+Congratulations! By building Dinger, you've successfully empowered users like Alice to communicate peer-to-peer and maintain sovereignty over her data and identity. Now, Alice can send messages to her best friend, Bob.
+You can check out the finished version of the app running on CodeSandbox.
+
+[![Play in CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/TBD54566975/tbd-examples/tree/main/javascript/dinger)

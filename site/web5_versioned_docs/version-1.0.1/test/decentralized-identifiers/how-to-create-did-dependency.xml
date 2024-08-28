@@ -1,0 +1,22 @@
+// Kotlin Maven dependencies
+// :snippet-start: createADidDependencyMaven
+<repositories>
+    <repository>
+        <id>mavenCentral</id>
+        <url>https://repo1.maven.org/maven2/</url>
+    </repository>
+</repositories>
+
+<dependencies>
+    <dependency>
+        <groupId>xyz.block</groupId>
+        <artifactId>web5-dids</artifactId>
+        <version>0.10.0</version>
+    </dependency>
+    <dependency>
+        <groupId>decentralized-identity</groupId>
+        <artifactId>did-common-java</artifactId>
+        <version>1.11.0</version>
+    </dependency>
+</dependencies>
+// :snippet-end:

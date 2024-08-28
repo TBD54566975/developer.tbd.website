@@ -1,0 +1,102 @@
+---
+title: Key Management
+hide_title: true
+sidebar_position: 4
+---
+
+<LanguageSwitcher languages="JavaScript, Kotlin, Swift" />
+
+# Key Management
+
+[Decentralized Identifiers (DIDs)](/docs/web5/decentralized-identifiers/what-are-dids) are associated with public and private keys.
+The private key, which should be kept secret, is used to sign information or transactions, demonstrating control over the DID.
+
+Proper [key management](https://en.wikipedia.org/wiki/Key_management) ensures that private keys are securely stored and used, reducing the risk of unauthorized access or misuse.
+
+## Supported Types
+
+The Web5 SDK provides a `KeyManager` interface that makes it possible to use any key management solution of your choice. A few examples out of the box are:
+
+* **InMemoryKeyManager**: This implementation utilizes in-memory, ephemeral storage for managing keys.
+It's ideal for scenarios where temporary key management is sufficient, such as in testing environments.
+Since the keys are stored in memory, they are lost when the application is terminated.
+
+* **AwsKeyManager**: This implementation integrates with the [AWS Key Management Service(KMS)](https://docs.aws.amazon.com/kms/latest/developerguide/overview.html), providing a secure and robust solution for key management.
+It's well-suited for production environments where a high level of security and availability are critical.
+
+Both implementations facilitate key generation and signature operations essential for creating and managing DIDs. Each caters to distinct security needs, and the choice between them should be based on the specific requirements of your application.
+
+Other production-friendly KMS solutions include [Azure Key Vault](https://azure.microsoft.com/en-us/products/key-vault), [Google Cloud KMS](https://cloud.google.com/security/products/security-key-management), and [HashiCorp Vault](https://www.hashicorp.com/products/vault) etc.
+
+<LanguageSwitchBlock>
+  <div language="JavaScript">
+    <p>
+Any of these can be used by implementing the [CryptoApi](https://tbd54566975.github.io/web5-js/interfaces/_web5_crypto.CryptoApi.html) interface.
+   </p>
+  </div>
+
+  <div language="Kotlin">
+    <p>
+Any of these can be used by implementing the [KeyManager](https://tbd54566975.github.io/web5-kt/docs/-web5%20-s-d-k%20-documentation/web5.sdk.crypto/-key-manager/index.html) interface.
+    </p>
+  </div>
+  <div language="Swift">
+    <p>
+Any of these can be used by implementing the [KeyManager](https://swiftpackageindex.com/tbd54566975/web5-swift/main/documentation/web5/keymanager) interface.
+    </p>
+  </div>
+</LanguageSwitchBlock>
+
+
+## Example
+Below is an example that uses `AwsKeyManager` for production environments, and `InMemoryKeyManager` for any other environments (dev, test, etc).
+
+<details>
+<summary>Prerequisites</summary>
+
+**Install Packages**
+
+<Dependencies languageDependencies={[
+  { language: 'javascript', dependencies: ['@web5/dids', '@web5/crypto', '@web5/crypto-aws-kms'] },
+  { language: 'maven', dependencies: ['web5-dids', 'web5-crypto', 'web5-keymanager-aws'] },
+  { language: 'gradle', dependencies: ['web5-dids', 'web5-crypto', 'web5-keymanager-aws'] },
+  { language: 'swift', dependencies: ['Web5']},
+]}/>
+
+**Import Classes**
+
+<Shnip snippets={[
+    { snippetName: 'importKeyManagementJs', language: 'JavaScript'},
+    { snippetName: 'importKeyManagementKt', language: 'Kotlin'},
+    { snippetName: 'web5ImportSwift', language: 'Swift'}
+]} />
+
+</details>
+
+<Shnip snippets={[
+    { snippetName: 'initializeKeyManagementJs', language: 'JavaScript'},
+    { snippetName: 'initializeKeyManagementKt', language: 'Kotlin'},
+    { snippetName: 'initializeKeyManagementSwift', language: 'Swift'}
+]} />
+
+## Configuring AWS Key Manager
+You can pass additional parameters to `AWSKeyManager()` to set up your key manager instance.
+
+<LanguageSwitchBlock>
+  <div language="JavaScript">
+    <p>
+        See the [API Reference Guide](https://tbd54566975.github.io/web5-js/types/_web5_crypto_aws_kms.AwsKeyManagerParams.html) for information on how to use the KMSClient instance from the AWS SDK to store the private keys to your DID.
+    </p>
+  </div>
+
+  <div language="Kotlin">
+    <p>
+      See the [API Reference Guide](https://tbd54566975.github.io/web5-kt/docs/-web5%20-s-d-k%20-documentation/web5.sdk.crypto/-aws-key-manager/index.html?query=class%20AwsKeyManager%C2%A0constructor(kmsClient:%20%3CError%20class:%20unknown%20class%3E%20=%20AWSKMSClientBuilder.standard().build())%20:%20KeyManager) for information on how to use the KMSClient instance from the AWS SDK to store the private keys to your DID.
+    </p>
+  </div>
+  <div language="Swift">
+    <p>
+      There is currently no implementation of the `AWSKeyManager` interface in the Swift SDK. However you can implement the [KeyManager](https://swiftpackageindex.com/tbd54566975/web5-swift/main/documentation/web5/keymanager) interface to use any key management solution of your choice.
+    </p>
+  </div>
+</LanguageSwitchBlock>
