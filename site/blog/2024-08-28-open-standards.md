@@ -25,6 +25,11 @@ tags: [Standards, Decentralized Identifiers, Verifiable Credentials, Decentraliz
   <link rel="apple-touch-icon" href="https://developer.tbd.website/img/tbd-fav-icon-main.png" />
 </head>
 
+<!-- img must be specified here to get the open graph URL -->
+<div hidden>
+![](/img/blog-open-standards.png)
+</div>
+
 <iframe class="aspect-video" src="https://www.youtube.com/embed/uOBT7Tsf7F4" title="TBD Open Standards" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
 
