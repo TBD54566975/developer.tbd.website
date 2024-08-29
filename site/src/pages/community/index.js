@@ -224,8 +224,8 @@ function CommunityIndex() {
         <p className="pb-10">
           Filter through our exciting events: 👀 Show & Tells for project
           highlights, 🏢 Office Hours for open discussions, 💡 Workshops for
-          skill-building, 🎮 Twitch Streams for everything fun. Miss an event?
-          checkout our{' '}
+          skill-building, 🎮 Live Streams for everything fun. Miss an event?
+          Check out our{' '}
           <a
             href="https://www.youtube.com/@tbd.videos"
             target="_blank"
