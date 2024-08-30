@@ -89,7 +89,7 @@ export async function quickstartSendRfq() {
         await context.rfq.sign(context.customerDid);
         await TbdexHttpClient.createExchange(context.rfq);
 
-        return "HTTP 202: Successfully Submitted RFQ";
+        return "Submitted RFQ";
 
     } catch (e) {
         throw e;
@@ -148,7 +148,7 @@ export async function quickstartSendOrder() {
     await context.order.sign(context.customerDid);
     await TbdexHttpClient.submitOrder(context.order);
 
-    return "HTTP 202: Successfully Submitted Order";
+    return "Submitted Order";
   } catch (e) {
         throw e;
   }
