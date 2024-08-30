@@ -28,7 +28,6 @@ export async function quickstartGetOfferings() {
           );
       }
 
-      console.log(context.selectedOffering);
     } catch (e) {
         console.log(e.message);
     }
@@ -53,8 +52,6 @@ export async function quickstartGetCredentials() {
     });
 
     context.credentials = selectedCredentials;
-
-    console.log("the selection", context.credentials);
 
     return context.credentials;
 }
