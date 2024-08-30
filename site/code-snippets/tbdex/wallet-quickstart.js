@@ -6,13 +6,11 @@ import { VerifiableCredential } from '@web5/credentials'
 let context = {};
 
 export async function quickstartDidCreate() {
-    context.customerDid = await DidDht.create({
-        options: {
-            publish: true,
-        },
-    });
-
     context.pfiDid = 'did:dht:3fkz5ssfxbriwks3iy5nwys3q5kyx64ettp9wfn1yfekfkiguj1y';
+    let customerDidString = '{"uri":"did:dht:h8e3yqnhgjwhtkjhxwhfy5mmkn4nebqxr8idguwrsxgef6ow8efo","document":{"id":"did:dht:h8e3yqnhgjwhtkjhxwhfy5mmkn4nebqxr8idguwrsxgef6ow8efo","verificationMethod":[{"id":"did:dht:h8e3yqnhgjwhtkjhxwhfy5mmkn4nebqxr8idguwrsxgef6ow8efo#0","type":"JsonWebKey","controller":"did:dht:h8e3yqnhgjwhtkjhxwhfy5mmkn4nebqxr8idguwrsxgef6ow8efo","publicKeyJwk":{"crv":"Ed25519","kty":"OKP","x":"4dGQOFwyacipPH04UG1rULQkBc8h6jNOhLPMgvoUOgs","kid":"XPokllC3LZAVGizIL0naDdByQHeyY12uLJaXO4j46Nw","alg":"EdDSA"}}],"authentication":["did:dht:h8e3yqnhgjwhtkjhxwhfy5mmkn4nebqxr8idguwrsxgef6ow8efo#0"],"assertionMethod":["did:dht:h8e3yqnhgjwhtkjhxwhfy5mmkn4nebqxr8idguwrsxgef6ow8efo#0"],"capabilityDelegation":["did:dht:h8e3yqnhgjwhtkjhxwhfy5mmkn4nebqxr8idguwrsxgef6ow8efo#0"],"capabilityInvocation":["did:dht:h8e3yqnhgjwhtkjhxwhfy5mmkn4nebqxr8idguwrsxgef6ow8efo#0"]},"metadata":{"published":true,"versionId":"1718740086"},"privateKeys":[{"crv":"Ed25519","d":"iTfn3Z8uPp3gTg-9LxQVZVODGqnP3M0UDjZiIwBEctc","kty":"OKP","x":"4dGQOFwyacipPH04UG1rULQkBc8h6jNOhLPMgvoUOgs","kid":"XPokllC3LZAVGizIL0naDdByQHeyY12uLJaXO4j46Nw","alg":"EdDSA"}]}'
+    const portableDid = JSON.parse(customerDidString);
+    context.customerDid = await DidDht.import({ portableDid });
+
     return context.customerDid.uri;
 }
 
@@ -86,14 +84,17 @@ export async function quickstartCreateRfq() {
 }
 
 export async function quickstartSendRfq() {
-    try{
+    try {
         context.rfq.verifyOfferingRequirements(context.selectedOffering);
         await context.rfq.sign(context.customerDid);
         await TbdexHttpClient.createExchange(context.rfq);
+
+        return "HTTP 202: Successfully Submitted RFQ";
+
     } catch (e) {
         throw e;
     }
-    return "HTTP 202: Successfully Submitted RFQ";
+
 }
 
 export async function quickstartProcessQuote() {
@@ -143,9 +144,14 @@ export async function quickstartCreateOrder() {
 }
 
 export async function quickstartSendOrder() {
-  await context.order.sign(context.customerDid);
-  await TbdexHttpClient.submitOrder(context.order);
-  return "HTTP 202: Successfully Submitted Order";
+  try{
+    await context.order.sign(context.customerDid);
+    await TbdexHttpClient.submitOrder(context.order);
+
+    return "HTTP 202: Successfully Submitted Order";
+  } catch (e) {
+        throw e;
+  }
 }
 
 export async function quickstartProcessClose() {

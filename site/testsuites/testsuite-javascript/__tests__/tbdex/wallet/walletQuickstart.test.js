@@ -17,7 +17,7 @@ let customerDid, customerCredentials, selectedOffering, selectedCredentials, rfq
 
 describe('Wallet: Quickstart', () => {
 
-    it('should create customer DID', async () => {
+    it('should import existing customer DID', async () => {
         // :snippet-start: walletQuickstartDidCreate
         customerDid = await DidDht.create({
             options: {
