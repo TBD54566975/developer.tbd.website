@@ -37,7 +37,7 @@ export async function quickstartGetOfferings() {
 }
 
 export async function quickstartApplyForCredential() {
-    const vcJwt = await fetch(`https://mock-idv.tbddev.org/kcc?name=angie&country=US&did=${context.customerDid.uri}`).then(res => res.text());
+    const vcJwt = await fetch(`https://mock-idv.tbddev.org/kcc?name=alice&country=US&did=${context.customerDid.uri}`).then(res => res.text());
 
     context.credentials = [vcJwt];
 
