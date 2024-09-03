@@ -25,7 +25,7 @@ const Project = ({
             <Description />
           </div>
         ) : (
-          <p className="copy text-primary-yellow my-0">{description}</p>
+          <p className="copy text-white my-0">{description}</p>
         )}
       </div>
       <div>
