@@ -336,7 +336,7 @@ Define a `KccCredential` class with **required** and **optional** fields for a K
   ]}
 />
 - `countryOfResidence`: Is a `ISO-3166` 2-letter country code representing the
-customer’s verified country of residence (ex: US)
+customer’s verified country of residence (ex: US).
 
 - `tier`: The tier your customer falls into,
   assuming you perform tier-based KYC.
@@ -344,6 +344,8 @@ customer’s verified country of residence (ex: US)
 - `credentialSchema`: Schema used to define the shape of the credential including its required fields.
 
 - `evidence`: Is an Array of objects, where each object contains `kind` (String) and `checks` (array of Strings). `kind` states the **type** of evidence and `checks` details the specific proofs or checks used during IDV.
+
+- `jurisdiction`: Specifies the legal jurisdiction where the Issuer performed identity verification (IDV). This field is an object that includes the `country` key, which uses an `ISO-3166` 2-letter country code (ex: US).
 
 :::info
 
@@ -422,12 +424,17 @@ To convert the signed VC JWT into a `VerifiableCredential` object you can use th
     "credentialSubject": {
       "id": "did:dht:z6MkjGSeekPGE9QfczHWyW8v2ZzJU68kqSHzV7L2dmQyuyDu",
       "countryOfResidence": "US",
-      "tier": "Gold"
+      "tier": "Gold",
+      "jurisdiction": {
+        "country": "US"
+      }
     },
-    "credentialSchema": {
-      id: "https://vc.schemas.host/kcc.schema.json",
-      type: "JsonSchema"
-    },
+    "credentialSchema": [
+      {
+        id: "https://vc.schemas.host/kcc.schema.json",
+        type: "JsonSchema"
+      }
+    ],
     "evidence": [
       {
         "kind": "document_verification",
@@ -460,7 +467,10 @@ To convert the signed VC JWT into a `VerifiableCredential` object you can use th
   "credentialSubject": {
     "id": "did:dht:z6MkjGSeekPGE9QfczHWyW8v2ZzJU68kqSHzV7L2dmQyuyDu",
     "countryOfResidence": "US",
-    "tier": "Gold"
+    "tier": "Gold",
+    "jurisdiction": {
+        "country": "US"
+    }
   },
   "credentialSchema": {
     id: "https://vc.schemas.host/kcc.schema.json",

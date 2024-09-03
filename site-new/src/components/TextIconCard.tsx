@@ -5,13 +5,13 @@ import TbdArrow from "@site/static/img/tbd-arrow";
 type Theme = "yellow" | "teal" | "purple" | "grey";
 
 type TextIconCardProps = {
-  icon: React.ComponentType<{ className: string; fill: string }>;
+  icon?: React.ComponentType<{ className: string; fill: string }>;
   title: string;
   text: string;
-  url: string;
+  url?: string;
   className?: string;
   theme?: Theme;
-  buttonText: string;
+  buttonText?: string;
 };
 
 const themeClasses = {
@@ -34,23 +34,22 @@ function TextIconCard({
   url,
   className = "",
   theme = "grey",
-  buttonText = "Learn More",
+  buttonText,
 }: TextIconCardProps) {
   const themeClass = themeClasses[theme];
-
-  Icon = Icon || tbdRex;
-
   const iconClass = themeClasses[`icon${theme}`];
 
   return (
     <div
-      className={`min-w-[360px] min-h-[400px] sm:w-72 md:min-w-[512px] mobile:w-[360px] col-span-4 border-2 border-solid ${themeClass} ${className} transition-all duration-300 group mb-8`}
+      className={`sm:w-72 md:min-w-[512px] mobile:w-[360px] col-span-4 border-2 border-solid ${themeClass} ${className} transition-all duration-300 group mb-8`}
     >
       <div className="flex flex-col justify-center p-8 h-full">
         <div>
-          <Icon
-            className={`w-[84px] h-[126px] md:w-[100px] md:h-[150px] ${iconClass} transition-all duration-300`}
-          />
+          {Icon && (
+            <Icon
+              className={`w-[84px] h-[126px] md:w-[100px] md:h-[150px] ${iconClass} transition-all duration-300`}
+            />
+          )}
           <h3
             className={`text-lg md:text-2xl font-bold mt-4 text-tbd-${theme} group-hover:text-tbd-gray transition-all duration-300`}
           >
@@ -58,18 +57,20 @@ function TextIconCard({
           </h3>
           <p className={`text-sm md:text-lg mt-2`}>{text}</p>
         </div>
-        <a
-          href={url}
-          className={`w-fit text-sm mt-auto items-center inline-flex px-4 pb-2 pt-2 border-solid border-t-4 border-tbd-yellow text-tbd-gray bg-tbd-yellow group-hover:bg-tbd-gray group-hover:text-white group-hover:border-t-white transition-all duration-300 border-b-0 border-x-0 text-[12px] md:text-lg`}
-          target="_blank"
-          rel="noreferrer"
-        >
-          {buttonText}
-          <TbdArrow
-            fill=""
-            className="ml-4 fill-tbd-gray group-hover:fill-white transition-all duration-300 rotate-180 size-5 md:size-6"
-          />
-        </a>
+        {url && buttonText && (
+          <a
+            href={url}
+            className={`w-fit text-sm mt-auto items-center inline-flex px-4 pb-2 pt-2 border-solid border-t-4 border-tbd-yellow text-tbd-gray bg-tbd-yellow group-hover:bg-tbd-gray group-hover:text-white group-hover:border-t-white transition-all duration-300 border-b-0 border-x-0 text-[12px] md:text-lg`}
+            target="_blank"
+            rel="noreferrer"
+          >
+            {buttonText}
+            <TbdArrow
+              fill=""
+              className="ml-4 fill-tbd-gray group-hover:fill-white transition-all duration-300 rotate-180 size-5 md:size-6"
+            />
+          </a>
+        )}
       </div>
     </div>
   );

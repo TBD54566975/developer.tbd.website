@@ -1,20 +1,16 @@
-import React, { memo } from "react";
+import React, {memo} from 'react';
 import {
   DocSidebarItemsExpandedStateProvider,
   useVisibleSidebarItems,
-} from "@docusaurus/theme-common/internal";
-import DocSidebarItem from "@theme/DocSidebarItem";
+} from '@docusaurus/plugin-content-docs/client';
+import DocSidebarItem from '@theme/DocSidebarItem';
 
-import type { Props } from "@theme/DocSidebarItems";
+import type {Props} from '@theme/DocSidebarItems';
 
-function DocSidebarItems({ items, ...props }: Props): JSX.Element {
+function DocSidebarItems({items, ...props}: Props): JSX.Element {
   const visibleItems = useVisibleSidebarItems(items, props.activePath);
-
-  // const label = visibleItems.shift().label;
-
   return (
     <DocSidebarItemsExpandedStateProvider>
-      {/* <span>{label}</span> */}
       {visibleItems.map((item, index) => (
         <DocSidebarItem key={index} item={item} index={index} {...props} />
       ))}

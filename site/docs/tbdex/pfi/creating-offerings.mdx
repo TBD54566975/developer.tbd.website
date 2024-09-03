@@ -154,11 +154,11 @@ When combining all the data above, you can end up with a full Offering object th
             "fields": [
               {
                 "path": [
-                  "$.type[*]"
+                  "$.credentialSchema[*].id"
                 ],
                 "filter": {
                   "type": "string",
-                  "pattern": "KnownCustomerCredential"
+                  "const": "https://vc.schemas.host/kcc.schema.json"
                 }
               },
               {

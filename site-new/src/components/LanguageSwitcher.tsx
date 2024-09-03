@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import useBaseUrl from "@docusaurus/useBaseUrl";
 import JsIcon from "@site/static/img/js-icon";
+import KotlinIcon from "@site/static/img/KotlinIcon";
 import Chevron from "@site/static/img/chevron";
 import { useLanguage } from "../context/LanguageSwitcher";
 
@@ -9,7 +10,8 @@ function LanguageSwitcher() {
   const [isOpen, setIsOpen] = useState(false);
 
   const options = [
-    { label: "JavaScript", icon: useBaseUrl("/img/js-icon.svg") },
+    { label: "JavaScript", icon: JsIcon },
+    { label: "Kotlin", icon: KotlinIcon },
   ];
 
   const handleChange = (event) => {
@@ -24,6 +26,10 @@ function LanguageSwitcher() {
     setIsOpen(!isOpen);
   };
 
+  const SelectedIcon = options.find(
+    (option) => option.label === selectedOption.label
+  )?.icon;
+
   return (
     <div className="flex-col justify-start items-start pl-2 font-spaceGrotesk bg-tbd-gray-shade-1">
       <div className="eyebrow pl-2 py-2">LANGUAGE</div>
@@ -35,10 +41,12 @@ function LanguageSwitcher() {
               onClick={toggleDropdown}
             >
               <div className="flex items-center">
-                <JsIcon
-                  className="w-5 h-5 mr-2 fill-current text-tbd-yellow"
-                  fill="yellow"
-                />
+                {SelectedIcon && (
+                  <SelectedIcon
+                    className="w-5 h-5 mr-2 fill-current text-tbd-yellow"
+                    fill="yellow"
+                  />
+                )}
                 <span className="mr-2 text-white">{selectedOption.label}</span>
               </div>
 
@@ -56,21 +64,19 @@ function LanguageSwitcher() {
                   : "translate-y-4 opacity-0 pointer-events-none"
               }`}
             >
-              {options.map((option) => (
+              {options.map(({ label, icon: LanguageIcon }) => (
                 <div
-                  key={option.label}
+                  key={label}
                   className="flex items-center cursor-pointer p-2 hover:bg-gray-700"
                   onClick={() => {
-                    handleChange({ target: { value: option.label } });
+                    handleChange({ target: { value: label } });
                   }}
                 >
-                  <JsIcon
+                  <LanguageIcon
                     className="w-5 h-5 mr-2 fill-current text-tbd-yellow"
                     fill="yellow"
                   />
-                  <span className="mr-2 text-white font-bold">
-                    {option.label}
-                  </span>
+                  <span className="mr-2 text-white font-bold">{label}</span>
                 </div>
               ))}
             </div>

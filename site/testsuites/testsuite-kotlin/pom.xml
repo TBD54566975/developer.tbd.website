@@ -15,7 +15,7 @@
     <version.io.ktor>2.3.7</version.io.ktor>
     <version.org.assertj>3.25.2</version.org.assertj>
     <version.org.junit.jupiter>5.10.1</version.org.junit.jupiter>
-    <version.xyz.block.tbdex>2.0.0</version.xyz.block.tbdex>
+    <version.xyz.block.tbdex>2.0.1</version.xyz.block.tbdex>
     <!--
     TODO
     Temp, this should be coming in inherited from dependencyManagement of Web5
