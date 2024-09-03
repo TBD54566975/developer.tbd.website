@@ -11,11 +11,11 @@ module.exports = {
   content: ["./src/**/*.{jsx,tsx,html}"],
   theme: {
     colors: {
-      "tbd-yellow-tint-2": "#FFF870",
-      "tbd-yellow-tint-1": "#FFF53D",
-      "tbd-yellow": "#FFEC19",
-      "tbd-yellow-shade-1": "#FAE100",
-      "tbd-yellow-shade-2": "#F5D800",
+      "tbd-yellow-tint-2": "var(--ifm-color-primary-lighter)",
+      "tbd-yellow-tint-1": "var(--ifm-color-primary-light)",
+      "tbd-yellow": "var(--ifm-color-primary)",
+      "tbd-yellow-shade-1": "var(--ifm-color-primary-dark)",
+      "tbd-yellow-shade-2": "var(--ifm-color-primary-darker)",
       "tbd-teal-tint-1": "#70FAFF",
       "tbd-teal-tint-2": "#52F9FF",
       "tbd-teal": "#1AF1FF",

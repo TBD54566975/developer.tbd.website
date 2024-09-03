@@ -59,11 +59,11 @@
 
 :root {
   --ifm-color-primary: #FFEC19;
-  --ifm-color-primary-dark: #FFEC19;
-  --ifm-color-primary-darker: #FFEC19;
+  --ifm-color-primary-dark: #FAE100;
+  --ifm-color-primary-darker: #F5D800;
   --ifm-color-primary-darkest: #FFEC19;
-  --ifm-color-primary-light: #FFEC19;
-  --ifm-color-primary-lighter: #FFEC19;
+  --ifm-color-primary-light: #FFF53D;
+  --ifm-color-primary-lighter: #FFF870;
   --ifm-color-primary-lightest: #FFEC19;
   --ifm-code-font-size: 95%;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);

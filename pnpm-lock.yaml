@@ -313,6 +313,9 @@ importers:
       sass:
         specifier: 1.63.6
         version: 1.63.6
+      tailwind-merge:
+        specifier: ^2.5.2
+        version: 2.5.2
     devDependencies:
       '@docusaurus/module-type-aliases':
         specifier: 3.5.2
@@ -16284,6 +16287,10 @@ packages:
     resolution: {integrity: sha512-nHI0CoAAais8+0lwIiDposkhmdr4ejRVZxJH8bzZFbB7d6/jkciyl9lgHmkNpCJ0MMYi4Xg8JjHXZX7/67g3Tw==}
     dependencies:
       hashlru: 2.3.0
+    dev: false
+
+  /tailwind-merge@2.5.2:
+    resolution: {integrity: sha512-kjEBm+pvD+6eAwzJL2Bi+02/9LFLal1Gs61+QB7HvTfQQ0aXwC5LGT8PEt1gS0CWKktKe6ysPTAy3cBC5MeiIg==}
     dev: false
 
   /tailwindcss@2.2.15(autoprefixer@10.3.4)(postcss@8.4.31):
