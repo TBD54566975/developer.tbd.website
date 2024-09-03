@@ -71,6 +71,8 @@
   --ifm-color-secondary: #9A1AFF;
   --ifm-background-color: #000;
   --ifm-font-color-base: #fff;
+
+  --ifm-menu-link-sublist-icon: url('/img/chevron.svg');
 }
 
 h2 {
