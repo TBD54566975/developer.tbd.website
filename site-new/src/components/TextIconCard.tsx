@@ -22,7 +22,7 @@ const themeClasses = {
   grey: "border-t-8 border-dark-grey text-white hover:bg-dark-grey hover:text-tbd-gray",
   iconyellow: "fill-tbd-yellow group-hover:fill-tbd-gray",
   iconteal: "fill-tbd-teal group-hover:fill-tbd-gray",
-  iconpurple: "fill-tbd-purple group-hover:fill-tbd-gray",
+  iconpurple: "fill-tbd-purple-tint-2 group-hover:fill-tbd-gray",
   icongrey: "fill-tbd-grey group-hover:fill-tbd-gray",
 };
 
@@ -40,7 +40,7 @@ function TextIconCard({
 
   return (
     <div
-      className={`mobile:w-[360px] border-2 border-solid sm:w-72 md:min-w-[512px] ${themeClass} ${className} group mb-8 transition-all duration-300`}
+      className={`mobile:w-[360px] border-[1px] border-solid sm:w-72 md:min-w-[512px] ${themeClass} ${className} group mb-8 transition-all duration-300`}
     >
       <div className="flex h-full flex-col justify-center p-8">
         <div>
