@@ -7,12 +7,13 @@ hide_table_of_contents: false
 
 # Web5 CLI
 
-The Web5 CLI is a command-line interface, built with Rust, allowing you to create and manage Decentralized Identifiers and Verifiable Credentials directly from the command line.
+The Web5 CLI is a Rust-based command-line tool for creating and managing [Decentralized Identifiers (DIDs)](/docs/web5/decentralized-identifiers/what-are-dids) and [Verifiable Credentials (VCs)](/docs/web5/verifiable-credentials/what-are-vcs).
+
 This guide will walk you through installation and usage of the Web5 CLI.
 
 ## Installation
 
-To install the Web5 CLI, run the following command:
+To install the Web5 CLI, run:
 
 ```bash
 curl -L https://raw.githubusercontent.com/TBD54566975/web5-rs/main/crates/web5_cli/install.sh | bash -s v0.0.4
@@ -20,7 +21,7 @@ curl -L https://raw.githubusercontent.com/TBD54566975/web5-rs/main/crates/web5_c
 
 ## Creating a DID
 
-The `web5 did create` subcommand allows you to create DIDs using different DID methods such as dht, jwk, and web. 
+The `web5 did create` command [creates a DID](/docs/web5/decentralized-identifiers/how-to-create-did) using different DID methods such as `did:dht`, `did:jwk`, and `did:web`. 
 
 ```bash
 web5 did create <method> [options]
@@ -39,7 +40,7 @@ web5 did create <method> [options]
 web5 did create jwk --no-indent --json-escape
 
 # Create a did:web 
-web5 did create web --domain example.com
+web5 did create web --domain https://example.com
 
 # Create a did:dht without publishing
 web5 did create dht --no-publish
@@ -47,7 +48,7 @@ web5 did create dht --no-publish
 
 ## Resolving a DID
 
-The `web5 did resolve` command allows you to resolve a DID.
+The `web5 did resolve` command [resolves a DID](/docs/web5/decentralized-identifiers/how-to-resolve-a-did).
 
 ```bash
 web5 did resolve <did-uri> [options]
@@ -59,10 +60,50 @@ web5 did resolve <did-uri> [options]
 
 ### Examples
 
-## Verifiable Credentials
+```bash
+web5 did resolve did:dht:bwrh9fphhegh1jn3hhe656zuyfxqdm493so5r4hmpte1yf456w5o
+```
 
-### Create and Sign a VC
+## Create and Sign a VC
+The `web5 vc create` command [creates and sign VCs](/docs/web5/verifiable-credentials/vc-issuance).
 
-### Verify a VC
+```bash
+web5 vc create <credential-subject-id> [options]
+```
 
+### Options
+* `--portable-did <did>`: specifies the DID used to sign the Verifiable Credential. If omitted, VC will be unsigned
+* `--issuer <issuer-did>`: Specifies the issuer of the credential. If issuer is provided issuer without `--portable-did`, the VC will be unsigned.
+* `--expiration-date <date>`: Set an expiration date for the credential.
+* `--no-indent`: Output the VC without indentation.
+* `--json-escape`: Escape JSON strings in the output.
+
+### Examples
+```bash
+## Portable DID that will be used as the issuer and to sign the credential
+export PORTABLE_DID=$(web5 did create dht --no-indent)
+
+## Create and sign VC with portable DID
+web5 vc create "alice" --portable-did $PORTABLE_DID
+
+## Create and sign VC with an expiration date
+web5 vc create "alice" --portable-did $PORTABLE_DID --expiration-date 2025-12-31
+```
+
+## Verify a VC
+The `web5 vc verify` command [verifies a VC](/docs/web5/verifiable-credentials/verify-vc) in JWT format.
+
+```bash
+web5 vc verify <vc-jwt> [options]
+```
+
+### Options
+* `--no-indent`: Outputs the verification result without indentation.
+* `--json-escape`: Escapes JSON strings in the output.
+
+### Examples
+
+```bash
+web5 vc verify eyJ0eXAiOiJKV1QiLCJhbGciOiJFZERTQSIsImtpZCI6ImRpZDpkaHQ6OXFnOGgxc3Jvd2hzZHNla3hwODk4eTU0MXhndGZ4Ym1ybW5oaGdzanlobXRtOHRjb253byMwIn0.eyJ2YyI6eyJAY29udGV4dCI6WyJodHRwczovL3d3dy53My5vcmcvMjAxOC9jcmVkZW50aWFscy92MSJdLCJpZCI6InVybjp2Yzp1dWlkOjlkMDhhNjAzLWMyNTMtNGQyNC05M2MzLWIzYzAwMzg2NjM5MCIsInR5cGUiOlsiVmVyaWZpYWJsZUNyZWRlbnRpYWwiXSwiaXNzdWVyIjoiZGlkOmRodDo5cWc4aDFzcm93aHNkc2VreHA4OTh5NTQxeGd0ZnhibXJtbmhoZ3NqeWhtdG04dGNvbndvIiwiaXNzdWFuY2VEYXRlIjoiMjAyNC0wNi0yOFQxMzoxOTo1OS45OTY2MzMrMDA6MDAiLCJleHBpcmF0aW9uRGF0ZSI6bnVsbCwiY3JlZGVudGlhbFN1YmplY3QiOnsiaWQiOiJhbGljZSJ9fSwiaXNzIjoiZGlkOmRodDo5cWc4aDFzcm93aHNkc2VreHA4OTh5NTQxeGd0ZnhibXJtbmhoZ3NqeWhtdG04dGNvbndvIiwianRpIjoidXJuOnZjOnV1aWQ6OWQwOGE2MDMtYzI1My00ZDI0LTkzYzMtYjNjMDAzODY2MzkwIiwic3ViIjoiYWxpY2UiLCJuYmYiOjE3MTk1ODA3OTksImlhdCI6MTcxOTU4MDgwMH0.PJbb9EidggoqHL3IkfcglcTNzp_obBqbZjE0M4mL2XlecdLKNusZ3i4Hm0BtnzJ0ME7zYAvdIwg4shW4U884Bg
+```
 

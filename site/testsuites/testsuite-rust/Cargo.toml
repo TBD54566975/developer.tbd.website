@@ -4,6 +4,12 @@ version = "0.1.0"
 edition = "2021"
 rust-version = "1.75"
 
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
-
 [dependencies]
+web5 = { git = "https://github.com/TBD54566975/web5-rs.git", branch = "main", package = "web5" }
+web5_cli = { git = "https://github.com/TBD54566975/web5-rs.git", branch = "main", package = "web5_cli" }
+tokio = { version = "1.0", features = ["full"] }
+anyhow = "1.0"
+
+[dev-dependencies]
+assert_cmd = "2.0"
+predicates = "2.1"
