@@ -33,7 +33,7 @@ export const content = {
         title: 'Decentralized Web Nodes',
         description: TBDEXProtocol,
         textButton: 'View Component',
-        url: '/docs/web5/decentralized-identifiers/what-are-dwns',
+        url: '/docs/web5/decentralized-web-nodes/what-are-dwns',
         isExternalLink: false,
       }
     ],
