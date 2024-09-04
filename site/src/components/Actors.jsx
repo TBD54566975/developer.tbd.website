@@ -25,7 +25,7 @@ const Actors = ({ content }) => {
               </h2>
             </div>
             <p
-              className={`copy text-white flex ${
+              className={`copy primary-white flex ${
                 !content.isWeb5 ? 'ml-[4.375rem]' : ''
               } desktop:ml-0`}
             >
@@ -45,7 +45,7 @@ const Actors = ({ content }) => {
               </h2>
             </div>
             <p
-              className={`copy text-white flex ${
+              className={`copy primary-white flex ${
                 !content.isWeb5 ? 'ml-[4.375rem]' : ''
               } desktop:ml-0`}
             >
@@ -65,7 +65,7 @@ const Actors = ({ content }) => {
               </h2>
             </div>
             <p
-              className={`copy text-white flex ${
+              className={`copy primary-white flex ${
                 !content.isWeb5 ? 'ml-[4.375rem]' : ''
               } desktop:ml-0`}
             >
