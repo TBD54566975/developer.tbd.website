@@ -51,10 +51,9 @@ function LanguageSwitcher() {
               </div>
 
               <Chevron
-                className={`h-6 w-6 transition-all ${
+                className={`h-6 w-6 transition-all text-white ${
                   isOpen ? "transform rotate-0" : "transform rotate-180"
                 }`}
-                fill="white"
               />
             </div>
             <div

@@ -5,6 +5,7 @@ hide_table_of_contents: true
 
 import metacontent from '@site/src/content/global-meta';
 import { content } from '@site/src/content/projects/tbdex/tbdex.js';
+import TbdexSdk from '@site/src/components/TbdexSdk.jsx';
 
 <head>
   <title>{content.meta.title}</title>
@@ -28,6 +29,12 @@ import { content } from '@site/src/content/projects/tbdex/tbdex.js';
 <Divider type="slash" />
 
 <ProjectList {...content.components} />
+
+<Divider type="slash" />
+
+<a name="sdk"/>
+
+<TbdexSdk />
 
 <Divider type="slash" />
 

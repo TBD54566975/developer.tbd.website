@@ -33,38 +33,10 @@ export const content = {
         title: 'Decentralized Web Nodes',
         description: TBDEXProtocol,
         textButton: 'View Component',
-        url: '/docs/web5/decentralized-identifiers/what-are-dwns',
+        url: '/docs/web5/decentralized-web-nodes/what-are-dwns',
         isExternalLink: false,
       }
     ],
-  },
-  actors: {
-    title: 'Actors',
-    actors: [
-      {
-        title: 'Wallets',
-        description:
-          'wallets act as agents for individuals or institutions by facilitating identity and data interactions',
-      },
-      {
-        title: 'Decentralized Web Nodes (DWNs)',
-        description: 'personal datastores that hold public and encrypted data',
-      },
-      {
-        title: 'Decentralized Web Apps (DWAs)',
-        description:
-          'web apps enhanced with decentralized identity and data storage capabilities',
-      },
-    ],
-    imgDesktop: '/img/actors-web5-desktop.svg',
-    imgMobile: '/img/actors-web5-mobile.svg',
-    isWeb5: true,
-  },
-  web5Illustrations: {
-    imgMobile: '/img/web5-mobile.svg',
-    imgTablet: '/img/web5-tablet.svg',
-    imgDesktop: '/img/web5-desktop.svg',
-    altText: 'Web2 and Web3 to Web5',
   },
   useCases: {
     title: 'Use Cases',
