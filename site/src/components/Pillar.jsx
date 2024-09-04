@@ -23,11 +23,11 @@ const Pillar = ({ img, title, description, alt }) => {
             <h2 className="text-[1.5rem] text-primary-yellow">{title}</h2>
           </div>
           {typeof description === 'function' ? (
-            <div className="copy text-primary-yellow">
+            <div className="copy primary-white">
               <Description />
             </div>
           ) : (
-            <p className="copy text-primary-yellow">{description}</p>
+            <p className="copy primary-white">{description}</p>
           )}
         </div>
       </div>
