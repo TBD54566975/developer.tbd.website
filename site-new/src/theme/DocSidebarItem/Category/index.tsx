@@ -196,8 +196,7 @@ export default function DocSidebarItemCategory({
           <div className='h-full flex items-center'>
             {!href && collapsible && (
               <Chevron
-                fill={'white'}
-                className={clsx('size-4 transition-all mr-1', {
+                className={clsx('size-4 transition-all mr-1 dark:text-white', {
                   'transform rotate-0': collapsed,
                   'transform rotate-180': !collapsed,
                 })}
