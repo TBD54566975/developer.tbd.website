@@ -21,11 +21,11 @@ const Project = ({
       </div>
       <div className="pb-9 tablet:pb-[67px] tablet:grow">
         {typeof description === 'function' ? (
-          <div className="copy text-primary-yellow my-0">
+          <div className="copy primary-white my-0">
             <Description />
           </div>
         ) : (
-          <p className="copy text-primary-yellow my-0">{description}</p>
+          <p className="copy primary-white my-0">{description}</p>
         )}
       </div>
       <div>
