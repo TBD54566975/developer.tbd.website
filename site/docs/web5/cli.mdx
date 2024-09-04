@@ -1,0 +1,68 @@
+---
+sidebar_position: 6
+title: CLI
+hide_title: true
+hide_table_of_contents: false
+---
+
+# Web5 CLI
+
+The Web5 CLI is a command-line interface, built with Rust, allowing you to create and manage Decentralized Identifiers and Verifiable Credentials directly from the command line.
+This guide will walk you through installation and usage of the Web5 CLI.
+
+## Installation
+
+To install the Web5 CLI, run the following command:
+
+```bash
+curl -L https://raw.githubusercontent.com/TBD54566975/web5-rs/main/crates/web5_cli/install.sh | bash -s v0.0.4
+```
+
+## Creating a DID
+
+The `web5 did create` subcommand allows you to create DIDs using different DID methods such as dht, jwk, and web. 
+
+```bash
+web5 did create <method> [options]
+```
+
+### Options
+* `--no-indent`: Output the DID document without indentation.
+* `--json-escape`: Escape JSON strings in the output.
+* `--domain <domain>`: For did:web, specify the domain for the DID Web creation.
+* `--no-publish`: For the dht method, prevents publishing the DID immediately.
+
+### Examples
+
+```bash
+# Create a did:jwk with no indent and json escape
+web5 did create jwk --no-indent --json-escape
+
+# Create a did:web 
+web5 did create web --domain example.com
+
+# Create a did:dht without publishing
+web5 did create dht --no-publish
+```
+
+## Resolving a DID
+
+The `web5 did resolve` command allows you to resolve a DID.
+
+```bash
+web5 did resolve <did-uri> [options]
+```
+
+### Options
+* `--no-indent`: Output the DID document without indentation.
+* `--json-escape`: Escape JSON strings in the output.
+
+### Examples
+
+## Verifiable Credentials
+
+### Create and Sign a VC
+
+### Verify a VC
+
+
