@@ -73,13 +73,15 @@ web5 did resolve <did-uri> [options]
 web5 did resolve did:dht:bwrh9fphhegh1jn3hhe656zuyfxqdm493so5r4hmpte1yf456w5o
 ```
 
-## Create an Unsigned VC
-The `web5 vc create` command can create a Verifiable Credential without signing it.
+## Create a VC
+The `web5 vc create` command creates a VC. By default, this command creates an unsigned VC in JSON format. If a Portable DID is provided, this command outputs a signed VC in [JWT](/docs/web5/verifiable-credentials/jwt-to-vc/#what-is-a-jwt) format.
 
 ```bash
-web5 vc create <credential-subject-did-uri> --issuer <issuer-did-uri> [options]
+web5 vc create <credential-subject-did-uri> [options]
 ```
+
 **Options**
+* `--portable-did <did>`: Specifies the DID used to sign the VC. If included, the Portable DID's URI is automatically set as the issuer.
 * `--issuer <issuer-did-uri>`: Specifies the issuer of the credential.
 * `--expiration-date <date>`: Set an expiration date for the credential in YYYY-MM-DD format.
 * `--no-indent`: Output the VC without indentation.
@@ -90,26 +92,6 @@ web5 vc create <credential-subject-did-uri> --issuer <issuer-did-uri> [options]
 # Create an unsigned VC with an issuer
 web5 vc create did:dht:kfnps1cwyt6dmb5g1q8z9xncx4nmepz4pn6cqck3jswhpg9bp4qo --issuer did:dht:p364ofunt9wu6u8jrt44ka6uz588iuefbnwjhxgbm8fjbmki4fco
 
-# Create an unsigned VC with an issuer and an expiration date
-web5 vc create did:dht:kfnps1cwyt6dmb5g1q8z9xncx4nmepz4pn6cqck3jswhpg9bp4qo --issuer did:dht:p364ofunt9wu6u8jrt44ka6uz588iuefbnwjhxgbm8fjbmki4fco --expiration-date 2025-12-31
-```
-
-## Create and Sign a VC
-The `web5 vc create` command can create and sign a VC, converting it into a [JWT](/docs/web5/verifiable-credentials/jwt-to-vc/#what-is-a-jwt).
-
-```bash
-web5 vc create <credential-subject-did-uri> [options]
-```
-
-**Options**
-* `--portable-did <did>`: Specifies the DID used to sign the Verifiable Credential and outputs it as a JWT. If included, the Portable DID's URI is automatically set as the issuer.
-* `--issuer <issuer-did-uri>`: Specifies the issuer of the credential.
-* `--expiration-date <date>`: Set an expiration date for the credential in YYYY-MM-DD format.
-* `--no-indent`: Output the VC without indentation.
-* `--json-escape`: Escape JSON strings in the output.
-
-**Examples**
-```bash
 # Portable DID that will be used as the issuer and to sign the credential
 export PORTABLE_DID=$(web5 did create dht --no-indent)
 
