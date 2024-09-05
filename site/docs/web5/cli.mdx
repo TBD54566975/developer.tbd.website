@@ -102,7 +102,7 @@ web5 vc create <credential-subject-did-uri> [options]
 ```
 
 **Options**
-* `--portable-did <did>`: specifies the DID used to sign the Verifiable Credential. Once signed, the VC will be output as a JWT.
+* `--portable-did <did>`: Specifies the DID used to sign the Verifiable Credential and outputs it as a JWT. If included, the Portable DID's URI is automatically set as the issuer.
 * `--issuer <issuer-did-uri>`: Specifies the issuer of the credential.
 * `--expiration-date <date>`: Set an expiration date for the credential.
 * `--no-indent`: Output the VC without indentation.
