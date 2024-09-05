@@ -84,10 +84,10 @@ web5 vc create <credential-subject-id> [options]
 export PORTABLE_DID=$(web5 did create dht --no-indent)
 
 ## Create and sign VC with portable DID
-web5 vc create "alice" --portable-did $PORTABLE_DID
+web5 vc create "did:dht:cm1yqfjzfdtauh33nauwf3sqsijqziwrydicr8dbtho3cucb9nno" --portable-did $PORTABLE_DID
 
 ## Create and sign VC with an expiration date
-web5 vc create "alice" --portable-did $PORTABLE_DID --expiration-date 2025-12-31
+web5 vc create "did:dht:cm1yqfjzfdtauh33nauwf3sqsijqziwrydicr8dbtho3cucb9nno" --portable-did $PORTABLE_DID --expiration-date 2025-12-31
 ```
 
 ## Verify a VC
