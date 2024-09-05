@@ -7,9 +7,13 @@ hide_table_of_contents: false
 
 # Web5 CLI
 
-The Web5 CLI is a Rust-based command-line tool for creating and managing [Decentralized Identifiers (DIDs)](/docs/web5/decentralized-identifiers/what-are-dids) and [Verifiable Credentials (VCs)](/docs/web5/verifiable-credentials/what-are-vcs).
+The Web5 CLI is a Rust-based command-line tool for creating and managing [Decentralized Identifiers (DIDs)](/docs/web5/decentralized-identifiers/what-are-dids) and [Verifiable Credentials (VCs)](/docs/web5/verifiable-credentials/what-are-vcs). 
 
-This guide will walk you through installation and usage of the Web5 CLI.
+This guide covers CLI installation and usage for DID and VC management.
+
+:::note
+Alternatively, you can use the [Web5 SDK](/docs/web5) to create [DIDs](/docs/web5/decentralized-identifiers/how-to-create-did) and [VCs](/docs/web5/verifiable-credentials/vc-issuance).
+::: 
 
 ## Installation
 
@@ -70,7 +74,7 @@ web5 did resolve did:dht:bwrh9fphhegh1jn3hhe656zuyfxqdm493so5r4hmpte1yf456w5o
 ```
 
 ## Create and Sign a VC
-The `web5 vc create` command [creates and sign VCs](/docs/web5/verifiable-credentials/vc-issuance).
+The `web5 vc create` command creates and sign VCs.
 
 ```bash
 web5 vc create <credential-subject-id> [options]
@@ -96,7 +100,7 @@ web5 vc create "did:dht:cm1yqfjzfdtauh33nauwf3sqsijqziwrydicr8dbtho3cucb9nno" --
 ```
 
 ## Verify a VC
-The `web5 vc verify` command [verifies a VC](/docs/web5/verifiable-credentials/verify-vc) in JWT format.
+The `web5 vc verify` command verifies a VC that is in JWT format.
 
 ```bash
 web5 vc verify <vc-jwt> [options]
