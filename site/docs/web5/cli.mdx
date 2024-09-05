@@ -74,15 +74,15 @@ web5 did resolve did:dht:bwrh9fphhegh1jn3hhe656zuyfxqdm493so5r4hmpte1yf456w5o
 ```
 
 ## Create and Sign a VC
-The `web5 vc create` command creates and sign VCs.
+The `web5 vc create` command can create and sign a VC, converting it into a [JWT](/docs/web5/verifiable-credentials/jwt-to-vc/#what-is-a-jwt).
 
 ```bash
 web5 vc create <credential-subject-id> [options]
 ```
 
 **Options**
-* `--portable-did <did>`: specifies the DID used to sign the Verifiable Credential. If omitted, VC will be unsigned
-* `--issuer <issuer-did>`: Specifies the issuer of the credential. If issuer is provided issuer without `--portable-did`, the VC will be unsigned.
+* `--portable-did <did>`: specifies the DID used to sign the Verifiable Credential. Once signed, the VC will be output as a JWT.
+* `--issuer <issuer-did>`: Specifies the issuer of the credential.
 * `--expiration-date <date>`: Set an expiration date for the credential.
 * `--no-indent`: Output the VC without indentation.
 * `--json-escape`: Escape JSON strings in the output.
