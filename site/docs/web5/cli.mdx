@@ -21,11 +21,16 @@ curl -L https://raw.githubusercontent.com/TBD54566975/web5-rs/main/crates/web5_c
 
 ## Creating a DID
 
-The `web5 did create` command [creates a DID](/docs/web5/decentralized-identifiers/how-to-create-did) using different DID methods such as `did:dht`, `did:jwk`, and `did:web`. 
+The `web5 did create` command creates a DID using one of the supported DID methods listed below. 
 
 ```bash
 web5 did create <method> [options]
 ```
+
+**Supported DID methods**
+- `did:dht`: [Distributed Hash Table](/docs/glossary#did-method---dht)
+- `did:jwk`: [JSON Web Key](/docs/glossary#did-method---jwk)
+- `did:web`: [Web](/docs/glossary#did-method---web)
 
 **Options**
 * `--no-indent`: Output the DID document without indentation.
