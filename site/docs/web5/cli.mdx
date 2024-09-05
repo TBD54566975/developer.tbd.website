@@ -27,13 +27,13 @@ The `web5 did create` command [creates a DID](/docs/web5/decentralized-identifie
 web5 did create <method> [options]
 ```
 
-### Options
+**Options**
 * `--no-indent`: Output the DID document without indentation.
 * `--json-escape`: Escape JSON strings in the output.
 * `--domain <domain>`: For did:web, specify the domain for the DID Web creation.
 * `--no-publish`: For the dht method, prevents publishing the DID immediately.
 
-### Examples
+**Examples**
 
 ```bash
 # Create a did:jwk with no indent and json escape
@@ -54,11 +54,11 @@ The `web5 did resolve` command [resolves a DID](/docs/web5/decentralized-identif
 web5 did resolve <did-uri> [options]
 ```
 
-### Options
+**Options**
 * `--no-indent`: Output the DID document without indentation.
 * `--json-escape`: Escape JSON strings in the output.
 
-### Examples
+**Examples**
 
 ```bash
 web5 did resolve did:dht:bwrh9fphhegh1jn3hhe656zuyfxqdm493so5r4hmpte1yf456w5o
@@ -71,14 +71,14 @@ The `web5 vc create` command [creates and sign VCs](/docs/web5/verifiable-creden
 web5 vc create <credential-subject-id> [options]
 ```
 
-### Options
+**Options**
 * `--portable-did <did>`: specifies the DID used to sign the Verifiable Credential. If omitted, VC will be unsigned
 * `--issuer <issuer-did>`: Specifies the issuer of the credential. If issuer is provided issuer without `--portable-did`, the VC will be unsigned.
 * `--expiration-date <date>`: Set an expiration date for the credential.
 * `--no-indent`: Output the VC without indentation.
 * `--json-escape`: Escape JSON strings in the output.
 
-### Examples
+**Examples**
 ```bash
 ## Portable DID that will be used as the issuer and to sign the credential
 export PORTABLE_DID=$(web5 did create dht --no-indent)
@@ -97,11 +97,11 @@ The `web5 vc verify` command [verifies a VC](/docs/web5/verifiable-credentials/v
 web5 vc verify <vc-jwt> [options]
 ```
 
-### Options
+**Options**
 * `--no-indent`: Outputs the verification result without indentation.
 * `--json-escape`: Escapes JSON strings in the output.
 
-### Examples
+**Examples**
 
 ```bash
 web5 vc verify eyJ0eXAiOiJKV1QiLCJhbGciOiJFZERTQSIsImtpZCI6ImRpZDpkaHQ6OXFnOGgxc3Jvd2hzZHNla3hwODk4eTU0MXhndGZ4Ym1ybW5oaGdzanlobXRtOHRjb253byMwIn0.eyJ2YyI6eyJAY29udGV4dCI6WyJodHRwczovL3d3dy53My5vcmcvMjAxOC9jcmVkZW50aWFscy92MSJdLCJpZCI6InVybjp2Yzp1dWlkOjlkMDhhNjAzLWMyNTMtNGQyNC05M2MzLWIzYzAwMzg2NjM5MCIsInR5cGUiOlsiVmVyaWZpYWJsZUNyZWRlbnRpYWwiXSwiaXNzdWVyIjoiZGlkOmRodDo5cWc4aDFzcm93aHNkc2VreHA4OTh5NTQxeGd0ZnhibXJtbmhoZ3NqeWhtdG04dGNvbndvIiwiaXNzdWFuY2VEYXRlIjoiMjAyNC0wNi0yOFQxMzoxOTo1OS45OTY2MzMrMDA6MDAiLCJleHBpcmF0aW9uRGF0ZSI6bnVsbCwiY3JlZGVudGlhbFN1YmplY3QiOnsiaWQiOiJhbGljZSJ9fSwiaXNzIjoiZGlkOmRodDo5cWc4aDFzcm93aHNkc2VreHA4OTh5NTQxeGd0ZnhibXJtbmhoZ3NqeWhtdG04dGNvbndvIiwianRpIjoidXJuOnZjOnV1aWQ6OWQwOGE2MDMtYzI1My00ZDI0LTkzYzMtYjNjMDAzODY2MzkwIiwic3ViIjoiYWxpY2UiLCJuYmYiOjE3MTk1ODA3OTksImlhdCI6MTcxOTU4MDgwMH0.PJbb9EidggoqHL3IkfcglcTNzp_obBqbZjE0M4mL2XlecdLKNusZ3i4Hm0BtnzJ0ME7zYAvdIwg4shW4U884Bg
