@@ -81,7 +81,7 @@ web5 vc create <credential-subject-did-uri> --issuer <issuer-did-uri> [options]
 ```
 **Options**
 * `--issuer <issuer-did-uri>`: Specifies the issuer of the credential.
-* `--expiration-date <date>`: Set an expiration date for the credential.
+* `--expiration-date <date>`: Set an expiration date for the credential in YYYY-MM-DD format.
 * `--no-indent`: Output the VC without indentation.
 * `--json-escape`: Escape JSON strings in the output.
 
@@ -104,7 +104,7 @@ web5 vc create <credential-subject-did-uri> [options]
 **Options**
 * `--portable-did <did>`: Specifies the DID used to sign the Verifiable Credential and outputs it as a JWT. If included, the Portable DID's URI is automatically set as the issuer.
 * `--issuer <issuer-did-uri>`: Specifies the issuer of the credential.
-* `--expiration-date <date>`: Set an expiration date for the credential.
+* `--expiration-date <date>`: Set an expiration date for the credential in YYYY-MM-DD format.
 * `--no-indent`: Output the VC without indentation.
 * `--json-escape`: Escape JSON strings in the output.
 
