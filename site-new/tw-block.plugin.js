@@ -18,6 +18,20 @@ const spacingVariables = {
   "--twist-core-spacing-7": "calc(7 * var(--twist-core-spacing-base))",
   "--twist-core-spacing-8": "calc(8 * var(--twist-core-spacing-base))",
   "--twist-core-spacing-9": "calc(9 * var(--twist-core-spacing-base))",
+  "--twist-core-spacing-10": "calc(10 * var(--twist-core-spacing-base))",
+  "--twist-core-spacing-12": "calc(12 * var(--twist-core-spacing-base))",
+  "--twist-core-spacing-15": "calc(15 * var(--twist-core-spacing-base))",
+  "--twist-core-spacing-20": "calc(20 * var(--twist-core-spacing-base))",
+  "--twist-core-spacing-25": "calc(25 * var(--twist-core-spacing-base))",
+  "--twist-core-spacing-30": "calc(30 * var(--twist-core-spacing-base))",
+  "--twist-core-spacing-40": "calc(40 * var(--twist-core-spacing-base))",
+  "--twist-core-spacing-50": "calc(50 * var(--twist-core-spacing-base))",
+  "--twist-core-spacing-60": "calc(60 * var(--twist-core-spacing-base))",
+  "--twist-core-spacing-70": "calc(70 * var(--twist-core-spacing-base))",
+  "--twist-core-spacing-90": "calc(90 * var(--twist-core-spacing-base))",
+  "--twist-core-spacing-100": "calc(100 * var(--twist-core-spacing-base))",
+  "--twist-core-spacing-150": "calc(150 * var(--twist-core-spacing-base))",
+  "--twist-core-spacing-200": "calc(200 * var(--twist-core-spacing-base))",
 };
 
 // Creates readable comments for spacing values
