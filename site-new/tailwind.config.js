@@ -1,4 +1,5 @@
 const { fontFamily } = require("tailwindcss/defaultTheme");
+const twBlock = require("./tw-block.plugin");
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
@@ -50,5 +51,5 @@ module.exports = {
       },
     },
   },
-  plugins: [],
+  plugins: [twBlock],
 };
