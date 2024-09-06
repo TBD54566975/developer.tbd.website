@@ -12,116 +12,95 @@ import CodeSnippet from '@site/src/components/CodeSnippet';
 import PfiQuickstartCodeRunner from '@site/src/components/PfiQuickstartCodeRunner';
 
 <QuickstartExecutionProvider>
-# tbDEX PFI in 5️⃣ minutes
+
+# tbDEX PFI in 5️⃣ Minutes
 
 ## Overview
 
-The role of a Participating Financial Institution (PFI) in the tbDEX ecosystem is to provide offerings of liquidity to customers (represented by Wallets) which those customers can then request quotes on. From there, PFIs are then able to fulfill customer orders assuming that customer passes all requirements for placing such an order. Let’s build a tbDEX-enabled PFI in under 5 minutes, right here in the browser. You will learn how to:
+A Participating Financial Institution (PFI) in the tbDEX ecosystem provides liquidity offerings to customers via Wallets. Customers can place orders and execute transactions if they meet the necessary requirements.
 
-✅  Stand up a basic PFI
+In this quickstart, you'll:
 
-✅  Open endpoints for tbDEX-enabled Wallets to interact with your PFI
+- Set up a basic PFI with offerings
+- Open endpoints for tbDEX-enabled Wallets
+- Process Requests for Quote and respond with Quotes
+- Handle Orders, provide OrderStatus updates, and close out Orders
 
-✅  Broadcast Offerings
+Let's get started!
 
-✅  Process Requests for Quote and respond with Quotes
-
-✅  Accept Orders, provide OrderStatus Updates, and Close out Orders
-
-
-Let’s go!
-
-
-## PFI App Basics
+## Building a Simple PFI
 
 ### Create a DID
 
-On tbDEX, PFIs are identified with [Decentralized Identifiers (DIDs)](/docs/web5/learn/decentralized-identifiers). Let's create a DID for your PFI and specify a service endpoint where Wallet apps can reach you to transact:
+PFIs on tbDEX are identified using [Decentralized Identifiers (DIDs)](/docs/web5/learn/decentralized-identifiers). Let's create a DID for your PFI and specify a service endpoint for wallet applications to interact with your PFI:
 
 <CodeSnippet snippetName="pfiOverviewCreateDid" />
-
-<PfiQuickstartCodeRunner executeCodeName="executeDidCreate" stepIndex={0} customPlaceholder={"See PFI DID"}/>
+<PfiQuickstartCodeRunner executeCodeName="executeDidCreate" stepIndex={0} customPlaceholder={"See PFI DID"} />
 
 ### Structure Your PFI App
 
-PFIs built using the `tbDEX` SDK are effectively node `express` servers with added convenience methods designed to enable your server to “speak” the `tbDEX` protocol. Your app will require a server and a database, and in this exercise we’ll focus on the server and abstract away our database as a `postgres` instance. For the sake of this guide, we’ll assume that there is already a `postgres` database set up with an `offerings` table and an `exchanges` table.
+PFIs are essentially `node express` servers with `tbDEX` SDK enhancements. You'll need a server and a database (e.g a `postgres` database with `offerings` and `exchanges` tables).
 
-Your server API is bisected into two key functional areas by the SDK: Offerings (what your PFI can do for wallets) and Exchanges (what your PFI is in the process of actively doing for wallets). As a result, you’ll have a `main.ts` file that serves as your main server entrypoint, as well as two other files that implement the Offerings and Exchanges functionality as detailed by the interfaces `OfferingsApi` and `ExchangesApi`, respectively. Your main server entrypoint will look as follows:
+There are two primary components to a PFI: the `OfferingsApi` and the `ExchangesApi`. The `OfferingsApi` allows Wallets to query your PFI for available offerings, while the `ExchangesApi` handles RFQs, Orders, and exchange closures.
 
-<CodeSnippet snippetName="pfiOverviewConfigJs" title="main.ts"/>
+#### Extend the `OfferingsApi` and `ExchangesApi` Interfaces
+If you have a custom database setup, you can extend the `OfferingsApi` and `ExchangesApi` interfaces with custom instructions to manage the database containing your offerings and exchanges.
 
-Once your server object is created, you can then configure the 3 primary routes that your PFI will expose to wallets for facilitating exchanges: `RFQ` creation, `Order` handling, and closing out an exchange:
+#### Create your server instance of `TbdexHttpServer`
+Create your main server entry point in `main.ts`, with an instance of `TbdexHttpServer` passing the `exchangesApi`, `offeringsApi` and the `pfiDid`.
 
-<CodeSnippet snippetName="pfiOverviewServerRoutesJs" title="main.ts"/>
+<CodeSnippet snippetName="pfiOverviewConfigJs" title="main.ts" />
 
-<PfiQuickstartCodeRunner executeCodeName="executePingServer" stepIndex={1} customPlaceholder={"Ping the PFI"}/>
+First, we implement the `ExchangesApiProvider` class by focusing on the `write` function to handle exchange data:
 
-Next you’ll need to implement the `ExchangesApiProvider` and `OfferingsApiProvider` classes. We’ll come back to the `OfferingsApiProvider`, but for now let’s focus on implementing the `write` function of `ExchangesApiProvider`, which will write exchange data into your database via the generic sample provider we’ve written called `dataProvider`:
+<CodeSnippet snippetName="pfiOverviewWriteJs" title="exchangesApiProvider.ts" />
 
-<CodeSnippet snippetName="pfiOverviewWriteJs" title="exchangesApiProvider.ts"/>
+Next we need to configure the PFI to know how to react when it receives specific types of messages from the customer. To be able to create quotes, handle orders and close out the exchange using the `write` method.
 
-While there is more functionality to build out later, for now we have the overall structure of our app.
+<CodeSnippet snippetName="pfiOverviewServerRoutesJs" title="main.ts" />
+{/* <PfiQuickstartCodeRunner executeCodeName="executePingServer" stepIndex={1} customPlaceholder={"Ping the PFI"} /> */}
+
+
 
 ## Building Out Offerings
 
-Without any Offerings to provide to potential customers, your PFI won’t be able to do anything! That’s why next we’ll go ahead and create a sample Offering to place into our database. How exactly you do so depends on your database technology. In this exercise, your PFI app is responsible for creating an `Offering` that swaps `USD` for `KES` and facilitating that transaction for your customer Alice.
+Without Offerings, your PFI can't operate. Create an `Offering` object to swap `USD` for `KES` and insert it into your `offerings` table:
 
-### Create Your First Offering
+<PfiQuickstartCodeRunner executeCodeName="executeAddOffering" stepIndex={1} customPlaceholder={"Add the Offering to the database"} viewJsonObj={true} collapseLevel={3} />
 
-Next, you'll create an [`Offering`](https://tbd54566975.github.io/tbdex-js/classes/_tbdex_protocol.Offering.html) object with the attributes of your choice. You can then insert this document into your `offerings` table via a `dataProvider.insert()` call.
+### Fetching Offerings for Wallets
 
-<PfiQuickstartCodeRunner executeCodeName="executeAddOffering" stepIndex={2} customPlaceholder={"Add the Offering to the database"}/>
+Allow Wallets to query your PFI for Offerings by implementing the `OfferingsApi` interface:
 
-### Fetch Offerings for Wallets
-
-Now that you have an actual `Offering` available in your database, you’ll need to make it so that Wallets querying your PFI can obtain them. The `tbDEX` SDK will automatically take care of setting up and maintaining those routes so long as you implement the `OfferingsApi` interface:
-
-<CodeSnippet snippetName="pfiOverviewReadOfferingsJs" title="offeringsApiProvider.ts"/>
-
-<PfiQuickstartCodeRunner executeCodeName="executeGetOfferings" stepIndex={3} customPlaceholder={"Ping the /offerings API Endpoint"} viewJsonObj={true} collapseLevel={3}/>
-
-## Support Exchanges APIs
-
-With a DID and OfferingsApi, our PFI is now ready to receive Requests for Quote (RFQs), which initiate exchanges that can lead to orders. Although we previously implemented the `write` function of `ExchangesApiProvider`, we’ll now finish out the implementation with the [required methods inherited from `ExchangesApi`](https://tbd54566975.github.io/tbdex-js/interfaces/_tbdex_http_server.ExchangesApi.html).
-
-By implementing these methods, you make it so that `HTTP` requests to your PFI such as queries to the `/exchanges/{exchangeId}` route that returns details of a particular exchange for authenticated parties, automatically now work. To do this, we’ll go back to our `main.ts` file and add logic to process each message we receive from a Wallet, as well as how we’ll respond.
-
-<PfiQuickstartCodeRunner executeCodeName="executeGetExchanges" stepIndex={4} customPlaceholder={"Fetch a sample Exchange"} viewJsonObj={true} collapseLevel={3}/>
+<CodeSnippet snippetName="pfiOverviewReadOfferingsJs" title="offeringsApiProvider.ts" />
+<PfiQuickstartCodeRunner executeCodeName="executeGetOfferings" stepIndex={2} customPlaceholder={"Ping the /offerings API Endpoint"} viewJsonObj={true} collapseLevel={3} />
 
 ## Processing tbDEX Messages
 
-With all of the core structure of our PFI implemented, you’ll now need to add the logic of actually advancing a customer on their journey from RFQ to Quote to Order to Close. 
-
 ### Processing RFQs and Returning Quotes
 
-Provided that you are able to [verify that the user has submitted the Verifiable Credentials (VCs) ](/docs/tbdex/pfi/creating-quotes)required by the Offering, you can then proceed to generate a `Quote` for them:
+Verify user credentials and generate a `Quote`:
 
-<CodeSnippet snippetName="pfiCreateQuoteJs" title="exchangeApiProvider.ts"/>
-
-<PfiQuickstartCodeRunner executeCodeName="executeGetQuote" stepIndex={5} customPlaceholder={"See the Quote"} viewJsonObj={true} collapseLevel={1}/>
+<CodeSnippet snippetName="pfiCreateQuoteJs" title="exchangeApiProvider.ts" />
+<PfiQuickstartCodeRunner executeCodeName="executeGetQuote" stepIndex={5} customPlaceholder={"See the Quote"} viewJsonObj={true} collapseLevel={1} />
 
 ### Receiving Orders and Returning OrderStatus
 
-If a customer decides to accept your `Quote` and place an `Order`, you’ll then be required to [process the order](/docs/tbdex/pfi/processing-orders), which will likely involve [accessing private data](/docs/tbdex/pfi/processing-orders#accessing-hashed-data) to actually fulfill it. Once an order has been placed and fulfillment begins, you can keep your customer up to date by sending them `OrderStatus` messages. There are no restrictions on the contents or frequency of these updates, however it is a best practice to send one when a customer initially places their order:
+Process accepted Quotes, manage Orders, and send `OrderStatus` updates:
 
-<CodeSnippet snippetName="pfiOrderStatusJs" title="exchangeApiProvider.ts"/>
-<PfiQuickstartCodeRunner executeCodeName="executeGetOrderStatus" stepIndex={6} customPlaceholder={"See the OrderStatus"} viewJsonObj={true} collapseLevel={1}/>
-
-:::note
- Customers have the change to opt-in to push notifications when they initiate an exchange by specifying a <code>replyTo</code> field. If they do not do so, they’ll be required to poll your <code>ExchangesApi</code> to receive <code>OrderStatus</code> and other updates.
-:::
+<CodeSnippet snippetName="pfiOrderStatusJs" title="exchangeApiProvider.ts" />
+<PfiQuickstartCodeRunner executeCodeName="executeGetOrderStatus" stepIndex={6} customPlaceholder={"See the OrderStatus"} viewJsonObj={true} collapseLevel={1} />
 
 ### Closing Out Orders
 
-When you have fulfilled an `Order` and there’s nothing left to do, you can close it out with a `Close` message. Additionally, you may receive a notification from the customer to close the exchange:
+Fulfill and close orders with a `Close` message:
 
-<CodeSnippet snippetName="pfiCloseOrderJs" title="exchangeApiProvider.ts"/>
-<PfiQuickstartCodeRunner executeCodeName="executeGetClose" stepIndex={7} customPlaceholder={"See the Close Message"} viewJsonObj={true} collapseLevel={1}/>
+<CodeSnippet snippetName="pfiCloseOrderJs" title="exchangeApiProvider.ts" />
+<PfiQuickstartCodeRunner executeCodeName="executeGetClose" stepIndex={7} customPlaceholder={"See the Close Message"} viewJsonObj={true} collapseLevel={1} />
 
 ## Next Steps with tbDEX
 
-Congratulations on creating your first PFI! In just a few minutes you were able to create a PFI that has offerings, gives quotes, accepts orders, and closes out transactions.
+Congratulations on building your first PFI! To explore further, check out the full [PFI guide](/docs/tbdex/pfi/overview) or learn about [building a Wallet](/docs/tbdex/wallet/overview) and [becoming a Credential Issuer](/docs/tbdex/issuer/overview).
 
-If you’d like to get started building an even more robust PFI, you can see our full [PFI guide](/docs/tbdex/pfi/overview). Additionally, you can learn more about [building your own Wallet](/docs/tbdex/wallet/overview), as well as [becoming a Credential Issuer](/docs/tbdex/issuer/overview) on the tbDEX network too!
 
 </QuickstartExecutionProvider>

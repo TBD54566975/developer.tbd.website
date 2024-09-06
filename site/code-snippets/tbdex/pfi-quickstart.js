@@ -121,11 +121,12 @@ export async function pfiQuickstartAddOffering() {
           },
         },
       })
+    const createdOffering = context.offering;
 
     await context.offering.sign(context.issuerDid);
-      
-    return "HTTP 202:OK";
-} 
+
+    return [createdOffering];
+}
 
 export async function pfiQuickstartGetOfferings() {
     return [context.offering];
@@ -141,7 +142,7 @@ export async function pfiQuickstartGetExchanges() {
         'beep': 'boop'
     }
   });
-    
+
   const vcJwt = await vc.sign({ did: context.issuerDid});
 
   let rfq = Rfq.create({
@@ -154,7 +155,7 @@ export async function pfiQuickstartGetExchanges() {
       offeringId: context.offering.metadata.id,   // The ID of the selected offering
       payin: {
           kind: 'USD_LEDGER',                       // The method of payment
-          amount: '500.65',                         // The amount of the payin currency 
+          amount: '500.65',                         // The amount of the payin currency
           paymentDetails: {
           cardNumber: '1234567890123456',
           expiryDate: '05/25',
@@ -163,7 +164,7 @@ export async function pfiQuickstartGetExchanges() {
           }
       },
       payout: {
-          kind: 'MOMO_MPESA',                      // The method for receiving payout                         
+          kind: 'MOMO_MPESA',                      // The method for receiving payout
           paymentDetails: {
               phoneNumber: '123-456-7890',                 // Details to execute payment
               reason: "Payment for services rendered"
@@ -226,7 +227,7 @@ export async function pfiQuickstartGetOrderStatus() {
         },
         data: { orderStatus: 'PROCESSING' }
     })
-    
+
     await orderStatus.sign(context.pfiDid)
 
     return orderStatus;
@@ -234,17 +235,17 @@ export async function pfiQuickstartGetOrderStatus() {
 
 export async function pfiQuickstartGetClose() {
     const closeMessage = Close.create({
-        metadata: { 
-            from: context.pfiDid.uri, 
-            to: context.customerDid, 
+        metadata: {
+            from: context.pfiDid.uri,
+            to: context.customerDid,
             exchangeId: "rfq_01j1xmd1v5eybr00ta4xevpvrj"
         },
-        data: { 
+        data: {
             reason: 'COMPLETED',
             success: true // Indicates the transaction was successful
         }
     })
-    
+
     await closeMessage.sign(context.pfiDid)
 
     return closeMessage;

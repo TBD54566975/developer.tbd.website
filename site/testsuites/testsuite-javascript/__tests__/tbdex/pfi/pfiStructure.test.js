@@ -36,10 +36,10 @@ describe('PFI: Structure', () => {
             exchangesApiProvider = new ExchangesApiProvider();
             offeringsApiProvider = new OfferingsApiProvider(pfiDid);
 
-            tbDexServer = new TbdexHttpServer({ 
-                exchangesApi: exchangesApiProvider, 
+            tbDexServer = new TbdexHttpServer({
+                exchangesApi: exchangesApiProvider,
                 offeringsApi: offeringsApiProvider,
-                pfiDid: pfiDid.uri 
+                pfiDid: pfiDid.uri
             })
             // :snippet-end:
 
@@ -94,8 +94,8 @@ describe('PFI: Structure', () => {
                 });
             });
 
-            const requestToken = await TbdexHttpClient.generateRequestToken({ 
-                requesterDid: customerDid, pfiDid: pfiDid 
+            const requestToken = await TbdexHttpClient.generateRequestToken({
+                requesterDid: customerDid, pfiDid: pfiDid
             });
 
             const options = {
@@ -107,7 +107,7 @@ describe('PFI: Structure', () => {
                     'Authorization': `Bearer: ${requestToken}`
                 }
               };
-        
+
 
             const offering = DevTools.createOffering({
                 from: pfiDid.uri
