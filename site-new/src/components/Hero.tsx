@@ -3,12 +3,9 @@ import Link from "@docusaurus/Link";
 import TbdArrow from "@site/static/img/tbd-arrow";
 import InfoIcon from "@site/static/img/InfoIcon";
 
-type Theme = "yellow" | "teal" | "purple";
-
 type HeroComponentProps = {
   title: string;
   content: string;
-  theme?: Theme;
   url: string;
   buttonText: string;
 };
@@ -16,7 +13,6 @@ type HeroComponentProps = {
 function Hero({
   title,
   content,
-  theme = "yellow",
   url,
   buttonText,
 }: HeroComponentProps): JSX.Element {
@@ -28,7 +24,7 @@ function Hero({
       <div>
         <Link
           href={url}
-          className="text-black mt-twist-core-spacing-6 flex items-center rounded-none bg-tbd-yellow px-4 py-2 text-lg font-medium text-tbd-gray-shade-2"
+          className="text-black mt-twist-core-spacing-6 flex items-center rounded-none bg-tbd-yellow px-4 py-2 text-lg font-medium text-tbd-gray-shade-2 hover:text-tbd-gray-shade-2"
         >
           {buttonText}
           <TbdArrow

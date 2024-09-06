@@ -21,19 +21,16 @@ import Background from "@site/src/components/Background";
 
 ```jsx title="Hero Component"
 <Background
-  height={598}
-  width={784}
   squareCount={5}
   primaryColor="#ffec19"
   className="grid items-center justify-center"
-  childrenClassName="grid grid-cols-8 justify-center items-center h-full"
+  childrenClassName="grid grid-cols-8 justify-center items-center"
 >
   <Hero
     title="This is a title"
     buttonText="Text for the button"
     url="localhost:3000"
     content="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-    theme="teal"
   />
 </Background>
 ```
@@ -42,11 +39,9 @@ import Background from "@site/src/components/Background";
 
 <p>Default Theme</p>
 <Background
-  height={598}
-  width={784}
   squareCount={5}
   primaryColor="#ffec19"
-  className="grid items-center justify-center"
+  className="grid items-center justify-center py-8"
   childrenClassName="grid grid-cols-8 justify-center items-center h-full"
 >
   <Hero
@@ -54,17 +49,14 @@ import Background from "@site/src/components/Background";
     buttonText="Click Here"
     url="localhost:3000"
     content="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-    theme="yellow"
   />
 </Background>
 
 <p>Teal Theme</p>
 <Background
-  height={598}
-  width={784}
   squareCount={5}
   primaryColor="#1af1ff"
-  className="grid items-center justify-center"
+  className="grid items-center justify-center py-8"
   childrenClassName="grid grid-cols-8 justify-center items-center h-full"
 >
   <Hero
@@ -72,12 +64,11 @@ import Background from "@site/src/components/Background";
     buttonText="Click Here"
     url="localhost:3000"
     content="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-    theme="teal"
   />
 </Background>
 
  <p>Purple Theme</p>
-  <Background height={598} width={784} squareCount={5} primaryColor="#b15bff" className="grid items-center justify-center" childrenClassName="grid grid-cols-8 justify-center items-center h-full" >
+  <Background squareCount={5} primaryColor="#b15bff" className="grid items-center justify-center py-8" childrenClassName="grid grid-cols-8 justify-center items-center h-full">
   <Hero title="This is a title" buttonText="Click Here" url="localhost:3000" content="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." theme="purple" />
   </Background>
 </div>
