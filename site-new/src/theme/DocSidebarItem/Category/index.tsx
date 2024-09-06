@@ -199,7 +199,7 @@ export default function DocSidebarItemCategory({
             {!href && collapsible && (
               <Chevron
                 className={clsx(
-                  'size-6 transition-all mr-[9px] dark:text-white',
+                  'size-6 transition-all mr-twist-core-spacing-3 dark:text-white',
                   {
                     'transform rotate-0': collapsed,
                     'transform rotate-180': !collapsed,

@@ -50,4 +50,12 @@ export default tseslint.config(
   {
     ignores: ["tailwind.config.js"],
   },
+  {
+    languageOptions: {
+      globals: {
+        module: "readonly",
+        require: "readonly",
+      },
+    },
+  },
 );
