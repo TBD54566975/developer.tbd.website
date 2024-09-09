@@ -9,7 +9,7 @@ module.exports = {
     container: false,
   },
   darkMode: ["class", '[data-theme="dark"]'],
-  content: ["./src/**/*.{jsx,tsx,html}"],
+  content: ["./src/**/*.{jsx,tsx,html,mdx,md}"],
   theme: {
     colors: {
       "tbd-yellow-tint-2": "#FFF870",

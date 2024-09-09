@@ -1,6 +1,13 @@
 import React, { useEffect, useRef, useState } from "react";
 
-// Helper functions to manipulate colors
+type BackgroundProps = {
+  primaryColor: string;
+  squareCount?: number;
+  className?: string;
+  childrenClassName?: string;
+  children: React.ReactNode;
+};
+
 const hexToRgb = (hex) => {
   const bigint = parseInt(hex.slice(1), 16);
   const r = (bigint >> 16) & 255;
@@ -31,35 +38,49 @@ const darkenColor = (color, factor = 0.1) => {
 
 const generateRandomSquares = (count, maxWidth, maxHeight, darkerColor) => {
   const squares = [];
-  const cellSize = Math.sqrt((maxWidth * maxHeight) / count); // Calculate cell size to distribute squares evenly
+  const cellSize = Math.sqrt((maxWidth * maxHeight) / count);
+  const padding = 10;
+
+  const isOverlapping = (newSquare) => {
+    return squares.some((square) => {
+      return (
+        newSquare.left < square.left + square.width + padding &&
+        newSquare.left + newSquare.width + padding > square.left &&
+        newSquare.top < square.top + square.height + padding &&
+        newSquare.top + newSquare.height + padding > square.top
+      );
+    });
+  };
 
   for (let i = 0; i < count; i++) {
-    const size = Math.floor(Math.random() * 20) + 20; // Random size between 20px and 40px
-    const top = Math.floor(Math.random() * (maxHeight - size));
-    const left = Math.floor(Math.random() * (maxWidth - size));
+    let size, top, left;
+    let attempts = 0;
+    let newSquare;
+
+    do {
+      size = Math.floor(Math.random() * (cellSize * 0.5) + cellSize);
+      top = Math.floor(Math.random() * maxHeight);
+      left = Math.floor(Math.random() * maxWidth);
+      newSquare = { width: size, height: size, top, left };
+      attempts++;
+    } while (isOverlapping(newSquare) && attempts < 100);
 
     squares.push({
-      width: size,
-      height: size,
-      top,
-      left,
+      ...newSquare,
       backgroundColor: darkerColor,
       position: "absolute",
-      zIndex: 0, // Ensure squares are behind the content
     });
   }
   return squares;
 };
 
-// BackgroundColor Component
 const Background = ({
-  width,
-  height,
   primaryColor,
   squareCount = 10,
-  className,
+  className = "",
+  childrenClassName = "",
   children,
-}) => {
+}: BackgroundProps) => {
   const containerRef = useRef(null);
   const [containerSize, setContainerSize] = useState({ width: 0, height: 0 });
 
@@ -72,15 +93,12 @@ const Background = ({
     }
   }, []);
 
-  const containerWidth = width || containerSize.width;
-  const containerHeight = height || containerSize.height;
-
   const darkerColor = darkenColor(primaryColor, 0.1);
   const squares = generateRandomSquares(
     squareCount,
-    containerWidth,
-    containerHeight,
-    darkerColor
+    containerSize.width,
+    containerSize.height,
+    darkerColor,
   );
 
   return (
@@ -88,17 +106,15 @@ const Background = ({
       className={className}
       ref={containerRef}
       style={{
-        position: "relative",
-        width: width ? `${width}px` : "auto",
-        height: height ? `${height}px` : "auto",
         backgroundColor: primaryColor,
         overflow: "hidden",
+        position: "relative",
       }}
     >
       {squares.map((square, index) => (
-        <div key={index} style={square}></div>
+        <div key={index} style={{ ...square }} />
       ))}
-      <div style={{ position: "relative", zIndex: 1 }}>{children}</div>
+      <div className={`${childrenClassName} relative z-10`}>{children}</div>
     </div>
   );
 };
