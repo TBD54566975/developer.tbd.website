@@ -19,12 +19,12 @@ import PfiQuickstartCodeRunner from '@site/src/components/PfiQuickstartCodeRunne
 
 A Participating Financial Institution (PFI) in the tbDEX ecosystem provides liquidity offerings to customers via Wallets. Customers can place orders and execute transactions if they meet the necessary requirements.
 
-In this quickstart, you'll:
+**In this quickstart, you'll:**
 
 - Set up a basic PFI with offerings
 - Open endpoints for tbDEX-enabled Wallets
 - Process Requests for Quote and respond with Quotes
-- Handle Orders, provide OrderStatus updates, and close out Orders
+- Handle Orders, provide `OrderStatus` updates, and close out Orders
 
 Let's get started!
 
@@ -66,14 +66,16 @@ Next we need to configure the PFI to know how to react when it receives specific
 
 Without Offerings, your PFI can't operate. Create an `Offering` object to swap `USD` for `KES` and insert it into your `offerings` table:
 
-<PfiQuickstartCodeRunner executeCodeName="executeAddOffering" stepIndex={1} customPlaceholder={"Add the Offering to the database"} viewJsonObj={true} collapseLevel={3} />
+<CodeSnippet snippetName="pfiCreateQuickstartOfferingJs" title="offeringsApiProvider.ts" />
+
+<PfiQuickstartCodeRunner executeCodeName="executeAddOffering" stepIndex={1} customPlaceholder={"Add the Offering to the PFI"} viewJsonObj={true} collapseLevel={3} />
 
 ### Fetching Offerings for Wallets
 
 Allow Wallets to query your PFI for Offerings by implementing the `OfferingsApi` interface:
 
 <CodeSnippet snippetName="pfiOverviewReadOfferingsJs" title="offeringsApiProvider.ts" />
-<PfiQuickstartCodeRunner executeCodeName="executeGetOfferings" stepIndex={2} customPlaceholder={"Ping the /offerings API Endpoint"} viewJsonObj={true} collapseLevel={3} />
+<PfiQuickstartCodeRunner executeCodeName="executeGetOfferings" stepIndex={2} customPlaceholder={"Fetch offerings from the PFI Endpoint"} viewJsonObj={true} collapseLevel={3} />
 
 ## Processing tbDEX Messages
 
@@ -82,21 +84,21 @@ Allow Wallets to query your PFI for Offerings by implementing the `OfferingsApi`
 Verify user credentials and generate a `Quote`:
 
 <CodeSnippet snippetName="pfiCreateQuoteJs" title="exchangeApiProvider.ts" />
-<PfiQuickstartCodeRunner executeCodeName="executeGetQuote" stepIndex={5} customPlaceholder={"See the Quote"} viewJsonObj={true} collapseLevel={1} />
+<PfiQuickstartCodeRunner executeCodeName="executeGetQuote" stepIndex={3} customPlaceholder={"See the Quote"} viewJsonObj={true} collapseLevel={1} />
 
 ### Receiving Orders and Returning OrderStatus
 
 Process accepted Quotes, manage Orders, and send `OrderStatus` updates:
 
 <CodeSnippet snippetName="pfiOrderStatusJs" title="exchangeApiProvider.ts" />
-<PfiQuickstartCodeRunner executeCodeName="executeGetOrderStatus" stepIndex={6} customPlaceholder={"See the OrderStatus"} viewJsonObj={true} collapseLevel={1} />
+<PfiQuickstartCodeRunner executeCodeName="executeGetOrderStatus" stepIndex={4} customPlaceholder={"See the OrderStatus"} viewJsonObj={true} collapseLevel={1} />
 
 ### Closing Out Orders
 
 Fulfill and close orders with a `Close` message:
 
 <CodeSnippet snippetName="pfiCloseOrderJs" title="exchangeApiProvider.ts" />
-<PfiQuickstartCodeRunner executeCodeName="executeGetClose" stepIndex={7} customPlaceholder={"See the Close Message"} viewJsonObj={true} collapseLevel={1} />
+<PfiQuickstartCodeRunner executeCodeName="executeGetClose" stepIndex={5} customPlaceholder={"See the Close Message"} viewJsonObj={true} collapseLevel={1} />
 
 ## Next Steps with tbDEX
 

@@ -1,5 +1,5 @@
 import { TbdexHttpServer } from '@tbdex/http-server';
-import { TbdexHttpClient, DevTools } from '@tbdex/http-client';
+import { TbdexHttpClient, Offering } from '@tbdex/http-client';
 import { DidDht } from '@web5/dids';
 import { OfferingsApiProvider } from './offeringsApiProvider'
 import { ExchangesApiProvider } from './exchangesApiProvider'
@@ -107,11 +107,113 @@ describe('PFI: Structure', () => {
                     'Authorization': `Bearer: ${requestToken}`
                 }
               };
-
-
-            const offering = DevTools.createOffering({
-                from: pfiDid.uri
+            // :snippet-start: pfiCreateQuickstartOfferingJs
+            const offering = Offering.create({
+              metadata: {
+                  from: pfiDid.uri,
+                  protocol: "1.0"
+              },
+              data: {
+                description: "Exchange USD to KES",
+                payin: {
+                    currencyCode: "USD",
+                    methods: [{
+                      kind: "USD_LEDGER",
+                      requiredPaymentDetails: {}
+                    }]
+                },
+                payout: {
+                    currencyCode: 'KES',
+                    methods: [
+                        {
+                          kind: "MOMO_MPESA",
+                          requiredPaymentDetails: {
+                            $schema: "http://json-schema.org/draft-07/schema#",
+                            title: "Mobile Money Required Payment Details",
+                            type: "object",
+                            required: [
+                              "phoneNumber",
+                              "reason"
+                            ],
+                            additionalProperties: false,
+                            properties: {
+                              phoneNumber: {
+                                title: "Mobile money phone number",
+                                description: "Phone number",
+                                type: "string"
+                              },
+                              reason: {
+                                title: "Reason for sending",
+                                description: "Required for legal reasons",
+                                type: "string"
+                              }
+                            }
+                          },
+                          estimatedSettlementTime: 10
+                        },
+                        {
+                          kind: "BANK_FIRSTBANK",
+                          requiredPaymentDetails: {
+                            $schema: "http://json-schema.org/draft-07/schema#",
+                            title: "Bank Transfer Required Payment Details",
+                            type: "object",
+                            required: [
+                              "accountNumber",
+                              "reason"
+                          ],
+                          additionalProperties: false,
+                          properties: {
+                            accountNumber: {
+                              title: "Bank account number",
+                              description: "Recepient bank account",
+                              type: "string"
+                            },
+                            reason: {
+                              title: "Reason for sending",
+                              description: "Required for legal reasons",
+                              type: "string"
+                            }
+                          }
+                        },
+                      estimatedSettlementTime: 10
+                    }
+                  ]
+                },
+                payoutUnitsPerPayinUnit: '0.0069',
+                requiredClaims: {
+                  "id": "7ce4004c-3c38-4853-968b-e411bafcd945",
+                  "input_descriptors": [
+                    {
+                      "id": "bbdb9b7c-5754-4f46-b63b-590bada959e0",
+                      "constraints": {
+                        "fields": [
+                          {
+                            "path": [
+                              "$.type[*]"
+                            ],
+                            "filter": {
+                              "type": "string",
+                              "pattern": "^SanctionCredential$"
+                            }
+                          },
+                          {
+                            "path": [
+                              "$.issuer"
+                            ],
+                            "filter": {
+                              "type": "string",
+                              "const": "did:dht:bawc7n1sc4k89d8fyyayhjuk7dqmbtzt4pu58f8eam9fwq9qqp9y"
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                }
+              },
             });
+            // :snippet-end:
+
             await offering.sign(pfiDid);
 
             offeringsApiProvider.setOfferings([offering]);
