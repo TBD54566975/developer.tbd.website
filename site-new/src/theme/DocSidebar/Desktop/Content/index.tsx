@@ -26,7 +26,7 @@ function useShowAnnouncementBar() {
         setShowAnnouncementBar(scrollY === 0);
       }
     },
-    [isActive]
+    [isActive],
   );
   return isActive && showAnnouncementBar;
 }
@@ -48,17 +48,17 @@ export default function DocSidebarDesktopContent({
         description: "The ARIA label for the sidebar navigation",
       })}
       className={clsx(
-        "menu thin-scrollbar flex flex-col h-full",
+        "menu thin-scrollbar flex h-full flex-col",
         styles.menu,
         showAnnouncementBar && styles.menuWithAnnouncementBar,
-        className
+        className,
       )}
       style={{ minHeight: "100vh" }}
     >
       <Background
-        primaryColor="#fae100"
+        bgColor="yellow"
         squareCount={5}
-        className={"w-64 h-52 py-2 pl-4 mb-8"}
+        className={"mb-8 h-52 w-64 py-2 pl-4"}
       >
         <DocBreadcrumbsWrapper />
         <h4 className="text-dark-grey">{sidebarHeader}</h4>
@@ -66,7 +66,7 @@ export default function DocSidebarDesktopContent({
       <ul
         className={clsx(
           ThemeClassNames.docs.docSidebarMenu,
-          "menu__list flex-grow"
+          "menu__list flex-grow",
         )}
       >
         <DocSidebarItems items={sidebar} activePath={path} level={1} />
