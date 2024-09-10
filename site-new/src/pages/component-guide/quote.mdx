@@ -1,0 +1,61 @@
+import React from "react";
+import Hero from "@site/src/components/Hero";
+import { Quote } from "@site/src/components/Quote";
+
+# Quote Component
+
+<div className="component-guide text-white">
+<p>The `Quote` component is used to display a Quote with or without author name.</p>
+
+## Properties
+
+| Property      | Type     | Required | Default  | Description                                   |
+| ------------- | -------- | -------- | -------- | --------------------------------------------- |
+| `quote`       | `string` | Yes      |          | The main quote text to display.               |
+| `author`      | `string` | No       | `""`     | The author of the quote, if any.              |
+| `className`   | `string` | No       | `""`     | Additional classes to apply to the component. |
+| `squareCount` | `number` | No       | `5`      | The number of squares to display.             |
+| `bgColor`     | `string` | No       | `yellow` | The background color of the squares.          |
+
+## Usage
+
+```jsx title="Quote Component"
+<Quote
+  quote="This is where owning and controlling your data suddenly becomes extremely valuable."
+  author="AUTHOR DETAILS"
+  className="text-white"
+  squareCount={5}
+  bgColor="yellow"
+/>
+```
+
+## Examples
+
+<p>Default Theme</p>
+<Quote
+  quote="This is where owning and controlling your data suddenly becomes extremely valuable."
+  author="AUTHOR DETAILS"
+  className="text-black"
+  squareCount={5}
+  bgColor="yellow"
+/>
+
+<p>Teal Theme</p>
+<Quote
+  quote="This is where owning and controlling your data suddenly becomes extremely valuable."
+  author="AUTHOR DETAILS"
+  className="text-black"
+  squareCount={5}
+  bgColor="teal"
+/>
+
+ <p>Purple Theme</p>
+  <Quote
+    quote="This is where owning and controlling your data suddenly becomes extremely valuable."
+    author="AUTHOR DETAILS"
+    className="text-white"
+		squareCount={5}
+		bgColor="purple"
+  />
+</div>
+```

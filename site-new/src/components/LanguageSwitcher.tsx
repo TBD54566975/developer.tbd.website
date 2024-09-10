@@ -32,7 +32,7 @@ function LanguageSwitcher() {
 
   return (
     <div className="flex-col justify-start items-start pl-2 font-spaceGrotesk bg-tbd-gray-shade-1">
-      <div className="eyebrow pl-2 py-2">LANGUAGE</div>
+      <div className="eyebrow pl-2 py-2 opacity-60 text-white">LANGUAGE</div>
       <section>
         <div className="flex items-center justify-start pb-4">
           <div className="relative inline-block w-full">
