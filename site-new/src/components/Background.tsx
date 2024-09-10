@@ -1,6 +1,11 @@
 import React, { useEffect, useRef, useState } from "react";
 
-type BackgroundColors = "teal" | "yellow" | "purple";
+type BackgroundColors =
+  | "teal"
+  | "yellow"
+  | "purple"
+  | "black"
+  | "yellow-shade-1";
 
 type BackgroundProps = {
   bgColor?: BackgroundColors;
@@ -13,7 +18,9 @@ type BackgroundProps = {
 const bgColorMap: Record<BackgroundColors, string> = {
   teal: "#1af1ff",
   yellow: "#ffec19",
+  "yellow-shade-1": "#FAE100",
   purple: "#b15bff",
+  black: "#1A1A1A",
 };
 
 const hexToRgb = (hex) => {
