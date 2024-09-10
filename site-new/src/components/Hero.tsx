@@ -18,20 +18,23 @@ function Hero({
   buttonText,
 }: HeroComponentProps): JSX.Element {
   return (
-    <div className="col-span-6 col-start-2 flex flex-col items-start justify-center border-[1px] border-solid bg-tbd-gray-shade-2 p-9 shadow-[15px_15px_0px_-5px_rgba(0,0,0,0.3)] shadow-tbd-gray-tint-2">
+    <div className="max-w-ful mx-auto flex w-full flex-col items-start justify-center border-[1px] border-solid bg-tbd-gray-shade-2 p-6 shadow-[15px_15px_0px_-5px_rgba(0,0,0,0.3)] shadow-tbd-gray-tint-2 md:max-w-2xl md:p-9">
       <InfoIcon className="h-6 w-6" fill={"#ffec19"} />
-      <Heading as="h2" className="mb-8 mt-4 text-4xl text-tbd-yellow">
+      <Heading
+        as="h2"
+        className="mb-6 mt-4 text-3xl text-tbd-yellow md:text-4xl"
+      >
         {title}
       </Heading>
-      <p className="text-lg text-white">{content}</p>
+      <p className="mb-6 text-base text-white md:text-lg">{content}</p>
       <div>
         <Link
           href={url}
-          className="text-black mt-twist-core-spacing-6 flex items-center rounded-none bg-tbd-yellow px-4 py-2 text-lg font-medium text-tbd-gray-shade-2 hover:text-tbd-gray-shade-2"
+          className="flex items-center rounded-none bg-tbd-yellow px-4 py-2 text-base font-medium text-tbd-gray-shade-2 hover:text-tbd-gray-shade-2 md:text-lg"
         >
           {buttonText}
           <TbdArrow
-            className="ml-2 h-6 w-6 rotate-180 bg-tbd-yellow"
+            className="ml-2 h-5 w-5 rotate-180 bg-tbd-yellow md:h-6 md:w-6"
             fill={"black"}
           />
         </Link>
