@@ -1,11 +1,19 @@
 import React, { useEffect, useRef, useState } from "react";
 
+type BackgroundColors = "teal" | "yellow" | "purple";
+
 type BackgroundProps = {
-  primaryColor: string;
+  bgColor?: BackgroundColors;
   squareCount?: number;
   className?: string;
   childrenClassName?: string;
   children: React.ReactNode;
+};
+
+const bgColorMap: Record<BackgroundColors, string> = {
+  teal: "#1af1ff",
+  yellow: "#ffec19",
+  purple: "#b15bff",
 };
 
 const hexToRgb = (hex) => {
@@ -75,7 +83,7 @@ const generateRandomSquares = (count, maxWidth, maxHeight, darkerColor) => {
 };
 
 const Background = ({
-  primaryColor,
+  bgColor = "yellow",
   squareCount = 10,
   className = "",
   childrenClassName = "",
@@ -83,6 +91,8 @@ const Background = ({
 }: BackgroundProps) => {
   const containerRef = useRef(null);
   const [containerSize, setContainerSize] = useState({ width: 0, height: 0 });
+
+  const bgColorHex = bgColorMap[bgColor];
 
   useEffect(() => {
     if (containerRef.current) {
@@ -93,7 +103,7 @@ const Background = ({
     }
   }, []);
 
-  const darkerColor = darkenColor(primaryColor, 0.1);
+  const darkerColor = darkenColor(bgColorHex, 0.1);
   const squares = generateRandomSquares(
     squareCount,
     containerSize.width,
@@ -106,7 +116,7 @@ const Background = ({
       className={className}
       ref={containerRef}
       style={{
-        backgroundColor: primaryColor,
+        backgroundColor: bgColorHex,
         overflow: "hidden",
         position: "relative",
       }}

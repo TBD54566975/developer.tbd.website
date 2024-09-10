@@ -6,6 +6,7 @@ function ComponentList() {
     { name: "TextIconCard", path: "/component-guide/text-icon-card" },
     { name: "BlogCard", path: "/component-guide/blog-card" },
     { name: "HeroComponent", path: "/component-guide/hero" },
+    { name: "Quote", path: "/component-guide/quote" },
   ];
 
   return (
