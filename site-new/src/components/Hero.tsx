@@ -18,7 +18,7 @@ function Hero({
   buttonText,
 }: HeroComponentProps): JSX.Element {
   return (
-    <div className="max-w-ful mx-auto flex w-full flex-col items-start justify-center border-[1px] border-solid bg-tbd-gray-shade-2 p-6 shadow-[15px_15px_0px_-5px_rgba(0,0,0,0.3)] shadow-tbd-gray-tint-2 md:max-w-2xl md:p-9">
+    <div className="max-w-ful mx-auto flex w-full flex-col items-start justify-center border-[1px] border-solid bg-tbd-gray-shade-2 p-6 shadow-[15px_15px_0px_-5px_rgba(0,0,0,0.3)] shadow-tbd-gray-tint-2 transition-all duration-300 ease-in-out hover:translate-y-1 hover:shadow-[5px_5px_0px_-5px_rgba(0,0,0,0.3)] md:max-w-2xl md:p-9">
       <InfoIcon className="h-6 w-6" fill={"#ffec19"} />
       <Heading
         as="h2"
