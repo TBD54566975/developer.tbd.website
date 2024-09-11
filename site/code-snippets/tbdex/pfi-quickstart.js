@@ -21,10 +21,6 @@ export async function pfiQuickstartGetDid() {
     return context.pfiDid.uri;
 }
 
-export async function pfiQuickstartPingServer() {
-    return "HTTP 200:OK";
-}
-
 export async function pfiQuickstartAddOffering() {
     context.offering = Offering.create({
         metadata: { from: context.pfiDid.uri },

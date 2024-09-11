@@ -44,61 +44,67 @@ PFIs are essentially `node express` servers with `tbDEX` SDK enhancements. You'l
 There are two primary components to a PFI: the `OfferingsApi` and the `ExchangesApi`. The `OfferingsApi` allows Wallets to query your PFI for available offerings, while the `ExchangesApi` handles RFQs, Orders, and exchange closures.
 
 #### Extend the `OfferingsApi` and `ExchangesApi` Interfaces
-If you have a custom database setup, you can extend the `OfferingsApi` and `ExchangesApi` interfaces with custom instructions to manage the database containing your offerings and exchanges.
+With your own custom database setup, you can extend the `OfferingsApi` and `ExchangesApi` interfaces with instructions to manage the database containing your offerings and exchanges.
+
+Learn more about how to do this in detail in this [guide](/docs/tbdex/pfi/anatomy-of-a-pfi).
+
+{/* First, we implement the `ExchangesApiProvider` class by focusing on the `write` function to handle exchange data:
+
+<CodeSnippet snippetName="pfiOverviewWriteJs" title="exchangesApiProvider.ts" />
+
+Next, we implement the `OfferingsApiProvider` class which also stores and fetches the PFI's list of offerings when requested by a Wallet:
+
+<CodeSnippet snippetName="pfiOverviewReadOfferingsJs" title="offeringsApiProvider.ts" /> */}
 
 #### Create your server instance of `TbdexHttpServer`
 Create your main server entry point in `main.ts`, with an instance of `TbdexHttpServer` passing the `exchangesApi`, `offeringsApi` and the `pfiDid`.
 
 <CodeSnippet snippetName="pfiOverviewConfigJs" title="main.ts" />
 
-First, we implement the `ExchangesApiProvider` class by focusing on the `write` function to handle exchange data:
-
-<CodeSnippet snippetName="pfiOverviewWriteJs" title="exchangesApiProvider.ts" />
-
-Next we need to configure the PFI to know how to react when it receives specific types of messages from the customer. To be able to create quotes, handle orders and close out the exchange using the `write` method.
-
-<CodeSnippet snippetName="pfiOverviewServerRoutesJs" title="main.ts" />
-{/* <PfiQuickstartCodeRunner executeCodeName="executePingServer" stepIndex={1} customPlaceholder={"Ping the PFI"} /> */}
 
 
+{/* Next we need to configure the PFI to know how to react when it receives specific types of messages from the customer. To be able to create quotes, handle orders and close out the exchange using the `write` method.
+
+<CodeSnippet snippetName="pfiOverviewServerRoutesJs" title="main.ts" /> */}
 
 ## Building Out Offerings
 
-Without Offerings, your PFI can't operate. Create an `Offering` object to swap `USD` for `KES` and insert it into your `offerings` table:
+Without Offerings, your PFI doesn't have anything to present to customers. [Create an Offering](/docs/tbdex/pfi/creating-offerings) to swap `USD` for `KES` and insert it into your `offerings` table.
+
+Here's an example:
 
 <CodeSnippet snippetName="pfiCreateQuickstartOfferingJs" title="offeringsApiProvider.ts" />
 
-<PfiQuickstartCodeRunner executeCodeName="executeAddOffering" stepIndex={1} customPlaceholder={"Add the Offering to the PFI"} viewJsonObj={true} collapseLevel={3} />
+{/* <PfiQuickstartCodeRunner executeCodeName="executeAddOffering" stepIndex={1} customPlaceholder={"Add the Offering to the PFI"} viewJsonObj={true} collapseLevel={3} /> */}
 
 ### Fetching Offerings for Wallets
 
-Allow Wallets to query your PFI for Offerings by implementing the `OfferingsApi` interface:
+With your `offeringsApi` all setup to return offerings when requested, this is what wallet providers would receive when they call `TbdexHttpClient.getOfferings()` :
 
-<CodeSnippet snippetName="pfiOverviewReadOfferingsJs" title="offeringsApiProvider.ts" />
-<PfiQuickstartCodeRunner executeCodeName="executeGetOfferings" stepIndex={2} customPlaceholder={"Fetch offerings from the PFI Endpoint"} viewJsonObj={true} collapseLevel={3} />
+<PfiQuickstartCodeRunner executeCodeName="executeGetOfferings" stepIndex={1} customPlaceholder={"Fetch offerings from the PFI Endpoint"} viewJsonObj={true} collapseLevel={3} />
 
 ## Processing tbDEX Messages
 
 ### Processing RFQs and Returning Quotes
 
-Verify user credentials and generate a `Quote`:
+When a customer selects an offering, they make a `Request for Quote` along with their credentials that match the `requiredClaims` of the offering. Using this submitted data, your PFI generates a  `Quote`:
 
 <CodeSnippet snippetName="pfiCreateQuoteJs" title="exchangeApiProvider.ts" />
-<PfiQuickstartCodeRunner executeCodeName="executeGetQuote" stepIndex={3} customPlaceholder={"See the Quote"} viewJsonObj={true} collapseLevel={1} />
+<PfiQuickstartCodeRunner executeCodeName="executeGetQuote" stepIndex={2} customPlaceholder={"See the Quote"} viewJsonObj={true} collapseLevel={1} />
 
 ### Receiving Orders and Returning OrderStatus
 
-Process accepted Quotes, manage Orders, and send `OrderStatus` updates:
+The customer has accepted the quote and places an order. Let's process accepted Quotes, manage Orders, and send `OrderStatus` updates:
 
 <CodeSnippet snippetName="pfiOrderStatusJs" title="exchangeApiProvider.ts" />
-<PfiQuickstartCodeRunner executeCodeName="executeGetOrderStatus" stepIndex={4} customPlaceholder={"See the OrderStatus"} viewJsonObj={true} collapseLevel={1} />
+<PfiQuickstartCodeRunner executeCodeName="executeGetOrderStatus" stepIndex={3} customPlaceholder={"See the OrderStatus"} viewJsonObj={true} collapseLevel={1} />
 
 ### Closing Out Orders
 
-Fulfill and close orders with a `Close` message:
+Once the order is fulfilled, or cancelled by the PFI for whatever reason, you close orders with a `Close` message along with the `reason`:
 
 <CodeSnippet snippetName="pfiCloseOrderJs" title="exchangeApiProvider.ts" />
-<PfiQuickstartCodeRunner executeCodeName="executeGetClose" stepIndex={5} customPlaceholder={"See the Close Message"} viewJsonObj={true} collapseLevel={1} />
+<PfiQuickstartCodeRunner executeCodeName="executeGetClose" stepIndex={4} customPlaceholder={"See the Close Message"} viewJsonObj={true} collapseLevel={1} />
 
 ## Next Steps with tbDEX
 

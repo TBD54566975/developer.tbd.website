@@ -9,7 +9,6 @@ const importFunction = async (name) => (await import('../../code-snippets/tbdex/
 
 const executeFunctions = {
     executeDidCreate: () => importFunction('pfiQuickstartGetDid'),
-    executePingServer: () => importFunction('pfiQuickstartPingServer'),
     executeAddOffering: () => importFunction('pfiQuickstartAddOffering'),
     executeGetOfferings: () => importFunction('pfiQuickstartGetOfferings'),
     executeGetExchanges: () => importFunction('pfiQuickstartGetExchanges'),
