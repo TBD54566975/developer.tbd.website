@@ -12,7 +12,9 @@ type BackgroundProps = {
 const bgColorMap: Record<BackgroundColors, string> = {
   teal: "#1af1ff",
   yellow: "#ffec19",
+  "yellow-shade-1": "#FAE100",
   purple: "#b15bff",
+  black: "#1A1A1A",
 };
 
 const hexToRgb = (hex) => {
