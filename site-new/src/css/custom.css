@@ -345,19 +345,14 @@ h1 {
 	line-height: 68.2px;
 }
 
-h2 {
-	@apply text-1.2lg lg:text-4.5xl
-}
+
 
 h3 {
 	font-size: 34px;
 	line-height: 40.8px;
 }
 
-h4 {
-	font-size: 28px;
-	line-height: 36.4px;
-}
+
 
 
 /* Bread Crumbs */
@@ -524,4 +519,18 @@ code {
 
 .theme-doc-toc-desktop {
 	min-width: 200px;
+}
+
+@layer base {
+	h2 {
+		@apply text-1.2lg lg:text-4.5xl
+	}
+
+	h4 {
+		@apply text-lg leading-[1.463rem] lg:text-2.5xl
+	}
+
+	p {
+		@apply text-sm leading-[1.225rem] lg:text-[1.375rem] lg:leading-[1.925rem]
+	}
 }
