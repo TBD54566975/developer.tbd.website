@@ -1,0 +1,117 @@
+import React from "react";
+import { MarqueeTextSkewed, Marquee } from "@site/src/components/Marquee";
+import Background from "@site/src/components/Background";
+
+# Marquee Component
+
+<div className="component-guide text-white">
+  <p>
+    The Marquee component is used to display scrolling content, often used for
+    announcements or promotional information. You can customize the scroll
+    direction, speed, and behavior.
+  </p>
+</div>
+## Properties
+
+| Property     | Type      | Required | Default | Description                                                                                |
+| ------------ | --------- | -------- | ------- | ------------------------------------------------------------------------------------------ |
+| className    | string    | No       | ""      | Additional CSS classes to apply to the marquee.                                            |
+| duration     | string    | No       | "40s"   | Duration of the marquee scroll, can be "5s", "10s", "20s", "40s", "60s", "80s", or "100s". |
+| reverse      | boolean   | No       | false   | Reverses the direction of the marquee animation.                                           |
+| pauseOnHover | boolean   | No       | false   | Pauses the marquee animation when hovered.                                                 |
+| children     | ReactNode | No       | null    | The content to display inside the marquee.                                                 |
+| vertical     | boolean   | No       | false   | If true, the marquee scrolls vertically instead of horizontally.                           |
+| repeat       | number    | No       | 4       | Number of times the content is repeated within the marquee.                                |
+
+## Usage
+
+```jsx
+const marqueeItems = [
+  "Item 1",
+  "Item 2",
+  "Item 3",
+  "Item 4",
+  "Item 5",
+  "Item 6",
+  "Item 7",
+];
+<MarqueeTextSkewed
+  texts={marqueeItems}
+  className="text-black"
+  bgColor="purple"
+/>;
+```
+
+## Examples
+
+<p>Horizontal Marquee - Purple Background</p>
+<MarqueeTextSkewed
+  texts={["Item 1", "Item 2", "Item 3", "Item 4", "Item 5", "Item 6", "Item 7"]}
+  className="text-black"
+  bgColor="purple"
+/>
+
+<p>Horizontal Marquee - Yellow Background</p>
+<MarqueeTextSkewed
+  texts={["Item 1", "Item 2", "Item 3", "Item 4", "Item 5", "Item 6", "Item 7"]}
+  className="text-black"
+  bgColor="yellow"
+/>
+
+<p>Horizontal Marquee with Pause on Hover - Teal Background</p>
+<MarqueeTextSkewed
+  texts={["Item 1", "Item 2", "Item 3", "Item 4", "Item 5", "Item 6", "Item 7"]}
+  className="text-black"
+  bgColor="teal"
+  pauseOnHover
+/>
+
+<p>Reverse Horizontal Marquee - Blue Background</p>
+<MarqueeTextSkewed
+  texts={["Item 1", "Item 2", "Item 3", "Item 4", "Item 5", "Item 6", "Item 7"]}
+  className="text-black"
+  bgColor="yellow"
+  reverse
+/>
+
+<p>Slow Horizontal Marquee (100s Duration) - Green Background</p>
+<MarqueeTextSkewed
+  texts={["Item 1", "Item 2", "Item 3", "Item 4", "Item 5", "Item 6", "Item 7"]}
+  className="text-black"
+  bgColor="teal"
+  duration="100s"
+/>
+
+<p>Fast Horizontal Marquee (5s Duration) - Orange Background</p>
+<MarqueeTextSkewed
+  texts={["Item 1", "Item 2", "Item 3", "Item 4", "Item 5", "Item 6", "Item 7"]}
+  className="text-black"
+  bgColor="orange"
+  duration="5s"
+/>
+
+<p>Vertical Marquee - Pink Background</p>
+<MarqueeTextSkewed
+  texts={["Item 1", "Item 2", "Item 3", "Item 4", "Item 5", "Item 6", "Item 7"]}
+  className="text-black"
+  bgColor="purple"
+  vertical
+/>
+
+<p>Vertical Marquee with Pause on Hover - Gray Background</p>
+<MarqueeTextSkewed
+  texts={["Item 1", "Item 2", "Item 3", "Item 4", "Item 5", "Item 6", "Item 7"]}
+  className="text-black"
+  bgColor="blue"
+  vertical
+  pauseOnHover
+/>
+
+<p>Reverse Vertical Marquee - Cyan Background</p>
+<MarqueeTextSkewed
+  texts={["Item 1", "Item 2", "Item 3", "Item 4", "Item 5", "Item 6", "Item 7"]}
+  className="text-black"
+  bgColor="yellow"
+  vertical
+  reverse
+/>
