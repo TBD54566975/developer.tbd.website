@@ -1,6 +1,5 @@
+import { BackgroundColors } from "@site/lib/utils";
 import React, { useEffect, useRef, useState } from "react";
-
-type BackgroundColors = "teal" | "yellow" | "purple";
 
 type BackgroundProps = {
   bgColor?: BackgroundColors;
