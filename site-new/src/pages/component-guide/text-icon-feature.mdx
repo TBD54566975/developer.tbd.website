@@ -1,0 +1,60 @@
+import { TextIconFeature } from "@site/src/components/TextIconFeature";
+
+## TextIconFeature Component
+
+<div className="component-guide text-white">
+  <p>
+    The TextIconFeature component is used to display a feature section with an
+    icon, a title, and body text. It is useful for showcasing various features
+    or highlights with customizable colors and icons.
+  </p>
+</div>
+
+## Properties
+
+| Property | Type   | Required | Default  | Description                                                                               |
+| -------- | ------ | -------- | -------- | ----------------------------------------------------------------------------------------- |
+| body     | string | Yes      | ""       | The body text displayed in the feature section.                                           |
+| title    | string | No       | ""       | The title text displayed above the body.                                                  |
+| icon     | func   | No       | Heart    | A custom icon to display. Defaults to the Heart icon.                                     |
+| variant  | string | No       | "yellow" | The text and icon color. Can be "teal", "purple", "yellow", "yellow-shade-1", or "black". |
+
+## Usage
+
+```jsx
+<TextIconFeature
+  title="Feature Title"
+  body="This is the body of the feature section, describing the feature in detail."
+  variant="teal"
+/>
+```
+
+## Examples
+
+<p>Default TextIconFeature - Yellow Variant</p>
+<TextIconFeature
+  title="Yellow Feature"
+  body="This feature uses the default yellow variant for the icon and text."
+  variant="yellow"
+/>
+
+<p>Purple TextIconFeature</p>
+<TextIconFeature
+  title="Purple Feature"
+  body="This feature uses the purple variant for the icon and text."
+  variant="purple"
+/>
+
+<p>Yellow-shade-1 TextIconFeature</p>
+<TextIconFeature
+  title="Yellow Shade Feature"
+  body="This feature uses the yellow-shade-1 variant for a slightly darker yellow tone."
+  variant="yellow-shade-1"
+/>
+
+<p>Black TextIconFeature</p>
+<TextIconFeature
+  title="Black Feature"
+  body="This feature uses the black variant for the icon and text, providing a high contrast style."
+  variant="black"
+/>
