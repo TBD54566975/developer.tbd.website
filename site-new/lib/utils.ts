@@ -23,7 +23,7 @@ export const backgroundClassesMap: Record<BackgroundColors, string> = {
   black: "bg-tbd-gray-shade-1",
 };
 
-export const textClassesMap: Record<BackgroundColors, string> = {
+export const textClassesMap: Record<TextColors, string> = {
   teal: "text-tbd-teal",
   purple: "text-tbd-purple",
   yellow: "text-tbd-yellow",
