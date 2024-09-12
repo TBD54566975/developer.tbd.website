@@ -1,0 +1,104 @@
+import {
+  Accordion,
+  AccordionItem,
+  AccordionToneProvider,
+  AccordionRoot,
+} from "@site/src/components/Accordion";
+
+## AccordionItem Component
+
+<div className="component-guide text-white">
+<p>The AccordionItem component is used to create collapsible sections, typically for FAQs or hidden content that users can expand to reveal more details. The component allows setting a summary and details, with customization options for tone and disabled states. This component is used within an `AccordionToneProvider` for consistent tone styling and an `AccordionRoot` to manage state and behavior.</p>
+
+## Properties
+
+| Property | Type      | Required | Default | Description                                                       |
+| -------- | --------- | -------- | ------- | ----------------------------------------------------------------- |
+| tone     | ToneTypes | No       | ""      | Defines the color tone or style applied to the accordion trigger. |
+| summary  | ReactNode | Yes      | ""      | The content shown in the trigger section (collapsed view).        |
+| details  | ReactNode | Yes      | ""      | The content revealed when the accordion is expanded.              |
+| value    | string    | Yes      | ""      | A unique value that represents the accordion item.                |
+| disabled | boolean   | No       | false   | If true, the accordion item is disabled and cannot be expanded.   |
+
+## Usage
+
+enter back ticks here jsx title="AccordionItem Component Usage" enter back ticks here
+
+<AccordionToneProvider tone="yellow">
+  <AccordionRoot type="single" collapsible>
+    <AccordionItem
+      value="item-1"
+      summary="Is it accessible?"
+      details="Yes. It adheres to the WAI-ARIA design pattern."
+      disabled
+    />
+    <AccordionItem
+      value="item-2"
+      summary="Is it unstyled?"
+      details="Yes. It's unstyled by default, giving you freedom over the look and feel."
+    />
+    <AccordionItem
+      value="item-3"
+      summary="Is it customizable?"
+      details={
+        <div>
+          Yes, you can completely customize the content and styles to fit your
+          needs.
+        </div>
+      }
+    />
+  </AccordionRoot>
+</AccordionToneProvider>
+
+## Examples
+
+<p>Accordion with Yellow Tone</p>
+<AccordionToneProvider tone="yellow">
+  <AccordionRoot type="single" collapsible>
+    <AccordionItem
+      value="item-1"
+      summary="Is it accessible?"
+      details="Yes. It adheres to the WAI-ARIA design pattern."
+      disabled
+    />
+    <AccordionItem
+      value="item-2"
+      summary="Is it unstyled?"
+      details="Yes. It's unstyled by default, giving you freedom over the look and feel."
+    />
+  </AccordionRoot>
+</AccordionToneProvider>
+
+<p>Accordion with Teal Tone</p>
+<AccordionToneProvider tone="teal">
+  <AccordionRoot type="single" collapsible>
+    <AccordionItem
+      value="item-1"
+      summary="Is it customizable?"
+      details="Yes, you can completely customize the content and styles to fit your needs."
+    />
+    <AccordionItem
+      value="item-2"
+      summary="Is it reusable?"
+      details="Yes, you can reuse the AccordionItem component multiple times for different content."
+    />
+  </AccordionRoot>
+</AccordionToneProvider>
+
+<p>Accordion with Disabled Item</p>
+<AccordionToneProvider tone="purple">
+  <AccordionRoot type="single" collapsible>
+    <AccordionItem
+      value="item-1"
+      summary="This item is disabled"
+      details="This accordion item is disabled and cannot be expanded."
+      disabled
+    />
+    <AccordionItem
+      value="item-2"
+      summary="Is it flexible?"
+      details="Yes, it's flexible and allows for dynamic content in the details section."
+    />
+  </AccordionRoot>
+</AccordionToneProvider>
+</div>
