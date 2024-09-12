@@ -9,6 +9,7 @@ function ComponentList() {
     { name: "HeroComponent", path: "/component-guide/hero" },
     { name: "Quote", path: "/component-guide/quote" },
     { name: "Marquee", path: "/component-guide/marquee" },
+    { name: "Accordion", path: "/component-guide/accordion" },
   ];
 
   return (
