@@ -125,6 +125,7 @@ export async function pfiQuickstartAddOffering() {
 }
 
 export async function pfiQuickstartGetOfferings() {
+    await pfiQuickstartAddOffering();
     return [context.offering];
 }
 
