@@ -10,6 +10,7 @@ function ComponentList() {
     { name: "Quote", path: "/component-guide/quote" },
     { name: "Marquee", path: "/component-guide/marquee" },
     { name: "Accordion", path: "/component-guide/accordion" },
+    { name: "FeedbackCard", path: "/component-guide/feedback-card" },
   ];
 
   return (
