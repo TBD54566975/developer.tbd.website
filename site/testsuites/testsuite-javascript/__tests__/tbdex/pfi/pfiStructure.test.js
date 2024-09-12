@@ -21,7 +21,7 @@ describe('PFI: Structure', () => {
                 services: [{
                     id: 'pfi',
                     type: 'PFI',
-                    serviceEndpoint: 'https://localhost:8080'
+                    serviceEndpoint: 'https://example.com'
                 }]
             }
         });
