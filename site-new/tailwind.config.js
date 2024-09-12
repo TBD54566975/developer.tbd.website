@@ -4,6 +4,14 @@ const twComponents = require("./tw-block-components.plugin");
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
+  safelist: [
+    "bg-tbd-teal",
+    "bg-tbd-purple-tint-2",
+    "bg-tbd-yellow",
+    "text-tbd-teal",
+    "text-tbd-purple",
+    "text-tbd-yellow",
+  ],
   mode: "jit",
   corePlugins: {
     preflight: false,
@@ -53,7 +61,25 @@ module.exports = {
       },
       fontSize: {
         "1.2lg": ["1.625rem", { lineHeight: "1.869rem" }],
+        "2.5xl": ["1.75rem", { lineHeight: "2.275rem" }],
         "4.5xl": ["2.625rem", { lineHeight: "3.019rem" }],
+      },
+      animation: {
+        marquee: "marquee var(--duration) linear infinite",
+        "marquee-vertical": "marquee-vertical var(--duration) linear infinite",
+      },
+      keyframes: {
+        marquee: {
+          from: { transform: "translateX(0)" },
+          to: { transform: "translateX(calc(-100% - var(--gap)))" },
+        },
+        "marquee-vertical": {
+          from: { transform: "translateY(0)" },
+          to: { transform: "translateY(calc(-100% - var(--gap)))" },
+        },
+      },
+      space: {
+        1.25: "0.313rem",
       },
     },
   },
