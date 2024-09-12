@@ -39,9 +39,14 @@ PFIs on tbDEX are identified using [Decentralized Identifiers (DIDs)](/docs/web5
 
 ### Structure Your PFI App
 
-PFIs are essentially `node express` servers with `tbDEX` SDK enhancements. You'll need a server and a database (e.g a `postgres` database with `offerings` and `exchanges` tables).
+PFIs are [Express](https://expressjs.com/) servers enhanced with the [tbDEX SDK](/docs/tbdex/). You'll need a:
 
-There are two primary components to a PFI: the `OfferingsApi` and the `ExchangesApi`. The `OfferingsApi` allows Wallets to query your PFI for available offerings, while the `ExchangesApi` handles RFQs, Orders, and exchange closures.
+- Server
+- Database (e.g., PostgreSQL) with tables for offerings and exchanges
+There are two primary components to a PFI:
+
+- [OfferingsApi](/docs/tbdex/pfi/anatomy-of-a-pfi/#offerings-api-provider): Allows Wallets to query available offerings
+- [ExchangesApi](/docs/tbdex/pfi/anatomy-of-a-pfi/#exchange-api-provider): Handles RFQs, Orders, and exchange closures
 
 #### Extend the `OfferingsApi` and `ExchangesApi` Interfaces
 With your own custom database setup, you can extend the `OfferingsApi` and `ExchangesApi` interfaces with instructions to manage the database containing your offerings and exchanges.
