@@ -2,14 +2,17 @@ import { AccordionContentProps } from "@radix-ui/react-accordion";
 import * as Accordion from "@radix-ui/react-accordion";
 import { cn } from "@site/lib/utils";
 import React from "react";
-import "./accordionContent.css";
 
 const AccordionContent = React.forwardRef<
   HTMLDivElement,
   AccordionContentProps
 >(({ children, className, ...props }, forwardedRef) => (
   <Accordion.Content
-    className={cn("overflow-hidden", "AccordionContent", className)}
+    className={cn(
+      "overflow-hidden",
+      "data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down",
+      className,
+    )}
     {...props}
     ref={forwardedRef}
   >

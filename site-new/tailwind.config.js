@@ -70,6 +70,8 @@ module.exports = {
       animation: {
         marquee: "marquee var(--duration) linear infinite",
         "marquee-vertical": "marquee-vertical var(--duration) linear infinite",
+        "accordion-down": "accordion-down 0.2s cubic-bezier(0.87, 0, 0.13, 1)",
+        "accordion-up": "accordion-up 0.2s cubic-bezier(0.87, 0, 0.13, 1)",
       },
       keyframes: {
         marquee: {
@@ -79,6 +81,14 @@ module.exports = {
         "marquee-vertical": {
           from: { transform: "translateY(0)" },
           to: { transform: "translateY(calc(-100% - var(--gap)))" },
+        },
+        "accordion-down": {
+          from: { height: "0" },
+          to: { height: "var(--radix-accordion-content-height)" },
+        },
+        "accordion-up": {
+          from: { height: "var(--radix-accordion-content-height)" },
+          to: { height: "0" },
         },
       },
       space: {
