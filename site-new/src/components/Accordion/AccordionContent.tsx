@@ -13,7 +13,7 @@ const AccordionContent = React.forwardRef<
     {...props}
     ref={forwardedRef}
   >
-    <div className="mt-twist-core-spacing-8 lg:mt-twist-core-spacing-9">
+    <div className="p mt-twist-core-spacing-8 lg:mt-twist-core-spacing-9">
       {children}
     </div>
   </Accordion.Content>
