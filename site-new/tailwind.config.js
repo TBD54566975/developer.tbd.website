@@ -11,6 +11,9 @@ module.exports = {
     "text-tbd-teal",
     "text-tbd-purple",
     "text-tbd-yellow",
+    "data-[state=open]:text-tbd-teal",
+    "data-[state=open]:text-tbd-purple",
+    "data-[state=open]:text-tbd-yellow",
   ],
   mode: "jit",
   corePlugins: {
