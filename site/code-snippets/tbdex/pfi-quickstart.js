@@ -177,9 +177,9 @@ export async function pfiQuickstartGetExchanges() {
 }
 
 export async function pfiQuickstartGetQuote() {
-    // Set the Quote's expiration date for 10 days from now
+    // Set the Quote's expiration date for 1 day from now
     var quoteExpiration = new Date();
-    quoteExpiration.setDate(quoteExpiration.getDate() + 10);
+    quoteExpiration.setDate(quoteExpiration.getDate() + 1);
 
     const quote = Quote.create({
     metadata: {
