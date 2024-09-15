@@ -1,0 +1,40 @@
+---
+title: Import a Did
+hide_title: true
+sidebar_position: 7
+---
+
+
+
+# Import a DID
+
+In this guide, you will learn how to take your [Decentralized Identifier (DID)](/docs/web5/decentralized-identifiers/what-are-dids) with you to other apps, allowing you to keep your identity consistent everywhere across various platforms. 
+
+## Export DID
+You will start by exporting your DID. This method converts your [Bearer DID](/docs/web5/decentralized-identifiers/how-to-create-did/#create-did) into a [Portable DID](/docs/web5/decentralized-identifiers/how-to-create-did/#portable-did), a serialized and static representation suitable for storage or transfer. 
+
+:::note
+Your Portable DID contains private key material. Always store it securely, preferably in a trusted identity wallet or password manager.
+:::
+
+<Shnip
+  snippets={[
+    { snippetName: 'exportDidJs', language: 'JavaScript'},
+    { snippetName: 'exportDidKt', language: 'Kotlin' },
+        { snippetName: 'exportDidSwift', language: 'Swift' }
+  ]}
+/>
+
+
+## Import DID
+Now, you can import your Portable DID to a desired location using the `import` method. 
+
+This converts your Portable DID back into a fully functional Bearer DID, allowing you to use it for various operations, including signing and verifying data.
+
+<Shnip
+  snippets={[
+    { snippetName: 'importDidJs', language: 'JavaScript'},
+    { snippetName: 'importDidKt', language: 'Kotlin' },
+    { snippetName: 'importDidSwift', language: 'Swift' }
+  ]}
+/>
