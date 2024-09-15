@@ -13,6 +13,8 @@ final class ImportDidTests: XCTestCase {
         // export did:jwk DID
         let portableJwkDID = try didJwk.export()
         // :snippet-end:
+        
+        //portableDid.uri is not accessible, so I have to extract it from the JSON
         if let jsonData = try? JSONEncoder().encode(portableJwkDID),
            let jsonObject = try? JSONSerialization.jsonObject(with: jsonData, options: []) as? [String: Any],
            let portableDidJwkUri = jsonObject["uri"] as? String {
