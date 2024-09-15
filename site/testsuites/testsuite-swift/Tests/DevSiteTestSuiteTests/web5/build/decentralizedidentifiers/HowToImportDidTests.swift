@@ -13,7 +13,7 @@ final class ImportDidTests: XCTestCase {
         // export did:jwk DID
         let portableJwkDID = try didJwk.export()
         // :snippet-end:
-        
+
         //portableDid.uri is not accessible, so I have to extract it from the JSON
         if let jsonData = try? JSONEncoder().encode(portableJwkDID),
            let jsonObject = try? JSONSerialization.jsonObject(with: jsonData, options: []) as? [String: Any],
@@ -31,6 +31,6 @@ final class ImportDidTests: XCTestCase {
         // import did:jwk DID
         let bearerJwkDID = try DIDJWK.import(keyManager: keyManager, portableDID: portableJwkDID)
         // :snippet-end:
-        XCTAssertEqual(bearerJwkDID.uri, didJwk.document.id, "URI should match")
+        XCTAssertEqual(bearerJwkDID.uri, didJwk.document.id, "URI should match ID from DID Document")
     }
 }
