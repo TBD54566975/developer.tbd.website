@@ -78,9 +78,9 @@ describe('PFI: Quotes', () => {
     const offering = mockOffering
 
     // :snippet-start: pfiCreateQuoteJs
-    // Set the Quote's expiration date for 10 days from now
+    // Set the Quote's expiration date for 1 day from now
     var quoteExpiration = new Date();
-    quoteExpiration.setDate(quoteExpiration.getDate() + 10);
+    quoteExpiration.setDate(quoteExpiration.getDate() + 1);
 
     const quote = Quote.create({
       metadata: {
@@ -116,8 +116,9 @@ describe('PFI: Quotes', () => {
   
     // :snippet-start: pfiSignQuoteJs
     await quote.sign(pfiDid);
-    exchangesApiProvider.write(quote);
+    dataProvider.insert(quote);
     // :snippet-end:
+
     const signature = await quote.verifySignature();
     expect(signature).toBeDefined();
   })
