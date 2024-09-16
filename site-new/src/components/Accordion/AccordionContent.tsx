@@ -9,13 +9,16 @@ const AccordionContent = React.forwardRef<
 >(({ children, className, ...props }, forwardedRef) => (
   <Accordion.Content
     className={cn(
-      "mt-twist-core-spacing-8 overflow-hidden lg:mt-twist-core-spacing-9",
+      "overflow-hidden",
+      "data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down",
       className,
     )}
     {...props}
     ref={forwardedRef}
   >
-    {children}
+    <div className="p mt-twist-core-spacing-8 lg:mt-twist-core-spacing-9">
+      {children}
+    </div>
   </Accordion.Content>
 ));
 
