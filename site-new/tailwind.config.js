@@ -11,6 +11,16 @@ module.exports = {
     "text-tbd-teal",
     "text-tbd-purple",
     "text-tbd-yellow",
+    "text-tbd-info",
+    "text-tbd-warn",
+    "border-tbd-info",
+    "border-tbd-warn",
+    "border-tbd-teal",
+    "border-tbd-danger",
+    "border-tbd-yellow",
+    "data-[state=open]:text-tbd-teal",
+    "data-[state=open]:text-tbd-purple",
+    "data-[state=open]:text-tbd-yellow",
   ],
   mode: "jit",
   corePlugins: {
@@ -32,6 +42,9 @@ module.exports = {
         "tbd-teal": "#1AF1FF",
         "tbd-teal-shade-1": "#00E5FA",
         "tbd-teal-shade-2": "#00D8F0",
+        "tbd-info": "#3BCE07",
+        "tbd-warn": "#FF7A1A",
+        "tbd-danger": "#FF401D",
         "tbd-purple-tint-2": "#BA6BFF",
         "tbd-purple-tint-1": "#A033FF",
         "tbd-purple": "#9A1AFF",
@@ -56,7 +69,6 @@ module.exports = {
         sm: "4px",
       },
       screens: {
-        sm: "0px",
         lg: "997px",
       },
       fontSize: {
@@ -67,6 +79,8 @@ module.exports = {
       animation: {
         marquee: "marquee var(--duration) linear infinite",
         "marquee-vertical": "marquee-vertical var(--duration) linear infinite",
+        "accordion-down": "accordion-down 0.2s cubic-bezier(0.87, 0, 0.13, 1)",
+        "accordion-up": "accordion-up 0.2s cubic-bezier(0.87, 0, 0.13, 1)",
       },
       keyframes: {
         marquee: {
@@ -76,6 +90,14 @@ module.exports = {
         "marquee-vertical": {
           from: { transform: "translateY(0)" },
           to: { transform: "translateY(calc(-100% - var(--gap)))" },
+        },
+        "accordion-down": {
+          from: { height: "0" },
+          to: { height: "var(--radix-accordion-content-height)" },
+        },
+        "accordion-up": {
+          from: { height: "var(--radix-accordion-content-height)" },
+          to: { height: "0" },
         },
       },
       space: {
