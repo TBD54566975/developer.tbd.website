@@ -2,16 +2,29 @@ import React, { useState, useEffect } from 'react';
 import contentData from '@site/src/externalContributors.json';
 
 export default function ContributorShowcase() {
-  const [filter, setFilter] = useState('all');
+  const [filters, setFilters] = useState({
+    video: false,
+    blog: false,
+    social: false,
+  });
   const [content, setContent] = useState([]);
 
   useEffect(() => {
     setContent(contentData);
   }, []);
 
-  const filteredContent = content.filter((item) =>
-    filter === 'all' ? true : item.type === filter
-  );
+  const handleCheckboxChange = (event) => {
+    const { name, checked } = event.target;
+    setFilters((prevFilters) => ({
+      ...prevFilters,
+      [name]: checked,
+    }));
+  };
+
+  const filteredContent = content.filter((item) => {
+    if (!filters.video && !filters.blog && !filters.social) return true; 
+    return filters[item.type];
+  });
 
   return (
     <div className='pb-20'>
@@ -20,11 +33,35 @@ export default function ContributorShowcase() {
       <p className='pb-20 , pt-10'>Have a contribution you want to share? Submit your contribution   
         <a href="/" target="_blank" rel="noopener noreferrer"> here</a>.
       </p>
+      
       <div style={filterContainerStyle}>
-        <button onClick={() => setFilter('all')} style={buttonStyle}>All</button>
-        <button onClick={() => setFilter('video')} style={buttonStyle}>Videos</button>
-        <button onClick={() => setFilter('blog')} style={buttonStyle}>Blog Posts</button>
-        <button onClick={() => setFilter('social')} style={buttonStyle}>Social Media</button>
+        <label style={labelStyle}>
+          <input
+            type="checkbox"
+            name="video"
+            checked={filters.video}
+            onChange={handleCheckboxChange}
+          />
+          <span style={checkboxLabelText}>🎥 Videos</span>
+        </label>
+        <label style={labelStyle}>
+          <input
+            type="checkbox"
+            name="blog"
+            checked={filters.blog}
+            onChange={handleCheckboxChange}
+          />
+          <span style={checkboxLabelText}>📝 Blog Posts</span>
+        </label>
+        <label style={labelStyle}>
+          <input
+            type="checkbox"
+            name="social"
+            checked={filters.social}
+            onChange={handleCheckboxChange}
+          />
+          <span style={checkboxLabelText}>📲 Social Media</span>
+        </label>
       </div>
 
       <div style={scrollableContainerStyle}>
@@ -64,23 +101,22 @@ export default function ContributorShowcase() {
 const filterContainerStyle = {
   marginBottom: '20px',
   display: 'flex',
-  gap: '10px',
+  gap: '20px',
   justifyContent: 'center',
 };
 
-const buttonStyle = {
-  padding: '10px 15px',
-  fontSize: '16px',
-  cursor: 'pointer',
-  border: 'none',
-  borderRadius: '4px',
-  backgroundColor: '#ac04fc',
-  color: '#fff',
+const labelStyle = {
+  display: 'flex',
+  alignItems: 'center',
+};
+
+const checkboxLabelText = {
+  marginLeft: '8px', 
 };
 
 const scrollableContainerStyle = {
-  maxHeight: '750px', 
-  overflowY: 'auto', 
+  maxHeight: '750px',
+  overflowY: 'auto',
   padding: '0 20px',
   marginBottom: '20px',
 };
