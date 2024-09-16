@@ -20,9 +20,9 @@ jobs:
           echo "::set-output name=issue_url::${{ github.event.issue.html_url }}"
           echo "::set-output name=contributor::${{ github.event.issue.user.login }}"
 
-      - name: Update contributorsContent.json
+      - name: Update externalContributors.json
         run: |
-          echo "Updating contributorsContent.json with issue data"
+          echo "Updating externalContributors.json with issue data"
           issue_body="${{ steps.issue_data.outputs.issue_body }}"
           
           # Extracting the type and thumbnail link from the body
@@ -38,9 +38,9 @@ jobs:
             --arg contributor "${{ steps.issue_data.outputs.contributor }}" \
             '{type: $type, thumbnail: $thumbnail, title: $title, link: $link, contributor: $contributor}')
 
-          # Update the contributorsContent.json file
-          jq ". += [$new_entry]" static/contributorsContent.json > tmp.json
-          mv tmp.json static/contributorsContent.json
+          # Update the externalContributors.json file
+          jq ". += [$new_entry]" site/src/externalContributors.json > tmp.json
+          mv tmp.json site/src/externalContributors.json
 
       - name: Create a new branch
         run: |
@@ -48,8 +48,8 @@ jobs:
           git config --global user.email "action@github.com"
           branch_name="update-contributors-$(date +%Y%m%d%H%M%S)"
           git checkout -b $branch_name
-          git add static/contributorsContent.json
-          git commit -m "Update contributors content from issue #${{ github.event.issue.number }}"
+          git add site/src/externalContributors.json
+          git commit -m "Update external contributors content from issue #${{ github.event.issue.number }}"
           git push origin $branch_name
 
       - name: Create pull request
@@ -57,7 +57,7 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           branch: $branch_name
-          title: "Update contributors content from issue #${{ github.event.issue.number }}"
-          body: "This pull request updates the contributorsContent.json file with content from issue #${{ github.event.issue.number }}."
+          title: "Update external contributors content from issue #${{ github.event.issue.number }}"
+          body: "This pull request updates the externalContributors.json file with content from issue #${{ github.event.issue.number }}."
           labels: ["auto-update"]
-          draft: false  
+          draft: false
