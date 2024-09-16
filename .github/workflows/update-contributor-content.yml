@@ -61,3 +61,4 @@ jobs:
           body: "This pull request updates the externalContributors.json file with content from issue #${{ github.event.issue.number }}."
           labels: ["auto-update"]
           draft: false
+          reviewers: taniashiba 
