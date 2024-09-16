@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "@docusaurus/Link";
+import Heading from "@theme/Heading";
 
 function ComponentList() {
   const components = [
@@ -11,11 +12,14 @@ function ComponentList() {
     { name: "Marquee", path: "/component-guide/marquee" },
     { name: "Accordion", path: "/component-guide/accordion" },
     { name: "FeedbackCard", path: "/component-guide/feedback-card" },
+    { name: "ImageCard", path: "/component-guide/image-card" },
   ];
 
   return (
     <div className="container mx-auto px-4 py-8">
-      <h1 className="mb-4 text-3xl font-bold">Component List</h1>
+      <Heading as="h1" className="mb-4 text-3xl font-bold">
+        Component List
+      </Heading>
       <p className="mb-8">Click on a component to learn more about it.</p>
       <ul className="list-disc space-y-2 pl-5">
         {components.map((component, index) => (

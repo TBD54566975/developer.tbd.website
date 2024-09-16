@@ -4,6 +4,8 @@ import GitHub from "../../static/GitHub";
 import Discord from "../../static/Discord";
 import Link from "@docusaurus/Link";
 import Heading from "@theme/Heading";
+import XIcon from "../../static/img/XIcon";
+import Check from "../../static/img/Check";
 
 function FeedbackCard() {
   return (
@@ -14,9 +16,13 @@ function FeedbackCard() {
       >
         Was this page helpful?
       </Heading>
-      <div className="my-twist-core-spacing-9">
-        <button className="text-lg sm:text-[12px] md:text-lg">Helpful</button>
-        <button className="text-lg sm:text-[12px] md:text-lg">
+      <div className="border-1 my-twist-core-spacing-9 flex border-white">
+        <button className="mr-twist-core-spacing-5 flex items-center border-[0.5px] border-white bg-tbd-gray-shade-1 px-twist-core-spacing-3 py-twist-core-spacing-2 text-lg text-white sm:text-[12px] md:text-[16px]">
+          <Check className="mr-2" />
+          Helpful
+        </button>
+        <button className="mr-twist-core-spacing-5 flex items-center border-[0.5px] border-white bg-tbd-gray-shade-1 px-twist-core-spacing-3 py-twist-core-spacing-2 text-lg text-white sm:text-[12px] md:text-[16px]">
+          <XIcon className="mr-2" />
           Not Helpful
         </button>
       </div>
