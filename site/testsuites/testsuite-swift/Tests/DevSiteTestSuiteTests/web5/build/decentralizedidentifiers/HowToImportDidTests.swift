@@ -23,7 +23,7 @@ final class ImportDidTests: XCTestCase {
             XCTAssertEqual(portableDidJwkUri, didJwk.uri, "The extracted URI should match the original DID's URI")
         }
     }
-    func test_importtADID() async throws {
+    func test_importADID() async throws {
         let keyManager = InMemoryKeyManager()
         let didJwk = try DIDJWK.create(keyManager: keyManager)
         let portableJwkDID = try didJwk.export()
