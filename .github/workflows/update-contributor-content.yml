@@ -1,0 +1,63 @@
+name: Update Contributor Content
+
+on:
+  issues:
+    types: [opened, edited]
+
+jobs:
+  update-content:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Get Issue Data
+        id: issue_data
+        run: |
+          echo "::set-output name=issue_title::${{ github.event.issue.title }}"
+          echo "::set-output name=issue_body::${{ github.event.issue.body }}"
+          echo "::set-output name=issue_url::${{ github.event.issue.html_url }}"
+          echo "::set-output name=contributor::${{ github.event.issue.user.login }}"
+
+      - name: Update contributorsContent.json
+        run: |
+          echo "Updating contributorsContent.json with issue data"
+          issue_body="${{ steps.issue_data.outputs.issue_body }}"
+          
+          # Extracting the type and thumbnail link from the body
+          content_type=$(echo "$issue_body" | grep -oP "(?<=Type: ).*")
+          thumbnail_url=$(echo "$issue_body" | grep -oP "(?<=Thumbnail: ).*")
+          
+          # Construct the new content entry
+          new_entry=$(jq -n \
+            --arg type "$content_type" \
+            --arg thumbnail "$thumbnail_url" \
+            --arg title "${{ steps.issue_data.outputs.issue_title }}" \
+            --arg link "${{ steps.issue_data.outputs.issue_url }}" \
+            --arg contributor "${{ steps.issue_data.outputs.contributor }}" \
+            '{type: $type, thumbnail: $thumbnail, title: $title, link: $link, contributor: $contributor}')
+
+          # Update the contributorsContent.json file
+          jq ". += [$new_entry]" static/contributorsContent.json > tmp.json
+          mv tmp.json static/contributorsContent.json
+
+      - name: Create a new branch
+        run: |
+          git config --global user.name "GitHub Action"
+          git config --global user.email "action@github.com"
+          branch_name="update-contributors-$(date +%Y%m%d%H%M%S)"
+          git checkout -b $branch_name
+          git add static/contributorsContent.json
+          git commit -m "Update contributors content from issue #${{ github.event.issue.number }}"
+          git push origin $branch_name
+
+      - name: Create pull request
+        uses: peter-evans/create-pull-request@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          branch: $branch_name
+          title: "Update contributors content from issue #${{ github.event.issue.number }}"
+          body: "This pull request updates the contributorsContent.json file with content from issue #${{ github.event.issue.number }}."
+          labels: ["auto-update"]
+          draft: false  
