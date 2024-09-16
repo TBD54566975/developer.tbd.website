@@ -14,5 +14,9 @@ module.exports = plugin(({ addComponents }) => {
       "@apply text-sm leading-[1.225rem] lg:text-[1.375rem] lg:leading-[1.925rem]":
         {},
     },
+    ".publication": {
+      "@apply text-xs leading-[1.05rem] lg:text-base lg:leading-[1.4rem] font-semibold":
+        {},
+    },
   });
 });

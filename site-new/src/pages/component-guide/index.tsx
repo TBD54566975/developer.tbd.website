@@ -13,6 +13,7 @@ function ComponentList() {
     { name: "Accordion", path: "/component-guide/accordion" },
     { name: "FeedbackCard", path: "/component-guide/feedback-card" },
     { name: "ImageCard", path: "/component-guide/image-card" },
+    { name: "SpotLightCard", path: "/component-guide/spotlight-card" },
   ];
 
   return (
