@@ -1,0 +1,97 @@
+---
+sidebar_position: 3
+title: 'Quickstart: PFI'
+hide_title: true
+hide_table_of_contents: false
+---
+
+import { QuickstartExecutionProvider } from '@site/src/components/QuickstartExecutionContext';
+import Version from '@site/src/components/Version';
+import PackageJson from '@site/src/components/PackageJson';
+import CodeSnippet from '@site/src/components/CodeSnippet';
+import PfiQuickstartCodeRunner from '@site/src/components/PfiQuickstartCodeRunner';
+
+<QuickstartExecutionProvider>
+
+# tbDEX PFI in 5️⃣ Minutes
+
+## Overview
+
+In the tbDEX ecosystem, a [Participating Financial Institution (PFI)](/docs/tbdex/pfi/overview) provides liquidity offerings to customers via [Wallets](/docs/tbdex/wallet/overview), allowing eligible customers to place orders and execute transactions.
+
+**In this quickstart, you'll:**
+
+✅  Set up a basic PFI with a catalog of `Offerings`
+
+✅  Provide a `Quote` when requested
+
+✅  Process a `Order`
+
+Let's get started!
+
+## Set Up PFI
+
+### Create a DID
+
+On tbDEX, PFIs are identified using [Decentralized Identifiers (DIDs)](/docs/web5/decentralized-identifiers/what-are-dids). Let's create a DID for your PFI and specify a service endpoint that allows Wallet applications to interact with your PFI:
+
+<CodeSnippet snippetName="pfiOverviewCreateDid" />
+<PfiQuickstartCodeRunner executeCodeName="executeDidCreate" stepIndex={0} customPlaceholder={"See PFI DID"} />
+
+### Structure Your PFI App
+To operate as a PFI on the tbDEX network, you'll need a server that handles incoming requests from Wallet applications, a database that holds Offerings and Exchanges, and implementations of the OfferingsApi and ExchangesApi. We'll spare you the details in this Quickstart, however, for more info, check out the guide on [Structuring a PFI App](/docs/tbdex/pfi/anatomy-of-a-pfi).
+
+### Fetching Offerings for Wallets
+With your database populated with Offerings and the OfferingsApi set up, Wallet applications can now call `getOfferings()` to obtain a list of the currency conversions you offer and the requirements to transact. 
+
+Let's see what Offerings your PFI provides:
+
+```js
+const offerings = await offeringsApiProvider.getOfferings();
+````
+
+<PfiQuickstartCodeRunner executeCodeName="executeGetOfferings" stepIndex={1} customPlaceholder={"Fetch Offerings from the PFI Endpoint"} viewJsonObj={true} collapseLevel={3} />
+
+## Process tbDEX Messages
+
+PFIs and Wallet applications exchange [messages](/docs/tbdex/message-types#messages) to facilitate transactions.
+All messages are stored within an exchange in your PFI's database.
+
+Let's walk through the process of handling these messages.
+
+### Create Quote
+
+When a customer selects an `Offering`, the Wallet application calls `createExchange()` passing in an `RFQ` (Request for Quote) message.
+The RFQ is sent to your PFI and includes the customer's preferred methods of payment and the credentials that satisfy the `requiredClaims` of the selected `Offering`. 
+
+Using this submitted data, your PFI generates a `Quote`:
+
+<CodeSnippet snippetName="pfiCreateQuoteJs" title="exchangeApiProvider.ts" />
+
+After creating this message, your PFI will sign it with your DID and write it to your database, where the Wallet app can retrieve it.
+<CodeSnippet snippetName="pfiSignQuoteJs" title="exchangeApiProvider.ts" />
+<PfiQuickstartCodeRunner executeCodeName="executeGetQuote" stepIndex={2} customPlaceholder={"See the Quote"} viewJsonObj={true} collapseLevel={3} />
+
+### Process Order
+
+The Wallet application presents the `Quote` to the customer, and they accept it.
+The Wallet proceeds by calling `submitOrder()` to place an `Order`. 
+
+When your PFI receives the `Order`, you'll settle the payin and payout outside of tbDEX using the rails of your choice, but will use the protocol to send `OrderStatus` updates so that the Wallet app can keep the customer informed:
+
+<CodeSnippet snippetName="pfiOrderStatusJs" title="exchangeApiProvider.ts" />
+<PfiQuickstartCodeRunner executeCodeName="executeGetOrderStatus" stepIndex={3} customPlaceholder={"See the OrderStatus"} viewJsonObj={true} collapseLevel={3} />
+
+### Close Exchange
+
+Once the `Order` is completed (whether fulfilled or cancelled), you'll terminate the exchange with a `Close` message which can optionally include a `reason` and a `success` indicator:
+
+<CodeSnippet snippetName="pfiCloseOrderJs" title="exchangeApiProvider.ts" />
+<PfiQuickstartCodeRunner executeCodeName="executeGetClose" stepIndex={4} customPlaceholder={"See the Close Message"} viewJsonObj={true} collapseLevel={3} />
+
+## Next Steps with tbDEX
+
+Congratulations on building your first PFI! To explore further, check out the full [PFI guide](/docs/tbdex/pfi/overview).
+
+
+</QuickstartExecutionProvider>
