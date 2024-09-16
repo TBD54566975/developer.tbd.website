@@ -14,5 +14,9 @@ module.exports = plugin(({ addComponents }) => {
       "@apply text-sm leading-[1.225rem] lg:text-[1.375rem] lg:leading-[1.925rem]":
         {},
     },
+    ".sidebar": {
+      "@apply text-[1rem] leading-[1.4rem] lg:text-[1.125rem] lg:leading-[1.575rem] font-medium":
+        {},
+    },
   });
 });
