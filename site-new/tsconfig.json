@@ -1,6 +1,6 @@
 {
-  // This file is not used in compilation. It is here just for a nice editor experience.
   "extends": "@docusaurus/tsconfig",
+  "include": ["**/*.ts", "**/*.tsx", "**/*.js", "**/*.jsx", "custom.d.ts"],
   "compilerOptions": {
     "paths": {
       "@site/*": ["./*"],

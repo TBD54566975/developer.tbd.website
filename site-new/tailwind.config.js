@@ -69,7 +69,6 @@ module.exports = {
         sm: "4px",
       },
       screens: {
-        sm: "0px",
         lg: "997px",
       },
       fontSize: {
