@@ -347,10 +347,6 @@ h1 {
 
 
 
-h3 {
-	font-size: 34px;
-	line-height: 40.8px;
-}
 
 
 
@@ -524,6 +520,10 @@ code {
 @layer base {
 	h2 {
 		@apply text-1.2lg lg:text-4.5xl
+	}
+
+	h3 {
+		@apply text-[1.375rem] leading-[1.65rem] lg:text-[2.125rem] lg:leading-[2.55rem] font-spaceGrotesk
 	}
 
 	h4 {
