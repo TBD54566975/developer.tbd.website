@@ -1,0 +1,39 @@
+name: Content Submission
+description: Submit your content for our showcase page.
+assignees:
+  - taniashiba
+body:
+  - type: input
+    id: title
+    attributes:
+      label: Content Title
+    validations:
+      required: true
+  - type: input
+    id: link
+    attributes:
+      label: Content Link
+    validations:
+      required: true
+  - type: input
+    id: thumbnail
+    attributes:
+      label: Thumbnail URL (16:9 ratio required)
+    validations:
+      required: true
+  - type: input
+    id: contributor
+    attributes:
+      label: Contributor Name
+    validations:
+      required: true
+  - type: dropdown
+    id: content_type
+    attributes:
+      label: Content Type
+      options:
+      - video
+      - blog
+      - social
+    validations:
+      required: true
