@@ -8,16 +8,16 @@ import { Admonition } from "@site/src/components/Admonition";
 
 ## Properties
 
-| Property    | Type     | Required | Default | Description                       |
-| ----------- | -------- | -------- | ------- | --------------------------------- |
-| `variant`   | `string` | Yes      | `""`    | The variant of the admonition.    |
-| `body`      | `string` | Yes      | `""`    | The content of the admonition.    |
-| `className` | `string` | No       | `""`    | The class name of the admonition. |
+| Property    | Type              | Required | Default | Description                       |
+| ----------- | ----------------- | -------- | ------- | --------------------------------- |
+| `variant`   | `string`          | Yes      | `""`    | The variant of the admonition.    |
+| `children`  | `React.ReactNode` | Yes      | `""`    | The content of the admonition.    |
+| `className` | `string`          | No       | `""`    | The class name of the admonition. |
 
 ## Usage
 
 ```jsx title="Admonition Component"
-<Admonition variant="info" body="This is an info message." />
+<Admonition variant="info">This is an info message. <Admonition/>
 ```
 
 {/* variant Variant = "info" | "warning" | "tip" | "danger" | "note"; */}
@@ -25,18 +25,18 @@ import { Admonition } from "@site/src/components/Admonition";
 ## Examples
 
 <p>Info</p>
-<Admonition variant="info" body="This is an info message." />
+<Admonition variant="info">This is an info message.</Admonition>
 
 <p>Warning</p>
-<Admonition variant="warning" body="This is a warning message." />
+<Admonition variant="warning"> This is a warning message.</Admonition>
 
 <p>Tip</p>
-<Admonition variant="tip" body="This is a tip message." />
+<Admonition variant="tip">This is a tip message.</Admonition>
 
 <p>Danger</p>
-<Admonition variant="danger" body="This is a danger message." />
+<Admonition variant="danger"> This is a danger message.</Admonition>
 
 <p>Note</p>
-<Admonition variant="note" body="This is a note message." />
+<Admonition variant="note">This is a note message.</Admonition>
 
 </div>

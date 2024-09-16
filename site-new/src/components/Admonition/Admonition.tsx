@@ -41,11 +41,11 @@ const variantIconMap: Record<Variant, React.ReactNode> = {
 
 type AdmonitionProps = {
   variant: Variant;
-  body: React.ReactNode;
+  children: React.ReactNode;
   classes?: string;
 };
 
-const Admonition = ({ variant, body, classes }: AdmonitionProps) => {
+const Admonition = ({ variant, children, classes }: AdmonitionProps) => {
   return (
     <div
       className={cn(
@@ -68,7 +68,11 @@ const Admonition = ({ variant, body, classes }: AdmonitionProps) => {
         </span>
       </div>
       <div className="sidebar">
-        {typeof body === "string" ? <p className="mb-0">{body}</p> : body}
+        {typeof children === "string" ? (
+          <p className="mb-0">{children}</p>
+        ) : (
+          children
+        )}
       </div>
     </div>
   );
