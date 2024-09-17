@@ -17,6 +17,7 @@ function ComponentList() {
     { name: "SpotLightCard", path: "/component-guide/spotlight-card" },
     { name: "IconButton", path: "/component-guide/icon-button" },
     { name: "CodeBlock", path: "/component-guide/code-block" },
+    { name: "IconButton", path: "/component-guide/icon-button" },
   ];
 
   return (

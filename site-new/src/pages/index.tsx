@@ -7,6 +7,8 @@ import Underline from "@site/static/img/Underline";
 import Hero from "../components/Hero";
 import TextIconCard from "../components/TextIconCard";
 import tbdRex from "@site/static/img/tbd-rex";
+import Swift from "@site/assets/icons/Swift";
+import { IconButton } from "@site/src/components/IconButton";
 
 export default function Home(): JSX.Element {
   const { siteConfig } = useDocusaurusContext();
@@ -15,6 +17,9 @@ export default function Home(): JSX.Element {
       title={`Hello from ${siteConfig.title}`}
       description="Description will go into a meta tag in <head />"
     >
+      <IconButton>
+        <Swift />
+      </IconButton>
       <Background className="pt-20" bgColor="black">
         <div className="container mx-auto px-4 py-12">
           <div className="flex flex-wrap">
