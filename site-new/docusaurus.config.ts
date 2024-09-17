@@ -1,9 +1,6 @@
-import { themes as prismThemes } from "prism-react-renderer";
 import type { Config } from "@docusaurus/types";
 import type * as Preset from "@docusaurus/preset-classic";
 import tailwindPlugin from "./plugins/tailwind-pluging.cjs";
-
-const { github, dracula } = prismThemes;
 
 // const lightCodeTheme = require("prism-react-renderer").themes.github;
 // const darkCodeTheme = require("prism-react-renderer").themes.dracula;
