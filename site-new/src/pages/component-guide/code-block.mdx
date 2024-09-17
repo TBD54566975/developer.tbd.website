@@ -1,0 +1,116 @@
+```js
+// title (comment for demonstration purposes)
+const Title = "Code Block Theming Example";
+
+// property, parameter
+function exampleFunction(parameter1) {
+  const property = {
+    name: "example",
+    value: parameter1,
+  };
+
+  return property;
+}
+
+// script
+const script = "This is an example script.";
+
+// boolean, arrow function, atrule, tag
+const isValid = (value) => value === true;
+
+// number, color, unit
+const numberValue = 42;
+const cssColor = "#FFEC19"; // Color
+const cssUnit = "20px"; // Unit
+
+// font-matter (this is generally used in markdown, so here's an example)
+const frontMatter = `
+---
+title: "Example"
+date: "2024-09-17"
+---
+`;
+
+// keyword, rule
+if (isValid(numberValue)) {
+  console.log("The value is valid");
+}
+
+// regex
+const regex = /[A-Z]/g;
+
+// maybe-class-name
+class ExampleClass {
+  constructor(name) {
+    this.name = name;
+  }
+
+  getName() {
+    return this.name;
+  }
+}
+
+// constant
+const CONSTANT_VALUE = 100;
+```
+
+```jsx title="This is a test"
+const someVariable = "This is a variable";
+
+function SomeReactCode(param, { someOtherParam }) {
+  return (
+    <div>
+      <p>Some JSX code</p>
+    </div>
+  );
+}
+```
+
+```gradle
+repositories {
+    mavenCentral()
+    maven {
+      name = "tbd-oss-thirdparty"
+      url = uri("https://blockxyz.jfrog.io/artifactory/tbd-oss-thirdparty-maven2/")
+      mavenContent {
+        releasesOnly()
+    }
+  }
+dependencies {
+    implementation("xyz.block:web5-credentials:2.0.1")
+    implementation("xyz.block:web5-dids:2.0.1")
+    implementation("xyz.block:tbdex:2.0.1")
+}
+```
+
+```xml
+<repositories>
+ <repository>
+      <id>tbd-oss-thirdparty</id>
+      <name>tbd-oss-thirdparty</name>
+      <releases>
+        <enabled>true</enabled>
+      </releases>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+      <url>https://blockxyz.jfrog.io/artifactory/tbd-oss-thirdparty-maven2/</url>
+</repository>
+  </repositories>
+<dependencies>
+<dependency>
+    <groupId>xyz.block</groupId>
+    <artifactId>web5-credentials</artifactId>
+    <version>2.0.1</version>
+</dependency>
+<dependency>
+    <groupId>xyz.block</groupId>
+    <artifactId>web5-dids</artifactId>
+    <version>2.0.1</version>
+</dependency>
+<dependency>
+    <groupId>xyz.block</groupId>
+    <artifactId>tbdex</artifactId>
+    <version>2.0.1</version>
+</dependency></dependencies>
+```

@@ -126,7 +126,76 @@ const config: Config = {
     //   copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
     // },
     prism: {
-      theme: dracula,
+      theme: {
+        plain: { color: "white", backgroundColor: "#0F0F0F" },
+        styles: [
+          {
+            types: ["title", "comment"],
+            style: { color: "rgba(247, 247, 247, 0.5)" },
+          },
+          {
+            types: ["property"],
+            style: {
+              color: "#70FAFF",
+            },
+          },
+          {
+            types: ["parameter", "interpolation-string"],
+            style: {
+              color: "#FFEC19",
+            },
+          },
+          {
+            types: ["script"],
+            style: {
+              color: "#D4D4D4",
+            },
+          },
+          {
+            types: ["boolean", "arrow", "atrule", "tag"],
+            style: {
+              color: "#BD72FF",
+            },
+          },
+          {
+            types: ["number", "color", "unit"],
+            style: {
+              color: "#FFEC19",
+            },
+          },
+          {
+            types: ["font-matter"],
+            style: {
+              color: "#BD72FF",
+            },
+          },
+          {
+            types: ["keyword", "rule"],
+            style: {
+              color: "#BD72FF",
+            },
+          },
+          {
+            types: ["regex"],
+            style: {
+              color: "#FFEC19",
+            },
+          },
+          {
+            types: ["maybe-class-name", "property-access"],
+            style: {
+              color: "#70FAFF",
+            },
+          },
+          {
+            types: ["constant", "function"],
+            style: {
+              color: "#70FAFF",
+            },
+          },
+        ],
+      },
+
       darkTheme: {
         plain: {
           color: "#f8f8f2",

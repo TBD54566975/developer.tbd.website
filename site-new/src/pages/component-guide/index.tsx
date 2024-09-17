@@ -15,6 +15,7 @@ function ComponentList() {
     { name: "Admonition", path: "/component-guide/admonition" },
     { name: "ImageCard", path: "/component-guide/image-card" },
     { name: "SpotLightCard", path: "/component-guide/spotlight-card" },
+    { name: "CodeBlock", path: "/component-guide/code-block" },
   ];
 
   return (
