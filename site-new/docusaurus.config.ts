@@ -1,9 +1,6 @@
-import { themes as prismThemes } from "prism-react-renderer";
 import type { Config } from "@docusaurus/types";
 import type * as Preset from "@docusaurus/preset-classic";
 import tailwindPlugin from "./plugins/tailwind-pluging.cjs";
-
-const { github, dracula } = prismThemes;
 
 // const lightCodeTheme = require("prism-react-renderer").themes.github;
 // const darkCodeTheme = require("prism-react-renderer").themes.dracula;
@@ -126,7 +123,76 @@ const config: Config = {
     //   copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
     // },
     prism: {
-      theme: dracula,
+      theme: {
+        plain: { color: "white", backgroundColor: "#0F0F0F" },
+        styles: [
+          {
+            types: ["title", "comment"],
+            style: { color: "rgba(247, 247, 247, 0.5)" },
+          },
+          {
+            types: ["property"],
+            style: {
+              color: "#70FAFF",
+            },
+          },
+          {
+            types: ["parameter", "interpolation-string"],
+            style: {
+              color: "#FFEC19",
+            },
+          },
+          {
+            types: ["script"],
+            style: {
+              color: "#D4D4D4",
+            },
+          },
+          {
+            types: ["boolean", "arrow", "atrule", "tag"],
+            style: {
+              color: "#BD72FF",
+            },
+          },
+          {
+            types: ["number", "color", "unit"],
+            style: {
+              color: "#FFEC19",
+            },
+          },
+          {
+            types: ["font-matter"],
+            style: {
+              color: "#BD72FF",
+            },
+          },
+          {
+            types: ["keyword", "rule"],
+            style: {
+              color: "#BD72FF",
+            },
+          },
+          {
+            types: ["regex"],
+            style: {
+              color: "#FFEC19",
+            },
+          },
+          {
+            types: ["maybe-class-name", "property-access"],
+            style: {
+              color: "#70FAFF",
+            },
+          },
+          {
+            types: ["constant", "function"],
+            style: {
+              color: "#70FAFF",
+            },
+          },
+        ],
+      },
+
       darkTheme: {
         plain: {
           color: "#f8f8f2",
