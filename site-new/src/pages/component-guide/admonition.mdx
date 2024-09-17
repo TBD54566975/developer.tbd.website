@@ -1,0 +1,42 @@
+import React from "react";
+import { Admonition } from "@site/src/components/Admonition";
+
+# Admonition Component
+
+<div className="">
+<p>The `Admonition` component is used to display a message with a specific style and icon.</p>
+
+## Properties
+
+| Property    | Type              | Required | Default | Description                       |
+| ----------- | ----------------- | -------- | ------- | --------------------------------- |
+| `variant`   | `string`          | Yes      | `""`    | The variant of the admonition.    |
+| `children`  | `React.ReactNode` | Yes      | `""`    | The content of the admonition.    |
+| `className` | `string`          | No       | `""`    | The class name of the admonition. |
+
+## Usage
+
+```jsx title="Admonition Component"
+<Admonition variant="info">This is an info message. <Admonition/>
+```
+
+{/* variant Variant = "info" | "warning" | "tip" | "danger" | "note"; */}
+
+## Examples
+
+<p>Info</p>
+<Admonition variant="info">This is an info message.</Admonition>
+
+<p>Warning</p>
+<Admonition variant="warning"> This is a warning message.</Admonition>
+
+<p>Tip</p>
+<Admonition variant="tip">This is a tip message.</Admonition>
+
+<p>Danger</p>
+<Admonition variant="danger"> This is a danger message.</Admonition>
+
+<p>Note</p>
+<Admonition variant="note">This is a note message.</Admonition>
+
+</div>

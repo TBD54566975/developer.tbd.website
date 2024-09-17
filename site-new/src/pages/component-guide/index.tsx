@@ -12,7 +12,9 @@ function ComponentList() {
     { name: "Marquee", path: "/component-guide/marquee" },
     { name: "Accordion", path: "/component-guide/accordion" },
     { name: "FeedbackCard", path: "/component-guide/feedback-card" },
+    { name: "Admonition", path: "/component-guide/admonition" },
     { name: "ImageCard", path: "/component-guide/image-card" },
+    { name: "SpotLightCard", path: "/component-guide/spotlight-card" },
   ];
 
   return (
