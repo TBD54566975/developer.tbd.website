@@ -1,0 +1,49 @@
+import React from "react";
+import { IconButton } from "@site/src/components/IconButton";
+import Swift from "@site/assets/icons/Swift";
+import Kotlin from "@site/assets/icons/Kotlin";
+import JSIcon from "@site/assets/icons/JSIcon";
+import GoIcon from "@site/assets/icons/GoIcon";
+
+# Icon Component
+
+<div className="component-guide text-white">
+<p>The `IconButton` component is used to display a button with an icon and text.</p>
+
+## Properties
+
+| Property   | Type              | Required | Default | Description                        |
+| ---------- | ----------------- | -------- | ------- | ---------------------------------- |
+| `children` | `React.ReactNode` | Yes      | `""`    | The icon to display on the button. |
+
+## Usage
+
+```jsx title="Icon Button Component"
+<IconButton>
+  <Swift />
+</IconButton>
+```
+
+## Examples
+
+<p>Swift Icon</p>
+<IconButton>
+  <Swift />
+</IconButton>
+
+<p>Kotlin Icon</p>
+<IconButton>
+  <Kotlin />
+</IconButton>
+
+<p>JavaScript Icon</p>
+<IconButton>
+  <JSIcon />
+</IconButton>
+
+<p>Go Icon</p>
+<IconButton>
+  <GoIcon />
+</IconButton>
+
+</div>
