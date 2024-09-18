@@ -7,7 +7,7 @@ import Underline from "@site/static/img/Underline";
 import Hero from "../components/Hero";
 import TextIconCard from "../components/TextIconCard";
 import tbdRex from "@site/static/img/tbd-rex";
-import PixelBorder from "../components/PixelBorder";
+import { PixelBorderWrapper } from "../components/PixelBorder";
 
 export default function Home(): JSX.Element {
   const { siteConfig } = useDocusaurusContext();
@@ -56,28 +56,37 @@ export default function Home(): JSX.Element {
             </p>
           </div>
         </div>
-        <PixelBorder blockSize={50} className="mt-24" />
-        <PixelBorder blockSize={50} borderType="thicker" />
-        <div>
-          <Background className="py-24" bgColor="yellow-shade-1">
-            <div className="mx-auto grid max-w-6xl grid-cols-1 items-center justify-around gap-12 md:grid-cols-2">
-              <Hero
-                buttonText="Talk Money To me"
-                title="Card 1"
-                content="Description for Card 1"
-                url="/"
-              />
-              <Hero
-                buttonText="Talk Money To me"
-                title="Card 2"
-                content="Description for Card 2"
-                url="/"
-              />
-            </div>
-          </Background>
-        </div>
-        <PixelBorder blockSize={50} borderType="thicker" />
-        <PixelBorder blockSize={50} className="mb-24" />
+        <PixelBorderWrapper
+          blockSize={50}
+          outerTopClassName="mt-24"
+          outerBottomClassName="mb-24"
+          refreshRate={2500}
+        >
+          <div>
+            <Background
+              pixelate={true}
+              className="py-20"
+              bgColor="yellow-shade-1"
+              refreshRate={5000}
+            >
+              <div className="mx-auto grid max-w-6xl grid-cols-1 items-center justify-around gap-12 md:grid-cols-2">
+                <Hero
+                  buttonText="Talk Money To me"
+                  title="Card 1"
+                  content="Description for Card 1"
+                  url="/"
+                />
+                <Hero
+                  buttonText="Talk Money To me"
+                  title="Card 2"
+                  content="Description for Card 2"
+                  url="/"
+                />
+              </div>
+            </Background>
+          </div>
+        </PixelBorderWrapper>
+
         <Background bgColor="black" className="py-24">
           <div className="container mx-auto px-4">
             <span className="eyebrow text-tbd-yellow">TEEKAY LOREM IPSUM</span>
