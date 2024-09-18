@@ -2,16 +2,12 @@ import Link from "@docusaurus/Link";
 import { cn } from "@site/lib/utils";
 import React from "react";
 
-type ButtonProps = Omit<React.ComponentProps<"button">, "children"> & {
-  children: React.ReactNode;
-};
-
 type LinkProps = React.ComponentProps<typeof Link>;
 
-const IconButton = React.forwardRef<HTMLButtonElement, ButtonProps>(
+const IconButtonLink = React.forwardRef<HTMLAnchorElement, LinkProps>(
   ({ className, children, ...props }, ref) => {
     return (
-      <button
+      <Link
         {...props}
         ref={ref}
         className={cn(
@@ -20,9 +16,9 @@ const IconButton = React.forwardRef<HTMLButtonElement, ButtonProps>(
         )}
       >
         {children}
-      </button>
+      </Link>
     );
   },
 );
 
-export default IconButton;
+export default IconButtonLink;
