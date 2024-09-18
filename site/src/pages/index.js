@@ -17,7 +17,8 @@ export default function Home() {
         <link
           rel="apple-touch-icon"
           href="https://developer.tbd.website/img/tbd-fav-icon-main.png"
-        />         
+        />
+        <script defer type="module" src="https://embeddables.p.mbirdcdn.net/v1/web-components.es.js"></script>         
       </Head>
 
       <main>
@@ -39,7 +40,7 @@ export default function Home() {
             src="/img/heart.svg"
             className="absolute right-[-2rem] tablet:right-[-2.875rem] desktop:right-[-13.375rem] bottom-[20rem] tablet:bottom-[-6.5rem] desktop:bottom-[10.5rem] w-[5.625rem] h-[4.875rem]  tablet:w-[11.25rem] tablet:h-[9.75rem] desktop:w-[16.875rem] desktop:h-[14.375rem]"
             alt=""
-          />
+          />          
         </div>
       </main>
     </Layout>
