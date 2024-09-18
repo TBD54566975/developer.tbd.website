@@ -143,9 +143,9 @@ const config: Config = {
             },
           },
           {
-            types: ["script"],
+            types: ["script", "attr-value"],
             style: {
-              color: "#D4D4D4",
+              color: "#C88E76",
             },
           },
           {
@@ -179,7 +179,7 @@ const config: Config = {
             },
           },
           {
-            types: ["maybe-class-name", "property-access"],
+            types: ["maybe-class-name", "property-access", "attr-name"],
             style: {
               color: "#70FAFF",
             },
