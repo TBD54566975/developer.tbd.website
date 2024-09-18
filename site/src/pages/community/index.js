@@ -203,21 +203,39 @@ function CommunityIndex() {
 
       <div>
         <div className="grid grid-cols-1 desktop:grid-cols-2 gap-4 pt-7 pb-20">
+        <HeroCard
+            heroText="Incubation Projects"
+            buttonUrl="/community/incubation-projects/"
+            buttonText="Discover More"
+            bodyText="TBD Incubation projects are managed by community contributors."
+            themeColor="purple"
+            primary
+          />
+          <HeroCard
+            heroText="TBD Ambassadors"
+            buttonUrl="/community/ambassadors/"
+            buttonText="Discover More"
+            bodyText="Gallery of content from videos to blogs from our amazing community members."
+            themeColor="cyan"
+            primary
+          />
           <HeroCard
             heroText="Contributor Guide"
             buttonUrl="/open-source/contributing"
             buttonText="Learn More"
             bodyText="Looking for ways to contribute to the community?"
-            themeColor="purple"
-            primary
-          />
-          <HeroCard
-            heroText="Incubation Projects"
-            buttonUrl="/community/incubation-projects/"
-            buttonText="Discover More"
-            bodyText="TBD Incubation projects are managed by community contributors."
             themeColor="cyan"
             primary
+            className="text-center"
+          />
+          <HeroCard
+            heroText="Code of Conduct"
+            buttonUrl="/open-source/code-of-conduct"
+            buttonText="Learn More"
+            bodyText="Our pledge and standards for ourselves and our community."
+            themeColor="purple"
+            primary
+            className="text-center"
           />
         </div>
         <h2 className="pt-10">Upcoming Events 🥳 </h2>
