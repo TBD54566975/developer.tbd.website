@@ -31,7 +31,7 @@ export default function ContributorShowcase() {
       <p>
         Compelling content is how we introduce and teach developers about the decentralized web (dweb). Whether it's a short video or in-depth blog post breaking down a complex topic, this space is dedicated to your top content on our open source projects, the dweb, and more.</p>
       <p className='pb-20 , pt-10'>Have a contribution you want to share? Submit your contribution   
-        <a href="/" target="_blank" rel="noopener noreferrer"> here</a>.
+        <a href="https://github.com/TBD54566975/developer.tbd.website/issues/new?assignees=taniashiba&template=content-submission.yaml&title=%5BCONTENT%5D%3A+" target="_blank" rel="noopener noreferrer"> here</a>.
       </p>
       
       <div style={filterContainerStyle}>
