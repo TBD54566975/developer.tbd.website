@@ -6,6 +6,7 @@ import { useLocation } from '@docusaurus/router';
 import useBrokenLinks from '@docusaurus/useBrokenLinks';
 import ChatSearch from '../../components/ChatGPTSearch';
 import { LanguageProvider } from '../../components/language/LanguageContext';
+import NewsletterSubscription from '../../components/NewsletterSubscribe';
 
 import { SSRProvider } from '@react-aria/ssr';
 import { LanguageOptionsProvider } from '../../components/language/SupportedLanguagesContext';
@@ -39,6 +40,7 @@ export default function LayoutWrapper(props) {
             </LanguageOptionsProvider>
           </LanguageProvider>
         </MDXContent>
+        <NewsletterSubscription />
       </GlitchWrapper>
     </SSRProvider>
   );
