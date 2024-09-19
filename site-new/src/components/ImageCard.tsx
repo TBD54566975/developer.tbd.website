@@ -62,6 +62,7 @@ function ImageCard({
         className={`${currentSize.image} object-cover`}
       />
       <TextIconCard
+        type="buttonText"
         hasBorder={false}
         theme="yellow"
         title={title}
