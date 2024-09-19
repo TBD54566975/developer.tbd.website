@@ -56,7 +56,7 @@ describe('Presentation Exchange Process', () => {
         constraints: {
           fields: [
             {
-              path: ['$.credentialSubject.employmentStatus'],
+              path: ['$.vc.credentialSubject.employmentStatus'],
               filter: {
                 type: 'string',
                 pattern: 'employed',
@@ -72,7 +72,7 @@ describe('Presentation Exchange Process', () => {
         constraints: {
           fields: [
             {
-              path: ['$.credentialSubject.dateOfBirth'],
+              path: ['$.vc.credentialSubject.dateOfBirth'],
               filter: {
                 type: 'string',
                 format: 'date',
@@ -88,7 +88,7 @@ describe('Presentation Exchange Process', () => {
         constraints: {
           fields: [
             {
-              path: ['$.credentialSubject.name'],
+              path: ['$.vc.credentialSubject.name'],
               filter: {
                 type: 'string'
               }
@@ -113,7 +113,7 @@ describe('Presentation Exchange Process', () => {
           constraints: {
             fields: [
               {
-                path: ['$.credentialSubject.employmentStatus'],
+                path: ['$.vc.credentialSubject.employmentStatus'],
                 filter: {
                   type: 'string',
                   pattern: 'employed',
@@ -129,7 +129,7 @@ describe('Presentation Exchange Process', () => {
           constraints: {
             fields: [
               {
-                path: ['$.credentialSubject.dateOfBirth'],
+                path: ['$.vc.credentialSubject.dateOfBirth'],
                 filter: {
                   type: 'string',
                   format: 'date',
@@ -145,7 +145,7 @@ describe('Presentation Exchange Process', () => {
           constraints: {
             fields: [
               {
-                path: ['$.credentialSubject.name'],
+                path: ['$.vc.credentialSubject.name'],
                 filter: {
                   type: 'string'
                 }
