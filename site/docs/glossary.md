@@ -8,7 +8,7 @@ An agent is software that acts on behalf of a user to manage identity, public or
 
 ## Bearer DID
 
-A Bearer DID is a composite type that combines a [DID](#decentralized-identifier-did), its associated [DID Document](did-document), and a [Key Manager](/docs/web5/decentralized-identifiers/key-management) containing the DID's cryptographic keys. It provides methods for signing data, verifying signatures, and managing the DID's associated keys.
+A Bearer DID is a composite type that combines a [DID](#decentralized-identifier-did), its associated [DID Document](#did-document), and a [Key Manager](/docs/web5/decentralized-identifiers/key-management) containing the DID's cryptographic keys. It provides methods for signing data, verifying signatures, and managing the DID's associated keys.
 
 ## Centralized Authority
 
