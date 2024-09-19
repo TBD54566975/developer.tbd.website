@@ -1,6 +1,6 @@
-import React from 'react';
-import TextIconCard from '@site/src/components/TextIconCard';
-import tbdRex from '@site/static/img/tbd-rex';
+import React from "react";
+import TextIconCard from "@site/src/components/TextIconCard";
+import tbdRex from "@site/static/img/tbd-rex";
 
 # TextIconCard Component
 
@@ -11,15 +11,17 @@ This component displays an optional icon, title, text, and an optional button. I
 
 ## Properties
 
-| Property     | Type                                                | Required | Default | Description                                                                                           |
-|--------------|-----------------------------------------------------|----------|---------|-------------------------------------------------------------------------------------------------------|
-| `icon`       | `React.ComponentType<{ className: string; fill: string }>` | No       |         | The optional icon component to display in the card.                                                            |
-| `title`      | `string`                                            | Yes      |         | The title text for the card.                                                                          |
-| `text`       | `string`                                            | Yes      |         | The description or text content for the card.                                                         |
-| `url`        | `string`                                            | No       |         | The optional URL to navigate to when the button is clicked.                                                    |
-| `className`  | `string`                                            | No       |         | Additional CSS classes to apply to the card.                                                          |
-| `theme`      | `"yellow" \| "teal" \| "purple" \| "grey"`          | No       | `grey`  | The theme color of the card.                                                                          |
-| `buttonText` | `string`                                            | No       |         | The optional text to display on the button.                                                                    |
+| Property     | Type                                                       | Required | Default      | Description                                                 |
+| ------------ | ---------------------------------------------------------- | -------- | ------------ | ----------------------------------------------------------- |
+| `icon`       | `React.ComponentType<{ className: string; fill: string }>` | No       |              | The optional icon component to display in the card.         |
+| `title`      | `string`                                                   | Yes      |              | The title text for the card.                                |
+| `text`       | `string`                                                   | Yes      |              | The description or text content for the card.               |
+| `url`        | `string`                                                   | No       |              | The optional URL to navigate to when the button is clicked. |
+| `className`  | `string`                                                   | No       |              | Additional CSS classes to apply to the card.                |
+| `theme`      | `"yellow" \| "teal" \| "purple" \| "grey"`                 | No       | `grey`       | The theme color of the card.                                |
+| `buttonText` | `string`                                                   | No       |              | The optional text to display on the button.                 |
+| `type`       | `"buttonText" \| "languageButton"`                         | No       | `buttonText` | The type of button to display.                              |
+| `resources`  | `{ [key: string]: string }`                                | No       |              | The resources to display when the type is `languageButton`. |
 
 ## Usage
 
@@ -28,6 +30,7 @@ This component displays an optional icon, title, text, and an optional button. I
   icon={tbdRex}
   title="Rocket"
   text="An open source messaging service that enables wallet applications to communicate with financial institutions to discover and obtain liquidity."
+  type="buttonText"
   url="https://example.com"
   theme="yellow"
   buttonText="Talk Money To Me"
@@ -37,49 +40,72 @@ This component displays an optional icon, title, text, and an optional button. I
 ## Examples
 
 Yellow Theme
+
 <TextIconCard
-icon={tbdRex}
-title="Rocket"
-text="An open source messaging service that enables wallet applications to communicate with financial institutions to discover and obtain liquidity."
-url="https://example.com"
-theme="yellow"
-buttonText="Talk Money To Me"
+  icon={tbdRex}
+  title="Rocket"
+  type="buttonText"
+  text="An open source messaging service that enables wallet applications to communicate with financial institutions to discover and obtain liquidity."
+  url="https://example.com"
+  theme="yellow"
+  buttonText="Talk Money To Me"
 />
 
 Teal Theme
+
 <TextIconCard
-icon={tbdRex}
-title="Liquidity Finder"
-text="A tool to help you find the best liquidity options available in the market."
-url="https://example.com"
-theme="teal"
-buttonText="Find Liquidity"
+  icon={tbdRex}
+  title="Liquidity Finder"
+  type="buttonText"
+  text="A tool to help you find the best liquidity options available in the market."
+  url="https://example.com"
+  theme="teal"
+  buttonText="Find Liquidity"
 />
 
 Purple Theme
+
 <TextIconCard
-icon={tbdRex}
-title="Market Watch"
-text="Keep track of market trends and make informed decisions with real-time data."
-url="https://example.com"
-theme="purple"
-buttonText="Watch Market"
+  icon={tbdRex}
+  title="Market Watch"
+  type="buttonText"
+  text="Keep track of market trends and make informed decisions with real-time data."
+  url="https://example.com"
+  theme="purple"
+  buttonText="Watch Market"
 />
 
 Teal Theme without Icon
+
 <TextIconCard
-title="No Icon"
-text="This card does not have an icon."
-url="https://example.com"
-theme="teal"
-buttonText="Find Out More"
+  title="No Icon"
+  text="This card does not have an icon."
+  type="buttonText"
+  url="https://example.com"
+  theme="teal"
+  buttonText="Find Out More"
 />
 
 Purple Theme without Button and Icon
+
 <TextIconCard
-title="No Button and Icon"
-text="This card does not have a button and an icon."
-theme="purple"
+  title="No Button and Icon"
+  text="This card does not have a button and an icon."
+  theme="purple"
+/>
+
+Icon card with Language Button
+
+<TextIconCard
+  title="Language Card with Icon"
+  text="This card has an icon."
+  type="languageButton"
+  resources={{
+    swift: "https://example.com",
+    js: "https://example.com",
+    go: "https://example.com",
+    kotlin: "https://example.com",
+  }}
 />
 
 </div>

@@ -7,6 +7,8 @@ type BackgroundProps = {
   className?: string;
   childrenClassName?: string;
   children: React.ReactNode;
+  pixelate?: boolean;
+  refreshRate?: number;
 };
 
 const bgColorMap: Record<BackgroundColors, string> = {
@@ -89,10 +91,12 @@ const Background = ({
   className = "",
   childrenClassName = "",
   children,
+  pixelate = false,
+  refreshRate = 2000,
 }: BackgroundProps) => {
   const containerRef = useRef(null);
   const [containerSize, setContainerSize] = useState({ width: 0, height: 0 });
-
+  const [squares, setSquares] = useState([]);
   const bgColorHex = bgColorMap[bgColor];
 
   useEffect(() => {
@@ -105,12 +109,28 @@ const Background = ({
   }, []);
 
   const darkerColor = darkenColor(bgColorHex, 0.1);
-  const squares = generateRandomSquares(
-    squareCount,
-    containerSize.width,
-    containerSize.height,
-    darkerColor,
-  );
+
+  const updateSquares = () => {
+    const newSquares = generateRandomSquares(
+      squareCount,
+      containerSize.width,
+      containerSize.height,
+      darkerColor,
+    );
+    setSquares(newSquares);
+  };
+
+  useEffect(() => {
+    updateSquares();
+
+    if (pixelate) {
+      const interval = setInterval(() => {
+        updateSquares();
+      }, refreshRate);
+
+      return () => clearInterval(interval);
+    }
+  }, [containerSize, pixelate, refreshRate]);
 
   return (
     <div
