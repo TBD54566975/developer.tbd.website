@@ -53,7 +53,7 @@ A digital storage system that securely stores and manages a DID's cryptographic 
 
 ## Portable DID
 
-A Portable DID is a JSON-serialized representation of a [DID](#decentralized-identifier-did), including its URI, [DID Document](did-document), and metadata. It's designed for easy storage, transfer, and reconstruction of a full DID across different systems or applications.
+A Portable DID is a JSON-serialized representation of a [DID](#decentralized-identifier-did), including its URI, [DID Document](#did-document), and metadata. It's designed for easy storage, transfer, and reconstruction of a full DID across different systems or applications.
 
 [\<\< More on Portable DIDs \>\>](/docs/web5/decentralized-identifiers/how-to-create-did#portable-did)
 
