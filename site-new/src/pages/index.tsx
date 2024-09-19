@@ -4,7 +4,7 @@ import Heading from "@theme/Heading";
 import Background from "../components/Background";
 import Rocket from "@site/static/img/Rocket";
 import Underline from "@site/static/img/Underline";
-import Hero from "../components/Hero";
+import Hero from "../components/HeroCard";
 import TextIconCard from "../components/TextIconCard";
 import tbdRex from "@site/static/img/tbd-rex";
 import { PixelBorderWrapper } from "../components/PixelBorder";

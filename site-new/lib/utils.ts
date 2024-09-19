@@ -10,7 +10,8 @@ export type BackgroundColors =
   | "purple"
   | "yellow"
   | "yellow-shade-1"
-  | "black";
+  | "black"
+  | "red";
 
 export type TextColors = BackgroundColors;
 export type ToneTypes = "teal" | "purple" | "yellow";
@@ -21,6 +22,7 @@ export const backgroundClassesMap: Record<BackgroundColors, string> = {
   yellow: "bg-tbd-yellow",
   "yellow-shade-1": "bg-tbd-yellow-shade-1",
   black: "bg-tbd-gray-shade-1",
+  red: "bg-tbd-red",
 };
 
 export const textClassesMap: Record<TextColors, string> = {
@@ -29,6 +31,7 @@ export const textClassesMap: Record<TextColors, string> = {
   yellow: "text-tbd-yellow",
   "yellow-shade-1": "text-tbd-yellow-shade-1",
   black: "text-tbd-gray-shade-1",
+  red: "text-tbd-red",
 };
 
 export const accordionClassesMap: Record<
