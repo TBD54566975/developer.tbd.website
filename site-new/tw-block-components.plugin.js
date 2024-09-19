@@ -8,7 +8,8 @@ module.exports = plugin(({ addComponents }) => {
         {},
     },
     ".unset": {
-      all: "unset",
+      "@apply p-0 m-0 bg-transparent border-0 text-inherit align-[inherit] border-none border-0 appearance-none":
+        {},
     },
     ".p": {
       "@apply text-sm leading-[1.225rem] lg:text-[1.375rem] lg:leading-[1.925rem]":
