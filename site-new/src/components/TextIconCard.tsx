@@ -2,42 +2,113 @@ import React from "react";
 import TbdArrow from "@site/static/img/tbd-arrow";
 import Heading from "@theme/Heading";
 import Link from "@docusaurus/Link";
+import Swift from "@site/assets/icons/Swift";
+import SwiftMobile from "@site/assets/icons/SwiftMobile";
+import Kotlin from "@site/assets/icons/Kotlin";
+import JSIcon from "@site/assets/icons/JSIcon";
+import GoIcon from "@site/assets/icons/GoIcon";
+import { cn } from "@site/lib/utils";
+import JSMobile from "@site/assets/icons/JSMobile";
+import GoMobile from "@site/assets/icons/GoMobile";
+import KotlinMobile from "@site/assets/icons/KotlinMobile";
+import { IconButtonLink } from "./IconButton";
 
-type Theme = "yellow" | "teal" | "purple" | "grey";
+type Theme =
+  | "yellow"
+  | "teal"
+  | "purple"
+  | "grey"
+  | "iconyellow"
+  | "iconteal"
+  | "iconpurple"
+  | "icongrey";
+
+type Languages = "swift" | "kotlin" | "js" | "go";
+
+type ButtonProps = {
+  type: "buttonText";
+  buttonText: string;
+  url: string;
+};
+
+type LanguageButtonProps = {
+  type: "languageButton";
+  resources: Partial<Record<Languages, string>>;
+};
+
+const ResponsiveIcon = ({
+  mobileIcon,
+  desktopIcon,
+}: {
+  mobileIcon: React.ReactNode;
+  desktopIcon: React.ReactNode;
+}) => (
+  <>
+    <span className="hidden lg:inline">{desktopIcon}</span>
+    <span className="lg:hidden">{mobileIcon}</span>
+  </>
+);
+
+const languageIconMap: Record<Languages, JSX.Element> = {
+  swift: (
+    <ResponsiveIcon mobileIcon={<SwiftMobile />} desktopIcon={<Swift />} />
+  ),
+  js: <ResponsiveIcon mobileIcon={<JSMobile />} desktopIcon={<JSIcon />} />,
+  go: <ResponsiveIcon mobileIcon={<GoMobile />} desktopIcon={<GoIcon />} />,
+  kotlin: (
+    <ResponsiveIcon mobileIcon={<KotlinMobile />} desktopIcon={<Kotlin />} />
+  ),
+};
+
+type DefaultProps = {
+  type?: "default";
+};
 
 type TextIconCardProps = {
   icon?: React.ComponentType<{ className: string; fill?: string }>;
   title: string;
   text: string;
-  url?: string;
   className?: string;
   theme?: Theme;
-  buttonText?: string;
   hasBorder?: boolean;
+} & (ButtonProps | LanguageButtonProps | DefaultProps);
+
+const themeClasses: Record<Theme, string> = {
+  yellow: "text-white ",
+  teal: "text-white ",
+  purple: "text-white ",
+  grey: "text-white ",
+  iconyellow: "fill-tbd-yellow ",
+  iconteal: "fill-tbd-teal ",
+  iconpurple: "fill-tbd-purple-tint-2 ",
+  icongrey: "fill-tbd-grey ",
 };
 
-const themeClasses = {
-  yellow: "text-white hover:bg-tbd-yellow hover:text-tbd-gray",
-  teal: "text-white hover:bg-tbd-teal hover:text-tbd-gray",
-  purple: "text-white hover:bg-tbd-purple hover:text-tbd-gray",
-  grey: "text-white hover:bg-dark-grey hover:text-tbd-gray",
-  iconyellow: "fill-tbd-yellow group-hover:fill-tbd-gray",
-  iconteal: "fill-tbd-teal group-hover:fill-tbd-gray",
-  iconpurple: "fill-tbd-purple-tint-2 group-hover:fill-tbd-gray",
-  icongrey: "fill-tbd-grey group-hover:fill-tbd-gray",
+const themeClassesHover: Record<Theme, string> = {
+  yellow: "hover:bg-tbd-yellow hover:text-tbd-gray",
+  teal: "hover:bg-tbd-teal hover:text-tbd-gray",
+  purple: "hover:bg-tbd-purple hover:text-tbd-gray",
+  grey: "hover:bg-dark-grey hover:text-tbd-gray",
+  iconyellow: "group-hover:fill-tbd-gray",
+  iconteal: "group-hover:fill-tbd-gray",
+  iconpurple: "group-hover:fill-tbd-gray",
+  icongrey: "group-hover:fill-tbd-gray",
 };
 
 function TextIconCard({
   icon: Icon,
   title,
   text,
-  url,
   className = "",
   theme = "grey",
-  buttonText,
   hasBorder = true,
+  ...props
 }: TextIconCardProps) {
-  const themeClass = themeClasses[theme];
+  const isHoverEnabled =
+    props.type === "buttonText" || props.type === "default" || !props.type;
+  const themeClass = cn(themeClasses[theme], {
+    [themeClassesHover[theme]]: isHoverEnabled,
+  });
   const iconClass = themeClasses[`icon${theme}`];
 
   // Conditionally apply border styles based on `hasBorder` (only for TextIconCard)
@@ -58,26 +129,54 @@ function TextIconCard({
           )}
           <Heading
             as="h3"
-            className={`mt-4 text-lg font-bold md:text-2xl text-tbd-${theme} transition-all duration-300 group-hover:text-tbd-gray`}
+            className={cn(
+              `mt-4 text-lg font-bold md:text-2xl text-tbd-${theme} transition-all duration-300`,
+              {
+                "group-hover:text-tbd-gray": isHoverEnabled,
+              },
+            )}
           >
             {title}
           </Heading>
           <p className={`mt-2 text-sm md:text-lg`}>{text}</p>
         </div>
-        {url && buttonText && (
+        {props.type === "buttonText" && (
           <Link
-            href={url}
+            href={props.url}
             className={`mt-auto inline-flex w-fit items-center border-x-0 border-b-0 border-t-4 border-solid border-tbd-yellow bg-tbd-yellow px-4 pb-2 pt-2 text-[12px] text-sm text-tbd-gray transition-all duration-300 group-hover:border-t-white group-hover:bg-tbd-gray group-hover:text-white md:text-lg`}
             target="_blank"
             rel="noreferrer"
           >
-            {buttonText}
+            {props.buttonText}
             <TbdArrow
               fill=""
               className="ml-4 size-5 rotate-180 fill-tbd-gray transition-all duration-300 group-hover:fill-white md:size-6"
             />
           </Link>
         )}
+        <>
+          {props.type === "languageButton" &&
+            Object.keys(props.resources).some(
+              (key) => props.resources[key as Languages],
+            ) && (
+              <div className="flex gap-twist-core-spacing-8">
+                {Object.keys(props.resources).map((key) => {
+                  const value = props.resources[key as Languages];
+                  return (
+                    value && (
+                      <IconButtonLink
+                        key={key}
+                        href={value}
+                        className="leading-[0]"
+                      >
+                        {languageIconMap[key as Languages]}
+                      </IconButtonLink>
+                    )
+                  );
+                })}
+              </div>
+            )}
+        </>
       </div>
     </div>
   );
