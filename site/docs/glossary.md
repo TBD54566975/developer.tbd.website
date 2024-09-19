@@ -6,6 +6,10 @@ An agent is software that acts on behalf of a user to manage identity, public or
 
 [\<\< More on Agents \>\>](/docs/web5/decentralized-web-nodes/agents)
 
+## Bearer DID
+
+A Bearer DID is a composite type that combines a [DID](#decentralized-identifier-did), its associated [DID Document](#did-document), and a [Key Manager](/docs/web5/decentralized-identifiers/key-management) containing the DID's cryptographic keys. It provides methods for signing data, verifying signatures, and managing the DID's associated keys.
+
 ## Centralized Authority
 
 A single entity or organization that has control over the network and its operations, potentially posing a risk to the principles of decentralization and autonomy.
@@ -46,6 +50,12 @@ The `did:web` method is a type of Decentralized Identifier (DID) method that ena
 ## Key Store
 
 A digital storage system that securely stores and manages a DID's cryptographic keys and key material, which is used for security protocols such as digital signing and verification.
+
+## Portable DID
+
+A Portable DID is a JSON-serialized representation of a [DID](#decentralized-identifier-did), including its URI, [DID Document](#did-document), and metadata. It's designed for easy storage, transfer, and reconstruction of a full DID across different systems or applications.
+
+[\<\< More on Portable DIDs \>\>](/docs/web5/decentralized-identifiers/how-to-create-did#portable-did)
 
 ## Signature Algorithm
 
