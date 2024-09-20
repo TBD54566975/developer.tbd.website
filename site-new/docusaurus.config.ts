@@ -69,12 +69,6 @@ const config: Config = {
       },
       items: [
         {
-          type: "docSidebar",
-          sidebarId: "docsSidebar",
-          position: "right",
-          label: "Docs",
-        },
-        {
           type: "dropdown",
           label: "Community",
           position: "right",
@@ -101,6 +95,13 @@ const config: Config = {
             },
           ],
         },
+        {
+          type: "docSidebar",
+          sidebarId: "docsSidebar",
+          position: "right",
+          label: "Docs",
+        },
+
         { to: "/blog", label: "Blog", position: "right" },
       ],
     },
