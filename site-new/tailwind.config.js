@@ -28,7 +28,7 @@ module.exports = {
   mode: "jit",
   corePlugins: {
     preflight: false,
-    container: false,
+    // container: false,
   },
   darkMode: ["class", '[data-theme="dark"]'],
   content: ["./src/**/*.{jsx,tsx,html,mdx,md}"],
