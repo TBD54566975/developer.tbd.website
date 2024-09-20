@@ -1,7 +1,6 @@
 import React from "react";
-import TbdArrow from "@site/static/img/tbd-arrow";
 import Heading from "@theme/Heading";
-import Link from "@docusaurus/Link";
+import Button from "@site/src/components/Button";
 
 type Theme = "yellow" | "teal" | "purple" | "grey";
 
@@ -65,18 +64,10 @@ function TextIconCard({
           <p className={`mt-2 text-sm md:text-lg`}>{text}</p>
         </div>
         {url && buttonText && (
-          <Link
-            href={url}
-            className={`mt-auto inline-flex w-fit items-center border-x-0 border-b-0 border-t-4 border-solid border-tbd-yellow bg-tbd-yellow px-4 pb-2 pt-2 text-[12px] text-sm text-tbd-gray transition-all duration-300 group-hover:border-t-white group-hover:bg-tbd-gray group-hover:text-white md:text-lg`}
-            target="_blank"
-            rel="noreferrer"
-          >
-            {buttonText}
-            <TbdArrow
-              fill=""
-              className="ml-4 size-5 rotate-180 fill-tbd-gray transition-all duration-300 group-hover:fill-white md:size-6"
-            />
-          </Link>
+          <Button
+            text={buttonText}
+            url={url}
+          />
         )}
       </div>
     </div>
