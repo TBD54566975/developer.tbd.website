@@ -7,7 +7,7 @@ function ComponentList() {
     { name: "TextIconCard", path: "/component-guide/text-icon-card" },
     { name: "TextIconFeature", path: "/component-guide/text-icon-feature" },
     { name: "BlogCard", path: "/component-guide/blog-card" },
-    { name: "HeroComponent", path: "/component-guide/hero" },
+    { name: "HeroCard", path: "/component-guide/hero-card" },
     { name: "Quote", path: "/component-guide/quote" },
     { name: "Marquee", path: "/component-guide/marquee" },
     { name: "Accordion", path: "/component-guide/accordion" },

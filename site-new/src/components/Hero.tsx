@@ -1,45 +1,37 @@
 import React from "react";
-import Link from "@docusaurus/Link";
-import TbdArrow from "@site/static/img/tbd-arrow";
-import InfoIcon from "@site/static/img/InfoIcon";
+import Background from "@site/src/components/Background";
 import Heading from "@theme/Heading";
+import Underline from "@site/static/img/Underline";
 
-type HeroComponentProps = {
-  title: string;
-  content: string;
-  url: string;
-  buttonText: string;
-};
-
-function Hero({
-  title,
-  content,
-  url,
-  buttonText,
-}: HeroComponentProps): JSX.Element {
+function Hero({ subject, title, description }) {
   return (
-    <div className="max-w-ful mx-auto flex w-full flex-col items-start justify-center border-[1px] border-solid bg-tbd-gray-shade-2 p-6 shadow-[15px_15px_0px_-5px_rgba(0,0,0,0.3)] shadow-tbd-gray-tint-2 transition-all duration-300 ease-in-out hover:translate-y-1 hover:shadow-[5px_5px_0px_-5px_rgba(0,0,0,0.3)] md:max-w-2xl md:p-9">
-      <InfoIcon className="h-6 w-6" fill={"#ffec19"} />
-      <Heading
-        as="h2"
-        className="mb-6 mt-4 text-3xl text-tbd-yellow md:text-4xl"
-      >
-        {title}
-      </Heading>
-      <p className="mb-6 text-base text-white md:text-lg">{content}</p>
-      <div>
-        <Link
-          href={url}
-          className="flex items-center rounded-none bg-tbd-yellow px-4 py-2 text-base font-medium text-tbd-gray-shade-2 hover:text-tbd-gray-shade-2 md:text-lg"
-        >
-          {buttonText}
-          <TbdArrow
-            className="ml-2 h-5 w-5 rotate-180 bg-tbd-yellow md:h-6 md:w-6"
-            fill={"black"}
-          />
-        </Link>
+    <Background
+      className="flex w-full justify-center pt-twist-core-spacing-30"
+      bgColor="black"
+    >
+      <div className="container mx-auto px-4 py-12">
+        <div className="flex flex-col items-center justify-center text-center text-white">
+          <span className="eyebrow text-tbd-yellow">{subject}</span>
+          <div className="container mx-auto mt-twist-core-spacing-12 w-[75%]">
+            <Heading
+              as="h1"
+              className="relative mb-4 mt-twist-core-spacing-7 text-[48px] font-medium lg:text-[80px]"
+            >
+              <span className="relative mb-twist-core-spacing-7 inline-block text-tbd-yellow">
+                {title}
+                <Underline className="absolute bottom-[-10px] left-1/2 -translate-x-1/2 transform fill-tbd-yellow lg:bottom-[-20px]" />
+              </span>
+            </Heading>
+            <Heading
+              as="h4"
+              className="mb-8 text-center text-[24px] leading-8 lg:text-[34px] lg:leading-10"
+            >
+              {description}
+            </Heading>
+          </div>
+        </div>
       </div>
-    </div>
+    </Background>
   );
 }
 

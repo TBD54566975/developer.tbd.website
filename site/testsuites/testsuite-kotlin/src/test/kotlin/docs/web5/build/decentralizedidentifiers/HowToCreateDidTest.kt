@@ -20,14 +20,14 @@ internal class HowToCreateDidTest {
     val didDht = DidDht.create(InMemoryKeyManager(), CreateDidDhtOptions(publish = true))
 
     //DID and its associated data which can be exported and used in different contexts/apps
-    val portableDid = DidDht.resolve(didDht.uri)
+    val portableDid = didDht.export()
 
     //DID string
     val did = didDht.uri
 
     //DID Document
-    val didDocument = portableDid.didDocument
-    
+    val didDocument = didDht.document
+
     // :snippet-end:
 
     assertNotNull(did, "DID should not be null")
@@ -44,13 +44,13 @@ internal class HowToCreateDidTest {
     val didJwk = DidJwk.create(InMemoryKeyManager());
 
     //DID and its associated data which can be exported and used in different contexts/apps
-    val portableDid = DidJwk.resolve(didJwk.uri)
+    val portableDid = didJwk.export()
 
     //DID string
     val did = didJwk.uri
 
     //DID Document
-    val didDocument = portableDid.didDocument
+    val didDocument = didJwk.document
     // :snippet-end:
 
     assertNotNull(did, "DID should not be null")
