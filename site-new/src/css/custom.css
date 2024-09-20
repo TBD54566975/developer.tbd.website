@@ -553,7 +553,7 @@ code {
 }
 
 .navbar__item .dropdown__menu::before {
-	@apply absolute w-[4000px] -translate-x-1/2 -z-[1] content-[""] bg-ifm-color-primary bottom-0 top-[17px]
+	@apply absolute w-[100000px] -translate-x-1/2 -z-[1] content-[""] bg-ifm-color-primary bottom-0 top-[17px]
 }
 
 .navbar__item .dropdown__menu>li>a {
