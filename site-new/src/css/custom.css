@@ -519,8 +519,12 @@ code {
 	min-width: 200px;
 }
 
-.navbar {
-	@apply border-solid border-b border-t-0 border-l-0 border-r-0 border-black
+.navbar__inner {
+	@apply container mx-auto
+}
+
+.navbar::after:has(.navbar__inner .navbar__items .dropdown:hover) {
+	@apply content-[""] inset-x-0 bg-black absolute bottom-0 top-[calc(100%-1px)] container mx-auto
 }
 
 .navbar__items .navbar__item:hover {
@@ -555,6 +559,7 @@ code {
 .navbar__item .dropdown__menu::before {
 	@apply absolute w-[100000px] -translate-x-1/2 -z-[1] content-[""] bg-ifm-color-primary bottom-0 top-[17px]
 }
+
 
 .navbar__item .dropdown__menu>li>a {
 	@apply ml-2
