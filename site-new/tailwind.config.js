@@ -35,6 +35,7 @@ module.exports = {
   theme: {
     extend: {
       colors: {
+        "ifm-color-primary": "var(--ifm-color-primary)",
         "tbd-yellow-tint-2": "#FFF870",
         "tbd-yellow-tint-1": "#FFF53D",
         "tbd-yellow": "#FFEC19",

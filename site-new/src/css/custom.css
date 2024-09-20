@@ -347,8 +347,9 @@ h1 {
 
 
 
-
-
+nav {
+	overflow-x: clip;
+}
 
 
 /* Bread Crumbs */
@@ -385,6 +386,7 @@ h1 {
 
 .navbar a {
 	color: black;
+	position: relative;
 }
 
 /* Mobile Sidebar */
@@ -516,6 +518,53 @@ code {
 .theme-doc-toc-desktop {
 	min-width: 200px;
 }
+
+.navbar {
+	@apply border-solid border-b border-t-0 border-l-0 border-r-0 border-black
+}
+
+.navbar__items .navbar__item:hover {
+	@apply bg-black
+}
+
+.navbar__items .navbar__item:hover .navbar__link {
+	@apply text-ifm-color-primary
+}
+
+.navbar__item .dropdown__menu {
+	@apply pt-6 bg-transparent shadow-none overflow-visible mb-1
+}
+
+.navbar__item .dropdown__menu>li {
+	@apply text-start
+}
+
+
+
+.dropdown>.navbar__link:after {
+	-webkit-mask-image: url("/img/chevron.svg");
+	mask-image: url("/img/chevron.svg");
+	@apply border-none size-4 top-3 transition bg-black
+}
+
+
+.navbar__items .dropdown:hover>.navbar__link:after {
+	@apply rotate-180 top-1 transition bg-ifm-color-primary
+}
+
+.navbar__item .dropdown__menu::before {
+	@apply absolute w-[100000px] -translate-x-1/2 -z-[1] content-[""] bg-ifm-color-primary bottom-0 top-[17px]
+}
+
+.navbar__item .dropdown__menu>li>a {
+	@apply ml-2
+}
+
+
+.navbar__item .dropdown__menu>li>a:hover {
+	@apply bg-black text-ifm-color-primary rounded-none
+}
+
 
 @layer base {
 	h2 {
