@@ -386,6 +386,7 @@ nav {
 
 .navbar a {
 	color: black;
+	position: relative;
 }
 
 /* Mobile Sidebar */
