@@ -61,6 +61,11 @@ const config: Config = {
 
   themeConfig: {
     // Replace with your project's social card
+    colorMode: {
+      defaultMode: "light",
+      disableSwitch: true,
+      respectPrefersColorScheme: false,
+    },
     image: "img/docusaurus-social-card.jpg",
     navbar: {
       logo: {

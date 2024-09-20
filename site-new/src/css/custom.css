@@ -556,6 +556,15 @@ code {
 	@apply absolute w-[4000px] -translate-x-1/2 -z-[1] content-[""] bg-ifm-color-primary bottom-0 top-[17px]
 }
 
+.navbar__item .dropdown__menu>li>a {
+	@apply ml-2
+}
+
+
+.navbar__item .dropdown__menu>li>a:hover {
+	@apply bg-black text-ifm-color-primary rounded-none
+}
+
 
 @layer base {
 	h2 {
