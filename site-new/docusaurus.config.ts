@@ -74,6 +74,33 @@ const config: Config = {
           position: "right",
           label: "Docs",
         },
+        {
+          type: "dropdown",
+          label: "Community",
+          position: "right",
+          items: [
+            {
+              label: "Example 1",
+              href: "https://example.com",
+            },
+            {
+              label: "Example 2",
+              href: "https://example.com",
+            },
+            {
+              label: "Example 3",
+              href: "https://example.com",
+            },
+            {
+              label: "Example 4",
+              href: "https://example.com",
+            },
+            {
+              label: "Example 5",
+              href: "https://example.com",
+            },
+          ],
+        },
         { to: "/blog", label: "Blog", position: "right" },
       ],
     },

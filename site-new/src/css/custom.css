@@ -347,8 +347,9 @@ h1 {
 
 
 
-
-
+nav {
+	overflow-x: clip;
+}
 
 
 /* Bread Crumbs */
@@ -516,6 +517,32 @@ code {
 .theme-doc-toc-desktop {
 	min-width: 200px;
 }
+
+.navbar {
+	@apply border-solid border-b border-t-0 border-l-0 border-r-0 border-black
+}
+
+.navbar__items .navbar__item:hover {
+	@apply bg-black
+}
+
+.navbar__items .navbar__item:hover .navbar__link {
+	@apply text-ifm-color-primary
+}
+
+.navbar__item .dropdown__menu {
+	@apply pt-6 bg-transparent shadow-none overflow-visible mb-1
+}
+
+.navbar__item .dropdown__menu>li {
+	@apply text-start
+}
+
+
+.navbar__item .dropdown__menu::before {
+	@apply absolute w-[4000px] -translate-x-1/2 -z-[1] content-[""] bg-ifm-color-primary bottom-0 top-[17px]
+}
+
 
 @layer base {
 	h2 {
