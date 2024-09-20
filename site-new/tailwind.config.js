@@ -68,6 +68,10 @@ module.exports = {
       borderRadius: {
         sm: "4px",
       },
+      border: {
+        '1': '1px',
+        '3': '3px',
+      },
       screens: {
         lg: "997px",
       },
