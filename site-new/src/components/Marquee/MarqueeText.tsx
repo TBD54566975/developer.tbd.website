@@ -5,6 +5,7 @@ import { backgroundClassesMap, BackgroundColors, cn } from "@site/lib/utils";
 export type MarqueeTextProps = {
   texts: string[];
   bgColor?: BackgroundColors;
+  reverse?: boolean;
 } & Pick<MarqueeProps, "repeat" | "className">;
 
 const MarqueeText = ({

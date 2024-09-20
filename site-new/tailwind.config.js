@@ -21,6 +21,7 @@ module.exports = {
     "border-tbd-teal",
     "border-tbd-danger",
     "border-tbd-yellow",
+    "border-tbd-purple",
     "data-[state=open]:text-tbd-teal",
     "data-[state=open]:text-tbd-purple",
     "data-[state=open]:text-tbd-yellow",

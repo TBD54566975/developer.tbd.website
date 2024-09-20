@@ -12,7 +12,7 @@ function Hero({ subject, title, description }) {
       <div className="container mx-auto px-4 py-12">
         <div className="flex flex-col items-center justify-center text-center text-white">
           <span className="eyebrow text-tbd-yellow">{subject}</span>
-          <div className="container mx-auto mt-twist-core-spacing-12 w-[75%]">
+          <div className="container mx-auto mt-twist-core-spacing-12 w-[74%]">
             <Heading
               as="h1"
               className="relative mb-4 mt-twist-core-spacing-7 text-[48px] font-medium lg:text-[80px]"
