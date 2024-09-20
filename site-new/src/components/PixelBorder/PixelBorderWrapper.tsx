@@ -1,13 +1,16 @@
 import React from "react";
-import PixelBorder from "./PixelBorder"; // Assuming your PixelBorder component is here
-import { cn } from "@site/lib/utils"; // Utility for combining class names
+import PixelBorder from "./PixelBorder";
+import { cn } from "@site/lib/utils";
+import { BackgroundColors } from "@site/lib/utils";
 
 interface PixelBorderWrapperProps {
   children: React.ReactNode;
-  outerTopClassName?: string; // Custom class for outer top PixelBorder
-  outerBottomClassName?: string; // Custom class for outer bottom PixelBorder
-  blockSize?: number; // Block size to pass to PixelBorder
-  refreshRate?: number; // Refresh rate to pass to PixelBorder
+  outerTopClassName?: string;
+  outerBottomClassName?: string;
+  blockSize?: number;
+  refreshRate?: number;
+  tone1?: BackgroundColors;
+  tone2?: BackgroundColors;
 }
 
 const PixelBorderWrapper: React.FC<PixelBorderWrapperProps> = ({
@@ -16,38 +19,43 @@ const PixelBorderWrapper: React.FC<PixelBorderWrapperProps> = ({
   outerBottomClassName = "",
   blockSize = 50,
   refreshRate = 1500,
+  tone1 = "black",
+  tone2 = "yellow-shade-1",
 }) => {
   return (
     <div className="relative">
-      {/* Outer top PixelBorder with custom class */}
       <PixelBorder
         blockSize={blockSize}
         className={cn(outerTopClassName)}
         refreshRate={refreshRate}
+        tone1={tone1}
+        tone2={tone2}
       />
 
-      {/* Inner top PixelBorder with thicker mode */}
       <PixelBorder
         blockSize={blockSize}
         borderType="thicker"
         refreshRate={refreshRate}
+        tone1={tone1}
+        tone2={tone2}
       />
 
-      {/* Children content */}
       <div className="relative z-10">{children}</div>
 
-      {/* Inner bottom PixelBorder with thicker mode */}
       <PixelBorder
         blockSize={blockSize}
         borderType="thicker"
         refreshRate={refreshRate}
+        tone1={tone1}
+        tone2={tone2}
       />
 
-      {/* Outer bottom PixelBorder with custom class */}
       <PixelBorder
         blockSize={blockSize}
         className={cn(outerBottomClassName)}
         refreshRate={refreshRate}
+        tone1={tone1}
+        tone2={tone2}
       />
     </div>
   );

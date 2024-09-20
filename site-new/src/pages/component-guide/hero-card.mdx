@@ -1,5 +1,5 @@
 import React from "react";
-import Hero from "@site/src/components/Hero";
+import HeroCard from "@site/src/components/HeroCard";
 import Background from "@site/src/components/Background";
 
 # Hero Component
@@ -25,7 +25,7 @@ import Background from "@site/src/components/Background";
   className="grid items-center justify-center"
   childrenClassName="grid  justify-center items-center"
 >
-  <Hero
+  <HeroCard
     title="This is a title"
     buttonText="Text for the button"
     url="localhost:3000"
@@ -43,7 +43,7 @@ import Background from "@site/src/components/Background";
   className="grid items-center justify-center py-8"
   childrenClassName="grid justify-center items-center h-full"
 >
-  <Hero
+  <HeroCard
     title="This is a title"
     buttonText="Click Here"
     url="localhost:3000"
@@ -58,7 +58,7 @@ import Background from "@site/src/components/Background";
   className="grid items-center justify-center py-8"
   childrenClassName="grid  justify-center items-center h-full"
 >
-  <Hero
+  <HeroCard
     title="This is a title"
     buttonText="Click Here"
     url="localhost:3000"
@@ -68,7 +68,7 @@ import Background from "@site/src/components/Background";
 
  <p>Purple Theme</p>
   <Background squareCount={5} bgColor="purple" className="grid items-center justify-center py-8" childrenClassName="grid  justify-center items-center h-full">
-  <Hero title="This is a title" buttonText="Click Here" url="localhost:3000" content="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." theme="purple" />
+  <HeroCard title="This is a title" buttonText="Click Here" url="localhost:3000" content="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." theme="purple" />
   </Background>
 </div>
 ```

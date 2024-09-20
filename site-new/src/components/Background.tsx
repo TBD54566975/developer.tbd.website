@@ -17,6 +17,7 @@ const bgColorMap: Record<BackgroundColors, string> = {
   "yellow-shade-1": "#FAE100",
   purple: "#b15bff",
   black: "#1A1A1A",
+  red: "#FF0000",
 };
 
 const hexToRgb = (hex) => {
