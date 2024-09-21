@@ -57,6 +57,7 @@
     "react-slick": "0.29.0",
     "react18-json-view": "^0.2.8",
     "slick-carousel": "1.8.1",
+    "url": "^0.11.4",
     "xml2js": "0.6.2"
   },
   "devDependencies": {
