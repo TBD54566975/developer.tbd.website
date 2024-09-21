@@ -17,11 +17,9 @@ type Theme =
   | "yellow"
   | "teal"
   | "purple"
-  | "grey"
   | "iconyellow"
   | "iconteal"
-  | "iconpurple"
-  | "icongrey";
+  | "iconpurple";
 
 type Languages = "swift" | "kotlin" | "js" | "go";
 
@@ -77,22 +75,24 @@ const themeClasses: Record<Theme, string> = {
   yellow: "text-white ",
   teal: "text-white ",
   purple: "text-white ",
-  grey: "text-white ",
   iconyellow: "fill-tbd-yellow ",
   iconteal: "fill-tbd-teal ",
   iconpurple: "fill-tbd-purple-tint-2 ",
-  icongrey: "fill-tbd-grey ",
 };
 
 const themeClassesHover: Record<Theme, string> = {
   yellow: "hover:bg-tbd-yellow hover:text-tbd-gray",
   teal: "hover:bg-tbd-teal hover:text-tbd-gray",
   purple: "hover:bg-tbd-purple hover:text-tbd-gray",
-  grey: "hover:bg-dark-grey hover:text-tbd-gray",
   iconyellow: "group-hover:fill-tbd-gray",
   iconteal: "group-hover:fill-tbd-gray",
   iconpurple: "group-hover:fill-tbd-gray",
-  icongrey: "group-hover:fill-tbd-gray",
+};
+
+const randomTheme = (): Theme => {
+  const themes: Theme[] = ["yellow", "teal", "purple"];
+  const randomIndex = Math.floor(Math.random() * themes.length);
+  return themes[randomIndex];
 };
 
 function TextIconCard({
@@ -100,25 +100,28 @@ function TextIconCard({
   title,
   text,
   className = "",
-  theme = "grey",
+  theme,
   hasBorder = true,
   ...props
 }: TextIconCardProps) {
+  const selectedTheme = theme || randomTheme();
+
   const isHoverEnabled =
     props.type === "buttonText" || props.type === "default" || !props.type;
-  const themeClass = cn(themeClasses[theme], {
-    [themeClassesHover[theme]]: isHoverEnabled,
+  const themeClass = cn(themeClasses[selectedTheme], {
+    [themeClassesHover[selectedTheme]]: isHoverEnabled,
   });
-  const iconClass = themeClasses[`icon${theme}`];
+  const iconClass = themeClasses[selectedTheme];
 
-  // Conditionally apply border styles based on `hasBorder` (only for TextIconCard)
   const borderClass = hasBorder
-    ? `border-[1px] border-solid border-t-8 border-tbd-${theme}`
+    ? `border-[1px] border-solid border-t-8 border-tbd-${selectedTheme}`
     : "";
+
+  console.log("border class", borderClass);
 
   return (
     <div
-      className={` ${themeClass} ${className} group transition-all duration-300 ${borderClass}`}
+      className={`${themeClass} ${className} group transition-all duration-300 ${borderClass}`}
     >
       <div className="flex h-full flex-col justify-center p-8">
         <div>
@@ -130,7 +133,7 @@ function TextIconCard({
           <Heading
             as="h3"
             className={cn(
-              `mt-4 text-lg font-bold md:text-2xl text-tbd-${theme} transition-all duration-300`,
+              `mt-4 text-lg font-bold md:text-2xl text-tbd-${selectedTheme} transition-all duration-300`,
               {
                 "group-hover:text-tbd-gray": isHoverEnabled,
               },
@@ -138,12 +141,12 @@ function TextIconCard({
           >
             {title}
           </Heading>
-          <p className={`mt-2 text-sm md:text-lg`}>{text}</p>
+          <p className="mt-2 text-sm md:text-lg">{text}</p>
         </div>
         {props.type === "buttonText" && (
           <Link
             href={props.url}
-            className={`mt-auto inline-flex w-fit items-center border-x-0 border-b-0 border-t-4 border-solid border-tbd-yellow bg-tbd-yellow px-4 pb-2 pt-2 text-[12px] text-sm text-tbd-gray transition-all duration-300 group-hover:border-t-white group-hover:bg-tbd-gray group-hover:text-white md:text-lg`}
+            className="mt-auto inline-flex w-fit items-center border-x-0 border-b-0 border-t-4 border-solid border-tbd-yellow bg-tbd-yellow px-4 pb-2 pt-2 text-[12px] text-sm text-tbd-gray transition-all duration-300 group-hover:border-t-white group-hover:bg-tbd-gray group-hover:text-white md:text-lg"
             target="_blank"
             rel="noreferrer"
           >
