@@ -13,7 +13,7 @@ describe('query-from-dwn', () => {
   });
 
   test('queryProtocolsForMusic returns an array of protocols', async () => {
-    // :snippet-start: queryRecordsFromDid
+    // :snippet-start: queryProtocolsForMusic
     const { protocols } = await web5.dwn.protocols.query({
       message: {
         filter: {
@@ -140,7 +140,7 @@ describe('query-from-dwn', () => {
   });
 
   test('queryFromDwnByProtocolPath returns an array of records', async () => {
-    // :snippet-name: queryFromDwnByProtocolPath
+    // :snippet-start: queryFromDwnByProtocolPath
     const { records } = await web5.dwn.records.query({
       message: {
         filter: {
