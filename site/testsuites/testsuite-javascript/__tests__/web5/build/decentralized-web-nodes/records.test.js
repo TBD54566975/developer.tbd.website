@@ -27,7 +27,7 @@ describe('records', () => {
         },
       });
       const recordId = textRecord.id
-      // snippet-start: readRecordFromId
+      // :snippet-start: readRecordFromId
       // Reads the indicated record from the user's DWNs
       let { record } = await web5.dwn.records.read({
         message: {
