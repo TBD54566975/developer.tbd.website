@@ -1,5 +1,4 @@
 import { test, beforeAll, expect, describe } from 'vitest';
-import { updateDwnRecord } from '../../../../../../code-snippets/web5/build/decentralized-web-nodes/update-dwn';
 import { setUpWeb5 } from '../../../setup-web5';
 
 let web5;
@@ -19,11 +18,22 @@ describe('update-dwn-test', () => {
         dataFormat: 'text/plain',
       },
     });
+    
+    // :snippet-start: updateDwnRecord
+    // Get the record
+    const { record } = await web5.dwn.records.read({
+      message: {
+        filter: {
+          recordId: createdRecord.id
+        }
+      }
+    });
 
-    //Call code snippet to update record
-    const updateStatus = await updateDwnRecord(web5, createdRecord);
+    // Update the record
+    // highlight-next-line
+    const {status} = await record.update({ data: "Hello, I'm updated!" });
+    // :snippet-end:
 
-    //Assert that status code is 202
-    expect(updateStatus.code).toBe(202);
+    expect(status.code).toBe(202);
   });
 });
