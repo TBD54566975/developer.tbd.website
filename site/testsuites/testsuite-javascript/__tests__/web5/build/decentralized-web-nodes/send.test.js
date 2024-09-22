@@ -1,13 +1,4 @@
 import { test, beforeAll, expect, describe } from 'vitest';
-
-import {
-  createLocalRecord,
-  createLocalProtocol,
-  sendLocalRecordToTarget,
-  sendRecordToRemoteDWNs,
-  sendProtocolToRemoteDWNs,
-  sendRecordToDWNOfRecipient,
-} from '../../../../../../code-snippets/web5/build/decentralized-web-nodes/send';
 import { setUpWeb5 } from '../../../setup-web5';
 
 let web5;
@@ -22,7 +13,14 @@ describe('send', () => {
   });
 
   test('createLocalRecord creates a record', async () => {
-    const record = await createLocalRecord(web5);
+   // :snippet-start: createLocalRecord
+    const { record } = await web5.dwn.records.create({
+        data: "this record will be written to the local DWN",
+        message: {
+            dataFormat: 'text/plain'
+        }
+    });
+  // :snippet-end:
     expect(record).toBeDefined();
   });
 
@@ -44,22 +42,50 @@ describe('send', () => {
         },
       },
     };
-    const response = await createLocalProtocol(web5, protocolDefinition);
+    
+    // :snippet-start: createLocalProtocol
+    const response = await web5.dwn.protocols.configure({
+      message: {
+          definition: protocolDefinition
+      }
+    });
+    // :snippet-end:
+  
     expect(response.status.code).toBe(202);
   });
 
   //blocked by https://github.com/TBD54566975/dwn-sdk-js/issues/550
   test.todo('sendLocalRecordToTarget creates record', async () => {
-    const record = await sendLocalRecordToTarget(web5, did);
+    // :snippet-start: sendLocalRecordToTarget
+    const { record } = await web5.dwn.records.create({
+        data: "this record will be written to the target's local DWN",
+        message: {
+            target: targetDid,
+            dataFormat: 'text/plain'
+        }
+    });
+    // :snippet-end:
     expect(record).toBeDefined();
   });
 
   test('sendRecordToRemoteDWNs sends record', async () => {
-    const status = await sendRecordToRemoteDWNs(web5, did);
+    const userDid = did
+    // :snippet-start: sendRecordToRemoteDWNs
+    const { record } = await web5.dwn.records.create({
+        data: "this record will be written to the local DWN",
+        message: {
+            dataFormat: 'text/plain'
+        }
+    });
+
+    //immediately send record to user's remote DWNs
+    const {status} = await record.send(userDid);
+    // :snippet-end:
     expect(status.code).toBe(202);
   });
 
   test('sendProtocolToRemoteDWNs sends a protocol', async () => {
+    const userDid = did
     const protocolDefinition = {
       protocol: 'example:remoteprotocol',
       published: true,
@@ -77,16 +103,33 @@ describe('send', () => {
         },
       },
     };
-    const status = await sendProtocolToRemoteDWNs(
-      web5,
-      protocolDefinition,
-      did,
-    );
+    // :snippet-start: sendProtocolToRemoteDWNs
+    const { protocol } = await web5.dwn.protocols.configure({
+        message: {
+            definition: protocolDefinition
+        }
+    });
+
+    //immediately send protocol to user's remote DWNs
+    const {status} = await protocol.send(userDid);
+    // :snippet-end:
     expect(status.code).toBe(202);
   });
 
   test('sendRecordToDWNOfRecipient can be configured', async () => {
-    const status = await sendRecordToDWNOfRecipient(web5, did);
+    const recipientDid = did
+    // :snippet-start: sendRecordToDWNOfRecipient
+    const { record } = await web5.dwn.records.create({
+        data: "this record will be created but not saved to DWN",
+        store: false, //remove this line if you want to keep a copy of the record in the sender's DWN
+        message: {
+            dataFormat: 'text/plain'
+        },
+    });
+
+    //send record to recipient's DWN
+    const {status} = await record.send(recipientDid);
+    // :snippet-end:
     expect(status.code).toBe(202);
   });
 });
