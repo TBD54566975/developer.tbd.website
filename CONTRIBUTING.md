@@ -152,6 +152,7 @@ will be `createDidDht.snippet.js`.
 To import the snippet in your documentation, use the following format:
 
 ```jsx
+import CodeSnippet from '@site/src/components/CodeSnippet';
 <CodeSnippet snippetName={createDidDht} />
 ```
 
