@@ -57,7 +57,7 @@ const presentationDefinition = {
       'constraints': {
         'fields': [
           {
-            'path': ['$.credentialSubject.employmentStatus'],
+            'path': ['$.vc.credentialSubject.employmentStatus'],
             'filter': {
               'type': 'string',
               'pattern': 'employed'
@@ -73,7 +73,7 @@ const presentationDefinition = {
       'constraints': {
         'fields': [
           {
-            'path': ['$.credentialSubject.dateOfBirth'],
+            'path': ['$.vc.credentialSubject.dateOfBirth'],
             'filter': {
               'type': 'string',
               'format': 'date'
@@ -89,7 +89,7 @@ const presentationDefinition = {
       'constraints': {
         'fields': [
           {
-            'path': ['$.credentialSubject.name'],
+            'path': ['$.vc.credentialSubject.name'],
             'filter': {
               'type': 'string'
             }

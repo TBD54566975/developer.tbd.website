@@ -79,24 +79,40 @@ const config: Config = {
           position: "right",
           items: [
             {
-              label: "Example 1",
-              href: "https://example.com",
+              label: "Code of Conduct",
+              href: "/community/code-of-conduct",
             },
             {
-              label: "Example 2",
-              href: "https://example.com",
+              label: "Governance",
+              href: "/community/governance",
             },
             {
-              label: "Example 3",
-              href: "https://example.com",
+              label: "Monthly Spotlight",
+              href: "/community/spotlight",
             },
             {
-              label: "Example 4",
-              href: "https://example.com",
+              label: "Calendar",
+              href: "/community/calendar",
             },
             {
-              label: "Example 5",
-              href: "https://example.com",
+              label: "Open Source Playbook",
+              href: "/community/open-source-playbook",
+            },
+            {
+              label: "Contribution Guide",
+              href: "/community/contribute",
+            },
+            {
+              label: "Incubation Program",
+              href: "/community/incubation-program",
+            },
+            {
+              label: "Innovators Showcase",
+              href: "/community/innovators-showcase",
+            },
+            {
+              label: "Assets",
+              href: "/community/assets",
             },
           ],
         },

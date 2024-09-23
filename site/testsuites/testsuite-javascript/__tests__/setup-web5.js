@@ -47,6 +47,9 @@ afterAll(async () => {
   const agent = globalThis.identityAgent || globalThis.web5?.agent;
 
   if (agent) {
+    
+    await agent.sync.stopSync();
+    
     const dbs = [
       agent.vault._store,
       agent.did.cache.cache,
