@@ -38,8 +38,8 @@ importers:
         specifier: 1.0.0
         version: 1.0.0
       '@web5/credentials':
-        specifier: 1.1.2
-        version: 1.1.2
+        specifier: 1.1.1
+        version: 1.1.1
       '@web5/crypto':
         specifier: 1.0.5
         version: 1.0.5
@@ -97,6 +97,9 @@ importers:
       slick-carousel:
         specifier: 1.8.1
         version: 1.8.1(jquery@3.7.1)
+      url:
+        specifier: ^0.11.4
+        version: 0.11.4
       xml2js:
         specifier: 0.6.2
         version: 0.6.2
@@ -6085,14 +6088,14 @@ packages:
       pako: 2.1.0
     dev: false
 
-  /@web5/credentials@1.1.2:
-    resolution: {integrity: sha512-tR+mUsXhLZCdJcLsHo28w4ft2b+ETv/YPl3V5RLrhE3t3dBo6On7C8y4edho4iBZFNvDk96Pu6/P7OKDhUHErg==}
+  /@web5/credentials@1.1.1:
+    resolution: {integrity: sha512-SlTpW4rg+HJ6ipLV4uzQ0Sg4HmSeuwWnWa6JOIG+cBWAOgCwgY/PL0F57wI3p4b8qcx/ey2R2yZyKkpN0sr8UQ==}
     engines: {node: '>=18.0.0'}
     dependencies:
       '@sphereon/pex': 3.3.3
-      '@web5/common': 1.0.2
-      '@web5/crypto': 1.0.5
-      '@web5/dids': 1.1.5
+      '@web5/common': 1.0.1
+      '@web5/crypto': 1.0.4
+      '@web5/dids': 1.1.1
       jsonschema: 1.4.1
       pako: 2.1.0
     dev: false
@@ -6125,6 +6128,16 @@ packages:
       '@noble/curves': 1.3.0
       '@noble/hashes': 1.4.0
       '@web5/common': 1.0.0
+    dev: false
+
+  /@web5/crypto@1.0.4:
+    resolution: {integrity: sha512-XjYkwQG28zo6UXusl5djca9/Qv74H259fjofrUY87qeb1Y/lPrgtpVTSNaqdLu4RB1gwyzFZwOGRaphWNjK1Ug==}
+    engines: {node: '>=18.0.0'}
+    dependencies:
+      '@noble/ciphers': 0.5.3
+      '@noble/curves': 1.3.0
+      '@noble/hashes': 1.4.0
+      '@web5/common': 1.0.1
     dev: false
 
   /@web5/crypto@1.0.5:
@@ -13606,13 +13619,9 @@ packages:
     resolution: {integrity: sha512-RSn9F68PjH9HqtltsSnqYC1XXoWe9Bju5+213R98cNGttag9q9yAOTzdbsqvIa7aNm5WffBZFpWYr2aWrklWAw==}
     engines: {node: '>= 6'}
 
-  /object-inspect@1.13.1:
-    resolution: {integrity: sha512-5qoj1RUiKOMsCCNLV1CBiPYE10sziTsnmNxkAI/rZhiD63CF7IqdFGC/XzjWjpSgLf0LxXX3bDFIh0E18f6UhQ==}
-
   /object-inspect@1.13.2:
     resolution: {integrity: sha512-IRZSRuzJiynemAXPYtPe5BoI/RESNYR7TYm50MC5Mqbd3Jmw5y790sErYw3V6SryFJD64b74qQQs9wn5Bg/k3g==}
     engines: {node: '>= 0.4'}
-    dev: false
 
   /object-is@1.1.6:
     resolution: {integrity: sha512-F8cZ+KfGlSGi09lJT7/Nd6KJZ9ygtvYC0/UYYLI9nmQKLMnydpB9yvbv9K1uSkEu7FU9vYPmVwLg328tX+ot3Q==}
@@ -15078,6 +15087,13 @@ packages:
     dependencies:
       side-channel: 1.0.6
 
+  /qs@6.13.0:
+    resolution: {integrity: sha512-+38qI9SOr8tfZ4QmJNplMUxqjbe7LKvvZgWdExBOmd+egZTtjLB67Gu0HRX3u/XOq7UU2Nx6nsjvS16Z9uwfpg==}
+    engines: {node: '>=0.6'}
+    dependencies:
+      side-channel: 1.0.6
+    dev: false
+
   /query-selector-shadow-dom@1.0.1:
     resolution: {integrity: sha512-lT5yCqEBgfoMYpf3F2xQRK7zEr1rhIIZuceDK6+xRkJQ4NMbHTwXqk4NkwDwQMNqXgG9r9fyHnzwNVs6zV5KRw==}
     dev: true
@@ -16486,7 +16502,7 @@ packages:
       call-bind: 1.0.7
       es-errors: 1.3.0
       get-intrinsic: 1.2.4
-      object-inspect: 1.13.1
+      object-inspect: 1.13.2
 
   /siginfo@2.0.0:
     resolution: {integrity: sha512-ybx0WO1/8bSBLEWXZvEd7gMW3Sn3JFlW3TvX1nREbDLRNQNaeNN8WK0meBwPdAaOI7TtRRRJn/Es1zhrrCHu7g==}
@@ -17802,6 +17818,14 @@ packages:
 
   /url-template@2.0.8:
     resolution: {integrity: sha512-XdVKMF4SJ0nP/O7XIPB0JwAEuT9lDIYnNsK8yGVe43y0AWoKeJNdv3ZNWh7ksJ6KqQFjOO6ox/VEitLnaVNufw==}
+    dev: false
+
+  /url@0.11.4:
+    resolution: {integrity: sha512-oCwdVC7mTuWiPyjLUz/COz5TLk6wgp0RCsN+wHZ2Ekneac9w8uuV0njcbbie2ME+Vs+d6duwmYuR3HgQXs1fOg==}
+    engines: {node: '>= 0.4'}
+    dependencies:
+      punycode: 1.4.1
+      qs: 6.13.0
     dev: false
 
   /use-sync-external-store@1.2.2(react@18.2.0):
