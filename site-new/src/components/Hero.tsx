@@ -2,8 +2,16 @@ import React from "react";
 import Background from "@site/src/components/Background";
 import Heading from "@theme/Heading";
 import Underline from "@site/static/img/Underline";
+import Button from "@site/src/components/Button";
 
-function Hero({ subject, title, description }) {
+type HeroProps = {
+  subject: string;
+  title: string;
+  description: string;
+  url?: string;
+};
+
+function Hero({ subject, title, description, url }: HeroProps): JSX.Element {
   return (
     <Background
       className="flex w-full justify-center pt-twist-core-spacing-30"
@@ -29,6 +37,14 @@ function Hero({ subject, title, description }) {
               {description}
             </Heading>
           </div>
+          {url && (
+            <Button
+              href={url}
+              className="inline-block rounded-full bg-tbd-yellow px-8 py-3 text-lg font-bold text-black transition-all duration-300 hover:bg-tbd-yellow-shade-1"
+            >
+              Learn More
+            </Button>
+          )}
         </div>
       </div>
     </Background>
