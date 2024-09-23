@@ -72,6 +72,7 @@
 	--ifm-background-color: #000;
 	--ifm-font-color-base: #fff;
 	--ifm-menu-link-sublist-icon: url("/img/chevron.svg");
+	--ifm-footer-background-color: var(--ifm-color-primary)
 }
 
 h2 {
@@ -570,6 +571,63 @@ code {
 	@apply bg-black text-ifm-color-primary rounded-none
 }
 
+
+.footer {
+	@apply py-twist-core-spacing-12 lg:py-twist-core-spacing-25
+}
+
+a:has(.footer__logo) {
+	@apply opacity-100
+}
+
+.footer__logo {
+	@apply mt-0 mb-twist-core-spacing-8 lg:mb-0
+}
+
+.footer>.container {
+	display: grid;
+	@apply grid-cols-1 grid-rows-[auto_1fr] lg:grid-rows-1 lg:grid-cols-[auto_1fr]
+}
+
+.footer__bottom {
+	@apply col-start-1 row-start-1 flex items-center justify-start lg:justify-center
+}
+
+.footer__bottom .margin-bottom--sm {
+	@apply !mb-0
+}
+
+.footer__links {
+	@apply mb-0 mx-1 lg:mx-0 lg:grid lg:grid-cols-[1fr_auto]
+}
+
+.footer__links .footer__col .footer__title {
+	@apply hidden
+}
+
+.footer__links .footer__col {
+	@apply p-0 mb-0
+}
+
+.footer__links>* img {
+	display: block;
+}
+
+.footer__links>:first-child ul {
+	@apply flex flex-col lg:flex-row lg:items-center lg:justify-center lg:flex-wrap mb-twist-core-spacing-8 lg:mb-0 gap-twist-core-spacing-7 xl:gap-twist-core-spacing-12 lg:h-full
+}
+
+.footer__links>:nth-child(2) ul {
+	@apply flex items-center justify-between flex-wrap lg:justify-end gap-twist-core-spacing-10 lg:h-full
+}
+
+.footer__item a {
+	@apply leading-4 lg:leading-[18px] text-black font-medium lg:text-lg font-spaceGrotesk
+}
+
+.footer__item a:hover {
+	@apply text-black
+}
 
 @layer base {
 	h2 {
