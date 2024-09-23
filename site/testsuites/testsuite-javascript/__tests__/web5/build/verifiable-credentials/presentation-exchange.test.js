@@ -19,12 +19,12 @@ describe('Presentation Exchange Process', () => {
   let verifiablePresentation;
 
   beforeAll(async () => {
-    
+
     signedEmploymentVcJwt =
-      'eyJhbGciOiJFZERTQSIsInR5cCI6IkpXVCIsImtpZCI6ImRpZDprZXk6ejZNa2VyNDlDbnVnN2hzdkhEZ3Y0NHl2cGR2dE1oNHlMaURYeFM2N2huclVodHQyI3o2TWtlcjQ5Q251Zzdoc3ZIRGd2NDR5dnBkdnRNaDR5TGlEWHhTNjdobnJVaHR0MiJ9.eyJpc3MiOiJkaWQ6a2V5Ono2TWtlcjQ5Q251Zzdoc3ZIRGd2NDR5dnBkdnRNaDR5TGlEWHhTNjdobnJVaHR0MiIsInZjIjp7IkBjb250ZXh0IjpbImh0dHBzOi8vd3d3LnczLm9yZy8yMDE4L2NyZWRlbnRpYWxzL3YxIl0sInR5cGUiOlsiVmVyaWZpYWJsZUNyZWRlbnRpYWwiLCJFbXBsb3ltZW50Q3JlZGVudGlhbCJdLCJpZCI6InVybjp1dWlkOjcyNDhiOTkyLTkwOTYtNDk2NS1hMGVjLTc3ZDhhODNhMWRmYiIsImlzc3VlciI6ImRpZDprZXk6ejZNa2VyNDlDbnVnN2hzdkhEZ3Y0NHl2cGR2dE1oNHlMaURYeFM2N2huclVodHQyIiwiaXNzdWFuY2VEYXRlIjoiMjAyMy0xMi0yMVQyMDoxMToyNVoiLCJjcmVkZW50aWFsU3ViamVjdCI6eyJpZCI6ImRpZDppb246RWlEMTR4UmY0cTJNWlh1ZWY2X2ZXYnBGbVlTUG94dGFxTkp1SmdEMG96Wl84UTpleUprWld4MFlTSTZleUp3WVhSamFHVnpJanBiZXlKaFkzUnBiMjRpT2lKeVpYQnNZV05sSWl3aVpHOWpkVzFsYm5RaU9uc2ljSFZpYkdsalMyVjVjeUk2VzNzaWFXUWlPaUprZDI0dGMybG5JaXdpY0hWaWJHbGpTMlY1U25kcklqcDdJbU55ZGlJNklrVmtNalUxTVRraUxDSnJkSGtpT2lKUFMxQWlMQ0o0SWpvaWVubGFNbVYzTlhKeVVXdFVjbUV3WlZsVk16WlBTblJzTURCbFJWZHhhalZhV0dkNmNEZFpSVTVKUVNKOUxDSndkWEp3YjNObGN5STZXeUpoZFhSb1pXNTBhV05oZEdsdmJpSmRMQ0owZVhCbElqb2lTbk52YmxkbFlrdGxlVEl3TWpBaWZTeDdJbWxrSWpvaVpIZHVMV1Z1WXlJc0luQjFZbXhwWTB0bGVVcDNheUk2ZXlKamNuWWlPaUp6WldOd01qVTJhekVpTENKcmRIa2lPaUpGUXlJc0luZ2lPaUpQZDJZMFQyMUViamxKWm5SNFdYWnBkRTFHWm1jMVVXeDVMVVV6VWs1b1dsUkdPVlpFTWtnNVQzVjNJaXdpZVNJNkltUnZjVmxtV2s1c1NtRlRNVll4U201bU9HdEZObEF6VkRsd2QzaDNla3hFVTJWc1ZqTlRUa2s1U2xFaWZTd2ljSFZ5Y0c5elpYTWlPbHNpYTJWNVFXZHlaV1Z0Wlc1MElsMHNJblI1Y0dVaU9pSktjMjl1VjJWaVMyVjVNakF5TUNKOVhTd2ljMlZ5ZG1salpYTWlPbHQ3SW1sa0lqb2laSGR1SWl3aWMyVnlkbWxqWlVWdVpIQnZhVzUwSWpwN0ltVnVZM0o1Y0hScGIyNUxaWGx6SWpwYklpTmtkMjR0Wlc1aklsMHNJbTV2WkdWeklqcGJJbWgwZEhCek9pOHZaSGR1TG5SaVpHUmxkaTV2Y21jdlpIZHVOaUlzSW1oMGRIQnpPaTh2WkhkdUxuUmlaR1JsZGk1dmNtY3ZaSGR1TUNKZExDSnphV2R1YVc1blMyVjVjeUk2V3lJalpIZHVMWE5wWnlKZGZTd2lkSGx3WlNJNklrUmxZMlZ1ZEhKaGJHbDZaV1JYWldKT2IyUmxJbjFkZlgxZExDSjFjR1JoZEdWRGIyMXRhWFJ0Wlc1MElqb2lSV2xEWm05bVFUQkpVbU5uY2tWdVVHZHdRbU5RV1ZsV2VFWlliR0pTYjJRd2RVNWZRVkJwTkVrNUxVRmZRU0o5TENKemRXWm1hWGhFWVhSaElqcDdJbVJsYkhSaFNHRnphQ0k2SWtWcFFtd3pWWG80VldGT2REZGxlREJKYjJJMFJFNXNhbFJGVmpaelQwTmtjbFJ3TWxvNE5FTkJPVFJPUWtFaUxDSnlaV052ZG1WeWVVTnZiVzFwZEcxbGJuUWlPaUpGYVVOWk9WRldZbWRKYkUxemRraEZYMVJtTld4a1MxQjBkR3d3WVV4blNrdHNSbmt6Vms0d2QzQTJhVFpSSW4xOSIsImVtcGxveW1lbnRTdGF0dXMiOiJlbXBsb3llZCJ9fX0.Sazc8Ndhs-NKjxvtVMKeC9dxjEkI26fVsp2kFNWM-SYLtxMzKvl5ffeWd81ysHgPmBBSk2ar4dMqGgUsyM4gAQ';
+      'eyJhbGciOiJFZERTQSIsImtpZCI6ImRpZDpkaHQ6NmM0ODc1aHJod3o3cDhwdXRtdDZ4b2ZodHBoZ3BjdGp6Ym5pcjFneHlhbXRuYXU5ajRjbyMwIn0.eyJ2YyI6eyJAY29udGV4dCI6WyJodHRwczovL3d3dy53My5vcmcvMjAxOC9jcmVkZW50aWFscy92MSIsImh0dHBzOi8vdzNpZC5vcmcvdmMvc3RhdHVzLWxpc3QvMjAyMS92MSJdLCJ0eXBlIjpbIlZlcmlmaWFibGVDcmVkZW50aWFsIiwiRW1wbG95bWVudENyZWRlbnRpYWwiXSwiaWQiOiJ1cm46dXVpZDo5Mzg3ZTlhNi03NGY5LTQyNTctOTNmNS05NTk4YTg4YWNmZTAiLCJpc3N1ZXIiOiJkaWQ6ZGh0OjZjNDg3NWhyaHd6N3A4cHV0bXQ2eG9maHRwaGdwY3RqemJuaXIxZ3h5YW10bmF1OWo0Y28iLCJpc3N1YW5jZURhdGUiOiIyMDI0LTA5LTIwVDE3OjU2OjM3WiIsImNyZWRlbnRpYWxTdWJqZWN0Ijp7ImlkIjoiZGlkOmRodDpjMXlvc2czcDd4cDhrdGk3ODN5cWpwZ2Vnczg4dHFyeWhyZHJ1cHJ0dHNjYzdqa3VuYWJ5IiwiZW1wbG95bWVudFN0YXR1cyI6ImVtcGxveWVkIn0sImV4cGlyYXRpb25EYXRlIjoiMjAyNS0wOS0yMFQxNzo1NjozNy4xMTZaIn0sIm5iZiI6MTcyNjg1NDk5NywianRpIjoidXJuOnV1aWQ6OTM4N2U5YTYtNzRmOS00MjU3LTkzZjUtOTU5OGE4OGFjZmUwIiwiaXNzIjoiZGlkOmRodDo2YzQ4NzVocmh3ejdwOHB1dG10NnhvZmh0cGhncGN0anpibmlyMWd4eWFtdG5hdTlqNGNvIiwic3ViIjoiZGlkOmRodDpjMXlvc2czcDd4cDhrdGk3ODN5cWpwZ2Vnczg4dHFyeWhyZHJ1cHJ0dHNjYzdqa3VuYWJ5IiwiaWF0IjoxNzI2ODU0OTk3LCJleHAiOjE3NTgzOTA5OTd9.tviXnkmsk7ebCJOQs81HwFHqfnNKfi07OPzwTd8qgYSbGq3zUt6mCU3qQ5v0vZQ-LCHTID_-jie0qds_sYJkBA';
     signedNameAndDobVcJwt =
-      'eyJhbGciOiJFZERTQSIsInR5cCI6IkpXVCIsImtpZCI6ImRpZDprZXk6ejZNa2pwUzRHVUFoYmdCSmg2azJnZTZvWTQ0UUxyRXA3NXJadHNqYVRLb3JSRGR0I3o2TWtqcFM0R1VBaGJnQkpoNmsyZ2U2b1k0NFFMckVwNzVyWnRzamFUS29yUkRkdCJ9.eyJpc3MiOiJkaWQ6a2V5Ono2TWtqcFM0R1VBaGJnQkpoNmsyZ2U2b1k0NFFMckVwNzVyWnRzamFUS29yUkRkdCIsInZjIjp7IkBjb250ZXh0IjpbImh0dHBzOi8vd3d3LnczLm9yZy8yMDE4L2NyZWRlbnRpYWxzL3YxIl0sInR5cGUiOlsiVmVyaWZpYWJsZUNyZWRlbnRpYWwiLCJOYW1lQW5kRG9iQ3JlZGVudGlhbCJdLCJpZCI6InVybjp1dWlkOjliZjM2YzY5LTI0ODAtNDllZC1iMTYyLTRlZDEwOWE3MTc3NyIsImlzc3VlciI6ImRpZDprZXk6ejZNa2pwUzRHVUFoYmdCSmg2azJnZTZvWTQ0UUxyRXA3NXJadHNqYVRLb3JSRGR0IiwiaXNzdWFuY2VEYXRlIjoiMjAyMy0xMi0yMVQyMDowNjowMVoiLCJjcmVkZW50aWFsU3ViamVjdCI6eyJpZCI6ImRpZDppb246RWlDS2o2M0FyZlBGcEpsb2lTd3gxQUhxVWtpWlNoSDZGdnZoSzRaTl9fZDFtQTpleUprWld4MFlTSTZleUp3WVhSamFHVnpJanBiZXlKaFkzUnBiMjRpT2lKeVpYQnNZV05sSWl3aVpHOWpkVzFsYm5RaU9uc2ljSFZpYkdsalMyVjVjeUk2VzNzaWFXUWlPaUprZDI0dGMybG5JaXdpY0hWaWJHbGpTMlY1U25kcklqcDdJbU55ZGlJNklrVmtNalUxTVRraUxDSnJkSGtpT2lKUFMxQWlMQ0o0SWpvaWNscFdXbTVJVkVrNWFEWkJUVmxVV0dwT01HcFhTVkYwTTI5ak4xTnJTeTF4Y2kxcVVuSTBUalEzUlNKOUxDSndkWEp3YjNObGN5STZXeUpoZFhSb1pXNTBhV05oZEdsdmJpSmRMQ0owZVhCbElqb2lTbk52YmxkbFlrdGxlVEl3TWpBaWZTeDdJbWxrSWpvaVpIZHVMV1Z1WXlJc0luQjFZbXhwWTB0bGVVcDNheUk2ZXlKamNuWWlPaUp6WldOd01qVTJhekVpTENKcmRIa2lPaUpGUXlJc0luZ2lPaUpaVDFwRE5WSmlUMHQ1T0dadVVUWTJVWEZPUkc5aldFMXZPVXhUZEdNNVYyOWthMHd0ZFZCZlExQnZJaXdpZVNJNklsWnZZM0UxVERodFozQlhXVTFrYjFwS1JrWlJUa1ZDT0hsR0xXTndkRWQzZFdkcFRWVm5hR2t6Y21jaWZTd2ljSFZ5Y0c5elpYTWlPbHNpYTJWNVFXZHlaV1Z0Wlc1MElsMHNJblI1Y0dVaU9pSktjMjl1VjJWaVMyVjVNakF5TUNKOVhTd2ljMlZ5ZG1salpYTWlPbHQ3SW1sa0lqb2laSGR1SWl3aWMyVnlkbWxqWlVWdVpIQnZhVzUwSWpwN0ltVnVZM0o1Y0hScGIyNUxaWGx6SWpwYklpTmtkMjR0Wlc1aklsMHNJbTV2WkdWeklqcGJJbWgwZEhCek9pOHZaSGR1TG5SaVpHUmxkaTV2Y21jdlpIZHVOaUlzSW1oMGRIQnpPaTh2WkhkdUxuUmlaR1JsZGk1dmNtY3ZaSGR1TUNKZExDSnphV2R1YVc1blMyVjVjeUk2V3lJalpIZHVMWE5wWnlKZGZTd2lkSGx3WlNJNklrUmxZMlZ1ZEhKaGJHbDZaV1JYWldKT2IyUmxJbjFkZlgxZExDSjFjR1JoZEdWRGIyMXRhWFJ0Wlc1MElqb2lSV2xCTXpSMlMzb3llVmswZVV4dGRDMUdabkJuYWpWbGFFRm1ZWFI1YzFOa2MwNVNWbVpMYkhwUWRqTjVkeUo5TENKemRXWm1hWGhFWVhSaElqcDdJbVJsYkhSaFNHRnphQ0k2SWtWcFF6ZGZjMXBzTW1wMVVXNUdhRVJIV1RSb2NFVTRiMlF4YVU5MWRuZG1PVFJ5TVVkbk9HMWFWbVJCVmxFaUxDSnlaV052ZG1WeWVVTnZiVzFwZEcxbGJuUWlPaUpGYVVKdU5sTnJiSEpWYzNKdVFuaFJPVXBqVXkxTlNVaGtWelYwTXpRM1MxWjNaMXBwVEZwMFQwcDRRVkYzSW4xOSIsIm5hbWUiOiJhbGljZSBib2IiLCJkYXRlT2ZCaXJ0aCI6IjEwLTAxLTE5OTAifX19.mNCDv_JntH-wZpYONKNL58UbOWaYXCYJO_HPI_WVlSgwzo6dhYmV_9qtpFKd_exFb-aaEYPeSE43twWlrJeSBg';
-    
+      'eyJhbGciOiJFZERTQSIsImtpZCI6ImRpZDpkaHQ6NmM0ODc1aHJod3o3cDhwdXRtdDZ4b2ZodHBoZ3BjdGp6Ym5pcjFneHlhbXRuYXU5ajRjbyMwIn0.eyJ2YyI6eyJAY29udGV4dCI6WyJodHRwczovL3d3dy53My5vcmcvMjAxOC9jcmVkZW50aWFscy92MSIsImh0dHBzOi8vdzNpZC5vcmcvdmMvc3RhdHVzLWxpc3QvMjAyMS92MSJdLCJ0eXBlIjpbIlZlcmlmaWFibGVDcmVkZW50aWFsIiwiTmFtZUFuZERvYkNyZWRlbnRpYWwiXSwiaWQiOiJ1cm46dXVpZDo4NTA3OTg1Ni0zNDBhLTQ1YjYtYWY1NS01NTA5NDc2MjE5YWQiLCJpc3N1ZXIiOiJkaWQ6ZGh0OjZjNDg3NWhyaHd6N3A4cHV0bXQ2eG9maHRwaGdwY3RqemJuaXIxZ3h5YW10bmF1OWo0Y28iLCJpc3N1YW5jZURhdGUiOiIyMDI0LTA5LTIwVDE3OjU2OjM3WiIsImNyZWRlbnRpYWxTdWJqZWN0Ijp7ImlkIjoiZGlkOmRodDpjMXlvc2czcDd4cDhrdGk3ODN5cWpwZ2Vnczg4dHFyeWhyZHJ1cHJ0dHNjYzdqa3VuYWJ5IiwibmFtZSI6ImFsaWNlIGJvYiIsImRhdGVPZkJpcnRoIjoiMTAtMDEtMTk5MCJ9LCJleHBpcmF0aW9uRGF0ZSI6IjIwMjUtMDktMjBUMTc6NTY6MzcuMTE2WiJ9LCJuYmYiOjE3MjY4NTQ5OTcsImp0aSI6InVybjp1dWlkOjg1MDc5ODU2LTM0MGEtNDViNi1hZjU1LTU1MDk0NzYyMTlhZCIsImlzcyI6ImRpZDpkaHQ6NmM0ODc1aHJod3o3cDhwdXRtdDZ4b2ZodHBoZ3BjdGp6Ym5pcjFneHlhbXRuYXU5ajRjbyIsInN1YiI6ImRpZDpkaHQ6YzF5b3NnM3A3eHA4a3RpNzgzeXFqcGdlZ3M4OHRxcnlocmRydXBydHRzY2M3amt1bmFieSIsImlhdCI6MTcyNjg1NDk5NywiZXhwIjoxNzU4MzkwOTk3fQ._ONzs3LXLTo4LCbsaYwQXFbBT81s5RCvM7NrfRvdpQdvPcjSN7R6jTESV6uN5Wfxbt14qJVjGOkn6bmQbqI-BQ';
+
     credentials = [signedEmploymentVcJwt, signedNameAndDobVcJwt];
     selectedCredentials = credentials
 
@@ -56,7 +56,7 @@ describe('Presentation Exchange Process', () => {
         constraints: {
           fields: [
             {
-              path: ['$.credentialSubject.employmentStatus'],
+              path: ['$.vc.credentialSubject.employmentStatus'],
               filter: {
                 type: 'string',
                 pattern: 'employed',
@@ -72,7 +72,7 @@ describe('Presentation Exchange Process', () => {
         constraints: {
           fields: [
             {
-              path: ['$.credentialSubject.dateOfBirth'],
+              path: ['$.vc.credentialSubject.dateOfBirth'],
               filter: {
                 type: 'string',
                 format: 'date',
@@ -88,7 +88,7 @@ describe('Presentation Exchange Process', () => {
         constraints: {
           fields: [
             {
-              path: ['$.credentialSubject.name'],
+              path: ['$.vc.credentialSubject.name'],
               filter: {
                 type: 'string'
               }
@@ -113,7 +113,7 @@ describe('Presentation Exchange Process', () => {
           constraints: {
             fields: [
               {
-                path: ['$.credentialSubject.employmentStatus'],
+                path: ['$.vc.credentialSubject.employmentStatus'],
                 filter: {
                   type: 'string',
                   pattern: 'employed',
@@ -129,7 +129,7 @@ describe('Presentation Exchange Process', () => {
           constraints: {
             fields: [
               {
-                path: ['$.credentialSubject.dateOfBirth'],
+                path: ['$.vc.credentialSubject.dateOfBirth'],
                 filter: {
                   type: 'string',
                   format: 'date',
@@ -145,7 +145,7 @@ describe('Presentation Exchange Process', () => {
           constraints: {
             fields: [
               {
-                path: ['$.credentialSubject.name'],
+                path: ['$.vc.credentialSubject.name'],
                 filter: {
                   type: 'string'
                 }
