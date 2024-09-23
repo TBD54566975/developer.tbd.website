@@ -93,7 +93,7 @@ const Background = ({
   childrenClassName = "",
   children,
   pixelate = false,
-  refreshRate = 2000,
+  refreshRate = 5000,
 }: BackgroundProps) => {
   const containerRef = useRef(null);
   const [containerSize, setContainerSize] = useState({ width: 0, height: 0 });
