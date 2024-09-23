@@ -39,7 +39,7 @@ describe('fan-club-vc', () => {
                         'fields': [
                             {
                                 'path': [
-                                    '$.credentialSubject.legit',
+                                    '$.vc.credentialSubject.legit',
                                 ]
                             }
                         ]
@@ -100,7 +100,7 @@ describe('fan-club-vc', () => {
                         'fields': [
                             {
                                 'path': [
-                                    '$.credentialSubject.legit',
+                                    '$.vc.credentialSubject.legit',
                                 ]
                             }
                         ]
