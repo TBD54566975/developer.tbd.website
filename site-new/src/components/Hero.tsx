@@ -9,6 +9,7 @@ type HeroProps = {
   title: string;
   description: string;
   url?: string;
+  buttonText?: string;
 };
 
 function Hero({ subject, title, description, url }: HeroProps): JSX.Element {
@@ -38,12 +39,7 @@ function Hero({ subject, title, description, url }: HeroProps): JSX.Element {
             </Heading>
           </div>
           {url && (
-            <Button
-              href={url}
-              className="inline-block rounded-full bg-tbd-yellow px-8 py-3 text-lg font-bold text-black transition-all duration-300 hover:bg-tbd-yellow-shade-1"
-            >
-              Learn More
-            </Button>
+            <Button text="Learn More" url="/community/spotlight" size="large" />
           )}
         </div>
       </div>
