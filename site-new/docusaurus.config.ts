@@ -110,51 +110,82 @@ const config: Config = {
         { to: "/blog", label: "Blog", position: "right" },
       ],
     },
-    // footer: {
-    //   style: "dark",
-    //   links: [
-    //     {
-    //       title: "Docs",
-    //       items: [
-    //         {
-    //           label: "Tutorial",
-    //           to: "/docs/intro",
-    //         },
-    //       ],
-    //     },
-    //     {
-    //       title: "Community",
-    //       items: [
-    //         {
-    //           label: "Stack Overflow",
-    //           href: "https://stackoverflow.com/questions/tagged/docusaurus",
-    //         },
-    //         {
-    //           label: "Discord",
-    //           href: "https://discordapp.com/invite/docusaurus",
-    //         },
-    //         {
-    //           label: "Twitter",
-    //           href: "https://twitter.com/docusaurus",
-    //         },
-    //       ],
-    //     },
-    //     {
-    //       title: "More",
-    //       items: [
-    //         {
-    //           label: "Blog",
-    //           to: "/blog",
-    //         },
-    //         {
-    //           label: "GitHub",
-    //           href: "https://github.com/facebook/docusaurus",
-    //         },
-    //       ],
-    //     },
-    //   ],
-    //   copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
-    // },
+    footer: {
+      logo: {
+        alt: "TBD logo",
+        src: "img/logo.svg",
+        href: "/",
+        width: 73.6,
+        height: 32,
+      },
+      links: [
+        {
+          items: [
+            {
+              label: "terms of service",
+              href: "/",
+            },
+            {
+              label: "code of conduct",
+              href: "/",
+            },
+            {
+              label: "governance",
+              href: "/",
+            },
+            {
+              label: "tbd.shop",
+              href: "/",
+            },
+          ],
+        },
+        {
+          items: [
+            {
+              html: `
+            <a href="/" target="_blank" rel="noreferrer noopener" aria-label="redirects to github">
+              <img src="/img/github-mark-1.svg" alt="Deploys by Netlify" width="20.417" height="20" />
+            </a>
+          `,
+            },
+            {
+              html: `
+							<a href="/" target="_blank" rel="noreferrer noopener" aria-label="redirects to netlify">
+								<img src="/img/discord-footer-link.svg" alt="Redirects to discord" width="25.837" height="20" />
+							</a>
+							`,
+            },
+            {
+              html: `
+							<a href="/" target="_blank" rel="noreferrer noopener" aria-label="redirects to netlify">
+								<img src="/img/twitter-footer-link.svg" alt="Redirects to footer" width="19.649" height="20" />
+								</a>`,
+            },
+            {
+              html: `
+							<a href="/" target="_blank" rel="noreferrer noopener" aria-label="redirects to youtube">
+								<img src="/img/youtube-footer-link.svg" alt="Redirects to youtube" width="28.293" height="20" />
+								</a>
+							`,
+            },
+            {
+              html: `
+								<a href="/" target="_blank" rel="noreferrer noopener" aria-label="redirects to linkedin">
+									<img src="/img/linkedin-footer-link.svg" alt="Redirects to LinkedIn" width="21" height="20" />
+								</a>
+							`,
+            },
+            {
+              html: `
+								<a href="/" target="_blank" rel="noreferrer noopener" aria-label="redirects to twitch">
+									<img src="/img/twitch-footer-link.svg" alt="Redirects to Twitch" width="19.105" height="20" />
+								</a>
+							`,
+            },
+          ],
+        },
+      ],
+    },
     prism: {
       theme: {
         plain: { color: "white", backgroundColor: "#0F0F0F" },
