@@ -1,6 +1,6 @@
 import React from "react";
-import TbdArrow from "@site/static/img/tbd-arrow";
 import Heading from "@theme/Heading";
+import Button from "@site/src/components/Button";
 import Link from "@docusaurus/Link";
 import Swift from "@site/assets/icons/Swift";
 import SwiftMobile from "@site/assets/icons/SwiftMobile";
@@ -69,6 +69,8 @@ type TextIconCardProps = {
   className?: string;
   theme?: Theme;
   hasBorder?: boolean;
+  buttonText?: string;
+  url?: string;
 } & (ButtonProps | LanguageButtonProps | DefaultProps);
 
 const themeClasses: Record<Theme, string> = {
@@ -102,6 +104,8 @@ function TextIconCard({
   className = "",
   theme,
   hasBorder = true,
+  buttonText,
+  url,
   ...props
 }: TextIconCardProps) {
   const selectedTheme = theme || randomTheme();
@@ -116,8 +120,6 @@ function TextIconCard({
   const borderClass = hasBorder
     ? `border-[1px] border-solid border-t-8 border-tbd-${selectedTheme}`
     : "";
-
-  console.log("border class", borderClass);
 
   return (
     <div
@@ -143,20 +145,7 @@ function TextIconCard({
           </Heading>
           <p className="mt-2 text-sm md:text-lg">{text}</p>
         </div>
-        {props.type === "buttonText" && (
-          <Link
-            href={props.url}
-            className="mt-auto inline-flex w-fit items-center border-x-0 border-b-0 border-t-4 border-solid border-tbd-yellow bg-tbd-yellow px-4 pb-2 pt-2 text-[12px] text-sm text-tbd-gray transition-all duration-300 group-hover:border-t-white group-hover:bg-tbd-gray group-hover:text-white md:text-lg"
-            target="_blank"
-            rel="noreferrer"
-          >
-            {props.buttonText}
-            <TbdArrow
-              fill=""
-              className="ml-4 size-5 rotate-180 fill-tbd-gray transition-all duration-300 group-hover:fill-white md:size-6"
-            />
-          </Link>
-        )}
+        {url && buttonText && <Button text={buttonText} url={url} />}
         <>
           {props.type === "languageButton" &&
             Object.keys(props.resources).some(

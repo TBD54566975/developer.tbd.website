@@ -3,6 +3,7 @@ import Link from "@docusaurus/Link";
 import TbdArrow from "@site/static/img/tbd-arrow";
 import InfoIcon from "@site/static/img/InfoIcon";
 import Heading from "@theme/Heading";
+import Button from "@site/src/components/Button";
 
 type HeroCardComponentProps = {
   title: string;
@@ -28,16 +29,20 @@ function HeroCard({
       </Heading>
       <p className="mb-6 text-base text-white md:text-lg">{content}</p>
       <div>
-        <Link
-          href={url}
-          className="flex items-center rounded-none bg-tbd-yellow px-4 py-2 text-base font-medium text-tbd-gray-shade-2 hover:text-tbd-gray-shade-2 md:text-lg"
-        >
-          {buttonText}
-          <TbdArrow
-            className="ml-2 h-5 w-5 rotate-180 bg-tbd-yellow md:h-6 md:w-6"
-            fill={"black"}
-          />
-        </Link>
+        {url && buttonText ? (
+          <Button text={buttonText} url={url} />
+        ) : (
+          <Link
+            href={url}
+            className="flex items-center rounded-none bg-tbd-yellow px-4 py-2 text-base font-medium text-tbd-gray-shade-2 hover:text-tbd-gray-shade-2 md:text-lg"
+          >
+            {buttonText}
+            <TbdArrow
+              className="ml-2 h-5 w-5 rotate-180 bg-tbd-yellow md:h-6 md:w-6"
+              fill={"black"}
+            />
+          </Link>
+        )}
       </div>
     </div>
   );

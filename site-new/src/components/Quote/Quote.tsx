@@ -15,16 +15,18 @@ const Quote = ({ quote, className, author, bgColor, squareCount }: Props) => {
       bgColor={bgColor}
       squareCount={squareCount}
       className={cn(
-        "flex flex-col gap-twist-core-spacing-8 p-twist-core-spacing-10 lg:gap-twist-core-spacing-9 lg:p-twist-core-spacing-12",
+        "flex flex-col p-twist-core-spacing-10 lg:p-twist-core-spacing-12",
         className,
       )}
     >
-      <Heading as="h2" className="text-inherit mb-0 font-medium">
-        <q className="text-inherit">{quote}</q>
-      </Heading>
-      {author && (
-        <span className="text-inherit eyebrow uppercase">{author}</span>
-      )}
+      <div className="grid gap-twist-core-spacing-8 lg:gap-twist-core-spacing-9">
+        <Heading as="h2" className="text-inherit mb-0 font-medium">
+          <q className="text-inherit">{quote}</q>
+        </Heading>
+        {author && (
+          <span className="text-inherit eyebrow uppercase">{author}</span>
+        )}
+      </div>
     </Background>
   );
 };
