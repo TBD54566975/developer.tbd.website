@@ -8,31 +8,27 @@ type ButtonProps = {
   url: string;
 };
 
-function Button({
-  size = "small",
-  text,
-  url,
-}: ButtonProps) {
+function Button({ size = "small", text, url }: ButtonProps) {
   const buttonSizeClass = size === "large" ? "button-large" : "button-small";
 
   return (
     <div
       className={clsx(
-        "group/btn button bg-transparent bg-bottom hover:bg-top rounded-none w-fit h-fit flex pt-twist-core-spacing-3_5 px-twist-core-spacing-3 pb-twist-core-spacing-2_5 cursor-pointer text-black hover:text-white items-center whitespace-nowrap bg-origin-border transition-all duration-200 ease-out bg-gradient-to-b from-black from-50% to-tbd-yellow to-50% bg-[length:201%_201%] border-solid border-b-[3px] border-x-0 border-t-0 border-white",
-        buttonSizeClass
-      )}>
-        <Link
-            href={url}
-            className={`font-spaceGrotesk no-underline hover:no-underline transition-all duration-100 ease-out text-inherit hover:text-inherit`}
-            target="_blank"
-            rel="noreferrer"
-            >
-            {text}
-        </Link>
-        <TbdArrow
-            fill=""
-            className="ml-2 size-5 rotate-180 fill-tbd-gray transition-all duration-100 ease-out md:size-6 group-hover/btn:fill-white"
-        />
+        "group/btn button flex h-fit w-fit cursor-pointer items-center whitespace-nowrap rounded-none border-x-0 border-b-[3px] border-t-0 border-solid border-white bg-transparent bg-gradient-to-b from-black from-50% to-tbd-yellow to-50% bg-[length:201%_201%] bg-bottom bg-origin-border px-twist-core-spacing-3 pb-twist-core-spacing-2_5 pt-twist-core-spacing-3_5 text-black transition-all duration-200 ease-out hover:bg-top hover:text-white",
+        buttonSizeClass,
+      )}
+    >
+      <Link
+        href={url}
+        className={`font-spaceGrotesk text-inherit no-underline transition-all duration-100 ease-out hover:text-inherit hover:no-underline`}
+        rel="noreferrer"
+      >
+        {text}
+      </Link>
+      <TbdArrow
+        fill=""
+        className="ml-2 size-5 rotate-180 fill-tbd-gray transition-all duration-100 ease-out group-hover/btn:fill-white md:size-6"
+      />
     </div>
   );
 }
