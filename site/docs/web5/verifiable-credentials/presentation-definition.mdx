@@ -61,7 +61,7 @@ To represent these requirements, the employer creates the PD.
       "constraints": {
         "fields": [
           {
-            "path": ["$.credentialSubject.degree.type"],
+            "path": ["$.vc.credentialSubject.degree.type"],
             "filter": {
               "type": "string",
               "pattern": "(Engineering|Computer|Cyber|Security)"
@@ -77,7 +77,7 @@ To represent these requirements, the employer creates the PD.
       "constraints": {
         "fields": [
           {
-            "path": ["$.credentialSubject.certifications[*].name"],
+            "path": ["$.vc.credentialSubject.certifications[*].name"],
             "filter": {
               "type": "string",
               "pattern": "Certified Ethical Hacker"
