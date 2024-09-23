@@ -8,16 +8,20 @@ module.exports = {
     "bg-tbd-teal",
     "bg-tbd-purple-tint-2",
     "bg-tbd-yellow",
+    "bg-tbd-yellow-shade-1",
+    "bg-tbd-red",
     "text-tbd-teal",
     "text-tbd-purple",
     "text-tbd-yellow",
     "text-tbd-info",
     "text-tbd-warn",
+    "text-tbd-red",
     "border-tbd-info",
     "border-tbd-warn",
     "border-tbd-teal",
     "border-tbd-danger",
     "border-tbd-yellow",
+    "border-tbd-purple",
     "data-[state=open]:text-tbd-teal",
     "data-[state=open]:text-tbd-purple",
     "data-[state=open]:text-tbd-yellow",
@@ -25,13 +29,14 @@ module.exports = {
   mode: "jit",
   corePlugins: {
     preflight: false,
-    container: false,
+    // container: false,
   },
   darkMode: ["class", '[data-theme="dark"]'],
   content: ["./src/**/*.{jsx,tsx,html,mdx,md}"],
   theme: {
     extend: {
       colors: {
+        "ifm-color-primary": "var(--ifm-color-primary)",
         "tbd-yellow-tint-2": "#FFF870",
         "tbd-yellow-tint-1": "#FFF53D",
         "tbd-yellow": "#FFEC19",
@@ -45,6 +50,7 @@ module.exports = {
         "tbd-info": "#3BCE07",
         "tbd-warn": "#FF7A1A",
         "tbd-danger": "#FF401D",
+        "tbd-red": "#FF401D",
         "tbd-purple-tint-2": "#BA6BFF",
         "tbd-purple-tint-1": "#A033FF",
         "tbd-purple": "#9A1AFF",
@@ -85,6 +91,8 @@ module.exports = {
         "marquee-vertical": "marquee-vertical var(--duration) linear infinite",
         "accordion-down": "accordion-down 0.2s cubic-bezier(0.87, 0, 0.13, 1)",
         "accordion-up": "accordion-up 0.2s cubic-bezier(0.87, 0, 0.13, 1)",
+        fadeIn: "fadeIn 0.5s ease forwards",
+        fadeOut: "fadeOut 0.5s ease forwards",
       },
       keyframes: {
         marquee: {
@@ -103,9 +111,22 @@ module.exports = {
           from: { height: "var(--radix-accordion-content-height)" },
           to: { height: "0" },
         },
+        fadeIn: {
+          "0%": { opacity: 0 },
+          "100%": { opacity: 1 },
+        },
+        fadeOut: {
+          "0%": { opacity: 1 },
+          "100%": { opacity: 0 },
+        },
       },
       space: {
         1.25: "0.313rem",
+      },
+      gridTemplateColumns: {
+        12: "repeat(12, minmax(0, 1fr))",
+        15: "repeat(15, minmax(0, 1fr))",
+        20: "repeat(20, minmax(0, 1fr))",
       },
     },
   },
