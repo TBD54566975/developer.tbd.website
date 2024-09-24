@@ -1,7 +1,6 @@
 import { test, beforeAll, expect, describe } from 'vitest';
 
 import {
-  readRecordFromId,
   deleteRecordFromDid,
 } from '../../../../../../code-snippets/web5/build/decentralized-web-nodes/records';
 import { setUpWeb5 } from '../../../setup-web5';
@@ -20,15 +19,28 @@ describe('records', () => {
   describe('tests for /api/web5-js/dwn/records', async () => {
 
     test('readRecordFromId reads a record', async () => {
-      const text = 'readRecordFromId';
+      const testText = 'readRecordFromId';
       const { record: textRecord } = await web5.dwn.records.create({
-        data: text,
+        data: testText,
         message: {
           dataFormat: 'text/plain',
         },
       });
-      const returnedText = await readRecordFromId(web5, textRecord.id);
-      expect(returnedText).toBe(text);
+      const recordId = textRecord.id
+      // :snippet-start: readRecordFromId
+      // Reads the indicated record from the user's DWNs
+      let { record } = await web5.dwn.records.read({
+        message: {
+          filter: {
+            recordId: recordId,
+          },
+        },
+      });
+
+      // assuming the record has a text payload
+      const text = await record.data.text();
+      // :snippet-end:
+      expect(text).toBe(testText);
     });
 
     test('deleteRecordFromDid deletes a record', async () => {

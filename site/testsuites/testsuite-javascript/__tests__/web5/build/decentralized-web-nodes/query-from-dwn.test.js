@@ -1,13 +1,4 @@
 import { test, beforeAll, expect, describe } from 'vitest';
-
-import {
-  queryProtocolsWithFilterDescending,
-  queryRecordsWithFilterAscending,
-  queryProtocolsForMusic,
-  queryRecordsFromDid,
-  queryRecordWithParentId,
-  queryFromDwnByProtocolPath,
-} from '../../../../../../code-snippets/web5/build/decentralized-web-nodes/query-from-dwn';
 import { setUpWeb5 } from '../../../setup-web5';
 
 let web5;
@@ -22,29 +13,75 @@ describe('query-from-dwn', () => {
   });
 
   test('queryProtocolsForMusic returns an array of protocols', async () => {
-    const protocols = await queryProtocolsForMusic(web5);
+    // :snippet-start: queryProtocolsForMusic
+    const { protocols } = await web5.dwn.protocols.query({
+      message: {
+        filter: {
+          protocol: 'https://music.org/protocol',
+        },
+      },
+    });
+    // :snippet-end:
     expect(Array.isArray(protocols)).toBe(true);
   });
 
   test('queryProtocolsWithFilterDescending returns an array of protocols', async () => {
-    const protocols = await queryProtocolsWithFilterDescending(web5);
+    // :snippet-start: queryProtocolsWithFilterDescending
+    const { protocols } = await web5.dwn.protocols.query({
+      message: {
+        filter: {
+          protocol: 'http://social-media.xyz',
+        },
+        //highlight-next-line
+        dateSort: 'createdDescending'
+      },
+    });
+    // :snippet-end:
     expect(Array.isArray(protocols)).toBe(true);
   });
 
   test('queryRecordsWithFilterAscending returns an array of protocols', async () => {
-    const response = await queryRecordsWithFilterAscending(web5);
-
+    // :snippet-start: queryRecordsWithFilterAscending
+    const response = await web5.dwn.records.query({
+      message: {
+        filter: {
+          dataFormat: 'text/plain',
+        },
+        //highlight-next-line
+        dateSort: 'publishedAscending',
+      },
+    });
+    // :snippet-end:
     expect.soft(response.status.code).toBe(200);
     expect(Array.isArray(response.records)).toBe(true);
   });
 
   test('queryRecordsFromDid returns an array of records', async () => {
-    const response = await queryRecordsFromDid(web5, did);
-    expect(Array.isArray(response)).toBe(true);
+   // :snippet-start: queryRecordsFromDid
+    const { records } = await web5.dwn.records.query({
+      //highlight-next-line
+      from: did,
+      message: {
+        filter: {
+          schema: 'https://schema.org/Playlist',
+          dataFormat: 'application/json',
+        },
+      },
+    });
+  // :snippet-end:
+    expect(Array.isArray(records)).toBe(true);
   });
 
   test('queryRecordWithParentId returns a record', async () => {
-    const response = await queryRecordWithParentId(web5);
+    // :snippet-start: queryRecordWithParentId
+    const response = await web5.dwn.records.query({
+      message: {
+        filter: {
+          parentId: 'bafyreianzpmhbgcgam5mys722vnsiuwn7y4ek6kjeyjptttquasw4hge2m',
+        },
+      },
+    });
+    // :snippet-end:
     expect.soft(response.status.code).toBe(200);
     expect(Array.isArray(response.records)).toBe(true);
   });
@@ -103,8 +140,18 @@ describe('query-from-dwn', () => {
   });
 
   test('queryFromDwnByProtocolPath returns an array of records', async () => {
-    const response = await queryFromDwnByProtocolPath(web5);
-
-    expect(Array.isArray(response)).toBe(true);
+    // :snippet-start: queryFromDwnByProtocolPath
+    const { records } = await web5.dwn.records.query({
+      message: {
+        filter: {
+          //highlight-start
+          protocol: 'https://playlist.org/protocol',
+          protocolPath: 'playlist/video'
+          //highlight-end
+        },
+      },
+    });
+    // :snippet-end:
+    expect(Array.isArray(records)).toBe(true);
   });
 });

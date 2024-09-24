@@ -1,9 +1,4 @@
 import { test, beforeAll, expect, describe } from 'vitest';
-
-import {
-  createPublishedRecord,
-  createRecordWithDatePublished,
-} from '../../../../../../code-snippets/web5/build/decentralized-web-nodes/publishing-records';
 import { setUpWeb5 } from '../../../setup-web5';
 
 let web5;
@@ -18,12 +13,43 @@ describe('publish-records', () => {
   });
 
   test('createPublishedRecord creates a public record', async () => {
-    const record = await createPublishedRecord(web5);
+    // :snippet-start: createPublishedRecord
+    const {record} = await web5.dwn.records.create({
+      data: "a published record",
+      message: {
+        dataFormat: "text/plain",
+        //highlight-start
+        published: true
+        //highlight-end
+      }
+    });
+    // :snippet-end:
     expect(record.published).toBe(true);
   });
 
   test('createRecordWithDatePublished creates a record that will be published later', async () => {
-    const isDateCorrect = await createRecordWithDatePublished(web5);
+    // :snippet-start: createRecordWithDatePublished
+    // Create a new Date instance for tomorrow
+    const today = new Date();
+    const tomorrow = new Date(today);
+    tomorrow.setDate(today.getDate() + 1);
+
+    // Format the date and time in YYYY-MM-DDThh:mm:ss.ssssssZ format
+    const formattedDate = tomorrow.toISOString().replace(/\.\d{3}Z$/, '.000000Z');
+
+    // Create a record today to be published tomorrow
+    const { record } = await web5.dwn.records.create({
+      data: "This record will be created now and published tomorrow",
+      message: {
+        dataFormat: "text/plain",
+        //highlight-start
+        published: true,
+        datePublished: formattedDate
+        //highlight-end
+      },
+    });
+    // :snippet-end:
+    const isDateCorrect = record.datePublished === formattedDate;
     expect(isDateCorrect).toBe(true);
   });
 });
