@@ -1,6 +1,15 @@
 {
   "extends": "@docusaurus/tsconfig",
-  "include": ["**/*.ts", "**/*.tsx", "**/*.js", "**/*.jsx", "custom.d.ts"],
+  "include": [
+    "**/*.ts",
+    "**/*.tsx",
+    "**/*.js",
+    "**/*.jsx",
+    "custom.d.ts",
+    "src/pages/community/code-of-conduct.mdx",
+    "src/pages/community/index.mdx",
+    "src/pages/community/spotlight.mdx"
+  ],
   "compilerOptions": {
     "paths": {
       "@site/*": ["./*"],
