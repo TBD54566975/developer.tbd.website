@@ -153,10 +153,7 @@ To import the snippet in your documentation, use the following format:
 
 ```jsx
 import CodeSnippet from '@site/src/components/CodeSnippet';
-import createDidDht from '!!raw-loader!@site/snippets/web5/build/decentralized-identifiers/createDidDht.snippet.js'
-
-<CodeSnippet snippet={createDidDht} />
-
+<CodeSnippet snippetName={createDidDht} />
 ```
 
 #### Function convention

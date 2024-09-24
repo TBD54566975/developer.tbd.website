@@ -19,7 +19,7 @@ A query can be read as _**select** records with a **filter** of X **from** the D
 
 The following snippet queries the local DWN for protocols that match a given schema:
 
-<CodeSnippet functionName="queryProtocolsForMusic" />
+<CodeSnippet snippetName="queryProtocolsForMusic" />
 
 ## Querying Records
 
@@ -27,7 +27,7 @@ The following snippet queries a given DWN for records that match a given schema 
 
 > Note the `from` property used here. Much like SQL, where the `FROM` command is used to specify which table to select data from, in Web5, `from` specifies which DWN to query.
 
-<CodeSnippet functionName="queryRecordsFromDid" />
+<CodeSnippet snippetName="queryRecordsFromDid" />
 
 
 :::note
@@ -54,7 +54,7 @@ Here are the properties you can use to filter your record query, along with expl
 ### Filter by parentId
 This snippet queries the DWN for records that have a parent record with a specific record ID:
 
-<CodeSnippet functionName="queryRecordWithParentId" />
+<CodeSnippet snippetName="queryRecordWithParentId" />
 
 ### Filter by protocol and protocolPath
 Given the following protocol definition is installed:
@@ -68,7 +68,7 @@ Given the following protocol definition is installed:
 
 And assuming `playlist` and `video` records have been created using this protocol, the following snippet demonstrates how to query for video records that match the protocol:
 
-<CodeSnippet functionName="queryFromDwnByProtocolPath" />
+<CodeSnippet snippetName="queryFromDwnByProtocolPath" />
 
 ## Sorting Query Results
 
@@ -85,10 +85,10 @@ Query results can be sorted via the `dateSort` field. Valid values for `dateSort
 
 This code snippet queries for records with a plain text data format, and returns them in ascending order by the date they were [published](/docs/web5/decentralized-web-nodes/publishing-records):
 
-<CodeSnippet functionName="queryRecordsWithFilterAscending"/>
+<CodeSnippet snippetName="queryRecordsWithFilterAscending"/>
 
 ### Descending Order
 
 This code snippet queries for protocols with a certain URL, and returns them in descending order by the date they were created.
 
-<CodeSnippet functionName="queryProtocolsWithFilterDescending" />
+<CodeSnippet snippetName="queryProtocolsWithFilterDescending" />
