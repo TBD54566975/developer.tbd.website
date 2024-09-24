@@ -82,7 +82,10 @@ const PixelBorder: React.FC<PixelBorderProps> = ({
   }, [numBlocks, tone1, tone2, borderType, refreshRate]);
 
   return (
-    <div className={cn("flex w-full", className)}>
+    <div
+      className={cn("flex flex-wrap justify-center", className)}
+      style={{ width: "100%" }}
+    >
       {blocks.map((color, index) => (
         <div
           key={index}

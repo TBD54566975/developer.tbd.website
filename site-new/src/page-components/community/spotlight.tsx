@@ -91,7 +91,7 @@ const spotlights = [
 function Spotlight(): JSX.Element {
   return (
     <Background
-      className="flex w-full justify-center pt-twist-core-spacing-30"
+      className="flex justify-center"
       bgColor="black"
       squareCount={20}
     >
@@ -101,22 +101,23 @@ function Spotlight(): JSX.Element {
         description="Shoutout to our superstar contributors! Whether you're coding, brainstorming, or cheering us on, every contribution adds magic to our community. Ready to contribute? We're looking forward to seeing your name light up this space soon! 🚀"
         url="https://discord.gg/tbd"
       />
-
       <PixelBorderWrapper>
         <Background pixelate>
-          <div className="mt-12 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
-            {spotlights.map((spotlight, index) => (
-              <SpotLightCard
-                key={index}
-                src={spotlight.src}
-                handle={spotlight.handle}
-                title={spotlight.title}
-                alt={spotlight.alt}
-                tone="yellow"
-              >
-                <p>{spotlight.description}</p>
-              </SpotLightCard>
-            ))}
+          <div className="container mx-auto px-4 py-12">
+            <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
+              {spotlights.map((spotlight, index) => (
+                <SpotLightCard
+                  key={index}
+                  src={spotlight.src}
+                  handle={spotlight.handle}
+                  title={spotlight.title}
+                  alt={spotlight.alt}
+                  tone="yellow"
+                >
+                  <p>{spotlight.description}</p>
+                </SpotLightCard>
+              ))}
+            </div>
           </div>
         </Background>
       </PixelBorderWrapper>
