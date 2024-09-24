@@ -20,7 +20,26 @@ jobs:
           echo "::set-output name=issue_url::${{ github.event.issue.html_url }}"
           echo "::set-output name=contributor::${{ github.event.issue.user.login }}"
 
+      - name: Check if issue is a content submission
+        id: check_content_submission
+        run: |
+          issue_body="${{ steps.issue_data.outputs.issue_body }}"
+          if echo "$issue_body" | grep -q "Type:"; then
+            echo "This is a content submission issue"
+            echo "::set-output name=continue::true"
+          else
+            echo "This is not a content submission issue"
+            echo "::set-output name=continue::false"
+        continue-on-error: false
+
+      - name: Stop if not a content submission
+        if: steps.check_content_submission.outputs.continue != 'true'
+        run: |
+          echo "Skipping workflow as this issue is not a content submission."
+        continue-on-error: false
+
       - name: Update externalContributors.json
+        if: steps.check_content_submission.outputs.continue == 'true'
         run: |
           echo "Updating externalContributors.json with issue data"
           issue_body="${{ steps.issue_data.outputs.issue_body }}"
@@ -43,6 +62,7 @@ jobs:
           mv tmp.json site/src/externalContributors.json
 
       - name: Create a new branch
+        if: steps.check_content_submission.outputs.continue == 'true'
         run: |
           git config --global user.name "GitHub Action"
           git config --global user.email "action@github.com"
@@ -53,6 +73,7 @@ jobs:
           git push origin $branch_name
 
       - name: Create pull request
+        if: steps.check_content_submission.outputs.continue == 'true'
         uses: peter-evans/create-pull-request@v4
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
@@ -61,4 +82,4 @@ jobs:
           body: "This pull request updates the externalContributors.json file with content from issue #${{ github.event.issue.number }}."
           labels: ["auto-update"]
           draft: false
-          reviewers: taniashiba 
+          reviewers: taniashiba
