@@ -1,0 +1,11 @@
+// :snippet-start: fanClubSdkInstallGradle
+// Configure repositories
+repositories {
+        mavenCentral()
+}
+// Configure dependencies
+dependencies {
+        implementation("xyz.block:web5-credentials:0.0.11")
+        implementation("xyz.block:web5-dids:0.0.11")
+}
+// :snippet-end:

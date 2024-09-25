@@ -26,7 +26,9 @@
     "test:swift": "swift test --package-path ./site/testsuites/testsuite-swift",
     "test:versions": "node check-versions.js",
     "test:watch": "pnpm run shnip && pnpm vitest --config vite.config.ts --watch",
-    "shnip": "node ./shnippet/src/cli --structure match && node ./shnippet/src/cli --structure byLanguage"
+    "shnip": "node ./shnippet/src/cli --structure match && node ./shnippet/src/cli --structure byLanguage",
+    "shnip:new": "node ./shnip/src/cli",
+    "test:js:new": "pnpm --filter site-new vitest run --config vite.config.ts --no-threads"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "6.4.2",
