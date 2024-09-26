@@ -29,7 +29,11 @@
     "test:watch": "pnpm run shnip && pnpm vitest --config vite.config.ts --watch",
     "shnip": "node ./shnippet/src/cli --structure match && node ./shnippet/src/cli --structure byLanguage",
     "shnip:new": "node ./shnip/src/cli",
-    "test:js:new": "pnpm vitest run --config new-vite.config --no-threads"
+    "test:js:new": "pnpm vitest run --config new-vite.config --no-threads",
+    "test:kotlin:new": "./site-new/testsuites/testsuite-kotlin/mvnw clean verify -f site-new/testsuites/testsuite-kotlin --batch-mode",
+    "test:swift:new": "swift test --package-path ./site-new/testsuites/testsuite-swift",
+    "test:rust:new": "cd ./site-new/testsuites/testsuite-rust && cargo test",
+    "test:new": "pnpm test:js:new && pnpm test:kotlin:new && pnpm test:swift:new"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "6.4.2",
