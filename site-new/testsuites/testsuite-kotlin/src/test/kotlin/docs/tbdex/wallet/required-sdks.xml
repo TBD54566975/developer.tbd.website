@@ -1,0 +1,16 @@
+// :snippet-start: walletSdkInstallPom   
+<repositories>
+        <repository>
+            <id>mavenCentral</id>
+            <url>https://repo1.maven.org/maven2/</url>
+        </repository>
+</repositories>
+
+<dependencies>
+        <dependency>
+            <groupId>xyz.block</groupId>
+            <artifactId>tbdex</artifactId>
+            <version>0.10.0-beta</version>
+        </dependency>
+</dependencies>
+// :snippet-end:

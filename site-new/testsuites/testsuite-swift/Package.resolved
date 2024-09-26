@@ -1,0 +1,140 @@
+{
+  "pins" : [
+    {
+      "identity" : "anycodable",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/flight-school/anycodable.git",
+      "state" : {
+        "revision" : "862808b2070cd908cb04f9aafe7de83d35f81b05",
+        "version" : "0.6.7"
+      }
+    },
+    {
+      "identity" : "chronometer",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/KittyMac/Chronometer.git",
+      "state" : {
+        "revision" : "b4808d59a175b1f764cc3d7e2e927e5476b10427",
+        "version" : "0.1.11"
+      }
+    },
+    {
+      "identity" : "dns",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Bouke/DNS.git",
+      "state" : {
+        "revision" : "78bbd1589890a90b202d11d5f9e1297050cf0eb2",
+        "version" : "1.2.0"
+      }
+    },
+    {
+      "identity" : "hitch",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/KittyMac/Hitch.git",
+      "state" : {
+        "revision" : "cb638ce61942f3d26bc0ca80d765846a43fa4409",
+        "version" : "0.2.8"
+      }
+    },
+    {
+      "identity" : "jsonschema.swift",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/kylef/JSONSchema.swift.git",
+      "state" : {
+        "revision" : "d14de4b2d9205068c9db89c00d097ca43c897000",
+        "version" : "0.6.0"
+      }
+    },
+    {
+      "identity" : "mocker",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/WeTransfer/Mocker.git",
+      "state" : {
+        "revision" : "95fa785c751f6bc40c49e112d433c3acf8417a97",
+        "version" : "3.0.2"
+      }
+    },
+    {
+      "identity" : "pathkit",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/kylef/PathKit.git",
+      "state" : {
+        "revision" : "3bfd2737b700b9a36565a8c94f4ad2b050a5e574",
+        "version" : "1.0.1"
+      }
+    },
+    {
+      "identity" : "secp256k1.swift",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/GigaBitcoin/secp256k1.swift.git",
+      "state" : {
+        "revision" : "347b84ed2aad2305a7233f2a48d76f41e52062a1",
+        "version" : "0.16.0"
+      }
+    },
+    {
+      "identity" : "sextant",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/KittyMac/Sextant.git",
+      "state" : {
+        "revision" : "df94791f329beddf82abf76d682f11823beccd1c",
+        "version" : "0.4.0"
+      }
+    },
+    {
+      "identity" : "spanker",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/KittyMac/Spanker.git",
+      "state" : {
+        "revision" : "f883c21f80f003f8db29c2d45ae7be636fce305a",
+        "version" : "0.1.17"
+      }
+    },
+    {
+      "identity" : "spectre",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/kylef/Spectre.git",
+      "state" : {
+        "revision" : "26cc5e9ae0947092c7139ef7ba612e34646086c7",
+        "version" : "0.10.1"
+      }
+    },
+    {
+      "identity" : "swift-extras-base64",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/swift-extras/swift-extras-base64.git",
+      "state" : {
+        "revision" : "97237cf1bc1feebaeb0febec91c1e1b9e4d839b3",
+        "version" : "0.7.0"
+      }
+    },
+    {
+      "identity" : "swift-typeid",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Frizlab/swift-typeid.git",
+      "state" : {
+        "revision" : "7f4ef8d41c5bf0f381742d2d91df413c4d659faa",
+        "version" : "0.3.0"
+      }
+    },
+    {
+      "identity" : "tbdex-swift",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/TBD54566975/tbdex-swift.git",
+      "state" : {
+        "revision" : "741a2c6a9220b5b7822309ea4120618429b1fc89",
+        "version" : "1.0.0"
+      }
+    },
+    {
+      "identity" : "web5-swift",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/TBD54566975/web5-swift.git",
+      "state" : {
+        "revision" : "1353f59e105ef09b4705f8675ce329f0f7e4c104",
+        "version" : "1.0.0"
+      }
+    }
+  ],
+  "version" : 2
+}

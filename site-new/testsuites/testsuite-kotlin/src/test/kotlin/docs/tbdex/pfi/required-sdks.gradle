@@ -1,0 +1,8 @@
+// :snippet-start: pfiSdkInstallGradle
+repositories {
+        mavenCentral()
+}
+dependencies {
+        implementation("xyz.block:tbdex:0.10.0-beta")
+}
+// :snippet-end:
