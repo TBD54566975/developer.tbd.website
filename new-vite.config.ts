@@ -9,7 +9,7 @@ export default defineConfig({
       ...configDefaults.exclude,
       "apps/**",
       "**/*.spec.{js,ts,jsx,tsx}",
-      "site-new/**",
+      "site/**",
     ],
     //TODO: Investigate coverage options later for output files
     // coverage: {
@@ -23,7 +23,7 @@ export default defineConfig({
     //   headless: true,
     // },
     setupFiles: [
-      "./site/testsuites/testsuite-javascript/__tests__/setup-web5.js",
+      "./site-new/testsuites/testsuite-javascript/__tests__/setup-web5.js",
     ],
   },
 });

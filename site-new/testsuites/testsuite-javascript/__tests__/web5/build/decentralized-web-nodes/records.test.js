@@ -1,32 +1,41 @@
-import { test, beforeAll, expect, describe } from 'vitest';
+import { test, beforeAll, expect, describe } from "vitest";
+import { setUpWeb5 } from "../../../setup-web5";
 
-import {
-  deleteRecordFromDid,
-} from '../../../../../../code-snippets/web5/build/decentralized-web-nodes/records';
-import { setUpWeb5 } from '../../../setup-web5';
+async function deleteRecordFromDid(web5, record, did) {
+  // :snippet-start: deleteRecordFromDid
+  const response = await web5.dwn.records.delete({
+    //highlight-next-line
+    from: did,
+    message: {
+      recordId: record.id,
+    },
+  });
+
+  return response;
+  // :snippet-end:
+}
 
 let web5;
 let record;
 let myDid;
 
-describe('records', () => {
+describe("records", () => {
   beforeAll(async () => {
     await setUpWeb5();
     web5 = globalThis.web5;
     myDid = globalThis.did;
   });
 
-  describe('tests for /api/web5-js/dwn/records', async () => {
-
-    test('readRecordFromId reads a record', async () => {
-      const testText = 'readRecordFromId';
+  describe("tests for /api/web5-js/dwn/records", async () => {
+    test("readRecordFromId reads a record", async () => {
+      const testText = "readRecordFromId";
       const { record: textRecord } = await web5.dwn.records.create({
         data: testText,
         message: {
-          dataFormat: 'text/plain',
+          dataFormat: "text/plain",
         },
       });
-      const recordId = textRecord.id
+      const recordId = textRecord.id;
       // :snippet-start: readRecordFromId
       // Reads the indicated record from the user's DWNs
       let { record } = await web5.dwn.records.read({
@@ -43,11 +52,11 @@ describe('records', () => {
       expect(text).toBe(testText);
     });
 
-    test('deleteRecordFromDid deletes a record', async () => {
+    test("deleteRecordFromDid deletes a record", async () => {
       const { record } = await web5.dwn.records.create({
         data: "delete me",
         message: {
-          dataFormat: 'text/plain',
+          dataFormat: "text/plain",
         },
       });
       /*

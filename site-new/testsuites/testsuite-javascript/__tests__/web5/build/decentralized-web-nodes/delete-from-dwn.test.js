@@ -1,11 +1,37 @@
-import { test, beforeAll, expect, describe } from 'vitest';
-import { createLocalRecord, sendLocalRecordToTarget } from '../../../../../../code-snippets/web5/build/decentralized-web-nodes/send';
-import { setUpWeb5 } from '../../../setup-web5';
+import { test, beforeAll, expect, describe } from "vitest";
+import { setUpWeb5 } from "../../../setup-web5";
 
 let web5;
 let did;
 
-describe('delete-from-dwn', () => {
+async function createLocalRecord(web5) {
+  // :snippet-start: createLocalRecord
+  const { record } = await web5.dwn.records.create({
+    data: "this record will be written to the local DWN",
+    message: {
+      dataFormat: "text/plain",
+    },
+  });
+
+  return record;
+  // :snippet-end:
+}
+
+async function sendLocalRecordToTarget(web5, targetDid) {
+  // :snippet-start: sendLocalRecordToTarget
+  const { record } = await web5.dwn.records.create({
+    data: "this record will be written to the target's local DWN",
+    message: {
+      target: targetDid,
+      dataFormat: "text/plain",
+    },
+  });
+
+  return record;
+  // :snippet-end:
+}
+
+describe("delete-from-dwn", () => {
   // connect to web5 beforeAll tests and assign it to web5 variable
   beforeAll(async () => {
     await setUpWeb5();
@@ -13,7 +39,7 @@ describe('delete-from-dwn', () => {
     did = globalThis.did;
   });
 
-  test('deleteRecordFromLocalDwn deletes a record', async () => {
+  test("deleteRecordFromLocalDwn deletes a record", async () => {
     const record = await createLocalRecord(web5);
     // :snippet-start: deleteRecordFromLocalDwn
     const { status: deleteStatus } = await record.delete();
@@ -21,15 +47,15 @@ describe('delete-from-dwn', () => {
     const readResult = await web5.dwn.records.read({
       message: {
         filter: {
-          recordId: record.id
-        }
-      }
+          recordId: record.id,
+        },
+      },
     });
     expect(deleteStatus.code).toBe(202);
     expect(readResult.status.code).toBe(404);
   });
 
-  test('deleteRecordFromRemoteDwn deletes a remote record', async () => {
+  test("deleteRecordFromRemoteDwn deletes a remote record", async () => {
     const record = await sendLocalRecordToTarget(web5, did);
     // :snippet-start: deleteRecordFromRemoteDwn
     const { status: deleteStatus } = await record.delete();
@@ -41,70 +67,72 @@ describe('delete-from-dwn', () => {
     expect(deleteSendStatus.code).toEqual(202);
   });
 
-  test('pruneRecords deletes parents record and its children', async () => {
-    const { status: protocolStatus, protocol } = await web5.dwn.protocols.configure({
-      message: {
-        definition: {
-          protocol: 'http://example.com/parent-child',
-          published: true,
-          types: {
-            post: {
-              schema: 'http://example.com/post',
+  test("pruneRecords deletes parents record and its children", async () => {
+    const { status: protocolStatus, protocol } =
+      await web5.dwn.protocols.configure({
+        message: {
+          definition: {
+            protocol: "http://example.com/parent-child",
+            published: true,
+            types: {
+              post: {
+                schema: "http://example.com/post",
+              },
+              comment: {
+                schema: "http://example.com/comment",
+              },
             },
-            comment: {
-              schema: 'http://example.com/comment'
-            }
+            structure: {
+              post: {
+                comment: {},
+              },
+            },
           },
-          structure: {
-            post: {
-              comment: {}
-            }
-          }
-        }
-      }
-    });
+        },
+      });
 
     const { record: parentRecord } = await web5.dwn.records.create({
-      data: 'Hello, world!',
+      data: "Hello, world!",
       message: {
         protocol: protocol.definition.protocol,
-        protocolPath: 'post',
-        schema: 'http://example.com/post',
-        dataFormat: 'text/plain'
-      }
+        protocolPath: "post",
+        schema: "http://example.com/post",
+        dataFormat: "text/plain",
+      },
     });
 
     const { record: childRecord } = await web5.dwn.records.create({
-      data: 'Hello, world!',
+      data: "Hello, world!",
       message: {
         protocol: protocol.definition.protocol,
-        protocolPath: 'post/comment',
-        schema: 'http://example.com/comment',
-        dataFormat: 'text/plain',
-        parentContextId: parentRecord.contextId
-      }
+        protocolPath: "post/comment",
+        schema: "http://example.com/comment",
+        dataFormat: "text/plain",
+        parentContextId: parentRecord.contextId,
+      },
     });
 
     // :snippet-start: pruneRecords
     const { status: deleteStatus } = await parentRecord.delete({ prune: true });
     // :snippet-end:
 
-    const { records: childrenRecordsAfterDelete } = await web5.dwn.records.query({
-      message: {
-        filter: {
-          protocol: protocol.definition.protocol,
-          protocolPath: 'post/comment'
-        }
-      }
-    });
+    const { records: childrenRecordsAfterDelete } =
+      await web5.dwn.records.query({
+        message: {
+          filter: {
+            protocol: protocol.definition.protocol,
+            protocolPath: "post/comment",
+          },
+        },
+      });
 
     const { records: parentRecordsAfterDelete } = await web5.dwn.records.query({
       message: {
         filter: {
           protocol: protocol.definition.protocol,
-          protocolPath: 'post'
-        }
-      }
+          protocolPath: "post",
+        },
+      },
     });
     expect(deleteStatus.code).toBe(202);
     expect(parentRecordsAfterDelete).to.have.lengthOf(0);
