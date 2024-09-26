@@ -80,7 +80,7 @@ export default function BlogLayout(props: Props): JSX.Element {
                 >
                   <Heading
                     as="h4"
-                    className="mb-0 inline-block bg-tbd-yellow text-black"
+                    className="pointer-events-none mb-0 inline-block rounded-lg border-[0.5px] border-solid border-white bg-tbd-yellow px-2 font-spaceGrotesk text-black shadow-lg"
                   >
                     Filter
                   </Heading>
