@@ -1,4 +1,4 @@
-import { defineConfig, configDefaults } from 'vitest/config';
+import { defineConfig, configDefaults } from "vitest/config";
 
 export default defineConfig({
   test: {
@@ -7,8 +7,9 @@ export default defineConfig({
     teardownTimeout: 40000,
     exclude: [
       ...configDefaults.exclude,
-      'apps/**',
-      '**/*.spec.{js,ts,jsx,tsx}',
+      "apps/**",
+      "**/*.spec.{js,ts,jsx,tsx}",
+      "site-new/**",
     ],
     //TODO: Investigate coverage options later for output files
     // coverage: {
@@ -22,7 +23,7 @@ export default defineConfig({
     //   headless: true,
     // },
     setupFiles: [
-      './site/testsuites/testsuite-javascript/__tests__/setup-web5.js',
+      "./site/testsuites/testsuite-javascript/__tests__/setup-web5.js",
     ],
   },
 });
