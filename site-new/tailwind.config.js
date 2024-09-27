@@ -75,8 +75,8 @@ module.exports = {
         sm: "4px",
       },
       border: {
-        '1': '1px',
-        '3': '3px',
+        1: "1px",
+        3: "3px",
       },
       screens: {
         lg: "997px",
@@ -93,6 +93,7 @@ module.exports = {
         "accordion-up": "accordion-up 0.2s cubic-bezier(0.87, 0, 0.13, 1)",
         fadeIn: "fadeIn 0.5s ease forwards",
         fadeOut: "fadeOut 0.5s ease forwards",
+        caret: "blink 800ms infinite",
       },
       keyframes: {
         marquee: {
@@ -118,6 +119,17 @@ module.exports = {
         fadeOut: {
           "0%": { opacity: 1 },
           "100%": { opacity: 0 },
+        },
+        blink: {
+          "0%": {
+            opacity: "0",
+          },
+          "50%": {
+            opacity: "1",
+          },
+          "100%": {
+            opacity: "0",
+          },
         },
       },
       space: {
