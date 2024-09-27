@@ -55,7 +55,7 @@ For the uninitiated, Hacktoberfest is a month-long celebration of open-source so
 
 3. **🥇 Code and Conduct**: Adhere to our [code of conduct](https://developer.tbd.website/open-source/code-of-conduct) and ensure your PR aligns with the repository's goals.
 
-4. **🫶 Community Support**: Engage with fellow contributors on our [Discord](https://discord.gg/tbd) for all the hot Hacktoberfest gossip and tips for success from participants!
+4. **🫶 Community Support**: Engage with fellow contributors on our [Discord](https://discord.gg/tbd) in our [🎃 hacktoberfest channel](https://discord.com/channels/937858703112155166/1288493373354938429) for all the hot Hacktoberfest gossip and tips for success from participants!
 
 5. **🆘 Seek Help**: If in doubt, don't stress! Connect with the maintainers by commenting on the issue or chat with them directly on [Discord](https://discord.com/invite/tbd).
 
