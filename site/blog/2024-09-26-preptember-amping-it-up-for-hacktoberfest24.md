@@ -37,7 +37,7 @@ With October blazing through, we're greeted by pumpkin spices, the intoxicating 
 
 🎃 **We're leveling up this Hacktober!** Earn exclusive TBD Hacktoberfest 2024 swag and enjoy a wide variety of ways to contribute.  
 
-**📅 Mark Your Calendars!** We're kicking off Hacktoberfest with two events, one on September 27th and the other October 2nd. Stay in the loop and don't miss out on any of our events by checking our [announcements channel](https://discord.com/invite/tbd) or [calendar](https://developer.tbd.website/community) regularly.
+**📅 Mark Your Calendars!** We're kicking off Hacktoberfest with two livestreams starting today with tbdTV: Hacktoberfest Kickoff at 12pm ET. Followed by Show & Tell: Hacktoberfest Deep Dive next week, October 2nd at 1pm ET. You can join both of these livestreams directly at [linktr.ee/tbdevs](https://linktr.ee/tbdevs), by checking our [announcements channel](https://discord.com/channels/937858703112155166/984873257666768936) on Discord, or by checking our [developer website calendar](https://developer.tbd.website/community) regularly. You definitely don't want to miss out!
 
 ## 📌 What is Hacktoberfest?
 
@@ -130,7 +130,7 @@ Explore our participating repos below and see where you can make an impact:
 
 - **DCX**: `TypeScript`, `JavaScript`
 
-  - [Hacktoberfest Project Hub](https://github.com/TBD54566975/incubation-dcx/labels/hacktoberfest%202024)
+  - [Hacktoberfest Project Hub](https://github.com/TBD54566975/incubation-dcx/issues/142)
   - [Contributing Guide](https://github.com/TBD54566975/incubation-dcx/blob/main/CONTRIBUTING.md)
 
 - **Goose Plugins**: `Python`
