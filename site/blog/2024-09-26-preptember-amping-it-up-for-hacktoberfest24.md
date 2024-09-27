@@ -81,7 +81,7 @@ Explore our participating repos below and see where you can make an impact:
 6. **_DIDPay_**
    - **Languages:** `Dart` 
    - **Description:** Mobile app that provides a way for individuals to interact with PFIs via tbDEX.
-   - **Links:* [Hacktoberfest Project Hub](https://github.com/TBD54566975/didpay/issues/298) | [Contributing Guide](https://github.com/TBD54566975/didpay/blob/main/CONTRIBUTING.md)
+   - **Links:** [Hacktoberfest Project Hub](https://github.com/TBD54566975/didpay/issues/298) | [Contributing Guide](https://github.com/TBD54566975/didpay/blob/main/CONTRIBUTING.md)
 
 7. **_DID DHT_**
    - **Language:** `Go` 
