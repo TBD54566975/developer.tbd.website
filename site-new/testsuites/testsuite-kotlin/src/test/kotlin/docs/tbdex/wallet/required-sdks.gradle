@@ -1,0 +1,10 @@
+// :snippet-start: walletSdkInstallGradle
+repositories {
+        mavenCentral()
+}
+dependencies {
+        implementation("xyz.block:web5-credentials:0.0.9-delta")
+        implementation("xyz.block:web5-dids:0.0.9-delta")
+        implementation("xyz.block:tbdex:0.10.0-beta")
+}
+// :snippet-end:
