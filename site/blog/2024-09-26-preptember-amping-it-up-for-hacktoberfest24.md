@@ -151,9 +151,9 @@ Dive into our jam-packed Hacktoberfest schedule! Whether you're just here for fu
 
 - Every Tuesday, **Community Office Hours** - Join us every Tuesday at 1p ET for the month of October, where we will go over PR reviews, live Q&A, and more. This event occurs on [Discord](https://discord.com/channels/937858703112155166/1008794207462359170).
 
-**Live Events Calendar** - Keep tabs on our [Discord](https://discord.com/channels/937858703112155166/1288493373354938429) or [developer.tbd.website](https://developer.tbd.website/community) for our future events & sneak peeks - we're always cooking up something new!
+**Live Events Calendar** - Keep tabs on our [Discord](https://discord.com/channels/937858703112155166/1288493373354938429) or [developer.tbd.website](https://developer.tbd.website/community) for our future events & sneak peeks - we're always cooking up something new! 
 
-## More Resources for First-Time Contributors
+## 📚 Resources for First-Time Contributors
 
 - 📖 [How to Contribute on GitHub](https://www.dataschool.io/how-to-contribute-on-github/)
 - 🛠 [Git Cheatsheet](https://education.github.com/git-cheat-sheet-education.pdf)
