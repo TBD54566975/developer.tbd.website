@@ -12,7 +12,7 @@ tags: [Hacktoberfest, Community]
   <meta property="og:type" content="website" />
   <meta property="og:url" content='https://developer.tbd.website/blog/hacktoberfest-2024' />
   <meta name="og:description" content="TBD is participating in Hacktoberfest!" />
-  <meta property="og:image" content="https://developer.tbd.website/assets/images/blog_hacktoberfest-2024.png" /> 
+  <meta property="og:image" content="https://developer.tbd.website/assets/images/blog_hacktoberfest-2024-41546e95a6bd4a822782876bb5ede251.png" /> 
 
   <meta name="twitter:card" content="summary_large_image" />
   <meta property="twitter:domain" content="developer.tbd.website" />
@@ -20,7 +20,7 @@ tags: [Hacktoberfest, Community]
   <meta name="twitter:title" content="Preptember: Amping Up for Hacktoberfest 2024" />
   <meta property="twitter:url" content='https://developer.tbd.website/blog/hacktoberfest-2024' /> 
   <meta name="twitter:description" content="TBD is participating in Hacktoberfest!" />
-  <meta name="twitter:image" content="https://developer.tbd.website/assets/images/blog_hacktoberfest-2024.png" />
+  <meta name="twitter:image" content="https://developer.tbd.website/assets/images/blog_hacktoberfest-2024-41546e95a6bd4a822782876bb5ede251.png" />
 
   <link rel="apple-touch-icon" href="https://developer.tbd.website/img/tbd-fav-icon-main.png" />
 </head>
