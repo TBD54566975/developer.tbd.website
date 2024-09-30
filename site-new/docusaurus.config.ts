@@ -2,6 +2,8 @@ import type { Config } from "@docusaurus/types";
 import type * as Preset from "@docusaurus/preset-classic";
 import tailwindPlugin from "./plugins/tailwind-pluging.cjs";
 
+const SDK_VERSIONS = require("../sdk-versions.json");
+
 // const lightCodeTheme = require("prism-react-renderer").themes.github;
 // const darkCodeTheme = require("prism-react-renderer").themes.dracula;
 
@@ -31,6 +33,10 @@ const config: Config = {
   i18n: {
     defaultLocale: "en",
     locales: ["en"],
+  },
+
+  customFields: {
+    SDK_VERSIONS: SDK_VERSIONS,
   },
 
   presets: [
