@@ -11,7 +11,7 @@ jobs:
     if: ${{ github.event.created_at >= format('{0}-10-01T00:00:00Z', github.event.created_at.substr(0,4)) && github.event.created_at <= format('{0}-10-31T23:59:59Z', github.event.created_at.substr(0,4)) }}
     steps:
     - name: take the issue
-      uses: bdougie/take-action@main
+      uses: bdougie/take-action@1439165ac45a7461c2d89a59952cd7d941964b87
       with:
         message: Thanks for taking this issue! Let us know if you have any questions!
         trigger: .take
