@@ -4,6 +4,7 @@ hide_title: true
 sidebar_position: 7
 ---
 
+<LanguageSwitcher languages="JavaScript, Kotlin"/>
 
 # Creating Quotes
 
@@ -30,6 +31,12 @@ RFQs contain a required `offeringId` field that you pass to your Offerings API p
 
 Building on the example from the [Exchange API Provider section](/docs/tbdex/pfi/anatomy-of-a-pfi#exchange-api-provider), your code might look like this:
 
+<Shnip snippets={
+  [
+    { snippetName: 'pfiWriteOfferingJs', language: 'JavaScript'},
+    { snippetName: 'pfiWriteOfferingKt', language: 'Kotlin'}
+  ]} />
+
 ## Verify Credentials
 
 Upon receiving an `RFQ`, the tbDEX SDK will automatically [verify the submitted credentials](/docs/web5/verifiable-credentials/verify-vc#verify-verifiable-credentials) to guarantee their integrity and authenticity as well as ensure that they meet the `requiredClaims` specified in the `Offering`. 
@@ -39,8 +46,19 @@ Upon receiving an `RFQ`, the tbDEX SDK will automatically [verify the submitted 
 Before creating a `Quote` in response to the received `RFQ`, you can review the [protocol definition for Quotes](https://github.com/TBD54566975/tbdex/tree/main/specs/protocol#quote). 
 With that in mind, you can then create your quote using the `Quote.create()` method as shown below:
 
+<Shnip snippets={
+  [
+    { snippetName: 'pfiCreateQuoteJs', language: 'JavaScript'},
+    { snippetName: 'pfiCreateQuoteKt', language: 'Kotlin'}
+  ]} />
 
 With the `Quote` created, you’ll then sign it for authorization purposes and write it to your own database:
+
+<Shnip snippets={
+  [
+    { snippetName: 'pfiSignQuoteJs', language: 'JavaScript'},
+    { snippetName: 'pfiSignQuoteKt', language: 'Kotlin'}
+  ]} />
 
 :::tip Note
 If the Wallet Application supplied a `replyTo` address with their RFQ, the tbDEX SDK will send the Quote to that address.
