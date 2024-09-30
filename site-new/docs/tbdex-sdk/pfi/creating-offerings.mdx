@@ -3,7 +3,7 @@ title: Creating Offerings
 hide_title: true
 sidebar_position: 6
 ---
-
+<LanguageSwitcher languages="JavaScript, Kotlin"/>
 
 # Creating Offerings
 
@@ -17,6 +17,12 @@ Any Wallet that has your PFI's DID will be able to query your PFI for all availa
 You can use the tbDEX SDK to create Offerings. 
 An Offering must adhere to the [Offering schema](https://github.com/TBD54566975/tbdex/tree/main/specs/protocol#offering).
 
+<Shnip snippets={
+  [
+    { snippetName: 'pfiCreateOfferingJs', language: 'JavaScript'},
+    { snippetName: 'pfiCreateOfferingKt', language: 'Kotlin'}
+  ]} />
+
 ### Required Claims
 
 In order to comply with certain financial regulations, you may require information about the customer you are transacting with.
@@ -29,14 +35,42 @@ For a full breakdown of all the available fields and combinations, [see the DIF 
 
 Below is a example of how you could specify that a [KnownCustomerCredential](https://www.tbdex.io/guides/kcc) is required to order this Offering:
 
+<Shnip snippets={
+  [
+    { snippetName: 'kccPresentationDefintionJs', language: 'JavaScript'},
+    { snippetName: 'kccPresentationDefintionKt', language: 'Kotlin'}
+  ]} />
+
+Once you've created your required claims, it's important to validate them to ensure there are no errors in the design.
+This will throw an error if it's not valid.
+
+<Shnip snippets={
+  [
+    { snippetName: 'kccValidatePdJs', language: 'JavaScript'},
+    { snippetName: 'kccValidatePdKt', language: 'Kotlin'}
+  ]} />
+
+### Sign Offering
+After creating your Offering, it's necessary to cryptographically sign it so that Wallet apps know that it's authentic.
+
+<Shnip snippets={
+  [
+    { snippetName: 'pfiSignOfferingJs', language: 'JavaScript'},
+    { snippetName: 'pfiSignOfferingKt', language: 'Kotlin'}
+  ]} />
 
 ### Validate Offering
 After signing the Offering, you can validate that your Offering's structure is valid.
 This will throw an error if it's not valid.
 
+<Shnip snippets={
+  [
+    { snippetName: 'pfiValidateOfferingJs', language: 'JavaScript'},
+    { snippetName: 'pfiValidateOfferingKt', language: 'Kotlin'}
+  ]} />
 
-Once the Offering has been generated, you can store it in your database using code as shown in the [Offerings API Provider section](/docs/tbdex/pfi/anatomy-of-a-pfi#http://localhost:3000/docs/tbdex/pfi/anatomy-of-a-pfi#offerings-api-provider).
 
+Once the Offering has been generated, you can store it in your database using code as shown in the [Offerings API Provider section](/docs/tbdex/pfi/anatomy-of-a-pfi#offerings-api-provider)
 
 ## Sample Offering
 
@@ -120,11 +154,11 @@ When combining all the data above, you can end up with a full Offering object th
             "fields": [
               {
                 "path": [
-                  "$.type[*]"
+                  "$.credentialSchema[*].id"
                 ],
                 "filter": {
                   "type": "string",
-                  "pattern": "KnownCustomerCredential"
+                  "const": "https://vc.schemas.host/kcc.schema.json"
                 }
               },
               {
