@@ -1,9 +1,14 @@
 // src/extract/SnippetExtractor.ts
-import fs from "fs";
-import path from "path";
+var fs;
+var path;
 var SnippetExtractor = class {
   constructor(config) {
     this.prependBlocks = {};
+    if (typeof window !== "undefined") {
+      throw new Error(
+        "SnippetExtractor can only be used in a Node.js environment"
+      );
+    }
     this.config = {
       ...config,
       outputDirectoryStructure: config.outputDirectoryStructure || "byLanguage"
@@ -95,10 +100,8 @@ var SnippetExtractor = class {
     }
     return false;
   }
-  // Modify processDirectory to resolve paths relative to the project root
   processDirectory(directory, relativePath = "") {
     const absoluteDir = path.resolve(this.projectRoot, directory);
-    console.log("Processing directory:", absoluteDir);
     const items = fs.readdirSync(absoluteDir);
     items.forEach((item) => {
       const fullPath = path.join(absoluteDir, item);

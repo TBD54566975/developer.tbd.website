@@ -1,6 +1,4 @@
-import fs from "fs";
-import path from "path";
-
+let fs: any, path: any;
 interface SnippetExtractorConfig {
   rootDirectory: string;
   snippetOutputDirectory: string;
@@ -22,11 +20,16 @@ export class SnippetExtractor {
   private projectRoot: string;
 
   constructor(config: SnippetExtractorConfig) {
+    if (typeof window !== "undefined") {
+      throw new Error(
+        "SnippetExtractor can only be used in a Node.js environment"
+      );
+    }
+
     this.config = {
       ...config,
       outputDirectoryStructure: config.outputDirectoryStructure || "byLanguage",
     };
-
     this.projectRoot = process.cwd();
   }
 
@@ -155,7 +158,7 @@ export class SnippetExtractor {
     const absoluteDir = path.resolve(this.projectRoot, directory);
 
     const items = fs.readdirSync(absoluteDir);
-    items.forEach((item) => {
+    items.forEach((item: any) => {
       const fullPath = path.join(absoluteDir, item);
       const stat = fs.statSync(fullPath);
 

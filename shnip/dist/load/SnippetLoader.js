@@ -1,6 +1,4 @@
 // src/load/SnippetLoader.ts
-import path from "path";
-import { promises as fsPromises } from "fs";
 var snippetCache = {};
 async function getSnippet(snippetName, language = "javascript", config) {
   const version = config.version || "v1";
@@ -8,22 +6,20 @@ async function getSnippet(snippetName, language = "javascript", config) {
   if (snippetCache[cacheKey]) {
     return snippetCache[cacheKey];
   }
-  const snippetPath = path.join(
-    config.snippetOutputDirectory,
-    version,
-    language,
-    `${snippetName}.snippet.js`
-  );
+  const snippetUrl = `${config.snippetOutputDirectory}/${version}/${language}/${snippetName}.snippet.js`;
   try {
-    await fsPromises.access(snippetPath);
+    const response = await fetch(snippetUrl);
+    if (!response.ok) {
+      throw new Error(`Failed to load snippet: ${snippetUrl}`);
+    }
+    const snippetContent = await response.text();
+    snippetCache[cacheKey] = snippetContent;
+    return snippetContent;
   } catch (error) {
     throw new Error(
       `Snippet not found: ${snippetName} for language: ${language}`
     );
   }
-  const snippetContent = await fsPromises.readFile(snippetPath, "utf8");
-  snippetCache[cacheKey] = snippetContent;
-  return snippetContent;
 }
 export {
   getSnippet

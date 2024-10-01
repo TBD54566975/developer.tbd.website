@@ -3,9 +3,9 @@
   "type": "module",
   "version": "1.0.0",
   "description": "A snippet extraction tool for various programming languages.",
-  "main": "index.js",
+  "main": "dist/index.js",
   "bin": {
-    "shnip": "./src/cli.js"
+    "shnip": "dist/bin/cli.js"
   },
   "scripts": {
     "build": "node build.js",

@@ -1,9 +1,14 @@
 // src/extract/SnippetExtractor.ts
-import fs from "fs";
-import path from "path";
+var fs;
+var path;
 var SnippetExtractor = class {
   constructor(config2) {
     this.prependBlocks = {};
+    if (typeof window !== "undefined") {
+      throw new Error(
+        "SnippetExtractor can only be used in a Node.js environment"
+      );
+    }
     this.config = {
       ...config2,
       outputDirectoryStructure: config2.outputDirectoryStructure || "byLanguage"
@@ -95,10 +100,8 @@ var SnippetExtractor = class {
     }
     return false;
   }
-  // Modify processDirectory to resolve paths relative to the project root
   processDirectory(directory, relativePath = "") {
     const absoluteDir = path.resolve(this.projectRoot, directory);
-    console.log("Processing directory:", absoluteDir);
     const items = fs.readdirSync(absoluteDir);
     items.forEach((item) => {
       const fullPath = path.join(absoluteDir, item);
@@ -181,32 +184,22 @@ var SnippetExtractor = class {
 };
 var SnippetExtractor_default = SnippetExtractor;
 
-// src/load/SnippetLoader.ts
-import path2 from "path";
-import { promises as fsPromises } from "fs";
-var snippetCache = {};
-async function getSnippet(snippetName, language = "javascript", config2) {
-  const version = config2.version || "v1";
-  const cacheKey = `${snippetName}-${language}-${version}`;
-  if (snippetCache[cacheKey]) {
-    return snippetCache[cacheKey];
-  }
-  const snippetPath = path2.join(
-    config2.snippetOutputDirectory,
-    version,
-    language,
-    `${snippetName}.snippet.js`
-  );
+// src/helpers/getSnippet.ts
+async function getSnippet(snippetName, language = "javascript") {
   try {
-    await fsPromises.access(snippetPath);
+    const snippetUrl = `/snippets/${language}/${snippetName}.snippet.js`;
+    const response = await fetch(snippetUrl);
+    if (!response.ok) {
+      throw new Error(
+        `Snippet not found: ${snippetName} for language: ${language}`
+      );
+    }
+    const snippetContent = await response.text();
+    return snippetContent;
   } catch (error) {
-    throw new Error(
-      `Snippet not found: ${snippetName} for language: ${language}`
-    );
+    console.error("Error loading snippet:", error);
+    throw error;
   }
-  const snippetContent = await fsPromises.readFile(snippetPath, "utf8");
-  snippetCache[cacheKey] = snippetContent;
-  return snippetContent;
 }
 
 // config/shnip.config.ts
