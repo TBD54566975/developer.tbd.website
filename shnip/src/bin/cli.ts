@@ -37,8 +37,6 @@ async function main() {
     config.snippetOutputDirectory
   );
 
-  console.log("Config:", config);
-
   // Check for "clear" argument to clear the output directory
   if (args.includes("clear")) {
     clearOutputDirectory(config.snippetOutputDirectory);

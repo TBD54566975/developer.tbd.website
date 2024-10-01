@@ -254,7 +254,7 @@ var require_brace_expansion = __commonJS({
 var fs;
 var path;
 var SnippetExtractor = class {
-  constructor(config3) {
+  constructor(config4) {
     this.prependBlocks = {};
     if (typeof window !== "undefined") {
       throw new Error(
@@ -262,8 +262,8 @@ var SnippetExtractor = class {
       );
     }
     this.config = {
-      ...config3,
-      outputDirectoryStructure: config3.outputDirectoryStructure || "byLanguage"
+      ...config4,
+      outputDirectoryStructure: config4.outputDirectoryStructure || "byLanguage"
     };
     this.projectRoot = process.cwd();
   }
@@ -437,7 +437,7 @@ var SnippetExtractor = class {
 var SnippetExtractor_default = SnippetExtractor;
 
 // config/shnip.config.ts
-var config = {
+var config2 = {
   rootDirectory: "./site-new/testsuites",
   snippetOutputDirectory: "./site-new/snippets",
   fileExtensions: [".js", ".ts", ".kt", ".gradle", ".xml", ".bash", ".swift"],
@@ -7718,12 +7718,12 @@ import { fileURLToPath as fileURLToPath3 } from "url";
 var __filename = fileURLToPath3(import.meta.url);
 var __dirname = path3.dirname(__filename);
 var projectRoot = path3.resolve(__dirname, "../../../");
-var config2 = {
-  ...config,
-  rootDirectory: path3.resolve(projectRoot, config.rootDirectory),
+var config3 = {
+  ...config2,
+  rootDirectory: path3.resolve(projectRoot, config2.rootDirectory),
   snippetOutputDirectory: path3.resolve(
     projectRoot,
-    config.snippetOutputDirectory
+    config2.snippetOutputDirectory
   )
 };
 function clearOutputDirectory(snippetOutputDirectory) {
@@ -7735,15 +7735,14 @@ function clearOutputDirectory(snippetOutputDirectory) {
 }
 async function main() {
   const args = process.argv.slice(2);
-  config2.rootDirectory = path3.resolve(__dirname, "../", config2.rootDirectory);
-  config2.snippetOutputDirectory = path3.resolve(
+  config3.rootDirectory = path3.resolve(__dirname, "../", config3.rootDirectory);
+  config3.snippetOutputDirectory = path3.resolve(
     __dirname,
     "../",
-    config2.snippetOutputDirectory
+    config3.snippetOutputDirectory
   );
-  console.log("Config:", config2);
   if (args.includes("clear")) {
-    clearOutputDirectory(config2.snippetOutputDirectory);
+    clearOutputDirectory(config3.snippetOutputDirectory);
     return;
   }
   const structureFlagIndex = args.indexOf("--structure");
@@ -7751,7 +7750,7 @@ async function main() {
     const structureValue = args[structureFlagIndex + 1];
     const validStructures = ["flat", "match", "organized", "byLanguage"];
     if (validStructures.includes(structureValue)) {
-      config2.outputDirectoryStructure = structureValue;
+      config3.outputDirectoryStructure = structureValue;
     } else {
       console.error(
         `Invalid output directory structure: '${structureValue}'. Valid options are: ${validStructures.join(
@@ -7766,7 +7765,7 @@ async function main() {
     );
     process.exit(1);
   }
-  const extractor = new SnippetExtractor_default(config2);
+  const extractor = new SnippetExtractor_default(config3);
   extractor.extractSnippets();
 }
 main();

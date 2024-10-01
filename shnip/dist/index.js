@@ -2,7 +2,7 @@
 var fs;
 var path;
 var SnippetExtractor = class {
-  constructor(config2) {
+  constructor(config3) {
     this.prependBlocks = {};
     if (typeof window !== "undefined") {
       throw new Error(
@@ -10,8 +10,8 @@ var SnippetExtractor = class {
       );
     }
     this.config = {
-      ...config2,
-      outputDirectoryStructure: config2.outputDirectoryStructure || "byLanguage"
+      ...config3,
+      outputDirectoryStructure: config3.outputDirectoryStructure || "byLanguage"
     };
     this.projectRoot = process.cwd();
   }
@@ -184,11 +184,33 @@ var SnippetExtractor = class {
 };
 var SnippetExtractor_default = SnippetExtractor;
 
+// ../shnip.config.ts
+var config = {
+  rootDirectory: "./site-new/testsuites",
+  snippetOutputDirectory: "./site-new/snippets",
+  fileExtensions: [".js", ".ts", ".kt", ".gradle", ".xml", ".bash", ".swift"],
+  exclude: [
+    "pfiOverviewReadOfferingsJs",
+    "pfiOverviewWriteJs",
+    "pfiOverviewWriteOfferingsJs"
+  ],
+  snippetTags: {
+    start: ":snippet-start:",
+    end: ":snippet-end:",
+    prependStart: ":prepend-start:",
+    prependEnd: ":prepend-end:"
+  },
+  outputDirectoryStructure: "byLanguage",
+  version: "1.0.0"
+};
+
 // src/helpers/getSnippet.ts
 async function getSnippet(snippetName, language = "javascript") {
   try {
-    const snippetUrl = `/snippets/${language}/${snippetName}.snippet.js`;
+    const snippetUrl = `${config.snippetOutputDirectory}/${config.version}/${language}/${snippetName}.snippet.js`;
     const response = await fetch(snippetUrl);
+    console.log("snippetUrl", snippetUrl);
+    console.log("response", response);
     if (!response.ok) {
       throw new Error(
         `Snippet not found: ${snippetName} for language: ${language}`
@@ -203,7 +225,7 @@ async function getSnippet(snippetName, language = "javascript") {
 }
 
 // config/shnip.config.ts
-var config = {
+var config2 = {
   rootDirectory: "./site-new/testsuites",
   snippetOutputDirectory: "./site-new/snippets",
   fileExtensions: [".js", ".ts", ".kt", ".gradle", ".xml", ".bash", ".swift"],
@@ -224,5 +246,5 @@ var config = {
 export {
   SnippetExtractor_default as SnippetExtractor,
   getSnippet,
-  config as loadConfig
+  config2 as loadConfig
 };
