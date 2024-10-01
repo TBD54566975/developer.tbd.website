@@ -62,7 +62,7 @@ A Portable DID is a JSON-serialized representation of a [DID](#decentralized-ide
 
 A mathematical algorithm used to generate digital signatures. These are used to verify the authenticity, integrity, and non-repudiation of electronic documents, messages, or transactions by creating a unique digital signature that can be cryptographically validated.
 
-## Self Sovereign Identity (SSI)
+## Self-Sovereign Identity (SSI)
 
 SSI refers to a concept where individuals have full control and ownership over their digital identities. It empowers individuals to manage and control their personal information without relying on centralized authorities or intermediaries. SSI enables individuals to store their personal data and identity in a secure and private manner. With self-sovereign identity, individuals can selectively share their personal information with others, granting access on a need-to-know basis all while maintaining privacy and control over their data.
 
