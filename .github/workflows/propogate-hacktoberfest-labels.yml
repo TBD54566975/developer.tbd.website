@@ -1,0 +1,49 @@
+name: Propagate Issue Labels to PR
+
+on:
+  pull_request:
+    types: [opened, synchronize]
+
+jobs:
+  copy_labels:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+
+    - name: Get issue number from PR body
+      id: issue_number
+      run: |
+        issue_number=$(echo "${{ github.event.pull_request.body }}" | grep -oP "(?<=#)\d+")
+        echo "::set-output name=issue_number::$issue_number"
+
+    - name: Get labels from linked issue
+      if: steps.issue_number.outputs.issue_number != ''
+      uses: actions/github-script@v6
+      id: issue_labels
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        script: |
+          const issue_number = ${{ steps.issue_number.outputs.issue_number }};
+          const issue = await github.rest.issues.get({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            issue_number: issue_number
+          });
+          return issue.data.labels.map(label => label.name);
+
+    - name: Add labels to PR
+      if: steps.issue_number.outputs.issue_number != ''
+      uses: actions/github-script@v6
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        script: |
+          const pr_number = context.issue.number;
+          const labels = ${{ steps.issue_labels.outputs.result }};
+          await github.rest.issues.addLabels({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            issue_number: pr_number,
+            labels: labels
+          });
