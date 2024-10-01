@@ -17,7 +17,7 @@ const Project = ({
         <img src={icon} alt="" className="my-0" />
       </div>
       <div className="pb-6 tablet:pb-[0.875rem]">
-        <h2 className="h2-caps my-0 text-primary-yellow">{title}</h2>
+        <h2 className="text-2xl my-0 text-primary-yellow">{title}</h2>
       </div>
       <div className="pb-9 tablet:pb-[67px] tablet:grow">
         {typeof description === 'function' ? (
