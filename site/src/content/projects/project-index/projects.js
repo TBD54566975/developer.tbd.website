@@ -13,7 +13,7 @@ export const content = {
   projects: [
     {
       icon: '/img/article-icon.svg',
-      title: 'WEB5',
+      title: 'Web5',
       description:
         'Builds a decentralized web that returns control over your data and identity',
       textButton: 'View Project',
