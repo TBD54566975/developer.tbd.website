@@ -11,24 +11,36 @@ jobs:
     - name: Get issue number from PR body
       id: issue_number
       run: |
-        issue_number=$(echo "${{ github.event.pull_request.body }}" | grep -oP "(?<=#)\d+")
-        echo "issue_number=$issue_number" >> $GITHUB_OUTPUT
+        issue_number=$(echo "${{ github.event.pull_request.body }}" | grep -oP '(?<=#)\d+' | head -n1)
+        if [ -z "$issue_number" ]; then
+          echo "No issue number found in PR body"
+          echo "has_issue=false" >> $GITHUB_OUTPUT
+        else
+          echo "Issue number found: $issue_number"
+          echo "has_issue=true" >> $GITHUB_OUTPUT
+          echo "issue_number=$issue_number" >> $GITHUB_OUTPUT
+        fi
     - name: Get labels from linked issue
-      if: steps.issue_number.outputs.issue_number != ''
+      if: steps.issue_number.outputs.has_issue == 'true'
       uses: actions/github-script@v6
       id: issue_labels
       with:
         github-token: ${{ secrets.GITHUB_TOKEN }}
         script: |
           const issue_number = ${{ steps.issue_number.outputs.issue_number }};
-          const issue = await github.rest.issues.get({
-            owner: context.repo.owner,
-            repo: context.repo.repo,
-            issue_number: issue_number
-          });
-          return issue.data.labels.map(label => label.name);
+          try {
+            const issue = await github.rest.issues.get({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: parseInt(issue_number)
+            });
+            return issue.data.labels.map(label => label.name);
+          } catch (error) {
+            console.log(`Error fetching issue labels: ${error}`);
+            return [];
+          }
     - name: Check for required labels
-      if: steps.issue_number.outputs.issue_number != ''
+      if: steps.issue_number.outputs.has_issue == 'true' && steps.issue_labels.outputs.result != '[]'
       id: check_labels
       uses: actions/github-script@v6
       with:
@@ -39,16 +51,21 @@ jobs:
           const sizeLabelPresent = labels.some(label => ['small', 'medium', 'large'].includes(label.toLowerCase()));
           return hacktoberfestLabel || (hacktoberfestLabel && sizeLabelPresent);
     - name: Add labels to PR
-      if: steps.check_labels.outputs.result == 'true'
+      if: steps.issue_number.outputs.has_issue == 'true' && steps.check_labels.outputs.result == 'true'
       uses: actions/github-script@v6
       with:
         github-token: ${{ secrets.GITHUB_TOKEN }}
         script: |
           const pr_number = context.issue.number;
           const labels = ${{ steps.issue_labels.outputs.result }};
-          await github.rest.issues.addLabels({
-            owner: context.repo.owner,
-            repo: context.repo.repo,
-            issue_number: pr_number,
-            labels: labels
-          });
+          try {
+            await github.rest.issues.addLabels({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: pr_number,
+              labels: labels
+            });
+            console.log('Labels added successfully');
+          } catch (error) {
+            console.log(`Error adding labels: ${error}`);
+          }
