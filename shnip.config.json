@@ -13,5 +13,6 @@
     "prependStart": ":prepend-start:",
     "prependEnd": ":prepend-end:"
   },
-  "outputDirectoryStructure": "byLanguage"
+  "outputDirectoryStructure": "byLanguage",
+  "version": "1.0.0"
 }
