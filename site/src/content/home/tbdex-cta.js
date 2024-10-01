@@ -18,7 +18,7 @@ function tbdexCTA() {
           heroText="tbDEX SDK"
           buttonUrl="/docs/tbdex"
           buttonText="Talk money to me"
-          bodyText="An open source messaging service that enables wallet applications to communicate with financial instutitions to discover and obtain liquidity."
+          bodyText="An open source messaging service that enables wallet applications to communicate with financial institutions to discover and obtain liquidity."
           themeColor="cyan"
           imgSrc="/img/money-msg-blue-purple.svg"
           primary
@@ -35,7 +35,7 @@ function tbdexCTA() {
         />
       </div>
 
-      
+
 
       <Divider type="slash" />
     </div>
