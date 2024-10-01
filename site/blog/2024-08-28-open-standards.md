@@ -62,7 +62,7 @@ Our ongoing work in the standards space is focused on several key areas:
 
 * **Interoperability:** We’ve defined an [interoperability profile](https://github.com/TBD54566975/tbdex/blob/main/specs/interop/README.md) for tbDEX, which outlines the standards we’re using and how they interact. This is a starting point for enabling seamless exchanges on the tbDEX network.
 
-* **Selective Disclosure:** As we look to enhance user privacy and control, we’re exploring the use of selective disclosure credentials. This allows users to share only the information necessary for a specific interaction, rather than their entire credential.
+* **Selective Disclosure:** As we look to enhance user privacy and control, we’re exploring the use of selective disclosure credentials. This allows users to selectively share the information necessary for a specific interaction, rather than their entire credential.
 
 * **Trust Frameworks:** We’re also working on establishing a trust framework that will enable different organizations to agree on legal and compliant ways to trust one another. This is particularly important for interactions on the tbDEX network, where trust is paramount.
 
@@ -79,7 +79,7 @@ The work we’re doing now is laying the groundwork for a decentralized future w
 
 ## Get Involved
 
-If you're working on implementing verifiable credentials or DIDs, please reach out! 
+If you're working on implementing Verifiable Credentials (VCs) or Decentralized Identifiers (DIDs), please reach out!
 
 Join our [Discord community](https://discord.gg/tbd) for direct access to our team and ongoing discussions. You can also find us on Twitter [@TBDevs](https://x.com/TBDevs).
 
