@@ -88,7 +88,7 @@ MoneySavvy, **winner of Best FinTech Inspired App**, was developed by [Ahmad Nur
 
 ### 🏅 Rapha
 
-Rapha, **winner of Best Health Inspired App**, was developed by [Festus Idowu](https://www.linkedin.com/in/festus-idowu-8269b3159/). It allows individuals to own and carry their health history with them. Utilizing decentralized web nodes (DWNs) for securly storing medical records.
+Rapha, **winner of Best Health Inspired App**, was developed by [Festus Idowu](https://www.linkedin.com/in/festus-idowu-8269b3159/). It allows individuals to own and carry their health history with them. Utilizing decentralized web nodes (DWNs) for securely storing medical records.
 
 <iframe class="aspect-video" src="https://www.youtube.com/embed/DnDy6cebYhs?si=fGtcl_m_CNBE1Vuy" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
@@ -112,7 +112,7 @@ Musiv, **winner of Best Music and Arts Inspired App**, was developed by [Denis R
 
 ### 🏅 Tracks
 
-Tracks, **winner of Best Personal Data Inspired Appp**, was developed by [Jack Watson](https://devpost.com/theblindguest). It's a decentralized digital travel diary that lets users pin places they've visited with photos and notes on a customizable world map, that can be shared.
+Tracks, **winner of Best Personal Data Inspired App**, was developed by [Jack Watson](https://devpost.com/theblindguest). It's a decentralized digital travel diary that lets users pin places they've visited with photos and notes on a customizable world map, that can be shared.
 
 <iframe class="aspect-video" src="https://www.youtube.com/embed/6ZFjqLXkVHA?si=jwkqo8qG1wsritg_" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
