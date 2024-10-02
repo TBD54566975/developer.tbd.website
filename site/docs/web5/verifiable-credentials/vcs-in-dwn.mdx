@@ -43,5 +43,5 @@ const response = await web5.dwn.records.query({
 const signedVcJwt = await response[0].data.text();
 ```
 
-This will access the first record matching the filters you specified, `schema` and `dataFormat`. 
+This will access the first record matching the filters you specified, `schema` and `dataFormat`.
 Keep in mind that this will return a JWT string, which can be [converted to a readable JSON object](/docs/web5/verifiable-credentials/jwt-to-vc#decoding-jwt).
