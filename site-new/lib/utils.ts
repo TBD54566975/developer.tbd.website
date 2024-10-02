@@ -65,34 +65,27 @@ export function typeWriter({
   typingDelay,
 }: TypeWriterProps) {
   if (!typeWriterRef.current) return;
-  const wordAndCharacterTracker = {
-    currentWordIndex: 0,
-    currentCharacterIndex: 0,
-  };
+  const typer = typeWriterRef.current;
+  let currentWordIndex = 0;
+  let currentCharacterIndex = 0;
 
   function type() {
     if (!typeWriterRef.current) return;
-    const typer = typeWriterRef.current;
 
-    const wordOrObjToType =
-      wordsToType[
-        wordAndCharacterTracker.currentWordIndex % wordsToType.length
-      ];
+    const wordOrObjToType = wordsToType[currentWordIndex % wordsToType.length];
 
     const wordToType =
       typeof wordOrObjToType === "string"
         ? wordOrObjToType
         : wordOrObjToType.text;
 
-    if (wordAndCharacterTracker.currentCharacterIndex < wordToType.length) {
-      const character =
-        wordToType[wordAndCharacterTracker.currentCharacterIndex++];
+    if (currentCharacterIndex < wordToType.length) {
+      const character = wordToType[currentCharacterIndex++];
       if (typeof wordOrObjToType !== "string") {
         if (
           wordOrObjToType.highlight.some(
             ({ start, end }) =>
-              wordAndCharacterTracker.currentCharacterIndex >= start &&
-              wordAndCharacterTracker.currentCharacterIndex <= end,
+              currentCharacterIndex >= start && currentCharacterIndex <= end,
           )
         ) {
           typer.innerHTML += `<span class="${wordOrObjToType.className}">${character}</span>`;
@@ -109,15 +102,13 @@ export function typeWriter({
     }
   }
   function erase() {
-    if (!typeWriterRef.current) return;
-    const typer = typeWriterRef.current;
-    if (wordAndCharacterTracker.currentCharacterIndex > 0) {
-      --wordAndCharacterTracker.currentCharacterIndex;
+    if (currentCharacterIndex > 0) {
+      --currentCharacterIndex;
       typer.removeChild(typer.lastChild);
 
       setTimeout(erase, typingSpeed);
     } else {
-      wordAndCharacterTracker.currentWordIndex++;
+      currentWordIndex++;
       setTimeout(type, typingDelay);
     }
   }
