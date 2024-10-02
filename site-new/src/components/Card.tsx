@@ -12,6 +12,20 @@ import GoMobile from "@site/assets/icons/GoMobile";
 import KotlinMobile from "@site/assets/icons/KotlinMobile";
 import { IconButtonLink } from "./IconButton";
 
+type CardProps = {
+  icon?: React.ComponentType<{ className: string; fill?: string }>;
+  image?: string;
+  title: string;
+  text: string;
+  buttonText?: string;
+  url?: string;
+  className?: string;
+  theme?: Theme;
+  hasBorder?: boolean;
+  orientation?: "horizontal" | "vertical";
+  size?: "large" | "medium" | "small";
+} & (ButtonProps | LanguageButtonProps | DefaultProps);
+
 type Theme =
   | "yellow"
   | "teal"
@@ -61,17 +75,6 @@ type DefaultProps = {
   type?: "default";
 };
 
-type TextIconCardProps = {
-  icon?: React.ComponentType<{ className: string; fill?: string }>;
-  title: string;
-  text: string;
-  className?: string;
-  theme?: Theme;
-  hasBorder?: boolean;
-  buttonText?: string;
-  url?: string;
-} & (ButtonProps | LanguageButtonProps | DefaultProps);
-
 const themeClasses: Record<Theme, string> = {
   yellow: "text-white",
   teal: "text-white",
@@ -96,17 +99,23 @@ const randomTheme = (): Theme => {
   return themes[randomIndex];
 };
 
-function TextIconCard({
+
+function Card({
   icon: Icon,
   title,
-  text,
   className = "",
   theme,
   hasBorder = true,
   buttonText,
+  image,
+  text,
   url,
+  orientation = "vertical", // Default orientation is vertical
+  size = "large",
   ...props
-}: TextIconCardProps) {
+}: CardProps) {
+  const Image = image;
+
   const selectedTheme = theme || randomTheme();
 
   const isHoverEnabled =
@@ -124,7 +133,48 @@ function TextIconCard({
     ? `border-[1px] border-solid border-t-8 border-tbd-${selectedTheme}`
     : "";
 
+  const sizeClasses = {
+    large: {
+      container: "max-w-[800px]",
+      image:
+        orientation === "horizontal"
+          ? "md:w-[400px] w-full h-auto"
+          : "h-[531px]",
+      text: orientation === "horizontal" ? "md:flex-grow" : "h-[269px]",
+    },
+    medium: {
+      container: "max-w-[584px]",
+      image:
+        orientation === "horizontal"
+          ? "md:w-[292px] w-full h-auto"
+          : "h-[291px]",
+      text: orientation === "horizontal" ? "md:flex-grow" : "h-[291px]",
+    },
+    small: {
+      container: "max-w-[366px]",
+      image:
+        orientation === "horizontal"
+          ? "md:w-[183px] w-full h-auto"
+          : "h-[366px]",
+      text: orientation === "horizontal" ? "md:flex-grow" : "h-[350px]",
+    },
+  };
+
+  const currentSize = sizeClasses[size];
+
   return (
+    <div
+      className={`flex ${orientation === "horizontal" ? "flex-col md:flex-row" : "flex-col"} w-full ${currentSize.container} items-stretch border border-solid border-[1px] border-tbd-yellow`}
+    >
+
+    {Image && 
+      <img
+        src={Image}
+        alt={title}
+        className={`${currentSize.image} object-cover`}
+      />
+    }
+
     <div
       className={`${themeClass} ${className} group transition-all duration-300 ${borderClass}`}
     >
@@ -174,7 +224,10 @@ function TextIconCard({
         </>
       </div>
     </div>
+
+
+    </div>
   );
 }
 
-export default TextIconCard;
+export default Card;

@@ -1,0 +1,133 @@
+import React from "react";
+import Card from "../../components/Card";
+import tbdRex from "@site/static/img/tbd-rex";
+
+## Card Component
+
+<div className="component-guide text-white">
+<p>Generic Card component</p>
+
+## Usage
+
+```jsx
+<Card
+  title="Sample Title"
+  image="https://example.com/image.png"
+  text="This is the body text for the card."
+  buttonText="Click Me"
+  url="/sample-page"
+  orientation="horizontal"
+  size="medium"
+/>
+```
+
+## Examples
+
+<p>Horizontal Card with Image</p>
+<Card
+  buttonText="Button Text"
+  text="This is a text body"
+  title="This is the Title"
+  orientation="horizontal"
+  url="/"
+  image="https://cdn.sanity.io/images/vf2e2jno/production/81752f8a9d064aee93771f3523faa3c5369babe3-1500x1500.png"
+/>
+
+<p>Vertical Card - Large with Image</p>
+<Card
+  buttonText="Button Text"
+  text="This is a text body"
+  title="This is the Title"
+  orientation="vertical"
+  url="/"
+  size="large"
+  image="https://cdn.sanity.io/images/vf2e2jno/production/81752f8a9d064aee93771f3523faa3c5369babe3-1500x1500.png"
+/>
+
+<p>Vertical Card - Medium with Image</p>
+<Card
+  buttonText="Button Text"
+  text="This is a text body"
+  title="This is the Title"
+  orientation="vertical"
+  url="/"
+  size="medium"
+  image="https://cdn.sanity.io/images/vf2e2jno/production/81752f8a9d064aee93771f3523faa3c5369babe3-1500x1500.png"
+/>
+
+<p>Vertical Card - Small with Image</p>
+<Card
+  buttonText="Button Text"
+  text="This is a text body"
+  title="This is the Title"
+  orientation="vertical"
+  url="/"
+  size="small"
+  image="https://cdn.sanity.io/images/vf2e2jno/production/81752f8a9d064aee93771f3523faa3c5369babe3-1500x1500.png"
+/>
+
+<p>Yellow Theme</p>
+<Card
+  icon={tbdRex}
+  title="Rocket"
+  type="buttonText"
+  text="An open source messaging service that enables wallet applications to communicate with financial institutions to discover and obtain liquidity."
+  url="https://example.com"
+  theme="yellow"
+  buttonText="Talk Money To Me"
+/>
+
+<p>Teal Theme</p>
+<Card
+  icon={tbdRex}
+  title="Liquidity Finder"
+  type="buttonText"
+  text="A tool to help you find the best liquidity options available in the market."
+  url="https://example.com"
+  theme="teal"
+  buttonText="Find Liquidity"
+/>
+
+<p>Purple Theme</p>
+<Card
+  icon={tbdRex}
+  title="Market Watch"
+  type="buttonText"
+  text="Keep track of market trends and make informed decisions with real-time data."
+  url="https://example.com"
+  theme="purple"
+  buttonText="Watch Market"
+/>
+
+<p>Teal Theme - No Icon</p>
+<Card
+  title="No Icon"
+  text="This card does not have an icon."
+  type="buttonText"
+  url="https://example.com"
+  theme="teal"
+  buttonText="Find Out More"
+/>
+
+<p>Teal Theme - No Button, No Icon</p>
+<Card
+  title="No Button, No Icon"
+  text="This card does not have a button and an icon."
+  theme="purple"
+/>
+
+<p>Icon Theme with Language Buttons</p>
+<Card
+  title="Language Card with Icon"
+  text="This card has an icon."
+  type="languageButton"
+  resources={{
+    swift: "https://example.com",
+    js: "https://example.com",
+    go: "https://example.com",
+    kotlin: "https://example.com",
+  }}
+/>
+
+
+</div>
