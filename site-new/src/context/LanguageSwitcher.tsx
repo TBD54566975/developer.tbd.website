@@ -1,4 +1,5 @@
-import React, { createContext, useState, useContext } from "react";
+import React, { createContext, useState, useContext, useEffect } from "react";
+import ExecutionEnvironment from "@docusaurus/ExecutionEnvironment";
 
 interface LanguageContextProps {
   selectedLanguage: string;
@@ -12,13 +13,23 @@ const LanguageContext = createContext<LanguageContextProps | undefined>(
 export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
-  const [selectedLanguage, setSelectedLanguage] = useState<string>(
-    () => localStorage.getItem("selectedLanguage") || "javascript",
-  );
+  const [selectedLanguage, setSelectedLanguage] =
+    useState<string>("javascript");
+
+  useEffect(() => {
+    if (ExecutionEnvironment.canUseDOM) {
+      const storedLanguage = localStorage.getItem("selectedLanguage");
+      if (storedLanguage) {
+        setSelectedLanguage(storedLanguage);
+      }
+    }
+  }, []);
 
   const setLanguage = (language: string) => {
     setSelectedLanguage(language);
-    localStorage.setItem("selectedLanguage", language);
+    if (ExecutionEnvironment.canUseDOM) {
+      localStorage.setItem("selectedLanguage", language);
+    }
   };
 
   return (
