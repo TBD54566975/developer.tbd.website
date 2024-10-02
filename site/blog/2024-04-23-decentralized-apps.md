@@ -49,7 +49,7 @@ Imagine an on-chain photo storage app that allows for users to encrypt their dat
 
 ### Data Custody
 
-A key tenant to the decentralized web is the idea of custody, or data ownership. Custody, or the ability to hold an asset in which only you have full access to it, breaks down into a handful of concerns including:
+A key tenet to the decentralized web is the idea of custody, or data ownership. Custody, or the ability to hold an asset in which only you have full access to it, breaks down into a handful of concerns including:
 
 
 
@@ -95,6 +95,6 @@ As mentioned in our discussion about custody, you could run a DWN on your laptop
 
 ## Final Thoughts
 
-A performant decentralized web that offers users custody of their own data has been a tantalizing dream for almost two decades, but in that same timeframe blockchain technology has proven to not be the way to make that vision a reality. If you find yourself or your customers valuing decentralization, privacy, flexibility, and self-custodial apps, then Web5 provides the framework to achieve exactly those goals. Your Web5 app may very well leverage blockchain technology - a participating financial institution on the the tbDEX protocol we’re developing is a great example of an app that uses Web5 tech to connect to blockchains, but there are lots of ways to build dApps with Web5.
+A performant decentralized web that offers users custody of their own data has been a tantalizing dream for almost two decades, but in that same timeframe blockchain technology has proven to not be the way to make that vision a reality. If you find yourself or your customers valuing decentralization, privacy, flexibility, and self-custodial apps, then Web5 provides the framework to achieve exactly those goals. Your Web5 app may very well leverage blockchain technology - a participating financial institution on the tbDEX protocol we’re developing is a great example of an app that uses Web5 tech to connect to blockchains, but there are lots of ways to build dApps with Web5.
 
 If you want to try building your own decentralized applications, go ahead and check out our [Web5 SDKs](https://developer.tbd.website/docs/web5/), join our [Discord community,](https://discord.gg/mt6Zbpv7) and connect with us [on GitHub](https://github.com/TBD54566975)!
