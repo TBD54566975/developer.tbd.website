@@ -56,109 +56,70 @@ type TypeWriterProps = {
   typingSpeed: number;
   typingDelay: number;
   typeWriterRef: React.MutableRefObject<HTMLElement>;
-  wordAndCharacterTracker?: {
-    currentWordIndex: number;
-    currentCharacterIndex: number;
-  };
 };
 
 export function typeWriter({
   wordsToType,
-  typingDelay,
   typingSpeed,
   typeWriterRef,
-  wordAndCharacterTracker = { currentWordIndex: 0, currentCharacterIndex: 0 },
+  typingDelay,
 }: TypeWriterProps) {
   if (!typeWriterRef.current) return;
-  const typer = typeWriterRef.current;
+  const wordAndCharacterTracker = {
+    currentWordIndex: 0,
+    currentCharacterIndex: 0,
+  };
 
-  const wordOrObjToType =
-    wordsToType[wordAndCharacterTracker.currentWordIndex % wordsToType.length];
+  function type() {
+    if (!typeWriterRef.current) return;
+    const typer = typeWriterRef.current;
 
-  const wordToType =
-    typeof wordOrObjToType === "string"
-      ? wordOrObjToType
-      : wordOrObjToType.text;
+    const wordOrObjToType =
+      wordsToType[
+        wordAndCharacterTracker.currentWordIndex % wordsToType.length
+      ];
 
-  if (wordAndCharacterTracker.currentCharacterIndex < wordToType.length) {
-    const character =
-      wordToType[wordAndCharacterTracker.currentCharacterIndex++];
-    if (typeof wordOrObjToType !== "string") {
-      if (
-        wordOrObjToType.highlight.some(
-          ({ start, end }) =>
-            wordAndCharacterTracker.currentCharacterIndex >= start &&
-            wordAndCharacterTracker.currentCharacterIndex <= end,
-        )
-      ) {
-        typer.innerHTML += `<span class="${wordOrObjToType.className}">${character}</span>`;
+    const wordToType =
+      typeof wordOrObjToType === "string"
+        ? wordOrObjToType
+        : wordOrObjToType.text;
+
+    if (wordAndCharacterTracker.currentCharacterIndex < wordToType.length) {
+      const character =
+        wordToType[wordAndCharacterTracker.currentCharacterIndex++];
+      if (typeof wordOrObjToType !== "string") {
+        if (
+          wordOrObjToType.highlight.some(
+            ({ start, end }) =>
+              wordAndCharacterTracker.currentCharacterIndex >= start &&
+              wordAndCharacterTracker.currentCharacterIndex <= end,
+          )
+        ) {
+          typer.innerHTML += `<span class="${wordOrObjToType.className}">${character}</span>`;
+        } else {
+          typer.innerHTML += `<span>${character}</span>`;
+        }
       } else {
         typer.innerHTML += `<span>${character}</span>`;
       }
+
+      setTimeout(type, typingSpeed);
     } else {
-      typer.innerHTML += `<span>${character}</span>`;
+      setTimeout(erase, typingDelay);
     }
-
-    setTimeout(() => {
-      typeWriter({
-        wordsToType,
-        typingSpeed,
-        typingDelay,
-        typeWriterRef,
-        wordAndCharacterTracker,
-      });
-    }, typingSpeed);
-  } else {
-    setTimeout(
-      () =>
-        erase({
-          wordsToType,
-          typingSpeed,
-          typingDelay,
-          typeWriterRef,
-          wordAndCharacterTracker,
-        }),
-      typingDelay,
-    );
   }
-}
+  function erase() {
+    if (!typeWriterRef.current) return;
+    const typer = typeWriterRef.current;
+    if (wordAndCharacterTracker.currentCharacterIndex > 0) {
+      --wordAndCharacterTracker.currentCharacterIndex;
+      typer.removeChild(typer.lastChild);
 
-function erase({
-  wordsToType,
-  typingSpeed,
-  typingDelay,
-  typeWriterRef,
-  wordAndCharacterTracker,
-}: NonNullable<TypeWriterProps>) {
-  if (!typeWriterRef.current) return;
-  const typer = typeWriterRef.current;
-  if (wordAndCharacterTracker.currentCharacterIndex > 0) {
-    --wordAndCharacterTracker.currentCharacterIndex;
-    typer.removeChild(typer.lastChild);
-
-    setTimeout(
-      () =>
-        erase({
-          wordsToType,
-          typingSpeed,
-          typingDelay,
-          typeWriterRef,
-          wordAndCharacterTracker,
-        }),
-      typingSpeed,
-    );
-  } else {
-    wordAndCharacterTracker.currentWordIndex++;
-    setTimeout(
-      () =>
-        typeWriter({
-          wordsToType,
-          typingSpeed,
-          typeWriterRef,
-          typingDelay,
-          wordAndCharacterTracker,
-        }),
-      typingDelay,
-    );
+      setTimeout(erase, typingSpeed);
+    } else {
+      wordAndCharacterTracker.currentWordIndex++;
+      setTimeout(type, typingDelay);
+    }
   }
+  type();
 }
