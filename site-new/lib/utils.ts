@@ -91,7 +91,7 @@ export function typeWriter({
             wordAndCharacterTracker.currentCharacterIndex <= end,
         )
       ) {
-        typer.innerHTML += `<span class="text-tbd-yellow">${character}</span>`;
+        typer.innerHTML += `<span class="${wordOrObjToType.className}">${character}</span>`;
       } else {
         typer.innerHTML += `<span>${character}</span>`;
       }
