@@ -37,7 +37,7 @@ tags: [Hackathon, Web5, DIF, Decentralized Web Nodes]
 
 ## DIF 🤝 Web5 Hackathon
 
-The results are in! Out of **418 participants** we have our **top 3** projects! We were honored to sponor a Web5 challenge with DIF Foundation. DIF (Decentralized Identity Foundation) is an engineering-driven organization focused on developing the foundational elements necessary to establish an open and interoperable ecosystem for decentralized identity. The challenge given was to **build a decentralized web app utilizing Web5.js and Decentralized Web Nodes**.
+The results are in! Out of **418 participants** we have our **top 3** projects! We were honored to sponsor a Web5 challenge with DIF Foundation. DIF (Decentralized Identity Foundation) is an engineering-driven organization focused on developing the foundational elements necessary to establish an open and interoperable ecosystem for decentralized identity. The challenge given was to **build a decentralized web app utilizing Web5.js and Decentralized Web Nodes**.
 
 <!--truncate-->
 
@@ -77,6 +77,6 @@ Rounding out our winners, HealthX Protocol developed by [Harsh Tyagi](https://ww
 **Try it Out:**
 
 - [HealthX Protocol](https://healthx-ivory.vercel.app/)
-- [Github Repo](https://github.com/0xAlphaDevs/HealthX-DIF-hackathon)
+- [GitHub Repo](https://github.com/0xAlphaDevs/HealthX-DIF-hackathon)
 
 To learn more about their project and their experience checkout their [project's showcase page](https://devpost.com/software/healthx-protocol).
