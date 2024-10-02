@@ -12,8 +12,6 @@ import Background from "@site/src/components/Background";
 import useBaseUrl from "@docusaurus/useBaseUrl";
 import DocBreadcrumbsWrapper from "@site/src/theme/DocBreadcrumbs";
 
-import LanguageSwitcher from "@site/src/components/LanguageSwitcher";
-
 import styles from "./styles.module.css";
 
 function useShowAnnouncementBar() {
@@ -71,7 +69,6 @@ export default function DocSidebarDesktopContent({
       >
         <DocSidebarItems items={sidebar} activePath={path} level={1} />
       </ul>
-      <LanguageSwitcher />
     </nav>
   );
 }
