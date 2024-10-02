@@ -39,7 +39,7 @@ const Shnip: React.FC<ShnipProps> = ({ snippetName, languages }) => {
                   ? "rounded-none border-b-2 border-l-0 border-r-0 border-t-0 border-tbd-yellow"
                   : "border-b-2 border-transparent text-white"
               } flex items-center rounded bg-transparent px-4 py-2`}
-              onClick={() => setLanguage(lang)} // Set the global language
+              onClick={() => setLanguage(lang)}
             >
               {Icon && (
                 <Icon className="mr-2 h-5 w-5 fill-current text-tbd-yellow" />
