@@ -42,3 +42,96 @@ export const accordionClassesMap: Record<
   purple: `data-[state=open]:${textClassesMap.purple}`,
   yellow: `data-[state=open]:${textClassesMap.yellow}`,
 };
+
+type TypeWriterVariableTextProps = {
+  variableTexts: string[];
+  typingSpeed?: number;
+  typeWriterRef: React.MutableRefObject<HTMLElement>;
+  pauseBeforeErasing?: number;
+  eraseSpeed?: number;
+};
+
+const typeWriteVariableText = ({
+  variableTexts,
+  typingSpeed,
+  typeWriterRef,
+  pauseBeforeErasing = 1000,
+  eraseSpeed = 50,
+}: TypeWriterVariableTextProps) => {
+  if (!typeWriterRef.current) {
+    return;
+  }
+  let timeout = 0;
+  for (let i = 0; i < variableTexts.length; i++) {
+    if (i !== 0) {
+      timeout += typingSpeed * 2;
+    }
+    for (let j = 0; j < variableTexts[i].length; j++) {
+      timeout += typingSpeed;
+
+      setTimeout(() => {
+        if (!typeWriterRef.current) return;
+        typeWriterRef.current.innerHTML += `${variableTexts[i].charAt(j)}`;
+      }, timeout);
+    }
+    // pause before erasing the variable text
+    timeout += pauseBeforeErasing;
+    // erase only the variable text letter by letter like typewriter animation after it's been typed
+    for (let k = 0; k < variableTexts[i].length; k++) {
+      timeout += eraseSpeed;
+      setTimeout(() => {
+        if (!typeWriterRef.current) return;
+        typeWriterRef.current.innerHTML = typeWriterRef.current.innerHTML.slice(
+          0,
+          -1,
+        );
+      }, timeout);
+    }
+  }
+  return timeout + typingSpeed * 2;
+};
+
+export const typeWritter = ({
+  baseTexts,
+  typeWriterRef,
+  typingSpeed = 100,
+  ...rest
+}: {
+  baseTexts: { text: string; class: string }[];
+  variableTexts: string[];
+} & TypeWriterVariableTextProps) => {
+  if (!typeWriterRef.current) {
+    return;
+  }
+  let timeout = 0;
+  for (let i = 0; i < baseTexts.length; i++) {
+    for (let j = 0; j < baseTexts[i].text.length; j++) {
+      const currentText = baseTexts[i].text;
+      const currentClass = baseTexts[i].class;
+      timeout += typingSpeed;
+      if (typeWriterRef.current) {
+        setTimeout(() => {
+          typeWriterRef.current.innerHTML += `<span class=${currentClass}>${currentText.charAt(j)}</span>`;
+          if (
+            i * j ===
+            (baseTexts.length - 1) * (baseTexts[i].text.length - 1)
+          ) {
+            const totalTimeForVariableText = typeWriteVariableText({
+              typingSpeed,
+              typeWriterRef,
+              ...rest,
+            });
+            setInterval(() => {
+              typeWriteVariableText({
+                typingSpeed,
+                typeWriterRef,
+                ...rest,
+              });
+            }, totalTimeForVariableText);
+          }
+        }, timeout);
+      }
+    }
+  }
+  return timeout;
+};

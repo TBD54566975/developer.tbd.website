@@ -9,11 +9,17 @@ import TextIconCard from "../components/TextIconCard";
 import tbdRex from "@site/static/img/tbd-rex";
 import { PixelBorderWrapper } from "../components/PixelBorder";
 import { useEffect, useRef } from "react";
+import { typeWritter } from "@site/lib/utils";
 
-const TYPE_WRITER_TEXT = [
+const TYPE_WRITER_BASE_TEXT = [
   { text: "We're building", class: "" },
   { text: " open ", class: "text-tbd-yellow" },
-  { text: "source toolkits", class: "" },
+];
+
+const TYPE_WRITER_VARIABLE_TEXT = [
+  "source toolkits",
+  "standards and protocols",
+  "financial access globally",
 ];
 
 export default function Home(): JSX.Element {
@@ -22,24 +28,12 @@ export default function Home(): JSX.Element {
   const typeWriterRef = useRef<HTMLParagraphElement>(null);
 
   useEffect(() => {
-    const typingSpeed = 100;
-    const typeWritter = () => {
-      let timeout = 0;
-      for (let i = 0; i < TYPE_WRITER_TEXT.length; i++) {
-        for (let j = 0; j < TYPE_WRITER_TEXT[i].text.length; j++) {
-          const currentText = TYPE_WRITER_TEXT[i].text;
-          const currentClass = TYPE_WRITER_TEXT[i].class;
-          timeout += typingSpeed;
-          if (typeWriterRef.current) {
-            setTimeout(() => {
-              typeWriterRef.current.innerHTML += `<span class=${currentClass}>${currentText.charAt(j)}</span>`;
-            }, timeout);
-          }
-        }
-      }
-    };
-    typeWritter();
-  }, []);
+    typeWritter({
+      baseTexts: TYPE_WRITER_BASE_TEXT,
+      typeWriterRef,
+      variableTexts: TYPE_WRITER_VARIABLE_TEXT,
+    });
+  }, [typeWriterRef]);
 
   return (
     <Layout
@@ -86,7 +80,7 @@ export default function Home(): JSX.Element {
               {/* We're building <span className="text-tbd-yellow">open</span>{" "}
               source toolkits */}
             </p>{" "}
-            <span className="animate-caret ml-1 h-full w-2 bg-tbd-yellow [animation-delay:3.8s]"></span>
+            <span className="ml-1 h-full w-2 animate-caret bg-tbd-yellow"></span>
           </div>
         </div>
 
