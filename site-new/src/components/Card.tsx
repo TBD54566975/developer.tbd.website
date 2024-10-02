@@ -130,7 +130,7 @@ function Card({
   });
 
   const borderClass = hasBorder
-    ? `border-[1px] border-solid border-t-8 border-tbd-${selectedTheme}`
+    ? `border-[1px] border-solid ${image ? "" : "border-t-8"} border-tbd-${selectedTheme}`
     : "";
 
   const sizeClasses = {
@@ -164,41 +164,48 @@ function Card({
 
   return (
     <div
-      className={`flex ${orientation === "horizontal" ? "flex-col md:flex-row" : "flex-col"} w-full ${currentSize.container} items-stretch border border-solid border-[1px] border-tbd-yellow`}
+      className={`${className} group flex items-center justify-center ${orientation === "horizontal" ? "flex-col md:flex-row" : "flex-col"} w-full ${currentSize.container} ${themeClass} ${borderClass} transition-all duration-300 mb-4`}
     >
 
-    {Image && 
-      <img
-        src={Image}
-        alt={title}
-        className={`${currentSize.image} object-cover`}
-      />
-    }
+      {/* image  */}
+      {Image && 
+        <img
+          src={Image}
+          alt={title}
+          className={`${currentSize.image} object-cover w-full`}
+        />
+      }
 
-    <div
-      className={`${themeClass} ${className} group transition-all duration-300 ${borderClass}`}
-    >
-      <div className="flex h-full flex-col justify-center p-8">
-        <div>
-          {Icon && (
-            <Icon
-              className={`h-[126px] w-[84px] md:h-[150px] md:w-[100px] ${iconClass} transition-all duration-300`}
-            />
+      {/* card body container  */}
+      <div className="w-full h-full grid grid-cols-1 gap-4 p-8">
+        
+        {/* icon  */}
+        {Icon && (
+          <Icon
+            className={`h-[126px] w-[84px] md:h-[150px] md:w-[100px] ${iconClass} transition-all duration-300`}
+          />
+        )}
+
+        {/* card heading  */}
+        <Heading
+          as="h3"
+          className={cn(
+            `my-0 text-lg font-bold md:text-2xl text-tbd-${selectedTheme} transition-all duration-300`,
+            {
+              "group-hover:text-tbd-gray": isHoverEnabled,
+            },
           )}
-          <Heading
-            as="h3"
-            className={cn(
-              `mt-4 text-lg font-bold md:text-2xl text-tbd-${selectedTheme} transition-all duration-300`,
-              {
-                "group-hover:text-tbd-gray": isHoverEnabled,
-              },
-            )}
-          >
-            {title}
-          </Heading>
-          <p className="mt-2 text-sm md:text-lg">{text}</p>
-        </div>
-        {url && buttonText && <Button text={buttonText} url={url} />}
+        >
+          {title}
+        </Heading>
+
+        {/* card text  */}
+        <p className="my-0 text-sm md:text-lg">{text}</p>
+        
+        {/* button text  */}
+        {url && buttonText && <Button text={buttonText} url={url} className="mt-2" />}
+        
+        {/* language icon buttons */}
         <>
           {props.type === "languageButton" &&
             Object.keys(props.resources).some(
@@ -220,12 +227,10 @@ function Card({
                   );
                 })}
               </div>
-            )}
+            )
+          }
         </>
       </div>
-    </div>
-
-
     </div>
   );
 }
