@@ -9,13 +9,25 @@ import TextIconCard from "../components/TextIconCard";
 import tbdRex from "@site/static/img/tbd-rex";
 import { PixelBorderWrapper } from "../components/PixelBorder";
 import { useEffect, useRef } from "react";
-import { typeWriter } from "@site/lib/utils";
+import { typeWriter, TypeWriterWordType } from "@site/lib/utils";
 
 const TYPE_WRITER_VARIABLE_TEXT = [
-  "source toolkits",
-  "standards and protocols",
-  "financial access globally",
-];
+  {
+    text: "open source toolkits",
+    highlight: [{ start: 0, end: 4 }],
+    className: "text-tbd-yellow",
+  },
+  {
+    text: "open standards and protocols",
+    highlight: [{ start: 0, end: 4 }],
+    className: "text-tbd-yellow",
+  },
+  {
+    text: "open financial access globally",
+    highlight: [{ start: 0, end: 4 }],
+    className: "text-tbd-yellow",
+  },
+] satisfies TypeWriterWordType[];
 
 export default function Home(): JSX.Element {
   const { siteConfig } = useDocusaurusContext();
@@ -50,7 +62,6 @@ export default function Home(): JSX.Element {
                 >
                   The future of finance is{" "}
                   <span className="relative mb-twist-core-spacing-7 inline-block text-tbd-yellow">
-                    open
                     <Underline className="absolute bottom-[-10px] left-2 fill-tbd-yellow lg:bottom-[-20px] lg:left-4" />
                   </span>
                 </Heading>
@@ -75,8 +86,7 @@ export default function Home(): JSX.Element {
             <p className="mb-0 text-2xl lg:text-3xl">
               {/* We're building <span className="text-tbd-yellow">open</span>{" "}
               source toolkits */}
-              We're building <span className="text-tbd-yellow">open </span>
-              <span ref={typeWriterRef}></span>
+              We're building <span ref={typeWriterRef}></span>
               <span className="relative top-1 ml-1 inline-block h-7 w-1 animate-caret bg-[lightgrey]" />
             </p>{" "}
           </div>

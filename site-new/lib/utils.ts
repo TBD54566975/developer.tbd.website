@@ -43,8 +43,16 @@ export const accordionClassesMap: Record<
   yellow: `data-[state=open]:${textClassesMap.yellow}`,
 };
 
+export type TypeWriterWordType =
+  | string
+  | {
+      text: string;
+      className: string;
+      highlight: { start: number; end: number }[];
+    };
+
 type TypeWriterProps = {
-  wordsToType: string[];
+  wordsToType: TypeWriterWordType[];
   typingSpeed: number;
   typingDelay: number;
   typeWriterRef: React.MutableRefObject<HTMLElement>;
@@ -64,12 +72,33 @@ export function typeWriter({
   if (!typeWriterRef.current) return;
   const typer = typeWriterRef.current;
 
-  const wordToType =
+  const wordOrObjToType =
     wordsToType[wordAndCharacterTracker.currentWordIndex % wordsToType.length];
 
+  const wordToType =
+    typeof wordOrObjToType === "string"
+      ? wordOrObjToType
+      : wordOrObjToType.text;
+
   if (wordAndCharacterTracker.currentCharacterIndex < wordToType.length) {
-    typer.innerHTML +=
+    const character =
       wordToType[wordAndCharacterTracker.currentCharacterIndex++];
+    if (typeof wordOrObjToType !== "string") {
+      if (
+        wordOrObjToType.highlight.some(
+          ({ start, end }) =>
+            wordAndCharacterTracker.currentCharacterIndex >= start &&
+            wordAndCharacterTracker.currentCharacterIndex <= end,
+        )
+      ) {
+        typer.innerHTML += `<span class="text-tbd-yellow">${character}</span>`;
+      } else {
+        typer.innerHTML += `<span>${character}</span>`;
+      }
+    } else {
+      typer.innerHTML += `<span>${character}</span>`;
+    }
+
     setTimeout(() => {
       typeWriter({
         wordsToType,
@@ -103,13 +132,10 @@ function erase({
 }: NonNullable<TypeWriterProps>) {
   if (!typeWriterRef.current) return;
   const typer = typeWriterRef.current;
-  const wordToType =
-    wordsToType[wordAndCharacterTracker.currentWordIndex % wordsToType.length];
   if (wordAndCharacterTracker.currentCharacterIndex > 0) {
-    typer.innerHTML = wordToType.substr(
-      0,
-      --wordAndCharacterTracker.currentCharacterIndex - 1,
-    );
+    --wordAndCharacterTracker.currentCharacterIndex;
+    typer.removeChild(typer.lastChild);
+
     setTimeout(
       () =>
         erase({
