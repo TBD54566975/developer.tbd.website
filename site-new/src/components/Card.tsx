@@ -15,8 +15,10 @@ import { IconButtonLink } from "./IconButton";
 type CardProps = {
   icon?: React.ComponentType<{ className: string; fill?: string }>;
   image?: string;
+  alt?: string;
+  eyebrow?: string;
   title: string;
-  text: string;
+  text?: string;
   buttonText?: string;
   url?: string;
   className?: string;
@@ -101,14 +103,16 @@ const randomTheme = (): Theme => {
 
 
 function Card({
-  icon: Icon,
-  title,
   className = "",
+  icon: Icon,
   theme,
   hasBorder = true,
-  buttonText,
   image,
+  eyebrow,
+  title,
+  alt = title,
   text,
+  buttonText,
   url,
   orientation = "vertical", // Default orientation is vertical
   size = "large",
@@ -171,7 +175,7 @@ function Card({
       {Image && 
         <img
           src={Image}
-          alt={title}
+          alt={alt}
           className={`${currentSize.image} object-cover w-full`}
         />
       }
@@ -184,6 +188,11 @@ function Card({
           <Icon
             className={`h-[126px] w-[84px] md:h-[150px] md:w-[100px] ${iconClass} transition-all duration-300`}
           />
+        )}
+
+        {/* eyebrow for spotlight card  */}
+        {eyebrow && (
+          <p className="my-0 text-sm md:text-lg">{eyebrow}</p>
         )}
 
         {/* card heading  */}
@@ -200,7 +209,9 @@ function Card({
         </Heading>
 
         {/* card text  */}
-        <p className="my-0 text-sm md:text-lg">{text}</p>
+        {text && (
+          <p className="my-0 text-sm md:text-lg">{text}</p>
+        )}
         
         {/* button text  */}
         {url && buttonText && <Button text={buttonText} url={url} className="mt-2" />}

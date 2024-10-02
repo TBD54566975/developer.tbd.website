@@ -4,7 +4,7 @@ import Heading from "@theme/Heading";
 
 function ComponentList() {
   const components = [
-    { name: "TextIconCard", path: "/component-guide/text-icon-card" },
+    { name: "Card", path: "/component-guide/card" },
     { name: "TextIconFeature", path: "/component-guide/text-icon-feature" },
     { name: "BlogCard", path: "/component-guide/blog-card" },
     { name: "HeroCard", path: "/component-guide/hero-card" },
@@ -13,8 +13,6 @@ function ComponentList() {
     { name: "Accordion", path: "/component-guide/accordion" },
     { name: "FeedbackCard", path: "/component-guide/feedback-card" },
     { name: "Admonition", path: "/component-guide/admonition" },
-    { name: "ImageCard", path: "/component-guide/image-card" },
-    { name: "SpotLightCard", path: "/component-guide/spotlight-card" },
     { name: "IconButton", path: "/component-guide/icon-button" },
     { name: "CodeBlock", path: "/component-guide/code-block" },
     { name: "IconButton", path: "/component-guide/icon-button" },
