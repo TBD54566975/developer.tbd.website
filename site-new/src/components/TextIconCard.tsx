@@ -1,7 +1,6 @@
 import React from "react";
 import Heading from "@theme/Heading";
 import Button from "@site/src/components/Button";
-import Link from "@docusaurus/Link";
 import Swift from "@site/assets/icons/Swift";
 import SwiftMobile from "@site/assets/icons/SwiftMobile";
 import Kotlin from "@site/assets/icons/Kotlin";
@@ -74,12 +73,12 @@ type TextIconCardProps = {
 } & (ButtonProps | LanguageButtonProps | DefaultProps);
 
 const themeClasses: Record<Theme, string> = {
-  yellow: "text-white ",
-  teal: "text-white ",
-  purple: "text-white ",
-  iconyellow: "fill-tbd-yellow ",
-  iconteal: "fill-tbd-teal ",
-  iconpurple: "fill-tbd-purple-tint-2 ",
+  yellow: "text-white",
+  teal: "text-white",
+  purple: "text-white",
+  iconyellow: "fill-tbd-yellow",
+  iconteal: "fill-tbd-teal",
+  iconpurple: "fill-tbd-purple",
 };
 
 const themeClassesHover: Record<Theme, string> = {
@@ -112,10 +111,14 @@ function TextIconCard({
 
   const isHoverEnabled =
     props.type === "buttonText" || props.type === "default" || !props.type;
+
   const themeClass = cn(themeClasses[selectedTheme], {
     [themeClassesHover[selectedTheme]]: isHoverEnabled,
   });
-  const iconClass = themeClasses[selectedTheme];
+
+  const iconClass = cn(themeClasses["icon" + selectedTheme], {
+    [themeClassesHover["icon" + selectedTheme]]: isHoverEnabled,
+  });
 
   const borderClass = hasBorder
     ? `border-[1px] border-solid border-t-8 border-tbd-${selectedTheme}`
