@@ -8,9 +8,39 @@ import Hero from "../components/HeroCard";
 import TextIconCard from "../components/TextIconCard";
 import tbdRex from "@site/static/img/tbd-rex";
 import { PixelBorderWrapper } from "../components/PixelBorder";
+import { useEffect, useRef } from "react";
+
+const TYPE_WRITER_TEXT = [
+  { text: "We're building", class: "" },
+  { text: " open ", class: "text-tbd-yellow" },
+  { text: "source toolkits", class: "" },
+];
 
 export default function Home(): JSX.Element {
   const { siteConfig } = useDocusaurusContext();
+
+  const typeWriterRef = useRef<HTMLParagraphElement>(null);
+
+  useEffect(() => {
+    const typingSpeed = 100;
+    const typeWritter = () => {
+      let timeout = 0;
+      for (let i = 0; i < TYPE_WRITER_TEXT.length; i++) {
+        for (let j = 0; j < TYPE_WRITER_TEXT[i].text.length; j++) {
+          const currentText = TYPE_WRITER_TEXT[i].text;
+          const currentClass = TYPE_WRITER_TEXT[i].class;
+          timeout += typingSpeed;
+          if (typeWriterRef.current) {
+            setTimeout(() => {
+              typeWriterRef.current.innerHTML += `<span class=${currentClass}>${currentText.charAt(j)}</span>`;
+            }, timeout);
+          }
+        }
+      }
+    };
+    typeWritter();
+  }, []);
+
   return (
     <Layout
       title={`Hello from ${siteConfig.title}`}
@@ -52,10 +82,11 @@ export default function Home(): JSX.Element {
 
         <div className="flex w-full items-center justify-center">
           <div className="flex h-[128px] w-[90%] items-center justify-center border-[0.5px] border-solid border-tbd-yellow bg-tbd-gray-shade-1 px-[20px] py-[24px] lg:w-[80%] lg:px-[38px] lg:py-[46px]">
-            <p className="mb-0 text-2xl lg:text-3xl">
-              We're building <span className="text-tbd-yellow">open</span>{" "}
-              source toolkits
-            </p>
+            <p className="mb-0 text-2xl lg:text-3xl" ref={typeWriterRef}>
+              {/* We're building <span className="text-tbd-yellow">open</span>{" "}
+              source toolkits */}
+            </p>{" "}
+            <span className="animate-caret ml-1 h-full w-2 bg-tbd-yellow [animation-delay:3.8s]"></span>
           </div>
         </div>
 
