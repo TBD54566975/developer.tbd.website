@@ -9,12 +9,7 @@ import TextIconCard from "../components/TextIconCard";
 import tbdRex from "@site/static/img/tbd-rex";
 import { PixelBorderWrapper } from "../components/PixelBorder";
 import { useEffect, useRef } from "react";
-import { typeWritter } from "@site/lib/utils";
-
-const TYPE_WRITER_BASE_TEXT = [
-  { text: "We're building", class: "" },
-  { text: " open ", class: "text-tbd-yellow" },
-];
+import { typeWriter } from "@site/lib/utils";
 
 const TYPE_WRITER_VARIABLE_TEXT = [
   "source toolkits",
@@ -25,13 +20,14 @@ const TYPE_WRITER_VARIABLE_TEXT = [
 export default function Home(): JSX.Element {
   const { siteConfig } = useDocusaurusContext();
 
-  const typeWriterRef = useRef<HTMLParagraphElement>(null);
+  const typeWriterRef = useRef<HTMLSpanElement>(null);
 
   useEffect(() => {
-    typeWritter({
-      baseTexts: TYPE_WRITER_BASE_TEXT,
+    typeWriter({
+      wordsToType: TYPE_WRITER_VARIABLE_TEXT,
       typeWriterRef,
-      variableTexts: TYPE_WRITER_VARIABLE_TEXT,
+      typingDelay: 1000,
+      typingSpeed: 70,
     });
   }, [typeWriterRef]);
 
@@ -76,11 +72,13 @@ export default function Home(): JSX.Element {
 
         <div className="flex w-full items-center justify-center">
           <div className="flex h-[128px] w-[90%] items-center justify-center border-[0.5px] border-solid border-tbd-yellow bg-tbd-gray-shade-1 px-[20px] py-[24px] lg:w-[80%] lg:px-[38px] lg:py-[46px]">
-            <p className="mb-0 text-2xl lg:text-3xl" ref={typeWriterRef}>
+            <p className="mb-0 text-2xl lg:text-3xl">
               {/* We're building <span className="text-tbd-yellow">open</span>{" "}
               source toolkits */}
+              We're building <span className="text-tbd-yellow">open </span>
+              <span ref={typeWriterRef}></span>
+              <span className="relative top-1 ml-1 inline-block h-7 w-1 animate-caret bg-[lightgrey]" />
             </p>{" "}
-            <span className="ml-1 h-full w-2 animate-caret bg-tbd-yellow"></span>
           </div>
         </div>
 
