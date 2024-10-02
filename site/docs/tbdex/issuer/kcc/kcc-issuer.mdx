@@ -373,7 +373,7 @@ Content-Type: application/json
 
 The `proof` JWT contains various claims, most notably a `nonce` to prevent replay attacks. For a detailed look at each field please refer to the [OpenID spec](https://openid.net/specs/openid-4-verifiable-credential-issuance-1_0.html#section-7.2.1.1-2.1.1).
 
-- `Authorization: Bearer {jwt}`: The `access_token` that the Wallet recieved from the `/token` endpoint.
+- `Authorization: Bearer {jwt}`: The `access_token` that the Wallet received from the `/token` endpoint.
 
 :::danger Important
 Before issuing a Known Customer Credential, it's important to complete all necessary steps of your Know Your Customer (KYC) program. This may include further screenings on the user's DID/information, such as Sanctions Checks, Politically Exposed Persons (PEP) screenings, and Negative News Screenings, which aren't covered in this guide. Consult with your legal and compliance advisors to ensure that this process is consistent with your specific legal and compliance obligations.  
