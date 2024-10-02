@@ -42,3 +42,75 @@ export const accordionClassesMap: Record<
   purple: `data-[state=open]:${textClassesMap.purple}`,
   yellow: `data-[state=open]:${textClassesMap.yellow}`,
 };
+
+export type TypeWriterWordType =
+  | string
+  | {
+      text: string;
+      className: string;
+      highlight: { start: number; end: number }[];
+    };
+
+type TypeWriterProps = {
+  wordsToType: TypeWriterWordType[];
+  typingSpeed: number;
+  typingDelay: number;
+  typeWriterRef: React.MutableRefObject<HTMLElement>;
+};
+
+export function typeWriter({
+  wordsToType,
+  typingSpeed,
+  typeWriterRef,
+  typingDelay,
+}: TypeWriterProps) {
+  if (!typeWriterRef.current) return;
+  const typer = typeWriterRef.current;
+  let currentWordIndex = 0;
+  let currentCharacterIndex = 0;
+
+  function type() {
+    if (!typeWriterRef.current) return;
+
+    const wordOrObjToType = wordsToType[currentWordIndex % wordsToType.length];
+
+    const wordToType =
+      typeof wordOrObjToType === "string"
+        ? wordOrObjToType
+        : wordOrObjToType.text;
+
+    if (currentCharacterIndex < wordToType.length) {
+      const character = wordToType[currentCharacterIndex++];
+      if (typeof wordOrObjToType !== "string") {
+        if (
+          wordOrObjToType.highlight.some(
+            ({ start, end }) =>
+              currentCharacterIndex >= start && currentCharacterIndex <= end,
+          )
+        ) {
+          typer.innerHTML += `<span class="${wordOrObjToType.className}">${character}</span>`;
+        } else {
+          typer.innerHTML += `<span>${character}</span>`;
+        }
+      } else {
+        typer.innerHTML += `<span>${character}</span>`;
+      }
+
+      setTimeout(type, typingSpeed);
+    } else {
+      setTimeout(erase, typingDelay);
+    }
+  }
+  function erase() {
+    if (currentCharacterIndex > 0) {
+      --currentCharacterIndex;
+      typer.removeChild(typer.lastChild);
+
+      setTimeout(erase, typingSpeed);
+    } else {
+      currentWordIndex++;
+      setTimeout(type, typingDelay);
+    }
+  }
+  type();
+}
