@@ -10,7 +10,7 @@ jobs:
       uses: actions/checkout@v4
     - name: Get issue number from PR body
       id: issue_number
-      uses: actions/github-script@v6gi
+      uses: actions/github-script@v6
       with:
         github-token: ${{ secrets.GITHUB_TOKEN }}
         script: |
