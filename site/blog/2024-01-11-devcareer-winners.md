@@ -37,7 +37,7 @@ tags: [Hackathon, Web5, DevCareer]
 
 ## DevCareer 🤝 Web5 Hackathon
 
-It's winner announcement time! We're thrilled to have been a part of [DevCareer's](https://devcareer.io/) first-ever hackathon. DevCareer's mission is to cultivate new talent and make a difference in Africa through tech, and having that talent play around with our Web5.js sdk was an invaluable experience. The level of creativity resulted in us having **not** 3 but 5 winning projects! 🚀
+It's winner announcement time! We're thrilled to have been a part of [DevCareer's](https://devcareer.io/) first-ever hackathon. DevCareer's mission is to cultivate new talent and make a difference in Africa through tech, and having that talent play around with our Web5.js SDK was an invaluable experience. The level of creativity resulted in us having **not** 3 but 5 winning projects! 🚀
 
 <!--truncate-->
 
@@ -71,7 +71,7 @@ yDID was developed by team **yDID**. It's an application focused on truly managi
 
 ## 🏅 Decentralized VR Museum
 
-Decentralized VR Museum was created by team **Digital Dream Crafters**. It's an immersive virtual reality experience that allows users secure access to art work.
+Decentralized VR Museum was created by team **Digital Dream Crafters**. It's an immersive virtual reality experience that allows users secure access to artwork.
 
 **Try It Out:**
 
@@ -81,7 +81,7 @@ Decentralized VR Museum was created by team **Digital Dream Crafters**. It's an 
 
 ## 🏅 Auth5
 
-Auth5 was developed by team **MAVIGO**. It's a authentication system that ensures personal data is stored on the users [Decentralized Web Nodes](/docs/web5/decentralized-web-nodes/what-are-dwns). Allowing the user to control who can access their data.
+Auth5 was developed by team **MAVIGO**. It's a authentication system that ensures personal data is stored on the user's [Decentralized Web Nodes](/docs/web5/decentralized-web-nodes/what-are-dwns). Allowing the user to control who can access their data.
 
 **Try It Out:**
 
