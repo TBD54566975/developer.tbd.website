@@ -27,7 +27,7 @@ tags: [AI, ChatGPT]
 
 This can have a few advantages but the interesting thing for us is that this can allow sharing of implementations of functionality: credential issuance, DID resolving, cryptographic functions, etc which you may not want to necessarily re-implement in JavaScript or TypeScript.
 
-The [SSI-SDK](https://github.com/TBD54566975/ssi-sdk) is an implementation of a lot of standards for self sovereign identity, so it is a great candidate to expose via WASM to web apps. 
+The [SSI-SDK](https://github.com/TBD54566975/ssi-sdk) is an implementation of a lot of standards for self-sovereign identity, so it is a great candidate to expose via WASM to web apps.
 
 <!--truncate-->
 
