@@ -84,7 +84,13 @@
     "overrides": {
       "vite": "5.1.4",
       "nuxt": "3.10.3",
-      "postcss": "8.4.31"
+      "postcss": "8.4.31",
+      "ws": "^8.17.1",
+      "axios": "^1.7.4",
+      "body-parser": "^1.20.3",
+      "fast-xml-parser": "^4.4.1",
+      "rollup": "^4.22.4",
+      "path-to-regexp": "2.4.0"
     }
   }
 }
