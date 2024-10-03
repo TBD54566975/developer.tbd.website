@@ -42,9 +42,9 @@ var __privateWrapper = (obj, member, setter, getter) => ({
   }
 });
 
-// ../node_modules/.pnpm/balanced-match@1.0.2/node_modules/balanced-match/index.js
+// node_modules/balanced-match/index.js
 var require_balanced_match = __commonJS({
-  "../node_modules/.pnpm/balanced-match@1.0.2/node_modules/balanced-match/index.js"(exports, module) {
+  "node_modules/balanced-match/index.js"(exports, module) {
     "use strict";
     module.exports = balanced;
     function balanced(a, b, str) {
@@ -100,9 +100,9 @@ var require_balanced_match = __commonJS({
   }
 });
 
-// ../node_modules/.pnpm/brace-expansion@2.0.1/node_modules/brace-expansion/index.js
+// node_modules/brace-expansion/index.js
 var require_brace_expansion = __commonJS({
-  "../node_modules/.pnpm/brace-expansion@2.0.1/node_modules/brace-expansion/index.js"(exports, module) {
+  "node_modules/brace-expansion/index.js"(exports, module) {
     var balanced = require_balanced_match();
     module.exports = expandTop;
     var escSlash = "\0SLASH" + Math.random() + "\0";
@@ -251,8 +251,8 @@ var require_brace_expansion = __commonJS({
 });
 
 // src/extract/SnippetExtractor.ts
-var fs;
-var path;
+import path from "path";
+import fs from "fs";
 var SnippetExtractor = class {
   constructor(config4) {
     this.prependBlocks = {};
@@ -460,10 +460,10 @@ var config2 = {
 import fs3 from "fs";
 import path3 from "path";
 
-// ../node_modules/.pnpm/minimatch@9.0.5/node_modules/minimatch/dist/esm/index.js
+// node_modules/minimatch/dist/esm/index.js
 var import_brace_expansion = __toESM(require_brace_expansion(), 1);
 
-// ../node_modules/.pnpm/minimatch@9.0.5/node_modules/minimatch/dist/esm/assert-valid-pattern.js
+// node_modules/minimatch/dist/esm/assert-valid-pattern.js
 var MAX_PATTERN_LENGTH = 1024 * 64;
 var assertValidPattern = (pattern) => {
   if (typeof pattern !== "string") {
@@ -474,7 +474,7 @@ var assertValidPattern = (pattern) => {
   }
 };
 
-// ../node_modules/.pnpm/minimatch@9.0.5/node_modules/minimatch/dist/esm/brace-expressions.js
+// node_modules/minimatch/dist/esm/brace-expressions.js
 var posixClasses = {
   "[:alnum:]": ["\\p{L}\\p{Nl}\\p{Nd}", true],
   "[:alpha:]": ["\\p{L}\\p{Nl}", true],
@@ -583,12 +583,12 @@ var parseClass = (glob2, position) => {
   return [comb, uflag, endPos - pos, true];
 };
 
-// ../node_modules/.pnpm/minimatch@9.0.5/node_modules/minimatch/dist/esm/unescape.js
+// node_modules/minimatch/dist/esm/unescape.js
 var unescape = (s, { windowsPathsNoEscape = false } = {}) => {
   return windowsPathsNoEscape ? s.replace(/\[([^\/\\])\]/g, "$1") : s.replace(/((?!\\).|^)\[([^\/\\])\]/g, "$1$2").replace(/\\([^\/])/g, "$1");
 };
 
-// ../node_modules/.pnpm/minimatch@9.0.5/node_modules/minimatch/dist/esm/ast.js
+// node_modules/minimatch/dist/esm/ast.js
 var types = /* @__PURE__ */ new Set(["!", "?", "+", "*", "@"]);
 var isExtglobType = (c) => types.has(c);
 var startNoTraversal = "(?!(?:^|/)\\.\\.?(?:$|/))";
@@ -1087,12 +1087,12 @@ parseGlob_fn = function(glob2, hasMagic2, noEmpty = false) {
 __privateAdd(_AST, _AST_static);
 var AST = _AST;
 
-// ../node_modules/.pnpm/minimatch@9.0.5/node_modules/minimatch/dist/esm/escape.js
+// node_modules/minimatch/dist/esm/escape.js
 var escape = (s, { windowsPathsNoEscape = false } = {}) => {
   return windowsPathsNoEscape ? s.replace(/[?*()[\]]/g, "[$&]") : s.replace(/[?*()[\]\\]/g, "\\$&");
 };
 
-// ../node_modules/.pnpm/minimatch@9.0.5/node_modules/minimatch/dist/esm/index.js
+// node_modules/minimatch/dist/esm/index.js
 var minimatch = (p, pattern, options = {}) => {
   assertValidPattern(pattern);
   if (!options.nocomment && pattern.charAt(0) === "#") {
@@ -1810,7 +1810,10 @@ minimatch.Minimatch = Minimatch;
 minimatch.escape = escape;
 minimatch.unescape = unescape;
 
-// ../node_modules/.pnpm/lru-cache@10.4.3/node_modules/lru-cache/dist/esm/index.js
+// node_modules/glob/dist/esm/glob.js
+import { fileURLToPath as fileURLToPath2 } from "node:url";
+
+// node_modules/lru-cache/dist/esm/index.js
 var perf = typeof performance === "object" && performance && typeof performance.now === "function" ? performance : Date;
 var warned = /* @__PURE__ */ new Set();
 var PROCESS = typeof process === "object" && !!process ? process : {};
@@ -3242,14 +3245,14 @@ clear_fn = function(reason) {
 };
 var LRUCache = _LRUCache;
 
-// ../node_modules/.pnpm/path-scurry@1.11.1/node_modules/path-scurry/dist/esm/index.js
+// node_modules/path-scurry/dist/esm/index.js
 import { posix, win32 } from "node:path";
 import { fileURLToPath } from "node:url";
 import { lstatSync, readdir as readdirCB, readdirSync, readlinkSync, realpathSync as rps } from "fs";
 import * as actualFS from "node:fs";
 import { lstat, readdir, readlink, realpath } from "node:fs/promises";
 
-// ../node_modules/.pnpm/minipass@7.1.2/node_modules/minipass/dist/esm/index.js
+// node_modules/minipass/dist/esm/index.js
 import { EventEmitter } from "node:events";
 import Stream from "node:stream";
 import { StringDecoder } from "node:string_decoder";
@@ -4128,7 +4131,7 @@ var Minipass = class extends EventEmitter {
   }
 };
 
-// ../node_modules/.pnpm/path-scurry@1.11.1/node_modules/path-scurry/dist/esm/index.js
+// node_modules/path-scurry/dist/esm/index.js
 var realpathSync = rps.native;
 var defaultFS = {
   lstatSync,
@@ -5897,10 +5900,7 @@ var PathScurryDarwin = class extends PathScurryPosix {
 var Path = process.platform === "win32" ? PathWin32 : PathPosix;
 var PathScurry = process.platform === "win32" ? PathScurryWin32 : process.platform === "darwin" ? PathScurryDarwin : PathScurryPosix;
 
-// ../node_modules/.pnpm/glob@10.3.10/node_modules/glob/dist/esm/glob.js
-import { fileURLToPath as fileURLToPath2 } from "url";
-
-// ../node_modules/.pnpm/glob@10.3.10/node_modules/glob/dist/esm/pattern.js
+// node_modules/glob/dist/esm/pattern.js
 var isPatternList = (pl) => pl.length >= 1;
 var isGlobList = (gl) => gl.length >= 1;
 var _patternList, _globList, _index, _platform, _rest, _globString, _isDrive, _isUNC, _isAbsolute, _followGlobstar;
@@ -6077,7 +6077,7 @@ _isAbsolute = new WeakMap();
 _followGlobstar = new WeakMap();
 var Pattern = _Pattern;
 
-// ../node_modules/.pnpm/glob@10.3.10/node_modules/glob/dist/esm/ignore.js
+// node_modules/glob/dist/esm/ignore.js
 var defaultPlatform2 = typeof process === "object" && process && typeof process.platform === "string" ? process.platform : "linux";
 var Ignore = class {
   constructor(ignored, { nobrace, nocase, noext, noglobstar, platform = defaultPlatform2 }) {
@@ -6085,11 +6085,14 @@ var Ignore = class {
     __publicField(this, "relativeChildren");
     __publicField(this, "absolute");
     __publicField(this, "absoluteChildren");
+    __publicField(this, "platform");
+    __publicField(this, "mmopts");
     this.relative = [];
     this.absolute = [];
     this.relativeChildren = [];
     this.absoluteChildren = [];
-    const mmopts = {
+    this.platform = platform;
+    this.mmopts = {
       dot: true,
       nobrace,
       nocase,
@@ -6100,28 +6103,34 @@ var Ignore = class {
       nocomment: true,
       nonegate: true
     };
-    for (const ign of ignored) {
-      const mm = new Minimatch(ign, mmopts);
-      for (let i = 0; i < mm.set.length; i++) {
-        const parsed = mm.set[i];
-        const globParts = mm.globParts[i];
-        if (!parsed || !globParts) {
-          throw new Error("invalid pattern object");
-        }
-        const p = new Pattern(parsed, globParts, 0, platform);
-        const m = new Minimatch(p.globString(), mmopts);
-        const children = globParts[globParts.length - 1] === "**";
-        const absolute = p.isAbsolute();
+    for (const ign of ignored)
+      this.add(ign);
+  }
+  add(ign) {
+    const mm = new Minimatch(ign, this.mmopts);
+    for (let i = 0; i < mm.set.length; i++) {
+      const parsed = mm.set[i];
+      const globParts = mm.globParts[i];
+      if (!parsed || !globParts) {
+        throw new Error("invalid pattern object");
+      }
+      while (parsed[0] === "." && globParts[0] === ".") {
+        parsed.shift();
+        globParts.shift();
+      }
+      const p = new Pattern(parsed, globParts, 0, this.platform);
+      const m = new Minimatch(p.globString(), this.mmopts);
+      const children = globParts[globParts.length - 1] === "**";
+      const absolute = p.isAbsolute();
+      if (absolute)
+        this.absolute.push(m);
+      else
+        this.relative.push(m);
+      if (children) {
         if (absolute)
-          this.absolute.push(m);
+          this.absoluteChildren.push(m);
         else
-          this.relative.push(m);
-        if (children) {
-          if (absolute)
-            this.absoluteChildren.push(m);
-          else
-            this.relativeChildren.push(m);
-        }
+          this.relativeChildren.push(m);
       }
     }
   }
@@ -6155,7 +6164,7 @@ var Ignore = class {
   }
 };
 
-// ../node_modules/.pnpm/glob@10.3.10/node_modules/glob/dist/esm/processor.js
+// node_modules/glob/dist/esm/processor.js
 var HasWalkedCache = class _HasWalkedCache {
   constructor(store = /* @__PURE__ */ new Map()) {
     __publicField(this, "store");
@@ -6380,7 +6389,7 @@ var Processor = class _Processor {
   }
 };
 
-// ../node_modules/.pnpm/glob@10.3.10/node_modules/glob/dist/esm/walker.js
+// node_modules/glob/dist/esm/walker.js
 var makeIgnore = (ignore, opts) => typeof ignore === "string" ? new Ignore([ignore], opts) : Array.isArray(ignore) ? new Ignore(ignore, opts) : ignore;
 var _onResume, _ignore, _sep, _GlobUtil_instances, ignored_fn, childrenIgnored_fn;
 var GlobUtil = class {
@@ -6397,12 +6406,18 @@ var GlobUtil = class {
     __privateAdd(this, _sep);
     __publicField(this, "signal");
     __publicField(this, "maxDepth");
+    __publicField(this, "includeChildMatches");
     this.patterns = patterns;
     this.path = path4;
     this.opts = opts;
     __privateSet(this, _sep, !opts.posix && opts.platform === "win32" ? "\\" : "/");
-    if (opts.ignore) {
-      __privateSet(this, _ignore, makeIgnore(opts.ignore, opts));
+    this.includeChildMatches = opts.includeChildMatches !== false;
+    if (opts.ignore || !this.includeChildMatches) {
+      __privateSet(this, _ignore, makeIgnore(opts.ignore ?? [], opts));
+      if (!this.includeChildMatches && typeof __privateGet(this, _ignore).add !== "function") {
+        const m = "cannot ignore child matches, ignore lacks add() method.";
+        throw new Error(m);
+      }
     }
     this.maxDepth = opts.maxDepth || Infinity;
     if (opts.signal) {
@@ -6447,10 +6462,17 @@ var GlobUtil = class {
       e = rpc;
     }
     const needStat = e.isUnknown() || this.opts.stat;
-    return this.matchCheckTest(needStat ? await e.lstat() : e, ifDir);
+    const s = needStat ? await e.lstat() : e;
+    if (this.opts.follow && this.opts.nodir && s?.isSymbolicLink()) {
+      const target = await s.realpath();
+      if (target && (target.isUnknown() || this.opts.stat)) {
+        await target.lstat();
+      }
+    }
+    return this.matchCheckTest(s, ifDir);
   }
   matchCheckTest(e, ifDir) {
-    return e && (this.maxDepth === Infinity || e.depth() <= this.maxDepth) && (!ifDir || e.canReaddir()) && (!this.opts.nodir || !e.isDirectory()) && !__privateMethod(this, _GlobUtil_instances, ignored_fn).call(this, e) ? e : void 0;
+    return e && (this.maxDepth === Infinity || e.depth() <= this.maxDepth) && (!ifDir || e.canReaddir()) && (!this.opts.nodir || !e.isDirectory()) && (!this.opts.nodir || !this.opts.follow || !e.isSymbolicLink() || !e.realpathCached()?.isDirectory()) && !__privateMethod(this, _GlobUtil_instances, ignored_fn).call(this, e) ? e : void 0;
   }
   matchCheckSync(e, ifDir) {
     if (ifDir && this.opts.nodir)
@@ -6463,11 +6485,22 @@ var GlobUtil = class {
       e = rpc;
     }
     const needStat = e.isUnknown() || this.opts.stat;
-    return this.matchCheckTest(needStat ? e.lstatSync() : e, ifDir);
+    const s = needStat ? e.lstatSync() : e;
+    if (this.opts.follow && this.opts.nodir && s?.isSymbolicLink()) {
+      const target = s.realpathSync();
+      if (target && (target?.isUnknown() || this.opts.stat)) {
+        target.lstatSync();
+      }
+    }
+    return this.matchCheckTest(s, ifDir);
   }
   matchFinish(e, absolute) {
     if (__privateMethod(this, _GlobUtil_instances, ignored_fn).call(this, e))
       return;
+    if (!this.includeChildMatches && __privateGet(this, _ignore)?.add) {
+      const ign = `${e.relativePosix()}/**`;
+      __privateGet(this, _ignore).add(ign);
+    }
     const abs = this.opts.absolute === void 0 ? absolute : this.opts.absolute;
     this.seen.add(e);
     const mark = this.opts.mark && e.isDirectory() ? __privateGet(this, _sep) : "";
@@ -6618,8 +6651,7 @@ childrenIgnored_fn = function(path4) {
 var GlobWalker = class extends GlobUtil {
   constructor(patterns, path4, opts) {
     super(patterns, path4, opts);
-    __publicField(this, "matches");
-    this.matches = /* @__PURE__ */ new Set();
+    __publicField(this, "matches", /* @__PURE__ */ new Set());
   }
   matchEmit(e) {
     this.matches.add(e);
@@ -6690,7 +6722,7 @@ var GlobStream = class extends GlobUtil {
   }
 };
 
-// ../node_modules/.pnpm/glob@10.3.10/node_modules/glob/dist/esm/glob.js
+// node_modules/glob/dist/esm/glob.js
 var defaultPlatform3 = typeof process === "object" && process && typeof process.platform === "string" ? process.platform : "linux";
 var Glob = class {
   /**
@@ -6730,6 +6762,7 @@ var Glob = class {
     __publicField(this, "signal");
     __publicField(this, "windowsPathsNoEscape");
     __publicField(this, "withFileTypes");
+    __publicField(this, "includeChildMatches");
     /**
      * The options provided to the constructor.
      */
@@ -6759,6 +6792,7 @@ var Glob = class {
     this.noext = !!opts.noext;
     this.realpath = !!opts.realpath;
     this.absolute = opts.absolute;
+    this.includeChildMatches = opts.includeChildMatches !== false;
     this.noglobstar = !!opts.noglobstar;
     this.matchBase = !!opts.matchBase;
     this.maxDepth = typeof opts.maxDepth === "number" ? opts.maxDepth : Infinity;
@@ -6832,7 +6866,8 @@ var Glob = class {
         ...this.opts,
         maxDepth: this.maxDepth !== Infinity ? this.maxDepth + this.scurry.cwd.depth() : Infinity,
         platform: this.platform,
-        nocase: this.nocase
+        nocase: this.nocase,
+        includeChildMatches: this.includeChildMatches
       }).walk()
     ];
   }
@@ -6842,7 +6877,8 @@ var Glob = class {
         ...this.opts,
         maxDepth: this.maxDepth !== Infinity ? this.maxDepth + this.scurry.cwd.depth() : Infinity,
         platform: this.platform,
-        nocase: this.nocase
+        nocase: this.nocase,
+        includeChildMatches: this.includeChildMatches
       }).walkSync()
     ];
   }
@@ -6851,7 +6887,8 @@ var Glob = class {
       ...this.opts,
       maxDepth: this.maxDepth !== Infinity ? this.maxDepth + this.scurry.cwd.depth() : Infinity,
       platform: this.platform,
-      nocase: this.nocase
+      nocase: this.nocase,
+      includeChildMatches: this.includeChildMatches
     }).stream();
   }
   streamSync() {
@@ -6859,7 +6896,8 @@ var Glob = class {
       ...this.opts,
       maxDepth: this.maxDepth !== Infinity ? this.maxDepth + this.scurry.cwd.depth() : Infinity,
       platform: this.platform,
-      nocase: this.nocase
+      nocase: this.nocase,
+      includeChildMatches: this.includeChildMatches
     }).streamSync();
   }
   /**
@@ -6884,7 +6922,7 @@ var Glob = class {
   }
 };
 
-// ../node_modules/.pnpm/glob@10.3.10/node_modules/glob/dist/esm/has-magic.js
+// node_modules/glob/dist/esm/has-magic.js
 var hasMagic = (pattern, options = {}) => {
   if (!Array.isArray(pattern)) {
     pattern = [pattern];
@@ -6896,7 +6934,7 @@ var hasMagic = (pattern, options = {}) => {
   return false;
 };
 
-// ../node_modules/.pnpm/glob@10.3.10/node_modules/glob/dist/esm/index.js
+// node_modules/glob/dist/esm/index.js
 function globStreamSync(pattern, options = {}) {
   return new Glob(pattern, options).streamSync();
 }
@@ -6944,7 +6982,7 @@ var glob = Object.assign(glob_, {
 });
 glob.glob = glob;
 
-// ../node_modules/.pnpm/rimraf@5.0.5/node_modules/rimraf/dist/esm/opt-arg.js
+// node_modules/rimraf/dist/esm/opt-arg.js
 var typeOrUndef = (val, t) => typeof val === "undefined" || typeof val === t;
 var isRimrafOptions = (o) => !!o && typeof o === "object" && typeOrUndef(o.preserveRoot, "boolean") && typeOrUndef(o.tmp, "string") && typeOrUndef(o.maxRetries, "number") && typeOrUndef(o.retryDelay, "number") && typeOrUndef(o.backoff, "number") && typeOrUndef(o.maxBackoff, "number") && (typeOrUndef(o.glob, "boolean") || o.glob && typeof o.glob === "object") && typeOrUndef(o.filter, "function");
 var assertRimrafOptions = (o) => {
@@ -6976,14 +7014,14 @@ var optArgT = (opt) => {
 var optArg = (opt = {}) => optArgT(opt);
 var optArgSync = (opt = {}) => optArgT(opt);
 
-// ../node_modules/.pnpm/rimraf@5.0.5/node_modules/rimraf/dist/esm/path-arg.js
+// node_modules/rimraf/dist/esm/path-arg.js
 import { parse, resolve } from "path";
 import { inspect } from "util";
 
-// ../node_modules/.pnpm/rimraf@5.0.5/node_modules/rimraf/dist/esm/platform.js
+// node_modules/rimraf/dist/esm/platform.js
 var platform_default = process.env.__TESTING_RIMRAF_PLATFORM__ || process.platform;
 
-// ../node_modules/.pnpm/rimraf@5.0.5/node_modules/rimraf/dist/esm/path-arg.js
+// node_modules/rimraf/dist/esm/path-arg.js
 var pathArg = (path4, opt = {}) => {
   const type = typeof path4;
   if (type !== "string") {
@@ -7025,7 +7063,7 @@ var pathArg = (path4, opt = {}) => {
 };
 var path_arg_default = pathArg;
 
-// ../node_modules/.pnpm/rimraf@5.0.5/node_modules/rimraf/dist/esm/fs.js
+// node_modules/rimraf/dist/esm/fs.js
 import fs2 from "fs";
 import { chmodSync, mkdirSync, renameSync, rmdirSync, rmSync, statSync, lstatSync as lstatSync2, unlinkSync } from "fs";
 import { readdirSync as rdSync } from "fs";
@@ -7051,10 +7089,10 @@ var promises = {
   unlink
 };
 
-// ../node_modules/.pnpm/rimraf@5.0.5/node_modules/rimraf/dist/esm/rimraf-posix.js
+// node_modules/rimraf/dist/esm/rimraf-posix.js
 import { parse as parse2, resolve as resolve2 } from "path";
 
-// ../node_modules/.pnpm/rimraf@5.0.5/node_modules/rimraf/dist/esm/readdir-or-error.js
+// node_modules/rimraf/dist/esm/readdir-or-error.js
 var { readdir: readdir3 } = promises;
 var readdirOrError = (path4) => readdir3(path4).catch((er) => er);
 var readdirOrErrorSync = (path4) => {
@@ -7065,7 +7103,7 @@ var readdirOrErrorSync = (path4) => {
   }
 };
 
-// ../node_modules/.pnpm/rimraf@5.0.5/node_modules/rimraf/dist/esm/ignore-enoent.js
+// node_modules/rimraf/dist/esm/ignore-enoent.js
 var ignoreENOENT = async (p) => p.catch((er) => {
   if (er.code !== "ENOENT") {
     throw er;
@@ -7081,7 +7119,7 @@ var ignoreENOENTSync = (fn) => {
   }
 };
 
-// ../node_modules/.pnpm/rimraf@5.0.5/node_modules/rimraf/dist/esm/rimraf-posix.js
+// node_modules/rimraf/dist/esm/rimraf-posix.js
 var { lstat: lstat3, rmdir: rmdir2, unlink: unlink2 } = promises;
 var rimrafPosix = async (path4, opt) => {
   if (opt?.signal?.aborted) {
@@ -7178,10 +7216,10 @@ var rimrafPosixDirSync = (path4, opt, ent) => {
   return true;
 };
 
-// ../node_modules/.pnpm/rimraf@5.0.5/node_modules/rimraf/dist/esm/rimraf-windows.js
+// node_modules/rimraf/dist/esm/rimraf-windows.js
 import { parse as parse5, resolve as resolve5 } from "path";
 
-// ../node_modules/.pnpm/rimraf@5.0.5/node_modules/rimraf/dist/esm/fix-eperm.js
+// node_modules/rimraf/dist/esm/fix-eperm.js
 var { chmod: chmod2 } = promises;
 var fixEPERM = (fn) => async (path4) => {
   try {
@@ -7230,7 +7268,7 @@ var fixEPERMSync = (fn) => (path4) => {
   }
 };
 
-// ../node_modules/.pnpm/rimraf@5.0.5/node_modules/rimraf/dist/esm/retry-busy.js
+// node_modules/rimraf/dist/esm/retry-busy.js
 var MAXBACKOFF = 200;
 var RATE = 1.2;
 var MAXRETRIES = 10;
@@ -7287,10 +7325,10 @@ var retryBusySync = (fn) => {
   return method;
 };
 
-// ../node_modules/.pnpm/rimraf@5.0.5/node_modules/rimraf/dist/esm/rimraf-move-remove.js
+// node_modules/rimraf/dist/esm/rimraf-move-remove.js
 import { basename, parse as parse4, resolve as resolve4 } from "path";
 
-// ../node_modules/.pnpm/rimraf@5.0.5/node_modules/rimraf/dist/esm/default-tmp.js
+// node_modules/rimraf/dist/esm/default-tmp.js
 import { tmpdir } from "os";
 import { parse as parse3, resolve as resolve3 } from "path";
 var { stat: stat2 } = promises;
@@ -7333,7 +7371,7 @@ var posixDefaultTmpSync = () => tmpdir();
 var defaultTmp = platform_default === "win32" ? win32DefaultTmp : posixDefaultTmp;
 var defaultTmpSync = platform_default === "win32" ? win32DefaultTmpSync : posixDefaultTmpSync;
 
-// ../node_modules/.pnpm/rimraf@5.0.5/node_modules/rimraf/dist/esm/rimraf-move-remove.js
+// node_modules/rimraf/dist/esm/rimraf-move-remove.js
 var { lstat: lstat4, rename: rename2, unlink: unlink3, rmdir: rmdir3, chmod: chmod3 } = promises;
 var uniqueFilename = (path4) => `.${basename(path4)}.${Math.random()}`;
 var unlinkFixEPERM = async (path4) => unlink3(path4).catch((er) => {
@@ -7486,7 +7524,7 @@ var tmpUnlinkSync = (path4, tmp, rmSync2) => {
   return rmSync2(tmpFile);
 };
 
-// ../node_modules/.pnpm/rimraf@5.0.5/node_modules/rimraf/dist/esm/rimraf-windows.js
+// node_modules/rimraf/dist/esm/rimraf-windows.js
 var { unlink: unlink4, rmdir: rmdir4, lstat: lstat5 } = promises;
 var rimrafWindowsFile = retryBusy(fixEPERM(unlink4));
 var rimrafWindowsFileSync = retryBusySync(fixEPERMSync(unlinkSync));
@@ -7628,11 +7666,11 @@ var rimrafWindowsDirSync = (path4, opt, ent, state = START) => {
   return true;
 };
 
-// ../node_modules/.pnpm/rimraf@5.0.5/node_modules/rimraf/dist/esm/rimraf-manual.js
+// node_modules/rimraf/dist/esm/rimraf-manual.js
 var rimrafManual = platform_default === "win32" ? rimrafWindows : rimrafPosix;
 var rimrafManualSync = platform_default === "win32" ? rimrafWindowsSync : rimrafPosixSync;
 
-// ../node_modules/.pnpm/rimraf@5.0.5/node_modules/rimraf/dist/esm/rimraf-native.js
+// node_modules/rimraf/dist/esm/rimraf-native.js
 var { rm: rm2 } = promises;
 var rimrafNative = async (path4, opt) => {
   await rm2(path4, {
@@ -7651,7 +7689,7 @@ var rimrafNativeSync = (path4, opt) => {
   return true;
 };
 
-// ../node_modules/.pnpm/rimraf@5.0.5/node_modules/rimraf/dist/esm/use-native.js
+// node_modules/rimraf/dist/esm/use-native.js
 var version = process.env.__TESTING_RIMRAF_NODE_VERSION__ || process.version;
 var versArr = version.replace(/^v/, "").split(".");
 var [major = 0, minor = 0] = versArr.map((v) => parseInt(v, 10));
@@ -7659,7 +7697,7 @@ var hasNative = major > 14 || major === 14 && minor >= 14;
 var useNative = !hasNative || platform_default === "win32" ? () => false : (opt) => !opt?.signal && !opt?.filter;
 var useNativeSync = !hasNative || platform_default === "win32" ? () => false : (opt) => !opt?.signal && !opt?.filter;
 
-// ../node_modules/.pnpm/rimraf@5.0.5/node_modules/rimraf/dist/esm/index.js
+// node_modules/rimraf/dist/esm/index.js
 var wrap = (fn) => async (path4, opt) => {
   const options = optArg(opt);
   if (options.glob) {

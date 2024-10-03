@@ -1,4 +1,6 @@
-let fs: any, path: any;
+import path from "path";
+import fs from "fs";
+
 interface SnippetExtractorConfig {
   rootDirectory: string;
   snippetOutputDirectory: string;

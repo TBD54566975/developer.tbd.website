@@ -1,6 +1,6 @@
 // src/extract/SnippetExtractor.ts
-var fs;
-var path;
+import path from "path";
+import fs from "fs";
 var SnippetExtractor = class {
   constructor(config3) {
     this.prependBlocks = {};
