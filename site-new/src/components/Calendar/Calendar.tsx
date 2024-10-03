@@ -1,20 +1,16 @@
-import React, { useState } from "react";
+import React from "react";
 import {
-  startOfToday,
   endOfMonth,
   eachDayOfInterval,
-  parse,
   getDay,
   format,
-  add,
-  isToday,
-  isSameMonth,
   endOfWeek,
   startOfWeek,
   isBefore,
   isAfter,
 } from "date-fns";
 import { cn } from "@site/lib/utils";
+import { useCalendar } from "./CalendarCtx";
 
 const colStartClasses = [
   "col-start-1",
@@ -26,57 +22,29 @@ const colStartClasses = [
   "col-start-7",
 ];
 
-const Calendar = () => {
-  const today = startOfToday();
-  const [currentMonth, setCurrentMonth] = useState(format(today, "MMM-yyyy"));
-  const firstDayCurrentMonth = parse(currentMonth, "MMM-yyyy", new Date());
-
+const Calendar = ({
+  renderEvents,
+}: {
+  renderEvents?: (_day: Date) => React.ReactNode;
+}) => {
+  const { firstDayCurrentMonth } = useCalendar();
   const days = eachDayOfInterval({
     start: startOfWeek(firstDayCurrentMonth),
     end: endOfWeek(endOfMonth(firstDayCurrentMonth)),
   });
 
-  function previousMonth() {
-    const firstDayNextMonth = add(firstDayCurrentMonth, { months: -1 });
-    setCurrentMonth(format(firstDayNextMonth, "MMM-yyyy"));
-  }
-
-  function nextMonth() {
-    const firstDayNextMonth = add(firstDayCurrentMonth, { months: 1 });
-    setCurrentMonth(format(firstDayNextMonth, "MMM-yyyy"));
-  }
-
   return (
     <>
-      <div className="flex items-center">
-        <h2 className="flex-auto font-semibold text-gray-900 text-white">
-          {format(firstDayCurrentMonth, "MMMM yyyy")}
-        </h2>
-        <button
-          type="button"
-          onClick={previousMonth}
-          className="-my-1.5 flex flex-none items-center justify-center p-1.5 text-gray-400 hover:text-gray-500"
-        >
-          <span className="sr-only">Previous month</span>
-        </button>
-        <button
-          onClick={nextMonth}
-          type="button"
-          className="-my-1.5 -mr-1.5 ml-2 flex flex-none items-center justify-center p-1.5 text-gray-400 hover:text-gray-500"
-        >
-          <span className="sr-only">Next month</span>
-        </button>
+      <div className="grid grid-cols-7 gap-[0.5px] text-center text-xs leading-6 text-white *:eyebrow *:grid *:h-[49.2px] *:place-items-center *:bg-tbd-yellow *:pb-[10px] *:pt-[18px] *:text-black">
+        <div>SUNDAY</div>
+        <div>MONDAY</div>
+        <div>TUESDAY</div>
+        <div>WEDNESDAY</div>
+        <div>THURSDAY</div>
+        <div>FRIDAY</div>
+        <div>SATURDAY</div>
       </div>
-      <div className="mt-10 grid grid-cols-7 text-center text-xs leading-6 text-white">
-        <div>S</div>
-        <div>M</div>
-        <div>T</div>
-        <div>W</div>
-        <div>T</div>
-        <div>F</div>
-        <div>S</div>
-      </div>
-      <div className="mt-2 grid grid-cols-7 gap-[0.5px] border border-solid border-white bg-gray-100 text-sm">
+      <div className="grid grid-cols-7 gap-[0.5px] border border-solid border-white bg-gray-100 text-sm">
         {days.map((day, dayIdx) => {
           const isNotInThemonth =
             isBefore(day, firstDayCurrentMonth) ||
@@ -86,25 +54,28 @@ const Calendar = () => {
               key={day.toString()}
               className={cn(
                 dayIdx === 0 && colStartClasses[getDay(day)],
-                "h-full w-full bg-black py-1.5",
+                "h-full w-full bg-black",
               )}
             >
               <div
                 className={cn(
-                  !isToday(day) &&
-                    !isSameMonth(day, firstDayCurrentMonth) &&
-                    "text-gray-400",
-                  isToday(day) && "font-semibold",
-                  "eyebrow mx-auto flex h-full w-full items-center justify-center rounded-full",
-                  {
-                    "text-white": !isNotInThemonth,
-                    "text-gray-400": isNotInThemonth,
-                  },
+                  // isToday(day) && "font-semibold",
+                  "h-full w-full justify-center px-twist-core-spacing-5 py-twist-core-spacing-6",
                 )}
               >
-                <time dateTime={format(day, "yyyy-MM-dd")}>
-                  {format(day, "d")}
+                <time
+                  dateTime={format(day, "yyyy-MM-dd")}
+                  className={cn(
+                    {
+                      "text-white": !isNotInThemonth,
+                      "text-gray-400": isNotInThemonth,
+                    },
+                    "eyebrow mb-[13px] block text-right",
+                  )}
+                >
+                  {format(day, "dd")}
                 </time>
+                {renderEvents?.(day)}
               </div>
             </div>
           );
