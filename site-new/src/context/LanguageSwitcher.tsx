@@ -1,24 +1,48 @@
-import React, { createContext, useState, useContext } from "react";
+import React, { createContext, useState, useContext, useEffect } from "react";
+import ExecutionEnvironment from "@docusaurus/ExecutionEnvironment";
 
-const LanguageContext = createContext();
+interface LanguageContextProps {
+  selectedLanguage: string;
+  setLanguage: (language: string) => void;
+}
 
-export const LanguageProvider = ({ children }) => {
-  const [selectedOption, setSelectedOption] = useState({
-    label: "JavaScript",
-    icon: "/img/js-icon.svg",
-  });
+const LanguageContext = createContext<LanguageContextProps | undefined>(
+  undefined,
+);
 
-  const toggleLanguage = (newLanguage) => {
-    setSelectedOption(newLanguage);
+export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({
+  children,
+}) => {
+  const [selectedLanguage, setSelectedLanguage] =
+    useState<string>("javascript");
+
+  useEffect(() => {
+    if (ExecutionEnvironment.canUseDOM) {
+      const storedLanguage = localStorage.getItem("selectedLanguage");
+      if (storedLanguage) {
+        setSelectedLanguage(storedLanguage);
+      }
+    }
+  }, []);
+
+  const setLanguage = (language: string) => {
+    setSelectedLanguage(language);
+    if (ExecutionEnvironment.canUseDOM) {
+      localStorage.setItem("selectedLanguage", language);
+    }
   };
 
   return (
-    <LanguageContext.Provider value={{ selectedOption, toggleLanguage }}>
+    <LanguageContext.Provider value={{ selectedLanguage, setLanguage }}>
       {children}
     </LanguageContext.Provider>
   );
 };
 
-export const useLanguage = () => {
-  return useContext(LanguageContext);
+export const useLanguage = (): LanguageContextProps => {
+  const context = useContext(LanguageContext);
+  if (!context) {
+    throw new Error("useLanguage must be used within a LanguageProvider");
+  }
+  return context;
 };
