@@ -7,4 +7,12 @@
       "contributor": "Ebony Louis"
     }
   ]
-  
+  [
+    {
+        "type": "blog",
+        "thumbnail": "/img/external-contributor/kiranbaliga.png",
+        "title": "Key Management for DIDs",
+        "link": "https://dev.to/kiran_baliga/key-management-for-dids-a-beginners-journey-4269",
+        "contributor": "Kiran Baliga"
+    }
+]
