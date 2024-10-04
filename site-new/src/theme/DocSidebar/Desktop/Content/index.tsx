@@ -11,6 +11,7 @@ import type { Props } from "@theme/DocSidebar/Desktop/Content";
 import Background from "@site/src/components/Background";
 import useBaseUrl from "@docusaurus/useBaseUrl";
 import DocBreadcrumbsWrapper from "@site/src/theme/DocBreadcrumbs";
+import Heading from "@theme/Heading";
 
 import LanguageSwitcher from "@site/src/components/LanguageSwitcher";
 
@@ -38,7 +39,7 @@ export default function DocSidebarDesktopContent({
 }: Props): JSX.Element {
   const showAnnouncementBar = useShowAnnouncementBar();
 
-  const sidebarHeader = sidebar[0].customProps.sidebarHeader;
+  const sidebarHeader = sidebar[0].customProps.sidebarHeader as string;
 
   return (
     <nav
@@ -58,10 +59,12 @@ export default function DocSidebarDesktopContent({
       <Background
         bgColor="yellow"
         squareCount={5}
-        className={"mb-8 h-52 w-64 py-2 pl-4"}
+        className={"center grid h-[105px] items-center px-twist-core-spacing-8"}
       >
         <DocBreadcrumbsWrapper />
-        <h4 className="text-dark-grey">{sidebarHeader}</h4>
+        <Heading as="h4" className="my-0 text-dark-grey">
+          {sidebarHeader}
+        </Heading>
       </Background>
       <ul
         className={clsx(
