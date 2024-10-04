@@ -61,7 +61,7 @@ export default function DocSidebarDesktopContent({
         squareCount={5}
         className={"center grid h-[105px] items-center px-twist-core-spacing-8"}
       >
-        <DocBreadcrumbsWrapper />
+        {/* <DocBreadcrumbsWrapper /> */}
         <Heading as="h4" className="my-0 text-dark-grey">
           {sidebarHeader}
         </Heading>
