@@ -211,14 +211,14 @@ function CommunityIndex() {
             themeColor="purple"
             primary
           />
-          {/* <HeroCard
+          <HeroCard
             heroText="TBD Ambassadors"
             buttonUrl="/community/ambassadors/"
             buttonText="Discover More"
             bodyText="Gallery of content from videos to blogs from our amazing community members."
             themeColor="cyan"
             primary
-          /> */}
+          />
           <HeroCard
             heroText="Contributor Guide"
             buttonUrl="/open-source/contributing"
@@ -228,7 +228,7 @@ function CommunityIndex() {
             primary
             className="text-center"
           />
-          {/* <HeroCard
+          <HeroCard
             heroText="Code of Conduct"
             buttonUrl="/open-source/code-of-conduct"
             buttonText="Learn More"
@@ -236,7 +236,7 @@ function CommunityIndex() {
             themeColor="purple"
             primary
             className="text-center"
-          /> */}
+          />
         </div>
         <h2 className="pt-10">Upcoming Events 🥳 </h2>
         <p className="pb-10">

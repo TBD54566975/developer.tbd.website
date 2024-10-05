@@ -41,6 +41,12 @@ jobs:
             large: 15
           };
 
+          const POINT_TO_LABEL = {
+            5: 'small',
+            10: 'medium',
+            15: 'large'
+          };
+
           const calculatePoints = (labels) => {
             const size = labels.find(label => POINT_VALUES[label.name.toLowerCase()]);
             return size ? POINT_VALUES[size.name.toLowerCase()] : POINT_VALUES.small;
@@ -90,19 +96,29 @@ jobs:
               const flatPRs = allPRs.flat();
 
               const leaderboard = flatPRs.reduce((acc, pr) => {
-                if (!acc[pr.user]) acc[pr.user] = { points: 0, prs: 0 };
+                if (!acc[pr.user]) {
+                  acc[pr.user] = { points: 0, prs: 0, highestValue: 0 };
+                }
                 acc[pr.user].points += pr.points;
                 acc[pr.user].prs += 1;
+                acc[pr.user].highestValue = Math.max(acc[pr.user].highestValue, pr.points);
                 return acc;
               }, {});
 
               const sortedLeaderboard = Object.entries(leaderboard)
-                .sort(([, a], [, b]) => b.points - a.points)
+                .sort(([, a], [, b]) => {
+                  if (b.points !== a.points) {
+                    return b.points - a.points;
+                  }
+                  // If points are tied, sort by highest value contribution
+                  return b.highestValue - a.highestValue;
+                })
                 .map(([username, data], index) => ({ 
                   rank: index + 1, 
                   username, 
                   points: data.points, 
-                  prs: data.prs 
+                  prs: data.prs,
+                  highestValue: POINT_TO_LABEL[data.highestValue] || 'small'
                 }));
 
               return sortedLeaderboard;
@@ -118,9 +134,9 @@ jobs:
 
           ### 🌟 **Current Rankings:**
 
-          | Rank | Contributor | Points | PRs |
-          |------|-------------|--------|-----|
-          ${leaderboardData.map(entry => `| ${entry.rank} | @${entry.username} | ${entry.points} | ${entry.prs} |`).join('\n')}
+          | Rank | Contributor | Points | PRs | Biggest PR to Date |
+          |------|-------------|--------|-----|------------------|
+          ${leaderboardData.map(entry => `| ${entry.rank} | @${entry.username} | ${entry.points} | ${entry.prs} | ${entry.highestValue} |`).join('\n')}
 
           ### 📜 How It Works:
           The top 10 contributors with the most points will snag custom swag with this year's exclusive TBD x Hacktoberfest 2024 design. To earn your place in the leaderboard, we have created a points system that is explained below. As you complete a task by successfully merging a PR, you will automatically be granted a certain # of points.
@@ -141,7 +157,7 @@ jobs:
           - **Criteria:** Rankings are based on how many points you earn across all participating TBD repos. To ensure your PRs are successfully merged:
             - Ensure your contributions are aligned with our [project's CoC](https://developer.tbd.website/open-source/code-of-conduct).
             - Refer to each participating repo's [Contributing Guide](https://github.com/TBD54566975/developer.tbd.website/blob/main/CONTRIBUTING.md).
-          - **Tie-Breakers:** In the event of a tie, the contributor with the earliest PR merge timestamp will be ranked higher.
+          - **Tie-Breakers:** In the event of a tie in total points, the contributor with the highest value single contribution (large > medium > small) will be ranked higher.
 
 
           ### 🚀 Get Featured:

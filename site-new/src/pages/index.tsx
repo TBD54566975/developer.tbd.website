@@ -62,6 +62,7 @@ export default function Home(): JSX.Element {
                 >
                   The future of finance is{" "}
                   <span className="relative mb-twist-core-spacing-7 inline-block text-tbd-yellow">
+                    Open
                     <Underline className="absolute bottom-[-10px] left-2 fill-tbd-yellow lg:bottom-[-20px] lg:left-4" />
                   </span>
                 </Heading>
