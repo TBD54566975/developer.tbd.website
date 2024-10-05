@@ -19,5 +19,13 @@
         "title": "What are DWNs in Web5?",
         "link": "https://medium.com/@ashitsdarurmath/what-are-dwns-in-web5-5ae759341a6d",
         "contributor": "Ashit Darurmath"
+    },
+    {
+        "type": "blog",
+        "thumbnail": "/img/external-contributor/kiranbaliga.png",
+        "title": "Verifiable Credentials (VCs) in Web5",
+        "link": "https://dev.to/kiran_baliga/understanding-verifiable-credentials-vcs-in-web5-a-beginners-guide-f38",
+        "contributor": "Kiran Baliga"
     }
+  
 ]
