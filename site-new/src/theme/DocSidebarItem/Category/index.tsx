@@ -1,24 +1,24 @@
-import React, { type ComponentProps, useEffect, useMemo } from 'react';
-import clsx from 'clsx';
+import React, { type ComponentProps, useEffect, useMemo } from "react";
+import clsx from "clsx";
 import {
   ThemeClassNames,
   useThemeConfig,
   usePrevious,
   Collapsible,
   useCollapsible,
-} from '@docusaurus/theme-common';
-import { isSamePath } from '@docusaurus/theme-common/internal';
+} from "@docusaurus/theme-common";
+import { isSamePath } from "@docusaurus/theme-common/internal";
 import {
   isActiveSidebarItem,
   findFirstSidebarItemLink,
   useDocSidebarItemsExpandedState,
-} from '@docusaurus/plugin-content-docs/client';
-import Link from '@docusaurus/Link';
-import { translate } from '@docusaurus/Translate';
-import useIsBrowser from '@docusaurus/useIsBrowser';
-import DocSidebarItems from '@theme/DocSidebarItems';
-import type { Props } from '@theme/DocSidebarItem/Category';
-import Chevron from '@site/static/img/chevron';
+} from "@docusaurus/plugin-content-docs/client";
+import Link from "@docusaurus/Link";
+import { translate } from "@docusaurus/Translate";
+import useIsBrowser from "@docusaurus/useIsBrowser";
+import DocSidebarItems from "@theme/DocSidebarItems";
+import type { Props } from "@theme/DocSidebarItem/Category";
+import Chevron from "@site/static/img/chevron";
 
 // If we navigate to a category and it becomes active, it should automatically
 // expand itself
@@ -49,7 +49,7 @@ function useAutoExpandActiveCategory({
  * see https://github.com/facebook/docusaurus/issues/3030
  */
 function useCategoryHrefWithSSRFallback(
-  item: Props['item']
+  item: Props["item"],
 ): string | undefined {
   const isBrowser = useIsBrowser();
   return useMemo(() => {
@@ -72,7 +72,7 @@ function CollapseButton({
 }: {
   collapsed: boolean;
   categoryLabel: string;
-  onClick: ComponentProps<'button'>['onClick'];
+  onClick: ComponentProps<"button">["onClick"];
 }) {
   return (
     <button
@@ -80,24 +80,24 @@ function CollapseButton({
         collapsed
           ? translate(
               {
-                id: 'theme.DocSidebarItem.expandCategoryAriaLabel',
+                id: "theme.DocSidebarItem.expandCategoryAriaLabel",
                 message: "Expand sidebar category '{label}'",
-                description: 'The ARIA label to expand the sidebar category',
+                description: "The ARIA label to expand the sidebar category",
               },
-              { label: categoryLabel }
+              { label: categoryLabel },
             )
           : translate(
               {
-                id: 'theme.DocSidebarItem.collapseCategoryAriaLabel',
+                id: "theme.DocSidebarItem.collapseCategoryAriaLabel",
                 message: "Collapse sidebar category '{label}'",
-                description: 'The ARIA label to collapse the sidebar category',
+                description: "The ARIA label to collapse the sidebar category",
               },
-              { label: categoryLabel }
+              { label: categoryLabel },
             )
       }
       aria-expanded={!collapsed}
-      type='button'
-      className='clean-btn menu__caret'
+      type="button"
+      className="clean-btn menu__caret"
       onClick={onClick}
     />
   );
@@ -156,23 +156,23 @@ export default function DocSidebarItemCategory({
       className={clsx(
         ThemeClassNames.docs.docSidebarItemCategory,
         ThemeClassNames.docs.docSidebarItemCategoryLevel(level),
-        'menu__list-item',
+        "menu__list-item",
         {
-          'menu__list-item--collapsed': collapsed,
+          "menu__list-item--collapsed": collapsed,
         },
-        className
+        className,
       )}
     >
       <div
-        className={clsx('menu__list-item-collapsible', {
-          'menu__list-item-collapsible--active': isCurrentPage,
+        className={clsx("menu__list-item-collapsible", {
+          "menu__list-item-collapsible--active": isCurrentPage,
         })}
       >
         <Link
-          className={clsx('menu__link', {
-            'menu__link--sublist': collapsible,
+          className={clsx("menu__link", {
+            "menu__link--sublist": collapsible,
             // 'menu__link--sublist-caret': !href && collapsible,
-            'menu__link--active': isActive,
+            "menu__link--active": isActive,
           })}
           onClick={
             collapsible
@@ -189,21 +189,23 @@ export default function DocSidebarItemCategory({
                   onItemClick?.(item);
                 }
           }
-          aria-current={isCurrentPage ? 'page' : undefined}
-          role={collapsible && !href ? 'button' : undefined}
+          aria-current={isCurrentPage ? "page" : undefined}
+          role={collapsible && !href ? "button" : undefined}
           aria-expanded={collapsible && !href ? !collapsed : undefined}
-          href={collapsible ? hrefWithSSRFallback ?? '#' : hrefWithSSRFallback}
+          href={
+            collapsible ? (hrefWithSSRFallback ?? "#") : hrefWithSSRFallback
+          }
           {...props}
         >
-          <div className='h-full flex items-center'>
+          <div className="flex h-full items-center">
             {!href && collapsible && (
               <Chevron
                 className={clsx(
-                  'size-6 transition-all mr-twist-core-spacing-3 dark:text-white',
+                  "mr-twist-core-spacing-3 size-6 transition-all dark:text-white",
                   {
-                    'transform rotate-0': collapsed,
-                    'transform rotate-180': !collapsed,
-                  }
+                    "rotate-0 transform": collapsed,
+                    "rotate-180 transform": !collapsed,
+                  },
                 )}
               />
             )}
@@ -222,7 +224,7 @@ export default function DocSidebarItemCategory({
         )}
       </div>
 
-      <Collapsible lazy as='ul' className='menu__list' collapsed={collapsed}>
+      <Collapsible lazy as="ul" className="menu__list" collapsed={collapsed}>
         <DocSidebarItems
           items={items}
           tabIndex={collapsed ? -1 : 0}

@@ -73,6 +73,7 @@
 	--ifm-font-color-base: #fff;
 	--ifm-menu-link-sublist-icon: url("/img/chevron.svg");
 	--ifm-footer-background-color: var(--ifm-color-primary);
+	--ifm-menu-link-padding-horizontal: var(--twist-core-spacing-12)
 }
 
 h2 {
@@ -130,49 +131,21 @@ h2 {
 	padding-left: 0;
 }
 
-.theme-doc-sidebar-item-link-level-1 a {
-	padding-left: 1.5rem;
-}
 
-.theme-doc-sidebar-item-link-level-2 a {
-	padding-left: 4.5rem;
-}
 
-.theme-doc-sidebar-item-link-level-3 a {
-	padding-left: 4.5rem;
-}
-
-.theme-doc-sidebar-item-link-level-4 {
-	padding-left: 0;
-}
-
-.theme-doc-sidebar-item-link-level-4 a {
-	padding-left: 4.5rem;
-}
 
 /* Category Indentations */
-
-.category-label {
-	font-family: "Basis";
-	opacity: 60%;
-	padding-left: 36px;
-	padding-top: 24px;
-	padding-bottom: 24px;
-	font-size: 12px;
-	font-weight: 400;
-	margin-top: 12px;
-	border-top: 1px solid rgba(0, 0, 0, 0.2);
-	line-height: 14.4px;
-	text-transform: uppercase;
-}
 
 .menu__list-item-collapsible {
 	border-radius: 0;
 }
 
 .theme-doc-sidebar-item-category-level-2 .menu__list-item-collapsible a {
-	padding-left: 2rem;
+	padding-left: calc(var(--ifm-menu-link-padding-horizontal) * 2);
 }
+
+
+
 
 .theme-doc-sidebar-item-category-level-3 .menu__list-item-collapsible button {
 	padding-left: 3.5rem;
@@ -674,7 +647,16 @@ a:has(.footer__logo) {
 	p {
 		@apply p;
 	}
+
+
 }
+
+.sidenav-list-header {
+	@apply block border-b-[1px] border-solid border-black/20 py-twist-core-spacing-8 border-0
+}
+
+
+
 
 .tbd-underline {
 	height: calc(7.333333333333333px + (14.666666666666666 - 7.333333333333333) * ((100vw - 960px) / (1920 - 960)));
@@ -682,4 +664,12 @@ a:has(.footer__logo) {
 	width: calc(199px + (398 - 199) * ((100vw - 960px) / (1920 - 960)));
 	margin-top: calc(12px + (24 - 12) * ((100vw - 960px) / (1920 - 960)));
 	display: block;
+}
+
+.theme-doc-sidebar-item-link-level-2.menu__list-item .menu__link {
+	padding-left: calc(calc(var(--ifm-menu-link-padding-horizontal) * 2) + 4px);
+}
+
+.theme-doc-sidebar-item-link-level-3.menu__list-item .menu__link {
+	padding-left: calc(calc(var(--ifm-menu-link-padding-horizontal) * 3) + 4px);
 }

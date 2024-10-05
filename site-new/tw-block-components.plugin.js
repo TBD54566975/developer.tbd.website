@@ -23,5 +23,10 @@ module.exports = plugin(({ addComponents }) => {
       "@apply text-[1rem] leading-[1.4rem] lg:text-[1.125rem] lg:leading-[1.575rem] font-medium":
         {},
     },
+    ".chevron": {
+      maskImage: 'url("/img/chevron.svg")',
+      height: 16,
+      width: 16,
+    },
   });
 });
