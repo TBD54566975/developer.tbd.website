@@ -28,11 +28,8 @@ export default function ContributorShowcase() {
 
   return (
     <div className='pb-20'>
-      <p>
-        Compelling content is how we introduce and teach developers about the decentralized web (dweb). Whether it's a short video or in-depth blog post breaking down a complex topic, this space is dedicated to your top content on our open source projects, the dweb, and more.</p>
-      <p className='pb-20 , pt-10'>Have a contribution you want to share? Head over to GitHub and check out  
-        <a href="https://github.com/TBD54566975/developer.tbd.website/issues/1749" target="_blank" rel="noopener noreferrer"> this issue </a> to learn how!
-      </p>
+      <p>Compelling content is how we introduce and teach developers about the decentralized web (dweb). Whether it's a short video or in-depth blog post breaking down a complex topic, this space is dedicated to your top content on our open source projects, the dweb, and more.</p>
+      <p className='pb-20 , pt-10'>Have a contribution you want to share? Head over to GitHub and check out <a href="https://github.com/TBD54566975/developer.tbd.website/issues/1749" target="_blank" rel="noopener noreferrer">this issue</a> to learn how!</p>
       
       <div style={filterContainerStyle}>
         <label style={labelStyle}>
@@ -81,15 +78,15 @@ export default function ContributorShowcase() {
                   '2px 2px 5px rgba(0, 0, 0, 0.5)';
               }}
             >
-              <a href={item.link} target="_blank" rel="noopener noreferrer">
+              <a href={item.link} target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none' }}>
                 <img
                   src={item.thumbnail}
                   alt={`${item.title} thumbnail`}
                   style={thumbnailStyle}
-                />
+                />  
+                <h3 style={titleStyle}>{item.title}</h3>
+                <p style={contributorStyle}>By: {item.contributor}</p>
               </a>
-              <h3 style={titleStyle}>{item.title}</h3>
-              <p style={contributorStyle}>By: {item.contributor}</p>
             </div>
           ))}
         </div>
