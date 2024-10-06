@@ -81,15 +81,15 @@ export default function ContributorShowcase() {
                   '2px 2px 5px rgba(0, 0, 0, 0.5)';
               }}
             >
-              <a href={item.link} target="_blank" rel="noopener noreferrer">
+              <a href={item.link} target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none' }}>
                 <img
                   src={item.thumbnail}
                   alt={`${item.title} thumbnail`}
                   style={thumbnailStyle}
-                />
+                />  
+                <h3 style={titleStyle}>{item.title}</h3>
+                <p style={contributorStyle}>By: {item.contributor}</p>
               </a>
-              <h3 style={titleStyle}>{item.title}</h3>
-              <p style={contributorStyle}>By: {item.contributor}</p>
             </div>
           ))}
         </div>
