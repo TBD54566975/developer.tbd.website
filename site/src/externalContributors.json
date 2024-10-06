@@ -26,8 +26,15 @@
         "title": "Verifiable Credentials (VCs) in Web5",
         "link": "https://dev.to/kiran_baliga/understanding-verifiable-credentials-vcs-in-web5-a-beginners-guide-f38",
         "contributor": "Kiran Baliga"
-    }
+    },
+    {
   
+      "type": "blog",
+      "thumbnail": "/img/external-contributor/chrissiku_the_future_0f_web.png",
+      "title": "The Future of Web: How Web5 Transforms Identity and Data OwnerShip",
+      "link": "https://dev.to/chrissiku/the-future-of-web-how-web5-transforms-identity-and-data-ownership-2062",
+      "contributor": "Christian Siku"
+    }
 ]
 
 
