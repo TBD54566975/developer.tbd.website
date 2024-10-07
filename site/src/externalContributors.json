@@ -49,5 +49,12 @@
     "title": "Comparing Dentralized Identifier (DID) Methods",
     "link": "https://dev.to/lymah/comparing-decentralized-identifiersdid-methods-el",
     "contributor": "Lymah123"
-  }
+  },
+  {
+    "type": "blog",
+    "thumbnail": "/img/external-contributor/DRL.png",
+    "title": "Decentralized Resource Locators(DRL)",
+    "link": "https://dev.to/kiran_baliga/getting-started-with-decentralized-resource-locators-drls-43jd",
+    "contributor": "Kiran Baliga"
+  },
 ]
