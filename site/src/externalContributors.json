@@ -41,5 +41,13 @@
     "title": "Decentralized Identity Simplified: How to Resolve DIDs Effectively",
     "link": "https://dev.to/chrissiku/decentralized-identity-simplified-how-to-resolve-dids-effectively-36kp",
     "contributor": "Christian Siku"
+  },
+
+  {
+    "type": "blog",
+    "thumbnail": "/img/external-contributor/Lymah123_comparing_DID_methods.png",
+    "title": "Comparing Dentralized Identifier (DID) Methods",
+    "link": "https://dev.to/lymah/comparing-decentralized-identifiersdid-methods-el",
+    "contributor": "Lymah123"
   }
 ]
