@@ -2,6 +2,7 @@ import React from "react";
 import Background from "@site/src/components/Background";
 import Heading from "@theme/Heading";
 import Button from "@site/src/components/Button";
+import Underline from "@site/static/img/Underline";
 
 type HeroProps = {
   subject: string;
@@ -25,7 +26,10 @@ function Hero({ subject, title, description, url }: HeroProps): JSX.Element {
               as="h1"
               className="relative mb-4 mt-twist-core-spacing-7 text-[48px] font-medium lg:text-[80px]"
             >
-              <span className="text-highlight mb-10">{title}</span>
+              <span className="relative mb-twist-core-spacing-7 inline-block text-tbd-yellow">
+                {title}
+                <Underline className="w absolute bottom-[-10px] left-1/2 -translate-x-1/2 transform lg:bottom-[-20px]" />
+              </span>
             </Heading>
             <Heading
               as="h4"
