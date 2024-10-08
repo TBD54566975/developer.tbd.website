@@ -32,6 +32,9 @@ module.exports = {
     "col-start-5",
     "col-start-6",
     "col-start-7",
+    "line-clamp-3",
+    "line-clamp-2",
+    "line-clamp-1",
   ],
   mode: "jit",
   corePlugins: {

@@ -648,7 +648,9 @@ a:has(.footer__logo) {
 		@apply p;
 	}
 
-
+	button {
+		@apply font-spaceGrotesk text-xs leading-[100%] font-medium lg:text-lg
+	}
 }
 
 .sidenav-list-header {
