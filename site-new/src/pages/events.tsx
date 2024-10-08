@@ -117,7 +117,7 @@ const DailyViewEvent = ({ event }: { event: EventType }) => {
     <div>
       <div className="w-full *:grid *:grid-cols-2 *:gap-x-[134px]">
         <div>
-          <p className="relative mb-0 text-xs leading-[120%]">
+          <p className="eyebrow mb-0 text-xs leading-[120%]">
             {fromTime} - {toTime}
           </p>
           <span className="eyebrow">
@@ -200,7 +200,7 @@ const getEventsAsync = async () => {
 
 const Events = () => {
   const [calendarView, setCalendarView] = useState<"monthly" | "daily">(
-    "daily",
+    "monthly",
   );
   const [isLoading, setIsLoading] = useState(false);
   const [selectedDate, setSelectedDate] = useState<Date>();
