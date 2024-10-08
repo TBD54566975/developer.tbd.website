@@ -4,12 +4,16 @@ import {
   CalendarProvider,
   MonthSwitcher,
 } from "../components/Calendar";
-import { format } from "date-fns";
+import { format, isSameDay } from "date-fns";
 import { max, min } from "date-fns";
 import Link from "@docusaurus/Link";
 import { cn } from "@site/lib/utils";
 import { Loading } from "../components/Loading";
 import ArrowRight from "@site/assets/icons/ArrowRight";
+
+import Heading from "@theme/Heading";
+import VideoCamera from "@site/assets/icons/VideoCamera";
+import Discord from "@site/static/Discord";
 
 export interface EventType {
   start: string;
@@ -83,6 +87,82 @@ const CalenderSwitcherButton = ({
   );
 };
 
+const AddToCalendarButton = ({
+  className,
+  event,
+}: {
+  className?: string;
+  event: EventType;
+}) => {
+  return (
+    <Link
+      className={cn(
+        className,
+        "cursor-pointer bg-white p-[10px] text-black transition-colors hover:bg-tbd-yellow hover:text-black",
+      )}
+      target="_blank"
+      href={createGoogleCalendarLink(event)}
+    >
+      Add to Calendar +
+    </Link>
+  );
+};
+
+const DailyViewEvent = ({ event }: { event: EventType }) => {
+  const fromTime = format(event.start, "hh:mma");
+  const toTime = format(event.end, "hh:mma");
+
+  const isDiscordLink = event.location?.startsWith("https://discord.com");
+  return (
+    <div>
+      <div className="w-full *:grid *:grid-cols-2 *:gap-x-[134px]">
+        <div>
+          <p className="relative mb-0 text-xs leading-[120%]">
+            {fromTime} - {toTime}
+          </p>
+          <span className="eyebrow">
+            <span className="mr-1 opacity-50">#</span>
+            Show and Tells
+          </span>
+        </div>
+        <div className="mt-[19px]">
+          <Heading as="h3" className="mb-0 text-tbd-yellow">
+            {event.summary}
+          </Heading>
+          <div className="flex">
+            <VideoCamera className="relative top-1 mr-3 text-tbd-yellow" />
+            <Heading as="h4">Livestream</Heading>
+          </div>
+        </div>
+        <div className="mt-[37px]">
+          <div>
+            {event.description ? (
+              <div dangerouslySetInnerHTML={{ __html: event.description }} />
+            ) : (
+              <AddToCalendarButton event={event} />
+            )}
+          </div>
+
+          {isDiscordLink && (
+            <Link
+              className={
+                "flex-center w-max gap-twist-core-spacing-2 border-[0.5px] border-solid px-[9px] py-[6px] text-white"
+              }
+              href={event.location}
+            >
+              <Discord />
+              <span className="tag capitalize">Discord</span>
+            </Link>
+          )}
+        </div>
+      </div>
+      {event.description && (
+        <AddToCalendarButton className="mt-[37px] inline-block" event={event} />
+      )}
+    </div>
+  );
+};
+
 const CalendarEvent = ({
   event,
   noOfEvents,
@@ -120,11 +200,12 @@ const getEventsAsync = async () => {
 
 const Events = () => {
   const [calendarView, setCalendarView] = useState<"monthly" | "daily">(
-    "monthly",
+    "daily",
   );
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
+  const [selectedDate, setSelectedDate] = useState<Date>();
+  const [eventsData, setEventsData] = useState<EventGroup>({});
 
-  const [eventsData, setEventsData] = useState<EventGroup>();
   const allDates = useMemo(() => {
     if (eventsData) {
       return Object.keys(eventsData);
@@ -136,6 +217,7 @@ const Events = () => {
     getEventsAsync()
       .then((eventsData) => {
         setEventsData(groupEventsByDate(eventsData));
+        setSelectedDate(new Date(eventsData[0].start));
       })
       .finally(() => {
         setIsLoading(false);
@@ -147,7 +229,11 @@ const Events = () => {
       <CalendarProvider>
         <div className="mb-[47px] grid grid-cols-3">
           <div />
-          <MonthSwitcher maxDate={max(allDates)} minDate={min(allDates)} />
+          {calendarView === "monthly" ? (
+            <MonthSwitcher maxDate={max(allDates)} minDate={min(allDates)} />
+          ) : (
+            <div />
+          )}
           <div className="flex flex-row justify-end">
             <CalenderSwitcherButton
               onClick={() => setCalendarView("monthly")}
@@ -192,6 +278,53 @@ const Events = () => {
               }
             }}
           />
+        )}
+        {calendarView === "daily" && !isLoading && selectedDate && (
+          <div>
+            <div className="flex gap-[1px] bg-black">
+              {Object.keys(eventsData)
+                .slice(0, 7)
+                .map((day) => {
+                  const isActiveDay = isSameDay(day, selectedDate);
+
+                  return (
+                    <div
+                      key={day.toString()}
+                      className={cn(
+                        "flex-1 cursor-pointer pb-[10.41px] pt-[16.35px] text-black",
+                        {
+                          "bg-tbd-yellow": !isActiveDay,
+                          "bg-tbd-yellow-shade-2": isActiveDay,
+                        },
+                      )}
+                      onClick={() => setSelectedDate(new Date(day))}
+                    >
+                      <div className="flex-center h-[90.8px] flex-col">
+                        <span className="eyebrow uppercase">
+                          {format(day, "EEEE")}
+                        </span>
+                        <Heading
+                          as="h3"
+                          className="mb-0 mt-twist-core-spacing-3 font-medium uppercase text-inherit"
+                        >
+                          {format(day, "dd")}
+                        </Heading>
+                      </div>
+                    </div>
+                  );
+                })}
+            </div>
+            <div className="flex flex-col">
+              {eventsData[selectedDate.toLocaleDateString()]?.map((event) => (
+                <div
+                  key={event.htmlLink}
+                  className="border-0 border-b-[0.5px] border-solid pb-[calc(var(--twist-core-spacing-25)+40px)] pt-[50px]"
+                >
+                  <DailyViewEvent event={event} />
+                </div>
+              ))}
+            </div>
+          </div>
         )}
       </CalendarProvider>
     </div>
