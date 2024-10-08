@@ -114,3 +114,21 @@ export function typeWriter({
   }
   type();
 }
+
+export const createGoogleCalendarLink = (event) => {
+  const startTime = new Date(event.start)
+    .toISOString()
+    .replace(/-|:|\.\d\d\d/g, "");
+  const endTime = new Date(event.end)
+    .toISOString()
+    .replace(/-|:|\.\d\d\d/g, "");
+  const details = encodeURIComponent(
+    event.description || "No details provided.",
+  );
+  const location = encodeURIComponent(
+    event.location || "No location provided.",
+  );
+  const text = encodeURIComponent(event.summary || "No title");
+
+  return `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${text}&dates=${startTime}/${endTime}&details=${details}&location=${location}`;
+};

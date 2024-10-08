@@ -1,7 +1,7 @@
 // eslint-disable-next-line @typescript-eslint/no-require-imports
 const plugin = require("tailwindcss/plugin");
 
-module.exports = plugin(({ addComponents }) => {
+module.exports = plugin(({ addComponents, matchUtilities }) => {
   addComponents({
     ".eyebrow": {
       "@apply font-basis text-[0.625rem] leading-[0.75rem] lg:text-[0.75rem] lg:leading-[0.9rem]":
@@ -29,4 +29,19 @@ module.exports = plugin(({ addComponents }) => {
       width: 16,
     },
   });
+  matchUtilities(
+    {
+      "text-highlight": (value) => ({
+        [`@apply relative inline-block text-tbd-yellow before:absolute before:inset-x-[${value}] before:-bottom-4 before:top-[130%] before:h-8 before:overflow-visible before:bg-tbd-yellow before:bg-no-repeat before:content-[''] before:[-webkit-mask-image:url('/img/highlight-underline.svg')] before:[mask-image:url('/img/highlight-underline.svg')] before:[mask-repeat:no-repeat]`]:
+          {},
+      }),
+    },
+    {
+      values: {
+        full: 0,
+        middle: "25%",
+        small: "35%",
+      },
+    },
+  );
 });
