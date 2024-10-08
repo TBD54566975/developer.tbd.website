@@ -658,16 +658,6 @@ a:has(.footer__logo) {
 }
 
 
-
-
-.tbd-underline {
-	height: calc(7.333333333333333px + (14.666666666666666 - 7.333333333333333) * ((100vw - 960px) / (1920 - 960)));
-
-	width: calc(199px + (398 - 199) * ((100vw - 960px) / (1920 - 960)));
-	margin-top: calc(12px + (24 - 12) * ((100vw - 960px) / (1920 - 960)));
-	display: block;
-}
-
 .theme-doc-sidebar-item-link-level-2.menu__list-item .menu__link {
 	padding-left: calc(calc(var(--ifm-menu-link-padding-horizontal) * 2) + 4px);
 }
