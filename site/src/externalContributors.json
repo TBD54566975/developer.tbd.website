@@ -42,12 +42,25 @@
     "link": "https://dev.to/chrissiku/decentralized-identity-simplified-how-to-resolve-dids-effectively-36kp",
     "contributor": "Christian Siku"
   },
-
   {
     "type": "blog",
     "thumbnail": "/img/external-contributor/Lymah123_comparing_DID_methods.png",
     "title": "Comparing Dentralized Identifier (DID) Methods",
     "link": "https://dev.to/lymah/comparing-decentralized-identifiersdid-methods-el",
     "contributor": "Lymah123"
+  },
+  {
+    "type": "blog",
+    "thumbnail": "/img/external-contributor/DRL.png",
+    "title": "Decentralized Resource Locators(DRL)",
+    "link": "https://dev.to/kiran_baliga/getting-started-with-decentralized-resource-locators-drls-43jd",
+    "contributor": "Kiran Baliga"
+  },
+  {
+    "type": "video",
+    "thumbnail": "/img/external-contributor/quick_start_web5_chrissiku.png",
+    "title": "My first line of web5.js : Quick start",
+    "link": "https://www.youtube.com/watch?v=4kOBPE63eUc",
+    "contributor": "Christian Siku"
   }
 ]
