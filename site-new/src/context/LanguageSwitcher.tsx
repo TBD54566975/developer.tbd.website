@@ -20,13 +20,13 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({
     if (ExecutionEnvironment.canUseDOM) {
       const storedLanguage = localStorage.getItem("selectedLanguage");
       if (storedLanguage) {
-        setSelectedLanguage(storedLanguage);
+        setSelectedLanguage(storedLanguage.toLowerCase());
       }
     }
   }, []);
 
   const setLanguage = (language: string) => {
-    setSelectedLanguage(language);
+    setSelectedLanguage(language.toLowerCase());
     if (ExecutionEnvironment.canUseDOM) {
       localStorage.setItem("selectedLanguage", language);
     }
