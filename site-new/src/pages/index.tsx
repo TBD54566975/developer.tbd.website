@@ -3,7 +3,6 @@ import Layout from "@theme/Layout";
 import Heading from "@theme/Heading";
 import Background from "../components/Background";
 import Rocket from "@site/static/img/Rocket";
-import Underline from "@site/static/img/Underline";
 import Hero from "../components/HeroCard";
 import TextIconCard from "../components/TextIconCard";
 import tbdRex from "@site/static/img/tbd-rex";
@@ -61,9 +60,8 @@ export default function Home(): JSX.Element {
                   className="mb-4 mt-twist-core-spacing-7 text-[48px] font-medium lg:text-[80px]"
                 >
                   The future of finance is{" "}
-                  <span className="relative mb-twist-core-spacing-7 inline-block text-tbd-yellow">
+                  <span className="text-highlight-full mb-twist-core-spacing-7">
                     Open
-                    <Underline className="absolute bottom-[-10px] left-2 fill-tbd-yellow lg:bottom-[-20px] lg:left-4" />
                   </span>
                 </Heading>
                 <Heading
