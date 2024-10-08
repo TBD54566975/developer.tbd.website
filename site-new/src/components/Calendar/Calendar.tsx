@@ -44,7 +44,7 @@ const Calendar = ({
         <div>FRIDAY</div>
         <div>SATURDAY</div>
       </div>
-      <div className="grid grid-cols-7 gap-[0.5px] border border-solid border-white bg-gray-100 text-sm">
+      <div className="grid grid-cols-7 gap-[0.5px] border border-solid border-white bg-gray-100 text-sm [grid-auto-rows:1fr]">
         {days.map((day, dayIdx) => {
           const isNotInThemonth =
             isBefore(day, firstDayCurrentMonth) ||
