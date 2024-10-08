@@ -202,7 +202,7 @@ const Events = () => {
   const [calendarView, setCalendarView] = useState<"monthly" | "daily">(
     "monthly",
   );
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [selectedDate, setSelectedDate] = useState<Date>();
   const [eventsData, setEventsData] = useState<EventGroup>({});
 
