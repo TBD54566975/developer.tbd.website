@@ -60,7 +60,7 @@ export default function Home(): JSX.Element {
                   className="mb-4 mt-twist-core-spacing-7 text-[48px] font-medium lg:text-[80px]"
                 >
                   The future of finance is{" "}
-                  <span className="text-highlight mb-twist-core-spacing-7">
+                  <span className="text-highlight-full mb-twist-core-spacing-7">
                     Open
                   </span>
                 </Heading>
