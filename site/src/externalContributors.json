@@ -62,5 +62,12 @@
     "title": "My first line of web5.js : Quick start",
     "link": "https://www.youtube.com/watch?v=4kOBPE63eUc",
     "contributor": "Christian Siku"
+  },
+  {
+    "type": "video",
+    "thumbnail": "/img/external-contributor/quick_start_web5_chrissiku.png",
+    "title": "Resolve a DID",
+    "link": "https://www.youtube.com/shorts/AfLj2il7aGM",
+    "contributor": "Christian Siku"
   }
 ]
