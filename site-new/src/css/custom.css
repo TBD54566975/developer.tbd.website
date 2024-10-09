@@ -658,6 +658,7 @@ a:has(.footer__logo) {
 }
 
 
+
 .theme-doc-sidebar-item-link-level-2.menu__list-item .menu__link {
 	padding-left: calc(calc(var(--ifm-menu-link-padding-horizontal) * 2) + 4px);
 }

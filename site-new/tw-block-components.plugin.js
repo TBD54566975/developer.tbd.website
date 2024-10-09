@@ -28,6 +28,12 @@ module.exports = plugin(({ addComponents, matchUtilities }) => {
       height: 16,
       width: 16,
     },
+    ".flex-center": {
+      "@apply flex items-center justify-center": {},
+    },
+    ".tag": {
+      "@apply font-sans text-xs leading-[100%] font-medium lg:text-base": {},
+    },
   });
   matchUtilities(
     {
