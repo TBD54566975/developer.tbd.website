@@ -57,6 +57,13 @@
     "contributor": "Kiran Baliga"
   },
   {
+    "type": "blog",
+    "thumbnail": "/img/external-contributor/ProtocolRules.png",
+    "title": "Protocol Rules",
+    "link": "https://dev.to/kiran_baliga/a-simple-guide-to-web5-protocol-roles-41m4",
+    "contributor": "Kiran Baliga"
+  },
+  {
     "type": "video",
     "thumbnail": "/img/external-contributor/quick_start_web5_chrissiku.png",
     "title": "My first line of web5.js : Quick start",
