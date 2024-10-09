@@ -87,7 +87,7 @@ function CommunityIndex() {
               key={index}
               style={{
                 perspective: '1000px',
-                width: '200px',
+                width: '400px',
                 position: 'relative',
                 marginBottom: '20px',
                 cursor: 'pointer',
@@ -119,10 +119,9 @@ function CommunityIndex() {
                     height: '200px',
                     alignItems: 'center',
                     gap: '10px',
-                    boxShadow: '0 4px 8px rgba(33, 241, 255, 0.2)',
                     borderRadius: '8px',
                     padding: '20px',
-                    backgroundColor: '#1C1C1C',
+                    border: '1px solid hsl(150, 100%, 15%)',
                     width: '100%',
                     textAlign: 'center',
                   }}
@@ -145,14 +144,15 @@ function CommunityIndex() {
                       <div
                         key={cIndex}
                         style={{
-                          height: '50px',
+                          height: 'max-content',
                           display: 'flex',
                           alignItems: 'center',
                           overflow: 'hidden',
-                          padding: '2px 5px',
+                          padding: '10px 10px',
                           borderRadius: '4px',
                           backgroundColor: '#FFEC18',
-                          fontSize: '.9em',
+                          fontSize: '0.9em',
+                          fontWeight: 'bold',
                           color: 'black',
                         }}
                       >
@@ -176,11 +176,10 @@ function CommunityIndex() {
                     flexDirection: 'column',
                     height: '200px',
                     alignItems: 'center',
-                    gap: '10px',
-                    boxShadow: '0 4px 8px rgba(33, 241, 255, 0.2)',
+                    justifyContent: 'center',
                     borderRadius: '8px',
-                    padding: '20px',
-                    backgroundColor: '#1C1C1C',
+                    padding: '10px',
+                    border: '1px solid hsl(150, 100%, 15%)',
                     width: '100%',
                     textAlign: 'center',
                     overflow: 'hidden',
@@ -188,11 +187,15 @@ function CommunityIndex() {
                 >
                   <div
                     style={{
-                      maxHeight: '200px',
+                      maxHeight: '180px',
                       overflowY: 'auto',
+                      width: '100%',
+                      padding: '5px',
                     }}
                   >
-                    <p>{contributor.description}</p>
+                    <p style={{ fontSize: '0.9em', lineHeight: '1.4' }}>
+                      {contributor.description}
+                    </p>
                   </div>
                 </div>
               </div>
@@ -203,7 +206,7 @@ function CommunityIndex() {
 
       <div>
         <div className="grid grid-cols-1 desktop:grid-cols-2 gap-4 pt-7 pb-20">
-        <HeroCard
+          <HeroCard
             heroText="Incubation Projects"
             buttonUrl="/community/incubation-projects/"
             buttonText="Discover More"
