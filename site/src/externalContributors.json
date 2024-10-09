@@ -64,6 +64,13 @@
     "contributor": "Kiran Baliga"
   },
   {
+    "type": "blog",
+    "thumbnail": "/img/external-contributor/hackexperience.png",
+    "title": "Hacktoberfest Experience",
+    "link": "https://dev.to/kiran_baliga/my-hacktoberfest-2024-journey-2odn",
+    "contributor": "Kiran Baliga"
+  },
+  {
     "type": "video",
     "thumbnail": "/img/external-contributor/quick_start_web5_chrissiku.png",
     "title": "My first line of web5.js : Quick start",
