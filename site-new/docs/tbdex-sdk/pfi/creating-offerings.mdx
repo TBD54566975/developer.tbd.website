@@ -1,0 +1,184 @@
+---
+title: Creating Offerings
+hide_title: true
+sidebar_position: 6
+---
+
+import Shnip from "@site/src/components/Shnip";
+
+# Creating Offerings
+
+Offerings describe a currency pair that can be exchanged and specify the requirements, conditions, and constraints needed to fulfill the described transaction.
+In other words, an Offering is a way of describing a financial product you’re offering as a PFI on a tbDEX network.
+
+Any Wallet that has your PFI's DID will be able to query your PFI for all available Offerings, as well as fetch specific Offerings. Wallets will then use that data to make an [Request for Quote (RFQ)](/docs/tbdex/wallet/send-rfq) to your PFI to begin a potential transaction process.
+
+## Create an Offering
+
+You can use the tbDEX SDK to create Offerings.
+An Offering must adhere to the [Offering schema](https://github.com/TBD54566975/tbdex/tree/main/specs/protocol#offering).
+
+<Shnip languages={["JavaScript", "Kotlin"]} snippetName="pfiCreateOffering" />
+
+### Required Claims
+
+In order to comply with certain financial regulations, you may require information about the customer you are transacting with.
+You can obtain this information via [Verifiable Credentials](/docs/web5/verifiable-credentials/what-are-vcs).
+
+To specify the exact credentials you need, you can do so in the `requiredClaims` section of your Offering by [creating a Presentation Definition](/docs/web5/verifiable-credentials/presentation-definition/).
+You'll specify all required forms and details of proof, optional selection rules, and define flexibility where possible when different types of input may satisfy the requirements.
+
+For a full breakdown of all the available fields and combinations, [see the DIF website](https://identity.foundation/presentation-exchange/#presentation-definition) for details.
+
+Below is an example of how you could specify that a [KnownCustomerCredential](https://www.tbdex.io/guides/kcc) is required to order this Offering:
+
+<Shnip
+  languages={["JavaScript", "Kotlin"]}
+  snippetName="kccPresentationDefinition"
+/>
+
+Once you've created your required claims, it's important to validate them to ensure there are no errors in the design.
+This will throw an error if it's not valid.
+
+<Shnip languages={["JavaScript", "Kotlin"]} snippetName="kccValidatePd" />
+
+### Sign Offering
+
+After creating your Offering, it's necessary to cryptographically sign it so that Wallet apps know that it's authentic.
+
+<Shnip languages={["JavaScript", "Kotlin"]} snippetName="pfiSignOffering" />
+
+### Validate Offering
+
+After signing the Offering, you can validate that your Offering's structure is valid.
+This will throw an error if it's not valid.
+
+<Shnip languages={["JavaScript", "Kotlin"]} snippetName="pfiValidateOffering" />
+
+Once the Offering has been generated, you can store it in your database using code as shown in the [Offerings API Provider section](/docs/tbdex/pfi/anatomy-of-a-pfi#offerings-api-provider).
+
+## Sample Offering
+
+When combining all the data above, you can end up with a full Offering object that looks something like the following:
+
+```js
+{
+  "metadata": {
+    "from": "did:dht:d4sgiggd3dwimo4ubki7spo45q5dazxphrizbxhcgapapcnzpouy",
+    "protocol": "1.0",
+    "kind": "offering",
+    "id": "offering_01htkr88ybffzbxfea01rq3ht9",
+    "createdAt": "2024-04-04T05:10:38.796Z"
+  },
+  "data": {
+    "description": "Selling BTC for USD",
+    "payin": {
+      "currencyCode": "USD",
+      "methods": [
+        {
+          "kind": "DEBIT_CARD",
+          "requiredPaymentDetails": {
+            "$schema": "http://json-schema.org/draft-07/schema",
+            "type": "object",
+            "properties": {
+              "cardNumber": {
+                "type": "string",
+                "description": "The 16-digit debit card number",
+                "minLength": 16,
+                "maxLength": 16
+              },
+              "expiryDate": {
+                "type": "string",
+                "description": "The expiry date of the card in MM/YY format",
+                "pattern": "^(0[1-9]|1[0-2])\\/([0-9]{2})$"
+              },
+              "cardHolderName": {
+                "type": "string",
+                "description": "Name of the cardholder as it appears on the card"
+              },
+              "cvv": {
+                "type": "string",
+                "description": "The 3-digit CVV code",
+                "minLength": 3,
+                "maxLength": 3
+              }
+            }
+          }
+        }
+      ]
+    },
+    "payout": {
+      "currencyCode": "BTC",
+      "methods": [
+        {
+          "kind": "BITCOIN_ADDRESS",
+          "estimatedSettlementTime": 60,
+          "fee": "0.25"
+        }
+      ]
+    },
+    "payoutUnitsPerPayinUnit": "0.00003826",
+    "requiredClaims": {
+      "id": "presentation-definition-kcc",
+      "name": "Customer Verification",
+      "purpose": "We need to verify your customer status and conduct necessary checks.",
+      "format": {
+        "jwt_vc": {
+          "alg": [
+            "ES256K",
+            "EdDSA"
+          ]
+        }
+      },
+      "input_descriptors": [
+        {
+          "id": "known-customer-credential",
+          "name": "Known Customer Credential",
+          "purpose": "Please present your Known Customer Credential for verification.",
+          "constraints": {
+            "fields": [
+              {
+                "path": [
+                  "$.credentialSchema[*].id"
+                ],
+                "filter": {
+                  "type": "string",
+                  "const": "https://vc.schemas.host/kcc.schema.json"
+                }
+              },
+              {
+                "path": [
+                  "$.evidence[*].kind"
+                ],
+                "filter": {
+                  "type": "string",
+                  "pattern": "sanction_screening"
+                }
+              },
+              {
+                "path": [
+                  "$.credentialSubject.countryOfResidence"
+                ],
+                "filter": {
+                  "type": "string",
+                  "const": "US"
+                }
+              },
+              {
+                "path": [
+                  "$.issuer"
+                ],
+                "filter": {
+                  "type": "string",
+                  "const": "did:dht:d4sgiggd3dwimo4ubki7spo45q5dazxphrizbxhcgapapcnzpouy"
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  },
+  "signature": "eyJhbGciOiJFZERTQSIsImtpZCI6ImRpZDpkaHQ6ZDRzZ2lnZ2QzZHdpbW80dWJraTdzcG80NXE1ZGF6eHBocml6YnhoY2dhcGFwY256cG91eSMwIn0..CcC0pWCpZXzqvPF-2z-axvJQyHhT6-Of4lavPIrrIrJ4WM5eyKRaR7YgEORh7xMwR_pXZ_KUHnPksmSQZsm2Ag"
+}
+```
