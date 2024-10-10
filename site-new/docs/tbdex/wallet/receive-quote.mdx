@@ -4,23 +4,23 @@ hide_title: true
 sidebar_position: 8
 ---
 
-<LanguageSwitcher languages="JavaScript, Kotlin, Swift" />
+import Shnip from "@site/src/components/Shnip";
+import {
+  LanguageSwitcher,
+  LanguageContent,
+} from "@site/src/components/LanguageSwitcher";
 
 # Receiving Quotes
 
-After [sending an RFQ](/docs/tbdex/wallet/send-rfq#send-rfq-to-pfi), the PFI will respond with an exact **Quote** for your customer. 
-This message will be written to the exchange.
+After [sending an RFQ](/docs/tbdex/wallet/send-rfq#send-rfq-to-pfi), the PFI will respond with an exact **Quote** for your customer. This message will be written to the exchange.
 
 ## Polling for Quote
 
 If you did not provide a [callback URI](/docs/tbdex/wallet/send-rfq#send-rfq-to-pfi) when sending a RFQ, your application will need to poll the exchange until the Quote message is written:
 
 <Shnip
-  snippets={[
-    { snippetName: 'pollforQuoteJS', language: 'JavaScript' },
-    { snippetName: 'pollforQuoteKt', language: 'Kotlin' },
-    { snippetName: 'pollForQuoteSwift', language: 'Swift' },
-  ]}
+  languages={["JavaScript", "Kotlin", "Swift"]}
+  snippetName="pollForQuote"
 />
 
 ## Quote Object
@@ -33,8 +33,8 @@ The Quote will be returned in JSON form:
 {
   "metadata": {
     "exchangeId": "rfq_01hj07tb0rev8avhmqd8gggnkh",
-    "from": " /* PFI's DID */ ",    
-    "to": " /* Customer's DID */ ",    
+    "from": " /* PFI's DID */ ",
+    "to": " /* Customer's DID */ ",
     "protocol": "1.0",
     "kind": "quote",
     "id": "quote_01hj07tb6be2htn8bbx8afcjw9",
@@ -64,20 +64,17 @@ The Quote will be returned in JSON form:
 }
 ```
 
-
 ## Cancel Exchange
 
-After receiving the exact Quote, your customer may decide not to place an order. 
+After receiving the exact Quote, your customer may decide not to place an order.
+
 In this case, you can send a **Close** message to the PFI which will end the exchange.
 
 To terminate the exchange, create a `Close` message, sign it with the customer's [Bearer DID](/docs/glossary#bearer-did), and send the message.
 
 <Shnip
-  snippets={[
-    { snippetName: 'cancelExchangeJS', language: 'JavaScript' },
-    { snippetName: 'cancelExchangeKt', language: 'Kotlin' },
-    { snippetName: 'cancelExchangeSwift', language: 'Swift' },
-  ]}
+  languages={["JavaScript", "Kotlin", "Swift"]}
+  snippetName="cancelExchange"
 />
 
 At this point, the exchange has been closed, and your customer is free to start a new exchange with this PFI or any other.
