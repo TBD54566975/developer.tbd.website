@@ -5,11 +5,15 @@ hide_title: true
 unlisted: true
 ---
 
-<LanguageSwitcher languages="JavaScript, Kotlin" />
+import Shnip from '@site/src/components/Shnip';
+import {
+  LanguageSwitcher,
+  LanguageContent,
+} from '@site/src/components/LanguageSwitcher';
 
 # Issuing a Known Business Credential
 
-Known Business Credentials (KBC) are [Verifiable Credentials](/docs/web5/verifiable-credentials/what-are-vcs) designed to streamline the Know Your Business (KYB) process for tbDEX protocol users. 
+Known Business Credentials (KBC) are [Verifiable Credentials](/docs/web5/verifiable-credentials/what-are-vcs) designed to streamline the Know Your Business (KYB) process for tbDEX protocol users.
 
 By issuing this credential, the PFI attests to the business’s legitimacy and compliance with regulations, allowing the PFI to engage in financial activities with the Wallet application without requiring individual KYC for each customer.
 
@@ -18,6 +22,7 @@ This guide is intended for educational purposes only and does not constitute leg
 :::
 
 In this guide, we'll cover how to:
+
 - Design and issue a KBC
 - Specify a KBC as a required claim in an [Offering](https://developer.tbd.website/docs/tbdex/pfi/creating-offerings)
 
@@ -27,28 +32,17 @@ If you haven't already, please follow the [Credential Issuance Server Setup Guid
 
 ## Issue Credential
 
-To issue a KBC, call `VerifiableCredential.create()` and pass in the URL to the credential schema the VC is based on. 
+To issue a KBC, call `VerifiableCredential.create()` and pass in the URL to the credential schema the VC is based on.
 
 We've designed an open source schema for KBCs that you're welcome to use at https://vc.schemas.host/kbc.schema.json.
 
-<Shnip
-  snippets={[
-    {
-      snippetName: 'issueKbcJs',
-      language: 'JavaScript',
-    },
-    {
-      snippetName: 'issueKbcKt',
-      language: 'Kotlin',
-    }
-  ]}
-/>
+<Shnip languages={['JavaScript', 'Kotlin']} snippetName="issueKbc" />
 
 In the example above, `signedKbc` is a [token](/docs/web5/verifiable-credentials/jwt-to-vc#what-is-a-jwt) that you can safely provide to the business you're issuing the KBC to.
 
 ## Specify KBC as Requirement
 
-If you issue a KBC to a business, you'll want to specify that credential as a [required claim](/docs/tbdex/pfi/creating-offerings#required-claims) on any applicable Offerings you may provide. 
+If you issue a KBC to a business, you'll want to specify that credential as a [required claim](/docs/tbdex/pfi/creating-offerings#required-claims) on any applicable Offerings you may provide.
 
 :::note
 The `id` property is a string that uniquely identifies the `input_descriptor`. It is required and must be unique within the `presentation_definition`.
@@ -57,31 +51,12 @@ The `id` property is a string that uniquely identifies the `input_descriptor`. I
 ### Create Presentation Definition
 
 <Shnip
-  snippets={[
-    {
-      snippetName: 'kbcPresentationDefinitionJs',
-      language: 'JavaScript',
-    },
-    {
-      snippetName: 'kbcPresentationDefinitionKt',
-      language: 'Kotlin',
-    }
-  ]}
+  languages={['JavaScript', 'Kotlin']}
+  snippetName="kbcPresentationDefinition"
 />
 
 ## Add Required Claim to Offering
 
 Now that you've defined your requirements, you can add them to any relevant Offerings.
 
-<Shnip
-  snippets={[
-    {
-      snippetName: 'kbcCreateOfferingJs',
-      language: 'JavaScript',
-    },
-        {
-      snippetName: 'kbcCreateOfferingKt',
-      language: 'Kotlin',
-    },
-  ]}
-/>
+<Shnip languages={['JavaScript', 'Kotlin']} snippetName="kbcCreateOffering" />
