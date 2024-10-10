@@ -5,6 +5,7 @@ import { useLanguage } from "@site/src/context/LanguageSwitcher";
 
 import JsIcon from "@site/static/img/js-icon";
 import KotlinIcon from "@site/static/img/KotlinIcon";
+import SwiftIcon from "@site/static/img/SwiftIcon";
 
 interface ShnipProps {
   snippetName: string;
@@ -14,6 +15,7 @@ interface ShnipProps {
 const languageIconMap: Record<string, React.ElementType> = {
   javascript: JsIcon,
   kotlin: KotlinIcon,
+  swift: SwiftIcon,
 };
 
 const Shnip: React.FC<ShnipProps> = ({ snippetName, languages }) => {
