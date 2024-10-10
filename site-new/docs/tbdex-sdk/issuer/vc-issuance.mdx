@@ -4,7 +4,11 @@ title: Credential Issuance
 hide_title: true
 ---
 
-<LanguageSwitcher languages="JavaScript, Kotlin" />
+import Shnip from "@site/src/components/Shnip";
+import {
+  LanguageSwitcher,
+  LanguageContent,
+} from "@site/src/components/LanguageSwitcher";
 
 # Credential Issuance
 
@@ -35,18 +39,8 @@ With your app set up to accept incoming routes, you can design a model class to 
 Let's design a VC that attests that a person isn't on a Sanctions list. You could model that class as follows:
 
 <Shnip
-  snippets={[
-    {
-      snippetName: 'sanctionsCredentialClass',
-      language: 'JavaScript',
-      title: 'sanctionsCredential.js',
-    },
-    {
-      snippetName: 'sanctionsCredentialClassKt',
-      language: 'Kotlin',
-      title: 'Application.kt',
-    },
-  ]}
+  languages={["JavaScript", "Kotlin"]}
+  snippetName="sanctionsCredentialClass"
 />
 
 In the example above, you provide a class property that stores all the sanctions lists checked against.
@@ -64,18 +58,8 @@ In the example below, assume the user has provided a JWT that contains their ide
 If all checks pass, you'll issue them a credential.
 
 <Shnip
-  snippets={[
-    {
-      snippetName: 'checkSanctionsEndpoint',
-      language: 'JavaScript',
-      title: 'api.js',
-    },
-    {
-      snippetName: 'checkSanctionsEndpointKt',
-      language: 'Kotlin',
-      title: 'Application.kt',
-    },
-  ]}
+  languages={["JavaScript", "Kotlin"]}
+  snippetName="checkSanctionsEndpoint"
 />
 
 :::tip Signing credentials
@@ -85,114 +69,89 @@ A BearerDid is used to sign Verifiable Credentials that you issue.
 Refer to the [Create A DID](/docs/web5/decentralized-identifiers/how-to-create-did) guide for steps on how to create one.
 :::
 
-<LanguageSwitchBlock>
-  <div language="Kotlin">
-    <p>
-In order to run this code, create a <code>checkSanctionsLists()</code> function and a <code>sanctionsListResult</code> class in your <code>Application.kt</code> file:
-   </p>
-  </div>
+<LanguageSwitcher languages={["JavaScript", "Kotlin"]}>
+  <LanguageContent language="javascript">
 
-  <div language="JavaScript">
-    <p>
-In order to run this code, create a <code>checkSanctionsLists()</code> function in your <code>api.js</code> file:
-    </p>
-  </div>
-</LanguageSwitchBlock>
+In order to run this code, create a `checkSanctionsLists()` function and a `sanctionsListResult` class in your `Application.kt` file:
+
+  </LanguageContent>
+  <LanguageContent language="kotlin">
+
+In order to run this code, create a `checkSanctionsLists()` function in your `api.js` file:
+
+  </LanguageContent>
+</LanguageSwitcher>
 
 <Shnip
-  snippets={[
-    {
-      snippetName: 'checkSanctionsListsFunction',
-      language: 'JavaScript',
-      title: 'api.js',
-    },
-    {
-      snippetName: 'checkSanctionsListsFunctionAndSanctionsListResultClassKt',
-      language: 'Kotlin',
-      title: 'Application.kt',
-    },
-  ]}
+  languages={["JavaScript", "Kotlin"]}
+  snippetName="checkSanctionsListsFunction"
 />
 
 The `sanctions_credential` object that's returned will be a raw VC that looks like this:
 
-<LanguageSwitchBlock>
-  <div language="JavaScript">
-    <p>
+<LanguageSwitcher languages={["JavaScript", "Kotlin"]}>
+  <LanguageContent language="JavaScript">
 
 ```json
 vcDataModel: {
-  "@context": [ "https://www.w3.org/2018/credentials/v1" ],
-  type: [ "VerifiableCredential", "SanctionsCredential" ],
-  id: "urn:uuid:daa5ff01-9b7d-485b-9410-22a42952d46c",
-  issuer: "did:dht:yqun8fjakb7afu3rau9rhgdo4ahru9d68488e5mu5ihbaiwqjh3y",
-  issuanceDate: "2023-12-14T08:20:41Z",
-  credentialSubject: {
-    id: "did:dht:z6MkjGSeekPGE9QfczHWyW8v2ZzJU68kqSHzV7L2dmQyuyDu",
-    listsCleared: "FBI's Most Wanted", "USA Watchlist", "EU Watchlist"
-  }
+"@context": [ "https://www.w3.org/2018/credentials/v1" ],
+type: [ "VerifiableCredential", "SanctionsCredential" ],
+id: "urn:uuid:daa5ff01-9b7d-485b-9410-22a42952d46c",
+issuer: "did:dht:yqun8fjakb7afu3rau9rhgdo4ahru9d68488e5mu5ihbaiwqjh3y",
+issuanceDate: "2023-12-14T08:20:41Z",
+credentialSubject: {
+id: "did:dht:z6MkjGSeekPGE9QfczHWyW8v2ZzJU68kqSHzV7L2dmQyuyDu",
+listsCleared: ["FBI's Most Wanted", "USA Watchlist", "EU Watchlist"]
+}
 }
 ```
 
-   </p>
-
-   </div>
-
-<div language="Kotlin">
-<p>
+  </LanguageContent>
+  <LanguageContent language="Kotlin">
 
 ```json
 {
-  "@context": [ "https://www.w3.org/2018/credentials/v1" ],
-  type: [ "VerifiableCredential", "SanctionsCredential" ],
-  id: "urn:uuid:daa5ff01-9b7d-485b-9410-22a42952d46c",
-  issuer: "did:dht:yqun8fjakb7afu3rau9rhgdo4ahru9d68488e5mu5ihbaiwqjh3y",
-  issuanceDate: "2023-12-14T08:20:41Z",
-  credentialSubject: {
-    id: "did:dht:z6MkjGSeekPGE9QfczHWyW8v2ZzJU68kqSHzV7L2dmQyuyDu",
-    listsCleared: "FBI's Most Wanted", "USA Watchlist", "EU Watchlist"
+  "@context": ["https://www.w3.org/2018/credentials/v1"],
+  "type": ["VerifiableCredential", "SanctionsCredential"],
+  "id": "urn:uuid:daa5ff01-9b7d-485b-9410-22a42952d46c",
+  "issuer": "did:dht:yqun8fjakb7afu3rau9rhgdo4ahru9d68488e5mu5ihbaiwqjh3y",
+  "issuanceDate": "2023-12-14T08:20:41Z",
+  "credentialSubject": {
+    "id": "did:dht:z6MkjGSeekPGE9QfczHWyW8v2ZzJU68kqSHzV7L2dmQyuyDu",
+    "listsCleared": ["FBI's Most Wanted", "USA Watchlist", "EU Watchlist"]
   }
 }
 ```
 
-</p>
-
-  </div>
-</LanguageSwitchBlock>
+  </LanguageContent>
+</LanguageSwitcher>
 
 ## Test Issuance Service
 
 1. Start the service by opening a terminal window and running the following commands:
 
-<LanguageSwitchBlock>
-  <div language="JavaScript">
-    <p>
+<LanguageSwitcher languages={["JavaScript", "Kotlin"]}>
+  <LanguageContent language="JavaScript">
 
 ```bash
 node main.js
 ```
 
-   </p>
-
-   </div>
-
-<div language="Kotlin">
-<p>
+  </LanguageContent>
+  <LanguageContent language="Kotlin">
 
 ```bash
 ./gradlew clean build
 ./gradlew run
 ```
 
-</p>
-
-  </div>
-</LanguageSwitchBlock>
+  </LanguageContent>
+</LanguageSwitcher>
 
 2. In a new terminal window send a test request. Below is an example command using `curl` that includes a JWT for authorization:
 
 ```bash
- curl -X GET http://localhost:3000/check-sanctions -H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJFZERTQSIsImtpZCI6ImRpZDprZXk6ejZNa3djSmkzeVVONDJFZ1N2cmNHRlFyQzRKY1pkenlWWkhQOVdmMXFRZWRuVlRQI3o2TWt3Y0ppM3lVTjQyRWdTdnJjR0ZRckM0SmNaZHp5VlpIUDlXZjFxUWVkblZUUCJ9.eyJ2YyI6eyJAY29udGV4dCI6WyJodHRwczovL3d3dy53My5vcmcvMjAxOC9jcmVkZW50aWFscy92MSJdLCJ0eXBlIjpbIlZlcmlmaWFibGVDcmVkZW50aWFsIiwiSWRlbnRpZmljYXRpb25DcmVkZW50aWFsIl0sImlkIjoidXJuOnV1aWQ6MDQ3ZTg0ZWItY2NhMS00NjFlLWFjZjAtMGMyZGE5ZDczOTNhIiwiaXNzdWVyIjoiZGlkOmtleTp6Nk1rd2NKaTN5VU40MkVnU3ZyY0dGUXJDNEpjWmR6eVZaSFA5V2YxcVFlZG5WVFAiLCJpc3N1YW5jZURhdGUiOiIyMDI0LTAyLTE1VDE5OjMyOjE2WiIsImNyZWRlbnRpYWxTdWJqZWN0Ijp7ImlkIjoiZGlkOmtleTp6Nk1rd2NKaTN5VU40MkVnU3ZyY0dGUXJDNEpjWmR6eVZaSFA5V2YxcVFlZG5WVFAiLCJuYW1lIjoiam9obiJ9fSwiaXNzIjoiZGlkOmtleTp6Nk1rd2NKaTN5VU40MkVnU3ZyY0dGUXJDNEpjWmR6eVZaSFA5V2YxcVFlZG5WVFAiLCJzdWIiOiJkaWQ6a2V5Ono2TWt3Y0ppM3lVTjQyRWdTdnJjR0ZRckM0SmNaZHp5VlpIUDlXZjFxUWVkblZUUCJ9.7oFAPckx-vxCbbzKSk9bU7eXlnjBFvMborl9woHCbcvWaLt0LvTRuDfvGDPC24V9D1K5OFpTnnBiN5jtIOmbBg"
+curl -X GET http://localhost:3000/check-sanctions -H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJFZERTQSIsImtpZCI6ImRpZDprZXk6ejZNa3djSmkzeVVONDJFZ1N2cmNHRlFyQzRKY1pkenlWWkhQOVdmMXFRZWRuVlRQI3o2TWt3Y0ppM3lVTjQyRWdTdnJjR0ZRckM0SmNaZHp5VlpIUDlXZjFxUWVkblZUUCJ9.eyJ2YyI6eyJAY29udGV4dCI6WyJodHRwczovL3d3dy53My5vcmcvMjAxOC9jcmVkZW50aWFscy92MSJdLCJ0eXBlIjpbIlZlcmlmaWFibGVDcmVkZW50aWFsIiwiSWRlbnRpZmljYXRpb25DcmVkZW50aWFsIl0sImlkIjoidXJuOnV1aWQ6MDQ3ZTg0ZWItY2NhMS00NjFlLWFjZjAtMGMyZGE5ZDczOTNhIiwiaXNzdWVyIjoiZGlkOmtleTp6Nk1rd2NKaTN5VU40MkVnU3ZyY0dGUXJDNEpjWmR6eVZaSFA5V2YxcVFlZG5WVFAiLCJpc3N1YW5jZURhdGUiOiIyMDI0LTAyLTE1VDE5OjMyOjE2WiIsImNyZWRlbnRpYWxTdWJqZWN0Ijp7ImlkIjoiZGlkOmtleTp6Nk1rd2NKaTN5VU40MkVnU3ZyY0dGUXJDNEpjWmR6eVZaSFA5V2YxcVFlZG5WVFAiLCJuYW1lIjoiam9obiJ9fSwiaXNzIjoiZGlkOmtleTp6Nk1rd2NKaTN5VU40MkVnU3ZyY0dGUXJDNEpjWmR6eVZaSFA5V2YxcVFlZG5WVFAiLCJzdWIiOiJkaWQ6a2V5Ono2TWt3Y0ppM3lVTjQyRWdTdnJjR0ZRckM0SmNaZHp5VlpIUDlXZjFxUWVkblZUUCJ9.7oFAPckx-vxCbbzKSk9bU7eXlnjBFvMborl9woHCbcvWaLt0LvTRuDfvGDPC24V9D1K5OFpTnnBiN5jtIOmbBg"
 ```
 
 With that, you've implemented a basic credential issuance service to accept requests and issue VCs.

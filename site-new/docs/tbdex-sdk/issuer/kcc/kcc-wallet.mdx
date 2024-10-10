@@ -226,7 +226,6 @@ Here's an example Access Token Response from the Issuer:
 <summary>Access Token Response</summary>
 ```javascript
 // Issuer.js
-
 {
 "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXhhbXBsZTpPcTJ4T0J4NVVjIiwiaXNzIjoiZGlkOmV4YW1wbGU6SXNzdWVyRGlkIiwiaWF0IjoxNjE1MjM5MDIyLCJleHAiOjE2MTUzMjU0MjIsImNfbm9uY2UiOiJzYW1wbGVjbm9uY2UifQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c",
 "token_type": "bearer",
@@ -234,8 +233,7 @@ Here's an example Access Token Response from the Issuer:
 "c_nonce": "adQssw5c",
 "c_nonce_expires_in": 86400
 }
-
-````
+```
 
 </details>
 
@@ -265,7 +263,7 @@ To convert the signed VC JWT into a `VerifiableCredential` object you can use th
 <LanguageSwitcher languages={["javascript", "kotlin", "swift"]}>
   <LanguageContent language="javascript">
     <CodeBlock language="jsx">
-      {```javascript
+      ```javascript
 {
   "vcDataModel": {
     "@context": ["https://www.w3.org/2018/credentials/v1"],
@@ -298,12 +296,12 @@ To convert the signed VC JWT into a `VerifiableCredential` object you can use th
     }
   }
 }
-```}
+```
     </CodeBlock>
   </LanguageContent>
   <LanguageContent language="kotlin">
     <CodeBlock language="kotlin">
-      {```kotlin
+      ```kotlin
 {
   "@context": ["https://www.w3.org/2018/credentials/v1"],
   "type": ["VerifiableCredential"],
@@ -334,12 +332,12 @@ To convert the signed VC JWT into a `VerifiableCredential` object you can use th
     }
   }
 }
-```}
+```
     </CodeBlock>
   </LanguageContent>
   <LanguageContent language="swift">
     <CodeBlock language="swift">
-      {```swift
+      ```swift
 {
   "@context": ["https://www.w3.org/2018/credentials/v1"],
   "type": ["VerifiableCredential"],
@@ -370,7 +368,7 @@ To convert the signed VC JWT into a `VerifiableCredential` object you can use th
     }
   }
 }
-```}
+```
     </CodeBlock>
   </LanguageContent>
 </LanguageSwitcher>
@@ -384,4 +382,3 @@ With that, you've successfully gone through the Identity Verification flow, requ
 ## Next Steps
 
 For an example of the complete flow for requesting and issuing a KCC, check out the [Known Customer Credential Exemplar](https://github.com/TBD54566975/kcc-prototype-exemplar) on GitHub. This exemplar provides a implementation of requesting and issuing a Known Customer Credential (KCC).
-````

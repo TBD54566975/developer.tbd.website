@@ -17,7 +17,7 @@ export const LanguageContent: React.FC<LanguageContentProps> = ({
 }) => {
   const { selectedLanguage } = useLanguage();
 
-  return selectedLanguage === language ? <>{children}</> : null;
+  return selectedLanguage === language.toLowerCase() ? <>{children}</> : null;
 };
 
 export const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({

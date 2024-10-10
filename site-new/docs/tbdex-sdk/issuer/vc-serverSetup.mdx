@@ -4,41 +4,44 @@ title: Server Setup
 hide_title: true
 ---
 
-<LanguageSwitcher languages="JavaScript, Kotlin" />
+import Shnip from "@site/src/components/Shnip";
+import {
+  LanguageSwitcher,
+  LanguageContent,
+} from "@site/src/components/LanguageSwitcher";
+import Dependencies from "@site/src/components/Dependencies";
 
 # Credential Issuance Server Setup
 
-<LanguageSwitchBlock>
-  <div language="Kotlin">
-    <p>
-    <h2> Setup Ktor Project </h2>
+<LanguageSwitcher languages={["JavaScript", "Kotlin"]}>
+  <LanguageContent language="Kotlin">
 
-This example demonstrates how to use Ktor to set up the VC issuance service. Follow these instructions to <a href="https://www.jetbrains.com/help/idea/ktor.html#new_ktor_project">create a new Ktor project</a>.
+## Setup Ktor Project
 
-</p>
+This example demonstrates how to use Ktor to set up the VC issuance service. Follow these instructions to [create a new Ktor project](https://www.jetbrains.com/help/idea/ktor.html#new_ktor_project).
 
-  </div>
+  </LanguageContent>
 
-  <div language="JavaScript">
-    <p>
-<h2> Install Express </h2>
+  <LanguageContent language="JavaScript">
 
-This example demonstrates how to use Express to set up the VC issuance service. Follow these instructions to <a href="https://expressjs.com/en/starter/installing.html">install Express</a>.
+## Install Express
 
-</p>
+This example demonstrates how to use Express to set up the VC issuance service. Follow these instructions to [install Express](https://expressjs.com/en/starter/installing.html).
 
-  </div>
-</LanguageSwitchBlock>
+  </LanguageContent>
+</LanguageSwitcher>
 
 ### Install Credentials Package
 
 You'll also need to install `@web5/credentials` to create and issue credentials:
 
-<Dependencies languageDependencies={[
-  { language: 'javascript', dependencies: ['@web5/credentials'] },
-  { language: 'maven', dependencies: ['web5-credentials'] },
-  { language: 'gradle', dependencies: ['web5-credentials'] },
-]}/>
+<Dependencies
+  languageDependencies={[
+    { language: "javascript", dependencies: ["@web5/credentials"] },
+    { language: "maven", dependencies: ["web5-credentials"] },
+    { language: "gradle", dependencies: ["web5-credentials"] },
+  ]}
+/>
 
 ### Create a DID
 
@@ -47,135 +50,116 @@ Additionally, to issue credentials, you need a [Decentralized Identifier (DID)](
 If you don't already have one, you'll need to [create a DID](/docs/web5/decentralized-identifiers/how-to-create-did) with an IDV (Identity Verification) service endpoint:
 
 <Shnip
-  snippets={[
-    {
-      snippetName: 'createADidWithServiceEndpointJS',
-      language: 'JavaScript',
-      title: 'did.js',
-    },
-    {
-      snippetName: 'createADidWithAServiceEndpointKT',
-      language: 'Kotlin',
-      title: 'Application.kt',
-    },
-  ]}
+  languages={["JavaScript", "Kotlin"]}
+  snippetName="createADidWithServiceEndpoint"
 />
 
 If you have an existing DID you'll need to update that DID Document with an IDV service endpoint:
 
 <Shnip
-  snippets={[
-    {
-      snippetName: 'updateADidWithServiceEndpointJS',
-      language: 'JavaScript',
-      title: 'did.js',
-    }
-  ]}
+  languages={["JavaScript", "Kotlin"]}
+  snippetName="updateADidWithServiceEndpoint"
   inlineSnippets={[
     {
       code: `Updating a DID Document with a service endpoint is not currently supported in Kotlin.`,
-      language: 'Kotlin',
-      codeLanguage: 'text',
+      language: "Kotlin",
+      codeLanguage: "text",
     },
   ]}
 />
 
 ### Create API Service
 
-<LanguageSwitchBlock>
-  <div language="Kotlin">
-    <p>
-1. Ensure you have a file, such as <code>Application.kt</code>, to act as your API's entry point, which was created during the Ktor setup.
+<LanguageSwitcher languages={["JavaScript", "Kotlin"]}>
+  <LanguageContent language="Kotlin">
+
+1. Ensure you have a file, such as `Application.kt`, to act as your API's entry point, which was created during the Ktor setup.
 
 2. Within the file, import the necessary libraries:
 
-```kt title=Application.kt
-import com.nimbusds.jwt.JWTParser
-import io.ktor.server.application.*
-import io.ktor.server.response.*
-import io.ktor.server.request.*
-import io.ktor.server.routing.*
-import io.ktor.http.*
-import io.ktor.server.engine.*
-import io.ktor.server.netty.*
-import web5.sdk.credentials.VerifiableCredential
-import java.security.SignatureException
-import com.nimbusds.jwt.JWTClaimsSet
-import web5.sdk.dids.Did
-```
+   ```kotlin title=Application.kt
+   import com.nimbusds.jwt.JWTParser
+   import io.ktor.server.application.*
+   import io.ktor.server.response.*
+   import io.ktor.server.request.*
+   import io.ktor.server.routing.*
+   import io.ktor.http.*
+   import io.ktor.server.engine.*
+   import io.ktor.server.netty.*
+   import web5.sdk.credentials.VerifiableCredential
+   import java.security.SignatureException
+   import com.nimbusds.jwt.JWTClaimsSet
+   import web5.sdk.dids.Did
+   ```
 
 3. To start your API service, add the following:
 
-```kt title=Application.kt
-fun main() {
-  embeddedServer(Netty, port = 8082) { // this can be any port you want to listen on
-      configureRouting()
-  }.start(wait = true)
-}
-```
+   ```kotlin title=Application.kt
+   fun main() {
+     embeddedServer(Netty, port = 8082) { // this can be any port you want to listen on
+         configureRouting()
+     }.start(wait = true)
+   }
+   ```
 
 4. In the same file, define your API routes:
 
-```kt title=Application.kt
-fun Application.configureRouting() {
-        routing {
-            get("/example-route") {
+   ```kotlin title=Application.kt
+   fun Application.configureRouting() {
+       routing {
+           get("/example-route") {
              // implement the API route here
-            },
-            get("/next-example-route") {
+           }
+           get("/next-example-route") {
              // implement the API route here
-            }
-        }
-}
-```
+           }
+       }
+   }
+   ```
 
-   </p>
+  </LanguageContent>
 
-   </div>
+  <LanguageContent language="JavaScript">
 
-<div language="JavaScript">
-<p>
-1. Ensure you have a file, such as <code>main.js</code>, to act as your API's entry point, which was created during the Express setup.
+1. Ensure you have a file, such as `main.js`, to act as your API's entry point, which was created during the Express setup.
 
 2. Within the file, import the following:
 
-```js title=main.js
-import { api } from './api.js';
-```
+   ```javascript title=main.js
+   import { api } from "./api.js";
+   ```
 
 3. To start your Express API service, add the following:
 
-```js title=main.js
-const config = {
-  port: 3000, // this can be any port you want to listen on
-};
+   ```javascript title=main.js
+   const config = {
+     port: 3000, // this can be any port you want to listen on
+   };
 
-const server = api.listen(config.port, () => {
-  log.info(`Server listening on port ${config.port}`);
-});
-```
+   const server = api.listen(config.port, () => {
+     console.log(`Server listening on port ${config.port}`);
+   });
+   ```
 
-4. Next, create an <code>api.js</code> file. This file will define the core API routes and logic for issuing credentials:
+4. Next, create an `api.js` file. This file will define the core API routes and logic for issuing credentials:
 
-```js title=api.js
-import express from 'express';
-import { VerifiableCredential, Jwt } from '@web5/credentials';
+   ```javascript title=api.js
+   import express from "express";
+   import { VerifiableCredential, Jwt } from "@web5/credentials";
 
-const app = express();
-app.use(express.json());
+   const app = express();
+   app.use(express.json());
 
-app.get('/example-route', async (req, res) => {
-  // implement the API route here
-});
+   app.get("/example-route", async (req, res) => {
+     // implement the API route here
+   });
 
-// Export the app so it can be imported in your <code>main.js</code> file
-export { app as api };
-```
+   // Export the app so it can be imported in your main.js file
+   export { app as api };
+   ```
 
-</p>
-
-  </div>
-</LanguageSwitchBlock>
+  </LanguageContent>
+</LanguageSwitcher>
 
 ## Next Steps
 
