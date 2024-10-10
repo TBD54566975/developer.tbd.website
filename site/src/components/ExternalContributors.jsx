@@ -112,7 +112,7 @@ const checkboxLabelText = {
 };
 
 const scrollableContainerStyle = {
-  maxHeight: '750px',
+  maxHeight: '850px',
   overflowY: 'auto',
   padding: '0 20px',
   marginBottom: '20px',
