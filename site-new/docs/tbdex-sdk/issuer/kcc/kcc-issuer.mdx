@@ -24,7 +24,7 @@ This guide is intended for educational purposes only and does not constitute leg
 
 In this guide, we'll cover:
 
-- Performing Identity Verification (IDV) as a necessary step **before** issuing a Known Customer Credential (KCC), by implementing an HTTP API conformant with [Self Issued OpenID Provider V2 (SIOPv2)](https://openid.github.io/SIOPv2/openid-connect-self-issued-v2-wg-draft.html) and [OpenID for Verifiable Presentation's (OID4VP)](https://openid.net/specs/openid-4-verifiable-presentations-1_0.html).
+- Performing Identity Verification (IDV) as a necessary step **before** issuing a Known Customer Credential (KCC), by implementing an HTTP API conformant with [Self Issued OpenID Provider V2 (SIOPv2)](https://openid.github.io/SIOPv2/openid-connect-self-issued-v2-wg-draft.html) and [OpenID for Verifiable Presentations (OID4VP)](https://openid.net/specs/openid-4-verifiable-presentations-1_0.html).
 - Designing and detailing the required properties of a KCC.
 - Issuing a KCC conformant with [OpenID for Verifiable Credential Issuance (OID4VCI)](https://openid.net/specs/openid-4-verifiable-credential-issuance-1_0.html) following successful IDV.
 
@@ -87,18 +87,8 @@ Implement an endpoint to handle incoming GET requests from the Wallet. When a re
 When a Verifiable Presentation is **not** an accepted form of IDV, you can respond to the customer's Wallet application by requesting only an `id_token` from them:
 
 <Shnip
-  snippets={[
-    {
-      snippetName: "siopv2InitiateId_tokenEndpointIssuerJs",
-      language: "JavaScript",
-      title: "Issuer api.js for id_token only ",
-    },
-    {
-      snippetName: "siopv2InitiateId_tokenEndpointIssuerKT",
-      language: "Kotlin",
-      title: "Issuer Application.kt for id_token only",
-    },
-  ]}
+  languages={["JavaScript", "Kotlin"]}
+  snippetName="siopv2InitiateId_tokenEndpointIssuer"
 />
 
 :::note
@@ -110,25 +100,15 @@ When a Verifiable Presentation is **not** an accepted form of IDV, you can respo
 When a Verifiable Presentation is an accepted form of IDV, you can respond to the customer's Wallet application by requesting an `id_token` and a `vp_token` from them:
 
 <Shnip
-  snippets={[
-    {
-      snippetName: "siopv2InitiateId_tokenAndVp_tokenEndpointIssuerJs",
-      language: "JavaScript",
-      title: "Issuer api.js for id_token and vp_token",
-    },
-    {
-      snippetName: "siopv2InitiateId_tokenAndVp_tokenEndpointIssuerKT",
-      language: "Kotlin",
-      title: "Issuer Application.kt for id_token and vp_token",
-    },
-  ]}
+  languages={["JavaScript", "Kotlin"]}
+  snippetName="siopv2InitiateId_tokenAndVp_tokenEndpointIssuer"
 />
 
-The SOIPv2 Authorization request above that you as the issuer send to your customer contains the following key information about you as well as a [Presentation Definition](/docs/web5/verifiable-credentials/presentation-definition).
+The SIOPv2 Authorization request above that you as the issuer send to your customer contains the following key information about you as well as a [Presentation Definition](/docs/web5/verifiable-credentials/presentation-definition).
 
 - **`client_id`**: Issuer's DID, establishing the issuer/requestor's identity.
 - **`response_type`**: Lets the Wallet know the desired format, with `id_token` being required identity token and `vp_token` for _optional_ verifiable presentation token. The inclusion of `vp_token` means a presentation definition is required within the request.
-- **`response_uri`**: Indicates the callback url for the Wallet, ensuring direct communication between the Wallet and the Issuer.
+- **`response_uri`**: Indicates the callback URL for the Wallet, ensuring direct communication between the Wallet and the Issuer.
 - **`nonce`**: A unique identifier tying together the request and its response.
 
 :::note
@@ -138,18 +118,8 @@ The SOIPv2 Authorization request above that you as the issuer send to your custo
 ### 2. Encode the SIOPv2 Authorization Request and respond:
 
 <Shnip
-  snippets={[
-    {
-      snippetName: "encodeSiopv2AuthRequestIssuerJs",
-      language: "JavaScript",
-      title: "Issuer api.js",
-    },
-    {
-      snippetName: "encodeSiopv2AuthRequestIssuerKT",
-      language: "Kotlin",
-      title: "Issuer Application.kt",
-    },
-  ]}
+  languages={["JavaScript", "Kotlin"]}
+  snippetName="encodeSiopv2AuthRequestIssuer"
 />
 
 ### 3. Wallet's SIOPv2 Authorization Response
@@ -160,7 +130,8 @@ The Wallet will then respond with an HTTP POST [SIOPv2 Authorization Response](h
 // Wallet.js example HTTP POST request body
 
 {
-    "id_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJkaWQ6ZGh0OmN1c3RvbWVyRGlkIiwic3ViIjoiZGlkOmRodDpjdXN0b21lckRpZCIsImF1ZCI6Imlzc3VlckRpZC51cmkiLCJub25jZSI6Im4tMFM2X1d6QTJNaiIsImV4cCI6MTYxODg4NDQ3MywiaWF0IjoxNjE4ODgwODczfQGUuY29tL2NyZWRlbnRpYWxzLzE4NzIiLCJ0eXBlIjpbIlZlcmlmaWFibGVDcmVkZW50aWFsIiwiSURDYXJkQ3JlZGVudGlhbCJdLCJpc3N1ZXIiOnsiaWQiOiJkaWQ6ZXhhbXBsZTppc3N1ZXIifSwiaXNzdWFuY2VEYXRlIjoiMjAxMC0wMS0wMVQxOToyMzoyNFoiLCJjcmVkZW50aWFsU3ViamVjdCI6eyJnaXZlbl9uYW1lIjoiRnJlZHJpayIsImZhbWlseV9uYW1lIjoiU3RyJm9tYmVyZyIsImJpcnRoZGF0ZSI6IjE5NDktMDEtMjIifX1dLCJob2xkZXIiOiJkaWQ6ZXhhbXBsZTpob2xkZXIiLCJwcm9vZiI6eyJ0eXBlIjoiRWQyNTUxOVNpZ25hdHVyZTIwMTgiLCJjcmVhdGVkIjoiMjAyMS0wMy0xOVQxNTozMDoxNVoiLCJjaGFsbGVuZ2UiOiJuLTBTNl9XekEyTWoiLCJkb21haW4iOiJodHRwczovL2NsaWVudC5leGFtcGxlLm9yZy9jYiIsImp3cyI6ImV5SmhiR2NpT2lKSVV6STFOaUo5LkhvbGRlcl9GT1JfU0lHTkFUVVJFIiwicHJvb2ZQdXJwb3NlIjoiYXV0aGVudGljYXRpb24iLCJ2ZXJpZmljYXRpb25NZXRob2QiOiJkaWQ6ZXhhbXBsZTpob2xkZXIja2V5LTEifX0"
+    "id_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJkaWQ6ZGh0OmN1c3RvbWVyRGlkIiwic3ViIjoiZGlkOmRodDpjdXN0b21lckRpZCIsImF1ZCI6Imlzc3VlckRpZC51cmkiLCJub25jZSI6Im4tMFM2X1d6QTJNaiIsImV4cCI6MTYxODg4NDQ3MywiaWF0IjoxNjE4ODgwODczfQ...",
+    "vp_token": "eyJhbGciOiJFZERTQSIsInR5cCI6IkpXVCIsImtpZCI6ImRpZDprZXk6...}"
 }
 ```
 
@@ -205,7 +176,7 @@ The decoded [JWT Claims](https://datatracker.ietf.org/doc/html/rfc7519#section-4
     ]
   },
   "verifiableCredential": [
-    "eyJhbGciOiJFZERTQSIsInR5cCI6IkpXVCIsImtpZCI6ImRpZDprZXk6ejZNa2VyNDlDbnVnN2hzdkhEZ3Y0NHl2cGR2dE1oNHlMaURYeFM2N2huclVodHQyI3o2TWtlcjQ5Q251Zzdoc3ZIRGd2NDR5dnBkdnRNaDR5TGlEWHhTNjdobnJVaHR0MiJ9.eyJpc3MiOiJkaWQ6a2V5Ono2TWtlcjQ5Q251Zzdoc3ZIRGd2NDR5dnBkdnRNaDR5TGlEWHhTNjdobnJVaHR0MiIsInZjIjp7IkBjb250ZXh0IjpbImh0dHBzOi8vd3d3LnczLm9yZy8yMDE4L2NyZWRlbnRpYWxzL3YxIl0sInR5cGUiOlsiVmVyaWZpYWJsZUNyZWRlbnRpYWwiLCJFbXBsb3ltZW50Q3JlZGVudGlhbCJdLCJpZCI6InVybjp1dWlkOjcyNDhiOTkyLTkwOTYtNDk2NS1hMGVjLTc3ZDhhODNhMWRmYiIsImlzc3VlciI6ImRpZDprZXk6ejZNa2VyNDlDbnVnN2hzdkhEZ3Y0NHl2cGR2dE1oNHlMaURYeFM2N2huclVodHQyIiwiaXNzdWFuY2VEYXRlIjoiMjAyMy0xMi0yMVQyMDoxMToyNVoiLCJjcmVkZW50aWFsU3ViamVjdCI6eyJnaXZlbl9uYW1lIjoiRnJlZHJpayIsImZhbWlseV9uYW1lIjoiU3RyJm9tYmVyZyIsImJpcnRoZGF0ZSI6IjE5NDktMDEtMjIifX1dLCJob2xkZXIiOiJkaWQ6ZXhhbXBsZTpob2xkZXIiLCJwcm9vZiI6eyJ0eXBlIjoiRWQyNTUxOVNpZ25hdHVyZTIwMTgiLCJjcmVhdGVkIjoiMjAyMS0wMy0xOVQxNTozMDoxNVoiLCJjaGFsbGVuZ2UiOiJuLTBTNl9XekEyTWoiLCJkb21haW4iOiJodHRwczovL2NsaWVudC5leGFtcGxlLm9yZy9jYiIsImp3cyI6ImV5SmhiR2NpT2lKSVV6STFOaUo5LkhvbGRlcl9GT1JfU0lHTkFUVVJFIiwicHJvb2ZQdXJwb3NlIjoiYXV0aGVudGljYXRpb24iLCJ2ZXJpZmljYXRpb25NZXRob2QiOiJkaWQ6ZXhhbXBsZTpob2xkZXIja2V5LTEifX0"
+    "eyJhbGciOiJFZERTQSIsInR5cCI6IkpXVCIsImtpZCI6..."
   ]
 }
 ```
