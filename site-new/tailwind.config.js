@@ -72,7 +72,6 @@ module.exports = {
         "tbd-gray-shade-1": "#1A1A1A",
         "tbd-gray-shade-2": "#0F0F0F",
         "dark-grey": "#141414",
-        white: "#FFF",
       },
       fontFamily: {
         sans: ['"Inter"', ...fontFamily.sans],
