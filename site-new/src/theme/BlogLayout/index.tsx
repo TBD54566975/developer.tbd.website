@@ -66,13 +66,14 @@ export default function BlogLayout(props: Props): JSX.Element {
               // "col--9 col--offset-1": !hasSidebar && !blogContext,
               "col--12": !hasSidebar && !blogContext,
               "col--9": !hasSidebar && blogContext,
+              "blog-list-container": Boolean(blogContext),
             })}
           >
             {children}
           </main>
           {toc && !blogContext && <div className="col col--2">{toc}</div>}
           {blogContext && (
-            <div className="col w-full">
+            <div className="col hidden w-full lg:block">
               <div className="bg-tbd-yellow">
                 <Background
                   bgColor="yellow"
