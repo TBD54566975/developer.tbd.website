@@ -631,6 +631,23 @@ a:has(.footer__logo) {
 	@apply absolute !text-black content-[""] left-0 inset-y-0 w-[5px] bg-black
 }
 
+.blog-list-page .blog-list-container {
+	@apply grid grid-cols-1 lg:grid-cols-2 lg:gap-x-[68px] gap-y-twist-core-spacing-6 lg:gap-y-twist-core-spacing-15
+}
+
+.blog-list-page .blog-list-container article {
+	@apply border border-solid border-tbd-yellow p-twist-core-spacing-5 lg:p-twist-core-spacing-12 !mb-0
+}
+
+.blog-list-page .blog-list-container article p:has(img) {
+	@apply -mx-twist-core-spacing-5 lg:-mx-twist-core-spacing-12
+}
+
+
+.blog-list-page .blog-list-container article:first-of-type {
+	@apply lg:col-span-2
+}
+
 @layer base {
 	h2 {
 		@apply text-1.2lg lg:text-4.5xl;
