@@ -4,6 +4,7 @@ hide_title: true
 sidebar_position: 7
 ---
 
+import Shnip from "@site/src/components/Shnip";
 
 # Creating Quotes
 
@@ -15,32 +16,36 @@ When you receive an `RFQ` message, you’ll want to do the following:
 
 ## Store RFQ message
 
-An `RFQ` is the first message of an exchange. 
+An `RFQ` is the first message of an exchange.
 When a Wallet application sends your PFI an `RFQ` message, your server's `onCreateExchange()` callback parameter will be invoked.
-This is where you should implement your business logic for determining the customer's exact Quote. 
+This is where you should implement your business logic for determining the customer's exact Quote.
 
 As a best practice, store the `RFQ` message in your [Exchanges database](/docs/tbdex/pfi/anatomy-of-a-pfi#main-server-entrypoint) so that both you and the Wallet app can access it.
 
-
 ## Get the Offering
 
-After inserting the `RFQ` into your database, you can search your database for the `Offering` the `RFQ` is requesting. 
+After inserting the `RFQ` into your database, you can search your database for the `Offering` the `RFQ` is requesting.
 
-RFQs contain a required `offeringId` field that you pass to your Offerings API provider’s `getOffering()` method to obtain the exact Offering. 
+RFQs contain a required `offeringId` field that you pass to your Offerings API provider’s `getOffering()` method to obtain the exact Offering.
 
 Building on the example from the [Exchange API Provider section](/docs/tbdex/pfi/anatomy-of-a-pfi#exchange-api-provider), your code might look like this:
 
+<Shnip languages={["JavaScript", "Kotlin"]} snippetName="pfiWriteOffering" />
+
 ## Verify Credentials
 
-Upon receiving an `RFQ`, the tbDEX SDK will automatically [verify the submitted credentials](/docs/web5/verifiable-credentials/verify-vc#verify-verifiable-credentials) to guarantee their integrity and authenticity as well as ensure that they meet the `requiredClaims` specified in the `Offering`. 
+Upon receiving an `RFQ`, the tbDEX SDK will automatically [verify the submitted credentials](/docs/web5/verifiable-credentials/verify-vc#verify-verifiable-credentials) to guarantee their integrity and authenticity as well as ensure that they meet the `requiredClaims` specified in the `Offering`.
 
 ## Create a Quote
 
-Before creating a `Quote` in response to the received `RFQ`, you can review the [protocol definition for Quotes](https://github.com/TBD54566975/tbdex/tree/main/specs/protocol#quote). 
+Before creating a `Quote` in response to the received `RFQ`, you can review the [protocol definition for Quotes](https://github.com/TBD54566975/tbdex/tree/main/specs/protocol#quote).
 With that in mind, you can then create your quote using the `Quote.create()` method as shown below:
 
+<Shnip languages={["JavaScript", "Kotlin"]} snippetName="pfiCreateQuote" />
 
 With the `Quote` created, you’ll then sign it for authorization purposes and write it to your own database:
+
+<Shnip languages={["JavaScript", "Kotlin"]} snippetName="pfiSignQuote" />
 
 :::tip Note
 If the Wallet Application supplied a `replyTo` address with their RFQ, the tbDEX SDK will send the Quote to that address.

@@ -17,6 +17,10 @@ function ComponentList() {
     { name: "CodeBlock", path: "/component-guide/code-block" },
     { name: "IconButton", path: "/component-guide/icon-button" },
     { name: "CodeBlock", path: "/component-guide/code-block" },
+    {
+      name: "Calendar",
+      path: "/component-guide/calendar",
+    },
   ];
 
   return (

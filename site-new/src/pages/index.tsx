@@ -3,43 +3,44 @@ import Layout from "@theme/Layout";
 import Heading from "@theme/Heading";
 import Background from "../components/Background";
 import Rocket from "@site/static/img/Rocket";
-import Underline from "@site/static/img/Underline";
 import Hero from "../components/HeroCard";
 import Card from "../components/Card";
 import tbdRex from "@site/static/img/tbd-rex";
 import { PixelBorderWrapper } from "../components/PixelBorder";
 import { useEffect, useRef } from "react";
+import { typeWriter, TypeWriterWordType } from "@site/lib/utils";
 
-const TYPE_WRITER_TEXT = [
-  { text: "We're building", class: "" },
-  { text: " open ", class: "text-tbd-yellow" },
-  { text: "source toolkits", class: "" },
-];
+const TYPE_WRITER_VARIABLE_TEXT = [
+  {
+    text: "open source toolkits",
+    highlight: [{ start: 0, end: 4 }],
+    className: "text-tbd-yellow",
+  },
+  {
+    text: "open standards and protocols",
+    highlight: [{ start: 0, end: 4 }],
+    className: "text-tbd-yellow",
+  },
+  {
+    text: "open financial access globally",
+    highlight: [{ start: 0, end: 4 }],
+    className: "text-tbd-yellow",
+  },
+] satisfies TypeWriterWordType[];
 
 export default function Home(): JSX.Element {
   const { siteConfig } = useDocusaurusContext();
 
-  const typeWriterRef = useRef<HTMLParagraphElement>(null);
+  const typeWriterRef = useRef<HTMLSpanElement>(null);
 
   useEffect(() => {
-    const typingSpeed = 100;
-    const typeWritter = () => {
-      let timeout = 0;
-      for (let i = 0; i < TYPE_WRITER_TEXT.length; i++) {
-        for (let j = 0; j < TYPE_WRITER_TEXT[i].text.length; j++) {
-          const currentText = TYPE_WRITER_TEXT[i].text;
-          const currentClass = TYPE_WRITER_TEXT[i].class;
-          timeout += typingSpeed;
-          if (typeWriterRef.current) {
-            setTimeout(() => {
-              typeWriterRef.current.innerHTML += `<span class=${currentClass}>${currentText.charAt(j)}</span>`;
-            }, timeout);
-          }
-        }
-      }
-    };
-    typeWritter();
-  }, []);
+    typeWriter({
+      wordsToType: TYPE_WRITER_VARIABLE_TEXT,
+      typeWriterRef,
+      typingDelay: 1000,
+      typingSpeed: 70,
+    });
+  }, [typeWriterRef]);
 
   return (
     <Layout
@@ -59,9 +60,8 @@ export default function Home(): JSX.Element {
                   className="mb-4 mt-twist-core-spacing-7 text-[48px] font-medium lg:text-[80px]"
                 >
                   The future of finance is{" "}
-                  <span className="relative mb-twist-core-spacing-7 inline-block text-tbd-yellow">
-                    open
-                    <Underline className="absolute bottom-[-10px] left-2 fill-tbd-yellow lg:bottom-[-20px] lg:left-4" />
+                  <span className="text-highlight-full mb-twist-core-spacing-7">
+                    Open
                   </span>
                 </Heading>
                 <Heading
@@ -82,11 +82,12 @@ export default function Home(): JSX.Element {
 
         <div className="flex w-full items-center justify-center">
           <div className="flex h-[128px] w-[90%] items-center justify-center border-[0.5px] border-solid border-tbd-yellow bg-tbd-gray-shade-1 px-[20px] py-[24px] lg:w-[80%] lg:px-[38px] lg:py-[46px]">
-            <p className="mb-0 text-2xl lg:text-3xl" ref={typeWriterRef}>
+            <p className="mb-0 text-2xl lg:text-3xl">
               {/* We're building <span className="text-tbd-yellow">open</span>{" "}
               source toolkits */}
+              We're building <span ref={typeWriterRef}></span>
+              <span className="relative top-1 ml-1 inline-block h-7 w-1 animate-caret bg-[lightgrey]" />
             </p>{" "}
-            <span className="animate-caret ml-1 h-full w-2 bg-tbd-yellow [animation-delay:3.8s]"></span>
           </div>
         </div>
 

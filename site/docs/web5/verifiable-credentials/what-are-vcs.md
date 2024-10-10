@@ -18,13 +18,13 @@ VCs are digital credentials stating specific facts. They're similar to online ba
 
 ![VC's three party model](/img/vc-three-party-model.png)
 
-> _Three party model diagram, from [Affinidi Pet. Ltd](https://affinidi.medium.com/what-are-verifiable-credentials-79f1846a7b9)_
+> _Three party model diagram, from [Affinidi Pte. Ltd](https://affinidi.medium.com/what-are-verifiable-credentials-79f1846a7b9)_
 
 A Verifiable Credential (VC) is a cryptographically-signed statement made by an issuer about a holder (or subject). VCs operate within a three-party model: the **Issuer**, the **Holder** **(or Subject)**, and the **Verifier**.
 
 An **issuer** is the party who is making the claim; while the **holder(subject)** is the party who the claim is made about. In the example VC where the claim is "Alice has a degree from Decentralized University", Decentralized University would be a credible issuer and Alice would be the subject.
 
-The beauty of VCs are that the claims made within them can be verified without needing a middleman. Since VCs are signed by the issuer with some fancy cryptography magic (we'll uncover this magic in a minute), anyone can become a **verifier** to confirm that the claims are indeed the real-deal. It’s all about being sure that a claim (like Alice's degree or Bob’s employment status) isn't just a made up story.
+The beauty of VCs are that the claims made within them can be verified without needing a middleman. Since VCs are signed by the issuer with some fancy cryptography magic (we'll uncover this magic in a minute), anyone can become a **verifier** to confirm that the claims are indeed the real-deal. It’s all about being sure that a claim (like Alice's degree or Bob’s employment status) isn't just a made-up story.
 
 ## Examples of Verifiable Credentials
 
@@ -94,9 +94,9 @@ There are different ways to secure VCs, let's look into securing them with JWT. 
 
 In our example, for Alice's potential employer to verify that she did indeed graduate from Decentralized University, Alice would need to give them a [Verifiable Presentation](/docs/glossary#verifiable-presentation) that contains her VC's JWT string.
 
-The employer(verifier) would then get the university's public key through the [Verifiable Data Registry](https://www.w3.org/TR/vc-data-model-2.0/#ecosystem-overview). In order for the university to create that JWT string, they need their pubic-private key pair. The employer would then verify the JWT using the university's public key and the JWT's encoded signature (the characters after the last period in the above string #3).
+The employer (verifier) would then get the university's public key through the [Verifiable Data Registry](https://www.w3.org/TR/vc-data-model-2.0/#ecosystem-overview). In order for the university to create that JWT string, they need their public-private key pair. The employer would then verify the JWT using the university's public key and the JWT's encoded signature (the characters after the last period in the above string #3).
 
-A successful verification tells the employer that the VC is authentic. If this step fails, it's a sign that Alice's VC was forged. After verification, the employer can decode the JWT, as shown on [JWT.io](https://jwt.io/) to obtain it's payload. The payload contains all the information that is written inside of the VC that Alice has presented to them. The employer can trust that the information contained in the now verified payload was indeed issued by the university.
+A successful verification tells the employer that the VC is authentic. If this step fails, it's a sign that Alice's VC was forged. After verification, the employer can decode the JWT, as shown on [JWT.io](https://jwt.io/) to obtain it's payload. The payload contains all the information that is written inside of the VC that Alice has presented to them. The employer can trust that the information contained in the now-verified payload was indeed issued by the university.
 
 :::note
 Trust is still critical. A VC from “Bob’s Bogus Academy” might not carry the same credibility as one from a renowned institution. However, since public keys are public, the discovery of them presents a slight risk. How do you know that the public key you were given actually belongs to the issuer, such as Decentralized University? Although the Verifiable Data Registry gives you a way to search for public keys, it still requires a great amount of trust. Always consider the issuer's reputation.
@@ -106,4 +106,4 @@ Trust is still critical. A VC from “Bob’s Bogus Academy” might not carry t
 
 VCs can be securely stored and managed via identity wallets. When the need arises to share them, it's simply a matter of presenting directly from the wallet, ensuring personal data remains private.
 
-Now, with their newfound knowledge of VCs, Alice and Bob are ready to further explore the decentralized web, presenting their credentials with confidence. Looking to play around with verifiable credentials yourself? Start by following our [Issue a VC](/docs/web5/verifiable-credentials/vc-issuance) guide. For additional resources, check out our [Web5/credentials](https://www.npmjs.com/package/@web5/credentials) npm package.
+Now, with their newfound knowledge of VCs, Alice and Bob are ready to further explore the decentralized web, presenting their credentials with confidence. Looking to play around with Verifiable Credentials yourself? Start by following our [Issue a VC](/docs/web5/verifiable-credentials/vc-issuance) guide. For additional resources, check out our [Web5/credentials](https://www.npmjs.com/package/@web5/credentials) npm package.

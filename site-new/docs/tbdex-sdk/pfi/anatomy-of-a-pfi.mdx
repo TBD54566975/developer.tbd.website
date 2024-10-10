@@ -4,25 +4,24 @@ hide_title: true
 sidebar_position: 5
 ---
 
-
-
+import Shnip from "@site/src/components/Shnip";
 
 # Structuring a PFI App
 
 Every PFI on the tbDEX network is required to handle its end of the responsibilities as part of each [Message Type](/docs/tbdex/message-types). The tbDEX SDK is organized in such a way that there are three key components you'll be required to implement:
 
-* **A main server entry point** - this will leverage the tbDEX SDK to create an http server subscribed to tbDEX messaging.
+- **A main server entry point** - this will leverage the tbDEX SDK to create an http server subscribed to tbDEX messaging.
 
-* **An offering API provider** - this class is responsible for implementing the OfferingsApi protocol, which is a common interface for managing the database containing your offerings data. When a Wallet queries your PFI for Offerings, the tbDEX SDK will use the interfaces in this class to automatically handle returning Offerings from your database to the Wallet.
+- **An offering API provider** - this class is responsible for implementing the OfferingsApi protocol, which is a common interface for managing the database containing your offerings data. When a Wallet queries your PFI for Offerings, the tbDEX SDK will use the interfaces in this class to automatically handle returning Offerings from your database to the Wallet.
 
-* **An exchange API provider** - this class is responsible for implementing the ExchangeApi protocol, which is a common interface for managing the database containing your tbDEX offer, order, quote, close, and RFQ data.
+- **An exchange API provider** - this class is responsible for implementing the ExchangeApi protocol, which is a common interface for managing the database containing your tbDEX offer, order, quote, close, and RFQ data.
 
 ## Main Server Entrypoint
 
 Your main server entrypoint should fulfill the following responsibilities:
 
-* Accept `GET` requests for Offerings and Exchanges data
-* Handle submission requests for new `RFQ`, `Order`, and `Close` messages
+- Accept `GET` requests for Offerings and Exchanges data
+- Handle submission requests for new `RFQ`, `Order`, and `Close` messages
 
 Here is a list of the required routes you'll need to implement:
 
@@ -43,12 +42,18 @@ Here is a list of the required routes you'll need to implement:
     <tr>
       <td>PUT</td>
       <td>/exchanges/:id</td>
-      <td>Used to add additional messages (e.g. `Order`, `Close`) to an existing exchange</td>
+      <td>
+        Used to add additional messages (e.g. `Order`, `Close`) to an existing
+        exchange
+      </td>
     </tr>
     <tr>
       <td>GET</td>
       <td>/exchanges</td>
-      <td>Used to get the exchange IDs of all exchanges that match a specified filter</td>
+      <td>
+        Used to get the exchange IDs of all exchanges that match a specified
+        filter
+      </td>
     </tr>
     <tr>
       <td>GET</td>
@@ -60,13 +65,22 @@ Here is a list of the required routes you'll need to implement:
 
 To begin, you’ll want to configure your server with the required exchange and offerings API providers (the details of those API providers will be in the sections below):
 
+<Shnip languages={["JavaScript", "Kotlin"]} snippetName="pfiOverviewConfig" />
 
-The [message types](/docs/tbdex/message-types) that are sent from Wallets to PFIs are: `RFQ`, `Order`, and `Close`. 
+The [message types](/docs/tbdex/message-types) that are sent from Wallets to PFIs are: `RFQ`, `Order`, and `Close`.
 As a result, you’ll want to ensure that your PFI is programmed to accept those messages and create appropriate messages in response:
 
+<Shnip
+  languages={["JavaScript", "Kotlin"]}
+  snippetName={"pfiOverviewServerRoutes"}
+/>
 
 With your routes configured, set your server to begin listening:
 
+<Shnip
+  languages={["JavaScript", "Kotlin"]}
+  snippetName="pfiOverViewServerStart"
+/>
 
 Now your server is configured with the appropriate routing setup.
 
@@ -76,37 +90,40 @@ Error handling for things like duplicate RFQs, invalid data, and non-existent Of
 
 ## Offerings API Provider
 
-The `Offerings` API is the set of methods that deals with reading and writing any offering data, based on the class.
-Although the interface for `OfferingsApi` only requires to be filled out with read operations, you may find it useful to write operations into the class as well. 
+// The `Offerings` API is the set of methods that deals with reading and writing any offering data, based on the ADD LANGUAGE SWITCH LINK HERE class.
+// Although the interface for `OfferingsApi` only requires to be filled out with read operations, you may find it useful to write operations into the class as well.
 
-Although the Offerings API isn’t directly exposed in the main server entrypoint, it is still used to fetch and write offerings to your PFI's database. 
+Although the Offerings API isn’t directly exposed in the main server entrypoint, it is still used to fetch and write offerings to your PFI's database.
 Here's an example of how to get offerings as specified by the `OfferingsApi` interface:
 
+<Shnip
+  languages={["JavaScript", "Kotlin"]}
+  snippetName="pfiOverviewReadOfferings"
+/>
 
 By implementing the `getOffering()` and `getOfferings()` methods, you'll allow Wallets to get a specific Offering they'd be interested in, or query all your Offerings, respectively. The convenience of the tbDEX SDK is that you aren't required to actually write an API endpoint yourself to handle interfacing with Wallets as the SDK handles it all for you.
 
 ## Exchange API Provider
 
-The Exchanges API is the set of methods that deals with reading and writing messages, based on the [ExchangesApi](https://tbd54566975.github.io/tbdex-js/interfaces/_tbdex_http_server.ExchangesApi.html) class. 
-Although the interface for `ExchangesApi` only requires read operations, you may find it useful to couple write operations into the class as well. 
+The Exchanges API is the set of methods that deals with reading and writing messages, based on the [ExchangesApi](https://tbd54566975.github.io/tbdex-js/interfaces/_tbdex_http_server.ExchangesApi.html) class.
+Although the interface for `ExchangesApi` only requires read operations, you may find it useful to couple write operations into the class as well.
 
-Using the sample code above as reference, the submission of `RFQ`, `Order`, or `Close` data will result in the triggering of the Exchange API Provider’s `write()`, while the required methods such as `getOrder()` will serve as read methods. 
+Using the sample code above as reference, the submission of `RFQ`, `Order`, or `Close` data will result in the triggering of the Exchange API Provider’s `write()`, while the required methods such as `getOrder()` will serve as read methods.
 
-As a PFI developer, you’ll be responsible for designing your own data storage and provider to access your data. 
+As a PFI developer, you’ll be responsible for designing your own data storage and provider to access your data.
 
-For example, after writing an `RFQ` to the database, you can [create a Quote](/docs/tbdex/pfi/creating-quotes). 
+For example, after writing an `RFQ` to the database, you can [create a Quote](/docs/tbdex/pfi/creating-quotes).
 Similarly, after writing an `Order` to your database, you’ll want to ensure you properly [process that Order](/docs/tbdex/pfi/processing-orders).
 
 ### Callbacks
 
-When sending an `RFQ` message, the Wallet may also provide [an optional `replyTo` property](/docs/tbdex/wallet/send-rfq#send-rfq-to-pfi) that allows for them to subscribe to subsequent messages. 
-If you receive a `replyTo` property, which is a fully qualified URI (URL or DID), then as the PFI you are responsible for sending all new messages back to the endpoint provided. 
-The callback URI should be scoped only to that exchange, allowing the caller to to specify a different URI per exchange if they wish. 
+When sending an `RFQ` message, the Wallet may also provide [an optional `replyTo` property](/docs/tbdex/wallet/send-rfq#send-rfq-to-pfi) that allows for them to subscribe to subsequent messages.
+If you receive a `replyTo` property, which is a fully qualified URI (URL or DID), then as the PFI you are responsible for sending all new messages back to the endpoint provided.
+The callback URI should be scoped only to that exchange, allowing the caller to specify a different URI per exchange if they wish.
 If the `replyTo` property is not present, the caller will poll the exchange to get new messages.
-
 
 ### Writing Messages
 
 Assuming a generic `dataProvider` class serves as your PFI’s means of accessing your Exchange data, here's an example of a `write()` implementation:
 
-
+<Shnip languages={["JavaScript", "Kotlin"]} snippetName="pfiOverviewWrite" />

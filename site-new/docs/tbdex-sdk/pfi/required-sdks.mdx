@@ -1,0 +1,63 @@
+---
+sidebar_position: 2
+title: Required SDKs
+hide_title: true
+---
+
+import Shnip from "@site/src/components/Shnip";
+import {
+  LanguageSwitcher,
+  LanguageContent,
+} from "@site/src/components/LanguageSwitcher";
+import CodeBlock from "@theme/CodeBlock";
+import Dependencies from "@site/src/components/Dependencies";
+
+# Required SDKs
+
+To implement and operate as a PFI, you’ll need to use the following SDKs:
+
+- **@web5/dids** - To work with [Decentralized Identifiers (DID)](/docs/web5/decentralized-identifiers/what-are-dids), including creating an identity, and performing any other required cryptographic functions, you’ll need this package. Check out [Key Management Service](/docs/web5/decentralized-identifiers/key-management) for DIDs in production environments.
+
+- **@web5/credentials** - Enable verification of your customer information, including information such as customer’s identity or whether a customer is on a sanctions list. [Verifiable Credentials (VC)](/docs/web5/verifiable-credentials/what-are-vcs) provide a decentralized and trustworthy way of verifying a customer.
+
+- **@tbdex/http-server** - Enable convenience methods for setting up routing and networking to facilitate your PFI.
+
+## Install SDKs
+
+<Dependencies
+  languageDependencies={[
+    {
+      language: "javascript",
+      dependencies: ["@web5/dids", "@web5/credentials", "@tbdex/http-server"],
+    },
+    { language: "maven", dependencies: ["tbdex"] },
+    { language: "gradle", dependencies: ["tbdex"] },
+  ]}
+/>
+
+## Import Classes
+
+To send and receive tbDEX messages, import the following classes:
+
+<LanguageSwitcher languages={["javascript", "kotlin"]}>
+  <LanguageContent language="javascript">
+    <CodeBlock language="jsx">
+      {`import { TbdexHttpServer, Offering, Rfq, Quote, Order, OrderStatus, Close, Parser } from '@tbdex/http-server'`}
+    </CodeBlock>
+  </LanguageContent>
+  <LanguageContent language="kotlin">
+    <CodeBlock language="kotlin">
+      {`      import tbdex.sdk.httpserver.TbdexHttpServer
+      import tbdex.sdk.protocol.models.Rfq
+      import tbdex.sdk.protocol.models.Quote
+      import tbdex.sdk.protocol.models.Order
+      import tbdex.sdk.protocol.models.OrderStatus
+      import tbdex.sdk.protocol.models.Close
+      import tbdex.sdk.protocol.Parser
+      import tbdex.sdk.protocol.Validator
+      import tbdex.sdk.protocol.serialization.Json
+      import web5.sdk.credentials.PresentationExchange
+      import web5.sdk.credentials.model.*`}
+    </CodeBlock>
+  </LanguageContent>
+</LanguageSwitcher>
