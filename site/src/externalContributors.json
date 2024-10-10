@@ -1,12 +1,5 @@
 [
   {
-    "type": "video",
-    "thumbnail": "/img/external-contributor/test1.png",
-    "title": "My Verifiable Credential Expired 🤯",
-    "link": "https://youtube.com/shorts/xsKKAzHHrKo?si=OwhT77TM9YbFT7-f",
-    "contributor": "Ebony Louis"
-  },
-  {
     "type": "blog",
     "thumbnail": "/img/external-contributor/kiranbaliga.png",
     "title": "Key Management for DIDs",
@@ -34,7 +27,6 @@
     "link": "https://dev.to/chrissiku/the-future-of-web-how-web5-transforms-identity-and-data-ownership-2062",
     "contributor": "Christian Siku"
   },
-
   {
     "type": "blog",
     "thumbnail": "/img/external-contributor/how_to_resolve_dids.png",
@@ -64,13 +56,6 @@
     "contributor": "Kiran Baliga"
   },
   {
-    "type": "blog",
-    "thumbnail": "/img/external-contributor/hackexperience.png",
-    "title": "Hacktoberfest Experience",
-    "link": "https://dev.to/kiran_baliga/my-hacktoberfest-2024-journey-2odn",
-    "contributor": "Kiran Baliga"
-  },
-  {
     "type": "video",
     "thumbnail": "/img/external-contributor/quick_start_web5_chrissiku.png",
     "title": "My first line of web5.js : Quick start",
@@ -90,5 +75,12 @@
     "title": "Understanding Web5 and its Potential",
     "link": "https://dev.to/lymah/understanding-web5-and-its-potential-2p30",
     "contributor": "Lymah123"
+  },
+  {
+    "type": "blog",
+    "thumbnail": "/img/external-contributor/hackexperience.png",
+    "title": "Hacktoberfest Experience",
+    "link": "https://dev.to/kiran_baliga/my-hacktoberfest-2024-journey-2odn",
+    "contributor": "Kiran Baliga"
   }
 ]
