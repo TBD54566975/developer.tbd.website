@@ -1,6 +1,6 @@
 import React from "react";
 import Background from "@site/src/components/Background";
-import { SpotLightCard } from "@site/src/components/SpotLightCard";
+import Card from "@site/src/components/Card";
 import PixelBorderWrapper from "@site/src/components/PixelBorder/PixelBorderWrapper";
 import Hero from "@site/src/components/Hero";
 
@@ -106,16 +106,15 @@ function Spotlight(): JSX.Element {
           <div className="container mx-auto px-4 py-12">
             <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
               {spotlights.map((spotlight, index) => (
-                <SpotLightCard
+                <Card
                   key={index}
-                  src={spotlight.src}
-                  handle={spotlight.handle}
-                  title={spotlight.title}
+                  image={spotlight.src}
+                  title={spotlight.handle}
+                  text={spotlight.description}
+                  eyebrow={spotlight.title}
                   alt={spotlight.alt}
-                  tone="yellow"
-                >
-                  <p>{spotlight.description}</p>
-                </SpotLightCard>
+                  theme="yellow"
+                />
               ))}
             </div>
           </div>

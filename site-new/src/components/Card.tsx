@@ -1,7 +1,6 @@
 import React from "react";
 import Heading from "@theme/Heading";
 import Button from "@site/src/components/Button";
-import Link from "@docusaurus/Link";
 import Swift from "@site/assets/icons/Swift";
 import SwiftMobile from "@site/assets/icons/SwiftMobile";
 import Kotlin from "@site/assets/icons/Kotlin";
@@ -12,6 +11,22 @@ import JSMobile from "@site/assets/icons/JSMobile";
 import GoMobile from "@site/assets/icons/GoMobile";
 import KotlinMobile from "@site/assets/icons/KotlinMobile";
 import { IconButtonLink } from "./IconButton";
+
+type CardProps = {
+  icon?: React.ComponentType<{ className: string; fill?: string }>;
+  image?: string;
+  alt?: string;
+  eyebrow?: string;
+  title: string;
+  text?: string;
+  buttonText?: string;
+  url?: string;
+  className?: string;
+  theme?: Theme;
+  hasBorder?: boolean;
+  orientation?: "horizontal" | "vertical";
+  size?: "large" | "medium" | "small";
+} & (ButtonProps | LanguageButtonProps | DefaultProps);
 
 type Theme =
   | "yellow"
@@ -62,24 +77,13 @@ type DefaultProps = {
   type?: "default";
 };
 
-type TextIconCardProps = {
-  icon?: React.ComponentType<{ className: string; fill?: string }>;
-  title: string;
-  text: string;
-  className?: string;
-  theme?: Theme;
-  hasBorder?: boolean;
-  buttonText?: string;
-  url?: string;
-} & (ButtonProps | LanguageButtonProps | DefaultProps);
-
 const themeClasses: Record<Theme, string> = {
-  yellow: "text-white ",
-  teal: "text-white ",
-  purple: "text-white ",
-  iconyellow: "fill-tbd-yellow ",
-  iconteal: "fill-tbd-teal ",
-  iconpurple: "fill-tbd-purple-tint-2 ",
+  yellow: "text-white",
+  teal: "text-white",
+  purple: "text-white",
+  iconyellow: "fill-tbd-yellow",
+  iconteal: "fill-tbd-teal",
+  iconpurple: "fill-tbd-purple",
 };
 
 const themeClassesHover: Record<Theme, string> = {
@@ -97,55 +101,122 @@ const randomTheme = (): Theme => {
   return themes[randomIndex];
 };
 
-function TextIconCard({
-  icon: Icon,
-  title,
-  text,
+
+function Card({
   className = "",
+  icon: Icon,
   theme,
   hasBorder = true,
+  image,
+  eyebrow,
+  title,
+  alt = title,
+  text,
   buttonText,
   url,
+  orientation = "vertical", // Default orientation is vertical
+  size = "large",
   ...props
-}: TextIconCardProps) {
+}: CardProps) {
+  const Image = image;
+
   const selectedTheme = theme || randomTheme();
 
   const isHoverEnabled =
     props.type === "buttonText" || props.type === "default" || !props.type;
+
   const themeClass = cn(themeClasses[selectedTheme], {
     [themeClassesHover[selectedTheme]]: isHoverEnabled,
   });
-  const iconClass = themeClasses[selectedTheme];
+
+  const iconClass = cn(themeClasses["icon" + selectedTheme], {
+    [themeClassesHover["icon" + selectedTheme]]: isHoverEnabled,
+  });
 
   const borderClass = hasBorder
-    ? `border-[1px] border-solid border-t-8 border-tbd-${selectedTheme}`
+    ? `border-[1px] border-solid ${image ? "" : "border-t-8"} border-tbd-${selectedTheme}`
     : "";
+
+  const sizeClasses = {
+    large: {
+      container: "max-w-[800px]",
+      image:
+        orientation === "horizontal"
+          ? "md:w-[400px] w-full h-auto"
+          : "h-[531px]",
+      text: orientation === "horizontal" ? "md:flex-grow" : "h-[269px]",
+    },
+    medium: {
+      container: "max-w-[584px]",
+      image:
+        orientation === "horizontal"
+          ? "md:w-[292px] w-full h-auto"
+          : "h-[291px]",
+      text: orientation === "horizontal" ? "md:flex-grow" : "h-[291px]",
+    },
+    small: {
+      container: "max-w-[366px]",
+      image:
+        orientation === "horizontal"
+          ? "md:w-[183px] w-full h-auto"
+          : "h-[366px]",
+      text: orientation === "horizontal" ? "md:flex-grow" : "h-[350px]",
+    },
+  };
+
+  const currentSize = sizeClasses[size];
 
   return (
     <div
-      className={`${themeClass} ${className} group transition-all duration-300 ${borderClass}`}
+      className={`${className} group flex items-center justify-center ${orientation === "horizontal" ? "flex-col md:flex-row" : "flex-col"} w-full ${currentSize.container} ${themeClass} ${borderClass} transition-all duration-300 mb-4`}
     >
-      <div className="flex h-full flex-col justify-center p-8">
-        <div>
-          {Icon && (
-            <Icon
-              className={`h-[126px] w-[84px] md:h-[150px] md:w-[100px] ${iconClass} transition-all duration-300`}
-            />
+
+      {/* image  */}
+      {Image && 
+        <img
+          src={Image}
+          alt={alt}
+          className={`${currentSize.image} object-cover w-full`}
+        />
+      }
+
+      {/* card body container  */}
+      <div className="w-full h-full grid grid-cols-1 gap-4 p-8">
+        
+        {/* icon  */}
+        {Icon && (
+          <Icon
+            className={`h-[126px] w-[84px] md:h-[150px] md:w-[100px] ${iconClass} transition-all duration-300`}
+          />
+        )}
+
+        {/* eyebrow for spotlight card  */}
+        {eyebrow && (
+          <p className="my-0 text-sm md:text-lg">{eyebrow}</p>
+        )}
+
+        {/* card heading  */}
+        <Heading
+          as="h3"
+          className={cn(
+            `my-0 text-lg font-bold md:text-2xl text-tbd-${selectedTheme} transition-all duration-300`,
+            {
+              "group-hover:text-tbd-gray": isHoverEnabled,
+            },
           )}
-          <Heading
-            as="h3"
-            className={cn(
-              `mt-4 text-lg font-bold md:text-2xl text-tbd-${selectedTheme} transition-all duration-300`,
-              {
-                "group-hover:text-tbd-gray": isHoverEnabled,
-              },
-            )}
-          >
-            {title}
-          </Heading>
-          <p className="mt-2 text-sm md:text-lg">{text}</p>
-        </div>
-        {url && buttonText && <Button text={buttonText} url={url} />}
+        >
+          {title}
+        </Heading>
+
+        {/* card text  */}
+        {text && (
+          <p className="my-0 text-sm md:text-lg">{text}</p>
+        )}
+        
+        {/* button text  */}
+        {url && buttonText && <Button text={buttonText} url={url} className="mt-2" />}
+        
+        {/* language icon buttons */}
         <>
           {props.type === "languageButton" &&
             Object.keys(props.resources).some(
@@ -167,11 +238,12 @@ function TextIconCard({
                   );
                 })}
               </div>
-            )}
+            )
+          }
         </>
       </div>
     </div>
   );
 }
 
-export default TextIconCard;
+export default Card;
