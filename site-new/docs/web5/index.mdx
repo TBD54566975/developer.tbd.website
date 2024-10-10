@@ -1,0 +1,66 @@
+---
+title: WEB5 SDK
+hide_table_of_contents: true
+---
+
+import metacontent from '@site/src/content/global-meta';
+import { content } from '@site/src/content/projects/web5/web5.js';
+
+<head>
+  <title>{content.meta.title}</title>
+  <meta property="og:description" content="Documentation on Web5 SDK" />
+  <meta name="description" content="Documentation on Web5 SDK" />
+  <meta property="og:title" content="WEB5 SDK" />
+  <meta property="og:url" content="/docs/web5"/>
+  <link rel="apple-touch-icon" href="https://developer.tbd.website/img/tbd-fav-icon-main.png"/>
+</head>
+
+<div className="prose prose-pink">
+
+## A decentralized web platform that puts you in control of your data and identity.
+
+The web democratized the exchange of information, but it's missing a key layer: identity. We struggle to secure personal data with hundreds of accounts and passwords we can’t remember. On the web today, identity and personal data have become the property of third parties.
+
+Web5 brings [decentralized identity](decentralized-identifiers/what-are-dids), [verifiable credentials](verifiable-credentials/what-are-vcs) and [data storage](decentralized-web-nodes/what-are-dwns) to your applications. It lets devs focus on creating delightful user experiences, while returning ownership of data and identity to individuals.
+
+The Web5 SDK helps you create a decentralized app in minutes.
+
+
+<ButtonGroup
+  className="pt-12"
+  buttons={[
+    {
+      type: 'button',
+      data: {
+        label: 'Deep Dive',
+        url: '/blog/what-is-web5/',
+        isExternalLink: false,
+        imageURL: '/img/external-link-blue-icon.svg',
+      },
+    },
+    {
+      type: 'button',
+      data: {
+        label: 'Quickstart',
+        url: 'quickstart',
+        isExternalLink: false,
+        imageURL: '/img/external-link-blue-icon.svg',
+      },
+    },
+    {
+      type: 'button',
+      data: {
+        label: 'Contribute',
+        url: 'https://github.com/TBD54566975/web5-js',
+        isExternalLink: true,
+        imageURL: '/img/external-link-blue-icon.svg',
+      },
+    },
+  ]}
+/>
+
+<Divider type="slash" />
+
+<PillarList title={content.useCases.title} pillars={content.useCases.pillars} />
+
+</div>

@@ -1,0 +1,94 @@
+---
+sidebar_position: 5
+---
+
+import CodeSnippet from '@site/src/components/CodeSnippet';
+
+# Query DWN Records
+
+You can use the `query` function to obtain records and protocols from a DWN. This guide shows how to do both, as well as how to sort the query results.
+
+:::tip
+Querying a DWN is analogous to querying a database, and the flow of a query is similar to an SQL select statement.
+
+A query can be read as _**select** records with a **filter** of X **from** the DWN of this DID_.
+:::
+
+
+## Querying Protocols
+
+The following snippet queries the local DWN for protocols that match a given schema:
+
+<CodeSnippet snippetName="queryProtocolsForMusic" />
+
+## Querying Records
+
+The following snippet queries a given DWN for records that match a given schema and are in a specific data format.
+
+> Note the `from` property used here. Much like SQL, where the `FROM` command is used to specify which table to select data from, in Web5, `from` specifies which DWN to query.
+
+<CodeSnippet snippetName="queryRecordsFromDid" />
+
+
+:::note
+`records.query()` does not guarantee that the data is returned unless it is under a specific threshold (50 kb).
+To guarantee record data, call [records.read()](https://tbd54566975.github.io/web5-js/classes/_web5_api.DwnApi.html#records).
+:::
+
+## Filterable Record Properties
+Here are the properties you can use to filter your record query, along with explanations and examples for each.
+
+| Property            | Value                                                |   Example   |
+| -----------         | ----------                                           | ----------- |
+| **`recipient`**     | Recipient DID of message                             | "did:example:alice"  |
+| **`protocol`**      | The URI of the protocol bucket in which to query     | "example.com" |
+| **`protocolPath`**  | Records under a protocol path across all context IDs | "example" |
+| **`contextId`**     | `recordId` of a root record of a protocol            | "bafyreianzpmhbgcgam5mys722vnsiuwn..." |
+| **`schema`**        | The URI of the schema bucket in which to query       | "https<span>://</span>schema.org/Message" |
+| **`recordId`**      | Property contains the message recordId               | "aa36ec55-c59b-4f20-8143-10f74aac696d" |
+| **`parentId`**      | `recordId` of the parent record in a protocol        | "iadsfdreianzpmasdffcgam5mys722vnd..." |
+| **`dataFormat`**    | The IANA string for the data format to filter        | "application/json" |
+| **`dateCreated`**   | Date the record was created                          | "2023-04-30T22:49:37.713976Z" |
+| **`tags`**          | User-defined key-value pairs for categorizing records| `{"genre": "Action", "year": "2024"}`|
+
+### Filter by parentId
+This snippet queries the DWN for records that have a parent record with a specific record ID:
+
+<CodeSnippet snippetName="queryRecordWithParentId" />
+
+### Filter by protocol and protocolPath
+Given the following protocol definition is installed:
+
+<details>
+<summary>Playlist Protocol Definition</summary>
+
+<CodeSnippet snippetName="playlistProtocolDefinition" />
+
+</details>
+
+And assuming `playlist` and `video` records have been created using this protocol, the following snippet demonstrates how to query for video records that match the protocol:
+
+<CodeSnippet snippetName="queryFromDwnByProtocolPath" />
+
+## Sorting Query Results
+
+Query results can be sorted via the `dateSort` field. Valid values for `dateSort` are:
+
+| Value                     | Sorts Results By | Order       |
+| -----------               | -----------      | ----------- |
+| **createdAscending**      | `dateCreated`    | ascending   |
+| **createdDescending**     | `dateCreated`    | descending  |
+| **publishedAscending**    | `datePublished`  | ascending   |
+| **publishedDescending**   | `datePublished`  | descending  |
+
+### Ascending Order
+
+This code snippet queries for records with a plain text data format, and returns them in ascending order by the date they were [published](/docs/web5/decentralized-web-nodes/publishing-records):
+
+<CodeSnippet snippetName="queryRecordsWithFilterAscending"/>
+
+### Descending Order
+
+This code snippet queries for protocols with a certain URL, and returns them in descending order by the date they were created.
+
+<CodeSnippet snippetName="queryProtocolsWithFilterDescending" />

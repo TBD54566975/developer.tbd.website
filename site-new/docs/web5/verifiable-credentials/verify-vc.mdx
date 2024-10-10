@@ -1,0 +1,273 @@
+---
+title: Verify Credentials
+hide_title: true
+sidebar_position: 3
+---
+
+<LanguageSwitcher languages="JavaScript, Kotlin" />
+
+# Verify Credentials
+
+When an entity, receives the presentation of Verifiable Credentials (VCs) or Verifiable Presentations (VPs), they must verify the integrity, authenticity, and content of the credentials.
+The entity performing this verification is known as the **Verifier**.
+
+A Verifiable Credential (VC) is a digital proof related to an entity, known as the **Subject**. In contrast, a Verifiable Presentation (VP) is a collection of one or more VCs bundled together for presentation.
+
+## Verify Verifiable Credentials
+
+Upon receipt, the presentation of the VCs is encoded as [JWTs](/docs/web5/verifiable-credentials/jwt-to-vc#what-is-a-jwt) and can be verified via the `VerifiableCredentials.verify()` function.
+
+This function will:
+
+✅ Parse and validate the structure of the JWT
+
+✅ Ensure the presence of `alg` and `kid` in the JWT header
+
+✅ Resolve the issuer's Decentralized Identifier (DID)
+
+✅ Ensure the presence and validity of a verification method in the issuer's DID document
+
+✅ Verify the integrity and authenticity of the issuer's signature using the public key associated with the verification method
+
+✅ Ensure that the credential has not expired
+
+If any of these steps fail, the function will throw an error with a message indicating the nature of the failure.
+
+### Extracting VC JWTs from Presentation
+
+A Presentation object includes multiple elements including the presentation submission as well as the Verifiable Credential JWTs themselves.
+
+<details>
+<summary>Example Presentation Result</summary>
+
+
+<Shnip
+    inlineSnippets={[
+    {
+      language: 'JavaScript',
+      content: 'The JavaScript SDK returns a Presentation Result:',
+      code: `
+{
+  "presentation": {
+    "@context": [
+      "https://www.w3.org/2018/credentials/v1",
+      "https://identity.foundation/presentation-exchange/submission/v1"
+    ],
+    "type": [
+      "VerifiablePresentation",
+      "PresentationSubmission"
+    ],
+    "presentation_submission": {
+      "id": "bPLV_jMdN5XJengbX4M-l",
+      "definition_id": "presDefIdloanAppVerification123",
+      "descriptor_map": [
+        {
+          "id": "employmentVerification",
+          "format": "jwt_vc",
+          "path": "$.verifiableCredential[0]"
+        },
+        {
+          "id": "dobVerification",
+          "format": "jwt_vc",
+          "path": "$.verifiableCredential[1]"
+        },
+        {
+          "id": "nameVerification",
+          "format": "jwt_vc",
+          "path": "$.verifiableCredential[1]"
+        }
+      ]
+    },
+    //highlight-start
+    "verifiableCredential": [
+        "/* JWT VC for EmploymentCredential */",
+        "/* JWT VC for PIICredential */",
+    ]
+    //highlight-end
+  },
+  "presentationSubmissionLocation": 1,
+  "presentationSubmission": {
+    "id": "bPLV_jMdN5XJengbX4M-l",
+    "definition_id": "presDefIdloanAppVerification123",
+    "descriptor_map": [
+      {
+        "id": "employmentVerification",
+        "format": "jwt_vc",
+        "path": "$.verifiableCredential[0]"
+      },
+      {
+        "id": "dobVerification",
+        "format": "jwt_vc",
+        "path": "$.verifiableCredential[1]"
+      },
+      {
+        "id": "nameVerification",
+        "format": "jwt_vc",
+        "path": "$.verifiableCredential[1]"
+      }
+    ]
+  }
+}
+      `
+    },
+    {
+      content: 'The Kotlin SDK returns a Verifiable Presentation:',
+      language: 'Kotlin',
+      codeLanguage: 'javascript',
+      code: `
+{
+  "@context": [
+    "https://www.w3.org/2018/credentials/v1"
+  ],
+  "type": [
+    "VerifiablePresentation"
+  ],
+  "id": "urn:uuid:8b993a35-b4d7-4788-b9a5-88fdc5c36fec",
+  "presentation_submission": {
+    "id": "d9fda7f3-9e6e-41e4-8b1b-06b7b4aa8451",
+    "definitionId": "presDefIdloanAppVerification123",
+    "descriptorMap": [
+      {
+        "id": "employmentVerification",
+        "format": "jwt_vc",
+        "path": "$.verifiableCredential[0]"
+      },
+      {
+        "id": "dobVerification",
+        "format": "jwt_vc",
+        "path": "$.verifiableCredential[1]"
+      },
+      {
+        "id": "nameVerification",
+        "format": "jwt_vc",
+        "path": "$.verifiableCredential[1]"
+      }
+    ]
+  },
+    //highlight-start
+    "verifiableCredential": [
+        "/* JWT VC for EmploymentCredential */",
+        "/* JWT VC for PIICredential */",
+    ]
+    //highlight-end
+  "holder": "/* Subject's DID */."
+}
+      `
+    }
+  ]}
+/>
+
+</details>
+
+Since the VC JWTs are part of the larger [Presentation JSON object](/docs/web5/verifiable-credentials/presentation-exchange#create-presentation), they must be extracted and verified individually.
+Below is an example of how this might be implemented:
+
+<Shnip
+  snippets={[
+    { snippetName: 'verifyVcs', language: 'JavaScript'},
+    { snippetName: 'verifyVcsKt', language: 'Kotlin'}
+    ]}
+/>
+
+
+The code snippet above shows how to extract the VC JWTs from the Presentation and verify each one, aggregating the results.
+
+The Verifier would then examine the results of the verifications to determine the errors:
+
+<Shnip
+  snippets={[
+    { snippetName: 'errorsFound', language: 'JavaScript'},
+    { snippetName: 'errorsFoundKt', language: 'Kotlin'}
+    ]}
+/>
+
+## Verify Verifiable Presentations
+
+Upon receipt, a Verifiable Presentation is encoded as a [JWT](/docs/web5/verifiable-credentials/jwt-to-vc#what-is-a-jwt) and can be verified via the `VerifiablePresentation.verify()` function.
+
+<Shnip
+  snippets={[
+    { snippetName: 'verifyVpJs', language: 'JavaScript'},
+    { snippetName: 'verifyVpKt', language: 'Kotlin'},
+  ]}
+/>
+
+## Evaluate Presentation
+
+:::note
+The information in this section is only applicable to the JavaScript SDK.
+:::
+
+After verifying the authenticity of the VCs, the next step is to ensure that they actually satisfy the requirements outlined in the presentation definition.
+This can be done via the `PresentationExchange.evaluatePresentation()` function:
+
+<Shnip
+  snippets={[
+    { snippetName: 'evaluatePresentation', language: 'JavaScript'},
+  ]}
+    inlineSnippets={[
+    {
+      content: 'This functionality does not exist in the Kotlin SDK.',
+      language: 'Kotlin',
+    }
+  ]}
+/>
+
+
+
+<details>
+<summary>Example Evaluation Results</summary>
+
+```js
+{
+  "areRequiredCredentialsPresent": "info",
+  "verifiableCredential": [
+    "/* JWT VC for EmploymentCredential */",
+    "/* JWT VC for PIICredential */",
+  ],
+  "warnings": [],
+  "errors": [],
+  "value": {
+    "id": "WabEjZrPQQOQw8YUg9kIN",
+    "definition_id": "presDefIdloanAppVerification123",
+    "descriptor_map": [
+      {
+        "id": "employmentVerification",
+        "format": "jwt_vc",
+        "path": "$.verifiableCredential[0]"
+      },
+      {
+        "id": "dobVerification",
+        "format": "jwt_vc",
+        "path": "$.verifiableCredential[1]"
+      },
+      {
+        "id": "nameVerification",
+        "format": "jwt_vc",
+        "path": "$.verifiableCredential[1]"
+      }
+    ]
+  }
+}
+```
+
+</details>
+
+The `areRequiredCredentialsPresent` property of the evaluation results gives a status indication of whether the requirements were met:
+
+* **info** - all required credentials are present
+* **warn** - more credentials were presented than were required
+* **error** - all required credentials are not present
+
+If the status is `warn` or `error`, the details will be in the `warnings` or `error` array of the response.
+
+
+## Revocation Check
+
+The `VerifiableCredential.verify()` function does not perform a revocation status check to determine whether the VCs have been revoked.
+We strongly recommend that you verify this information by referencing the VC's `credentialStatus` property before honoring the VC as valid.
+
+
+## Read VC Data
+
+Once you're confident that the VCs are valid, you can proceed to [parse the JWTs into VC objects](/docs/web5/verifiable-credentials/jwt-to-vc) such that you may work with the credentials' data.

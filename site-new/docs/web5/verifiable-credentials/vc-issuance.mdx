@@ -1,0 +1,146 @@
+---
+title: Issue a VC
+hide_title: true
+sidebar_position: 2
+---
+
+<LanguageSwitcher languages="JavaScript, Kotlin" />
+
+# Issue a VC
+
+This guide provides a step-by-step process for issuing a [Verifiable Credential (VC)](/docs/web5/verifiable-credentials/what-are-vcs), covering everything from installing the SDK to signing the credential.
+
+<details>
+<summary>Prerequisites</summary>
+
+**Install Packages**
+
+<Dependencies languageDependencies={[
+  { language: 'javascript', dependencies: ['@web5/credentials'] },
+  { language: 'maven', dependencies: ['web5-credentials'] },
+  { language: 'gradle', dependencies: ['web5-credentials'] },
+]}/> 
+
+**Install Classes**
+
+<Shnip
+  inlineSnippets={[
+    {
+      code: `import { VerifiableCredential } from "@web5/credentials";`,
+      language: 'JavaScript',
+    },
+    {
+      code: `import xyz.block.web5.credentials.VerifiableCredential`,
+      language: 'Kotlin',
+    }
+  ]}
+/>
+
+**Obtain DIDs**
+
+VCs are issued to and from subjects of [Decentralized Identifiers (DID)](/docs/web5/decentralized-identifiers/what-are-dids).
+
+- If you don't already have one, you can [create a DID](/docs/web5/decentralized-identifiers/how-to-create-did).
+- Also, you'll need the DID of the entity you'll like to issue the VC to.
+
+</details>
+
+## VC Properties
+
+Credentials are created in JSON format and contain the following properties:
+
+- **type:** Type of the credential (e.g. EmploymentCredential, EducationCredential)
+- **issuer:** DID of the entity who is issuing the credential
+- **subject:** DID of the entity that the credential is being issued to
+- **expirationDate:** (optional) The date when the credential expires (in ISO 8601 standard format)
+- **data:** JSON containing claims that are being asserted
+
+## Create VC
+
+To create the VC, utilize the `VerifiableCredential.create()` method. Pass a JSON object containing the properties as shown below:
+
+<Shnip
+   snippets={[
+    { snippetName: 'createEmploymentCredential', language: 'JavaScript'},
+    { snippetName: 'createEmploymentCredentialKt', language: 'Kotlin'}
+    ]}
+/>
+
+This results in:
+
+<Shnip
+  inlineSnippets={[
+    {
+      code: `
+{
+  "vcDataModel": {
+    "@context": [
+      "https://www.w3.org/2018/credentials/v1"
+    ],
+    "type": [
+      "VerifiableCredential",
+      "EmploymentCredential"
+    ],
+    "id": "urn:uuid:84953246-a77f-4c5a-a336-69a55bd92989",
+    "issuer": "did:dht:fhzeks5bkferfztk6m63xjkg7a4hbf7snk444g8f1h1xapt391ty",
+    "issuanceDate": "2023-03-31T06:08:49Z",
+    "credentialSubject": {
+      "id": "did:dht:usnoybts46xnei6brftkixe5qsbypxcye4th397bs4tyouqouyho",
+      "position": "Software Developer",
+      "startDate": "2023-04-01T12:34:56Z",
+      "employmentStatus": "Contractor"
+    },
+    "expirationDate": "2023-09-30T12:34:56Z"
+  }
+}
+      `,
+      language: 'JavaScript',
+    },
+    {
+      code:`
+{
+  "@context": [
+    "https://www.w3.org/2018/credentials/v1"
+  ],
+  "type": [
+    "VerifiableCredential",
+    "EmploymentCredential"
+  ],
+  "id": "urn:uuid:84953246-a77f-4c5a-a336-69a55bd92989",
+  "issuer": "did:dht:fhzeks5bkferfztk6m63xjkg7a4hbf7snk444g8f1h1xapt391ty",
+  "issuanceDate": "2023-03-31T06:08:49Z",
+  "expirationDate":"2023-09-30T12:34:56Z",
+  "credentialSubject": {
+    "id": "did:dht:usnoybts46xnei6brftkixe5qsbypxcye4th397bs4tyouqouyho",
+    "position": "Software Developer",
+    "startDate": "2023-04-01T12:34:56Z",
+    "employmentStatus": "Contractor"
+  }
+}
+      `,
+      language: 'Kotlin', 
+      codeLanguage: 'JavaScript'
+    }
+  ]}
+/>
+
+## Sign VC
+
+The next step is signing the VC. This cryptographic process, performed by the issuer, ensures the integrity and authenticity of the VC:
+
+<Shnip
+   snippets={[
+    { snippetName: 'signEmploymentCredential', language: 'JavaScript'},
+    { snippetName: 'signEmploymentCredentialKt', language: 'Kotlin'}
+    ]}
+/>
+
+Signing the credential returns a [VC JWT](/docs/web5/verifiable-credentials/jwt-to-vc#what-is-a-jwt):
+
+```
+eyJ0eXAiOiJKV1QiLCJhbGciOiJFZERTQSIsI...
+```
+
+Giving this VC JWT to the holder completes the issuance of the credential.
+
+VC JWTs can be [converted back](/docs/web5/verifiable-credentials/jwt-to-vc#decoding-jwt) to a JSON object by applications that need to engage with the contents of the credential.

@@ -1,0 +1,543 @@
+---
+sidebar_position: 4
+hide_title: true
+title: Presentation Definition
+---
+
+<LanguageSwitcher languages="JavaScript, Kotlin" />
+
+# Presentation Definition
+
+If you accept verifiable credentials, you'll want to define what sort of information is necessary to meet the requirements.
+This specification of expected claims is a **Presentation Definition** (PD).
+
+For example, assume an Employer accepts verifiable credentials as part of a job application.
+The presentation definition would specify exactly what the Employer will look for in those credentials.
+This could include things like proof of a degree, past employment history, and maybe a specific certification.
+
+They're essentially saying, "To consider your application, we need to see these specific pieces of information."
+
+## Designing a Presentation Definition
+
+An employer decides that an applicant must provide proof of:
+
+* employment history
+* degree in a field related to Engineering, Computer Science, or Security
+* Certified Ethical Hacker certification issued by a specific trusted organization
+
+
+### Example Presentation Definition
+To represent these requirements, the employer creates the PD.
+
+<details open>
+<summary>Presentation Definition</summary>
+
+```js
+{
+  "id": "PD_JobApplication_123456",
+  "name": "Credentials Verification for Ethical Hacker Job Application",
+  "purpose": "To verify the applicant's employment history, and either their academic degree or Certified Ethical Hacker certification",
+  "input_descriptors": [
+    {
+      "id": "employmentHistoryVerification",
+      "name": "Employment History",
+      "purpose": "Verify the applicant's previous employment experiences",
+      "constraints": {
+        "fields": [
+          {
+            "path": ["$.type[*]"],
+            "filter": {
+              "type": "string",
+              "pattern": "Employment"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "degreeVerification",
+      "name": "Degree",
+      "purpose": "Confirm the applicant's academic qualification",
+      "constraints": {
+        "fields": [
+          {
+            "path": ["$.vc.credentialSubject.degree.type"],
+            "filter": {
+              "type": "string",
+              "pattern": "(Engineering|Computer|Cyber|Security)"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "CEH_CertificationVerification",
+      "name": "Certified Ethical Hacker Certification",
+      "purpose": "Confirm the applicant holds a Certified Ethical Hacker certification",
+      "constraints": {
+        "fields": [
+          {
+            "path": ["$.vc.credentialSubject.certifications[*].name"],
+            "filter": {
+              "type": "string",
+              "pattern": "Certified Ethical Hacker"
+            }
+          },
+          {
+            "path": ["$.issuer"],
+            "filter": {
+              "type": "string",
+              "const": "did:example:123456789abcdefghi"
+            }
+          }
+        ]
+      }
+    }
+  ]
+}
+```
+
+</details>
+
+
+### Properties
+
+The following are the top-level properties of a PD:
+
+* [id](#id): A required unique identifier that distinguishes this PD from others
+* [name](#name-and-purpose): An optional, human-friendly name for easier identification of the PD
+* [purpose](#name-and-purpose):  An optional description outlining why the information requested by the PD is needed
+* [format](https://identity.foundation/presentation-exchange/spec/v1.0.0/#claim-format-designations):  The optional technical format requirements for the data to be submitted. *Example: \{ "jwt_vc": \{"alg": ["ES256K", "ES384"]} }*
+* [input_descriptors](#input_selectors):  This is the most important property of the PD. It details the exact data requirements
+
+:::info
+For more in-depth information on the schema and options, refer to the [Presentation Definition spec](https://identity.foundation/presentation-exchange/spec/v1.0.0/#json-schema-2).
+:::
+
+### Breakdown of PD
+
+Let's break down the creation of each part:
+
+#### id
+
+To keep the IDs unique, the Employer uses a format within their system: 'PD_JobApplication' followed by the ID of the job req. This allows them to easily match PDs with their open roles.
+
+```js
+{
+  "id": "PD_JobApplication_123456",
+}
+```
+
+#### name and purpose
+
+The `name` and `purpose` are clear and human-readable, as they may be presented to the applicant when they need to decide if to share their credentials with the employer.
+
+```js
+{
+  "id": "PD_JobApplication_123456",
+  //highlight-start
+  "name": "Credentials Verification for Ethical Hacker Job Application",
+  "purpose": "To verify the applicant's employment history, and either their academic degree or Certified Ethical Hacker certification",
+  //highlight-end
+}
+```
+
+#### input_selectors
+
+The `input_selectors` property is an array of required claims and specifications on exactly how they will be evaluated.
+
+```js
+{
+  "input_descriptors": [
+
+  ]
+}
+```
+
+In this first input descriptor, the Employer provides an `id` for this descriptor.
+
+```js
+{
+  "input_descriptors": [
+    {
+      "id": "employmentHistoryVerification",
+    }
+  ]
+}
+```
+
+
+The `name` and `purpose` should be human-readable as they may be shown to the user.
+
+```js
+{
+  "input_descriptors": [
+    {
+      "id": "employmentHistoryVerification",
+      //highlight-start
+      "name": "Employment History",
+      "purpose": "Verify the applicant's previous employment experiences",
+      //highlight-end
+    }
+  ]
+}
+```
+
+#### constraints
+The `constraints` object contains the exact test that the VC will need to pass in order to meet the requirement.
+
+```js
+{
+  "input_descriptors": [
+    {
+      "id": "employmentHistoryVerification",
+      "name": "Employment History",
+      "purpose": "Verify the applicant's previous employment experiences",
+      //highlight-start
+      "constraints": {
+
+      }
+      //highlight-end
+    },
+  ]
+}
+```
+
+#### fields
+Under `constraints` is an array of `fields` objects, each object representing a specific piece of data that the Employer is interested in. Each field can have its own constraints.
+
+```js
+{
+  "input_descriptors": [
+    {
+      "id": "employmentHistoryVerification",
+      "name": "Employment History",
+      "purpose": "Verify the applicant's previous employment experiences",
+      "constraints": {
+        //highlight-start
+        "fields": [
+
+        ]
+        //highlight-end
+      }
+    },
+  ]
+}
+```
+
+#### path
+The `path` key specifies the location within the VC where the data is expected to be found.
+Here, `$.type[*]` indicates that the Employer will verify the `type` attribute of the submitted VCs to see if any of its values match the `filter`.
+
+```js
+{
+  "input_descriptors": [
+    {
+      "id": "employmentHistoryVerification",
+      "name": "Employment History",
+      "purpose": "Verify the applicant's previous employment experiences",
+      "constraints": {
+        "fields": [
+          {
+            //highlight-start
+            "path": ["$.type[*]"],
+            "filter": {
+
+            }
+            //highlight-end
+          }
+        ]
+      }
+    },
+  ]
+}
+```
+
+#### filter
+
+The `filter` provides the specific conditions that the data in the specified path must satisfy.
+Here, it's saying that the expected data `type` of the field is a string, and the `pattern` property indicates that the value should match the provided regular expression.
+
+In this case, the Employer expects the applicant to submit a VC whose type includes the word "Employment".
+
+```js
+{
+  "input_descriptors": [
+    {
+      "id": "employmentHistoryVerification",
+      "name": "Employment History",
+      "purpose": "Verify the applicant's previous employment experiences",
+      "constraints": {
+        "fields": [
+          {
+            "path": ["$.type[*]"],
+            //highlight-start
+            "filter": {
+              "type": "string",
+              "pattern": "Employment"
+            }
+            //highlight-end
+          }
+        ]
+      }
+    },
+  ]
+}
+```
+
+:::info
+The `filter` property offers a lot of flexibility. Refer to the [Presentation Definition spec](https://identity.foundation/presentation-exchange/spec/v1.0.0/#json-schema-2) for more examples.
+:::
+
+
+The next input descriptor describes that if a degree VC is provided, it must be a degree with one of the following terms in the title: Engineering, Computer, Cyber, or Security.
+
+If someone has a degree in Biology, for example, that won't satisfy this requirement.
+
+```js
+    {
+      "id": "degreeVerification",
+      "name": "Degree",
+      "purpose": "Confirm the applicant's academic qualification",
+      "constraints": {
+        "fields": [
+          {
+            //highlight-start
+            "path": ["$.credentialSubject.degree.type"],
+            "filter": {
+              "type": "string",
+              "pattern": "(Engineering|Computer|Cyber|Security)"
+            }
+            //highlight-end
+          }
+        ]
+      }
+    },
+```
+
+This Employer also requires a Ethical Hacking certification from a specific reputable institution.
+
+For this credential, there's two fields that the Employer wants to add constraints for: the name of the certification, and the organization that issued the credential.
+
+Notice the `filter` for the certification's name uses `pattern` so that it checks the name with a regular expression.
+This gives flexibility in case the certification is for "Advanced Certified Ethical Hacker" or "Certified Ethical Hacker II", etc.
+
+But the `filter` for the issuer uses `const` to indicate that the issuer's DID must match this value exactly.
+
+```js
+    {
+      "id": "CEH_CertificationVerification",
+      "name": "Certified Ethical Hacker Certification",
+      "purpose": "Confirm the applicant holds a Certified Ethical Hacker certification",
+      //highlight-start
+      "constraints": {
+        "fields": [
+          {
+            "path": ["$.credentialSubject.certifications[*].name"],
+            "filter": {
+              "type": "string",
+              "pattern": "Certified Ethical Hacker"
+            }
+          },
+          {
+            "path": ["$.issuer"],
+            "filter": {
+              "type": "string",
+              "const": "did:example:123456789abcdefghi"
+            }
+          }
+        ]
+      }
+      //highlight-end
+    }
+```
+
+For the issuer, the Employer only accepts VCs from the top trusted source who issues these certifications, so they enter the organization's DID as a constraint.
+If an applicant provides a Ethical Hacker Certification that was issued by anyone other than this organization, that VC will not meet the requirements.
+
+```js
+//highlight-start
+    {
+      "path": ["$.issuer"],
+      "filter": {
+        "type": "string",
+        "const": "did:example:123456789abcdefghi"
+      }
+    }
+//highlight-end
+```
+
+## Validate the Presentation Definition
+
+Once the PD is created, you can validate it to ensure there are no errors in its design.
+
+1. import classes needed for a Presentation Exchange
+
+<Shnip
+  inlineSnippets={[
+    {
+      code: `import { PresentationExchange } from '@web5/credentials';`,
+      language: 'JavaScript',
+    },
+    {
+      code: `
+import web5.sdk.credentials.PresentationExchange
+import web5.sdk.credentials.model.*
+      `,
+      language: 'Kotlin',
+    }
+  ]}
+/>
+
+2. call `validateDefinition()`
+>This assumes the [presentation definition](/docs/web5/verifiable-credentials/presentation-definition#example-presentation-definition) is assigned to variable `pd`
+
+<Shnip
+  snippets={[
+    { snippetName: 'validatePresentationDefinition', language: 'JavaScript' },
+    { snippetName: 'validatePresentationDefinitionKt', language: 'Kotlin' },
+    ]}
+/>
+
+If there are errors with the PD, an error will be thrown:
+
+```
+This is not a valid PresentationDefinition
+```
+
+## Example Credentials
+
+For your reference, below are example VCs that could be used to satisfy the Employment Application PD.
+
+<details>
+<summary>Employment at Tech Inc</summary>
+
+```js
+{
+  "vc": {
+    "@context": [
+      "https://www.w3.org/2018/credentials/v1"
+    ],
+    "type": [
+      "VerifiableCredential",
+      "EmploymentCredential"
+    ],
+    "id": "urn:uuid:d377379b-3699-44b7-b15c-0831a849ff7c",
+    "issuer": "did:example:techinc",
+    "issuanceDate": "2024-01-05T17:43:45Z",
+    "credentialSubject": {
+      "id": "did:example:alice",
+      "employmentHistory": {
+        "type": "Employment",
+        "position": "Software Engineer",
+        "company": "Tech Inc.",
+        "startDate": "2019-01-01",
+        "endDate": "2021-12-31"
+      }
+    }
+  },
+  "iss": "did:example:techinc",
+  "sub": "did:example:alice"
+}
+```
+
+</details>
+
+<details>
+<summary>Employment at Innovate LLC</summary>
+
+```js
+{
+  "vc": {
+    "@context": [
+      "https://www.w3.org/2018/credentials/v1"
+    ],
+    "type": [
+      "VerifiableCredential",
+      "EmploymentCredential"
+    ],
+    "id": "urn:uuid:2d80375b-834c-4817-a79b-33f1fe3cd80a",
+    "issuer": "did:example:innovatellc",
+    "issuanceDate": "2024-01-05T17:43:45Z",
+    "credentialSubject": {
+      "id": "did:example:alice",
+      "employmentHistory": {
+        "type": "Employment",
+        "position": "Project Manager",
+        "company": "Innovate LLC",
+        "startDate": "2022-01-03",
+      }
+    }
+  },
+  "iss": "did:example:innovatellc",
+  "sub": "did:example:alice"
+}
+```
+
+</details>
+
+
+<details>
+<summary>Computer Science Degree</summary>
+
+```js
+{
+  "vc": {
+    "@context": [
+      "https://www.w3.org/2018/credentials/v1"
+    ],
+    "type": [
+      "VerifiableCredential",
+      "EducationalCredential"
+    ],
+    "id": "urn:uuid:a09b7d2d-c7ac-42de-9230-05e7fd894692",
+    "issuer": "did:example:stateuniversity",
+    "issuanceDate": "2024-01-05T17:43:45Z",
+    "credentialSubject": {
+      "id": "did:example:alice",
+      "degree": {
+        "type": "Bachelor of Computer Science",
+        "university": "State University",
+        "graduationYear": "2018"
+      }
+    }
+  },
+  "iss": "did:example:stateuniversity",
+  "sub": "did:example:alice"
+}
+```
+
+</details>
+
+<details>
+<summary>Certified Ethical Hacker</summary>
+
+```js
+{
+  "vc": {
+    "@context": [
+      "https://www.w3.org/2018/credentials/v1"
+    ],
+    "type": [
+      "VerifiableCredential",
+      "CertificationCredential"
+    ],
+    "id": "urn:uuid:7fba00eb-2f47-4113-aea6-4c5b5799f95f",
+    "issuer": "did:example:123456789abcdefghi",
+    "issuanceDate": "2023-05-01T16:06:00Z",
+    "credentialSubject": {
+      "id": "did:example:alice",
+      "certifications": [
+        {
+          "name": "Certified Ethical Hacker",
+          "date": "2023-05-01"
+        }
+      ]
+    }
+  },
+  "iss": "did:example:123456789abcdefghi",
+  "sub": "did:example:alice"
+}
+```
+
+</details>

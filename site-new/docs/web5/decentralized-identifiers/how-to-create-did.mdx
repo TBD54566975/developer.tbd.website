@@ -1,0 +1,221 @@
+---
+title: Create a DID
+hide_title: true
+sidebar_position: 2
+---
+
+<LanguageSwitcher languages="JavaScript, Kotlin, Swift" />
+
+# Create a DID
+
+[Decentralized Identifiers (DIDs)](/docs/web5/decentralized-identifiers/what-are-dids) are how you are identified on the decentralized web.
+This guide covers how to use Web5 to create a DID.
+
+You can create a DID using any of the [Web5-supported DID methods](/docs/web5/decentralized-identifiers/what-are-dids#methods) by using the [DID package](https://www.npmjs.com/package/@web5/dids).
+
+## Install
+
+<Dependencies languageDependencies={[
+  { language: 'javascript', dependencies: ['@web5/dids'] },
+  { language: 'maven', dependencies: ['web5-dids'] },
+  { language: 'gradle', dependencies: ['web5-dids'] },
+  {language: 'swift', dependencies: ['Web5']},
+]}/>
+
+## Import
+
+<Shnip
+  snippets={[
+    { snippetName: 'requiredDidImports', language: 'JavaScript' },
+    { snippetName: 'requiredDidImportsKt', language: 'Kotlin' },
+    { snippetName: 'web5ImportSwift', language: 'Swift' },
+  ]}
+/>
+
+## Create DID
+When creating a DID with the Web5 SDK, what's returned is a `BearerDid`.
+A `BearerDid` is a composite type that combines a DID with a KeyManager containing keys associated to the DID. 
+Together, these two components form a BearerDid that can be used to sign and verify data.
+
+The following DID methods are supported:
+
+### did\:dht
+
+<Shnip
+  snippets={[
+    { snippetName: 'createDidDht', language: 'JavaScript' },
+    { snippetName: 'createDidDhtKt', language: 'Kotlin' },
+  ]}
+  inlineSnippets={[
+    {
+      code: `Creating a DID of method DHT is not currently available in Swift.`,
+      language: 'Swift',
+      codeLanguage: 'text',
+    },
+  ]}
+/>
+
+### did\:jwk
+
+<Shnip
+  snippets={[
+    { snippetName: 'createDidJwk', language: 'JavaScript' },
+    { snippetName: 'createDidJwkKt', language: 'Kotlin' },
+    { snippetName: 'createDidJWKSwift', language: 'Swift' },
+    ]}
+/>
+
+## Example of DID properties
+
+Here are examples of what's returned when creating a DID with Web5:
+
+### DID
+
+The ID of a DID Document is the DID as a string:
+
+```
+did:dht:cm1yqfjzfdtauh33nauwf3sqsijqziwrydicr8dbtho3cucb9nno
+```
+
+### Portable DID
+
+As shown above, `@web5/dids` provides methods to create a DID.
+A Portable DID is returned, which is a DID and its associated data which can be exported and used in different contexts and apps.
+You should securely store your Portable DID in a trustworthy identity wallet or password manager.
+
+:::important
+In the example below, the `d` property of the private key component is masked. That's because this is the critical, sensitive part that must be kept secret. It allows the holder to perform private key operations, like signing data. Do not share your private key!
+:::
+
+```json
+{
+  "did": "did:dht:cm1yqfjzfdtauh33nauwf3sqsijqziwrydicr8dbtho3cucb9nno",
+  "document": {
+    "id": "did:dht:cm1yqfjzfdtauh33nauwf3sqsijqziwrydicr8dbtho3cucb9nno",
+    "verificationMethod": [
+      {
+        "id": "did:dht:cm1yqfjzfdtauh33nauwf3sqsijqziwrydicr8dbtho3cucb9nno#0",
+        "type": "JsonWebKey2020",
+        "controller": "did:dht:cm1yqfjzfdtauh33nauwf3sqsijqziwrydicr8dbtho3cucb9nno",
+        "publicKeyJwk": {
+          "alg": "EdDSA",
+          "crv": "Ed25519",
+          "kty": "OKP",
+          "ext": "true",
+          "key_ops": ["verify"],
+          "x": "YuQHFTco44nzORYnQubOtVLr1oQA6sIcYY8hlk2B-IU",
+          "kid": "0"
+        }
+      }
+    ],
+    "authentication": ["#0"],
+    "assertionMethod": ["#0"],
+    "capabilityInvocation": ["#0"],
+    "capabilityDelegation": ["#0"],
+  },
+  "keySet": {
+    "verificationMethodKeys": [
+      {
+        "privateKeyJwk": {
+          "d": "*************",
+          "alg": "EdDSA",
+          "crv": "Ed25519",
+          "kty": "OKP",
+          "ext": "true",
+          "key_ops": ["sign"],
+          "x": "YuQHFTco44nzORYnQubOtVLr1oQA6sIcYY8hlk2B-IU",
+          "kid": "0"
+        },
+        "publicKeyJwk": {
+          "alg": "EdDSA",
+          "crv": "Ed25519",
+          "kty": "OKP",
+          "ext": "true",
+          "key_ops": ["verify"],
+          "x": "YuQHFTco44nzORYnQubOtVLr1oQA6sIcYY8hlk2B-IU",
+          "kid": "0"
+        },
+        "relationships": [
+          "authentication",
+          "assertionMethod",
+          "capabilityInvocation",
+          "capabilityDelegation"
+        ]
+      }
+    ]
+  }
+}
+```
+
+### DID Document
+
+The [DID Document](/docs/web5/decentralized-identifiers/did_documents) is a self-contained representation of the DID and provides metadata and cryptographic material associated with the DID
+
+```json
+{
+  "id": "did:dht:cm1yqfjzfdtauh33nauwf3sqsijqziwrydicr8dbtho3cucb9nno",
+  "verificationMethod": [
+    {
+      "id": "did:dht:cm1yqfjzfdtauh33nauwf3sqsijqziwrydicr8dbtho3cucb9nno#0",
+      "type": "JsonWebKey2020",
+      "controller": "did:dht:cm1yqfjzfdtauh33nauwf3sqsijqziwrydicr8dbtho3cucb9nno",
+      "publicKeyJwk": {
+        "alg": "EdDSA",
+        "crv": "Ed25519",
+        "kty": "OKP",
+        "ext": "true",
+        "key_ops": ["verify"],
+        "x": "YuQHFTco44nzORYnQubOtVLr1oQA6sIcYY8hlk2B-IU",
+        "kid": "0"
+      }
+    }
+  ],
+  "authentication": ["#0"],
+  "assertionMethod": ["#0"],
+  "capabilityInvocation": ["#0"],
+  "capabilityDelegation": ["#0"],
+}
+```
+
+### Cryptographic Keys
+
+A DID has an associated set of keys that can be used for verification and authentication.
+The keyset contains a DID subject's public and private keys (for signing, recovery, and updates).
+
+:::important
+In the example below, the `d` property of the private key component is masked. That's because this is the critical, sensitive part that must be kept secret. It allows the holder to perform private key operations, like signing data. Do not share your private key!
+:::
+
+```json
+{
+  "verificationMethodKeys": [
+    {
+      "privateKeyJwk": {
+        "d": "*************",
+        "alg": "EdDSA",
+        "crv": "Ed25519",
+        "kty": "OKP",
+        "ext": "true",
+        "key_ops": ["sign"],
+        "x": "YuQHFTco44nzORYnQubOtVLr1oQA6sIcYY8hlk2B-IU",
+        "kid": "0"
+      },
+      "publicKeyJwk": {
+        "alg": "EdDSA",
+        "crv": "Ed25519",
+        "kty": "OKP",
+        "ext": "true",
+        "key_ops": ["verify"],
+        "x": "YuQHFTco44nzORYnQubOtVLr1oQA6sIcYY8hlk2B-IU",
+        "kid": "0"
+      },
+      "relationships": [
+        "authentication",
+        "assertionMethod",
+        "capabilityInvocation",
+        "capabilityDelegation"
+      ]
+    }
+  ]
+}
+```

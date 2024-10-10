@@ -1,0 +1,431 @@
+---
+sidebar_position: 1
+title: Quickstart
+hide_title: true
+hide_table_of_contents: false
+---
+
+import { QuickstartExecutionProvider } from '@site/src/components/QuickstartExecutionContext';
+import Version from '@site/src/components/Version';
+import PackageJson from '@site/src/components/PackageJson';
+import CodeSnippet from '@site/src/components/CodeSnippet';
+import QuickstartCodeRunner from '@site/src/components/QuickstartCodeRunner';
+
+<LanguageSwitcher languages="JavaScript" />
+
+<QuickstartExecutionProvider>
+# Web5 in 5️⃣ minutes
+
+Let's build a decentralized application on the Web5 platform - in under 5 minutes. You will learn how to:
+
+✅ Create unique digital IDs for users known as Decentralized Identifiers (DIDs)
+
+✅ Issue and manage digital proofs using Verifiable Credentials(VCs)
+
+✅ Store and read data from your users' personal data store called a Decentralized Web Node (DWN)
+
+Let’s go! 🚀
+
+## Installation
+
+:::info
+
+<h2>Prerequisites</h2>
+<ul>
+  <li>
+    <p><a href="https://docs.npmjs.com/downloading-and-installing-node-js-and-npm" target="_blank">Node Package Manager</a>, <code>npm</code>, installed and on your system's <code>$PATH</code>.</p>
+  </li>
+  <li>
+    <p>Node version 18 and above</p>
+  </li>
+</ul>
+:::
+
+### 1. Create a directory
+
+<p>This will be the home of your new Web5 app. Run the following commands in your CLI: </p>{' '}
+
+```bash
+mkdir web5-app
+cd web5-app
+```
+
+### 2. Install Web5
+
+Use NPM to initialize a `package.json` file:
+
+```bash
+npm init -y
+```
+
+<p>Use NPM to install Web5:</p>
+
+<Dependency language={'javascript'} dependencies={['@web5/api', '@web5/credentials']} />
+
+These steps will create a `package.json` in the root of your project. Open the newly created `package.json` and add `module` as a type:
+
+<PackageJson />
+
+### 3. Create App File
+
+Create an `index.js` file where you will write all of your application logic:
+
+```bash
+touch index.js
+```
+
+For Windows using PowerShell:
+
+```powershell
+New-Item index.js -ItemType File
+```
+
+:::note
+After `npm` resolves the dependency, you may see a few warnings. You can ignore these for now.
+:::
+
+### 4. Import Web5
+
+At the top of your `index.js` file, add these lines to import the Web5 package dependencies that you will use to build your application::
+
+```js
+import { Web5 } from '@web5/api';
+import { VerifiableCredential } from '@web5/credentials';
+```
+
+<details>
+<summary>Additional import for Node 18</summary>
+
+```js
+/*
+Needs globalThis.crypto polyfill. 
+This is *not* the crypto you're thinking of.
+It's the original crypto...CRYPTOGRAPHY.
+*/
+import { webcrypto } from 'node:crypto';
+
+// @ts-ignore
+if (!globalThis.crypto) globalThis.crypto = webcrypto;
+```
+
+</details>
+
+Now that you've installed the Web5 SDKs, you are ready to start building!
+
+## Create Web5 App
+
+### 1. Instantiate Web5 and Create DID 
+
+In Web5 apps, a user’s unique identifier - like an email address - is called a [Decentralized Identifier (DID)](/docs/web5/decentralized-identifiers/what-are-dids).
+We are building a decentralized app, so your users are using identifiers that aren't tied to a centralized authority.
+
+The `Web5` class is an isolated API object for doing all things Web5. The `connect()` function creates an instance of Web5 and also creates a decentralized identifier or obtains connection to an existing one.
+
+In `index.js` below the import statement, create a new instance of `Web5`:
+<CodeSnippet functionName="didCreate" />
+
+This Web5 instance is what you'll use to access the other objects of Web5 such as `dwn`. Within the connect function we’re using `dht` as the DID method. Learn more [DID methods](/docs/web5/decentralized-identifiers/what-are-dids#methods).
+
+
+<details>
+  <summary>Test your code</summary>
+
+  Wanna see the DID you just created? 
+  
+  In <code>index.js</code>, add the following line and save your file:
+  ```js
+  console.log(aliceDid);
+  ```
+
+  Then from the terminal, run:
+  ```bash
+  node index.js
+  ```
+
+  You'll see the newly created DID.
+  
+</details>
+
+#### Try it!
+
+<QuickstartCodeRunner executeCodeName="executeDidCreate" stepIndex={0} autoOpenDetails={false} customPlaceholder={"Your DID will appear here"} />
+
+ ### 2. Access Bearer DID
+
+In the previous step, you generated what is known as a (DID), which appears as an alphanumeric string. It's more specifically referred to as a DID URI. 
+
+This DID URI is part of a broader JSON object, known as a [Bearer DID](/docs/glossary#bearer-did), which contains metadata such as cryptographic keys that prove ownership of the DID and rules governing its usage, management, or modification. With a Bearer DID, the owner can securely sign and verify data, ensuring authenticity and integrity.
+
+
+To access your Bearer DID, add the following lines of code to your `index.js`:
+
+<Shnip
+  snippets={[
+    { snippetName: 'getBearerDid', language: 'JavaScript'},
+    ]}
+/>
+
+<details>
+    <summary>Test your code</summary>
+
+Wanna see the Bearer DID?
+
+In index.js, add the following line and save your file:
+
+```js
+console.log(aliceBearerDid);
+```
+
+Then from the terminal, run:
+```bash
+node index.js
+```
+
+You'll see the Bearer DID.
+
+</details>
+
+#### Try it!
+<QuickstartCodeRunner executeCodeName="executeGetBearerDid" stepIndex={1} viewJsonObj={true} collapseLevel={1} customPlaceholder={"Your Bearer DID will appear here"}/>
+
+### 3. Create a VC
+
+[Verifiable Credentials (VCs)](https://developer.tbd.website/docs/web5/verifiable-credentials/what-are-vcs) are digital proofs used to confirm specific facts about individuals, organizations, or entities.
+In this step, you'll enable your users to create a self-signed VC -- allowing them to issue a Verifiable Credential that makes claims about themselves. For this example, the credential will state that the user has completed the Web5 Quickstart Guide.
+
+In your `index.js`, create your Verifiable Credential:
+
+<Shnip
+  snippets={[
+    { snippetName: 'createQuickstartVc', language: 'JavaScript'},
+    ]}
+/>
+
+
+<details>
+    <summary>Test your code</summary>
+
+Wanna see the VC you just created?
+
+In index.js, add the following line and save your file:
+
+```js
+console.log(vc);
+```
+
+Then from the terminal, run:
+```bash
+node index.js
+```
+
+You'll see the newly created Verifiable Credential.
+</details>
+
+Enter a name in the input field and click "Run" to create a Verifiable Credential.
+
+#### Try it!
+
+<QuickstartCodeRunner executeCodeName="executeCreateVc" stepIndex={2} viewJsonObj={true} defaultInputValue="Alice Smith" customPlaceholder={"Your VC will appear here"}/>
+
+### 4. Sign VC
+
+Now, your users can sign the VC with their Bearer DID to ensure its authenticity and integrity.
+
+To allow users to sign a VC, add this line to your `index.js`:
+
+<Shnip
+  snippets={[
+    { snippetName: 'signQuickstartVc', language: 'JavaScript'},
+    ]}
+/>
+
+
+When an issuer signs a VC, it attests that they are truly the one who issued it. 
+This cryptographic process also converts the VC into a [JSON Web Token (JWT)](https://jwt.io/), making the credential tamper-evident and verifiable by others.
+
+<details>
+    <summary>Test your code</summary>
+
+Wanna see the JWT version of your signed VC?
+
+In index.js, add the following line and save your file:
+
+```js
+console.log(signedVc);
+```
+
+Then from the terminal, run:
+```bash
+node index.js
+```
+
+You'll see the JWT-encoded version of your Verifiable Credential similar to the alphanumeric string below:
+```bash
+eyJ0eXAiOiJKV1QiLCJhbGciOiJFZERTQSIsImtpZCI6ImRpZDpkaHQ6cDNpeHo1MXp4azR1MW5uN29xcnhpaGJzc3o3amNnNXd4ZTVpeThwcGo4ZXVwOHF4OXB1eSMwIn0.eyJ2YyI6eyJAY29udGV4dCI6WyJodHRwczovL3d3dy53My5vcmcvMjAxOC9jcmVkZW50aWFscy92MSJdLCJ0eXBlIjpbIlZlcmlmaWFibGVDcmVkZW50aWFsIiwiV2ViNVF1aWNrc3RhcnRDb21wbGV0aW9uQ3JlZGVudGlhbCJdLCJpZCI6InVybjp1dWlkOmVkZDdmN2FhLTA2MDgtNDlmYi1iYzYwLWUyYWVkNTFhM2IxNSIsImlzc3VlciI6ImRpZDpkaHQ6cDNpeHo1MXp4azR1MW5uN29xcnhpaGJzc3o3amNnNXd4ZTVpeThwcGo4ZXVwOHF4OXB1eSIsImlzc3VhbmNlRGF0ZSI6IjIwMjQtMDUtMjJUMTk6NDQ6MjlaIiwiY3JlZGVudGlhbFN1YmplY3QiOnsiaWQiOiJkaWQ6ZGh0OnAzaXh6NTF6eGs0dTFubjdvcXJ4aWhic3N6N2pjZzV3eGU1aXk4cHBqOGV1cDhxeDlwdXkiLCJ1c2VybmFtZSI6IkBibGFja2dpcmxieXRlcyIsImNvbXBsZXRpb25EYXRlIjoiMjAyNC0wNS0yMiIsImV4cGVydGlzZUxldmVsIjoiQmVnaW5uZXIifSwiZXhwaXJhdGlvbkRhdGUiOiIyMDI2LTA5LTMwVDEyOjM0OjU2WiJ9LCJuYmYiOjE3MTY0MDcwNjksImp0aSI6InVybjp1dWlkOmVkZDdmN2FhLTA2MDgtNDlmYi1iYzYwLWUyYWVkNTFhM2IxNSIsImlzcyI6ImRpZDpkaHQ6cDNpeHo1MXp4azR1MW5uN29xcnhpaGJzc3o3amNnNXd4ZTVpeThwcGo4ZXVwOHF4OXB1eSIsInN1YiI6ImRpZDpkaHQ6cDNpeHo1MXp4azR1MW5uN29xcnhpaGJzc3o3amNnNXd4ZTVpeThwcGo4ZXVwOHF4OXB1eSIsImlhdCI6MTcxNjQwNzA4MCwiZXhwIjoxNzkwNzcxNjk2fQ.6R8jx0Z3xhab7X-Y-sGPVnZ2NdFL746ILcjJbGvSfCixUY1DBsd86CVJfnXXAwbfRm5KQv0xMS5XH4h7gKkZDA
+```
+
+</details>
+
+#### Try it!
+
+<QuickstartCodeRunner executeCodeName="executeSignVc" stepIndex={3} customPlaceholder={"Your JWT will appear here"}/>
+
+
+### 5. Store VC in DWN
+
+Your users can now store the JWT form of their VC in a [DWN (Decentralized Web Node)](https://developer.tbd.website/docs/web5/decentralized-web-nodes/what-are-dwns).
+
+A DWN is a personal data store - a platform for messages, pictures, videos, medical records, and just about any content a user may want to store.
+
+<details>
+    <summary>Read more about DWNs</summary>
+
+Your app should not store users' data in your centralized database. Instead, their data should be stored in their DWN. This is how the user retains ownership over their content. Through permissions, users can decide which apps can read, write, and delete content from their DWN.
+
+The DWN exists in local storage. The DWN persists across browser sessions and can be synched across a user's devices.
+
+A user can host their DWN in multiple locations. The Web5 SDK is both browser and Node.js compliant, meaning you can use the same APIs on both client side and serverside.
+
+</details>
+
+To store a VC in a DWN, add the following lines of code to your `index.js`:
+
+<Shnip
+  snippets={[
+    { snippetName: 'writeQuickstartVcToDwn', language: 'JavaScript'},
+    ]}
+/>
+
+<details>
+    <summary>Test your code</summary>
+
+Let's see what was just written to the DWN.
+
+In index.js, add the following line and save your file:
+
+```js
+console.log('writeResult', record);
+```
+
+Then from the terminal, run:
+```bash
+node index.js
+```
+
+You'll see the record that was written to the user's DWN. It will resemble:
+```bash
+writeResult _Record {}
+```
+    
+</details>
+
+#### Try it!
+<QuickstartCodeRunner executeCodeName="executeWriteVcToDwn" stepIndex={4} viewJsonObj={true} collapseLevel={1} customPlaceholder={"Your written result will appear here"}/>
+
+### 6. Read VC from DWN
+
+If the user has given your app read permissions to their DWN, you can read their data by accessing it through the record property. 
+
+To read the JWT-encoded VC stored in your DWN, add the following to your `index.js`:
+
+<Shnip
+  snippets={[
+    { snippetName: 'readQuickstartVc', language: 'JavaScript'},
+    ]}
+/>
+
+
+
+:::note
+Since the record is [public](/docs/web5/decentralized-web-nodes/publishing-records) 
+(set by the `published` property), anyone can access it without permissions. 
+If you need to access a private record from a DWN that doesn't belong to you, you would need permissions from the DWN's owner and to use 
+the [query](/docs/web5/decentralized-web-nodes/query-from-dwn) method. 
+:::
+
+<details>
+    <summary>Test your code</summary>
+
+To see the record that was read from the DWN, add the following to index.js:
+
+```js
+console.log('readResult', readSignedVc);
+```
+
+Then from the terminal, run:
+```bash
+node index.js
+```
+
+
+You'll see the JWT-encoded version of your Verifiable Credential similar to the alphanumeric string below:
+```bash
+eyJ0eXAiOiJKV1QiLCJhbGciOiJFZERTQSIsImtpZCI6ImRpZDpkaHQ6cDNpeHo1MXp4azR1MW5uN29xcnhpaGJzc3o3amNnNXd4ZTVpeThwcGo4ZXVwOHF4OXB1eSMwIn0.eyJ2YyI6eyJAY29udGV4dCI6WyJodHRwczovL3d3dy53My5vcmcvMjAxOC9jcmVkZW50aWFscy92MSJdLCJ0eXBlIjpbIlZlcmlmaWFibGVDcmVkZW50aWFsIiwiV2ViNVF1aWNrc3RhcnRDb21wbGV0aW9uQ3JlZGVudGlhbCJdLCJpZCI6InVybjp1dWlkOmVkZDdmN2FhLTA2MDgtNDlmYi1iYzYwLWUyYWVkNTFhM2IxNSIsImlzc3VlciI6ImRpZDpkaHQ6cDNpeHo1MXp4azR1MW5uN29xcnhpaGJzc3o3amNnNXd4ZTVpeThwcGo4ZXVwOHF4OXB1eSIsImlzc3VhbmNlRGF0ZSI6IjIwMjQtMDUtMjJUMTk6NDQ6MjlaIiwiY3JlZGVudGlhbFN1YmplY3QiOnsiaWQiOiJkaWQ6ZGh0OnAzaXh6NTF6eGs0dTFubjdvcXJ4aWhic3N6N2pjZzV3eGU1aXk4cHBqOGV1cDhxeDlwdXkiLCJ1c2VybmFtZSI6IkBibGFja2dpcmxieXRlcyIsImNvbXBsZXRpb25EYXRlIjoiMjAyNC0wNS0yMiIsImV4cGVydGlzZUxldmVsIjoiQmVnaW5uZXIifSwiZXhwaXJhdGlvbkRhdGUiOiIyMDI2LTA5LTMwVDEyOjM0OjU2WiJ9LCJuYmYiOjE3MTY0MDcwNjksImp0aSI6InVybjp1dWlkOmVkZDdmN2FhLTA2MDgtNDlmYi1iYzYwLWUyYWVkNTFhM2IxNSIsImlzcyI6ImRpZDpkaHQ6cDNpeHo1MXp4azR1MW5uN29xcnhpaGJzc3o3amNnNXd4ZTVpeThwcGo4ZXVwOHF4OXB1eSIsInN1YiI6ImRpZDpkaHQ6cDNpeHo1MXp4azR1MW5uN29xcnhpaGJzc3o3amNnNXd4ZTVpeThwcGo4ZXVwOHF4OXB1eSIsImlhdCI6MTcxNjQwNzA4MCwiZXhwIjoxNzkwNzcxNjk2fQ.6R8jx0Z3xhab7X-Y-sGPVnZ2NdFL746ILcjJbGvSfCixUY1DBsd86CVJfnXXAwbfRm5KQv0xMS5XH4h7gKkZDA
+```
+    
+</details>
+
+#### Try it!
+
+<QuickstartCodeRunner executeCodeName="executeReadVcFromDwn" stepIndex={5} customPlaceholder={"Your read result will appear here"}/>
+
+### 7. Parse VC
+
+Upon receiving a Verifiable Credential (VC) as a JSON Web Token (JWT), applications can convert it back to JSON format using the `VerifiableCredential.parseJwt()` method. 
+This allows you to inspect the contents of the VC in a readable format.
+
+Add the following line to your index.js to parse the JWT-encoded VC:
+
+<Shnip
+  snippets={[
+    { snippetName: 'parseQuickstartVc', language: 'JavaScript'},
+    ]}
+/>
+
+
+<details>
+    <summary>Test your code</summary>
+
+Wanna see the parsed JWT?
+
+In index.js, add the following line and save your file:
+
+```js
+console.log(parsedVc);
+```
+
+Then from the terminal, run:
+```bash
+node index.js
+```
+
+
+You will see a decoded version of the JWT!
+
+</details>
+
+#### Try it!
+
+<QuickstartCodeRunner executeCodeName="executeParseVc" stepIndex={6} viewJsonObj={true} customPlaceholder={"Your parsed VC will appear here"} />
+
+## Summary
+
+Congrats! You've successfully created an application with two key functionalities:
+
+1️⃣ Issuing and cryptographically signing Verifiable Credentials, providing users with a reliable way to verify facts about individuals, organizations, or entities.
+
+2️⃣ Creating a local Decentralized Web Node (DWN) as a personal data store for users. With their DID and appropriate permissions, your app can read, write, or delete data from the user's DWN, ensuring they have full control over their content.
+
+:::info
+[Download the completed index.js file](/files/index.txt)
+:::
+
+
+## Next Steps
+
+* [Learn more about DIDs](/docs/web5/decentralized-identifiers/what-are-dids)
+* [Learn more about VCs](/docs/web5/verifiable-credentials/what-are-vcs)
+* [Learn more about DWNs](/docs/web5/decentralized-web-nodes/what-are-dwns)
+* [Build a shared ToDo app](/docs/web5/apps/shared-todo-app) 
+
+</QuickstartExecutionProvider>
