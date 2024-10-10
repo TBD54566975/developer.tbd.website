@@ -1,0 +1,168 @@
+---
+title: Sending RFQs
+hide_title: true
+sidebar_position: 7
+---
+
+import Shnip from "@site/src/components/Shnip";
+import {
+  LanguageSwitcher,
+  LanguageContent,
+} from "@site/src/components/LanguageSwitcher";
+
+# Sending RFQs
+
+After your customer selects an [Offering](/docs/tbdex/pfi/creating-offerings), the next step is to send a **Request for Quote (RFQ)** to the PFI in order to initiate the transaction.
+
+The Offering provided an estimate, but the Quote will provide a formal offer based on the financial transaction the customer is requesting as well as the payment methods provided.
+
+## Create the RFQ
+
+An RFQ is a structured tbDEX message that specifies the details of the transaction your customer wishes to make.
+
+It includes information about the Offering, payment methods, and any required [verifiable credentials (VCs)](/docs/tbdex/wallet/managing-credentials).
+
+To create the message, construct an RFQ passing metadata and data:
+
+<Shnip
+  languages={["JavaScript", "Kotlin", "Swift"]}
+  snippetName="skeletonRfqMessage"
+/>
+
+### metadata
+
+The metadata properties identify the DIDs of the sender (your customer), the recipient (the PFI), and the version of the tbDEX protocol you're using:
+
+<Shnip
+  languages={["JavaScript", "Kotlin", "Swift"]}
+  snippetName="rfqMetadata"
+/>
+
+### data
+
+The data properties contain the specifics of the transaction, such as the id of the Offering you're requesting the Quote for, payment methods, and credentials:
+
+- **offeringId** - The unique identifier of the PFI's Offering the customer is interested in
+- **payin** - How the customer intends to pay the PFI
+  - **kind** - Type of payment method e.g. BTC_ADDRESS, DEBIT_CARD, MOMO_MPESA
+  - **amount** - Total amount of currency the customer wants to pay in exchange for payout currency
+  - **paymentDetails** - The exact details of the payment method. As this information is sensitive, the SDK will convert these details into [salted hashes](https://github.com/TBD54566975/tbdex/tree/main/specs/protocol#privatedata-1)
+- **payout** - How the customer wishes to receive the payout from the PFI
+  - **kind** - Type of payment method e.g. BTC_ADDRESS, BANK_ACCOUNT, MOMO_MPESA
+  - **paymentDetails** - The exact details of the payment method. As this information is sensitive, the SDK will convert these details into [salted hashes](https://github.com/TBD54566975/tbdex/tree/main/specs/protocol#privatedata-1)
+- **claims** - The [VCs that satisfy the requirements of the Offer](/docs/tbdex/wallet/managing-credentials#select-credentials-that-satisfy-requirements). As this information is sensitive, the SDK will convert these details into [salted hashes](https://github.com/TBD54566975/tbdex/tree/main/specs/protocol#privatedata-1)
+
+<Shnip
+  languages={["JavaScript", "Kotlin", "Swift"]}
+  snippetName="createRfqMessage"
+/>
+
+## Verify RFQ Data
+
+Before sending the RFQ to the PFI, you can verify that the `data` within the RFQ satisfies the Offering's requirements.
+
+<Shnip
+  languages={["JavaScript", "Kotlin"]}
+  snippetName="verifyOfferingRequirements"
+  inlineSnippets={[
+    {
+      code: "// verifyOfferings() is not available in the Swift SDK",
+      language: "Swift",
+    },
+  ]}
+/>
+
+This will throw an error for any of the following:
+
+- `data.offeringId` doesn't match the provided Offering's id
+- `data.payin.amount` exceeds the provided Offering's max units allowed or is below the Offering's min units allowed
+- `data.payin.kind` does not match the provided Offering's payin kinds
+- `data.payout.kind` does not match the provided Offering's payout kinds
+- `data.payin.paymentDetails` doesn't satisfy the Offering's `requiredPaymentDetails`
+- `data.payout.paymentDetails` doesn't satisfy the Offering's `requiredPaymentDetails`
+- `data.claims` does not contain JWTs for VCs that match the Offering's `requiredClaims`
+
+**Example error output**
+
+> Error: offering does not support rfq's payinMethod kind. (rfq) BTC_ADDRESS was not found in: [BANK_ACCOUNT] (offering)
+
+## Sign the RFQ
+
+Signing the RFQ ensures its authenticity. You can do so with the customer's [Bearer DID](/docs/glossary#bearer-did):
+
+<Shnip
+  languages={["JavaScript", "Kotlin", "Swift"]}
+  snippetName="signRfqMessage"
+/>
+
+## Send RFQ to PFI
+
+Use `TbdexHttpClient` to send the RFQ to the PFI. If no error is thrown, the RFQ has been successfully sent to the PFI and an **exchange** has been created.
+
+This exchange serves as a thread of messages between your application and the PFI regarding this transaction.
+
+<Shnip
+  languages={["JavaScript", "Kotlin", "Swift"]}
+  snippetName="sendRfqMessage"
+/>
+
+The next message written to the exchange will be a [Quote](/docs/tbdex/wallet/receive-quote) from the PFI.
+
+You'll need to [poll the PFI](/docs/tbdex/wallet/receive-quote#polling-for-quote) to receive the `Quote` and all other messages within the exchange, unless you provide an `replyTo` callback when sending the RFQ.
+
+### Optional Callback
+
+If your wallet application has a deployed server, you can provide a callback when sending the RFQ.
+
+Callbacks are fully qualified URIs (DID or URL) that can be provided to the PFI via the optional `replyTo` property.
+
+If `replyTo` is provided, the PFI will send all new messages of the exchange to the supplied URI.
+
+This URI is scoped to each exchange, allowing you to specify a different URI per exchange if desired.
+
+:::tip No Callback
+
+If a callback is not provided, you'll need to [poll the PFI](/docs/tbdex/wallet/receive-quote#polling-for-quote) to receive the `Quote` and all other messages within the exchange.
+
+:::
+
+#### Callback as a URL
+
+<Shnip
+  languages={["JavaScript", "Kotlin"]}
+  snippetName="rfqWithUrlReplyTo"
+  inlineSnippets={[
+    {
+      code: "// replyTo is not available in the Swift SDK",
+      language: "Swift",
+    },
+  ]}
+/>
+
+#### Callback as a DID
+
+To provide your wallet application's DID as the `replyTo` property, it must have a service type of `tbdex`.
+
+<Shnip
+  languages={["JavaScript", "Kotlin"]}
+  snippetName="createDidWithTbdexService"
+  inlineSnippets={[
+    {
+      code: "// replyTo is not available in the Swift SDK",
+      language: "Swift",
+    },
+  ]}
+/>
+
+To use your DID as the `replyTo`, you'll provide its `uri`.
+
+<Shnip
+  languages={["JavaScript", "Kotlin"]}
+  snippetName="rfqWithDidReplyTo"
+  inlineSnippets={[
+    {
+      code: "// replyTo is not available in the Swift SDK",
+      language: "Swift",
+    },
+  ]}
+/>
