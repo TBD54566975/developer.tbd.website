@@ -75,7 +75,6 @@ module.exports = {
       },
       fontFamily: {
         sans: ['"Inter"', ...fontFamily.sans],
-        jakarta: ['"Plus Jakarta Sans"', ...fontFamily.sans],
         mono: ['"Fira Code"', ...fontFamily.mono],
         spaceGrotesk: ["SpaceGrotesk", "sans-serif"],
         basis: ["Basis", "sans-serif"],
@@ -91,6 +90,7 @@ module.exports = {
         lg: "997px",
       },
       fontSize: {
+        // https://tailwindcss.com/docs/font-size#customizing-your-theme
         "1.2lg": ["1.625rem", { lineHeight: "1.869rem" }],
         "2.5xl": ["1.75rem", { lineHeight: "2.275rem" }],
         "4.5xl": ["2.625rem", { lineHeight: "3.019rem" }],
