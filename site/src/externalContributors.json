@@ -82,5 +82,12 @@
     "title": "Hacktoberfest Experience",
     "link": "https://dev.to/kiran_baliga/my-hacktoberfest-2024-journey-2odn",
     "contributor": "Kiran Baliga"
+  },
+  {
+    "type": "blog",
+    "thumbnail": "/img/external-contributor/Lymah123-understanding-dwns",
+    "title": "Understanding the Power of Decentralized Web Nodes (DWNs)",
+    "link": "https://dev.to/lymah/understanding-the-power-of-decentralized-web-nodes-dwns-5dm5",
+    "contributor": "Lymah123"
   }
 ]
