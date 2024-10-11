@@ -65,7 +65,7 @@ jobs:
                 state: 'closed',
                 sort: 'updated',
                 direction: 'desc',
-                per_page: 100
+                per_page: 250
               });
 
               console.log(`Fetched ${prs.length} PRs for ${repo}`);
