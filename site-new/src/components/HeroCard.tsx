@@ -23,11 +23,11 @@ function HeroCard({
       <InfoIcon className="h-6 w-6" fill={"#ffec19"} />
       <Heading
         as="h2"
-        className="mb-6 mt-4 text-3xl text-tbd-yellow md:text-4xl"
+        className="mb-6 mt-4 text-tbd-yellow"
       >
         {title}
       </Heading>
-      <p className="mb-6 text-base text-white md:text-lg">{content}</p>
+      <p className="mb-6 text-white">{content}</p>
       <div>
         {url && buttonText && <Button text={buttonText} url={url} />}
       </div>

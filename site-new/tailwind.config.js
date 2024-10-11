@@ -1,6 +1,7 @@
 const { fontFamily } = require("tailwindcss/defaultTheme");
 const twBlock = require("./tw-block.plugin");
 const twComponents = require("./tw-block-components.plugin");
+const plugin = require('tailwindcss/plugin')
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
@@ -89,12 +90,6 @@ module.exports = {
       screens: {
         lg: "997px",
       },
-      fontSize: {
-        // https://tailwindcss.com/docs/font-size#customizing-your-theme
-        "1.2lg": ["1.625rem", { lineHeight: "1.869rem" }],
-        "2.5xl": ["1.75rem", { lineHeight: "2.275rem" }],
-        "4.5xl": ["2.625rem", { lineHeight: "3.019rem" }],
-      },
       animation: {
         marquee: "marquee var(--duration) linear infinite",
         "marquee-vertical": "marquee-vertical var(--duration) linear infinite",
@@ -149,7 +144,82 @@ module.exports = {
         15: "repeat(15, minmax(0, 1fr))",
         20: "repeat(20, minmax(0, 1fr))",
       },
+      // perhaps font utility sizes should align with the style sheet from figma https://www.figma.com/design/vzQz0IgCT37UxdEbgn1nPw/%F0%9F%8C%95-tbd-web---reviews?node-id=5820-40964&m=dev
+      // fontSize: {
+      //   xs: ['0.75rem', { 
+      //     lineHeight: '1rem',
+      //     fontWeight: '500',
+      //   }],
+      //   sm: ['0.875rem', {
+      //     lineHeight: '1.25rem',
+      //     fontWeight: '500',
+      //   }],
+      //   base: ['1rem', {
+      //     lineHeight: '1.5rem',
+      //     fontWeight: '500',
+      //   }],
+      //   lg: ['1.125rem', {
+      //     lineHeight: '1.75rem',
+      //     fontWeight: '500',
+      //   }],
+      //   xl: ['1.25rem', {
+      //     lineHeight: '1.75rem',
+      //     fontWeight: '500',
+      //   }],
+      //   '2xl': ['1.5rem', {
+      //     lineHeight: '2rem',
+      //     fontWeight: '500',
+      //   }],
+      //   '3xl': ['1.875rem', {
+      //     lineHeight: '2.25rem',
+      //     fontWeight: '500',
+      //   }],
+      //   '4xl': ['1.875rem', {
+      //     lineHeight: '2.25rem',
+      //     fontWeight: '500',
+      //   }],
+      // },
     },
-  },
-  plugins: [twBlock, twComponents],
+    },
+    plugins: [
+    twBlock,
+    twComponents,
+    // https://tailwindcss.com/docs/plugins#adding-base-styles
+    plugin(function({ addBase, theme }) {
+      const elements = ['h1', 'h2', 'h3', 'h4', 'p', 'button'];
+      elements.forEach(tag => {
+        addBase({
+          [tag]: {
+            fontFamily: theme('fontFamily.spaceGrotesk').join(','),
+            fontWeight: theme('fontWeight.medium'),
+            color: theme('colors.white'),
+          }
+        });
+      });
+
+      const mobileStyles = {
+        h1: { fontSize: '30px', lineHeight: '110%' },
+        h2: { fontSize: '26px', lineHeight: '115%' },
+        h3: { fontSize: '22px', lineHeight: '120%' },
+        h4: { fontSize: '18px', lineHeight: '130%' },
+        p: { fontSize: '14px', lineHeight: '140%', fontWeight: theme('fontWeight.normal') },
+        button: { fontSize: '12px', lineHeight: '100%' },
+      };
+
+      addBase(mobileStyles);
+
+      const desktopStyles = {
+        '@screen lg': {
+          h1: { fontSize: '62px', lineHeight: '110%' },
+          h2: { fontSize: '42px', lineHeight: '115%' },
+          h3: { fontSize: '34px', lineHeight: '120%' },
+          h4: { fontSize: '28px', lineHeight: '130%' },
+          p: { fontSize: '22px', lineHeight: '140%' },
+          button: { fontSize: '18px', lineHeight: '100%' },
+        },
+      };
+
+      addBase(desktopStyles);
+    })
+  ],
 };

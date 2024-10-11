@@ -82,12 +82,12 @@ export default function Home(): JSX.Element {
 
         <div className="flex w-full items-center justify-center">
           <div className="flex h-[128px] w-[90%] items-center justify-center border-[0.5px] border-solid border-tbd-yellow bg-tbd-gray-shade-1 px-[20px] py-[24px] lg:w-[80%] lg:px-[38px] lg:py-[46px]">
-            <p className="mb-0 text-2xl lg:text-3xl">
+            <Heading as="h1" className="mb-0">
               {/* We're building <span className="text-tbd-yellow">open</span>{" "}
               source toolkits */}
               We're building <span ref={typeWriterRef}></span>
               <span className="relative top-1 ml-1 inline-block h-7 w-1 animate-caret bg-[lightgrey]" />
-            </p>{" "}
+            </Heading>
           </div>
         </div>
 

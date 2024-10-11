@@ -32,7 +32,7 @@ function BlogCard({
       <div className="p-4 group-hover:text-tbd-gray">
         <div>{date.toLocaleDateString()}</div>
         <div className="text-tbd-yellow group-hover:text-tbd-gray">{`@${author}`}</div>
-        <h2 className="text-4xl tracking-wide group-hover:text-tbd-gray">
+        <h2 className="group-hover:text-tbd-gray">
           {title}
         </h2>
         <div className="flex">
