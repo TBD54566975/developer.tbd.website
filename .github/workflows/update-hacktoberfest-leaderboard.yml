@@ -57,24 +57,42 @@ jobs:
               console.log(`Fetching recent PRs for ${repo}`);
               const [repoOwner, repoName] = repo.split('/');
               
-              const thirtyDaysAgo = new Date(Date.now() - 30 * 24 * 60 * 60 * 1000).toISOString();
+              const currentYear = new Date().getFullYear();
+              const startDate = `${currentYear}-10-01T00:00:00Z`;
+              const endDate = `${currentYear}-10-31T23:59:59Z`;
               
-              const { data: prs } = await github.rest.pulls.list({
-                owner: repoOwner,
-                repo: repoName,
-                state: 'closed',
-                sort: 'updated',
-                direction: 'desc',
-                per_page: 100
-              });
+              let allPRs = [];
+              let page = 1;
+              
+              while (true) {
+                const { data: prs } = await github.rest.pulls.list({
+                  owner: repoOwner,
+                  repo: repoName,
+                  state: 'closed',
+                  sort: 'updated',
+                  direction: 'desc',
+                  per_page: 100,
+                  page: page
+                });
+                
+                if (prs.length === 0) break;
+                
+                allPRs = allPRs.concat(prs);
+                
+                const oldestPRDate = new Date(prs[prs.length - 1].merged_at);
+                if (oldestPRDate < new Date(startDate)) break;
+                
+                page++;
+              }
 
-              console.log(`Fetched ${prs.length} PRs for ${repo}`);
+              console.log(`Fetched ${allPRs.length} PRs for ${repo}`);
 
-              const hacktoberfestPRs = prs.filter(pr => {
+              const hacktoberfestPRs = allPRs.filter(pr => {
                 const isMerged = !!pr.merged_at;
-                const isRecent = new Date(pr.merged_at) > new Date(thirtyDaysAgo);
+                const mergedAt = new Date(pr.merged_at);
+                const isInHacktoberfestRange = mergedAt >= new Date(startDate) && mergedAt <= new Date(endDate);
                 const isHacktoberfest = pr.labels.some(label => label.name.toLowerCase() === 'hacktoberfest');
-                return isMerged && isRecent && isHacktoberfest;
+                return isMerged && isInHacktoberfestRange && isHacktoberfest;
               }).map(pr => ({
                 user: pr.user.login,
                 points: calculatePoints(pr.labels),
