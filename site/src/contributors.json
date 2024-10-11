@@ -1,39 +1,39 @@
 [
   {
-    "login": "Moffat Gitau",
-    "avatar_url": "https://cdn.discordapp.com/avatars/1095429785452294316/dfa489cfbe70535ccf6647dfe018c744?size=1024",
+    "login": "Evans Eburu",
+    "avatar_url": "https://media.licdn.com/dms/image/v2/C5603AQH9wNgj5LwWYA/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1601625245312?e=1733961600&v=beta&t=PjjSAaug61IEV_N9ZeGo4oBFQGcuHKVsjnJySFckCOQ",
     "contributions": ["Community Champion Award"],
-    "description": "Thank you so much for helping community members with technical guidance, troubleshooting and exploring new ideas. Whether you're debugging issues or sharing insights, your contributions and presence are invaluable to our community. We're so grateful you are here."
+    "description": "You've helped troubleshoot issues for other community members and have shared feedback to make our open source space even more engaging. We're so grateful you're here!"
   },
   {
-    "login": "sam_erinle",
-    "avatar_url": "https://cdn.discordapp.com/avatars/921824644791685181/94f039bac2a463217bcba4d1a13648c7?size=1024",
-    "contributions": ["Discord Contributor Award"],
-    "description": "Thank you for your thoughtful contributions to our. community. Whether you're sharing useful resources or helping others with technical challenges they run into, members like you are key to fostering a supportive safe space for everyone. Thank you so much for being here."
+    "login": "momo4698",
+    "avatar_url": "https://cdn.discordapp.com/embed/avatars/0.png?size=1024",
+    "contributions": ["Culture Contributor Award"],
+    "description": "Your fun chatter brings so much energy to our contests and events, and we love how you keep the vibes positive with your infectious enthusiasm. Thank you for being a contributor and community member!"
   },
   {
-    "login": "Ibrahim Abdulkarim",
-    "avatar_url": "https://cdn.discordapp.com/avatars/942811449020018700/6651627c9bca08a6fd336c7c02fbc370?size=1024",
-    "contributions": ["Feedback Champion Award"],
-    "description": "Thank you for your feedback and persistence in all of your troubleshooting efforts. We are so grateful to have star contributors like you building with our community."
-  },
-  {
-    "login": "aut_coder",
-    "avatar_url": "https://cdn.discordapp.com/embed/avatars/5.png?size=1024",
+    "login": "thebelcoder",
+    "avatar_url": "https://cdn.discordapp.com/embed/avatars/3.png?size=1024",
     "contributions": ["Trend Setter Award"],
-    "description": "Thank you for bringing friendly competition and energy to community! Your enthusiasm and willingness to challenge fellow contributors makes hackathons super fun. Thank you for being part of our open source community."
+    "description": "Your unwavering determination and enthusiasm for finding answers is truly inspiring, especially when faced with challenges, and your hard work has paid off. We're proud to have members like you in our community!"
   },
   {
-    "login": "Joshua Aruokhai",
-    "avatar_url": "https://media.licdn.com/dms/image/v2/C4D03AQFkjnyEk-FyKQ/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1594728804451?e=1731542400&v=beta&t=DP1RAF_8j1Nuxt5LDSR3_gqBoCm5itzp_gFpUNYW2to",
-    "contributions": ["Rising Star Award"],
-    "description": "Thank you for sharing your work with our community. Your dedication open source inspirational, and we can't wait to see what you continue to build in the future. You are part of why open source is amazing, so grateful to have you here."
-  },
-  {
-    "login": "Festus Idowu",
-    "avatar_url": "https://media.licdn.com/dms/image/v2/C4D03AQF4YOQrv7Y4jA/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1657566662356?e=1731542400&v=beta&t=LdEgeUKEIWytCrhAyjr6ScM-6tUOMjWXh98bqaMkNNg",
+    "login": "0x0x",
+    "avatar_url": "https://cdn.discordapp.com/embed/avatars/4.png?size=1024",
     "contributions": ["Discord Contributor Award"],
-    "description": "Thank you for your continued dedication to our community since 2023! Your insightful questions have been invaluable in enhancing our projects, and we seriously appreciate your commitment to open source as a whole. Thank you so much for being a member of our community!"
+    "description": "Your support during our live events means the world, and your positive spirit never wavered despite challenges. Thank you for being part of what makes our community amazing!"
+  },
+  {
+    "login": "contsm",
+    "avatar_url": "https://cdn.discordapp.com/embed/avatars/5.png?size=1024",
+    "contributions": ["Feedback Champion Award"],
+    "description": "You approached every challenge with a mindset of learning and growth, which is such an inspiring way to tackle obstacles. Thank you for bringing enthusiasm to our community!"
+  },
+  {
+    "login": "Uliboy",
+    "avatar_url": "https://cdn.discordapp.com/avatars/981084971919872034/66ad8d864f1d6ad3df25ea6f112039f9?size=1024",
+    "contributions": ["Rising Star Award"],
+    "description": "Your openness in sharing your work and enthusiasm for our projects means a lot to us. Your willingness to learn and grow not only helps you but also uplifts our entire community. Thank you for being here!"
   }
 ]
 
