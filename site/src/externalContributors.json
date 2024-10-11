@@ -89,5 +89,12 @@
     "title": "Understanding the Power of Decentralized Web Nodes (DWNs)",
     "link": "https://dev.to/lymah/understanding-the-power-of-decentralized-web-nodes-dwns-5dm5",
     "contributor": "Lymah123"
+  },
+  {
+    "type": "blog",
+    "thumbnail": "/img/external-contributor/dwns_blog_chrissiku.png",
+    "title": "Practical Guide to CRUD Operations on DWNs",
+    "link": "https://dev.to/chrissiku/a-practical-guide-to-crud-operations-on-decentralized-web-nodes-aka-dwns-5ca1",
+    "contributor": "Christian Siku"
   }
 ]
