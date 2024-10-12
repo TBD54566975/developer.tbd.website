@@ -4,11 +4,12 @@ hide_title: true
 sidebar_position: 3
 ---
 
-<LanguageSwitcher languages="JavaScript, Kotlin" />
+import Shnip from "@site/src/components/Shnip";
+import CodeBlock from "@theme/CodeBlock";
 
 # Verify Credentials
 
-When an entity, receives the presentation of Verifiable Credentials (VCs) or Verifiable Presentations (VPs), they must verify the integrity, authenticity, and content of the credentials.
+When an entity receives the presentation of Verifiable Credentials (VCs) or Verifiable Presentations (VPs), they must verify the integrity, authenticity, and content of the credentials.
 The entity performing this verification is known as the **Verifier**.
 
 A Verifiable Credential (VC) is a digital proof related to an entity, known as the **Subject**. In contrast, a Verifiable Presentation (VP) is a collection of one or more VCs bundled together for presentation.
@@ -40,13 +41,8 @@ A Presentation object includes multiple elements including the presentation subm
 <details>
 <summary>Example Presentation Result</summary>
 
-
-<Shnip
-    inlineSnippets={[
-    {
-      language: 'JavaScript',
-      content: 'The JavaScript SDK returns a Presentation Result:',
-      code: `
+<CodeBlock language="javascript">
+  ```js
 {
   "presentation": {
     "@context": [
@@ -78,12 +74,10 @@ A Presentation object includes multiple elements including the presentation subm
         }
       ]
     },
-    //highlight-start
     "verifiableCredential": [
         "/* JWT VC for EmploymentCredential */",
         "/* JWT VC for PIICredential */",
     ]
-    //highlight-end
   },
   "presentationSubmissionLocation": 1,
   "presentationSubmission": {
@@ -108,13 +102,11 @@ A Presentation object includes multiple elements including the presentation subm
     ]
   }
 }
-      `
-    },
-    {
-      content: 'The Kotlin SDK returns a Verifiable Presentation:',
-      language: 'Kotlin',
-      codeLanguage: 'javascript',
-      code: `
+```
+</CodeBlock>
+
+<CodeBlock language="kotlin">
+  ```kt
 {
   "@context": [
     "https://www.w3.org/2018/credentials/v1"
@@ -144,53 +136,33 @@ A Presentation object includes multiple elements including the presentation subm
       }
     ]
   },
-    //highlight-start
-    "verifiableCredential": [
-        "/* JWT VC for EmploymentCredential */",
-        "/* JWT VC for PIICredential */",
-    ]
-    //highlight-end
+  "verifiableCredential": [
+    "/* JWT VC for EmploymentCredential */",
+    "/* JWT VC for PIICredential */"
+  ],
   "holder": "/* Subject's DID */."
 }
-      `
-    }
-  ]}
-/>
+```
+</CodeBlock>
 
 </details>
 
 Since the VC JWTs are part of the larger [Presentation JSON object](/docs/web5/verifiable-credentials/presentation-exchange#create-presentation), they must be extracted and verified individually.
 Below is an example of how this might be implemented:
 
-<Shnip
-  snippets={[
-    { snippetName: 'verifyVcs', language: 'JavaScript'},
-    { snippetName: 'verifyVcsKt', language: 'Kotlin'}
-    ]}
-/>
-
+<Shnip snippetName="verifyVcs" languages={["JavaScript", "Kotlin"]} />
 
 The code snippet above shows how to extract the VC JWTs from the Presentation and verify each one, aggregating the results.
 
 The Verifier would then examine the results of the verifications to determine the errors:
 
-<Shnip
-  snippets={[
-    { snippetName: 'errorsFound', language: 'JavaScript'},
-    { snippetName: 'errorsFoundKt', language: 'Kotlin'}
-    ]}
-/>
+<Shnip snippetName="errorsFound" languages={["JavaScript", "Kotlin"]} />
 
 ## Verify Verifiable Presentations
 
 Upon receipt, a Verifiable Presentation is encoded as a [JWT](/docs/web5/verifiable-credentials/jwt-to-vc#what-is-a-jwt) and can be verified via the `VerifiablePresentation.verify()` function.
 
-<Shnip
-  snippets={[
-    { snippetName: 'verifyVpJs', language: 'JavaScript'},
-    { snippetName: 'verifyVpKt', language: 'Kotlin'},
-  ]}
-/>
+<Shnip snippetName="verifyVpJs" languages={["JavaScript", "Kotlin"]} />
 
 ## Evaluate Presentation
 
@@ -201,19 +173,11 @@ The information in this section is only applicable to the JavaScript SDK.
 After verifying the authenticity of the VCs, the next step is to ensure that they actually satisfy the requirements outlined in the presentation definition.
 This can be done via the `PresentationExchange.evaluatePresentation()` function:
 
-<Shnip
-  snippets={[
-    { snippetName: 'evaluatePresentation', language: 'JavaScript'},
-  ]}
-    inlineSnippets={[
-    {
-      content: 'This functionality does not exist in the Kotlin SDK.',
-      language: 'Kotlin',
-    }
-  ]}
-/>
+<Shnip snippetName="evaluatePresentation" languages={["JavaScript"]} />
 
-
+<CodeBlock language="kotlin">
+  This functionality does not exist in the Kotlin SDK.
+</CodeBlock>
 
 <details>
 <summary>Example Evaluation Results</summary>
@@ -255,18 +219,16 @@ This can be done via the `PresentationExchange.evaluatePresentation()` function:
 
 The `areRequiredCredentialsPresent` property of the evaluation results gives a status indication of whether the requirements were met:
 
-* **info** - all required credentials are present
-* **warn** - more credentials were presented than were required
-* **error** - all required credentials are not present
+- **info** - all required credentials are present
+- **warn** - more credentials were presented than were required
+- **error** - all required credentials are not present
 
 If the status is `warn` or `error`, the details will be in the `warnings` or `error` array of the response.
-
 
 ## Revocation Check
 
 The `VerifiableCredential.verify()` function does not perform a revocation status check to determine whether the VCs have been revoked.
 We strongly recommend that you verify this information by referencing the VC's `credentialStatus` property before honoring the VC as valid.
-
 
 ## Read VC Data
 

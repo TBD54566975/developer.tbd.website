@@ -4,7 +4,8 @@ hide_title: true
 sidebar_position: 6
 ---
 
-<LanguageSwitcher languages="JavaScript, Kotlin" />
+import Shnip from "@site/src/components/Shnip";
+import CodeBlock from "@theme/CodeBlock";
 
 # Parse JWT into VC
 
@@ -12,18 +13,13 @@ When [signing a Verifiable Credential (VC)](/docs/web5/verifiable-credentials/vc
 This guide demonstrates how to parse the JWT to get the corresponding VC object.
 
 ## What is a JWT
+
 A VC JWT is a secure URL-safe string representation of a credential, ideal for storage or transmission between two parties.
 JWT format is used to encode the credentials, making them both secure and easily transmissible.
 
 **Example JWT**
 
-<Shnip
-  snippets={[
-    { snippetName: 'jwtToVcVar', language: 'JavaScript'},
-    { snippetName: 'jwtToVcVarKt', language: 'Kotlin'},
-    ]}
-/>
-
+<Shnip snippetName="jwtToVcVar" languages={["JavaScript", "Kotlin"]} />
 
 ## Decoding JWT
 
@@ -31,19 +27,12 @@ Once a VC JWT is received, the credential verifier will likely need to inspect o
 They can use `parseJwt()` to decode the JWT and convert it back into a `VerifiableCredential` object.
 This object format is more convenient for accessing and manipulating the credential's data within their application.
 
-<Shnip
-  snippets={[
-    { snippetName: 'jwtToVcParse', language: 'JavaScript'},
-    { snippetName: 'jwtToVcParseKt', language: 'Kotlin'},
-    ]}
-/>
+<Shnip snippetName="jwtToVcParse" languages={["JavaScript", "Kotlin"]} />
 
 This returns the VC in JSON:
 
-<Shnip
-  inlineSnippets={[
-    {
-      code: `
+<CodeBlock language="javascript">
+  {`
 {
   vcDataModel: {
     '@context': [ 'https://www.w3.org/2018/credentials/v1' ],
@@ -60,12 +49,11 @@ This returns the VC in JSON:
     expirationDate: '2022-09-30T12:34:56Z'
   }
 }
-      `,
-      language: 'JavaScript',
-      codeLanguage: 'bash',
-    },
-    {
-      code: `
+`}
+</CodeBlock>
+
+<CodeBlock language="kotlin">
+  {`
 {
   "@context": [
     "https://www.w3.org/2018/credentials/v1"
@@ -85,9 +73,5 @@ This returns the VC in JSON:
   },
   "expirationDate": "2022-09-30T12:34:56Z"
 }
-      `,
-      language: 'Kotlin', 
-      codeLanguage: 'javascript',
-    }
-  ]}
-/>
+`}
+</CodeBlock>

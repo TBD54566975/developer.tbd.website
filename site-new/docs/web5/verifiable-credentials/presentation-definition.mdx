@@ -4,7 +4,8 @@ hide_title: true
 title: Presentation Definition
 ---
 
-<LanguageSwitcher languages="JavaScript, Kotlin" />
+import Shnip from "@site/src/components/Shnip";
+import CodeBlock from "@theme/CodeBlock";
 
 # Presentation Definition
 
@@ -21,12 +22,12 @@ They're essentially saying, "To consider your application, we need to see these 
 
 An employer decides that an applicant must provide proof of:
 
-* employment history
-* degree in a field related to Engineering, Computer Science, or Security
-* Certified Ethical Hacker certification issued by a specific trusted organization
-
+- employment history
+- degree in a field related to Engineering, Computer Science, or Security
+- Certified Ethical Hacker certification issued by a specific trusted organization
 
 ### Example Presentation Definition
+
 To represent these requirements, the employer creates the PD.
 
 <details open>
@@ -99,16 +100,15 @@ To represent these requirements, the employer creates the PD.
 
 </details>
 
-
 ### Properties
 
 The following are the top-level properties of a PD:
 
-* [id](#id): A required unique identifier that distinguishes this PD from others
-* [name](#name-and-purpose): An optional, human-friendly name for easier identification of the PD
-* [purpose](#name-and-purpose):  An optional description outlining why the information requested by the PD is needed
-* [format](https://identity.foundation/presentation-exchange/spec/v1.0.0/#claim-format-designations):  The optional technical format requirements for the data to be submitted. *Example: \{ "jwt_vc": \{"alg": ["ES256K", "ES384"]} }*
-* [input_descriptors](#input_selectors):  This is the most important property of the PD. It details the exact data requirements
+- [id](#id): A required unique identifier that distinguishes this PD from others
+- [name](#name-and-purpose): An optional, human-friendly name for easier identification of the PD
+- [purpose](#name-and-purpose): An optional description outlining why the information requested by the PD is needed
+- [format](https://identity.foundation/presentation-exchange/spec/v1.0.0/#claim-format-designations): The optional technical format requirements for the data to be submitted. _Example: \{ "jwt_vc": \{"alg": ["ES256K", "ES384"]} }_
+- [input_descriptors](#input_selectors): This is the most important property of the PD. It details the exact data requirements
 
 :::info
 For more in-depth information on the schema and options, refer to the [Presentation Definition spec](https://identity.foundation/presentation-exchange/spec/v1.0.0/#json-schema-2).
@@ -166,7 +166,6 @@ In this first input descriptor, the Employer provides an `id` for this descripto
 }
 ```
 
-
 The `name` and `purpose` should be human-readable as they may be shown to the user.
 
 ```js
@@ -184,6 +183,7 @@ The `name` and `purpose` should be human-readable as they may be shown to the us
 ```
 
 #### constraints
+
 The `constraints` object contains the exact test that the VC will need to pass in order to meet the requirement.
 
 ```js
@@ -204,6 +204,7 @@ The `constraints` object contains the exact test that the VC will need to pass i
 ```
 
 #### fields
+
 Under `constraints` is an array of `fields` objects, each object representing a specific piece of data that the Employer is interested in. Each field can have its own constraints.
 
 ```js
@@ -226,6 +227,7 @@ Under `constraints` is an array of `fields` objects, each object representing a 
 ```
 
 #### path
+
 The `path` key specifies the location within the VC where the data is expected to be found.
 Here, `$.type[*]` indicates that the Employer will verify the `type` attribute of the submitted VCs to see if any of its values match the `filter`.
 
@@ -288,7 +290,6 @@ In this case, the Employer expects the applicant to submit a VC whose type inclu
 :::info
 The `filter` property offers a lot of flexibility. Refer to the [Presentation Definition spec](https://identity.foundation/presentation-exchange/spec/v1.0.0/#json-schema-2) for more examples.
 :::
-
 
 The next input descriptor describes that if a degree VC is provided, it must be a degree with one of the following terms in the title: Engineering, Computer, Cyber, or Security.
 
@@ -371,32 +372,26 @@ If an applicant provides a Ethical Hacker Certification that was issued by anyon
 
 Once the PD is created, you can validate it to ensure there are no errors in its design.
 
-1. import classes needed for a Presentation Exchange
+1. import classes needed for a Presentation Exchang
+   e
 
-<Shnip
-  inlineSnippets={[
-    {
-      code: `import { PresentationExchange } from '@web5/credentials';`,
-      language: 'JavaScript',
-    },
-    {
-      code: `
-import web5.sdk.credentials.PresentationExchange
-import web5.sdk.credentials.model.*
-      `,
-      language: 'Kotlin',
-    }
-  ]}
-/>
+<CodeBlock language="javascript">
+  {`import { PresentationExchange } from '@web5/credentials';`}
+</CodeBlock>
+
+<CodeBlock language="kotlin">
+  {`import web5.sdk.credentials.PresentationExchange
+import web5.sdk.credentials.model.*`}
+</CodeBlock>
 
 2. call `validateDefinition()`
->This assumes the [presentation definition](/docs/web5/verifiable-credentials/presentation-definition#example-presentation-definition) is assigned to variable `pd`
+   > This assumes the [presentation definition](/docs/web5/verifiable-credentials/presentation-definition#example-presentation-definition) is assigned to variable `pd`
 
 <Shnip
   snippets={[
-    { snippetName: 'validatePresentationDefinition', language: 'JavaScript' },
-    { snippetName: 'validatePresentationDefinitionKt', language: 'Kotlin' },
-    ]}
+    { snippetName: "validatePresentationDefinition", language: "JavaScript" },
+    { snippetName: "validatePresentationDefinitionKt", language: "Kotlin" },
+  ]}
 />
 
 If there are errors with the PD, an error will be thrown:
@@ -475,7 +470,6 @@ For your reference, below are example VCs that could be used to satisfy the Empl
 ```
 
 </details>
-
 
 <details>
 <summary>Computer Science Degree</summary>

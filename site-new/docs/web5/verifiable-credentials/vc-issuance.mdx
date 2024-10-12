@@ -4,7 +4,9 @@ hide_title: true
 sidebar_position: 2
 ---
 
-<LanguageSwitcher languages="JavaScript, Kotlin" />
+import Shnip from "@site/src/components/Shnip";
+import Dependencies from "@site/src/components/Dependencies";
+import CodeBlock from "@theme/CodeBlock";
 
 # Issue a VC
 
@@ -15,26 +17,23 @@ This guide provides a step-by-step process for issuing a [Verifiable Credential 
 
 **Install Packages**
 
-<Dependencies languageDependencies={[
-  { language: 'javascript', dependencies: ['@web5/credentials'] },
-  { language: 'maven', dependencies: ['web5-credentials'] },
-  { language: 'gradle', dependencies: ['web5-credentials'] },
-]}/> 
+<Dependencies
+  languageDependencies={[
+    { language: "javascript", dependencies: ["@web5/credentials"] },
+    { language: "maven", dependencies: ["web5-credentials"] },
+    { language: "gradle", dependencies: ["web5-credentials"] },
+  ]}
+/>{" "}
 
 **Install Classes**
 
-<Shnip
-  inlineSnippets={[
-    {
-      code: `import { VerifiableCredential } from "@web5/credentials";`,
-      language: 'JavaScript',
-    },
-    {
-      code: `import xyz.block.web5.credentials.VerifiableCredential`,
-      language: 'Kotlin',
-    }
-  ]}
-/>
+<CodeBlock language="javascript">
+  `import {VerifiableCredential} from "@web5/credentials";`
+</CodeBlock>
+
+<CodeBlock language="kotlin">
+  `import xyz.block.web5.credentials.VerifiableCredential`
+</CodeBlock>
 
 **Obtain DIDs**
 
@@ -60,18 +59,14 @@ Credentials are created in JSON format and contain the following properties:
 To create the VC, utilize the `VerifiableCredential.create()` method. Pass a JSON object containing the properties as shown below:
 
 <Shnip
-   snippets={[
-    { snippetName: 'createEmploymentCredential', language: 'JavaScript'},
-    { snippetName: 'createEmploymentCredentialKt', language: 'Kotlin'}
-    ]}
+  snippetName="createEmploymentCredential"
+  languages={["JavaScript", "Kotlin"]}
 />
 
 This results in:
 
-<Shnip
-  inlineSnippets={[
-    {
-      code: `
+<CodeBlock language="javascript">
+  {`
 {
   "vcDataModel": {
     "@context": [
@@ -93,11 +88,11 @@ This results in:
     "expirationDate": "2023-09-30T12:34:56Z"
   }
 }
-      `,
-      language: 'JavaScript',
-    },
-    {
-      code:`
+`}
+</CodeBlock>
+
+<CodeBlock language="kotlin">
+  {`
 {
   "@context": [
     "https://www.w3.org/2018/credentials/v1"
@@ -117,22 +112,16 @@ This results in:
     "employmentStatus": "Contractor"
   }
 }
-      `,
-      language: 'Kotlin', 
-      codeLanguage: 'JavaScript'
-    }
-  ]}
-/>
+`}
+</CodeBlock>
 
 ## Sign VC
 
 The next step is signing the VC. This cryptographic process, performed by the issuer, ensures the integrity and authenticity of the VC:
 
 <Shnip
-   snippets={[
-    { snippetName: 'signEmploymentCredential', language: 'JavaScript'},
-    { snippetName: 'signEmploymentCredentialKt', language: 'Kotlin'}
-    ]}
+  snippetName="signEmploymentCredential"
+  languages={["JavaScript", "Kotlin"]}
 />
 
 Signing the credential returns a [VC JWT](/docs/web5/verifiable-credentials/jwt-to-vc#what-is-a-jwt):
