@@ -11,7 +11,7 @@ const config: Config = {
   title: "TBDevs",
   tagline: "TBD",
   favicon: "img/favicon.ico",
-  plugins: [tailwindPlugin],
+  plugins: [tailwindPlugin, require.resolve("./webpackPlugin")],
   staticDirectories: ["public", "static"],
   // Set the production url of your site here
   url: "https://your-docusaurus-site.example.com",

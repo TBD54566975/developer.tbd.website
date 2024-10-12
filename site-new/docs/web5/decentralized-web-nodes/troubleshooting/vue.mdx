@@ -1,0 +1,131 @@
+---
+sidebar_position: 2
+---
+
+import PackageJson from '@site/src/components/PackageJson';
+
+# Vue
+
+Setting up the Web5 SDK in a Vue or NuxtJS project.
+
+If the suggested steps here don't work, please [open an issue](https://github.com/TBD54566975/developer.tbd.website/issues) or post your questions in the `#web5` channel on [TBD Discord](https://discord.com/invite/TBD).
+
+## Create your project
+You can add Web5 to an existing Nuxt or Vue project, or create a new one with the Vue CLI:
+
+```bash
+npm create vue@latest
+```
+
+## Install the Web5 SDK via NPM
+
+```bash
+npm install @web5/api
+```
+
+## Update your package.json
+
+Add `module` as a type to your `package.json`:
+
+<PackageJson />
+
+## Add the Web5 import to your Vue app
+Then, add the plugin to your Vue app:
+
+```js title="app.vue"
+import { Web5 } from "@web5/api";
+```
+
+## Use Web5 as a global plugin in NuxtJS
+If you're building a multi-page website, you want to avoid calling `web5.connect()` on every page. Instead, you can use Web5 as a global plugin in NuxtJS.
+
+```js title="plugins/web5.client.js"
+import { Web5 } from '@web5/api';
+
+export default defineNuxtPlugin({
+    async setup (nuxtApp) {
+        let web5;
+        let myDID;
+
+        ({ web5, did: myDID } = await Web5.connect());
+
+        return {
+            provide: {
+                web5,
+                myDID
+            }
+        };
+    },
+});
+```
+
+You can use this plugin in your Nuxt page as;
+
+```js title="pages/index.vue"
+<script setup>
+  const { $web5: web5, $myDID: myDID } = useNuxtApp();
+
+  console.log(web5, myDID);
+</script>
+```
+
+## Address polyfill errors
+Sometimes, you may get errors where the Web5 SDK isn't initializing in your client app e.g `process.nextTick is not a function`. This is usually because some polyfills are missing. To solve this;
+
+- Install the `vite-plugin-node-stdlib-browser` plugin:
+
+```bash
+npm install vite-plugin-node-stdlib-browser --save-dev
+```
+
+If you are using Nuxt, add this to your `nuxt.config.js` file:
+
+```js title="nuxt.config.ts"
+import nodePolyfills from 'vite-plugin-node-stdlib-browser';
+
+// https://nuxt.com/docs/api/configuration/nuxt-config
+export default defineNuxtConfig({
+  devtools: { enabled: true },
+  ssr: false,
+  vite: {
+    plugins: [nodePolyfills()],
+  },
+})
+```
+
+Then add the following to your `vite.config.js` file:
+
+```js title="vite.config.js"
+import { defineConfig } from 'vite';
+import vue from '@vitejs/plugin-vue';
+import nodePolyfills from 'vite-plugin-node-stdlib-browser';
+
+// https://vitejs.dev/config/
+export default defineConfig({
+  build: {
+    target: ['chrome109', 'edge112', 'firefox102', 'safari15.6', 'ios15.6']
+  },
+  define: {
+    global: 'globalThis'
+  },
+  plugins: [vue(), nodePolyfills()],
+});
+
+```
+
+If you run into any errors, check out our [troubleshooting guide](./common-errors) for a possible solution.
+
+## Uncaught ReferenceError: xxxx is not defined
+With the latest Nuxt releases, there seems to be a transpiling error when trying to deploy Nuxt with `npm run build`. If you get an error like `Uncaught ReferenceError: require is not defined`, you can fix it by adding the following to your `nuxt.config.js` file:
+
+```js title="nuxt.config.js"
+export defineConfig({
+  vite: {
+    build: {
+      commonjsOptions: { transformMixedEsModules: true }
+    }
+  }
+});
+```
+
+If the error isn't fixed, then try downgrading your Vue / Nuxt version to lower than you currently have it.

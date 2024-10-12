@@ -1,0 +1,121 @@
+---
+sidebar_position: 6
+title: CLI
+hide_title: true
+hide_table_of_contents: false
+---
+
+# Web5 CLI
+
+The Web5 CLI is a Rust-based command-line tool for creating and managing [Decentralized Identifiers (DIDs)](/docs/web5/decentralized-identifiers/what-are-dids) and [Verifiable Credentials (VCs)](/docs/web5/verifiable-credentials/what-are-vcs). 
+
+This guide covers CLI installation and usage for DID and VC management.
+
+:::note
+Alternatively, you can use the [Web5 SDK](/docs/web5) to create [DIDs](/docs/web5/decentralized-identifiers/how-to-create-did) and [VCs](/docs/web5/verifiable-credentials/vc-issuance).
+::: 
+
+## Installation
+
+To install the Web5 CLI, run:
+
+```bash
+curl -L https://raw.githubusercontent.com/TBD54566975/web5-rs/main/crates/web5_cli/install.sh | bash -s v0.0.4
+```
+
+## Create a DID
+
+The `web5 did create` command creates a DID using one of the supported DID methods listed below. 
+
+```bash
+web5 did create <method> [options]
+```
+
+**Supported DID methods**
+- `did:dht`: [Distributed Hash Table](/docs/glossary#did-method---dht)
+- `did:jwk`: [JSON Web Key](/docs/glossary#did-method---jwk)
+- `did:web`: [Web](/docs/glossary#did-method---web)
+
+**Options**
+* `--no-indent`: Output the DID document without indentation.
+* `--json-escape`: Escape JSON strings in the output.
+* `--domain <domain>`: For did:web, specify the domain for the DID Web creation.
+* `--no-publish`: Prevents immediately publishing for `did:dht`.
+
+**Examples**
+
+```bash
+# Create a did:dht without publishing
+web5 did create dht --no-publish
+
+# Create a did:jwk with no indent and json escape
+web5 did create jwk --no-indent --json-escape
+
+# Create a did:web 
+web5 did create web --domain https://example.com
+```
+
+## Resolve a DID
+
+The `web5 did resolve` command resolves a DID to retrieve its [DID Document](/docs/web5/decentralized-identifiers/did_documents)
+
+```bash
+web5 did resolve <did-uri> [options]
+```
+
+**Options**
+* `--no-indent`: Output the DID document without indentation.
+* `--json-escape`: Escape JSON strings in the output.
+
+**Example**
+
+```bash
+web5 did resolve did:dht:bwrh9fphhegh1jn3hhe656zuyfxqdm493so5r4hmpte1yf456w5o
+```
+
+## Create a VC
+The `web5 vc create` command creates a VC. By default, this command creates an unsigned VC in JSON format. If a Portable DID is provided, this command outputs a signed VC in [JWT](/docs/web5/verifiable-credentials/jwt-to-vc/#what-is-a-jwt) format.
+
+```bash
+web5 vc create <credential-subject-did-uri> [options]
+```
+
+**Options**
+* `--portable-did <did>`: Specifies the DID used to sign the VC. If included, the Portable DID's URI is automatically set as the issuer.
+* `--issuer <issuer-did-uri>`: Specifies the issuer of the credential.
+* `--expiration-date <date>`: Set an expiration date for the credential in YYYY-MM-DD format.
+* `--no-indent`: Output the VC without indentation.
+* `--json-escape`: Escape JSON strings in the output.
+
+**Examples**
+```bash
+# Create an unsigned VC with an issuer
+web5 vc create did:dht:kfnps1cwyt6dmb5g1q8z9xncx4nmepz4pn6cqck3jswhpg9bp4qo --issuer did:dht:p364ofunt9wu6u8jrt44ka6uz588iuefbnwjhxgbm8fjbmki4fco
+
+# Portable DID that will be used as the issuer and to sign the credential
+export PORTABLE_DID=$(web5 did create dht --no-indent)
+
+# Create and sign VC with portable DID
+web5 vc create "did:dht:cm1yqfjzfdtauh33nauwf3sqsijqziwrydicr8dbtho3cucb9nno" --portable-did $PORTABLE_DID
+
+# Create and sign VC with an expiration date
+web5 vc create "did:dht:cm1yqfjzfdtauh33nauwf3sqsijqziwrydicr8dbtho3cucb9nno" --portable-did $PORTABLE_DID --expiration-date 2025-12-31
+```
+
+## Verify a VC
+The `web5 vc verify` command verifies a VC that is in JWT format.
+
+```bash
+web5 vc verify <vc-jwt> [options]
+```
+
+**Options**
+* `--no-indent`: Outputs the verification result without indentation.
+* `--json-escape`: Escapes JSON strings in the output.
+
+**Example**
+
+```bash
+web5 vc verify eyJ0eXAiOiJKV1QiLCJhbGciOiJFZERTQSIsImtpZCI6ImRpZDpkaHQ6aG84c25hejVkdWpkaXJmNnVja3JuZ3JrcGZpYmoxNHh3enlkNnlpYXRxemU3Z2F4enQ4byMwIn0.eyJ2YyI6eyJAY29udGV4dCI6WyJodHRwczovL3d3dy53My5vcmcvMjAxOC9jcmVkZW50aWFscy92MSJdLCJpZCI6InVybjp2Yzp1dWlkOmJjYWM1MTIxLTg1NzEtNGJjMi04ZjM4LTRjYzVhNmVmYWJjNSIsInR5cGUiOlsiVmVyaWZpYWJsZUNyZWRlbnRpYWwiXSwiaXNzdWVyIjoiZGlkOmRodDpobzhzbmF6NWR1amRpcmY2dWNrcm5ncmtwZmliajE0eHd6eWQ2eWlhdHF6ZTdnYXh6dDhvIiwiaXNzdWFuY2VEYXRlIjoiMjAyNC0wOS0wNVQwMzowMTowNC40NTkwMjArMDA6MDAiLCJleHBpcmF0aW9uRGF0ZSI6bnVsbCwiY3JlZGVudGlhbFN1YmplY3QiOnsiaWQiOiJkaWQ6ZGh0OmNtMXlxZmp6ZmR0YXVoMzNuYXV3ZjNzcXNpanF6aXdyeWRpY3I4ZGJ0aG8zY3VjYjlubm8ifX0sImlzcyI6ImRpZDpkaHQ6aG84c25hejVkdWpkaXJmNnVja3JuZ3JrcGZpYmoxNHh3enlkNnlpYXRxemU3Z2F4enQ4byIsImp0aSI6InVybjp2Yzp1dWlkOmJjYWM1MTIxLTg1NzEtNGJjMi04ZjM4LTRjYzVhNmVmYWJjNSIsInN1YiI6ImRpZDpkaHQ6Y20xeXFmanpmZHRhdWgzM25hdXdmM3Nxc2lqcXppd3J5ZGljcjhkYnRobzNjdWNiOW5ubyIsIm5iZiI6MTcyNTUwNTI2NCwiaWF0IjoxNzI1NTA1MjY0fQ.velYj8w3gTagMtsRUIDZa88RoaLF8xV1S9f2xsaiWn_CX4zuVfZD6H3rNTXXxIP9WmhhzkXVyfScwubon9AXBw
+```
+
