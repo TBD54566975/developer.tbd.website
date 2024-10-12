@@ -12,7 +12,6 @@ interface ButtonGroupProps {
 }
 
 const ButtonGroup: React.FC<ButtonGroupProps> = ({ buttons, className }) => {
-  console.log(buttons);
   return (
     <div className={`not-prose flex flex-wrap gap-4 ${className ?? ""}`}>
       {buttons.map((button) => (
