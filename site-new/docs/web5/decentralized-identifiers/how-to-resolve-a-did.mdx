@@ -4,37 +4,21 @@ hide_title: true
 sidebar_position: 5
 ---
 
-<LanguageSwitcher languages="JavaScript, Kotlin, Swift" />
+import Shnip from "@site/src/components/Shnip";
 
 # Resolve a DID
 
-Resolving a DID refers to the process of retrieving the [DID document](/docs/web5/decentralized-identifiers/did_documents) associated with a [Decentralized Identifier](/docs/web5/decentralized-identifiers/what-are-dids). The DID Document contains important information such as public keys, authentication methods, service endpoints, and more. 
-
+Resolving a DID refers to the process of retrieving the [DID document](/docs/web5/decentralized-identifiers/did_documents) associated with a [Decentralized Identifier](/docs/web5/decentralized-identifiers/what-are-dids). The DID Document contains important information such as public keys, authentication methods, service endpoints, and more.
 
 ## Retrieving the DID Document
 
 When resolving a DID, make sure you are passing the [DID URI](/docs/web5/decentralized-identifiers/how-to-create-did#diddht) to the resolver function.
 
-<Shnip
-  snippets={[
-    {
-      snippetName: 'resolveDidJS',
-      language: 'JavaScript'
-    },
-    {
-      snippetName: 'resolveDidKT',
-      language: 'Kotlin'
-    },
-    {
-      snippetName: 'resolveDidSwift',
-      language: 'Swift'
-    },
-  ]}
-/>
+<Shnip snippetName="resolveDid" languages={["JavaScript", "Kotlin", "Swift"]} />
 
 **Here's an example DID Document:**
 
-``` javascript
+```javascript
 {
   "id": "did:dht:cm1yqfjzfdtauh33nauwf3sqsijqziwrydicr8dbtho3cucb9nno",
   "verificationMethod": [

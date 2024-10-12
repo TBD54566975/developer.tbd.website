@@ -4,12 +4,12 @@ hide_title: true
 sidebar_position: 6
 ---
 
-<LanguageSwitcher languages="JavaScript" />
+import Shnip from "@site/src/components/Shnip";
 
 # Update a DID
 
-A [DID Document](/docs/web5/decentralized-identifiers/did_documents) provides a way to link a DID with the way the DID subject can be reached, i.e., through public keys, services endpoints, and more.
-There are several reasons why one might need to update a DID document including adding/deleting/updating service endpoints and keys. 
+A [DID Document](/docs/web5/decentralized-identifiers/did_documents) provides a way to link a DID with the way the DID subject can be reached, i.e., through public keys, services endpoints, and more.  
+There are several reasons why one might need to update a DID document, including adding, deleting, or updating service endpoints and keys.
 
 In this guide, we'll demonstrate how to update a DID Document using the Web5 SDK.
 
@@ -21,28 +21,16 @@ To update a DID, you need access to your full [BearerDid](/docs/web5/decentraliz
 
 To add a new service, you can obtain the list of services from the DID Document, then add your new service to the list.
 
-<Shnip
-  snippets={[
-    { snippetName: 'addServiceToDidDocJS', language: 'JavaScript' },
-  ]}
-/>
+<Shnip snippetName="addServiceToDidDoc" languages={["JavaScript"]} />
 
 ## Updating a Service
 
 To update a service, you can find the service within the existing list of services, update any of the values, then republish the DID Document.
 
-<Shnip
-  snippets={[
-    { snippetName: 'updateServiceEndpointJS', language: 'JavaScript' },
-  ]}
-/>
+<Shnip snippetName="updateServiceEndpoint" languages={["JavaScript"]} />
 
 ## Deleting a Service
 
 To delete a service, you can remove the service from the existing list of services, then republish the DID Document.
 
-<Shnip
-  snippets={[
-    { snippetName: 'removeServiceEndpointJS', language: 'JavaScript' },
-  ]}
-/>
+<Shnip snippetName="removeServiceEndpoint" languages={["JavaScript"]} />

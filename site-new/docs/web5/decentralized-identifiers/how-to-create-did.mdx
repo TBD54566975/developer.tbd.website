@@ -4,7 +4,8 @@ hide_title: true
 sidebar_position: 2
 ---
 
-<LanguageSwitcher languages="JavaScript, Kotlin, Swift" />
+import Dependencies from "@site/src/components/Dependencies";
+import Shnip from "@site/src/components/Shnip";
 
 # Create a DID
 
@@ -15,54 +16,42 @@ You can create a DID using any of the [Web5-supported DID methods](/docs/web5/de
 
 ## Install
 
-<Dependencies languageDependencies={[
-  { language: 'javascript', dependencies: ['@web5/dids'] },
-  { language: 'maven', dependencies: ['web5-dids'] },
-  { language: 'gradle', dependencies: ['web5-dids'] },
-  {language: 'swift', dependencies: ['Web5']},
-]}/>
+<Dependencies
+  languageDependencies={[
+    { language: "javascript", dependencies: ["@web5/dids"] },
+    { language: "maven", dependencies: ["web5-dids"] },
+    { language: "gradle", dependencies: ["web5-dids"] },
+    { language: "swift", dependencies: ["Web5"] },
+  ]}
+/>
 
 ## Import
 
 <Shnip
   snippets={[
-    { snippetName: 'requiredDidImports', language: 'JavaScript' },
-    { snippetName: 'requiredDidImportsKt', language: 'Kotlin' },
-    { snippetName: 'web5ImportSwift', language: 'Swift' },
+    { snippetName: "requiredDidImports", language: "JavaScript" },
+    { snippetName: "requiredDidImportsKt", language: "Kotlin" },
+    { snippetName: "web5ImportSwift", language: "Swift" },
   ]}
 />
 
 ## Create DID
+
 When creating a DID with the Web5 SDK, what's returned is a `BearerDid`.
-A `BearerDid` is a composite type that combines a DID with a KeyManager containing keys associated to the DID. 
+A `BearerDid` is a composite type that combines a DID with a KeyManager containing keys associated to the DID.
 Together, these two components form a BearerDid that can be used to sign and verify data.
 
 The following DID methods are supported:
 
 ### did\:dht
 
-<Shnip
-  snippets={[
-    { snippetName: 'createDidDht', language: 'JavaScript' },
-    { snippetName: 'createDidDhtKt', language: 'Kotlin' },
-  ]}
-  inlineSnippets={[
-    {
-      code: `Creating a DID of method DHT is not currently available in Swift.`,
-      language: 'Swift',
-      codeLanguage: 'text',
-    },
-  ]}
-/>
+<Shnip snippetName="createDidDht" languages={["JavaScript", "Kotlin"]} />
 
 ### did\:jwk
 
 <Shnip
-  snippets={[
-    { snippetName: 'createDidJwk', language: 'JavaScript' },
-    { snippetName: 'createDidJwkKt', language: 'Kotlin' },
-    { snippetName: 'createDidJWKSwift', language: 'Swift' },
-    ]}
+  snippetName="createDidJwk"
+  languages={["JavaScript", "Kotlin", "Swift"]}
 />
 
 ## Example of DID properties
@@ -111,7 +100,7 @@ In the example below, the `d` property of the private key component is masked. T
     "authentication": ["#0"],
     "assertionMethod": ["#0"],
     "capabilityInvocation": ["#0"],
-    "capabilityDelegation": ["#0"],
+    "capabilityDelegation": ["#0"]
   },
   "keySet": {
     "verificationMethodKeys": [
@@ -173,7 +162,7 @@ The [DID Document](/docs/web5/decentralized-identifiers/did_documents) is a self
   "authentication": ["#0"],
   "assertionMethod": ["#0"],
   "capabilityInvocation": ["#0"],
-  "capabilityDelegation": ["#0"],
+  "capabilityDelegation": ["#0"]
 }
 ```
 

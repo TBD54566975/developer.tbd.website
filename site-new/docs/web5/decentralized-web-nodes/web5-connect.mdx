@@ -2,18 +2,18 @@
 sidebar_position: 2
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-import ApiDetails from '@site/src/components/ApiDetails';
-import ScriptSrc from '@site/src/components/ScriptSrc';
-import ImportSrc from '@site/src/components/ImportSrc';
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import ApiDetails from "@site/src/components/ApiDetails";
+import ScriptSrc from "@site/src/components/ScriptSrc";
+import ImportSrc from "@site/src/components/ImportSrc";
 
-import CodeSnippet from '@site/src/components/CodeSnippet';
-
+import Shnip from "@site/src/components/Shnip";
 
 # Web5.connect()
 
 The Web5 JS SDK provides a simple interface to get started building Web5 applications quickly. It provides APIs to use [Decentralized Identifiers (DIDs)](/docs/web5/decentralized-identifiers/what-are-dids) and [Decentralized Web Nodes (DWNs)](/docs/web5/decentralized-web-nodes/what-are-dwns) right away by initializing the SDK through `Web5.connect()`.
+
 <br />
 
 ## Install
@@ -24,14 +24,15 @@ The Web5 JS SDK provides a simple interface to get started building Web5 applica
 ```bash
 npm install @web5/api
 ```
+
   </TabItem>
   <TabItem value="cdn" label="CDN">
 
-<ScriptSrc src='unpkg' />
+<ScriptSrc src="unpkg" />
 
 or
 
-<ScriptSrc src='jsdelivr' />
+<ScriptSrc src="jsdelivr" />
 
   </TabItem>
 </Tabs>
@@ -45,8 +46,9 @@ or
 <summary>Node 19+</summary>
 
 ```js
-import { Web5 } from '@web5/api';
+import { Web5 } from "@web5/api";
 ```
+
 </details>
 
 <details>
@@ -59,11 +61,12 @@ This is *not* the crypto you're thinking of.
 It's the original crypto...CRYPTOGRAPHY.
 */
 import { webcrypto } from "node:crypto";
-import { Web5 } from '@web5/api';
+import { Web5 } from "@web5/api";
 
 // @ts-ignore
 if (!globalThis.crypto) globalThis.crypto = webcrypto;
 ```
+
 </details>
 
 <details>
@@ -79,7 +82,7 @@ import "react-native-get-random-values";
 import { hmac } from "@noble/hashes/hmac";
 import { sha256 } from "@noble/hashes/sha256";
 import { sha512 } from "@noble/hashes/sha512";
-import { Web5 } from '@web5/api';
+import { Web5 } from "@web5/api";
 
 ed.etc.sha512Sync = (...m) => sha512(ed.etc.concatBytes(...m));
 ed.etc.sha512Async = (...m) => Promise.resolve(ed.etc.sha512Sync(...m));
@@ -89,16 +92,17 @@ secp.etc.hmacSha256Sync = (k, ...m) =>
 secp.etc.hmacSha256Async = (k, ...m) =>
   Promise.resolve(secp.etc.hmacSha256Sync(k, ...m));
 ```
+
 </details>
 
   </TabItem>
   <TabItem value="cdn" label="CDN">
 
-<ImportSrc src='unpkg' />
+<ImportSrc src="unpkg" />
 
 or
 
-<ImportSrc src='jsdelivr' />
+<ImportSrc src="jsdelivr" />
 
   </TabItem>
 </Tabs>
@@ -113,7 +117,7 @@ Using `Web5.connect()`, an instance of Web5 is created that enables an app to co
 
 This local DWN is synchronized with a remote DWN node (if specified) that enables connectivity and sync across the user's devices and other users. While the Web5 JS SDK is in technical preview, a remote DWN is automatically provisioned and connected to the local DWN - syncing every 2 minutes.
 
-<CodeSnippet functionName="createDidAutomatically" />
+<Shnip functionName="createDidAutomatically" />
 
 ### Options
 
@@ -131,66 +135,75 @@ The outputs of this method invocation will be used throughout the other API meth
       data: {
         isObject: true,
         isOptional: true,
-        type: 'Web5ConnectOptions',
-        field: 'options',
-        value: <ApiDetails
-                details={[
-                  {
-                    data: {
-                        isOptional: true,
-                        type: 'Web5Agent',
-                        field: 'agent',
-                        value: 'An instance of a Web5Agent implementation. Defaults to creating a local Web5UserAgent if not provided.',
-                    },
+        type: "Web5ConnectOptions",
+        field: "options",
+        value: (
+          <ApiDetails
+            details={[
+              {
+                data: {
+                  isOptional: true,
+                  type: "Web5Agent",
+                  field: "agent",
+                  value:
+                    "An instance of a Web5Agent implementation. Defaults to creating a local Web5UserAgent if not provided.",
                 },
-                {
-                    data: {
-                        isOptional: true,
-                        type: 'AppDataStore',
-                        field: 'appData',
-                        value: 'An instance of an AppDataStore implementation. Defaults to a LevelDB-backed store with an insecure, static unlock passphrase if not provided. To allow the end user to enter a secure passphrase of their choosing, provide an initialized AppDataVault.',
-                    },
+              },
+              {
+                data: {
+                  isOptional: true,
+                  type: "AppDataStore",
+                  field: "appData",
+                  value:
+                    "An instance of an AppDataStore implementation. Defaults to a LevelDB-backed store with an insecure, static unlock passphrase if not provided. To allow the end user to enter a secure passphrase of their choosing, provide an initialized AppDataVault.",
                 },
-                {
-                    data: {
-                        isOptional: true,
-                        type: 'string',
-                        field: 'connectedDid',
-                        value: 'An existing DID to connect to. If provided, the agent property must also be provided.',
-                    },
+              },
+              {
+                data: {
+                  isOptional: true,
+                  type: "string",
+                  field: "connectedDid",
+                  value:
+                    "An existing DID to connect to. If provided, the agent property must also be provided.",
                 },
-                {
-                    data: {
-                        isOptional: true,
-                        type: 'string',
-                        field: 'sync',
-                        value: "Enable or disable synchronization of DWN records between local and remote DWNs. Sync defaults to running every 2 minutes and can be set to any value accepted by ms (https://www.npmjs.com/package/ms). To disable sync set to 'off'",
-                    },
+              },
+              {
+                data: {
+                  isOptional: true,
+                  type: "string",
+                  field: "sync",
+                  value:
+                    "Enable or disable synchronization of DWN records between local and remote DWNs. Sync defaults to running every 2 minutes and can be set to any value accepted by ms (https://www.npmjs.com/package/ms). To disable sync set to 'off'",
                 },
-                {
-                    data: {
-                        isObject: true,
-                        isOptional: true,
-                        type: 'TechPreviewOptions',
-                        field: 'techPreview',
-                        value: <ApiDetails
-                                details={[
-                                {
-                                    data: {
-                                        isOptional: true,
-                                        type: 'string[]',
-                                        field: 'dwnEndpoints',
-                                        value: 'a list of DWN endpoints to define in the DID created and returned by this method. If this property is omitted during the Tech Preview, two nodes will be included by default (e.g. https://dwn.tbddev.org/dwn0, https://dwn.tbddev.org/dwn3)',
-                                    },
-                                }
-                            ]}
-                            />,
-                    },
-                }
+              },
+              {
+                data: {
+                  isObject: true,
+                  isOptional: true,
+                  type: "TechPreviewOptions",
+                  field: "techPreview",
+                  value: (
+                    <ApiDetails
+                      details={[
+                        {
+                          data: {
+                            isOptional: true,
+                            type: "string[]",
+                            field: "dwnEndpoints",
+                            value:
+                              "a list of DWN endpoints to define in the DID created and returned by this method. If this property is omitted during the Tech Preview, two nodes will be included by default (e.g. https://dwn.tbddev.org/dwn0, https://dwn.tbddev.org/dwn3)",
+                          },
+                        },
+                      ]}
+                    />
+                  ),
+                },
+              },
             ]}
-          />,
-        },
-    }
+          />
+        ),
+      },
+    },
   ]}
 />
 
@@ -200,16 +213,18 @@ The outputs of this method invocation will be used throughout the other API meth
   details={[
     {
       data: {
-        field: 'web5',
-        value: 'A class instance of Web5 that enables access to a locally running DWN, DID interaction methods, and other capabilities related to the connected DID',
-        type: 'Web5',
+        field: "web5",
+        value:
+          "A class instance of Web5 that enables access to a locally running DWN, DID interaction methods, and other capabilities related to the connected DID",
+        type: "Web5",
       },
     },
     {
       data: {
-        field: 'did',
-        value: 'A class instance representing the decentralized identifier that was created or attained connection to',
-        type: 'DidApi',
+        field: "did",
+        value:
+          "A class instance representing the decentralized identifier that was created or attained connection to",
+        type: "DidApi",
       },
     },
   ]}
@@ -218,20 +233,22 @@ The outputs of this method invocation will be used throughout the other API meth
 <br />
 
 ## Examples
+
 Below are examples of how to use `Web5.connect()` with or without additional option parameters.
 
 ##### Connect with no parameters
-<CodeSnippet functionName="createDidAutomatically" />
+
+<Shnip functionName="createDidAutomatically" />
 
 ##### Connect to DIF Community Node
 
 Connect to the free [DIF community node instance](https://blog.identity.foundation/dwn-community-node/) hosted by Google Cloud:
 
 ```js
-const {did, web5} = await Web5.connect({
+const { did, web5 } = await Web5.connect({
   didCreateOptions: {
     // Use community DWN instance hosted on Google Cloud
-    dwnEndpoints: ['https://dwn.gcda.xyz']
+    dwnEndpoints: ["https://dwn.gcda.xyz"],
   },
   registration: {
     onSuccess: () => {
@@ -247,20 +264,23 @@ const {did, web5} = await Web5.connect({
       */
     },
   },
-})
+});
 ```
 
 ##### Connect with an existing Decentralized Web Node endpoint
-<CodeSnippet functionName="connectWithDWNEndpoint" />
 
+<Shnip functionName="connectWithDWNEndpoint" />
 
 ##### Connect with an existing agent and existing DID
-If `connectedDid` is provided, the `agent` property must also be provided.
-<CodeSnippet functionName="connectWithAgentAndConnectedDid" />
 
+If `connectedDid` is provided, the `agent` property must also be provided.
+
+<Shnip functionName="connectWithAgentAndConnectedDid" />
 
 ##### Configure sync interval when connecting to Web5
+
 Sync defaults to running every 2 minutes and can be set to [any value accepted by ms](https://www.npmjs.com/package/ms). To disable sync set to 'off'.
-<CodeSnippet functionName="connectWithSyncConfig" />
+
+<Shnip functionName="connectWithSyncConfig" />
 
 </section>

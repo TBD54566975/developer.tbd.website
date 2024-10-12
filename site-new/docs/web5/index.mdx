@@ -3,16 +3,20 @@ title: WEB5 SDK
 hide_table_of_contents: true
 ---
 
-import metacontent from '@site/src/content/global-meta';
-import { content } from '@site/src/content/projects/web5/web5.js';
+import metacontent from "@site/src/content/global-meta";
+import { content } from "@site/src/content/projects/web5/web5.js";
+import ButtonGroup from "@site/src/components/ButtonGroup";
 
 <head>
   <title>{content.meta.title}</title>
   <meta property="og:description" content="Documentation on Web5 SDK" />
   <meta name="description" content="Documentation on Web5 SDK" />
   <meta property="og:title" content="WEB5 SDK" />
-  <meta property="og:url" content="/docs/web5"/>
-  <link rel="apple-touch-icon" href="https://developer.tbd.website/img/tbd-fav-icon-main.png"/>
+  <meta property="og:url" content="/docs/web5" />
+  <link
+    rel="apple-touch-icon"
+    href="https://developer.tbd.website/img/tbd-fav-icon-main.png"
+  />
 </head>
 
 <div className="prose prose-pink">
@@ -25,42 +29,37 @@ Web5 brings [decentralized identity](decentralized-identifiers/what-are-dids), [
 
 The Web5 SDK helps you create a decentralized app in minutes.
 
-
 <ButtonGroup
   className="pt-12"
   buttons={[
     {
-      type: 'button',
+      type: "button",
       data: {
-        label: 'Deep Dive',
-        url: '/blog/what-is-web5/',
+        label: "Deep Dive",
+        url: "/blog/what-is-web5/",
         isExternalLink: false,
-        imageURL: '/img/external-link-blue-icon.svg',
+        imageURL: "/img/external-link-blue-icon.svg",
       },
     },
     {
-      type: 'button',
+      type: "button",
       data: {
-        label: 'Quickstart',
-        url: 'quickstart',
+        label: "Quickstart",
+        url: "quickstart",
         isExternalLink: false,
-        imageURL: '/img/external-link-blue-icon.svg',
+        imageURL: "/img/external-link-blue-icon.svg",
       },
     },
     {
-      type: 'button',
+      type: "button",
       data: {
-        label: 'Contribute',
-        url: 'https://github.com/TBD54566975/web5-js',
+        label: "Contribute",
+        url: "https://github.com/TBD54566975/web5-js",
         isExternalLink: true,
-        imageURL: '/img/external-link-blue-icon.svg',
+        imageURL: "/img/external-link-blue-icon.svg",
       },
     },
   ]}
 />
-
-<Divider type="slash" />
-
-<PillarList title={content.useCases.title} pillars={content.useCases.pillars} />
 
 </div>

@@ -1,0 +1,94 @@
+body {
+  margin: 0;
+  font-family: sans-serif;
+}
+
+body > progress {
+  position: fixed;
+  inset: 0;
+  display: block;
+  width: 50vw;
+  margin: calc(50vh - 0.5em) 25vw;
+}
+
+body > progress ~ * {
+  display: none;
+}
+
+.sandbox-container progress {
+  vertical-align: middle;
+  visibility: visible;
+}
+
+.markdown progress {
+  vertical-align: middle;
+  visibility: visible;
+}
+
+.markdown input[type='file'] {
+  display: block;
+  margin-bottom: 0.5em;
+}
+
+.markdown textarea {
+  display: block;
+  width: 100%;
+  min-height: 8em;
+  font-family: monospace;
+  resize: vertical;
+}
+
+.markdown code {
+  font-size: 90%;
+}
+
+.markdown .output {
+  width: 100%;
+  margin-top: 2em;
+  margin-bottom: 2em;
+}
+
+.input button {
+  border-color: var(--color-blue);
+  color: var(--color-blue);
+  padding: 0.5em 1em;
+  text-align: center;
+  border: 2px solid;
+  border-radius: 0.5em;
+}
+
+.input button:disabled {
+  border-color: gray;
+  color: gray;
+  padding: 0.5em 1em;
+  text-align: center;
+  border: 2px solid;
+  border-radius: 0.5em;
+}
+
+.quickstart-container {
+  margin: 0 2em;
+}
+
+.result {
+  color: white;
+  font-weight: bold;
+  font-size: 2em;
+}
+
+.json-view {
+  color: white !important;
+  --json-property: var(--color-yellow) !important;
+  --json-index: var(--color-yellow) !important;
+  --json-number:var(--color-blue) !important; 
+  --json-string: var(--color-blue) !important; 
+  --json-boolean: var(--color-blue) !important; 
+  --json-null: var(--color-blue) !important;
+}
+
+.json-view .json-view--property { color: var(--json-property); }
+.json-view .json-view--index { color: var(--json-index); }
+.json-view .json-view--number { color: var(--json-number); }
+.json-view .json-view--string { color: var(--json-string); }
+.json-view .json-view--boolean { color: var(--json-boolean); }
+.json-view .json-view--null { color: var(--json-null); }

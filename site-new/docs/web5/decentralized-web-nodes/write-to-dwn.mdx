@@ -1,7 +1,8 @@
 ---
 sidebar_position: 3
 ---
-import CodeSnippet from '@site/src/components/CodeSnippet';
+
+import Shnip from "@site/src/components/Shnip";
 
 # Write DWN Records
 
@@ -9,32 +10,36 @@ Various data types, such as text, JSON, images, streams or files, can be stored 
 
 ### Create a text record
 
-<CodeSnippet snippetName='createTextRecord'/>
+<Shnip snippetName="createTextRecord" languages={["JavaScript"]} />
 
 ### Create a JSON record
 
-<CodeSnippet snippetName='createJsonRecord'/>
+<Shnip snippetName="createJsonRecord" languages={["JavaScript"]} />
 
 ### Create a blob or image record
 
-<CodeSnippet snippetName='uploadImage'/>
+<Shnip snippetName="uploadImage" languages={["JavaScript"]} />
 
 ### Create a file record
 
-<CodeSnippet snippetName='uploadFile'/>
+<Shnip snippetName="uploadFile" languages={["JavaScript"]} />
 
 ### Create records with mixed data
+
 You can also store mixed data via JSON - including text, images, or files.
 
-<CodeSnippet snippetName='createMixedRecord'/>
+<Shnip snippetName="createMixedRecord" languages={["JavaScript"]} />
 
 ### Create records from an existing record
+
 You can create a new version of a record while maintaining a link to the version of the original record.
 
-<CodeSnippet snippetName='createRecordFrom'/>
+<Shnip snippetName="createRecordFrom" languages={["JavaScript"]} />
 
 ### Create records with tags
+
 You can assign tags to records to enable filtering by specific keywords.
-<CodeSnippet snippetName='createRecordWithTags'/>
+
+<Shnip snippetName="createRecordWithTags" languages={["JavaScript"]} />
 
 For more information on writing records to DWNs, see our [API Guide](https://tbd54566975.github.io/web5-js/classes/_web5_api.DwnApi.html#records).

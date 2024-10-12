@@ -2,8 +2,7 @@
 sidebar_position: 8
 ---
 
-import CodeSnippet from '@site/src/components/CodeSnippet';
-
+import Shnip from "@site/src/components/Shnip";
 
 # Delete DWN Records
 
@@ -13,15 +12,14 @@ The following snippets allow you to delete from a DWN:
 
 ### Delete record from the user's local DWN
 
-<CodeSnippet snippetName='deleteRecordFromLocalDwn'/>
-
+<Shnip snippetName="deleteRecordFromLocalDwn" languages={["JavaScript"]} />
 
 ### Delete record from a remote DWN
 
-<CodeSnippet snippetName='deleteRecordFromRemoteDwn'/>
+<Shnip snippetName="deleteRecordFromRemoteDwn" languages={["JavaScript"]} />
 
 ### Delete parent record and all children
 
 To delete a parent record along with all its child records, set the prune option to true.
 
-<CodeSnippet snippetName='pruneRecords'/>
+<Shnip snippetName="pruneRecords" languages={["JavaScript"]} />

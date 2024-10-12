@@ -7,7 +7,7 @@ function ScriptSrc(site) {
     siteConfig: { customFields },
   } = useDocusaurusContext();
 
-  if (site.src === "unpkg") {
+  if (site.src === 'unpkg') {
     return (
       <CodeBlock language="js">
         {`<script src="https://unpkg.com/@web5/api@${customFields.WEB5_VERSION}/dist/browser.js"></script>`}

@@ -2,11 +2,11 @@
 sidebar_position: 13
 ---
 
-import CodeSnippet from '@site/src/components/CodeSnippet';
+import Shnip from "@site/src/components/Shnip";
 
 # Access Data with DRLs
 
-A [Decentralized Web App (DWA)](/blog/dwas-vs-pwas) is a Progressive Web App (PWA) that incorporates Web5 functionalities, providing offline capabilities and offline synchronization of [Decentralized Web Nodes (DWNs)](/docs/web5/decentralized-web-nodes/what-are-dwns/). 
+A [Decentralized Web App (DWA)](/blog/dwas-vs-pwas) is a Progressive Web App (PWA) that incorporates Web5 functionalities, providing offline capabilities and offline synchronization of [Decentralized Web Nodes (DWNs)](/docs/web5/decentralized-web-nodes/what-are-dwns/).
 
 This guide will walk you through how to read from DWNs within your DWA via **Decentralized Resource Locators (DRLs)**. For a practical implementation, refer to the [DWA starter app](https://github.com/TBD54566975/dwa-starter).
 
@@ -15,10 +15,11 @@ This guide will walk you through how to read from DWNs within your DWA via **Dec
 Import the following package to handle interactions with DWNs and manage offline data:
 
 ```js
-import { activatePolyfills } from '@web5/api';
+import { activatePolyfills } from "@web5/api";
 ```
 
 ## Set up a service worker
+
 [Service workers](https://web.dev/learn/pwa/service-workers) enable offline functionality and background processing.
 
 The following snippet configures a service worker to activate polyfills, manage caching, and handle data synchronization tasks in the background:
@@ -36,17 +37,16 @@ activatePolyfills({
 
 ## Fetch data via DRLs
 
-Decentralized Resource Locators (**DRLs**) enable direct read access to permissioned data stored in DWNs. To read records from a DWN, you can use DRLs (prefixed with `https://dweb`) to fetch the data. 
+Decentralized Resource Locators (**DRLs**) enable direct read access to permissioned data stored in DWNs. To read records from a DWN, you can use DRLs (prefixed with `https://dweb`) to fetch the data.
 
 Here's how to fetch an image record from a DWN using a DRL:
 
-<CodeSnippet snippetName="drlFetchReadRecord"/>
+<CodeSnippet snippetName="drlFetchReadRecord" />
 
 ## Display fetched data in app
 
-DRLs return data that can be used throughout your web app, from populating UI elements to setting attributes on HTML tags. 
+DRLs return data that can be used throughout your web app, from populating UI elements to setting attributes on HTML tags.
 
 This example demonstrates directly setting a fetched image URL as the source attribute in an HTML `img` tag:
 
-<CodeSnippet snippetName="renderImageUrlTag"/>
-
+<Shnip snippetName="renderImageUrlTag" languages={["JavaScript"]} />

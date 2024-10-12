@@ -2,17 +2,20 @@
 sidebar_position: 6
 ---
 
-import CodeSnippet from '@site/src/components/CodeSnippet';
+import Shnip from "@site/src/components/Shnip";
 
 # Read DWN Records
+
 You can get a specific record from a DWN, or an array of records.
 
 ## Get Record by recordId
+
 If you know the `recordId` of the record you'd like to obtain, you can use the `read` function:
 
-<CodeSnippet snippetName='readRecordFromId'/>
+<Shnip snippetName="readRecordFromId" languages={["JavaScript"]} />
 
 ## Get Records that Match Filter
+
 However, you may not have the `recordId` available, and instead need to query for records that match a [specific filter](/docs/web5/decentralized-web-nodes/query-from-dwn#filterable-record-properties). This will return an array of records:
 
 ```js
@@ -20,13 +23,13 @@ However, you may not have the `recordId` available, and instead need to query fo
 const response = await web5.dwn.records.query({
   message: {
     filter: {
-      dataFormat: 'text/plain',
+      dataFormat: "text/plain",
     },
   },
 });
 
 // Loop through returned records and print text from each
-response.records.forEach(async record => {
+response.records.forEach(async (record) => {
   console.log(await record.data.text());
 });
 ```
