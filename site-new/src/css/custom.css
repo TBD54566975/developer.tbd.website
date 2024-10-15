@@ -73,7 +73,9 @@
 	--ifm-font-color-base: #fff;
 	--ifm-menu-link-sublist-icon: url("/img/chevron.svg");
 	--ifm-footer-background-color: var(--ifm-color-primary);
-	--ifm-menu-link-padding-horizontal: var(--twist-core-spacing-8)
+	--ifm-menu-link-padding-horizontal: var(--twist-core-spacing-8);
+	--ifm-toc-padding-vertical: 45px;
+	--ifm-toc-padding-horizontal: 24px;
 }
 
 h2 {
@@ -656,6 +658,8 @@ a:has(.footer__logo) {
 	h3 {
 		@apply font-spaceGrotesk text-[1.375rem] leading-[1.65rem] lg:text-[2.125rem] lg:leading-[2.55rem];
 	}
+
+
 
 	h4 {
 		@apply text-lg leading-[1.463rem] lg:text-2.5xl;
