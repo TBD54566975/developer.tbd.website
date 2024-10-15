@@ -19,7 +19,7 @@ export default function DocSidebarItemHtml({
         defaultStyle && [styles.menuHtmlItem, "menu__list-item"],
         className,
         "eyebrow",
-        "my-[24px] !px-twist-core-spacing-12 opacity-60",
+        "my-[24px] !px-twist-core-spacing-8 opacity-60",
       )}
       key={index}
       // eslint-disable-next-line react/no-danger
