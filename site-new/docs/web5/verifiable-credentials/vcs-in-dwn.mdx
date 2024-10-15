@@ -1,0 +1,47 @@
+---
+sidebar_position: 7
+---
+
+# VCs in DWNs
+
+In this guide, we'll cover how to write a [Verifiable Credential (VC)](/docs/web5/verifiable-credentials/what-are-vcs) to a [Decentralized Web Node (DWN)](/docs/web5/decentralized-web-nodes/what-are-dwns), how to retrieve that stored VC by querying the DWN for it, and lastly how to parse the VC into a format that your application can work with.
+
+## Storing VC in DWN
+
+To store a VC in a DWN, you need to create a record with the VC data. The VC should already be [created](/docs/web5/verifiable-credentials/vc-issuance#create-vc) and in a [signed JWT format](/docs/web5/verifiable-credentials/vc-issuance#sign-vc). This is what that would look like:
+
+```js
+const { record } = await web5.dwn.records.create({
+  data: signedVcJwt,
+  message: {
+    schema: 'EmploymentCredential',
+    dataFormat: 'application/vc+jwt',
+  },
+});
+
+// (optional) immediately send record to users remote DWNs
+const { status } = await record.send(userDid);
+```
+
+`signedVcJwt` represents a signed VC JWT. The `schema` property should be the same as the VC type, and `dataFormat` specifies the format of the VC which is `application/vc+jwt`.
+
+## Querying VC from DWN
+
+To retrieve a stored VC from a DWN, you can use the `records.query()` method:
+
+```js
+const response = await web5.dwn.records.query({
+  from: userDid,
+  message: {
+    filter: {
+      schema: 'EmploymentCredential',
+      dataFormat: 'application/vc+jwt',
+    },
+  },
+});
+
+const signedVcJwt = await response[0].data.text();
+```
+
+This will access the first record matching the filters you specified, `schema` and `dataFormat`.
+Keep in mind that this will return a JWT string, which can be [converted to a readable JSON object](/docs/web5/verifiable-credentials/jwt-to-vc#decoding-jwt).

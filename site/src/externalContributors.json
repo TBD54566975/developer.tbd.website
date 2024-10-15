@@ -96,5 +96,19 @@
     "title": "Practical Guide to CRUD Operations on DWNs",
     "link": "https://dev.to/chrissiku/a-practical-guide-to-crud-operations-on-decentralized-web-nodes-aka-dwns-5ca1",
     "contributor": "Christian Siku"
+  },
+  {
+    "type": "blog",
+    "thumbnail": "/img/external-contributor/Lymah123_protocol_roles.png",
+    "title": "The Role of Protocols in Decentralized Systems",
+    "link": "https://dev.to/lymah/the-role-of-protocols-in-decentralized-systems-3l9f",
+    "contributor": "Lymah123"
+  },
+  {
+    "type": "blog",
+    "thumbnail": "/img/external-contributor/nabhel_web5.png",
+    "title": "Understanding Web5: Your Guide to the Decentralized Web",
+    "link": "https://dev.to/nabhel/understanding-web5-your-guide-to-the-decentralized-web-49m2",
+    "contributor": "Nabhel"
   }
 ]

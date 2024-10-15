@@ -18,7 +18,10 @@ const languageIconMap: Record<string, React.ElementType> = {
   swift: SwiftIcon,
 };
 
-const Shnip: React.FC<ShnipProps> = ({ snippetName, languages }) => {
+const Shnip: React.FC<ShnipProps> = ({
+  snippetName,
+  languages = ["JavaScript"],
+}) => {
   const { selectedLanguage, setLanguage } = useLanguage();
   languages = languages.map((lang) => lang.toLowerCase());
 
