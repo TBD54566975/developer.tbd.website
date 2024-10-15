@@ -58,7 +58,7 @@ import { DidJwk } from '@web5/dids'
     const didDht = await DidDht.create({ publish: true });
 
     // DID and its associated data which can be exported and used in different contexts/apps
-    const portableDid = didDht.export();
+    const portableDid = await didDht.export();
 
     // DID string
     const did = didDht.uri;
@@ -69,6 +69,7 @@ import { DidJwk } from '@web5/dids'
     // :snippet-end:
 
     expect(did).toMatch(/^did:dht:/);
+    expect(portableDid.uri).toEqual(did)
   });
 
   test("createDidJwk creates a DID with did:jwk method", async () => {
@@ -77,7 +78,7 @@ import { DidJwk } from '@web5/dids'
     const didJwk = await DidJwk.create();
 
     //DID and its associated data which can be exported and used in different contexts/apps
-    const portableDid = didJwk.export();
+    const portableDid = await didJwk.export();
 
     //DID string
     const did = didJwk.uri;
@@ -88,5 +89,6 @@ import { DidJwk } from '@web5/dids'
     // :snippet-end:
 
     expect(did).toMatch(/^did:jwk:/);
+    expect(portableDid.uri).toEqual(did)
   });
 });
