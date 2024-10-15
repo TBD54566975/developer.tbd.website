@@ -1,6 +1,8 @@
 import { test, expect, beforeAll, describe, vi } from "vitest";
 import { setUpWeb5 } from "../../../setup-web5";
+// :prepend-start: createAliceDid
 import { Web5 } from "@web5/api";
+// :prepend-end:
 
 let web5, did;
 

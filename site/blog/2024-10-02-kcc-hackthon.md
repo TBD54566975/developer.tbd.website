@@ -40,6 +40,8 @@ Performing KYC on repeat customers every time they attempt to transact with you 
 
 ## Challenge
 
+<iframe class="aspect-video" src="https://www.youtube.com/embed/wl6mcuwJjhw?si=41z3hkCRonbDjXCm" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
 1. Create a Decentralized Identifier (DID) and DWN to use as the Issuer.
    * Bonus: Use the DIF community DWN instance hosted by Google Cloud.
 2. Issue Alice a KCC that includes evidence. Note that for this challenge, you do not need to implement an actual identity verification flow.
@@ -66,6 +68,7 @@ To [enter a submission](https://difhackathon2024.devpost.com/) for this hackatho
 * [Example of issued KCC](https://github.com/TBD54566975/tbd-examples/tree/main/javascript/kcc-issuance-snippet#output-vc-json)
 * [How to install a DWN Protocol](/docs/web5/decentralized-web-nodes/what-are-protocols#installing-a-protocol)
 * [How to store a VC in a DWN](/docs/web5/verifiable-credentials/vcs-in-dwn)
+* [How to write records using a protocol role](/docs/web5/decentralized-web-nodes/protocol-roles)
 
 ## Contact Us
 

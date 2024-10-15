@@ -5,7 +5,7 @@ import Note from "@site/assets/icons/Note";
 import { cn } from "@site/lib/utils";
 import React from "react";
 
-type Variant = "info" | "warning" | "tip" | "danger" | "note";
+export type Variant = "info" | "warning" | "tip" | "danger" | "note";
 
 const variantBorderClassesMap: Record<Variant, string> = {
   info: "border-tbd-info",

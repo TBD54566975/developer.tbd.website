@@ -1,7 +1,7 @@
 // The Swift Programming Language
 // https://docs.swift.org/swift-book
 
-// :snippet-start: web5ImportSwift
+// :snippet-start: requiredDidImportsSwift
 import Web5
 // :snippet-end:
 // :snippet-start: tbDEXImportSwift

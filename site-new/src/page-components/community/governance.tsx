@@ -4,7 +4,7 @@ import Background from "@site/src/components/Background";
 import Heading from "@theme/Heading";
 import { TextIconFeature } from "@site/src/components/TextIconFeature";
 import { PixelBorder } from "@site/src/components/PixelBorder";
-import { SpotLightCard } from "@site/src/components/SpotLightCard";
+import Card from "@site/src/components/Card";
 
 const contributors = [
   { body: "Demonstrating empathy and kindoess toward other people" },
@@ -138,12 +138,12 @@ function Governance() {
       </div>
       <div className="mb-8 grid grid-cols-1 gap-8 md:grid-cols-2">
         {currentGC.map(({ title, handle, src }, index) => (
-          <SpotLightCard
+          <Card
             key={index}
-            title={title}
-            handle={handle}
-            tone="teal"
-            src={src}
+            eyebrow={title}
+            title={handle}
+            theme="teal"
+            image={src}
           />
         ))}
       </div>

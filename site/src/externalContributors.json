@@ -1,12 +1,5 @@
 [
   {
-    "type": "video",
-    "thumbnail": "/img/external-contributor/test1.png",
-    "title": "My Verifiable Credential Expired 🤯",
-    "link": "https://youtube.com/shorts/xsKKAzHHrKo?si=OwhT77TM9YbFT7-f",
-    "contributor": "Ebony Louis"
-  },
-  {
     "type": "blog",
     "thumbnail": "/img/external-contributor/kiranbaliga.png",
     "title": "Key Management for DIDs",
@@ -34,7 +27,6 @@
     "link": "https://dev.to/chrissiku/the-future-of-web-how-web5-transforms-identity-and-data-ownership-2062",
     "contributor": "Christian Siku"
   },
-
   {
     "type": "blog",
     "thumbnail": "/img/external-contributor/how_to_resolve_dids.png",
@@ -83,5 +75,40 @@
     "title": "Understanding Web5 and its Potential",
     "link": "https://dev.to/lymah/understanding-web5-and-its-potential-2p30",
     "contributor": "Lymah123"
+  },
+  {
+    "type": "blog",
+    "thumbnail": "/img/external-contributor/hackexperience.png",
+    "title": "Hacktoberfest Experience",
+    "link": "https://dev.to/kiran_baliga/my-hacktoberfest-2024-journey-2odn",
+    "contributor": "Kiran Baliga"
+  },
+  {
+    "type": "blog",
+    "thumbnail": "/img/external-contributor/Lymah123_understanding_dwns.png",
+    "title": "Understanding the Power of Decentralized Web Nodes (DWNs)",
+    "link": "https://dev.to/lymah/understanding-the-power-of-decentralized-web-nodes-dwns-5dm5",
+    "contributor": "Lymah123"
+  },
+  {
+    "type": "blog",
+    "thumbnail": "/img/external-contributor/dwns_blog_chrissiku.png",
+    "title": "Practical Guide to CRUD Operations on DWNs",
+    "link": "https://dev.to/chrissiku/a-practical-guide-to-crud-operations-on-decentralized-web-nodes-aka-dwns-5ca1",
+    "contributor": "Christian Siku"
+  },
+  {
+    "type": "blog",
+    "thumbnail": "/img/external-contributor/Lymah123_protocol_roles.png",
+    "title": "The Role of Protocols in Decentralized Systems",
+    "link": "https://dev.to/lymah/the-role-of-protocols-in-decentralized-systems-3l9f",
+    "contributor": "Lymah123"
+  },
+  {
+    "type": "blog",
+    "thumbnail": "/img/external-contributor/nabhel_web5.png",
+    "title": "Understanding Web5: Your Guide to the Decentralized Web",
+    "link": "https://dev.to/nabhel/understanding-web5-your-guide-to-the-decentralized-web-49m2",
+    "contributor": "Nabhel"
   }
 ]
