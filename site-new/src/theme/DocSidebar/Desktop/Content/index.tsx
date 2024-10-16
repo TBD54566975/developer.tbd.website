@@ -3,6 +3,7 @@ import clsx from "clsx";
 import { ThemeClassNames } from "@docusaurus/theme-common";
 import {
   useAnnouncementBar,
+  useLocalPathname,
   useScrollPosition,
 } from "@docusaurus/theme-common/internal";
 import { translate } from "@docusaurus/Translate";
@@ -14,6 +15,8 @@ import DocBreadcrumbsWrapper from "@site/src/theme/DocBreadcrumbs";
 import Heading from "@theme/Heading";
 
 import styles from "./styles.module.css";
+import Link from "@docusaurus/Link";
+import ArrowLeft from "@site/assets/icons/ArrowLeft";
 
 function useShowAnnouncementBar() {
   const { isActive } = useAnnouncementBar();
@@ -39,6 +42,18 @@ export default function DocSidebarDesktopContent({
 
   const sidebarHeader = sidebar[0].customProps.sidebarHeader as string;
 
+  const pathName = useLocalPathname();
+  const pathArray = pathName.split("/");
+  if (pathArray.length > 1) {
+    pathArray.pop();
+  }
+
+  let previousePage = pathArray.join("/");
+
+  if (`${previousePage}/` === pathName) {
+    previousePage = "/";
+  }
+
   return (
     <nav
       aria-label={translate({
@@ -60,6 +75,15 @@ export default function DocSidebarDesktopContent({
         className={"center grid h-[105px] items-center px-twist-core-spacing-8"}
       >
         {/* <DocBreadcrumbsWrapper /> */}
+        <Link
+          to={previousePage}
+          className={
+            "mb-twist-core-spacing-8 font-spaceGrotesk text-xs text-black hover:text-black hover:no-underline"
+          }
+        >
+          <ArrowLeft className="relative top-1 mr-[6px]" />
+          Back
+        </Link>
         <Heading as="h4" className="my-0 text-dark-grey">
           {sidebarHeader}
         </Heading>
