@@ -703,3 +703,15 @@ a:has(.footer__logo) {
 .menu__link.menu__link--sublist.menu__link--active::before {
 	content: none;
 }
+
+.navbar__item.navbar__link.navbar__link--active {
+	@apply bg-black !text-tbd-yellow
+}
+
+.navbar-sidebar__item.menu>* {
+	@apply text-black
+}
+
+.navbar__toggle.clean-btn {
+	@apply text-black
+}
