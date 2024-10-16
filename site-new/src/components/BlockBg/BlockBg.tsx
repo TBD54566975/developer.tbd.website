@@ -1,0 +1,142 @@
+import { cn } from "@site/lib/utils";
+import { useMemo } from "react";
+
+function getRandomNumber({ min, max }: { min: number; max: number }): number {
+  if (min > max) {
+    throw new Error("Minimum should be less than or equal to maximum.");
+  }
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+function populateGrid(grid: number[][], decreaseBlockLevel: number): void {
+  const rows = grid.length;
+  const cols = grid[0].length;
+
+  for (let i = 0; i < rows; i++) {
+    for (let j = 0; j < cols; j++) {
+      if (grid[i][j] === 0) {
+        // sometimes populate the grid randomly without checking if the cell is occupied
+        if (Math.floor(Math.random() * 2) % 2 === 0) {
+          grid[i][j] = 1;
+          continue;
+        }
+        let isOccupied = false;
+        if (i > 0 && grid[i - 1][j] === 1) {
+          isOccupied = true;
+        }
+        if (j > 0 && grid[i][j - 1] === 1) {
+          isOccupied = true;
+        }
+        if (i < rows - 1 && grid[i + 1][j] === 1) {
+          isOccupied = true;
+        }
+        if (j < cols - 1 && grid[i][j + 1] === 1) {
+          isOccupied = true;
+        }
+        if (!isOccupied) {
+          grid[i][j] = 1;
+        }
+      }
+    }
+  }
+
+  let randomIterations = decreaseBlockLevel;
+
+  while (randomIterations--) {
+    for (let i = 0; i < rows; i++) {
+      for (let j = 0; j < cols; j++) {
+        if (grid[i][j] === 1 && Math.floor(Math.random() * 2) % 2 === 0) {
+          grid[i][j] = 0;
+        }
+      }
+    }
+  }
+}
+
+const widths = {
+  0: "25%",
+  1: "50%",
+  2: "75%",
+  3: "100%",
+} as const;
+
+const BlockBg = ({
+  maxSize,
+  minSize,
+  rows = 12,
+  columns = 12,
+  className,
+  children,
+  decreaseBlockLevel = 2,
+}: {
+  minSize: number;
+  maxSize: number;
+  rows?: number;
+  columns?: number;
+  className?: string;
+  children?: React.ReactNode;
+  decreaseBlockLevel?: number;
+}) => {
+  const grid = useMemo(() => {
+    const generatedGrid = new Array(rows)
+      .fill(0)
+      .map(() => new Array(columns).fill(0));
+    populateGrid(generatedGrid, decreaseBlockLevel);
+    return generatedGrid;
+  }, []);
+
+  return (
+    <div
+      className={`${className} relative grid overflow-clip *:[grid-area:1/1]`}
+    >
+      <div className={cn("absolute inset-0 z-0")}>
+        {grid.map((row, i) => {
+          // generate a random height for the row
+          const height = getRandomNumber({ min: minSize, max: maxSize });
+          return (
+            <div
+              className="grid h-full w-full"
+              key={i}
+              style={{
+                height,
+                gridTemplateColumns: `repeat(${rows}, minmax(0,1fr))`,
+                gridTemplateRows: `repeat(${columns}, minmax(0,1fr))`,
+              }}
+            >
+              {row.map((col, j) => {
+                if (!col) return <div key={j} />;
+                // sometime use height as width sometime use height sometimes take full width
+                const randomNumber = Math.floor(Math.random() * 4) as 0 | 1 | 3;
+                console.log("randomNumber", randomNumber);
+
+                const width =
+                  Math.floor(Math.random() * 2) % 2 === 0
+                    ? height
+                    : Math.floor(Math.random() * 2) % 2 === 0
+                      ? getRandomNumber({ min: minSize, max: maxSize })
+                      : widths[randomNumber];
+                console.log("width", width);
+
+                const randomHeight =
+                  (Number.parseInt(widths[randomNumber].split("%")[0], 10) *
+                    height) /
+                  100;
+                return (
+                  <div
+                    key={j}
+                    className="bg-[--block-color]"
+                    style={{ height: randomHeight, width }}
+                  />
+                );
+              })}
+            </div>
+          );
+        })}
+      </div>
+
+      <div className="z-10">{children}</div>
+    </div>
+  );
+};
+
+export default BlockBg;

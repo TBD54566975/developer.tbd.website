@@ -17,6 +17,7 @@ import Heading from "@theme/Heading";
 import styles from "./styles.module.css";
 import Link from "@docusaurus/Link";
 import ArrowLeft from "@site/assets/icons/ArrowLeft";
+import { BlockBg } from "@site/src/components/BlockBg";
 
 function useShowAnnouncementBar() {
   const { isActive } = useAnnouncementBar();
@@ -69,10 +70,17 @@ export default function DocSidebarDesktopContent({
       )}
       style={{ minHeight: "100vh" }}
     >
-      <Background
-        bgColor="yellow"
-        squareCount={5}
-        className={"center grid h-[105px] items-center px-twist-core-spacing-8"}
+      <BlockBg
+        // bgColor="yellow"
+        // squareCount={5}
+        className={
+          "center grid h-[105px] items-center bg-tbd-yellow-shade-1 px-twist-core-spacing-8 [--block-color:var(--tbd-yellow-shade-2)]"
+        }
+        maxSize={40}
+        minSize={20}
+        columns={6}
+        rows={4}
+        decreaseBlockLevel={1}
       >
         {/* <DocBreadcrumbsWrapper /> */}
         <Link
@@ -87,7 +95,7 @@ export default function DocSidebarDesktopContent({
         <Heading as="h4" className="my-0 text-dark-grey">
           {sidebarHeader}
         </Heading>
-      </Background>
+      </BlockBg>
       <ul
         className={clsx(
           ThemeClassNames.docs.docSidebarMenu,
