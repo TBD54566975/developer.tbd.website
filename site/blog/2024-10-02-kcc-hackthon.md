@@ -68,6 +68,7 @@ To [enter a submission](https://difhackathon2024.devpost.com/) for this hackatho
 * [Example of issued KCC](https://github.com/TBD54566975/tbd-examples/tree/main/javascript/kcc-issuance-snippet#output-vc-json)
 * [How to install a DWN Protocol](/docs/web5/decentralized-web-nodes/what-are-protocols#installing-a-protocol)
 * [How to store a VC in a DWN](/docs/web5/verifiable-credentials/vcs-in-dwn)
+* [How to write records using a protocol role](/docs/web5/decentralized-web-nodes/protocol-roles)
 
 ## Contact Us
 
