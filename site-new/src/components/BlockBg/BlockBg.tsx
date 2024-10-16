@@ -95,19 +95,17 @@ const BlockBg = ({
           const height = getRandomNumber({ min: minSize, max: maxSize });
           return (
             <div
-              className="grid h-full w-full"
+              className="grid h-full w-full grid-rows-1"
               key={i}
               style={{
                 height,
                 gridTemplateColumns: `repeat(${rows}, minmax(0,1fr))`,
-                gridTemplateRows: `repeat(${columns}, minmax(0,1fr))`,
               }}
             >
               {row.map((col, j) => {
-                if (!col) return <div key={j} />;
+                if (!col) return null;
                 // sometime use height as width sometime use height sometimes take full width
                 const randomNumber = Math.floor(Math.random() * 4) as 0 | 1 | 3;
-                console.log("randomNumber", randomNumber);
 
                 const width =
                   Math.floor(Math.random() * 2) % 2 === 0
@@ -125,7 +123,11 @@ const BlockBg = ({
                   <div
                     key={j}
                     className="bg-[--block-color]"
-                    style={{ height: randomHeight, width }}
+                    style={{
+                      height: randomHeight,
+                      width,
+                      gridColumnStart: j + 1,
+                    }}
                   />
                 );
               })}

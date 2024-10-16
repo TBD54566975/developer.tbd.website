@@ -76,11 +76,11 @@ export default function DocSidebarDesktopContent({
         className={
           "center grid h-[105px] items-center bg-tbd-yellow-shade-1 px-twist-core-spacing-8 [--block-color:var(--tbd-yellow-shade-2)]"
         }
-        maxSize={40}
+        maxSize={30}
         minSize={20}
         columns={6}
         rows={4}
-        decreaseBlockLevel={1}
+        decreaseBlockLevel={0}
       >
         {/* <DocBreadcrumbsWrapper /> */}
         <Link
