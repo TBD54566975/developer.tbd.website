@@ -65,6 +65,7 @@
 	--ifm-color-primary-light: #ffec19;
 	--ifm-color-primary-lighter: #ffec19;
 	--ifm-color-primary-lightest: #ffec19;
+	--tbd-yellow-shade-2: #F5D800;
 	--ifm-code-font-size: 95%;
 	--docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
 	--ifm-heading-color: "black";
@@ -73,7 +74,9 @@
 	--ifm-font-color-base: #fff;
 	--ifm-menu-link-sublist-icon: url("/img/chevron.svg");
 	--ifm-footer-background-color: var(--ifm-color-primary);
-	--ifm-menu-link-padding-horizontal: var(--twist-core-spacing-12)
+	--ifm-menu-link-padding-horizontal: var(--twist-core-spacing-8);
+	--ifm-toc-padding-vertical: 45px;
+	--ifm-toc-padding-horizontal: 24px;
 }
 
 h2 {
@@ -212,25 +215,25 @@ h2 {
 	background: none !important;
 }
 
+
 .menu__link--active {
-	border-left: 3px solid black;
-	color: black;
-	font-weight: 500;
-	font-size: 18px;
+	@apply relative bg-tbd-yellow-shade-1
+}
+
+.menu__link--active::before {
+	@apply content-[""] absolute inset-y-0 left-0 w-[3px] bg-black
 }
 
 .menu__list-item .menu__link:hover,
 .menu__list-item-collapsible:hover {
-	border-left: 3px solid black;
 	color: black;
 	font-weight: 600;
-	background-color: #f5d800;
 }
 
-.menu__link--active:not(.menu__link--sublist) {
+/* .menu__link--active:not(.menu__link--sublist) {
 	background: none;
 	border-left: none;
-}
+} */
 
 .theme-doc-sidebar-item-category-level-1 {
 	position: relative;
@@ -657,6 +660,8 @@ a:has(.footer__logo) {
 		@apply font-spaceGrotesk text-[1.375rem] leading-[1.65rem] lg:text-[2.125rem] lg:leading-[2.55rem];
 	}
 
+
+
 	h4 {
 		@apply text-lg leading-[1.463rem] lg:text-2.5xl;
 	}
@@ -678,8 +683,36 @@ a:has(.footer__logo) {
 
 .theme-doc-sidebar-item-link-level-2.menu__list-item .menu__link {
 	padding-left: calc(calc(var(--ifm-menu-link-padding-horizontal) * 2) + 4px);
+	@apply text-base font-medium
 }
+
+
+.theme-doc-sidebar-item-category-level-2 .menu__link--sublist div {
+	@apply text-base font-medium
+}
+
 
 .theme-doc-sidebar-item-link-level-3.menu__list-item .menu__link {
 	padding-left: calc(calc(var(--ifm-menu-link-padding-horizontal) * 3) + 4px);
+	@apply text-base
+}
+
+.theme-doc-sidebar-item-category-level-3 .menu__link--sublist div {
+	@apply text-base font-medium
+}
+
+.menu__link.menu__link--sublist.menu__link--active::before {
+	content: none;
+}
+
+.navbar__item.navbar__link.navbar__link--active {
+	@apply bg-black !text-tbd-yellow
+}
+
+.navbar-sidebar__item.menu>* {
+	@apply text-black
+}
+
+.navbar__toggle.clean-btn {
+	@apply text-black
 }

@@ -52,7 +52,7 @@ const sidebars: SidebarsConfig = {
       className: "glossary-icon no-caret",
     },
   ],
-  web5Sidebar: [
+  docsSidebarWeb5Sidebar: [
     // {
     //   type: "doc",
     //   id: "web5/index",
@@ -75,7 +75,7 @@ const sidebars: SidebarsConfig = {
       customProps: { sidebarHeader: "test" },
     },
   ],
-  tbdexSidebar: [
+  docsSidebarTbdexSidebar: [
     {
       id: "tbdex/index",
       type: "doc",

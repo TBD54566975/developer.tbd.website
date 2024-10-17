@@ -11,6 +11,7 @@ function ComponentList() {
     { name: "Quote", path: "/component-guide/quote" },
     { name: "Marquee", path: "/component-guide/marquee" },
     { name: "Accordion", path: "/component-guide/accordion" },
+    { name: "SpotLightCard", path: "/component-guide/spotlight-card" },
     { name: "FeedbackCard", path: "/component-guide/feedback-card" },
     { name: "Admonition", path: "/component-guide/admonition" },
     { name: "IconButton", path: "/component-guide/icon-button" },
