@@ -199,7 +199,7 @@ function Card({
         <Heading
           as="h3"
           className={cn(
-            `my-0 text-lg font-bold md:text-2xl text-tbd-${selectedTheme} transition-all duration-300`,
+            `my-0 text-tbd-${selectedTheme} transition-all duration-300`,
             {
               "group-hover:text-tbd-gray": isHoverEnabled,
             },

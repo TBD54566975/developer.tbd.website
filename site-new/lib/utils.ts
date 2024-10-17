@@ -18,7 +18,7 @@ export type ToneTypes = "teal" | "purple" | "yellow";
 
 export const backgroundClassesMap: Record<BackgroundColors, string> = {
   teal: "bg-tbd-teal",
-  purple: "bg-tbd-purple-tint-2",
+  purple: "bg-tbd-purple",
   yellow: "bg-tbd-yellow",
   "yellow-shade-1": "bg-tbd-yellow-shade-1",
   black: "bg-tbd-gray-shade-1",
