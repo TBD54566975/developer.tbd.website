@@ -32,7 +32,8 @@ jobs:
             'TBD54566975/incubation-dcx',
             'block-open-source/goose-plugins',
             'csuwildcat/fllw',
-            'csuwildcat/aliased'
+            'csuwildcat/aliased',
+            'block-open-source/goose'
           ];
 
           const POINT_VALUES = {
@@ -63,30 +64,35 @@ jobs:
               
               let allPRs = [];
               let page = 1;
+              let hasMorePRs = true;
               
-              while (true) {
+              while (hasMorePRs) {
                 const { data: prs } = await github.rest.pulls.list({
                   owner: repoOwner,
                   repo: repoName,
                   state: 'closed',
                   sort: 'updated',
                   direction: 'desc',
-                  per_page: 100,
+                  per_page: 100,  // GitHub's maximum allowed value
                   page: page
                 });
                 
-                if (prs.length === 0) break;
-                
                 allPRs = allPRs.concat(prs);
                 
-                const oldestPRDate = new Date(prs[prs.length - 1].merged_at);
-                if (oldestPRDate < new Date(startDate)) break;
-                
-                page++;
+                if (prs.length < 100) {
+                  hasMorePRs = false;
+                } else {
+                  const oldestPRDate = new Date(prs[prs.length - 1].updated_at);
+                  if (oldestPRDate < new Date(startDate)) {
+                    hasMorePRs = false;
+                  } else {
+                    page++;
+                  }
+                }
               }
-
+          
               console.log(`Fetched ${allPRs.length} PRs for ${repo}`);
-
+          
               const hacktoberfestPRs = allPRs.filter(pr => {
                 const isMerged = !!pr.merged_at;
                 const mergedAt = new Date(pr.merged_at);
@@ -100,7 +106,7 @@ jobs:
                 prNumber: pr.number,
                 prTitle: pr.title,
               }));
-
+          
               return hacktoberfestPRs;
             } catch (error) {
               console.error(`Error fetching PRs for ${repo}: ${error.message}`);
