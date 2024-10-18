@@ -40,7 +40,7 @@ describe("Testing upgrade to PWA", () => {
   beforeEach(() => {
     originalFetch = global.fetch;
 
-    vi.mock("@web5/api", () => ({
+    vi.mock("@web5/browser", () => ({
       Web5: {
         connect: vi.fn(() => Promise.resolve({ web5, did })),
       },
