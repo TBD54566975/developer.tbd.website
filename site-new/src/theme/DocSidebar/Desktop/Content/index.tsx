@@ -71,8 +71,6 @@ export default function DocSidebarDesktopContent({
       style={{ minHeight: "100vh" }}
     >
       <BlockBg
-        // bgColor="yellow"
-        // squareCount={5}
         className={
           "center grid h-[105px] items-center bg-tbd-yellow-shade-1 px-twist-core-spacing-8 [--block-color:var(--tbd-yellow-shade-2)]"
         }
@@ -82,7 +80,6 @@ export default function DocSidebarDesktopContent({
         rows={4}
         decreaseBlockLevel={0}
       >
-        {/* <DocBreadcrumbsWrapper /> */}
         <Link
           to={previousePage}
           className={

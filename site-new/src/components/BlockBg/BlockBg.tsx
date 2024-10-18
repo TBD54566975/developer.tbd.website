@@ -1,5 +1,5 @@
 import { cn } from "@site/lib/utils";
-import { useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 function getRandomNumber({ min, max }: { min: number; max: number }): number {
   if (min > max) {
@@ -60,6 +60,22 @@ const widths = {
   3: "100%",
 } as const;
 
+type BlockBgProps = {
+  minSize: number;
+  maxSize: number;
+  rows?: number;
+  columns?: number;
+  className?: string;
+  children?: React.ReactNode;
+  decreaseBlockLevel?: number;
+} & (
+  | { animate?: false; intervalDuration?: never }
+  | {
+      animate: true;
+      intervalDuration: number;
+    }
+);
+
 const BlockBg = ({
   maxSize,
   minSize,
@@ -68,22 +84,29 @@ const BlockBg = ({
   className,
   children,
   decreaseBlockLevel = 2,
-}: {
-  minSize: number;
-  maxSize: number;
-  rows?: number;
-  columns?: number;
-  className?: string;
-  children?: React.ReactNode;
-  decreaseBlockLevel?: number;
-}) => {
+  ...props
+}: BlockBgProps) => {
+  const [timer, setTimer] = useState(0);
+
   const grid = useMemo(() => {
     const generatedGrid = new Array(rows)
       .fill(0)
       .map(() => new Array(columns).fill(0));
     populateGrid(generatedGrid, decreaseBlockLevel);
     return generatedGrid;
-  }, []);
+  }, [timer]);
+
+  useEffect(() => {
+    if (props.animate) {
+      const interval = setInterval(() => {
+        setTimer((prev) => prev + 1);
+      }, props.intervalDuration);
+
+      return () => {
+        clearInterval(interval);
+      };
+    }
+  }, [props.animate]);
 
   return (
     <div
