@@ -113,7 +113,6 @@ const BlockBg = ({
                     : Math.floor(Math.random() * 2) % 2 === 0
                       ? getRandomNumber({ min: minSize, max: maxSize })
                       : widths[randomNumber];
-                console.log("width", width);
 
                 const randomHeight =
                   (Number.parseInt(widths[randomNumber].split("%")[0], 10) *
