@@ -69,7 +69,7 @@ const Admonition = ({ variant, children, classes }: AdmonitionProps) => {
       </div>
       <div className="sidebar">
         {typeof children === "string" ? (
-          <p className="mb-0">{children}</p>
+          <p className="mb-0 lg:text-lg">{children}</p>
         ) : (
           children
         )}
