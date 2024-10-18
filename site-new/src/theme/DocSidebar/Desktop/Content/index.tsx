@@ -9,9 +9,6 @@ import {
 import { translate } from "@docusaurus/Translate";
 import DocSidebarItems from "@theme/DocSidebarItems";
 import type { Props } from "@theme/DocSidebar/Desktop/Content";
-import Background from "@site/src/components/Background";
-import useBaseUrl from "@docusaurus/useBaseUrl";
-import DocBreadcrumbsWrapper from "@site/src/theme/DocBreadcrumbs";
 import Heading from "@theme/Heading";
 
 import styles from "./styles.module.css";

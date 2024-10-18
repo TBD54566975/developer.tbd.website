@@ -1,5 +1,9 @@
 import { cn } from "@site/lib/utils";
+<<<<<<< HEAD
 import { useEffect, useMemo, useState } from "react";
+=======
+import { useMemo } from "react";
+>>>>>>> df9b18ff7fac3d0a4de8b6d64cddcac9312e2c0a
 
 function getRandomNumber({ min, max }: { min: number; max: number }): number {
   if (min > max) {
@@ -60,6 +64,7 @@ const widths = {
   3: "100%",
 } as const;
 
+<<<<<<< HEAD
 type BlockBgProps = {
   minSize: number;
   maxSize: number;
@@ -76,6 +81,8 @@ type BlockBgProps = {
     }
 );
 
+=======
+>>>>>>> df9b18ff7fac3d0a4de8b6d64cddcac9312e2c0a
 const BlockBg = ({
   maxSize,
   minSize,
@@ -84,16 +91,29 @@ const BlockBg = ({
   className,
   children,
   decreaseBlockLevel = 2,
+<<<<<<< HEAD
   ...props
 }: BlockBgProps) => {
   const [timer, setTimer] = useState(0);
 
+=======
+}: {
+  minSize: number;
+  maxSize: number;
+  rows?: number;
+  columns?: number;
+  className?: string;
+  children?: React.ReactNode;
+  decreaseBlockLevel?: number;
+}) => {
+>>>>>>> df9b18ff7fac3d0a4de8b6d64cddcac9312e2c0a
   const grid = useMemo(() => {
     const generatedGrid = new Array(rows)
       .fill(0)
       .map(() => new Array(columns).fill(0));
     populateGrid(generatedGrid, decreaseBlockLevel);
     return generatedGrid;
+<<<<<<< HEAD
   }, [timer]);
 
   useEffect(() => {
@@ -107,6 +127,9 @@ const BlockBg = ({
       };
     }
   }, [props.animate]);
+=======
+  }, []);
+>>>>>>> df9b18ff7fac3d0a4de8b6d64cddcac9312e2c0a
 
   return (
     <div
