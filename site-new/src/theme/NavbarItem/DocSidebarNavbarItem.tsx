@@ -24,7 +24,7 @@ export default function DocSidebarNavbarItem({
     <DefaultNavbarItem
       exact
       {...props}
-      isActive={() => activeDoc?.sidebar.startsWith(sidebarId)}
+      isActive={() => activeDoc?.sidebar?.startsWith(sidebarId)}
       label={label ?? sidebarLink.label}
       to={sidebarLink.path}
     />
