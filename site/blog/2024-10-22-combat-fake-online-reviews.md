@@ -29,7 +29,7 @@ tags: [Verifiable Credentials, Web5]
 ![](/img/blog-vcs-combat-fake-reviews.png)
 
 
-The [Federal Trade Commission’s (FTC) has introduced a new rule banning fake online reviews](https://abcnews.go.com/US/wireStory/ftcs-rule-banning-fake-online-reviews-effect-115009298). This rule, which penalizes businesses and individuals involved in the sale or purchase of fake reviews, represents a much needed step in promoting trust  online. But while enforcement is crucial, there's still a challenge of identifying which reviews are legitimate. This is where [Verifiable Credentials (VCs)](/docs/web5/verifiable-credentials/what-are-vcs) can provide a solution.
+The [Federal Trade Commission’s (FTC) has introduced a new rule banning fake online reviews](https://abcnews.go.com/US/wireStory/ftcs-rule-banning-fake-online-reviews-effect-115009298). This rule, which penalizes businesses and individuals involved in the sale or purchase of fake reviews, represents a much needed step in promoting trust online. But while enforcement is crucial, there's still a challenge of identifying which reviews are legitimate. This is where [Verifiable Credentials (VCs)](/docs/web5/verifiable-credentials/what-are-vcs) can provide a solution.
 
 <!--truncate-->
 
