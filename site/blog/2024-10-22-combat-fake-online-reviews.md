@@ -36,7 +36,7 @@ The [Federal Trade Commission’s (FTC) has introduced a new rule banning fake o
 ## The Problem with Fake Reviews
 Fake reviews have been an issue for years, distorting consumer choices. As FTC Chair Lina Khan pointed out, these reviews “pollute the marketplace and divert business away from honest competitors.” 
 
-Let's face it, with pretty much every social networking site turning into a QVC, many purchasing decisions are influenced by online reviews. I, personally, do most of my shopping online and I rely very heavily on reviews. I often question which ones are actually real, and if I'm not sure, I often shy away from making the purchase at all - which isn't good for me or the business.
+Let's face it, with pretty much every social networking site turning into an online shopping mall, many purchasing decisions are influenced by online reviews. I, personally, do most of my shopping online and I rely very heavily on reviews. I often question which ones are actually real, and if I'm not sure, I often shy away from making the purchase at all - which isn't good for me or the business.
 
 The new FTC rule aims to crack down on this problem by prohibiting reviews from people who don’t exist, those who have no real experience with the product, or those misrepresenting their experience. It also bans businesses from creating or selling fake reviews. While these measures are great, enforcing them effectively presents challenges, especially with AI-generated content.
 
