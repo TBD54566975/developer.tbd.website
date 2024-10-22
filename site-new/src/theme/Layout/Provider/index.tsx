@@ -1,17 +1,29 @@
 import React from "react";
-import Provider from "@theme-original/Layout/Provider";
-import type ProviderType from "@theme/Layout/Provider";
-import type { WrapperProps } from "@docusaurus/types";
+import { composeProviders } from "@docusaurus/theme-common";
+import {
+  ColorModeProvider,
+  AnnouncementBarProvider,
+  ScrollControllerProvider,
+  NavbarProvider,
+  PluginHtmlClassNameProvider,
+} from "@docusaurus/theme-common/internal";
+import { DocsPreferredVersionContextProvider } from "@docusaurus/plugin-content-docs/client";
+import type { Props } from "@theme/Layout/Provider";
 import { LanguageProvider } from "@site/src/context/LanguageSwitcher";
 
-type Props = WrapperProps<typeof ProviderType>;
+const Provider = composeProviders([
+  ColorModeProvider,
+  AnnouncementBarProvider,
+  ScrollControllerProvider,
+  DocsPreferredVersionContextProvider,
+  PluginHtmlClassNameProvider,
+  NavbarProvider,
+]);
 
-export default function ProviderWrapper(props: Props): JSX.Element {
+export default function LayoutProvider({ children }: Props): JSX.Element {
   return (
-    <>
-      <LanguageProvider>
-        <Provider {...props} />
-      </LanguageProvider>
-    </>
+    <Provider>
+      <LanguageProvider>{children}</LanguageProvider>
+    </Provider>
   );
 }

@@ -2,6 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
+body {
+  scrollbar-color: #2e2e2e #1a1a1a;
+  scrollbar-width: thin;
+}
+
 @font-face {
   font-family: "Basis";
   src: url("/fonts/Basis/MADType\ -\ Basis.ttf");
@@ -108,12 +113,21 @@ h2 {
   font-style: normal;
   font-weight: 500;
   line-height: 140%;
+  scroll-behavior: smooth;
+  border: none !important;
 }
 
-.thin-scrollbar {
-  padding: 0;
-  min-height: initial !important;
-  scrollbar-gutter: initial !important;
+.theme-doc-markdown {
+  padding-left: var(--twist-core-spacing-15);
+  padding-right: var(--twist-core-spacing-15);
+}
+
+.theme-doc-sidebar-menu {
+  height: 20px;
+}
+
+.main-wrapper {
+  padding-top: var(--twist-core-spacing-15);
 }
 
 .menu.thin-scrollbar {
@@ -466,7 +480,7 @@ code {
 /*Table of Contents */
 
 .table-of-contents {
-  margin-left: var(--twist-core-spacing-15);
+  width: 302px;
 }
 
 .table-of-contents li a {
@@ -488,6 +502,8 @@ code {
 
 .table-of-contents > li {
   margin-top: 18px;
+  margin-left: 0;
+  margin-right: 0;
 }
 
 .table-of-contents__left-border {
@@ -705,4 +721,13 @@ a:has(.footer__logo) {
 
 .navbar__toggle.clean-btn {
   @apply text-black;
+}
+
+.sidebar_src-theme-DocSidebar-Desktop-styles-module {
+  position: fixed;
+  width: 318px;
+}
+
+.theme-doc-toc-desktop {
+  width: 302px;
 }
