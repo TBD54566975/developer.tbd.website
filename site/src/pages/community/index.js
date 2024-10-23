@@ -14,8 +14,8 @@ function CommunityIndex() {
       url: 'https://twitter.com/netonomyinc/status/1694366100664819936',
     },
     {
-      path: '/img/innovator-projects/time-blind.png',
-      url: 'https://dev.to/github/building-an-ai-powered-decentralized-app-for-time-management-88l',
+      path: '/img/innovator-projects/ariton.png',
+      url: 'https://ariton.app/#learn',
     },
     {
       path: '/img/innovator-projects/home-node.png',
@@ -28,6 +28,10 @@ function CommunityIndex() {
     {
       path: '/img/innovator-projects/blockcore.png',
       url: 'https://www.blockcore.net/wallet/guide',
+    },
+    {
+      path: '/img/innovator-projects/mykin.png',
+      url: 'https://mykin.ai/',
     },
   ];
 
