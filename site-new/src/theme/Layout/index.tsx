@@ -49,7 +49,6 @@ export default function Layout(props: Props): JSX.Element {
       >
         <div
           id={SkipToContentFallbackId}
-          style={{ marginTop: "72px" }}
           className={clsx(
             ThemeClassNames.wrapper.main,
             styles.mainWrapper,

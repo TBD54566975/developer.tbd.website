@@ -126,6 +126,12 @@ h2 {
   height: 20px;
 }
 
+.container {
+  margin-left: 0;
+  margin-right: 0;
+  margin-bottom: var(--twist-core-spacing-15);
+}
+
 .main-wrapper {
   padding-top: var(--twist-core-spacing-15);
 }
