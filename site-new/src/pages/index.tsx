@@ -9,7 +9,6 @@ import tbdRex from "@site/static/img/tbd-rex";
 import { PixelBorderWrapper } from "../components/PixelBorder";
 import { useEffect, useRef } from "react";
 import { typeWriter, TypeWriterWordType } from "@site/lib/utils";
-import { ReadingProgress } from "../components/ReadingProgress";
 
 const TYPE_WRITER_VARIABLE_TEXT = [
   {
@@ -48,7 +47,6 @@ export default function Home(): JSX.Element {
       title={`Hello from ${siteConfig.title}`}
       description="Description will go into a meta tag in <head />"
     >
-      <ReadingProgress />
       <Background className="pt-20" bgColor="black">
         <div className="container mx-auto px-4 py-12">
           <div className="flex flex-wrap">

@@ -68,6 +68,7 @@ type BlockBgProps = {
   className?: string;
   children?: React.ReactNode;
   decreaseBlockLevel?: number;
+  secondaryClassName?: string;
 } & (
   | { animate?: false; intervalDuration?: never }
   | {
@@ -84,6 +85,7 @@ const BlockBg = ({
   className,
   children,
   decreaseBlockLevel = 2,
+  secondaryClassName,
   ...props
 }: BlockBgProps) => {
   const [timer, setTimer] = useState(0);
@@ -144,7 +146,7 @@ const BlockBg = ({
                 return (
                   <div
                     key={j}
-                    className="bg-[--block-color]"
+                    className={secondaryClassName}
                     style={{
                       height: randomHeight,
                       width,
