@@ -25,6 +25,10 @@ function CommunityIndex() {
       path: '/img/innovator-projects/qnav-links.png',
       url: 'https://github.com/flothjl/QNav#qnav-links',
     },
+    {
+      path: '/img/innovator-projects/blockcore.png',
+      url: 'https://www.blockcore.net/wallet/guide',
+    },
   ];
 
   const [flippedCardIndex, setFlippedCardIndex] = useState(null);
