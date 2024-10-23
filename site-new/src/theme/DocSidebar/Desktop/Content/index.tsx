@@ -60,7 +60,7 @@ export default function DocSidebarDesktopContent({
         description: "The ARIA label for the sidebar navigation",
       })}
       className={clsx(
-        "menu thin-scrollbar flex h-full flex-col",
+        "menu thin-scrollbar flex flex-col",
         styles.menu,
         showAnnouncementBar && styles.menuWithAnnouncementBar,
         className,
@@ -69,8 +69,9 @@ export default function DocSidebarDesktopContent({
     >
       <BlockBg
         className={
-          "center grid h-[105px] items-center bg-tbd-yellow-shade-1 px-twist-core-spacing-8 [--block-color:var(--tbd-yellow-shade-2)]"
+          "center grid h-[105px] items-center bg-tbd-yellow-shade-1 px-twist-core-spacing-8"
         }
+        secondaryClassName="bg-tbd-yellow-shade-2"
         maxSize={30}
         minSize={20}
         columns={6}
