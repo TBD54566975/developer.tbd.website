@@ -47,8 +47,8 @@ export default function Home(): JSX.Element {
       title={`Hello from ${siteConfig.title}`}
       description="Description will go into a meta tag in <head />"
     >
-      <Background className="pt-20" bgColor="black">
-        <div className="container mx-auto px-4 py-12">
+      <Background className="flex-col items-center pt-20" bgColor="black">
+        <div className="container px-4 py-12">
           <div className="flex flex-wrap">
             <div className="w-full lg:w-1/2">
               <div className="text-white">
@@ -82,7 +82,7 @@ export default function Home(): JSX.Element {
 
         <div className="flex w-full items-center justify-center">
           <div className="flex h-[128px] w-[90%] items-center justify-center border-[0.5px] border-solid border-tbd-yellow bg-tbd-gray-shade-1 px-[20px] py-[24px] lg:w-[80%] lg:px-[38px] lg:py-[46px]">
-            <p className="mb-0 text-2xl lg:text-3xl">
+            <p className="mb-0">
               {/* We're building <span className="text-tbd-yellow">open</span>{" "}
               source toolkits */}
               We're building <span ref={typeWriterRef}></span>

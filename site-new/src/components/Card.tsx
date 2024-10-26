@@ -101,7 +101,6 @@ const randomTheme = (): Theme => {
   return themes[randomIndex];
 };
 
-
 function Card({
   className = "",
   icon: Icon,
@@ -168,21 +167,19 @@ function Card({
 
   return (
     <div
-      className={`${className} group flex items-center justify-center ${orientation === "horizontal" ? "flex-col md:flex-row" : "flex-col"} w-full ${currentSize.container} ${themeClass} ${borderClass} transition-all duration-300 mb-4`}
+      className={`${className} group flex items-center justify-center ${orientation === "horizontal" ? "flex-col md:flex-row" : "flex-col"} w-full ${currentSize.container} ${themeClass} ${borderClass} mb-4 transition-all duration-300`}
     >
-
       {/* image  */}
-      {Image && 
+      {Image && (
         <img
           src={Image}
           alt={alt}
-          className={`${currentSize.image} object-cover w-full`}
+          className={`${currentSize.image} w-full object-cover`}
         />
-      }
+      )}
 
       {/* card body container  */}
-      <div className="w-full h-full grid grid-cols-1 gap-4 p-8">
-        
+      <div className="grid h-full w-full grid-cols-1 gap-4 p-8">
         {/* icon  */}
         {Icon && (
           <Icon
@@ -191,15 +188,13 @@ function Card({
         )}
 
         {/* eyebrow for spotlight card  */}
-        {eyebrow && (
-          <p className="my-0 text-sm md:text-lg">{eyebrow}</p>
-        )}
+        {eyebrow && <p className="my-0 text-sm md:text-lg">{eyebrow}</p>}
 
         {/* card heading  */}
         <Heading
           as="h3"
           className={cn(
-            `my-0 text-lg font-bold md:text-2xl text-tbd-${selectedTheme} transition-all duration-300`,
+            `my-0 text-tbd-${selectedTheme} transition-all duration-300`,
             {
               "group-hover:text-tbd-gray": isHoverEnabled,
             },
@@ -209,13 +204,13 @@ function Card({
         </Heading>
 
         {/* card text  */}
-        {text && (
-          <p className="my-0 text-sm md:text-lg">{text}</p>
-        )}
-        
+        {text && <p className="my-0 text-sm md:text-lg">{text}</p>}
+
         {/* button text  */}
-        {url && buttonText && <Button text={buttonText} url={url} className="mt-2" />}
-        
+        {url && buttonText && (
+          <Button text={buttonText} url={url} className="mt-2" />
+        )}
+
         {/* language icon buttons */}
         <>
           {props.type === "languageButton" &&
@@ -238,8 +233,7 @@ function Card({
                   );
                 })}
               </div>
-            )
-          }
+            )}
         </>
       </div>
     </div>
