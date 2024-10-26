@@ -1,6 +1,13 @@
 [
   {
     "type": "blog",
+    "thumbnail": "/img/external-contributor/TBD_nabhel.png",
+    "title": "My Hacktoberfest Experience Contributing to TBD",
+    "link": "https://dev.to/nabhel/my-hacktoberfest-experience-contributing-to-tbd-3i6f",
+    "contributor": "Nabhel"
+  },
+  {
+    "type": "blog",
     "thumbnail": "/img/external-contributor/kiranbaliga.png",
     "title": "Key Management for DIDs",
     "link": "https://dev.to/kiran_baliga/key-management-for-dids-in-web5-a-beginners-guide-28nj",
@@ -106,7 +113,7 @@
   },
   {
     "type": "blog",
-    "thumbnail": "/img/external-contributor/nabhel_web5.png",
+    "thumbnail": "/img/external-contributor/web5_nabhel_new.png",
     "title": "Understanding Web5: Your Guide to the Decentralized Web",
     "link": "https://dev.to/nabhel/understanding-web5-your-guide-to-the-decentralized-web-49m2",
     "contributor": "Nabhel"
