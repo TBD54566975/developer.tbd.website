@@ -124,5 +124,12 @@
     "title": "Welcome to the world of Web5",
     "link": "https://youtube.com/shorts/RznqmwME_p4?si=_snyCXX9hDzgkMO2",
     "contributor": "Kiran Baliga"
+  },
+  {
+    "type": "video",
+    "thumbnail": "img/external-contributor/dwn_video_thumbnail.png",
+    "title": "What are Decentralized Web Nodes (DWNs)?",
+    "link": "https://youtu.be/p45SB9VfHZI",
+    "contributor": "Mohit Raj Sinha"
   }
 ]
