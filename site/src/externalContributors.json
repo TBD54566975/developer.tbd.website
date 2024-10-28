@@ -1,6 +1,13 @@
 [
   {
     "type": "blog",
+    "thumbnail": "/img/external-contributor/TBD_nabhel.png",
+    "title": "My Hacktoberfest Experience Contributing to TBD",
+    "link": "https://dev.to/nabhel/my-hacktoberfest-experience-contributing-to-tbd-3i6f",
+    "contributor": "Nabhel"
+  },
+  {
+    "type": "blog",
     "thumbnail": "/img/external-contributor/kiranbaliga.png",
     "title": "Key Management for DIDs",
     "link": "https://dev.to/kiran_baliga/key-management-for-dids-in-web5-a-beginners-guide-28nj",
@@ -106,16 +113,30 @@
   },
   {
     "type": "blog",
-    "thumbnail": "/img/external-contributor/nabhel_web5.png",
+    "thumbnail": "/img/external-contributor/web5_nabhel_new.png",
     "title": "Understanding Web5: Your Guide to the Decentralized Web",
     "link": "https://dev.to/nabhel/understanding-web5-your-guide-to-the-decentralized-web-49m2",
     "contributor": "Nabhel"
   },
-    {
+  {
     "type": "video",
     "thumbnail": "/img/external-contributor/web5short.png",
     "title": "Welcome to the world of Web5",
     "link": "https://youtube.com/shorts/RznqmwME_p4?si=_snyCXX9hDzgkMO2",
     "contributor": "Kiran Baliga"
+  },
+  {
+    "type": "blog",
+    "thumbnail": "/img/external-contributor/Lymah123_PFI.png",
+    "title": "How to Stand Up Your Own Participant Financial Institution (PFI)",
+    "link": "https://dev.to/lymah/how-to-stand-up-your-own-participant-financial-institution-pfi-59o8",
+    "contributor": "Lymah123"
+  },
+  {
+    "type": "video",
+    "thumbnail": "img/external-contributor/dwn_video_thumbnail.png",
+    "title": "What are Decentralized Web Nodes (DWNs)?",
+    "link": "https://youtu.be/p45SB9VfHZI",
+    "contributor": "Mohit Raj Sinha"
   }
 ]
