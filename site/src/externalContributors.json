@@ -118,12 +118,19 @@
     "link": "https://dev.to/nabhel/understanding-web5-your-guide-to-the-decentralized-web-49m2",
     "contributor": "Nabhel"
   },
-    {
+  {
     "type": "Video",
     "thumbnail": "/img/external-contributor/web5short.png",
     "title": "Welcome to the world of Web5",
     "link": "https://youtube.com/shorts/RznqmwME_p4?si=_snyCXX9hDzgkMO2",
     "contributor": "Kiran Baliga"
+  },
+  {
+    "type": "blog",
+    "thumbnail": "/img/external-contributor/Lymah123_PFI.png",
+    "title": "How to Stand Up Your Own Participant Financial Institution (PFI)",
+    "link": "https://dev.to/lymah/how-to-stand-up-your-own-participant-financial-institution-pfi-59o8",
+    "contributor": "Lymah123"
   },
   {
     "type": "video",
