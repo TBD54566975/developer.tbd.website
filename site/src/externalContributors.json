@@ -133,6 +133,13 @@
     "contributor": "Lymah123"
   },
   {
+    "type": "Video",
+    "thumbnail": "/img/external-contributor/VC.png",
+    "title": "Verifiable Credentials",
+    "link": "https://youtu.be/DtiLPhQQnl4?si=zsBgag4dK5TvM8v2",
+    "contributor": "Kiran Baliga"
+  },
+  {
     "type": "video",
     "thumbnail": "img/external-contributor/dwn_video_thumbnail.png",
     "title": "What are Decentralized Web Nodes (DWNs)?",
