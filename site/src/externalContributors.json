@@ -118,7 +118,7 @@
     "link": "https://dev.to/nabhel/understanding-web5-your-guide-to-the-decentralized-web-49m2",
     "contributor": "Nabhel"
   },
-    {
+  {
     "type": "Video",
     "thumbnail": "/img/external-contributor/web5short.png",
     "title": "Welcome to the world of Web5",
@@ -131,5 +131,12 @@
     "title": "How to Stand Up Your Own Participant Financial Institution (PFI)",
     "link": "https://dev.to/lymah/how-to-stand-up-your-own-participant-financial-institution-pfi-59o8",
     "contributor": "Lymah123"
+  },
+  {
+    "type": "video",
+    "thumbnail": "img/external-contributor/dwn_video_thumbnail.png",
+    "title": "What are Decentralized Web Nodes (DWNs)?",
+    "link": "https://youtu.be/p45SB9VfHZI",
+    "contributor": "Mohit Raj Sinha"
   }
 ]
