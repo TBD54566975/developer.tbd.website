@@ -48,7 +48,11 @@ export default function Home(): JSX.Element {
       title={`Hello from ${siteConfig.title}`}
       description="Description will go into a meta tag in <head />"
     >
-      <BlockBg maxSize={150} minSize={50} className="flex justify-center pt-20">
+      <BlockBg
+        maxSize={150}
+        minSize={50}
+        className="mb-twist-core-spacing-50 flex justify-center pt-20"
+      >
         <div className="mx-auto w-full max-w-[1200px] px-4 py-12">
           <div className="mx-auto flex flex-wrap items-center">
             <div className="w-full text-center lg:w-1/2 lg:text-left">
@@ -122,18 +126,16 @@ export default function Home(): JSX.Element {
           </BlockBg>
         </PixelBorderWrapper>
 
-        <Background bgColor="black" className="py-24 lg:py-12">
-          <div className="container mx-auto px-4">
-            <span className="eyebrow text-tbd-yellow">TEEKAY LOREM IPSUM</span>
-            <Heading
-              as="h2"
-              className="mt-twist-core-spacing-7 max-w-[800px] text-[32px] text-white lg:text-[42px]"
-            >
-              We’re building the next generation of the decentralized web -
-              returning data back to users.
-            </Heading>
-          </div>
-        </Background>
+        <div className="mx-auto mb-twist-core-spacing-30 w-full max-w-[1200px] px-4">
+          <span className="eyebrow text-tbd-yellow">TEEKAY LOREM IPSUM</span>
+          <Heading
+            as="h2"
+            className="mt-twist-core-spacing-7 max-w-[800px] text-[32px] text-white lg:text-[42px]"
+          >
+            We’re building the next generation of the decentralized web -
+            returning data back to users.
+          </Heading>
+        </div>
 
         <div className="flex justify-center px-4">
           <div className="grid w-full max-w-[1200px] grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-2">
