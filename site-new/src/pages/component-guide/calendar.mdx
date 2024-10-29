@@ -1,0 +1,12 @@
+import {
+  Calendar,
+  CalendarProvider,
+  MonthSwitcher,
+} from "@site/src/components/Calendar";
+
+<CalendarProvider>
+  <div className="mb-10 flex w-full items-center justify-center">
+    <MonthSwitcher />
+  </div>
+  <Calendar renderEvents={(day) => <div>custom event</div>} />
+</CalendarProvider>

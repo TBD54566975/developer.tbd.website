@@ -1,4 +1,5 @@
 import clsx from "clsx";
+import Heading from "@theme/Heading";
 
 type BlogCardProps = {
   date?: Date;
@@ -6,8 +7,8 @@ type BlogCardProps = {
   title?: string;
   tags?: string[];
   image?: string | null;
-  description?: string;
   size?: "large" | "small";
+  description?: React.ReactNode;
 };
 
 function BlogCard({
@@ -16,7 +17,7 @@ function BlogCard({
   title = "Title",
   tags = [],
   image = require("/static/img/test-image16x9.png").default,
-  description = "Some description here",
+  description,
   size = "small",
 }: BlogCardProps) {
   const cardSizeClass = size === "large" ? "max-w-[840px]" : "max-w-[400px]";
@@ -24,24 +25,31 @@ function BlogCard({
   return (
     <div
       className={clsx(
-        "group border-[gray] border-2 border-solid bg-dark-grey hover:bg-tbd-yellow text-[#FFF] group-hover:text-tbd-gray",
-        cardSizeClass
+        "group border-2 border-solid border-[gray] bg-dark-grey text-[#FFF] hover:bg-tbd-yellow group-hover:text-tbd-gray",
+        cardSizeClass,
       )}
     >
-      <img className="h-auto max-w-full block" src={image} />
+      <img className="block h-auto max-w-full" src={image} />
       <div className="p-4 group-hover:text-tbd-gray">
-        <div>{date.toLocaleDateString()}</div>
-        <div className="text-tbd-yellow group-hover:text-tbd-gray">{`@${author}`}</div>
-        <h2 className="text-4xl tracking-wide group-hover:text-tbd-gray">
+        <p className="mb-0 font-basis text-xs">{date.toLocaleDateString()}</p>
+        <div className="font-semibold text-tbd-yellow group-hover:text-tbd-gray">{`@${author}`}</div>
+        <Heading as="h2" className="group-hover:text-tbd-gray">
           {title}
-        </h2>
+        </Heading>
+        {typeof description === "string" ? (
+          <p className="mb-twist-core-spacing-10 font-medium lg:text-[18px] lg:leading-[150%]">
+            {description}
+          </p>
+        ) : (
+          description
+        )}
         <div className="flex">
           {tags.map((t) => (
             <div
               key={t}
-              className="border-[#FFF] group-hover:border-dark-grey border-2 border-solid p-2 m-1.5 h-8 justify-center flex items-center"
+              className="m-1.5 flex h-8 items-center justify-center border-[0.5px] border-solid border-[#FFF] p-2 group-hover:border-dark-grey"
             >
-              <span className="text-[gray] mr-2">#</span>
+              <span className="mr-2 text-[gray]">#</span>
               {`${t}`}
             </div>
           ))}

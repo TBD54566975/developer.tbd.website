@@ -5,7 +5,7 @@ import Note from "@site/assets/icons/Note";
 import { cn } from "@site/lib/utils";
 import React from "react";
 
-type Variant = "info" | "warning" | "tip" | "danger" | "note";
+export type Variant = "info" | "warning" | "tip" | "danger" | "note";
 
 const variantBorderClassesMap: Record<Variant, string> = {
   info: "border-tbd-info",
@@ -69,7 +69,7 @@ const Admonition = ({ variant, children, classes }: AdmonitionProps) => {
       </div>
       <div className="sidebar">
         {typeof children === "string" ? (
-          <p className="mb-0">{children}</p>
+          <p className="mb-0 lg:text-lg">{children}</p>
         ) : (
           children
         )}

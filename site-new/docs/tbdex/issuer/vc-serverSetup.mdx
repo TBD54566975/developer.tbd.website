@@ -1,0 +1,170 @@
+---
+sidebar_position: 2
+title: Server Setup
+hide_title: true
+---
+
+import Shnip from "@site/src/components/Shnip";
+import {
+  LanguageSwitcher,
+  LanguageContent,
+} from "@site/src/components/LanguageSwitcher";
+import Dependencies from "@site/src/components/Dependencies";
+
+# Credential Issuance Server Setup
+
+<LanguageSwitcher languages={["JavaScript", "Kotlin"]}>
+  <LanguageContent language="Kotlin">
+
+## Setup Ktor Project
+
+This example demonstrates how to use Ktor to set up the VC issuance service. Follow these instructions to [create a new Ktor project](https://www.jetbrains.com/help/idea/ktor.html#new_ktor_project).
+
+  </LanguageContent>
+
+  <LanguageContent language="JavaScript">
+
+## Install Express
+
+This example demonstrates how to use Express to set up the VC issuance service. Follow these instructions to [install Express](https://expressjs.com/en/starter/installing.html).
+
+  </LanguageContent>
+</LanguageSwitcher>
+
+### Install Credentials Package
+
+You'll also need to install `@web5/credentials` to create and issue credentials:
+
+<Dependencies
+  languageDependencies={[
+    { language: "javascript", dependencies: ["@web5/credentials"] },
+    { language: "maven", dependencies: ["web5-credentials"] },
+    { language: "gradle", dependencies: ["web5-credentials"] },
+  ]}
+/>
+
+### Create a DID
+
+Additionally, to issue credentials, you need a [Decentralized Identifier (DID)](/docs/web5/decentralized-identifiers/what-are-dids) which will serve as your Issuer's identity.
+
+If you don't already have one, you'll need to [create a DID](/docs/web5/decentralized-identifiers/how-to-create-did) with an IDV (Identity Verification) service endpoint:
+
+<Shnip
+  languages={["JavaScript", "Kotlin"]}
+  snippetName="createADidWithServiceEndpoint"
+/>
+
+If you have an existing DID you'll need to update that DID Document with an IDV service endpoint:
+
+<Shnip
+  languages={["JavaScript", "Kotlin"]}
+  snippetName="updateADidWithServiceEndpoint"
+  inlineSnippets={[
+    {
+      code: `Updating a DID Document with a service endpoint is not currently supported in Kotlin.`,
+      language: "Kotlin",
+      codeLanguage: "text",
+    },
+  ]}
+/>
+
+### Create API Service
+
+<LanguageSwitcher languages={["JavaScript", "Kotlin"]}>
+  <LanguageContent language="Kotlin">
+
+1. Ensure you have a file, such as `Application.kt`, to act as your API's entry point, which was created during the Ktor setup.
+
+2. Within the file, import the necessary libraries:
+
+   ```kotlin title=Application.kt
+   import com.nimbusds.jwt.JWTParser
+   import io.ktor.server.application.*
+   import io.ktor.server.response.*
+   import io.ktor.server.request.*
+   import io.ktor.server.routing.*
+   import io.ktor.http.*
+   import io.ktor.server.engine.*
+   import io.ktor.server.netty.*
+   import web5.sdk.credentials.VerifiableCredential
+   import java.security.SignatureException
+   import com.nimbusds.jwt.JWTClaimsSet
+   import web5.sdk.dids.Did
+   ```
+
+3. To start your API service, add the following:
+
+   ```kotlin title=Application.kt
+   fun main() {
+     embeddedServer(Netty, port = 8082) { // this can be any port you want to listen on
+         configureRouting()
+     }.start(wait = true)
+   }
+   ```
+
+4. In the same file, define your API routes:
+
+   ```kotlin title=Application.kt
+   fun Application.configureRouting() {
+       routing {
+           get("/example-route") {
+             // implement the API route here
+           }
+           get("/next-example-route") {
+             // implement the API route here
+           }
+       }
+   }
+   ```
+
+  </LanguageContent>
+
+  <LanguageContent language="JavaScript">
+
+1. Ensure you have a file, such as `main.js`, to act as your API's entry point, which was created during the Express setup.
+
+2. Within the file, import the following:
+
+   ```javascript title=main.js
+   import { api } from "./api.js";
+   ```
+
+3. To start your Express API service, add the following:
+
+   ```javascript title=main.js
+   const config = {
+     port: 3000, // this can be any port you want to listen on
+   };
+
+   const server = api.listen(config.port, () => {
+     console.log(`Server listening on port ${config.port}`);
+   });
+   ```
+
+4. Next, create an `api.js` file. This file will define the core API routes and logic for issuing credentials:
+
+   ```javascript title=api.js
+   import express from "express";
+   import { VerifiableCredential, Jwt } from "@web5/credentials";
+
+   const app = express();
+   app.use(express.json());
+
+   app.get("/example-route", async (req, res) => {
+     // implement the API route here
+   });
+
+   // Export the app so it can be imported in your main.js file
+   export { app as api };
+   ```
+
+  </LanguageContent>
+</LanguageSwitcher>
+
+## Next Steps
+
+Now that you have your server environment set up, depending on your use case, you can proceed with one of the following guides:
+
+- [Credential Issuance Guide](/docs/tbdex/issuer/kcc/kcc-issuer)
+
+- [Known Customer Credential Guide](/docs/tbdex/issuer/kcc/kcc-wallet)

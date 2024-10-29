@@ -62,5 +62,5 @@ from = "/docs/web5/learn/sync"
 to = "/docs/web5/decentralized-web-nodes/sync"
 
 [[redirects]]
-from = "/docs/web5/decentralized-web-nodes/protocols#installing-a-protocol"
-to = "/docs/web5/decentralized-web-nodes/what-are-protocols#installing-a-protocol"
+from = "/docs/web5/decentralized-web-nodes/protocols"
+to = "/docs/web5/decentralized-web-nodes/what-are-protocols"

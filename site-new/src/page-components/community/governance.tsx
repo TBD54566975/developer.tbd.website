@@ -1,10 +1,10 @@
 import React from "react";
 import Hero from "@site/src/components/Hero";
-import Background from "@site/src/components/Background";
+import { BlockBg } from "@site/src/components/BlockBg";
 import Heading from "@theme/Heading";
 import { TextIconFeature } from "@site/src/components/TextIconFeature";
 import { PixelBorder } from "@site/src/components/PixelBorder";
-import { SpotLightCard } from "@site/src/components/SpotLightCard";
+import Card from "@site/src/components/Card";
 
 const contributors = [
   { body: "Demonstrating empathy and kindoess toward other people" },
@@ -64,7 +64,13 @@ const currentGC = [
 
 function Governance() {
   return (
-    <Background className="container mx-auto px-4" bgColor="black">
+    <BlockBg
+      maxSize={150}
+      minSize={50}
+      rows={50}
+      columns={10}
+      className="mx-0 px-4"
+    >
       <Hero description="" subject="Community" title="Governance" />
       <div className="w-3/4">
         <Heading className="text-tbd-teal" as="h3">
@@ -138,12 +144,12 @@ function Governance() {
       </div>
       <div className="mb-8 grid grid-cols-1 gap-8 md:grid-cols-2">
         {currentGC.map(({ title, handle, src }, index) => (
-          <SpotLightCard
+          <Card
             key={index}
-            title={title}
-            handle={handle}
-            tone="teal"
-            src={src}
+            eyebrow={title}
+            title={handle}
+            theme="teal"
+            image={src}
           />
         ))}
       </div>
@@ -154,7 +160,7 @@ function Governance() {
         maintainers. It operates as a "Self-appointing council or board" as
         defined by Red Hat: Open Source Governance Models.
       </p>
-    </Background>
+    </BlockBg>
   );
 }
 

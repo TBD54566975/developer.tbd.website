@@ -3,9 +3,8 @@ import Layout from "@theme/Layout";
 import Heading from "@theme/Heading";
 import Background from "../components/Background";
 import Rocket from "@site/static/img/Rocket";
-import Underline from "@site/static/img/Underline";
 import Hero from "../components/HeroCard";
-import TextIconCard from "../components/TextIconCard";
+import Card from "../components/Card";
 import tbdRex from "@site/static/img/tbd-rex";
 import { PixelBorderWrapper } from "../components/PixelBorder";
 import { useEffect, useRef } from "react";
@@ -61,8 +60,8 @@ export default function Home(): JSX.Element {
                   className="mb-4 mt-twist-core-spacing-7 text-[48px] font-medium lg:text-[80px]"
                 >
                   The future of finance is{" "}
-                  <span className="relative mb-twist-core-spacing-7 inline-block text-tbd-yellow">
-                    <Underline className="absolute bottom-[-10px] left-2 fill-tbd-yellow lg:bottom-[-20px] lg:left-4" />
+                  <span className="mb-twist-core-spacing-7 text-highlight-full">
+                    Open
                   </span>
                 </Heading>
                 <Heading
@@ -139,25 +138,25 @@ export default function Home(): JSX.Element {
         <Background bgColor="black" className="py-0 lg:py-24">
           <div className="container mx-auto px-4">
             <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
-              <TextIconCard
+              <Card
                 title="Open Protocols"
                 text="We’re building open protocols, standards, and libraries. Our projects are open source because we want everyone in the economy to benefit: individuals, businesses, institutions, and government."
                 theme="yellow"
                 icon={tbdRex}
               />
-              <TextIconCard
+              <Card
                 title="Open Libraries"
                 text="We’re building open protocols, standards, and libraries. Our projects are open source because we want everyone in the economy to benefit: individuals, businesses, institutions, and government."
                 theme="teal"
                 icon={tbdRex}
               />
-              <TextIconCard
+              <Card
                 title="Open Standards"
                 text="We’re building open protocols, standards, and libraries. Our projects are open source because we want everyone in the economy to benefit: individuals, businesses, institutions, and government."
                 theme="purple"
                 icon={tbdRex}
               />
-              <TextIconCard
+              <Card
                 title="Open Source"
                 text="We’re building open protocols, standards, and libraries. Our projects are open source because we want everyone in the economy to benefit: individuals, businesses, institutions, and government."
                 theme="yellow"

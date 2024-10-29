@@ -1,108 +1,142 @@
 [
-    {
-      "type": "video",
-      "thumbnail": "/img/test1.png",
-      "title": "DWN Video",
-      "link": "https://youtube.com/shorts/xsKKAzHHrKo?si=OwhT77TM9YbFT7-f",
-      "contributor": "Ebony Louis"
-    },
-    {
-      "type": "blog",
-      "thumbnail": "/img/test1.png",
-      "title": "Blog Post on VCs",
-      "link": "https://youtube.com/shorts/xsKKAzHHrKo?si=OwhT77TM9YbFT7-f",
-      "contributor": "Ebony Louis"
-    },
-    {
-      "type": "social",
-      "thumbnail": "/img/test1.png",
-      "title": "Tweet on TBDex",
-      "link": "https://youtube.com/shorts/xsKKAzHHrKo?si=OwhT77TM9YbFT7-f",
-      "contributor": "Ebony Louis"
-    },
-    {
-        "type": "video",
-        "thumbnail": "/img/test1.png",
-        "title": "DWN Video",
-        "link": "https://youtube.com/shorts/xsKKAzHHrKo?si=OwhT77TM9YbFT7-f",
-        "contributor": "Ebony Louis"
-    },
-    {
-        "type": "blog",
-        "thumbnail": "/img/test1.png",
-        "title": "Blog Post on VCs",
-        "link": "https://youtube.com/shorts/xsKKAzHHrKo?si=OwhT77TM9YbFT7-f",
-        "contributor": "Ebony Louis"
-    },
-    {
-        "type": "social",
-        "thumbnail": "/img/test1.png",
-        "title": "Tweet on TBDex",
-        "link": "https://youtube.com/shorts/xsKKAzHHrKo?si=OwhT77TM9YbFT7-f",
-        "contributor": "Ebony Louis"
-    },
-    {
-        "type": "video",
-        "thumbnail": "/img/test1.png",
-        "title": "DWN Video",
-        "link": "https://youtube.com/shorts/xsKKAzHHrKo?si=OwhT77TM9YbFT7-f",
-        "contributor": "Ebony Louis"
-    },
-    {
-        "type": "blog",
-        "thumbnail": "/img/test1.png",
-        "title": "Blog Post on VCs",
-        "link": "https://youtube.com/shorts/xsKKAzHHrKo?si=OwhT77TM9YbFT7-f",
-        "contributor": "Ebony Louis"
-    },
-    {
-        "type": "social",
-        "thumbnail": "/img/test1.png",
-        "title": "Tweet on TBDex",
-        "link": "https://youtube.com/shorts/xsKKAzHHrKo?si=OwhT77TM9YbFT7-f",
-        "contributor": "Ebony Louis"
-    },
-    {
-        "type": "video",
-        "thumbnail": "/img/test1.png",
-        "title": "DWN Video",
-        "link": "https://youtube.com/shorts/xsKKAzHHrKo?si=OwhT77TM9YbFT7-f",
-        "contributor": "Ebony Louis"
-    },
-    {
-        "type": "blog",
-        "thumbnail": "/img/test1.png",
-        "title": "Blog Post on VCs",
-        "link": "https://youtube.com/shorts/xsKKAzHHrKo?si=OwhT77TM9YbFT7-f",
-        "contributor": "Ebony Louis"
-    },
-    {
-        "type": "social",
-        "thumbnail": "/img/test1.png",
-        "title": "Tweet on TBDex",
-        "link": "https://youtube.com/shorts/xsKKAzHHrKo?si=OwhT77TM9YbFT7-f",
-        "contributor": "Ebony Louis"
-    },
-    {
-        "type": "video",
-        "thumbnail": "/img/test1.png",
-        "title": "DWN Video",
-        "link": "https://youtube.com/shorts/xsKKAzHHrKo?si=OwhT77TM9YbFT7-fo",
-        "contributor": "Ebony Louis"
-    },
-    {
-        "type": "blog",
-        "thumbnail": "/img/test1.png",
-        "title": "Blog Post on VCs",
-        "link": "https://youtube.com/shorts/xsKKAzHHrKo?si=OwhT77TM9YbFT7-f",
-        "contributor": "Ebony Louis"
-    },
-    {
-        "type": "social",
-        "thumbnail": "/img/test1.png",
-        "title": "Tweet on TBDex",
-        "link": "https://youtube.com/shorts/xsKKAzHHrKo?si=OwhT77TM9YbFT7-f",
-        "contributor": "Ebony Louis"
-    }
-  ]
-  
+  {
+    "type": "blog",
+    "thumbnail": "/img/external-contributor/TBD_nabhel.png",
+    "title": "My Hacktoberfest Experience Contributing to TBD",
+    "link": "https://dev.to/nabhel/my-hacktoberfest-experience-contributing-to-tbd-3i6f",
+    "contributor": "Nabhel"
+  },
+  {
+    "type": "blog",
+    "thumbnail": "/img/external-contributor/kiranbaliga.png",
+    "title": "Key Management for DIDs",
+    "link": "https://dev.to/kiran_baliga/key-management-for-dids-in-web5-a-beginners-guide-28nj",
+    "contributor": "Kiran Baliga"
+  },
+  {
+    "type": "blog",
+    "thumbnail": "/img/external-contributor/Ashit743_DWN_Web5.png",
+    "title": "What are DWNs in Web5?",
+    "link": "https://medium.com/@ashitsdarurmath/what-are-dwns-in-web5-5ae759341a6d",
+    "contributor": "Ashit Darurmath"
+  },
+  {
+    "type": "blog",
+    "thumbnail": "/img/external-contributor/Kiran_verificablecredentials_1.png",
+    "title": "Verifiable Credentials (VCs) in Web5",
+    "link": "https://dev.to/kiran_baliga/understanding-verifiable-credentials-vcs-in-web5-a-beginners-guide-f38",
+    "contributor": "Kiran Baliga"
+  },
+  {
+    "type": "blog",
+    "thumbnail": "/img/external-contributor/chrissiku_the_future_0f_web.png",
+    "title": "The Future of Web: How Web5 Transforms Identity and Data OwnerShip",
+    "link": "https://dev.to/chrissiku/the-future-of-web-how-web5-transforms-identity-and-data-ownership-2062",
+    "contributor": "Christian Siku"
+  },
+  {
+    "type": "blog",
+    "thumbnail": "/img/external-contributor/how_to_resolve_dids.png",
+    "title": "Decentralized Identity Simplified: How to Resolve DIDs Effectively",
+    "link": "https://dev.to/chrissiku/decentralized-identity-simplified-how-to-resolve-dids-effectively-36kp",
+    "contributor": "Christian Siku"
+  },
+  {
+    "type": "blog",
+    "thumbnail": "/img/external-contributor/Lymah123_comparing_DID_methods.png",
+    "title": "Comparing Dentralized Identifier (DID) Methods",
+    "link": "https://dev.to/lymah/comparing-decentralized-identifiersdid-methods-el",
+    "contributor": "Lymah123"
+  },
+  {
+    "type": "blog",
+    "thumbnail": "/img/external-contributor/DRL.png",
+    "title": "Decentralized Resource Locators(DRL)",
+    "link": "https://dev.to/kiran_baliga/getting-started-with-decentralized-resource-locators-drls-43jd",
+    "contributor": "Kiran Baliga"
+  },
+  {
+    "type": "blog",
+    "thumbnail": "/img/external-contributor/ProtocolRules.png",
+    "title": "Protocol Rules",
+    "link": "https://dev.to/kiran_baliga/a-simple-guide-to-web5-protocol-roles-41m4",
+    "contributor": "Kiran Baliga"
+  },
+  {
+    "type": "video",
+    "thumbnail": "/img/external-contributor/quick_start_web5_chrissiku.png",
+    "title": "My first line of web5.js : Quick start",
+    "link": "https://www.youtube.com/watch?v=4kOBPE63eUc",
+    "contributor": "Christian Siku"
+  },
+  {
+    "type": "video",
+    "thumbnail": "/img/external-contributor/resolve_did_short_chrissiku.jpg",
+    "title": "Resolve a DID",
+    "link": "https://www.youtube.com/shorts/AfLj2il7aGM",
+    "contributor": "Christian Siku"
+  },
+  {
+    "type": "blog",
+    "thumbnail": "/img/external-contributor/Lymah123_understanding_web5_and_its_potential.png",
+    "title": "Understanding Web5 and its Potential",
+    "link": "https://dev.to/lymah/understanding-web5-and-its-potential-2p30",
+    "contributor": "Lymah123"
+  },
+  {
+    "type": "blog",
+    "thumbnail": "/img/external-contributor/hackexperience.png",
+    "title": "Hacktoberfest Experience",
+    "link": "https://dev.to/kiran_baliga/my-hacktoberfest-2024-journey-2odn",
+    "contributor": "Kiran Baliga"
+  },
+  {
+    "type": "blog",
+    "thumbnail": "/img/external-contributor/Lymah123_understanding_dwns.png",
+    "title": "Understanding the Power of Decentralized Web Nodes (DWNs)",
+    "link": "https://dev.to/lymah/understanding-the-power-of-decentralized-web-nodes-dwns-5dm5",
+    "contributor": "Lymah123"
+  },
+  {
+    "type": "blog",
+    "thumbnail": "/img/external-contributor/dwns_blog_chrissiku.png",
+    "title": "Practical Guide to CRUD Operations on DWNs",
+    "link": "https://dev.to/chrissiku/a-practical-guide-to-crud-operations-on-decentralized-web-nodes-aka-dwns-5ca1",
+    "contributor": "Christian Siku"
+  },
+  {
+    "type": "blog",
+    "thumbnail": "/img/external-contributor/Lymah123_protocol_roles.png",
+    "title": "The Role of Protocols in Decentralized Systems",
+    "link": "https://dev.to/lymah/the-role-of-protocols-in-decentralized-systems-3l9f",
+    "contributor": "Lymah123"
+  },
+  {
+    "type": "blog",
+    "thumbnail": "/img/external-contributor/web5_nabhel_new.png",
+    "title": "Understanding Web5: Your Guide to the Decentralized Web",
+    "link": "https://dev.to/nabhel/understanding-web5-your-guide-to-the-decentralized-web-49m2",
+    "contributor": "Nabhel"
+  },
+  {
+    "type": "video",
+    "thumbnail": "/img/external-contributor/web5short.png",
+    "title": "Welcome to the world of Web5",
+    "link": "https://youtube.com/shorts/RznqmwME_p4?si=_snyCXX9hDzgkMO2",
+    "contributor": "Kiran Baliga"
+  },
+  {
+    "type": "blog",
+    "thumbnail": "/img/external-contributor/Lymah123_PFI.png",
+    "title": "How to Stand Up Your Own Participant Financial Institution (PFI)",
+    "link": "https://dev.to/lymah/how-to-stand-up-your-own-participant-financial-institution-pfi-59o8",
+    "contributor": "Lymah123"
+  },
+  {
+    "type": "video",
+    "thumbnail": "img/external-contributor/dwn_video_thumbnail.png",
+    "title": "What are Decentralized Web Nodes (DWNs)?",
+    "link": "https://youtu.be/p45SB9VfHZI",
+    "contributor": "Mohit Raj Sinha"
+  }
+]

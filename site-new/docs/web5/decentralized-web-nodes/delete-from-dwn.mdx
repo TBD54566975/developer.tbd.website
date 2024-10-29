@@ -1,0 +1,25 @@
+---
+sidebar_position: 8
+---
+
+import Shnip from "@site/src/components/Shnip";
+
+# Delete DWN Records
+
+You can delete a record stored in the user's DWN, or another party's DWN (if permission has been granted).
+
+The following snippets allow you to delete from a DWN:
+
+### Delete record from the user's local DWN
+
+<Shnip snippetName="deleteRecordFromLocalDwn" languages={["JavaScript"]} />
+
+### Delete record from a remote DWN
+
+<Shnip snippetName="deleteRecordFromRemoteDwn" languages={["JavaScript"]} />
+
+### Delete parent record and all children
+
+To delete a parent record along with all its child records, set the prune option to true.
+
+<Shnip snippetName="pruneRecords" languages={["JavaScript"]} />

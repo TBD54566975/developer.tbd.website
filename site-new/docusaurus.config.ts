@@ -2,6 +2,8 @@ import type { Config } from "@docusaurus/types";
 import type * as Preset from "@docusaurus/preset-classic";
 import tailwindPlugin from "./plugins/tailwind-pluging.cjs";
 
+const SDK_VERSIONS = require("../sdk-versions.json");
+
 // const lightCodeTheme = require("prism-react-renderer").themes.github;
 // const darkCodeTheme = require("prism-react-renderer").themes.dracula;
 
@@ -9,7 +11,7 @@ const config: Config = {
   title: "TBDevs",
   tagline: "TBD",
   favicon: "img/favicon.ico",
-  plugins: [tailwindPlugin],
+  plugins: [tailwindPlugin, require.resolve("./webpackPlugin")],
   staticDirectories: ["public", "static"],
   // Set the production url of your site here
   url: "https://your-docusaurus-site.example.com",
@@ -31,6 +33,10 @@ const config: Config = {
   i18n: {
     defaultLocale: "en",
     locales: ["en"],
+  },
+
+  customFields: {
+    SDK_VERSIONS: SDK_VERSIONS,
   },
 
   presets: [

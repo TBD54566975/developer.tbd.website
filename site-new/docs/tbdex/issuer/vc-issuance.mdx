@@ -1,0 +1,157 @@
+---
+sidebar_position: 3
+title: Credential Issuance
+hide_title: true
+---
+
+import Shnip from "@site/src/components/Shnip";
+import {
+  LanguageSwitcher,
+  LanguageContent,
+} from "@site/src/components/LanguageSwitcher";
+
+# Credential Issuance
+
+This guide introduces how to issue [verifiable credentials (VC)](/docs/web5/verifiable-credentials/what-are-vcs), a process for establishing trust between [Wallets](/docs/tbdex/wallet/overview) and [PFIs](/docs/tbdex/pfi/overview) in a tbDEX network.
+
+Common examples of credentials that are necessary in financial transactions are ones that verify the identity of a Wallet owner.
+
+Although credential issuance is not a concept that is exclusive to tbDEX, it's a key element in enabling compliant transactions.
+
+## Overview
+
+A Credential Issuance app operates as an API service, exposing endpoints for third parties to request credentials.
+
+If you already have an Issuance app up and running, check out the guide on [how to issue credentials with Web5](/docs/web5/verifiable-credentials/vc-issuance/).
+
+## Environment Setup
+
+If you need to create a Credential Issuance app from scratch, check out the [Credential Issuance Server Setup Guide](/docs/tbdex/issuer/vc-serverSetup) for detailed instructions on the dependencies and packages needed to set up your server.
+
+:::note
+If you'd like to view a full, runnable project, see our [VC Issuer Example](https://github.com/TBD54566975/super-simple-sanctions).
+:::
+
+## Design the Credential
+
+With your app set up to accept incoming routes, you can design a model class to represent the specific type of credential you'd like to issue.
+
+Let's design a VC that attests that a person isn't on a Sanctions list. You could model that class as follows:
+
+<Shnip
+  languages={["JavaScript", "Kotlin"]}
+  snippetName="sanctionsCredentialClass"
+/>
+
+In the example above, you provide a class property that stores all the sanctions lists checked against.
+You have wide flexibility with what you can store in the credential model class, which means that you're free to include any attributes that may be relevant to the credential you are issuing.
+
+## Implement Issuance
+
+With your web server structure in place and credential designed, you're now ready to build out your issuance codepath.
+Within the `/check-sanctions` route, you'll add code to handle when a user requests to be issued a VC.
+
+In this code, you'll want to perform any checks required to issue them a credential which will later be verified by an interested third party.
+
+In the example below, assume the user has provided a JWT that contains their identity information (e.g. name, DOB, etc), and your application checks applicable sanctions lists to determine if this user is on them.
+
+If all checks pass, you'll issue them a credential.
+
+<Shnip
+  languages={["JavaScript", "Kotlin"]}
+  snippetName="checkSanctionsEndpoint"
+/>
+
+:::tip Signing credentials
+Signing will return a [VC JSON Web Token](/docs/web5/verifiable-credentials/jwt-to-vc#what-is-a-jwt), which is ideal for secure transmission of the credential.
+
+A BearerDid is used to sign Verifiable Credentials that you issue.
+Refer to the [Create A DID](/docs/web5/decentralized-identifiers/how-to-create-did) guide for steps on how to create one.
+:::
+
+<LanguageSwitcher languages={["JavaScript", "Kotlin"]}>
+  <LanguageContent language="javascript">
+
+In order to run this code, create a `checkSanctionsLists()` function and a `sanctionsListResult` class in your `Application.kt` file:
+
+  </LanguageContent>
+  <LanguageContent language="kotlin">
+
+In order to run this code, create a `checkSanctionsLists()` function in your `api.js` file:
+
+  </LanguageContent>
+</LanguageSwitcher>
+
+<Shnip
+  languages={["JavaScript", "Kotlin"]}
+  snippetName="checkSanctionsListsFunction"
+/>
+
+The `sanctions_credential` object that's returned will be a raw VC that looks like this:
+
+<LanguageSwitcher languages={["JavaScript", "Kotlin"]}>
+  <LanguageContent language="JavaScript">
+
+```json
+vcDataModel: {
+"@context": [ "https://www.w3.org/2018/credentials/v1" ],
+type: [ "VerifiableCredential", "SanctionsCredential" ],
+id: "urn:uuid:daa5ff01-9b7d-485b-9410-22a42952d46c",
+issuer: "did:dht:yqun8fjakb7afu3rau9rhgdo4ahru9d68488e5mu5ihbaiwqjh3y",
+issuanceDate: "2023-12-14T08:20:41Z",
+credentialSubject: {
+id: "did:dht:z6MkjGSeekPGE9QfczHWyW8v2ZzJU68kqSHzV7L2dmQyuyDu",
+listsCleared: ["FBI's Most Wanted", "USA Watchlist", "EU Watchlist"]
+}
+}
+```
+
+  </LanguageContent>
+  <LanguageContent language="Kotlin">
+
+```json
+{
+  "@context": ["https://www.w3.org/2018/credentials/v1"],
+  "type": ["VerifiableCredential", "SanctionsCredential"],
+  "id": "urn:uuid:daa5ff01-9b7d-485b-9410-22a42952d46c",
+  "issuer": "did:dht:yqun8fjakb7afu3rau9rhgdo4ahru9d68488e5mu5ihbaiwqjh3y",
+  "issuanceDate": "2023-12-14T08:20:41Z",
+  "credentialSubject": {
+    "id": "did:dht:z6MkjGSeekPGE9QfczHWyW8v2ZzJU68kqSHzV7L2dmQyuyDu",
+    "listsCleared": ["FBI's Most Wanted", "USA Watchlist", "EU Watchlist"]
+  }
+}
+```
+
+  </LanguageContent>
+</LanguageSwitcher>
+
+## Test Issuance Service
+
+1. Start the service by opening a terminal window and running the following commands:
+
+<LanguageSwitcher languages={["JavaScript", "Kotlin"]}>
+  <LanguageContent language="JavaScript">
+
+```bash
+node main.js
+```
+
+  </LanguageContent>
+  <LanguageContent language="Kotlin">
+
+```bash
+./gradlew clean build
+./gradlew run
+```
+
+  </LanguageContent>
+</LanguageSwitcher>
+
+2. In a new terminal window send a test request. Below is an example command using `curl` that includes a JWT for authorization:
+
+```bash
+curl -X GET http://localhost:3000/check-sanctions -H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJFZERTQSIsImtpZCI6ImRpZDprZXk6ejZNa3djSmkzeVVONDJFZ1N2cmNHRlFyQzRKY1pkenlWWkhQOVdmMXFRZWRuVlRQI3o2TWt3Y0ppM3lVTjQyRWdTdnJjR0ZRckM0SmNaZHp5VlpIUDlXZjFxUWVkblZUUCJ9.eyJ2YyI6eyJAY29udGV4dCI6WyJodHRwczovL3d3dy53My5vcmcvMjAxOC9jcmVkZW50aWFscy92MSJdLCJ0eXBlIjpbIlZlcmlmaWFibGVDcmVkZW50aWFsIiwiSWRlbnRpZmljYXRpb25DcmVkZW50aWFsIl0sImlkIjoidXJuOnV1aWQ6MDQ3ZTg0ZWItY2NhMS00NjFlLWFjZjAtMGMyZGE5ZDczOTNhIiwiaXNzdWVyIjoiZGlkOmtleTp6Nk1rd2NKaTN5VU40MkVnU3ZyY0dGUXJDNEpjWmR6eVZaSFA5V2YxcVFlZG5WVFAiLCJpc3N1YW5jZURhdGUiOiIyMDI0LTAyLTE1VDE5OjMyOjE2WiIsImNyZWRlbnRpYWxTdWJqZWN0Ijp7ImlkIjoiZGlkOmtleTp6Nk1rd2NKaTN5VU40MkVnU3ZyY0dGUXJDNEpjWmR6eVZaSFA5V2YxcVFlZG5WVFAiLCJuYW1lIjoiam9obiJ9fSwiaXNzIjoiZGlkOmtleTp6Nk1rd2NKaTN5VU40MkVnU3ZyY0dGUXJDNEpjWmR6eVZaSFA5V2YxcVFlZG5WVFAiLCJzdWIiOiJkaWQ6a2V5Ono2TWt3Y0ppM3lVTjQyRWdTdnJjR0ZRckM0SmNaZHp5VlpIUDlXZjFxUWVkblZUUCJ9.7oFAPckx-vxCbbzKSk9bU7eXlnjBFvMborl9woHCbcvWaLt0LvTRuDfvGDPC24V9D1K5OFpTnnBiN5jtIOmbBg"
+```
+
+With that, you've implemented a basic credential issuance service to accept requests and issue VCs.

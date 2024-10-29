@@ -1,0 +1,384 @@
+---
+sidebar_position: 2
+title: Requesting a KCC
+hide_title: true
+---
+
+import Shnip from "@site/src/components/Shnip";
+import {
+  LanguageSwitcher,
+  LanguageContent,
+} from "@site/src/components/LanguageSwitcher";
+import CodeBlock from "@theme/CodeBlock";
+import Dependencies from "@site/src/components/Dependencies";
+
+# Requesting a Known Customer Credential
+
+Known Customer Credentials (KCCs) are [Verifiable Credentials](/docs/web5/verifiable-credentials/what-are-vcs) designed to streamline the [Know Your Customer (KYC)](https://www.tbdex.io/guides/compliance) process for tbDEX protocol users. KCCs help in gaining access to PFIs that provide regulated financial services.
+
+For a comprehensive exploration of the practical applications and compliance considerations of KCCs, refer to the [KCC Compliance Guide](https://www.tbdex.io/guides/kcc). It provides detailed examples and insights into how KCCs align with certain regulatory requirements. This offers valuable context for those overseeing the implementation and management of KCCs.
+
+In this guide, we'll cover:
+
+- **Identity Verification (IDV)**: How your Wallet App initiates and supports the IDV process conformant with [Self Issued OpenID Provider V2 (SIOPv2)](https://openid.net/specs/openid-connect-self-issued-v2-1_0.html) and [OpenID for Verifiable Presentations (OID4VP)](https://openid.net/specs/openid-4-verifiable-presentations-1_0.html), ensuring users can securely verify their identity.
+- **Credential Request**: The steps needed for your Wallet App to request a KCC on a user's behalf after successful IDV.
+- **Credential Management**: How the Wallet utilizes existing credentials for KCC requests and securely stores the KCC itself.
+
+:::info
+For a detailed guide on Known Customer Credentials for **Issuers**, please refer to the [Issuer's Known Customer Credential Guide](/docs/tbdex/issuer/kcc/kcc-issuer)
+:::
+
+## Environment Setup
+
+### Install Dependencies
+
+Your Wallet App will require libraries for handling HTTP requests and processing [JSON Web Tokens(JWTs)](https://jwt.io/). You can include these libraries in your project by installing the following dependencies:
+
+<Dependencies
+  languageDependencies={[
+    {
+      language: "javascript",
+      dependencies: ["@web5/credentials", "@web5/dids", "node-fetch"],
+    },
+    {
+      language: "maven",
+      dependencies: [
+        "web5-credentials",
+        "web5-dids",
+        "io.ktor:ktor-client-cio:2.3.9",
+        "io.ktor:ktor-client-core:2.3.9",
+        "com.nimbusds:nimbus-jose-jwt:9.15.2",
+      ],
+    },
+    {
+      language: "gradle",
+      dependencies: [
+        "web5-credentials",
+        "web5-dids",
+        "io.ktor:ktor-client-cio:2.3.9",
+        "io.ktor:ktor-client-core:2.3.9",
+      ],
+    },
+    { language: "swift", dependencies: ["Web5"] },
+  ]}
+/>
+
+### Framework Flexibility
+
+<LanguageSwitcher languages={["javascript", "kotlin", "swift"]}>
+  <LanguageContent language="kotlin">
+    <p>
+      The core logic provided in the code snippets of this guide is designed to
+      be adaptable across different development environments. The code examples
+      primarily cater to a **Ktor environment** however, the concepts shown can
+      be applied within various frameworks or platforms, including web
+      applications, server-side applications, and mobile applications. Depending
+      on your development context, you'll need to adjust aspects like HTTP
+      request handling and secure storage to align with the practices and
+      libraries of your chosen framework or platform.
+    </p>
+  </LanguageContent>
+  <LanguageContent language="javascript">
+    <p>
+      The core logic provided in the code snippets of this guide is designed to
+      be adaptable across different development environments. The code examples
+      primarily cater to a **Node.js environment** however, the concepts shown
+      can be applied within various frameworks or platforms, including web
+      applications, server-side applications, and mobile applications. Depending
+      on your development context, you'll need to adjust aspects like HTTP
+      request handling, and secure storage to align with the practices and
+      libraries of your chosen framework or platform.
+    </p>
+  </LanguageContent>
+  <LanguageContent language="swift">
+    <p>
+      The core logic provided in the code snippets of this guide is designed to
+      be adaptable across different development environments. The code examples
+      primarily cater to a **Swift environment** utilizing Xcode however, the
+      concepts shown can be applied within various frameworks or platforms,
+      including web applications, server-side applications, and mobile
+      applications. Depending on your development context, you'll need to adjust
+      aspects like HTTP request handling, and secure storage to align with the
+      practices and libraries of your chosen framework or platform.
+    </p>
+  </LanguageContent>
+</LanguageSwitcher>
+
+## IDV Process
+
+Identity Verification is a critical component of typical KYC requirements, where certain types of Personally Identifiable Information (PII) are collected and verified from an individual. IDV is a crucial step before a KCC can be issued.
+
+```mermaid
+sequenceDiagram
+autonumber
+participant App as Customer's Wallet App
+participant DID as DID Resolver
+participant I as Issuer
+
+App->>+DID: Resolve Issuer's DID
+DID-->>-App: DID Document with IDV Service Endpoint
+App->>+I: HTTP Request to IDV Service Endpoint
+I->>I: Process Request
+I-->>-App: SIOPv2 Authorization Request
+App->>App: Decode & Process SIOPv2 Auth Request
+App->>+I: SIOPv2 Authorization Response with id_token (& vp_token if applicable)
+I-->>-App: Process Authorization Response
+```
+
+### 1. Get IDV Endpoint
+
+Resolve the Issuer's DID to get the IDV service Endpoint that can be found in the Issuer's [DID Document](/docs/web5/decentralized-identifiers/what-are-dids#did-documents):
+
+<Shnip
+  languages={["JavaScript", "Kotlin", "Swift"]}
+  snippetName="knownCustomerCredentialResolveIssuerDid"
+/>
+
+### 2. Send HTTP request to Service Endpoint
+
+Send an HTTP request to the IDV Service Endpoint:
+
+<Shnip
+  languages={["JavaScript", "Kotlin", "Swift"]}
+  snippetName="knownCustomerCredentialSendRequestToIdvServiceEndpoint"
+/>
+
+### 3. Create SIOPv2 Authorization Response
+
+Decode the Issuer's SIOPv2 Authorization Request and create a [SIOPv2 Authorization Response](https://openid.github.io/SIOPv2/openid-connect-self-issued-v2-wg-draft.html#section-10) with `id_token` and `vp_token`:
+
+<Shnip
+  languages={["JavaScript", "Kotlin", "Swift"]}
+  snippetName="knownCustomerCredentialhandleSiopRequestWallet"
+/>
+
+:::info
+If the User's Verifiable Credentials do not satisfy the Authorization Request's Presentation Definition then only the `id_token` will be sent to the Issuer's `response_uri`. If the credentials **do** satisfy then a [Verifiable Presentation](https://developer.tbd.website/docs/glossary/#verifiable-presentation) (`vp_token`) will also be sent.  
+:::
+
+## Processing the Credential Offer
+
+After successful completion of the Identity Verification - whether via form or the necessary VCs - your Wallet application will then begin processing the `credential_offer` from the Issuer.
+
+### 1. Extract Credential Offer
+
+Extract and store the `credential_issuer` URL and `pre_authorized_code` from the credential offer:
+
+<Shnip
+  languages={["JavaScript", "Kotlin", "Swift"]}
+  snippetName="knownCustomerCredentialHandleIssuerResponseWallet"
+/>
+
+### 2. Get Issuer's Metadata
+
+Fetch the Issuer's Metadata from the `credential_issuers` URL
+
+To construct the URL to fetch the Issuer's Metadata, the Wallet needs to append `/.well-known/openid-credential-issuer` to the `credential_issuer` URL provided in the `credential_offer`:
+
+<Shnip
+  languages={["JavaScript", "Kotlin", "Swift"]}
+  snippetName="knownCustomerCredentialFetchIssuerMetadataWallet"
+/>
+
+### 3. Get Authorization Server's Metadata
+
+Fetch the Authorization Server's Metadata
+
+Before the Wallet can request a KCC from the Issuer, the Wallet needs to also fetch the Issuer's Authorization Server Metadata by appending `/.well-known/oauth-authorization-server` to the `credential_issuer` URL in `handleIssuerResponse()`:
+
+<Shnip
+  languages={["JavaScript", "Kotlin", "Swift"]}
+  snippetName="knownCustomerCredentialFetchAuthServerMetadataWallet"
+/>
+
+The Server Authorization Metadata can look like this:
+
+<details open>
+<summary>Server Authorization Metadata</summary>
+
+```javascript
+// Issuer.js
+
+{
+"issuer": "https://issuer.example.com", // URL of the Credential Issuer
+"token_endpoint": "https://issuer.example.com/token", // URL for the Access Token Request
+};
+```
+
+</details>
+
+### 4. Get Access Token
+
+Fetch the Access Token from the Issuer's `/token` endpoint:
+
+<Shnip
+  languages={["JavaScript", "Kotlin", "Swift"]}
+  snippetName="knownCustomerCredentialFetchAccessTokenWallet"
+/>
+
+:::info
+If the IDV process is incomplete, the Issuer will return an `authorization_pending` error. In this case, the Wallet should wait for a short period before attempting another request to the Issuer's `/token` endpoint. This will allow time for the IDV process to be completed. The Wallet should continue these periodic attempts until an `access_token` is successfully received, indicating that the IDV process has concluded and authorization has been granted.
+:::
+
+Here's an example Access Token Response from the Issuer:
+
+<details open>
+<summary>Access Token Response</summary>
+```javascript
+// Issuer.js
+{
+"access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXhhbXBsZTpPcTJ4T0J4NVVjIiwiaXNzIjoiZGlkOmV4YW1wbGU6SXNzdWVyRGlkIiwiaWF0IjoxNjE1MjM5MDIyLCJleHAiOjE2MTUzMjU0MjIsImNfbm9uY2UiOiJzYW1wbGVjbm9uY2UifQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c",
+"token_type": "bearer",
+"expires_in": 86400,
+"c_nonce": "adQssw5c",
+"c_nonce_expires_in": 86400
+}
+```
+
+</details>
+
+## Request Known Customer Credential
+
+After receiving the `access_token` from the Issuer, the Wallet can now send a KCC request to the `credential_endpoint` that was in the Issuer's Metadata.
+
+### Send Request to Issuer's Credential Endpoint
+
+Sign and Send an HTTP POST request to the Issuer's credential endpoint:
+
+<Shnip
+  languages={["JavaScript", "Kotlin", "Swift"]}
+  snippetName="knownCustomerCredentialRequestCredentialWallet"
+/>
+
+:::info
+To learn more about the **fields** within the `payload` and `header`, please refer to [OpenID's specs](https://openid.net/specs/openid-4-verifiable-credential-issuance-1_0.html#section-7.2.1.1-2.1.1).
+
+The Known Customer Credential will be a signed VC [JSON Web Token](https://www.w3.org/TR/vc-data-model/#json-web-token) for secure transmission.
+:::
+
+## Example Known Customer Credential
+
+To convert the signed VC JWT into a `VerifiableCredential` object you can use the [`parseJwt()` method](/docs/web5/verifiable-credentials/jwt-to-vc#decoding-jwt). Here is what a decoded **Known Customer Credential** would look like:
+
+<LanguageSwitcher languages={["javascript", "kotlin", "swift"]}>
+  <LanguageContent language="javascript">
+    <CodeBlock language="jsx">
+      ```javascript
+{
+  "vcDataModel": {
+    "@context": ["https://www.w3.org/2018/credentials/v1"],
+    "type": ["VerifiableCredential"],
+    "id": "urn:uuid:12345678-1234-5678-1234-567812345678",
+    "issuer": "did:dht:z6Mkn4w6nSaWe4fjNJRvaHZwFnMm5VexvjzDeozEu2G7jC34",
+    "issuanceDate": "2024-01-01T19:23:24Z",
+    "expirationDate": "2026-05-19T08:02:04Z",
+    "credentialSchema": {
+      id: "https://vc.schemas.host/kcc.schema.json",
+      type: "JsonSchema"
+    },
+    "evidence": [
+      {
+        kind: "document_verification",
+        checks: ["passport", "utility_bill"]
+      },
+      {
+        kind: "sanction_screening",
+        checks: ["PEP"]
+      }
+    ],
+    "credentialSubject": {
+      "id": "did:dht:z6MkjGSeekPGE9QfczHWyW8v2ZzJU68kqSHzV7L2dmQyuyDu",
+      "countryOfResidence": "US",
+      "tier": "Gold",
+      "jurisdiction": {
+        "country": "US"
+      }
+    }
+  }
+}
+```
+    </CodeBlock>
+  </LanguageContent>
+  <LanguageContent language="kotlin">
+    <CodeBlock language="kotlin">
+      ```kotlin
+{
+  "@context": ["https://www.w3.org/2018/credentials/v1"],
+  "type": ["VerifiableCredential"],
+  "id": "urn:uuid:12345678-1234-5678-1234-567812345678",
+  "issuer": "did:dht:z6Mkn4w6nSaWe4fjNJRvaHZwFnMm5VexvjzDeozEu2G7jC34",
+  "issuanceDate": "2024-01-01T19:23:24Z",
+  "expirationDate": "2026-05-19T08:02:04Z",
+  "credentialSchema": {
+    id: "https://vc.schemas.host/kcc.schema.json",
+    type: "JsonSchema"
+  },
+  "evidence": [
+    {
+      kind: "document_verification",
+      checks: ["passport", "utility_bill"]
+    },
+    {
+      kind: "sanction_screening",
+      checks: ["PEP"]
+    }
+  ],
+  "credentialSubject": {
+    "id": "did:dht:z6MkjGSeekPGE9QfczHWyW8v2ZzJU68kqSHzV7L2dmQyuyDu",
+    "countryOfResidence": "US",
+    "tier": "Gold",
+    "jurisdiction": {
+      "country": "US"
+    }
+  }
+}
+```
+    </CodeBlock>
+  </LanguageContent>
+  <LanguageContent language="swift">
+    <CodeBlock language="swift">
+      ```swift
+{
+  "@context": ["https://www.w3.org/2018/credentials/v1"],
+  "type": ["VerifiableCredential"],
+  "id": "urn:uuid:12345678-1234-5678-1234-567812345678",
+  "issuer": "did:dht:z6Mkn4w6nSaWe4fjNJRvaHZwFnMm5VexvjzDeozEu2G7jC34",
+  "issuanceDate": "2024-01-01T19:23:24Z",
+  "expirationDate": "2026-05-19T08:02:04Z",
+  "credentialSchema": {
+    id: "https://vc.schemas.host/kcc.schema.json",
+    type: "JsonSchema"
+  },
+  "evidence": [
+    {
+      kind: "document_verification",
+      checks: ["passport", "utility_bill"]
+    },
+    {
+      kind: "sanction_screening",
+      checks: ["PEP"]
+    }
+  ],
+  "credentialSubject": {
+    "id": "did:dht:z6MkjGSeekPGE9QfczHWyW8v2ZzJU68kqSHzV7L2dmQyuyDu",
+    "countryOfResidence": "US",
+    "tier": "Gold",
+    "jurisdiction": {
+      "country": "US"
+    }
+  }
+}
+```
+    </CodeBlock>
+  </LanguageContent>
+</LanguageSwitcher>
+
+To the user, an example KCC may look like this:
+
+![example KCC](/img/aliceKcc.png)
+
+With that, you've successfully gone through the Identity Verification flow, requested a Known Customer Credential on behalf of the user, and securely stored the user's Known Customer Credential. Please note that this example is a foundational implementation. For a production environment, it's crucial to enhance this basic setup with comprehensive error handling, secure storage and security measures.
+
+## Next Steps
+
+For an example of the complete flow for requesting and issuing a KCC, check out the [Known Customer Credential Exemplar](https://github.com/TBD54566975/kcc-prototype-exemplar) on GitHub. This exemplar provides a implementation of requesting and issuing a Known Customer Credential (KCC).

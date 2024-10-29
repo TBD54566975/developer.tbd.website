@@ -32,13 +32,20 @@ jobs:
             'TBD54566975/incubation-dcx',
             'block-open-source/goose-plugins',
             'csuwildcat/fllw',
-            'csuwildcat/aliased'
+            'csuwildcat/aliased',
+            'block-open-source/goose'
           ];
 
           const POINT_VALUES = {
             small: 5,
             medium: 10,
             large: 15
+          };
+
+          const POINT_TO_LABEL = {
+            5: 'small',
+            10: 'medium',
+            15: 'large'
           };
 
           const calculatePoints = (labels) => {
@@ -51,24 +58,47 @@ jobs:
               console.log(`Fetching recent PRs for ${repo}`);
               const [repoOwner, repoName] = repo.split('/');
               
-              const thirtyDaysAgo = new Date(Date.now() - 30 * 24 * 60 * 60 * 1000).toISOString();
+              const currentYear = new Date().getFullYear();
+              const startDate = `${currentYear}-10-01T00:00:00Z`;
+              const endDate = `${currentYear}-10-31T23:59:59Z`;
               
-              const { data: prs } = await github.rest.pulls.list({
-                owner: repoOwner,
-                repo: repoName,
-                state: 'closed',
-                sort: 'updated',
-                direction: 'desc',
-                per_page: 100
-              });
-
-              console.log(`Fetched ${prs.length} PRs for ${repo}`);
-
-              const hacktoberfestPRs = prs.filter(pr => {
+              let allPRs = [];
+              let page = 1;
+              let hasMorePRs = true;
+              
+              while (hasMorePRs) {
+                const { data: prs } = await github.rest.pulls.list({
+                  owner: repoOwner,
+                  repo: repoName,
+                  state: 'closed',
+                  sort: 'updated',
+                  direction: 'desc',
+                  per_page: 100,  // GitHub's maximum allowed value
+                  page: page
+                });
+                
+                allPRs = allPRs.concat(prs);
+                
+                if (prs.length < 100) {
+                  hasMorePRs = false;
+                } else {
+                  const oldestPRDate = new Date(prs[prs.length - 1].updated_at);
+                  if (oldestPRDate < new Date(startDate)) {
+                    hasMorePRs = false;
+                  } else {
+                    page++;
+                  }
+                }
+              }
+          
+              console.log(`Fetched ${allPRs.length} PRs for ${repo}`);
+          
+              const hacktoberfestPRs = allPRs.filter(pr => {
                 const isMerged = !!pr.merged_at;
-                const isRecent = new Date(pr.merged_at) > new Date(thirtyDaysAgo);
+                const mergedAt = new Date(pr.merged_at);
+                const isInHacktoberfestRange = mergedAt >= new Date(startDate) && mergedAt <= new Date(endDate);
                 const isHacktoberfest = pr.labels.some(label => label.name.toLowerCase() === 'hacktoberfest');
-                return isMerged && isRecent && isHacktoberfest;
+                return isMerged && isInHacktoberfestRange && isHacktoberfest;
               }).map(pr => ({
                 user: pr.user.login,
                 points: calculatePoints(pr.labels),
@@ -76,7 +106,7 @@ jobs:
                 prNumber: pr.number,
                 prTitle: pr.title,
               }));
-
+          
               return hacktoberfestPRs;
             } catch (error) {
               console.error(`Error fetching PRs for ${repo}: ${error.message}`);
@@ -90,19 +120,29 @@ jobs:
               const flatPRs = allPRs.flat();
 
               const leaderboard = flatPRs.reduce((acc, pr) => {
-                if (!acc[pr.user]) acc[pr.user] = { points: 0, prs: 0 };
+                if (!acc[pr.user]) {
+                  acc[pr.user] = { points: 0, prs: 0, highestValue: 0 };
+                }
                 acc[pr.user].points += pr.points;
                 acc[pr.user].prs += 1;
+                acc[pr.user].highestValue = Math.max(acc[pr.user].highestValue, pr.points);
                 return acc;
               }, {});
 
               const sortedLeaderboard = Object.entries(leaderboard)
-                .sort(([, a], [, b]) => b.points - a.points)
+                .sort(([, a], [, b]) => {
+                  if (b.points !== a.points) {
+                    return b.points - a.points;
+                  }
+                  // If points are tied, sort by highest value contribution
+                  return b.highestValue - a.highestValue;
+                })
                 .map(([username, data], index) => ({ 
                   rank: index + 1, 
                   username, 
                   points: data.points, 
-                  prs: data.prs 
+                  prs: data.prs,
+                  highestValue: POINT_TO_LABEL[data.highestValue] || 'small'
                 }));
 
               return sortedLeaderboard;
@@ -118,9 +158,9 @@ jobs:
 
           ### 🌟 **Current Rankings:**
 
-          | Rank | Contributor | Points | PRs |
-          |------|-------------|--------|-----|
-          ${leaderboardData.map(entry => `| ${entry.rank} | @${entry.username} | ${entry.points} | ${entry.prs} |`).join('\n')}
+          | Rank | Contributor | Points | PRs | Biggest PR to Date |
+          |------|-------------|--------|-----|------------------|
+          ${leaderboardData.map(entry => `| ${entry.rank} | @${entry.username} | ${entry.points} | ${entry.prs} | ${entry.highestValue} |`).join('\n')}
 
           ### 📜 How It Works:
           The top 10 contributors with the most points will snag custom swag with this year's exclusive TBD x Hacktoberfest 2024 design. To earn your place in the leaderboard, we have created a points system that is explained below. As you complete a task by successfully merging a PR, you will automatically be granted a certain # of points.
@@ -141,7 +181,7 @@ jobs:
           - **Criteria:** Rankings are based on how many points you earn across all participating TBD repos. To ensure your PRs are successfully merged:
             - Ensure your contributions are aligned with our [project's CoC](https://developer.tbd.website/open-source/code-of-conduct).
             - Refer to each participating repo's [Contributing Guide](https://github.com/TBD54566975/developer.tbd.website/blob/main/CONTRIBUTING.md).
-          - **Tie-Breakers:** In the event of a tie, the contributor with the earliest PR merge timestamp will be ranked higher.
+          - **Tie-Breakers:** In the event of a tie in total points, the contributor with the highest value single contribution (large > medium > small) will be ranked higher.
 
 
           ### 🚀 Get Featured:

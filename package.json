@@ -13,10 +13,10 @@
     "start:tutorial-shared-todo-starter": "pnpm --filter shared-todo-starter run dev",
     "start:tutorial-shared-todo-completed": "pnpm --filter shared-todo-completed run dev",
     "start:widget": "pnpm --filter web5-quickstart-widgets start",
-    "start:new": "pnpm --filter site-new run start",
+    "start:new": "pnpm shnip:new && pnpm --filter site-new run start",
     "serve:new": "pnpm --filter site-new run serve",
     "build": "pnpm run shnip && pnpm --filter site run build",
-    "build:new": "pnpm --filter site-new run build",
+    "build:new": "pnpm shnip:new && pnpm --filter site-new run build",
     "clear": "pnpm --filter site run clear",
     "clear:new": "pnpm --filter site-new run clear",
     "test": "pnpm test:js && pnpm test:kotlin && pnpm test:swift",
@@ -28,7 +28,8 @@
     "test:versions": "node check-versions.js",
     "test:watch": "pnpm run shnip && pnpm vitest --config vite.config.ts --watch",
     "shnip": "node ./shnippet/src/cli --structure match && node ./shnippet/src/cli --structure byLanguage",
-    "shnip:new": "node ./shnip/src/cli",
+    "shnip:new": "node ./shnip/dist/bin/cli.js",
+    "shnip:build:new": "node ./shnip build",
     "test:js:new": "pnpm vitest run --config new-vite.config --no-threads",
     "test:kotlin:new": "./site-new/testsuites/testsuite-kotlin/mvnw clean verify -f site-new/testsuites/testsuite-kotlin --batch-mode",
     "test:swift:new": "swift test --package-path ./site-new/testsuites/testsuite-swift",
@@ -42,7 +43,7 @@
     "@tbdex/http-client": "1.1.0",
     "@tbdex/http-server": "1.1.0",
     "@tbdex/protocol": "1.1.0",
-    "@web5/api": "0.11.0",
+    "@web5/api": "0.12.0",
     "@web5/common": "1.0.0",
     "@web5/credentials": "1.1.1",
     "@web5/crypto": "1.0.5",
@@ -83,7 +84,9 @@
     "overrides": {
       "vite": "5.1.4",
       "nuxt": "3.10.3",
-      "postcss": "8.4.31"
+      "postcss": "8.4.31",
+      "axios": "1.7.4",
+      "elliptic": "6.5.7"
     }
   }
 }

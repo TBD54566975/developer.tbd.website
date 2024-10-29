@@ -3,18 +3,18 @@ import clsx from "clsx";
 import { ThemeClassNames } from "@docusaurus/theme-common";
 import {
   useAnnouncementBar,
+  useLocalPathname,
   useScrollPosition,
 } from "@docusaurus/theme-common/internal";
 import { translate } from "@docusaurus/Translate";
 import DocSidebarItems from "@theme/DocSidebarItems";
 import type { Props } from "@theme/DocSidebar/Desktop/Content";
-import Background from "@site/src/components/Background";
-import useBaseUrl from "@docusaurus/useBaseUrl";
-import DocBreadcrumbsWrapper from "@site/src/theme/DocBreadcrumbs";
-
-import LanguageSwitcher from "@site/src/components/LanguageSwitcher";
+import Heading from "@theme/Heading";
 
 import styles from "./styles.module.css";
+import Link from "@docusaurus/Link";
+import ArrowLeft from "@site/assets/icons/ArrowLeft";
+import { BlockBg } from "@site/src/components/BlockBg";
 
 function useShowAnnouncementBar() {
   const { isActive } = useAnnouncementBar();
@@ -38,7 +38,19 @@ export default function DocSidebarDesktopContent({
 }: Props): JSX.Element {
   const showAnnouncementBar = useShowAnnouncementBar();
 
-  const sidebarHeader = sidebar[0].customProps.sidebarHeader;
+  const sidebarHeader = sidebar[0].customProps.sidebarHeader as string;
+
+  const pathName = useLocalPathname();
+  const pathArray = pathName.split("/");
+  if (pathArray.length > 1) {
+    pathArray.pop();
+  }
+
+  let previousePage = pathArray.join("/");
+
+  if (`${previousePage}/` === pathName) {
+    previousePage = "/";
+  }
 
   return (
     <nav
@@ -48,21 +60,37 @@ export default function DocSidebarDesktopContent({
         description: "The ARIA label for the sidebar navigation",
       })}
       className={clsx(
-        "menu thin-scrollbar flex h-full flex-col",
+        "menu thin-scrollbar flex flex-col",
         styles.menu,
         showAnnouncementBar && styles.menuWithAnnouncementBar,
         className,
       )}
       style={{ minHeight: "100vh" }}
     >
-      <Background
-        bgColor="yellow"
-        squareCount={5}
-        className={"mb-8 h-52 w-64 py-2 pl-4"}
+      <BlockBg
+        className={
+          "center grid h-[105px] items-center bg-tbd-yellow-shade-1 px-twist-core-spacing-8"
+        }
+        secondaryClassName="bg-tbd-yellow-shade-2"
+        maxSize={30}
+        minSize={20}
+        columns={6}
+        rows={4}
+        decreaseBlockLevel={0}
       >
-        <DocBreadcrumbsWrapper />
-        <h4 className="text-dark-grey">{sidebarHeader}</h4>
-      </Background>
+        <Link
+          to={previousePage}
+          className={
+            "mb-twist-core-spacing-8 font-spaceGrotesk text-xs text-black hover:text-black hover:no-underline"
+          }
+        >
+          <ArrowLeft className="relative top-1 mr-[6px]" />
+          Back
+        </Link>
+        <Heading as="h4" className="my-0 text-dark-grey">
+          {sidebarHeader}
+        </Heading>
+      </BlockBg>
       <ul
         className={clsx(
           ThemeClassNames.docs.docSidebarMenu,
@@ -71,7 +99,6 @@ export default function DocSidebarDesktopContent({
       >
         <DocSidebarItems items={sidebar} activePath={path} level={1} />
       </ul>
-      <LanguageSwitcher />
     </nav>
   );
 }
