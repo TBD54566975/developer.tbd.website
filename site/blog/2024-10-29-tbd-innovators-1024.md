@@ -24,6 +24,7 @@ tags: [community]
 
   <link rel="apple-touch-icon" href="https://developer.tbd.website/img/tbd-fav-icon-main.png" />
 </head>
+![TBD Innovators 10-24](/img/blog-tbd-innovators-1024.png)
 
 # How Decentralized Apps Can Make Everyday Tasks Easy
 
@@ -37,7 +38,7 @@ As our open source projects continue to develop, our community members contribut
 
 Developed by Sondre Bjellås (@sondreb), Ariton is a Web5 community SuperApp, a decentralized platform for building and managing communities! Ariton runs on any device with the ability to add any Mini Apps (or features) you want, like chat, groups, events, notes and more. Built on free and open standards, your identity and data is always in your full control. Currently in prototype stage, you can learn more and [try it out here](https://ariton.app/#learn).
 
-# Kin AI
+## Kin AI
 
 Kin AI is a personalized Web5 AI companion that offers guidance, coaching, and emotional support! Kin helps you piece together your problems and how to solve them in a way that seamlessly fits how you want it to. All your data stays on your device, and no one can access it without your specific permission. Live in beta, you can [get early access on the App or Play store](https://mykin.ai/#your-life-with-kin).
 
