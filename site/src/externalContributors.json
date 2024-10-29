@@ -141,6 +141,13 @@
   },
   {
     "type": "video",
+    "thumbnail": "/img/external-contributor/hfest.png",
+    "title": "Hacktoberfest 2024 Experience",
+    "link": "https://youtu.be/Kb5eqXe3tGo?si=pHNi5kL2r4_jTSvd",
+    "contributor": "Kiran Baliga"
+  },
+  {
+    "type": "video",
     "thumbnail": "img/external-contributor/dwn_video_thumbnail.png",
     "title": "What are Decentralized Web Nodes (DWNs)?",
     "link": "https://youtu.be/p45SB9VfHZI",
