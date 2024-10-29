@@ -36,7 +36,7 @@ As our open source projects continue to develop, our community members contribut
 
 ## Ariton
 
-Developed by Sondre Bjellås (@sondreb), Ariton is a Web5 community SuperApp, a decentralized platform for building and managing communities! Ariton runs on any device with the ability to add any Mini Apps (or features) you want, like chat, groups, events, notes and more. Built on free and open standards, your identity and data is always in your full control. Currently in prototype stage, you can learn more and [try it out here](https://ariton.app/#learn).
+Developed by Sondre Bjellås ([@sondreb](https://github.com/sondreb)), Ariton is a Web5 community SuperApp. It acts as a decentralized platform for building and managing communities! Ariton runs on any device with the ability to add any Mini Apps (or features) you want, like chat, groups, events, notes and more. Built on free and open standards, your identity and data is always in your full control. Currently in prototype stage, you can learn more and [try it out here](https://ariton.app/#learn).
 
 ## Kin AI
 
@@ -44,7 +44,7 @@ Kin AI is a personalized Web5 AI companion that offers guidance, coaching, and e
 
 ## BlockCore Wallet
 
-Also developed by Sondre (mentioned above), BlockCore Wallet is a non-custodial Web5 wallet in your browser that supports DIDs (decentralized identifiers), tokens, crypto currencies and more! You can add different accounts, send/receive payments, and even use an address book to quickly send multiple payments to one contact. You can learn more and try it out yourself in the [BlockCore Wallet Guide](https://www.blockcore.net/wallet/guide).
+Also developed by Sondre ([mentioned above](https://github.com/sondreb)), BlockCore Wallet is a non-custodial Web5 wallet in your browser that supports DIDs (decentralized identifiers), tokens, crypto currencies and more! You can add different accounts, send/receive payments, and even use an address book to quickly send multiple payments to one contact. You can learn more and try it out yourself in the [BlockCore Wallet Guide](https://www.blockcore.net/wallet/guide).
 
 ## Share Your Open Source Project
 
