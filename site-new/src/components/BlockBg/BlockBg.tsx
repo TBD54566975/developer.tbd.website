@@ -112,9 +112,9 @@ const BlockBg = ({
 
   return (
     <div
-      className={`${className} relative grid w-full overflow-clip *:[grid-area:1/]`}
+      className={`${className} relative grid overflow-clip *:[grid-area:1/]`}
     >
-      <div className={cn("absolute inset-0 z-0 w-full")}>
+      <div className={cn("absolute inset-0 z-0")}>
         {grid.map((row, i) => {
           // generate a random height for the row
           const height = getRandomNumber({ min: minSize, max: maxSize });

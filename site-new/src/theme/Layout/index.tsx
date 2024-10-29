@@ -22,7 +22,6 @@ export default function Layout(props: Props): JSX.Element {
   const {
     children,
     noFooter,
-    wrapperClassName,
     // Not really layout-related, but kept for convenience/retro-compatibility
     title,
     description,
@@ -37,31 +36,12 @@ export default function Layout(props: Props): JSX.Element {
       <AnnouncementBar />
       <Navbar />
       <ReadingProgress />
-      <BlockBg
-        maxSize={150}
-        minSize={50}
-        columns={30}
-        rows={50}
-        className={"bg-black"}
-        secondaryClassName="bg-tbd-gray-shade-2"
-        animate
-        intervalDuration={10000}
-      >
-        <div
-          id={SkipToContentFallbackId}
-          className={clsx(
-            ThemeClassNames.wrapper.main,
-            styles.mainWrapper,
-            wrapperClassName,
-          )}
-        >
-          <ErrorBoundary
-            fallback={(params) => <ErrorPageContent {...params} />}
-          >
-            {children}
-          </ErrorBoundary>
-        </div>
-      </BlockBg>
+
+      <div id={SkipToContentFallbackId}>
+        <ErrorBoundary fallback={(params) => <ErrorPageContent {...params} />}>
+          {children}
+        </ErrorBoundary>
+      </div>
       {!noFooter && <Footer />}
     </LayoutProvider>
   );

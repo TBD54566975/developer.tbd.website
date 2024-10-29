@@ -123,8 +123,6 @@ body {
 }
 
 .container {
-  margin-left: 0;
-  margin-right: 0;
   margin-bottom: var(--twist-core-spacing-15);
 }
 
@@ -356,7 +354,11 @@ nav {
   font-family: "SpaceGrotesk";
   font-weight: 500;
   font-size: 18px;
-  line-height: 18px;
+  padding-left: var(--twist-core-spacing-30);
+  padding-right: var(--twist-core-spacing-30);
+  padding-top: var(--twist-core-spacing-8);
+  display: flex;
+  height: 86px;
 }
 
 .navbar a {

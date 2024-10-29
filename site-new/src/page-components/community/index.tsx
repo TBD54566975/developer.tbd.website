@@ -71,39 +71,48 @@ const explore = [
 
 function Community() {
   return (
-    <Background bgColor="black">
-      <Hero
-        subject="Community"
-        title="Community"
-        description="Today’s financial systems leave people behind.
-      We’re building a more inclusive future for anyone 
-      with internet access. And we’re creating it like the 
-      web itself: as a public good."
-      />
-      <div className="container mx-auto px-4 py-12">
-        <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
-          {features.map((feature, index) => (
-            <TextIconFeature key={index} body={feature.text} variant="yellow" />
-          ))}
+    <Background
+      bgColor="black"
+      className="flex min-h-screen items-center justify-center"
+    >
+      <div className="w-full text-center">
+        <Hero
+          subject="Community"
+          title="Community"
+          description="Today’s financial systems leave people behind.
+        We’re building a more inclusive future for anyone 
+        with internet access. And we’re creating it like the 
+        web itself: as a public good."
+        />
+        <div className="container mx-auto px-4 py-12">
+          <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+            {features.map((feature, index) => (
+              <TextIconFeature
+                key={index}
+                body={feature.text}
+                variant="yellow"
+              />
+            ))}
+          </div>
         </div>
-      </div>
-      <MarqueeTextSkewed
-        texts={["FUN TEXT HERE"]}
-        className="text-black"
-        bgColor="teal"
-        reverse
-        repeat={9}
-      />
-      <div className="container mx-auto px-4 py-12">
-        <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
-          {explore.map((feature, index) => (
-            <Card
-              key={index}
-              title={feature.title}
-              text={feature.text}
-              url={feature.url}
-            />
-          ))}
+        <MarqueeTextSkewed
+          texts={["FUN TEXT HERE"]}
+          className="text-black"
+          bgColor="teal"
+          reverse
+          repeat={9}
+        />
+        <div className="container mx-auto px-4 py-12">
+          <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+            {explore.map((feature, index) => (
+              <Card
+                key={index}
+                title={feature.title}
+                text={feature.text}
+                url={feature.url}
+              />
+            ))}
+          </div>
         </div>
       </div>
     </Background>
