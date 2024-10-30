@@ -166,5 +166,12 @@
     "title": "Web5: What Are Verifiable Credentials?",
     "link": "https://www.tiktok.com/@bytesofbree/video/7431311214673726762",
     "contributor": "Bree Hall"
+  },
+  {
+    "type": "blog",
+    "thumbnail": "/img/external-contributor/mohit_hacktoberfest_journey.png",
+    "title": "Contributing to the Future with TBD: My Hacktoberfest Journey",
+    "link": "https://marstech.hashnode.dev/contributing-to-the-future-with-tbd-my-hacktoberfest-journey",
+    "contributor": "Mohit Raj Sinha"
   }
 ]
