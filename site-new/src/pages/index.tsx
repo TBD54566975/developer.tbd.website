@@ -48,9 +48,14 @@ export default function Home(): JSX.Element {
       title={`Hello from ${siteConfig.title}`}
       description="Description will go into a meta tag in <head />"
     >
-      <BlockBg maxSize={150} minSize={50} className="pt-20">
-        <div className="mx-auto w-full max-w-[1200px] px-4 py-12">
-          <div className="flex flex-wrap items-center">
+      <BlockBg
+        maxSize={150}
+        minSize={50}
+        className="mb-twist-core-spacing-50 bg-tbd-gray-shade-1 pb-twist-core-spacing-50 pt-20"
+        secondaryClassName="bg-tbd-gray-tint-1"
+      >
+        <div className="mx-auto mb-twist-core-spacing-100 w-full max-w-[1400px] px-4 py-12">
+          <div className="mb-twist-core-spacing-15 flex flex-wrap items-center">
             <div className="w-full text-center lg:w-1/2 lg:text-left">
               <div className="text-white">
                 <span className="eyebrow text-tbd-yellow">
@@ -80,7 +85,7 @@ export default function Home(): JSX.Element {
             </div>
           </div>
           <div className="flex justify-center px-4">
-            <div className="flex h-[128px] w-full max-w-[80%] items-center justify-center border-[0.5px] border-solid border-tbd-yellow bg-transparent px-[20px] py-[24px] lg:px-[38px] lg:py-[46px]">
+            <div className="flex h-[128px] w-full items-center justify-center border-[0.5px] border-solid border-tbd-yellow bg-transparent px-[20px] py-[24px] lg:px-[38px] lg:py-[46px]">
               <p className="mb-0">
                 We're building <span ref={typeWriterRef}></span>
                 <span className="relative top-1 ml-1 inline-block h-7 w-1 animate-caret bg-[lightgrey]" />
@@ -89,7 +94,6 @@ export default function Home(): JSX.Element {
           </div>
         </div>
 
-        {/* Full Width PixelBorder Section */}
         <PixelBorderWrapper
           blockSize={50}
           outerTopClassName="mt-8 lg:mt-24"
@@ -122,7 +126,6 @@ export default function Home(): JSX.Element {
           </BlockBg>
         </PixelBorderWrapper>
 
-        {/* Bottom Section */}
         <div className="mx-auto mb-twist-core-spacing-30 w-full max-w-[1200px] px-4">
           <span className="eyebrow text-tbd-yellow">TEEKAY LOREM IPSUM</span>
           <Heading

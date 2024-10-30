@@ -14,9 +14,7 @@ import Footer from "@theme/Footer";
 import LayoutProvider from "@theme/Layout/Provider";
 import ErrorPageContent from "@theme/ErrorPageContent";
 import type { Props } from "@theme/Layout";
-import styles from "./styles.module.css";
 import { ReadingProgress } from "@site/src/components/ReadingProgress";
-import { BlockBg } from "@site/src/components/BlockBg";
 
 export default function Layout(props: Props): JSX.Element {
   const {
