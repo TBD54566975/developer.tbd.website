@@ -19,17 +19,17 @@ const features = [
 const explore = [
   {
     title: "Code of Conduct",
-    url: "/open-source/code-of-conduct",
+    url: "/community/code-of-conduct",
     text: "We’re building open protocols, standards, and libraries. Our projects are open source because we want everyone in the economy to benefit: individuals, businesses, institutions, and government.",
   },
   {
     title: "Governance",
-    url: "/open-source/governance",
+    url: "/community/governance",
     text: "We’re building open protocols, standards, and libraries. Our projects are open source because we want everyone in the economy to benefit: individuals, businesses, institutions, and government.",
   },
   {
     title: "Monthly Spotlight",
-    url: "/open-source/monthly-spotlight",
+    url: "/community/spotlight",
     text: "We’re building open protocols, standards, and libraries. Our projects are open source because we want everyone in the economy to benefit: individuals, businesses, institutions, and government.",
   },
   {

@@ -15,9 +15,9 @@ function Hero({ subject, title, description, url }: HeroProps): JSX.Element {
   return (
     <BlockBg
       className="flex justify-center bg-tbd-gray-shade-2 pt-twist-core-spacing-30"
-      maxSize={150}
-      minSize={50}
-      columns={12}
+      maxSize={200}
+      minSize={100}
+      columns={24}
       rows={36}
       secondaryClassName="bg-tbd-gray-shade-1"
     >
