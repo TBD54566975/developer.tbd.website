@@ -153,12 +153,19 @@
     "link": "https://youtu.be/p45SB9VfHZI",
     "contributor": "Mohit Raj Sinha"
   },
-  {
+  {   
     "type": "blog",
     "thumbnail": "/img/external-contributor/hacktoberfest-journey.png",
     "title": "Hacktoberfest Journey",
     "link": "https://medium.com/@ankitv78389/hacktoberfest-journey-1d3c4e48bee2",
     "contributor": "Ankit Verma"
+  },
+  {   
+    "type": "video",
+    "thumbnail": "/img/external-contributor/breehall_verifiable_credentials.png",
+    "title": "Web5: What Are Verifiable Credentials?",
+    "link": "https://www.tiktok.com/@bytesofbree/video/7431311214673726762",
+    "contributor": "Bree Hall"
   },
   {
     "type": "blog",
