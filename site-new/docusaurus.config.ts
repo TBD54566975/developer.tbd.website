@@ -81,49 +81,8 @@ const config: Config = {
         src: "img/logo.svg",
       },
       items: [
-        {
-          type: "dropdown",
-          label: "Community",
-          position: "right",
-          items: [
-            {
-              label: "Code of Conduct",
-              href: "/community/code-of-conduct",
-            },
-            {
-              label: "Governance",
-              href: "/community/governance",
-            },
-            {
-              label: "Monthly Spotlight",
-              href: "/community/spotlight",
-            },
-            {
-              label: "Calendar",
-              href: "/community/calendar",
-            },
-            {
-              label: "Open Source Playbook",
-              href: "/community/open-source-playbook",
-            },
-            {
-              label: "Contribution Guide",
-              href: "/community/contribute",
-            },
-            {
-              label: "Incubation Program",
-              href: "/community/incubation-program",
-            },
-            {
-              label: "Innovators Showcase",
-              href: "/community/innovators-showcase",
-            },
-            {
-              label: "Assets",
-              href: "/community/assets",
-            },
-          ],
-        },
+        { label: "Community", to: "/community", position: "right" },
+
         {
           type: "docSidebar",
           sidebarId: "docsSidebar",

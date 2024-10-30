@@ -23,7 +23,7 @@ const ReadingProgress = () => {
   }, [rocketRef]);
 
   return (
-    <div className="fixed top-[--ifm-navbar-height] z-20 h-[72px] w-full bg-black">
+    <div className="fixed z-20 h-[72px] w-full bg-black">
       <div className="relative w-full">
         <span
           ref={rocketRef}

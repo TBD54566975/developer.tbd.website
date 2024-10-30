@@ -112,7 +112,7 @@ const BlockBg = ({
 
   return (
     <div
-      className={`${className} relative grid overflow-clip *:[grid-area:1/1]`}
+      className={`${className} relative grid overflow-clip *:[grid-area:1/]`}
     >
       <div className={cn("absolute inset-0 z-0")}>
         {grid.map((row, i) => {
@@ -124,7 +124,7 @@ const BlockBg = ({
               key={i}
               style={{
                 height,
-                gridTemplateColumns: `repeat(${rows}, minmax(0,1fr))`,
+                gridTemplateColumns: `repeat(${columns}, minmax(0,1fr))`,
               }}
             >
               {row.map((col, j) => {

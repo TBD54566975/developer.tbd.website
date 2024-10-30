@@ -84,10 +84,6 @@ body {
   --ifm-toc-padding-horizontal: 24px;
 }
 
-h2 {
-  font-family: "SpaceGrotesk", sans-serif;
-}
-
 .hero-primary {
   --ifm-hero-background-color: var(--ifm-color-primary);
 }
@@ -127,8 +123,6 @@ h2 {
 }
 
 .container {
-  margin-left: 0;
-  margin-right: 0;
   margin-bottom: var(--twist-core-spacing-15);
 }
 
@@ -321,22 +315,6 @@ h2 {
   padding-left: "60px";
 }
 
-/* Headlines */
-
-h1,
-h2,
-h3,
-h4 {
-  font-family: "SpaceGrotesk", sans-serif;
-  font-weight: 500;
-  color: var(--ifm-color-primary);
-}
-
-h1 {
-  font-size: 62px;
-  line-height: 68.2px;
-}
-
 nav {
   overflow-x: clip;
 }
@@ -376,7 +354,11 @@ nav {
   font-family: "SpaceGrotesk";
   font-weight: 500;
   font-size: 18px;
-  line-height: 18px;
+  padding-left: var(--twist-core-spacing-30);
+  padding-right: var(--twist-core-spacing-30);
+  padding-top: var(--twist-core-spacing-8);
+  display: flex;
+  height: 86px;
 }
 
 .navbar a {
@@ -670,18 +652,6 @@ a:has(.footer__logo) {
 }
 
 @layer base {
-  h2 {
-    @apply text-1.2lg lg:text-4.5xl;
-  }
-
-  h3 {
-    @apply font-spaceGrotesk text-[1.375rem] leading-[1.65rem] lg:text-[2.125rem] lg:leading-[2.55rem];
-  }
-
-  h4 {
-    @apply text-lg leading-[1.463rem] lg:text-2.5xl;
-  }
-
   p {
     @apply p;
   }

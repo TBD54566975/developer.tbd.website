@@ -10,10 +10,7 @@ import Check from "../../static/img/Check";
 function FeedbackCard() {
   return (
     <div className="max-w-[600px] border-[0.5px] border-solid border-tbd-yellow p-twist-core-spacing-12">
-      <Heading
-        as="h3"
-        className="text-3xl text-tbd-yellow sm:text-[22px] md:text-3xl"
-      >
+      <Heading as="h3" className="text-tbd-yellow">
         Was this page helpful?
       </Heading>
       <div className="border-1 my-twist-core-spacing-9 flex border-white">
