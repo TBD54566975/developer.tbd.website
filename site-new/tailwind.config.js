@@ -69,11 +69,11 @@ module.exports = {
         "tbd-warn": "#FF7A1A",
         "tbd-danger": "#FF401D",
         "tbd-red": "#FF401D",
-        "tbd-purple-tint-2": "#BA6BFF",
-        "tbd-purple-tint-1": "#A033FF",
-        "tbd-purple": "#9A1AFF",
-        "tbd-purple-shade-1": "#9500FF",
-        "tbd-purple-shade-2": "#8F00F5",
+        "tbd-purple-tint-2": "#CB8FFF",
+        "tbd-purple-tint-1": "#C786FF",
+        "tbd-purple": "#C17AFF",
+        "tbd-purple-shade-1": "#B968FF",
+        "tbd-purple-shade-2": "#B455FF",
         "tbd-gray-tint-2": "#2E2E2E",
         "tbd-gray-tint-1": "#262626",
         "tbd-gray": "#212121",
@@ -83,7 +83,6 @@ module.exports = {
       },
       fontFamily: {
         sans: ['"Inter"', ...fontFamily.sans],
-        jakarta: ['"Plus Jakarta Sans"', ...fontFamily.sans],
         mono: ['"Fira Code"', ...fontFamily.mono],
         spaceGrotesk: ["SpaceGrotesk", "sans-serif"],
         basis: ["Basis", "sans-serif"],
@@ -99,9 +98,62 @@ module.exports = {
         lg: "997px",
       },
       fontSize: {
-        "1.2lg": ["1.625rem", { lineHeight: "1.869rem" }],
-        "2.5xl": ["1.75rem", { lineHeight: "2.275rem" }],
-        "4.5xl": ["2.625rem", { lineHeight: "3.019rem" }],
+        xs: [
+          "0.75rem",
+          {
+            lineHeight: "1rem",
+            fontWeight: "500",
+          },
+        ],
+        sm: [
+          "0.875rem",
+          {
+            lineHeight: "1.25rem",
+            fontWeight: "500",
+          },
+        ],
+        base: [
+          "1rem",
+          {
+            lineHeight: "1.5rem",
+            fontWeight: "500",
+          },
+        ],
+        lg: [
+          "1.125rem",
+          {
+            lineHeight: "1.75rem",
+            fontWeight: "500",
+          },
+        ],
+        xl: [
+          "1.25rem",
+          {
+            lineHeight: "1.75rem",
+            fontWeight: "500",
+          },
+        ],
+        "2xl": [
+          "1.5rem",
+          {
+            lineHeight: "2rem",
+            fontWeight: "500",
+          },
+        ],
+        "3xl": [
+          "1.875rem",
+          {
+            lineHeight: "2.25rem",
+            fontWeight: "500",
+          },
+        ],
+        "4xl": [
+          "1.875rem",
+          {
+            lineHeight: "2.25rem",
+            fontWeight: "500",
+          },
+        ],
       },
       animation: {
         marquee: "marquee var(--duration) linear infinite",

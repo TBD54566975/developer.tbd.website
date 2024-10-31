@@ -1,5 +1,5 @@
 import React from "react";
-import Background from "@site/src/components/Background";
+import { BlockBg } from "@site/src/components/BlockBg";
 import Heading from "@theme/Heading";
 import Button from "@site/src/components/Button";
 
@@ -13,9 +13,13 @@ type HeroProps = {
 
 function Hero({ subject, title, description, url }: HeroProps): JSX.Element {
   return (
-    <Background
-      className="flex w-full justify-center pt-twist-core-spacing-30"
-      bgColor="black"
+    <BlockBg
+      className="flex justify-center bg-tbd-gray-shade-2 pt-twist-core-spacing-30"
+      maxSize={200}
+      minSize={100}
+      columns={24}
+      rows={36}
+      secondaryClassName="bg-tbd-gray-shade-1"
     >
       <div className="container mx-auto px-4 py-12">
         <div className="flex flex-col items-center justify-center text-center text-white">
@@ -25,7 +29,7 @@ function Hero({ subject, title, description, url }: HeroProps): JSX.Element {
               as="h1"
               className="relative mb-4 mt-twist-core-spacing-7 text-[48px] font-medium lg:text-[80px]"
             >
-              <span className="text-highlight-middle relative mb-twist-core-spacing-7 inline-block text-tbd-yellow">
+              <span className="relative mb-twist-core-spacing-7 inline-block text-tbd-yellow text-highlight-middle">
                 {title}
               </span>
             </Heading>
@@ -41,7 +45,7 @@ function Hero({ subject, title, description, url }: HeroProps): JSX.Element {
           )}
         </div>
       </div>
-    </Background>
+    </BlockBg>
   );
 }
 

@@ -1,7 +1,7 @@
 ---
 slug: did-contact-info
 title: "Why Broken Links Are Costing You Brand Deals (And How to Fix It)"
-description: "Decentralized Identifiers (DIDs) and service endpoints can keep your links accessible even during third-party outages. Ensuring your in full control of your online presence."
+description: "Decentralized Identifiers (DIDs) and service endpoints can keep your links accessible even during third-party outages. Ensuring you're in full control of your online presence."
 authors:
   name: Ebony Louis
 tags: [Decentralized Web Nodes, Decentralized Identity, Web5]
@@ -11,7 +11,7 @@ tags: [Decentralized Web Nodes, Decentralized Identity, Web5]
   <meta property="og:title" content="Why Broken Links Are Costing You Brand Deals (And How to Fix It)" />
   <meta property="og:type" content="website" />
   <meta property="og:url" content='https://developer.tbd.website/blog/did-contact-info' />
-  <meta name="og:description" content="Decentralized Identifiers (DIDs) and service endpoints can keep your links accessible even during third-party outages. Ensuring your in full control of your online presence." />
+  <meta name="og:description" content="Decentralized Identifiers (DIDs) and service endpoints can keep your links accessible even during third-party outages. Ensuring you're in full control of your online presence." />
   <meta property="og:image" content="https://developer.tbd.website/assets/images/did-contact-info-ecb7a2e8fc024bcbb4422cc0361c5fac.png" /> 
 
   <meta name="twitter:card" content="summary_large_image" />
@@ -19,7 +19,7 @@ tags: [Decentralized Web Nodes, Decentralized Identity, Web5]
   <meta name="twitter:site" content="@tbdevs" />
   <meta name="twitter:title" content="Why Broken Links Are Costing You Brand Deals (And How to Fix It)"/>
   <meta property="twitter:url" content='https://developer.tbd.website/blog/did-contact-info' /> 
-  <meta name="twitter:description" content="Decentralized Identifiers (DIDs) and service endpoints can keep your links accessible even during third-party outages. Ensuring your in full control of your online presence." />
+  <meta name="twitter:description" content="Decentralized Identifiers (DIDs) and service endpoints can keep your links accessible even during third-party outages. Ensuring you're in full control of your online presence." />
   <meta name="twitter:image" content="https://developer.tbd.website/assets/images/did-contact-info-ecb7a2e8fc024bcbb4422cc0361c5fac.png" />
 
   <link rel="apple-touch-icon" href="https://developer.tbd.website/img/tbd-fav-icon-main.png" />

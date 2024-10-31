@@ -11,6 +11,7 @@ import JSMobile from "@site/assets/icons/JSMobile";
 import GoMobile from "@site/assets/icons/GoMobile";
 import KotlinMobile from "@site/assets/icons/KotlinMobile";
 import { IconButtonLink } from "./IconButton";
+import Link from "@docusaurus/Link";
 
 type CardProps = {
   icon?: React.ComponentType<{ className: string; fill?: string }>;
@@ -101,7 +102,6 @@ const randomTheme = (): Theme => {
   return themes[randomIndex];
 };
 
-
 function Card({
   className = "",
   icon: Icon,
@@ -114,14 +114,12 @@ function Card({
   text,
   buttonText,
   url,
-  orientation = "vertical", // Default orientation is vertical
+  orientation = "vertical",
   size = "large",
   ...props
 }: CardProps) {
   const Image = image;
-
   const selectedTheme = theme || randomTheme();
-
   const isHoverEnabled =
     props.type === "buttonText" || props.type === "default" || !props.type;
 
@@ -166,36 +164,25 @@ function Card({
 
   const currentSize = sizeClasses[size];
 
-  return (
-    <div
-      className={`${className} group flex items-center justify-center ${orientation === "horizontal" ? "flex-col md:flex-row" : "flex-col"} w-full ${currentSize.container} ${themeClass} ${borderClass} transition-all duration-300 mb-4`}
-    >
-
-      {/* image  */}
-      {Image && 
+  const CardContent = (
+    <>
+      {Image && (
         <img
           src={Image}
           alt={alt}
-          className={`${currentSize.image} object-cover w-full`}
+          className={`${currentSize.image} w-full object-cover`}
         />
-      }
+      )}
 
-      {/* card body container  */}
-      <div className="w-full h-full grid grid-cols-1 gap-4 p-8">
-        
-        {/* icon  */}
+      <div className="grid h-full w-full grid-cols-1 gap-4 p-8">
         {Icon && (
           <Icon
             className={`h-[126px] w-[84px] md:h-[150px] md:w-[100px] ${iconClass} transition-all duration-300`}
           />
         )}
 
-        {/* eyebrow for spotlight card  */}
-        {eyebrow && (
-          <p className="my-0 text-sm md:text-lg">{eyebrow}</p>
-        )}
+        {eyebrow && <p className="my-0 text-sm md:text-lg">{eyebrow}</p>}
 
-        {/* card heading  */}
         <Heading
           as="h3"
           className={cn(
@@ -208,40 +195,49 @@ function Card({
           {title}
         </Heading>
 
-        {/* card text  */}
-        {text && (
-          <p className="my-0 text-sm md:text-lg">{text}</p>
+        {text && <p className="my-0 text-sm md:text-lg">{text}</p>}
+
+        {url && buttonText && (
+          <Button text={buttonText} url={url} className="mt-2" />
         )}
-        
-        {/* button text  */}
-        {url && buttonText && <Button text={buttonText} url={url} className="mt-2" />}
-        
-        {/* language icon buttons */}
-        <>
-          {props.type === "languageButton" &&
-            Object.keys(props.resources).some(
-              (key) => props.resources[key as Languages],
-            ) && (
-              <div className="flex gap-twist-core-spacing-8">
-                {Object.keys(props.resources).map((key) => {
-                  const value = props.resources[key as Languages];
-                  return (
-                    value && (
-                      <IconButtonLink
-                        key={key}
-                        href={value}
-                        className="leading-[0]"
-                      >
-                        {languageIconMap[key as Languages]}
-                      </IconButtonLink>
-                    )
-                  );
-                })}
-              </div>
-            )
-          }
-        </>
+
+        {props.type === "languageButton" &&
+          Object.keys(props.resources).some(
+            (key) => props.resources[key as Languages],
+          ) && (
+            <div className="flex gap-twist-core-spacing-8">
+              {Object.keys(props.resources).map((key) => {
+                const value = props.resources[key as Languages];
+                return (
+                  value && (
+                    <IconButtonLink
+                      key={key}
+                      href={value}
+                      className="leading-[0]"
+                    >
+                      {languageIconMap[key as Languages]}
+                    </IconButtonLink>
+                  )
+                );
+              })}
+            </div>
+          )}
       </div>
+    </>
+  );
+
+  return url && !buttonText ? (
+    <Link
+      href={url}
+      className={`${className} group flex items-center justify-center ${orientation === "horizontal" ? "flex-col md:flex-row" : "flex-col"} w-full ${currentSize.container} ${themeClass} ${borderClass} mb-4 transition-all duration-300`}
+    >
+      {CardContent}
+    </Link>
+  ) : (
+    <div
+      className={`${className} group flex items-center justify-center ${orientation === "horizontal" ? "flex-col md:flex-row" : "flex-col"} w-full ${currentSize.container} ${themeClass} ${borderClass} mb-4 transition-all duration-300`}
+    >
+      {CardContent}
     </div>
   );
 }
