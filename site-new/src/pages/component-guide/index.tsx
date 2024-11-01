@@ -22,6 +22,7 @@ function ComponentList() {
       name: "Calendar",
       path: "/component-guide/calendar",
     },
+    { name: "BlockBg", path: "/component-guide/block-bg" },
   ];
 
   return (
