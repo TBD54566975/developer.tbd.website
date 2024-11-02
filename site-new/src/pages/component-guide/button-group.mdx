@@ -1,0 +1,86 @@
+import React from "react";
+import ButtonGroup from "@site/src/components/ButtonGroup";
+
+# ButtonGroup Component
+
+<div className="">
+<p>The `ButtonGroup` component renders a group of `Button` components based on an array of button data objects. This component is ideal for creating sets of related buttons with customizable layout options.</p>
+
+## Properties
+
+| Property         | Type                     | Required | Default | Description                                                                 |
+| ---------------- | ------------------------ | -------- | ------- | --------------------------------------------------------------------------- |
+| `buttons`        | `{ data: ButtonData }[]` | Yes      | `[]`    | Array of button data objects, each containing `label` and `url` properties. |
+| `className`      | `string`                 | No       | `""`    | Additional class names for styling the button group.                        |
+| `invertDarkMode` | `boolean`                | No       | `false` | Determines if the button colors should invert in dark mode.                 |
+
+### ButtonData Structure
+
+Each `ButtonData` object in the `buttons` array can contain the following properties:
+
+| Field   | Type     | Required | Description                       |
+| ------- | -------- | -------- | --------------------------------- |
+| `label` | `string` | Yes      | The text displayed on the button. |
+| `url`   | `string` | Yes      | The URL that the button links to. |
+
+## Usage
+
+To use the `ButtonGroup` component, pass an array of button data objects. Here is a sample array format for reference:
+
+```jsx
+const buttons = [
+  { data: { label: "Features", url: "/features" } },
+  { data: { label: "Pricing", url: "/pricing" } },
+  { data: { label: "Support", url: "/support" } },
+];
+```
+
+## Examples
+
+### Basic Button Group
+
+Displays a basic group of buttons.
+
+```jsx
+<ButtonGroup
+  buttons={[
+    { data: { label: "Features", url: "/features" } },
+    { data: { label: "Pricing", url: "/pricing" } },
+    { data: { label: "Support", url: "/support" } },
+  ]}
+/>
+```
+
+<ButtonGroup
+  buttons={[
+    { data: { label: "Features", url: "/features" } },
+    { data: { label: "Pricing", url: "/pricing" } },
+    { data: { label: "Support", url: "/support" } },
+  ]}
+/>
+
+### Button Group with Custom Styling
+
+Applies custom styling to the button group container.
+
+```jsx
+<ButtonGroup
+  buttons={[
+    { data: { label: "Features", url: "/features" } },
+    { data: { label: "Pricing", url: "/pricing" } },
+    { data: { label: "Support", url: "/support" } },
+  ]}
+  className="justify-center rounded-md bg-gray-200 p-4"
+/>
+```
+
+<ButtonGroup
+  buttons={[
+    { data: { label: "Features", url: "/features" } },
+    { data: { label: "Pricing", url: "/pricing" } },
+    { data: { label: "Support", url: "/support" } },
+  ]}
+  className="justify-center rounded-md bg-gray-200 p-4"
+/>
+
+</div>

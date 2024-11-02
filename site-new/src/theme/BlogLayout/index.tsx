@@ -57,7 +57,7 @@ export default function BlogLayout(props: Props): JSX.Element {
 
   return (
     <Layout {...layoutProps}>
-      <div className="margin-vert--lg container">
+      <div className="margin-vert--lg container pt-[46px]">
         <div className="row">
           <BlogSidebar sidebar={sidebar} />
           <main

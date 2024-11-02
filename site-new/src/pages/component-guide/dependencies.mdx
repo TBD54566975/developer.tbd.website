@@ -1,0 +1,99 @@
+import React from "react";
+import Dependencies from "@site/src/components/Dependencies";
+
+# Dependencies Component
+
+<div className="">
+<p>The `Dependencies` component renders a list of dependencies for different languages, with a language switcher to toggle between dependency lists. It includes special handling for Kotlin-based dependencies, displayed in Maven and Gradle formats through the `KotlinDependencies` helper component.</p>
+
+## Properties
+
+| Property               | Type               | Required | Description                                                       |
+| ---------------------- | ------------------ | -------- | ----------------------------------------------------------------- |
+| `languageDependencies` | `DependencyItem[]` | Yes      | Array of dependency items, each with a language and dependencies. |
+
+### DependencyItem Structure
+
+Each `DependencyItem` object in the `languageDependencies` array contains the following:
+
+| Field          | Type       | Required | Description                                       |
+| -------------- | ---------- | -------- | ------------------------------------------------- |
+| `language`     | `string`   | Yes      | The programming language of the dependencies.     |
+| `dependencies` | `string[]` | Yes      | Array of dependencies for the specified language. |
+
+## Usage
+
+To use the `Dependencies` component, pass an array of `DependencyItem` objects, with each object containing the language and list of dependencies.
+
+```jsx title="Dependencies Component"
+const languageDependencies = [
+  { language: "javascript", dependencies: ["axios", "react"] },
+  { language: "swift", dependencies: ["Alamofire", "SwiftyJSON"] },
+  {
+    language: "maven",
+    dependencies: ["com.squareup.retrofit2:retrofit:2.9.0"],
+  },
+  {
+    language: "gradle",
+    dependencies: ["implementation 'com.squareup.retrofit2:retrofit:2.9.0'"],
+  },
+];
+
+<Dependencies languageDependencies={languageDependencies} />;
+```
+
+## Examples
+
+### Basic Example
+
+Displays dependencies for JavaScript and Swift languages.
+
+```jsx
+<Dependencies
+  languageDependencies={[
+    { language: "javascript", dependencies: ["axios", "react"] },
+    { language: "swift", dependencies: ["Alamofire", "SwiftyJSON"] },
+  ]}
+/>
+```
+
+<Dependencies
+  languageDependencies={[
+    { language: "javascript", dependencies: ["axios", "react"] },
+    { language: "swift", dependencies: ["Alamofire", "SwiftyJSON"] },
+  ]}
+/>
+
+### Example with Kotlin (Maven and Gradle) Dependencies
+
+The `Dependencies` component also supports Kotlin dependencies with Maven and Gradle format options.
+
+```jsx
+<Dependencies
+  languageDependencies={[
+    {
+      language: "maven",
+      dependencies: ["com.squareup.retrofit2:retrofit:2.9.0"],
+    },
+    {
+      language: "gradle",
+      dependencies: ["implementation 'com.squareup.retrofit2:retrofit:2.9.0'"],
+    },
+  ]}
+/>
+```
+
+<Dependencies
+  languageDependencies={[
+    {
+      language: "maven",
+      dependencies: ["com.squareup.retrofit2:retrofit:2.9.0"],
+    },
+    {
+      language: "gradle",
+      dependencies: ["implementation 'com.squareup.retrofit2:retrofit:2.9.0'"],
+    },
+  ]}
+/>
+
+</div>

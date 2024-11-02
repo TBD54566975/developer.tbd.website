@@ -1,0 +1,67 @@
+import React from "react";
+import { TextIllustration } from "@site/src/components/TextIllustration";
+
+# TextIllustration Component
+
+<div className="">
+<p>The `TextIllustration` component is used to display a styled text illustration with an icon, title text, and optional body content. It allows for different color tones and is ideal for callouts or highlighted notes.</p>
+
+## Properties
+
+| Property    | Type              | Required | Default    | Description                                           |
+| ----------- | ----------------- | -------- | ---------- | ----------------------------------------------------- |
+| `tone`      | `ToneTypes`       | No       | `"yellow"` | Defines the color tone of the illustration.           |
+| `titleText` | `string`          | No       | `"Note"`   | Title text to display at the top of the illustration. |
+| `body`      | `React.ReactNode` | No       | `""`       | The content displayed below the title text.           |
+
+## Usage
+
+```jsx title="TextIllustration Component"
+<TextIllustration
+  tone="teal"
+  titleText="Reminder"
+  body={<p>This is an important reminder.</p>}
+/>
+```
+
+## Examples
+
+### Default TextIllustration
+
+Displays a basic `TextIllustration` with default tone and title.
+
+```jsx
+<TextIllustration body={<p>This is a default note.</p>} />
+```
+
+<TextIllustration body={<p>This is a default note.</p>} />
+
+### Custom Tone and Title
+
+Applies a custom tone and title text to the illustration.
+
+```jsx
+<TextIllustration
+  tone="purple"
+  titleText="Important"
+  body={<p>This is an important message with a purple tone.</p>}
+/>
+```
+
+<TextIllustration
+  tone="purple"
+  titleText="Important"
+  body={<p>This is an important message with a purple tone.</p>}
+/>
+
+### Illustration without Body Content
+
+Displays a `TextIllustration` with only title text and no body content.
+
+```jsx
+<TextIllustration tone="yellow" titleText="Attention" />
+```
+
+<TextIllustration tone="yellow" titleText="Attention" />
+
+</div>

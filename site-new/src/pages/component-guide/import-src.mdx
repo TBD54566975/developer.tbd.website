@@ -1,0 +1,48 @@
+import React from "react";
+import { ImportSrc } from "@site/src/components/ImportSrc";
+
+# ImportSrc Component
+
+<div className="">
+<p>The `ImportSrc` component displays the correct import statement for the `Web5` API based on the specified CDN source. It dynamically generates an import URL based on the selected CDN (`unpkg` or `jsdelivr`) and the `WEB5_VERSION` from the Docusaurus custom fields.</p>
+
+## Properties
+
+| Property | Type     | Required | Description                                                  |
+| -------- | -------- | -------- | ------------------------------------------------------------ |
+| `src`    | `string` | Yes      | Specifies the CDN source. Accepts `"unpkg"` or `"jsdelivr"`. |
+
+## Usage
+
+To use the `ImportSrc` component, specify the `src` prop to indicate the desired CDN source.
+
+THREE BACK TICKS HEREjsx title="ImportSrc Component"
+
+<ImportSrc src="unpkg" />
+THREE BACK TICKS HERE
+
+## Examples
+
+### Import from Unpkg
+
+Generates an import statement for `Web5` using the Unpkg CDN.
+
+THREE BACK TICKS HEREjsx
+
+<ImportSrc src="unpkg" />
+THREE BACK TICKS HERE
+
+<ImportSrc src="unpkg" />
+
+### Import from jsDelivr
+
+Generates an import statement for `Web5` using the jsDelivr CDN.
+
+THREE BACK TICKS HEREjsx
+
+<ImportSrc src="jsdelivr" />
+THREE BACK TICKS HERE
+
+<ImportSrc src="jsdelivr" />
+
+</div>

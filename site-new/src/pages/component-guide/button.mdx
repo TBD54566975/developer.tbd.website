@@ -1,0 +1,64 @@
+import React from "react";
+import { Button } from "@site/src/components/Button";
+
+# Button Component
+
+<div className="">
+<p>The `Button` component renders a customizable button with a link and optional arrow icon. It supports different sizes and styles, making it versatile for various link-based actions across the site.</p>
+
+## Properties
+
+| Property    | Type                 | Required | Default   | Description                            |
+| ----------- | -------------------- | -------- | --------- | -------------------------------------- |
+| `size`      | `"large" \| "small"` | No       | `"small"` | Specifies the button size.             |
+| `text`      | `string`             | Yes      | `""`      | The button text.                       |
+| `url`       | `string`             | Yes      | `""`      | The URL that the button links to.      |
+| `className` | `string`             | No       | `""`      | Additional custom classes for styling. |
+
+## Usage
+
+```jsx title="Button Component"
+<Button size="large" text="Learn More" url="/learn-more" />
+```
+
+## Examples
+
+### Small Button (Default)
+
+Displays a button with default small size.
+
+```jsx
+<Button text="Get Started" url="/get-started" />
+```
+
+<Button text="Get Started" url="/get-started" />
+
+### Large Button
+
+A larger version of the button with custom text and link.
+
+```jsx
+<Button size="large" text="Explore Features" url="/features" />
+```
+
+<Button size="large" text="Explore Features" url="/features" />
+
+### Button with Custom Styling
+
+Applies additional custom classes for specific styling needs.
+
+```jsx
+<Button
+  text="Contact Us"
+  url="/contact"
+  className="bg-blue-500 text-white hover:bg-blue-700"
+/>
+```
+
+<Button
+  text="Contact Us"
+  url="/contact"
+  className="bg-blue-500 text-white hover:bg-blue-700"
+/>
+
+</div>

@@ -19,6 +19,13 @@ function ComponentList() {
     { name: "Calendar", path: "/component-guide/calendar" },
     { name: "BlockBg", path: "/component-guide/block-bg" },
     { name: "Checkbox", path: "/component-guide/checkbox" },
+    { name: "HomePageFeatures", path: "/component-guide/homepage-features" },
+    { name: "TextIllustration", path: "/component-guide/text-illustration" },
+    { name: "ApiDetails", path: "/component-guide/api-details" },
+    { name: "Button", path: "/component-guide/button" },
+    { name: "ButtonGroup", path: "/component-guide/button-group" },
+    { name: "Dependency", path: "/component-guide/dependency" },
+    { name: "Dependencies", path: "/component-guide/dependencies" },
   ];
 
   return (
