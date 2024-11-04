@@ -60,55 +60,86 @@ const apiDetailsData = [
 
 Displays a list of fields with types and optional statuses.
 
-```jsx
-const details = [
-  {
-    data: {
-      field: "email",
-      type: "string",
-      isOptional: false,
-      value: "user@example.com",
+<ApiDetails
+  details={[
+    {
+      data: {
+        field: "email",
+        type: "string",
+        isOptional: false,
+        value: "user@example.com",
+      },
     },
-  },
-  {
-    data: {
-      field: "password",
-      type: "string",
-      isOptional: true,
-      value: "********",
+    {
+      data: {
+        field: "password",
+        type: "string",
+        isOptional: true,
+        value: "********",
+      },
     },
-  },
-];
+  ]}
+/>
 
-<ApiDetails details={details} />;
-```
-
-<ApiDetails details={details} />
+<ApiDetails
+  details={[
+    {
+      data: {
+        field: "email",
+        type: "string",
+        isOptional: false,
+        value: "user@example.com",
+      },
+    },
+    {
+      data: {
+        field: "password",
+        type: "string",
+        isOptional: true,
+        value: "********",
+      },
+    },
+  ]}
+/>
 
 ### Field with Expandable Object Value
 
 For fields that contain an object, the component displays an expandable section.
 
-```jsx
-const objectDetails = [
-  {
-    data: {
-      field: "settings",
-      type: "object",
-      isObject: true,
-      value: (
-        <ul>
-          <li>Theme: Dark</li>
-          <li>Notifications: Enabled</li>
-        </ul>
-      ),
+<ApiDetails
+  details={[
+    {
+      data: {
+        field: "settings",
+        type: "object",
+        isObject: true,
+        value: (
+          <ul>
+            <li>Theme: Dark</li>
+            <li>Notifications: Enabled</li>
+          </ul>
+        ),
+      },
     },
-  },
-];
+  ]}
+/>
 
-<ApiDetails details={objectDetails} />;
-```
-
-<ApiDetails details={objectDetails} />
+<ApiDetails
+  details={[
+    {
+      data: {
+        field: "settings",
+        type: "object",
+        isObject: true,
+        value: (
+          <ul>
+            <li>Theme: Dark</li>
+            <li>Notifications: Enabled</li>
+          </ul>
+        ),
+      },
+    },
+  ]}
+/>
 
 </div>
