@@ -15,7 +15,7 @@
     "start:widget": "pnpm --filter web5-quickstart-widgets start",
     "start:new": "pnpm shnip:new && pnpm --filter site-new run start",
     "serve:new": "pnpm --filter site-new run serve",
-    "build": "pnpm run shnip && pnpm --filter site run build",
+    "build": "pnpm run snippets && pnpm --filter site run build",
     "build:new": "pnpm shnip:new && pnpm --filter site-new run build",
     "clear": "pnpm --filter site run clear",
     "clear:new": "pnpm --filter site-new run clear",
