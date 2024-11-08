@@ -14,5 +14,4 @@ export const config = {
     prependEnd: ":prepend-end:",
   },
   outputDirectoryStructure: "byLanguage",
-  version: "1.0.0",
 };
