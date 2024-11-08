@@ -97,8 +97,8 @@ importers:
         specifier: ^0.2.8
         version: 0.2.8(react@17.0.2)
       shnip:
-        specifier: 0.0.1-alpha
-        version: 0.0.1-alpha
+        specifier: 0.0.2-alpha
+        version: 0.0.2-alpha
       slick-carousel:
         specifier: 1.8.1
         version: 1.8.1(jquery@3.7.1)
@@ -17412,8 +17412,8 @@ packages:
       rechoir: 0.6.2
     dev: false
 
-  /shnip@0.0.1-alpha:
-    resolution: {integrity: sha512-pLcOxGmk/ZtB3VcX9I/ODY2AIAtyM0IfoD1j5Rog+G96fkLWn1mNi5iGvx+2SoBhmrJFfuht5ZA2j30UeMYUUg==}
+  /shnip@0.0.2-alpha:
+    resolution: {integrity: sha512-XTAtBhQeMlZtqCvtpz1SZEShiOh70P7NnrfV3XeWBiY4mPXI/KnvFVkwNPD6aMuYqap33JZLpKo1h1ECW3Nfew==}
     hasBin: true
     dependencies:
       rimraf: 5.0.5
