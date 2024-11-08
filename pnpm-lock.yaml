@@ -96,6 +96,9 @@ importers:
       react18-json-view:
         specifier: ^0.2.8
         version: 0.2.8(react@17.0.2)
+      shnip:
+        specifier: 0.0.1-alpha
+        version: 0.0.1-alpha
       slick-carousel:
         specifier: 1.8.1
         version: 1.8.1(jquery@3.7.1)
@@ -2806,7 +2809,7 @@ packages:
       cssnano-preset-advanced: 6.1.2(postcss@8.4.31)
       postcss: 8.4.31
       postcss-sort-media-queries: 5.2.0(postcss@8.4.31)
-      tslib: 2.6.3
+      tslib: 2.7.0
     dev: false
 
   /@docusaurus/eslint-plugin@3.5.2(eslint@9.9.1)(typescript@5.2.2):
@@ -2828,7 +2831,7 @@ packages:
     engines: {node: '>=18.0'}
     dependencies:
       chalk: 4.1.2
-      tslib: 2.6.3
+      tslib: 2.7.0
     dev: false
 
   /@docusaurus/mdx-loader@3.5.2(@docusaurus/types@3.5.2)(react-dom@18.2.0)(react@18.2.0)(typescript@5.2.2):
@@ -2858,7 +2861,7 @@ packages:
       remark-frontmatter: 5.0.0
       remark-gfm: 4.0.0
       stringify-object: 3.3.0
-      tslib: 2.6.3
+      tslib: 2.7.0
       unified: 11.0.5
       unist-util-visit: 5.0.0
       url-loader: 4.1.1(file-loader@6.2.0)(webpack@5.92.1)
@@ -3722,7 +3725,7 @@ packages:
     dependencies:
       '@docusaurus/mdx-loader': 3.5.2(@docusaurus/types@3.5.2)(react-dom@18.2.0)(react@18.2.0)(typescript@5.2.2)
       '@docusaurus/module-type-aliases': 3.5.2(react-dom@18.2.0)(react@18.2.0)
-      '@docusaurus/plugin-content-docs': 3.5.2(@mdx-js/react@3.0.1)(eslint@9.9.1)(react-dom@18.2.0)(react@18.2.0)(typescript@5.2.2)
+      '@docusaurus/plugin-content-docs': 3.5.2(@mdx-js/react@3.0.1)(react-dom@18.2.0)(react@18.2.0)(typescript@5.2.2)
       '@docusaurus/utils': 3.5.2(@docusaurus/types@3.5.2)(typescript@5.2.2)
       '@docusaurus/utils-common': 3.5.2(@docusaurus/types@3.5.2)
       '@types/history': 4.7.11
@@ -3926,7 +3929,7 @@ packages:
         optional: true
     dependencies:
       '@docusaurus/types': 3.5.2(react-dom@18.2.0)(react@18.2.0)
-      tslib: 2.6.3
+      tslib: 2.7.0
     dev: false
 
   /@docusaurus/utils-validation@3.5.2(@docusaurus/types@3.5.2)(typescript@5.2.2):
@@ -3940,7 +3943,7 @@ packages:
       joi: 17.13.3
       js-yaml: 4.1.0
       lodash: 4.17.21
-      tslib: 2.6.3
+      tslib: 2.7.0
     transitivePeerDependencies:
       - '@docusaurus/types'
       - '@swc/core'
@@ -16999,7 +17002,6 @@ packages:
     hasBin: true
     dependencies:
       glob: 10.3.10
-    dev: true
 
   /rimraf@5.0.9:
     resolution: {integrity: sha512-3i7b8OcswU6CpU8Ej89quJD4O98id7TtVM5U4Mybh84zQXdrFmDLouWBEEaD/QfO3gDDfH+AGFCGsR7kngzQnA==}
@@ -17408,6 +17410,13 @@ packages:
       glob: 7.2.3
       interpret: 1.4.0
       rechoir: 0.6.2
+    dev: false
+
+  /shnip@0.0.1-alpha:
+    resolution: {integrity: sha512-pLcOxGmk/ZtB3VcX9I/ODY2AIAtyM0IfoD1j5Rog+G96fkLWn1mNi5iGvx+2SoBhmrJFfuht5ZA2j30UeMYUUg==}
+    hasBin: true
+    dependencies:
+      rimraf: 5.0.5
     dev: false
 
   /should-equal@2.0.0:
