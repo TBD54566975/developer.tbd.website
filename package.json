@@ -27,7 +27,7 @@
     "test:swift": "swift test --package-path ./site/testsuites/testsuite-swift",
     "test:versions": "node check-versions.js",
     "test:watch": "pnpm run shnip && pnpm vitest --config vite.config.ts --watch",
-    "shnip": "pnpm shnip --config ./shnip.config.js",
+    "snippets": "pnpm shnip --config ./shnip.config.js",
     "shnip:build:new": "node ./shnip build",
     "test:js:new": "pnpm vitest run --config new-vite.config --no-threads",
     "test:kotlin:new": "./site-new/testsuites/testsuite-kotlin/mvnw clean verify -f site-new/testsuites/testsuite-kotlin --batch-mode",

@@ -1,6 +1,6 @@
 export const config = {
-  rootDirectory: "./site-new/testsuites",
-  snippetOutputDirectory: "./site-new/snippets",
+  rootDirectory: "./site/testsuites",
+  snippetOutputDirectory: "./site/snippets",
   fileExtensions: [".js", ".ts", ".kt", ".gradle", ".xml", ".bash", ".swift"],
   exclude: [
     "pfiOverviewReadOfferingsJs",
