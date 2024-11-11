@@ -2,4 +2,3 @@ packages:
   - "site/**"
   - "examples/**"
   - "apps/**"
-  - "site-new/**"
