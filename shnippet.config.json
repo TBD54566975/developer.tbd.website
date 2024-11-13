@@ -2,7 +2,11 @@
   "rootDirectory": "./site/testsuites",
   "outputDirectory": "./site/snippets",
   "fileExtensions": [".js", ".ts", ".kt", ".gradle", ".xml", ".bash", ".swift"],
-  "exclude": ["pfiOverviewReadOfferingsJs", "pfiOverviewWriteJs", "pfiOverviewWriteOfferingsJs"],
+  "exclude": [
+    "pfiOverviewReadOfferingsJs",
+    "pfiOverviewWriteJs",
+    "pfiOverviewWriteOfferingsJs"
+  ],
   "snippetTags": {
     "start": ":snippet-start:",
     "end": ":snippet-end:",

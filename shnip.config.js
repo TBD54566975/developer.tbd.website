@@ -1,6 +1,6 @@
 export const config = {
-  rootDirectory: "./site-new/testsuites",
-  snippetOutputDirectory: "./site-new/snippets",
+  rootDirectory: "./site/testsuites",
+  snippetOutputDirectory: "./site/snippets",
   fileExtensions: [".js", ".ts", ".kt", ".gradle", ".xml", ".bash", ".swift"],
   exclude: [
     "pfiOverviewReadOfferingsJs",
@@ -14,5 +14,4 @@ export const config = {
     prependEnd: ":prepend-end:",
   },
   outputDirectoryStructure: "byLanguage",
-  version: "1.0.0",
 };
