@@ -1,0 +1,145 @@
+import React from "react";
+import ApiDetails from "@site/src/components/ApiDetails";
+
+# ApiDetails Component
+
+<div className="">
+<p>The `ApiDetails` component displays a list of API fields and their details, such as type, optional status, and values. It's suitable for showing structured data in a user-friendly format, with expandable details for fields that contain objects.</p>
+
+## Properties
+
+| Property  | Type       | Required | Description                                             |
+| --------- | ---------- | -------- | ------------------------------------------------------- |
+| `details` | `Detail[]` | Yes      | Array of field details, each containing field metadata. |
+
+### Detail Structure
+
+Each `Detail` object in the `details` array has the following structure:
+
+| Field        | Type              | Required | Description                                     |
+| ------------ | ----------------- | -------- | ----------------------------------------------- |
+| `field`      | `string`          | Yes      | The name of the API field.                      |
+| `type`       | `string`          | No       | The data type of the field (e.g., `string`).    |
+| `isOptional` | `boolean`         | No       | Indicates if the field is optional.             |
+| `isObject`   | `boolean`         | No       | Specifies if the field value is an object.      |
+| `value`      | `React.ReactNode` | Yes      | The value or content associated with the field. |
+
+## Usage
+
+```jsx title="ApiDetails Component"
+const apiDetailsData = [
+  {
+    data: {
+      field: "username",
+      type: "string",
+      isOptional: true,
+      value: "JohnDoe",
+    },
+  },
+  {
+    data: {
+      field: "profile",
+      type: "object",
+      isObject: true,
+      value: (
+        <ul>
+          <li>Age: 30</li>
+          <li>Location: New York</li>
+        </ul>
+      ),
+    },
+  },
+];
+
+<ApiDetails details={apiDetailsData} />;
+```
+
+## Examples
+
+### Basic Example
+
+Displays a list of fields with types and optional statuses.
+
+<ApiDetails
+  details={[
+    {
+      data: {
+        field: "email",
+        type: "string",
+        isOptional: false,
+        value: "user@example.com",
+      },
+    },
+    {
+      data: {
+        field: "password",
+        type: "string",
+        isOptional: true,
+        value: "********",
+      },
+    },
+  ]}
+/>
+
+<ApiDetails
+  details={[
+    {
+      data: {
+        field: "email",
+        type: "string",
+        isOptional: false,
+        value: "user@example.com",
+      },
+    },
+    {
+      data: {
+        field: "password",
+        type: "string",
+        isOptional: true,
+        value: "********",
+      },
+    },
+  ]}
+/>
+
+### Field with Expandable Object Value
+
+For fields that contain an object, the component displays an expandable section.
+
+<ApiDetails
+  details={[
+    {
+      data: {
+        field: "settings",
+        type: "object",
+        isObject: true,
+        value: (
+          <ul>
+            <li>Theme: Dark</li>
+            <li>Notifications: Enabled</li>
+          </ul>
+        ),
+      },
+    },
+  ]}
+/>
+
+<ApiDetails
+  details={[
+    {
+      data: {
+        field: "settings",
+        type: "object",
+        isObject: true,
+        value: (
+          <ul>
+            <li>Theme: Dark</li>
+            <li>Notifications: Enabled</li>
+          </ul>
+        ),
+      },
+    },
+  ]}
+/>
+
+</div>

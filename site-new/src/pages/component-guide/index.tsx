@@ -16,12 +16,16 @@ function ComponentList() {
     { name: "Admonition", path: "/component-guide/admonition" },
     { name: "IconButton", path: "/component-guide/icon-button" },
     { name: "CodeBlock", path: "/component-guide/code-block" },
-    { name: "IconButton", path: "/component-guide/icon-button" },
-    { name: "CodeBlock", path: "/component-guide/code-block" },
-    {
-      name: "Calendar",
-      path: "/component-guide/calendar",
-    },
+    { name: "Calendar", path: "/component-guide/calendar" },
+    { name: "BlockBg", path: "/component-guide/block-bg" },
+    { name: "Checkbox", path: "/component-guide/checkbox" },
+    { name: "HomePageFeatures", path: "/component-guide/homepage-features" },
+    { name: "TextIllustration", path: "/component-guide/text-illustration" },
+    { name: "ApiDetails", path: "/component-guide/api-details" },
+    { name: "Button", path: "/component-guide/button" },
+    { name: "ButtonGroup", path: "/component-guide/button-group" },
+    { name: "Dependency", path: "/component-guide/dependency" },
+    { name: "Dependencies", path: "/component-guide/dependencies" },
   ];
 
   return (
@@ -31,13 +35,18 @@ function ComponentList() {
       </Heading>
       <p className="mb-8">Click on a component to learn more about it.</p>
       <ul className="list-disc space-y-2 pl-5">
-        {components.map((component, index) => (
-          <li key={index} className="text-lg">
-            <Link to={component.path} className="text-blue-500 hover:underline">
-              {component.name}
-            </Link>
-          </li>
-        ))}
+        {components
+          .sort((a, b) => a.name.localeCompare(b.name))
+          .map((component, index) => (
+            <li key={index} className="text-lg">
+              <Link
+                to={component.path}
+                className="text-blue-500 hover:underline"
+              >
+                {component.name}
+              </Link>
+            </li>
+          ))}
       </ul>
     </div>
   );

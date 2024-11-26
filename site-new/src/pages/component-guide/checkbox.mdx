@@ -1,0 +1,76 @@
+import React from "react";
+import Checkbox from "@site/src/components/Checkbox";
+
+# Checkbox Component
+
+<div className="">
+<p>The `Checkbox` component is a styled checkbox element with an optional label. It utilizes the Radix UI Checkbox and Label primitives for accessibility and custom styling.</p>
+
+## Properties
+
+| Property    | Type                    | Required | Default | Description                                         |
+| ----------- | ----------------------- | -------- | ------- | --------------------------------------------------- |
+| `label`     | `string` or `ReactNode` | No       | `""`    | Label text or node to be displayed beside checkbox. |
+| `className` | `string`                | No       | `""`    | Additional class names for custom styling.          |
+
+## Usage
+
+```jsx title="Checkbox Component"
+<Checkbox label="Subscribe to newsletter" />
+```
+
+## Examples
+
+### Basic Checkbox with Label
+
+```jsx
+<Checkbox label="I agree to the terms and conditions" />
+```
+
+<Checkbox label="I agree to the terms and conditions" />
+
+### Checkbox with Custom Styling
+
+Adds custom styles with `className`.
+
+```jsx
+<Checkbox
+  label="Enable notifications"
+  className="hover:border-tbd-teal-shade border-tbd-teal"
+/>
+```
+
+<Checkbox
+  label="Enable notifications"
+  className="hover:border-tbd-teal-shade border-tbd-teal"
+/>
+
+### Checkbox with React Node Label
+
+A checkbox with a label that includes additional HTML or React components.
+
+```jsx
+<Checkbox
+  label={
+    <span>
+      I accept the{" "}
+      <a href="/terms" className="text-blue-500 hover:underline">
+        terms and conditions
+      </a>
+    </span>
+  }
+/>
+```
+
+<Checkbox
+  label={
+    <span>
+      I accept the{" "}
+      <a href="/terms" className="text-blue-500 hover:underline">
+        terms and conditions
+      </a>
+    </span>
+  }
+/>
+
+</div>

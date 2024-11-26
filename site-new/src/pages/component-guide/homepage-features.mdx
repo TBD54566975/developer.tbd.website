@@ -1,0 +1,75 @@
+import React from "react";
+import { HomepageFeatures } from "@site/src/components/HomepageFeatures";
+
+# HomepageFeatures Component
+
+<div className="">
+<p>The `HomepageFeatures` component displays a list of features, each represented by an icon, a title, and a description. This component is ideal for showcasing key attributes or selling points of a product or service on a homepage.</p>
+
+## Properties for Feature Items
+
+Each feature item in `FeatureList` has the following properties:
+
+| Property      | Type                                               | Required | Description                               |
+| ------------- | -------------------------------------------------- | -------- | ----------------------------------------- |
+| `title`       | `string`                                           | Yes      | Title of the feature.                     |
+| `Svg`         | `React.ComponentType<React.ComponentProps<'svg'>>` | Yes      | SVG icon representing the feature.        |
+| `description` | `JSX.Element`                                      | Yes      | Description of the feature in JSX format. |
+
+## Usage
+
+```jsx title="HomepageFeatures Component"
+<HomepageFeatures />
+```
+
+## Examples
+
+### Basic Example
+
+This example renders the `HomepageFeatures` component with three sample feature items.
+
+```jsx
+<HomepageFeatures />
+```
+
+## Feature Item Example
+
+Each feature item can be customized with a different SVG and text content. Here is an example of a feature item structure:
+
+```jsx
+{
+  title: 'Easy to Use',
+  Svg: require('@site/static/img/undraw_docusaurus_mountain.svg').default,
+  description: (
+    <>
+      Docusaurus was designed from the ground up to be easily installed and
+      used to get your website up and running quickly.
+    </>
+  ),
+}
+```
+
+## Customizing the Feature Component
+
+To create a custom feature, you can modify the properties in the `FeatureList` array. Each feature item renders as a column with a title, icon, and description.
+
+### Adding a New Feature Item
+
+Add a new item to the `FeatureList` array to display an additional feature.
+
+```jsx
+const FeatureList: FeatureItem[] = [
+  ...FeatureList,
+  {
+    title: 'Custom Feature',
+    Svg: require('@site/static/img/custom_icon.svg').default,
+    description: (
+      <>
+        Customize your feature list by adding new items to the array.
+      </>
+    ),
+  },
+];
+```
+
+</div>

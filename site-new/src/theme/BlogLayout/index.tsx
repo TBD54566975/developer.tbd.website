@@ -6,7 +6,7 @@ import BlogSidebar from "@theme/BlogSidebar";
 import type { Props } from "@theme/BlogLayout";
 import { useBlogContext } from "../BlogListContext/BlogListContext";
 import Background from "@site/src/components/Background";
-import Checkbox from "@site/src/components/Checkbox/Checkbox";
+import Checkbox from "@site/src/components/Checkbox";
 import Heading from "@theme/Heading";
 
 const CheckboxLabel = ({ label }: { label: string }) => {
@@ -57,7 +57,7 @@ export default function BlogLayout(props: Props): JSX.Element {
 
   return (
     <Layout {...layoutProps}>
-      <div className="margin-vert--lg container">
+      <div className="margin-vert--lg container pt-[46px]">
         <div className="row">
           <BlogSidebar sidebar={sidebar} />
           <main

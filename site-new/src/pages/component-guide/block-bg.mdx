@@ -1,0 +1,156 @@
+import React from "react";
+import { BlockBg } from "@site/src/components/BlockBg";
+
+# BlockBg Component
+
+<div className="">
+<p>The `BlockBg` component creates a background effect with randomly generated squares or tiles, providing a dynamic, grid-like background for other content.</p>
+
+## Properties
+
+| Property             | Type              | Required | Default | Description                                                                              |
+| -------------------- | ----------------- | -------- | ------- | ---------------------------------------------------------------------------------------- |
+| `minSize`            | `number`          | Yes      | `none`  | Minimum size for tile height in pixels.                                                  |
+| `maxSize`            | `number`          | Yes      | `none`  | Maximum size for tile height in pixels.                                                  |
+| `rows`               | `number`          | No       | `12`    | Number of rows in the grid.                                                              |
+| `columns`            | `number`          | No       | `12`    | Number of columns in the grid.                                                           |
+| `className`          | `string`          | No       | `""`    | Additional class name for styling the component.                                         |
+| `decreaseBlockLevel` | `number`          | No       | `2`     | Determines the level of random block reduction in the grid.                              |
+| `secondaryClassName` | `string`          | No       | `""`    | Class name for individual tiles.                                                         |
+| `animate`            | `boolean`         | No       | `false` | Enables animation of the grid.                                                           |
+| `intervalDuration`   | `number`          | No       | `none`  | Time interval in milliseconds for grid animation updates. Required if `animate` is true. |
+| `children`           | `React.ReactNode` | No       | `""`    | Content to render over the background grid.                                              |
+
+## Usage
+
+```jsx title="Basic Usage of BlockBg"
+<BlockBg minSize={10} maxSize={50} />
+```
+
+## Examples
+
+### Basic Example with Custom Colors
+
+Creates a static grid background with random tile sizes.
+
+```jsx
+<BlockBg
+  minSize={20}
+  maxSize={40}
+  rows={8}
+  columns={8}
+  className="h-36 w-full bg-tbd-gray-tint-1"
+  secondaryClassName="bg-tbd-gray-shade-2"
+/>
+```
+
+<BlockBg
+  minSize={20}
+  maxSize={40}
+  rows={8}
+  columns={8}
+  className="h-36 w-full bg-tbd-gray-tint-1"
+  secondaryClassName="bg-tbd-gray-shade-2"
+/>
+
+### Variant with Yellow Backgrounds
+
+Creates a vibrant yellow background grid.
+
+```jsx
+<BlockBg
+  minSize={15}
+  maxSize={35}
+  rows={8}
+  columns={8}
+  className="h-36 w-full bg-tbd-yellow"
+  secondaryClassName="bg-tbd-yellow-shade-2"
+/>
+```
+
+<BlockBg
+  minSize={15}
+  maxSize={35}
+  rows={8}
+  columns={8}
+  className="h-36 w-full bg-tbd-yellow"
+  secondaryClassName="bg-tbd-yellow-shade-2"
+/>
+
+### Variant with Teal Tints
+
+A calm teal-themed background grid.
+
+```jsx
+<BlockBg
+  minSize={15}
+  maxSize={35}
+  rows={10}
+  columns={10}
+  className="h-36 w-full bg-tbd-teal"
+  secondaryClassName="bg-tbd-teal-tint-2"
+/>
+```
+
+<BlockBg
+  minSize={15}
+  maxSize={35}
+  rows={10}
+  columns={10}
+  className="h-36 w-full bg-tbd-teal"
+  secondaryClassName="bg-tbd-teal-tint-2"
+/>
+
+### Variant with Purple Shades
+
+A background using purple shades for a unique style.
+
+```jsx
+<BlockBg
+  minSize={20}
+  maxSize={40}
+  rows={8}
+  columns={8}
+  className="h-36 w-full bg-tbd-purple-tint-2"
+  secondaryClassName="bg-tbd-gray-shade-1"
+/>
+```
+
+<BlockBg
+  minSize={20}
+  maxSize={40}
+  rows={8}
+  columns={8}
+  className="h-36 w-full bg-tbd-purple-tint-2"
+  secondaryClassName="bg-tbd-gray-shade-1"
+/>
+
+### Gray Background Variant with Overlay Content
+
+A neutral gray background with overlay content.
+
+```jsx
+<BlockBg
+  minSize={25}
+  maxSize={45}
+  rows={10}
+  columns={10}
+  className="h-36 w-full bg-tbd-gray"
+  secondaryClassName="bg-tbd-gray-shade-2"
+>
+  <h1 className="text-center text-white">Overlay Content</h1>
+</BlockBg>
+```
+
+<BlockBg
+  minSize={25}
+  maxSize={45}
+  rows={10}
+  columns={10}
+  className="h-36 w-full bg-tbd-gray"
+  secondaryClassName="bg-tbd-gray-shade-2"
+>
+  <h1 className="text-center text-white">Overlay Content</h1>
+</BlockBg>
+
+</div>

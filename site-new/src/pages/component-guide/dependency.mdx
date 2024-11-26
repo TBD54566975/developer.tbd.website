@@ -1,0 +1,97 @@
+import React from "react";
+import Dependency from "@site/src/components/Dependency";
+
+# Dependency Component
+
+<div className="">
+<p>The `Dependency` component renders language-specific dependency information, including installation commands and configuration blocks for different package managers and languages. This component supports JavaScript (npm), Gradle, Maven, and Swift dependencies.</p>
+
+## Properties
+
+| Property       | Type                     | Required | Default     | Description                                                                        |
+| -------------- | ------------------------ | -------- | ----------- | ---------------------------------------------------------------------------------- |
+| `language`     | `string`                 | Yes      | `""`        | Specifies the language of the dependencies.                                        |
+| `dependencies` | `string[]`               | Yes      | `[]`        | Array of dependencies required for the specified language.                         |
+| `display`      | `"install" \| "package"` | No       | `"install"` | Determines display mode, either as installation commands or package configuration. |
+
+### SDKVersions Structure
+
+This structure holds SDK version information for various programming languages:
+
+| Field   | Type                                              | Required | Description                     |
+| ------- | ------------------------------------------------- | -------- | ------------------------------- |
+| `js`    | `Record<string, string>`                          | Yes      | SDK versions for JavaScript.    |
+| `jvm`   | `Record<string, string>`                          | Yes      | SDK versions for JVM languages. |
+| `swift` | `Record<string, { url: string; branch: string }>` | Yes      | SDK versions for Swift.         |
+
+## Usage
+
+To use the `Dependency` component, pass the language, dependencies, and any specific display option.
+
+```jsx title="Dependency Component"
+const dependencies = ["axios", "react"];
+<Dependency language="javascript" dependencies={dependencies} />;
+```
+
+## Examples
+
+### JavaScript Installation Commands
+
+Displays installation commands for JavaScript dependencies using npm.
+
+```jsx
+<Dependency language="javascript" dependencies={["axios", "react"]} />
+```
+
+<Dependency language="javascript" dependencies={["axios", "react"]} />
+
+### Gradle and Maven Dependencies
+
+Generates dependency blocks for JVM languages, with Gradle or Maven configuration based on the specified language.
+
+```jsx
+<Dependency
+  language="gradle"
+  dependencies={["retrofit2"]}
+  display="install"
+/>
+
+<Dependency
+  language="maven"
+  dependencies={["retrofit2"]}
+  display="install"
+/>
+```
+
+<Dependency language="gradle" dependencies={["retrofit2"]} display="install" />
+<Dependency language="maven" dependencies={["retrofit2"]} display="install" />
+
+### Swift Package Manager Dependencies
+
+Generates a package block for Swift dependencies.
+
+```jsx
+<Dependency language="swift" dependencies={["Alamofire", "SwiftyJSON"]} />
+```
+
+<Dependency language="swift" dependencies={["Alamofire", "SwiftyJSON"]} />
+
+### JavaScript `package.json` Configuration
+
+Displays a `package.json` configuration for JavaScript dependencies with specified SDK versions.
+
+```jsx
+<Dependency
+  language="javascript"
+  dependencies={["axios", "react"]}
+  display="package"
+/>
+```
+
+<Dependency
+  language="javascript"
+  dependencies={["axios", "react"]}
+  display="package"
+/>
+
+</div>
